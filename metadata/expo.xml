@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<compiz>
+  <plugin name="expo" useBcop="true">
+    <short>Expo</short>
+    <long>Expo Plugin</long>
+    <category>Desktop</category>
+    <deps>
+	<relation type="after">
+	    <plugin>decoration</plugin>
+	</relation>
+	<relation type="before">
+	    <plugin>wobbly</plugin>
+	    <plugin>fade</plugin>
+	</relation>
+    </deps>
+    <display>
+      <group>
+        <short>Misc. Settings</short>
+        <option name="expo" type="action">
+          <short>Expo</short>
+          <long>Engage wall expo mode</long>
+          <allowed key="true" edge="true"/>
+          <default>
+            <key>&lt;Super&gt;e</key>
+            <edges top_left="true"/>
+          </default>
+        </option>
+        <option name="rotate" type="bool">
+          <short>Rotate Wall</short>
+          <long>Rotate wall in expo mode</long>
+          <default>false</default>
+        </option>
+        <option name="expo_animation" type="string">
+          <short>Expo Animation</short>
+          <long>Animation used when switching to expo mode</long>
+          <default>Zoom</default>
+          <allowed>
+            <value>Zoom</value>
+            <value>Fade + Zoom</value>
+            <value>Vortex</value>
+          </allowed>
+        </option>
+        <option name="mipmaps" type="bool">
+          <short>Mipmaps</short>
+          <long>Generate mipmaps in expo mode</long>
+          <default>false</default>
+        </option>
+        <option name="aspect_ratio" type="float">
+          <short>Aspect Ratio</short>
+          <long>Expo mode aspect ratio</long>
+          <default>1.0</default>
+          <min>0.0</min>
+          <max>10.0</max>
+          <precision>0.1</precision>
+        </option>
+        <option name="expo_immediate_move" type="bool">
+          <short>Immediate moves</short>
+          <long>Selects if windows movements in expo mode should be immediate - this among other things disables wobbliness</long>
+          <default>false</default>
+        </option>
+      </group>
+    </display>
+  </plugin>
+</compiz>
