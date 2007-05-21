@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<compiz>
+  <plugin name="put" useBcop="true">
+    <short>Put</short>
+    <long>Put window</long>
+	<category>Window Management</category>
+    <display>
+      <option name="put_viewport" type="action">
+        <short>Put On Viewport</short>
+        <long>Move window to a certain viewport</long>
+        <allowed/>
+        <default/>
+      </option>
+      <group>
+        <short>Bindings</short>
+        <subgroup>
+          <short>Put to arbitrary viewport</short>
+          <option name="put_viewport_1" type="action">
+            <short>Put On Viewport 1</short>
+            <long>Move window to viewport 1</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_2" type="action">
+            <short>Put On Viewport 2</short>
+            <long>Move window to viewport 2</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_3" type="action">
+            <short>Put On Viewport 3</short>
+            <long>Move window to viewport 3</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_4" type="action">
+            <short>Put On Viewport 4</short>
+            <long>Move window to viewport 4</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_5" type="action">
+            <short>Put On Viewport 5</short>
+            <long>Move window to viewport 5</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_6" type="action">
+            <short>Put On Viewport 6</short>
+            <long>Move window to viewport 6</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_7" type="action">
+            <short>Put On Viewport 7</short>
+            <long>Move window to viewport 7</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_8" type="action">
+            <short>Put On Viewport 8</short>
+            <long>Move window to viewport 8</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_9" type="action">
+            <short>Put On Viewport 9</short>
+            <long>Move window to viewport 9</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_10" type="action">
+            <short>Put On Viewport 10</short>
+            <long>Move window to viewport 10</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_11" type="action">
+            <short>Put On Viewport 11</short>
+            <long>Move window to viewport 11</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_12" type="action">
+            <short>Put On Viewport 12</short>
+            <long>Move window to viewport 12</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+        </subgroup>
+        <subgroup>
+          <short>Put to adjacent viewport</short>
+          <option name="put_viewport_left" type="action">
+            <short>Viewport Left</short>
+            <long>Move window to the viewport on the left</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_right" type="action">
+            <short>Viewport Right</short>
+            <long>Move window to the viewport on the right</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_up" type="action">
+            <short>Viewport Top</short>
+            <long>Move window to the viewport on the top</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+          <option name="put_viewport_down" type="action">
+            <short>Viewport Bottom</short>
+            <long>Move window to the viewport on the bottom</long>
+            <allowed key="true"/>
+            <default>
+              <key/>
+            </default>
+          </option>
+        </subgroup>
+        <subgroup>
+          <short>Put within viewport</short>
+          <option name="put_center" type="action">
+            <short>Put Center</short>
+            <long>Move window to the center</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_Begin</key>
+            </default>
+          </option>
+          <option name="put_left" type="action">
+            <short>Put Left</short>
+            <long>Move window to the left edge</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_Left</key>
+            </default>
+          </option>
+          <option name="put_right" type="action">
+            <short>Put Right</short>
+            <long>Move window to the right edge</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_Right</key>
+            </default>
+          </option>
+          <option name="put_top" type="action">
+            <short>Put Top</short>
+            <long>Move window to the top edge</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_Up</key>
+            </default>
+          </option>
+          <option name="put_bottom" type="action">
+            <short>Put Bottom</short>
+            <long>Move window to the bottom edge</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_Down</key>
+            </default>
+          </option>
+          <option name="put_topleft" type="action">
+            <short>Put Top Left</short>
+            <long>Move window to the top left corner</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_Home</key>
+            </default>
+          </option>
+          <option name="put_topright" type="action">
+            <short>Put Top Right</short>
+            <long>Move window to the top right corner</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_Prior</key>
+            </default>
+          </option>
+          <option name="put_bottomleft" type="action">
+            <short>Put Bottom Left</short>
+            <long>Move window to the bottom left corner</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_End</key>
+            </default>
+          </option>
+          <option name="put_bottomright" type="action">
+            <short>Put Bottom Right</short>
+            <long>Move window to the bottom right corner</long>
+            <allowed key="true"/>
+            <default>
+              <key>&lt;Super&gt;KP_Next</key>
+            </default>
+          </option>
+        </subgroup>
+        <option name="put_restore" type="action">
+          <short>Restore Position</short>
+          <long>Move window to the last position</long>
+          <allowed key="true"/>
+          <default>
+            <key>&lt;Super&gt;KP_Insert</key>
+          </default>
+        </option>
+        <option name="put_pointer" type="action">
+          <short>Put Pointer</short>
+          <long>Move window to the pointer position</long>
+          <allowed key="true"/>
+          <default>
+            <key>&lt;Super&gt;z</key>
+          </default>
+        </option>
+        <option name="put_exact" type="action">
+          <short>Put Exact</short>
+          <long>Move window to x, y</long>
+          <allowed/>
+          <default/>
+        </option>
+      </group>
+    </display>
+    <screen>
+      <group>
+        <short>Misc. Options</short>
+        <subgroup>
+          <short>Padding</short>
+          <option name="pad_left" type="int">
+            <short>Pad Left</short>
+            <long>Number of pixels from the left edge where the window will come to rest</long>
+            <default>0</default>
+            <min>0</min>
+            <max>500</max>
+          </option>
+          <option name="pad_right" type="int">
+            <short>Pad Left</short>
+            <long>Number of pixels from the right edge where the window will come to rest</long>
+            <default>0</default>
+            <min>0</min>
+            <max>500</max>
+          </option>
+          <option name="pad_top" type="int">
+            <short>Pad Left</short>
+            <long>Number of pixels from the top edge where the window will come to rest</long>
+            <default>0</default>
+            <min>0</min>
+            <max>500</max>
+          </option>
+          <option name="pad_bottom" type="int">
+            <short>Pad Left</short>
+            <long>Number of pixels from the bottom edge where the window will come to rest</long>
+            <default>0</default>
+            <min>0</min>
+            <max>500</max>
+          </option>
+        </subgroup>
+        <option name="unfocus_window" type="bool">
+          <short>Unfocus Window</short>
+          <long>Unfocus windows that are moved off the viewport</long>
+          <default>false</default>
+        </option>
+        <option name="window_center" type="bool">
+          <short>Window Center</short>
+          <long>Put pointer uses the center of the window</long>
+          <default>false</default>
+        </option>
+        <option name="avoid_offscreen" type="bool">
+          <short>Avoid Offscreen</short>
+          <long>Avoids putting window borders offscreen</long>
+          <default>false</default>
+        </option>
+      </group>
+      <group>
+        <short>Animation</short>
+        <option name="speed" type="float">
+          <short>Speed</short>
+          <long>Animation speed</long>
+          <default>2.5</default>
+          <min>0.1</min>
+          <max>50.0</max>
+          <precision>0.1</precision>
+        </option>
+        <option name="timestep" type="float">
+          <short>Timestep</short>
+          <long>Animation timestep</long>
+          <default>0.5</default>
+          <min>0.1</min>
+          <max>50.0</max>
+          <precision>0.1</precision>
+        </option>
+      </group>
+    </screen>
+  </plugin>
+</compiz>
