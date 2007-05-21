@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<compiz>
+  <plugin name="resizeinfo" useBcop="true">
+    <short>Resize Info</short>
+    <long>Display info on resize similar to metacity</long>
+    <category>Extras</category>
+    <display>
+		<group>
+	<option name="fade_time" type="int">
+	  <short>Fade Time</short>
+	  <long>Fade time (in ms) for popup window</long>
+	  <default>500</default>
+	  <min>10</min>
+	  <max>5000</max>
+	</option>
+	<option name="always_show" type="bool">
+	  <short> Show resize info for all windows. </short>
+	  <long> Show resize info for all windows as opposed to just
+	  windows with a resize increment of greater than 1. </long>
+	  <default>false</default>
+	</option>
+	<option name="text_color" type="color">
+	  <short> Text color. </short>
+	  <long> Color of text on resize popup. </long>
+	  <default>
+	    <red> 0x0000 </red>
+	    <blue> 0x0000 </blue>
+	    <green> 0x0000 </green>
+	    <alpha> 0xffff </alpha>
+	  </default>
+	</option>
+	<option name="gradient_1" type="color">
+	  <short> Gradient Color 1 </short>
+	  <long> Color 1 of the gradient background. </long>
+	  <default>
+	    <red> 0xcccc </red>
+	    <green> 0xcccc </green>
+	    <blue> 0xe665 </blue>
+	    <alpha> 0xcccc </alpha>
+	  </default>
+	</option>
+	<option name="gradient_2" type="color">
+	  <short> Gradient Color 2 </short>
+	  <long> Color 2 of the gradient background. </long>
+	  <default>
+	    <red> 0xf332 </red>
+	    <green> 0xf332 </green>
+	    <blue> 0xf332 </blue>
+	    <alpha> 0xcccc </alpha>
+	  </default>
+	</option>
+	<option name="gradient_3" type="color">
+	  <short> Gradient Color 3 </short>
+	  <long> Color 3 of the gradient background. </long>
+	  <default>
+	    <red> 0xd998 </red>
+	    <green> 0xd998 </green>
+	    <blue> 0xd998 </blue>
+	    <alpha> 0xcccc </alpha>
+	  </default>
+	</option>
+
+      </group>
+    </display>
+  </plugin>
+</compiz>
