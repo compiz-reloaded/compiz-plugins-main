@@ -696,16 +696,28 @@
 			
 			<subgroup>
 				<short>Zoom</short>
-				<option name="zoom_from_center" type="string">
+				<option name="zoom_from_center" type="int">
 					<short>Zoom from Center</short>
 					<long>Zoom from center when playing the Zoom and Sidekick animations.</long>
-					<default>Off</default>
-					<allowed>
-						<value>Off</value>
-						<value>Minimize/Unminimize Only</value>
-						<value>Create/Close Only</value>
-						<value>On</value>
-					</allowed>
+					<default>0</default>
+					<min>0</min>
+					<max>3</max>
+					<desc>
+						<value>0</value>
+						<name>Off</name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<name>Minimize/Unminimize Only</name>
+					</desc>
+					<desc>
+						<value>2</value>
+						<name>Create/Close Only</name>
+					</desc>
+					<desc>
+						<value>3</value>
+						<name>On</name>
+					</desc>
 				</option>
 				<option name="zoom_springiness" type="float">
 					<short>Zoom Springiness</short>
@@ -873,35 +885,71 @@
 
 			<subgroup>
 				<short>Domino</short>
-				<option name="domino_direction" type="string">
+				<option name="domino_direction" type="int">
 					<short>Domino Piece Falling Direction</short>
 					<long>Falling direction for Domino pieces.</long>
-					<default>Automatic</default>
-					<allowed>
-						<value>Down</value>
-						<value>Up</value>
-						<value>Left</value>
-						<value>Right</value>
-						<value>Random</value>
-						<value>Automatic</value>
-					</allowed>
+					<default>5</default>
+					<min>0</min>
+					<max>5</max>
+					<desc>
+						<value>0</value>
+						<name>Down</name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<name>Up</name>
+					</desc>
+					<desc>
+						<value>2</value>
+						<name>Left</name>
+					</desc>
+					<desc>
+						<value>3</value>
+						<name>Right</name>
+					</desc>
+					<desc>
+						<value>4</value>
+						<name>Random</name>
+					</desc>
+					<desc>
+						<value>5</value>
+						<name>Automatic</name>
+					</desc>
 				</option>
 			</subgroup>
 
 			<subgroup>
 				<short>Razr</short>
-				<option name="razr_direction" type="string">
+				<option name="razr_direction" type="int">
 					<short>Razr Fold Opening Direction</short>
 					<long>Fold opening direction for pieces in Razr effect.</long>
-					<default>Automatic</default>
-					<allowed>
-						<value>Down</value>
-						<value>Up</value>
-						<value>Left</value>
-						<value>Right</value>
-						<value>Random</value>
-						<value>Automatic</value>
-					</allowed>
+					<default>5</default>
+					<min>0</min>
+					<max>5</max>
+					<desc>
+						<value>0</value>
+						<name>Down</name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<name>Up</name>
+					</desc>
+					<desc>
+						<value>2</value>
+						<name>Left</name>
+					</desc>
+					<desc>
+						<value>3</value>
+						<name>Right</name>
+					</desc>
+					<desc>
+						<value>4</value>
+						<name>Random</name>
+					</desc>
+					<desc>
+						<value>5</value>
+						<name>Automatic</name>
+					</desc>
 				</option>
 			</subgroup>
 
@@ -929,14 +977,20 @@
 					<min>1</min>
 					<max>200</max>
 				</option>
-				<option name="explode_tessellation" type="string">
+				<option name="explode_tessellation" type="int">
 					<short>Tessellation Type</short>
 					<long>Tessellation type for exploding window pieces.</long>
-					<default>Rectangular</default>
-					<allowed>
-						<value>Rectangular</value>
-						<value>Hexagonal</value>
-					</allowed>
+					<default>0</default>
+					<min>0</min>
+					<max>1</max>
+					<desc>
+						<value>0</value>
+						<name>Rectangular</name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<name>Hexagonal</name>
+					</desc>
 				</option>
 			</subgroup>
 

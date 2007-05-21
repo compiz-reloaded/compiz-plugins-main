@@ -569,8 +569,6 @@ typedef struct _AnimScreen
 
 	CompOption opt[ANIM_SCREEN_OPTION_NUM];
 
-	ZoomFromCenter zoomFC;
-
 	Bool aWinWasRestackedJustNow; // a window was restacked this paint round
 
 	Bool switcherActive;
@@ -582,8 +580,6 @@ typedef struct _AnimScreen
 	int markAllWinCreatedCountdown;
 	// to mark windows as "created" if they were opened before compiz
 	// was started
-
-	PolygonTess explodePolygonTess; // explode polygon tesselation type
 
 	Bool animInProgress;
 	AnimEffect minimizeEffect;
@@ -778,45 +774,6 @@ animEffectFromString (CompOptionValue *value,
 		return AnimEffectNone;
 	else
 		return effect;
-}
-
-static AnimDirection
-animDirectionFromString (CompOptionValue *value)
-{
-	if (strcasecmp (value->s, "down") == 0)
-		return AnimDirectionDown;
-	else if (strcasecmp (value->s, "up") == 0)
-		return AnimDirectionUp;
-	else if (strcasecmp (value->s, "left") == 0)
-		return AnimDirectionLeft;
-	else if (strcasecmp (value->s, "right") == 0)
-		return AnimDirectionRight;
-	else if (strcasecmp (value->s, "random") == 0)
-		return AnimDirectionRandom;
-	else
-		return AnimDirectionAuto;
-}
-
-static PolygonTess
-polygonTessFromString (CompOptionValue *value)
-{
-	if (strcasecmp (value->s, "hexagonal") == 0)
-		return PolygonTessHex;
-	else
-		return PolygonTessRect;
-}
-
-static ZoomFromCenter
-zoomFromCenterFromString (CompOptionValue *value)
-{
-	if (strcasecmp (value->s, "on") == 0)
-		return ZoomFromCenterOn;
-	else if (strcasecmp (value->s, "create/close only") == 0)
-		return ZoomFromCenterCreate;
-	else if (strcasecmp (value->s, "minimize/unminimize only") == 0)
-		return ZoomFromCenterMin;
-	else
-		return ZoomFromCenterOff;
 }
 
 // iterate over given list
@@ -1229,7 +1186,7 @@ static AnimDirection getAnimationDirection(CompWindow * w,
 
 	AnimDirection dir;
 
-	dir = animDirectionFromString (value);
+	dir = value->i;
 
 	if (dir == AnimDirectionRandom)
 	{
@@ -4966,24 +4923,23 @@ static void fxExplode3DInit(CompScreen * s, CompWindow * w)
 	ANIM_WINDOW(w);
 	ANIM_SCREEN(s);
 
-	if (as->explodePolygonTess == PolygonTessRect)
+	switch (as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_TESS].value.i)
 	{
+	case PolygonTessRect:
 		if (!tessellateIntoRectangles(w, 
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_X].value.i,
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_Y].value.i,
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_THICKNESS].value.f))
 			return;
-	}
-	else if (as->explodePolygonTess == PolygonTessHex)
-	{
+	case PolygonTessHex:
 		if (!tessellateIntoHexagons(w, 
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_X].value.i,
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_Y].value.i,
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_THICKNESS].value.f))
 			return;
-	}
-	else
+	default:
 		return;
+	}
 
 	PolygonSet *pset = aw->polygonSet;
 	PolygonObject *p = pset->polygons;
@@ -5562,13 +5518,6 @@ animSetScreenOptions(CompPlugin *plugin,
 
 	switch (index)
 	{
-	case ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER:
-		if (compSetStringOption(o, value))
-		{
-			as->zoomFC = zoomFromCenterFromString (&o->value);
-			return TRUE;
-		}
-		break;
 	case ANIM_SCREEN_OPTION_MINIMIZE_EFFECT:
 		if (compSetStringOption(o, value))
 		{
@@ -5629,13 +5578,6 @@ animSetScreenOptions(CompPlugin *plugin,
 			as->shadeEffect = animEffectFromString (&o->value,
 													shadeEffectType,
 													NUM_SHADE_EFFECT);
-			return TRUE;
-		}
-		break;
-	case ANIM_SCREEN_OPTION_EXPLODE3D_TESS:
-		if (compSetStringOption(o, value))
-		{
-			as->explodePolygonTess = polygonTessFromString (&o->value);
 			return TRUE;
 		}
 		break;
@@ -7491,8 +7433,8 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 						*/
 						if ((aw->curAnimEffect == AnimEffectZoom || 
 							 aw->curAnimEffect == AnimEffectSidekick) &&
-							(as->zoomFC == ZoomFromCenterOn ||
-							 as->zoomFC == ZoomFromCenterMin))
+							(as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterOn ||
+							 as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterMin))
 						{
 							aw->icon.x =
 									WIN_X(w) +
@@ -7635,8 +7577,8 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 						if ((aw->curAnimEffect == AnimEffectZoom || 
 							 aw->curAnimEffect == AnimEffectSidekick) &&
-							(as->zoomFC == ZoomFromCenterOn ||
-							 as->zoomFC == ZoomFromCenterCreate))
+							(as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterOn ||
+							 as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterCreate))
 						{
 							aw->icon.x =
 									WIN_X(w) +
@@ -7954,8 +7896,8 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 						}
 						if ((aw->curAnimEffect == AnimEffectZoom || 
 							 aw->curAnimEffect == AnimEffectSidekick) &&
-							(as->zoomFC == ZoomFromCenterOn ||
-							 as->zoomFC == ZoomFromCenterMin))
+							(as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterOn ||
+							 as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterMin))
 						{
 							aw->icon.x =
 									WIN_X(w) + WIN_W(w) / 2 - aw->icon.width / 2;
@@ -8151,8 +8093,8 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 					if ((aw->curAnimEffect == AnimEffectZoom ||
 						 aw->curAnimEffect == AnimEffectSidekick) &&
-						(as->zoomFC == ZoomFromCenterOn ||
-						 as->zoomFC == ZoomFromCenterCreate))
+						(as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterOn ||
+						 as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterCreate))
 					{
 						aw->icon.x = WIN_X(w) + WIN_W(w) / 2 - aw->icon.width / 2;
 						aw->icon.y = WIN_Y(w) + WIN_H(w) / 2 - aw->icon.height / 2;
@@ -8481,12 +8423,6 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 							   NUM_SHADE_EFFECT,
 							   as->shadeRandomEffects,
 							   &as->nShadeRandomEffects);
-
-	as->zoomFC = zoomFromCenterFromString (
-			&as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value);
-
-	as->explodePolygonTess = polygonTessFromString (
-			&as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_TESS].value);
 
 	as->switcherActive = FALSE;
 	as->groupTabChangeActive = FALSE;
