@@ -340,7 +340,8 @@ typedef enum
 	AnimDirectionLeft,
 	AnimDirectionRight,
 	AnimDirectionRandom,
-	AnimDirectionAuto
+	AnimDirectionAuto,
+	AnimDirectionNum
 } AnimDirection;
 
 typedef enum
@@ -348,14 +349,16 @@ typedef enum
 	ZoomFromCenterOff = 0,
 	ZoomFromCenterMin,
 	ZoomFromCenterCreate,
-	ZoomFromCenterOn
+	ZoomFromCenterOn,
+	ZoomFromCenterNum
 } ZoomFromCenter;
 
 // Polygon tesselation type: Rectangular, Hexagonal
 typedef enum
 {
 	PolygonTessRect = 0,
-	PolygonTessHex
+	PolygonTessHex,
+	PolygonTessNum
 } PolygonTess;
 
 typedef enum
@@ -5693,18 +5696,18 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "beam_slowdown", "float", "<min>0.1</min>", 0, 0 },
 	{ "beam_life", "float", "<min>0.1</min>", 0, 0 },
 	{ "curved_fold_amp", "float", "<min>-0.5</min><max>0.5</max>", 0, 0 },
-	{ "domino_direction", "string", 0, 0, 0 },
-	{ "razr_direction", "string", 0, 0, 0 },
+	{ "domino_direction", "int", RESTOSTRING (0, AnimDirectionNum-1), 0, 0 },
+	{ "razr_direction", "int", RESTOSTRING (0, AnimDirectionNum-1), 0, 0 },
 	{ "explode_thickness", "float", "<min>0</min>", 0, 0 },
 	{ "explode_gridx", "int", "<min>1</min>", 0, 0 },
 	{ "explode_gridy", "int", "<min>1</min>", 0, 0 },
-	{ "explode_tesselation", "string", 0, 0, 0 },
+	{ "explode_tesselation", "int", RESTOSTRING (0, PolygonTessNum-1), 0, 0 },
 	{ "fire_particles", "int", "<min>0</min>", 0, 0 },
 	{ "fire_size", "float", "<min>0.1</min>", 0, 0 },
 	{ "fire_slowdown", "float", "<min>0.1</min>", 0, 0 },
 	{ "fire_life", "float", "<min>0.1</min>", 0, 0 },
 	{ "fire_color", "color", 0, 0, 0 },
-	{ "fire_direction", "string", 0, 0, 0 },
+	{ "fire_direction", "int", RESTOSTRING (0, PolygonTessNum-1), 0, 0 },
 	{ "fire_constant_speed", "bool", 0, 0, 0 },
 	{ "fire_smoke", "bool", 0, 0, 0 },
 	{ "fire_mystical", "bool", 0, 0, 0 },
@@ -5730,7 +5733,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "sidekick_springiness", "float", "<min>0</min><max>1</max>", 0, 0 },
 	{ "wave_width", "float", "<min>0</min>", 0, 0 },
 	{ "wave_amp", "float", "<min>0</min>", 0, 0 },
-	{ "zoom_from_center", "string", 0, 0, 0 },
+	{ "zoom_from_center", "int", RESTOSTRING (0, ZoomFromCenterNum-1), 0, 0 },
 	{ "zoom_springiness", "float", "<min>0</min><max>1</max>", 0, 0 }
 };
 
