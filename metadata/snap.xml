@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<compiz>
+  <plugin name="snap" useBcop="true">
+    <short>Snapping Windows</short>
+    <long>Enables windows edges resistance</long>
+	<category>Window Management</category>
+	<feature>edgeresistance</feature>
+	<deps>
+		<relation type="after">
+			<plugin>decoration</plugin>
+		</relation>
+	</deps>
+    <display>
+      <group>
+        <short>Bindings</short>
+        <option name="avoid_snap" type="list">
+          <short>Avoid Snap Modifier</short>
+          <long>Use this bindings to avoid snapping.</long>
+		  <type>int</type>
+		  <min>0</min>
+		  <max>3</max>
+          <default>
+            <value>0</value>
+		  </default>
+		  <desc>
+			  <value>0</value>
+			  <name>Shift</name>
+		  </desc>
+		  <desc>
+			  <value>1</value>
+			  <name>Alt</name>
+		  </desc>
+		  <desc>
+			  <value>2</value>
+			  <name>Control</name>
+		  </desc>
+		  <desc>
+			  <value>3</value>
+			  <name>Meta</name>
+		  </desc>
+        </option>
+      </group>
+    </display>
+    <screen>
+      <group>
+        <short>Behaviour</short>
+        <option name="snap_type" type="list">
+          <short>Snap Type</short>
+          <long>Choose 'Resistance', 'Attraction' or 'Full Mode'.</long>
+		  <type>int</type>
+		  <min>0</min>
+		  <max>1</max>
+          <default>
+            <value>0</value>
+		  </default>
+		  <desc>
+			  <value>0</value>
+			  <name>Edge resistance</name>
+		  </desc>
+		  <desc>
+			  <value>1</value>
+			  <name>Edge attraction</name>
+		  </desc>
+        </option>
+        <option name="edges_categories" type="list">
+          <short>Edges</short>
+          <long>Snap to 'Screen Edges', 'Windows Edges' or 'Both'.</long>
+		  <type>int</type>
+		  <min>0</min>
+		  <max>1</max>
+          <default>
+            <value>0</value>
+		  </default>
+		  <desc>
+			  <value>0</value>
+			  <name>Screen edges</name>
+		  </desc>
+		  <desc>
+			  <value>1</value>
+			  <name>Window edges</name>
+		  </desc>
+        </option>
+        <option name="resistance_distance" type="int">
+          <short>Edge Resistance Distance</short>
+          <long>The distance until edge resistance takes place.</long>
+          <default>30</default>
+          <min>1</min>
+          <max>100</max>
+        </option>
+        <option name="attraction_distance" type="int">
+          <short>Edge Attraction Distance</short>
+          <long>The distance until edge attraction takes place.</long>
+          <default>20</default>
+          <min>1</min>
+          <max>100</max>
+        </option>
+      </group>
+    </screen>
+  </plugin>
+</compiz>
