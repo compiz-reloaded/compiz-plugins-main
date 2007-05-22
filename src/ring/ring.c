@@ -975,7 +975,7 @@ adjustRingVelocity (CompWindow *w)
 	rw->ty = y1 - w->attrib.y;
 	rw->scale = scale;
 
-	return 0;
+	if (ringGetSettle(w->screen)) return 0;
     }
 
     return 1;
