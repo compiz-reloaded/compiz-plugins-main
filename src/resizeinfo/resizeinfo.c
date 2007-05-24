@@ -23,6 +23,10 @@ static int displayPrivateIndex;
 typedef struct _InfoDisplay 
 {
 	int screenPrivateIndex;
+
+	HandleEventProc handleEvent;
+	
+	Atom resizeNotifyAtom;
 } InfoDisplay;
 
 typedef struct _InfoLayer
@@ -49,8 +53,7 @@ typedef struct _InfoScreen
 	InfoLayer backgroundLayer;
 	InfoLayer textLayer;
   
-	int savedx;
-	int savedy;
+	XRectangle resizeGeometry;
 } InfoScreen;
 
 #define RESIZE_POPUP_WIDTH 75
@@ -108,15 +111,12 @@ void updateTextLayer (CompScreen *s)
 {
 	INFO_SCREEN (s);
 
-	if (!is->pWindow)
-		return;
-  
 	int base_width = is->pWindow->sizeHints.base_width;
 	int base_height = is->pWindow->sizeHints.base_height;
 	int width_inc = is->pWindow->sizeHints.width_inc;
 	int height_inc = is->pWindow->sizeHints.height_inc;
-	int width = is->pWindow->serverWidth;
-	int height = is->pWindow->serverHeight;
+	int width = is->resizeGeometry.width;
+	int height = is->resizeGeometry.height;
 	int xv = (width-base_width)/width_inc;
 	int yv = (height-base_height)/height_inc;
 	unsigned short * color = resizeinfoGetTextColor (s->display);
@@ -126,9 +126,6 @@ void updateTextLayer (CompScreen *s)
 	if (width_inc == 1)
 		xv = width-1;
   
-	if ((is->savedx == xv) && (is->savedy == yv))
-		return;
-
 	char * info;
 	cairo_t * cr = is->textLayer.cr;
   
@@ -177,9 +174,6 @@ void updateTextLayer (CompScreen *s)
 
   	pango_font_description_free (font);
 	g_object_unref (layout);
-  
-  	is->savedx = xv;
-	is->savedy = yv;
 }
 
 // Draw the background. We draw this on a second layer so that we do
@@ -292,11 +286,11 @@ static void infoDonePaintScreen (CompScreen *s)
 		{
 			REGION reg;
 
-			int tlx = is->pWindow->attrib.x + 
-				      is->pWindow->attrib.width / 2.0f -
+			int tlx = is->resizeGeometry.x + 
+				      is->resizeGeometry.width / 2.0f -
 				      RESIZE_POPUP_WIDTH / 2.0f;
-			int tly = is->pWindow->attrib.y + 
-				      is->pWindow->attrib.height / 2.0f - 
+			int tly = is->resizeGeometry.y + 
+				      is->resizeGeometry.height / 2.0f - 
 	                  RESIZE_POPUP_HEIGHT/2.0f;
 
 			reg.rects    = &reg.extents;
@@ -337,6 +331,11 @@ static void infoWindowGrabNotify (CompWindow * w,
 			is->pWindow = w;
 			is->drawing = TRUE;
 			is->fadeTime = resizeinfoGetFadeTime (s->display);
+
+			is->resizeGeometry.x = w->attrib.x;
+			is->resizeGeometry.y = w->attrib.y;
+			is->resizeGeometry.width  = w->attrib.width;
+			is->resizeGeometry.height = w->attrib.height;
 		}
 	}
 	
@@ -352,7 +351,7 @@ static void infoWindowUngrabNotify (CompWindow * w)
 
 	INFO_SCREEN(s);
 
-	if (is->pWindow)
+	if (w == is->pWindow)
 	{
 		is->drawing = FALSE;
 		is->fadeTime = resizeinfoGetFadeTime (s->display);
@@ -430,10 +429,11 @@ infoPaintScreen (CompScreen *s,
 
   	if ((is->drawing || is->fadeTime) && is->pWindow)
   	{
-  		int tlx = is->pWindow->attrib.x + 
-			      is->pWindow->attrib.width / 2.0f - RESIZE_POPUP_WIDTH / 2.0f;
-		int tly = is->pWindow->attrib.y + 
-			      is->pWindow->attrib.height / 2.0f - 
+  		int tlx = is->resizeGeometry.x + 
+			      is->resizeGeometry.width / 2.0f - 
+				  RESIZE_POPUP_WIDTH / 2.0f;
+		int tly = is->resizeGeometry.y + 
+			      is->resizeGeometry.height / 2.0f - 
 				  RESIZE_POPUP_HEIGHT / 2.0f;
 		CompMatrix matrix = is->backgroundLayer.texture.matrix;
       
@@ -444,7 +444,6 @@ infoPaintScreen (CompScreen *s,
 		screenTexEnvMode (s, GL_MODULATE);
   
 		drawLayer (s, tlx, tly, matrix, &is->backgroundLayer.texture);
-	  	updateTextLayer (s);
 		drawLayer (s, tlx, tly, is->textLayer.texture.matrix, 
 				   &is->textLayer.texture);
   
@@ -456,6 +455,40 @@ infoPaintScreen (CompScreen *s,
 	return status;
 }
 
+static void
+infoHandleEvent (CompDisplay *d, XEvent *event)
+{
+	INFO_DISPLAY(d);
+
+	switch (event->type)
+	{
+	case ClientMessage:
+		if (event->xclient.message_type == id->resizeNotifyAtom)
+		{
+			CompWindow *w;
+
+			w = findWindowAtDisplay (d, event->xclient.window);
+			if (w && (w == is->pWindow))
+			{
+				INFO_SCREEN (w->screen);
+
+				is->resizeGeometry.x = event->xclient.data.l[0];
+				is->resizeGeometry.y = event->xclient.data.l[1];
+				is->resizeGeometry.width = event->xclient.data.l[2];
+				is->resizeGeometry.height = event->xclient.data.l[3];
+
+				updateTextLayer (w->screen);
+			}
+		}
+		break;
+	default:
+		break;
+	}
+
+	UNWRAP (id, d, handleEvent);
+	(*d->handleEvent) (d, event);
+	WRAP (id, d, handleEvent, infoHandleEvent);
+}
 
 // Setup info display.
 static Bool
@@ -469,7 +502,18 @@ infoInitDisplay (CompPlugin *p,
 		return FALSE;
 
 	id->screenPrivateIndex = allocateScreenPrivateIndex (d);
+	if (id->screenPrivateIndex < 0)
+	{
+		free (id);
+		return FALSE;
+	}
+
+	id->resizeNotifyAtom = XInternAtom (d->display,
+										"_COMPIZ_RESIZE_NOTIFY", 0);
+
 	d->privates[displayPrivateIndex].ptr = id;
+
+	WRAP (id, d, handleEvent, infoHandleEvent);
 
 	return TRUE;
 }
@@ -481,6 +525,8 @@ static void infoFiniDisplay (CompPlugin * p,
 	INFO_DISPLAY (d);
 
 	freeScreenPrivateIndex (d, id->screenPrivateIndex);
+
+	UNWRAP (id, d, handleEvent);
 	
 	free (id);
 }
@@ -499,12 +545,14 @@ infoInitScreen (CompPlugin *p,
 
 	is->pWindow = 0;
 	is->fadeTime = 0;
-	is->savedx = 0;
-	is->savedy = 0;
+
+	is->resizeGeometry.x = 0;
+	is->resizeGeometry.y = 0;
+	is->resizeGeometry.width  = 0;
+	is->resizeGeometry.height = 0;
 
 	initTexture (s, &is->backgroundLayer.texture);
 	initTexture (s, &is->textLayer.texture);
-
 	
 	WRAP (is, s, windowGrabNotify, infoWindowGrabNotify);
 	WRAP (is, s, windowUngrabNotify, infoWindowUngrabNotify);
