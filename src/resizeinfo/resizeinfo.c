@@ -466,12 +466,11 @@ infoHandleEvent (CompDisplay *d, XEvent *event)
 		if (event->xclient.message_type == id->resizeNotifyAtom)
 		{
 			CompWindow *w;
+			INFO_SCREEN (w->screen);
 
 			w = findWindowAtDisplay (d, event->xclient.window);
 			if (w && (w == is->pWindow))
 			{
-				INFO_SCREEN (w->screen);
-
 				is->resizeGeometry.x = event->xclient.data.l[0];
 				is->resizeGeometry.y = event->xclient.data.l[1];
 				is->resizeGeometry.width = event->xclient.data.l[2];
