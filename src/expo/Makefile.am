@@ -2,7 +2,7 @@
 PFLAGS=-module -avoid-version -no-undefined
 
 libexpo_la_LDFLAGS = $(PFLAGS)
-libexpo_la_LIBADD = @COMPIZ_LIBS@
+libexpo_la_LIBADD = @COMPIZ_LIBS@ -lGLU
 libexpo_la_SOURCES = expo_options.c expo.c
 
 INCLUDES =                              \
