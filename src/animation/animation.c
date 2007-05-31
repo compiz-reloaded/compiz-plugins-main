@@ -558,7 +558,7 @@ typedef struct _AnimScreen
 
 	PreparePaintScreenProc preparePaintScreen;
 	DonePaintScreenProc donePaintScreen;
-	PaintScreenProc paintScreen;
+	PaintOutputProc paintOutput;
 	PaintWindowProc paintWindow;
 	DamageWindowRectProc damageWindowRect;
 	AddWindowGeometryProc addWindowGeometry;
@@ -8238,10 +8238,11 @@ static void animWindowUngrabNotify(CompWindow * w)
 }
 
 static Bool
-animPaintScreen(CompScreen * s,
+animPaintOutput(CompScreen * s,
 				const ScreenPaintAttrib * sAttrib,
 				const CompTransform    *transform,
-				Region region, int output, unsigned int mask)
+				Region region, CompOutput *output, 
+				unsigned int mask)
 {
 	Bool status;
 
@@ -8270,9 +8271,9 @@ animPaintScreen(CompScreen * s,
 		}
 		mask |= PAINT_SCREEN_WITH_TRANSFORMED_WINDOWS_MASK;
 	}
-	UNWRAP(as, s, paintScreen);
- 	status = (*s->paintScreen) (s, sAttrib, transform, region, output, mask);
-	WRAP(as, s, paintScreen, animPaintScreen);
+	UNWRAP(as, s, paintOutput);
+ 	status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
+	WRAP(as, s, paintOutput, animPaintOutput);
 
 	CompWindow *w;
 	if (as->aWinWasRestackedJustNow)
@@ -8433,7 +8434,7 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 
 	WRAP(as, s, preparePaintScreen, animPreparePaintScreen);
 	WRAP(as, s, donePaintScreen, animDonePaintScreen);
-	WRAP(as, s, paintScreen, animPaintScreen);
+	WRAP(as, s, paintOutput, animPaintOutput);
 	WRAP(as, s, paintWindow, animPaintWindow);
 	WRAP(as, s, damageWindowRect, animDamageWindowRect);
 	WRAP(as, s, addWindowGeometry, animAddWindowGeometry);
@@ -8462,7 +8463,7 @@ static void animFiniScreen(CompPlugin * p, CompScreen * s)
 
 	UNWRAP(as, s, preparePaintScreen);
 	UNWRAP(as, s, donePaintScreen);
-	UNWRAP(as, s, paintScreen);
+	UNWRAP(as, s, paintOutput);
 	UNWRAP(as, s, paintWindow);
 	UNWRAP(as, s, damageWindowRect);
 	UNWRAP(as, s, addWindowGeometry);
