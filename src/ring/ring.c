@@ -85,7 +85,7 @@ typedef struct _RingScreen {
 
     PreparePaintScreenProc preparePaintScreen;
     DonePaintScreenProc    donePaintScreen;
-    PaintScreenProc        paintScreen;
+    PaintOutputProc        paintOutput;
     PaintWindowProc        paintWindow;
     DamageWindowRectProc   damageWindowRect;
 
@@ -983,11 +983,11 @@ adjustRingVelocity (CompWindow *w)
 }
 
 static Bool
-ringPaintScreen (CompScreen		  *s,
+ringPaintOutput (CompScreen		  *s,
 		 const ScreenPaintAttrib *sAttrib,
 		 const CompTransform	  *transform,
 		 Region		          region,
-		 int			  output,
+		 CompOutput		  *output,
 		 unsigned int		  mask)
 {
     Bool status;
@@ -997,9 +997,9 @@ ringPaintScreen (CompScreen		  *s,
     if (rs->state != RingStateNone)
 	mask |= PAINT_SCREEN_WITH_TRANSFORMED_WINDOWS_MASK;
 
-    UNWRAP (rs, s, paintScreen);
-    status = (*s->paintScreen) (s, sAttrib, transform, region, output, mask);
-    WRAP (rs, s, paintScreen, ringPaintScreen);
+    UNWRAP (rs, s, paintOutput);
+    status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
+    WRAP (rs, s, paintOutput, ringPaintOutput);
 
     if (rs->state != RingStateNone)
     {
@@ -1659,7 +1659,7 @@ ringInitScreen (CompPlugin *p,
 
     WRAP (rs, s, preparePaintScreen, ringPreparePaintScreen);
     WRAP (rs, s, donePaintScreen, ringDonePaintScreen);
-    WRAP (rs, s, paintScreen, ringPaintScreen);
+    WRAP (rs, s, paintOutput, ringPaintOutput);
     WRAP (rs, s, paintWindow, ringPaintWindow);
     WRAP (rs, s, damageWindowRect, ringDamageWindowRect);
 
@@ -1678,7 +1678,7 @@ ringFiniScreen (CompPlugin *p,
 
     UNWRAP (rs, s, preparePaintScreen);
     UNWRAP (rs, s, donePaintScreen);
-    UNWRAP (rs, s, paintScreen);
+    UNWRAP (rs, s, paintOutput);
     UNWRAP (rs, s, paintWindow);
     UNWRAP (rs, s, damageWindowRect);
 
