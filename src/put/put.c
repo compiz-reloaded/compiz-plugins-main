@@ -69,7 +69,7 @@ typedef struct _PutScreen
 	int windowPrivateIndex;
 	PreparePaintScreenProc preparePaintScreen;	/* function pointer         */
 	DonePaintScreenProc donePaintScreen;	/* function pointer         */
-	PaintScreenProc paintScreen;	/* function pointer         */
+	PaintOutputProc paintOutput;	/* function pointer         */
 	PaintWindowProc paintWindow;	/* function pointer         */
 	int moreAdjust;				/* animation flag           */
 	int grabIndex;				/* screen grab index        */
@@ -239,9 +239,10 @@ static void putDonePaintScreen(CompScreen * s)
 }
 
 static Bool
-putPaintScreen(CompScreen * s, const ScreenPaintAttrib * sAttrib,
+putPaintOutput(CompScreen * s, const ScreenPaintAttrib * sAttrib,
 			   const CompTransform    *transform,
-			   Region region, int output, unsigned int mask)
+			   Region region, CompOutput *output, 
+			   unsigned int mask)
 {
 	Bool status;
 
@@ -250,9 +251,9 @@ putPaintScreen(CompScreen * s, const ScreenPaintAttrib * sAttrib,
 	if (ps->moreAdjust)
 		mask |= PAINT_SCREEN_WITH_TRANSFORMED_WINDOWS_MASK;
 
-	UNWRAP(ps, s, paintScreen);
-	status = (*s->paintScreen) (s, sAttrib, transform, region, output, mask);
-	WRAP(ps, s, paintScreen, putPaintScreen);
+	UNWRAP(ps, s, paintOutput);
+	status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
+	WRAP(ps, s, paintOutput, putPaintOutput);
 
 	return status;
 }
@@ -1298,7 +1299,7 @@ static Bool putInitScreen(CompPlugin * p, CompScreen * s)
 	/* wrap the overloaded functions */
 	WRAP(ps, s, preparePaintScreen, putPreparePaintScreen);
 	WRAP(ps, s, donePaintScreen, putDonePaintScreen);
-	WRAP(ps, s, paintScreen, putPaintScreen);
+	WRAP(ps, s, paintOutput, putPaintOutput);
 	WRAP(ps, s, paintWindow, putPaintWindow);
 
 	s->privates[pd->screenPrivateIndex].ptr = ps;
@@ -1313,7 +1314,7 @@ static void putFiniScreen(CompPlugin * p, CompScreen * s)
 
 	UNWRAP(ps, s, preparePaintScreen);
 	UNWRAP(ps, s, donePaintScreen);
-	UNWRAP(ps, s, paintScreen);
+	UNWRAP(ps, s, paintOutput);
 	UNWRAP(ps, s, paintWindow);
 
 	free(ps);
