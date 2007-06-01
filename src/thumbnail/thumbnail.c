@@ -108,12 +108,12 @@ typedef struct _ThumbScreen
 	CompTimeoutHandle displayTimeout;
 
 	PreparePaintScreenProc preparePaintScreen;
-	PaintScreenProc paintScreen;
+	PaintOutputProc paintOutput;
 	PaintWindowProc paintWindow;
 	DonePaintScreenProc donePaintScreen;
 	DamageWindowRectProc damageWindowRect;
 	WindowResizeNotifyProc windowResizeNotify;
-	PaintTransformedScreenProc paintTransformedScreen;
+	PaintTransformedOutputProc paintTransformedOutput;
 
 	CompWindow *dock;
 	CompWindow *pointedWin;
@@ -909,10 +909,11 @@ thumbDonePaintScreen (CompScreen * s)
 }
 
 static Bool
-thumbPaintScreen (CompScreen * s,
+thumbPaintOutput (CompScreen * s,
 				  const ScreenPaintAttrib * sAttrib,
 				  const CompTransform * transform,
-				  Region region, int output, unsigned int mask)
+				  Region region, CompOutput *output, 
+				  unsigned int mask)
 {
 	Bool status;
 
@@ -929,10 +930,10 @@ thumbPaintScreen (CompScreen * s,
 		(ts->thumb.opacity > 0.0 && ts->thumb.win))
 		newMask |= PAINT_SCREEN_WITH_TRANSFORMED_WINDOWS_MASK;
 
-	UNWRAP (ts, s, paintScreen);
+	UNWRAP (ts, s, paintOutput);
 	status =
-		(*s->paintScreen) (s, sAttrib, transform, region, output, newMask);
-	WRAP (ts, s, paintScreen, thumbPaintScreen);
+		(*s->paintOutput) (s, sAttrib, transform, region, output, newMask);
+	WRAP (ts, s, paintOutput, thumbPaintOutput);
 
 	if (thumbnailGetAlwaysOnTop (s) && !ts->painted)
 	{
@@ -966,18 +967,19 @@ thumbPaintScreen (CompScreen * s,
 }
 
 static void
-thumbPaintTransformedScreen (CompScreen * s,
+thumbPaintTransformedOutput (CompScreen * s,
 							 const ScreenPaintAttrib * sAttrib,
 							 const CompTransform * transform,
-							 Region region, int output, unsigned int mask)
+							 Region region, CompOutput *output, 
+							 unsigned int mask)
 {
 
 	THUMB_SCREEN (s);
 
-	UNWRAP (ts, s, paintTransformedScreen);
-	(*s->paintTransformedScreen) (s, sAttrib, transform, region, output,
+	UNWRAP (ts, s, paintTransformedOutput);
+	(*s->paintTransformedOutput) (s, sAttrib, transform, region, output,
 								  mask);
-	WRAP (ts, s, paintTransformedScreen, thumbPaintTransformedScreen);
+	WRAP (ts, s, paintTransformedOutput, thumbPaintTransformedOutput);
 
 	if (thumbnailGetAlwaysOnTop (s) && ts->x == s->x && ts->y == s->y)
 	{
@@ -1219,13 +1221,13 @@ thumbInitScreen (CompPlugin * p, CompScreen * s)
 
 	ts->windowPrivateIndex = allocateWindowPrivateIndex (s);
 
-	WRAP (ts, s, paintScreen, thumbPaintScreen);
+	WRAP (ts, s, paintOutput, thumbPaintOutput);
 	WRAP (ts, s, damageWindowRect, thumbDamageWindowRect);
 	WRAP (ts, s, preparePaintScreen, thumbPreparePaintScreen);
 	WRAP (ts, s, donePaintScreen, thumbDonePaintScreen);
 	WRAP (ts, s, paintWindow, thumbPaintWindow);
 	WRAP (ts, s, windowResizeNotify, thumbWindowResizeNotify);
-	WRAP (ts, s, paintTransformedScreen, thumbPaintTransformedScreen);
+	WRAP (ts, s, paintTransformedOutput, thumbPaintTransformedOutput);
 
 	ts->dock = NULL;
 	ts->pointedWin = NULL;
@@ -1257,13 +1259,13 @@ thumbFiniScreen (CompPlugin * p, CompScreen * s)
 {
 	THUMB_SCREEN (s);
 
-	UNWRAP (ts, s, paintScreen);
+	UNWRAP (ts, s, paintOutput);
 	UNWRAP (ts, s, damageWindowRect);
 	UNWRAP (ts, s, preparePaintScreen);
 	UNWRAP (ts, s, donePaintScreen);
 	UNWRAP (ts, s, paintWindow);
 	UNWRAP (ts, s, windowResizeNotify);
-	UNWRAP (ts, s, paintTransformedScreen);
+	UNWRAP (ts, s, paintTransformedOutput);
 
 	if (ts->mouseTimeout)
 		compRemoveTimeout (ts->mouseTimeout);
