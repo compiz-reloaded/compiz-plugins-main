@@ -2620,7 +2620,7 @@ static void fxFadeInit(CompScreen * s, CompWindow * w)
 					as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 }
 
-static void fxFadeModelStep(CompScreen * s, CompWindow * w, float time)
+static void defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 {
 	int j, steps;
 
@@ -2663,11 +2663,6 @@ fxFadeUpdateWindowAttrib(AnimScreen * as,
 
 // =====================  Effect: Focus Fade  =========================
 
-
-static void fxFocusFadeModelStep(CompScreen * s, CompWindow * w, float time)
-{
-	fxFadeModelStep(s, w, time);
-}
 
 static void
 fxFocusFadeUpdateWindowAttrib(AnimScreen * as,
@@ -3261,7 +3256,7 @@ static void fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	int steps;
 	int creating = 0;
 
-	fxFadeModelStep(s, w, time);
+	defaultAnimStep(s, w, time);
 
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
@@ -5415,10 +5410,10 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	 fxExplode3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
 	 polygonsLinearAnimStepPolygon, 0, 0},
 	// AnimEffectFade
-	{fxFadeUpdateWindowAttrib, 0, 0, fxFadeModelStep, fxFadeInit, 0, 0, 0, 0,
+	{fxFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, fxFadeInit, 0, 0, 0, 0,
 	 0, 0, TRUE},
 	// AnimEffectFocusFade
-	{fxFocusFadeUpdateWindowAttrib, 0, 0, fxFocusFadeModelStep, fxFadeInit, 0, 0, 0, 0,
+	{fxFocusFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, fxFadeInit, 0, 0, 0, 0,
 	 0, 0, TRUE},
 	// AnimEffectGlide3D1
 	{fxGlideUpdateWindowAttrib, polygonsPrePaintWindow,
