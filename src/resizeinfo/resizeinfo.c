@@ -41,7 +41,7 @@ typedef struct _InfoScreen
 {
 	WindowGrabNotifyProc windowGrabNotify;
 	WindowUngrabNotifyProc windowUngrabNotify;
-	PaintScreenProc paintScreen;
+	PaintOutputProc paintOutput;
 	PreparePaintScreenProc preparePaintScreen;
 	DonePaintScreenProc donePaintScreen;
   
@@ -413,19 +413,19 @@ static void drawLayer (CompScreen *s, int tlx, int tly,
 
 // Draw the popup on the screen.
 static Bool
-infoPaintScreen (CompScreen *s,
+infoPaintOutput (CompScreen *s,
 				 const ScreenPaintAttrib *sAttrib,
 				 const CompTransform * transform,
 				 Region region,
-				 int output,
+				 CompOutput *output,
 				 unsigned int mask)
 {
    	Bool status;
 	INFO_SCREEN (s);
   
-	UNWRAP (is, s, paintScreen);
-	status = (*s->paintScreen) (s, sAttrib, transform, region, output, mask);
-	WRAP (is, s, paintScreen, infoPaintScreen);
+	UNWRAP (is, s, paintOutput);
+	status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
+	WRAP (is, s, paintOutput, infoPaintOutput);
 
   	if ((is->drawing || is->fadeTime) && is->pWindow)
   	{
@@ -560,7 +560,7 @@ infoInitScreen (CompPlugin *p,
 	WRAP (is, s, windowGrabNotify, infoWindowGrabNotify);
 	WRAP (is, s, windowUngrabNotify, infoWindowUngrabNotify);
 	WRAP (is, s, preparePaintScreen, infoPreparePaintScreen);
-	WRAP (is, s, paintScreen, infoPaintScreen);
+	WRAP (is, s, paintOutput, infoPaintOutput);
 	WRAP (is, s, donePaintScreen, infoDonePaintScreen);
 
 	s->privates[id->screenPrivateIndex].ptr = is;
@@ -598,7 +598,7 @@ infoFiniScreen (CompPlugin *p,
 	UNWRAP (is, s, windowGrabNotify);
 	UNWRAP (is, s, windowUngrabNotify);
 	UNWRAP (is, s, preparePaintScreen);
-	UNWRAP (is, s, paintScreen);
+	UNWRAP (is, s, paintOutput);
 	UNWRAP (is, s, donePaintScreen);
 	
 	free (is);
