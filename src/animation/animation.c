@@ -711,6 +711,7 @@ AnimEffectProperties *animEffectPropertiesTmp;
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
 
+
 static AnimEffect
 animEffectFromString (CompOptionValue *value, 
 					  AnimEffect *allowedEffects,
