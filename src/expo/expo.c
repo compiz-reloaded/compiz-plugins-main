@@ -61,9 +61,10 @@ typedef struct _ExpoScreen
 
 	DonePaintScreenProc donePaintScreen;
 	PaintOutputProc paintOutput;
+	PaintScreenProc paintScreen;
 	PreparePaintScreenProc preparePaintScreen;
 	PaintTransformedOutputProc paintTransformedOutput;
-	PaintWindowProc paintWindow;
+	DrawWindowProc drawWindow;
 	DamageWindowRectProc damageWindowRect;
 	SetScreenOptionProc setScreenOption;
 
@@ -180,6 +181,8 @@ static void expoHandleEvent(CompDisplay * d, XEvent * event)
 			}
 			damageScreen(s);
 		}
+		es->pointerX = event->xbutton.x_root;
+		es->pointerY = event->xbutton.y_root;
 		break;
 	case ButtonRelease:
 		s = findScreenAtDisplay(d, event->xbutton.root);
@@ -201,6 +204,14 @@ static void expoHandleEvent(CompDisplay * d, XEvent * event)
 			es->dndState = DnDNone;
 			es->dndWindow = NULL;
 		}
+		es->pointerX = event->xbutton.x_root;
+		es->pointerY = event->xbutton.y_root;
+		break;
+	case MotionNotify:
+		s = findScreenAtDisplay(d, event->xbutton.root);
+		es = GET_EXPO_SCREEN(s, ed);
+		es->pointerX = event->xmotion.x_root;
+		es->pointerY = event->xmotion.y_root;
 		break;
 	}
 
@@ -312,10 +323,31 @@ static Bool expoDamageWindowRect(CompWindow *w, Bool initial, BoxPtr rect)
 	return status;
 }
 
+static void expoPaintScreen(CompScreen * s,
+							CompOutput * outputs,
+							int          numOutputs,
+							unsigned int mask)
+{
+	EXPO_SCREEN(s);
+
+	if (es->expoCam > 0.0 && numOutputs > 1)
+	{
+		UNWRAP(es, s, paintScreen);
+		(*s->paintScreen) (s, &s->fullscreenOutput, 1, mask);
+		WRAP(es, s, paintScreen, expoPaintScreen);
+	}
+	else
+	{
+		UNWRAP(es, s, paintScreen);
+		(*s->paintScreen) (s, outputs, numOutputs, mask);
+		WRAP(es, s, paintScreen, expoPaintScreen);
+	}
+}
+
 static Bool expoPaintOutput(CompScreen * s,
 							const ScreenPaintAttrib * sAttrib,
 							const CompTransform    *transform,
-							Region region, CompOutput *output, 
+							Region region, CompOutput *output,
 							unsigned int mask)
 {
 	Bool status;
@@ -324,18 +356,12 @@ static Bool expoPaintOutput(CompScreen * s,
 
 	if (es->expoCam > 0.0)
 	{
-		mask |= PAINT_SCREEN_TRANSFORMED_MASK;
+		mask |= PAINT_SCREEN_TRANSFORMED_MASK | PAINT_SCREEN_CLEAR_MASK;
 	}
 
 	UNWRAP(es, s, paintOutput);
 	status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
 	WRAP(es, s, paintOutput, expoPaintOutput);
-
-	if (es->expoMode)
-	{
-		CompTransform     sTransform = *transform;
-		transformToScreenSpace (s, output, -DEFAULT_Z_CAMERA, &sTransform);
-	}
 
 	return status;
 }
@@ -344,26 +370,10 @@ static void expoPreparePaintScreen(CompScreen * s, int ms)
 {
 	EXPO_SCREEN(s);
 
-	if (es->expoMode)	// Do we need the mouse location?
-	{
-		int winX, winY;
-		int rootX, rootY;
-		unsigned int mask_return;
-		Window root_return;
-		Window child_return;
-
-		XQueryPointer(s->display->display, s->root,
-					  &root_return, &child_return,
-					  &rootX, &rootY, &winX, &winY, &mask_return);
-
-		es->pointerX = rootX;
-		es->pointerY = rootY;
+	if (es->expoMode)
 		es->expoCam = MIN(1.0, es->expoCam + ((float)ms / 500.0));
-	}
 	else
-	{
 		es->expoCam = MAX(0.0, es->expoCam - ((float)ms / 500.0));
-	}
 
 	UNWRAP(es, s, preparePaintScreen);
 	(*s->preparePaintScreen) (s, ms);
@@ -379,7 +389,6 @@ static void expoPaintTransformedOutput(CompScreen * s,
 	EXPO_SCREEN(s);
 
 	CompTransform     sTransform = *transform;
-
 
 	UNWRAP(es, s, paintTransformedOutput);
 
@@ -410,11 +419,8 @@ static void expoPaintTransformedOutput(CompScreen * s,
 		Point3d vpCamPos = {0, 0, 0};   // camera position for the selected viewport
 		Point3d expoCamPos = {0, 0, 0}; // camera position during expo mode
 
-		float hss = (float)s->width / output->width;
-		float vss = (float)s->height / output->height;
-
-		vpCamPos.x = s->hsize * hss * ((s->x + 0.5) / s->hsize - 0.5) + gapx * (s->x);
-		vpCamPos.y = -s->vsize * vss * ((s->y + 0.5) / s->vsize - 0.5) - gapy * (s->y);
+		vpCamPos.x = s->hsize * ((s->x + 0.5) / s->hsize - 0.5) + gapx * (s->x);
+		vpCamPos.y = -s->vsize * ((s->y + 0.5) / s->vsize - 0.5) - gapy * (s->y);
 		vpCamPos.z = 0;
 
 		float biasz = 0;
@@ -423,14 +429,9 @@ static void expoPaintTransformedOutput(CompScreen * s,
 
 		expoCamPos.x = gapx * (s->hsize - 1) * 0.5;
 		expoCamPos.y = -gapy * (s->vsize - 1) * 0.5;
-		expoCamPos.z = -DEFAULT_Z_CAMERA +
-			DEFAULT_Z_CAMERA * (MAX(s->hsize +
-									(s->hsize - 1) * gapx /
-									(s->width / output->width),
-									s->vsize +
-									(s->vsize - 1) * gapy /
-									(s->height / output->height))
-								+ biasz);
+		expoCamPos.z = -DEFAULT_Z_CAMERA + DEFAULT_Z_CAMERA *
+						(MAX(s->hsize +	(s->hsize - 1) * gapx,
+							 s->vsize +	(s->vsize - 1) * gapy) + biasz);
 
 		float progress = sigmoidProgress(es->expoCam);
 
@@ -440,7 +441,6 @@ static void expoPaintTransformedOutput(CompScreen * s,
 		float camz = vpCamPos.z * (1 - progress) + expoCamPos.z * progress;
 
 		// End of Zoom animation stuff
-
 
 		moveScreenViewport(s, s->x, s->y, FALSE);
 
@@ -455,39 +455,18 @@ static void expoPaintTransformedOutput(CompScreen * s,
 		}
 		// ALL TRANSFORMATION ARE EXECUTED FROM BOTTOM TO TOP
 
-
-		// move each screen to the correct output position
-		matrixTranslate(&sTransform, -output->region.extents.x1 /
-					 output->width,
-					 output->region.extents.y1 /
-					 output->height, 0.0f);
-		matrixTranslate(&sTransform, 0.0f, 0.0f, -DEFAULT_Z_CAMERA);
-
 		// zoom out
-		matrixTranslate(&sTransform, -camx, -camy, -camz);
-
-		// move orgin to top left
-		matrixTranslate(&sTransform, -0.5f, 0.5f, 0.0f);
-
-		// translate expo to orgin
-		matrixTranslate(&sTransform, (s->width / output->width) * 0.5,
-					 -(s->height / output->height) * 0.5, 0.0f);
+		matrixTranslate(&sTransform, -camx, -camy, -camz - DEFAULT_Z_CAMERA);
 
 		// rotate
 		matrixRotate(&sTransform, rotation, 0.0f, 1.0f, 0.0f);
 
 		// translate expo to center
-		matrixTranslate(&sTransform, -(s->width / output->width) * s->hsize *
-					 0.5,
-					 (s->height / output->height) * s->vsize *
-					 0.5, 0.0f);
+		matrixTranslate(&sTransform, s->hsize * -0.5, s->vsize * 0.5, 0.0f);
 
 		// revert prepareXCoords region shift. Now all screens display the same
-		matrixTranslate(&sTransform, 0.5f, 0.5f, DEFAULT_Z_CAMERA);
-		matrixTranslate(&sTransform, output->region.extents.x1 /
-					 output->width,
-					 -output->region.extents.y2 /
-					 output->height, 0.0f);
+		matrixTranslate(&sTransform, 0.5f, -0.5f, DEFAULT_Z_CAMERA);
+		
 
 		int i, j;
 
@@ -503,15 +482,12 @@ static void expoPaintTransformedOutput(CompScreen * s,
  					matrixRotate(&sTransform2, 360 * es->expoCam, 0.0f, 1.0f,
 							  2.0f * es->expoCam);
 
-				(*s->paintTransformedOutput) (s, sAttrib, &sTransform2, &s->region, output,
-											  mask);
+				paintTransformedOutput (s, sAttrib, &sTransform2, &s->region,
+										output, mask);
 
 
-				if ((es->pointerX >= output->region.extents.x1)
-					&& (es->pointerX < output->region.extents.x2)
-					&& (es->pointerY >=
-						output->region.extents.y1) &&
-					(es->pointerY < output->region.extents.y2))
+				if ((es->pointerX >= 0)	&& (es->pointerX < s->width)
+					&& (es->pointerY >= 0) && (es->pointerY < s->height))
 				{
 					int cursor[2] = { es->pointerX, es->pointerY };
 
@@ -534,19 +510,13 @@ static void expoPaintTransformedOutput(CompScreen * s,
 					}
 				}
 
-
 				// not sure this will work with different resolutions
-				matrixTranslate(&sTransform2,(s->width / output->width + gapx),
-							 0.0f, 0.0);
-
+				matrixTranslate(&sTransform2, (1.0 + gapx), 0.0f, 0.0);
 				moveScreenViewport(s, -1, 0, FALSE);
 			}
 
 			// not sure this will work with different resolutions
- 			matrixTranslate(&sTransform, 0,
-						 (-s->height / output->height - gapy),
-						 0.0f);
-
+ 			matrixTranslate(&sTransform, 0, -(1.0 + gapy), 0.0f);
 			moveScreenViewport(s, 0, -1, FALSE);
 		}
 
@@ -561,22 +531,23 @@ static void expoPaintTransformedOutput(CompScreen * s,
 }
 
 static Bool
-expoPaintWindow(CompWindow * w,
-			   const WindowPaintAttrib *attrib,
-			   const CompTransform    *transform,
-			   Region region, unsigned int mask)
+expoDrawWindow (CompWindow			 *w,
+	    		const CompTransform  *transform,
+	    		const FragmentAttrib *fragment,
+	    		Region				 region,
+	    		unsigned int	 	 mask)
 {
 	EXPO_SCREEN(w->screen);
 	Bool status;
 
-	WindowPaintAttrib pA = *attrib;
+	FragmentAttrib fA = *fragment;
 
 	if (es->expoCam > 0.0)
 	{
 		if (es->expoActive)
 		{
 			if (expoGetExpoAnimationIndex(w->screen->display) != ExpoAnimationZoom)
-				pA.opacity = attrib->opacity * es->expoCam;
+				fA.opacity = fragment->opacity * es->expoCam;
 
 			if (w->wmType & CompWindowTypeDockMask)
 			{
@@ -587,38 +558,28 @@ expoPaintWindow(CompWindow * w,
 					  w->screen->y == es->rorigy &&
 					  es->origVY < 0 &&
 					  es->origVX < 0)))
-					pA.opacity = attrib->opacity * (1 - sigmoidProgress(es->expoCam));
+					fA.opacity = fragment->opacity * (1 - sigmoidProgress(es->expoCam));
 				else
-					pA.opacity = 0;
+					fA.opacity = 0;
 			}
 
-			if (w->screen->x == es->origVX && w->screen->y == es->origVY)
-			{
-				pA.brightness = attrib->brightness;
-			}
-			else if (w->screen->x == es->rorigx && w->screen->y == es->rorigy &&
-				es->origVY < 0 && es->origVX < 0)
-			{
-				pA.brightness = attrib->brightness;
-			}
-			else
-				pA.brightness = attrib->brightness * .75;
+			if (!(w->screen->x == es->origVX && w->screen->y == es->origVY)
+				&& !(w->screen->x == es->rorigx && w->screen->y == es->rorigy
+					 &&	es->origVY < 0 && es->origVX < 0))
+				fA.brightness = fragment->brightness * .75;
 		}
 		else
 		{
 			if (expoGetExpoAnimationIndex(w->screen->display) == ExpoAnimationZoom)
-				pA.brightness = 0;
+				fA.brightness = 0;
 			else
-				pA.brightness = attrib->brightness * (1 - sigmoidProgress(es->expoCam));
+				fA.brightness = fragment->brightness * (1 - sigmoidProgress(es->expoCam));
 		}
 	}
 
-	if (!pA.opacity || !pA.brightness)
-		mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
-
-	UNWRAP(es, w->screen, paintWindow);
-	status = (*w->screen->paintWindow) (w, &pA, transform, region, mask);
-	WRAP(es, w->screen, paintWindow, expoPaintWindow);
+	UNWRAP(es, w->screen, drawWindow);
+	status = (*w->screen->drawWindow) (w, transform, &fA, region, mask);
+	WRAP(es, w->screen, drawWindow, expoDrawWindow);
 
 	return status;
 }
@@ -772,10 +733,11 @@ static Bool expoInitScreen(CompPlugin * p, CompScreen * s)
 	es->dndWindow = NULL;
 
 	WRAP(es, s, paintOutput, expoPaintOutput);
+	WRAP(es, s, paintScreen, expoPaintScreen);
 	WRAP(es, s, donePaintScreen, expoDonePaintScreen);
 	WRAP(es, s, paintTransformedOutput, expoPaintTransformedOutput);
 	WRAP(es, s, preparePaintScreen, expoPreparePaintScreen);
-	WRAP(es, s, paintWindow, expoPaintWindow);
+	WRAP(es, s, drawWindow, expoDrawWindow);
 	WRAP(es, s, damageWindowRect, expoDamageWindowRect);
 
 	s->privates[ed->screenPrivateIndex].ptr = es;
@@ -788,10 +750,11 @@ static void expoFiniScreen(CompPlugin * p, CompScreen * s)
 	EXPO_SCREEN(s);
 
 	UNWRAP(es, s, paintOutput);
+	UNWRAP(es, s, paintScreen);
 	UNWRAP(es, s, donePaintScreen);
 	UNWRAP(es, s, paintTransformedOutput);
 	UNWRAP(es, s, preparePaintScreen);
-	UNWRAP(es, s, paintWindow);
+	UNWRAP(es, s, drawWindow);
 	UNWRAP(es, s, damageWindowRect);
 	UNWRAP(es, s, setScreenOption);
 
