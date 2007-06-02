@@ -740,7 +740,6 @@ AnimEffectProperties *animEffectPropertiesTmp;
 	              (WIN_X(w) + WIN_W(w)) - WIN_X(dw))
 
 
-
 static AnimEffect
 animEffectFromString (CompOptionValue *value, 
 					  AnimEffect *allowedEffects,
