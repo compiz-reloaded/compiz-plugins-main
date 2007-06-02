@@ -323,20 +323,25 @@ static void infoWindowGrabNotify (CompWindow * w,
 	CompScreen * s = w->screen;
 	INFO_SCREEN (s);
 
-	if (((w->sizeHints.width_inc != 1) && (w->sizeHints.height_inc != 1)) ||
-		resizeinfoGetAlwaysShow (s->display))
-	{
-		if (mask & CompWindowGrabResizeMask)
-		{
-			is->pWindow = w;
-			is->drawing = TRUE;
-			is->fadeTime = resizeinfoGetFadeTime (s->display);
 
-			is->resizeGeometry.x = w->attrib.x;
-			is->resizeGeometry.y = w->attrib.y;
-			is->resizeGeometry.width  = w->attrib.width;
-			is->resizeGeometry.height = w->attrib.height;
-		}
+	if (!is->pWindow)
+	{
+	    Bool showInfo;
+	    showInfo = ((w->sizeHints.width_inc != 1) && 
+			(w->sizeHints.height_inc != 1)) ||
+		       resizeinfoGetAlwaysShow (s->display);
+
+	    if (showInfo && (mask & CompWindowGrabResizeMask))
+	    {
+		is->pWindow = w;
+		is->drawing = TRUE;
+		is->fadeTime = resizeinfoGetFadeTime (s->display);
+
+		is->resizeGeometry.x = w->attrib.x;
+		is->resizeGeometry.y = w->attrib.y;
+		is->resizeGeometry.width  = w->attrib.width;
+		is->resizeGeometry.height = w->attrib.height;
+	    }
 	}
 	
 	UNWRAP (is, s, windowGrabNotify);
