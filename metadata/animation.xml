@@ -503,6 +503,7 @@
 				<default>None</default>
 				<allowed>
 					<value>None</value>
+					<value>Dodge</value>
 					<value>Fade</value>
 					<value>Wave</value>
 				</allowed>
@@ -751,6 +752,18 @@
 				<option name="sidekick_springiness" type="float">
 					<short>Sidekick Springiness</short>
 					<long>How spring-like the Sidekick animation should be.</long>
+					<default>0.5</default>
+					<min>0</min>
+					<max>1</max>
+					<precision>0.02</precision>
+				</option>
+			</subgroup>
+
+			<subgroup>
+				<short>Dodge</short>
+				<option name="dodge_gap_ratio" type="float">
+					<short>Dodge Gap Ratio</short>
+					<long>Ratio of gaps between dodge start times to focus duration.</long>
 					<default>0.5</default>
 					<min>0</min>
 					<max>1</max>
