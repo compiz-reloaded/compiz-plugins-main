@@ -339,26 +339,26 @@ typedef enum
 	AnimDirectionLeft,
 	AnimDirectionRight,
 	AnimDirectionRandom,
-	AnimDirectionAuto,
-	AnimDirectionNum
+	AnimDirectionAuto
 } AnimDirection;
+#define LAST_ANIM_DIRECTION 5
 
 typedef enum
 {
 	ZoomFromCenterOff = 0,
 	ZoomFromCenterMin,
 	ZoomFromCenterCreate,
-	ZoomFromCenterOn,
-	ZoomFromCenterNum
+	ZoomFromCenterOn
 } ZoomFromCenter;
+#define LAST_ZOOM_FROM_CENTER 3
 
 // Polygon tesselation type: Rectangular, Hexagonal
 typedef enum
 {
 	PolygonTessRect = 0,
-	PolygonTessHex,
-	PolygonTessNum
+	PolygonTessHex
 } PolygonTess;
+#define LAST_POLYGON_TESS 1
 
 typedef enum
 {
@@ -387,6 +387,8 @@ typedef enum
 	AnimEffectNum
 } AnimEffect;
 
+#define RANDOM_EFFECT_OFFSET 2 /* skip none and random */
+
 static AnimEffect minimizeEffectType[] = {
 	AnimEffectNone,
 	AnimEffectRandom,
@@ -407,6 +409,8 @@ static AnimEffect minimizeEffectType[] = {
 	AnimEffectZoom
 };
 #define NUM_MINIMIZE_EFFECT (LIST_SIZE(minimizeEffectType))
+#define LAST_MINIMIZE_EFFECT 16
+#define LAST_RANDOM_MINIMIZE_EFFECT 14
 
 static AnimEffect closeEffectType[] = {
 	AnimEffectNone,
@@ -430,6 +434,8 @@ static AnimEffect closeEffectType[] = {
 	AnimEffectZoom
 };
 #define NUM_CLOSE_EFFECT (LIST_SIZE(closeEffectType))
+#define LAST_CLOSE_EFFECT 18
+#define LAST_RANDOM_CLOSE_EFFECT 16
 
 static AnimEffect focusEffectType[] = {
 	AnimEffectNone,
@@ -438,6 +444,7 @@ static AnimEffect focusEffectType[] = {
 	AnimEffectWave
 };
 #define NUM_FOCUS_EFFECT (LIST_SIZE(focusEffectType))
+#define LAST_FOCUS_EFFECT 3
 
 static AnimEffect shadeEffectType[] = {
 	AnimEffectNone,
@@ -447,6 +454,8 @@ static AnimEffect shadeEffectType[] = {
 	AnimEffectRollUp
 };
 #define NUM_SHADE_EFFECT (LIST_SIZE(shadeEffectType))
+#define LAST_SHADE_EFFECT 4
+#define LAST_RANDOM_SHADE_EFFECT 2
 
 typedef struct RestackInfo
 {
@@ -739,76 +748,6 @@ AnimEffectProperties *animEffectPropertiesTmp;
 	 (dir) == 2 ? WIN_X(w) - (WIN_X(dw) + WIN_W(dw)) : \
 	              (WIN_X(w) + WIN_W(w)) - WIN_X(dw))
 
-
-static AnimEffect
-animEffectFromString (CompOptionValue *value, 
-					  AnimEffect *allowedEffects,
-					  unsigned int allowedEffectsNum)
-{
-	AnimEffect effect;
-	int i;
-
-	/* first check if string is valid */
-	if (strcasecmp (value->s, "random") == 0)
-		effect = AnimEffectRandom;
-	else if (strcasecmp (value->s, "beam up") == 0)
-		effect = AnimEffectBeamUp;
-	else if (strcasecmp (value->s, "burn") == 0)
-		effect = AnimEffectBurn;
-	else if (strcasecmp (value->s, "curved fold") == 0)
-		effect = AnimEffectCurvedFold;
-	else if (strcasecmp (value->s, "dodge") == 0)
-		effect = AnimEffectDodge;
-	else if (strcasecmp (value->s, "domino") == 0)
-		effect = AnimEffectDomino3D;
-	else if (strcasecmp (value->s, "dream") == 0)
-		effect = AnimEffectDream;
-	else if (strcasecmp (value->s, "explode") == 0)
-		effect = AnimEffectExplode3D;
-	else if (strcasecmp (value->s, "fade") == 0)
-	{
-		if (allowedEffects == focusEffectType)
-			effect = AnimEffectFocusFade;
-		else
-			effect = AnimEffectFade;
-	}
-	else if (strcasecmp (value->s, "glide 1") == 0)
-		effect = AnimEffectGlide3D1;
-	else if (strcasecmp (value->s, "glide 2") == 0)
-		effect = AnimEffectGlide3D2;
-	else if (strcasecmp (value->s, "horizontal folds") == 0)
-		effect = AnimEffectHorizontalFolds;
-	else if (strcasecmp (value->s, "leaf spread") == 0)
-		effect = AnimEffectLeafSpread3D;
-	else if (strcasecmp (value->s, "magic lamp") == 0)
-		effect = AnimEffectMagicLamp;
-	else if (strcasecmp (value->s, "magic lamp vacuum") == 0)
-		effect = AnimEffectMagicLampVacuum;
-	else if (strcasecmp (value->s, "razr") == 0)
-		effect = AnimEffectRazr3D;
-	else if (strcasecmp (value->s, "roll up") == 0)
-		effect = AnimEffectRollUp;
-	else if (strcasecmp (value->s, "sidekick") == 0)
-		effect = AnimEffectSidekick;
-	else if (strcasecmp (value->s, "wave") == 0)
-		effect = AnimEffectWave;
-	else if (strcasecmp (value->s, "zoom") == 0)
-		effect = AnimEffectZoom;
-	else
-		effect = AnimEffectNone;
-
-	/* and check if this effect is allowed for
-	   the current animation */
-	for (i = 0; i < allowedEffectsNum; i++)
-		if (effect == allowedEffects[i])
-			break;
-
-	if (i == allowedEffectsNum)
-		return AnimEffectNone;
-	else
-		return effect;
-}
-
 // iterate over given list
 // check if given effect name matches any implemented effect
 // Check if it was already in the stored list
@@ -830,24 +769,22 @@ animStoreRandomEffectList (CompOptionValue *value,
 
 	for (i = 0; i < nItems; i++, effect++)
 	{
-		listEffect = animEffectFromString (effect,
-										   allowedEffects,
-										   numAllowedEffects);
+	    if ((effect->i < 0) || (effect->i >= numAllowedEffects))
+		continue;
 
-		if (listEffect == AnimEffectNone)
-			continue;
+	    listEffect = allowedEffects[effect->i];
+		
+	    for (j = 0; j < count; j++)
+	    {
+		if (targetList[j] == listEffect)
+		    break;
+	    }
 
-		for (j = 0; j < count; j++)
-		{
-			if (targetList[j] == listEffect)
-				break;
-		}
+	    if (j < count)
+		continue;
 
-		if (j < count)
-			continue;
-
-		targetList[count] = listEffect;
-		count++;
+	    targetList[count] = listEffect;
+	    count++;
 	}
 
 	*targetCount = count;
@@ -5663,65 +5600,51 @@ animSetScreenOptions(CompPlugin *plugin,
 	switch (index)
 	{
 	case ANIM_SCREEN_OPTION_MINIMIZE_EFFECT:
-		if (compSetStringOption(o, value))
+		if (compSetIntOption(o, value))
 		{
-			as->minimizeEffect = animEffectFromString (&o->value,
-													   minimizeEffectType,
-													   NUM_MINIMIZE_EFFECT);
+			as->minimizeEffect = minimizeEffectType[o->value.i];
 			return TRUE;
 		}
 		break;
 	case ANIM_SCREEN_OPTION_CLOSE1_EFFECT:
-		if (compSetStringOption(o, value))
+		if (compSetIntOption(o, value))
 		{
-			as->close1Effect = animEffectFromString (&o->value,
-													 closeEffectType,
-													 NUM_CLOSE_EFFECT);
+			as->close1Effect = closeEffectType[o->value.i];
 			return TRUE;
 		}
 		break;
 	case ANIM_SCREEN_OPTION_CLOSE2_EFFECT:
-		if (compSetStringOption(o, value))
+		if (compSetIntOption(o, value))
 		{
-			as->close2Effect = animEffectFromString (&o->value,
-													 closeEffectType,
-													 NUM_CLOSE_EFFECT);
+			as->close2Effect = closeEffectType[o->value.i];
 			return TRUE;
 		}
 		break;
 	case ANIM_SCREEN_OPTION_CREATE1_EFFECT:
-		if (compSetStringOption(o, value))
+		if (compSetIntOption(o, value))
 		{
-			as->create1Effect = animEffectFromString (&o->value,
-					 								  closeEffectType,
-					 								  NUM_CLOSE_EFFECT);
+			as->create1Effect = closeEffectType[o->value.i];
 			return TRUE;
 		}
 		break;
 	case ANIM_SCREEN_OPTION_CREATE2_EFFECT:
-		if (compSetStringOption(o, value))
+		if (compSetIntOption(o, value))
 		{
-			as->create2Effect = animEffectFromString (&o->value,
-					 								  closeEffectType,
-					 								  NUM_CLOSE_EFFECT);
+			as->create2Effect = closeEffectType[o->value.i];
 			return TRUE;
 		}
 		break;
 	case ANIM_SCREEN_OPTION_FOCUS_EFFECT:
-		if (compSetStringOption(o, value))
+		if (compSetIntOption(o, value))
 		{
-			as->focusEffect = animEffectFromString (&o->value,
-													focusEffectType,
-													NUM_FOCUS_EFFECT);
+			as->focusEffect = focusEffectType[o->value.i];
 			return TRUE;
 		}
 		break;
 	case ANIM_SCREEN_OPTION_SHADE_EFFECT:
-		if (compSetStringOption(o, value))
+		if (compSetIntOption(o, value))
 		{
-			as->shadeEffect = animEffectFromString (&o->value,
-													shadeEffectType,
-													NUM_SHADE_EFFECT);
+			as->shadeEffect = shadeEffectType[o->value.i];
 			return TRUE;
 		}
 		break;
@@ -5729,10 +5652,10 @@ animSetScreenOptions(CompPlugin *plugin,
 		if (compSetOptionList(o, value))
 		{
 			animStoreRandomEffectList (&o->value,
-									   minimizeEffectType,
-									   NUM_MINIMIZE_EFFECT,
-									   as->minimizeRandomEffects,
-									   &as->nMinimizeRandomEffects);
+						   minimizeEffectType + RANDOM_EFFECT_OFFSET,
+						   NUM_MINIMIZE_EFFECT - RANDOM_EFFECT_OFFSET,
+						   as->minimizeRandomEffects,
+						   &as->nMinimizeRandomEffects);
 			return TRUE;
 		}
 		break;
@@ -5740,10 +5663,10 @@ animSetScreenOptions(CompPlugin *plugin,
 		if (compSetOptionList(o, value))
 		{
 			animStoreRandomEffectList (&o->value,
-									   closeEffectType,
-									   NUM_CLOSE_EFFECT,
-									   as->close1RandomEffects,
-									   &as->nClose1RandomEffects);
+						   closeEffectType + RANDOM_EFFECT_OFFSET,
+						   NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+						   as->close1RandomEffects,
+						   &as->nClose1RandomEffects);
 			return TRUE;
 		}
 		break;
@@ -5751,10 +5674,10 @@ animSetScreenOptions(CompPlugin *plugin,
 		if (compSetOptionList(o, value))
 		{
 			animStoreRandomEffectList (&o->value,
-									   closeEffectType,
-									   NUM_CLOSE_EFFECT,
-									   as->close2RandomEffects,
-									   &as->nClose2RandomEffects);
+						   closeEffectType + RANDOM_EFFECT_OFFSET,
+						   NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+						   as->close2RandomEffects,
+						   &as->nClose2RandomEffects);
 			return TRUE;
 		}
 		break;
@@ -5762,10 +5685,10 @@ animSetScreenOptions(CompPlugin *plugin,
 		if (compSetOptionList(o, value))
 		{
 			animStoreRandomEffectList (&o->value,
-									   closeEffectType,
-									   NUM_CLOSE_EFFECT,
-									   as->create1RandomEffects,
-									   &as->nCreate1RandomEffects);
+						   closeEffectType + RANDOM_EFFECT_OFFSET,
+						   NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+						   as->create1RandomEffects,
+						   &as->nCreate1RandomEffects);
 			return TRUE;
 		}
 		break;
@@ -5773,10 +5696,10 @@ animSetScreenOptions(CompPlugin *plugin,
 		if (compSetOptionList(o, value))
 		{
 			animStoreRandomEffectList (&o->value,
-									   closeEffectType,
-									   NUM_CLOSE_EFFECT,
-									   as->create2RandomEffects,
-									   &as->nCreate2RandomEffects);
+						   closeEffectType + RANDOM_EFFECT_OFFSET,
+						   NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+						   as->create2RandomEffects,
+						   &as->nCreate2RandomEffects);
 			return TRUE;
 		}
 		break;
@@ -5784,10 +5707,10 @@ animSetScreenOptions(CompPlugin *plugin,
 		if (compSetOptionList(o, value))
 		{
 			animStoreRandomEffectList (&o->value,
-									   shadeEffectType,
-									   NUM_SHADE_EFFECT,
-									   as->shadeRandomEffects,
-									   &as->nShadeRandomEffects);
+						   shadeEffectType + RANDOM_EFFECT_OFFSET,
+						   NUM_SHADE_EFFECT - RANDOM_EFFECT_OFFSET,
+						   as->shadeRandomEffects,
+						   &as->nShadeRandomEffects);
 			return TRUE;
 		}
 		break;
@@ -5807,26 +5730,26 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "create2_match", "match", 0, 0, 0 },
 	{ "focus_match", "match", 0, 0, 0 },
 	{ "shade_match", "match", 0, 0, 0 },
-	{ "minimize_effect", "string", 0, 0, 0 },
+	{ "minimize_effect", "int", RESTOSTRING (0, LAST_MINIMIZE_EFFECT), 0, 0 },
 	{ "minimize_duration", "float", "<min>0.1</min>", 0, 0 },
-	{ "minimize_random_effects", "list", "<type>string</type>", 0, 0 },
-	{ "close1_effect", "string", 0, 0, 0 },
+	{ "minimize_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_MINIMIZE_EFFECT), 0, 0 },
+	{ "close1_effect", "int", RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
 	{ "close1_duration", "float", "<min>0.1</min>", 0, 0 },
-	{ "close1_random_effects", "list", "<type>string</type>", 0, 0 },
-	{ "create1_effect", "string", 0, 0, 0 },
+	{ "close1_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
+	{ "create1_effect", "int", RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
 	{ "create1_duration", "float", "<min>0.1</min>", 0, 0 },
-	{ "create1_random_effects", "list", "<type>string</type>", 0, 0 },
-	{ "close2_effect", "string", 0, 0, 0 },
+	{ "create1_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
+	{ "close2_effect", "int", RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
 	{ "close2_duration", "float", "<min>0.1</min>", 0, 0 },
-	{ "close2_random_effects", "list", "<type>string</type>", 0, 0 },
-	{ "create2_effect", "string", 0, 0, 0 },
+	{ "close2_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
+	{ "create2_effect", "int", RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
 	{ "create2_duration", "float", "<min>0.1</min>", 0, 0 },
-	{ "create2_random_effects", "list", "<type>string</type>", 0, 0 },
-	{ "focus_effect", "string", 0, 0, 0 },
+	{ "create2_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
+	{ "focus_effect", "int", RESTOSTRING (0, LAST_FOCUS_EFFECT), 0, 0 },
 	{ "focus_duration", "float", "<min>0.1</min>", 0, 0 },
-	{ "shade_effect", "string", 0, 0, 0 },
+	{ "shade_effect", "int", RESTOSTRING (0, LAST_SHADE_EFFECT), 0, 0 },
 	{ "shade_duration", "float", "<min>0.1</min>", 0, 0 },
-	{ "shade_random_effects", "list", "<type>string</type>", 0, 0 },
+	{ "shade_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_SHADE_EFFECT), 0, 0 },
 	{ "rollup_fixed_interior", "bool", 0, 0, 0 },
 	{ "all_random", "bool", 0, 0, 0 },
 	{ "time_step", "int", "<min>1</min>", 0, 0 },
@@ -5838,18 +5761,18 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "beam_life", "float", "<min>0.1</min>", 0, 0 },
 	{ "curved_fold_amp", "float", "<min>-0.5</min><max>0.5</max>", 0, 0 },
 	{ "dodge_gap_ratio", "float", "<min>0.0</min><max>1.0</max>", 0, 0 },
-	{ "domino_direction", "int", RESTOSTRING (0, AnimDirectionNum-1), 0, 0 },
-	{ "razr_direction", "int", RESTOSTRING (0, AnimDirectionNum-1), 0, 0 },
+	{ "domino_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
+	{ "razr_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
 	{ "explode_thickness", "float", "<min>0</min>", 0, 0 },
 	{ "explode_gridx", "int", "<min>1</min>", 0, 0 },
 	{ "explode_gridy", "int", "<min>1</min>", 0, 0 },
-	{ "explode_tesselation", "int", RESTOSTRING (0, PolygonTessNum-1), 0, 0 },
+	{ "explode_tesselation", "int", RESTOSTRING (0, LAST_POLYGON_TESS), 0, 0 },
 	{ "fire_particles", "int", "<min>0</min>", 0, 0 },
 	{ "fire_size", "float", "<min>0.1</min>", 0, 0 },
 	{ "fire_slowdown", "float", "<min>0.1</min>", 0, 0 },
 	{ "fire_life", "float", "<min>0.1</min>", 0, 0 },
 	{ "fire_color", "color", 0, 0, 0 },
-	{ "fire_direction", "int", RESTOSTRING (0, PolygonTessNum-1), 0, 0 },
+	{ "fire_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
 	{ "fire_constant_speed", "bool", 0, 0, 0 },
 	{ "fire_smoke", "bool", 0, 0, 0 },
 	{ "fire_mystical", "bool", 0, 0, 0 },
@@ -5875,7 +5798,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "sidekick_springiness", "float", "<min>0</min><max>1</max>", 0, 0 },
 	{ "wave_width", "float", "<min>0</min>", 0, 0 },
 	{ "wave_amp", "float", "<min>0</min>", 0, 0 },
-	{ "zoom_from_center", "int", RESTOSTRING (0, ZoomFromCenterNum-1), 0, 0 },
+	{ "zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },
 	{ "zoom_springiness", "float", "<min>0</min><max>1</max>", 0, 0 }
 };
 
@@ -8732,58 +8655,57 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 
 	as->animInProgress = FALSE;
 
-	as->minimizeEffect = animEffectFromString (
-			&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_EFFECT].value,
-			minimizeEffectType, NUM_MINIMIZE_EFFECT);
-	as->create1Effect = animEffectFromString (
-			&as->opt[ANIM_SCREEN_OPTION_CREATE1_EFFECT].value,
-			closeEffectType, NUM_CLOSE_EFFECT);
-	as->create2Effect = animEffectFromString (
-			&as->opt[ANIM_SCREEN_OPTION_CREATE2_EFFECT].value,
-			closeEffectType, NUM_CLOSE_EFFECT);
-	as->close1Effect = animEffectFromString (
-			&as->opt[ANIM_SCREEN_OPTION_CLOSE1_EFFECT].value,
-			closeEffectType, NUM_CLOSE_EFFECT);
-	as->close2Effect = animEffectFromString (
-			&as->opt[ANIM_SCREEN_OPTION_CLOSE2_EFFECT].value,
-			closeEffectType, NUM_CLOSE_EFFECT);
-	as->focusEffect = animEffectFromString (
-			&as->opt[ANIM_SCREEN_OPTION_FOCUS_EFFECT].value,
-			focusEffectType, NUM_FOCUS_EFFECT);
-	as->shadeEffect = animEffectFromString (
-			&as->opt[ANIM_SCREEN_OPTION_SHADE_EFFECT].value,
-			shadeEffectType, NUM_SHADE_EFFECT);
+	as->minimizeEffect = minimizeEffectType[
+			as->opt[ANIM_SCREEN_OPTION_MINIMIZE_EFFECT].value.i];
+	as->create1Effect = closeEffectType[
+			as->opt[ANIM_SCREEN_OPTION_CREATE1_EFFECT].value.i];
+	as->create2Effect = closeEffectType[
+			as->opt[ANIM_SCREEN_OPTION_CREATE2_EFFECT].value.i];
+	as->close1Effect = closeEffectType[
+			as->opt[ANIM_SCREEN_OPTION_CLOSE1_EFFECT].value.i];
+	as->close2Effect = closeEffectType[
+			as->opt[ANIM_SCREEN_OPTION_CLOSE2_EFFECT].value.i];
+	as->focusEffect = focusEffectType[
+			as->opt[ANIM_SCREEN_OPTION_FOCUS_EFFECT].value.i];
+	as->shadeEffect = shadeEffectType[
+			as->opt[ANIM_SCREEN_OPTION_SHADE_EFFECT].value.i];
 	
-	animStoreRandomEffectList (&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_RANDOM_EFFECTS].value,
-							   minimizeEffectType,
-							   NUM_MINIMIZE_EFFECT,
-							   as->minimizeRandomEffects,
-							   &as->nMinimizeRandomEffects);
-	animStoreRandomEffectList (&as->opt[ANIM_SCREEN_OPTION_CLOSE1_RANDOM_EFFECTS].value,
-							   closeEffectType,
-							   NUM_CLOSE_EFFECT,
-							   as->close1RandomEffects,
-							   &as->nClose1RandomEffects);
-	animStoreRandomEffectList (&as->opt[ANIM_SCREEN_OPTION_CLOSE2_RANDOM_EFFECTS].value,
-							   closeEffectType,
-							   NUM_CLOSE_EFFECT,
-							   as->close2RandomEffects,
-							   &as->nClose2RandomEffects);
-	animStoreRandomEffectList (&as->opt[ANIM_SCREEN_OPTION_CREATE1_RANDOM_EFFECTS].value,
-							   closeEffectType,
-							   NUM_CLOSE_EFFECT,
-							   as->create1RandomEffects,
-							   &as->nCreate1RandomEffects);
-	animStoreRandomEffectList (&as->opt[ANIM_SCREEN_OPTION_CREATE2_RANDOM_EFFECTS].value,
-							   closeEffectType,
-							   NUM_CLOSE_EFFECT,
-							   as->create2RandomEffects,
-							   &as->nCreate2RandomEffects);
-	animStoreRandomEffectList (&as->opt[ANIM_SCREEN_OPTION_SHADE_RANDOM_EFFECTS].value,
-							   shadeEffectType,
-							   NUM_SHADE_EFFECT,
-							   as->shadeRandomEffects,
-							   &as->nShadeRandomEffects);
+	animStoreRandomEffectList (
+		&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_RANDOM_EFFECTS].value,
+		minimizeEffectType + RANDOM_EFFECT_OFFSET,
+		NUM_MINIMIZE_EFFECT - RANDOM_EFFECT_OFFSET,
+		as->minimizeRandomEffects,
+		&as->nMinimizeRandomEffects);
+	animStoreRandomEffectList (
+		&as->opt[ANIM_SCREEN_OPTION_CLOSE1_RANDOM_EFFECTS].value,
+		closeEffectType + RANDOM_EFFECT_OFFSET,
+		NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+		as->close1RandomEffects,
+		&as->nClose1RandomEffects);
+	animStoreRandomEffectList (
+		&as->opt[ANIM_SCREEN_OPTION_CLOSE2_RANDOM_EFFECTS].value,
+		closeEffectType + RANDOM_EFFECT_OFFSET,
+		NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+		as->close2RandomEffects,
+		&as->nClose2RandomEffects);
+	animStoreRandomEffectList (
+		&as->opt[ANIM_SCREEN_OPTION_CREATE1_RANDOM_EFFECTS].value,
+		closeEffectType + RANDOM_EFFECT_OFFSET,
+		NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+		as->create1RandomEffects,
+		&as->nCreate1RandomEffects);
+	animStoreRandomEffectList (
+		&as->opt[ANIM_SCREEN_OPTION_CREATE2_RANDOM_EFFECTS].value,
+		closeEffectType + RANDOM_EFFECT_OFFSET,
+		NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+		as->create2RandomEffects,
+		&as->nCreate2RandomEffects);
+	animStoreRandomEffectList (
+		&as->opt[ANIM_SCREEN_OPTION_SHADE_RANDOM_EFFECTS].value,
+		shadeEffectType + RANDOM_EFFECT_OFFSET,
+		NUM_SHADE_EFFECT - RANDOM_EFFECT_OFFSET,
+		as->shadeRandomEffects,
+		&as->nShadeRandomEffects);
 
 	as->switcherActive = FALSE;
 	as->groupTabChangeActive = FALSE;
