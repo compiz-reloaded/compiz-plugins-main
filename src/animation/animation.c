@@ -2698,6 +2698,9 @@ fxDodgePostPreparePaintScreen(CompScreen *s, CompWindow *w)
 	if (!aw->isDodgeSubject)
 		return;
 
+	if (!aw->restackInfo)
+		return;
+
 	// Dodgy window
 	CompWindow *dw;
 	AnimWindow *adw = NULL;
