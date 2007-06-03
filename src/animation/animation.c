@@ -6207,7 +6207,18 @@ initiateFocusAnimation(CompWindow *w)
 	CompScreen *s = w->screen;
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
-	
+
+	if (aw->curWindowEvent != WindowEventNone ||
+		as->switcherActive || as->groupTabChangeActive)
+	{
+		if (aw->restackInfo)
+		{
+			free(aw->restackInfo);
+			aw->restackInfo = NULL;
+		}
+		return;
+	}
+
 	CompWindow *wStart = NULL;
 	CompWindow *wEnd = NULL;
 	CompWindow *wOldAbove = NULL;
@@ -6222,10 +6233,6 @@ initiateFocusAnimation(CompWindow *w)
 		wOldAbove = restackInfo->wOldAbove;
 		raised = restackInfo->raised;
 	}
-
-	if (aw->curWindowEvent != WindowEventNone ||
-		as->switcherActive || as->groupTabChangeActive)
-		return;
 
 	if (matchEval (&as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCH].value.match, w) &&
 		as->focusEffect &&
@@ -6420,7 +6427,7 @@ initiateFocusAnimation(CompWindow *w)
 
 		// FOCUS event!
 
-		//printf("FOCUS event! %X\n", (unsigned)aw);
+		//printf("FOCUS event! %X\n", (unsigned)w->id);
 
 		if (aw->curWindowEvent != WindowEventNone)
 		{
@@ -6561,7 +6568,6 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 						// Allocate polygon set if null
 						if (!aw->polygonSet)
 						{
-							//printf("calloc aw->polygonSet\n");
 							aw->polygonSet = calloc(1, sizeof(PolygonSet));
 						}
 						if (!aw->polygonSet)
@@ -7226,7 +7232,7 @@ animDrawWindowTexture(CompWindow * w, CompTexture * texture,
 	if (aw->animRemainingTime > 0)	// if animation in progress, store texture
 	{
 		//printf("%X animDrawWindowTexture, texture: %X\n",
-		//     (unsigned)aw, (unsigned)texture);
+		//     (unsigned)w->id, (unsigned)texture);
 		aw->curTexture = texture;
 		aw->curPaintAttrib = *attrib;
 	}
@@ -7245,7 +7251,7 @@ animDrawWindowGeometry(CompWindow * w)
 	//	!animEffectProperties[aw->curAnimEffect].letOthersDrawGeoms)
 	//{
 	//printf("animDrawWindowGeometry: %X: coords: %d, %d, %f\n",
-	//       (unsigned)aw, WIN_X (w), WIN_Y (w), aw->animRemainingTime);
+	//       (unsigned)w->id, WIN_X (w), WIN_Y (w), aw->animRemainingTime);
 	aw->nDrawGeometryCalls++;
 
 	ANIM_SCREEN(w->screen);
@@ -7600,7 +7606,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 				{
 					// SHADE event!
 
-					//printf("SHADE event! %X\n", (unsigned)aw);
+					//printf("SHADE event! %X\n", (unsigned)w->id);
 
 					aw->nowShaded = TRUE;
 
@@ -7680,7 +7686,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 				{
 					// MINIMIZE event!
 
-					//printf("MINIMIZE event! %X\n", (unsigned)aw);
+					//printf("MINIMIZE event! %X\n", (unsigned)w->id);
 
 					Bool startingNew = TRUE;
 
@@ -7801,7 +7807,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 				{
 					int tmpSteps = 0;
 
-					//printf("CLOSE event! %X\n", (unsigned)aw);
+					//printf("CLOSE event! %X\n", (unsigned)w->id);
 
 					Bool startingNew = TRUE;
 
@@ -8175,7 +8181,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			{
 				// UNMINIMIZE event!
 
-				//printf("UNMINIMIZE event! %X\n", (unsigned)aw);
+				//printf("UNMINIMIZE event! %X\n", (unsigned)w->id);
 
 				//IPCS_SetBool(IPCS_OBJECT(w), aw->animatedAtom, TRUE);
 				Bool startingNew = TRUE;
@@ -8274,7 +8280,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		else if (aw->nowShaded)
 		{
 			// UNSHADE event!
-			//printf("UNSHADE event! %X\n", (unsigned)aw);
+			//printf("UNSHADE event! %X\n", (unsigned)w->id);
 
 			//IPCS_SetBool(IPCS_OBJECT(w), aw->animatedAtom, TRUE);
 			aw->nowShaded = FALSE;
@@ -8370,7 +8376,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			{
 				// CREATE event!
 
-				//printf("CREATE event! %X\n", (unsigned)aw);
+				//printf("CREATE event! %X\n", (unsigned)w->id);
 
 				Bool startingNew = TRUE;
 
