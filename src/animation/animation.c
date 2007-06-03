@@ -6208,9 +6208,9 @@ initiateFocusAnimation(CompWindow *w)
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 	
-	CompWindow *wStart;
-	CompWindow *wEnd;
-	CompWindow *wOldAbove;
+	CompWindow *wStart = NULL;
+	CompWindow *wEnd = NULL;
+	CompWindow *wOldAbove = NULL;
 
 	RestackInfo *restackInfo = aw->restackInfo;
 	Bool raised = TRUE;
@@ -6522,7 +6522,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 	{
 		AnimWindow *aw;
 		BoxRec box;
-		Point topLeft, bottomRight;
+		Point topLeft = {0, 0}, bottomRight = {0, 0};
 
 		as->animInProgress = FALSE;
 		for (w = s->windows; w; w = w->next)
