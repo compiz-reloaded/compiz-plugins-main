@@ -521,12 +521,12 @@ static void expoPaintWall(CompScreen * s,
 
 	if (reflection)
 	{
-		glCullFace(GL_BACK);
+		
 		glPushMatrix();
 		glLoadMatrixf(sTransformW.m);
 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBegin(GL_QUADS);
 			glColor4f(0.0, 0.0, 0.0, 1.0);
 			glVertex2f(0.0, 0.0);
@@ -536,7 +536,8 @@ static void expoPaintWall(CompScreen * s,
 			glColor4f(0.0, 0.0, 0.0, 1.0);
 			glVertex2f(s->hsize * (1.0 + gapx), 0.0);
 		glEnd();
-
+		glCullFace(GL_BACK);
+		
 		glLoadIdentity();
 		glTranslatef(0.0, 0.0, -DEFAULT_Z_CAMERA);
 		
