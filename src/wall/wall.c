@@ -76,6 +76,7 @@ typedef struct _WallScreen
 
 	DonePaintScreenProc donePaintScreen;
 	PaintOutputProc paintOutput;
+	PaintScreenProc paintScreen;
 	PreparePaintScreenProc preparePaintScreen;
 	PaintTransformedOutputProc paintTransformedOutput;
 	PaintWindowProc paintWindow;
@@ -954,8 +955,10 @@ static void wallDrawCairoTextureOnScreen(CompScreen *s, CompOutput *output,
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_BLEND);
 
-	float centerx = output->region.extents.x1 + (output->width/2.0f);
-	float centery = output->region.extents.y1 + (output->height/2.0f);
+	float centerx = s->outputDev[ws->boxOutputDevice].region.extents.x1 +
+					(s->outputDev[ws->boxOutputDevice].width/2.0f);
+	float centery = s->outputDev[ws->boxOutputDevice].region.extents.y1 +
+					(s->outputDev[ws->boxOutputDevice].height/2.0f);
 
 	float width  = (float) ws->switcherContext->width;
 	float height = (float) ws->switcherContext->height;
@@ -1224,7 +1227,26 @@ static void wallDrawCairoTextureOnScreen(CompScreen *s, CompOutput *output,
 
 }
 
+static void wallPaintScreen(CompScreen * s,
+							CompOutput * outputs,
+							int          numOutputs,
+							unsigned int mask)
+{
+	WALL_SCREEN(s);
 
+	if (ws->moving && numOutputs > 1 && wallGetMmmode(s) == MmmodeSwitchAll)
+	{
+		UNWRAP(ws, s, paintScreen);
+		(*s->paintScreen) (s, &s->fullscreenOutput, 1, mask);
+		WRAP(ws, s, paintScreen, wallPaintScreen);
+	}
+	else
+	{
+		UNWRAP(ws, s, paintScreen);
+		(*s->paintScreen) (s, outputs, numOutputs, mask);
+		WRAP(ws, s, paintScreen, wallPaintScreen);
+	}
+}
 
 static Bool wallPaintOutput(CompScreen * s,
 							const ScreenPaintAttrib * sAttrib,
@@ -1248,7 +1270,7 @@ static Bool wallPaintOutput(CompScreen * s,
 	WRAP(ws, s, paintOutput, wallPaintOutput);
 
 	if ((ws->moving || ws->boxTimeout) && wallGetShowSwitcher(s->display) &&
-		(output == &s->outputDev[ws->boxOutputDevice]))
+		(output == &s->outputDev[ws->boxOutputDevice] || output == &s->fullscreenOutput))
 	{
 		wallDrawCairoTextureOnScreen(s, output, region);
 
@@ -1414,9 +1436,6 @@ static void wallPaintTransformedOutput(CompScreen * s,
 		float px, py;
 		int tx, ty;
 
-		float mx = (s->width / (float)output->width);
-		float my = (s->height / (float)output->height);
-
 		ScreenPaintAttrib sA = *sAttrib;
 
 		px = ws->curPosX;
@@ -1425,40 +1444,40 @@ static void wallPaintTransformedOutput(CompScreen * s,
 		if (floor(py) != ceil(py))
 		{
             ty = ceil(py) - s->y;
-		    sA.yTranslate = (fmod(py,1) - 1) * my;
+		    sA.yTranslate = fmod(py,1) - 1;
 		    if (floor(px) != ceil(px))
 		    {
 				tx = ceil(px) - s->x;
 				moveScreenViewport(s, -tx, -ty, FALSE);
-				sA.xTranslate = (1-fmod(px,1)) * mx;
+				sA.xTranslate = 1 - fmod(px,1);
 				(*s->paintTransformedOutput) (s, &sA, &sTransform,
-												 &s->region, output, mask);
+												 &output->region, output, mask);
 				moveScreenViewport(s, tx, ty, FALSE);
 		    }
 		    tx = floor(px) - s->x;
 		    moveScreenViewport(s, - tx, -ty, FALSE);
-		    sA.xTranslate = (-fmod(px,1)) * mx;
+		    sA.xTranslate = -fmod(px,1);
 		    (*s->paintTransformedOutput) (s, &sA, &sTransform,
-											 &s->region, output, mask);
+											 &output->region, output, mask);
 			moveScreenViewport(s, tx, ty, FALSE);
 		}
 
 		ty = floor(py) - s->y;
-		sA.yTranslate = (fmod(py,1)) * my;
+		sA.yTranslate = fmod(py,1);
 		if (floor(px) != ceil(px))
 		{
 		    tx = ceil(px) - s->x;
 		    moveScreenViewport(s, -tx, -ty, FALSE);
-			sA.xTranslate = (1-fmod(px,1)) * mx;
+			sA.xTranslate = 1 - fmod(px,1);
 		    (*s->paintTransformedOutput) (s, &sA, &sTransform,
-											 &s->region, output, mask);
+											 &output->region, output, mask);
 			moveScreenViewport(s, tx, ty, FALSE);
 		}
 		tx = floor(px) - s->x;
 		moveScreenViewport(s, - tx, -ty, FALSE);
-                sA.xTranslate = (-fmod(px,1)) * mx;
+                sA.xTranslate = -fmod(px,1);
 		(*s->paintTransformedOutput) (s, &sA, &sTransform,
-										 &s->region, output, mask);
+										 &output->region, output, mask);
 		moveScreenViewport(s, tx, ty, FALSE);
 
 		while (s->x != origx)
@@ -1634,6 +1653,7 @@ static Bool wallInitScreen(CompPlugin * p, CompScreen * s)
 
 	ws->activatedEdges = FALSE;
 
+	WRAP(ws, s, paintScreen, wallPaintScreen);
 	WRAP(ws, s, paintOutput, wallPaintOutput);
 	WRAP(ws, s, donePaintScreen, wallDonePaintScreen);
 	WRAP(ws, s, paintTransformedOutput, wallPaintTransformedOutput);
@@ -1685,6 +1705,7 @@ static void wallFiniScreen(CompPlugin * p, CompScreen * s)
 	wallDestroyCairoContext(s, ws->highlightContext);
 	wallDestroyCairoContext(s, ws->arrowContext);
 
+	UNWRAP(ws, s, paintScreen);
 	UNWRAP(ws, s, paintOutput);
 	UNWRAP(ws, s, donePaintScreen);
 	UNWRAP(ws, s, paintTransformedOutput);
