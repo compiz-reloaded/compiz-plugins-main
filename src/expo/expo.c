@@ -66,7 +66,6 @@ typedef struct _ExpoScreen
 	PaintTransformedOutputProc paintTransformedOutput;
 	DrawWindowProc drawWindow;
 	DamageWindowRectProc damageWindowRect;
-	SetScreenOptionProc setScreenOption;
 
  	float expoCam;				// Used for expo zoom animation
  	Bool expoActive;
@@ -819,7 +818,6 @@ static void expoFiniScreen(CompPlugin * p, CompScreen * s)
 	UNWRAP(es, s, preparePaintScreen);
 	UNWRAP(es, s, drawWindow);
 	UNWRAP(es, s, damageWindowRect);
-	UNWRAP(es, s, setScreenOption);
 
 	free(es);
 }
