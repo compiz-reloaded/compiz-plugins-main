@@ -27,6 +27,11 @@
           <long>Rotate wall in expo mode</long>
           <default>false</default>
         </option>
+		<option name="reflection" type="bool">
+          <short>Reflection</short>
+          <long>Show a reflection of the viewports on the ground</long>
+          <default>true</default>
+        </option>
         <option name="expo_animation" type="string">
           <short>Expo Animation</short>
           <long>Animation used when switching to expo mode</long>

@@ -380,112 +380,110 @@ static void expoPreparePaintScreen(CompScreen * s, int ms)
 	WRAP(es, s, preparePaintScreen, expoPreparePaintScreen);
 }
 
-static void expoPaintTransformedOutput(CompScreen * s,
-									   const ScreenPaintAttrib * sAttrib,
-									   const CompTransform    *transform,
-									   Region region, CompOutput *output,
-									   unsigned int mask)
+static void expoPaintWall(CompScreen * s,
+						  const ScreenPaintAttrib * sAttrib,
+						  const CompTransform    *transform,
+						  Region region, CompOutput *output,
+						  unsigned int mask, Bool reflection)
 {
 	EXPO_SCREEN(s);
 
-	CompTransform     sTransform = *transform;
+	CompTransform sTransformW, sTransform = *transform;
 
-	UNWRAP(es, s, paintTransformedOutput);
+	int oldFilter = s->display->textureFilter;
 
-	es->expoActive = FALSE;
+	if (es->expoCam == 1 && expoGetMipmaps(s->display))
+		s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
 
-	if (es->expoCam > 0)
-	    mask |= PAINT_SCREEN_CLEAR_MASK;
+	int origVX = s->x;
+	int origVY = s->y;
 
-    (*s->paintTransformedOutput) (s, sAttrib, &sTransform, region, output, mask);
+	const float gapy = 0.01f * es->expoCam; // amount of gap between viewports
+	const float gapx = 0.01f * s->height / s->width * es->expoCam;
 
-	mask &= ~PAINT_SCREEN_CLEAR_MASK;
+	// Zoom animation stuff
 
-	if (es->expoCam > 0.0)
+	Point3d vpCamPos = {0, 0, 0};   // camera position for the selected viewport
+	Point3d expoCamPos = {0, 0, 0}; // camera position during expo mode
+
+	vpCamPos.x = s->hsize * ((s->x + 0.5) / s->hsize - 0.5) + gapx * (s->x);
+	vpCamPos.y = -s->vsize * ((s->y + 0.5) / s->vsize - 0.5) - gapy * (s->y);
+	vpCamPos.z = 0;
+
+	float biasz = 0;
+	if (expoGetRotate(s->display))
+		biasz = MAX(s->hsize, s->vsize) * 0.15;
+
+	expoCamPos.x = gapx * (s->hsize - 1) * 0.5;
+	expoCamPos.y = -gapy * (s->vsize - 1) * 0.5;
+	expoCamPos.z = -DEFAULT_Z_CAMERA + DEFAULT_Z_CAMERA *
+					(MAX(s->hsize +	(s->hsize - 1) * gapx,
+						 s->vsize +	(s->vsize - 1) * gapy) + biasz);
+
+	float progress = sigmoidProgress(es->expoCam);
+
+	// interpolate between vpCamPos and expoCamPos
+	float camx = vpCamPos.x * (1 - progress) + expoCamPos.x * progress;
+	float camy = vpCamPos.y * (1 - progress) + expoCamPos.y * progress;
+	float camz = vpCamPos.z * (1 - progress) + expoCamPos.z * progress;
+
+	// End of Zoom animation stuff
+
+	moveScreenViewport(s, s->x, s->y, FALSE);
+
+	float rotation = 0.0;
+
+	if (expoGetRotate(s->display))
 	{
-		int oldFilter = s->display->textureFilter;
+		if (expoGetExpoAnimationIndex(s->display) == ExpoAnimationZoom)
+			rotation = 10.0 * sigmoidProgress(es->expoCam);
+		else
+			rotation = 10.0 * es->expoCam;
+	}
 
-		if (es->expoCam == 1 && expoGetMipmaps(s->display))
-			s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
+	// ALL TRANSFORMATION ARE EXECUTED FROM BOTTOM TO TOP
 
-		int origVX = s->x;
-		int origVY = s->y;
+	if (reflection)
+	{
+		matrixTranslate(&sTransform, 0.0, -s->vsize, 0.0);
+		matrixScale(&sTransform, 1.0, -1.0, 1.0);
+		glCullFace(GL_FRONT);
+	}
 
-		const float gapy = 0.01f * es->expoCam; // amount of gap between viewports
-		const float gapx = 0.01f * s->height / s->width * es->expoCam;
+	// zoom out
+	matrixTranslate(&sTransform, -camx, -camy, -camz - DEFAULT_Z_CAMERA);
 
-		// Zoom animation stuff
+	// rotate
 
-		Point3d vpCamPos = {0, 0, 0};   // camera position for the selected viewport
-		Point3d expoCamPos = {0, 0, 0}; // camera position during expo mode
+	matrixRotate(&sTransform, rotation, 0.0f, 1.0f, 0.0f);
 
-		vpCamPos.x = s->hsize * ((s->x + 0.5) / s->hsize - 0.5) + gapx * (s->x);
-		vpCamPos.y = -s->vsize * ((s->y + 0.5) / s->vsize - 0.5) - gapy * (s->y);
-		vpCamPos.z = 0;
+	// translate expo to center
+	matrixTranslate(&sTransform, s->hsize * -0.5, s->vsize * 0.5, 0.0f);
 
-		float biasz = 0;
-		if (expoGetRotate(s->display))
-			biasz = MAX(s->hsize, s->vsize) * 0.15;
+	sTransformW = sTransform;
 
-		expoCamPos.x = gapx * (s->hsize - 1) * 0.5;
-		expoCamPos.y = -gapy * (s->vsize - 1) * 0.5;
-		expoCamPos.z = -DEFAULT_Z_CAMERA + DEFAULT_Z_CAMERA *
-						(MAX(s->hsize +	(s->hsize - 1) * gapx,
-							 s->vsize +	(s->vsize - 1) * gapy) + biasz);
+	// revert prepareXCoords region shift. Now all screens display the same
+	matrixTranslate(&sTransform, 0.5f, -0.5f, DEFAULT_Z_CAMERA);
 
-		float progress = sigmoidProgress(es->expoCam);
+	int i, j;
 
-		// interpolate between vpCamPos and expoCamPos
-		float camx = vpCamPos.x * (1 - progress) + expoCamPos.x * progress;
-		float camy = vpCamPos.y * (1 - progress) + expoCamPos.y * progress;
-		float camz = vpCamPos.z * (1 - progress) + expoCamPos.z * progress;
+	es->expoActive = TRUE;
 
-		// End of Zoom animation stuff
+	for (j = 0; j < s->vsize; j++)
+	{
 
-		moveScreenViewport(s, s->x, s->y, FALSE);
-
-		float rotation = 0.0;
-
-		if (expoGetRotate(s->display))
+		CompTransform  sTransform2 = sTransform;
+		for (i = 0; i < s->hsize; i++)
 		{
-			if (expoGetExpoAnimationIndex(s->display) == ExpoAnimationZoom)
-				rotation = 10.0 * sigmoidProgress(es->expoCam);
-			else
-				rotation = 10.0 * es->expoCam;
-		}
-		// ALL TRANSFORMATION ARE EXECUTED FROM BOTTOM TO TOP
+			if (expoGetExpoAnimationIndex(s->display) == ExpoAnimationVortex)
+				matrixRotate(&sTransform2, 360 * es->expoCam, 0.0f, 1.0f,
+						  2.0f * es->expoCam);
 
-		// zoom out
-		matrixTranslate(&sTransform, -camx, -camy, -camz - DEFAULT_Z_CAMERA);
+			paintTransformedOutput (s, sAttrib, &sTransform2, &s->region,
+									output, mask);
 
-		// rotate
-		matrixRotate(&sTransform, rotation, 0.0f, 1.0f, 0.0f);
-
-		// translate expo to center
-		matrixTranslate(&sTransform, s->hsize * -0.5, s->vsize * 0.5, 0.0f);
-
-		// revert prepareXCoords region shift. Now all screens display the same
-		matrixTranslate(&sTransform, 0.5f, -0.5f, DEFAULT_Z_CAMERA);
-		
-
-		int i, j;
-
-		es->expoActive = TRUE;
-
-		for (j = 0; j < s->vsize; j++)
-		{
-
-			CompTransform  sTransform2 = sTransform;
-			for (i = 0; i < s->hsize; i++)
+			if (!reflection)
 			{
-				if (expoGetExpoAnimationIndex(s->display) == ExpoAnimationVortex)
- 					matrixRotate(&sTransform2, 360 * es->expoCam, 0.0f, 1.0f,
-							  2.0f * es->expoCam);
-
-				paintTransformedOutput (s, sAttrib, &sTransform2, &s->region,
-										output, mask);
-
-
 				if ((es->pointerX >= 0)	&& (es->pointerX < s->width)
 					&& (es->pointerY >= 0) && (es->pointerY < s->height))
 				{
@@ -509,22 +507,86 @@ static void expoPaintTransformedOutput(CompScreen * s,
 						}
 					}
 				}
-
-				// not sure this will work with different resolutions
-				matrixTranslate(&sTransform2, (1.0 + gapx), 0.0f, 0.0);
-				moveScreenViewport(s, -1, 0, FALSE);
 			}
-
+			
 			// not sure this will work with different resolutions
- 			matrixTranslate(&sTransform, 0, -(1.0 + gapy), 0.0f);
-			moveScreenViewport(s, 0, -1, FALSE);
+			matrixTranslate(&sTransform2, (1.0 + gapx), 0.0f, 0.0);
+			moveScreenViewport(s, -1, 0, FALSE);
 		}
 
-		es->expoActive = FALSE;
-		moveScreenViewport(s, -origVX, -origVY, FALSE);
+		// not sure this will work with different resolutions
+		matrixTranslate(&sTransform, 0, -(1.0 + gapy), 0.0f);
+		moveScreenViewport(s, 0, -1, FALSE);
+	}
 
-		s->filter[SCREEN_TRANS_FILTER] = oldFilter;
-		s->display->textureFilter = oldFilter;
+	if (reflection)
+	{
+		glCullFace(GL_BACK);
+		glPushMatrix();
+		glLoadMatrixf(sTransformW.m);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		glBegin(GL_QUADS);
+			glColor4f(0.0, 0.0, 0.0, 1.0);
+			glVertex2f(0.0, 0.0);
+			glColor4f(0.0, 0.0, 0.0, 0.5);
+			glVertex2f(0.0, -s->vsize * (1.0 + gapy));
+			glVertex2f(s->hsize * (1.0 + gapx), -s->vsize * (1.0 + gapy));
+			glColor4f(0.0, 0.0, 0.0, 1.0);
+			glVertex2f(s->hsize * (1.0 + gapx), 0.0);
+		glEnd();
+
+		glLoadIdentity();
+		glTranslatef(0.0, 0.0, -DEFAULT_Z_CAMERA);
+		
+		glBegin(GL_QUADS);
+			glColor4f(0.7, 0.7, 0.7, 1.0);
+			glVertex2f(-0.5, -0.5);
+			glVertex2f(0.5, -0.5);
+			glColor4f(0.7, 0.7, 0.7, 0.0);
+			glVertex2f(0.5, 0.0);
+			glVertex2f(-0.5, 0.0);
+		glEnd();
+		
+		glColor4usv(defaultColor);
+		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		glDisable(GL_BLEND);
+		glPopMatrix();
+	}
+	
+	es->expoActive = FALSE;
+	moveScreenViewport(s, -origVX, -origVY, FALSE);
+
+	s->filter[SCREEN_TRANS_FILTER] = oldFilter;
+	s->display->textureFilter = oldFilter;
+	sTransform = *transform;
+}
+
+static void expoPaintTransformedOutput(CompScreen * s,
+									   const ScreenPaintAttrib * sAttrib,
+									   const CompTransform    *transform,
+									   Region region, CompOutput *output,
+									   unsigned int mask)
+{
+	EXPO_SCREEN(s);
+
+	UNWRAP(es, s, paintTransformedOutput);
+
+	es->expoActive = FALSE;
+
+	if (es->expoCam > 0)
+	    mask |= PAINT_SCREEN_CLEAR_MASK;
+
+    (*s->paintTransformedOutput) (s, sAttrib, transform, region, output, mask);
+
+	mask &= ~PAINT_SCREEN_CLEAR_MASK;
+
+	if (es->expoCam > 0.0)
+	{
+		if (expoGetReflection(s->display))
+			expoPaintWall(s, sAttrib, transform, region, output, mask, TRUE);
+		expoPaintWall(s, sAttrib, transform, region, output, mask, FALSE);
 	}
 
 	WRAP(es, s, paintTransformedOutput, expoPaintTransformedOutput);
