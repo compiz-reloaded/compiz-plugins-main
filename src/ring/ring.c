@@ -693,7 +693,8 @@ layoutThumbs (CompScreen *s)
 	   to order the windows clockwise */
 	angle = baseAngle - (index * (2 * PI / rs->nWindows));
 
-	rw->slot->x = centerX + (ringGetRingClockwise(s)?-1:1)* ((float)ellipseA * sin(angle));
+	rw->slot->x = centerX + (ringGetRingClockwise(s) ? -1 : 1) * 
+	                        ((float)ellipseA * sin(angle));
 	rw->slot->y = centerY + ((float)ellipseB * cos(angle));
 
 	ww = w->width  + w->input.left + w->input.right;
