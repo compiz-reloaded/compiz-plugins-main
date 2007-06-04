@@ -1236,16 +1236,13 @@ static void wallPaintScreen(CompScreen * s,
 
 	if (ws->moving && numOutputs > 1 && wallGetMmmode(s) == MmmodeSwitchAll)
 	{
-		UNWRAP(ws, s, paintScreen);
-		(*s->paintScreen) (s, &s->fullscreenOutput, 1, mask);
-		WRAP(ws, s, paintScreen, wallPaintScreen);
+		outputs = &s->fullscreenOutput;
+		numOutputs = 1;
 	}
-	else
-	{
-		UNWRAP(ws, s, paintScreen);
-		(*s->paintScreen) (s, outputs, numOutputs, mask);
-		WRAP(ws, s, paintScreen, wallPaintScreen);
-	}
+	
+	UNWRAP(ws, s, paintScreen);
+	(*s->paintScreen) (s, outputs, numOutputs, mask);
+	WRAP(ws, s, paintScreen, wallPaintScreen);
 }
 
 static Bool wallPaintOutput(CompScreen * s,
@@ -1270,7 +1267,7 @@ static Bool wallPaintOutput(CompScreen * s,
 	WRAP(ws, s, paintOutput, wallPaintOutput);
 
 	if ((ws->moving || ws->boxTimeout) && wallGetShowSwitcher(s->display) &&
-		(output == &s->outputDev[ws->boxOutputDevice] || output == &s->fullscreenOutput))
+		(output->id == ws->boxOutputDevice || output == &s->fullscreenOutput))
 	{
 		wallDrawCairoTextureOnScreen(s, output, region);
 
