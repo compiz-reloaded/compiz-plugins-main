@@ -121,6 +121,11 @@
       </group>
       <group>
         <short>Ring appearance</short>
+		<option name="ring_clockwise" type="bool">
+			<short>Rotate Ring Clockwise on Next</short>
+			<long>Rotate ring clockeiwse for next window instead of counterclockwise</long>
+			<default>false</default>
+		</option>
         <option name="ring_width" type="int">
           <short>Ring Width</short>
           <long>Ring width (in percent of the screen width)</long>
