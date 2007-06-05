@@ -546,10 +546,10 @@ static void expoPaintWall(CompScreen * s,
 		glTranslatef(0.0, 0.0, -DEFAULT_Z_CAMERA);
 		
 		glBegin(GL_QUADS);
-			glColor4f(0.7, 0.7, 0.7, 0.8);
+			glColor4usv(expoGetGroundColor1(s->display));
 			glVertex2f(-0.5, -0.5);
 			glVertex2f(0.5, -0.5);
-			glColor4f(0.7, 0.7, 0.7, 0.0);
+			glColor4usv(expoGetGroundColor2(s->display));
 			glVertex2f(0.5, 0.0);
 			glVertex2f(-0.5, 0.0);
 		glEnd();

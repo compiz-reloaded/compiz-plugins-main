@@ -32,6 +32,26 @@
           <long>Show a reflection of the viewports on the ground</long>
           <default>true</default>
         </option>
+		<option name="ground_color1" type="color">
+			<short>Ground color(near)</short>
+			<long>Color of the ground (near).</long>
+			<default>
+				<red>0xb333</red>
+				<green>0xb333</green>
+				<blue>0xb333</blue>
+				<alpha>0xcccc</alpha>
+			</default>
+		</option>
+		<option name="ground_color2" type="color">
+			<short>Ground color(far)</short>
+			<long>Color of the ground (far).</long>
+			<default>
+				<red>0xb333</red>
+				<green>0xb333</green>
+				<blue>0xb333</blue>
+				<alpha>0x0000</alpha>
+			</default>
+		</option>
         <option name="expo_animation" type="string">
           <short>Expo Animation</short>
           <long>Animation used when switching to expo mode</long>
@@ -46,14 +66,6 @@
           <short>Mipmaps</short>
           <long>Generate mipmaps in expo mode</long>
           <default>false</default>
-        </option>
-        <option name="aspect_ratio" type="float">
-          <short>Aspect Ratio</short>
-          <long>Expo mode aspect ratio</long>
-          <default>1.0</default>
-          <min>0.0</min>
-          <max>10.0</max>
-          <precision>0.1</precision>
         </option>
         <option name="expo_immediate_move" type="bool">
           <short>Immediate moves</short>
