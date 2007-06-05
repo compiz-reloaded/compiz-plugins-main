@@ -413,6 +413,11 @@ static void expoPaintWall(CompScreen * s,
 	if (expoGetRotate(s->display))
 		biasz = MAX(s->hsize, s->vsize) * 0.15;
 
+	if (expoGetReflection(s->display))
+	{
+	    biasz = MAX(s->hsize, s->vsize) * 0.15;
+	}
+	
 	expoCamPos.x = gapx * (s->hsize - 1) * 0.5;
 	expoCamPos.y = -gapy * (s->vsize - 1) * 0.5;
 	expoCamPos.z = -DEFAULT_Z_CAMERA + DEFAULT_Z_CAMERA *
@@ -541,7 +546,7 @@ static void expoPaintWall(CompScreen * s,
 		glTranslatef(0.0, 0.0, -DEFAULT_Z_CAMERA);
 		
 		glBegin(GL_QUADS);
-			glColor4f(0.7, 0.7, 0.7, 1.0);
+			glColor4f(0.7, 0.7, 0.7, 0.8);
 			glVertex2f(-0.5, -0.5);
 			glVertex2f(0.5, -0.5);
 			glColor4f(0.7, 0.7, 0.7, 0.0);
