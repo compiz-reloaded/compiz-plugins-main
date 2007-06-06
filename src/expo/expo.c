@@ -469,7 +469,7 @@ static void expoPaintWall(CompScreen * s,
 
 	if (expoGetRotate(s->display))
 	{
-		if (expoGetExpoAnimationIndex(s->display) == ExpoAnimationZoom)
+		if (expoGetExpoAnimation(s->display) == ExpoAnimationZoom)
 			rotation = 10.0 * sigmoidProgress(es->expoCam);
 		else
 			rotation = 10.0 * es->expoCam;
@@ -511,7 +511,7 @@ static void expoPaintWall(CompScreen * s,
 		CompTransform  sTransform2 = sTransform;
 		for (i = 0; i < s->hsize; i++)
 		{
-			if (expoGetExpoAnimationIndex(s->display) == ExpoAnimationVortex)
+			if (expoGetExpoAnimation(s->display) == ExpoAnimationVortex)
 				matrixRotate(&sTransform2, 360 * es->expoCam, 0.0f, 1.0f,
 						  2.0f * es->expoCam);
 
@@ -617,9 +617,10 @@ static void expoPaintTransformedOutput(CompScreen * s,
 
 	if (es->expoCam > 0)
 	    mask |= PAINT_SCREEN_CLEAR_MASK;
-
+    if (es->expoCam <= 0)
     (*s->paintTransformedOutput) (s, sAttrib, transform, region, output, mask);
-
+    else
+    glClear(GL_COLOR_BUFFER_BIT);
 	mask &= ~PAINT_SCREEN_CLEAR_MASK;
 
 	if (es->expoCam > 0.0)
@@ -648,12 +649,12 @@ expoDrawWindow (CompWindow			 *w,
 	{
 		if (es->expoActive)
 		{
-			if (expoGetExpoAnimationIndex(w->screen->display) != ExpoAnimationZoom)
+			if (expoGetExpoAnimation(w->screen->display) != ExpoAnimationZoom)
 				fA.opacity = fragment->opacity * es->expoCam;
 
 			if (w->wmType & CompWindowTypeDockMask)
 			{
-				if (expoGetExpoAnimationIndex(w->screen->display) == ExpoAnimationZoom &&
+				if (expoGetExpoAnimation(w->screen->display) == ExpoAnimationZoom &&
 					((w->screen->x == es->origVX &&
 					  w->screen->y == es->origVY) ||
 					 (w->screen->x == es->rorigx &&
@@ -672,7 +673,7 @@ expoDrawWindow (CompWindow			 *w,
 		}
 		else
 		{
-			if (expoGetExpoAnimationIndex(w->screen->display) == ExpoAnimationZoom)
+			if (expoGetExpoAnimation(w->screen->display) == ExpoAnimationZoom)
 				fA.brightness = 0;
 			else
 				fA.brightness = fragment->brightness * (1 - sigmoidProgress(es->expoCam));
