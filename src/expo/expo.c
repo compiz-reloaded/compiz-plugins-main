@@ -426,7 +426,7 @@ static void expoPaintWall(CompScreen * s,
 	if (expoGetRotate(s->display) || expoGetReflection(s->display))
 	    biasz = MAX(s->hsize, s->vsize) * (0.15 + expoGetDistance(s->display));
 	else
-        biasz = MAX(s->hsize, s->vsize) * expoGetDistance(s->display);
+		biasz = MAX(s->hsize, s->vsize) * expoGetDistance(s->display);
 	
 	expoCamPos.x = gapx * (s->hsize - 1) * 0.5;
 	expoCamPos.y = -gapy * (s->vsize - 1) * 0.5;
@@ -441,6 +441,26 @@ static void expoPaintWall(CompScreen * s,
 	float camy = vpCamPos.y * (1 - progress) + expoCamPos.y * progress;
 	float camz = vpCamPos.z * (1 - progress) + expoCamPos.z * progress;
 
+	float aspectx = 1.0;
+	float aspecty = 1.0;
+
+	if (s->hsize > s->vsize)
+	{
+		aspecty = (float)s->hsize / (float)s->vsize;
+		aspecty -= 1.0;
+		aspecty *= -expoGetAspectRatio(s->display) + 1.0;
+		aspecty *= progress;
+		aspecty += 1.0;
+	}
+	else
+	{
+		aspectx = (float)s->vsize / (float)s->hsize;
+		aspectx -= 1.0;
+		aspectx *= -expoGetAspectRatio(s->display) + 1.0;
+		aspectx *= progress;
+		aspectx += 1.0;
+	}
+    
 	// End of Zoom animation stuff
 
 	moveScreenViewport(s, s->x, s->y, FALSE);
@@ -471,9 +491,11 @@ static void expoPaintWall(CompScreen * s,
 
 	matrixRotate(&sTransform, rotation, 0.0f, 1.0f, 0.0f);
 
+	matrixScale(&sTransform, aspectx, aspecty, 1.0);
+    
 	// translate expo to center
 	matrixTranslate(&sTransform, s->hsize * -0.5, s->vsize * 0.5, 0.0f);
-
+    
 	sTransformW = sTransform;
 
 	// revert prepareXCoords region shift. Now all screens display the same

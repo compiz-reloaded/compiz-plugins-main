@@ -60,13 +60,21 @@
 			<max>1.0</max>
 			<precision>0.01</precision>
 		</option>
-        <option name="distance" type="float">
+		<option name="distance" type="float">
 			<short>Distance</short>
 			<long>Distance of the expo wall</long>
 			<default>0.0</default>
 			<min>0.0</min>
 			<max>1.0</max>
 			<precision>0.01</precision>
+		</option>
+		<option name="aspect_ratio" type="float">
+			<short>Aspect Ratio</short>
+			<long>Expo mode aspect ratio</long>
+			<default>1.0</default>
+			<min>0.0</min>
+			<max>1.0</max>
+			<precision>0.1</precision>
 		</option>
         <option name="expo_animation" type="string">
           <short>Expo Animation</short>
