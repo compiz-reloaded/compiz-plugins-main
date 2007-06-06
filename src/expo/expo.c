@@ -423,13 +423,10 @@ static void expoPaintWall(CompScreen * s,
 	vpCamPos.z = 0;
 
 	float biasz = 0;
-	if (expoGetRotate(s->display))
-		biasz = MAX(s->hsize, s->vsize) * 0.15;
-
-	if (expoGetReflection(s->display))
-	{
-	    biasz = MAX(s->hsize, s->vsize) * 0.15;
-	}
+	if (expoGetRotate(s->display) || expoGetReflection(s->display))
+	    biasz = MAX(s->hsize, s->vsize) * (0.15 + expoGetDistance(s->display));
+	else
+        biasz = MAX(s->hsize, s->vsize) * expoGetDistance(s->display);
 	
 	expoCamPos.x = gapx * (s->hsize - 1) * 0.5;
 	expoCamPos.y = -gapy * (s->vsize - 1) * 0.5;
