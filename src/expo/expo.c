@@ -91,6 +91,9 @@ typedef struct _ExpoScreen
 
 	Bool anyClick;
 
+	Bool leaveExpo;
+	Bool updateVP;
+
 } ExpoScreen;
 
 typedef struct _ExpoWindow
@@ -152,33 +155,15 @@ static void expoHandleEvent(CompDisplay * d, XEvent * event)
 		if (es->expoMode)
 		{
 			es->anyClick = TRUE;
+			es->updateVP = TRUE;
 			damageScreen(s);
 			if (event->xbutton.button == Button1)
-				es->dndState = DnDStart;
-			else if (event->xbutton.button != Button5)
 			{
-				CompWindow *w;
-
-				for (w = s->windows; w; w = w->next)
-					syncWindowPosition(w);
-				if (es->grabIndex)
-				{
-					removeScreenGrab(s, es->grabIndex, 0);
-					es->grabIndex = 0;
-				}
-				damageScreen(s);
-				es->origVX = es->mouseOverViewX;
-				es->origVY = es->mouseOverViewY;
-				es->expoMode = FALSE;
-
-				while (s->x != es->mouseOverViewX)
-					moveScreenViewport(s, 1, 0, TRUE);
-				while (s->y != es->mouseOverViewY)
-					moveScreenViewport(s, 0, 1, TRUE);
-
-				focusDefaultWindow(s->display);
+				es->updateVP = FALSE;
+				es->dndState = DnDStart;
 			}
-			damageScreen(s);
+			else if (event->xbutton.button != Button5)
+				es->leaveExpo = TRUE;
 		}
 		es->pointerX = event->xbutton.x_root;
 		es->pointerY = event->xbutton.y_root;
@@ -362,6 +347,34 @@ static Bool expoPaintOutput(CompScreen * s,
 	status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
 	WRAP(es, s, paintOutput, expoPaintOutput);
 
+	if (es->expoMode && es->updateVP)
+	{
+		CompWindow *w;
+
+		for (w = s->windows; w; w = w->next)
+			syncWindowPosition(w);
+		if (es->grabIndex)
+		{
+			removeScreenGrab(s, es->grabIndex, 0);
+			es->grabIndex = 0;
+		}
+		damageScreen(s);
+		es->origVX = es->mouseOverViewX;
+		es->origVY = es->mouseOverViewY;
+		if (es->leaveExpo)
+		{
+			es->expoMode = FALSE;
+			es->leaveExpo = FALSE;
+		}
+		es->updateVP = FALSE;
+		while (s->x != es->mouseOverViewX)
+			moveScreenViewport(s, 1, 0, TRUE);
+		while (s->y != es->mouseOverViewY)
+			moveScreenViewport(s, 0, 1, TRUE);
+
+		focusDefaultWindow(s->display);
+	}	
+
 	return status;
 }
 
@@ -544,15 +557,18 @@ static void expoPaintWall(CompScreen * s,
 		
 		glLoadIdentity();
 		glTranslatef(0.0, 0.0, -DEFAULT_Z_CAMERA);
-		
-		glBegin(GL_QUADS);
-			glColor4usv(expoGetGroundColor1(s->display));
-			glVertex2f(-0.5, -0.5);
-			glVertex2f(0.5, -0.5);
-			glColor4usv(expoGetGroundColor2(s->display));
-			glVertex2f(0.5, 0.0);
-			glVertex2f(-0.5, 0.0);
-		glEnd();
+
+		if (expoGetGroundSize(s->display) > 0.0)
+		{
+			glBegin(GL_QUADS);
+				glColor4usv(expoGetGroundColor1(s->display));
+				glVertex2f(-0.5, -0.5);
+				glVertex2f(0.5, -0.5);
+				glColor4usv(expoGetGroundColor2(s->display));
+				glVertex2f(0.5, -0.5 + expoGetGroundSize(s->display));
+				glVertex2f(-0.5,-0.5 + expoGetGroundSize(s->display));
+			glEnd();
+		}
 		
 		glColor4usv(defaultColor);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -781,8 +797,10 @@ static Bool expoInitScreen(CompPlugin * p, CompScreen * s)
 
 	es->windowPrivateIndex = allocateWindowPrivateIndex(s);
 
-	es->anyClick = FALSE;
-
+	es->anyClick  = FALSE;
+	es->leaveExpo = FALSE;
+	es->updateVP  = FALSE;
+	
 	es->mouseOverViewX = 0;
 	es->mouseOverViewY = 0;
 	es->origVX = 0;

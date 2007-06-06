@@ -52,6 +52,14 @@
 				<alpha>0x0000</alpha>
 			</default>
 		</option>
+		<option name="ground_size" type="float">
+			<short>Reflection ground size</short>
+			<long>Reflection ground size.</long>
+			<default>0.5</default>
+			<min>0.0</min>
+			<max>1.0</max>
+			<precision>0.01</precision>
+		</option>
         <option name="expo_animation" type="string">
           <short>Expo Animation</short>
           <long>Animation used when switching to expo mode</long>
