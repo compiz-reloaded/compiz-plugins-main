@@ -5,7 +5,7 @@
  * ring.c
  *
  * Copyright : (C) 2007 by Danny Baumann
- * E-mail    : maniac@beryl-project.org
+ * E-mail    : maniac@opencompositing.org
  *
  * Based on scale.c and switcher.c:
  * Copyright : (C) 2007 David Reveman
@@ -28,10 +28,6 @@
  */
 
 /* TODO list for this plugin
- * - make the selected window stand out a bit more (perhaps adjust
- *   opacity of non-selected windows?)
- * - selecting minimized windows causes animation conflicts with
- *   the animation plugin
  * - is there a way to get icons larger than 96x96?
  */
 
