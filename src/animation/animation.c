@@ -769,22 +769,22 @@ animStoreRandomEffectList (CompOptionValue *value,
 
 	for (i = 0; i < nItems; i++, effect++)
 	{
-	    if ((effect->i < 0) || (effect->i >= numAllowedEffects))
-		continue;
+		if ((effect->i < 0) || (effect->i >= numAllowedEffects))
+			continue;
 
-	    listEffect = allowedEffects[effect->i];
-		
-	    for (j = 0; j < count; j++)
-	    {
-		if (targetList[j] == listEffect)
-		    break;
-	    }
+		listEffect = allowedEffects[effect->i];
 
-	    if (j < count)
-		continue;
+		for (j = 0; j < count; j++)
+		{
+			if (targetList[j] == listEffect)
+				break;
+		}
 
-	    targetList[count] = listEffect;
-	    count++;
+		if (j < count)
+			continue;
+
+		targetList[count] = listEffect;
+		count++;
 	}
 
 	*targetCount = count;
