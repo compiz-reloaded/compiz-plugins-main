@@ -72,22 +72,17 @@
 					<max>50.0</max>
 					<precision>0.1</precision>
 				</option>
-				<option name="window_match" type="match">
-					<short>Ring Windows</short>
-					<long>Windows that should be shown in ring</long>
-					<default>(type=Normal | Dialog | ModalDialog | Utility | Unknown | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
-				</option>
-				<option name="darken_back" type="bool">
-					<short>Darken Background</short>
-					<long>Darken background when showing the ring</long>
-					<default>true</default>
-				</option>
 				<option name="inactive_opacity" type="int">
 					<short>Inactive Window Opacity</short>
 					<long>Amount of opacity (in percent) for windows in the ring which are not selected</long>
 					<default>100</default>
 					<min>1</min>
 					<max>100</max>
+				</option>
+				<option name="window_match" type="match">
+					<short>Ring Windows</short>
+					<long>Windows that should be shown in ring</long>
+					<default>(type=Normal | Dialog | ModalDialog | Utility | Unknown | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
 				</option>
 				<option name="overlay_icon" type="int">
 					<short>Overlay Icon</short>
@@ -107,6 +102,11 @@
 						<value>2</value>
 						<name>Big</name>
 					</desc>
+				</option>
+				<option name="darken_back" type="bool">
+					<short>Darken Background</short>
+					<long>Darken background when showing the ring</long>
+					<default>true</default>
 				</option>
 				<option name="minimized" type="bool">
 					<short>Show Minimized</short>
@@ -178,17 +178,17 @@
 					<long>Show window title if currently selected window.</long>
 					<default>true</default>
 				</option>
+				<option name="title_font_bold" type="bool">
+					<short>Bold Font</short>
+					<long>Selects if the window title should be displayed in bold font or not.</long>
+					<default>false</default>
+				</option>
 				<option name="title_font_size" type="int">
 					<short>Font Size</short>
 					<long>Font size for the window title</long>
 					<default>16</default>
 					<min>6</min>
 					<max>96</max>
-				</option>
-				<option name="title_font_bold" type="bool">
-					<short>Bold Font</short>
-					<long>Selects if the window title should be displayed in bold font or not.</long>
-					<default>false</default>
 				</option>
 				<option name="title_back_color" type="color">
 					<short>Background Color</short>
