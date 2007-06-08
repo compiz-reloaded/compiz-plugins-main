@@ -104,7 +104,7 @@
 					<option name="close1_match" type="match">
 						<short>Window Match</short>
 						<long>The windows that will be animated.</long>
-						<default>(type=Normal | Dialog | ModalDialog | Utility) &amp; !(type=Normal &amp; override_redirect=1)</default>
+						<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
 					</option>
 					<option name="close1_duration" type="float">
 						<short>Animation Duration</short>
@@ -298,7 +298,7 @@
 					<option name="close2_match" type="match">
 						<short>Window Match</short>
 						<long>The windows that will be animated.</long>
-						<default>(type=Unknown | Menu | PopupMenu | DropdownMenu | Tooltip) | (type=Normal &amp; override_redirect=1)</default>
+						<default>((type=Unknown | Menu | PopupMenu | DropdownMenu | Tooltip | Notification | name=sun-awt-X11-XWindowPeer) | (type=Normal &amp; override_redirect=1)) &amp; !(name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer)</default>
 					</option>
 					<option name="close2_duration" type="float">
 						<short>Animation Duration</short>
@@ -413,7 +413,7 @@
 					<option name="create1_match" type="match">
 						<short>Window Match</short>
 						<long>Window that should animate with this effect when created.</long>
-						<default>(type=Normal | Dialog | ModalDialog | Utility) &amp; !(type=Normal &amp; override_redirect=1)</default>
+						<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
 					</option>
 					<option name="create1_effect" type="int">
 						<short>Create #1 Animation</short>
@@ -607,7 +607,7 @@
 					<option name="create2_match" type="match">
 						<short>Window Match</short>
 						<long>Window that should animate with this effect when created.</long>
-						<default>(type=Unknown | Menu | PopupMenu | DropdownMenu | Tooltip) | (type=Normal &amp; override_redirect=1)</default>
+						<default>((type=Unknown | Menu | PopupMenu | DropdownMenu | Tooltip | Notification | name=sun-awt-X11-XWindowPeer) | (type=Normal &amp; override_redirect=1)) &amp; !(name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer)</default>
 					</option>
 					<option name="create2_effect" type="int">
 						<short>Create #2 Animation</short>
@@ -802,7 +802,7 @@
 				<option name="minimize_match" type="match">
 					<short>Window Match</short>
 					<long>The windows that will be animated.</long>
-					<default>(type=Normal | Dialog | ModalDialog | Utility) &amp; !(type=Normal &amp; override_redirect=1)</default>
+					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
 				</option>
 				<option name="minimize_duration" type="float">
 					<short>Animation Duration</short>
@@ -978,8 +978,7 @@
 				<option name="shade_match" type="match">
 					<short>Window Match</short>
 					<long>Window that should animate with this effect when shaded.</long>
-					<default>(type=Normal | Dialog | ModalDialog | Utility) &amp; !(type=Normal &amp; override_redirect=1)</default>
-					<default>Normal | Dialog | ModalDialog | Utility</default>
+					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
 				</option>
 				<option name="shade_effect" type="int">
 					<short>Shade Animation</short>
@@ -1047,7 +1046,7 @@
 				<option name="focus_match" type="match">
 					<short>Window Match</short>
 					<long>Window that should animate with this effect when focused.</long>
-					<default>(type=Normal | Dialog | ModalDialog | Utility) &amp; !(type=Normal &amp; override_redirect=1)</default>
+					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
 				</option>
 				<option name="focus_effect" type="int">
 					<short>Focus Animation</short>
