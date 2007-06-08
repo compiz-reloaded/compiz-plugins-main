@@ -1,111 +1,111 @@
 <?xml version="1.0"?>
 <compiz>
-  <plugin name="expo" useBcop="true">
-    <short>Expo</short>
-    <long>Expo Plugin</long>
-    <category>Desktop</category>
-    <deps>
-	<relation type="after">
-	    <plugin>decoration</plugin>
-		<plugin>cube</plugin>
-	</relation>
-    </deps>
-    <display>
-      <group>
-        <short>Misc. Settings</short>
-        <option name="expo" type="action">
-          <short>Expo</short>
-          <long>Engage wall expo mode</long>
-          <allowed key="true" edge="true"/>
-          <default>
-            <key>&lt;Super&gt;e</key>
-            <edges top_left="true"/>
-          </default>
-        </option>
-        <option name="rotate" type="bool">
-          <short>Rotate Wall</short>
-          <long>Rotate wall in expo mode</long>
-          <default>false</default>
-        </option>
-		<option name="reflection" type="bool">
-          <short>Reflection</short>
-          <long>Show a reflection of the viewports on the ground</long>
-          <default>true</default>
-        </option>
-		<option name="ground_color1" type="color">
-			<short>Ground color(near)</short>
-			<long>Color of the ground (near).</long>
-			<default>
-				<red>0xb333</red>
-				<green>0xb333</green>
-				<blue>0xb333</blue>
-				<alpha>0xcccc</alpha>
-			</default>
-		</option>
-		<option name="ground_color2" type="color">
-			<short>Ground color(far)</short>
-			<long>Color of the ground (far).</long>
-			<default>
-				<red>0xb333</red>
-				<green>0xb333</green>
-				<blue>0xb333</blue>
-				<alpha>0x0000</alpha>
-			</default>
-		</option>
-		<option name="ground_size" type="float">
-			<short>Reflection ground size</short>
-			<long>Reflection ground size.</long>
-			<default>0.5</default>
-			<min>0.0</min>
-			<max>1.0</max>
-			<precision>0.01</precision>
-		</option>
-		<option name="distance" type="float">
-			<short>Distance</short>
-			<long>Distance of the expo wall</long>
-			<default>0.0</default>
-			<min>0.0</min>
-			<max>1.0</max>
-			<precision>0.01</precision>
-		</option>
-		<option name="aspect_ratio" type="float">
-			<short>Aspect Ratio</short>
-			<long>Expo mode aspect ratio</long>
-			<default>1.0</default>
-			<min>0.0</min>
-			<max>1.0</max>
-			<precision>0.1</precision>
-		</option>
-        <option name="expo_animation" type="int">
-			<short>Expo Animation</short>
-			<long>Animation used when switching to expo mode</long>
-			<default>0</default>
-			<min>0</min>
-			<max>2</max>
-			<desc>
-				<value>0</value>
-				<name>Zoom</name>
-			</desc>
-			<desc>
-				<value>1</value>
-				<name>Fade + Zoom</name>
-			</desc>
-			<desc>
-				<value>2</value>
-				<name>Vortex</name>
-			</desc>
-        </option>
-        <option name="mipmaps" type="bool">
-          <short>Mipmaps</short>
-          <long>Generate mipmaps in expo mode</long>
-          <default>false</default>
-        </option>
-        <option name="expo_immediate_move" type="bool">
-          <short>Immediate moves</short>
-          <long>Selects if windows movements in expo mode should be immediate - this among other things disables wobbliness</long>
-          <default>false</default>
-        </option>
-      </group>
-    </display>
-  </plugin>
+	<plugin name="expo" useBcop="true">
+		<short>Expo</short>
+		<long>Expo Plugin</long>
+		<category>Desktop</category>
+		<deps>
+			<relation type="after">
+				<plugin>decoration</plugin>
+				<plugin>cube</plugin>
+			</relation>
+		</deps>
+		<display>
+			<group>
+				<short>Misc. Settings</short>
+				<option name="expo" type="action">
+					<short>Expo</short>
+					<long>Engage wall expo mode</long>
+					<allowed key="true" edge="true"/>
+					<default>
+						<key>&lt;Super&gt;e</key>
+						<edges top_left="true"/>
+					</default>
+				</option>
+				<option name="rotate" type="bool">
+					<short>Rotate Wall</short>
+					<long>Rotate wall in expo mode</long>
+					<default>false</default>
+				</option>
+				<option name="reflection" type="bool">
+					<short>Reflection</short>
+					<long>Show a reflection of the viewports on the ground</long>
+					<default>true</default>
+				</option>
+				<option name="ground_color1" type="color">
+					<short>Ground color(near)</short>
+					<long>Color of the ground (near).</long>
+					<default>
+						<red>0xb333</red>
+						<green>0xb333</green>
+						<blue>0xb333</blue>
+						<alpha>0xcccc</alpha>
+					</default>
+				</option>
+				<option name="ground_color2" type="color">
+					<short>Ground color(far)</short>
+					<long>Color of the ground (far).</long>
+					<default>
+						<red>0xb333</red>
+						<green>0xb333</green>
+						<blue>0xb333</blue>
+						<alpha>0x0000</alpha>
+					</default>
+				</option>
+				<option name="ground_size" type="float">
+					<short>Reflection ground size</short>
+					<long>Reflection ground size.</long>
+					<default>0.5</default>
+					<min>0.0</min>
+					<max>1.0</max>
+					<precision>0.01</precision>
+				</option>
+				<option name="distance" type="float">
+					<short>Distance</short>
+					<long>Distance of the expo wall</long>
+					<default>0.0</default>
+					<min>0.0</min>
+					<max>1.0</max>
+					<precision>0.01</precision>
+				</option>
+				<option name="aspect_ratio" type="float">
+					<short>Aspect Ratio</short>
+					<long>Expo mode aspect ratio</long>
+					<default>1.0</default>
+					<min>0.0</min>
+					<max>1.0</max>
+					<precision>0.1</precision>
+				</option>
+				<option name="expo_animation" type="int">
+					<short>Expo Animation</short>
+					<long>Animation used when switching to expo mode</long>
+					<default>0</default>
+					<min>0</min>
+					<max>2</max>
+					<desc>
+						<value>0</value>
+						<name>Zoom</name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<name>Fade + Zoom</name>
+					</desc>
+					<desc>
+						<value>2</value>
+						<name>Vortex</name>
+					</desc>
+				</option>
+				<option name="mipmaps" type="bool">
+				<short>Mipmaps</short>
+				<long>Generate mipmaps in expo mode</long>
+				<default>false</default>
+				</option>
+				<option name="expo_immediate_move" type="bool">
+				<short>Immediate moves</short>
+				<long>Selects if windows movements in expo mode should be immediate - this among other things disables wobbliness</long>
+				<default>false</default>
+				</option>
+			</group>
+		</display>
+	/plugin>
 </compiz>
