@@ -3,92 +3,99 @@
 	<plugin name="winrules">
 		<short>Window Rules</short>
 		<long>Set windows rules</long>
+		<category>Window Management</category>
 		<deps>
 			<relation type="before">
 				<plugin>widget</plugin>
 			</relation>
 		</deps>
 		<screen>
-			<option name="skiptaskbar_match" type="match">
-				<short>Skip taskbar</short>
-				<long>Don't show application in taskbar</long>
-				<default/>
-			</option>
-			<option name="skippager_match" type="match">
-				<short>Skip pager</short>
-				<long>Don't show application in pager</long>
-				<default/>
-			</option>
-			<option name="above_match" type="match">
-			<short>Above</short>
-				<long>Above others windows</long>
-				<default/>
-			</option>
-			<option name="below_match" type="match">
-				<short>Below</short>
-				<long>Below others windows</long>
-				<default/>
-			</option>
-			<option name="sticky_match" type="match">
-				<short>Sticky</short>
-				<long>Sticky windows</long>
-				<default/>
-			</option>
-			<option name="fullscreen_match" type="match">
-				<short>Fullscreen</short>
-				<long>Fullscreen windows</long>
-				<default/>
-			</option>
-			<option name="widget_match" type="match">
-				<short>Widget</short>
-				<long>Set window as widget</long>
-				<default/>
-			</option>
-			<option name="no_move_match" type="match">
-				<short>Non movable windows</short>
-				<long>Set window as non movable</long>
-				<default/>
-			</option>
-			<option name="no_resize_match" type="match">
-				<short>Non resizable windows</short>
-				<long>Set window as non resizable</long>
-				<default/>
-			</option>
-			<option name="no_minimize_match" type="match">
-				<short>Non minimizable windows</short>
-				<long>Set window as non minimizable</long>
-				<default/>
-			</option>
-			<option name="no_maximize_match" type="match">
-				<short>Non maximizable windows</short>
-				<long>Set window as non maximizable</long>
-				<default/>
-			</option>
-			<option name="no_close_match" type="match">
-				<short>Non closable windows</short>
-				<long>Set window as non closable</long>
-				<default/>
-			</option>
-			<option name="no_focus_match" type="match">
-				<short>No focus</short>
-				<long>Windows will not have focus</long>
-				<default/>
-			</option>
-			<option name="size_matches" type="list">
-				<short>sized windows</short>
-				<long>Windows that should be resized by default</long>
-				<type>match</type>
-			</option>
-			<option name="size_width_values" type="list">
-				<short>Width</short>
-				<long>Width values</long>
-				<type>int</type>
-			</option>
-			<option name="size_height_values" type="list">
-				<short>Height</short>
-				<long>Height values</long>
-				<type>int</type>
-			</option>
+			<group>
+				<short>Matches</short>
+				<option name="skiptaskbar_match" type="match">
+					<short>Skip taskbar</short>
+					<long>Don't show application in taskbar</long>
+					<default/>
+				</option>
+				<option name="skippager_match" type="match">
+					<short>Skip pager</short>
+					<long>Don't show application in pager</long>
+					<default/>
+				</option>
+				<option name="above_match" type="match">
+				<short>Above</short>
+					<long>Above others windows</long>
+					<default/>
+				</option>
+				<option name="below_match" type="match">
+					<short>Below</short>
+					<long>Below others windows</long>
+					<default/>
+				</option>
+				<option name="sticky_match" type="match">
+					<short>Sticky</short>
+					<long>Sticky windows</long>
+					<default/>
+				</option>
+				<option name="fullscreen_match" type="match">
+					<short>Fullscreen</short>
+					<long>Fullscreen windows</long>
+					<default/>
+				</option>
+				<option name="widget_match" type="match">
+					<short>Widget</short>
+					<long>Set window as widget</long>
+					<default/>
+				</option>
+				<option name="no_move_match" type="match">
+					<short>Non movable windows</short>
+					<long>Set window as non movable</long>
+					<default/>
+				</option>
+				<option name="no_resize_match" type="match">
+					<short>Non resizable windows</short>
+					<long>Set window as non resizable</long>
+					<default/>
+				</option>
+				<option name="no_minimize_match" type="match">
+					<short>Non minimizable windows</short>
+					<long>Set window as non minimizable</long>
+					<default/>
+				</option>
+				<option name="no_maximize_match" type="match">
+					<short>Non maximizable windows</short>
+					<long>Set window as non maximizable</long>
+					<default/>
+				</option>
+				<option name="no_close_match" type="match">
+					<short>Non closable windows</short>
+					<long>Set window as non closable</long>
+					<default/>
+				</option>
+				<option name="no_focus_match" type="match">
+					<short>No focus</short>
+					<long>Windows will not have focus</long>
+					<default/>
+				</option>
+				<subgroup>
+					<short>Fixed Size Windows</short>
+					<option name="size_matches" type="list">
+						<short>Sized Windows</short>
+						<long>Windows that should be resized by default</long>
+						<type>match</type>
+					</option>
+					<option name="size_width_values" type="list">
+						<short>Width</short>
+						<long>Width values</long>
+						<type>int</type>
+					</option>
+					<option name="size_height_values" type="list">
+						<short>Height</short>
+						<long>Height values</long>
+						<type>int</type>
+					</option>
+				</subgroup>
+			</group>
 		</screen>
 	</plugin>
 </compiz>
