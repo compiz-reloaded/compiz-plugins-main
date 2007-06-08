@@ -1,212 +1,212 @@
 <?xml version="1.0"?>
 <compiz>
-  <plugin name="wall" useBcop="true">
-    <short>Desktop Wall</short>
-    <long>Desktop Wall Plugin</long>
-	<category>Desktop</category>
-    <feature>largedesktop</feature>
-    <deps>
-		<relation type="after">
-		    <plugin>decoration</plugin>
-		</relation>
-		<relation type="before">
-			<plugin>wobbly</plugin>
-		</relation>
-    </deps>
-    <display>
-      <group>
-        <short>Viewport Switching</short>
-		<option name="slide_duration" type="float">
-          <short>Wall Sliding Duration</short>
-          <long>Duration (in s) for wall sliding viewport switching animation</long>
-          <default>0.3</default>
-          <min>0.1</min>
-          <max>5.0</max>
-          <precision>0.05</precision>
-        </option>
-        <option name="show_switcher" type="bool">
-          <short>Show Viewport Switcher Preview</short>
-          <long>Show switcher window while switching viewports</long>
-          <default>true</default>
-        </option>
-        <option name="miniscreen" type="bool">
-          <short>Show Live Viewport Previews</short>
-          <long>Show live viewport previews in switcher window</long>
-          <default>false</default>
-        </option>
-        <option name="preview_timeout" type="float">
-          <short>Switch Target Preview Visibility Time</short>
-          <long>Duration (in s) the switch target preview should remain visible after switching ends.</long>
-          <default>0.4</default>
-          <min>0.0</min>
-          <max>2.0</max>
-          <precision>0.05</precision>
-        </option>
-        <option name="allow_wraparound" type="bool">
-          <short>Allow Wrap-Around</short>
-          <long>Allow wrap-around when moving the wall up/down/left/right</long>
-          <default>false</default>
-        </option>
-        <option name="left" type="action">
-          <short>Move Left</short>
-          <long>Move along the wall to the left</long>
-          <allowed key="true" button="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;Left</key>
-          </default>
-        </option>
-        <option name="right" type="action">
-          <short>Move Right</short>
-          <long>Move along the wall to the right</long>
-          <allowed key="true" button="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;Right</key>
-          </default>
-        </option>
-        <option name="up" type="action">
-          <short>Move Up</short>
-          <long>Move along the wall up</long>
-          <allowed key="true" button="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;Up</key>
-          </default>
-        </option>
-        <option name="down" type="action">
-          <short>Move Down</short>
-          <long>Move along the wall down</long>
-          <allowed key="true" button="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;Down</key>
-          </default>
-        </option>
-        <option name="next" type="action">
-          <short>Move Next</short>
-          <long>Move along the wall to the next viewport</long>
-          <allowed key="true" button="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;Next</key>
-          </default>
-        </option>
-        <option name="prev" type="action">
-          <short>Move Prev</short>
-          <long>Move along the wall to the previous viewport</long>
-          <allowed key="true" button="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;Prev</key>
-          </default>
-        </option>
-        <option name="left_window" type="action">
-          <short>Move Left With Window</short>
-          <long>Move with window along the wall to the left</long>
-          <allowed key="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Left</key>
-          </default>
-        </option>
-        <option name="right_window" type="action">
-          <short>Move Right With Window</short>
-          <long>Move with window along the wall to the right</long>
-          <allowed key="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Right</key>
-          </default>
-        </option>
-        <option name="up_window" type="action">
-          <short>Move Up With Window</short>
-          <long>Move with window along the wall up</long>
-          <allowed key="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Up</key>
-          </default>
-        </option>
-        <option name="down_window" type="action">
-          <short>Move Down With Window</short>
-          <long>Move with window along the wall down</long>
-          <allowed key="true"/>
-          <default>
-            <key>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Down</key>
-          </default>
-        </option>
-        <option name="up_wheel" type="action">
-          <short>Mousewheel Up</short>
-          <long>Mousewheel up</long>
-          <allowed button="true"/>
-          <default/>
-        </option>
-        <option name="down_wheel" type="action">
-          <short>Mousewheel Down</short>
-          <long>Mousewheel down</long>
-          <allowed button="true"/>
-          <default/>
-        </option>
-        <option name="flip_left" type="action">
-          <short>Flip Left</short>
-          <long>Flip left</long>
-          <allowed edge="true"/>
-          <default>
-            <edges left="true"/>
-          </default>
-        </option>
-        <option name="flip_right" type="action">
-          <short>Flip Right</short>
-          <long>Flip right</long>
-          <allowed edge="true"/>
-          <default>
-            <edges right="true"/>
-          </default>
-        </option>
-        <option name="flip_up" type="action">
-          <short>Flip Up</short>
-          <long>Flip up</long>
-          <allowed edge="true"/>
-          <default>
-            <edges top="true"/>
-          </default>
-        </option>
-        <option name="flip_down" type="action">
-          <short>Flip Down</short>
-          <long>Flip down</long>
-          <allowed edge="true"/>
-          <default>
-            <edges bottom="true"/>
-          </default>
-        </option>
-      </group>
-    </display>
-    <screen>
-      <group>
-        <short>Viewport Switching</short>
-        <option name="edgeflip_pointer" type="bool">
-          <short>Edge Flip Pointer</short>
-          <long>Flip viewport when moving the pointer to a screen edge</long>
-          <default>false</default>
-        </option>
-        <option name="edgeflip_move" type="bool">
-          <short>Edge Flip Move</short>
-          <long>Flip viewport when moving a window to a screen edge</long>
-          <default>true</default>
-        </option>
-        <option name="edgeflip_dnd" type="bool">
-          <short>Edge Flip DnD</short>
-          <long>Flip viewport when dragging an object to a screen edge</long>
-          <default>false</default>
-        </option>
-		<option name="mmmode" type="int">
-		  <short>Multimonitor behavior</short>
-		  <long>How should a multimonitor configuration be handeled</long>
-		  <default>0</default>
-		  <min>0</min>
-		  <max>1</max>
-		  <desc>
-		    <value>0</value>
-		    <name>Switch all</name>
-		  </desc>
-		  <desc>
-		    <value>1</value>
-		    <name>Switch separately</name>
-		  </desc>
-	    </option>
-      </group>
-    </screen>
-  </plugin>
+	<plugin name="wall" useBcop="true">
+		<short>Desktop Wall</short>
+		<long>Desktop Wall Plugin</long>
+		<category>Desktop</category>
+		<feature>largedesktop</feature>
+		<deps>
+			<relation type="after">
+				<plugin>decoration</plugin>
+			</relation>
+			<relation type="before">
+				<plugin>wobbly</plugin>
+			</relation>
+		</deps>
+		<display>
+			<group>
+				<short>Viewport Switching</short>
+				<option name="slide_duration" type="float">
+					<short>Wall Sliding Duration</short>
+					<long>Duration (in s) for wall sliding viewport switching animation</long>
+					<default>0.3</default>
+					<min>0.1</min>
+					<max>5.0</max>
+					<precision>0.05</precision>
+				</option>
+				<option name="show_switcher" type="bool">
+					<short>Show Viewport Switcher Preview</short>
+					<long>Show switcher window while switching viewports</long>
+					<default>true</default>
+				</option>
+				<option name="miniscreen" type="bool">
+					<short>Show Live Viewport Previews</short>
+					<long>Show live viewport previews in switcher window</long>
+					<default>false</default>
+				</option>
+				<option name="preview_timeout" type="float">
+					<short>Switch Target Preview Visibility Time</short>
+					<long>Duration (in s) the switch target preview should remain visible after switching ends.</long>
+					<default>0.4</default>
+					<min>0.0</min>
+					<max>2.0</max>
+					<precision>0.05</precision>
+				</option>
+				<option name="allow_wraparound" type="bool">
+					<short>Allow Wrap-Around</short>
+					<long>Allow wrap-around when moving the wall up/down/left/right</long>
+					<default>false</default>
+				</option>
+				<option name="left" type="action">
+					<short>Move Left</short>
+					<long>Move along the wall to the left</long>
+					<allowed key="true" button="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;Left</key>
+					</default>
+				</option>
+				<option name="right" type="action">
+					<short>Move Right</short>
+					<long>Move along the wall to the right</long>
+					<allowed key="true" button="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;Right</key>
+					</default>
+				</option>
+				<option name="up" type="action">
+					<short>Move Up</short>
+					<long>Move along the wall up</long>
+					<allowed key="true" button="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;Up</key>
+					</default>
+				</option>
+				<option name="down" type="action">
+					<short>Move Down</short>
+					<long>Move along the wall down</long>
+					<allowed key="true" button="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;Down</key>
+					</default>
+				</option>
+				<option name="next" type="action">
+					<short>Move Next</short>
+					<long>Move along the wall to the next viewport</long>
+					<allowed key="true" button="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;Next</key>
+					</default>
+				</option>
+				<option name="prev" type="action">
+					<short>Move Prev</short>
+					<long>Move along the wall to the previous viewport</long>
+					<allowed key="true" button="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;Prev</key>
+					</default>
+				</option>
+				<option name="left_window" type="action">
+					<short>Move Left With Window</short>
+					<long>Move with window along the wall to the left</long>
+					<allowed key="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Left</key>
+					</default>
+				</option>
+				<option name="right_window" type="action">
+					<short>Move Right With Window</short>
+					<long>Move with window along the wall to the right</long>
+					<allowed key="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Right</key>
+					</default>
+				</option>
+				<option name="up_window" type="action">
+					<short>Move Up With Window</short>
+					<long>Move with window along the wall up</long>
+					<allowed key="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Up</key>
+					</default>
+				</option>
+				<option name="down_window" type="action">
+					<short>Move Down With Window</short>
+					<long>Move with window along the wall down</long>
+					<allowed key="true"/>
+					<default>
+						<key>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Down</key>
+					</default>
+				</option>
+				<option name="up_wheel" type="action">
+					<short>Mousewheel Up</short>
+					<long>Mousewheel up</long>
+					<allowed button="true"/>
+					<default/>
+				</option>
+				<option name="down_wheel" type="action">
+					<short>Mousewheel Down</short>
+					<long>Mousewheel down</long>
+					<allowed button="true"/>
+					<default/>
+				</option>
+				<option name="flip_left" type="action">
+					<short>Flip Left</short>
+					<long>Flip left</long>
+					<allowed edge="true"/>
+					<default>
+						<edges left="true"/>
+					</default>
+				</option>
+				<option name="flip_right" type="action">
+					<short>Flip Right</short>
+					<long>Flip right</long>
+					<allowed edge="true"/>
+					<default>
+						<edges right="true"/>
+					</default>
+				</option>
+				<option name="flip_up" type="action">
+					<short>Flip Up</short>
+					<long>Flip up</long>
+					<allowed edge="true"/>
+					<default>
+						<edges top="true"/>
+					</default>
+				</option>
+				<option name="flip_down" type="action">
+					<short>Flip Down</short>
+					<long>Flip down</long>
+					<allowed edge="true"/>
+					<default>
+						<edges bottom="true"/>
+					</default>
+				</option>
+			</group>
+		</display>
+		<screen>
+			<group>
+				<short>Viewport Switching</short>
+				<option name="edgeflip_pointer" type="bool">
+					<short>Edge Flip Pointer</short>
+					<long>Flip viewport when moving the pointer to a screen edge</long>
+					<default>false</default>
+				</option>
+				<option name="edgeflip_move" type="bool">
+					<short>Edge Flip Move</short>
+					<long>Flip viewport when moving a window to a screen edge</long>
+					<default>true</default>
+				</option>
+				<option name="edgeflip_dnd" type="bool">
+					<short>Edge Flip DnD</short>
+					<long>Flip viewport when dragging an object to a screen edge</long>
+					<default>false</default>
+				</option>
+				<option name="mmmode" type="int">
+					<short>Multimonitor behavior</short>
+					<long>How should a multimonitor configuration be handeled</long>
+					<default>0</default>
+					<min>0</min>
+					<max>1</max>
+					<desc>
+						<value>0</value>
+						<name>Switch all</name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<name>Switch separately</name>
+					</desc>
+				</option>
+			</group>
+		</screen>
+	</plugin>
 </compiz>
