@@ -5007,12 +5007,14 @@ static void fxExplode3DInit(CompScreen * s, CompWindow * w)
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_Y].value.i,
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_THICKNESS].value.f))
 			return;
+		break;
 	case PolygonTessHex:
 		if (!tessellateIntoHexagons(w, 
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_X].value.i,
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_Y].value.i,
 			as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_THICKNESS].value.f))
 			return;
+		break;
 	default:
 		return;
 	}
