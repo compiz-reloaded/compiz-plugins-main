@@ -587,7 +587,7 @@ typedef struct _AnimScreen
 
 	Bool switcherActive;
 	Bool groupTabChangeActive;
-	//Bool scaleActive;
+	Bool scaleActive;
 
 	Window *lastClientListStacking; // to store last known stacking order
 	int nLastClientListStacking;
@@ -6137,7 +6137,8 @@ initiateFocusAnimation(CompWindow *w)
 	ANIM_WINDOW(w);
 
 	if (aw->curWindowEvent != WindowEventNone ||
-		as->switcherActive || as->groupTabChangeActive)
+		as->scaleActive || as->switcherActive || 
+		as->groupTabChangeActive)
 	{
 		if (aw->restackInfo)
 		{
@@ -7437,10 +7438,9 @@ static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
 			}
 		}
 	}
-	/*
 	else if (strcmp(pluginName, "scale") == 0)
 	{
-		if (strcmp(eventName, "scaleInitiateEvent") == 0)
+		if (strcmp(eventName, "activate") == 0)
 		{
 			Window xid = getIntOptionNamed(option, nOption, "root", 0);
 			CompScreen *s = findScreenAtDisplay(d, xid);
@@ -7452,7 +7452,6 @@ static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
 			}
 		}
 	}
-	*/
 }
 
 static void
@@ -8711,7 +8710,7 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 
 	as->switcherActive = FALSE;
 	as->groupTabChangeActive = FALSE;
-	//as->scaleActive = FALSE;
+	as->scaleActive = FALSE;
 
 	WRAP(as, s, preparePaintScreen, animPreparePaintScreen);
 	WRAP(as, s, donePaintScreen, animDonePaintScreen);
