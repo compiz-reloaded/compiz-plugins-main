@@ -15,15 +15,7 @@
 		</deps>
 		<display>
 			<group>
-				<short>Viewport Switching</short>
-				<option name="slide_duration" type="float">
-					<short>Wall Sliding Duration</short>
-					<long>Duration (in s) for wall sliding viewport switching animation</long>
-					<default>0.3</default>
-					<min>0.1</min>
-					<max>5.0</max>
-					<precision>0.05</precision>
-				</option>
+				<short>Viewport Switch Preview</short>
 				<option name="show_switcher" type="bool">
 					<short>Show Viewport Switcher Preview</short>
 					<long>Show switcher window while switching viewports</long>
@@ -42,10 +34,21 @@
 					<max>2.0</max>
 					<precision>0.05</precision>
 				</option>
+			</group>
+			<group>
+				<short>Viewport Switching</short>
 				<option name="allow_wraparound" type="bool">
 					<short>Allow Wrap-Around</short>
 					<long>Allow wrap-around when moving the wall up/down/left/right</long>
 					<default>false</default>
+				</option>
+				<option name="slide_duration" type="float">
+					<short>Wall Sliding Duration</short>
+					<long>Duration (in s) for wall sliding viewport switching animation</long>
+					<default>0.3</default>
+					<min>0.1</min>
+					<max>5.0</max>
+					<precision>0.05</precision>
 				</option>
 				<option name="left" type="action">
 					<short>Move Left</short>
@@ -176,21 +179,6 @@
 		<screen>
 			<group>
 				<short>Viewport Switching</short>
-				<option name="edgeflip_pointer" type="bool">
-					<short>Edge Flip Pointer</short>
-					<long>Flip viewport when moving the pointer to a screen edge</long>
-					<default>false</default>
-				</option>
-				<option name="edgeflip_move" type="bool">
-					<short>Edge Flip Move</short>
-					<long>Flip viewport when moving a window to a screen edge</long>
-					<default>true</default>
-				</option>
-				<option name="edgeflip_dnd" type="bool">
-					<short>Edge Flip DnD</short>
-					<long>Flip viewport when dragging an object to a screen edge</long>
-					<default>false</default>
-				</option>
 				<option name="mmmode" type="int">
 					<short>Multimonitor behavior</short>
 					<long>How should a multimonitor configuration be handeled</long>
@@ -205,6 +193,24 @@
 						<value>1</value>
 						<name>Switch separately</name>
 					</desc>
+				</option>
+			</group>
+			<group>
+				<short>Edge Flipping</short>
+				<option name="edgeflip_pointer" type="bool">
+					<short>Edge Flip Pointer</short>
+					<long>Flip viewport when moving the pointer to a screen edge</long>
+					<default>false</default>
+				</option>
+				<option name="edgeflip_move" type="bool">
+					<short>Edge Flip Move</short>
+					<long>Flip viewport when moving a window to a screen edge</long>
+					<default>true</default>
+				</option>
+				<option name="edgeflip_dnd" type="bool">
+					<short>Edge Flip DnD</short>
+					<long>Flip viewport when dragging an object to a screen edge</long>
+					<default>false</default>
 				</option>
 			</group>
 		</screen>
