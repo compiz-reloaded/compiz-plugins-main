@@ -12,7 +12,7 @@
 		</deps>
 		<display>
 			<group>
-				<short>Misc. Settings</short>
+				<short>Bindings</short>
 				<option name="expo" type="action">
 					<short>Expo</short>
 					<long>Engage wall expo mode</long>
@@ -22,11 +22,41 @@
 						<edges top_left="true"/>
 					</default>
 				</option>
+			</group>
+			<group>
+				<short>Behaviour</short>
 				<option name="rotate" type="bool">
 					<short>Rotate Wall</short>
 					<long>Rotate wall in expo mode</long>
 					<default>false</default>
 				</option>
+				<option name="expo_immediate_move" type="bool">
+					<short>Immediate moves</short>
+					<long>Selects if windows movements in expo mode should be immediate - this among other things disables wobbliness</long>
+					<default>false</default>
+				</option>
+				<option name="expo_animation" type="int">
+					<short>Expo Animation</short>
+					<long>Animation used when switching to expo mode</long>
+					<default>0</default>
+					<min>0</min>
+					<max>2</max>
+					<desc>
+						<value>0</value>
+						<name>Zoom</name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<name>Fade + Zoom</name>
+					</desc>
+					<desc>
+						<value>2</value>
+						<name>Vortex</name>
+					</desc>
+				</option>
+			</group>
+			<group>
+				<short>Appearance</short>
 				<option name="reflection" type="bool">
 					<short>Reflection</short>
 					<long>Show a reflection of the viewports on the ground</long>
@@ -76,36 +106,12 @@
 					<max>1.0</max>
 					<precision>0.1</precision>
 				</option>
-				<option name="expo_animation" type="int">
-					<short>Expo Animation</short>
-					<long>Animation used when switching to expo mode</long>
-					<default>0</default>
-					<min>0</min>
-					<max>2</max>
-					<desc>
-						<value>0</value>
-						<name>Zoom</name>
-					</desc>
-					<desc>
-						<value>1</value>
-						<name>Fade + Zoom</name>
-					</desc>
-					<desc>
-						<value>2</value>
-						<name>Vortex</name>
-					</desc>
-				</option>
 				<option name="mipmaps" type="bool">
-				<short>Mipmaps</short>
-				<long>Generate mipmaps in expo mode</long>
-				<default>false</default>
-				</option>
-				<option name="expo_immediate_move" type="bool">
-				<short>Immediate moves</short>
-				<long>Selects if windows movements in expo mode should be immediate - this among other things disables wobbliness</long>
-				<default>false</default>
+					<short>Mipmaps</short>
+					<long>Generate mipmaps in expo mode</long>
+					<default>false</default>
 				</option>
 			</group>
 		</display>
-	/plugin>
+	</plugin>
 </compiz>
