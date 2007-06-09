@@ -1,0 +1,126 @@
+<compiz>
+	<plugin name="scaleaddon" useBcop="true">
+		<short>Scale Addons</short>
+		<long>Some useful additions to the scale plugin</long>
+		<deps>
+			<relation type="after">
+				<plugin>scale</plugin>
+			</relation>
+			<requirement>
+				<plugin>scale</plugin>
+			</requirement>
+		</deps>
+		<display>
+			<group>
+			    <short>Bindings</short>
+			    <option name="close" type="action">
+					<short>Close Windows In Scale</short>
+					<long>Close windows while in scale mode</long>
+					<allowed key="true" button="true"/>
+					<passive_grab>true</passive_grab>
+					<default>
+						<button>Button2</button>
+					</default>
+			    </option>
+			    <option name="zoom" type="action">
+					<short>Zoom Windows In Scale</short>
+					<long>Zoom windows while in scale mode</long>
+					<allowed key="true" button="true"/>
+					<passive_grab>true</passive_grab>
+					<default>
+						<button>Button3</button>
+					</default>
+			    </option>
+			</group>
+		</display>
+		<screen>
+			<group>
+				<short>Appearance</short>
+				<subgroup>
+					<short>Window Title</short>
+					<option name="window_title" type="bool">
+						<short>Show Window Title</short>
+						<long>Show window title in scale mode</long>
+						<default>true</default>
+					</option>
+					<option name="title_bold" type="bool">
+						<short>Bold Font</short>
+						<long>Use bold font for window title display</long>
+						<default>false</default>
+					</option>
+					<option name="title_size" type="int">
+						<short>Font Size</short>
+						<long>Font size for window title display</long>
+						<min>6</min>
+						<max>48</max>
+						<default>10</default>
+					</option>
+					<option name="border_size" type="int">
+						<short>Title Border Size</short>
+						<long>Size of the border around the window title</long>
+						<min>1</min>
+						<max>20</max>
+						<default>3</default>
+					</option>
+					<option name="font_color" type="color">
+						<short>Font Color</short>
+						<long>Font color of the window title</long>
+						<default>
+							<red>0xffff</red>
+							<green>0xffff</green>
+							<blue>0xffff</blue>
+							<alpha>0xffff</alpha>
+						</default>
+					</option>
+					<option name="back_color" type="color">
+						<short>Background Color</short>
+						<long>Background color of the window title</long>
+						<default>
+							<red>0x0000</red>
+							<green>0x0000</green>
+							<blue>0x0000</blue>
+							<alpha>0x9999</alpha>
+						</default>
+					</option>
+				</subgroup>
+				<subgroup>
+					<short>Window Highlight</short>
+					<option name="window_highlight" type="bool">
+						<short>Draw Window Highlight</short>
+						<long>Highlights the hovered window with the given color</long>
+						<default>false</default>
+					</option>
+					<option name="highlight_color" type="color">
+						<short>Highlight Color</short>
+						<long>Color used for highlighting the hovered window</long>
+						<default>
+							<red>0xffff</red>
+							<green>0xffff</green>
+							<blue>0xffff</blue>
+							<alpha>0x9696</alpha>
+						</default>
+					</option>
+				</subgroup>
+			</group>
+			<group>
+				<short>Behaviour</short>
+				<option name="layout_mode" type="int">
+					<short>Window Layout Mode</short>
+					<long>Selects the mode to layout the windows in scale mode</long>
+					<min>0</min>
+					<!-- note: don't offer the organic mode for now as it's utterly broken -->
+					<max>0</max>
+					<default>0</default>
+					<desc>
+						<value>0</value>
+						<name>Normal</name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<name>Organic - EXPERIMENTAL</name>
+					</desc>
+				</option>
+			</group>
+		</screen>
+	</plugin>
+</compiz>
