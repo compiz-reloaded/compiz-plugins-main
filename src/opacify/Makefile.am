@@ -3,7 +3,7 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libopacify_la_LDFLAGS = $(PFLAGS)
 libopacify_la_LIBADD = @COMPIZ_LIBS@
-libopacify_la_SOURCES = opacify_options.c opacify.c
+libopacify_la_SOURCES = opacify_options.c opacify_options.h opacify.c
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \

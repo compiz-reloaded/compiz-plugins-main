@@ -4,7 +4,7 @@ PFLAGS=-module -avoid-version -no-undefined
 if RESIZEINFO_PLUGIN
 libresizeinfo_la_LDFLAGS = $(PFLAGS)
 libresizeinfo_la_LIBADD = @COMPIZ_LIBS@ @RESIZEINFO_LIBS@
-libresizeinfo_la_SOURCES = resizeinfo_options.c resizeinfo.c
+libresizeinfo_la_SOURCES = resizeinfo_options.c resizeinfo_options.h resizeinfo.c
 endif
 
 INCLUDES =                              \

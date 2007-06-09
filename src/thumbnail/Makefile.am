@@ -3,7 +3,7 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libthumbnail_la_LDFLAGS = $(PFLAGS)
 libthumbnail_la_LIBADD = @COMPIZ_LIBS@
-libthumbnail_la_SOURCES = thumbnail_options.c thumbnail.c thumbnail_tex.h
+libthumbnail_la_SOURCES = thumbnail_options.c thumbnail_options.h thumbnail.c thumbnail_tex.h
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \

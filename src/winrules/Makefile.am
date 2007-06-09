@@ -3,7 +3,7 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libwinrules_la_LDFLAGS = $(PFLAGS)
 libwinrules_la_LIBADD = @COMPIZ_LIBS@
-libwinrules_la_SOURCES = winrules_options.c winrules.c
+libwinrules_la_SOURCES = winrules.c
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
