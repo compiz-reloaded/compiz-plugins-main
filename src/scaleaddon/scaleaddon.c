@@ -394,7 +394,7 @@ scaleaddonCloseWindow (CompDisplay     *d,
 	if (state & CompActionStateInitKey)
 	{
 	    SCALE_DISPLAY (d);
-	    w = findWindowAtDisplay (d, sd->selectedWindow);
+	    w = findWindowAtDisplay (d, sd->hoveredWindow);
 	}
 	else
 	    w = scaleaddonCheckForWindowAt (s, pointerX, pointerY);
@@ -434,7 +434,7 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	if (state & CompActionStateInitKey)
 	{
 	    SCALE_DISPLAY (d);
-	    w = findWindowAtDisplay (d, sd->selectedWindow);
+	    w = findWindowAtDisplay (d, sd->hoveredWindow);
 	}
 	else
 	    w = scaleaddonCheckForWindowAt (s, pointerX, pointerY);
