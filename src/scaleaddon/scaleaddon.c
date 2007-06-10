@@ -390,7 +390,7 @@ scaleaddonCloseWindow (CompDisplay     *d,
 
 	SCALE_SCREEN (s);
 
-	if (ss->state != SCALE_STATE_WAIT)
+	if (!ss->grabIndex)
 	    return FALSE;
 
 	if (state & CompActionStateInitKey)
@@ -430,7 +430,7 @@ scaleaddonZoomWindow (CompDisplay     *d,
 
 	SCALE_SCREEN (s);
 
-	if (ss->state != SCALE_STATE_WAIT)
+	if (!ss->grabIndex)
 	    return FALSE;
 
 	if (state & CompActionStateInitKey)
