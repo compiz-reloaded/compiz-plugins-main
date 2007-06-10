@@ -195,6 +195,7 @@ src/opacify/Makefile
 src/put/Makefile
 src/resizeinfo/Makefile
 src/ring/Makefile
+src/scaleaddon/Makefile
 src/snap/Makefile
 src/text/Makefile
 src/thumbnail/Makefile
