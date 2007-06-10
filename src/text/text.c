@@ -138,20 +138,23 @@ static Bool textFileToImage(CompDisplay *d,
 		Screen *screen = ScreenOfDisplay(display, text_attrib->screen->screenNum);
 
 		if (!screen) {
-			printf("ERROR: Couldn't get screen for %d...\n", 
-					text_attrib->screen->screenNum);
+			compLogMessage (d, "text", CompLogLevelError,
+							"Couldn't get screen for %d.", 
+							text_attrib->screen->screenNum);
 			return FALSE;
 		}
 
 		format = XRenderFindStandardFormat(display, PictStandardARGB32);
 		if (!format) {
-			printf("ERROR: Couldn't get format...\n");
+			compLogMessage (d, "text", CompLogLevelError,
+							"Couldn't get format.");
 			return FALSE;
 		}
 
 		pixmap = XCreatePixmap(display, text_attrib->screen->root, 1, 1, 32);
 		if (!pixmap) {
-			printf("ERROR: Couldn't create pixmap...\n");
+			compLogMessage (d, "text", CompLogLevelError,
+							"Couldn't create pixmap.");
 			return FALSE;
 		}
 
@@ -159,14 +162,16 @@ static Bool textFileToImage(CompDisplay *d,
 						display, pixmap, screen, format, 1, 1);
 
 		if (cairo_surface_status(surface) != CAIRO_STATUS_SUCCESS) {
-			printf("ERROR: Couldn't create surface...\n");
+			compLogMessage (d, "text", CompLogLevelError,
+							"Couldn't create surface.");
 			XFreePixmap(display, pixmap);
 			return FALSE;
 		}
 
 		cr = cairo_create(surface);
 		if (cairo_status(cr) != CAIRO_STATUS_SUCCESS) {
-			printf("ERROR: Couldn't create cairo context...\n");
+			compLogMessage (d, "text", CompLogLevelError,
+							"Couldn't create cairo context.");
 			XFreePixmap(display, pixmap);
 			return FALSE;
 		}
@@ -174,7 +179,8 @@ static Bool textFileToImage(CompDisplay *d,
 		// init pango
 		layout = pango_cairo_create_layout(cr);
 		if (!layout) {
-			printf("ERROR: Couldn't create pango layout...\n");
+			compLogMessage (d, "text", CompLogLevelError,
+							"Couldn't create pango layout.");
 			XFreePixmap(display, pixmap);
 			return FALSE;
 		}
@@ -245,14 +251,16 @@ static Bool textFileToImage(CompDisplay *d,
 				  screen, format, w, h);
 
 		if (cairo_surface_status(surface) != CAIRO_STATUS_SUCCESS) {
-			printf("ERROR: Couldn't create surface...\n");
+			compLogMessage (d, "text", CompLogLevelError,
+							"Couldn't create surface.");
 			XFreePixmap(display, pixmap);
 			return FALSE;
 		}
 
 		cr = cairo_create(surface);
 		if (cairo_status(cr) != CAIRO_STATUS_SUCCESS) {
-			printf("ERROR: Couldn't create cairo context...\n");
+			compLogMessage (d, "text", CompLogLevelError,
+							"Couldn't create cairo context.");
 			XFreePixmap(display, pixmap);
 			return FALSE;
 		}
