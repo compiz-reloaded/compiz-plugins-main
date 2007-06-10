@@ -327,7 +327,7 @@ static void infoWindowGrabNotify (CompWindow * w,
 	INFO_SCREEN (s);
 
 
-	if (!is->pWindow)
+	if (!is->pWindow && !(w->state & MAXIMIZE_STATE))
 	{
 	    Bool showInfo;
 	    showInfo = ((w->sizeHints.width_inc != 1) && 
