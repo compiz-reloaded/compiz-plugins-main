@@ -101,11 +101,6 @@
 							<name>Zoom</name>
 						</desc>
 					</option>
-					<option name="close1_match" type="match">
-						<short>Window Match</short>
-						<long>The windows that will be animated.</long>
-						<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
-					</option>
 					<option name="close1_duration" type="float">
 						<short>Animation Duration</short>
 						<long>The number of seconds that the Close #1 animation will last.</long>
@@ -208,6 +203,11 @@
 							<name>Zoom</name>
 						</desc>
 					</option>
+					<option name="close1_match" type="match">
+						<short>Window Match</short>
+						<long>The windows that will be animated.</long>
+						<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
+					</option>
 				</subgroup>
 
 				<subgroup>
@@ -294,11 +294,6 @@
 							<value>18</value>
 							<name>Zoom</name>
 						</desc>
-					</option>
-					<option name="close2_match" type="match">
-						<short>Window Match</short>
-						<long>The windows that will be animated.</long>
-						<default>((type=Unknown | Menu | PopupMenu | DropdownMenu | Tooltip | Notification | name=sun-awt-X11-XWindowPeer) | (type=Normal &amp; override_redirect=1)) &amp; !(name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer)</default>
 					</option>
 					<option name="close2_duration" type="float">
 						<short>Animation Duration</short>
@@ -402,6 +397,11 @@
 							<name>Zoom</name>
 						</desc>
 					</option>
+					<option name="close2_match" type="match">
+						<short>Window Match</short>
+						<long>The windows that will be animated.</long>
+						<default>((type=Unknown | Menu | PopupMenu | DropdownMenu | Tooltip | Notification | name=sun-awt-X11-XWindowPeer) | (type=Normal &amp; override_redirect=1)) &amp; !(name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer)</default>
+					</option>
 				</subgroup>
 			</group>
 
@@ -410,11 +410,6 @@
 
 				<subgroup>
 					<short>Create #1 Animation</short>
-					<option name="create1_match" type="match">
-						<short>Window Match</short>
-						<long>Window that should animate with this effect when created.</long>
-						<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
-					</option>
 					<option name="create1_effect" type="int">
 						<short>Create #1 Animation</short>
 						<long>The animation shown when creating a window.</long>
@@ -600,15 +595,15 @@
 							<name>Zoom</name>
 						</desc>
 					</option>
+					<option name="create1_match" type="match">
+						<short>Window Match</short>
+						<long>Window that should animate with this effect when created.</long>
+						<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
+					</option>
 				</subgroup>
 
 				<subgroup>
 					<short>Create #2 Animation</short>
-					<option name="create2_match" type="match">
-						<short>Window Match</short>
-						<long>Window that should animate with this effect when created.</long>
-						<default>((type=Unknown | Menu | PopupMenu | DropdownMenu | Tooltip | Notification | name=sun-awt-X11-XWindowPeer) | (type=Normal &amp; override_redirect=1)) &amp; !(name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer)</default>
-					</option>
 					<option name="create2_effect" type="int">
 						<short>Create #2 Animation</short>
 						<long>The animation shown when creating a window.</long>
@@ -794,24 +789,16 @@
 							<name>Zoom</name>
 						</desc>
 					</option>
+					<option name="create2_match" type="match">
+						<short>Window Match</short>
+						<long>Window that should animate with this effect when created.</long>
+						<default>((type=Unknown | Menu | PopupMenu | DropdownMenu | Tooltip | Notification | name=sun-awt-X11-XWindowPeer) | (type=Normal &amp; override_redirect=1)) &amp; !(name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer)</default>
+					</option>
 				</subgroup>
 			</group>
 
 			<group>
 				<short>Minimize Animation</short>
-				<option name="minimize_match" type="match">
-					<short>Window Match</short>
-					<long>The windows that will be animated.</long>
-					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
-				</option>
-				<option name="minimize_duration" type="float">
-					<short>Animation Duration</short>
-					<long>The number of seconds that the Minimize animation will last.</long>
-					<default>0.3</default>
-					<min>0.1</min>
-					<max>10</max>
-					<precision>0.02</precision>
-				</option>
 				<option name="minimize_effect" type="int">
 					<short>Minimize Animation</short>
 					<long>The animation shown when minimizing a window.</long>
@@ -886,6 +873,14 @@
 						<value>16</value>
 						<name>Zoom</name>
 					</desc>
+				</option>
+				<option name="minimize_duration" type="float">
+					<short>Animation Duration</short>
+					<long>The number of seconds that the Minimize animation will last.</long>
+					<default>0.3</default>
+					<min>0.1</min>
+					<max>10</max>
+					<precision>0.02</precision>
 				</option>
 				<option name="minimize_random_effects" type="list">
 					<short>Random Effect Pool</short>
@@ -971,15 +966,15 @@
 						<name>Zoom</name>
 					</desc>
 				</option>
+				<option name="minimize_match" type="match">
+					<short>Window Match</short>
+					<long>The windows that will be animated.</long>
+					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
+				</option>
 			</group>
 
 			<group>
 				<short>Shade Animation</short>
-				<option name="shade_match" type="match">
-					<short>Window Match</short>
-					<long>Window that should animate with this effect when shaded.</long>
-					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
-				</option>
 				<option name="shade_effect" type="int">
 					<short>Shade Animation</short>
 					<long>Shade window effect.</long>
@@ -1039,15 +1034,15 @@
 						<name>Roll Up</name>
 					</desc>
 				</option>
+				<option name="shade_match" type="match">
+					<short>Window Match</short>
+					<long>Window that should animate with this effect when shaded.</long>
+					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
+				</option>
 			</group>
 
 			<group>
 				<short>Focus Animation</short>
-				<option name="focus_match" type="match">
-					<short>Window Match</short>
-					<long>Window that should animate with this effect when focused.</long>
-					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
-				</option>
 				<option name="focus_effect" type="int">
 					<short>Focus Animation</short>
 					<long>Focus window effect.</long>
@@ -1079,7 +1074,12 @@
 					<max>10</max>
 					<precision>0.02</precision>
 				</option>
-			</group>
+				<option name="focus_match" type="match">
+					<short>Window Match</short>
+					<long>Window that should animate with this effect when focused.</long>
+					<default>(type=Normal | Dialog | ModalDialog | Utility | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
+				</option>
+		</group>
 
 			<group>
 				<short>Animations</short>
@@ -1127,7 +1127,7 @@
 							<alpha>0xffff</alpha>
 						</default>
 					</option>
-					<option name="fire_direction" type="string">
+					<option name="fire_direction" type="int">
 						<short>Fire direction</short>
 						<long>Fire direction.</long>
 						<default>0</default>
@@ -1186,7 +1186,7 @@
 						<precision>0.1</precision>
 					</option>
 					<option name="beam_spacing" type="int">
-						<short>Beam spacing</short>
+						<short>Beam Spacing</short>
 						<long>Spacing between beams.</long>
 						<default>5</default>
 						<min>1</min>
@@ -1549,14 +1549,6 @@
 
 				<subgroup>
 					<short>Explode</short>
-					<option name="explode_thickness" type="float">
-						<short>Thickness of Exploding Polygons</short>
-						<long>Thickness of exploding window pieces.</long>
-						<default>15</default>
-						<min>0</min>
-						<max>100</max>
-						<precision>1</precision>
-					</option>
 					<option name="explode_gridx" type="int">
 						<short>Window Grid Width</short>
 						<long>The exploding window will be split into pieces along a grid.  Specify the width, in pixels, of the columns in the grid.</long>
@@ -1570,6 +1562,14 @@
 						<default>10</default>
 						<min>1</min>
 						<max>200</max>
+					</option>
+					<option name="explode_thickness" type="float">
+						<short>Thickness of Exploding Polygons</short>
+						<long>Thickness of exploding window pieces.</long>
+						<default>15</default>
+						<min>0</min>
+						<max>100</max>
+						<precision>1</precision>
 					</option>
 					<option name="explode_tessellation" type="int">
 						<short>Tessellation Type</short>
