@@ -6198,7 +6198,8 @@ initiateFocusAnimation(CompWindow *w)
 			CompWindow *dw;
 			for (dw = wStart; dw && dw != wEnd->next; dw = dw->next)
 			{
-				if (!isWinVisible(dw))
+				if (!isWinVisible(dw) ||
+					dw->wmType & CompWindowTypeDockMask)
 					continue;
 
 				// Compute intersection of this with subject
