@@ -284,8 +284,10 @@ scaleaddonDrawWindowHighlight (CompWindow *w)
     float width  = WIN_W(w) * sw->scale;
     float height = WIN_H(w) * sw->scale;
 
-    x = floor (x);
-    y = floor (y);
+    /* we use a poor replacement for roundf() 
+     * (available in C99 only) here */
+    x = floor (x + 0.5f);
+    y = floor (y + 0.5f);
 
     wasBlend = glIsEnabled (GL_BLEND);
     glGetIntegerv (GL_BLEND_SRC, &oldBlendSrc);
@@ -388,13 +390,13 @@ scaleaddonCloseWindow (CompDisplay     *d,
 
 	SCALE_SCREEN (s);
 
-	if (ss->state != SCALE_STATE_WAIT)
+	if (!ss->grabIndex)
 	    return FALSE;
 
 	if (state & CompActionStateInitKey)
 	{
 	    SCALE_DISPLAY (d);
-	    w = findWindowAtDisplay (d, sd->selectedWindow);
+	    w = findWindowAtDisplay (d, sd->hoveredWindow);
 	}
 	else
 	    w = scaleaddonCheckForWindowAt (s, pointerX, pointerY);
@@ -428,13 +430,13 @@ scaleaddonZoomWindow (CompDisplay     *d,
 
 	SCALE_SCREEN (s);
 
-	if (ss->state != SCALE_STATE_WAIT)
+	if (!ss->grabIndex)
 	    return FALSE;
 
 	if (state & CompActionStateInitKey)
 	{
 	    SCALE_DISPLAY (d);
-	    w = findWindowAtDisplay (d, sd->selectedWindow);
+	    w = findWindowAtDisplay (d, sd->hoveredWindow);
 	}
 	else
 	    w = scaleaddonCheckForWindowAt (s, pointerX, pointerY);
