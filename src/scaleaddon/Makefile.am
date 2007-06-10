@@ -7,7 +7,6 @@ libscaleaddon_la_SOURCES = scaleaddon_options.c scaleaddon_options.h scaleaddon.
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	@SCALEADDON_CFLAGS@		\
 	-DDATADIR='"$(datadir)"'          \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
