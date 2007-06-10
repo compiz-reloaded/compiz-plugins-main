@@ -32,7 +32,7 @@ typedef struct _InfoDisplay
 typedef struct _InfoLayer
 {
 	Pixmap pixmap;
-  	CompTexture texture;
+	CompTexture texture;
 	cairo_surface_t * surface;
 	cairo_t * cr;
 } InfoLayer;
@@ -59,17 +59,17 @@ typedef struct _InfoScreen
 #define RESIZE_POPUP_WIDTH 75
 #define RESIZE_POPUP_HEIGHT 50
 
-#define GET_INFO_DISPLAY(d) \
+#define GET_INFO_DISPLAY(d)						\
 	((InfoDisplay *) (d)->privates[displayPrivateIndex].ptr)
 
-#define INFO_DISPLAY(d)			   \
-    InfoDisplay *id = GET_INFO_DISPLAY (d)
+#define INFO_DISPLAY(d)				\
+	InfoDisplay *id = GET_INFO_DISPLAY (d)
 
-#define GET_INFO_SCREEN(s, id)					 \
-    ((InfoScreen *) (s)->privates[(id)->screenPrivateIndex].ptr)
+#define GET_INFO_SCREEN(s, id)						\
+	((InfoScreen *) (s)->privates[(id)->screenPrivateIndex].ptr)
 
 #define INFO_SCREEN(s)							\
-    InfoScreen *is = GET_INFO_SCREEN (s, GET_INFO_DISPLAY (s->display))
+	InfoScreen *is = GET_INFO_SCREEN (s, GET_INFO_DISPLAY (s->display))
 
 /* Set up an InfoLayer to build a cairo->opengl texture pipeline */
 static void setupCairoLayer (CompScreen *s, InfoLayer * il)
@@ -84,23 +84,23 @@ static void setupCairoLayer (CompScreen *s, InfoLayer * il)
 	h = RESIZE_POPUP_HEIGHT;
 	
 	format = XRenderFindStandardFormat (s->display->display,
-										PictStandardARGB32);
+					    PictStandardARGB32);
 
 	il->pixmap = XCreatePixmap (s->display->display, s->root, w, h, 32);
 	if (!bindPixmapToTexture (s, &il->texture, il->pixmap, w, h, 32))
 	{
 		compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
-						"Bind Pixmap to Texture failure");
+				"Bind Pixmap to Texture failure");
 		XFreePixmap (s->display->display, il->pixmap);
 
 		return;
 	}
 	
 	il->surface = cairo_xlib_surface_create_with_xrender_format (s->display->display,
-																 il->pixmap, 
-																 screen,
-																 format, 
-																 w, h);
+								     il->pixmap, 
+								     screen,
+								     format, 
+								     w, h);
 	il->cr = cairo_create (il->surface);
 }
 
@@ -124,20 +124,20 @@ void updateTextLayer (CompScreen *s)
 	unsigned short * color = resizeinfoGetTextColor (s->display);
  
 	if (width_inc > 0)
-	  xv /= width_inc;
+		xv /= width_inc;
 	if (height_inc > 0)
-	  yv /= height_inc;
+		yv /= height_inc;
 	
   
 	char * info;
 	cairo_t * cr = is->textLayer.cr;
   
-  	PangoLayout * layout;
+	PangoLayout * layout;
 	PangoFontDescription * font;
   
 	int w, h;
 
-  	// Clear the context.
+	// Clear the context.
 	cairo_save (cr);
 	cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
 	cairo_paint (cr);
@@ -155,27 +155,27 @@ void updateTextLayer (CompScreen *s)
 	pango_font_description_set_weight (font, PANGO_WEIGHT_BOLD);
  
 	pango_layout_set_font_description (layout, font);
-  	pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
+	pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
 	pango_layout_set_text (layout, info, -1);
   
-  	pango_layout_get_pixel_size (layout, &w, &h);
+	pango_layout_get_pixel_size (layout, &w, &h);
   
-  	cairo_move_to (cr, 
-				   RESIZE_POPUP_WIDTH / 2.0f - w / 2.0f, 
-				   RESIZE_POPUP_HEIGHT / 2.0f - h / 2.0f);
+	cairo_move_to (cr, 
+		       RESIZE_POPUP_WIDTH / 2.0f - w / 2.0f, 
+		       RESIZE_POPUP_HEIGHT / 2.0f - h / 2.0f);
   
-  	pango_layout_set_width (layout, RESIZE_POPUP_WIDTH * PANGO_SCALE);
+	pango_layout_set_width (layout, RESIZE_POPUP_WIDTH * PANGO_SCALE);
 	pango_cairo_update_layout (cr, layout);
   
-  	cairo_set_source_rgba (cr, 
-						   *(color)     / (float)0xffff,
-						   *(color + 1) / (float)0xffff,
-						   *(color + 2) / (float)0xffff,
-						   *(color + 3) / (float)0xffff);
+	cairo_set_source_rgba (cr, 
+			       *(color)     / (float)0xffff,
+			       *(color + 1) / (float)0xffff,
+			       *(color + 2) / (float)0xffff,
+			       *(color + 3) / (float)0xffff);
 
 	pango_cairo_show_layout (cr, layout);
 
-  	pango_font_description_free (font);
+	pango_font_description_free (font);
 	g_object_unref (layout);
 }
 
@@ -191,7 +191,7 @@ static void drawCairoBackground (CompScreen *s)
 	int height = RESIZE_POPUP_HEIGHT;
 	int width = RESIZE_POPUP_WIDTH;
 	
-#define GET_GRADIENT(NUM) \
+#define GET_GRADIENT(NUM)						\
 	float r##NUM = resizeinfoGetGradient##NUM##Red(s->display) / (float) 0xffff; \
 	float g##NUM = resizeinfoGetGradient##NUM##Green(s->display) / (float) 0xffff; \
 	float b##NUM = resizeinfoGetGradient##NUM##Blue(s->display) / (float) 0xffff; \
@@ -211,7 +211,7 @@ static void drawCairoBackground (CompScreen *s)
 	cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
 
 	/* Setup Gradient */
- 	pattern = cairo_pattern_create_linear (0, 0, width, height);	
+	pattern = cairo_pattern_create_linear (0, 0, width, height);	
 	cairo_pattern_add_color_stop_rgba (pattern, 0.00f, r1, g1, b1, a1);
 	cairo_pattern_add_color_stop_rgba (pattern, 0.65f, r2, g2, b2, a2);
 	cairo_pattern_add_color_stop_rgba (pattern, 0.85f, r3, g3, b3, a3);
@@ -220,7 +220,7 @@ static void drawCairoBackground (CompScreen *s)
 	/* Rounded Rectangle! */
 	cairo_arc (cr, border, border, border, PI, 1.5f * PI);
 	cairo_arc (cr, border + width - 2 * border, border, border, 
-			   1.5f * PI, 2.0 * PI);
+		   1.5f * PI, 2.0 * PI);
 	cairo_arc (cr, width - border, height - border, border, 0, PI / 2.0f);
 	cairo_arc (cr, border, height - border, border,  PI / 2.0f, PI);
 	cairo_close_path (cr);
@@ -234,7 +234,7 @@ static void drawCairoBackground (CompScreen *s)
 }
 
 static void gradientChanged (CompDisplay *d, CompOption *o, 
-							 ResizeinfoDisplayOptions num)
+			     ResizeinfoDisplayOptions num)
 {
 	CompScreen *s;
 
@@ -270,7 +270,7 @@ static void infoPreparePaintScreen(CompScreen *s, int ms)
 	if (is->fadeTime)
 	{
 		is->fadeTime -= ms;
-	    if (is->fadeTime < 0)
+		if (is->fadeTime < 0)
 			is->fadeTime = 0;
 	}
 	
@@ -281,7 +281,7 @@ static void infoPreparePaintScreen(CompScreen *s, int ms)
 
 static void infoDonePaintScreen (CompScreen *s)
 {
-    INFO_SCREEN (s);
+	INFO_SCREEN (s);
 
 	if (is->pWindow)
 	{
@@ -290,11 +290,11 @@ static void infoDonePaintScreen (CompScreen *s)
 			REGION reg;
 
 			int tlx = is->resizeGeometry.x + 
-				      is->resizeGeometry.width / 2.0f -
-				      RESIZE_POPUP_WIDTH / 2.0f;
+				is->resizeGeometry.width / 2.0f -
+				RESIZE_POPUP_WIDTH / 2.0f;
 			int tly = is->resizeGeometry.y + 
-				      is->resizeGeometry.height / 2.0f - 
-	                  RESIZE_POPUP_HEIGHT/2.0f;
+				is->resizeGeometry.height / 2.0f - 
+				RESIZE_POPUP_HEIGHT/2.0f;
 
 			reg.rects    = &reg.extents;
 			reg.numRects = 1;
@@ -312,16 +312,16 @@ static void infoDonePaintScreen (CompScreen *s)
 	}
 
 	UNWRAP (is, s, donePaintScreen);
-    (*s->donePaintScreen) (s);
-    WRAP (is, s, donePaintScreen, infoDonePaintScreen);
+	(*s->donePaintScreen) (s);
+	WRAP (is, s, donePaintScreen, infoDonePaintScreen);
 }
 
 // For when we start resizing windows.
 static void infoWindowGrabNotify (CompWindow * w,
-								  int x,
-								  int y,
-								  unsigned int state,
-								  unsigned int mask)
+				  int x,
+				  int y,
+				  unsigned int state,
+				  unsigned int mask)
 {
 	CompScreen * s = w->screen;
 	INFO_SCREEN (s);
@@ -329,22 +329,22 @@ static void infoWindowGrabNotify (CompWindow * w,
 
 	if (!is->pWindow && !(w->state & MAXIMIZE_STATE))
 	{
-	    Bool showInfo;
-	    showInfo = ((w->sizeHints.width_inc != 1) && 
-			(w->sizeHints.height_inc != 1)) ||
-		       resizeinfoGetAlwaysShow (s->display);
+		Bool showInfo;
+		showInfo = ((w->sizeHints.width_inc != 1) && 
+			    (w->sizeHints.height_inc != 1)) ||
+			resizeinfoGetAlwaysShow (s->display);
 
-	    if (showInfo && (mask & CompWindowGrabResizeMask))
-	    {
-		is->pWindow = w;
-		is->drawing = TRUE;
-		is->fadeTime = resizeinfoGetFadeTime (s->display);
+		if (showInfo && (mask & CompWindowGrabResizeMask))
+		{
+			is->pWindow = w;
+			is->drawing = TRUE;
+			is->fadeTime = resizeinfoGetFadeTime (s->display);
 
-		is->resizeGeometry.x = w->attrib.x;
-		is->resizeGeometry.y = w->attrib.y;
-		is->resizeGeometry.width  = w->attrib.width;
-		is->resizeGeometry.height = w->attrib.height;
-	    }
+			is->resizeGeometry.x = w->attrib.x;
+			is->resizeGeometry.y = w->attrib.y;
+			is->resizeGeometry.width  = w->attrib.width;
+			is->resizeGeometry.height = w->attrib.height;
+		}
 	}
 	
 	UNWRAP (is, s, windowGrabNotify);
@@ -375,14 +375,14 @@ static void infoWindowUngrabNotify (CompWindow * w)
 // Draw a texture at tlx/tly on a quad of RESIZE_POPUP_WIDTH /
 // RESIZE_POPUP_HEIGHT with the opacity in InfoScreen.
 static void drawLayer (CompScreen *s, int tlx, int tly, 
-					   CompMatrix matrix, CompTexture *t)
+		       CompMatrix matrix, CompTexture *t)
 {
 	BOX box;
 	float opacity;
 
 	INFO_SCREEN (s);
 
-  	enableTexture (s, t, COMP_TEXTURE_FILTER_FAST);
+	enableTexture (s, t, COMP_TEXTURE_FILTER_FAST);
 	matrix.x0 -= tlx * matrix.xx;
 	matrix.y0 -= tly * matrix.yy;
 
@@ -392,26 +392,26 @@ static void drawLayer (CompScreen *s, int tlx, int tly,
 	box.y2 = tly + RESIZE_POPUP_HEIGHT;
 
 	// Using the blend function is for lamers.
-  	if (is->drawing)
+	if (is->drawing)
 		opacity = 1.0f - ((float)is->fadeTime / 
-				  		  resizeinfoGetFadeTime (s->display));
+				  resizeinfoGetFadeTime (s->display));
 	else
 		opacity = (float)is->fadeTime / 
-	  		      resizeinfoGetFadeTime (s->display);
+			resizeinfoGetFadeTime (s->display);
 
 	glColor4f (opacity, opacity, opacity, opacity); 
 	glBegin (GL_QUADS);
 	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1), 
-				  COMP_TEX_COORD_Y (&matrix, box.y2));
+		      COMP_TEX_COORD_Y (&matrix, box.y2));
 	glVertex2i (box.x1, box.y2);
 	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2), 
-				  COMP_TEX_COORD_Y (&matrix, box.y2));
+		      COMP_TEX_COORD_Y (&matrix, box.y2));
 	glVertex2i (box.x2, box.y2);
 	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2), 
-				  COMP_TEX_COORD_Y (&matrix, box.y1));
+		      COMP_TEX_COORD_Y (&matrix, box.y1));
 	glVertex2i (box.x2, box.y1);
 	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1), 
-				  COMP_TEX_COORD_Y (&matrix, box.y1));
+		      COMP_TEX_COORD_Y (&matrix, box.y1));
 	glVertex2i (box.x1, box.y1);	
 	glEnd ();
 	glColor4usv (defaultColor);
@@ -422,27 +422,27 @@ static void drawLayer (CompScreen *s, int tlx, int tly,
 // Draw the popup on the screen.
 static Bool
 infoPaintOutput (CompScreen *s,
-				 const ScreenPaintAttrib *sAttrib,
-				 const CompTransform * transform,
-				 Region region,
-				 CompOutput *output,
-				 unsigned int mask)
+		 const ScreenPaintAttrib *sAttrib,
+		 const CompTransform * transform,
+		 Region region,
+		 CompOutput *output,
+		 unsigned int mask)
 {
-   	Bool status;
+	Bool status;
 	INFO_SCREEN (s);
   
 	UNWRAP (is, s, paintOutput);
 	status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
 	WRAP (is, s, paintOutput, infoPaintOutput);
 
-  	if ((is->drawing || is->fadeTime) && is->pWindow)
-  	{
-  		int tlx = is->resizeGeometry.x + 
-			      is->resizeGeometry.width / 2.0f - 
-				  RESIZE_POPUP_WIDTH / 2.0f;
+	if ((is->drawing || is->fadeTime) && is->pWindow)
+	{
+		int tlx = is->resizeGeometry.x + 
+			is->resizeGeometry.width / 2.0f - 
+			RESIZE_POPUP_WIDTH / 2.0f;
 		int tly = is->resizeGeometry.y + 
-			      is->resizeGeometry.height / 2.0f - 
-				  RESIZE_POPUP_HEIGHT / 2.0f;
+			is->resizeGeometry.height / 2.0f - 
+			RESIZE_POPUP_HEIGHT / 2.0f;
 		CompMatrix matrix = is->backgroundLayer.texture.matrix;
       
 		glPushMatrix ();
@@ -453,7 +453,7 @@ infoPaintOutput (CompScreen *s,
   
 		drawLayer (s, tlx, tly, matrix, &is->backgroundLayer.texture);
 		drawLayer (s, tlx, tly, is->textLayer.texture.matrix, 
-				   &is->textLayer.texture);
+			   &is->textLayer.texture);
   
 		glDisable (GL_BLEND);
 		glEnableClientState (GL_TEXTURE_COORD_ARRAY);
@@ -504,7 +504,7 @@ infoHandleEvent (CompDisplay *d, XEvent *event)
 // Setup info display.
 static Bool
 infoInitDisplay (CompPlugin *p,
-				 CompDisplay *d)
+		 CompDisplay *d)
 {
 	InfoDisplay * id;
 
@@ -520,7 +520,7 @@ infoInitDisplay (CompPlugin *p,
 	}
 
 	id->resizeNotifyAtom = XInternAtom (d->display,
-										"_COMPIZ_RESIZE_NOTIFY", 0);
+					    "_COMPIZ_RESIZE_NOTIFY", 0);
 
 	d->privates[displayPrivateIndex].ptr = id;
 
@@ -531,7 +531,7 @@ infoInitDisplay (CompPlugin *p,
 
 // Finish info display
 static void infoFiniDisplay (CompPlugin * p,
-							 CompDisplay *d)
+			     CompDisplay *d)
 {
 	INFO_DISPLAY (d);
 
@@ -545,7 +545,7 @@ static void infoFiniDisplay (CompPlugin * p,
 // Setup info screen.
 static Bool 
 infoInitScreen (CompPlugin *p,
-				CompScreen *s)
+		CompScreen *s)
 {
 	InfoScreen * is;
 	INFO_DISPLAY (s->display);
@@ -582,8 +582,8 @@ infoInitScreen (CompPlugin *p,
 // Free an InfoLayer struct.
 static void freeInfoLayer(CompScreen *s, InfoLayer * is)
 {
-  	if (is->cr)
-	  	cairo_destroy (is->cr);
+	if (is->cr)
+		cairo_destroy (is->cr);
 	if (is->surface)
 		cairo_surface_destroy (is->surface);
   
@@ -596,7 +596,7 @@ static void freeInfoLayer(CompScreen *s, InfoLayer * is)
 // Finish info screen.
 static void
 infoFiniScreen (CompPlugin *p,
-				CompScreen *s)
+		CompScreen *s)
 {
 	INFO_SCREEN (s);
 	
@@ -633,7 +633,7 @@ infoFini (CompPlugin *p)
 // For version checking.
 static int
 infoGetVersion(CompPlugin * plugin,
-			   int version)
+	       int version)
 {
 	return ABIVERSION;
 }
@@ -664,5 +664,5 @@ static CompPluginVTable infoVTable =
 // Get the info vtable.
 CompPluginVTable * getCompPluginInfo(void)
 {
-		return &infoVTable;
+	return &infoVTable;
 }
