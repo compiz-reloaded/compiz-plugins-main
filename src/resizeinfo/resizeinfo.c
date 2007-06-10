@@ -89,7 +89,8 @@ static void setupCairoLayer (CompScreen *s, InfoLayer * il)
 	il->pixmap = XCreatePixmap (s->display->display, s->root, w, h, 32);
 	if (!bindPixmapToTexture (s, &il->texture, il->pixmap, w, h, 32))
 	{
-	   	printf("Bind Pixmap to Texture failure \n");
+		compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
+						"Bind Pixmap to Texture failure");
 		XFreePixmap (s->display->display, il->pixmap);
 
 		return;
