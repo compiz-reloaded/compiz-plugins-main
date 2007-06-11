@@ -34,8 +34,8 @@
 #include <X11/extensions/Xrender.h>
 
 #include <compiz.h>
+#include <text.h>
 
-#include "text-plugin.h"
 #include "thumbnail_tex.h"
 #include "thumbnail_options.h"
 
