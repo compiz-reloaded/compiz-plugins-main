@@ -31,8 +31,8 @@
 
 #include <compiz.h>
 #include <scale.h>
+#include <text.h>
 
-#include "text-plugin.h"
 #include "scaleaddon_options.h"
 
 static int displayPrivateIndex;
