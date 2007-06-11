@@ -185,6 +185,7 @@ AC_OUTPUT([
 compiz-text.pc
 Makefile
 metadata/Makefile
+include/Makefile
 src/Makefile
 src/animation/Makefile
 src/expo/Makefile
