@@ -3,13 +3,13 @@ PFLAGS=-module -avoid-version -no-undefined
 
 if WALL_PLUGIN
 libwall_la_LDFLAGS = $(PFLAGS)
-libwall_la_LIBADD = @COMPIZ_LIBS@ @WALL_LIBS@
+libwall_la_LIBADD = @COMPIZ_LIBS@ @CAIRO_LIBS@
 libwall_la_SOURCES = wall_options.c wall_options.h wall.c
 endif
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	@WALL_CFLAGS@			\
+	@CAIRO_CFLAGS@			\
 	-DDATADIR='"$(datadir)"'          \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \

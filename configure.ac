@@ -122,37 +122,29 @@ AC_MSG_RESULT($GL_LIBS)
 AC_SUBST(GL_CFLAGS)
 AC_SUBST(GL_LIBS)
 
-AC_ARG_ENABLE(text,
-  [  --disable-text      Disable text plugin],
-  [use_texte=$enableval], [use_text=yes])
+PKG_CHECK_MODULES(SCALE, compiz-scale, [have_compiz_scale=yes], [have_compiz_scale=no])
+PKG_CHECK_MODULES(CAIRO, cairo-xlib-xrender cairo >= 1.0, [have_cairo=yes], [have_cairo=no])
+PKG_CHECK_MODULES(PANGO, cairo-xlib-xrender pangocairo cairo >= 1.0, [have_pango=yes], [have_pango=no])
 
-if test "x$use_text" = "xyes"; then
-  PKG_CHECK_MODULES(TEXT, cairo-xlib-xrender pangocairo cairo >= 1.0, [use_text=yes], [use_text=no])
-fi
-
-AM_CONDITIONAL(TEXT_PLUGIN, test "x$use_text" = "xyes")
-if test "$use_text" = yes; then
+AM_CONDITIONAL(TEXT_PLUGIN, test "x$have_pango" = "xyes")
+if test "x$have_pango" = "xyes"; then
   AC_DEFINE(USE_TEXT, 1, [Build text plugin])
 fi
 
-PKG_CHECK_MODULES(RESIZEINFO, cairo-xlib-xrender pangocairo cairo >= 1.0, [use_resizeinfo=yes], [use_resizeinfo=no])
-AM_CONDITIONAL(RESIZEINFO_PLUGIN, test "x$use_resizeinfo" = "xyes")
-if test "$use_resizeinfo" = yes; then
+AM_CONDITIONAL(RESIZEINFO_PLUGIN, test "x$have_pango" = "xyes")
+if test "x$have_pango" = "xyes"; then
   AC_DEFINE(USE_RESIZEINFO, 1, [Build resizeinfo plugin])
 fi
 
-PKG_CHECK_MODULES(WALL, cairo-xlib-xrender cairo >= 1.0, [use_wall=yes], [use_wall=no])
-AM_CONDITIONAL(WALL_PLUGIN, test "x$use_wall" = "xyes")
-if test "$use_wall" = yes; then
+AM_CONDITIONAL(WALL_PLUGIN, test "x$have_cairo" = "xyes")
+if test "x$have_cairo" = "xyes"; then
   AC_DEFINE(USE_WALL, 1, [Build wall plugin])
 fi
 
-PKG_CHECK_MODULES(SCALE, compiz-scale, [use_scale=yes], [use_scale=no])
-AM_CONDITIONAL(SCALE_PLUGIN, test "x$use_scale" = "xyes")
-if test "$use_scale" = yes; then
-  AC_DEFINE(USE_SCALE, 1, [Build scale plugin])
+AM_CONDITIONAL(SCALEADDON_PLUGIN, test "x$have_compiz_scale" = "xyes")
+if test "x$have_compiz_scale" = "xyes"; then
+  AC_DEFINE(USE_SCALEADDON, 1, [Build scaleaddon plugin])
 fi
-
 
 AC_ARG_ENABLE(jpeg,
   [  --disable-jpeg      Disable jpeg plugin],

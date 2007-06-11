@@ -3,13 +3,13 @@ PFLAGS=-module -avoid-version -no-undefined
 
 if RESIZEINFO_PLUGIN
 libresizeinfo_la_LDFLAGS = $(PFLAGS)
-libresizeinfo_la_LIBADD = @COMPIZ_LIBS@ @RESIZEINFO_LIBS@
+libresizeinfo_la_LIBADD = @COMPIZ_LIBS@ @PANGO_LIBS@
 libresizeinfo_la_SOURCES = resizeinfo_options.c resizeinfo_options.h resizeinfo.c
 endif
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	@RESIZEINFO_CFLAGS@		\
+	@PANGO_CFLAGS@		\
 	-DDATADIR='"$(datadir)"'          \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \

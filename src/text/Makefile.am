@@ -3,13 +3,13 @@ PFLAGS=-module -avoid-version -no-undefined
 
 if TEXT_PLUGIN
 libtext_la_LDFLAGS = $(PFLAGS)
-libtext_la_LIBADD = @COMPIZ_LIBS@ @TEXT_LIBS@
+libtext_la_LIBADD = @COMPIZ_LIBS@ @PANGO_LIBS@
 libtext_la_SOURCES = text.c
 endif
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	@TEXT_CFLAGS@			\
+	@PANGO_CFLAGS@			\
 	-DDATADIR='"$(datadir)"'          \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \

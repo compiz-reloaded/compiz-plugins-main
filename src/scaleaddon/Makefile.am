@@ -1,14 +1,15 @@
 ## Process this file with automake to produce Makefile.in
 PFLAGS=-module -avoid-version -no-undefined
 
-if SCALE_PLUGIN
+if SCALEADDON_PLUGIN
 libscaleaddon_la_LDFLAGS = $(PFLAGS)
-libscaleaddon_la_LIBADD = @COMPIZ_LIBS@ @RESIZEINFO_LIBS@
+libscaleaddon_la_LIBADD = @COMPIZ_LIBS@ @SCALE_LIBS@
 libscaleaddon_la_SOURCES = scaleaddon_options.c scaleaddon_options.h scaleaddon.c
 endif
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
+	@SCALE_CFLAGS@                   \
 	-DDATADIR='"$(datadir)"'          \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
@@ -17,7 +18,7 @@ INCLUDES =                              \
 
 moduledir = $(plugindir)
 
-if SCALE_PLUGIN
+if SCALEADDON_PLUGIN
 module_LTLIBRARIES = libscaleaddon.la
 endif
 
