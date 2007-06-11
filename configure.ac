@@ -147,6 +147,12 @@ if test "$use_wall" = yes; then
   AC_DEFINE(USE_WALL, 1, [Build wall plugin])
 fi
 
+PKG_CHECK_MODULES(SCALE, compiz-scale, [use_scale=yes], [use_scale=no])
+AM_CONDITIONAL(SCALE_PLUGIN, test "x$use_scale" = "xyes")
+if test "$use_scale" = yes; then
+  AC_DEFINE(USE_SCALE, 1, [Build scale plugin])
+fi
+
 
 AC_ARG_ENABLE(jpeg,
   [  --disable-jpeg      Disable jpeg plugin],

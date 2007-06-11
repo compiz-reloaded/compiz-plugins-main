@@ -12,7 +12,8 @@ meta_DATA =	         \
 	text.xml	 \
 	thumbnail.xml 	 \
 	wall.xml	 \
-	winrules.xml     
+	winrules.xml     \
+	scaleaddon.xml
 
 
 EXTRA_DIST = $(meta_DATA)
