@@ -1549,7 +1549,7 @@ Bool wallSetScreenOptionCore(CompScreen *screen, char *name, CompOptionValue *va
 
 
 	if (status) {
-		if (strcmp(name, "size") == 0 || strcmp(name, "vsize") == 0) {
+		if (strcmp(name, "hsize") == 0 || strcmp(name, "vsize") == 0) {
 
 			float border = 10.0f;
 			float width = 70*screen->hsize  + (2 * border * (screen->hsize-1));
