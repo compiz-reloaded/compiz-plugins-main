@@ -41,8 +41,8 @@
 #include <X11/cursorfont.h>
 
 #include <compiz.h>
+#include <text.h>
 #include "ring_options.h"
-#include "text-plugin.h"
 
 typedef enum {
     RingStateNone = 0,
