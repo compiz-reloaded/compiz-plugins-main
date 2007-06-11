@@ -20,6 +20,9 @@ moduledir = $(plugindir)
 
 if TEXT_PLUGIN
 module_LTLIBRARIES = libtext.la
+
+compizincludedir = $(includedir)/compiz
+compizinclude_HEADERS = text.h
 endif
 
 CLEANFILES = *_options.c *_options.h

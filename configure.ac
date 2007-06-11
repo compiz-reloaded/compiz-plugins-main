@@ -182,6 +182,7 @@ if test "$use_schemas" = yes; then
 fi
 
 AC_OUTPUT([
+compiz-text.pc
 Makefile
 metadata/Makefile
 src/Makefile
