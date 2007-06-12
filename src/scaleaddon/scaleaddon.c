@@ -113,6 +113,7 @@ static void
 scaleaddonRenderWindowTitle (CompWindow *w)
 {
     CompTextAttrib tA;
+    float          scale;
     int            stride;
     void*          data;
 
@@ -124,9 +125,10 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     if (!scaleaddonGetWindowTitle (w->screen))
 	return;
 
-    tA.maxwidth = (w->attrib.width * sw->scale) - 
+    scale = sw->slot ? sw->slot->scale : sw->scale;
+    tA.maxwidth = (w->attrib.width * scale) - 
 	          (2 * scaleaddonGetBorderSize (w->screen));
-    tA.maxheight = (w->attrib.height * sw->scale) - 
+    tA.maxheight = (w->attrib.height * scale) - 
      	           (2 * scaleaddonGetBorderSize (w->screen));
     tA.screen = w->screen;
     tA.size = scaleaddonGetTitleSize (w->screen);
@@ -478,11 +480,6 @@ scaleaddonZoomWindow (CompDisplay     *d,
 		sw->slot->x2 = sw->slot->x1 + WIN_W(w);
 		sw->slot->y2 = sw->slot->y1 + WIN_H(w);
 		sw->slot->scale = 1.0f;
-
-		sw->adjust = TRUE;
-		ss->state = SCALE_STATE_OUT;
-
-		damageScreen (w->screen);
 	    }
 	    else
 	    {
@@ -491,12 +488,15 @@ scaleaddonZoomWindow (CompDisplay     *d,
 
 		aw->rescaled = FALSE;
 		*(sw->slot) = aw->origSlot;
-
-		sw->adjust = TRUE;
-		ss->state = SCALE_STATE_OUT;
-
-		damageScreen (w->screen);
 	    }
+
+	    sw->adjust = TRUE;
+	    ss->state = SCALE_STATE_OUT;
+
+	    /* slot size may have changed, so 
+	     * update window title */
+	    scaleaddonRenderWindowTitle (w);
+	    damageScreen (w->screen);
 
 	    return TRUE;
 	}
