@@ -118,16 +118,19 @@ void updateTextLayer (CompScreen *s)
 	int height_inc = is->pWindow->sizeHints.height_inc;
 	int width = is->resizeGeometry.width;
 	int height = is->resizeGeometry.height;
-	int xv = width - base_width;
-	int yv = height - base_height;
+	int xv, yv;
 	
 	unsigned short * color = resizeinfoGetTextColor (s->display);
  
-	if (width_inc > 0)
-		xv /= width_inc;
-	if (height_inc > 0)
-		yv /= height_inc;
-	
+	if (width_inc > 1)
+		xv = (width - base_width) / width_inc;
+	else
+		xv = width;
+
+	if (height_inc > 1)
+		yv = (height - base_height) / height_inc;
+	else
+		yv = height;
   
 	char * info;
 	cairo_t * cr = is->textLayer.cr;
