@@ -7,7 +7,9 @@
  * Copyright : (C) 2007 by Danny Baumann
  * E-mail    : maniac@opencompositing.org
  *
- * Based on code from Beryl's scale.c
+ * Organic scale mode taken from Beryl's scale.c, written by
+ * Copyright : (C) 2006 Diogo Ferreira
+ * E-mail    : diogo@underdev.org
  *
  * Rounded corner drawing taken from wall.c:
  * Copyright : (C) 2007 Robert Carr
