@@ -25,6 +25,14 @@
 			</group>
 			<group>
 				<short>Behaviour</short>
+				<option name="zoom_time" type="float">
+					<short>Zoom time</short>
+					<long>Duration of the zoomout animation</long>
+					<default>0.5</default>
+					<min>0.1</min>
+					<max>5.0</max>
+					<precision>0.1</precision>
+				</option>
 				<option name="rotate" type="bool">
 					<short>Rotate Wall</short>
 					<long>Rotate wall in expo mode</long>

@@ -421,10 +421,12 @@ static void expoPreparePaintScreen(CompScreen * s, int ms)
 {
 	EXPO_SCREEN(s);
 
+	float val = ((float)ms / 1000.0) / expoGetZoomTime(s->display);
+
 	if (es->expoMode)
-		es->expoCam = MIN(1.0, es->expoCam + ((float)ms / 500.0));
+		es->expoCam = MIN(1.0, es->expoCam + val);
 	else
-		es->expoCam = MAX(0.0, es->expoCam - ((float)ms / 500.0));
+		es->expoCam = MAX(0.0, es->expoCam - val);
 
 	UNWRAP(es, s, preparePaintScreen);
 	(*s->preparePaintScreen) (s, ms);
