@@ -196,42 +196,6 @@ screenGrabExist (CompScreen *s, ...)
 	return FALSE;
 }
 
-static Bool
-pointerOnlyOnDesktop(CompScreen * s, int pointerX, int pointerY)
-{
-	CompWindow *w;
-
-	for (w = s->windows; w; w = w->next)
-	{
-		if ((w->invisible && !w->shaded) || w->id == s->root
-		    || w->type & CompWindowTypeDesktopMask)
-			continue;
-		if (w->shaded)
-		{
-			if (pointerX >= (w->attrib.x - w->input.left)
-			    && pointerX <=
-			    (w->attrib.x + w->attrib.width +
-			     w->input.right)
-			    && pointerY >= (w->attrib.y - w->input.top)
-			    && pointerY <= (w->attrib.y + w->input.bottom))
-				return FALSE;
-		}
-		else
-		{
-			if (pointerX >= (w->attrib.x - w->input.left)
-			    && pointerX <=
-			    (w->attrib.x + w->attrib.width +
-			     w->input.right)
-			    && pointerY >= (w->attrib.y - w->input.top)
-			    && pointerY <=
-			    (w->attrib.y + w->attrib.height + w->input.bottom))
-				return FALSE;
-		}
-	}
-
-	return TRUE;
-}
-
 
 static void wallDrawSwitcherBackground(CompScreen *s)
 {
@@ -688,54 +652,6 @@ static Bool wallPrev(CompDisplay * d, CompAction * action,
 		wallMoveViewport(s, 1, 0, None);
 
 	return TRUE;
-}
-
-static Bool wallUpWheel(CompDisplay * d, CompAction * action,
-			CompActionState state, CompOption * option,
-			int nOption)
-{
-	GET_SCREEN;
-	int winX, winY;
-	int rootX, rootY;
-	unsigned int mask_return;
-	Window root_return;
-	Window child_return;
-
-	XQueryPointer(s->display->display, s->root,
-		      &root_return, &child_return,
-		      &rootX, &rootY, &winX, &winY, &mask_return);
-
-	if (pointerOnlyOnDesktop(s, rootX, rootY))
-	{
-		wallPrev(d, action, state, option, nOption);
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-static Bool wallDownWheel(CompDisplay * d, CompAction * action,
-			  CompActionState state, CompOption * option,
-			  int nOption)
-{
-	GET_SCREEN;
-	int winX, winY;
-	int rootX, rootY;
-	unsigned int mask_return;
-	Window root_return;
-	Window child_return;
-
-	XQueryPointer(s->display->display, s->root,
-		      &root_return, &child_return,
-		      &rootX, &rootY, &winX, &winY, &mask_return);
-
-	if (pointerOnlyOnDesktop(s, rootX, rootY))
-	{
-		wallNext(d, action, state, option, nOption);
-		return TRUE;
-	}
-
-	return FALSE;
 }
 
 static Bool wallInitiate(CompScreen *s, int dx, int dy, Window win)
@@ -1612,8 +1528,6 @@ static Bool wallInitDisplay(CompPlugin * p, CompDisplay * d)
 	wallSetFlipRightInitiate(d, wallFlipRight);
 	wallSetFlipUpInitiate(d, wallFlipUp);
 	wallSetFlipDownInitiate(d, wallFlipDown);
-	wallSetUpWheelInitiate(d, wallUpWheel);
-	wallSetDownWheelInitiate(d, wallDownWheel);
 
 	WRAP(wd, d, handleEvent, wallHandleEvent);
 	d->privates[displayPrivateIndex].ptr = wd;
