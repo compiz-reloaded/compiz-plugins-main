@@ -132,34 +132,34 @@ typedef struct _xyz_tuple
 
 
 /* Helpers */
-#define GET_WALL_DISPLAY(d) \
-		((WallDisplay *) (d)->privates[displayPrivateIndex].ptr)
-#define WALL_DISPLAY(d) \
-		WallDisplay *wd = GET_WALL_DISPLAY(d);
+#define GET_WALL_DISPLAY(d)						\
+	((WallDisplay *) (d)->privates[displayPrivateIndex].ptr)
+#define WALL_DISPLAY(d)				\
+	WallDisplay *wd = GET_WALL_DISPLAY(d);
 
-#define GET_WALL_SCREEN(s, wd) \
-		((WallScreen *) (s)->privates[(wd)->screenPrivateIndex].ptr)
-#define WALL_SCREEN(s) \
-		WallScreen *ws = GET_WALL_SCREEN(s, GET_WALL_DISPLAY(s->display))
+#define GET_WALL_SCREEN(s, wd)						\
+	((WallScreen *) (s)->privates[(wd)->screenPrivateIndex].ptr)
+#define WALL_SCREEN(s)							\
+	WallScreen *ws = GET_WALL_SCREEN(s, GET_WALL_DISPLAY(s->display))
 
-#define GET_WALL_WINDOW(w, ws)                                     \
+#define GET_WALL_WINDOW(w, ws)						\
         ((WallWindow *) (w)->privates[(ws)->windowPrivateIndex].ptr)
-#define WALL_WINDOW(w)    \
-        WallWindow *ww = GET_WALL_WINDOW  (w,                     \
-                GET_WALL_SCREEN  (w->screen,             \
-                        GET_WALL_DISPLAY (w->screen->display)))
+#define WALL_WINDOW(w)							\
+        WallWindow *ww = GET_WALL_WINDOW  (w,				\
+					   GET_WALL_SCREEN  (w->screen,	\
+							     GET_WALL_DISPLAY (w->screen->display)))
 
-#define GET_SCREEN \
- 	CompScreen *s;\
-	Window xid; \
-	xid = getIntOptionNamed(option, nOption, "root", 0); \
-	s = findScreenAtDisplay(d, xid); \
-        if (!s) \
-            return FALSE;
+#define GET_SCREEN						\
+ 	CompScreen *s;						\
+	Window xid;						\
+	xid = getIntOptionNamed(option, nOption, "root", 0);	\
+	s = findScreenAtDisplay(d, xid);			\
+        if (!s)							\
+		return FALSE;
 
 #define sigmoid(x) (1.0f/(1.0f+exp(-5.5f*2*((x)-0.5))))
 #define sigmoidProgress(x) ((sigmoid(x) - sigmoid(0)) / \
-							(sigmoid(1) - sigmoid(0)))
+			    (sigmoid(1) - sigmoid(0)))
 
 
 /* functions pending for core inclusion */
@@ -167,12 +167,12 @@ typedef struct _xyz_tuple
 static Bool
 screenGrabExist (CompScreen *s, ...)
 {
-    va_list ap;
-    char    *name;
-    int	    i;
+	va_list ap;
+	char    *name;
+	int	    i;
 
-    for (i = 0; i < s->maxGrab; i++)
-    {
+	for (i = 0; i < s->maxGrab; i++)
+	{
 		if (s->grabs[i].active)
 		{
 			va_start (ap, s);
@@ -191,9 +191,9 @@ screenGrabExist (CompScreen *s, ...)
 			if (name)
 				return TRUE;
 		}
-    }
+	}
 
-    return FALSE;
+	return FALSE;
 }
 
 static Bool
@@ -204,27 +204,27 @@ pointerOnlyOnDesktop(CompScreen * s, int pointerX, int pointerY)
 	for (w = s->windows; w; w = w->next)
 	{
 		if ((w->invisible && !w->shaded) || w->id == s->root
-			|| w->type & CompWindowTypeDesktopMask)
+		    || w->type & CompWindowTypeDesktopMask)
 			continue;
 		if (w->shaded)
 		{
 			if (pointerX >= (w->attrib.x - w->input.left)
-				&& pointerX <=
-				(w->attrib.x + w->attrib.width +
-				 w->input.right)
-				&& pointerY >= (w->attrib.y - w->input.top)
-				&& pointerY <= (w->attrib.y + w->input.bottom))
+			    && pointerX <=
+			    (w->attrib.x + w->attrib.width +
+			     w->input.right)
+			    && pointerY >= (w->attrib.y - w->input.top)
+			    && pointerY <= (w->attrib.y + w->input.bottom))
 				return FALSE;
 		}
 		else
 		{
 			if (pointerX >= (w->attrib.x - w->input.left)
-				&& pointerX <=
-				(w->attrib.x + w->attrib.width +
-				 w->input.right)
-				&& pointerY >= (w->attrib.y - w->input.top)
-				&& pointerY <=
-				(w->attrib.y + w->attrib.height + w->input.bottom))
+			    && pointerX <=
+			    (w->attrib.x + w->attrib.width +
+			     w->input.right)
+			    && pointerY >= (w->attrib.y - w->input.top)
+			    && pointerY <=
+			    (w->attrib.y + w->attrib.height + w->input.bottom))
 				return FALSE;
 		}
 	}
@@ -482,8 +482,7 @@ static void wallSetupCairoContext(CompScreen *s, WallCairoContext *context)
 	context->pixmap = XCreatePixmap(s->display->display, s->root, width, height, 32);
 
 	if (!bindPixmapToTexture(s, &context->texture, context->pixmap, width, height, 32))
-		compLogMessage (s->display, "wall", CompLogLevelError, 
-						"Couldn't create cairo context for switcher");
+		printf("Couldn't create cairo context for switcher");
 
 	context->surface = cairo_xlib_surface_create_with_xrender_format(s->display->display, context->pixmap, screen, format, width, height);
 	context->cr = cairo_create(context->surface);
@@ -556,7 +555,7 @@ static Bool wallMoveViewport(CompScreen * s, int x, int y, Window moveWindow)
 			if (w)
 			{
 				if (!(w->type & (CompWindowTypeDesktopMask |
-									CompWindowTypeDockMask)))
+						 CompWindowTypeDockMask)))
 				{
 					if (!(w->state & CompWindowStateStickyMask))
 					{
@@ -624,7 +623,7 @@ static void wallHandleEvent(CompDisplay * d, XEvent * event)
 					break;
 
 				if (otherScreenGrabExist
-					(s, "switcher", "scale", 0))
+				    (s, "switcher", "scale", 0))
 					break;
 
 				defaultViewportForWindow(w, &dx, &dy);
@@ -643,7 +642,7 @@ static void wallHandleEvent(CompDisplay * d, XEvent * event)
 				break;
 
 			if (otherScreenGrabExist
-				(s, "switcher", "scale", 0))
+			    (s, "switcher", "scale", 0))
 				break;
 
 			dx = event->xclient.data.l[0] / s->width - s->x;
@@ -662,7 +661,7 @@ static void wallHandleEvent(CompDisplay * d, XEvent * event)
 }
 
 static Bool wallNext(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+		     CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -677,7 +676,7 @@ static Bool wallNext(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallPrev(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+		     CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -692,8 +691,8 @@ static Bool wallPrev(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallUpWheel(CompDisplay * d, CompAction * action,
-						CompActionState state, CompOption * option,
-						int nOption)
+			CompActionState state, CompOption * option,
+			int nOption)
 {
 	GET_SCREEN;
 	int winX, winY;
@@ -703,8 +702,8 @@ static Bool wallUpWheel(CompDisplay * d, CompAction * action,
 	Window child_return;
 
 	XQueryPointer(s->display->display, s->root,
-				  &root_return, &child_return,
-				  &rootX, &rootY, &winX, &winY, &mask_return);
+		      &root_return, &child_return,
+		      &rootX, &rootY, &winX, &winY, &mask_return);
 
 	if (pointerOnlyOnDesktop(s, rootX, rootY))
 	{
@@ -716,8 +715,8 @@ static Bool wallUpWheel(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallDownWheel(CompDisplay * d, CompAction * action,
-						  CompActionState state, CompOption * option,
-						  int nOption)
+			  CompActionState state, CompOption * option,
+			  int nOption)
 {
 	GET_SCREEN;
 	int winX, winY;
@@ -727,8 +726,8 @@ static Bool wallDownWheel(CompDisplay * d, CompAction * action,
 	Window child_return;
 
 	XQueryPointer(s->display->display, s->root,
-				  &root_return, &child_return,
-				  &rootX, &rootY, &winX, &winY, &mask_return);
+		      &root_return, &child_return,
+		      &rootX, &rootY, &winX, &winY, &mask_return);
 
 	if (pointerOnlyOnDesktop(s, rootX, rootY))
 	{
@@ -789,21 +788,21 @@ static Bool wallInitiateFlip(CompScreen *s, Direction direction, Bool dnd)
 
 	switch (direction)
 	{
-		case Left:
-			dx = 1; dy = 0;
-			break;
-		case Right:
-			dx = -1; dy = 0;
-			break;
-		case Up:
-			dx = 0; dy = 1;
-			break;
-		case Down:
-			dx = 0; dy = -1;
-			break;
-		default:
-			dx = 0;	dy = 0;
-			break;
+	case Left:
+		dx = 1; dy = 0;
+		break;
+	case Right:
+		dx = -1; dy = 0;
+		break;
+	case Up:
+		dx = 0; dy = 1;
+		break;
+	case Down:
+		dx = 0; dy = -1;
+		break;
+	default:
+		dx = 0;	dy = 0;
+		break;
 	}
 
 	if (wallMoveViewport(s, dx, dy, None))
@@ -842,7 +841,7 @@ static Bool wallInitiateFlip(CompScreen *s, Direction direction, Bool dnd)
 }
 
 static Bool wallLeft(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+		     CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -850,7 +849,7 @@ static Bool wallLeft(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallRight(CompDisplay * d, CompAction * action,
-					  CompActionState state, CompOption * option, int nOption)
+		      CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -858,7 +857,7 @@ static Bool wallRight(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallUp(CompDisplay * d, CompAction * action,
-				   CompActionState state, CompOption * option, int nOption)
+		   CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -866,7 +865,7 @@ static Bool wallUp(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallDown(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+		     CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -874,7 +873,7 @@ static Bool wallDown(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallFlipLeft(CompDisplay * d, CompAction * action,
-					     CompActionState state, CompOption * option, int nOption)
+			 CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -882,7 +881,7 @@ static Bool wallFlipLeft(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallFlipRight(CompDisplay * d, CompAction * action,
-					      CompActionState state, CompOption * option, int nOption)
+			  CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -890,7 +889,7 @@ static Bool wallFlipRight(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallFlipUp(CompDisplay * d, CompAction * action,
-				       CompActionState state, CompOption * option, int nOption)
+		       CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -898,7 +897,7 @@ static Bool wallFlipUp(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallFlipDown(CompDisplay * d, CompAction * action,
-					     CompActionState state, CompOption * option, int nOption)
+			 CompActionState state, CompOption * option, int nOption)
 {
 	GET_SCREEN;
 
@@ -906,8 +905,8 @@ static Bool wallFlipDown(CompDisplay * d, CompAction * action,
 }
 
 static Bool wallLeftWithWindow (CompDisplay *d, CompAction * action,
-								CompActionState state, CompOption * option,
-								int nOption)
+				CompActionState state, CompOption * option,
+				int nOption)
 {
 	GET_SCREEN;
 	Window win = getIntOptionNamed (option, nOption, "window", 0);
@@ -916,8 +915,8 @@ static Bool wallLeftWithWindow (CompDisplay *d, CompAction * action,
 }
 
 static Bool wallRightWithWindow (CompDisplay *d, CompAction * action,
-								 CompActionState state, CompOption * option,
-								 int nOption)
+				 CompActionState state, CompOption * option,
+				 int nOption)
 {
 	GET_SCREEN;
 	Window win = getIntOptionNamed (option, nOption, "window", 0);
@@ -926,8 +925,8 @@ static Bool wallRightWithWindow (CompDisplay *d, CompAction * action,
 }
 
 static Bool wallUpWithWindow (CompDisplay *d, CompAction * action,
-							  CompActionState state, CompOption * option,
-							  int nOption)
+			      CompActionState state, CompOption * option,
+			      int nOption)
 {
 	GET_SCREEN;
 	Window win = getIntOptionNamed (option, nOption, "window", 0);
@@ -936,8 +935,8 @@ static Bool wallUpWithWindow (CompDisplay *d, CompAction * action,
 }
 
 static Bool wallDownWithWindow (CompDisplay *d, CompAction * action,
-								CompActionState state, CompOption * option,
-								int nOption)
+				CompActionState state, CompOption * option,
+				int nOption)
 {
 	GET_SCREEN;
 	Window win = getIntOptionNamed (option, nOption, "window", 0);
@@ -947,7 +946,7 @@ static Bool wallDownWithWindow (CompDisplay *d, CompAction * action,
 
 
 static void wallDrawCairoTextureOnScreen(CompScreen *s, CompOutput *output,
-										 Region region)
+					 Region region)
 {
 	WALL_SCREEN(s);
 
@@ -957,9 +956,9 @@ static void wallDrawCairoTextureOnScreen(CompScreen *s, CompOutput *output,
 	glEnable(GL_BLEND);
 
 	float centerx = s->outputDev[ws->boxOutputDevice].region.extents.x1 +
-					(s->outputDev[ws->boxOutputDevice].width/2.0f);
+		(s->outputDev[ws->boxOutputDevice].width/2.0f);
 	float centery = s->outputDev[ws->boxOutputDevice].region.extents.y1 +
-					(s->outputDev[ws->boxOutputDevice].height/2.0f);
+		(s->outputDev[ws->boxOutputDevice].height/2.0f);
 
 	float width  = (float) ws->switcherContext->width;
 	float height = (float) ws->switcherContext->height;
@@ -1129,59 +1128,59 @@ static void wallDrawCairoTextureOnScreen(CompScreen *s, CompOutput *output,
 
 			switch((int)angle) {
 				// top left
-				case -45:
-					box.x1 = topleftx - aW;
-					box.x1 -= border;
-					box.y1 = toplefty - aH;
-					box.y1 -= border;
-					break;
+			case -45:
+				box.x1 = topleftx - aW;
+				box.x1 -= border;
+				box.y1 = toplefty - aH;
+				box.y1 -= border;
+				break;
 				// up
-				case 0:
-					box.x1 = topleftx + width/2.0f - aW/2.0f;
-					box.y1 = toplefty - aH;
-					box.y1 -= border;
-					break;
+			case 0:
+				box.x1 = topleftx + width/2.0f - aW/2.0f;
+				box.y1 = toplefty - aH;
+				box.y1 -= border;
+				break;
 				// top right
-				case 45:
-					box.x1 = topleftx + width;
-					box.x1 += border;
-					box.y1 = toplefty - aH;
-					box.y1 -= border;
-					break;
+			case 45:
+				box.x1 = topleftx + width;
+				box.x1 += border;
+				box.y1 = toplefty - aH;
+				box.y1 -= border;
+				break;
 				// right
-				case 90:
-					box.x1 = topleftx + width;
-					box.x1 += border;
-					box.y1 = toplefty + height/2.0f - aH/2.0f;
-					break;
+			case 90:
+				box.x1 = topleftx + width;
+				box.x1 += border;
+				box.y1 = toplefty + height/2.0f - aH/2.0f;
+				break;
 				// bottom right
-				case 135:
-					box.x1 = topleftx + width;
-					box.x1 += border;
-					box.y1 = toplefty + height;
-					box.y1 += border;
-					break;
+			case 135:
+				box.x1 = topleftx + width;
+				box.x1 += border;
+				box.y1 = toplefty + height;
+				box.y1 += border;
+				break;
 				// down
-				case 180:
-					box.x1 = topleftx + width/2.0f - aW/2.0f;
-					box.y1 = toplefty + height;
-					box.y1 += border;
-					break;
+			case 180:
+				box.x1 = topleftx + width/2.0f - aW/2.0f;
+				box.y1 = toplefty + height;
+				box.y1 += border;
+				break;
 				// bottom left
-				case 225:
-					box.x1 = topleftx - aW;
-					box.x1 -= border;
-					box.y1 = toplefty + height;
-					box.y1 += border;
-					break;
+			case 225:
+				box.x1 = topleftx - aW;
+				box.x1 -= border;
+				box.y1 = toplefty + height;
+				box.y1 += border;
+				break;
 				// left
-				case 270:
-					box.x1 = topleftx - aW;
-					box.x1 -= border;
-					box.y1 = toplefty + height/2.0f - aH/2.0f;
-					break;
-				default:
-					break;
+			case 270:
+				box.x1 = topleftx - aW;
+				box.x1 -= border;
+				box.y1 = toplefty + height/2.0f - aH/2.0f;
+				break;
+			default:
+				break;
 			}
 		} else { // arrow is visible (no preview is painted over it)
 			posX = s->x;
@@ -1229,9 +1228,9 @@ static void wallDrawCairoTextureOnScreen(CompScreen *s, CompOutput *output,
 }
 
 static void wallPaintScreen(CompScreen * s,
-							CompOutput * outputs,
-							int          numOutputs,
-							unsigned int mask)
+			    CompOutput * outputs,
+			    int          numOutputs,
+			    unsigned int mask)
 {
 	WALL_SCREEN(s);
 
@@ -1247,10 +1246,10 @@ static void wallPaintScreen(CompScreen * s,
 }
 
 static Bool wallPaintOutput(CompScreen * s,
-							const ScreenPaintAttrib * sAttrib,
-							const CompTransform    *transform,
-							Region region, CompOutput *output,
-							unsigned int mask)
+			    const ScreenPaintAttrib * sAttrib,
+			    const CompTransform    *transform,
+			    Region region, CompOutput *output,
+			    unsigned int mask)
 {
 	Bool status;
 
@@ -1268,7 +1267,7 @@ static Bool wallPaintOutput(CompScreen * s,
 	WRAP(ws, s, paintOutput, wallPaintOutput);
 
 	if ((ws->moving || ws->boxTimeout) && wallGetShowSwitcher(s->display) &&
-		(output->id == ws->boxOutputDevice || output == &s->fullscreenOutput))
+	    (output->id == ws->boxOutputDevice || output == &s->fullscreenOutput))
 	{
 		wallDrawCairoTextureOnScreen(s, output, region);
 
@@ -1291,9 +1290,9 @@ static Bool wallPaintOutput(CompScreen * s,
 					float mh = ws->viewportHeight;
 
 					ws->mSAttribs.xTranslate =
-							mx / output->width;
+						mx / output->width;
 					ws->mSAttribs.yTranslate =
-							-my / output->height;
+						-my / output->height;
 
 					ws->mSAttribs.xScale = mw / s->width;
 					ws->mSAttribs.yScale = mh / s->height;
@@ -1302,17 +1301,17 @@ static Bool wallPaintOutput(CompScreen * s,
 					ws->mSAttribs.saturation = COLOR;
 
 					if (i == origVX && j == origVY &&
-						ws->moving)
+					    ws->moving)
 					{
 						ws->mSAttribs.brightness = BRIGHT;
 					}
 					if (ws->boxTimeout && !ws->moving && i == origVX &&
-						j == origVY)
+					    j == origVY)
 						ws->mSAttribs.brightness = BRIGHT;
 
 
 					(*s->paintTransformedOutput) (s, sAttrib, transform, region,
-												  output, mask | PAINT_SCREEN_TRANSFORMED_MASK);
+								      output, mask | PAINT_SCREEN_TRANSFORMED_MASK);
 					ws->miniScreen = FALSE;
 
 					moveScreenViewport(s, -1, 0, FALSE);
@@ -1379,10 +1378,10 @@ static void wallPreparePaintScreen(CompScreen * s, int ms)
 }
 
 static void wallPaintTransformedOutput(CompScreen * s,
-									   const ScreenPaintAttrib * sAttrib,
-									   const CompTransform    *transform,
-									   Region region, CompOutput *output,
-									   unsigned int mask)
+				       const ScreenPaintAttrib * sAttrib,
+				       const CompTransform    *transform,
+				       Region region, CompOutput *output,
+				       unsigned int mask)
 {
 	WALL_SCREEN(s);
 
@@ -1392,9 +1391,9 @@ static void wallPaintTransformedOutput(CompScreen * s,
 	{
 		// move each screen to the correct output position
 		matrixTranslate(&sTransform, -output->region.extents.x1 /
-					 output->width,
-					 output->region.extents.y1 /
-					 output->height, 0.0f);
+				output->width,
+				output->region.extents.y1 /
+				output->height, 0.0f);
 		matrixTranslate(&sTransform, 0.0f, 0.0f, -DEFAULT_Z_CAMERA);
 
 		matrixTranslate(&sTransform, ws->mSAttribs.xTranslate, ws->mSAttribs.yTranslate, ws->mSzCamera);
@@ -1407,9 +1406,9 @@ static void wallPaintTransformedOutput(CompScreen * s,
 		// revert prepareXCoords region shift. Now all screens display the same
 		matrixTranslate(&sTransform, 0.5f, 0.5f, DEFAULT_Z_CAMERA);
 		matrixTranslate(&sTransform, output->region.extents.x1 /
-					 output->width,
-					 -output->region.extents.y2 /
-					 output->height, 0.0f);
+				output->width,
+				-output->region.extents.y2 /
+				output->height, 0.0f);
 
 		UNWRAP(ws, s, paintTransformedOutput);
 		(*s->paintTransformedOutput) (s, sAttrib, &sTransform, &s->region, output, mask);
@@ -1420,7 +1419,7 @@ static void wallPaintTransformedOutput(CompScreen * s,
 	UNWRAP(ws, s, paintTransformedOutput);
 
 	if (!ws->moving)
-	   (*s->paintTransformedOutput) (s, sAttrib, &sTransform, region, output, mask);
+		(*s->paintTransformedOutput) (s, sAttrib, &sTransform, region, output, mask);
 
 	mask &= ~PAINT_SCREEN_CLEAR_MASK;
 
@@ -1441,22 +1440,22 @@ static void wallPaintTransformedOutput(CompScreen * s,
 
 		if (floor(py) != ceil(py))
 		{
-            ty = ceil(py) - s->y;
-		    sA.yTranslate = fmod(py,1) - 1;
-		    if (floor(px) != ceil(px))
-		    {
+			ty = ceil(py) - s->y;
+			sA.yTranslate = fmod(py,1) - 1;
+			if (floor(px) != ceil(px))
+			{
 				tx = ceil(px) - s->x;
 				moveScreenViewport(s, -tx, -ty, FALSE);
 				sA.xTranslate = 1 - fmod(px,1);
 				(*s->paintTransformedOutput) (s, &sA, &sTransform,
-												 &output->region, output, mask);
+							      &output->region, output, mask);
 				moveScreenViewport(s, tx, ty, FALSE);
-		    }
-		    tx = floor(px) - s->x;
-		    moveScreenViewport(s, - tx, -ty, FALSE);
-		    sA.xTranslate = -fmod(px,1);
-		    (*s->paintTransformedOutput) (s, &sA, &sTransform,
-											 &output->region, output, mask);
+			}
+			tx = floor(px) - s->x;
+			moveScreenViewport(s, - tx, -ty, FALSE);
+			sA.xTranslate = -fmod(px,1);
+			(*s->paintTransformedOutput) (s, &sA, &sTransform,
+						      &output->region, output, mask);
 			moveScreenViewport(s, tx, ty, FALSE);
 		}
 
@@ -1464,18 +1463,18 @@ static void wallPaintTransformedOutput(CompScreen * s,
 		sA.yTranslate = fmod(py,1);
 		if (floor(px) != ceil(px))
 		{
-		    tx = ceil(px) - s->x;
-		    moveScreenViewport(s, -tx, -ty, FALSE);
+			tx = ceil(px) - s->x;
+			moveScreenViewport(s, -tx, -ty, FALSE);
 			sA.xTranslate = 1 - fmod(px,1);
-		    (*s->paintTransformedOutput) (s, &sA, &sTransform,
-											 &output->region, output, mask);
+			(*s->paintTransformedOutput) (s, &sA, &sTransform,
+						      &output->region, output, mask);
 			moveScreenViewport(s, tx, ty, FALSE);
 		}
 		tx = floor(px) - s->x;
 		moveScreenViewport(s, - tx, -ty, FALSE);
                 sA.xTranslate = -fmod(px,1);
 		(*s->paintTransformedOutput) (s, &sA, &sTransform,
-										 &output->region, output, mask);
+					      &output->region, output, mask);
 		moveScreenViewport(s, tx, ty, FALSE);
 
 		while (s->x != origx)
@@ -1490,9 +1489,9 @@ static void wallPaintTransformedOutput(CompScreen * s,
 
 static Bool
 wallPaintWindow(CompWindow * w,
-			   const WindowPaintAttrib *attrib,
-			   const CompTransform    *transform,
-			   Region region, unsigned int mask)
+		const WindowPaintAttrib *attrib,
+		const CompTransform    *transform,
+		Region region, unsigned int mask)
 {
 	WALL_SCREEN(w->screen);
 	Bool status;
@@ -1503,9 +1502,9 @@ wallPaintWindow(CompWindow * w,
 	{
 		pA.opacity = attrib->opacity * ((float)ws->mSAttribs.opacity / OPAQUE);
 		pA.brightness =	attrib->brightness *
-				((float)ws->mSAttribs.brightness / BRIGHT);
+			((float)ws->mSAttribs.brightness / BRIGHT);
 		pA.saturation = attrib->saturation *
-				((float)ws->mSAttribs.saturation / COLOR);
+			((float)ws->mSAttribs.saturation / COLOR);
 	}
 
 	if (!pA.opacity || !pA.brightness)
@@ -1549,7 +1548,7 @@ Bool wallSetScreenOptionCore(CompScreen *screen, char *name, CompOptionValue *va
 
 
 	if (status) {
-		if (strcmp(name, "hsize") == 0 || strcmp(name, "vsize") == 0) {
+		if (strcmp(name, "size") == 0 || strcmp(name, "vsize") == 0) {
 
 			float border = 10.0f;
 			float width = 70*screen->hsize  + (2 * border * (screen->hsize-1));
