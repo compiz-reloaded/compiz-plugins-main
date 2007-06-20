@@ -446,7 +446,8 @@ static void wallSetupCairoContext(CompScreen *s, WallCairoContext *context)
 	context->pixmap = XCreatePixmap(s->display->display, s->root, width, height, 32);
 
 	if (!bindPixmapToTexture(s, &context->texture, context->pixmap, width, height, 32))
-		printf("Couldn't create cairo context for switcher");
+		compLogMessage (s->display, "wall", CompLogLevelError, 
+						"Couldn't create cairo context for switcher");
 
 	context->surface = cairo_xlib_surface_create_with_xrender_format(s->display->display, context->pixmap, screen, format, width, height);
 	context->cr = cairo_create(context->surface);
@@ -1464,7 +1465,7 @@ Bool wallSetScreenOptionCore(CompScreen *screen, char *name, CompOptionValue *va
 
 
 	if (status) {
-		if (strcmp(name, "size") == 0 || strcmp(name, "vsize") == 0) {
+		if (strcmp(name, "hsize") == 0 || strcmp(name, "vsize") == 0) {
 
 			float border = 10.0f;
 			float width = 70*screen->hsize  + (2 * border * (screen->hsize-1));
