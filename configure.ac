@@ -1,6 +1,6 @@
 AC_PREREQ(2.57)
 
-AC_INIT([compcomm-plugins-main],esyscmd(. ./VERSION;echo -n $VERSION), [maniac@opencompositing.org])
+AC_INIT([compiz-fusion-plugins-main],esyscmd(. ./VERSION;echo -n $VERSION), [maniac@opencompositing.org])
 
 AC_DEFINE_UNQUOTED(VERSION,"$VERSION",[Version])
 
