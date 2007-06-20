@@ -201,4 +201,5 @@ src/text/Makefile
 src/thumbnail/Makefile
 src/wall/Makefile
 src/winrules/Makefile
+src/vpswitch/Makefile
 ])
