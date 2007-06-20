@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<compiz>
+	<plugin name="vpswitch" useBcop="true">
+		<short>Viewport mouse switch</short>
+		<long>Change viewport on mouse events on the Desktop</long>
+		<category>Desktop</category>
+		<display>
+			<group>
+				<short>Viewport Switching</short>
+				<option name="left" type="action">
+					<short>Move Left</short>
+					<long>Move to the left</long>
+					<allowed button="true"/>
+				</option>
+				<option name="right" type="action">
+					<short>Move Right</short>
+					<long>Move to the right</long>
+					<allowed button="true"/>
+				</option>
+				<option name="up" type="action">
+					<short>Move Up</short>
+					<long>Move up</long>
+					<allowed button="true"/>
+				</option>
+				<option name="down" type="action">
+					<short>Move Down</short>
+					<long>Move down</long>
+					<allowed button="true"/>
+				</option>
+				<option name="next" type="action">
+					<short>Move Next</short>
+					<long>Move to the next viewport</long>
+					<allowed button="true"/>
+					<default>
+						<button>Button5</button>
+					</default>
+				</option>
+				<option name="prev" type="action">
+					<short>Move Prev</short>
+					<long>Move to the previous viewport</long>
+					<allowed button="true"/>
+					<default>
+						<button>Button4</button>
+					</default>
+				</option>
+			</group>
+		</display>
+	</plugin>
+</compiz>
