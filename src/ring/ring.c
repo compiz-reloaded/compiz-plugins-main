@@ -1672,6 +1672,8 @@ ringFiniScreen (CompPlugin *p,
 {
     RING_SCREEN (s);
 
+    freeWindowPrivateIndex (s, rs->windowPrivateIndex);
+
     UNWRAP (rs, s, preparePaintScreen);
     UNWRAP (rs, s, donePaintScreen);
     UNWRAP (rs, s, paintOutput);
