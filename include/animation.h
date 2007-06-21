@@ -675,6 +675,8 @@ postAnimationCleanup(CompWindow * w, Bool resetAnimation);
 
 void modelCalcBounds(Model * model);
 
+float defaultAnimProgress(AnimWindow * aw);
+
 
 void initParticles(int numParticles, ParticleSystem * ps);
 void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps);

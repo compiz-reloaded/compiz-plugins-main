@@ -79,6 +79,7 @@
 #include "animation_tex.h"
 
 #include "magiclamp.h"
+#include "dream.h"
 
 
 static void
@@ -210,7 +211,7 @@ static Bool ensureLargerClipCapacity(PolygonSet * pset)
 	return TRUE;
 }
 
-static float defaultAnimProgress(AnimWindow * aw)
+float defaultAnimProgress(AnimWindow * aw)
 {
 	float forwardProgress =
 			1 - (aw->animRemainingTime - aw->timestep) /
@@ -431,90 +432,6 @@ static void defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 
 
 
-// =====================  Effect: Dream  =========================
-
-static void
-fxDreamModelStepObject(CompWindow * w,
-					   Model * model, Object * object, float forwardProgress)
-{
-	float waveAmpMax = MIN(WIN_H(w), WIN_W(w)) * 0.125f;
-	float waveWidth = 10.0f;
-	float waveSpeed = 7.0f;
-
-	float origx = w->attrib.x + (WIN_W(w) * object->gridPosition.x -
-								 w->output.left) * model->scale.x;
-	float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
-								 w->output.top) * model->scale.y;
-
-	object->position.y = origy;
-	object->position.x =
-			origx +
-			forwardProgress * waveAmpMax * model->scale.x *
-			sin(object->gridPosition.y * M_PI * waveWidth +
-				waveSpeed * forwardProgress);
-
-}
-
-static void fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
-{
-	int i, j, steps;
-
-	ANIM_WINDOW(w);
-	ANIM_SCREEN(s);
-
-	Model *model = aw->model;
-
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
-
-	aw->timestep = timestep;
-
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
-	steps = MAX(1, steps);
-
-	for (j = 0; j < steps; j++)
-	{
-		float forwardProgress = defaultAnimProgress(aw);
-
-		for (i = 0; i < model->numObjects; i++)
-		{
-			fxDreamModelStepObject(w,
-								   model,
-								   &model->objects[i], forwardProgress);
-		}
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
-	modelCalcBounds(model);
-}
-
-static void
-fxDreamUpdateWindowAttrib(AnimScreen * as,
-						  AnimWindow * aw, WindowPaintAttrib * wAttrib)
-{
-	float forwardProgress = 0;
-	if (aw->animTotalTime - aw->timestep != 0)
-		forwardProgress =
-			1 - (aw->animRemainingTime - aw->timestep) /
-			(aw->animTotalTime - aw->timestep);
-	forwardProgress = MIN(forwardProgress, 1);
-	forwardProgress = MAX(forwardProgress, 0);
-
-	if (aw->curWindowEvent == WindowEventCreate ||
-		aw->curWindowEvent == WindowEventUnminimize)
-		forwardProgress = 1 - forwardProgress;
-
-	wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
-}
 
 
 // =====================  Effect: Wave  =========================
