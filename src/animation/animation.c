@@ -80,6 +80,7 @@
 
 #include "magiclamp.h"
 #include "dream.h"
+#include "wave.h"
 
 
 static void
@@ -434,81 +435,6 @@ static void defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 
 
 
-// =====================  Effect: Wave  =========================
-
-static void
-fxWaveModelStepObject(CompWindow * w,
-					  Model * model,
-					  Object * object,
-					  float forwardProgress,
-					  float waveAmp, float waveHalfWidth)
-{
-	float origx = w->attrib.x + (WIN_W(w) * object->gridPosition.x -
-								 w->output.left) * model->scale.x;
-	float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
-								 w->output.top) * model->scale.y;
-
-	float wavePosition =
-			WIN_Y(w) - waveHalfWidth +
-			forwardProgress * (WIN_H(w) * model->scale.y + 2 * waveHalfWidth);
-
-	object->position.y = origy;
-	object->position.x = origx;
-
-	if (fabs(object->position.y - wavePosition) < waveHalfWidth)
-		object->position.x +=
-				(object->gridPosition.x - 0.5) * waveAmp *
-				(cos
-				 ((object->position.y -
-				   wavePosition) * M_PI / waveHalfWidth) + 1) / 2;
-}
-
-static void fxWaveModelStep(CompScreen * s, CompWindow * w, float time)
-{
-	int i, j, steps;
-
-	ANIM_SCREEN(s);
-	ANIM_WINDOW(w);
-
-	Model *model = aw->model;
-
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
-
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
-	steps = MAX(1, steps);
-
-	for (j = 0; j < steps; j++)
-	{
-		float forwardProgress =
-				1 - (aw->animRemainingTime - timestep) /
-				(aw->animTotalTime - timestep);
-
-		for (i = 0; i < model->numObjects; i++)
-		{
-			fxWaveModelStepObject(w,
-								  model,
-								  &model->objects[i],
-								  forwardProgress,
-								  WIN_H(w) * model->scale.y *
-								  as->opt[ANIM_SCREEN_OPTION_WAVE_AMP].value.f,
-								  WIN_H(w) * model->scale.y *
-								  as->opt[ANIM_SCREEN_OPTION_WAVE_WIDTH].value.f / 2);
-		}
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
-	modelCalcBounds(model);
-}
 
 
 // =====================  Effect: Zoom and Sidekick  =========================
