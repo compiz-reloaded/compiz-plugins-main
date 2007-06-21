@@ -696,13 +696,20 @@ obtainTransformMatrix (CompScreen *s, GLfloat *mat,
 
 void polygonsAnimStep(CompScreen * s, CompWindow * w, float time);
 
+AnimDirection getAnimationDirection(CompWindow * w,
+										   CompOptionValue *value, 
+										   Bool openDir);
+
 void defaultAnimStep(CompScreen * s, CompWindow * w, float time);
+
+void defaultAnimInit(CompScreen * s, CompWindow * w);
 
 
 void initParticles(int numParticles, ParticleSystem * ps);
 void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps);
 void updateParticles(ParticleSystem * ps, float time);
 void finiParticles(ParticleSystem * ps);
+
 
 
 
