@@ -666,6 +666,11 @@ AnimEffectProperties *animEffectPropertiesTmp;
 	 (dir) == 2 ? WIN_X(w) - (WIN_X(dw) + WIN_W(dw)) : \
 	              (WIN_X(w) + WIN_W(w)) - WIN_X(dw))
 
+// spring crossing x (second time it spring movement reaches target)
+#define SPRING_CROSSING_X 0.6184f
+#define SPRING_PERCEIVED_T 0.5f
+//0.52884f
+
 
 void
 modelInitObjects(Model * model, int x, int y, int width, int height);
