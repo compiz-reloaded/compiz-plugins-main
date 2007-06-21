@@ -87,6 +87,8 @@
 #include "horizontalfold.h"
 #include "rollup.h"
 #include "dodge.h"
+#include "fade.h"
+#include "focusfade.h"
 
 static void
 animDrawWindowGeometry(CompWindow * w);
@@ -439,77 +441,6 @@ void defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 
 
 
-
-
-
-
-
-
-
-
-
-// =====================  Effect: Fade  =========================
-
-static void defaultAnimInit(CompScreen * s, CompWindow * w)
-{
-	ANIM_WINDOW(w);
-	ANIM_SCREEN(s);
-
-	// store window opacity
-	aw->storedOpacity = w->paint.opacity;
-
-	aw->timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
-}
-
-static void
-fxFadeUpdateWindowAttrib(AnimScreen * as,
-						 AnimWindow * aw, WindowPaintAttrib * wAttrib)
-{
-	float forwardProgress = defaultAnimProgress(aw);
-
-	wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
-}
-
-
-// =====================  Effect: Focus Fade  =========================
-
-
-static void
-fxFocusFadeUpdateWindowAttrib(AnimScreen * as,
-							  AnimWindow * aw,
-							  WindowPaintAttrib * wAttrib)
-{
-	float forwardProgress = 0;
-	if (aw->animTotalTime - aw->timestep != 0)
-		forwardProgress =
-			1 - (aw->animRemainingTime - aw->timestep) /
-			(aw->animTotalTime - aw->timestep);
-	forwardProgress = MIN(forwardProgress, 1);
-	forwardProgress = MAX(forwardProgress, 0);
-
-	wAttrib->opacity = (GLushort)
-		(aw->storedOpacity *
-		 (1 - decelerateProgressCustom(1 - forwardProgress, 0.50, 0.75)));
-}
-
-static void
-fxFocusFadeUpdateWindowAttrib2(AnimScreen * as,
-							   AnimWindow * aw,
-							   WindowPaintAttrib * wAttrib)
-{
-	float forwardProgress = 0;
-	if (aw->animTotalTime - aw->timestep != 0)
-		forwardProgress =
-			1 - (aw->animRemainingTime - aw->timestep) /
-			(aw->animTotalTime - aw->timestep);
-	forwardProgress = MIN(forwardProgress, 1);
-	forwardProgress = MAX(forwardProgress, 0);
-
-	wAttrib->opacity = (GLushort)
-		(aw->storedOpacity *
-		 (1 - decelerateProgressCustom(forwardProgress, 0.50, 0.75)));
-}
 
 
 // =====================  Effect: Burn  =========================
