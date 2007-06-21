@@ -302,7 +302,8 @@ typedef enum
 
 #define RANDOM_EFFECT_OFFSET 2 /* skip none and random */
 
-AnimEffect minimizeEffectType[] = {
+
+static AnimEffect minimizeEffectType[] = {
 	AnimEffectNone,
 	AnimEffectRandom,
 	AnimEffectBeamUp,
@@ -325,7 +326,7 @@ AnimEffect minimizeEffectType[] = {
 #define LAST_MINIMIZE_EFFECT 16
 #define LAST_RANDOM_MINIMIZE_EFFECT 14
 
-AnimEffect closeEffectType[] = {
+static AnimEffect closeEffectType[] = {
 	AnimEffectNone,
 	AnimEffectRandom,
 	AnimEffectBeamUp,
@@ -350,7 +351,7 @@ AnimEffect closeEffectType[] = {
 #define LAST_CLOSE_EFFECT 18
 #define LAST_RANDOM_CLOSE_EFFECT 16
 
-AnimEffect focusEffectType[] = {
+static AnimEffect focusEffectType[] = {
 	AnimEffectNone,
 	AnimEffectDodge,
 	AnimEffectFocusFade,
@@ -359,7 +360,7 @@ AnimEffect focusEffectType[] = {
 #define NUM_FOCUS_EFFECT (LIST_SIZE(focusEffectType))
 #define LAST_FOCUS_EFFECT 3
 
-AnimEffect shadeEffectType[] = {
+static AnimEffect shadeEffectType[] = {
 	AnimEffectNone,
 	AnimEffectRandom,
 	AnimEffectCurvedFold,
@@ -369,6 +370,7 @@ AnimEffect shadeEffectType[] = {
 #define NUM_SHADE_EFFECT (LIST_SIZE(shadeEffectType))
 #define LAST_SHADE_EFFECT 4
 #define LAST_RANDOM_SHADE_EFFECT 2
+
 
 typedef struct RestackInfo
 {
@@ -660,5 +662,18 @@ AnimEffectProperties *animEffectPropertiesTmp;
 	 (dir) == 1 ? (WIN_Y(w) + WIN_H(w)) - WIN_Y(dw) : \
 	 (dir) == 2 ? WIN_X(w) - (WIN_X(dw) + WIN_W(dw)) : \
 	              (WIN_X(w) + WIN_W(w)) - WIN_X(dw))
+
+
+void
+modelInitObjects(Model * model, int x, int y, int width, int height);
+
+void
+postAnimationCleanup(CompWindow * w, Bool resetAnimation);
+
+
+void initParticles(int numParticles, ParticleSystem * ps);
+void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps);
+void updateParticles(ParticleSystem * ps, float time);
+void finiParticles(ParticleSystem * ps);
 
 
