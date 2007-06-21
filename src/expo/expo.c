@@ -53,11 +53,6 @@ typedef struct _ExpoDisplay
 {
 	int screenPrivateIndex;
 	HandleEventProc handleEvent;
-  
-	KeyCode leftKey;
-	KeyCode rightKey;
-	KeyCode upKey;
-	KeyCode downKey;
 } ExpoDisplay;
 
 typedef struct _ExpoScreen
@@ -69,6 +64,7 @@ typedef struct _ExpoScreen
 	PaintScreenProc paintScreen;
 	PreparePaintScreenProc preparePaintScreen;
 	PaintTransformedOutputProc paintTransformedOutput;
+	PaintWindowProc paintWindow;
 	DrawWindowProc drawWindow;
 	DamageWindowRectProc damageWindowRect;
 
@@ -145,22 +141,6 @@ typedef struct _xyz_tuple
 #define sigmoidProgress(x) ((sigmoid(x) - sigmoid(0)) / \
 							(sigmoid(1) - sigmoid(0)))
 
-static void expoMoveFocusViewport(CompScreen *s, int dx, int dy)
-{
-	EXPO_SCREEN(s);
-	
-	es->origVX += dx;
-	es->origVY += dy;
-	
-	es->origVX = MIN(s->hsize-1, es->origVX);
-	es->origVX = MAX(0, es->origVX);
-	es->origVY = MIN(s->vsize-1, es->origVY);
-	es->origVY = MAX(0, es->origVY);
-	
-	damageScreen(s);
-}
-
-
 static void expoHandleEvent(CompDisplay * d, XEvent * event)
 {
 	EXPO_DISPLAY(d);
@@ -170,24 +150,6 @@ static void expoHandleEvent(CompDisplay * d, XEvent * event)
 
 	switch (event->type)
 	{
-	case KeyPress:
-		s = findScreenAtDisplay(d,event->xkey.root);
-		if (s)
-		{
-			EXPO_SCREEN(s);
-			if (es->expoMode)
-			{
-				if (event->xkey.keycode == ed->leftKey)
-					expoMoveFocusViewport(s, -1, 0);
-				else if (event->xkey.keycode == ed->rightKey)
-					expoMoveFocusViewport(s, 1, 0);
-				else if (event->xkey.keycode == ed->upKey)
-					expoMoveFocusViewport(s, 0, -1);
-				else if (event->xkey.keycode == ed->downKey)
-					expoMoveFocusViewport(s, 0, 1);
-			}
-		}
-		break;
 	case ButtonPress:
 		s = findScreenAtDisplay(d, event->xbutton.root);
 		es = GET_EXPO_SCREEN(s, ed);
@@ -658,10 +620,12 @@ static void expoPaintTransformedOutput(CompScreen * s,
 
 	if (es->expoCam > 0)
 	    mask |= PAINT_SCREEN_CLEAR_MASK;
-    if (es->expoCam <= 0)
-    (*s->paintTransformedOutput) (s, sAttrib, transform, region, output, mask);
-    else
-    glClear(GL_COLOR_BUFFER_BIT);
+	if (es->expoCam <= 0 || (es->expoCam < 1.0 && es->expoCam > 0.0 &&
+		expoGetExpoAnimation(s->display) != ExpoAnimationZoom))
+		(*s->paintTransformedOutput) (s, sAttrib, transform, region,
+		  							  output, mask);
+	else
+		glClear(GL_COLOR_BUFFER_BIT);
 	mask &= ~PAINT_SCREEN_CLEAR_MASK;
 
 	if (es->expoCam > 0.0)
@@ -724,6 +688,28 @@ expoDrawWindow (CompWindow			 *w,
 	UNWRAP(es, w->screen, drawWindow);
 	status = (*w->screen->drawWindow) (w, transform, &fA, region, mask);
 	WRAP(es, w->screen, drawWindow, expoDrawWindow);
+
+	return status;
+}
+
+static Bool
+expoPaintWindow (CompWindow * w,
+				 const WindowPaintAttrib * attrib,
+				 const CompTransform * transform,
+				 Region region, unsigned int mask)
+{
+	CompScreen *s = w->screen;
+	Bool status;
+
+	EXPO_SCREEN (s);
+
+	if (es->expoCam > 0.0 && es->expoActive &&
+	    (es->expoCam < 1.0 || (w->wmType & CompWindowTypeDockMask)))
+		mask |= PAINT_WINDOW_TRANSLUCENT_MASK;
+
+	UNWRAP(es, s, paintWindow);
+	status = (*s->paintWindow) (w, attrib, transform, region, mask);
+	WRAP(es, s, paintWindow, expoPaintWindow);
 
 	return status;
 }
@@ -828,12 +814,6 @@ static Bool expoInitDisplay(CompPlugin * p, CompDisplay * d)
 	}
 
 	expoSetExpoInitiate(d, expoExpo);
-	
-	ed->leftKey = XKeysymToKeycode(d->display, XStringToKeysym("Left"));
-	ed->rightKey = XKeysymToKeycode(d->display, XStringToKeysym("Right"));
-	ed->upKey = XKeysymToKeycode(d->display, XStringToKeysym("Up"));
-	ed->downKey = XKeysymToKeycode(d->display, XStringToKeysym("Down"));
-	
 
 	WRAP(ed, d, handleEvent, expoHandleEvent);
 	d->privates[displayPrivateIndex].ptr = ed;
@@ -891,6 +871,7 @@ static Bool expoInitScreen(CompPlugin * p, CompScreen * s)
 	WRAP(es, s, preparePaintScreen, expoPreparePaintScreen);
 	WRAP(es, s, drawWindow, expoDrawWindow);
 	WRAP(es, s, damageWindowRect, expoDamageWindowRect);
+	WRAP(es, s, paintWindow, expoPaintWindow);
 
 	s->privates[ed->screenPrivateIndex].ptr = es;
 
@@ -908,6 +889,7 @@ static void expoFiniScreen(CompPlugin * p, CompScreen * s)
 	UNWRAP(es, s, preparePaintScreen);
 	UNWRAP(es, s, drawWindow);
 	UNWRAP(es, s, damageWindowRect);
+	UNWRAP(es, s, paintWindow);
 
 	free(es);
 }
