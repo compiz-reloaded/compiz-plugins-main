@@ -149,3 +149,58 @@ fxGlideUpdateWindowAttrib(AnimScreen * as,
 
 	wAttrib->opacity = aw->storedOpacity * (1 - forwardProgress);
 }
+
+
+void fxGlideInit(CompScreen * s, CompWindow * w)
+{
+	ANIM_SCREEN(s);
+	ANIM_WINDOW(w);
+
+	float finalDistFac;
+	float finalRotAng;
+	float thickness;
+
+	fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
+
+	if (thickness < 1e-5) // if thicknes is 0, we'll make the effect 2D
+	{
+		// store window opacity
+		aw->storedOpacity = w->paint.opacity;
+		aw->timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo
+						as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
+
+		return; // we're done with 2D initialization
+	}
+
+	// for 3D glide effect
+	// ------------------------
+
+	PolygonSet *pset = aw->polygonSet;
+
+	pset->includeShadows = (thickness < 1e-5);
+
+	if (!tessellateIntoRectangles(w, 1, 1, thickness))
+		return;
+
+	PolygonObject *p = pset->polygons;
+
+	int i;
+
+	for (i = 0; i < pset->nPolygons; i++, p++)
+	{
+		p->rotAxis.x = 1;
+		p->rotAxis.y = 0;
+		p->rotAxis.z = 0;
+
+		p->finalRelPos.x = 0;
+		p->finalRelPos.y = 0;
+		p->finalRelPos.z = finalDistFac * 0.8 * DEFAULT_Z_CAMERA * s->width;
+
+		p->finalRotAng = finalRotAng;
+	}
+	pset->allFadeDuration = 1.0f;
+	pset->backAndSidesFadeDur = 0.2f;
+	pset->doLighting = TRUE;
+	pset->correctPerspective = TRUE;
+}
+
