@@ -682,6 +682,22 @@ void modelCalcBounds(Model * model);
 
 float defaultAnimProgress(AnimWindow * aw);
 
+float decelerateProgressCustom(float progress, float minx, float maxx);
+
+float decelerateProgress2(float progress);
+
+void
+applyTransformToObject(Object *obj, GLfloat *mat);
+
+void
+obtainTransformMatrix (CompScreen *s, GLfloat *mat,
+					   float rotAngle, Vector3d rotAxis,
+					   Point3d translation);
+
+void polygonsAnimStep(CompScreen * s, CompWindow * w, float time);
+
+void defaultAnimStep(CompScreen * s, CompWindow * w, float time);
+
 
 void initParticles(int numParticles, ParticleSystem * ps);
 void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps);
