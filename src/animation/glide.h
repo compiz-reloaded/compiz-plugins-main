@@ -1,4 +1,4 @@
-/* This file was automatically generated.  Do not edit! */
+
 void fxGlideInit(CompScreen *s,CompWindow *w);
 void fxGlideUpdateWindowAttrib(AnimScreen *as,AnimWindow *aw,WindowPaintAttrib *wAttrib);
 void fxGlideAnimStep(CompScreen *s,CompWindow *w,float time);
