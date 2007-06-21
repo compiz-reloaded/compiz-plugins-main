@@ -656,6 +656,9 @@ AnimEffectProperties *animEffectPropertiesTmp;
 
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
+#define sigmoid(fx) (1.0f/(1.0f+exp(-5.0f*2*((fx)-0.5))))
+#define sigmoid2(fx, s) (1.0f/(1.0f+exp(-(s)*2*((fx)-0.5))))
+
 // up, down, left, right
 #define DODGE_AMOUNT(dir, w, dw) \
 	((dir) == 0 ? WIN_Y(w) - (WIN_Y(dw) + WIN_H(dw)) : \
@@ -670,10 +673,14 @@ modelInitObjects(Model * model, int x, int y, int width, int height);
 void
 postAnimationCleanup(CompWindow * w, Bool resetAnimation);
 
+void modelCalcBounds(Model * model);
+
 
 void initParticles(int numParticles, ParticleSystem * ps);
 void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps);
 void updateParticles(ParticleSystem * ps, float time);
 void finiParticles(ParticleSystem * ps);
+
+
 
 
