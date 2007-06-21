@@ -730,11 +730,7 @@ void polygonsPrePaintWindow(CompScreen * s, CompWindow * w);
 
 void polygonsPostPaintWindow(CompScreen * s, CompWindow * w);
 
-
-
-
-
-
+Bool ensureLargerClipCapacity(PolygonSet * pset);
 
 
 void initParticles(int numParticles, ParticleSystem * ps);
