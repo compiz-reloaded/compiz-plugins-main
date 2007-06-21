@@ -464,7 +464,7 @@ void defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 // =====================  Effect: 3D Spread  =========================
 
 // Frees up polygon objects in pset
-static void freePolygonObjects(PolygonSet * pset)
+void freePolygonObjects(PolygonSet * pset)
 {
 	PolygonObject *p = pset->polygons;
 
@@ -508,7 +508,7 @@ static void freePolygonObjects(PolygonSet * pset)
 }
 
 // Frees up intersecting polygon info of PolygonSet clips
-static void freeClipsPolygons(PolygonSet * pset)
+void freeClipsPolygons(PolygonSet * pset)
 {
 	int k;
 
@@ -529,7 +529,7 @@ static void freeClipsPolygons(PolygonSet * pset)
 }
 
 // Frees up the whole polygon set
-static void freePolygonSet(AnimWindow * aw)
+void freePolygonSet(AnimWindow * aw)
 {
 	PolygonSet *pset = aw->polygonSet;
 
@@ -565,7 +565,7 @@ tessellateVoronoi(CompWindow * w,
 */
 
 // Tessellates window into extruded rectangular objects
-static Bool
+Bool
 tessellateIntoRectangles(CompWindow * w,
 						 int gridSizeX, int gridSizeY, float thickness)
 {
@@ -836,7 +836,7 @@ tessellateIntoRectangles(CompWindow * w,
 }
 
 // Tessellates window into extruded hexagon objects
-static Bool
+Bool
 tessellateIntoHexagons(CompWindow * w,
                      int gridSizeX, int gridSizeY, float thickness)
 {
@@ -1146,7 +1146,7 @@ tessellateIntoHexagons(CompWindow * w,
 
 }
 
-static void
+void
 polygonsStoreClips(CompScreen * s, CompWindow * w,
 				   int nClip, BoxPtr pClip, int nMatrix, CompMatrix * matrix)
 {
@@ -1333,7 +1333,7 @@ polygonsStoreClips(CompScreen * s, CompWindow * w,
 // have a bounding box that intersects the clip. For intersecting
 // polygons, it computes the texture coordinates for the vertices
 // of that polygon (to draw the clip texture).
-static Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset)
+Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset)
 {
 	int j;
 
@@ -1507,7 +1507,7 @@ static Bool computePolygonShadows(PolygonSet * pset)
 }
 */
 
-static void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
+void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 {
 	ANIM_WINDOW(w);
 
@@ -1991,14 +1991,14 @@ static void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 			pset->lastClipInGroup[aw->nDrawGeometryCalls - 1] + 1;
 }
 
-static void polygonsPrePaintWindow(CompScreen * s, CompWindow * w)
+void polygonsPrePaintWindow(CompScreen * s, CompWindow * w)
 {
 	ANIM_WINDOW(w);
 	if (aw->polygonSet)
 		aw->polygonSet->firstNondrawnClip = 0;
 }
 
-static void polygonsPostPaintWindow(CompScreen * s, CompWindow * w)
+void polygonsPostPaintWindow(CompScreen * s, CompWindow * w)
 {
 	ANIM_WINDOW(w);
 	if (aw->clipsUpdated &&	// clips should be dropped only in the 1st step

@@ -704,6 +704,38 @@ void defaultAnimStep(CompScreen * s, CompWindow * w, float time);
 
 void defaultAnimInit(CompScreen * s, CompWindow * w);
 
+void freePolygonObjects(PolygonSet * pset);
+
+void freeClipsPolygons(PolygonSet * pset);
+
+void freePolygonSet(AnimWindow * aw);
+
+Bool
+tessellateIntoRectangles(CompWindow * w,
+						 int gridSizeX, int gridSizeY, float thickness);
+
+Bool
+tessellateIntoHexagons(CompWindow * w,
+                     int gridSizeX, int gridSizeY, float thickness);
+
+void
+polygonsStoreClips(CompScreen * s, CompWindow * w,
+				   int nClip, BoxPtr pClip, int nMatrix, CompMatrix * matrix);
+
+Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset);
+
+void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w);
+
+void polygonsPrePaintWindow(CompScreen * s, CompWindow * w);
+
+void polygonsPostPaintWindow(CompScreen * s, CompWindow * w);
+
+
+
+
+
+
+
 
 void initParticles(int numParticles, ParticleSystem * ps);
 void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps);
