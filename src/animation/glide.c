@@ -1,5 +1,12 @@
+<<<<<<< HEAD:glide.c
+=======
 #include "animation-internal.h"
+>>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:glide.c
 // =====================  Effect: Glide  =========================
+<<<<<<< HEAD:glide.c
+#include "animation.h"
+=======
+>>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:glide.c
 
 void fxGlideGetParams
 	(AnimScreen *as, AnimWindow *aw,
