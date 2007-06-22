@@ -609,6 +609,8 @@ typedef struct _AnimWindow
 	CompWindow *dodgeChainStart;// for the subject window
 	CompWindow *dodgeChainPrev;	// for dodging windows
 	CompWindow *dodgeChainNext;	// for dodging windows
+	Bool skipPostPrepareScreen;
+	Bool drawnOnHostSkip;
 } AnimWindow;
 
 typedef struct _AnimEffectProperties
@@ -660,11 +662,18 @@ AnimEffectProperties *animEffectPropertiesTmp;
 #define sigmoid2(fx, s) (1.0f/(1.0f+exp(-(s)*2*((fx)-0.5))))
 
 // up, down, left, right
-#define DODGE_AMOUNT(dir, w, dw) \
+#define DODGE_AMOUNT(w, dw, dir) \
 	((dir) == 0 ? WIN_Y(w) - (WIN_Y(dw) + WIN_H(dw)) : \
 	 (dir) == 1 ? (WIN_Y(w) + WIN_H(w)) - WIN_Y(dw) : \
 	 (dir) == 2 ? WIN_X(w) - (WIN_X(dw) + WIN_W(dw)) : \
 	              (WIN_X(w) + WIN_W(w)) - WIN_X(dw))
+
+// up, down, left, right
+#define DODGE_AMOUNT_BOX(box, dw, dir) \
+	((dir) == 0 ? (box).y - (WIN_Y(dw) + WIN_H(dw)) : \
+	 (dir) == 1 ? ((box).y + (box).height) - WIN_Y(dw) : \
+	 (dir) == 2 ? (box).x - (WIN_X(dw) + WIN_W(dw)) : \
+	              ((box).x + (box).width) - WIN_X(dw))
 
 // spring crossing x (second time it spring movement reaches target)
 #define SPRING_CROSSING_X 0.6184f

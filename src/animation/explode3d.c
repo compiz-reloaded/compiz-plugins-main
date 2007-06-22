@@ -1,8 +1,4 @@
-<<<<<<< HEAD:explode3d.c
-#include "animation.h"
-=======
 #include "animation-internal.h"
->>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:explode3d.c
 void fxExplode3DInit(CompScreen * s, CompWindow * w)
 {
 	ANIM_WINDOW(w);

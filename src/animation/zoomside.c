@@ -70,11 +70,7 @@
  *   after 45 deg. rotation)
  *
  */
-<<<<<<< HEAD:zoomside.c
-#include "animation.h"
-=======
 #include "animation-internal.h"
->>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:zoomside.c
 
 
 
