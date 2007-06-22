@@ -75,7 +75,7 @@
 #include <config.h>
 #endif
 
-#include "animation.h"
+#include "animation-internal.h"
 
 #include "magiclamp.h"
 #include "dream.h"
@@ -93,6 +93,9 @@
 #include "explode3d.h"
 #include "leafspread.h"
 #include "domino.h"
+
+int displayPrivateIndex;
+CompMetadata animMetadata;
 
 static void
 animDrawWindowGeometry(CompWindow * w);
@@ -3899,7 +3902,7 @@ static Bool animInit(CompPlugin * p)
 										    animScreenOptionInfo,
 											 ANIM_SCREEN_OPTION_NUM))
 		return FALSE;
-		
+
 	displayPrivateIndex = allocateDisplayPrivateIndex();
 	if (displayPrivateIndex < 0)
 	{

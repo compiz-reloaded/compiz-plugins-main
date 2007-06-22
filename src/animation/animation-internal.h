@@ -378,8 +378,8 @@ typedef struct RestackInfo
 	Bool raised;
 } RestackInfo;
 
-extern CompMetadata animMetadata;
 extern int displayPrivateIndex;
+extern CompMetadata animMetadata;
 
 typedef struct _AnimDisplay
 {

@@ -1,4 +1,4 @@
-#include "animation.h"
+#include "animation-internal.h"
 // =====================  Effect: Curved Fold  =========================
 
 void

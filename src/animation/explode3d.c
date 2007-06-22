@@ -1,4 +1,4 @@
-#include "animation.h"
+#include "animation-internal.h"
 void fxExplode3DInit(CompScreen * s, CompWindow * w)
 {
 	ANIM_WINDOW(w);

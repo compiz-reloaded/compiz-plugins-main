@@ -1,5 +1,5 @@
+#include "animation-internal.h"
 // =====================  Effect: Glide  =========================
-#include "animation.h"
 
 void fxGlideGetParams
 	(AnimScreen *as, AnimWindow *aw,

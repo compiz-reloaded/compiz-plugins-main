@@ -1,4 +1,4 @@
-#include "animation.h"
+#include "animation-internal.h"
 #include "animation_tex.h"
 // =====================  Effect: Burn  =========================
 

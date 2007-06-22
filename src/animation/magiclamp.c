@@ -70,7 +70,7 @@
  *   after 45 deg. rotation)
  *
  */
-#include "animation.h"
+#include "animation-internal.h"
 
 
 void

@@ -71,7 +71,7 @@
  *
  */
 
-#include "animation.h"
+#include "animation-internal.h"
 
 void initParticles(int numParticles, ParticleSystem * ps)
 {

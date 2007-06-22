@@ -1,4 +1,4 @@
-#include "animation.h"
+#include "animation-internal.h"
 // Frees up polygon objects in pset
 void freePolygonObjects(PolygonSet * pset)
 {
