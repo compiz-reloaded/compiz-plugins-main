@@ -75,7 +75,11 @@
 #include <config.h>
 #endif
 
+<<<<<<< HEAD:animation.c
+#include "animation.h"
+=======
 #include "animation-internal.h"
+>>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:animation.c
 
 #include "magiclamp.h"
 #include "dream.h"
@@ -93,9 +97,12 @@
 #include "explode3d.h"
 #include "leafspread.h"
 #include "domino.h"
+<<<<<<< HEAD:animation.c
+=======
 
 int displayPrivateIndex;
 CompMetadata animMetadata;
+>>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:animation.c
 
 static void
 animDrawWindowGeometry(CompWindow * w);
@@ -360,13 +367,29 @@ obtainTransformMatrix (CompScreen *s, GLfloat *mat,
 			 0, 1, 0, 0,
 			 0, 0, 1, -1.0/s->width,
 			 0, 0, 1, 1};
+<<<<<<< HEAD:animation.c
 
 	glTranslatef(0, 0, DEFAULT_Z_CAMERA * s->width);
+=======
+>>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:animation.c
 
+<<<<<<< HEAD:animation.c
 	glMultMatrixf(perspMat);
+=======
+	glTranslatef(0, 0, DEFAULT_Z_CAMERA * s->width);
+>>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:animation.c
 
+<<<<<<< HEAD:animation.c
+	glTranslatef(translation.x, translation.y, translation.z);
+=======
+	glMultMatrixf(perspMat);
+>>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:animation.c
+
+<<<<<<< HEAD:animation.c
+=======
 	glTranslatef(translation.x, translation.y, translation.z);
 
+>>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:animation.c
 	glRotatef(rotAngle, rotAxis.x, rotAxis.y, rotAxis.z);
 
 	glGetFloatv(GL_MODELVIEW_MATRIX, mat);
