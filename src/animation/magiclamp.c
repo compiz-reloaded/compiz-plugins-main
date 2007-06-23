@@ -34,48 +34,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-/*
- * TODO:
- *
- * - Auto direction option: Close in opposite direction of opening
- * - Proper side surface normals for lighting
- * - decoration shadows
- *   - shadow quad generation
- *   - shadow texture coords (from clip tex. matrices)
- *   - draw shadows
- *   - fade in shadows
- *
- * - Voronoi tessellation
- * - Brick tessellation
- * - Triangle tessellation
- * - Hexagonal tessellation
- *
- * Effects:
- * - Circular action for tornado type fx
- * - Tornado 3D (especially for minimize)
- * - Helix 3D (hor. strips descend while they rotate and fade in)
- * - Glass breaking 3D
- *   - Gaussian distr. points (for gradually increasing polygon size
- *                           starting from center or near mouse pointer)
- *   - Drawing cracks
- *   - Gradual cracking
- *
- * - fix slowness during transparent cube with <100 opacity
- * - fix occasional wrong side color in some windows
- * - fix on top windows and panels
- *   (These two only matter for viewing during Rotate Cube.
- *    All windows should be painted with depth test on
- *    like 3d-plugin does)
- * - play better with rotate (fix cube face drawn on top of polygons
- *   after 45 deg. rotation)
- *
- */
-<<<<<<< HEAD:magiclamp.c
-#include "animation.h"
-=======
 #include "animation-internal.h"
->>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:magiclamp.c
-
 
 void
 fxMagicLampInitGrid(AnimScreen * as,
@@ -178,7 +137,7 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
 		model->magicLampWaveCount = 0;
 }
 
-void
+static void
 fxMagicLampModelStepObject(CompWindow * w,
 						   Model * model,
 						   Object * object,

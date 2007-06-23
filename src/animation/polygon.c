@@ -1,10 +1,41 @@
-<<<<<<< HEAD:polygon.c
-#include "animation.h"
-=======
 #include "animation-internal.h"
->>>>>>> 1d600624bf9a0956375a82cfdd1f99da511af55f:polygon.c
+
+static Bool ensureLargerClipCapacity(PolygonSet * pset)
+{
+	if (pset->clipCapacity == pset->nClips)	// if list full
+	{
+		Clip4Polygons *newList = realloc
+				(pset->clips, sizeof(Clip4Polygons) *
+				 (pset->clipCapacity + ANIM_CLIP_LIST_INCREMENT));
+		if (!newList)
+			return FALSE;
+		// reset newly allocated part of this memory to 0
+		memset(newList + pset->clipCapacity,
+			   0, sizeof(Clip4Polygons) * ANIM_CLIP_LIST_INCREMENT);
+
+		int *newList2 = realloc
+				(pset->lastClipInGroup, sizeof(int) *
+				 (pset->clipCapacity + ANIM_CLIP_LIST_INCREMENT));
+		if (!newList2)
+		{
+			free(newList);
+			pset->clips = 0;
+			pset->lastClipInGroup = 0;
+			return FALSE;
+		}
+		// reset newly allocated part of this memory to 0
+		memset(newList2 + pset->clipCapacity,
+			   0, sizeof(int) * ANIM_CLIP_LIST_INCREMENT);
+
+		pset->clips = newList;
+		pset->clipCapacity += ANIM_CLIP_LIST_INCREMENT;
+		pset->lastClipInGroup = newList2;
+	}
+	return TRUE;
+}
+
 // Frees up polygon objects in pset
-void freePolygonObjects(PolygonSet * pset)
+static void freePolygonObjects(PolygonSet * pset)
 {
 	PolygonObject *p = pset->polygons;
 
@@ -48,7 +79,7 @@ void freePolygonObjects(PolygonSet * pset)
 }
 
 // Frees up intersecting polygon info of PolygonSet clips
-void freeClipsPolygons(PolygonSet * pset)
+static void freeClipsPolygons(PolygonSet * pset)
 {
 	int k;
 
@@ -873,7 +904,7 @@ polygonsStoreClips(CompScreen * s, CompWindow * w,
 // have a bounding box that intersects the clip. For intersecting
 // polygons, it computes the texture coordinates for the vertices
 // of that polygon (to draw the clip texture).
-Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset)
+static Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset)
 {
 	int j;
 

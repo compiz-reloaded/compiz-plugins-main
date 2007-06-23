@@ -302,72 +302,25 @@ typedef enum
 
 #define RANDOM_EFFECT_OFFSET 2 /* skip none and random */
 
+/* These macros definitions _always_ must match the number
+   of array items in the corresponding EffectType structure
+   in animation.c.
+   LAST_*_EFFECT always must be NUM_*_EFFECT - 1
+   LAST_RANDOM_*_EFFECT always must be LAST_*_EFFECT - RANDOM_EFFECT_OFFSET
+   */
 
-static AnimEffect minimizeEffectType[] = {
-	AnimEffectNone,
-	AnimEffectRandom,
-	AnimEffectBeamUp,
-	AnimEffectBurn,
-	AnimEffectCurvedFold,
-	AnimEffectDomino3D,
-	AnimEffectDream,
-	AnimEffectExplode3D,
-	AnimEffectFade,
-	AnimEffectGlide3D1,
-	AnimEffectGlide3D2,
-	AnimEffectHorizontalFolds,
-	AnimEffectLeafSpread3D,
-	AnimEffectMagicLamp,
-	AnimEffectRazr3D,
-	AnimEffectSidekick,
-	AnimEffectZoom
-};
-#define NUM_MINIMIZE_EFFECT (LIST_SIZE(minimizeEffectType))
+#define NUM_MINIMIZE_EFFECT 17
 #define LAST_MINIMIZE_EFFECT 16
 #define LAST_RANDOM_MINIMIZE_EFFECT 14
 
-static AnimEffect closeEffectType[] = {
-	AnimEffectNone,
-	AnimEffectRandom,
-	AnimEffectBeamUp,
-	AnimEffectBurn,
-	AnimEffectCurvedFold,
-	AnimEffectDomino3D,
-	AnimEffectDream,
-	AnimEffectExplode3D,
-	AnimEffectFade,
-	AnimEffectGlide3D1,
-	AnimEffectGlide3D2,
-	AnimEffectHorizontalFolds,
-	AnimEffectLeafSpread3D,
-	AnimEffectMagicLamp,
-	AnimEffectMagicLampVacuum,
-	AnimEffectRazr3D,
-	AnimEffectSidekick,
-	AnimEffectWave,
-	AnimEffectZoom
-};
-#define NUM_CLOSE_EFFECT (LIST_SIZE(closeEffectType))
+#define NUM_CLOSE_EFFECT 19
 #define LAST_CLOSE_EFFECT 18
 #define LAST_RANDOM_CLOSE_EFFECT 16
 
-static AnimEffect focusEffectType[] = {
-	AnimEffectNone,
-	AnimEffectDodge,
-	AnimEffectFocusFade,
-	AnimEffectWave
-};
-#define NUM_FOCUS_EFFECT (LIST_SIZE(focusEffectType))
+#define NUM_FOCUS_EFFECT 4
 #define LAST_FOCUS_EFFECT 3
 
-static AnimEffect shadeEffectType[] = {
-	AnimEffectNone,
-	AnimEffectRandom,
-	AnimEffectCurvedFold,
-	AnimEffectHorizontalFolds,
-	AnimEffectRollUp
-};
-#define NUM_SHADE_EFFECT (LIST_SIZE(shadeEffectType))
+#define NUM_SHADE_EFFECT 5
 #define LAST_SHADE_EFFECT 4
 #define LAST_RANDOM_SHADE_EFFECT 2
 
@@ -378,7 +331,7 @@ typedef struct RestackInfo
 	Bool raised;
 } RestackInfo;
 
-extern int displayPrivateIndex;
+extern int animDisplayPrivateIndex;
 extern CompMetadata animMetadata;
 
 typedef struct _AnimDisplay
@@ -609,6 +562,8 @@ typedef struct _AnimWindow
 	CompWindow *dodgeChainStart;// for the subject window
 	CompWindow *dodgeChainPrev;	// for dodging windows
 	CompWindow *dodgeChainNext;	// for dodging windows
+	Bool skipPostPrepareScreen;
+	Bool drawnOnHostSkip;
 } AnimWindow;
 
 typedef struct _AnimEffectProperties
@@ -635,7 +590,7 @@ typedef struct _AnimEffectProperties
 AnimEffectProperties *animEffectPropertiesTmp;
 
 #define GET_ANIM_DISPLAY(d)                                       \
-    ((AnimDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((AnimDisplay *) (d)->privates[animDisplayPrivateIndex].ptr)
 
 #define ANIM_DISPLAY(d)                       \
     AnimDisplay *ad = GET_ANIM_DISPLAY (d)
@@ -660,85 +615,347 @@ AnimEffectProperties *animEffectPropertiesTmp;
 #define sigmoid2(fx, s) (1.0f/(1.0f+exp(-(s)*2*((fx)-0.5))))
 
 // up, down, left, right
-#define DODGE_AMOUNT(dir, w, dw) \
+#define DODGE_AMOUNT(w, dw, dir) \
 	((dir) == 0 ? WIN_Y(w) - (WIN_Y(dw) + WIN_H(dw)) : \
 	 (dir) == 1 ? (WIN_Y(w) + WIN_H(w)) - WIN_Y(dw) : \
 	 (dir) == 2 ? WIN_X(w) - (WIN_X(dw) + WIN_W(dw)) : \
 	              (WIN_X(w) + WIN_W(w)) - WIN_X(dw))
+
+// up, down, left, right
+#define DODGE_AMOUNT_BOX(box, dw, dir) \
+	((dir) == 0 ? (box).y - (WIN_Y(dw) + WIN_H(dw)) : \
+	 (dir) == 1 ? ((box).y + (box).height) - WIN_Y(dw) : \
+	 (dir) == 2 ? (box).x - (WIN_X(dw) + WIN_W(dw)) : \
+	              ((box).x + (box).width) - WIN_X(dw))
 
 // spring crossing x (second time it spring movement reaches target)
 #define SPRING_CROSSING_X 0.6184f
 #define SPRING_PERCEIVED_T 0.5f
 //0.52884f
 
+/*
+ * Function prototypes
+ *
+ */
 
+/* animation.c*/
+ 
+ void
+modelInitObjects (Model * model,
+				  int x, int y,
+				  int width, int height);
+ 
 void
-modelInitObjects(Model * model, int x, int y, int width, int height);
-
+postAnimationCleanup (CompWindow * w,
+					  Bool resetAnimation);
+ 
 void
-postAnimationCleanup(CompWindow * w, Bool resetAnimation);
-
-void modelCalcBounds(Model * model);
-
-float defaultAnimProgress(AnimWindow * aw);
-
-float decelerateProgressCustom(float progress, float minx, float maxx);
-
-float decelerateProgress2(float progress);
-
+modelCalcBounds (Model * model);
+ 
+float
+defaultAnimProgress (AnimWindow * aw);
+ 
+float
+decelerateProgressCustom (float progress,
+						  float minx, float maxx);
+ 
+float
+decelerateProgress2 (float progress);
+ 
 void
-applyTransformToObject(Object *obj, GLfloat *mat);
-
+applyTransformToObject (Object *obj, GLfloat *mat);
+ 
 void
 obtainTransformMatrix (CompScreen *s, GLfloat *mat,
 					   float rotAngle, Vector3d rotAxis,
 					   Point3d translation);
+ 
+void polygonsAnimStep (CompScreen * s,
+					   CompWindow * w,
+					   float time);
 
-void polygonsAnimStep(CompScreen * s, CompWindow * w, float time);
+AnimDirection 
+getAnimationDirection (CompWindow * w,
+					   CompOptionValue *value,
+					   Bool openDir);
 
-AnimDirection getAnimationDirection(CompWindow * w,
-										   CompOptionValue *value, 
-										   Bool openDir);
-
-void defaultAnimStep(CompScreen * s, CompWindow * w, float time);
-
-void defaultAnimInit(CompScreen * s, CompWindow * w);
-
-void freePolygonObjects(PolygonSet * pset);
-
-void freeClipsPolygons(PolygonSet * pset);
-
-void freePolygonSet(AnimWindow * aw);
-
-Bool
-tessellateIntoRectangles(CompWindow * w,
-						 int gridSizeX, int gridSizeY, float thickness);
-
-Bool
-tessellateIntoHexagons(CompWindow * w,
-                     int gridSizeX, int gridSizeY, float thickness);
+void 
+defaultAnimStep (CompScreen * s,
+				 CompWindow * w,
+				 float time);
 
 void
-polygonsStoreClips(CompScreen * s, CompWindow * w,
-				   int nClip, BoxPtr pClip, int nMatrix, CompMatrix * matrix);
+defaultAnimInit (CompScreen * s,
+				 CompWindow * w);
 
-Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset);
-
-void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w);
-
-void polygonsPrePaintWindow(CompScreen * s, CompWindow * w);
-
-void polygonsPostPaintWindow(CompScreen * s, CompWindow * w);
-
-Bool ensureLargerClipCapacity(PolygonSet * pset);
+void
+animDrawWindowGeometry(CompWindow * w);
 
 
-void initParticles(int numParticles, ParticleSystem * ps);
-void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps);
-void updateParticles(ParticleSystem * ps, float time);
-void finiParticles(ParticleSystem * ps);
+/* beamup.c */
+
+void
+fxBeamupUpdateWindowAttrib (AnimScreen *as,
+							AnimWindow *aw,
+							WindowPaintAttrib *wAttrib);
+
+void
+fxBeamUpModelStep (CompScreen *s,
+				   CompWindow *w,
+				   float time);
+
+void fxBeamUpInit (CompScreen *s,
+				   CompWindow *w);
 
 
+/* burn.c */
+
+void
+fxBurnModelStep (CompScreen *s,
+				 CompWindow *w,
+				 float time);
+
+void fxBurnInit (CompScreen *s,
+				 CompWindow *w);
 
 
+/* curvedfold.c */
+
+void
+fxCurvedFoldModelStep (CompScreen *s,
+					   CompWindow *w,
+					   float time);
+
+
+/* dodge.c */
+
+void
+fxDodgePostPreparePaintScreen (CompScreen *s,
+							   CompWindow *w);
+
+void
+fxDodgeUpdateWindowTransform (CompScreen *s,
+							  CompWindow *w,
+							  CompTransform *wTransform);
+
+void
+fxDodgeAnimStep (CompScreen *s,
+				 CompWindow *w,
+				 float time);
+
+/* domino.c */
+
+void
+fxDomino3DInit (CompScreen *s,
+				CompWindow *w);
+
+
+/* dream.c */
+
+void
+fxDreamModelStep (CompScreen * s,
+				  CompWindow * w,
+				  float time);
+
+void
+fxDreamUpdateWindowAttrib(AnimScreen * as,
+						  AnimWindow * aw, 
+						  WindowPaintAttrib * wAttrib);
+
+
+/* explode3d.c */
+
+void
+fxExplode3DInit (CompScreen *s,
+				 CompWindow *w);
+
+
+/* fade.c */
+
+void
+fxFadeUpdateWindowAttrib (AnimScreen *as,
+						  AnimWindow *aw,
+						  WindowPaintAttrib *wAttrib);
+
+
+/* focusfade.c */
+
+void
+fxFocusFadeUpdateWindowAttrib2 (AnimScreen *as,
+								AnimWindow *aw,
+								WindowPaintAttrib *wAttrib);
+
+void
+fxFocusFadeUpdateWindowAttrib (AnimScreen *as,
+							   AnimWindow *aw,
+							   WindowPaintAttrib *wAttrib);
+
+
+/* glide.c */
+
+void
+fxGlideInit (CompScreen *s,
+			 CompWindow *w);
+
+void
+fxGlideUpdateWindowAttrib (AnimScreen *as,
+						   AnimWindow *aw,
+						   WindowPaintAttrib *wAttrib);
+
+void
+fxGlideAnimStep (CompScreen *s,
+				 CompWindow *w,
+				 float time);
+
+float
+fxGlideAnimProgress (AnimWindow *aw);
+
+void
+fxGlideGetParams (AnimScreen *as,
+				  AnimWindow *aw,
+				  float *finalDistFac,
+				  float *finalRotAng,
+				  float *thickness);
+
+
+/* horizontalfold.c */
+
+void
+fxHorizontalFoldsModelStep (CompScreen *s,
+							CompWindow *w,
+							float time);
+
+void
+fxHorizontalFoldsInitGrid (AnimScreen *as,
+						   WindowEvent forWindowEvent,
+						   int *gridWidth,
+						   int *gridHeight);
+
+
+/* leafspread.c */
+
+void
+fxLeafSpread3DInit (CompScreen *s,
+					CompWindow *w);
+
+
+/* magiclamp.c */
+
+void
+fxMagicLampInitGrid(AnimScreen * as,
+					 WindowEvent forWindowEvent,
+					 int *gridWidth, 
+					 int *gridHeight);
+
+void
+fxMagicLampVacuumInitGrid (AnimScreen * as,
+						   WindowEvent forWindowEvent,
+						   int *gridWidth, 
+						   int *gridHeight);
+
+void
+fxMagicLampInit (CompScreen * s,
+				 CompWindow * w);
+
+void
+fxMagicLampModelStep (CompScreen * s,
+					  CompWindow * w,
+					  float time);
+
+
+/* particle.c */
+
+void
+initParticles (int numParticles,
+			   ParticleSystem * ps);
+
+void
+drawParticles (CompScreen * s,
+			   CompWindow * w,
+			   ParticleSystem * ps);
+
+void
+updateParticles (ParticleSystem * ps,
+				 float time);
+
+void
+finiParticles (ParticleSystem * ps);
+
+void
+drawParticleSystems (CompScreen *s,
+					 CompWindow *w);
+
+
+/* polygon.c */
+
+Bool
+tessellateIntoRectangles (CompWindow * w,
+						  int gridSizeX,
+						  int gridSizeY,
+						  float thickness);
+ 
+ Bool
+tessellateIntoHexagons (CompWindow * w,
+						int gridSizeX,
+						int gridSizeY,
+						float thickness);
+
+ void
+polygonsStoreClips (CompScreen * s,
+					CompWindow * w,
+					int nClip, BoxPtr pClip,
+					int nMatrix, CompMatrix * matrix);
+ 
+void
+polygonsDrawCustomGeometry (CompScreen * s,
+							CompWindow * w);
+
+void
+polygonsPrePaintWindow (CompScreen * s,
+						CompWindow * w);
+ 
+void
+polygonsPostPaintWindow (CompScreen * s,
+						 CompWindow * w);
+ 
+void
+freePolygonSet (AnimWindow * aw);
+ 
+ 
+/* rollup.c */
+ 
+void
+fxRollUpModelStep (CompScreen *s,
+				   CompWindow *w,
+				   float time);
+ 
+void fxRollUpInitGrid (AnimScreen *as,
+					   WindowEvent forWindowEvent,
+					   int *gridWidth,
+					   int *gridHeight);
+ 
+ 
+/* wave.c */
+ 
+void
+fxWaveModelStep (CompScreen * s,
+				 CompWindow * w,
+				 float time);
+
+
+/* zoomside.c */
+
+void
+fxZoomUpdateWindowAttrib (AnimScreen *as,
+						  AnimWindow *aw,
+						  WindowPaintAttrib *wAttrib);
+
+void
+fxZoomModelStep (CompScreen *s,
+				 CompWindow *w,
+				 float time);
+
+void
+fxSidekickInit (CompScreen *s,
+				CompWindow *w);
 
