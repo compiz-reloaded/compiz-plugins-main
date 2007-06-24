@@ -862,13 +862,10 @@ static Bool wallDownWithWindow (CompDisplay *d, CompAction * action,
 }
 
 
-static void wallDrawCairoTextureOnScreen(CompScreen *s, CompOutput *output,
-					 Region region)
+static void wallDrawCairoTextureOnScreen(CompScreen *s)
 {
 	WALL_SCREEN(s);
 
-	glPushMatrix();
-	prepareXCoords(s, output, -DEFAULT_Z_CAMERA);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_BLEND);
 
@@ -1138,10 +1135,8 @@ static void wallDrawCairoTextureOnScreen(CompScreen *s, CompOutput *output,
 
 	glDisable(GL_BLEND);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glPopMatrix();
 	screenTexEnvMode (s, GL_REPLACE);
 	glColor4usv(defaultColor);
-
 }
 
 static void wallPaintScreen(CompScreen * s,
@@ -1186,7 +1181,16 @@ static Bool wallPaintOutput(CompScreen * s,
 	if ((ws->moving || ws->boxTimeout) && wallGetShowSwitcher(s->display) &&
 	    (output->id == ws->boxOutputDevice || output == &s->fullscreenOutput))
 	{
-		wallDrawCairoTextureOnScreen(s, output, region);
+		CompTransform sTransform = *transform;
+
+		transformToScreenSpace (s, output, -DEFAULT_Z_CAMERA, &sTransform);
+
+		glPushMatrix ();
+		glLoadMatrixf (sTransform.m);
+
+		wallDrawCairoTextureOnScreen(s);
+
+		glPopMatrix ();
 
 		if (wallGetMiniscreen(s->display))
 		{
@@ -1238,6 +1242,7 @@ static Bool wallPaintOutput(CompScreen * s,
 			moveScreenViewport(s, -origVX, -origVY, FALSE);
 		}
 	}
+
 	return status;
 }
 
