@@ -447,9 +447,13 @@ infoPaintOutput (CompScreen *s,
 			is->resizeGeometry.height / 2.0f - 
 			RESIZE_POPUP_HEIGHT / 2.0f;
 		CompMatrix matrix = is->backgroundLayer.texture.matrix;
+		CompTransform sTransform = *transform;
+
+		transformToScreenSpace (s, output, -DEFAULT_Z_CAMERA, &sTransform);
       
 		glPushMatrix ();
-		prepareXCoords (s, output, -DEFAULT_Z_CAMERA);
+		glLoadMatrixf (sTransform.m);
+
 		glDisableClientState (GL_TEXTURE_COORD_ARRAY);
 		glEnable (GL_BLEND);
 		screenTexEnvMode (s, GL_MODULATE);
@@ -460,6 +464,7 @@ infoPaintOutput (CompScreen *s,
   
 		glDisable (GL_BLEND);
 		glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+
 		glPopMatrix ();
 	}
 
