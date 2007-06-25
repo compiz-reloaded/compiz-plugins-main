@@ -556,7 +556,10 @@ static Bool wallMoveViewport(CompScreen * s, int x, int y, Window moveWindow)
 			ws->boxTimeout = 0;
 
 		if (otherScreenGrabExist(s, "move", "scale", "group-drag", "wall", 0))
+		{
+			ws->boxTimeout = 0;
 			ws->moving = FALSE;
+		}
 	}
 
 	damageScreen(s);
