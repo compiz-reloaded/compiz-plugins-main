@@ -28,6 +28,8 @@
 	s = findScreenAtDisplay(d, xid); \
     if (!s) \
         return FALSE; \
+    if (otherScreenGrabExist(s, "rotate", 0)) \
+		return FALSE; \
     xid = getIntOptionNamed(option, nOption, "window", 0); \
     w = findWindowAtDisplay(d, xid); \
     if ((!w || (w->type & CompWindowTypeDesktopMask) == 0) && \
