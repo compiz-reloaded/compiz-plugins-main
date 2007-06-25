@@ -802,11 +802,15 @@ static void expoDonePaintScreen(CompScreen * s)
 
 		if (w->type & CompWindowTypeNormalMask)
 		{
-			if (es->newCursorX < WIN_X(w) ||
-				es->newCursorX > WIN_X(w) + WIN_W(w))
+			if ((es->newCursorX < WIN_X(w) ||
+				es->newCursorX > WIN_X(w) + WIN_W(w)) &&
+				(es->newCursorX < WIN_X(w) + (s->hsize * s->width) ||
+				es->newCursorX > WIN_X(w) + WIN_W(w) + (s->hsize * s->width)))
 				continue;
-			if (es->newCursorY < WIN_Y(w) ||
-				es->newCursorY > WIN_Y(w) + WIN_H(w))
+			if ((es->newCursorY < WIN_Y(w) ||
+				es->newCursorY > WIN_Y(w) + WIN_H(w)) &&
+			    (es->newCursorY < WIN_Y(w) + (s->vsize * s->height) ||
+				es->newCursorY > WIN_Y(w) + WIN_H(w) + (s->vsize * s->height)))
 				continue;
 			es->dndState = DnDDuring;
 			es->dndWindow = w;
