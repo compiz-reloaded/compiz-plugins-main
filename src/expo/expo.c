@@ -255,10 +255,8 @@ static Bool expoExpo(CompDisplay * d, CompAction * action,
 
 	es->expoMode = !es->expoMode;
 	es->anyClick = FALSE;
-	if (es->expoMode)
+	if (es->expoMode && !es->grabIndex)
 		es->grabIndex =	pushScreenGrab(s, None, "expo");
-	else if (es->grabIndex)
-		removeScreenGrab(s, es->grabIndex, 0);
 
 	if (es->dndWindow)
 		syncWindowPosition(es->dndWindow);
@@ -393,11 +391,7 @@ static Bool expoPaintOutput(CompScreen * s,
 
 		for (w = s->windows; w; w = w->next)
 			syncWindowPosition(w);
-		if (es->grabIndex)
-		{
-			removeScreenGrab(s, es->grabIndex, 0);
-			es->grabIndex = 0;
-		}
+
 		damageScreen(s);
 		es->origVX = es->mouseOverViewX;
 		es->origVY = es->mouseOverViewY;
@@ -759,6 +753,12 @@ static void expoDonePaintScreen(CompScreen * s)
 
 	if ((es->expoCam > 0.0f && es->expoCam < 1.0f) || es->dndState != DnDNone)
 		damageScreen(s);
+
+	if (es->grabIndex && es->expoCam <= 0.0f && !es->expoMode)
+	{
+		removeScreenGrab(s, es->grabIndex, 0);
+		es->grabIndex = 0;
+	}
 
 	UNWRAP(es, s, donePaintScreen);
 	(*s->donePaintScreen) (s);
