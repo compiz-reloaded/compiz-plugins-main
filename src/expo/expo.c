@@ -253,7 +253,7 @@ static Bool expoExpo(CompDisplay * d, CompAction * action,
 	if (otherScreenGrabExist(s, "expo", 0))
 		return FALSE;
 
-	es->expoMode = !es->expoMode;
+	es->expoMode = !es->expoMode;	
 	es->anyClick = FALSE;
 	if (es->expoMode && !es->grabIndex)
 		es->grabIndex =	pushScreenGrab(s, None, "expo");
@@ -930,6 +930,12 @@ static Bool expoInitScreen(CompPlugin * p, CompScreen * s)
 static void expoFiniScreen(CompPlugin * p, CompScreen * s)
 {
 	EXPO_SCREEN(s);
+
+	if (es->grabIndex)
+	{
+		removeScreenGrab(s, es->grabIndex, 0);
+		es->grabIndex = 0;
+	}
 
 	UNWRAP(es, s, paintOutput);
 	UNWRAP(es, s, paintScreen);
