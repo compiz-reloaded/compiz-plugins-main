@@ -440,7 +440,7 @@ static void expoPaintWall(CompScreen * s,
 
 	int oldFilter = s->display->textureFilter;
 
-	if (es->expoCam == 1 && expoGetMipmaps(s->display))
+	if (expoGetMipmaps(s->display))
 		s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
 
 	int origVX = s->x;
