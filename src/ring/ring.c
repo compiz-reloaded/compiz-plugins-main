@@ -472,7 +472,7 @@ ringPaintWindow (CompWindow		  *w,
 		mask |= PAINT_WINDOW_TRANSLUCENT_MASK;
 
 	    matrixTranslate (&wTransform, w->attrib.x, w->attrib.y, 0.0f);
-	    matrixScale (&wTransform, rw->scale, rw->scale, 0.0f);
+	    matrixScale (&wTransform, rw->scale, rw->scale, 1.0f);
 	    matrixTranslate (&wTransform,
 			     rw->tx / rw->scale - w->attrib.x,
 			     rw->ty / rw->scale - w->attrib.y,
@@ -583,7 +583,7 @@ ringPaintWindow (CompWindow		  *w,
 			                      rw->slot->brightness;
 
 		    matrixTranslate (&wTransform, w->attrib.x, w->attrib.y, 0.0f);
-		    matrixScale (&wTransform, scale, scale, 0.0f);
+		    matrixScale (&wTransform, scale, scale, 1.0f);
 		    matrixTranslate (&wTransform,
 				     (x - w->attrib.x) / scale - w->attrib.x,
 				     (y - w->attrib.y) / scale - w->attrib.y,
