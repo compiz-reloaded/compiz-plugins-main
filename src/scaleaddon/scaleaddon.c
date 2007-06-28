@@ -994,14 +994,15 @@ scaleaddonLayoutSlotsAndAssignWindows (CompScreen *s)
 
     switch (scaleaddonGetLayoutMode (s))
     {
+    case LayoutModeOrganicExperimental:
+	status = layoutOrganicThumbs (s);
+	break;
     case LayoutModeNormal:
+    default:
 	UNWRAP (as, ss, layoutSlotsAndAssignWindows);
 	status = (*ss->layoutSlotsAndAssignWindows) (s);
 	WRAP (as, ss, layoutSlotsAndAssignWindows,
 	      scaleaddonLayoutSlotsAndAssignWindows);
-	break;
-    case LayoutModeOrganicExperimental:
-	status = layoutOrganicThumbs (s);
 	break;
     }
 
