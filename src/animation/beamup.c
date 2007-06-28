@@ -226,7 +226,7 @@ void fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	else
 		aw->useDrawRegion = FALSE;
 
-	if (aw->animRemainingTime > 0 && aw->ps)
+	if (aw->animRemainingTime > 0 && aw->numPs)
 	{
 		fxBeamUpGenNewFire(s, &aw->ps[1], 
 			WIN_X(w), WIN_Y(w) + (WIN_H(w) / 2), WIN_W(w),
@@ -239,7 +239,7 @@ void fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 		&& (aw->ps[0].active || aw->ps[1].active))
 		aw->animRemainingTime = timestep;
 
-	if (!aw->numPs)
+	if (!aw->numPs || !aw->ps)
 	{
 		if (aw->ps)
 		{

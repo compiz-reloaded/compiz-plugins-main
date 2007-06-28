@@ -349,7 +349,7 @@ void fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	else
 		aw->useDrawRegion = FALSE;
 
-	if (aw->animRemainingTime > 0 && aw->ps)
+	if (aw->animRemainingTime > 0 && aw->numPs)
 	{
 		switch (aw->animFireDirection)
 		{
@@ -405,7 +405,7 @@ void fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 		&& (aw->ps[0].active || aw->ps[1].active))
 		aw->animRemainingTime = timestep;
 
-	if (!aw->numPs)
+	if (!aw->numPs || !aw->ps)
 	{
 		if (aw->ps)
 		{

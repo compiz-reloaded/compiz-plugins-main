@@ -2653,8 +2653,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		if (event->xproperty.atom == d->clientListStackingAtom)
 		{
 			CompScreen *s = findScreenAtDisplay (d, event->xproperty.window);
-			if (s)
-				updateLastClientListStacking(s);
+			updateLastClientListStacking(s);
 		}
 		break;
 	case MapNotify:
@@ -3066,9 +3065,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			else if (ce->above == None)
 				break;
 			CompScreen *s = findScreenAtDisplay (d, event->xproperty.window);
-			if (!s)
-				break;
-
 			ANIM_SCREEN(s);
 			int i;
 			int n = s->nClientList;
@@ -3145,8 +3141,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 					Bool preferRaised = FALSE;
 					Bool onlyTwo = FALSE;
 
-					if (wChangeEnd &&
-						clientListStacking[changeEnd] ==
+					if (clientListStacking[changeEnd] ==
 					    as->lastClientListStacking[changeStart] &&
 						clientListStacking[changeStart] ==
 					    as->lastClientListStacking[changeEnd])
