@@ -59,7 +59,7 @@ typedef struct _ScaleAddonScreen {
 
     ScaleLayoutSlotsAndAssignWindowsProc layoutSlotsAndAssignWindows;
     ScalePaintDecorationProc		 scalePaintDecoration;
-    
+
     Pixmap      textPixmap;
     CompTexture textTexture;
 
@@ -97,7 +97,7 @@ typedef struct _ScaleAddonWindow {
 	    GET_ADDON_SCREEN (w->screen, GET_ADDON_DISPLAY (w->screen->display)))
 
 
-static void 
+static void
 scaleaddonFreeWindowTitle (CompScreen *s)
 {
     ADDON_SCREEN (s);
@@ -111,7 +111,7 @@ scaleaddonFreeWindowTitle (CompScreen *s)
     as->textPixmap = None;
 }
 
-static void 
+static void
 scaleaddonRenderWindowTitle (CompWindow *w)
 {
     CompTextAttrib tA;
@@ -128,9 +128,9 @@ scaleaddonRenderWindowTitle (CompWindow *w)
 	return;
 
     scale = sw->slot ? sw->slot->scale : sw->scale;
-    tA.maxwidth = (w->attrib.width * scale) - 
+    tA.maxwidth = (w->attrib.width * scale) -
 	          (2 * scaleaddonGetBorderSize (w->screen));
-    tA.maxheight = (w->attrib.height * scale) - 
+    tA.maxheight = (w->attrib.height * scale) -
      	           (2 * scaleaddonGetBorderSize (w->screen));
     tA.screen = w->screen;
     tA.size = scaleaddonGetTitleSize (w->screen);
@@ -138,7 +138,7 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     tA.color[1] = scaleaddonGetFontColorGreen (w->screen);
     tA.color[2] = scaleaddonGetFontColorBlue (w->screen);
     tA.color[3] = scaleaddonGetFontColorAlpha (w->screen);
-    tA.style = (scaleaddonGetTitleBold (w->screen)) ? 
+    tA.style = (scaleaddonGetTitleBold (w->screen)) ?
 	       TEXT_STYLE_BOLD : TEXT_STYLE_NORMAL;
     tA.family = "Sans";
     tA.ellipsize = TRUE;
@@ -174,9 +174,9 @@ scaleaddonDrawWindowTitle (CompWindow *w)
     float height = as->textHeight;
     float border = scaleaddonGetBorderSize (w->screen);
 
-    float x = sw->tx + w->attrib.x + 
+    float x = sw->tx + w->attrib.x +
 	      ((w->attrib.width * sw->scale) / 2) - (as->textWidth / 2);
-    float y = sw->ty + w->attrib.y + 
+    float y = sw->ty + w->attrib.y +
 	      ((w->attrib.height * sw->scale) / 2) - (as->textHeight / 2);
 
     x = floor (x);
@@ -288,7 +288,7 @@ scaleaddonDrawWindowHighlight (CompWindow *w)
     float width  = WIN_W(w) * sw->scale;
     float height = WIN_H(w) * sw->scale;
 
-    /* we use a poor replacement for roundf() 
+    /* we use a poor replacement for roundf()
      * (available in C99 only) here */
     x = floor (x + 0.5f);
     y = floor (y + 0.5f);
@@ -361,17 +361,17 @@ scaleaddonCheckForWindowAt (CompScreen * s, int x, int y)
             y1 = w->attrib.y - w->input.top * sw->scale;
             x2 = w->attrib.x + (w->width + w->input.right) * sw->scale;
             y2 = w->attrib.y + (w->height + w->input.bottom) * sw->scale;
-            
+
             x1 += sw->tx;
             y1 += sw->ty;
             x2 += sw->tx;
             y2 += sw->ty;
-            
+
             if (x1 <= x && y1 <= y && x2 > x && y2 > y)
                 return w;
         }
     }
-    
+
     return NULL;
 }
 
@@ -449,14 +449,14 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	{
 	    SCALE_WINDOW (w);
 	    ADDON_WINDOW (w);
-    
+
 	    XRectangle outputRect;
 	    BOX outputBox;
 	    int head;
 
 	    if (!sw->slot)
 		return FALSE;
-    
+
 	    head = outputDeviceForPoint (s, sw->slot->x1, sw->slot->y1);
 	    outputBox = w->screen->outputDev[head].region.extents;
 
@@ -475,10 +475,10 @@ scaleaddonZoomWindow (CompDisplay     *d,
 
 		aw->rescaled = TRUE;
 
-		sw->slot->x1 = (outputRect.width / 2) - (WIN_W(w) / 2) + 
-			       w->input.left + outputRect.x; 
-		sw->slot->y1 = (outputRect.height / 2) - (WIN_H(w) / 2) + 
-			       w->input.top + outputRect.y; 
+		sw->slot->x1 = (outputRect.width / 2) - (WIN_W(w) / 2) +
+			       w->input.left + outputRect.x;
+		sw->slot->y1 = (outputRect.height / 2) - (WIN_H(w) / 2) +
+			       w->input.top + outputRect.y;
 		sw->slot->x2 = sw->slot->x1 + WIN_W(w);
 		sw->slot->y2 = sw->slot->y1 + WIN_H(w);
 		sw->slot->scale = 1.0f;
@@ -495,7 +495,7 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	    sw->adjust = TRUE;
 	    ss->state = SCALE_STATE_OUT;
 
-	    /* slot size may have changed, so 
+	    /* slot size may have changed, so
 	     * update window title */
 	    scaleaddonRenderWindowTitle (w);
 	    damageScreen (w->screen);
@@ -615,7 +615,7 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
  * */
 #define ORGANIC_STEP 0.05
 
-static int 
+static int
 organicCompareWindows (const void *elem1, const void *elem2)
 {
     CompWindow *w1 = *((CompWindow **) elem1);
@@ -896,7 +896,7 @@ layoutOrganicRemoveOverlap (CompScreen * s, int areaWidth, int areaHeight)
     }
 }
 
-static Bool 
+static Bool
 layoutOrganicThumbs(CompScreen * s)
 {
     CompWindow *w;
@@ -1009,9 +1009,9 @@ scaleaddonLayoutSlotsAndAssignWindows (CompScreen *s)
     return status;
 }
 
-static void 
-scaleaddonScreenOptionChanged (CompScreen              *s, 
-			       CompOption              *opt, 
+static void
+scaleaddonScreenOptionChanged (CompScreen              *s,
+			       CompOption              *opt,
 			       ScaleaddonScreenOptions num)
 {
     switch (num)
@@ -1122,7 +1122,7 @@ scaleaddonInitScreen (CompPlugin *p,
     initTexture (s, &as->textTexture);
 
     WRAP (as, ss, scalePaintDecoration, scaleaddonScalePaintDecoration);
-    WRAP (as, ss, layoutSlotsAndAssignWindows, 
+    WRAP (as, ss, layoutSlotsAndAssignWindows,
 	  scaleaddonLayoutSlotsAndAssignWindows);
 
     scaleaddonSetTitleBoldNotify (s, scaleaddonScreenOptionChanged);
@@ -1153,7 +1153,7 @@ scaleaddonFiniScreen (CompPlugin *p,
 }
 
 static Bool
-scaleaddonInitWindow (CompPlugin *p, 
+scaleaddonInitWindow (CompPlugin *p,
 		      CompWindow *w)
 {
     ScaleAddonWindow *aw;
@@ -1163,7 +1163,7 @@ scaleaddonInitWindow (CompPlugin *p,
     aw = malloc (sizeof (ScaleAddonWindow));
     if (!aw)
 	return FALSE;
-    
+
     aw->rescaled = FALSE;
 
     w->privates[as->windowPrivateIndex].ptr = aw;
