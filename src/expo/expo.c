@@ -167,8 +167,6 @@ static void expoHandleEvent(CompDisplay * d, XEvent * event)
 	EXPO_DISPLAY(d);
 	CompScreen *s;
 
-	ExpoScreen *es;
-
 	switch (event->type)
 	{
 	case KeyPress:
@@ -191,51 +189,60 @@ static void expoHandleEvent(CompDisplay * d, XEvent * event)
 		break;
 	case ButtonPress:
 		s = findScreenAtDisplay(d, event->xbutton.root);
-		es = GET_EXPO_SCREEN(s, ed);
-		if (es->expoMode)
+		if (s)
 		{
-			es->anyClick = TRUE;
-			es->updateVP = TRUE;
-			damageScreen(s);
-			if (event->xbutton.button == Button1)
+			EXPO_SCREEN(s);
+			if (es->expoMode)
 			{
-				es->updateVP = FALSE;
-				es->dndState = DnDStart;
+				es->anyClick = TRUE;
+				es->updateVP = TRUE;
+				damageScreen(s);
+				if (event->xbutton.button == Button1)
+				{
+					es->updateVP = FALSE;
+					es->dndState = DnDStart;
+				}
+				else if (event->xbutton.button != Button5)
+					es->leaveExpo = TRUE;
 			}
-			else if (event->xbutton.button != Button5)
-				es->leaveExpo = TRUE;
+			es->pointerX = event->xbutton.x_root;
+			es->pointerY = event->xbutton.y_root;
 		}
-		es->pointerX = event->xbutton.x_root;
-		es->pointerY = event->xbutton.y_root;
 		break;
 	case ButtonRelease:
 		s = findScreenAtDisplay(d, event->xbutton.root);
-		es = GET_EXPO_SCREEN(s, ed);
-
-		if (es->dndState == DnDDuring || es->dndState == DnDStart)
+		if (s)
 		{
-			if (es->dndWindow)
-			{
-				syncWindowPosition(es->dndWindow);
-				(*s->windowUngrabNotify)(es->dndWindow);
-				/* update window attibutes to make sure a
-				   moved maximized window is properly snapped
-				   to the work area */
-				updateWindowAttributes(es->dndWindow,
-					CompStackingUpdateModeNone);
-			}
+			EXPO_SCREEN(s);
 
-			es->dndState = DnDNone;
-			es->dndWindow = NULL;
+			if (es->dndState == DnDDuring || es->dndState == DnDStart)
+			{
+				if (es->dndWindow)
+				{
+					syncWindowPosition(es->dndWindow);
+					(*s->windowUngrabNotify)(es->dndWindow);
+					/* update window attibutes to make sure a
+					   moved maximized window is properly snapped
+					   to the work area */
+					updateWindowAttributes(es->dndWindow,
+										   CompStackingUpdateModeNone);
+				}
+
+				es->dndState = DnDNone;
+				es->dndWindow = NULL;
+			}
+			es->pointerX = event->xbutton.x_root;
+			es->pointerY = event->xbutton.y_root;
 		}
-		es->pointerX = event->xbutton.x_root;
-		es->pointerY = event->xbutton.y_root;
 		break;
 	case MotionNotify:
 		s = findScreenAtDisplay(d, event->xbutton.root);
-		es = GET_EXPO_SCREEN(s, ed);
-		es->pointerX = event->xmotion.x_root;
-		es->pointerY = event->xmotion.y_root;
+		if (s)
+		{
+			EXPO_SCREEN(s);
+			es->pointerX = event->xmotion.x_root;
+			es->pointerY = event->xmotion.y_root;
+		}
 		break;
 	}
 
