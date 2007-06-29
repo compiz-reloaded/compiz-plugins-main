@@ -38,14 +38,12 @@
 
 // =====================  Effect: Glide  =========================
 
-void fxGlideGetParams
+static void
+fxGlideGetParams
 	(AnimScreen *as, AnimWindow *aw,
 	 float *finalDistFac, float *finalRotAng, float *thickness)
 {
-	// Sub effects:
-	// 1: Glide 1
-	// 2: Glide 2
-	if (aw->subEffectNo == 1)
+	if (aw->curAnimEffect == AnimEffectGlide3D1)
 	{
 		*finalDistFac = as->opt[ANIM_SCREEN_OPTION_GLIDE1_AWAY_POS].value.f;
 		*finalRotAng = as->opt[ANIM_SCREEN_OPTION_GLIDE1_AWAY_ANGLE].value.f;
@@ -57,7 +55,24 @@ void fxGlideGetParams
 		*finalRotAng = as->opt[ANIM_SCREEN_OPTION_GLIDE2_AWAY_ANGLE].value.f;
 		*thickness = as->opt[ANIM_SCREEN_OPTION_GLIDE2_THICKNESS].value.f;
 	}
+}
 
+Bool
+fxGlideIsPolygonBased (AnimScreen *as, AnimWindow *aw)
+{
+	if (aw->curAnimEffect == AnimEffectGlide3D1)
+		return (as->opt[ANIM_SCREEN_OPTION_GLIDE1_THICKNESS].value.f > 1e-5);
+	else
+		return (as->opt[ANIM_SCREEN_OPTION_GLIDE2_THICKNESS].value.f > 1e-5);
+}
+
+Bool
+fxGlideLetOthersDrawGeoms(CompScreen *s, CompWindow *w)
+{
+	ANIM_SCREEN(s);
+	ANIM_WINDOW(w);
+
+	return !fxGlideIsPolygonBased(as, aw);
 }
 
 float fxGlideAnimProgress(AnimWindow * aw)
@@ -76,141 +91,122 @@ float fxGlideAnimProgress(AnimWindow * aw)
 	return decelerateProgress2(forwardProgress);
 }
 
-static void
-fxGlideModelStepObject(CompWindow * w,
-					   Model * model,
-					   Object * obj,
-					   GLfloat *mat,
-					   Point3d rotAxisOffset)
-{
-	float origx = w->attrib.x + (WIN_W(w) * obj->gridPosition.x -
-								 w->output.left) * model->scale.x;
-	float origy = w->attrib.y + (WIN_H(w) * obj->gridPosition.y -
-								 w->output.top) * model->scale.y;
-
-	obj->posRel3d.x = origx - rotAxisOffset.x;
-	obj->posRel3d.y = origy - rotAxisOffset.y;
-
-	applyTransformToObject(obj, mat);
-	obj->position.x += rotAxisOffset.x;
-	obj->position.y += rotAxisOffset.y;
-}
-
 void fxGlideAnimStep(CompScreen * s, CompWindow * w, float time)
 {
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
-	float finalDistFac;
-	float finalRotAng;
-	float thickness;
-
-	fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
-
-	if (thickness > 1e-5) // the effect is 3D
-	{
-		polygonsAnimStep(s, w, time); // do 3D anim step instead
-		return;
-	}
-
-	// for 2D glide effect
-	// ------------------------
-
-	int i, j, steps;
-	Model *model = aw->model;
-
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
-
-	aw->timestep = timestep;
-
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
-	steps = MAX(1, steps);
-
-	for (j = 0; j < steps; j++)
-	{
-		float forwardProgress = fxGlideAnimProgress(aw);
-
-		float finalz = finalDistFac * 0.8 * DEFAULT_Z_CAMERA * s->width;
-
-		Vector3d rotAxis = {1, 0, 0};
-		Point3d rotAxisOffset =
-			{WIN_X(w) + WIN_W(w) * model->scale.x / 2,
-			 WIN_Y(w) + WIN_H(w) * model->scale.y / 2,
-			 0};
-		Point3d modelPos = {0, 0, finalz * forwardProgress};
-
-		GLfloat mat[16];
-		obtainTransformMatrix(s, mat, finalRotAng * forwardProgress,
-							  rotAxis, modelPos);
-		for (i = 0; i < model->numObjects; i++)
-			fxGlideModelStepObject(w, model,
-								   &model->objects[i],
-								   mat,
-								   rotAxisOffset);
-
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
-	modelCalcBounds(model);
+	if (fxGlideIsPolygonBased(as, aw))
+		polygonsAnimStep(s, w, time);
+	else
+		defaultAnimStep(s, w, time);
 }
 
 void
 fxGlideUpdateWindowAttrib(AnimScreen * as,
 						 AnimWindow * aw, WindowPaintAttrib * wAttrib)
 {
+	if (fxGlideIsPolygonBased(as, aw))
+		return;
+
+	// the effect is CompTransform-based
+
+	float forwardProgress = fxGlideAnimProgress(aw);
+
+	wAttrib->opacity = aw->storedOpacity * (1 - forwardProgress);
+}
+
+// Scales z by 0 and does perspective distortion so that it
+// looks the same wherever on screen
+static void
+resetAndPerspectiveDistortOnZ (CompTransform *wTransform, float v)
+{
+	/*
+	  This does
+	  wTransform = M * wTransform, where M is
+	  1, 0, 0, 0,
+	  0, 1, 0, 0,
+	  0, 0, 0, v,
+	  0, 0, 0, 1
+	 */
+	float *m = wTransform->m;
+	m[8] = v * m[12];
+	m[9] = v * m[13];
+	m[10] = v * m[14];
+	m[11] = v * m[15];
+}
+
+void
+fxGlideUpdateWindowTransform(CompScreen *s,
+							 CompWindow *w,
+							 CompTransform *wTransform)
+{
+	ANIM_SCREEN(s);
+	ANIM_WINDOW(w);
+
+	if (fxGlideIsPolygonBased (as, aw))
+		return;
+
 	float finalDistFac;
 	float finalRotAng;
 	float thickness;
 
 	fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
 
-	if (thickness > 1e-5) // the effect is 3D
-		return;
-
-	// the effect is 2D
-
-	if (aw->model->scale.x < 1.0 &&	// if Scale plugin in progress
-		aw->curWindowEvent == WindowEventUnminimize)	// and if unminimizing
-		return;					// then allow Fade to take over opacity
 	float forwardProgress = fxGlideAnimProgress(aw);
 
-	wAttrib->opacity = aw->storedOpacity * (1 - forwardProgress);
-}
+	float finalz = finalDistFac * 0.8 * DEFAULT_Z_CAMERA * s->width;
 
+	Vector3d rotAxis = {1, 0, 0};
+	Point3d rotAxisOffset =
+		{WIN_X(w) + WIN_W(w) / 2.0f,
+		 WIN_Y(w) + WIN_H(w) / 2.0f,
+		 0};
+	Point3d translation = {0, 0, finalz * forwardProgress};
+
+	float rotAngle = finalRotAng * forwardProgress;
+
+	// put back to window position
+	matrixTranslate (wTransform, rotAxisOffset.x, rotAxisOffset.y, 0);
+
+	resetAndPerspectiveDistortOnZ (wTransform, -1.0/s->width);
+
+	// animation movement
+	matrixTranslate (wTransform, translation.x, translation.y, translation.z);
+
+	// animation rotation
+	matrixRotate (wTransform, rotAngle, rotAxis.x, rotAxis.y, rotAxis.z);
+
+	// intentional scaling of z by 0 to prevent weird opacity results and
+	// flashing that happen when z coords are between 0 and 1 (bug in compiz?)
+	matrixScale (wTransform, 1.0f, 1.0f, 0.0f);
+
+	// place window rotation axis at origin
+	matrixTranslate (wTransform, -rotAxisOffset.x, -rotAxisOffset.y, 0);
+}
 
 void fxGlideInit(CompScreen * s, CompWindow * w)
 {
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
-	float finalDistFac;
-	float finalRotAng;
-	float thickness;
-
-	fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
-
-	if (thickness < 1e-5) // if thicknes is 0, we'll make the effect 2D
+	if (!fxGlideIsPolygonBased(as, aw))
 	{
 		// store window opacity
 		aw->storedOpacity = w->paint.opacity;
 		aw->timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo
 						as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 
-		return; // we're done with 2D initialization
+		return; // we're done with CompTransform-based glide initialization
 	}
 
-	// for 3D glide effect
-	// ------------------------
+	// for polygon-based glide effect
+
+	float finalDistFac;
+	float finalRotAng;
+	float thickness;
+
+	fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
 
 	PolygonSet *pset = aw->polygonSet;
 

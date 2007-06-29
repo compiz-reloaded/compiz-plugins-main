@@ -581,7 +581,7 @@ typedef struct _AnimEffectProperties
 	Bool dontUseQTexCoord;		// TRUE if effect doesn't need Q coord.
 	void (*animStepPolygonFunc) (CompWindow *, PolygonObject *, float);
 	int subEffectNo;			// For effects that share same functions
-	Bool letOthersDrawGeoms;	// TRUE if we won't draw geometries
+	Bool (*letOthersDrawGeoms) (CompScreen *, CompWindow *);
 	void (*updateWindowTransformFunc)
 		(CompScreen *, CompWindow *, CompTransform *);
 	void (*postPreparePaintScreenFunc) (CompScreen *, CompWindow *);
@@ -664,11 +664,6 @@ decelerateProgress2 (float progress);
  
 void
 applyTransformToObject (Object *obj, GLfloat *mat);
- 
-void
-obtainTransformMatrix (CompScreen *s, GLfloat *mat,
-					   float rotAngle, Vector3d rotAxis,
-					   Point3d translation);
  
 void polygonsAnimStep (CompScreen * s,
 					   CompWindow * w,
@@ -811,12 +806,15 @@ float
 fxGlideAnimProgress (AnimWindow *aw);
 
 void
-fxGlideGetParams (AnimScreen *as,
-				  AnimWindow *aw,
-				  float *finalDistFac,
-				  float *finalRotAng,
-				  float *thickness);
+fxGlideUpdateWindowTransform(CompScreen *s,
+							 CompWindow *w,
+							 CompTransform *wTransform);
 
+Bool
+fxGlideIsPolygonBased (AnimScreen *as, AnimWindow *aw);
+
+Bool
+fxGlideLetOthersDrawGeoms(CompScreen *s, CompWindow *aw);
 
 /* horizontalfold.c */
 

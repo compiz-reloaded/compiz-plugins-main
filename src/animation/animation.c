@@ -163,6 +163,12 @@ void defaultAnimInit(CompScreen * s, CompWindow * w)
 					as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 }
 
+static Bool
+defaultLetOthersDrawGeoms (CompScreen *s, CompWindow *w)
+{
+	return TRUE;
+}
+
 static void
 animStoreRandomEffectList (CompOptionValue *value,
 						   AnimEffect *allowedEffects,
@@ -336,52 +342,6 @@ float decelerateProgress2(float progress)
 	return decelerateProgressCustom(progress, 0.5, 0.75);
 }
 
-
-void
-applyTransformToObject(Object *obj, GLfloat *mat)
-{
-	Point3d o = obj->posRel3d;
-
-	float x =
-		o.x * mat[0] + o.y * mat[4] + o.z * mat[8] + 1 * mat[12];
-	float y =
-		o.x * mat[1] + o.y * mat[5] + o.z * mat[9] + 1 * mat[13];
-	// ignore z
-	float w =
-		o.x * mat[3] + o.y * mat[7] + o.z * mat[11] + 1 * mat[15];
-
-	obj->position.x = x / w;
-	obj->position.y = y / w;
-}
-
-void
-obtainTransformMatrix (CompScreen *s, GLfloat *mat,
-					   float rotAngle, Vector3d rotAxis,
-					   Point3d translation)
-{
-	glPushMatrix();
-	glLoadIdentity();
-
-	// column-major order
-	GLfloat perspMat[16] =
-			{1, 0, 0, 0,
-			 0, 1, 0, 0,
-			 0, 0, 1, -1.0/s->width,
-			 0, 0, 1, 1};
-
-	glTranslatef(0, 0, DEFAULT_Z_CAMERA * s->width);
-
-	glMultMatrixf(perspMat);
-
-	glTranslatef(translation.x, translation.y, translation.z);
-
-	glRotatef(rotAngle, rotAxis.x, rotAxis.y, rotAxis.z);
-
-	glGetFloatv(GL_MODELVIEW_MATRIX, mat);
-	glPopMatrix();
-}
-
-
 void polygonsAnimStep(CompScreen * s, CompWindow * w, float time)
 {
 	int i, j, steps;
@@ -545,7 +505,8 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	{0, 0, 0, fxCurvedFoldModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0,
 	 0, 0, 0},
 	// AnimEffectDodge
-	{0, 0, 0, fxDodgeAnimStep, defaultAnimInit, 0, 0, 0, 0, 0, 0, TRUE,
+	{0, 0, 0, fxDodgeAnimStep, defaultAnimInit, 0, 0, 0, 0, 0, 0,
+	 defaultLetOthersDrawGeoms,
 	 fxDodgeUpdateWindowTransform, fxDodgePostPreparePaintScreen},
 	// AnimEffectDomino3D
 	{0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
@@ -560,20 +521,22 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	 polygonsLinearAnimStepPolygon, 0, 0, 0, 0},
 	// AnimEffectFade
 	{fxFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit, 0, 0,
-	 0, 0, 0, 0, TRUE, 0, 0},
+	 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0},
 	// AnimEffectFocusFade
 	{fxFocusFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
-	 0, 0, 0, 0, 0, 0, TRUE, 0, 0},
+	 0, 0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0},
 	// AnimEffectGlide3D1
 	{fxGlideUpdateWindowAttrib, polygonsPrePaintWindow,
 	 polygonsPostPaintWindow, fxGlideAnimStep,
 	 fxGlideInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-	 polygonsDeceleratingAnimStepPolygon, 1, 0, 0, 0},
+	 polygonsDeceleratingAnimStepPolygon, 0,
+	 fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0},
 	// AnimEffectGlide3D2
 	{fxGlideUpdateWindowAttrib, polygonsPrePaintWindow,
 	 polygonsPostPaintWindow, fxGlideAnimStep,
 	 fxGlideInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-	 polygonsDeceleratingAnimStepPolygon, 2, 0, 0, 0},
+	 polygonsDeceleratingAnimStepPolygon, 0,
+	 fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0},
 	// AnimEffectHorizontalFolds
 	{0, 0, 0, fxHorizontalFoldsModelStep, 0, fxHorizontalFoldsInitGrid,
 	 0, 0, 0, 0, 0, 0, 0, 0},
@@ -595,12 +558,14 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	{0, 0, 0, fxRollUpModelStep, 0, fxRollUpInitGrid, 0, 0, 1, 0, 0, 0, 0, 0},
 	// AnimEffectSidekick
 	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxSidekickInit,
-	 0, 0, 0, 1, 0, 0, TRUE, fxZoomUpdateWindowTransform, 0},
+	 0, 0, 0, 1, 0, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
+	 0},
 	// AnimEffectWave
 	{0, 0, 0, fxWaveModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectZoom
 	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
-	 0, 0, 0, 1, 0, 0, TRUE, fxZoomUpdateWindowTransform, 0}
+	 0, 0, 0, 1, 0, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
+	 0}
 };
 
 
@@ -1096,13 +1061,7 @@ static Bool playingPolygonEffect(AnimScreen *as, AnimWindow *aw)
 		  aw->curAnimEffect == AnimEffectGlide3D2))
 		return TRUE;
 
-	float finalDistFac;
-	float finalRotAng;
-	float thickness;
-
-	fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
-
-	return (thickness > 1e-5); // glide is 3D if thickness > 0
+	return (fxGlideIsPolygonBased(as, aw));
 }
 
 static void cleanUpParentChildChainItem(AnimScreen *as, AnimWindow *aw)
@@ -1804,7 +1763,9 @@ animAddWindowGeometry(CompWindow * w,
 	}*/
 	// if window is being animated
 	if (aw->animRemainingTime > 0 && aw->model &&
-		!animEffectProperties[aw->curAnimEffect].letOthersDrawGeoms)
+		!(animEffectProperties[aw->curAnimEffect].letOthersDrawGeoms &&
+		  animEffectProperties[aw->curAnimEffect].letOthersDrawGeoms
+		  (w->screen, w)))
 	{
 		BoxPtr pClip;
 		int nClip;
