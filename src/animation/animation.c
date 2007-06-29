@@ -594,13 +594,13 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	// AnimEffectRollUp
 	{0, 0, 0, fxRollUpModelStep, 0, fxRollUpInitGrid, 0, 0, 1, 0, 0, 0, 0, 0},
 	// AnimEffectSidekick
-	{fxZoomUpdateWindowAttrib, 0, 0, fxZoomModelStep, fxSidekickInit,
-	 0, 0, 0, 1, 0, 0, 0, 0, 0},
+	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxSidekickInit,
+	 0, 0, 0, 1, 0, 0, TRUE, fxZoomUpdateWindowTransform, 0},
 	// AnimEffectWave
 	{0, 0, 0, fxWaveModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectZoom
-	{fxZoomUpdateWindowAttrib, 0, 0, fxZoomModelStep, defaultAnimInit, 0, 0,
-	 0, 1, 0, 0, 0, 0, 0}
+	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
+	 0, 0, 0, 1, 0, 0, TRUE, fxZoomUpdateWindowTransform, 0}
 };
 
 

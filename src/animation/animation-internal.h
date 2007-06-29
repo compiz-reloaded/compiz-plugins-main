@@ -951,9 +951,9 @@ fxZoomUpdateWindowAttrib (AnimScreen *as,
 						  WindowPaintAttrib *wAttrib);
 
 void
-fxZoomModelStep (CompScreen *s,
-				 CompWindow *w,
-				 float time);
+fxZoomUpdateWindowTransform(CompScreen *s,
+							CompWindow *w,
+							CompTransform *wTransform);
 
 void
 fxSidekickInit (CompScreen *s,

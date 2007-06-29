@@ -126,138 +126,67 @@ static void fxZoomAnimProgressDir(AnimScreen * as,
 	}
 }
 
-static void
-fxSidekickModelStepObject(CompWindow * w,
-						  Model * model,
-						  Object * object,
-						  Point currentCenter, Point currentSize,
-						  float sinRot, float cosRot)
-{
-	float x =
-		currentCenter.x - currentSize.x / 2 +
-		currentSize.x * object->gridPosition.x;
-	float y =
-		currentCenter.y - currentSize.y / 2 +
-		currentSize.y * object->gridPosition.y;
-
-	x -= currentCenter.x;
-	y -= currentCenter.y;
-
-	object->position.x = cosRot * x - sinRot * y;
-	object->position.y = sinRot * x + cosRot * y;
-
-	object->position.x += currentCenter.x;
-	object->position.y += currentCenter.y;
-}
-
-static void
-fxZoomModelStepObject(CompScreen *s, CompWindow * w,
-					  Model * model, Object * object,
-					  Point currentCenter, Point currentSize)
-{
-	object->position.x =
-		currentCenter.x - currentSize.x / 2 +
-		currentSize.x * object->gridPosition.x;
-	object->position.y =
-		currentCenter.y - currentSize.y / 2 +
-		currentSize.y * object->gridPosition.y;
-}
-
-void fxZoomModelStep(CompScreen * s, CompWindow * w, float time)
-{
-	int i, j, steps;
-
-	ANIM_SCREEN(s);
-	ANIM_WINDOW(w);
-
-	Model *model = aw->model;
-
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
-
-	aw->timestep = timestep;
-
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
-	steps = MAX(1, steps);
-
-	Point winCenter =
-		{(WIN_X(w) + WIN_W(w) * model->scale.x / 2),
-		 (WIN_Y(w) + WIN_H(w) * model->scale.y / 2)};
-	Point iconCenter =
-		{aw->icon.x + aw->icon.width / 2,
-		 aw->icon.y + aw->icon.height / 2};
-	Point winSize =
-		{WIN_W(w) * model->scale.x,
-		 WIN_H(w) * model->scale.y};
-
-	for (j = 0; j < steps; j++)
-	{
-		float sinRot = 0;
-		float cosRot = 0;
-
-		float scaleProgress;
-		float moveProgress;
-		float rotateProgress = 0;
-
-		if (aw->curAnimEffect == AnimEffectSidekick)
-		{
-			fxZoomAnimProgressDir(as, aw, &moveProgress, &scaleProgress);
-			rotateProgress = moveProgress;
-		}
-		else
-		{
-			fxZoomAnimProgressDir(as, aw, &moveProgress, &scaleProgress);
-		}
-
-		Point currentCenter =
-			{(1 - moveProgress) * winCenter.x + moveProgress * iconCenter.x,
-			 (1 - moveProgress) * winCenter.y + moveProgress * iconCenter.y};
-		Point currentSize =
-			{(1 - scaleProgress) * winSize.x + scaleProgress * aw->icon.width,
-			 (1 - scaleProgress) * winSize.y + scaleProgress * aw->icon.height};
-
-		if (aw->curAnimEffect == AnimEffectSidekick)
-		{
-			sinRot = sin(2 * M_PI * rotateProgress * aw->numZoomRotations);
-			cosRot = cos(2 * M_PI * rotateProgress * aw->numZoomRotations);
-
-			for (i = 0; i < model->numObjects; i++)
-				fxSidekickModelStepObject(w, model,
-										  &model->objects[i],
-										  currentCenter, currentSize,
-										  sinRot, cosRot);
-		}
-		else
-			for (i = 0; i < model->numObjects; i++)
-				fxZoomModelStepObject(s, w, model,
-									  &model->objects[i],
-									  currentCenter, currentSize);
-
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
-	modelCalcBounds(model);
-}
-
 void
 fxZoomUpdateWindowAttrib(AnimScreen * as,
 						 AnimWindow * aw, WindowPaintAttrib * wAttrib)
 {
-	if (aw->model->scale.x < 1.0 &&	// if Scale plugin in progress
-		aw->curWindowEvent == WindowEventUnminimize)	// and if unminimizing
-		return;					// then allow Fade to take over opacity
 	float forwardProgress;
 	fxZoomAnimProgressDir(as, aw, NULL, &forwardProgress);
 
 	wAttrib->opacity =
 			(GLushort) (aw->storedOpacity * pow(1 - forwardProgress, 0.75));
+}
+
+void
+fxZoomUpdateWindowTransform(CompScreen *s, CompWindow *w, CompTransform *wTransform)
+{
+	ANIM_SCREEN(s);
+	ANIM_WINDOW(w);
+
+	Point winCenter =
+		{(WIN_X(w) + WIN_W(w) / 2.0),
+		 (WIN_Y(w) + WIN_H(w) / 2.0)};
+	Point iconCenter =
+		{aw->icon.x + aw->icon.width / 2.0,
+		 aw->icon.y + aw->icon.height / 2.0};
+	Point winSize =
+		{WIN_W(w) * 1.0,
+		 WIN_H(w) * 1.0};
+	winSize.x = (winSize.x == 0 ? 1 : winSize.x);
+	winSize.y = (winSize.y == 0 ? 1 : winSize.y);
+
+	float scaleProgress;
+	float moveProgress;
+	float rotateProgress = 0;
+
+	if (aw->curAnimEffect == AnimEffectSidekick)
+	{
+		fxZoomAnimProgressDir(as, aw, &moveProgress, &scaleProgress);
+		rotateProgress = moveProgress;
+	}
+	else
+	{
+		fxZoomAnimProgressDir(as, aw, &moveProgress, &scaleProgress);
+	}
+
+	Point curCenter =
+		{(1 - moveProgress) * winCenter.x + moveProgress * iconCenter.x,
+		 (1 - moveProgress) * winCenter.y + moveProgress * iconCenter.y};
+	Point curScale =
+		{((1 - scaleProgress) * winSize.x + scaleProgress * aw->icon.width) /
+		 winSize.x,
+		 ((1 - scaleProgress) * winSize.y + scaleProgress * aw->icon.height) /
+		 winSize.y};
+
+	matrixTranslate (wTransform, winCenter.x, winCenter.y, 0);
+	matrixScale (wTransform, curScale.x, curScale.y, 1.0f);
+	float tx = (curCenter.x - winCenter.x) / curScale.x;
+	float ty = (curCenter.y - winCenter.y) / curScale.y;
+	matrixTranslate (wTransform, tx, ty, 0);
+	if (aw->curAnimEffect == AnimEffectSidekick)
+	{
+		matrixRotate (wTransform, rotateProgress * 360 * aw->numZoomRotations,
+					  0.0f, 0.0f, 1.0f);
+	}
+	matrixTranslate (wTransform, -winCenter.x, -winCenter.y, 0);
 }
