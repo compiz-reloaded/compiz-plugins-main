@@ -369,79 +369,79 @@ Bool defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 
 AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	// AnimEffectNone
-	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectRandom
-	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectBeamUp
 	{fxBeamupUpdateWindowAttrib, 0, drawParticleSystems, fxBeamUpModelStep,
-	 fxBeamUpInit, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+	 fxBeamUpInit, 0, 0, 0, 1, 0, 0, 0, 0},
 	// AnimEffectBurn
 	{0, 0, drawParticleSystems, fxBurnModelStep, fxBurnInit, 0, 0, 0, 1, 0,
-	 0, 0, 0, 0},
+	 0, 0, 0},
 	// AnimEffectCurvedFold
 	{0, 0, 0, fxCurvedFoldModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0,
-	 0, 0, 0},
+	 0, 0},
 	// AnimEffectDodge
-	{0, 0, 0, fxDodgeAnimStep, defaultAnimInit, 0, 0, 0, 0, 0, 0,
+	{0, 0, 0, fxDodgeAnimStep, defaultAnimInit, 0, 0, 0, 0, 0,
 	 defaultLetOthersDrawGeoms,
 	 fxDodgeUpdateWindowTransform, fxDodgePostPreparePaintScreen},
 	// AnimEffectDomino3D
 	{0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
 	 fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-	 polygonsLinearAnimStepPolygon, 1, 0, 0, 0},
+	 polygonsLinearAnimStepPolygon, 0, 0, 0},
 	// AnimEffectDream
 	{fxDreamUpdateWindowAttrib, 0, 0, fxDreamModelStep, defaultAnimInit,
-	 fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0, 0},
+	 fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectExplode3D
 	{0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
 	 fxExplode3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-	 polygonsLinearAnimStepPolygon, 0, 0, 0, 0},
+	 polygonsLinearAnimStepPolygon, 0, 0, 0},
 	// AnimEffectFade
 	{fxFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit, 0, 0,
-	 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0},
+	 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0},
 	// AnimEffectFocusFade
 	{fxFocusFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
-	 0, 0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0},
+	 0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0},
 	// AnimEffectGlide3D1
 	{fxGlideUpdateWindowAttrib, polygonsPrePaintWindow,
 	 polygonsPostPaintWindow, fxGlideAnimStep,
 	 fxGlideInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-	 polygonsDeceleratingAnimStepPolygon, 0,
+	 polygonsDeceleratingAnimStepPolygon,
 	 fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0},
 	// AnimEffectGlide3D2
 	{fxGlideUpdateWindowAttrib, polygonsPrePaintWindow,
 	 polygonsPostPaintWindow, fxGlideAnimStep,
 	 fxGlideInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-	 polygonsDeceleratingAnimStepPolygon, 0,
+	 polygonsDeceleratingAnimStepPolygon,
 	 fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0},
 	// AnimEffectHorizontalFolds
 	{0, 0, 0, fxHorizontalFoldsModelStep, 0, fxHorizontalFoldsInitGrid,
-	 0, 0, 0, 0, 0, 0, 0, 0},
+	 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectLeafSpread3D
 	{0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
 	 fxLeafSpread3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-	 polygonsLinearAnimStepPolygon, 0, 0, 0, 0},
+	 polygonsLinearAnimStepPolygon, 0, 0, 0},
 	// AnimEffectMagicLamp
 	{0, 0, 0, fxMagicLampModelStep, fxMagicLampInit, fxMagicLampInitGrid,
-	 0, 0, 0, 0, 0, 0, 0, 0},
+	 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectMagicLampVacuum
 	{0, 0, 0, fxMagicLampModelStep, fxMagicLampInit,
-	 fxMagicLampVacuumInitGrid, 0, 0, 0, 0, 0, 0, 0, 0},
+	 fxMagicLampVacuumInitGrid, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectRazr3D
 	{0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
 	 fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-	 polygonsLinearAnimStepPolygon, 2, 0, 0, 0},
+	 polygonsLinearAnimStepPolygon, 0, 0, 0},
 	// AnimEffectRollUp
-	{0, 0, 0, fxRollUpModelStep, 0, fxRollUpInitGrid, 0, 0, 1, 0, 0, 0, 0, 0},
+	{0, 0, 0, fxRollUpModelStep, 0, fxRollUpInitGrid, 0, 0, 1, 0, 0, 0, 0},
 	// AnimEffectSidekick
 	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxSidekickInit,
-	 0, 0, 0, 1, 0, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
+	 0, 0, 0, 1, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
 	 0},
 	// AnimEffectWave
-	{0, 0, 0, fxWaveModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, fxWaveModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectZoom
 	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
-	 0, 0, 0, 1, 0, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
+	 0, 0, 0, 1, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
 	 0}
 };
 
@@ -1477,10 +1477,6 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 			{
 				if (!aw->animInitialized)	// if animation is just starting
 				{
-					aw->subEffectNo =
-							animEffectProperties[aw->curAnimEffect].
-							subEffectNo;
-
 					aw->deceleratingMotion =
 							animEffectProperties[aw->curAnimEffect].
 							animStepPolygonFunc ==

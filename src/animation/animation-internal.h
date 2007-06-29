@@ -539,7 +539,6 @@ typedef struct _AnimWindow
 	int animatedAtom;
 
 	int animFireDirection;
-	int subEffectNo;			// For effects that share same functions
 	Bool deceleratingMotion;	// For effects that have decel. motion
 
 	// for focus fade effect:
@@ -580,7 +579,6 @@ typedef struct _AnimEffectProperties
 	void (*drawCustomGeometryFunc) (CompScreen *, CompWindow *);
 	Bool dontUseQTexCoord;		// TRUE if effect doesn't need Q coord.
 	void (*animStepPolygonFunc) (CompWindow *, PolygonObject *, float);
-	int subEffectNo;			// For effects that share same functions
 	Bool (*letOthersDrawGeoms) (CompScreen *, CompWindow *);
 	void (*updateWindowTransformFunc)
 		(CompScreen *, CompWindow *, CompTransform *);

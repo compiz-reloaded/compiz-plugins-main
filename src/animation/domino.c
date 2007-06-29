@@ -41,14 +41,11 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 	ANIM_WINDOW(w);
 	ANIM_SCREEN(s);
 
-	// Sub effects:
-	// 1: Domino
-	// 2: Razr
-	int subEffectNo = aw->subEffectNo;
+	Bool isRazr = (aw->curAnimEffect == AnimEffectRazr3D);
 
 	int fallDir;
 
-	if (subEffectNo == 2)
+	if (isRazr)
 		fallDir = getAnimationDirection
 				(w, &as->opt[ANIM_SCREEN_OPTION_RAZR_DIRECTION].value, TRUE);
 	else
@@ -66,7 +63,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 	float gridCellH;
 	float cellAspectRatio = 1.25;
 
-	if (subEffectNo == 2)
+	if (isRazr)
 		cellAspectRatio = 1;
 
 	// Determine sensible domino piece sizes
@@ -121,7 +118,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 	{
 	case AnimDirectionDown:
 		rotAxisX = -1;
-		if (subEffectNo == 2)
+		if (isRazr)
 			rotAxisOff.y = -gridCellHalfH;
 		else
 		{
@@ -131,7 +128,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 		break;
 	case AnimDirectionLeft:
 		rotAxisY = -1;
-		if (subEffectNo == 2)
+		if (isRazr)
 			rotAxisOff.x = gridCellHalfW;
 		else
 		{
@@ -142,7 +139,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 		break;
 	case AnimDirectionUp:
 		rotAxisX = 1;
-		if (subEffectNo == 2)
+		if (isRazr)
 			rotAxisOff.y = gridCellHalfH;
 		else
 		{
@@ -152,7 +149,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 		break;
 	case AnimDirectionRight:
 		rotAxisY = 1;
-		if (subEffectNo == 2)
+		if (isRazr)
 			rotAxisOff.x = -gridCellHalfW;
 		else
 		{
@@ -167,7 +164,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 	float riseDuration;
 	float riseTimeRandMax = 0.2;
 
-	if (subEffectNo == 2)
+	if (isRazr)
 	{
 		riseDuration = (1 - riseTimeRandMax) / fallDirGridSize;
 		fadeDuration = riseDuration / 2;
@@ -238,7 +235,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 		if (fallDirGridSize > 1)
 			mult = ((distStartEdge - minDistStartEdge) /
 					(1 - 2 * minDistStartEdge));
-		if (subEffectNo == 2)
+		if (isRazr)
 		{
 			p->moveStartTime =
 					mult *
