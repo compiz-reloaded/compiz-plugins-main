@@ -1580,3 +1580,81 @@ void polygonsPostPaintWindow(CompScreen * s, CompWindow * w)
 	}
 }
 
+// Computes polygon's new position and orientation
+// with linear movement
+void
+polygonsLinearAnimStepPolygon(CompWindow * w,
+							  PolygonObject * p, float forwardProgress)
+{
+	float moveProgress = forwardProgress - p->moveStartTime;
+
+	if (p->moveDuration > 0)
+		moveProgress /= p->moveDuration;
+	if (moveProgress < 0)
+		moveProgress = 0;
+	else if (moveProgress > 1)
+		moveProgress = 1;
+
+	p->centerPos.x = moveProgress * p->finalRelPos.x + p->centerPosStart.x;
+	p->centerPos.y = moveProgress * p->finalRelPos.y + p->centerPosStart.y;
+	p->centerPos.z = 1.0f / w->screen->width *
+			moveProgress * p->finalRelPos.z + p->centerPosStart.z;
+
+	p->rotAngle = moveProgress * p->finalRotAng + p->rotAngleStart;
+}
+
+// Similar to polygonsLinearAnimStepPolygon,
+// but slightly ac/decelerates movement
+void
+polygonsDeceleratingAnimStepPolygon(CompWindow * w,
+									PolygonObject * p, float forwardProgress)
+{
+	float moveProgress = forwardProgress - p->moveStartTime;
+
+	if (p->moveDuration > 0)
+		moveProgress /= p->moveDuration;
+	if (moveProgress < 0)
+		moveProgress = 0;
+	else if (moveProgress > 1)
+		moveProgress = 1;
+
+	moveProgress = decelerateProgress2(moveProgress);
+
+	p->centerPos.x = moveProgress * p->finalRelPos.x + p->centerPosStart.x;
+	p->centerPos.y = moveProgress * p->finalRelPos.y + p->centerPosStart.y;
+	p->centerPos.z = 1.0f / w->screen->width *
+			moveProgress * p->finalRelPos.z + p->centerPosStart.z;
+
+	p->rotAngle = moveProgress * p->finalRotAng + p->rotAngleStart;
+}
+
+Bool polygonsAnimStep(CompScreen * s, CompWindow * w, float time)
+{
+	if (!defaultAnimStep(s, w, time))
+		return FALSE;
+
+	ANIM_WINDOW(w);
+
+	Model *model = aw->model;
+
+	float forwardProgress = defaultAnimProgress(aw);
+
+	if (aw->polygonSet)
+	{
+		if (animEffectPropertiesTmp[aw->curAnimEffect].
+			animStepPolygonFunc)
+		{
+			int i;
+			for (i = 0; i < aw->polygonSet->nPolygons; i++)
+				animEffectPropertiesTmp[aw->curAnimEffect].
+					animStepPolygonFunc
+					(w, &aw->polygonSet->polygons[i],
+					 forwardProgress);
+		}
+	}
+	else
+		compLogMessage (s->display, "animation", CompLogLevelDebug,
+						"%s: pset null at line %d\n",__FILE__,  __LINE__);
+	modelCalcBounds(model);
+	return TRUE;
+}

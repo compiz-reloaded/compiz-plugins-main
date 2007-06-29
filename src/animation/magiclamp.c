@@ -288,50 +288,25 @@ fxMagicLampModelStepObject(CompWindow * w,
 	}
 }
 
-void fxMagicLampModelStep(CompScreen * s, CompWindow * w, float time)
+Bool fxMagicLampModelStep(CompScreen * s, CompWindow * w, float time)
 {
-	int i, j, steps;
+	if (!defaultAnimStep(s, w, time))
+		return FALSE;
 
-	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
 	Model *model = aw->model;
 
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
-
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
-	steps = MAX(1, steps);
-
 	Bool minimizeToTop = (WIN_Y(w) + WIN_H(w) / 2) >
 			(aw->icon.y + aw->icon.height / 2);
 
-	for (j = 0; j < steps; j++)
-	{
-		float forwardProgress =
-				1 - (aw->animRemainingTime - timestep) /
-				(aw->animTotalTime - timestep);
-		if (aw->curWindowEvent == WindowEventUnminimize ||
-			aw->curWindowEvent == WindowEventCreate)
-			forwardProgress = 1 - forwardProgress;
+	float forwardProgress = defaultAnimProgress(aw);
 
-		for (i = 0; i < model->numObjects; i++)
-		{
-			fxMagicLampModelStepObject(w, model,
-									   &model->objects[i],
-									   forwardProgress, minimizeToTop);
-		}
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
+	int i;
+	for (i = 0; i < model->numObjects; i++)
+		fxMagicLampModelStepObject(w, model, &model->objects[i],
+								   forwardProgress, minimizeToTop);
+
 	modelCalcBounds(model);
+	return TRUE;
 }

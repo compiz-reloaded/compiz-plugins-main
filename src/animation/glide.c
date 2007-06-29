@@ -91,15 +91,15 @@ float fxGlideAnimProgress(AnimWindow * aw)
 	return decelerateProgress2(forwardProgress);
 }
 
-void fxGlideAnimStep(CompScreen * s, CompWindow * w, float time)
+Bool fxGlideAnimStep(CompScreen * s, CompWindow * w, float time)
 {
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
 	if (fxGlideIsPolygonBased(as, aw))
-		polygonsAnimStep(s, w, time);
+		return polygonsAnimStep(s, w, time);
 	else
-		defaultAnimStep(s, w, time);
+		return defaultAnimStep(s, w, time);
 }
 
 void

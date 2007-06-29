@@ -112,50 +112,25 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 	}
 }
 
-void fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
+Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 {
-	int i, j, steps;
+	if (!defaultAnimStep(s, w, time))
+		return FALSE;
 
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
 	Model *model = aw->model;
 
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
+	float forwardProgress = defaultAnimProgress(aw);
 
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
-	steps = MAX(1, steps);
-
-	for (j = 0; j < steps; j++)
-	{
-		float forwardProgress =
-				1 - (aw->animRemainingTime - timestep) /
-				(aw->animTotalTime - timestep);
-		if (aw->curWindowEvent == WindowEventCreate ||
-			aw->curWindowEvent == WindowEventUnminimize ||
-			aw->curWindowEvent == WindowEventUnshade)
-			forwardProgress = 1 - forwardProgress;
-
-		for (i = 0; i < model->numObjects; i++)
-			fxCurvedFoldModelStepObject(w, 
-				model,
-				&model->objects[i],
-				forwardProgress,
-				as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_AMP].value.f * WIN_W(w));
-
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
+	int i;
+	for (i = 0; i < model->numObjects; i++)
+		fxCurvedFoldModelStepObject(w, 
+									model,
+									&model->objects[i],
+									forwardProgress,
+									as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_AMP].value.f * WIN_W(w));
 	modelCalcBounds(model);
+	return TRUE;
 }
-

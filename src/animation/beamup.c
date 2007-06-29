@@ -165,7 +165,7 @@ fxBeamUpGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
 
 }
 
-void fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
+Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 {
 	int steps;
 	int creating = 0;
@@ -186,7 +186,7 @@ void fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	steps = floor(aw->remainderSteps);
 	aw->remainderSteps -= steps;
 	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
+		return FALSE;
 	steps = MAX(1, steps);
 
 	aw->animRemainingTime -= timestep;
@@ -247,7 +247,7 @@ void fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 			free(aw->ps);
 			aw->ps = NULL;
 		}
-		return;					// FIXME - is this correct behaviour?
+		return TRUE;		// FIXME - is this correct behaviour?
 	}
 
 	int i;
@@ -265,6 +265,7 @@ void fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	aw->ps[1].y = WIN_Y(w);
 
 	modelCalcBounds(model);
+	return TRUE;
 }
 
 void

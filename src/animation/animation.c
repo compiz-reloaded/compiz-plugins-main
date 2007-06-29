@@ -227,9 +227,6 @@ animGetAnimEffect (AnimEffect effect,
 		return effect;
 }
 
-
-
-
 void modelCalcBounds(Model * model)
 {
 	int i;
@@ -256,8 +253,7 @@ void modelCalcBounds(Model * model)
 float defaultAnimProgress(AnimWindow * aw)
 {
 	float forwardProgress =
-			1 - (aw->animRemainingTime - aw->timestep) /
-			(aw->animTotalTime - aw->timestep);
+		1 - aw->animRemainingTime /	(aw->animTotalTime - aw->timestep);
 	forwardProgress = MIN(forwardProgress, 1);
 	forwardProgress = MAX(forwardProgress, 0);
 
@@ -342,60 +338,9 @@ float decelerateProgress2(float progress)
 	return decelerateProgressCustom(progress, 0.5, 0.75);
 }
 
-void polygonsAnimStep(CompScreen * s, CompWindow * w, float time)
+Bool defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 {
-	int i, j, steps;
-
-	ANIM_SCREEN(s);
-	ANIM_WINDOW(w);
-
-	Model *model = aw->model;
-
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
-
-	aw->timestep = timestep;
-
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
-	steps = MAX(1, steps);
-
-	for (j = 0; j < steps; j++)
-	{
-		float forwardProgress = defaultAnimProgress(aw);
-
-		if (aw->polygonSet)
-		{
-			if (animEffectPropertiesTmp[aw->curAnimEffect].
-				animStepPolygonFunc)
-			{
-				for (i = 0; i < aw->polygonSet->nPolygons; i++)
-					animEffectPropertiesTmp[aw->curAnimEffect].
-							animStepPolygonFunc
-							(w, &aw->polygonSet->polygons[i],
-							 forwardProgress);
-			}
-		}
-		else
-			compLogMessage (s->display, "animation", CompLogLevelDebug,
-							"%s: pset null at line %d\n",__FILE__,  __LINE__);
-
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
-	modelCalcBounds(model);
-}
-
-void defaultAnimStep(CompScreen * s, CompWindow * w, float time)
-{
-	int j, steps;
+	int steps;
 
 	ANIM_WINDOW(w);
 	ANIM_SCREEN(s);
@@ -410,84 +355,16 @@ void defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 	aw->remainderSteps -= steps;
 
 	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
+		return FALSE;
 	steps = MAX(1, steps);
 
-	for (j = 0; j < steps; j++)
-	{
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
+	aw->animRemainingTime -= timestep * steps;
+
+	// avoid sub-zero values
+	aw->animRemainingTime = MAX(aw->animRemainingTime, 0);
+
+	return TRUE;
 }
-
-
-
-
-
-/*
-static void fxTornado3DInit(CompScreen * s, CompWindow * w)
-{
-	//ANIM_WINDOW(w);
-
-	if (!tessellateIntoRectangles(w, 20, 14, 15.0f))
-		return;
-}
-*/
-
-
-// Computes polygon's new position and orientation
-// with linear movement
-static void
-polygonsLinearAnimStepPolygon(CompWindow * w,
-							  PolygonObject * p, float forwardProgress)
-{
-	float moveProgress = forwardProgress - p->moveStartTime;
-
-	if (p->moveDuration > 0)
-		moveProgress /= p->moveDuration;
-	if (moveProgress < 0)
-		moveProgress = 0;
-	else if (moveProgress > 1)
-		moveProgress = 1;
-
-	p->centerPos.x = moveProgress * p->finalRelPos.x + p->centerPosStart.x;
-	p->centerPos.y = moveProgress * p->finalRelPos.y + p->centerPosStart.y;
-	p->centerPos.z = 1.0f / w->screen->width *
-			moveProgress * p->finalRelPos.z + p->centerPosStart.z;
-
-	p->rotAngle = moveProgress * p->finalRotAng + p->rotAngleStart;
-}
-
-// Similar to polygonsLinearAnimStepPolygon,
-// but slightly ac/decelerates movement
-static void
-polygonsDeceleratingAnimStepPolygon(CompWindow * w,
-									PolygonObject * p, float forwardProgress)
-{
-	float moveProgress = forwardProgress - p->moveStartTime;
-
-	if (p->moveDuration > 0)
-		moveProgress /= p->moveDuration;
-	if (moveProgress < 0)
-		moveProgress = 0;
-	else if (moveProgress > 1)
-		moveProgress = 1;
-
-	moveProgress = decelerateProgress2(moveProgress);
-
-	p->centerPos.x = moveProgress * p->finalRelPos.x + p->centerPosStart.x;
-	p->centerPos.y = moveProgress * p->finalRelPos.y + p->centerPosStart.y;
-	p->centerPos.z = 1.0f / w->screen->width *
-			moveProgress * p->finalRelPos.z + p->centerPosStart.z;
-
-	p->rotAngle = moveProgress * p->finalRotAng + p->rotAngleStart;
-}
-
-// =====================  End of Effects  =========================
 
 
 AnimEffectProperties animEffectProperties[AnimEffectNum] = {

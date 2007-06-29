@@ -128,12 +128,14 @@ fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
 	XClipBox(dodgeRegion, dodgeBox);
 }
 
-void
+Bool
 fxDodgeAnimStep (CompScreen * s, CompWindow * w, float time)
 {
-	defaultAnimStep(s, w, time);
+	if (!defaultAnimStep(s, w, time))
+		return FALSE;
 
 	ANIM_WINDOW(w);
+
 	aw->transformProgress = 0;
 
 	float forwardProgress = defaultAnimProgress(aw);
@@ -161,6 +163,7 @@ fxDodgeAnimStep (CompScreen * s, CompWindow * w, float time)
 			aw->dodgeMaxAmount = newDodgeAmount;
 		}
 	}
+	return TRUE;
 }
 
 void

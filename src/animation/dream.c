@@ -58,46 +58,24 @@ fxDreamModelStepObject(CompWindow * w,
 
 }
 
-void fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
+Bool fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
 {
-	int i, j, steps;
+	if (!defaultAnimStep(s, w, time))
+		return FALSE;
 
 	ANIM_WINDOW(w);
-	ANIM_SCREEN(s);
 
 	Model *model = aw->model;
 
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
+	float forwardProgress = defaultAnimProgress(aw);
 
-	aw->timestep = timestep;
-
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return;
-	steps = MAX(1, steps);
-
-	for (j = 0; j < steps; j++)
-	{
-		float forwardProgress = defaultAnimProgress(aw);
-
-		for (i = 0; i < model->numObjects; i++)
-		{
-			fxDreamModelStepObject(w,
-								   model,
-								   &model->objects[i], forwardProgress);
-		}
-		aw->animRemainingTime -= timestep;
-		if (aw->animRemainingTime <= 0)
-		{
-			aw->animRemainingTime = 0;	// avoid sub-zero values
-			break;
-		}
-	}
+	int i;
+	for (i = 0; i < model->numObjects; i++)
+		fxDreamModelStepObject(w,
+							   model,
+							   &model->objects[i], forwardProgress);
 	modelCalcBounds(model);
+	return TRUE;
 }
 
 void
