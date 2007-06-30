@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <compiz>
   <plugin name="resizeinfo" useBcop="true">
-    <short>Resize Info</short>
-    <long>Display info on resize similar to metacity</long>
+    <_short>Resize Info</_short>
+    <_long>Display info on resize similar to metacity</_long>
 	<category>Utility</category>
 	<deps>
 		<relation type="after">
@@ -12,21 +12,21 @@
     <display>
 		<group>
 	<option name="fade_time" type="int">
-	  <short>Fade Time</short>
-	  <long>Fade time (in ms) for popup window</long>
+	  <_short>Fade Time</_short>
+	  <_long>Fade time (in ms) for popup window</_long>
 	  <default>500</default>
 	  <min>10</min>
 	  <max>5000</max>
 	</option>
 	<option name="always_show" type="bool">
-	  <short> Show resize info for all windows. </short>
-	  <long> Show resize info for all windows as opposed to just
-	  windows with a resize increment of greater than 1. </long>
+	  <_short> Show resize info for all windows. </_short>
+	  <_long> Show resize info for all windows as opposed to just
+	  windows with a resize increment of greater than 1. </_long>
 	  <default>false</default>
 	</option>
 	<option name="text_color" type="color">
-	  <short> Text color. </short>
-	  <long> Color of text on resize popup. </long>
+	  <_short> Text color. </_short>
+	  <_long> Color of text on resize popup. </_long>
 	  <default>
 	    <red> 0x0000 </red>
 	    <blue> 0x0000 </blue>
@@ -35,8 +35,8 @@
 	  </default>
 	</option>
 	<option name="gradient_1" type="color">
-	  <short> Gradient Color 1 </short>
-	  <long> Color 1 of the gradient background. </long>
+	  <_short> Gradient Color 1 </_short>
+	  <_long> Color 1 of the gradient background. </_long>
 	  <default>
 	    <red> 0xcccc </red>
 	    <green> 0xcccc </green>
@@ -45,8 +45,8 @@
 	  </default>
 	</option>
 	<option name="gradient_2" type="color">
-	  <short> Gradient Color 2 </short>
-	  <long> Color 2 of the gradient background. </long>
+	  <_short> Gradient Color 2 </_short>
+	  <_long> Color 2 of the gradient background. </_long>
 	  <default>
 	    <red> 0xf332 </red>
 	    <green> 0xf332 </green>
@@ -55,8 +55,8 @@
 	  </default>
 	</option>
 	<option name="gradient_3" type="color">
-	  <short> Gradient Color 3 </short>
-	  <long> Color 3 of the gradient background. </long>
+	  <_short> Gradient Color 3 </_short>
+	  <_long> Color 3 of the gradient background. </_long>
 	  <default>
 	    <red> 0xd998 </red>
 	    <green> 0xd998 </green>
