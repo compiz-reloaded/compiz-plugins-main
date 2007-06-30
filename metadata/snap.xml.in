@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <compiz>
   <plugin name="snap" useBcop="true">
-    <short>Snapping Windows</short>
-    <long>Enables windows edges resistance</long>
+    <_short>Snapping Windows</_short>
+    <_long>Enables windows edges resistance</_long>
 	<category>Window Management</category>
 	<feature>edgeresistance</feature>
 	<deps>
@@ -12,10 +12,10 @@
 	</deps>
     <display>
       <group>
-        <short>Bindings</short>
+        <_short>Bindings</_short>
         <option name="avoid_snap" type="list">
-          <short>Avoid Snap Modifier</short>
-          <long>Use this bindings to avoid snapping.</long>
+          <_short>Avoid Snap Modifier</_short>
+          <_long>Use this bindings to avoid snapping.</_long>
 		  <type>int</type>
 		  <min>0</min>
 		  <max>3</max>
@@ -24,29 +24,29 @@
 		  </default>
 		  <desc>
 			  <value>0</value>
-			  <name>Shift</name>
+			  <_name>Shift</_name>
 		  </desc>
 		  <desc>
 			  <value>1</value>
-			  <name>Alt</name>
+			  <_name>Alt</_name>
 		  </desc>
 		  <desc>
 			  <value>2</value>
-			  <name>Control</name>
+			  <_name>Control</_name>
 		  </desc>
 		  <desc>
 			  <value>3</value>
-			  <name>Meta</name>
+			  <_name>Meta</_name>
 		  </desc>
         </option>
       </group>
     </display>
     <screen>
       <group>
-        <short>Behaviour</short>
+        <_short>Behaviour</_short>
         <option name="snap_type" type="list">
-          <short>Snap Type</short>
-          <long>Choose 'Resistance', 'Attraction' or 'Full Mode'.</long>
+          <_short>Snap Type</_short>
+          <_long>Choose 'Resistance', 'Attraction' or 'Full Mode'.</_long>
 		  <type>int</type>
 		  <min>0</min>
 		  <max>1</max>
@@ -55,16 +55,16 @@
 		  </default>
 		  <desc>
 			  <value>0</value>
-			  <name>Edge resistance</name>
+			  <_name>Edge resistance</_name>
 		  </desc>
 		  <desc>
 			  <value>1</value>
-			  <name>Edge attraction</name>
+			  <_name>Edge attraction</_name>
 		  </desc>
         </option>
         <option name="edges_categories" type="list">
-          <short>Edges</short>
-          <long>Snap to 'Screen Edges', 'Windows Edges' or 'Both'.</long>
+          <_short>Edges</_short>
+          <_long>Snap to 'Screen Edges', 'Windows Edges' or 'Both'.</_long>
 		  <type>int</type>
 		  <min>0</min>
 		  <max>1</max>
@@ -73,23 +73,23 @@
 		  </default>
 		  <desc>
 			  <value>0</value>
-			  <name>Screen edges</name>
+			  <_name>Screen edges</_name>
 		  </desc>
 		  <desc>
 			  <value>1</value>
-			  <name>Window edges</name>
+			  <_name>Window edges</_name>
 		  </desc>
         </option>
         <option name="resistance_distance" type="int">
-          <short>Edge Resistance Distance</short>
-          <long>The distance until edge resistance takes place.</long>
+          <_short>Edge Resistance Distance</_short>
+          <_long>The distance until edge resistance takes place.</_long>
           <default>30</default>
           <min>1</min>
           <max>100</max>
         </option>
         <option name="attraction_distance" type="int">
-          <short>Edge Attraction Distance</short>
-          <long>The distance until edge attraction takes place.</long>
+          <_short>Edge Attraction Distance</_short>
+          <_long>The distance until edge attraction takes place.</_long>
           <default>20</default>
           <min>1</min>
           <max>100</max>
