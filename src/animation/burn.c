@@ -287,7 +287,6 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	aw->remainderSteps -= steps;
 	if (!steps && aw->animRemainingTime < aw->animTotalTime)
 		return FALSE;
-	steps = MAX(1, steps);
 
 	aw->animRemainingTime -= timestep;
 	if (aw->animRemainingTime <= 0)

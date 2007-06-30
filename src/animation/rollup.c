@@ -126,7 +126,7 @@ Bool fxRollUpModelStep(CompScreen * s, CompWindow * w, float time)
 
 	Model *model = aw->model;
 
-	float forwardProgress = defaultAnimProgress(aw);
+	float forwardProgress = sigmoidAnimProgress(aw);
 
 	int i;
 	for (i = 0; i < model->numObjects; i++)

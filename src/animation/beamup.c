@@ -179,6 +179,9 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 
 	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
 					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP_INTENSE].value.i);
+
+	aw->timestep = timestep;
+
 	float old = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
 	float stepSize;
 
@@ -187,7 +190,6 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	aw->remainderSteps -= steps;
 	if (!steps && aw->animRemainingTime < aw->animTotalTime)
 		return FALSE;
-	steps = MAX(1, steps);
 
 	aw->animRemainingTime -= timestep;
 	if (aw->animRemainingTime <= 0)
@@ -237,7 +239,7 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	}
 	if (aw->animRemainingTime <= 0 && aw->numPs
 		&& (aw->ps[0].active || aw->ps[1].active))
-		aw->animRemainingTime = timestep;
+		aw->animRemainingTime = 0.001f;
 
 	if (!aw->numPs || !aw->ps)
 	{
@@ -275,7 +277,7 @@ fxBeamupUpdateWindowAttrib(AnimScreen * as,
 	float forwardProgress = 0;
 	if (aw->animTotalTime - aw->timestep != 0)
 		forwardProgress =
-			1 - (aw->animRemainingTime - aw->timestep) /
+			1 - aw->animRemainingTime /
 			(aw->animTotalTime - aw->timestep);
 	forwardProgress = MIN(forwardProgress, 1);
 	forwardProgress = MAX(forwardProgress, 0);
