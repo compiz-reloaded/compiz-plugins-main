@@ -250,22 +250,6 @@ void modelCalcBounds(Model * model)
 	}
 }
 
-float defaultAnimProgress(AnimWindow * aw)
-{
-	float forwardProgress =
-		1 - aw->animRemainingTime /	(aw->animTotalTime - aw->timestep);
-	forwardProgress = MIN(forwardProgress, 1);
-	forwardProgress = MAX(forwardProgress, 0);
-
-	if (aw->curWindowEvent == WindowEventCreate ||
-		aw->curWindowEvent == WindowEventUnminimize ||
-		aw->curWindowEvent == WindowEventUnshade ||
-		aw->curWindowEvent == WindowEventFocus)
-		forwardProgress = 1 - forwardProgress;
-
-	return forwardProgress;
-}
-
 // Converts animation direction string to an integer direction
 // (up, down, left, or right)
 AnimDirection getAnimationDirection(CompWindow * w,
@@ -316,6 +300,43 @@ AnimDirection getAnimationDirection(CompWindow * w,
 		}
 	}
 	return dir;
+}
+
+float defaultAnimProgress(AnimWindow * aw)
+{
+	float forwardProgress =
+		1 - aw->animRemainingTime /	(aw->animTotalTime - aw->timestep);
+	forwardProgress = MIN(forwardProgress, 1);
+	forwardProgress = MAX(forwardProgress, 0);
+
+	if (aw->curWindowEvent == WindowEventCreate ||
+		aw->curWindowEvent == WindowEventUnminimize ||
+		aw->curWindowEvent == WindowEventUnshade ||
+		aw->curWindowEvent == WindowEventFocus)
+		forwardProgress = 1 - forwardProgress;
+
+	return forwardProgress;
+}
+
+float sigmoidAnimProgress(AnimWindow * aw)
+{
+	float forwardProgress =
+		1 - aw->animRemainingTime /	(aw->animTotalTime - aw->timestep);
+	forwardProgress = MIN(forwardProgress, 1);
+	forwardProgress = MAX(forwardProgress, 0);
+
+	// Apply sigmoid and normalize
+	forwardProgress =
+		(sigmoid(forwardProgress) - sigmoid(0)) /
+		(sigmoid(1) - sigmoid(0));
+
+	if (aw->curWindowEvent == WindowEventCreate ||
+		aw->curWindowEvent == WindowEventUnminimize ||
+		aw->curWindowEvent == WindowEventUnshade ||
+		aw->curWindowEvent == WindowEventFocus)
+		forwardProgress = 1 - forwardProgress;
+
+	return forwardProgress;
 }
 
 // Gives some acceleration (when closing a window)
@@ -1411,6 +1432,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 					}
 					if (!nw)
 						continue;
+
 					AnimWindow *awNext = GET_ANIM_WINDOW(nw, as);
 					if (awNext && awNext->winThisIsPaintedBefore)
 					{
@@ -2418,6 +2440,7 @@ static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
 			{
 				ANIM_SCREEN(s);
 				as->switcherActive = getBoolOptionNamed(option, nOption, "active", FALSE);
+				as->switcherWinOpeningSuppressed = FALSE;
 			}
 		}
 	}
@@ -3278,9 +3301,10 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 				}
 			}
 		}
-		else if (aw->state != NormalState && !w->invisible)
+		else if (!w->invisible)
 		{
 			aw->created = TRUE;
+
 			AnimEffect windowsCreateEffect = AnimEffectNone;
 
 			int whichCreate = 1;	// either 1 or 2
@@ -3296,6 +3320,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			}
 
 			if (windowsCreateEffect &&
+				// suppress switcher window
+				// (1st window that opens after switcher becomes active)
+				(!as->switcherActive || as->switcherWinOpeningSuppressed) &&
 				getMousePointerXY(w->screen, &aw->icon.x, &aw->icon.y))
 			{
 				// CREATE event!
@@ -3403,6 +3430,11 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 					else
 						postAnimationCleanup(w, TRUE);
 				}
+			}
+			else if (as->switcherActive && !as->switcherWinOpeningSuppressed)
+			{
+				// done suppressing open animation
+				as->switcherWinOpeningSuppressed = TRUE;
 			}
 		}
 

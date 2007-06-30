@@ -457,6 +457,9 @@ typedef struct _AnimScreen
 	Bool groupTabChangeActive;
 	Bool scaleActive;
 
+	Bool switcherWinOpeningSuppressed; // whether switcher window opening
+	                                   // animation is suppressed yet
+
 	Window *lastClientListStacking; // to store last known stacking order
 	int nLastClientListStacking;
 	int markAllWinCreatedCountdown;
@@ -652,7 +655,10 @@ modelCalcBounds (Model * model);
  
 float
 defaultAnimProgress (AnimWindow * aw);
- 
+
+float
+sigmoidAnimProgress(AnimWindow * aw);
+
 float
 decelerateProgressCustom (float progress,
 						  float minx, float maxx);
