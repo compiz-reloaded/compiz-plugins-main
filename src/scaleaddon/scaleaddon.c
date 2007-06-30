@@ -30,6 +30,7 @@
 
 #include <math.h>
 #include <string.h>
+#include <X11/Xatom.h>
 
 #include <compiz.h>
 #include <scale.h>
@@ -519,6 +520,27 @@ scaleaddonHandleEvent (CompDisplay *d,
 
     switch (event->type)
     {
+    case PropertyNotify:
+	{
+	    SCALE_DISPLAY (d);
+	    if (event->xproperty.window == sd->hoveredWindow &&
+		event->xproperty.atom == XA_WM_NAME)
+	    {
+		CompWindow *w;
+
+		w = findWindowAtDisplay (d, event->xproperty.window);
+		if (w)
+		{
+		    SCALE_SCREEN (w->screen);
+		    if (ss->grabIndex)
+		    {
+			scaleaddonRenderWindowTitle (w);
+			addWindowDamage (w);
+		    }
+		}
+	    }
+	}
+	break;
     case MotionNotify:
 	{
 	    CompScreen *s;

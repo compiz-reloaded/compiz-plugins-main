@@ -1,7 +1,7 @@
 <compiz>
 	<plugin name="scaleaddon" useBcop="true">
-		<short>Scale Addons</short>
-		<long>Some useful additions to the scale plugin</long>
+		<_short>Scale Addons</_short>
+		<_long>Some useful additions to the scale plugin</_long>
 		<category>Utility</category>
 		<deps>
 			<relation type="after">
@@ -13,10 +13,10 @@
 		</deps>
 		<display>
 			<group>
-			    <short>Bindings</short>
+			    <_short>Bindings</_short>
 			    <option name="close" type="action">
-					<short>Close Windows In Scale</short>
-					<long>Close windows while in scale mode</long>
+					<_short>Close Windows In Scale</_short>
+					<_long>Close windows while in scale mode</_long>
 					<allowed key="true" button="true"/>
 					<passive_grab>true</passive_grab>
 					<default>
@@ -24,8 +24,8 @@
 					</default>
 			    </option>
 			    <option name="zoom" type="action">
-					<short>Zoom Windows In Scale</short>
-					<long>Zoom windows while in scale mode</long>
+					<_short>Zoom Windows In Scale</_short>
+					<_long>Zoom windows while in scale mode</_long>
 					<allowed key="true" button="true"/>
 					<passive_grab>true</passive_grab>
 					<default>
@@ -36,36 +36,36 @@
 		</display>
 		<screen>
 			<group>
-				<short>Appearance</short>
+				<_short>Appearance</_short>
 				<subgroup>
-					<short>Window Title</short>
+					<_short>Window Title</_short>
 					<option name="window_title" type="bool">
-						<short>Show Window Title</short>
-						<long>Show window title in scale mode</long>
+						<_short>Show Window Title</_short>
+						<_long>Show window title in scale mode</_long>
 						<default>true</default>
 					</option>
 					<option name="title_bold" type="bool">
-						<short>Bold Font</short>
-						<long>Use bold font for window title display</long>
+						<_short>Bold Font</_short>
+						<_long>Use bold font for window title display</_long>
 						<default>false</default>
 					</option>
 					<option name="title_size" type="int">
-						<short>Font Size</short>
-						<long>Font size for window title display</long>
+						<_short>Font Size</_short>
+						<_long>Font size for window title display</_long>
 						<min>6</min>
 						<max>48</max>
 						<default>10</default>
 					</option>
 					<option name="border_size" type="int">
-						<short>Title Border Size</short>
-						<long>Size of the border around the window title</long>
+						<_short>Title Border Size</_short>
+						<_long>Size of the border around the window title</_long>
 						<min>1</min>
 						<max>20</max>
 						<default>3</default>
 					</option>
 					<option name="font_color" type="color">
-						<short>Font Color</short>
-						<long>Font color of the window title</long>
+						<_short>Font Color</_short>
+						<_long>Font color of the window title</_long>
 						<default>
 							<red>0xffff</red>
 							<green>0xffff</green>
@@ -74,8 +74,8 @@
 						</default>
 					</option>
 					<option name="back_color" type="color">
-						<short>Background Color</short>
-						<long>Background color of the window title</long>
+						<_short>Background Color</_short>
+						<_long>Background color of the window title</_long>
 						<default>
 							<red>0x0000</red>
 							<green>0x0000</green>
@@ -85,15 +85,15 @@
 					</option>
 				</subgroup>
 				<subgroup>
-					<short>Window Highlight</short>
+					<_short>Window Highlight</_short>
 					<option name="window_highlight" type="bool">
-						<short>Draw Window Highlight</short>
-						<long>Highlights the hovered window with the given color</long>
+						<_short>Draw Window Highlight</_short>
+						<_long>Highlights the hovered window with the given color</_long>
 						<default>false</default>
 					</option>
 					<option name="highlight_color" type="color">
-						<short>Highlight Color</short>
-						<long>Color used for highlighting the hovered window</long>
+						<_short>Highlight Color</_short>
+						<_long>Color used for highlighting the hovered window</_long>
 						<default>
 							<red>0xffff</red>
 							<green>0xffff</green>
@@ -104,21 +104,21 @@
 				</subgroup>
 			</group>
 			<group>
-				<short>Behaviour</short>
+				<_short>Behaviour</_short>
 				<option name="layout_mode" type="int">
-					<short>Window Layout Mode</short>
-					<long>Selects the mode to layout the windows in scale mode</long>
+					<_short>Window Layout Mode</_short>
+					<_long>Selects the mode to layout the windows in scale mode</_long>
 					<min>0</min>
 					<!-- note: don't offer the organic mode for now as it's utterly broken -->
 					<max>0</max>
 					<default>0</default>
 					<desc>
 						<value>0</value>
-						<name>Normal</name>
+						<_name>Normal</_name>
 					</desc>
 					<desc>
 						<value>1</value>
-						<name>Organic - EXPERIMENTAL</name>
+						<_name>Organic - EXPERIMENTAL</_name>
 					</desc>
 				</option>
 			</group>
