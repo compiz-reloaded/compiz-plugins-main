@@ -1,36 +1,36 @@
 <?xml version="1.0"?>
 <compiz>
   <plugin name="thumbnail" useBcop="true">
-    <short>Window Previews</short>
-    <long>Window thumbnails at the taskbar</long>
+    <_short>Window Previews</_short>
+    <_long>Window thumbnails at the taskbar</_long>
 	<category>Extras</category>
     <screen>
       <group>
-        <short>Settings</short>
+        <_short>Settings</_short>
         <option name="thumb_size" type="int">
-          <short>Thumbnail Window Size</short>
-          <long>Thumbnail window size.</long>
+          <_short>Thumbnail Window Size</_short>
+          <_long>Thumbnail window size.</_long>
           <default>200</default>
           <min>50</min>
           <max>1500</max>
         </option>
         <option name="show_delay" type="int">
-          <short>Show Delay</short>
-          <long>Time (in ms) before Thumbnail is shown.</long>
+          <_short>Show Delay</_short>
+          <_long>Time (in ms) before Thumbnail is shown.</_long>
           <default>100</default>
           <min>100</min>
           <max>10000</max>
         </option>
         <option name="border" type="int">
-          <short>Thumbnail Border Size</short>
-          <long>Size of Thumbnail Border.</long>
+          <_short>Thumbnail Border Size</_short>
+          <_long>Size of Thumbnail Border.</_long>
           <default>16</default>
           <min>1</min>
           <max>32</max>
         </option>
         <option name="thumb_color" type="color">
-          <short>Thumbnail Border Glow Color</short>
-          <long>Thumbnail Background and Border Glow Color.</long>
+          <_short>Thumbnail Border Glow Color</_short>
+          <_long>Thumbnail Background and Border Glow Color.</_long>
           <default>
             <red>0x0000</red>
             <green>0x0000</green>
@@ -39,58 +39,58 @@
           </default>
         </option>
         <option name="fade_speed" type="float">
-          <short>Fade In/Out Duration</short>
-          <long>Fade In/Out Duration in seconds.</long>
+          <_short>Fade In/Out Duration</_short>
+          <_long>Fade In/Out Duration in seconds.</_long>
           <default>0.5</default>
           <min>0.0</min>
           <max>5.0</max>
           <precision>0.1</precision>
         </option>
         <subgroup>
-          <short>Taskbar</short>
+          <_short>Taskbar</_short>
           <option name="current_viewport" type="bool">
-            <short>Taskbar Shows Only Windows of Current Viewport</short>
-            <long>Set it if the Taskbar shows only Windows of Current Viewport.</long>
+            <_short>Taskbar Shows Only Windows of Current Viewport</_short>
+            <_long>Set it if the Taskbar shows only Windows of Current Viewport.</_long>
             <default>true</default>
           </option>
           <option name="always_on_top" type="bool">
-            <short>Thumbnails Always on Top</short>
-            <long>Paint Thumbnails Always on Top.</long>
+            <_short>Thumbnails Always on Top</_short>
+            <_long>Paint Thumbnails Always on Top.</_long>
             <default>true</default>
           </option>
         </subgroup>
         <option name="window_like" type="bool">
-          <short>Paint Window Like Background</short>
-          <long>Paint Window Like Background instead of Glow.</long>
+          <_short>Paint Window Like Background</_short>
+          <_long>Paint Window Like Background instead of Glow.</_long>
           <default>true</default>
         </option>
         <option name="mipmap" type="bool">
-          <short>Generate Mipmaps</short>
-          <long>Generate mipmaps when possible for higher quality scaling.</long>
+          <_short>Generate Mipmaps</_short>
+          <_long>Generate mipmaps when possible for higher quality scaling.</_long>
           <default>false</default>
         </option>
         <subgroup>
-          <short>Window title</short>
+          <_short>Window title</_short>
           <option name="title_enabled" type="bool">
-            <short>Enable Titles</short>
-            <long>Show Window Title in Thumbnail.</long>
+            <_short>Enable Titles</_short>
+            <_long>Show Window Title in Thumbnail.</_long>
             <default>true</default>
           </option>
           <option name="font_bold" type="bool">
-            <short>Bold Font</short>
-            <long>Should be the window title Bold.</long>
+            <_short>Bold Font</_short>
+            <_long>Should be the window title Bold.</_long>
             <default>true</default>
           </option>
           <option name="font_size" type="int">
-            <short>Font Size</short>
-            <long>Window title Font Size.</long>
+            <_short>Font Size</_short>
+            <_long>Window title Font Size.</_long>
             <default>12</default>
             <min>6</min>
             <max>36</max>
           </option>
           <option name="font_color" type="color">
-            <short>Font Color</short>
-            <long>Window title Font Color.</long>
+            <_short>Font Color</_short>
+            <_long>Window title Font Color.</_long>
             <default>
               <red>0x0000</red>
               <green>0x0000</green>
