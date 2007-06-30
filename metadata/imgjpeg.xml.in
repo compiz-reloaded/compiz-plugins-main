@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <compiz>
   <plugin name="imgjpeg" useBcop="true">
-    <short>JPEG</short>
-    <long>JPEG image format plugin</long>
+    <_short>JPEG</_short>
+    <_long>JPEG image format plugin</_long>
 	<category>Image Loading</category>
     <feature>imageext:jpeg</feature>
     <feature>imageext:jpg</feature>
     <feature>imageext:image/jpeg</feature>
     <display>
       <option name="quality" type="int">
-        <short>Compression Quality</short>
-        <long>Quality of compression when saving JPEG images</long>
+        <_short>Compression Quality</_short>
+        <_long>Quality of compression when saving JPEG images</_long>
         <default>80</default>
         <min>0</min>
         <max>100</max>
