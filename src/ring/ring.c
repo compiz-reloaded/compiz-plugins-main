@@ -1496,18 +1496,36 @@ ringHandleEvent (CompDisplay *d,
     WRAP (rd, d, handleEvent, ringHandleEvent);
 
     switch (event->type) {
+    case PropertyNotify:
+	if (event->xproperty.atom == XA_WM_NAME)
+	{
+	    CompWindow *w;
+	    w = findWindowAtDisplay (d, event->xproperty.window);
+	    if (w)
+	    {
+    		RING_SCREEN (w->screen);
+    		if (rs->grabIndex && (w->id == rs->selectedWindow))
+    		{
+    		    ringRenderWindowTitle (w->screen);
+    		    damageScreen (w->screen);
+		}
+	    }
+	}
+	break;
     case ButtonPress:
 	if (event->xbutton.button == Button1)
 	{
 	    CompScreen *s;
 	    s = findScreenAtDisplay (d, event->xbutton.root);
-	    if (!s)
-		break;
+	    if (s)
+	    {
+    		RING_SCREEN (s);
 
-	    RING_SCREEN (s);
-
-	    if (rs->grabIndex)
-		ringWindowSelectAt (s, event->xbutton.x_root, event->xbutton.y_root);
+    		if (rs->grabIndex)
+    		    ringWindowSelectAt (s, 
+					event->xbutton.x_root, 
+					event->xbutton.y_root);
+	    }
 	}
 	break;
     case UnmapNotify:
