@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <compiz>
   <plugin name="neg" useBcop="true">
-    <short>Negative</short>
-    <long>Used to set a window or screen negative</long>
+    <_short>Negative</_short>
+    <_long>Used to set a window or screen negative</_long>
 	<category>Accessibility</category>
     <display>
       <option name="window_toggle" type="action">
-        <short>Toggle Window Negative</short>
-        <long>Toggle active window negative</long>
+        <_short>Toggle Window Negative</_short>
+        <_long>Toggle active window negative</_long>
         <allowed key="true"/>
         <default>
           <key>&lt;Super&gt;n</key>
         </default>
       </option>
       <option name="screen_toggle" type="action">
-        <short>Toggle Screen Negative</short>
-        <long>Toggle screen negative</long>
+        <_short>Toggle Screen Negative</_short>
+        <_long>Toggle screen negative</_long>
         <allowed key="true"/>
         <default>
           <key>&lt;Super&gt;m</key>
@@ -24,15 +24,15 @@
     </display>
     <screen>
       <option name="neg_match" type="match">
-        <short>Neg Windows</short>
-        <long>Windows to be negative by default</long>
+        <_short>Neg Windows</_short>
+        <_long>Windows to be negative by default</_long>
         <default></default>
       </option>
     </screen>
     <screen>
       <option name="exclude_match" type="match">
-        <short>Exclude Windows</short>
-        <long>Windows to exclude from negating</long>
+        <_short>Exclude Windows</_short>
+        <_long>Windows to exclude from negating</_long>
         <default>Type=Desktop</default>
       </option>
     </screen>
