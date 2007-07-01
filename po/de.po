@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-01 13:24+0200\n"
-"PO-Revision-Date: 2007-07-01 14:28+0200\n"
+"POT-Creation-Date: 2007-07-01 14:45+0200\n"
+"PO-Revision-Date: 2007-07-01 14:45+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -450,17 +450,15 @@ msgstr "Nur bei Minimieren/Un-Minimieren"
 msgid "None"
 msgstr "Nichts"
 
-#, fuzzy
 msgid "Number Of Fire Particles"
-msgstr "Anzahl der Partikel"
+msgstr "Anzahl der Feuerpartikel"
 
 #, fuzzy
 msgid "Number of Horizontal Folds"
 msgstr "Anzahl der Partikel"
 
-#, fuzzy
 msgid "Number of fire particles."
-msgstr "Anzahl der Partikel"
+msgstr "Anzahl der Feuerpartikel"
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -510,18 +508,14 @@ msgstr ""
 msgid "Rollup Fixed Interior"
 msgstr ""
 
-#, fuzzy
 msgid "Shade Animation"
-msgstr "Animationsgeschwindigkeit"
+msgstr "Fenster-Aufrollen-Animation"
 
-#, fuzzy
 msgid "Shade animation duration in seconds."
-msgstr "Ändere die Dauer der TabAnimation"
+msgstr "Dauer der Animation beim Aufrollen von Fenstern"
 
-# FIXME
-#, fuzzy
 msgid "Shade window effect."
-msgstr "Aktiviere Redirection für das momentan aktive Fenster"
+msgstr "Effekt für das Aufrollen von Fenstern"
 
 #, fuzzy
 msgid "Sidekick"
@@ -547,13 +541,11 @@ msgid ""
 "Lamp."
 msgstr ""
 
-# FIXME - Find a better word for this
-#, fuzzy
 msgid "Tessellation Type"
-msgstr "Kachelanimationstyp"
+msgstr "Tesselations-Typ"
 
 msgid "Tessellation type for exploding window pieces."
-msgstr ""
+msgstr "Tesselations-Typ für Explosions-Effekt"
 
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
@@ -567,13 +559,13 @@ msgid ""
 msgstr ""
 
 msgid "The animation shown when closing a window."
-msgstr ""
+msgstr "Beim Schließen eines Fensters verwendete Animation"
 
 msgid "The animation shown when creating a window."
-msgstr ""
+msgstr "Beim Öffnen eines Fensters verwendete Animation"
 
 msgid "The animation shown when minimizing a window."
-msgstr ""
+msgstr "Beim Minimieren eines Fensters verwendete Animation"
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
@@ -620,24 +612,20 @@ msgstr ""
 msgid "The wave amplitude (size of the waves) relative to the window height."
 msgstr ""
 
-#, fuzzy
 msgid "The width of the wave relative to the window height."
-msgstr "Die Breite der Line um die Tab-Leiste."
+msgstr "Breite der Welle in Relation zur Fensterbreite"
 
-#, fuzzy
 msgid "The windows that will be animated."
-msgstr "Fenstertypen die sichtbar sein sollen"
+msgstr "Fenster, die animiert werden sollen"
 
 msgid "Thickness"
-msgstr ""
+msgstr "Dicke"
 
 msgid "Thickness of Exploding Polygons"
-msgstr ""
+msgstr "Dicke der explodierenden Polygone"
 
-#, fuzzy
 msgid "Thickness of exploding window pieces."
-msgstr ""
-"Die Tastenkombination um die momentan selektierten Fenster zu gruppieren."
+msgstr "Dicke der bei der Explosion entstehenden Fensterteile."
 
 msgid "Up"
 msgstr "Hoch"
@@ -659,32 +647,28 @@ msgid ""
 msgstr ""
 
 msgid "Wave"
-msgstr ""
+msgstr "Welle"
 
 msgid "Wave Amplitude"
-msgstr ""
+msgstr "Wellen-Amplitude"
 
-#, fuzzy
 msgid "Wave Width"
-msgstr "Fensterbreite"
+msgstr "Wellenbreite"
 
-#, fuzzy
 msgid "Window Grid Height"
-msgstr "Fensterbreite"
+msgstr "Fenstergitterhöhe"
 
-#, fuzzy
 msgid "Window Grid Width"
-msgstr "Fensterbreite"
+msgstr "Fenstergitterbreite"
 
 msgid "Window that should animate with this effect when created."
-msgstr ""
+msgstr "Fenster, für die dieser Effekt beim Öffnen verwendet werden soll."
 
-#, fuzzy
 msgid "Window that should animate with this effect when focused."
-msgstr "Fenster die gruppiert werden können"
+msgstr "Fenster, für die dieser Effekt beim Fokussieren verwendet werden soll."
 
 msgid "Window that should animate with this effect when shaded."
-msgstr ""
+msgstr "Fenster, für die dieser Effekt beim Aufrollen verwendet werden soll."
 
 msgid ""
 "Window thickness in pixels. Setting this to larger than 0 will disable "
@@ -698,7 +682,7 @@ msgid "Zoom Springiness"
 msgstr ""
 
 msgid "Zoom from Center"
-msgstr ""
+msgstr "Aus der Mitte zoomen"
 
 msgid "Zoom from center when playing the Zoom and Sidekick animations."
 msgstr ""
@@ -844,21 +828,21 @@ msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Automatisch herauszoomen, um den Würfel dem Bildschrim anzupassen."
 
 msgid "Animation used when switching to expo mode"
-msgstr ""
+msgstr "Beim Wechsel in den und aus dem Expo-Modus verwendete Animation."
 
 msgid "Appearance"
 msgstr "Aussehen"
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "Seitenverhältnis"
 
 msgid "Behaviour"
 msgstr "Verhalten"
 
+# FIXME - is wall really == Wand here?
 msgid "Distance of the expo wall"
-msgstr ""
+msgstr "Entfernung zur Expo-Wand"
 
-#, fuzzy
 msgid "Duration of the zoomout animation"
 msgstr "Dauer der Auszoom-Animation"
 
@@ -868,27 +852,25 @@ msgstr ""
 msgid "Expo"
 msgstr ""
 
-#, fuzzy
 msgid "Expo Animation"
-msgstr "Animationsgeschwindigkeit"
+msgstr "Verwendete Animation"
 
 msgid "Expo Plugin"
 msgstr ""
 
 msgid "Expo mode aspect ratio"
-msgstr ""
+msgstr "Seitenverhältnis der Expo-Wand"
 
-#, fuzzy
 msgid "Fade + Zoom"
-msgstr "Ein-/Ausblendzeit"
+msgstr "Ausblenden und zoomen"
 
 msgid "Generate mipmaps in expo mode"
 msgstr ""
+"Mipmaps im Expo-Modus verwenden, um die Darstellungsqualität zu verbessern"
 
 msgid "Immediate moves"
 msgstr ""
 
-#, fuzzy
 msgid "Mipmaps"
 msgstr "Mipmaps benutzen"
 
@@ -901,7 +883,7 @@ msgid ""
 msgstr ""
 
 msgid "Show a reflection of the viewports on the ground"
-msgstr ""
+msgstr "Reflektion der Arbeitsflächen auf dem Boden anzeigen"
 
 #, fuzzy
 msgid "Tilt view"
@@ -913,9 +895,8 @@ msgstr ""
 msgid "Vortex"
 msgstr ""
 
-#, fuzzy
 msgid "Zoom time"
-msgstr "Zoom"
+msgstr "Zoomdauer"
 
 msgid "Activate Window"
 msgstr "Aktiviere Fenster"
@@ -1001,7 +982,7 @@ msgid "Initiate fire drawing"
 msgstr "Aktiviere Zeichnen mit Feuer"
 
 msgid "Maximum number of active particles"
-msgstr "Maximale Anzahl der Parktikel"
+msgstr "Maximale Anzahl der Partikel"
 
 msgid "Number of particles"
 msgstr "Anzahl der Partikel"
@@ -1575,9 +1556,8 @@ msgstr "Fenster, die standardmäßig negiert werden sollen."
 msgid "Windows to exclude from negating"
 msgstr "Fenster, die niemals negiert werden sollen"
 
-#, fuzzy
 msgid "Active Opacity"
-msgstr "Sichtbarkeit"
+msgstr "Sichtbarkeit für aktives Fenster"
 
 msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
@@ -1607,7 +1587,6 @@ msgid ""
 "windows blocking it from view."
 msgstr ""
 
-#, fuzzy
 msgid "Opacify"
 msgstr "Sichtbarkeit"
 
@@ -1786,7 +1765,7 @@ msgid "Big"
 msgstr "Groß"
 
 msgid "Bold Font"
-msgstr ""
+msgstr "Fettdruck für Schift verwenden"
 
 msgid "Centered on screen"
 msgstr "In der Bildschirmmitte"
@@ -2005,7 +1984,9 @@ msgid "Scale Addons"
 msgstr "Scale-Erweiterungen"
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr "Wählt den Modus für die Anordnung der Fenster im 'Fenster skalieren'-Modus aus."
+msgstr ""
+"Wählt den Modus für die Anordnung der Fenster im 'Fenster skalieren'-Modus "
+"aus."
 
 msgid "Show window title in scale mode"
 msgstr "Zeige Fenstertitel an."
@@ -2106,7 +2087,7 @@ msgid "Choose 'Resistance', 'Attraction' or 'Full Mode'."
 msgstr ""
 
 msgid "Control"
-msgstr ""
+msgstr "Steuerung"
 
 msgid "Edge Attraction Distance"
 msgstr ""
@@ -2128,16 +2109,14 @@ msgstr ""
 msgid "Enables windows edges resistance"
 msgstr ""
 
-#, fuzzy
 msgid "Meta"
-msgstr "Metall"
+msgstr "Meta"
 
-#, fuzzy
 msgid "Screen edges"
-msgstr "Bildschirmtiefe"
+msgstr "Bildschirmkanten"
 
 msgid "Shift"
-msgstr ""
+msgstr "Umschalten"
 
 msgid "Snap Type"
 msgstr ""
@@ -2348,7 +2327,9 @@ msgid "Generate Mipmaps"
 msgstr "Mipmaps benutzen"
 
 msgid "Generate mipmaps when possible for higher quality scaling."
-msgstr "Mipmaps benutzen (wenn möglich), um eine bessere Darstellungsqualität zu erreichen."
+msgstr ""
+"Mipmaps benutzen (wenn möglich), um eine bessere Darstellungsqualität zu "
+"erreichen."
 
 msgid "Paint Thumbnails Always on Top."
 msgstr "Vorschaubilder immer im Vordergrund anzeigen"
@@ -2360,8 +2341,9 @@ msgid "Paint Window Like Background instead of Glow."
 msgstr "Fensterartigen Hintergrund anstatt Glühen verwenden"
 
 msgid "Set it if the Taskbar shows only Windows of Current Viewport."
-msgstr "Diese Option sollte aktiviert werden, falls die Taskleiste "
-"nur Fenster der aktuellen Arbeitsfläche anzeigt."
+msgstr ""
+"Diese Option sollte aktiviert werden, falls die Taskleiste nur Fenster der "
+"aktuellen Arbeitsfläche anzeigt."
 
 msgid "Should be the window title Bold."
 msgstr "Aktiviert Fettdruck für die Anzeige des Fenstertitels."
@@ -2486,8 +2468,8 @@ msgid ""
 "screen width, which the active window will have it as width when tiled. "
 "Applies to Left tiling type."
 msgstr ""
-"Anteil der Bildschirmbreite (in Prozent), auf die das aktive Fenster im Anordnungsmodus "
-"'Links' skaliert wird."
+"Anteil der Bildschirmbreite (in Prozent), auf die das aktive Fenster im "
+"Anordnungsmodus 'Links' skaliert wird."
 
 msgid "Restore Windows"
 msgstr "Fenster wiederherstellen"
@@ -2540,10 +2522,10 @@ msgid ""
 "is enabled so that when you resize a window surrounding windows resize "
 "accordingly. This may cause problems if you dont leave them enough space."
 msgstr ""
-"Versucht die Fenster zu verbinden, wenn der Kachelmodus 'Horizontal', 'Vertikal' oder 'Links' "
-"aktiviert ist. Das bedeutet, wenn man ein Fenster skaliert, werden "
-"die umgebenden Fenster auch skaliert. Allerdings kann dies Probleme "
-"verursachen, wenn nicht genug Platz vorhanden ist."
+"Versucht die Fenster zu verbinden, wenn der Kachelmodus 'Horizontal', "
+"'Vertikal' oder 'Links' aktiviert ist. Das bedeutet, wenn man ein Fenster "
+"skaliert, werden die umgebenden Fenster auch skaliert. Allerdings kann dies "
+"Probleme verursachen, wenn nicht genug Platz vorhanden ist."
 
 msgid "Windows which should be excluded from tiling"
 msgstr "Fenster, die vom Kacheln ausgeschlossen werden sollen"
@@ -2582,9 +2564,8 @@ msgid ""
 "Number of windows Trailfocus will keep track of. Windows that had focus this "
 "amount of windows ago or more will be considered completly unfocused."
 msgstr ""
-"Anzahl der Fenster, die Trailfocus bei seinen Berechnungen einbeziehen "
-"wird. Alle Fenster mit einer niedrigeren Fokus-Anzahl werden nicht "
-"berücksichtigt."
+"Anzahl der Fenster, die Trailfocus bei seinen Berechnungen einbeziehen wird. "
+"Alle Fenster mit einer niedrigeren Fokus-Anzahl werden nicht berücksichtigt."
 
 msgid "Opacity Level of Focused Windows"
 msgstr "Sichtbarkeit des fokusierten Fensters"
@@ -2709,7 +2690,7 @@ msgstr ""
 "Dauer der Anzeige des Arbeitsflächenvorschaufensters nach Ende der Umschalt-"
 "Animation in Sekunden."
 
-#FIXME - this wording is taken from rotate plugin, but pretty bad...
+# FIXME - this wording is taken from rotate plugin, but pretty bad...
 msgid "Edge Flip DnD"
 msgstr "An Rand wechseln (Ziehen und Ablegen)"
 
@@ -2814,7 +2795,8 @@ msgid "Show Viewport Switcher Preview"
 msgstr "Vorschaufenster beim Umschalten anzeigen"
 
 msgid "Show live viewport previews in switcher window"
-msgstr "Zeigt eine Echtzeitvorschau von allen Arbeitsflächen beim Umschalten an."
+msgstr ""
+"Zeigt eine Echtzeitvorschau von allen Arbeitsflächen beim Umschalten an."
 
 msgid "Show switcher window while switching viewports"
 msgstr "Zeigt ein Vorschaufenster beim Umschalten von Arbeitsflächen an."
