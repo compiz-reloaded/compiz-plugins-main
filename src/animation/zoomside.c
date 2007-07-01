@@ -38,23 +38,52 @@
 
 // =====================  Effect: Zoom and Sidekick  =========================
 
+// spring crossing x (second time it spring movement reaches target)
+#define SPRING_PERCEIVED_T 0.55f
+#define NONSPRING_PERCEIVED_T 0.75f
+
 void fxSidekickInit(CompScreen * s, CompWindow * w)
 {
-	ANIM_WINDOW(w);
 	ANIM_SCREEN(s);
+	ANIM_WINDOW(w);
 
 	// determine number of rotations randomly in [0.75, 1.25] range
 	aw->numZoomRotations =
 			as->opt[ANIM_SCREEN_OPTION_SIDEKICK_NUM_ROTATIONS].value.f *
-			(1.0 + 0.2 * rand() / RAND_MAX - 0.1);
+			(1.0f + 0.2f * rand() / RAND_MAX - 0.1f);
 
-	// store window opacity
-	aw->storedOpacity = w->paint.opacity;
-	aw->timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
+	fxZoomInit(s, w);
 }
 
+static float
+fxZoomGetSpringiness(AnimScreen *as, AnimWindow *aw)
+{
+	if (aw->curAnimEffect == AnimEffectZoom)
+		return 2 * as->opt[ANIM_SCREEN_OPTION_ZOOM_SPRINGINESS].value.f;
+	else
+		return 1.6 * as->opt[ANIM_SCREEN_OPTION_SIDEKICK_SPRINGINESS].value.f;
+}
 
+void fxZoomInit(CompScreen * s, CompWindow * w)
+{
+	ANIM_SCREEN(s);
+	ANIM_WINDOW(w);
+
+	// allow extra time for spring damping / deceleration
+	if ((aw->curWindowEvent == WindowEventUnminimize ||
+		 aw->curWindowEvent == WindowEventCreate) &&
+		fxZoomGetSpringiness(as, aw) > 1e-4)
+	{
+		aw->animTotalTime /= SPRING_PERCEIVED_T;
+	}
+	else
+	{
+		aw->animTotalTime /= NONSPRING_PERCEIVED_T;
+	}
+	aw->animRemainingTime = aw->animTotalTime;
+
+	defaultAnimInit(s, w);
+}
 
 static void fxZoomAnimProgressDir(AnimScreen * as,
 								  AnimWindow * aw,
@@ -62,7 +91,7 @@ static void fxZoomAnimProgressDir(AnimScreen * as,
 								  float *scaleProgress)
 {
 	float forwardProgress =
-			1 - (aw->animRemainingTime - aw->timestep) /
+			1 - aw->animRemainingTime /
 			(aw->animTotalTime - aw->timestep);
 	forwardProgress = MIN(forwardProgress, 1);
 	forwardProgress = MAX(forwardProgress, 0);
@@ -85,44 +114,68 @@ static void fxZoomAnimProgressDir(AnimScreen * as,
 		backwards = TRUE;
 	if (backwards)
 		x = 1 - x;
-	
-	float cx = SPRING_CROSSING_X;
-	float nonSpringyProgress = 1 - pow(1-(x/cx*0.5),10);
 
-	x = pow(x, 0.7);
-	float damping = (pow(1-(x*0.5),10)-pow(1-0.5,10))/(1-pow(1-0.5,10));
+	float dampBase = (pow(1-pow(x,1.2)*0.5,10)-pow(0.5,10))/(1-pow(0.5,10));
+	float nonSpringyProgress =
+		1 - pow(decelerateProgressCustom(1 - x, .5f, .8f), 1.7f);
 
-	if (moveProgress)
+	if (moveProgress && scaleProgress)
 	{
+		float damping =
+			pow(dampBase, 0.5);
+
+		float damping2 =
+			((pow(1-(pow(x,0.7)*0.5),10)-pow(0.5,10))/(1-pow(0.5,10))) *
+			0.7 + 0.3;
 		float springiness = 0;
-		if (aw->curAnimEffect == AnimEffectZoom)
-			springiness = 2 *
-				as->opt[ANIM_SCREEN_OPTION_ZOOM_SPRINGINESS].value.f;
-		else
-			springiness = 1.6 *
-				as->opt[ANIM_SCREEN_OPTION_SIDEKICK_SPRINGINESS].value.f;
 
+		// springy only when appearing
+		if (aw->curWindowEvent == WindowEventUnminimize ||
+			aw->curWindowEvent == WindowEventCreate)
+		{
+			springiness = fxZoomGetSpringiness(as, aw);
+		}
+		
 		float springyMoveProgress =
-			1 - sin(3.5*M_PI*(pow(x,1.5)-1)) * damping;
+			cos(2*M_PI*pow(x,1)*1.25) * damping * damping2;
 
-		*moveProgress =
-			springiness * springyMoveProgress +
-			(1 - springiness) * nonSpringyProgress;
-
+		if (springiness > 1e-4)
+		{
+			if (x > 0.2)
+			{
+				springyMoveProgress *= springiness;
+			}
+			else
+			{
+				// interpolate between (springyMoveProgress * springiness)
+				// and springyMoveProgress for smooth transition at 0.2
+				// (where it crosses y=0)
+				float progressUpto02 = x / 0.2f;
+				springyMoveProgress =
+					(1 - progressUpto02) * springyMoveProgress +
+					progressUpto02 * springyMoveProgress * springiness;
+			}
+			*moveProgress = 1 - springyMoveProgress;
+		}
+		else
+		{
+			*moveProgress = nonSpringyProgress;
+		}
 		if (aw->curWindowEvent == WindowEventUnminimize ||
 			aw->curWindowEvent == WindowEventCreate)
 			*moveProgress = 1 - *moveProgress;
 		if (backwards)
 			*moveProgress = 1 - *moveProgress;
-	}
-	if (scaleProgress)
-	{
-		*scaleProgress = nonSpringyProgress;
+
+		float scProgress = nonSpringyProgress;
 		if (aw->curWindowEvent == WindowEventUnminimize ||
 			aw->curWindowEvent == WindowEventCreate)
-			*scaleProgress = 1 - *scaleProgress;
+			scProgress = 1 - scProgress;
 		if (backwards)
-			*scaleProgress = 1 - *scaleProgress;
+			scProgress = 1 - scProgress;
+
+		*scaleProgress =
+			pow(scProgress, 1.25);
 	}
 }
 
@@ -131,10 +184,11 @@ fxZoomUpdateWindowAttrib(AnimScreen * as,
 						 AnimWindow * aw, WindowPaintAttrib * wAttrib)
 {
 	float forwardProgress;
-	fxZoomAnimProgressDir(as, aw, NULL, &forwardProgress);
-
+	float dummy;
+	fxZoomAnimProgressDir(as, aw, &dummy, &forwardProgress);
+	
 	wAttrib->opacity =
-			(GLushort) (aw->storedOpacity * pow(1 - forwardProgress, 0.75));
+		(GLushort) (aw->storedOpacity * pow(1 - forwardProgress, 1));
 }
 
 void
@@ -179,9 +233,21 @@ fxZoomUpdateWindowTransform(CompScreen *s, CompWindow *w, CompTransform *wTransf
 		 winSize.y};
 
 	matrixTranslate (wTransform, winCenter.x, winCenter.y, 0);
-	matrixScale (wTransform, curScale.x, curScale.y, 1.0f);
-	float tx = (curCenter.x - winCenter.x) / curScale.x;
-	float ty = (curCenter.y - winCenter.y) / curScale.y;
+	float tx, ty;
+	if (aw->curAnimEffect == AnimEffectSidekick)
+	{
+		// avoid parallelogram look
+		float maxScale = MAX(curScale.x, curScale.y);
+		matrixScale (wTransform, maxScale, maxScale, 1.0f);
+		tx = (curCenter.x - winCenter.x) / maxScale;
+		ty = (curCenter.y - winCenter.y) / maxScale;
+	}
+	else
+	{
+		matrixScale (wTransform, curScale.x, curScale.y, 1.0f);
+		tx = (curCenter.x - winCenter.x) / curScale.x;
+		ty = (curCenter.y - winCenter.y) / curScale.y;
+	}
 	matrixTranslate (wTransform, tx, ty, 0);
 	if (aw->curAnimEffect == AnimEffectSidekick)
 	{

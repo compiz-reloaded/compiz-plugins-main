@@ -632,11 +632,6 @@ AnimEffectProperties *animEffectPropertiesTmp;
 	 (dir) == 2 ? (box).x - (WIN_X(dw) + WIN_W(dw)) : \
 	              ((box).x + (box).width) - WIN_X(dw))
 
-// spring crossing x (second time it spring movement reaches target)
-#define SPRING_CROSSING_X 0.6184f
-#define SPRING_PERCEIVED_T 0.5f
-//0.52884f
-
 /*
  * Function prototypes
  *
@@ -977,3 +972,6 @@ void
 fxSidekickInit (CompScreen *s,
 				CompWindow *w);
 
+void
+fxZoomInit (CompScreen * s,
+			CompWindow * w);

@@ -461,7 +461,7 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	// AnimEffectWave
 	{0, 0, 0, fxWaveModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectZoom
-	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
+	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxZoomInit,
 	 0, 0, 0, 1, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
 	 0}
 };
@@ -2679,11 +2679,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 						aw->animTotalTime =
 								as->opt[ANIM_SCREEN_OPTION_MINIMIZE_DURATION].value.f * 1000;
 
-						// allow extra time for spring damping
-						if (effectToBePlayed == AnimEffectZoom ||
-							effectToBePlayed == AnimEffectSidekick)
-							aw->animTotalTime /= SPRING_PERCEIVED_T;
-
 						aw->animRemainingTime = aw->animTotalTime;
 					}
 
@@ -2818,11 +2813,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 							as->opt[whichClose == 1 ?
 									ANIM_SCREEN_OPTION_CLOSE1_DURATION :
 									ANIM_SCREEN_OPTION_CLOSE2_DURATION].value.f * 1000;
-
-						// allow extra time for spring damping
-						if (effectToBePlayed == AnimEffectZoom ||
-							effectToBePlayed == AnimEffectSidekick)
-							aw->animTotalTime /= SPRING_PERCEIVED_T;
 
 						aw->animRemainingTime = aw->animTotalTime;
 					}
@@ -3177,11 +3167,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 						aw->animTotalTime =
 							as->opt[ANIM_SCREEN_OPTION_MINIMIZE_DURATION].value.f * 1000;
 
-						// allow extra time for spring damping
-						if (effectToBePlayed == AnimEffectZoom ||
-							effectToBePlayed == AnimEffectSidekick)
-							aw->animTotalTime /= SPRING_PERCEIVED_T;
-
 						aw->animRemainingTime = aw->animTotalTime;
 					}
 				}
@@ -3378,11 +3363,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 							as->opt[whichCreate == 1 ?
 									ANIM_SCREEN_OPTION_CREATE1_DURATION	:
 									ANIM_SCREEN_OPTION_CREATE2_DURATION].value.f * 1000;
-
-						// allow extra time for spring damping
-						if (effectToBePlayed == AnimEffectZoom ||
-							effectToBePlayed == AnimEffectSidekick)
-							aw->animTotalTime /= SPRING_PERCEIVED_T;
 
 						aw->animRemainingTime = aw->animTotalTime;
 					}
