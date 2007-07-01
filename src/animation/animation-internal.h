@@ -544,6 +544,9 @@ typedef struct _AnimWindow
 	int animFireDirection;
 	Bool deceleratingMotion;	// For effects that have decel. motion
 
+	// for glide effect
+	float glideModRotAngle;		// The angle of rotation modulo 360
+
 	// for focus fade effect:
 	RestackInfo *restackInfo;   // restack info if window was restacked this paint round
 	CompWindow *winToBePaintedBeforeThis; // Window which should be painted before this
@@ -819,6 +822,12 @@ fxGlideIsPolygonBased (AnimScreen *as, AnimWindow *aw);
 
 Bool
 fxGlideLetOthersDrawGeoms(CompScreen *s, CompWindow *aw);
+
+void
+fxGlidePrePaintWindow(CompScreen * s, CompWindow * w);
+
+void
+fxGlidePostPaintWindow(CompScreen * s, CompWindow * w);
 
 /* horizontalfold.c */
 

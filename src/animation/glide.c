@@ -165,6 +165,7 @@ fxGlideUpdateWindowTransform(CompScreen *s,
 	Point3d translation = {0, 0, finalz * forwardProgress};
 
 	float rotAngle = finalRotAng * forwardProgress;
+	aw->glideModRotAngle = fmodf(rotAngle + 720, 360.0f);
 
 	// put back to window position
 	matrixTranslate (wTransform, rotAxisOffset.x, rotAxisOffset.y, 0);
@@ -237,3 +238,26 @@ void fxGlideInit(CompScreen * s, CompWindow * w)
 	pset->correctPerspective = TRUE;
 }
 
+void fxGlidePrePaintWindow(CompScreen * s, CompWindow * w)
+{
+	ANIM_SCREEN(s);
+	ANIM_WINDOW(w);
+
+	if (fxGlideIsPolygonBased(as, aw))
+		polygonsPrePaintWindow(s, w);
+	else if (90 < aw->glideModRotAngle &&
+			 aw->glideModRotAngle < 270)
+		glCullFace(GL_FRONT);
+}
+
+void fxGlidePostPaintWindow(CompScreen * s, CompWindow * w)
+{
+	ANIM_SCREEN(s);
+	ANIM_WINDOW(w);
+
+	if (fxGlideIsPolygonBased(as, aw))
+		polygonsPostPaintWindow(s, w);
+	else if (90 < aw->glideModRotAngle &&
+			 aw->glideModRotAngle < 270)
+		glCullFace(GL_BACK);
+}

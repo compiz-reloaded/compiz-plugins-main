@@ -146,7 +146,13 @@ fxDodgeAnimStep (CompScreen * s, CompWindow * w, float time)
 			(1 - aw->transformStartProgress);
 	}
 
-	if (!aw->isDodgeSubject && aw->transformProgress <= 0.5f)
+	if (!aw->isDodgeSubject && !aw->dodgeSubjectWin)
+		compLogMessage (w->screen->display, "animation", CompLogLevelError,
+						"%s: %d: Dodge subject missing!",
+						__FILE__, __LINE__);
+	if (!aw->isDodgeSubject &&
+		aw->dodgeSubjectWin &&
+		aw->transformProgress <= 0.5f)
 	{
 		XRectangle dodgeBox;
 		fxDodgeFindDodgeBox (w, &dodgeBox);

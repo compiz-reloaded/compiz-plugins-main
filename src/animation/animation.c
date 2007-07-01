@@ -424,14 +424,14 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	{fxFocusFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
 	 0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0},
 	// AnimEffectGlide3D1
-	{fxGlideUpdateWindowAttrib, polygonsPrePaintWindow,
-	 polygonsPostPaintWindow, fxGlideAnimStep,
+	{fxGlideUpdateWindowAttrib, fxGlidePrePaintWindow,
+	 fxGlidePostPaintWindow, fxGlideAnimStep,
 	 fxGlideInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
 	 polygonsDeceleratingAnimStepPolygon,
 	 fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0},
 	// AnimEffectGlide3D2
-	{fxGlideUpdateWindowAttrib, polygonsPrePaintWindow,
-	 polygonsPostPaintWindow, fxGlideAnimStep,
+	{fxGlideUpdateWindowAttrib, fxGlidePrePaintWindow,
+	 fxGlidePostPaintWindow, fxGlideAnimStep,
 	 fxGlideInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
 	 polygonsDeceleratingAnimStepPolygon,
 	 fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0},
