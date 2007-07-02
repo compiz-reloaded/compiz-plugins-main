@@ -230,7 +230,7 @@ fxDodgePostPreparePaintScreen(CompScreen *s, CompWindow *w)
 			awOldHost = GET_ANIM_WINDOW(aw->winThisIsPaintedBefore, as);			
 			awOldHost->winToBePaintedBeforeThis = NULL;
 		}
-		if (dw) // if a dodgy win. is still at <0.5 progress
+		if (dw && adw) // if a dodgy win. is still at <0.5 progress
 		{
 			// Put subject right behind adw (new host)
 			adw->winToBePaintedBeforeThis = w;
