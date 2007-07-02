@@ -522,9 +522,13 @@ static void expoPaintWall(CompScreen * s,
 
 	if (reflection)
 	{
+#define SCALE_FACTOR expoGetScaleFactor(s->display)
 		matrixTranslate(&sTransform, 0.0, -s->vsize, 0.0);
 		matrixScale(&sTransform, 1.0, -1.0, 1.0);
+		matrixTranslate(&sTransform, 0.0, -(1 - SCALE_FACTOR)/2*s->vsize, 0.0);
+		matrixScale(&sTransform, 1.0, SCALE_FACTOR, 1.0);
 		glCullFace(GL_FRONT);
+#undef SCALE_FACTOR
 	}
 
 	// zoom out
