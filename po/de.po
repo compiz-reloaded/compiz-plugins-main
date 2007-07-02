@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-07-01 14:45+0200\n"
-"PO-Revision-Date: 2007-07-02 15:40+0200\n"
+"PO-Revision-Date: 2007-07-03 00:28+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -327,7 +327,7 @@ msgid "Fire Smoke"
 msgstr ""
 
 msgid "Fire constant speed"
-msgstr ""
+msgstr "Konstante Geschwindigkeit für Feuerpartikel"
 
 msgid "Fire direction"
 msgstr "Feuer-Richtung"
@@ -571,11 +571,15 @@ msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "height, in pixels, of the rows in the grid."
 msgstr ""
+"Die für den Explosions-Effekt verwendete Fensterteile werden mit hilfe eines Gitters erzeugt. "
+"Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "width, in pixels, of the columns in the grid."
 msgstr ""
+"Die für den Explosions-Effekt verwendete Fensterteile werden mit hilfe eines Gitters erzeugt. "
+"Geben sie die Breite der einzelnen Gitterspalten in Pixeln an."
 
 msgid "The maximum number of waves for Magic Lamp Vacuum."
 msgstr ""
@@ -839,7 +843,7 @@ msgstr "Seitenverhältnis"
 msgid "Behaviour"
 msgstr "Verhalten"
 
-# FIXME - is wall really == Wand here?
+# FIXME - is wall really == Wand here? -- Maybe we could use Ebene, Tafel or Brett here?
 msgid "Distance of the expo wall"
 msgstr "Entfernung zur Expo-Wand"
 
@@ -979,7 +983,7 @@ msgid "Clear"
 msgstr "Reinigen"
 
 msgid "Initiate fire drawing"
-msgstr "Aktiviere Zeichnen mit Feuer"
+msgstr "Zeichnen mit Feuer aktivieren"
 
 msgid "Maximum number of active particles"
 msgstr "Maximale Anzahl der Partikel"
@@ -1587,29 +1591,36 @@ msgid ""
 "windows blocking it from view."
 msgstr ""
 
+# FIXME -- Maybe we can find a better name for the plugin
 msgid "Opacify"
 msgstr "Sichtbarkeit"
 
 #, fuzzy
 msgid "Opacity Levels"
-msgstr "Sichtbarkeit"
+msgstr "Sichtbarkeitsstufen"
 
 #, fuzzy
 msgid "Passive Opacity"
 msgstr "Sichtbarkeit"
 
 msgid "Reset opacity to original values when toggling"
-msgstr ""
+msgstr "Sichtbarkeit bei Aus-/Einschalten auf den ursprünglischen Wert zurücksetzen"
 
+# FIXME -- Plugin name
 msgid ""
 "Reset the opacity of all windows modified by opacify when toggling Opacify "
 "with the defined key-combination."
 msgstr ""
+"Die Sichtbarkeit aller von Opacify veränderter Fenster beim Aus-/Einschalten auf "
+"den ürsprünglischen Wert zurücksetzen."
 
+#, fuzzy
 msgid ""
 "The delay (in ms) before Opacify changes opacity after the active window has "
 "changed."
 msgstr ""
+"Die Zeit (in Millisekunden), die Opacify wartet nachdem ein anderes Fenster fokusiert wurde "
+"bevor die Sichtbarkeit der Fenster verändert wird."
 
 msgid ""
 "The maximum opacity percentage a window blocking the current targeted window "
