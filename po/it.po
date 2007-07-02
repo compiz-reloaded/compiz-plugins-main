@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the compiz-fusion package.
 # Marco Trevisan (Treviño) <trevi55@gmail.com>, 2007.
 # Matteo Suppo (Triex) <alpha3ex@gmail.com>, 2007.
+# DDany <ddany83@gmail.com>, 2007.
 #
 #, fuzzy
 msgid ""
@@ -10,8 +11,8 @@ msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-02 22:31+0200\n"
-"Last-Translator: Treviño (Marco Trevisan) <trevi55@gmail.com>\n"
+"PO-Revision-Date: 2007-07-02 23:08+0200\n"
+"Last-Translator: DDany <ddany83@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -540,12 +541,12 @@ msgstr ""
 msgid ""
 "If one window in the group is (un)maximized, all other group windows are (un)"
 "maximized as well."
-msgstr "Se una finestra nel gruppo (non) è massimizzata, allora anche le altre finestre del gruppo (non) sono massimizzate"
+msgstr "Se una finestra del gruppo è massimizzata (o demassimizzata), tutte le altre finestre del gruppo sono massimizzate (o demassimizzate)."
 
 msgid ""
 "If one window in the group is (un)minimized, all other group windows are (un)"
 "minimized as well."
-msgstr "Se una finestra del gruppo (non) è minimizzata, allora tutte le altre finestre del gruppo (non) sono minimizzate."
+msgstr "Se una finestra del grupppo è minimizzata (o deminimizzata), tutte le altre finestre del gruppo vengono minimizzate (o deminimizzate)."
 
 msgid ""
 "If one window in the group is (un)shaded, all other group windows are (un)"
@@ -555,17 +556,17 @@ msgstr ""
 msgid ""
 "If one window in the group is activated, all other group windows are raised "
 "as well."
-msgstr ""
+msgstr "Se una finestra nel gruppo è attivata, tutte le altre finestre del gruppo vengono sollevate."
 
 msgid ""
 "If one window in the group is moved, all other group windows are moved as "
 "well."
-msgstr ""
+msgstr "Se una finestra nel gruppo è spostata, vengono spostate anche tutte le altre finestre del gruppo"
 
 msgid ""
 "If one window in the group is resized, all other group windows are resized "
 "as well."
-msgstr ""
+msgstr "Se una finestra nel gruppo è ridimensionata, tutte le altre finestre del gruppo sono ridimensionate."
 
 msgid "If there is only 1 window left in the group, it will be ungrouped."
 msgstr ""
@@ -576,10 +577,10 @@ msgstr ""
 msgid ""
 "If you have selected some windows, this automatically groups them (Doesn't "
 "work with selection mode 'Normal')."
-msgstr ""
+msgstr "Se ha selezionato qualche finestra, quest'opzione le raggruppa automaticamente (Non funziona con la modalità di selezione 'Normale')"
 
 msgid "Ignore Group"
-msgstr ""
+msgstr "Ignora il gruppo"
 
 msgid "Key bindings"
 msgstr ""
@@ -603,27 +604,27 @@ msgid "Mouse pointer movement speed limit (in pixels/second) for the spring mode
 msgstr ""
 
 msgid "Move every window in the group"
-msgstr ""
+msgstr "Muovi tutte le finestre del gruppo"
 
 msgid "Murrina"
 msgstr ""
 
 msgid "Opacity of selected windows"
-msgstr ""
+msgstr "Opacità della finestra selezionata"
 
 msgid "Options"
-msgstr ""
+msgstr "Opzioni"
 
 msgid "Play animations on the tab bar e.g. on fade in."
 msgstr ""
 
 msgid "Precision"
-msgstr ""
+msgstr "Precisione"
 
 msgid ""
 "Precision of the selection (percentage of the visible window area which must "
 "be selected for the selection to be recognized)."
-msgstr ""
+msgstr "Precisione della selezione (percentuale dell'area della finestra che deve essere visibile affinchè la selezione venga riconosciuta)"
 
 msgid "Raise every window in the group"
 msgstr ""
@@ -638,22 +639,22 @@ msgid "Remove window from group after dropping it outside a tab bar"
 msgstr ""
 
 msgid "Resize every window in the group"
-msgstr ""
+msgstr "Ridimensiona tutte le finestre del gruppo"
 
 msgid "Saturation of selected windows"
-msgstr ""
+msgstr "Saturazione della finestra selezionata"
 
 msgid "Select"
-msgstr ""
+msgstr "Seleziona"
 
 msgid "Select Single Window"
-msgstr ""
+msgstr "Seleziona una sola finestra"
 
 msgid "Selection"
-msgstr ""
+msgstr "Selezione"
 
 msgid "Selection Color"
-msgstr ""
+msgstr "Selezione del colore"
 
 msgid "Shade with group"
 msgstr ""
@@ -725,24 +726,24 @@ msgid "The color of the window title in the tab bar"
 msgstr ""
 
 msgid "The key for closing all windows in the group."
-msgstr ""
+msgstr "Tasto per chiudere tutte le finestre del gruppo"
 
 msgid "The key for grouping windows."
-msgstr ""
+msgstr "Tasto per raggruppare le finestre"
 
 msgid ""
 "The key for ignoring the group. If this key is pressed, you can do actions "
 "for a single window in the group only."
-msgstr ""
+msgstr "Tasto per ignorare le funzioni di gruppo. Se questo tasto è premuto, si possono compiere delle azioni su una singola finestra del gruppo."
 
 msgid "The key for removing the selected window from its group."
-msgstr ""
+msgstr "Tasto per rimuovere la finestra selezionata dal suo gruppo"
 
 msgid "The key for selecting the current window."
-msgstr ""
+msgstr "Tasto per selezionare la finestra corrente"
 
 msgid "The key for starting selecting windows."
-msgstr ""
+msgstr "Tasto per iniziare la selezione delle finestre"
 
 msgid "The key for switching to the tab left of the current one."
 msgstr ""
@@ -769,7 +770,7 @@ msgid "The size of the window title font in the tab bar"
 msgstr ""
 
 msgid "The space between the thumbs"
-msgstr ""
+msgstr "Spazio fra le anteprime"
 
 msgid "The style of the tab bar"
 msgstr ""
@@ -781,7 +782,7 @@ msgid "The width of the tab bar outline"
 msgstr ""
 
 msgid "Thumb Size"
-msgstr ""
+msgstr "Dimensione dell'anteprima"
 
 msgid "Time (in s) before the tab bar is shown after hovering the title bar"
 msgstr ""
@@ -819,10 +820,10 @@ msgid "Use tab bar animations"
 msgstr ""
 
 msgid "Window Title Font"
-msgstr ""
+msgstr "Font del titolo della finestra"
 
 msgid "Windows that should be allowed to be grouped"
-msgstr ""
+msgstr "Finestre delle quali si dovrebbe permettere il raggruppamento"
 
 msgid "With this plugin you can group and tab windows"
 msgstr ""
@@ -834,7 +835,7 @@ msgid "Accumulation buffer"
 msgstr ""
 
 msgid "Activate"
-msgstr ""
+msgstr "Attiva"
 
 msgid "Execute Motion Blur if the screen is transformed."
 msgstr ""
@@ -855,10 +856,10 @@ msgid "Motion Blur strength."
 msgstr ""
 
 msgid "Motion blur"
-msgstr ""
+msgstr "Motion blur"
 
 msgid "Motion blur effect"
-msgstr ""
+msgstr "Effetto motion blur"
 
 msgid "Texture Copy"
 msgstr ""
@@ -882,19 +883,19 @@ msgid "Draw Reflection for decorations."
 msgstr ""
 
 msgid "Draw Reflection for windows."
-msgstr ""
+msgstr "Disegna il riflesso per le finestre"
 
 msgid "Draws reflections"
-msgstr ""
+msgstr "Disegna riflessi"
 
 msgid "Move the reflection on window move."
-msgstr ""
+msgstr "Muovi il riflesso al movimento della finestra"
 
 msgid "Moving reflection"
 msgstr ""
 
 msgid "Reflection"
-msgstr ""
+msgstr "Riflessione"
 
 msgid "Reflection Image"
 msgstr ""
@@ -929,31 +930,31 @@ msgid "Toggle prompt visible."
 msgstr ""
 
 msgid "Access your desktop easily"
-msgstr ""
+msgstr "Accedi al tuo desktop facilmente"
 
 msgid "Direction of window movement"
-msgstr ""
+msgstr "Direzione del movmento delle finestre"
 
 msgid "Down"
-msgstr ""
+msgstr "Giù"
 
 msgid "Left"
-msgstr ""
+msgstr "Sinistra"
 
 msgid "Left/Right"
-msgstr ""
+msgstr "Sinistra/Destra"
 
 msgid "Movement Direction"
-msgstr ""
+msgstr "Direzione del movimento"
 
 msgid "Right"
-msgstr ""
+msgstr "Destra"
 
 msgid "Show desktop"
-msgstr ""
+msgstr "Mostra il desktop"
 
 msgid "Speed"
-msgstr ""
+msgstr "Velocità"
 
 msgid "Timestep"
 msgstr ""
@@ -962,19 +963,19 @@ msgid "To Corners"
 msgstr ""
 
 msgid "Up"
-msgstr ""
+msgstr "Su"
 
 msgid "Up/Down"
-msgstr ""
+msgstr "Su/Giù"
 
 msgid "Window Opacity"
-msgstr ""
+msgstr "Opacità della finestra"
 
 msgid "Window Part Size"
 msgstr ""
 
 msgid "Window movement speed"
-msgstr ""
+msgstr "Velocità del movimento della finestra"
 
 msgid "Window movement timestep"
 msgstr ""
@@ -1013,22 +1014,22 @@ msgid "Fade In/Out Time."
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "Immagini"
 
 msgid "Initiate Splash"
 msgstr ""
 
 msgid "Logo File"
-msgstr ""
+msgstr "File di logo"
 
 msgid "Logo image File."
-msgstr ""
+msgstr "Immagine del logo"
 
 msgid "Show on first start"
-msgstr ""
+msgstr "Mostra al primo avvio"
 
 msgid "Show splash on first start."
-msgstr ""
+msgstr "Mostra la finestra di benvenuto al primo avvio"
 
 msgid "Splash"
 msgstr ""
@@ -1037,7 +1038,7 @@ msgid "Start Splash."
 msgstr ""
 
 msgid "Bottom to Top"
-msgstr ""
+msgstr "Dal basso verso l'alto"
 
 msgid "Debug"
 msgstr ""
@@ -1045,13 +1046,13 @@ msgstr ""
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
 "fall more smoothly, but will also increase CPU usage."
-msgstr ""
+msgstr "Tempo (In millisecondi) tra gli aggiornamenti dello schermo. Decrementare questo valore può rendere la nevicata più unuiforme, ma si incrementa anche l'uso del processore."
 
 msgid "Enable Blending"
-msgstr ""
+msgstr "Abilita il blending"
 
 msgid "Enable Textures"
-msgstr ""
+msgstr "Abilita le textures"
 
 msgid "Enables alpha blending of snowflakes."
 msgstr ""
@@ -1060,10 +1061,10 @@ msgid "Enables textures snowflakes. If not selected, color cradients are used."
 msgstr ""
 
 msgid "Flakes rotate if checked."
-msgstr ""
+msgstr "I fiocchi ruotano se sono cliccati"
 
 msgid "How deep into the screen snowflakes can be drawn before being removed"
-msgstr ""
+msgstr "Profindità dello schermo alla quale i fiocchi di neve possono essere visualizzati prima di essere rimossi"
 
 msgid ""
 "How far outside the screen resolution snow flakes can be before being "
@@ -1074,49 +1075,49 @@ msgid "Key Bindings"
 msgstr ""
 
 msgid "Left to Right"
-msgstr ""
+msgstr "Da sinistra a destra"
 
 msgid "Number Of Snowflakes"
-msgstr ""
+msgstr "Numero dei fiocchi di neve"
 
 msgid "Number of snowflakes"
-msgstr ""
+msgstr "Numero dei fiocchi di neve"
 
 msgid "Right to Left"
-msgstr ""
+msgstr "Da destra a sinistra"
 
 msgid "Rotate Flakes"
-msgstr ""
+msgstr "Ruota i fiocchi di neve"
 
 msgid "Screen Boxing"
 msgstr ""
 
 msgid "Screen Depth"
-msgstr ""
+msgstr "Profondità dello schermo"
 
 msgid "Select snow flake movement direction"
-msgstr ""
+msgstr "Seleziona la direzione del movimento dei fiocchi di neve"
 
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 msgid "Size Of Snowflakes"
-msgstr ""
+msgstr "Dimensione dei fiocchi di neve"
 
 msgid "Size of snowflakes"
-msgstr ""
+msgstr "Dimensione dei fiocchi di neve"
 
 msgid "Snow"
-msgstr ""
+msgstr "Neve"
 
 msgid "Snow Direction"
-msgstr ""
+msgstr "Direzione della neve"
 
 msgid "Snow Over Windows"
-msgstr ""
+msgstr "Neve sulle finestre"
 
 msgid "Snow Speed"
-msgstr ""
+msgstr "Velocità della neve"
 
 msgid "Snow Textures"
 msgstr ""
@@ -1125,10 +1126,10 @@ msgid "Snow Toggle"
 msgstr ""
 
 msgid "Snow for Compiz"
-msgstr ""
+msgstr "Neve per Compiz"
 
 msgid "Snow is drawn above windows"
-msgstr ""
+msgstr "La neve è disegnata sopra le finestre"
 
 msgid "Snow textures"
 msgstr ""
@@ -1137,19 +1138,19 @@ msgid "Snow toggle key"
 msgstr ""
 
 msgid "Speed of falling snow"
-msgstr ""
+msgstr "Velocità di caduta della neve"
 
 msgid "Textures"
 msgstr ""
 
 msgid "Top to Bottom"
-msgstr ""
+msgstr "Dall'alto al basso"
 
 msgid "Update Delay"
 msgstr ""
 
 msgid "Animation Duration"
-msgstr ""
+msgstr "Durata dell'animazione"
 
 msgid "Cascade"
 msgstr ""
@@ -1170,19 +1171,19 @@ msgid "Drop From Top"
 msgstr ""
 
 msgid "Duration (in ms) of the tiling animation"
-msgstr ""
+msgstr "Durata (in millisecondi) dell'animazione "
 
 msgid "Excluded Windows"
-msgstr ""
+msgstr "Finestre esclude"
 
 msgid "Fade"
-msgstr ""
+msgstr "Dissolvenza"
 
 msgid "Filled Outline"
 msgstr ""
 
 msgid "Join Windows (EXPERIMENTAL)"
-msgstr ""
+msgstr "Unisce le finestre (SPERIMENTALE)"
 
 msgid "Left Occupancy"
 msgstr ""
@@ -1195,18 +1196,18 @@ msgstr ""
 msgid ""
 "Move and resize all visible windows so that they have full height, same "
 "width and occupy whole screen."
-msgstr ""
+msgstr "Muovi e ridimensiona tutte le finestre visibili in modo che abbiano massima altezza, stessa larghezza ed occupino l'intero schermo"
 
 msgid ""
 "Move and resize all visible windows so that they have full width, same "
 "height and occupy whole screen."
-msgstr ""
+msgstr "Muovi e ridimenziona tutte le finestre visibili in modo che abbiano massima larghezza, stessa altezza ed occupino l'intero schermo."
 
 msgid "Move and resize all visible windows with the delta value set for cascading."
 msgstr ""
 
 msgid "None"
-msgstr ""
+msgstr "Nessuno"
 
 msgid ""
 "Occupancy percentage for window placed left. This number is percentage of "
@@ -1215,7 +1216,7 @@ msgid ""
 msgstr ""
 
 msgid "Restore Windows"
-msgstr ""
+msgstr "Rispristina la finestra"
 
 msgid "Restore windows to their original position they had before tiling."
 msgstr "Riporta le finestre nella loro posizione precente all'accostamento"
@@ -1269,31 +1270,31 @@ msgid "Windows which should be excluded from tiling"
 msgstr "Finestre che dovrebbero essere escluse dall'accostamento"
 
 msgid "Zoom"
-msgstr ""
+msgstr "Ingrandisci"
 
 msgid ""
 "Adjust the opacity, saturation and brightness of windows based on when they "
 "last had focus."
-msgstr "Modifica l'opacità, la saturazione e la luminosità delle finestre in base a quando sono state focalizzate per l'ultima volta."
+msgstr "Modifica l'opacità, la saturazione e la luminosità delle finestre in base a quando sono state selezionate per l'ultima volta."
 
 msgid "Behaviour"
 msgstr "Comportamento"
 
 msgid "Brightness Level of Focused Windows"
-msgstr "Luminosità delle finestre focalizzate"
+msgstr "Luminosità delle finestre selezionate"
 
 msgid "Brightness Level of Unfocused Windows"
-msgstr "Luminosità delle finestre non focalizzate"
+msgstr "Luminosità delle finestre non selezionate"
 
 msgid ""
 "Brightness of the currently focused window. Windows will get opacity levels "
 "between the focused and minimum."
-msgstr "Luminosità della finestra attualmente focalizzata. Le finestre avranno un livello di opacità compreso tra quello della finestra focalizzata e il minimo."
+msgstr "Luminosità della finestra attualmente selezionata. Le finestre assumeranno un livello di trasparenza tra quello della finestra salezionata ed il minimo"
 
 msgid ""
 "Brightness of the least focused window. Windows will get opacity levels "
 "between the focused and minimum."
-msgstr "Luminosità della finestra meno focalizzata. Le finestre avranno un livello di opacità compreso tra quello della finestra focalizzata e il minimo"
+msgstr "Luminosità dell'ultima finestra selezionata. Le finestre assumeranno un livello di trasparenza compreso tra quello della finestra selezionata ed il minimo."
 
 msgid "Number of Windows to Track"
 msgstr "Numero di finestre"
@@ -1301,50 +1302,51 @@ msgstr "Numero di finestre"
 msgid ""
 "Number of windows Trailfocus will keep track of. Windows that had focus this "
 "amount of windows ago or more will be considered completly unfocused."
-msgstr "Numero delle finestre di cui Trailfocus terrà traccia. Le finestre che sono state focalizzate prima di questo numero di finestre verranno considerate completamente non focalizzate"
+msgstr "Numero delle finestre di cui Trailfocus terrà traccia. Le finestre che sono state selezionate prima di questo numero di finestre verranno considerate completamente non selezionate"
 
 msgid "Opacity Level of Focused Windows"
-msgstr "Livello di opacità delle finestre focalizzate"
+msgstr "Livello di trasparenza della finestra selezionata"
 
 msgid "Opacity Level of Unfocused Windows"
-msgstr "Livello di opacità delle finestre non focalizzate"
+msgstr "Livello di trasparenza delle finestre non selezionate"
 
 msgid ""
 "Opacity of the currently focused window. Windows will get opacity levels "
 "between the focused and minimum."
-msgstr "Opacità della finestra attualmente focalizzata. Le finestre avranno un livello di opacità compreso tra quello delle finestra focalizzata e il minimo"
+msgstr "Trasparenza della finestra attualmente selezionata. la finestra avrà un livello di trasparenza tra quello di una finestra selezionata ed il minimo."
 
 msgid ""
 "Opacity of the least focused window. Windows will get opacity levels between "
 "the focused and minimum."
-msgstr "Opacità della finestra meno focalizzata"
+msgstr "Opacità della finestra meno selezionata"
 
 msgid "Saturation Level of Focused Windows"
-msgstr "Livello di saturazione delle finestre focalizzate"
+msgstr "Livello di saturazione della finestra selezionata"
 
 msgid "Saturation Level of Unfocused Windows"
-msgstr "Livello di saturazione delle finestre non focalizzate"
+msgstr "Livello di saturazione delle finestre non selezionate"
 
 msgid ""
 "Saturation of the currently focused window. Windows will get opacity levels "
 "between the focused and minimum."
-msgstr "Saturazione della finestra attualmente focalizzata. Le finestre avranno un livello di opacità compreso tra quello delle finestra focalizzata e il minimo"
+msgstr "Saturazione della finestra attualmente selezionata. Le finestre avranno un livello di saturazione compreso tra quello delle finestra selezionata e il minimo"
 
 msgid ""
 "Saturation of the least focused window. Windows will get opacity levels "
 "between the focused and minimum."
-msgstr "Saturazione dell'ultima finestra in ordine di focalizzazione. Le finestre avranno un livello di opacità compreso tra quello della finestra focalizzata e il minimo."
+msgstr "Saturazione dell'ultima finestra in ordine di focalizzazione. Le finestre avranno un livello di saturazione compreso tra quello della finestra selezionata e il minimo."
 
 msgid ""
 "This defines when Trailfocus will start fading windows. This lets you set up "
 "trailfocus to treat the N first Windows as fully focused."
-msgstr "Questo definisce quando Trailfocus inizia a influenzare le finestre. Permette di configurare Trailfocus in modo da trattare la N-prima finestra come complente focalizzata"
+msgstr "Questo definisce quando Trailfocus inizia a influenzare le finestre. Permette di configurare Trailfocus in modo da trattare la N-prima finestra come complente selezionata"
 
 msgid "Trailfocus"
 msgstr ""
+""
 
 msgid "Window to Start Fading"
-msgstr "Finestra per cui inizia la dissolvenza"
+msgstr "Finestra da iniziare a sbiadire"
 
 msgid "Window types that should be handled by Trailfocus"
 msgstr "Tipi di finestre influenzati da Trailfocus"
