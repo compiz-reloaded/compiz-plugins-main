@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-03 17:38+0200\n"
-"Last-Translator: Emiliano Perulli <emiliano.perulli@alice.it>\n"
+"PO-Revision-Date: 2007-07-03 17:22+0200\n"
+"Last-Translator: Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -554,7 +554,7 @@ msgstr "Se una finestra del grupppo è minimizzata (o deminimizzata), tutte le a
 msgid ""
 "If one window in the group is (un)shaded, all other group windows are (un)"
 "shaded as well."
-msgstr "Se una finestra del gruppo è/non è ombreggiata, le altre finestre del gruppo si comporteranno allo stesso modo"
+msgstr "Se una delle finestre del gruppo (non) è ombreggiata anche le altre (non) sono ombreggiate"
 
 msgid ""
 "If one window in the group is activated, all other group windows are raised "
@@ -575,7 +575,7 @@ msgid "If there is only 1 window left in the group, it will be ungrouped."
 msgstr "Se resta solo una finestra nel gruppo, il gruppo sarà eliminato"
 
 msgid "If you don't like the current glow color, you can change it with this key."
-msgstr "Se l'intensità del colore risulta sgradita, puoi cambiarla con questo tasto"
+msgstr "Se non gradisci l'attuale colore di luminescenza puoi cambiarlo con questo tasto"
 
 msgid ""
 "If you have selected some windows, this automatically groups them (Doesn't "
@@ -619,7 +619,7 @@ msgid "Options"
 msgstr "Opzioni"
 
 msgid "Play animations on the tab bar e.g. on fade in."
-msgstr ""
+msgstr "Mostra animazioni nella barra delle etichette. Mostra, ad esempio, le dissolvenze"
 
 msgid "Precision"
 msgstr "Precisione"
@@ -630,7 +630,7 @@ msgid ""
 msgstr "Precisione della selezione (percentuale dell'area della finestra che deve essere visibile affinchè la selezione venga riconosciuta)"
 
 msgid "Raise every window in the group"
-msgstr ""
+msgstr "Ingrandisci tutte le finestre del gruppo"
 
 msgid "Rectangular glow"
 msgstr ""
@@ -639,7 +639,7 @@ msgid "Remove Group Window"
 msgstr "Rimuovi finestra dal gruppo"
 
 msgid "Remove window from group after dropping it outside a tab bar"
-msgstr ""
+msgstr "Rimuovi la finestra dal gruppo dopo averla trascinata fuori dalla barra dei titoli"
 
 msgid "Resize every window in the group"
 msgstr "Ridimensiona tutte le finestre del gruppo"
@@ -660,7 +660,7 @@ msgid "Selection Color"
 msgstr "Selezione del colore"
 
 msgid "Shade with group"
-msgstr ""
+msgstr "Ombreggia con il gruppo"
 
 msgid "Simple"
 msgstr "Semplice"
@@ -690,25 +690,25 @@ msgid "Spring model on move"
 msgstr "Molla in movimento"
 
 msgid "Tab Bar Show Delay"
-msgstr ""
+msgstr "Ritardo per la comparsa della barra dei titoli"
 
 msgid "Tab Base Color"
-msgstr ""
+msgstr "Colore di Base delle Linguette"
 
 msgid "Tab Border Color"
-msgstr ""
+msgstr "Colore dei Bordi delle LInguette"
 
 msgid "Tab Group"
-msgstr ""
+msgstr "Gruppo di Linguette"
 
 msgid "Tab Highlight Color"
-msgstr ""
+msgstr "Colore di Evidenziazione delle LInguette"
 
 msgid "Tab Style"
-msgstr ""
+msgstr "Stile Linguette"
 
 msgid "Tab bar visibility time after tab change"
-msgstr ""
+msgstr "Tempo di visibilità della barra dei dopo il cambiamento di una linguetta"
 
 msgid "Tabbing"
 msgstr "Schede"
@@ -726,7 +726,7 @@ msgid "Tabbing timestep"
 msgstr ""
 
 msgid "The color of the window title in the tab bar"
-msgstr ""
+msgstr "Il colore del titolo di una finestra nella barra dei titoli"
 
 msgid "The key for closing all windows in the group."
 msgstr "Tasto per chiudere tutte le finestre del gruppo"
@@ -749,19 +749,19 @@ msgid "The key for starting selecting windows."
 msgstr "Tasto per iniziare la selezione delle finestre"
 
 msgid "The key for switching to the tab left of the current one."
-msgstr ""
+msgstr "Il tasto per passare alla linguetta alla sinistra di quella corrente"
 
 msgid "The key for switching to the tab right of the current one."
-msgstr ""
+msgstr "Il tasto per passare alla linguetta alla destra di quella corrente"
 
 msgid "The key for toggling the tab mode for the current group."
-msgstr ""
+msgstr "Il tasto per attivare l'organizzazione a tabella per il gruppo corrente"
 
 msgid "The key for ungrouping the current group."
 msgstr "La scorciatoia da tastiera per eliminare il raggruppamento corrente"
 
 msgid "The radius for the tab bar edges"
-msgstr ""
+msgstr "Il raggio per gli angoli della barra dei titoli"
 
 msgid "The size of the grouped window glow"
 msgstr ""
@@ -770,13 +770,13 @@ msgid "The size of the window thumbs in the task bar"
 msgstr "La dimensione delle anteprime delle finestre nella barra delle applicazioni"
 
 msgid "The size of the window title font in the tab bar"
-msgstr ""
+msgstr "La dimensione del carattere del titolo della finestra nella barra dei titoli"
 
 msgid "The space between the thumbs"
 msgstr "Spazio fra le anteprime"
 
 msgid "The style of the tab bar"
-msgstr ""
+msgstr "Lo stile della barra dei titoli"
 
 msgid "The type of the glow"
 msgstr ""
@@ -844,7 +844,7 @@ msgid "Execute Motion Blur if the screen is transformed."
 msgstr ""
 
 msgid "Motion Blur Strength"
-msgstr "Intensità Motion Blur"
+msgstr "Intensità del Movimento Sfocato"
 
 msgid "Motion Blur mode"
 msgstr "Modalità per il Movimento Sfocato"
@@ -853,10 +853,10 @@ msgid "Motion Blur on Transformed Screen"
 msgstr ""
 
 msgid "Motion Blur render mode."
-msgstr ""
+msgstr "Modalità di renderizzazione per il Movimento Sfocato"
 
 msgid "Motion Blur strength."
-msgstr "Intensità Motion Blur"
+msgstr "Intensità del Movimento Sfocato"
 
 msgid "Motion blur"
 msgstr "Motion blur"
@@ -895,7 +895,7 @@ msgid "Move the reflection on window move."
 msgstr "Muovi il riflesso al movimento della finestra"
 
 msgid "Moving reflection"
-msgstr "riflesso movimento"
+msgstr "Riflessi in movimento"
 
 msgid "Reflection"
 msgstr "Riflessione"
@@ -910,10 +910,10 @@ msgid "Reflection Window Match"
 msgstr ""
 
 msgid "Reflection for Decorations"
-msgstr "Riflesso per la decorazione"
+msgstr "Riflessi per le Barre di Decorazione"
 
 msgid "Reflection for Windows"
-msgstr "Riflesso per le finestre"
+msgstr "Riflessi per le finestre"
 
 msgid "Window match"
 msgstr ""
@@ -1058,7 +1058,7 @@ msgid "Enable Textures"
 msgstr "Abilita le textures"
 
 msgid "Enables alpha blending of snowflakes."
-msgstr "Abilita Alpha Blending dei fiocchi di neve"
+msgstr "Abilita il canale alfa sui fiocchi di neve"
 
 msgid "Enables textures snowflakes. If not selected, color cradients are used."
 msgstr "Abilità textures per i fiocchid i nece. Se questa opzione non è selezionata sono utilizzati dei gradienti di colore"
@@ -1072,7 +1072,7 @@ msgstr "Profindità dello schermo alla quale i fiocchi di neve possono essere vi
 msgid ""
 "How far outside the screen resolution snow flakes can be before being "
 "removed. Needed because of FOV."
-msgstr ""
+msgstr "Quanto lontano dai bordi dello schermo si possono trovare i fiocchi di neve prima che vengano rimossi. Necessario a causa del FOV"
 
 msgid "Key Bindings"
 msgstr "Scorciatoie da tastiera"
@@ -1157,20 +1157,18 @@ msgstr "Durata dell'animazione"
 
 msgid "Cascade"
 msgstr "Cascata"
-""
 
 msgid "Cascade Delta"
 msgstr ""
 
 msgid "Cascade Windows"
 msgstr "Finestre a cascata"
-""
 
 msgid "Choose the tiling type you want when using toggle."
 msgstr ""
 
 msgid "Distance between windows when using cascade"
-msgstr ""
+msgstr "Distanza fra le finestre quando si usa l'ordinamento a cascata"
 
 msgid "Drop From Top"
 msgstr ""
@@ -1196,7 +1194,7 @@ msgstr ""
 msgid ""
 "Move and resize all visible windows both vertically and horizontally, so "
 "that the occupy whole screen and are in a grid."
-msgstr ""
+msgstr "Muovi e ridimensiona, sia orizzontalmente che verticalmente, tutte le finestre visibili così che esse occupino tutto lo schermo e siano organizzate come in una griglia"
 
 msgid ""
 "Move and resize all visible windows so that they have full height, same "
@@ -1209,7 +1207,7 @@ msgid ""
 msgstr "Muovi e ridimenziona tutte le finestre visibili in modo che abbiano massima larghezza, stessa altezza ed occupino l'intero schermo."
 
 msgid "Move and resize all visible windows with the delta value set for cascading."
-msgstr ""
+msgstr "Muovi e ridimensiona tutte le finestre utilizzando il valore di delta impostato per l'ordinamento a cascata"
 
 msgid "None"
 msgstr "Nessuno"
