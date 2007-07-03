@@ -4,7 +4,8 @@
 # Marco Trevisan (Treviño) <trevi55@gmail.com>, 2007.
 # Matteo Suppo (Triex) <alpha3ex@gmail.com>, 2007.
 # Danilo Saruis (DDany) <ddany83@gmail.com>, 2007.
-# Fabio Fiorentini (Ahren / FaBBio) <fabio.fiorentini@gmail.com>, 2007
+# Fabio Fiorentini (Ahren / FaBBio) <fabio.fiorentini@gmail.com>, 2007.
+# Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>, 2007.
 #
 #, fuzzy
 msgid ""
@@ -12,8 +13,8 @@ msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-03 10:29+0200\n"
-"Last-Translator: Fabio Fiorentini <fabio.fiorentini@gmail.com>\n"
+"PO-Revision-Date: 2007-07-03 14:26+0200\n"
+"Last-Translator: Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -570,7 +571,7 @@ msgid ""
 msgstr "Se una finestra nel gruppo è ridimensionata, tutte le altre finestre del gruppo sono ridimensionate."
 
 msgid "If there is only 1 window left in the group, it will be ungrouped."
-msgstr ""
+msgstr "Se resta solo una finestra nel gruppo, il gruppo sarà eliminato"
 
 msgid "If you don't like the current glow color, you can change it with this key."
 msgstr ""
@@ -584,7 +585,7 @@ msgid "Ignore Group"
 msgstr "Ignora il gruppo"
 
 msgid "Key bindings"
-msgstr ""
+msgstr "Scorciatoie da tastiera"
 
 msgid "Line Color"
 msgstr "Colore Linea"
@@ -593,13 +594,13 @@ msgid "Line color of the selection rectangle"
 msgstr "Colore del bordo del rettangolo di selezione"
 
 msgid "Maximize/unmaximize with group"
-msgstr ""
+msgstr "Massimizza/demassimizza con il gruppo"
 
 msgid "Metal"
 msgstr "Metallo"
 
 msgid "Minimize with group"
-msgstr ""
+msgstr "Minimizza con il gruppo"
 
 msgid "Mouse pointer movement speed limit (in pixels/second) for the spring model"
 msgstr ""
@@ -634,7 +635,7 @@ msgid "Rectangular glow"
 msgstr ""
 
 msgid "Remove Group Window"
-msgstr ""
+msgstr "Rimuovi finestra dal gruppo"
 
 msgid "Remove window from group after dropping it outside a tab bar"
 msgstr ""
@@ -756,7 +757,7 @@ msgid "The key for toggling the tab mode for the current group."
 msgstr ""
 
 msgid "The key for ungrouping the current group."
-msgstr ""
+msgstr "La scorciatoia da tastiera per eliminare il raggruppamento corrente"
 
 msgid "The radius for the tab bar edges"
 msgstr ""
@@ -765,7 +766,7 @@ msgid "The size of the grouped window glow"
 msgstr ""
 
 msgid "The size of the window thumbs in the task bar"
-msgstr ""
+msgstr "La dimensione delle anteprime delle finestre nella barra delle applicazioni"
 
 msgid "The size of the window title font in the tab bar"
 msgstr ""
@@ -800,13 +801,13 @@ msgstr ""
 msgid ""
 "Timespan (in s) after which a grouped window is activated if a window of "
 "another group is dragged over it"
-msgstr ""
+msgstr "Intervallo di tempo (in secondi) dopo il quale una finestra appartentente ad un gruppo viene attivata se un'altra finestra appartenente ad un altro gruppo le viene trascinata sopra"
 
 msgid "Ungroup Windows"
-msgstr "Sciogli gruppo finestre"
+msgstr "Elimina il raggruppamento delle finestre"
 
 msgid "Ungroup the windows if only one window is left"
-msgstr "Sciogli gruppo finestra se resta una sola finestra"
+msgstr "Sciogli gruppo finestre se resta una sola finestra"
 
 msgid "Untab the group when closing the top tab window instead of changing tab"
 msgstr ""
@@ -827,7 +828,7 @@ msgid "Windows that should be allowed to be grouped"
 msgstr "Finestre delle quali si dovrebbe permettere il raggruppamento"
 
 msgid "With this plugin you can group and tab windows"
-msgstr ""
+msgstr "Con questo plugin puoi raggruppare e disporre le finestre come in una tabella"
 
 msgid "Y distance for spring model"
 msgstr ""
@@ -845,7 +846,7 @@ msgid "Motion Blur Strength"
 msgstr ""
 
 msgid "Motion Blur mode"
-msgstr ""
+msgstr "Modalità per il Movimento Sfocato"
 
 msgid "Motion Blur on Transformed Screen"
 msgstr ""
@@ -866,10 +867,10 @@ msgid "Texture Copy"
 msgstr ""
 
 msgid "Toggle Motion Blur"
-msgstr ""
+msgstr "Attiva il Movimento Sfocato"
 
 msgid "Toggle motion Blur effect."
-msgstr ""
+msgstr "Attiva l'effetto Movimento sfocato"
 
 msgid "Visibility/Performance"
 msgstr ""
@@ -881,7 +882,7 @@ msgid "Alpha dependence threshold."
 msgstr ""
 
 msgid "Draw Reflection for decorations."
-msgstr ""
+msgstr "Disegna i Riflessi per le decorazioni delle finestre"
 
 msgid "Draw Reflection for windows."
 msgstr "Disegna il riflesso per le finestre"
@@ -988,22 +989,22 @@ msgid "Window part size when showdesktop'd"
 msgstr ""
 
 msgid "Window types that should be moved out of sight when entering showdesktop mode"
-msgstr ""
+msgstr "Tipi di finestre che devono essere nascoste all'entrata nella modalità \"Mostra scrivania\""
 
 msgid "A simple splash plugin"
-msgstr "Plugin per uno splash screen"
+msgstr "Plugin che genera un semplice Splash"
 
 msgid "Background File"
-msgstr "File di sfondo"
+msgstr "Immagine di Sfondo"
 
 msgid "Background brightness."
-msgstr "Luminosità sfondo"
+msgstr "Luminosità immagine di sfondo"
 
 msgid "Background image File."
-msgstr "File immagine di sfondo"
+msgstr "File Immagine da usare come sfondo."
 
 msgid "Background saturation."
-msgstr "Saturazione sfondo"
+msgstr "Saturazione immagine di sfondo."
 
 msgid "Display In/Out Time."
 msgstr ""
@@ -1059,7 +1060,7 @@ msgid "Enables alpha blending of snowflakes."
 msgstr ""
 
 msgid "Enables textures snowflakes. If not selected, color cradients are used."
-msgstr ""
+msgstr "Abilità textures per i fiocchid i nece. Se questa opzione non è selezionata sono utilizzati dei gradienti di colore"
 
 msgid "Flakes rotate if checked."
 msgstr "I fiocchi ruotano se sono cliccati"
@@ -1073,7 +1074,7 @@ msgid ""
 msgstr ""
 
 msgid "Key Bindings"
-msgstr ""
+msgstr "Scorciatoie da tastiera"
 
 msgid "Left to Right"
 msgstr "Da sinistra a destra"
@@ -1121,7 +1122,7 @@ msgid "Snow Speed"
 msgstr "Velocità della neve"
 
 msgid "Snow Textures"
-msgstr ""
+msgstr "Texures effetto Neve"
 
 msgid "Snow Toggle"
 msgstr ""
@@ -1133,10 +1134,10 @@ msgid "Snow is drawn above windows"
 msgstr "La neve è disegnata sopra le finestre"
 
 msgid "Snow textures"
-msgstr ""
+msgstr "textures effetto Neve"
 
 msgid "Snow toggle key"
-msgstr ""
+msgstr "Tasto di attivazione effetto Neve"
 
 msgid "Speed of falling snow"
 msgstr "Velocità di caduta della neve"
@@ -1229,7 +1230,7 @@ msgid "Slide"
 msgstr ""
 
 msgid "Tile"
-msgstr ""
+msgstr "Titolo"
 
 msgid "Tile Horizontally"
 msgstr "Accosta orizzontalmente"
