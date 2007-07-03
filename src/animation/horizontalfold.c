@@ -132,8 +132,10 @@ fxHorizontalFoldsModelStep(CompScreen * s, CompWindow * w, float time)
 	Model *model = aw->model;
 
 	float forwardProgress;
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if ((aw->curWindowEvent == WindowEventMinimize ||
+		 aw->curWindowEvent == WindowEventUnminimize) &&
+		as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
+		value.b)
 	{
 		float dummy;
 		fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);

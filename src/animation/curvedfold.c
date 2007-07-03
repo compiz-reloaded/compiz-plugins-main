@@ -125,8 +125,10 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 	Model *model = aw->model;
 
 	float forwardProgress;
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if ((aw->curWindowEvent == WindowEventMinimize ||
+		 aw->curWindowEvent == WindowEventUnminimize) &&
+		as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
+		value.b)
 	{
 		float dummy;
 		fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
@@ -152,15 +154,29 @@ fxFoldUpdateWindowAttrib(AnimScreen * as,
 						 WindowPaintAttrib * wAttrib)
 {
 	if (aw->curWindowEvent == WindowEventCreate ||
-		aw->curWindowEvent == WindowEventClose)
+		aw->curWindowEvent == WindowEventClose ||
+		((aw->curWindowEvent == WindowEventMinimize ||
+		  aw->curWindowEvent == WindowEventUnminimize) &&
+		 ((aw->curAnimEffect == AnimEffectCurvedFold &&
+		   !as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
+		   value.b) ||
+		  (aw->curAnimEffect == AnimEffectHorizontalFolds &&
+		   !as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
+		   value.b))))
 	{
 		float forwardProgress = defaultAnimProgress(aw);
 
 		wAttrib->opacity =
 			(GLushort) (aw->storedOpacity * (1 - forwardProgress));
 	}
-	else if (aw->curWindowEvent == WindowEventMinimize ||
-			 aw->curWindowEvent == WindowEventUnminimize)
+	else if ((aw->curWindowEvent == WindowEventMinimize ||
+			  aw->curWindowEvent == WindowEventUnminimize) &&
+			 ((aw->curAnimEffect == AnimEffectCurvedFold &&
+			   as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
+			   value.b) ||
+			  (aw->curAnimEffect == AnimEffectHorizontalFolds &&
+			   as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
+			   value.b)))
 	{
 		fxZoomUpdateWindowAttrib(as, aw, wAttrib);
 	}

@@ -1247,6 +1247,11 @@
 						<max>100</max>
 						<precision>1</precision>
 					</option>
+					<option name="glide1_zoom_to_taskbar" type="bool">
+					  <_short>Zoom to TaskBar on Minimize</_short>
+					  <_long>Whether the window should zoom to taskbar when minimized with Glide 1 effect.</_long>
+					  <default>false</default>
+					</option>
 				</subgroup>
 
 				<subgroup>
@@ -1275,13 +1280,18 @@
 						<max>100</max>
 						<precision>1</precision>
 					</option>
+					<option name="glide2_zoom_to_taskbar" type="bool">
+					  <_short>Zoom to TaskBar on Minimize</_short>
+					  <_long>Whether the window should zoom to taskbar when minimized with Glide 2 effect.</_long>
+					  <default>true</default>
+					</option>
 				</subgroup>
 
 				<subgroup>
 					<_short>Zoom</_short>
 					<option name="zoom_from_center" type="int">
 						<_short>Zoom from Center</_short>
-						<_long>Zoom from center when playing the Zoom and Sidekick animations.</_long>
+						<_long>Zoom from center when playing the Zoom animation.</_long>
 						<default>0</default>
 						<min>0</min>
 						<max>3</max>
@@ -1339,6 +1349,29 @@
 						<max>1</max>
 						<precision>0.01</precision>
 					</option>
+					<option name="sidekick_zoom_from_center" type="int">
+						<_short>Zoom from Center</_short>
+						<_long>Zoom from center when playing the Sidekick animation.</_long>
+						<default>0</default>
+						<min>0</min>
+						<max>3</max>
+						<desc>
+							<value>0</value>
+							<_name>Off</_name>
+						</desc>
+						<desc>
+							<value>1</value>
+							<_name>Minimize/Unminimize Only</_name>
+						</desc>
+						<desc>
+							<value>2</value>
+							<_name>Create/Close Only</_name>
+						</desc>
+						<desc>
+							<value>3</value>
+							<_name>On</_name>
+						</desc>
+					</option>
 				</subgroup>
 
 				<subgroup>
@@ -1353,6 +1386,15 @@
 					</option>
 				</subgroup>
 
+				<subgroup>
+					<_short>Dream</_short>
+					<option name="dream_zoom_to_taskbar" type="bool">
+					  <_short>Zoom to TaskBar on Minimize</_short>
+					  <_long>Whether the window should zoom to taskbar when minimized with Dream effect.</_long>
+					  <default>true</default>
+					</option>
+				</subgroup>
+					
 				<subgroup>
 					<_short>Wave</_short>
 					<option name="wave_width" type="float">
@@ -1452,7 +1494,7 @@
 				</subgroup>
 
 				<subgroup>
-					<_short>Fold</_short>
+					<_short>Curved Fold</_short>
 					<option name="curved_fold_amp" type="float">
 						<_short>Curved Fold Amplitude</_short>
 						<_long>Amplitude (size of the waves in the fold) of the curved fold relative to window width. Negative values fold outward.</_long>
@@ -1461,8 +1503,17 @@
 						<max>0.5</max>
 						<precision>0.01</precision>
 					</option>
+					<option name="curved_fold_zoom_to_taskbar" type="bool">
+					  <_short>Zoom to TaskBar on Minimize</_short>
+					  <_long>Whether the window should zoom to taskbar when minimized with Curved Fold effect.</_long>
+					  <default>true</default>
+					</option>
+				</subgroup>
+
+				<subgroup>
+					<_short>Horizontal Folds</_short>
 					<option name="horizontal_folds_amp" type="float">
-						<_short>Horizontal Fold Amplitude</_short>
+						<_short>Horizontal Folds Amplitude</_short>
 						<_long>Amplitude (size of the waves in the fold) of the Horizontal Folds relative to the window width. Negative values fold outward.</_long>
 						<default>0.07</default>
 						<min>-0.5</min>
@@ -1475,6 +1526,11 @@
 						<default>3</default>
 						<min>1</min>
 						<max>50</max>
+					</option>
+					<option name="horizontal_folds_zoom_to_taskbar" type="bool">
+					  <_short>Zoom to TaskBar on Minimize</_short>
+					  <_long>Whether the window should zoom to taskbar when minimized with Horizontal Folds effect.</_long>
+					  <default>true</default>
 					</option>
 				</subgroup>
 

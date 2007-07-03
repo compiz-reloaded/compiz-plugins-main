@@ -165,10 +165,26 @@ void defaultAnimInit(CompScreen * s, CompWindow * w)
 
 void defaultMinimizeAnimInit(CompScreen * s, CompWindow * w)
 {
+	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if ((aw->curWindowEvent == WindowEventMinimize ||
+		 aw->curWindowEvent == WindowEventUnminimize) &&
+		((aw->curAnimEffect == AnimEffectCurvedFold &&
+		  as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectDream &&
+		  as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectGlide3D1 &&
+		  as->opt[ANIM_SCREEN_OPTION_GLIDE1_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectGlide3D2 &&
+		  as->opt[ANIM_SCREEN_OPTION_GLIDE2_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectHorizontalFolds &&
+		  as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
+		  value.b)))
 	{
 		aw->animTotalTime /= ZOOM_PERCEIVED_T;
 		aw->animRemainingTime = aw->animTotalTime;
@@ -405,8 +421,23 @@ defaultMinimizeUpdateWindowAttrib(AnimScreen * as,
 								  AnimWindow * aw,
 								  WindowPaintAttrib * wAttrib)
 {
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if ((aw->curWindowEvent == WindowEventMinimize ||
+		 aw->curWindowEvent == WindowEventUnminimize) &&
+		((aw->curAnimEffect == AnimEffectCurvedFold &&
+		  as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectDream &&
+		  as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectGlide3D1 &&
+		  as->opt[ANIM_SCREEN_OPTION_GLIDE1_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectGlide3D2 &&
+		  as->opt[ANIM_SCREEN_OPTION_GLIDE2_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectHorizontalFolds &&
+		  as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
+		  value.b)))
 	{
 		fxZoomUpdateWindowAttrib(as, aw, wAttrib);
 	}
@@ -417,10 +448,26 @@ defaultMinimizeUpdateWindowTransform(CompScreen *s,
 									 CompWindow *w,
 									 CompTransform *wTransform)
 {
+	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if ((aw->curWindowEvent == WindowEventMinimize ||
+		 aw->curWindowEvent == WindowEventUnminimize) &&
+		((aw->curAnimEffect == AnimEffectCurvedFold &&
+		  as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectDream &&
+		  as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectGlide3D1 &&
+		  as->opt[ANIM_SCREEN_OPTION_GLIDE1_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectGlide3D2 &&
+		  as->opt[ANIM_SCREEN_OPTION_GLIDE2_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectHorizontalFolds &&
+		  as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
+		  value.b)))
 	{
 		// Zoom to icon
 		fxZoomUpdateWindowTransform(s, w, wTransform);
@@ -731,8 +778,10 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "beam_slowdown", "float", "<min>0.1</min>", 0, 0 },
 	{ "beam_life", "float", "<min>0.1</min>", 0, 0 },
 	{ "curved_fold_amp", "float", "<min>-0.5</min><max>0.5</max>", 0, 0 },
+	{ "curved_fold_zoom_to_taskbar", "bool", 0, 0, 0 },
 	{ "dodge_gap_ratio", "float", "<min>0.0</min><max>1.0</max>", 0, 0 },
 	{ "domino_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
+	{ "dream_zoom_to_taskbar", "bool", 0, 0, 0 },
 	{ "razr_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
 	{ "explode_thickness", "float", "<min>0</min>", 0, 0 },
 	{ "explode_gridx", "int", "<min>1</min>", 0, 0 },
@@ -750,11 +799,14 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "glide1_away_position", "float", 0, 0, 0 },
 	{ "glide1_away_angle", "float", 0, 0, 0 },
 	{ "glide1_thickness", "float", "<min>0</min>", 0, 0 },
+	{ "glide1_zoom_to_taskbar", "bool", 0, 0, 0 },
 	{ "glide2_away_position", "float", 0, 0, 0 },
 	{ "glide2_away_angle", "float", 0, 0, 0 },
 	{ "glide2_thickness", "float", "<min>0</min>", 0, 0 },
+	{ "glide2_zoom_to_taskbar", "bool", 0, 0, 0 },
 	{ "horizontal_folds_amp", "float", "<min>-0.5</min><max>0.5</max>", 0, 0 },
 	{ "horizontal_folds_num_folds", "int", "<min>1</min>", 0, 0 },
+	{ "horizontal_folds_zoom_to_taskbar", "bool", 0, 0, 0 },
 	{ "magic_lamp_grid_res", "int", "<min>4</min>", 0, 0 },
 	{ "magic_lamp_max_waves", "int", "<min>3</min>", 0, 0 },
 	{ "magic_lamp_amp_min", "float", "<min>200</min>", 0, 0 },
@@ -767,6 +819,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "magic_lamp_vacuum_create_start_width", "int", "<min>0</min>", 0, 0 },
 	{ "sidekick_num_rotations", "float", "<min>0</min>", 0, 0 },
 	{ "sidekick_springiness", "float", "<min>0</min><max>1</max>", 0, 0 },
+	{ "sidekick_zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },
 	{ "wave_width", "float", "<min>0</min>", 0, 0 },
 	{ "wave_amp", "float", "<min>0</min>", 0, 0 },
 	{ "zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },

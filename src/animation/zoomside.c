@@ -69,13 +69,28 @@ void fxZoomInit(CompScreen * s, CompWindow * w)
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
-	if (as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterOn ||
-		((aw->curWindowEvent == WindowEventMinimize ||
-		  aw->curWindowEvent == WindowEventUnminimize) &&
-		 as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterMin) ||
-		((aw->curWindowEvent == WindowEventCreate ||
-		  aw->curWindowEvent == WindowEventClose) &&
-		 as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterCreate))
+	if ((aw->curAnimEffect == AnimEffectSidekick &&
+		 (as->opt[ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER].value.i ==
+		  ZoomFromCenterOn ||
+		  ((aw->curWindowEvent == WindowEventMinimize ||
+			aw->curWindowEvent == WindowEventUnminimize) &&
+		   as->opt[ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER].value.i ==
+		   ZoomFromCenterMin) ||
+		  ((aw->curWindowEvent == WindowEventCreate ||
+			aw->curWindowEvent == WindowEventClose) &&
+		   as->opt[ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER].value.i ==
+		   ZoomFromCenterCreate))) ||
+		(aw->curAnimEffect == AnimEffectZoom &&
+		 (as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i ==
+		  ZoomFromCenterOn ||
+		  ((aw->curWindowEvent == WindowEventMinimize ||
+			aw->curWindowEvent == WindowEventUnminimize) &&
+		   as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i ==
+		   ZoomFromCenterMin) ||
+		  ((aw->curWindowEvent == WindowEventCreate ||
+			aw->curWindowEvent == WindowEventClose) &&
+		   as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i ==
+		   ZoomFromCenterCreate))))
 	{
 		aw->icon.x =
 			WIN_X(w) + WIN_W(w) / 2 - aw->icon.width / 2;

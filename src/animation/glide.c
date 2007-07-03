@@ -66,6 +66,20 @@ fxGlideIsPolygonBased (AnimScreen *as, AnimWindow *aw)
 		return (as->opt[ANIM_SCREEN_OPTION_GLIDE2_THICKNESS].value.f > 1e-5);
 }
 
+static inline Bool
+fxGlideZoomToTaskBar (AnimScreen *as, AnimWindow *aw)
+{
+	return
+		(aw->curWindowEvent == WindowEventMinimize ||
+		 aw->curWindowEvent == WindowEventUnminimize) &&
+		((aw->curAnimEffect == AnimEffectGlide3D1 &&
+		  as->opt[ANIM_SCREEN_OPTION_GLIDE1_Z2TOM].
+		  value.b) ||
+		 (aw->curAnimEffect == AnimEffectGlide3D2 &&
+		  as->opt[ANIM_SCREEN_OPTION_GLIDE2_Z2TOM].
+		  value.b));
+}
+
 Bool
 fxGlideLetOthersDrawGeoms(CompScreen *s, CompWindow *w)
 {
@@ -77,16 +91,7 @@ fxGlideLetOthersDrawGeoms(CompScreen *s, CompWindow *w)
 
 float fxGlideAnimProgress(AnimWindow * aw)
 {
-	float forwardProgress =
-			1 - (aw->animRemainingTime - aw->timestep) /
-			(aw->animTotalTime - aw->timestep);
-	forwardProgress = MIN(forwardProgress, 1);
-	forwardProgress = MAX(forwardProgress, 0);
-
-	if (aw->curWindowEvent == WindowEventCreate ||
-		aw->curWindowEvent == WindowEventUnminimize ||
-		aw->curWindowEvent == WindowEventUnshade)
-		forwardProgress = 1 - forwardProgress;
+	float forwardProgress = defaultAnimProgress(aw);
 
 	return decelerateProgress2(forwardProgress);
 }
@@ -111,8 +116,7 @@ fxGlideUpdateWindowAttrib(AnimScreen * as,
 
 	// the effect is CompTransform-based
 
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if (fxGlideZoomToTaskBar(as, aw))
 	{
 		fxZoomUpdateWindowAttrib(as, aw, wAttrib);
 		return;
@@ -161,8 +165,7 @@ fxGlideUpdateWindowTransform(CompScreen *s,
 	fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
 
 	float forwardProgress;
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if (fxGlideZoomToTaskBar(as, aw))
 	{
 		float dummy;
 		fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
@@ -182,8 +185,7 @@ fxGlideUpdateWindowTransform(CompScreen *s,
 	float rotAngle = finalRotAng * forwardProgress;
 	aw->glideModRotAngle = fmodf(rotAngle + 720, 360.0f);
 
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if (fxGlideZoomToTaskBar(as, aw))
 	{
 		// Zoom to icon
 		fxZoomUpdateWindowTransform(s, w, wTransform);
@@ -213,8 +215,7 @@ void fxGlideInit(CompScreen * s, CompWindow * w)
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
-	if (aw->curWindowEvent == WindowEventMinimize ||
-		aw->curWindowEvent == WindowEventUnminimize)
+	if (fxGlideZoomToTaskBar(as, aw))
 	{
 		aw->animTotalTime /= ZOOM_PERCEIVED_T;
 		aw->animRemainingTime = aw->animTotalTime;
