@@ -1145,6 +1145,32 @@ void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
 	}
 }
 
+static void
+animActivateEvent (CompScreen *s,
+				   Bool       activating)
+{
+	ANIM_SCREEN(s);
+	
+	if (activating)
+	{
+		if (as->animInProgress)
+			return;
+	}
+	as->animInProgress = activating;
+
+	CompOption o[2];
+
+	o[0].type = CompOptionTypeInt;
+	o[0].name = "root";
+	o[0].value.i = s->root;
+
+	o[1].type = CompOptionTypeBool;
+	o[1].name = "active";
+	o[1].value.b = activating;
+
+	(*s->display->handleCompizEvent) (s->display, "animation", "activate", o, 2);
+}
+
 static inline Bool
 isWinVisible(CompWindow *w)
 {
@@ -1285,7 +1311,7 @@ initiateFocusAnimation(CompWindow *w)
 			{
 				CompWindow *wDodgeChainLastVisited = NULL;
 
-				as->animInProgress = TRUE;
+				animActivateEvent(s, TRUE);
 
 				aw->isDodgeSubject = TRUE;
 				aw->dodgeChainStart = NULL;
@@ -1411,7 +1437,7 @@ initiateFocusAnimation(CompWindow *w)
 			postAnimationCleanup(w, TRUE);
 		}
 
-		as->animInProgress = TRUE;
+		animActivateEvent(s, TRUE);
 		aw->curWindowEvent = WindowEventFocus;
 		aw->curAnimEffect = as->focusEffect;
 		if (as->focusEffect != AnimEffectDodge)
@@ -1520,7 +1546,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		BoxRec box;
 		Point topLeft = {0, 0}, bottomRight = {0, 0};
 
-		as->animInProgress = FALSE;
+		Bool animStillInProgress = FALSE;
 		for (w = s->windows; w; w = w->next)
 		{
 			aw = GET_ANIM_WINDOW(w, as);
@@ -1534,7 +1560,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 					if (aw->ps[i].active)
 					{
 						updateParticles(&aw->ps[i], msSinceLastPaint);
-						as->animInProgress = TRUE;
+						animStillInProgress = TRUE;
 					}
 				}
 			}
@@ -1643,7 +1669,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 						addWindowDamageRect(w, &box);
 					}
 				}
-				as->animInProgress |= (aw->animRemainingTime > 0);
+				animStillInProgress |= (aw->animRemainingTime > 0);
 			}
 
 			if (aw->animRemainingTime <= 0)
@@ -1666,6 +1692,9 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 					postPreparePaintScreenFunc(s, w);
 			}
 		}
+
+		if (!animStillInProgress)
+			animActivateEvent(s, FALSE);
 	}
 
 	UNWRAP(as, s, preparePaintScreen);
@@ -2651,7 +2680,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 							aw->animRemainingTime = aw->animTotalTime;
 						}
 
-						as->animInProgress = TRUE;
+						animActivateEvent(w->screen, TRUE);
 						aw->curWindowEvent = WindowEventShade;
 
 						// Store coords in this viewport to omit 3d effect
@@ -2727,7 +2756,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 					}
 
 					aw->newState = IconicState;
-					as->animInProgress = TRUE;
+					animActivateEvent(w->screen, TRUE);
 					aw->curWindowEvent = WindowEventMinimize;
 
 					// Store coords in this viewport to omit 3d effect
@@ -2851,7 +2880,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 					aw->state = NormalState;
 					aw->newState = WithdrawnState;
-					as->animInProgress = TRUE;
+					animActivateEvent(w->screen, TRUE);
 					aw->curWindowEvent = WindowEventClose;
 
 					// Store coords in this viewport to omit 3d effect
@@ -2907,7 +2936,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 					aw->state = NormalState;
 					aw->newState = WithdrawnState;
-					as->animInProgress = TRUE;
+					animActivateEvent(w->screen, TRUE);
 					aw->curWindowEvent = WindowEventClose;
 
 					aw->unmapCnt++;
@@ -3192,7 +3221,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 				if (playEffect)
 				{
-					as->animInProgress = TRUE;
+					animActivateEvent(w->screen, TRUE);
 					aw->curWindowEvent = WindowEventUnminimize;
 
 					// Store coords in this viewport to omit 3d effect
@@ -3280,7 +3309,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 				if (playEffect)
 				{
-					as->animInProgress = TRUE;
+					animActivateEvent(w->screen, TRUE);
 					aw->curWindowEvent = WindowEventUnshade;
 
 					// Store coords in this viewport to omit 3d effect
@@ -3379,7 +3408,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 				if (playEffect)
 				{
-					as->animInProgress = TRUE;
+					animActivateEvent(w->screen, TRUE);
 					aw->curWindowEvent = WindowEventCreate;
 
 					aw->icon.width = FAKE_ICON_SIZE;
@@ -3485,7 +3514,7 @@ animWindowMoveNotify(CompWindow * w, int dx, int dy, Bool immediate)
 			aw->animRemainingTime = 0;
 			if (as->animInProgress)
 			{
-				as->animInProgress = FALSE;
+				Bool animStillInProgress = FALSE;
 				for (w2 = w->screen->windows; w2; w2 = w2->next)
 				{
 					AnimWindow *aw2;
@@ -3493,10 +3522,13 @@ animWindowMoveNotify(CompWindow * w, int dx, int dy, Bool immediate)
 					aw2 = GET_ANIM_WINDOW(w2, as);
 					if (aw2->animRemainingTime > 0)
 					{
-						as->animInProgress = TRUE;
+						animStillInProgress = TRUE;
 						break;
 					}
 				}
+
+				if (!animStillInProgress)
+					animActivateEvent(w->screen, FALSE);
 			}
 			postAnimationCleanup(w, TRUE);
 		}
@@ -3745,6 +3777,9 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 static void animFiniScreen(CompPlugin * p, CompScreen * s)
 {
 	ANIM_SCREEN(s);
+
+	if (as->animInProgress)
+		animActivateEvent(s, FALSE);
 
 	freeWindowPrivateIndex(s, as->windowPrivateIndex);
 
