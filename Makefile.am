@@ -1,12 +1,12 @@
 ## Process this file with automake to produce Makefile.in
-SUBDIRS = metadata src include
+SUBDIRS = metadata src po include
 
 EXTRA_DIST =            \
     VERSION             \
     compiz-text.pc.in   \
     intltool-extract.in \
     intltool-merge.in   \
-    intltool-update.in
+    intltool-update.in  
 
 DISTCLEANFILES =     \
   	intltool-extract \
