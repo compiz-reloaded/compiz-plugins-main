@@ -111,6 +111,13 @@ fxGlideUpdateWindowAttrib(AnimScreen * as,
 
 	// the effect is CompTransform-based
 
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+		return;
+	}
+
 	float forwardProgress = fxGlideAnimProgress(aw);
 
 	wAttrib->opacity = aw->storedOpacity * (1 - forwardProgress);
@@ -153,7 +160,15 @@ fxGlideUpdateWindowTransform(CompScreen *s,
 
 	fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
 
-	float forwardProgress = fxGlideAnimProgress(aw);
+	float forwardProgress;
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		float dummy;
+		fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
+	}
+	else
+		forwardProgress = fxGlideAnimProgress(aw);
 
 	float finalz = finalDistFac * 0.8 * DEFAULT_Z_CAMERA * s->width;
 
@@ -166,6 +181,13 @@ fxGlideUpdateWindowTransform(CompScreen *s,
 
 	float rotAngle = finalRotAng * forwardProgress;
 	aw->glideModRotAngle = fmodf(rotAngle + 720, 360.0f);
+
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		// Zoom to icon
+		fxZoomUpdateWindowTransform(s, w, wTransform);
+	}
 
 	// put back to window position
 	matrixTranslate (wTransform, rotAxisOffset.x, rotAxisOffset.y, 0);
@@ -190,6 +212,13 @@ void fxGlideInit(CompScreen * s, CompWindow * w)
 {
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
+
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		aw->animTotalTime /= ZOOM_PERCEIVED_T;
+		aw->animRemainingTime = aw->animTotalTime;
+	}
 
 	if (!fxGlideIsPolygonBased(as, aw))
 	{
@@ -238,7 +267,8 @@ void fxGlideInit(CompScreen * s, CompWindow * w)
 	pset->correctPerspective = TRUE;
 }
 
-void fxGlidePrePaintWindow(CompScreen * s, CompWindow * w)
+void fxGlidePrePaintWindow(CompScreen *s,
+						   CompWindow *w)
 {
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);

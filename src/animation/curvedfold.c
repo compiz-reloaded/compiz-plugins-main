@@ -89,7 +89,8 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 		}
 	}
 	else
-	{							// Execute normal mode
+	{
+		// Execute normal mode
 
 		// find position within window borders
 		// (border contents correspond to 0.0-1.0 range)
@@ -108,7 +109,8 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 				(curveMaxAmp -
 				 curveMaxAmp * 4 * relDistToCenter * relDistToCenter);
 		object->position.y =
-				(1 - forwardProgress) * origy + forwardProgress * BORDER_Y(w);
+				(1 - forwardProgress) * origy +
+				forwardProgress * (BORDER_Y(w) + BORDER_H(w) / 2.0);
 	}
 }
 
@@ -122,15 +124,45 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 
 	Model *model = aw->model;
 
-	float forwardProgress = defaultAnimProgress(aw);
+	float forwardProgress;
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		float dummy;
+		fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
+	}
+	else
+		forwardProgress = defaultAnimProgress(aw);
 
 	int i;
 	for (i = 0; i < model->numObjects; i++)
-		fxCurvedFoldModelStepObject(w, 
-									model,
-									&model->objects[i],
-									forwardProgress,
-									as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_AMP].value.f * WIN_W(w));
+		fxCurvedFoldModelStepObject
+			(w, 
+			 model,
+			 &model->objects[i],
+			 forwardProgress,
+			 as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_AMP].value.f * WIN_W(w));
 	modelCalcBounds(model);
 	return TRUE;
+}
+
+void
+fxFoldUpdateWindowAttrib(AnimScreen * as,
+						 AnimWindow * aw,
+						 WindowPaintAttrib * wAttrib)
+{
+	if (aw->curWindowEvent == WindowEventCreate ||
+		aw->curWindowEvent == WindowEventClose)
+	{
+		float forwardProgress = defaultAnimProgress(aw);
+
+		wAttrib->opacity =
+			(GLushort) (aw->storedOpacity * (1 - forwardProgress));
+	}
+	else if (aw->curWindowEvent == WindowEventMinimize ||
+			 aw->curWindowEvent == WindowEventUnminimize)
+	{
+		fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+	}
+	// if shade/unshade don't do anything
 }

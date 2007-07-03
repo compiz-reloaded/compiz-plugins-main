@@ -38,6 +38,10 @@
 
 // =====================  Effect: Roll Up  =========================
 
+// ratio of perceived length of animation compared to real duration
+// to make it appear to have the same speed with other animation effects
+#define ROLLUP_PERCEIVED_T 0.6f
+
 void
 fxRollUpInitGrid(AnimScreen * as,
 				 WindowEvent forWindowEvent, int *gridWidth, int *gridHeight)
@@ -137,4 +141,12 @@ Bool fxRollUpModelStep(CompScreen * s, CompWindow * w, float time)
 								as->opt[ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR].value.b);
 	modelCalcBounds(model);
 	return TRUE;
+}
+
+void fxRollUpAnimInit(CompScreen * s, CompWindow * w)
+{
+	ANIM_WINDOW(w);
+
+	aw->animTotalTime /= ROLLUP_PERCEIVED_T;
+	aw->animRemainingTime = aw->animTotalTime;
 }

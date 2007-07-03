@@ -632,6 +632,10 @@ AnimEffectProperties *animEffectPropertiesTmp;
 	 (dir) == 2 ? (box).x - (WIN_X(dw) + WIN_W(dw)) : \
 	              ((box).x + (box).width) - WIN_X(dw))
 
+// ratio of perceived length of animation compared to real duration
+// to make it appear to have the same speed with other animation effects
+#define ZOOM_PERCEIVED_T 0.75f
+
 /*
  * Function prototypes
  *
@@ -686,6 +690,16 @@ defaultAnimInit (CompScreen * s,
 				 CompWindow * w);
 
 void
+defaultMinimizeUpdateWindowAttrib(AnimScreen * as,
+								  AnimWindow * aw,
+								  WindowPaintAttrib * wAttrib);
+
+void
+defaultMinimizeUpdateWindowTransform(CompScreen *s,
+									 CompWindow *w,
+									 CompTransform *wTransform);
+
+void
 animDrawWindowGeometry(CompWindow * w);
 
 
@@ -723,6 +737,10 @@ fxCurvedFoldModelStep (CompScreen *s,
 					   CompWindow *w,
 					   float time);
 
+void
+fxFoldUpdateWindowAttrib(AnimScreen * as,
+						 AnimWindow * aw,
+						 WindowPaintAttrib * wAttrib);
 
 /* dodge.c */
 
@@ -947,7 +965,8 @@ void fxRollUpInitGrid (AnimScreen *as,
 					   int *gridWidth,
 					   int *gridHeight);
  
- 
+void fxRollUpAnimInit(CompScreen * s, CompWindow * w);
+
 /* wave.c */
  
 Bool
@@ -967,6 +986,13 @@ void
 fxZoomUpdateWindowTransform(CompScreen *s,
 							CompWindow *w,
 							CompTransform *wTransform);
+
+void
+fxZoomAnimProgress(AnimScreen * as,
+				   AnimWindow * aw,
+				   float *moveProgress,
+				   float *scaleProgress,
+				   Bool neverSpringy);
 
 void
 fxSidekickInit (CompScreen *s,

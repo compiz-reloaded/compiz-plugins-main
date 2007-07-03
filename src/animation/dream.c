@@ -63,11 +63,20 @@ Bool fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
 	if (!defaultAnimStep(s, w, time))
 		return FALSE;
 
+	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
 	Model *model = aw->model;
 
-	float forwardProgress = defaultAnimProgress(aw);
+	float forwardProgress;
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		float dummy;
+		fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
+	}
+	else
+		forwardProgress = defaultAnimProgress(aw);
 
 	int i;
 	for (i = 0; i < model->numObjects; i++)
@@ -82,6 +91,13 @@ void
 fxDreamUpdateWindowAttrib(AnimScreen * as,
 						  AnimWindow * aw, WindowPaintAttrib * wAttrib)
 {
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+		return;
+	}
+
 	float forwardProgress = 0;
 	if (aw->animTotalTime - aw->timestep != 0)
 		forwardProgress =

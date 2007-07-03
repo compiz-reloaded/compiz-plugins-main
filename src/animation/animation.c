@@ -163,6 +163,19 @@ void defaultAnimInit(CompScreen * s, CompWindow * w)
 					as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 }
 
+void defaultMinimizeAnimInit(CompScreen * s, CompWindow * w)
+{
+	ANIM_WINDOW(w);
+
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		aw->animTotalTime /= ZOOM_PERCEIVED_T;
+		aw->animRemainingTime = aw->animTotalTime;
+	}
+	defaultAnimInit(s, w);
+}
+
 static Bool
 defaultLetOthersDrawGeoms (CompScreen *s, CompWindow *w)
 {
@@ -387,6 +400,33 @@ Bool defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 	return TRUE;
 }
 
+void
+defaultMinimizeUpdateWindowAttrib(AnimScreen * as,
+								  AnimWindow * aw,
+								  WindowPaintAttrib * wAttrib)
+{
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+	}
+}
+
+void
+defaultMinimizeUpdateWindowTransform(CompScreen *s,
+									 CompWindow *w,
+									 CompTransform *wTransform)
+{
+	ANIM_WINDOW(w);
+
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		// Zoom to icon
+		fxZoomUpdateWindowTransform(s, w, wTransform);
+	}
+}
+
 
 AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	// AnimEffectNone
@@ -400,8 +440,9 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	{0, 0, drawParticleSystems, fxBurnModelStep, fxBurnInit, 0, 0, 0, 1, 0,
 	 0, 0, 0},
 	// AnimEffectCurvedFold
-	{0, 0, 0, fxCurvedFoldModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0,
-	 0, 0},
+	{fxFoldUpdateWindowAttrib, 0, 0, fxCurvedFoldModelStep,
+	 defaultMinimizeAnimInit, fxMagicLampInitGrid, 0, 0, 0, 0, 0,
+	 defaultMinimizeUpdateWindowTransform, 0},
 	// AnimEffectDodge
 	{0, 0, 0, fxDodgeAnimStep, defaultAnimInit, 0, 0, 0, 0, 0,
 	 defaultLetOthersDrawGeoms,
@@ -411,8 +452,9 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	 fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
 	 polygonsLinearAnimStepPolygon, 0, 0, 0},
 	// AnimEffectDream
-	{fxDreamUpdateWindowAttrib, 0, 0, fxDreamModelStep, defaultAnimInit,
-	 fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0},
+	{fxDreamUpdateWindowAttrib, 0, 0, fxDreamModelStep, defaultMinimizeAnimInit,
+	 fxMagicLampInitGrid, 0, 0, 0, 0, 0, defaultMinimizeUpdateWindowTransform,
+	 0},
 	// AnimEffectExplode3D
 	{0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
 	 fxExplode3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
@@ -436,8 +478,9 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	 polygonsDeceleratingAnimStepPolygon,
 	 fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0},
 	// AnimEffectHorizontalFolds
-	{0, 0, 0, fxHorizontalFoldsModelStep, 0, fxHorizontalFoldsInitGrid,
-	 0, 0, 0, 0, 0, 0, 0},
+	{fxFoldUpdateWindowAttrib, 0, 0, fxHorizontalFoldsModelStep,
+	 defaultMinimizeAnimInit, fxHorizontalFoldsInitGrid, 0, 0, 0, 0, 0,
+	 defaultMinimizeUpdateWindowTransform, 0},
 	// AnimEffectLeafSpread3D
 	{0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
 	 fxLeafSpread3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
@@ -453,7 +496,8 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	 fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
 	 polygonsLinearAnimStepPolygon, 0, 0, 0},
 	// AnimEffectRollUp
-	{0, 0, 0, fxRollUpModelStep, 0, fxRollUpInitGrid, 0, 0, 1, 0, 0, 0, 0},
+	{0, 0, 0, fxRollUpModelStep, fxRollUpAnimInit, fxRollUpInitGrid, 0, 0, 1,
+	 0, 0, 0, 0},
 	// AnimEffectSidekick
 	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxSidekickInit,
 	 0, 0, 0, 1, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,

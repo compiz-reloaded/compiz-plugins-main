@@ -115,7 +115,8 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 				(curveMaxAmp - curveMaxAmp * 4 *
 				 relDistToFoldCenter * relDistToFoldCenter);
 		object->position.y =
-				(1 - forwardProgress) * origy + forwardProgress * BORDER_Y(w);
+				(1 - forwardProgress) * origy +
+				forwardProgress * (BORDER_Y(w) + BORDER_H(w) / 2.0);
 	}
 }
 
@@ -130,7 +131,15 @@ fxHorizontalFoldsModelStep(CompScreen * s, CompWindow * w, float time)
 
 	Model *model = aw->model;
 
-	float forwardProgress = defaultAnimProgress(aw);
+	float forwardProgress;
+	if (aw->curWindowEvent == WindowEventMinimize ||
+		aw->curWindowEvent == WindowEventUnminimize)
+	{
+		float dummy;
+		fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
+	}
+	else
+		forwardProgress = defaultAnimProgress(aw);
 
 	int i;
 	for (i = 0; i < model->numObjects; i++)

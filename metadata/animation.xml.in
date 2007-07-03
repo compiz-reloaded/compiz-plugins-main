@@ -3,6 +3,7 @@
 	<plugin name="animation">
 		<_short>Animations</_short>
 		<_long>Use various animations as window effects</_long>
+		<feature>windowanimations</feature>
 		<category>Effects</category>
 		<deps>
 			<relation type="after">
@@ -1005,7 +1006,7 @@
 				<option name="shade_duration" type="float">
 					<_short>Animation Duration</_short>
 					<_long>Shade animation duration in seconds.</_long>
-					<default>0.5</default>
+					<default>0.3</default>
 					<min>0.1</min>
 					<max>10</max>
 					<precision>0.02</precision>
@@ -1471,7 +1472,7 @@
 					<option name="horizontal_folds_num_folds" type="int">
 						<_short>Number of Horizontal Folds</_short>
 						<_long>The number of horizontal folds that occur in the Horizontal Fold animation.</_long>
-						<default>5</default>
+						<default>3</default>
 						<min>1</min>
 						<max>50</max>
 					</option>
