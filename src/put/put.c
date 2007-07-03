@@ -134,6 +134,9 @@ static int adjustPutVelocity(CompWindow * w)
 
 		pw->dx = pw->dy = 0;
 
+		dx = (pw->lastX + pw->tx) - pw->x;
+		dy = (pw->lastY + pw->ty) - pw->y;
+		moveWindow(w, dx, dy, TRUE, TRUE);
 		/* sync position with X server */
 		syncWindowPosition(w);
 		return 0;
@@ -169,9 +172,6 @@ static void putPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 
 				if (pw->adjust)
 				{
-					pw->adjust = adjustPutVelocity(w);
-					ps->moreAdjust |= pw->adjust;
-
 					pw->tx += pw->xVelocity * chunk;
 					pw->ty += pw->yVelocity * chunk;
 
@@ -183,6 +183,8 @@ static void putPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 					pw->x += dx;
 					pw->y += dy;
 
+					pw->adjust = adjustPutVelocity(w);
+					ps->moreAdjust |= pw->adjust;
 				}
 			}
 			if (!ps->moreAdjust)
