@@ -175,8 +175,15 @@ static void putPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 					pw->tx += pw->xVelocity * chunk;
 					pw->ty += pw->yVelocity * chunk;
 
-					dx = (pw->lastX + pw->tx) - pw->x;
-					dy = (pw->lastY + pw->ty) - pw->y;
+					int adjx =
+						(pw->xVelocity > 0 ? 1 :
+						 pw->xVelocity < 0 ? -1 : 0);
+					int adjy =
+						(pw->yVelocity > 0 ? 1 :
+						 pw->yVelocity < 0 ? -1 : 0);
+
+					dx = (pw->lastX + pw->tx + adjx) - pw->x;
+					dy = (pw->lastY + pw->ty + adjy) - pw->y;
 
 					moveWindow(w, dx, dy, TRUE, TRUE);
 
