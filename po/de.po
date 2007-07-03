@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-03 09:52+0200\n"
-"PO-Revision-Date: 2007-07-03 09:59+0200\n"
+"POT-Creation-Date: 2007-07-01 14:45+0200\n"
+"PO-Revision-Date: 2007-07-02 15:40+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -327,7 +327,7 @@ msgid "Fire Smoke"
 msgstr ""
 
 msgid "Fire constant speed"
-msgstr "Konstante Geschwindigkeit für Feuerpartikel"
+msgstr ""
 
 msgid "Fire direction"
 msgstr "Feuer-Richtung"
@@ -571,16 +571,11 @@ msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "height, in pixels, of the rows in the grid."
 msgstr ""
-"Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "width, in pixels, of the columns in the grid."
 msgstr ""
-"Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Breite der einzelnen Gitterspalten in Pixeln "
-"an."
 
 msgid "The maximum number of waves for Magic Lamp Vacuum."
 msgstr ""
@@ -844,7 +839,7 @@ msgstr "Seitenverhältnis"
 msgid "Behaviour"
 msgstr "Verhalten"
 
-# FIXME - is wall really == Wand here? -- Maybe we could use Ebene, Tafel or Brett here?
+# FIXME - is wall really == Wand here?
 msgid "Distance of the expo wall"
 msgstr "Entfernung zur Expo-Wand"
 
@@ -881,13 +876,6 @@ msgstr "Mipmaps benutzen"
 
 msgid "Reflection"
 msgstr "Reflektionen"
-
-#, fuzzy
-msgid "Reflection Scale"
-msgstr "Reflektionsbild"
-
-msgid "Scale factor of the expo wall reflection"
-msgstr ""
 
 msgid ""
 "Selects if windows movements in expo mode should be immediate - this among "
@@ -991,7 +979,7 @@ msgid "Clear"
 msgstr "Reinigen"
 
 msgid "Initiate fire drawing"
-msgstr "Zeichnen mit Feuer aktivieren"
+msgstr "Aktiviere Zeichnen mit Feuer"
 
 msgid "Maximum number of active particles"
 msgstr "Maximale Anzahl der Partikel"
@@ -1599,13 +1587,12 @@ msgid ""
 "windows blocking it from view."
 msgstr ""
 
-# FIXME -- Maybe we can find a better name for the plugin
 msgid "Opacify"
 msgstr "Sichtbarkeit"
 
 #, fuzzy
 msgid "Opacity Levels"
-msgstr "Sichtbarkeitsstufen"
+msgstr "Sichtbarkeit"
 
 #, fuzzy
 msgid "Passive Opacity"
@@ -1613,23 +1600,16 @@ msgstr "Sichtbarkeit"
 
 msgid "Reset opacity to original values when toggling"
 msgstr ""
-"Sichtbarkeit bei Aus-/Einschalten auf den ursprünglischen Wert zurücksetzen"
 
-# FIXME -- Plugin name
 msgid ""
 "Reset the opacity of all windows modified by opacify when toggling Opacify "
 "with the defined key-combination."
 msgstr ""
-"Die Sichtbarkeit aller von Opacify veränderter Fenster beim Aus-/Einschalten "
-"auf den ürsprünglischen Wert zurücksetzen."
 
-#, fuzzy
 msgid ""
 "The delay (in ms) before Opacify changes opacity after the active window has "
 "changed."
 msgstr ""
-"Die Zeit (in Millisekunden), die Opacify wartet nachdem ein anderes Fenster "
-"fokusiert wurde bevor die Sichtbarkeit der Fenster verändert wird."
 
 msgid ""
 "The maximum opacity percentage a window blocking the current targeted window "
@@ -2641,7 +2621,7 @@ msgid "Window to Start Fading"
 msgstr "Vollfokusierte Fenster"
 
 msgid "Window types that should be handled by Trailfocus"
-msgstr "Fenstertypen, die vom Fokusverlauf behandelt werden sollen."
+msgstr "Fenstertypen die vom Fokusverlauf behandelt werden sollen."
 
 msgid "Change viewport on mouse events on the Desktop"
 msgstr "Arbeitsfläche bei Mausereignissen auf dem Desktop wechseln"
@@ -2695,10 +2675,10 @@ msgid "Allow wrap-around when moving the wall up/down/left/right"
 msgstr ""
 
 msgid "Desktop Wall"
-msgstr "Desktop-Tafel"
+msgstr "Desktop-Wand"
 
 msgid "Desktop Wall Plugin"
-msgstr "Erlaubt eine tafelartige Anordnung der Arbeitsflächen."
+msgstr "Erlaubt eine wandartige Anordnung der Arbeitsflächen."
 
 msgid "Duration (in s) for wall sliding viewport switching animation"
 msgstr "Dauer der Animation für die Arbeitsflächenumschaltung in Sekunden"
@@ -2748,28 +2728,30 @@ msgid "Flip up"
 msgstr "Nach oben umschalten"
 
 msgid "Flip viewport when dragging an object to a screen edge"
-msgstr "Arbeitsfläche beim Ziehen eines Objektes an eine Bildschirmkante umschalten"
+msgstr ""
 
 msgid "Flip viewport when moving a window to a screen edge"
-msgstr "Arbeitsfläche beim Bewegen eines Fensters an eine Bildschirmkante umschalten"
+msgstr ""
 
 msgid "Flip viewport when moving the pointer to a screen edge"
-msgstr "Arbeitsfläche beim Bewegen des Mauszeigers an eine Bildschirmkante umschalten"
+msgstr ""
 
 msgid "How should a multimonitor configuration be handeled"
-msgstr "Wählt aus, wie eine Multi-Monitor-Konfiguration gehandhabt werden soll."
+msgstr ""
 
+#, fuzzy
 msgid "Move Down With Window"
-msgstr "Mit Fenster nach unten bewegen"
+msgstr "Entferne ein Fenster aus der Gruppe"
 
 msgid "Move Left With Window"
-msgstr "Mit Fenster nach links bewegen"
+msgstr ""
 
 msgid "Move Right With Window"
-msgstr "Mit Fenster nach rechts bewegen"
+msgstr ""
 
+#, fuzzy
 msgid "Move Up With Window"
-msgstr "Mit Fenster nach oben bewegen"
+msgstr "Entferne ein Fenster aus der Gruppe"
 
 msgid "Move along the wall down"
 msgstr ""
