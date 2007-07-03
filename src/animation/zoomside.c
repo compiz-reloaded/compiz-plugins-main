@@ -69,6 +69,20 @@ void fxZoomInit(CompScreen * s, CompWindow * w)
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
+	if (as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterOn ||
+		((aw->curWindowEvent == WindowEventMinimize ||
+		  aw->curWindowEvent == WindowEventUnminimize) &&
+		 as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterMin) ||
+		((aw->curWindowEvent == WindowEventCreate ||
+		  aw->curWindowEvent == WindowEventClose) &&
+		 as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i == ZoomFromCenterCreate))
+	{
+		aw->icon.x =
+			WIN_X(w) + WIN_W(w) / 2 - aw->icon.width / 2;
+		aw->icon.y =
+			WIN_Y(w) + WIN_H(w) / 2 - aw->icon.height / 2;
+	}
+
 	// allow extra time for spring damping / deceleration
 	if ((aw->curWindowEvent == WindowEventUnminimize ||
 		 aw->curWindowEvent == WindowEventCreate) &&

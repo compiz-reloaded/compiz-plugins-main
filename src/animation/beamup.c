@@ -170,8 +170,7 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	int steps;
 	int creating = 0;
 
-	if (!defaultAnimStep(s, w, time))
-		return FALSE;
+	defaultAnimStep(s, w, time);
 
 	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
