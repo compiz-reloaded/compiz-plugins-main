@@ -18,6 +18,7 @@
  */
 
 #include <compiz.h>
+#include <string.h>
 #include "vpswitch_options.h"
 
 #define GET_DATA \
@@ -37,6 +38,67 @@
         return FALSE;
 
 
+static Bool vpswitchInitPlugin(CompDisplay * d, CompAction * action,
+					 CompActionState state, CompOption * aOption, int nAOption)
+{
+	CompOption *option;
+    int		   nOption;
+	CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin(d));
+	Bool       rv = FALSE;
+
+	if (!plugin || !plugin->vTable->getDisplayOptions)
+		return FALSE;
+	
+	option = (*plugin->vTable->getDisplayOptions) (plugin, d, &nOption);
+
+	while (nOption--)
+    {
+        if (option->type == CompOptionTypeAction)
+            if (strcmp (option->name, vpswitchGetInitAction(d)) == 0)
+			{
+                rv = (option->value.action.initiate)
+						(d, &option->value.action, state, aOption, nAOption);
+				break;
+			}
+        option++;
+    }
+
+	if (rv)
+		action->state |= CompActionStateTermButton;
+
+	return rv;
+}
+
+static Bool vpswitchTermPlugin(CompDisplay * d, CompAction * action,
+					 CompActionState state, CompOption * aOption, int nAOption)
+{
+	CompOption *option;
+    int		   nOption;
+	CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin(d));
+	Bool       rv = FALSE;
+
+	if (!plugin || !plugin->vTable->getDisplayOptions)
+		return FALSE;
+	
+	option = (*plugin->vTable->getDisplayOptions) (plugin, d, &nOption);
+
+	while (nOption--)
+    {
+        if (option->type == CompOptionTypeAction)
+            if (strcmp (option->name, vpswitchGetInitAction(d)) == 0)
+			{
+                rv = (option->value.action.terminate)
+						(d, &option->value.action, state, aOption, nAOption);
+				break;
+			}
+        option++;
+    }
+
+	
+	action->state &= ~CompActionStateTermButton;
+
+	return rv;
+}
 
 static void vpswitchGoto(CompScreen *s, int x, int y)
 {
@@ -150,7 +212,9 @@ static Bool vpswitchInitDisplay(CompPlugin * p, CompDisplay * d)
 	vpswitchSetDownInitiate(d, vpswitchDown);
 	vpswitchSetNextInitiate(d, vpswitchNext);
 	vpswitchSetPrevInitiate(d, vpswitchPrev);
-
+	vpswitchSetInitiateInitiate(d, vpswitchInitPlugin);
+	vpswitchSetInitiateTerminate(d, vpswitchTermPlugin);
+	
 	return TRUE;
 }
 

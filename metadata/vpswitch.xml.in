@@ -43,6 +43,24 @@
 						<button>Button4</button>
 					</default>
 				</option>
+				<option name="initiate" type="action">
+					<_short>Initiate plugin action</_short>
+					<_long>Initiate/Terminate the selected plugin action</_long>
+					<allowed button="true"/>
+					<default>
+						<button>Button2</button>
+					</default>
+				</option>
+				<option name="init_plugin" type="string">
+					<_short>Plugin for initiate action</_short>
+					<_long>Plugin for initiate/action action</_long>
+					<default>rotate</default>
+				</option>
+				<option name="init_action" type="string">
+					<_short>Action name for initiate</_short>
+					<_long>Action name for initiate/terminate</_long>
+					<default>initiate</default>
+				</option>
 			</group>
 		</display>
 	</plugin>
