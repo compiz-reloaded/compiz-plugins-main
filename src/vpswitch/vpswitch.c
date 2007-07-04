@@ -39,28 +39,30 @@
 
 
 static Bool vpswitchInitPlugin(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * aOption, int nAOption)
+					 CompActionState state, CompOption * option, int nOption)
 {
-	CompOption *option;
-    int		   nOption;
+	GET_DATA;
+	
+	CompOption *tOption;
+    int		   nTOption;
 	CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin(d));
 	Bool       rv = FALSE;
 
 	if (!plugin || !plugin->vTable->getDisplayOptions)
 		return FALSE;
 	
-	option = (*plugin->vTable->getDisplayOptions) (plugin, d, &nOption);
+	tOption = (*plugin->vTable->getDisplayOptions) (plugin, d, &nTOption);
 
-	while (nOption--)
+	while (nTOption--)
     {
-        if (option->type == CompOptionTypeAction)
-            if (strcmp (option->name, vpswitchGetInitAction(d)) == 0)
+        if (tOption->type == CompOptionTypeAction)
+            if (strcmp (tOption->name, vpswitchGetInitAction(d)) == 0)
 			{
-                rv = (option->value.action.initiate)
-						(d, &option->value.action, state, aOption, nAOption);
+                rv = (tOption->value.action.initiate)
+						(d, &tOption->value.action, state, option, nOption);
 				break;
 			}
-        option++;
+        tOption++;
     }
 
 	if (rv)
@@ -70,30 +72,29 @@ static Bool vpswitchInitPlugin(CompDisplay * d, CompAction * action,
 }
 
 static Bool vpswitchTermPlugin(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * aOption, int nAOption)
+					 CompActionState state, CompOption * option, int nOption)
 {
-	CompOption *option;
-    int		   nOption;
+	CompOption *tOption;
+    int		   nTOption;
 	CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin(d));
 	Bool       rv = FALSE;
 
 	if (!plugin || !plugin->vTable->getDisplayOptions)
 		return FALSE;
 	
-	option = (*plugin->vTable->getDisplayOptions) (plugin, d, &nOption);
+	tOption = (*plugin->vTable->getDisplayOptions) (plugin, d, &nTOption);
 
-	while (nOption--)
+	while (nTOption--)
     {
-        if (option->type == CompOptionTypeAction)
-            if (strcmp (option->name, vpswitchGetInitAction(d)) == 0)
+        if (tOption->type == CompOptionTypeAction)
+            if (strcmp (tOption->name, vpswitchGetInitAction(d)) == 0)
 			{
-                rv = (option->value.action.terminate)
-						(d, &option->value.action, state, aOption, nAOption);
+                rv = (tOption->value.action.terminate)
+						(d, &tOption->value.action, state, option, nOption);
 				break;
 			}
-        option++;
+        tOption++;
     }
-
 	
 	action->state &= ~CompActionStateTermButton;
 
