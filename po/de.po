@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-03 09:52+0200\n"
-"PO-Revision-Date: 2007-07-03 09:59+0200\n"
+"POT-Creation-Date: 2007-07-05 14:17+0200\n"
+"PO-Revision-Date: 2007-07-05 14:19+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -362,9 +362,6 @@ msgstr "Dauer der Fokusanimation in Sekunden"
 msgid "Focus window effect."
 msgstr "Effekt für das Fokussieren von Fenstern"
 
-msgid "Fold"
-msgstr ""
-
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr ""
 
@@ -383,11 +380,12 @@ msgstr ""
 msgid "Hexagonal"
 msgstr ""
 
-msgid "Horizontal Fold Amplitude"
-msgstr ""
-
 #, fuzzy
 msgid "Horizontal Folds"
+msgstr "Kacheln Horizontal"
+
+#, fuzzy
+msgid "Horizontal Folds Amplitude"
 msgstr "Kacheln Horizontal"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -660,6 +658,28 @@ msgstr "Wellen-Amplitude"
 msgid "Wave Width"
 msgstr "Wellenbreite"
 
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Curved Fold "
+"effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Dream effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Glide 1 effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Glide 2 effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Horizontal "
+"Folds effect."
+msgstr ""
+
 msgid "Window Grid Height"
 msgstr "Fenstergitterhöhe"
 
@@ -689,7 +709,13 @@ msgstr ""
 msgid "Zoom from Center"
 msgstr "Aus der Mitte zoomen"
 
-msgid "Zoom from center when playing the Zoom and Sidekick animations."
+msgid "Zoom from center when playing the Sidekick animation."
+msgstr ""
+
+msgid "Zoom from center when playing the Zoom animation."
+msgstr ""
+
+msgid "Zoom to TaskBar on Minimize"
 msgstr ""
 
 msgid "A simple benchmark plugin"
@@ -1004,6 +1030,18 @@ msgstr "Zeichne Feuer auf den Bildschrim"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "Zeichne Feuer oder andere Parktikel auf den Bildschrim"
+
+msgid "Begin"
+msgstr "Starten"
+
+msgid "Begin entering viewport"
+msgstr "Zifferneingabe zum Arbeitsflächenwechsel starten"
+
+msgid "Goto Viewport"
+msgstr "Zu Arbeitsfläche wechseln"
+
+msgid "Goto viewport specified by numbers"
+msgstr "Arbeitsflächenwechsel durch Eingabe von Ziffern"
 
 msgid "Animation Options"
 msgstr "Animationsoptionen"
@@ -2643,8 +2681,21 @@ msgstr "Vollfokusierte Fenster"
 msgid "Window types that should be handled by Trailfocus"
 msgstr "Fenstertypen, die vom Fokusverlauf behandelt werden sollen."
 
+msgid "Action name for initiate"
+msgstr ""
+
+msgid "Action name for initiate/terminate"
+msgstr ""
+
 msgid "Change viewport on mouse events on the Desktop"
 msgstr "Arbeitsfläche bei Mausereignissen auf dem Desktop wechseln"
+
+#, fuzzy
+msgid "Initiate plugin action"
+msgstr "Zeichnen mit Feuer aktivieren"
+
+msgid "Initiate/Terminate the selected plugin action"
+msgstr ""
 
 msgid "Move Down"
 msgstr "Nach unten"
@@ -2681,6 +2732,12 @@ msgstr "Nach rechts bewegen"
 
 msgid "Move up"
 msgstr "Nach oben bewegen"
+
+msgid "Plugin for initiate action"
+msgstr ""
+
+msgid "Plugin for initiate/action action"
+msgstr ""
 
 msgid "Viewport Switching"
 msgstr "Arbeitsflächenumschaltung"
@@ -2748,16 +2805,20 @@ msgid "Flip up"
 msgstr "Nach oben umschalten"
 
 msgid "Flip viewport when dragging an object to a screen edge"
-msgstr "Arbeitsfläche beim Ziehen eines Objektes an eine Bildschirmkante umschalten"
+msgstr ""
+"Arbeitsfläche beim Ziehen eines Objektes an eine Bildschirmkante umschalten"
 
 msgid "Flip viewport when moving a window to a screen edge"
-msgstr "Arbeitsfläche beim Bewegen eines Fensters an eine Bildschirmkante umschalten"
+msgstr ""
+"Arbeitsfläche beim Bewegen eines Fensters an eine Bildschirmkante umschalten"
 
 msgid "Flip viewport when moving the pointer to a screen edge"
-msgstr "Arbeitsfläche beim Bewegen des Mauszeigers an eine Bildschirmkante umschalten"
+msgstr ""
+"Arbeitsfläche beim Bewegen des Mauszeigers an eine Bildschirmkante umschalten"
 
 msgid "How should a multimonitor configuration be handeled"
-msgstr "Wählt aus, wie eine Multi-Monitor-Konfiguration gehandhabt werden soll."
+msgstr ""
+"Wählt aus, wie eine Multi-Monitor-Konfiguration gehandhabt werden soll."
 
 msgid "Move Down With Window"
 msgstr "Mit Fenster nach unten bewegen"
