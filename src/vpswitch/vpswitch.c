@@ -22,88 +22,101 @@
 #include "vpswitch_options.h"
 
 #define GET_DATA \
- 	CompScreen *s;\
- 	CompWindow *w;\
-	Window xid; \
-	xid = getIntOptionNamed(option, nOption, "root", 0); \
-	s = findScreenAtDisplay(d, xid); \
+    CompScreen *s;\
+    CompWindow *w;\
+    Window xid; \
+    xid = getIntOptionNamed(option, nOption, "root", 0); \
+    s = findScreenAtDisplay(d, xid); \
     if (!s) \
-        return FALSE; \
+	return FALSE; \
     if (otherScreenGrabExist(s, "rotate", 0)) \
-		return FALSE; \
+	return FALSE; \
     xid = getIntOptionNamed(option, nOption, "window", 0); \
     w = findWindowAtDisplay(d, xid); \
     if ((!w || (w->type & CompWindowTypeDesktopMask) == 0) && \
-		xid != s->root) \
-        return FALSE;
+	xid != s->root) \
+	return FALSE;
 
 
-static Bool vpswitchInitPlugin(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+static Bool
+vpswitchInitPlugin (CompDisplay    *d,
+		   CompAction      *action,
+		   CompActionState state,
+		   CompOption      *option,
+		   int             nOption)
 {
-	GET_DATA;
-	
-	CompOption *tOption;
-    int		   nTOption;
-	CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin(d));
-	Bool       rv = FALSE;
+    GET_DATA;
 
-	if (!plugin || !plugin->vTable->getDisplayOptions)
-		return FALSE;
-	
-	tOption = (*plugin->vTable->getDisplayOptions) (plugin, d, &nTOption);
+    CompOption *tOption;
+    int        nTOption;
+    CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d) );
+    Bool       rv = FALSE;
 
-	while (nTOption--)
+    if (!plugin || !plugin->vTable->getDisplayOptions)
+	return FALSE;
+
+    tOption = (*plugin->vTable->getDisplayOptions) (plugin, d, &nTOption);
+
+    while (nTOption--)
     {
-        if (tOption->type == CompOptionTypeAction)
-            if (strcmp (tOption->name, vpswitchGetInitAction(d)) == 0)
-			{
-                rv = (tOption->value.action.initiate)
-						(d, &tOption->value.action, state, option, nOption);
-				break;
-			}
-        tOption++;
+	if (tOption->type == CompOptionTypeAction)
+	    if (strcmp (tOption->name, vpswitchGetInitAction (d) ) == 0)
+	    {
+		rv = (tOption->value.action.initiate)
+		     (d, &tOption->value.action, state, option, nOption);
+		break;
+	    }
+
+	tOption++;
     }
 
-	if (rv)
-		action->state |= CompActionStateTermButton;
+    if (rv)
+	action->state |= CompActionStateTermButton;
 
-	return rv;
+    return rv;
 }
 
-static Bool vpswitchTermPlugin(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+static Bool
+vpswitchTermPlugin (CompDisplay     *d,
+		    CompAction      *action,
+		    CompActionState state,
+		    CompOption      *option,
+		    int             nOption)
 {
-	CompOption *tOption;
-    int		   nTOption;
-	CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin(d));
-	Bool       rv = FALSE;
+    CompOption *tOption;
+    int	       nTOption;
+    CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d) );
+    Bool       rv = FALSE;
 
-	if (!plugin || !plugin->vTable->getDisplayOptions)
-		return FALSE;
-	
-	tOption = (*plugin->vTable->getDisplayOptions) (plugin, d, &nTOption);
+    if (!plugin || !plugin->vTable->getDisplayOptions)
+	return FALSE;
 
-	while (nTOption--)
+    tOption = (*plugin->vTable->getDisplayOptions) (plugin, d, &nTOption);
+
+    while (nTOption--)
     {
-        if (tOption->type == CompOptionTypeAction)
-            if (strcmp (tOption->name, vpswitchGetInitAction(d)) == 0)
-			{
-                rv = (tOption->value.action.terminate)
-						(d, &tOption->value.action, state, option, nOption);
-				break;
-			}
-        tOption++;
-    }
-	
-	action->state &= ~CompActionStateTermButton;
+	if (tOption->type == CompOptionTypeAction)
+	    if (strcmp (tOption->name, vpswitchGetInitAction (d) ) == 0)
+	    {
+		rv = (tOption->value.action.terminate)
+		     (d, &tOption->value.action, state, option, nOption);
+		break;
+	    }
 
-	return rv;
+	tOption++;
+    }
+
+    action->state &= ~CompActionStateTermButton;
+
+    return rv;
 }
 
-static void vpswitchGoto(CompScreen *s, int x, int y)
+static void
+vpswitchGoto (CompScreen *s,
+	      int x,
+	      int y)
 {
-	XEvent xev;
+    XEvent xev;
 
     xev.xclient.type    = ClientMessage;
     xev.xclient.display = s->display->display;
@@ -119,134 +132,164 @@ static void vpswitchGoto(CompScreen *s, int x, int y)
     xev.xclient.data.l[4] = 0;
 
     XSendEvent (s->display->display, s->root, FALSE,
-                SubstructureRedirectMask | SubstructureNotifyMask, &xev);
+		SubstructureRedirectMask | SubstructureNotifyMask, &xev);
 }
 
-static Bool vpswitchNext(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+static Bool
+vpswitchNext (CompDisplay     *d,
+	      CompAction      *action,
+	      CompActionState state,
+	      CompOption      *option,
+	      int             nOption)
 {
-	GET_DATA;
+    GET_DATA;
 
-	if ((s->x == s->hsize - 1) && (s->y == s->vsize - 1))
-		vpswitchGoto(s, 0, 0);
-	else if (s->x == s->hsize - 1)
-		vpswitchGoto(s, 0, s->y + 1);
-	else
-		vpswitchGoto(s, s->x + 1, s->y);
+    if ( (s->x == s->hsize - 1) && (s->y == s->vsize - 1) )
+	vpswitchGoto (s, 0, 0);
+    else if (s->x == s->hsize - 1)
+	vpswitchGoto (s, 0, s->y + 1);
+    else
+	vpswitchGoto (s, s->x + 1, s->y);
 
-	return TRUE;
+    return TRUE;
 }
 
-static Bool vpswitchPrev(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+static Bool
+vpswitchPrev (CompDisplay     *d,
+	      CompAction      *action,
+	      CompActionState state,
+	      CompOption      *option,
+	      int             nOption)
 {
-	GET_DATA;
+    GET_DATA;
 
-	if ((s->x == 0) && (s->y == 0))
-		vpswitchGoto(s, s->hsize - 1, s->vsize - 1);
-	else if (s->x == 0)
-		vpswitchGoto(s, s->hsize - 1, s->y - 1);
-	else
-		vpswitchGoto(s, s->x - 1, s->y);
+    if ( (s->x == 0) && (s->y == 0) )
+	vpswitchGoto (s, s->hsize - 1, s->vsize - 1);
+    else if (s->x == 0)
+	vpswitchGoto (s, s->hsize - 1, s->y - 1);
+    else
+	vpswitchGoto (s, s->x - 1, s->y);
 
-	return TRUE;
+    return TRUE;
 }
 
-static Bool vpswitchLeft(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+static Bool
+vpswitchLeft (CompDisplay     *d,
+	      CompAction      *action,
+	      CompActionState state,
+	      CompOption      *option,
+	      int             nOption)
 {
-	GET_DATA;
+    GET_DATA;
 
-	if (s->x == 0)
-		vpswitchGoto(s, s->hsize - 1, s->y);
-	else
-		vpswitchGoto(s, s->x - 1, s->y);
-				
-	return TRUE;
+    if (s->x == 0)
+	vpswitchGoto (s, s->hsize - 1, s->y);
+    else
+	vpswitchGoto (s, s->x - 1, s->y);
+
+    return TRUE;
 }
 
-static Bool vpswitchRight(CompDisplay * d, CompAction * action,
-					  CompActionState state, CompOption * option, int nOption)
+static Bool
+vpswitchRight (CompDisplay     *d,
+	       CompAction      *action,
+	       CompActionState state,
+	       CompOption      *option,
+	       int             nOption)
 {
-	GET_DATA;
+    GET_DATA;
 
-	if (s->x == s->hsize - 1)
-		vpswitchGoto(s, 0, s->y);
-	else
-		vpswitchGoto(s, s->x + 1, s->y);
-				
-	return TRUE;
+    if (s->x == s->hsize - 1)
+	vpswitchGoto (s, 0, s->y);
+    else
+	vpswitchGoto (s, s->x + 1, s->y);
+
+    return TRUE;
 }
 
-static Bool vpswitchUp(CompDisplay * d, CompAction * action,
-				   CompActionState state, CompOption * option, int nOption)
+static Bool
+vpswitchUp (CompDisplay     *d,
+	    CompAction      *action,
+	    CompActionState state,
+	    CompOption      *option,
+	    int             nOption)
 {
-	GET_DATA;
+    GET_DATA;
 
-	if (s->y == 0)
-		vpswitchGoto(s, s->x, s->vsize - 1);
-	else
-		vpswitchGoto(s, s->x, s->y - 1);
-				
-	return TRUE;
+    if (s->y == 0)
+	vpswitchGoto (s, s->x, s->vsize - 1);
+    else
+	vpswitchGoto (s, s->x, s->y - 1);
+
+    return TRUE;
 }
 
-static Bool vpswitchDown(CompDisplay * d, CompAction * action,
-					 CompActionState state, CompOption * option, int nOption)
+static Bool
+vpswitchDown (CompDisplay     *d,
+	      CompAction      *action,
+	      CompActionState state,
+	      CompOption      *option,
+	      int             nOption)
 {
-	GET_DATA;
+    GET_DATA;
 
-	if (s->y == s->vsize - 1)
-		vpswitchGoto(s, s->x, 0);
-	else
-		vpswitchGoto(s, s->x, s->y + 1);
-				
-	return TRUE;
+    if (s->y == s->vsize - 1)
+	vpswitchGoto (s, s->x, 0);
+    else
+	vpswitchGoto (s, s->x, s->y + 1);
+
+    return TRUE;
 }
 
 
-static Bool vpswitchInitDisplay(CompPlugin * p, CompDisplay * d)
+static Bool
+vpswitchInitDisplay (CompPlugin  *p,
+		     CompDisplay *d)
 {
-	vpswitchSetLeftInitiate(d, vpswitchLeft);
-	vpswitchSetRightInitiate(d, vpswitchRight);
-	vpswitchSetUpInitiate(d, vpswitchUp);
-	vpswitchSetDownInitiate(d, vpswitchDown);
-	vpswitchSetNextInitiate(d, vpswitchNext);
-	vpswitchSetPrevInitiate(d, vpswitchPrev);
-	vpswitchSetInitiateInitiate(d, vpswitchInitPlugin);
-	vpswitchSetInitiateTerminate(d, vpswitchTermPlugin);
-	
-	return TRUE;
+    vpswitchSetLeftInitiate (d, vpswitchLeft);
+    vpswitchSetRightInitiate (d, vpswitchRight);
+    vpswitchSetUpInitiate (d, vpswitchUp);
+    vpswitchSetDownInitiate (d, vpswitchDown);
+    vpswitchSetNextInitiate (d, vpswitchNext);
+    vpswitchSetPrevInitiate (d, vpswitchPrev);
+    vpswitchSetInitiateInitiate (d, vpswitchInitPlugin);
+    vpswitchSetInitiateTerminate (d, vpswitchTermPlugin);
+
+    return TRUE;
 }
 
-static int vpswitchGetVersion(CompPlugin * p, int version)
+static int
+vpswitchGetVersion (CompPlugin *p,
+		    int        version)
 {
-	return ABIVERSION;
+    return ABIVERSION;
 }
 
 CompPluginVTable vpswitchVTable = {
-	"vpswitch",
-	vpswitchGetVersion,
-	0,
-	NULL,
-	NULL,
-	vpswitchInitDisplay,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	0,
-	0,
-	0,
-	0
+
+    "vpswitch",
+    vpswitchGetVersion,
+    0,
+    NULL,
+    NULL,
+    vpswitchInitDisplay,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    0,
+    0,
+    0,
+    0
 };
 
-CompPluginVTable *getCompPluginInfo(void)
+CompPluginVTable *
+getCompPluginInfo (void)
 {
-	return &vpswitchVTable;
+    return &vpswitchVTable;
 }
