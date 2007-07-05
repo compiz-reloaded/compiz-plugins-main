@@ -2846,6 +2846,11 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 				ANIM_WINDOW(w);
 
+				// don't animate windows that don't have properties
+				// like the fullscreen darkening layer of gksudo
+				if (!w->resName)
+					break;
+
 				AnimEffect windowsCloseEffect = AnimEffectNone;
 				int whichClose = 1;	// either 1 or 2
 
@@ -3396,6 +3401,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			}
 
 			if (windowsCreateEffect &&
+				// don't animate windows that don't have properties
+				// like the fullscreen darkening layer of gksudo
+				w->resName &&
 				// suppress switcher window
 				// (1st window that opens after switcher becomes active)
 				(!as->switcherActive || as->switcherWinOpeningSuppressed) &&
