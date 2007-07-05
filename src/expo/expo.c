@@ -259,7 +259,7 @@ static Bool expoExpo(CompDisplay * d, CompAction * action,
 
 	if (otherScreenGrabExist(s, "expo", 0))
 		return FALSE;
-
+	
 	es->expoMode = !es->expoMode;	
 	es->anyClick = FALSE;
 	if (es->expoMode && !es->grabIndex)
@@ -291,6 +291,42 @@ static Bool expoExpo(CompDisplay * d, CompAction * action,
 	return TRUE;
 }
 
+static Bool expoTermExpo(CompDisplay * d, CompAction * action,
+					 CompActionState state, CompOption * option, int nOption)
+{
+	CompScreen *s;
+
+	if (state != CompActionStateCancel)
+		return FALSE;
+
+	for (s = d->screens; s; s = s->next)
+	{
+		EXPO_SCREEN(s);
+		if (!es->expoMode)
+			continue;
+
+		es->expoMode = FALSE;	
+		es->anyClick = FALSE;
+
+		if (es->dndWindow)
+			syncWindowPosition(es->dndWindow);
+		es->dndState = DnDNone;
+		es->dndWindow = 0;
+
+		if (es->origVX >= 0 && es->origVY >= 0)
+		{
+			while (s->x != es->origVX)
+				moveScreenViewport(s, 1, 0, TRUE);
+			while (s->y != es->origVY)
+				moveScreenViewport(s, 0, 1, TRUE);
+		}
+		damageScreen(s);
+
+		focusDefaultWindow(s->display);
+	}
+	
+	return TRUE;
+}
 
 //Other way around
 static void invertTransformedVertex(CompScreen * s, const ScreenPaintAttrib * sAttrib,
@@ -868,6 +904,7 @@ static Bool expoInitDisplay(CompPlugin * p, CompDisplay * d)
 	}
 
 	expoSetExpoInitiate(d, expoExpo);
+	expoSetExpoTerminate(d, expoTermExpo);
 	
 	ed->leftKey = XKeysymToKeycode(d->display, XStringToKeysym("Left"));
 	ed->rightKey = XKeysymToKeycode(d->display, XStringToKeysym("Right"));
