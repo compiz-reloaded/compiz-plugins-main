@@ -941,6 +941,20 @@ modelInitObjects(Model * model, int x, int y, int width, int height)
 	}
 }
 
+static void
+modelMove (Model *model,
+		   float tx,
+		   float ty)
+{
+    int i;
+
+    for (i = 0; i < model->numObjects; i++)
+    {
+		model->objects[i].position.x += tx;
+		model->objects[i].position.y += ty;
+    }
+}
+
 static Model *createModel(CompWindow * w,
 						  WindowEvent forWindowEvent,
 						  AnimEffect forAnimEffect, int gridWidth,
@@ -3559,47 +3573,53 @@ animWindowMoveNotify(CompWindow * w, int dx, int dy, Bool immediate)
 	ANIM_SCREEN(w->screen);
 	ANIM_WINDOW(w);
 
-	if (!(aw->animRemainingTime > 0 &&
-		  (aw->curAnimEffect == AnimEffectFocusFade ||
-		   aw->curAnimEffect == AnimEffectDodge)))
+	if (!immediate)
 	{
-		CompWindow *w2;
+		if (!(aw->animRemainingTime > 0 &&
+			  (aw->curAnimEffect == AnimEffectFocusFade ||
+			   aw->curAnimEffect == AnimEffectDodge)))
+		{
+			CompWindow *w2;
 
-		if (aw->polygonSet && !aw->animInitialized)
-		{
-			// to refresh polygon coords
-			freePolygonSet(aw);
-		}
-		if (aw->animRemainingTime > 0 && aw->grabbed)
-		{
-			aw->animRemainingTime = 0;
-			if (as->animInProgress)
+			if (aw->polygonSet && !aw->animInitialized)
 			{
-				Bool animStillInProgress = FALSE;
-				for (w2 = w->screen->windows; w2; w2 = w2->next)
-				{
-					AnimWindow *aw2;
-
-					aw2 = GET_ANIM_WINDOW(w2, as);
-					if (aw2->animRemainingTime > 0)
-					{
-						animStillInProgress = TRUE;
-						break;
-					}
-				}
-
-				if (!animStillInProgress)
-					animActivateEvent(w->screen, FALSE);
+				// to refresh polygon coords
+				freePolygonSet(aw);
 			}
-			postAnimationCleanup(w, TRUE);
-		}
+			if (aw->animRemainingTime > 0 && aw->grabbed)
+			{
+				aw->animRemainingTime = 0;
+				if (as->animInProgress)
+				{
+					Bool animStillInProgress = FALSE;
+					for (w2 = w->screen->windows; w2; w2 = w2->next)
+					{
+						AnimWindow *aw2;
 
-		if (aw->model)
-		{
-			modelInitObjects(aw->model, WIN_X(w), WIN_Y(w), WIN_W(w),
-							 WIN_H(w));
+						aw2 = GET_ANIM_WINDOW(w2, as);
+						if (aw2->animRemainingTime > 0)
+						{
+							animStillInProgress = TRUE;
+							break;
+						}
+					}
+
+					if (!animStillInProgress)
+						animActivateEvent(w->screen, FALSE);
+				}
+				postAnimationCleanup(w, TRUE);
+			}
+
+			if (aw->model)
+			{
+				modelInitObjects(aw->model, WIN_X(w), WIN_Y(w), WIN_W(w),
+								 WIN_H(w));
+			}
 		}
 	}
+	else if (aw->model)
+		modelMove (aw->model, dx, dy);
+
 	UNWRAP(as, w->screen, windowMoveNotify);
 	(*w->screen->windowMoveNotify) (w, dx, dy, immediate);
 	WRAP(as, w->screen, windowMoveNotify, animWindowMoveNotify);
