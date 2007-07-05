@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-03 09:52+0200\n"
-"PO-Revision-Date: 2007-07-03 09:59+0200\n"
+"POT-Creation-Date: 2007-07-05 21:05+0200\n"
+"PO-Revision-Date: 2007-07-05 21:06+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -100,9 +100,9 @@ msgstr ""
 "Aktiviert Mipmaps, welche das allgemeine Aussehen der Texturen verbesern "
 "werden."
 
-# FIXME -- find a good translation for 'Match'
+# FIXED -- 'betroffene' ginge auch
 msgid "Window Match"
-msgstr "Übereinstimmende Fenster"
+msgstr "Betreffende Fenster"
 
 msgid "Window Space"
 msgstr "Fensterabstand"
@@ -178,6 +178,9 @@ msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
+"Amplitude (Umfang des Bogens beim Zusammenfalten) des gebogenen "
+"Zusammenfaltens im Verhältnis zur Breite des Fesnters. Negative Werte "
+"bewirken eine Biegung nach außen."
 
 msgid "Angle of window at the end of the animation."
 msgstr "Fensterwinkel am Animationsende"
@@ -191,9 +194,9 @@ msgstr "Animationsdauer"
 msgid "Animation Time Step"
 msgstr "Animations-Zeitschritt"
 
-# FIXME - Intense Effects == ?
+# FIXED - Intense Effects == aufregende Effekte (analog zu OOo)
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "Animations-Zeitschritt für aufregende Effekte"
 
 msgid "Animation duration in seconds for create effect #1."
 msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
@@ -214,40 +217,43 @@ msgid "Away Position"
 msgstr ""
 
 msgid "Beam"
-msgstr ""
+msgstr "Teleporter"
 
+# Vielleicht ein bisschen gewagt aber 'Teleportation' wäre die korrekte Übersetzung - zu lang?
 msgid "Beam Color"
-msgstr ""
+msgstr "Farbe der Teleportation"
 
 msgid "Beam Life"
-msgstr ""
+msgstr "Lebensdauer der Teleportation"
 
 msgid "Beam Slowdown"
-msgstr "Verlangsamung der Beam-Partikel"
+msgstr "Verlangsamung der Teleportations-Partikel"
 
 msgid "Beam Spacing"
-msgstr ""
+msgstr "Zwischenraum"
 
+# Star-Trek-Referenz im Deutschen sowieso nicht machbar
 msgid "Beam Up"
-msgstr ""
+msgstr "Teleporter"
 
 msgid "Beam Width"
-msgstr "Beam-Breite"
+msgstr "Breite der Teleportation"
 
 msgid "Beam color."
-msgstr ""
+msgstr "Farbe der Teleportation."
 
 msgid "Beam life."
-msgstr ""
+msgstr "Lebensdauer der Teleportation."
 
 msgid "Beam slowdown."
-msgstr "Verlangsamung der Beam-Partikel."
+msgstr "Verlangsamung der Teleportations-Partikel."
 
 msgid "Beam width."
-msgstr "Beam-Breite"
+msgstr "Breite der Teleportation."
 
+# Da der Effekt im Original einen eigenen Namen, trifft's 'Verbrennen' besser als 'Feuer'
 msgid "Burn"
-msgstr "Feuer"
+msgstr "Verbrennen"
 
 msgid "Close #1 Animation"
 msgstr "Animation 'Schließen #1'"
@@ -275,15 +281,17 @@ msgstr "Fenster-Öffnen-Animation"
 msgid "Create/Close Only"
 msgstr "Nur bei Öffnen/Schließen"
 
+# 'einklappen' auch möglich
 msgid "Curved Fold"
-msgstr ""
+msgstr "Gebogen zusammenfalten"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "Bogen-Amplitude"
 
 msgid "Dodge"
-msgstr ""
+msgstr "Ausweichen"
 
+# ich weiss leider nicht genau, was das bewirkt - der Effekt wird einfach nur 'intensiver'
 msgid "Dodge Gap Ratio"
 msgstr ""
 
@@ -291,13 +299,13 @@ msgid "Domino"
 msgstr "Domino"
 
 msgid "Domino Piece Falling Direction"
-msgstr ""
+msgstr "Fallrichtung der Dominosteine"
 
 msgid "Down"
 msgstr "Runter"
 
 msgid "Dream"
-msgstr ""
+msgstr "Traum"
 
 msgid "Explode"
 msgstr "Explodieren"
@@ -306,7 +314,7 @@ msgid "Fade"
 msgstr "Ein-/Ausblenden"
 
 msgid "Falling direction for Domino pieces."
-msgstr ""
+msgstr "Richtung, in die die Dominosteine fallen."
 
 msgid "Fire"
 msgstr "Feuer"
@@ -324,7 +332,7 @@ msgid "Fire Particle Slowdown"
 msgstr "Verlangsamung der Feuerpartikel"
 
 msgid "Fire Smoke"
-msgstr ""
+msgstr "Feuerrauch"
 
 msgid "Fire constant speed"
 msgstr "Konstante Geschwindigkeit für Feuerpartikel"
@@ -348,10 +356,10 @@ msgid "Fire particle slowdown."
 msgstr "Verlangsamung der Feuerpartikel."
 
 msgid "Fire smoke."
-msgstr ""
+msgstr "Fügt dem Feuer Rauch hinzu"
 
 msgid "Fixed window interior during the Rollup animation."
-msgstr ""
+msgstr "Der Fensterinhalt bewegt sich beim einrollen nicht mit"
 
 msgid "Focus Animation"
 msgstr "Fokusanimation"
@@ -362,33 +370,30 @@ msgstr "Dauer der Fokusanimation in Sekunden"
 msgid "Focus window effect."
 msgstr "Effekt für das Fokussieren von Fenstern"
 
-msgid "Fold"
-msgstr ""
-
+# siehe 'Razr'
 msgid "Fold opening direction for pieces in Razr effect."
-msgstr ""
+msgstr "Ausrichtung des Razr-Effekts"
 
-#, fuzzy
 msgid "Glide 1"
-msgstr "Gleiten"
+msgstr "Gleiten 1"
 
-#, fuzzy
 msgid "Glide 2"
-msgstr "Gleiten"
+msgstr "Gleiten 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
 "Zufällige Farbene für die Feuerparktikel, auch bekannt als Mystisches Feuer"
 
+# kann ich in ccsm nicht finden
 msgid "Hexagonal"
 msgstr ""
 
-msgid "Horizontal Fold Amplitude"
-msgstr ""
+msgid "Horizontal Folds"
+msgstr "Horizontales Zusammenfalten"
 
 #, fuzzy
-msgid "Horizontal Folds"
-msgstr "Kacheln Horizontal"
+msgid "Horizontal Folds Amplitude"
+msgstr "Horizontales Zusammenfalten"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr ""
@@ -403,7 +408,7 @@ msgid "Left"
 msgstr "Links"
 
 msgid "Magic Lamp"
-msgstr ""
+msgstr "Wunderlampe"
 
 msgid "Magic Lamp Create Start Width"
 msgstr ""
@@ -490,6 +495,7 @@ msgstr "Zufällige Feuerfarbe"
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr ""
 
+# bei 'Razr' belassen oder 'Rasierklinge'?
 msgid "Razr"
 msgstr ""
 
@@ -585,9 +591,8 @@ msgstr ""
 msgid "The maximum number of waves for Magic Lamp Vacuum."
 msgstr ""
 
-#, fuzzy
 msgid "The maximum number of waves for Magic Lamp."
-msgstr "Maximale Anzahl der Parktikel"
+msgstr "Maximale Anzahl der Wellenbewegungen für den Wunderlampen-Effekt."
 
 msgid "The maxmimum amplitude (size of the waves) Magic Lamp Vacuum will have."
 msgstr ""
@@ -660,6 +665,28 @@ msgstr "Wellen-Amplitude"
 msgid "Wave Width"
 msgstr "Wellenbreite"
 
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Curved Fold "
+"effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Dream effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Glide 1 effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Glide 2 effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Horizontal "
+"Folds effect."
+msgstr ""
+
 msgid "Window Grid Height"
 msgstr "Fenstergitterhöhe"
 
@@ -689,7 +716,13 @@ msgstr ""
 msgid "Zoom from Center"
 msgstr "Aus der Mitte zoomen"
 
-msgid "Zoom from center when playing the Zoom and Sidekick animations."
+msgid "Zoom from center when playing the Sidekick animation."
+msgstr ""
+
+msgid "Zoom from center when playing the Zoom animation."
+msgstr ""
+
+msgid "Zoom to TaskBar on Minimize"
 msgstr ""
 
 msgid "A simple benchmark plugin"
@@ -1004,6 +1037,18 @@ msgstr "Zeichne Feuer auf den Bildschrim"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "Zeichne Feuer oder andere Parktikel auf den Bildschrim"
+
+msgid "Begin"
+msgstr ""
+
+msgid "Begin entering viewport"
+msgstr ""
+
+msgid "Goto Viewport"
+msgstr ""
+
+msgid "Goto viewport specified by numbers"
+msgstr ""
 
 msgid "Animation Options"
 msgstr "Animationsoptionen"
@@ -2643,8 +2688,21 @@ msgstr "Vollfokusierte Fenster"
 msgid "Window types that should be handled by Trailfocus"
 msgstr "Fenstertypen, die vom Fokusverlauf behandelt werden sollen."
 
+msgid "Action name for initiate"
+msgstr ""
+
+msgid "Action name for initiate/terminate"
+msgstr ""
+
 msgid "Change viewport on mouse events on the Desktop"
 msgstr "Arbeitsfläche bei Mausereignissen auf dem Desktop wechseln"
+
+#, fuzzy
+msgid "Initiate plugin action"
+msgstr "Zeichnen mit Feuer aktivieren"
+
+msgid "Initiate/Terminate the selected plugin action"
+msgstr ""
 
 msgid "Move Down"
 msgstr "Nach unten"
@@ -2681,6 +2739,12 @@ msgstr "Nach rechts bewegen"
 
 msgid "Move up"
 msgstr "Nach oben bewegen"
+
+msgid "Plugin for initiate action"
+msgstr ""
+
+msgid "Plugin for initiate/action action"
+msgstr ""
 
 msgid "Viewport Switching"
 msgstr "Arbeitsflächenumschaltung"
@@ -2748,16 +2812,20 @@ msgid "Flip up"
 msgstr "Nach oben umschalten"
 
 msgid "Flip viewport when dragging an object to a screen edge"
-msgstr "Arbeitsfläche beim Ziehen eines Objektes an eine Bildschirmkante umschalten"
+msgstr ""
+"Arbeitsfläche beim Ziehen eines Objektes an eine Bildschirmkante umschalten"
 
 msgid "Flip viewport when moving a window to a screen edge"
-msgstr "Arbeitsfläche beim Bewegen eines Fensters an eine Bildschirmkante umschalten"
+msgstr ""
+"Arbeitsfläche beim Bewegen eines Fensters an eine Bildschirmkante umschalten"
 
 msgid "Flip viewport when moving the pointer to a screen edge"
-msgstr "Arbeitsfläche beim Bewegen des Mauszeigers an eine Bildschirmkante umschalten"
+msgstr ""
+"Arbeitsfläche beim Bewegen des Mauszeigers an eine Bildschirmkante umschalten"
 
 msgid "How should a multimonitor configuration be handeled"
-msgstr "Wählt aus, wie eine Multi-Monitor-Konfiguration gehandhabt werden soll."
+msgstr ""
+"Wählt aus, wie eine Multi-Monitor-Konfiguration gehandhabt werden soll."
 
 msgid "Move Down With Window"
 msgstr "Mit Fenster nach unten bewegen"
@@ -2921,7 +2989,7 @@ msgid "Sticky"
 msgstr "Sticky umschalten"
 
 msgid "Sticky windows"
-msgstr "Fenster, denen das Attibut 'Sticky' zugewiesen werden soll"
+msgstr "Fenster, denen das Attribut 'Sticky' zugewiesen werden soll"
 
 msgid "Widget"
 msgstr ""
