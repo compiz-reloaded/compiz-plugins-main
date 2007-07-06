@@ -45,11 +45,11 @@ fxMagicLampInitGrid(AnimScreen * as,
 	*gridHeight = as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_GRID_RES].value.i;
 }
 void
-fxMagicLampVacuumInitGrid(AnimScreen * as, WindowEvent forWindowEvent,
+fxVacuumInitGrid(AnimScreen * as, WindowEvent forWindowEvent,
 					 int *gridWidth, int *gridHeight)
 {
 	*gridWidth = 2;
-	*gridHeight = as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_GRID_RES].value.i;
+	*gridHeight = as->opt[ANIM_SCREEN_OPTION_VACUUM_GRID_RES].value.i;
 }
 
 void fxMagicLampInit(CompScreen * s, CompWindow * w)
@@ -60,7 +60,7 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
 	Model *model = aw->model;
 
 	int screenHeight = s->height;
-	Bool minimizeToTop = (WIN_Y(w) + WIN_H(w) / 2) >
+	aw->minimizeToTop = (WIN_Y(w) + WIN_H(w) / 2) >
 			(aw->icon.y + aw->icon.height / 2);
 	int maxWaves;
 	float waveAmpMin, waveAmpMax;
@@ -75,11 +75,9 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
 	}
 	else
 	{
-		maxWaves = as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_MAX_WAVES].value.i;
-		waveAmpMin =
-				as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_WAVE_AMP_MIN].value.f;
-		waveAmpMax =
-				as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_WAVE_AMP_MAX].value.f;
+		maxWaves = 0;
+		waveAmpMin = 0;
+		waveAmpMax = 0;
 	}
 	if (waveAmpMax < waveAmpMin)
 		waveAmpMax = waveAmpMin;
@@ -88,7 +86,7 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
 	{
 		float distance;
 
-		if (minimizeToTop)
+		if (aw->minimizeToTop)
 			distance = WIN_Y(w) + WIN_H(w) - aw->icon.y;
 		else
 			distance = aw->icon.y - WIN_Y(w);
@@ -141,7 +139,7 @@ static void
 fxMagicLampModelStepObject(CompWindow * w,
 						   Model * model,
 						   Object * object,
-						   float forwardProgress, Bool minimizeToTop)
+						   float forwardProgress)
 {
 	ANIM_WINDOW(w);
 
@@ -150,7 +148,7 @@ fxMagicLampModelStepObject(CompWindow * w,
 	float winFarEndY;
 	float winVisibleCloseEndY;
 
-	if (minimizeToTop)
+	if (aw->minimizeToTop)
 	{
 		iconFarEndY = aw->icon.y;
 		iconCloseEndY = aw->icon.y + aw->icon.height;
@@ -224,7 +222,7 @@ fxMagicLampModelStepObject(CompWindow * w,
 	{
 		float stretchedPos;
 
-		if (minimizeToTop)
+		if (aw->minimizeToTop)
 			stretchedPos =
 					object->gridPosition.y * origy +
 					(1 - object->gridPosition.y) * icony;
@@ -276,7 +274,7 @@ fxMagicLampModelStepObject(CompWindow * w,
 					(cos(cosfx * M_PI) + 1) / 2;
 		}
 	}
-	if (minimizeToTop)
+	if (aw->minimizeToTop)
 	{
 		if (object->position.y < iconFarEndY)
 			object->position.y = iconFarEndY;
@@ -293,19 +291,27 @@ Bool fxMagicLampModelStep(CompScreen * s, CompWindow * w, float time)
 	if (!defaultAnimStep(s, w, time))
 		return FALSE;
 
+	ANIM_SCREEN(s);
 	ANIM_WINDOW(w);
 
 	Model *model = aw->model;
 
-	Bool minimizeToTop = (WIN_Y(w) + WIN_H(w) / 2) >
-			(aw->icon.y + aw->icon.height / 2);
-
+	if ((aw->curWindowEvent == WindowEventCreate ||
+		 aw->curWindowEvent == WindowEventClose) &&
+		((aw->curAnimEffect == AnimEffectMagicLamp &&
+		  as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_MOVING_END].value.b) ||
+		 (aw->curAnimEffect == AnimEffectVacuum &&
+		  as->opt[ANIM_SCREEN_OPTION_VACUUM_MOVING_END].value.b)))
+	{
+		// Update icon position
+		getMousePointerXY(s, &aw->icon.x, &aw->icon.y);
+	}
 	float forwardProgress = defaultAnimProgress(aw);
 
 	int i;
 	for (i = 0; i < model->numObjects; i++)
 		fxMagicLampModelStepObject(w, model, &model->objects[i],
-								   forwardProgress, minimizeToTop);
+								   forwardProgress);
 
 	modelCalcBounds(model);
 	return TRUE;

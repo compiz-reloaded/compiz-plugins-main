@@ -291,10 +291,10 @@ typedef enum
 	AnimEffectHorizontalFolds,
 	AnimEffectLeafSpread3D,
 	AnimEffectMagicLamp,
-	AnimEffectMagicLampVacuum,
 	AnimEffectRazr3D,
 	AnimEffectRollUp,
 	AnimEffectSidekick,
+	AnimEffectVacuum,
 	AnimEffectWave,
 	AnimEffectZoom,
 	AnimEffectNum
@@ -416,19 +416,18 @@ typedef enum
 	ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP,
 	ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS,
 	ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM,
+	ANIM_SCREEN_OPTION_MAGIC_LAMP_MOVING_END,
 	ANIM_SCREEN_OPTION_MAGIC_LAMP_GRID_RES,
 	ANIM_SCREEN_OPTION_MAGIC_LAMP_MAX_WAVES,
 	ANIM_SCREEN_OPTION_MAGIC_LAMP_WAVE_AMP_MIN,
 	ANIM_SCREEN_OPTION_MAGIC_LAMP_WAVE_AMP_MAX,
 	ANIM_SCREEN_OPTION_MAGIC_LAMP_CREATE_START_WIDTH,
-	ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_GRID_RES,
-	ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_MAX_WAVES,
-	ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_WAVE_AMP_MIN,
-	ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_WAVE_AMP_MAX,
-	ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_CREATE_START_WIDTH,
 	ANIM_SCREEN_OPTION_SIDEKICK_NUM_ROTATIONS,
 	ANIM_SCREEN_OPTION_SIDEKICK_SPRINGINESS,
 	ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER,
+	ANIM_SCREEN_OPTION_VACUUM_MOVING_END,
+	ANIM_SCREEN_OPTION_VACUUM_GRID_RES,
+	ANIM_SCREEN_OPTION_VACUUM_CREATE_START_WIDTH,
 	ANIM_SCREEN_OPTION_WAVE_WIDTH,
 	ANIM_SCREEN_OPTION_WAVE_AMP,
 	ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER,
@@ -549,6 +548,9 @@ typedef struct _AnimWindow
 
 	int animFireDirection;
 	Bool deceleratingMotion;	// For effects that have decel. motion
+
+	// for magic lamp
+	Bool minimizeToTop;
 
 	// for glide effect
 	float glideModRotAngle;		// The angle of rotation modulo 360
@@ -707,6 +709,9 @@ defaultMinimizeUpdateWindowTransform(CompScreen *s,
 
 void
 animDrawWindowGeometry(CompWindow * w);
+
+Bool
+getMousePointerXY(CompScreen * s, short *x, short *y);
 
 
 /* beamup.c */
@@ -878,7 +883,7 @@ fxMagicLampInitGrid(AnimScreen * as,
 					 int *gridHeight);
 
 void
-fxMagicLampVacuumInitGrid (AnimScreen * as,
+fxVacuumInitGrid (AnimScreen * as,
 						   WindowEvent forWindowEvent,
 						   int *gridWidth, 
 						   int *gridHeight);

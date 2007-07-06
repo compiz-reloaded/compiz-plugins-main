@@ -122,9 +122,9 @@ static AnimEffect closeEffectType[] = {
 	AnimEffectHorizontalFolds,
 	AnimEffectLeafSpread3D,
 	AnimEffectMagicLamp,
-	AnimEffectMagicLampVacuum,
 	AnimEffectRazr3D,
 	AnimEffectSidekick,
+	AnimEffectVacuum,
 	AnimEffectWave,
 	AnimEffectZoom
 };
@@ -535,9 +535,6 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	// AnimEffectMagicLamp
 	{0, 0, 0, fxMagicLampModelStep, fxMagicLampInit, fxMagicLampInitGrid,
 	 0, 0, 0, 0, 0, 0, 0},
-	// AnimEffectMagicLampVacuum
-	{0, 0, 0, fxMagicLampModelStep, fxMagicLampInit,
-	 fxMagicLampVacuumInitGrid, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectRazr3D
 	{0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
 	 fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
@@ -549,6 +546,9 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 	{fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxSidekickInit,
 	 0, 0, 0, 1, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
 	 0},
+	// AnimEffectVacuum
+	{0, 0, 0, fxMagicLampModelStep, fxMagicLampInit,
+	 fxVacuumInitGrid, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectWave
 	{0, 0, 0, fxWaveModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0},
 	// AnimEffectZoom
@@ -558,7 +558,7 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
 };
 
 
-static Bool getMousePointerXY(CompScreen * s, short *x, short *y)
+Bool getMousePointerXY(CompScreen * s, short *x, short *y)
 {
 	Window w1, w2;
 	int xp, yp, xj, yj;
@@ -807,19 +807,18 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
 	{ "horizontal_folds_amp", "float", "<min>-0.5</min><max>0.5</max>", 0, 0 },
 	{ "horizontal_folds_num_folds", "int", "<min>1</min>", 0, 0 },
 	{ "horizontal_folds_zoom_to_taskbar", "bool", 0, 0, 0 },
+	{ "magic_lamp_moving_end", "bool", 0, 0, 0 },
 	{ "magic_lamp_grid_res", "int", "<min>4</min>", 0, 0 },
 	{ "magic_lamp_max_waves", "int", "<min>3</min>", 0, 0 },
 	{ "magic_lamp_amp_min", "float", "<min>200</min>", 0, 0 },
 	{ "magic_lamp_amp_max", "float", "<min>200</min>", 0, 0 },
 	{ "magic_lamp_create_start_width", "int", "<min>0</min>", 0, 0 },
-	{ "magic_lamp_vacuum_grid_res", "int", "<min>4</min>", 0, 0 },
-	{ "magic_lamp_vacuum_max_waves", "int", "<min>0</min>", 0, 0 },
-	{ "magic_lamp_vacuum_amp_min", "float", "<min>200</min>", 0, 0 },
-	{ "magic_lamp_vacuum_amp_max", "float", "<min>200</min>", 0, 0 },
-	{ "magic_lamp_vacuum_create_start_width", "int", "<min>0</min>", 0, 0 },
 	{ "sidekick_num_rotations", "float", "<min>0</min>", 0, 0 },
 	{ "sidekick_springiness", "float", "<min>0</min><max>1</max>", 0, 0 },
 	{ "sidekick_zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },
+	{ "vacuum_moving_end", "bool", 0, 0, 0 },
+	{ "vacuum_grid_res", "int", "<min>4</min>", 0, 0 },
+	{ "vacuum_create_start_width", "int", "<min>0</min>", 0, 0 },
 	{ "wave_width", "float", "<min>0</min>", 0, 0 },
 	{ "wave_amp", "float", "<min>0</min>", 0, 0 },
 	{ "zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },
@@ -2975,10 +2974,10 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 							aw->icon.width = 
 								MAX(aw->icon.width,
 									as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_CREATE_START_WIDTH].value.i);
-						else if (aw->curAnimEffect == AnimEffectMagicLampVacuum)
+						else if (aw->curAnimEffect == AnimEffectVacuum)
 							aw->icon.width =
 								MAX(aw->icon.width,
-									as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_CREATE_START_WIDTH].value.i);
+									as->opt[ANIM_SCREEN_OPTION_VACUUM_CREATE_START_WIDTH].value.i);
 
 						aw->unmapCnt++;
 						w->unmapRefCnt++;
@@ -3493,10 +3492,10 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 						aw->icon.width = 
 							MAX(aw->icon.width,
 								as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_CREATE_START_WIDTH].value.i);
-					else if (aw->curAnimEffect == AnimEffectMagicLampVacuum)
+					else if (aw->curAnimEffect == AnimEffectVacuum)
 						aw->icon.width =
 							MAX(aw->icon.width,
-								as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_VACUUM_CREATE_START_WIDTH].value.i);
+								as->opt[ANIM_SCREEN_OPTION_VACUUM_CREATE_START_WIDTH].value.i);
 
 					aw->icon.x -= aw->icon.width / 2;
 					aw->icon.y -= aw->icon.height / 2;

@@ -83,15 +83,15 @@
 						</desc>
 						<desc>
 							<value>14</value>
-							<_name>Magic Lamp Vacuum</_name>
-						</desc>
-						<desc>
-							<value>15</value>
 							<_name>Razr</_name>
 						</desc>
 						<desc>
-							<value>16</value>
+							<value>15</value>
 							<_name>Sidekick</_name>
+						</desc>
+						<desc>
+							<value>16</value>
+							<_name>Vacuum</_name>
 						</desc>
 						<desc>
 							<value>17</value>
@@ -185,15 +185,15 @@
 						</desc>
 						<desc>
 							<value>12</value>
-							<_name>Magic Lamp Vacuum</_name>
-						</desc>
-						<desc>
-							<value>13</value>
 							<_name>Razr</_name>
 						</desc>
 						<desc>
-							<value>14</value>
+							<value>13</value>
 							<_name>Sidekick</_name>
+						</desc>
+						<desc>
+							<value>14</value>
+							<_name>Vacuum</_name>
 						</desc>
 						<desc>
 							<value>15</value>
@@ -277,15 +277,15 @@
 						</desc>
 						<desc>
 							<value>14</value>
-							<_name>Magic Lamp Vacuum</_name>
-						</desc>
-						<desc>
-							<value>15</value>
 							<_name>Razr</_name>
 						</desc>
 						<desc>
-							<value>16</value>
+							<value>15</value>
 							<_name>Sidekick</_name>
+						</desc>
+						<desc>
+							<value>16</value>
+							<_name>Vacuum</_name>
 						</desc>
 						<desc>
 							<value>17</value>
@@ -379,15 +379,15 @@
 						</desc>
 						<desc>
 							<value>12</value>
-							<_name>Magic Lamp Vacuum</_name>
-						</desc>
-						<desc>
-							<value>13</value>
 							<_name>Razr</_name>
 						</desc>
 						<desc>
-							<value>14</value>
+							<value>13</value>
 							<_name>Sidekick</_name>
+						</desc>
+						<desc>
+							<value>14</value>
+							<_name>Vacuum</_name>
 						</desc>
 						<desc>
 							<value>15</value>
@@ -475,15 +475,15 @@
 						</desc>
 						<desc>
 							<value>14</value>
-							<_name>Magic Lamp Vacuum</_name>
-						</desc>
-						<desc>
-							<value>15</value>
 							<_name>Razr</_name>
 						</desc>
 						<desc>
-							<value>16</value>
+							<value>15</value>
 							<_name>Sidekick</_name>
+						</desc>
+						<desc>
+							<value>16</value>
+							<_name>Vacuum</_name>
 						</desc>
 						<desc>
 							<value>17</value>
@@ -577,15 +577,15 @@
 						</desc>
 						<desc>
 							<value>12</value>
-							<_name>Magic Lamp Vacuum</_name>
-						</desc>
-						<desc>
-							<value>13</value>
 							<_name>Razr</_name>
 						</desc>
 						<desc>
-							<value>14</value>
+							<value>13</value>
 							<_name>Sidekick</_name>
+						</desc>
+						<desc>
+							<value>14</value>
+							<_name>Vacuum</_name>
 						</desc>
 						<desc>
 							<value>15</value>
@@ -669,15 +669,15 @@
 						</desc>
 						<desc>
 							<value>14</value>
-							<_name>Magic Lamp Vacuum</_name>
-						</desc>
-						<desc>
-							<value>15</value>
 							<_name>Razr</_name>
 						</desc>
 						<desc>
-							<value>16</value>
+							<value>15</value>
 							<_name>Sidekick</_name>
+						</desc>
+						<desc>
+							<value>16</value>
+							<_name>Vacuum</_name>
 						</desc>
 						<desc>
 							<value>17</value>
@@ -771,15 +771,15 @@
 						</desc>
 						<desc>
 							<value>12</value>
-							<_name>Magic Lamp Vacuum</_name>
-						</desc>
-						<desc>
-							<value>13</value>
 							<_name>Razr</_name>
 						</desc>
 						<desc>
-							<value>14</value>
+							<value>13</value>
 							<_name>Sidekick</_name>
+						</desc>
+						<desc>
+							<value>14</value>
+							<_name>Vacuum</_name>
 						</desc>
 						<desc>
 							<value>15</value>
@@ -1417,6 +1417,11 @@
 
 				<subgroup>
 					<_short>Magic Lamp</_short>
+					<option name="magic_lamp_moving_end" type="bool">
+						<_short>Magic Lamp Open/Close Moving End</_short>
+						<_long>On open/close, move magic lamp ending point with the mouse pointer.</_long>
+						<default>true</default>
+					</option>
 					<option name="magic_lamp_grid_res" type="int">
 						<_short>Magic Lamp Grid Y Resolution</_short>
 						<_long>Vertex grid resolution for Magic Lamp (Y dimension only). This is the number of points used to define the curves. The higher the number, the smoother the curves. However there will be a loss of performance (CPU usage increases).</_long>
@@ -1454,39 +1459,25 @@
 						<min>0</min>
 						<max>500</max>
 					</option>
-					<option name="magic_lamp_vacuum_grid_res" type="int">
-						<_short>Magic Lamp Vacuum Grid Y Resolution</_short>
-						<_long>Vertex grid resolution for Magic Lamp Vacuum (Y dimension only). This is the number of points used to define the curves. The higher the number, the smoother the curves. However there will be a loss of performance (CPU usage increases).</_long>
+				</subgroup>
+
+				<subgroup>
+					<_short>Vacuum</_short>
+					<option name="vacuum_moving_end" type="bool">
+						<_short>Vacuum Open/Close Moving End</_short>
+						<_long>On open/close, move vacuum ending point with the mouse pointer.</_long>
+						<default>true</default>
+					</option>
+					<option name="vacuum_grid_res" type="int">
+						<_short>Vacuum Grid Y Resolution</_short>
+						<_long>Vertex grid resolution for Vacuum (Y dimension only). This is the number of points used to define the curves. The higher the number, the smoother the curves. However there will be a loss of performance (CPU usage increases).</_long>
 						<default>100</default>
 						<min>2</min>
 						<max>200</max>
 					</option>
-					<option name="magic_lamp_vacuum_max_waves" type="int">
-						<_short>Magic Lamp Vacuum Max Waves</_short>
-						<_long>The maximum number of waves for Magic Lamp Vacuum.</_long>
-						<default>0</default>
-						<min>0</min>
-						<max>20</max>
-					</option>
-					<option name="magic_lamp_vacuum_amp_min" type="float">
-						<_short>Magic Lamp Vacuum Min Wave Amplitude</_short>
-						<_long>The minimum amplitude (size of the waves) Magic Lamp Vacuum will have.</_long>
-						<default>200</default>
-						<min>200</min>
-						<max>2000</max>
-						<precision>5</precision>
-					</option>
-					<option name="magic_lamp_vacuum_amp_max" type="float">
-						<_short>Magic Lamp Vacuum Max Wave Amplitude</_short>
-						<_long>The maxmimum amplitude (size of the waves) Magic Lamp Vacuum will have.</_long>
-						<default>300</default>
-						<min>200</min>
-						<max>2000</max>
-						<precision>5</precision>
-					</option>
-					<option name="magic_lamp_vacuum_create_start_width" type="int">
-						<_short>Magic Lamp Vacuum Create Start Width</_short>
-						<_long>Starting width of create effect and ending width of close effect for Magic Lamp Vacuum.</_long>
+					<option name="vacuum_create_start_width" type="int">
+						<_short>Vacuum Create Start Width</_short>
+						<_long>Starting width of create effect and ending width of close effect for Vacuum.</_long>
 						<default>30</default>
 						<min>0</min>
 						<max>500</max>
