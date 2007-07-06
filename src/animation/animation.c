@@ -383,7 +383,7 @@ float decelerateProgressCustom(float progress, float minx, float maxx)
 			 (sigmoid2(maxx, s) - sigmoid2(minx, s))));
 }
 
-float decelerateProgress2(float progress)
+float decelerateProgress(float progress)
 {
 	return decelerateProgressCustom(progress, 0.5, 0.75);
 }

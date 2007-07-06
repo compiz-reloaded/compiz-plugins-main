@@ -167,7 +167,7 @@ fxMagicLampModelStepObject(CompWindow * w,
 			winVisibleCloseEndY = iconCloseEndY;
 	}
 
-	float preShapePhaseEnd = 0.17f;
+	float preShapePhaseEnd = 0.22f;
 	float stretchPhaseEnd =
 			preShapePhaseEnd + (1 - preShapePhaseEnd) *
 			(iconCloseEndY -
@@ -193,20 +193,31 @@ fxMagicLampModelStepObject(CompWindow * w,
 			object->gridPosition.x;
 	float icony = aw->icon.y + aw->icon.height * object->gridPosition.y;
 
+	float stretchedPos;
+
+	if (aw->minimizeToTop)
+		stretchedPos =
+			object->gridPosition.y * origy +
+			(1 - object->gridPosition.y) * icony;
+	else
+		stretchedPos =
+			(1 - object->gridPosition.y) * origy +
+			object->gridPosition.y * icony;
+
 	if (forwardProgress < preShapePhaseEnd)
 	{
 		float preShapeProgress = forwardProgress / preShapePhaseEnd;
+		float stretchProgress =	forwardProgress / stretchPhaseEnd;
 		float fx = (iconCloseEndY - object->position.y) / 
 			       (iconCloseEndY - winFarEndY);
 		float fy = (sigmoid(fx) - sigmoid(0)) / (sigmoid(1) - sigmoid(0));
-		int i;
 		float targetx = fy * (origx - iconx) + iconx;
 
+		int i;
 		for (i = 0; i < model->magicLampWaveCount; i++)
 		{
 			float cosfx =
-					(fx -
-					 model->magicLampWaves[i].pos) /
+					(fx - model->magicLampWaves[i].pos) /
 					model->magicLampWaves[i].halfWidth;
 			if (cosfx < -1 || cosfx > 1)
 				continue;
@@ -214,28 +225,18 @@ fxMagicLampModelStepObject(CompWindow * w,
 					model->magicLampWaves[i].amp * model->scale.x *
 					(cos(cosfx * M_PI) + 1) / 2;
 		}
+		preShapeProgress = 1 - decelerateProgress(1 - preShapeProgress);
 		object->position.x =
 				(1 - preShapeProgress) * origx + preShapeProgress * targetx;
-		object->position.y = origy;
+		object->position.y =
+				(1 - stretchProgress) * origy +
+				stretchProgress * stretchedPos;
 	}
 	else
 	{
-		float stretchedPos;
-
-		if (aw->minimizeToTop)
-			stretchedPos =
-					object->gridPosition.y * origy +
-					(1 - object->gridPosition.y) * icony;
-		else
-			stretchedPos =
-					(1 - object->gridPosition.y) * origy +
-					object->gridPosition.y * icony;
-
 		if (forwardProgress < stretchPhaseEnd)
 		{
-			float stretchProgress =
-					(forwardProgress - preShapePhaseEnd) /
-					(stretchPhaseEnd - preShapePhaseEnd);
+			float stretchProgress =	forwardProgress / stretchPhaseEnd;
 
 			object->position.y =
 					(1 - stretchProgress) * origy +
@@ -244,8 +245,7 @@ fxMagicLampModelStepObject(CompWindow * w,
 		else
 		{
 			float postStretchProgress =
-					(forwardProgress - stretchPhaseEnd) / (1 -
-														   stretchPhaseEnd);
+				(forwardProgress - stretchPhaseEnd) / (1 - stretchPhaseEnd);
 
 			object->position.y =
 					(1 - postStretchProgress) *

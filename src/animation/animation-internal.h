@@ -674,7 +674,7 @@ decelerateProgressCustom (float progress,
 						  float minx, float maxx);
  
 float
-decelerateProgress2 (float progress);
+decelerateProgress (float progress);
  
 void
 applyTransformToObject (Object *obj, GLfloat *mat);

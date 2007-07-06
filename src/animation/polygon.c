@@ -1239,7 +1239,7 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 			float opacityFac;
 
 			if (aw->deceleratingMotion)
-				opacityFac = 1 - decelerateProgress2
+				opacityFac = 1 - decelerateProgress
 						(fadePassedBy / pset->allFadeDuration);
 			else
 				opacityFac = 1 - fadePassedBy / pset->allFadeDuration;
@@ -1284,7 +1284,7 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 						float opacityFac;
 
 						if (aw->deceleratingMotion)
-							opacityFac = 1 - decelerateProgress2
+							opacityFac = 1 - decelerateProgress
 									(fadePassedBy / p->fadeDuration);
 						else
 							opacityFac = 1 - fadePassedBy / p->fadeDuration;
@@ -1618,7 +1618,7 @@ polygonsDeceleratingAnimStepPolygon(CompWindow * w,
 	else if (moveProgress > 1)
 		moveProgress = 1;
 
-	moveProgress = decelerateProgress2(moveProgress);
+	moveProgress = decelerateProgress(moveProgress);
 
 	p->centerPos.x = moveProgress * p->finalRelPos.x + p->centerPosStart.x;
 	p->centerPos.y = moveProgress * p->finalRelPos.y + p->centerPosStart.y;

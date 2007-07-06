@@ -93,7 +93,7 @@ float fxGlideAnimProgress(AnimWindow * aw)
 {
 	float forwardProgress = defaultAnimProgress(aw);
 
-	return decelerateProgress2(forwardProgress);
+	return decelerateProgress(forwardProgress);
 }
 
 Bool fxGlideAnimStep(CompScreen * s, CompWindow * w, float time)
