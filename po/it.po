@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-06 14:21+0200\n"
-"Last-Translator: Danilo Saruis (DDany) <ddany83@gmail.com>\n"
+"PO-Revision-Date: 2007-07-06 16:19+0200\n"
+"Last-Translator: Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,7 +154,7 @@ msgid "All effects are chosen randomly, ignoring the selected effect. If None is
 msgstr "Tutti gli effetti sono scelti casualmente ifnorando l'effetto selzionato. Se per un effetto non è selezionato nessun effetto, l'evento non avrà animazione."
 
 msgid "Amplitude (size of the waves in the fold) of the Horizontal Folds relative to the window width. Negative values fold outward."
-msgstr ""
+msgstr "Ampiezza (dimensione delle onde nella piega) delle Pieghe Orizzontali relativamente alla larghezza della finestra. Valori negativi portano le pieghe in avanti"
 
 msgid "Amplitude (size of the waves in the fold) of the curved fold relative to window width. Negative values fold outward."
 msgstr ""
@@ -251,7 +251,7 @@ msgid "Close Animation"
 msgstr "Tipo di animazione per l'accostamento"
 
 msgid "Closeness of window to camera at the end of the animation (1.0: Close to camera, -2.0: Away from camera)."
-msgstr ""
+msgstr "Vicinanza della finestra alla fotocamera alla fine dell'animazione (1.0: Vicino alla fotocamera; 2.0: Lontano dalla fotocamera)"
 
 #, fuzzy
 msgid "Create #1 Animation"
@@ -269,10 +269,10 @@ msgid "Create/Close Only"
 msgstr ""
 
 msgid "Curved Fold"
-msgstr ""
+msgstr "Ripiegatura curva"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "Ampiezza della ripiegatura curva"
 
 msgid "Dodge"
 msgstr ""
@@ -354,7 +354,7 @@ msgid "Focus Animation"
 msgstr "Velocità di Animazione"
 
 msgid "Focus animation duration in seconds."
-msgstr ""
+msgstr "Durata in secondi dell'animazione di focus"
 
 #, fuzzy
 msgid "Focus window effect."
@@ -382,7 +382,7 @@ msgid "Horizontal Folds"
 msgstr "Accosta orizzontalmente"
 
 msgid "Horizontal Folds Amplitude"
-msgstr ""
+msgstr "Ampiezza della piegatura orizzontale"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr "Quanto deve essere simile ad una molla l'animazione della Sidekick."
@@ -403,7 +403,7 @@ msgid "Magic Lamp Create Start Width"
 msgstr "Larghezza Iniziale alla Creaione della Lampada Magica"
 
 msgid "Magic Lamp Grid Y Resolution"
-msgstr ""
+msgstr "Risoluzione Verticale Griglia per l'effetto Lampada Magica"
 
 msgid "Magic Lamp Max Wave Amplitude"
 msgstr "Ampiezza Massima delle onde della Lampada Magica"
@@ -415,16 +415,16 @@ msgid "Magic Lamp Min Wave Amplitude"
 msgstr "Ampiezza Minima delle Onde della Lampada Magica"
 
 msgid "Magic Lamp Vacuum"
-msgstr ""
+msgstr "Lampada Magica nel Vuoto"
 
 msgid "Magic Lamp Vacuum Create Start Width"
 msgstr ""
 
 msgid "Magic Lamp Vacuum Grid Y Resolution"
-msgstr ""
+msgstr "Risoluzione verticale Lampada Magica nel Vuoto"
 
 msgid "Magic Lamp Vacuum Max Wave Amplitude"
-msgstr ""
+msgstr "Ampiezza Massima Onde Lampada Magica nel Vuoto"
 
 msgid "Magic Lamp Vacuum Max Waves"
 msgstr ""
@@ -459,7 +459,7 @@ msgstr "Numero di fiamme"
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
-msgstr ""
+msgstr "Numero di rotazioni per l'effetto Calcio Laterale (variazione casuale: più o meno 10%)"
 
 msgid "Off"
 msgstr "Spento"
@@ -486,7 +486,7 @@ msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr ""
 
 msgid "Razr"
-msgstr ""
+msgstr "Rasoio"
 
 msgid "Razr Fold Opening Direction"
 msgstr ""
@@ -565,26 +565,26 @@ msgid "The exploding window will be split into pieces along a grid. Specify the 
 msgstr "La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica la larghezza, in pixel, della griglia."
 
 msgid "The maximum number of waves for Magic Lamp Vacuum."
-msgstr ""
+msgstr "Il numero massimo di onde per l'effetto Lampada Magica nel Vuoto"
 
 #, fuzzy
 msgid "The maximum number of waves for Magic Lamp."
 msgstr "Numero massimo di fiamme attive."
 
 msgid "The maxmimum amplitude (size of the waves) Magic Lamp Vacuum will have."
-msgstr ""
+msgstr "La massima ampiezza (dimensione delle onde) che avrà l'effetto Lampada Magica nel Vuoto"
 
 msgid "The maxmimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
+msgstr "La massima ampiezza (dimensione delle onde) che avrà l'effetto Lampada Magica"
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp Vacuum will have."
-msgstr ""
+msgstr "L'ampiezza minima (dimensione delle onde) che avrà l'effetto Lampada Magica nel Vuoto"
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
+msgstr "L'ampiezza minima (dimensione delle onde) che avrà l'effetto Lampada Magica"
 
 msgid "The number of horizontal folds that occur in the Horizontal Fold animation."
-msgstr ""
+msgstr "Il numero di piege orizzontali rappresentate dall'animazione Piegatura Orizzontale"
 
 msgid "The number of seconds that the Close #1 animation will last."
 msgstr "Durata, in secondi, dell'animazione di Chiusura #1."
@@ -596,7 +596,7 @@ msgid "The number of seconds that the Minimize animation will last."
 msgstr "Durata, in secondi, dell'animazione di minimizzazione di una finestra."
 
 msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
+msgstr "L'ampiezza delle onde (dimensione) relativa all'altezza della finestra"
 
 #, fuzzy
 msgid "The width of the wave relative to the window height."
@@ -623,10 +623,10 @@ msgid "Use various animations as window effects"
 msgstr "Usa varie animazioni come effetti per le finestre."
 
 msgid "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number of points used to define the curves. The higher the number, the smoother the curves. However there will be a loss of performance (CPU usage increases)."
-msgstr ""
+msgstr "Risoluzione per la griglia Vertex per l'effetto Lampada Magica (solo dimensione verticale). Rappresenta il numero di punti utilizzati per definire le curve. Più è alto tale numero e più le curve appariranno smussate. Ci sarà, tuttavia, una perdita di prestazione (aumenta l'uso della CPU)"
 
 msgid "Vertex grid resolution for Magic Lamp Vacuum (Y dimension only). This is the number of points used to define the curves. The higher the number, the smoother the curves. However there will be a loss of performance (CPU usage increases)."
-msgstr ""
+msgstr "Risoluzione per la griglia Vertex per l'effetto Lampada Magica nel Vuoto (solo dimensione verticale). Rappresenta il numero di punti utilizzati per definire le curve. Più è alto tale numero e più le curve appariranno smussate. Ci sarà, tuttavia, una perdita di prestazione (aumenta l'uso della CPU)"
 
 msgid "Wave"
 msgstr "Onde"
@@ -2497,7 +2497,7 @@ msgid "Initiate plugin action"
 msgstr "Inizia a Scrivere col Fuoco"
 
 msgid "Initiate/Terminate the selected plugin action"
-msgstr ""
+msgstr "Inizializza/Termina il plugin selezionato"
 
 #, fuzzy
 msgid "Move Down"
@@ -2558,10 +2558,10 @@ msgid "Allow wrap-around when moving the wall up/down/left/right"
 msgstr ""
 
 msgid "Desktop Wall"
-msgstr ""
+msgstr "Muraglia di Desktop"
 
 msgid "Desktop Wall Plugin"
-msgstr ""
+msgstr "Plugin Muraglia di Desktop"
 
 #, fuzzy
 msgid "Duration (in s) for wall sliding viewport switching animation"
@@ -2610,13 +2610,13 @@ msgid "Flip up"
 msgstr ""
 
 msgid "Flip viewport when dragging an object to a screen edge"
-msgstr ""
+msgstr "Cambia area di lavoro quando si trascina uno oggetto sul bordo dello schermo"
 
 msgid "Flip viewport when moving a window to a screen edge"
-msgstr ""
+msgstr "Cambia area di lavoro quando si trascina una finestra sul bordo dello schermo"
 
 msgid "Flip viewport when moving the pointer to a screen edge"
-msgstr ""
+msgstr "Cambia area di lavoro quando si sposta il mouse sul bordo dello schermo"
 
 msgid "How should a multimonitor configuration be handeled"
 msgstr ""
@@ -2699,7 +2699,7 @@ msgid "Wall Sliding Duration"
 msgstr "Durata dell'animazione"
 
 msgid "Above others windows"
-msgstr ""
+msgstr "Al di sopra delle altre finestre"
 
 #, fuzzy
 msgid "Below"
@@ -2819,5 +2819,5 @@ msgid "Windows that should be resized by default"
 msgstr "Finestre che devono essere mostrate in 3D"
 
 msgid "Windows will not have focus"
-msgstr ""
+msgstr "Le finestre non avranno il focus"
 
