@@ -63,6 +63,7 @@ typedef struct _RingSlot {
     /* thumb center coordinates */
     int   x, y;
     float scale;
+    float iconScale;
     float brightness;
 } RingSlot;
 
@@ -529,14 +530,16 @@ ringPaintWindow (CompWindow		  *w,
 			break;
 		}
 
+		if (rw->slot)
+		    scale  = scale * rw->slot->iconScale;
 		width  = icon->width  * scale;
 		height = icon->height * scale;
 
 	    	switch (iconOverlay) {
 		    case OverlayIconNone:
 	    	    case OverlayIconEmblem:
-    			x = w->attrib.x + scaledWinWidth - icon->width;
-			y = w->attrib.y + scaledWinHeight - icon->height;
+    			x = w->attrib.x + scaledWinWidth - width;
+			y = w->attrib.y + scaledWinHeight - height;
 			break;
 		    case OverlayIconBig:
 		    default:
@@ -719,12 +722,13 @@ layoutThumbs (CompScreen *s)
 	   polation - the y positions are the x values for the interpolation
 	   (the larger Y is, the nearer is the window), and scale/brightness
 	   are the y values for the interpolation */
-	rw->slot->scale *= 
+	rw->slot->iconScale = 
 	    ringLinearInterpolation(rw->slot->y, 
 				    centerY - ellipseB, 
 				    centerY + ellipseB, 
 				    ringGetMinScale (s),
 				    1.0f);
+	rw->slot->scale *= rw->slot->iconScale;
 
 	rw->slot->brightness = 
 	    ringLinearInterpolation(rw->slot->y, 
