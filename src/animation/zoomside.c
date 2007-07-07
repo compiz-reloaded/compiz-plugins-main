@@ -249,7 +249,7 @@ fxZoomUpdateWindowTransform(CompScreen *s, CompWindow *w, CompTransform *wTransf
 		fxZoomAnimProgress(as, aw, &moveProgress, &scaleProgress, FALSE);
 		rotateProgress = moveProgress;
 	}
-	else if (aw->curAnimEffect == AnimEffectSidekick)
+	else if (aw->curAnimEffect == AnimEffectZoom)
 	{
 		fxZoomAnimProgress(as, aw, &moveProgress, &scaleProgress, FALSE);
 	}
