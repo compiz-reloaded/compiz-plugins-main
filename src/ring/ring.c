@@ -530,7 +530,7 @@ ringPaintWindow (CompWindow		  *w,
 			break;
 		}
 
-		if (rw->slot)
+		if (w->texture->pixmap && rw->slot)
 		    scale  = scale * rw->slot->iconScale;
 		width  = icon->width  * scale;
 		height = icon->height * scale;
