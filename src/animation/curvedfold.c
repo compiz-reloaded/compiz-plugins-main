@@ -106,8 +106,8 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 		object->position.x =
 				origx + sin(forwardProgress * M_PI / 2) *
 				(0.5 - object->gridPosition.x) * 2 * model->scale.x *
-				(curveMaxAmp -
-				 curveMaxAmp * 4 * relDistToCenter * relDistToCenter);
+				curveMaxAmp *
+				(1 - pow (pow(2 * relDistToCenter, 1.3), 2));
 		object->position.y =
 				(1 - forwardProgress) * origy +
 				forwardProgress * (BORDER_Y(w) + BORDER_H(w) / 2.0);
