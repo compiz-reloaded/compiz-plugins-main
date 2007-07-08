@@ -2861,21 +2861,36 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 				// don't animate windows that don't have properties
 				// like the fullscreen darkening layer of gksudo
-				if (!w->resName)
+				if (!(w->resName || w->startupId))
 					break;
 
 				AnimEffect windowsCloseEffect = AnimEffectNone;
 				int whichClose = 1;	// either 1 or 2
 
+				// Backup window type
+				int winType = w->wmType;
+
+				// Hack to handle KDE secondary windows
+				if (w->wmType == CompWindowTypeUnknownMask && w->startupId)
+				{
+					w->wmType = CompWindowTypeDropdownMenuMask;
+				}
+
 				if (as->close1Effect && 
-				    matchEval (&as->opt[ANIM_SCREEN_OPTION_CLOSE1_MATCH].value.match, w))
+					matchEval (&as->opt[ANIM_SCREEN_OPTION_CLOSE1_MATCH].value.match, w))
+				{
 					windowsCloseEffect = as->close1Effect;
+				}
 				else if (as->close2Effect && 
-					 matchEval (&as->opt[ANIM_SCREEN_OPTION_CLOSE2_MATCH].value.match, w))
+						 matchEval (&as->opt[ANIM_SCREEN_OPTION_CLOSE2_MATCH].value.match, w))
 				{
 					windowsCloseEffect = as->close2Effect;
 					whichClose = 2;
 				}
+
+				// Restore window type
+				w->wmType = winType;
+
 				// CLOSE event!
 
 				if (windowsCloseEffect)
@@ -3403,9 +3418,20 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 			int whichCreate = 1;	// either 1 or 2
 
+			// Backup window type
+			int winType = w->wmType;
+
+			// Hack to handle KDE secondary windows
+			if (w->wmType == CompWindowTypeUnknownMask && w->startupId)
+			{
+				w->wmType = CompWindowTypeDropdownMenuMask;
+			}
+
 			if (as->create1Effect &&
-			    matchEval (&as->opt[ANIM_SCREEN_OPTION_CREATE1_MATCH].value.match, w))
+				matchEval (&as->opt[ANIM_SCREEN_OPTION_CREATE1_MATCH].value.match, w))
+			{
 				windowsCreateEffect = as->create1Effect;
+			}
 			else if (as->create2Effect &&
 					 matchEval (&as->opt[ANIM_SCREEN_OPTION_CREATE2_MATCH].value.match, w))
 			{
@@ -3413,10 +3439,13 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 				whichCreate = 2;
 			}
 
+			// Restore window type
+			w->wmType = winType;
+
 			if (windowsCreateEffect &&
 				// don't animate windows that don't have properties
 				// like the fullscreen darkening layer of gksudo
-				w->resName &&
+				(w->resName || w->startupId) &&
 				// suppress switcher window
 				// (1st window that opens after switcher becomes active)
 				(!as->switcherActive || as->switcherWinOpeningSuppressed) &&
@@ -3543,8 +3572,6 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 		freePolygonSet(aw);
 	}
 
-	//if (!preview && (dx || dy || dwidth || dheight))
-	//{
 	if (aw->animRemainingTime > 0)
 	{
 		aw->animRemainingTime = 0;
@@ -3557,7 +3584,6 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 						 WIN_X(w), WIN_Y(w), 
 						 WIN_W(w), WIN_H(w));
 	}
-	//}
 
 	aw->state = w->state;
 
