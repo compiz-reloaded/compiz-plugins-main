@@ -1269,11 +1269,6 @@ initiateFocusAnimation(CompWindow *w)
 	as->scaleActive || as->switcherActive || 
 	as->groupTabChangeActive || as->fadeDesktopActive)
     {
-	if (aw->restackInfo)
-	{
-	    free(aw->restackInfo);
-	    aw->restackInfo = NULL;
-	}
 	return;
     }
 
@@ -1558,6 +1553,12 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		ANIM_WINDOW(w);
 		if (aw->restackInfo)
 		{
+		    if (aw->curWindowEvent != WindowEventNone ||
+			as->scaleActive || as->switcherActive || 
+			as->groupTabChangeActive || as->fadeDesktopActive)
+		    {
+			continue;
+		    }
 		    // Check if above window is focus-fading
 		    // (like a dialog of an app. window)
 		    // if so, focus-fade this together with the one above
