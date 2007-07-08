@@ -60,11 +60,10 @@ typedef enum {
 static int displayPrivateIndex;
 
 typedef struct _RingSlot {
-    /* thumb center coordinates */
-    int   x, y;
-    float scale;
-    float iconScale;
-    float brightness;
+    int   x, y;            /* thumb center coordinates */
+    float scale;           /* size scale (fit to maximal thumb size */
+    float depthScale;      /* scale for depth impression */
+    float depthBrightness; /* brightness for depth impression */
 } RingSlot;
 
 typedef struct _RingDrawSlot {
@@ -463,7 +462,7 @@ ringPaintWindow (CompWindow		  *w,
 	    if (rw->slot)
 	    {
     		fragment.brightness = (float) fragment.brightness * 
-		                      rw->slot->brightness;
+		                      rw->slot->depthBrightness;
 		if (w->id != rs->selectedWindow)
 		    fragment.opacity = (float)fragment.opacity *
 			               ringGetInactiveOpacity (s) / 100;
@@ -517,7 +516,7 @@ ringPaintWindow (CompWindow		  *w,
 		{
 	    	    case OverlayIconNone:
     		    case OverlayIconEmblem:
-			scale = (rw->slot) ? rw->slot->iconScale : 1.0f;
+			scale = (rw->slot) ? rw->slot->depthScale : 1.0f;
 			break;
 		    case OverlayIconBig:
 		    default:
@@ -588,7 +587,7 @@ ringPaintWindow (CompWindow		  *w,
 
 		    if (rw->slot)
 			fragment.brightness = (float) fragment.brightness * 
-			                      rw->slot->brightness;
+			                      rw->slot->depthBrightness;
 
 		    matrixTranslate (&wTransform, w->attrib.x, w->attrib.y, 0.0f);
 		    matrixScale (&wTransform, scale, scale, 1.0f);
@@ -720,15 +719,14 @@ layoutThumbs (CompScreen *s)
 	   polation - the y positions are the x values for the interpolation
 	   (the larger Y is, the nearer is the window), and scale/brightness
 	   are the y values for the interpolation */
-	rw->slot->iconScale = 
+	rw->slot->depthScale = 
 	    ringLinearInterpolation(rw->slot->y, 
 				    centerY - ellipseB, 
 				    centerY + ellipseB, 
 				    ringGetMinScale (s),
 				    1.0f);
-	rw->slot->scale *= rw->slot->iconScale;
 
-	rw->slot->brightness = 
+	rw->slot->depthBrightness = 
 	    ringLinearInterpolation(rw->slot->y, 
 				    centerY - ellipseB, 
 				    centerY + ellipseB, 
@@ -928,9 +926,9 @@ adjustRingVelocity (CompWindow *w)
 
     if (rw->slot)
     {
-	x1 = rw->slot->x - (w->attrib.width * rw->slot->scale) / 2;
-	y1 = rw->slot->y - (w->attrib.height * rw->slot->scale) / 2;
-	scale = rw->slot->scale;
+	scale = rw->slot->scale * rw->slot->depthScale;
+	x1 = rw->slot->x - (w->attrib.width * scale) / 2;
+	y1 = rw->slot->y - (w->attrib.height * scale) / 2;
     }
     else
     {
@@ -1081,13 +1079,11 @@ ringPreparePaintScreen (CompScreen *s,
 		}
 		else if (rw->slot)
 		{
-	    	    rw->tx = rw->slot->x - 
-			     w->attrib.x -
-			     (w->attrib.width * rw->slot->scale) / 2;
-	    	    rw->ty = rw->slot->y - 
-			     w->attrib.y - 
-			     (w->attrib.height * rw->slot->scale) / 2;
-		    rw->scale = rw->slot->scale;
+		    rw->scale = rw->slot->scale * rw->slot->depthScale;
+	    	    rw->tx = rw->slot->x - w->attrib.x -
+			     (w->attrib.width * rw->scale) / 2;
+	    	    rw->ty = rw->slot->y - w->attrib.y - 
+			     (w->attrib.height * rw->scale) / 2;
 		}
 	    }
 
