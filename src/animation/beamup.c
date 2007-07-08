@@ -41,256 +41,255 @@
 
 void fxBeamUpInit(CompScreen * s, CompWindow * w)
 {
-	int particles = WIN_W(w);
+    int particles = WIN_W(w);
 
-	defaultAnimInit(s, w);
-	ANIM_WINDOW(w);
-	ANIM_SCREEN(s);
-	if (!aw->numPs)
+    defaultAnimInit(s, w);
+    ANIM_WINDOW(w);
+    ANIM_SCREEN(s);
+    if (!aw->numPs)
+    {
+	aw->ps = calloc(1, 2 * sizeof(ParticleSystem));
+	if (!aw->ps)
 	{
-		aw->ps = calloc(1, 2 * sizeof(ParticleSystem));
-		if (!aw->ps)
-		{
-			postAnimationCleanup(w, TRUE);
-			return;
-		}
-		aw->numPs = 2;
+	    postAnimationCleanup(w, TRUE);
+	    return;
 	}
-	initParticles(particles / 10, &aw->ps[0]);
-	initParticles(particles, &aw->ps[1]);
-	aw->ps[1].slowdown = as->opt[ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN].value.f;
-	aw->ps[1].darken = 0.5;
-	aw->ps[1].blendMode = GL_ONE;
+	aw->numPs = 2;
+    }
+    initParticles(particles / 10, &aw->ps[0]);
+    initParticles(particles, &aw->ps[1]);
+    aw->ps[1].slowdown = as->opt[ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN].value.f;
+    aw->ps[1].darken = 0.5;
+    aw->ps[1].blendMode = GL_ONE;
 
-	aw->ps[0].slowdown =
-			as->opt[ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN].value.f / 2.0;
-	aw->ps[0].darken = 0.0;
-	aw->ps[0].blendMode = GL_ONE_MINUS_SRC_ALPHA;
+    aw->ps[0].slowdown =
+	as->opt[ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN].value.f / 2.0;
+    aw->ps[0].darken = 0.0;
+    aw->ps[0].blendMode = GL_ONE_MINUS_SRC_ALPHA;
 
-	if (!aw->ps[0].tex)
-		glGenTextures(1, &aw->ps[0].tex);
-	glBindTexture(GL_TEXTURE_2D, aw->ps[0].tex);
+    if (!aw->ps[0].tex)
+	glGenTextures(1, &aw->ps[0].tex);
+    glBindTexture(GL_TEXTURE_2D, aw->ps[0].tex);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 32, 32, 0,
-				 GL_RGBA, GL_UNSIGNED_BYTE, fireTex);
-	glBindTexture(GL_TEXTURE_2D, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 32, 32, 0,
+		 GL_RGBA, GL_UNSIGNED_BYTE, fireTex);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
-	if (!aw->ps[1].tex)
-		glGenTextures(1, &aw->ps[1].tex);
-	glBindTexture(GL_TEXTURE_2D, aw->ps[1].tex);
+    if (!aw->ps[1].tex)
+	glGenTextures(1, &aw->ps[1].tex);
+    glBindTexture(GL_TEXTURE_2D, aw->ps[1].tex);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 32, 32, 0,
-				 GL_RGBA, GL_UNSIGNED_BYTE, fireTex);
-	glBindTexture(GL_TEXTURE_2D, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 32, 32, 0,
+		 GL_RGBA, GL_UNSIGNED_BYTE, fireTex);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
 }
 
 static void
 fxBeamUpGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
-				   int width, int height, float size, float time)
+		   int width, int height, float size, float time)
 {
-	ANIM_SCREEN(s);
+    ANIM_SCREEN(s);
 
-	ps->numParticles =
-			width / as->opt[ANIM_SCREEN_OPTION_BEAMUP_SPACING].value.i;
-	float max_new =
-			ps->numParticles * (time / 50) * (1.05 -
-											  as->
-											  opt
-											  [ANIM_SCREEN_OPTION_BEAMUP_LIFE].
-											  value.f);
-	int i;
-	Particle *part;
-	float rVal;
+    ps->numParticles =
+	width / as->opt[ANIM_SCREEN_OPTION_BEAMUP_SPACING].value.i;
+    float max_new =
+	ps->numParticles * (time / 50) * (1.05 -
+					  as->
+					  opt
+					  [ANIM_SCREEN_OPTION_BEAMUP_LIFE].
+					  value.f);
+    int i;
+    Particle *part;
+    float rVal;
 
-	for (i = 0; i < ps->numParticles && max_new > 0; i++)
+    for (i = 0; i < ps->numParticles && max_new > 0; i++)
+    {
+	part = &ps->particles[i];
+	if (part->life <= 0.0f)
 	{
-		part = &ps->particles[i];
-		if (part->life <= 0.0f)
-		{
-			// give gt new life
-			rVal = (float)(random() & 0xff) / 255.0;
-			part->life = 1.0f;
-			part->fade = (rVal * (1 - as->opt[ANIM_SCREEN_OPTION_BEAMUP_LIFE].value.f)) + 
-				         (0.2f * (1.01 - as->opt[ANIM_SCREEN_OPTION_BEAMUP_LIFE].value.f));	// Random Fade Value
+	    // give gt new life
+	    rVal = (float)(random() & 0xff) / 255.0;
+	    part->life = 1.0f;
+	    part->fade = (rVal * (1 - as->opt[ANIM_SCREEN_OPTION_BEAMUP_LIFE].value.f)) + 
+		(0.2f * (1.01 - as->opt[ANIM_SCREEN_OPTION_BEAMUP_LIFE].value.f));	// Random Fade Value
 
-			// set size
-			part->width = 2.5 * as->opt[ANIM_SCREEN_OPTION_BEAMUP_SIZE].value.f;
-			part->height = height;
-			part->w_mod = size * 0.2;
-			part->h_mod = size * 0.02;
+	    // set size
+	    part->width = 2.5 * as->opt[ANIM_SCREEN_OPTION_BEAMUP_SIZE].value.f;
+	    part->height = height;
+	    part->w_mod = size * 0.2;
+	    part->h_mod = size * 0.02;
 
-			// choose random x position
-			rVal = (float)(random() & 0xff) / 255.0;
-			part->x = x + ((width > 1) ? (rVal * width) : 0);
-			part->y = y;
-			part->z = 0.0;
-			part->xo = part->x;
-			part->yo = part->y;
-			part->zo = part->z;
+	    // choose random x position
+	    rVal = (float)(random() & 0xff) / 255.0;
+	    part->x = x + ((width > 1) ? (rVal * width) : 0);
+	    part->y = y;
+	    part->z = 0.0;
+	    part->xo = part->x;
+	    part->yo = part->y;
+	    part->zo = part->z;
 
-			// set speed and direction
-			part->xi = 0.0f;
-			part->yi = 0.0f;
-			part->zi = 0.0f;
+	    // set speed and direction
+	    part->xi = 0.0f;
+	    part->yi = 0.0f;
+	    part->zi = 0.0f;
 
-			// set color ABAB as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.f
-			part->r = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[0] / 0xffff -
-					  (rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[0] / 0xffff);
-			part->g = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[1] / 0xffff -
-					  (rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[1] / 0xffff);
-			part->b = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[2] / 0xffff -
-					  (rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[2] / 0xffff);
-			part->a = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[3] / 0xffff;
+	    // set color ABAB as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.f
+	    part->r = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[0] / 0xffff -
+		(rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[0] / 0xffff);
+	    part->g = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[1] / 0xffff -
+		(rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[1] / 0xffff);
+	    part->b = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[2] / 0xffff -
+		(rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[2] / 0xffff);
+	    part->a = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[3] / 0xffff;
 
-			// set gravity
-			part->xg = 0.0f;
-			part->yg = 0.0f;
-			part->zg = 0.0f;
+	    // set gravity
+	    part->xg = 0.0f;
+	    part->yg = 0.0f;
+	    part->zg = 0.0f;
 
-			ps->active = TRUE;
-			max_new -= 1;
-		}
-		else
-		{
-			part->xg = (part->x < part->xo) ? 1.0 : -1.0;
-		}
+	    ps->active = TRUE;
+	    max_new -= 1;
 	}
+	else
+	{
+	    part->xg = (part->x < part->xo) ? 1.0 : -1.0;
+	}
+    }
 
 }
 
 Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 {
-	int steps;
-	int creating = 0;
+    int steps;
+    int creating = 0;
 
-	if (!defaultAnimStep(s, w, time))
-		return FALSE;
+    if (!defaultAnimStep(s, w, time))
+	return FALSE;
 
-	ANIM_SCREEN(s);
-	ANIM_WINDOW(w);
+    ANIM_SCREEN(s);
+    ANIM_WINDOW(w);
 
-	Model *model = aw->model;
+    Model *model = aw->model;
 
-	float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
-					  as->opt[ANIM_SCREEN_OPTION_TIME_STEP_INTENSE].value.i);
+    float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
+		      as->opt[ANIM_SCREEN_OPTION_TIME_STEP_INTENSE].value.i);
 
-	aw->timestep = timestep;
+    aw->timestep = timestep;
 
-	float old = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
-	float stepSize;
+    float old = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
+    float stepSize;
 
-	aw->remainderSteps += time / timestep;
-	steps = floor(aw->remainderSteps);
-	aw->remainderSteps -= steps;
-	if (!steps && aw->animRemainingTime < aw->animTotalTime)
-		return FALSE;
+    aw->remainderSteps += time / timestep;
+    steps = floor(aw->remainderSteps);
+    aw->remainderSteps -= steps;
+    if (!steps && aw->animRemainingTime < aw->animTotalTime)
+	return FALSE;
 
-	aw->animRemainingTime -= timestep;
-	if (aw->animRemainingTime <= 0)
-		aw->animRemainingTime = 0;	// avoid sub-zero values
-	float new = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
+    aw->animRemainingTime -= timestep;
+    if (aw->animRemainingTime <= 0)
+	aw->animRemainingTime = 0;	// avoid sub-zero values
+    float new = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
 
-	stepSize = new - old;
+    stepSize = new - old;
 
-	if (aw->curWindowEvent == WindowEventCreate ||
-		aw->curWindowEvent == WindowEventUnminimize ||
-		aw->curWindowEvent == WindowEventUnshade)
+    if (aw->curWindowEvent == WindowEventCreate ||
+	aw->curWindowEvent == WindowEventUnminimize ||
+	aw->curWindowEvent == WindowEventUnshade)
+    {
+	old = 1 - old;
+	new = 1 - new;
+	creating = 1;
+    }
+
+    if (!aw->drawRegion)
+	aw->drawRegion = XCreateRegion();
+    if (aw->animRemainingTime > 0)
+    {
+	XRectangle rect;
+
+	rect.x = ((old / 2) * WIN_W(w));
+	rect.width = WIN_W(w) - (old * WIN_W(w));
+	rect.y = ((old / 2) * WIN_H(w));
+	rect.height = WIN_H(w) - (old * WIN_H(w));
+	XUnionRectWithRegion(&rect, &emptyRegion, aw->drawRegion);
+    }
+    else
+    {
+	XUnionRegion(&emptyRegion, &emptyRegion, aw->drawRegion);
+    }
+    if (new != 0)
+	aw->useDrawRegion = TRUE;
+    else
+	aw->useDrawRegion = FALSE;
+
+    if (aw->animRemainingTime > 0 && aw->numPs)
+    {
+	fxBeamUpGenNewFire(s, &aw->ps[1], 
+			   WIN_X(w), WIN_Y(w) + (WIN_H(w) / 2), WIN_W(w),
+			   creating ? WIN_H(w) - (old / 2 * WIN_H(w)) : 
+			   (WIN_H(w) -   (old * WIN_H(w))),
+			   WIN_W(w) / 40.0, time);
+
+    }
+    if (aw->animRemainingTime <= 0 && aw->numPs
+	&& (aw->ps[0].active || aw->ps[1].active))
+	aw->animRemainingTime = 0.001f;
+
+    if (!aw->numPs || !aw->ps)
+    {
+	if (aw->ps)
 	{
-		old = 1 - old;
-		new = 1 - new;
-		creating = 1;
+	    finiParticles(aw->ps);
+	    free(aw->ps);
+	    aw->ps = NULL;
 	}
+	return TRUE;		// FIXME - is this correct behaviour?
+    }
 
-	if (!aw->drawRegion)
-		aw->drawRegion = XCreateRegion();
-	if (aw->animRemainingTime > 0)
-	{
-		XRectangle rect;
+    int i;
+    Particle *part;
 
-		rect.x = ((old / 2) * WIN_W(w));
-		rect.width = WIN_W(w) - (old * WIN_W(w));
-		rect.y = ((old / 2) * WIN_H(w));
-		rect.height = WIN_H(w) - (old * WIN_H(w));
-		XUnionRectWithRegion(&rect, &emptyRegion, aw->drawRegion);
-	}
-	else
-	{
-		XUnionRegion(&emptyRegion, &emptyRegion, aw->drawRegion);
-	}
-	if (new != 0)
-		aw->useDrawRegion = TRUE;
-	else
-		aw->useDrawRegion = FALSE;
+    aw->ps[0].x = WIN_X(w);
+    aw->ps[0].y = WIN_Y(w);
 
-	if (aw->animRemainingTime > 0 && aw->numPs)
-	{
-		fxBeamUpGenNewFire(s, &aw->ps[1], 
-			WIN_X(w), WIN_Y(w) + (WIN_H(w) / 2), WIN_W(w),
-			creating ? WIN_H(w) - (old / 2 * WIN_H(w)) : 
-			           (WIN_H(w) -   (old * WIN_H(w))),
-		    WIN_W(w) / 40.0, time);
+    for (i = 0; i < aw->ps[1].numParticles && aw->animRemainingTime > 0; i++)
+    {
+	part = &aw->ps[1].particles[i];
+	part->xg = (part->x < part->xo) ? 1.0 : -1.0;
+    }
+    aw->ps[1].x = WIN_X(w);
+    aw->ps[1].y = WIN_Y(w);
 
-	}
-	if (aw->animRemainingTime <= 0 && aw->numPs
-		&& (aw->ps[0].active || aw->ps[1].active))
-		aw->animRemainingTime = 0.001f;
-
-	if (!aw->numPs || !aw->ps)
-	{
-		if (aw->ps)
-		{
-			finiParticles(aw->ps);
-			free(aw->ps);
-			aw->ps = NULL;
-		}
-		return TRUE;		// FIXME - is this correct behaviour?
-	}
-
-	int i;
-	Particle *part;
-
-	aw->ps[0].x = WIN_X(w);
-	aw->ps[0].y = WIN_Y(w);
-
-	for (i = 0; i < aw->ps[1].numParticles && aw->animRemainingTime > 0; i++)
-	{
-		part = &aw->ps[1].particles[i];
-		part->xg = (part->x < part->xo) ? 1.0 : -1.0;
-	}
-	aw->ps[1].x = WIN_X(w);
-	aw->ps[1].y = WIN_Y(w);
-
-	modelCalcBounds(model);
-	return TRUE;
+    modelCalcBounds(model);
+    return TRUE;
 }
 
 void
 fxBeamupUpdateWindowAttrib(AnimScreen * as,
-						   AnimWindow * aw, WindowPaintAttrib * wAttrib)
+			   AnimWindow * aw, WindowPaintAttrib * wAttrib)
 {
-	float forwardProgress = 0;
-	if (aw->animTotalTime - aw->timestep != 0)
-		forwardProgress =
-			1 - aw->animRemainingTime /
-			(aw->animTotalTime - aw->timestep);
-	forwardProgress = MIN(forwardProgress, 1);
-	forwardProgress = MAX(forwardProgress, 0);
+    float forwardProgress = 0;
+    if (aw->animTotalTime - aw->timestep != 0)
+	forwardProgress =
+	    1 - aw->animRemainingTime /
+	    (aw->animTotalTime - aw->timestep);
+    forwardProgress = MIN(forwardProgress, 1);
+    forwardProgress = MAX(forwardProgress, 0);
 
-	if (aw->curWindowEvent == WindowEventCreate ||
-		aw->curWindowEvent == WindowEventUnminimize)
-	{
-		forwardProgress = forwardProgress * forwardProgress;
-		forwardProgress = forwardProgress * forwardProgress;
-		forwardProgress = 1 - forwardProgress;
-	}
+    if (aw->curWindowEvent == WindowEventCreate ||
+	aw->curWindowEvent == WindowEventUnminimize)
+    {
+	forwardProgress = forwardProgress * forwardProgress;
+	forwardProgress = forwardProgress * forwardProgress;
+	forwardProgress = 1 - forwardProgress;
+    }
 
-	wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
+    wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
 }
-

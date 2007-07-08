@@ -40,53 +40,54 @@
 
 static void
 fxWaveModelStepObject(CompWindow * w,
-					  Model * model,
-					  Object * object,
-					  float forwardProgress,
-					  float waveAmp, float waveHalfWidth)
+		      Model * model,
+		      Object * object,
+		      float forwardProgress,
+		      float waveAmp, float waveHalfWidth)
 {
-	float origx = w->attrib.x + (WIN_W(w) * object->gridPosition.x -
-								 w->output.left) * model->scale.x;
-	float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
-								 w->output.top) * model->scale.y;
+    float origx = w->attrib.x + (WIN_W(w) * object->gridPosition.x -
+				 w->output.left) * model->scale.x;
+    float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
+				 w->output.top) * model->scale.y;
 
-	float wavePosition =
-			WIN_Y(w) - waveHalfWidth +
-			forwardProgress * (WIN_H(w) * model->scale.y + 2 * waveHalfWidth);
+    float wavePosition =
+	WIN_Y(w) - waveHalfWidth +
+	forwardProgress * (WIN_H(w) * model->scale.y + 2 * waveHalfWidth);
 
-	object->position.y = origy;
-	object->position.x = origx;
+    object->position.y = origy;
+    object->position.x = origx;
 
-	if (fabs(object->position.y - wavePosition) < waveHalfWidth)
-		object->position.x +=
-				(object->gridPosition.x - 0.5) * waveAmp *
-				(cos
-				 ((object->position.y -
-				   wavePosition) * M_PI / waveHalfWidth) + 1) / 2;
+    if (fabs(object->position.y - wavePosition) < waveHalfWidth)
+	object->position.x +=
+	    (object->gridPosition.x - 0.5) * waveAmp *
+	    (cos
+	     ((object->position.y -
+	       wavePosition) * M_PI / waveHalfWidth) + 1) / 2;
 }
 
 Bool fxWaveModelStep(CompScreen * s, CompWindow * w, float time)
 {
-	if (!defaultAnimStep(s, w, time))
-		return FALSE;
+    if (!defaultAnimStep(s, w, time))
+	return FALSE;
 
-	ANIM_SCREEN(s);
-	ANIM_WINDOW(w);
+    ANIM_SCREEN(s);
+    ANIM_WINDOW(w);
 
-	Model *model = aw->model;
+    Model *model = aw->model;
 
-	float forwardProgress = defaultAnimProgress(aw);
+    float forwardProgress = defaultAnimProgress(aw);
 
-	int i;
-	for (i = 0; i < model->numObjects; i++)
-		fxWaveModelStepObject(w,
-							  model,
-							  &model->objects[i],
-							  forwardProgress,
-							  WIN_H(w) * model->scale.y *
-							  as->opt[ANIM_SCREEN_OPTION_WAVE_AMP].value.f,
-							  WIN_H(w) * model->scale.y *
-							  as->opt[ANIM_SCREEN_OPTION_WAVE_WIDTH].value.f / 2);
-	modelCalcBounds(model);
-	return TRUE;
+    int i;
+    for (i = 0; i < model->numObjects; i++)
+	fxWaveModelStepObject(w,
+			      model,
+			      &model->objects[i],
+			      forwardProgress,
+			      WIN_H(w) * model->scale.y *
+			      as->opt[ANIM_SCREEN_OPTION_WAVE_AMP].value.f,
+			      WIN_H(w) * model->scale.y *
+			      as->opt[ANIM_SCREEN_OPTION_WAVE_WIDTH].value.f /
+			      2);
+    modelCalcBounds(model);
+    return TRUE;
 }

@@ -38,81 +38,81 @@
 
 static void
 fxDreamModelStepObject(CompWindow * w,
-					   Model * model, Object * object, float forwardProgress)
+		       Model * model, Object * object, float forwardProgress)
 {
-	float waveAmpMax = MIN(WIN_H(w), WIN_W(w)) * 0.125f;
-	float waveWidth = 10.0f;
-	float waveSpeed = 7.0f;
+    float waveAmpMax = MIN(WIN_H(w), WIN_W(w)) * 0.125f;
+    float waveWidth = 10.0f;
+    float waveSpeed = 7.0f;
 
-	float origx = w->attrib.x + (WIN_W(w) * object->gridPosition.x -
-								 w->output.left) * model->scale.x;
-	float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
-								 w->output.top) * model->scale.y;
+    float origx = w->attrib.x + (WIN_W(w) * object->gridPosition.x -
+				 w->output.left) * model->scale.x;
+    float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
+				 w->output.top) * model->scale.y;
 
-	object->position.y = origy;
-	object->position.x =
-			origx +
-			forwardProgress * waveAmpMax * model->scale.x *
-			sin(object->gridPosition.y * M_PI * waveWidth +
-				waveSpeed * forwardProgress);
+    object->position.y = origy;
+    object->position.x =
+	origx +
+	forwardProgress * waveAmpMax * model->scale.x *
+	sin(object->gridPosition.y * M_PI * waveWidth +
+	    waveSpeed * forwardProgress);
 
 }
 
 Bool fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
 {
-	if (!defaultAnimStep(s, w, time))
-		return FALSE;
+    if (!defaultAnimStep(s, w, time))
+	return FALSE;
 
-	ANIM_SCREEN(s);
-	ANIM_WINDOW(w);
+    ANIM_SCREEN(s);
+    ANIM_WINDOW(w);
 
-	Model *model = aw->model;
+    Model *model = aw->model;
 
-	float forwardProgress;
-	if ((aw->curWindowEvent == WindowEventMinimize ||
-		 aw->curWindowEvent == WindowEventUnminimize) &&
-		as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
-		value.b)
-	{
-		float dummy;
-		fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
-	}
-	else
-		forwardProgress = defaultAnimProgress(aw);
+    float forwardProgress;
+    if ((aw->curWindowEvent == WindowEventMinimize ||
+	 aw->curWindowEvent == WindowEventUnminimize) &&
+	as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
+	value.b)
+    {
+	float dummy;
+	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
+    }
+    else
+	forwardProgress = defaultAnimProgress(aw);
 
-	int i;
-	for (i = 0; i < model->numObjects; i++)
-		fxDreamModelStepObject(w,
-							   model,
-							   &model->objects[i], forwardProgress);
-	modelCalcBounds(model);
-	return TRUE;
+    int i;
+    for (i = 0; i < model->numObjects; i++)
+	fxDreamModelStepObject(w,
+			       model,
+			       &model->objects[i], forwardProgress);
+    modelCalcBounds(model);
+    return TRUE;
 }
 
 void
 fxDreamUpdateWindowAttrib(AnimScreen * as,
-						  AnimWindow * aw, WindowPaintAttrib * wAttrib)
+			  AnimWindow * aw, WindowPaintAttrib * wAttrib)
 {
-	if ((aw->curWindowEvent == WindowEventMinimize ||
-		 aw->curWindowEvent == WindowEventUnminimize) &&
-		as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
-		value.b)
-	{
-		fxZoomUpdateWindowAttrib(as, aw, wAttrib);
-		return;
-	}
+    if ((aw->curWindowEvent == WindowEventMinimize ||
+	 aw->curWindowEvent == WindowEventUnminimize) &&
+	as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
+	value.b)
+    {
+	fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+	return;
+    }
 
-	float forwardProgress = 0;
-	if (aw->animTotalTime - aw->timestep != 0)
-		forwardProgress =
-			1 - (aw->animRemainingTime - aw->timestep) /
-			(aw->animTotalTime - aw->timestep);
-	forwardProgress = MIN(forwardProgress, 1);
-	forwardProgress = MAX(forwardProgress, 0);
+    float forwardProgress = 0;
+    if (aw->animTotalTime - aw->timestep != 0)
+	forwardProgress =
+	    1 - (aw->animRemainingTime - aw->timestep) /
+	    (aw->animTotalTime - aw->timestep);
+    forwardProgress = MIN(forwardProgress, 1);
+    forwardProgress = MAX(forwardProgress, 0);
 
-	if (aw->curWindowEvent == WindowEventCreate ||
-		aw->curWindowEvent == WindowEventUnminimize)
-		forwardProgress = 1 - forwardProgress;
+    if (aw->curWindowEvent == WindowEventCreate ||
+	aw->curWindowEvent == WindowEventUnminimize)
+	forwardProgress = 1 - forwardProgress;
 
-	wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
+    wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
 }
