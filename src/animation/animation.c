@@ -1265,7 +1265,7 @@ initiateFocusAnimation(CompWindow *w)
 
     if (aw->curWindowEvent != WindowEventNone ||
 	as->scaleActive || as->switcherActive || 
-	as->groupTabChangeActive)
+	as->groupTabChangeActive || as->fadeDesktopActive)
     {
 	if (aw->restackInfo)
 	{
@@ -2611,6 +2611,20 @@ static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
 	    }
 	}
     }
+    else if (strcmp(pluginName, "fadedesktop") == 0)
+    {
+	if (strcmp(eventName, "activate") == 0)
+	{
+	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
+	    CompScreen *s = findScreenAtDisplay(d, xid);
+
+	    if (s)
+	    {
+		ANIM_SCREEN(s);
+		as->fadeDesktopActive = getBoolOptionNamed(option, nOption, "active", FALSE);
+	    }
+	}
+    }
 }
 
 static void
@@ -3247,7 +3261,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 	if (aw->state == IconicState)
 	{
-	    if (!w->invisible && as->minimizeEffect &&
+	    if (!w->invisible &&
+		as->minimizeEffect &&
+		!as->fadeDesktopActive &&
 		matchEval (&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value.match, w))
 	    {
 		// UNMINIMIZE event!
@@ -3859,6 +3875,7 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     as->switcherActive = FALSE;
     as->groupTabChangeActive = FALSE;
     as->scaleActive = FALSE;
+    as->fadeDesktopActive = FALSE;
 
     WRAP(as, s, preparePaintScreen, animPreparePaintScreen);
     WRAP(as, s, donePaintScreen, animDonePaintScreen);

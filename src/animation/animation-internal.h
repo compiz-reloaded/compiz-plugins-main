@@ -461,6 +461,7 @@ typedef struct _AnimScreen
     Bool switcherActive;
     Bool groupTabChangeActive;
     Bool scaleActive;
+    Bool fadeDesktopActive;
 
     Bool switcherWinOpeningSuppressed; // whether switcher window opening
     // animation is suppressed yet
