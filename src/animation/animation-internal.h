@@ -582,7 +582,7 @@ typedef struct _AnimWindow
 
 typedef struct _AnimEffectProperties
 {
-    void (*updateWindowAttribFunc) (AnimScreen *, AnimWindow *,
+    void (*updateWindowAttribFunc) (AnimScreen *, CompWindow *,
 				    WindowPaintAttrib *);
     void (*prePaintWindowFunc) (CompScreen *, CompWindow *);
     void (*postPaintWindowFunc) (CompScreen *, CompWindow *);
@@ -700,7 +700,7 @@ defaultAnimInit (CompScreen * s,
 
 void
 defaultMinimizeUpdateWindowAttrib(AnimScreen * as,
-				  AnimWindow * aw,
+				  CompWindow * w,
 				  WindowPaintAttrib * wAttrib);
 
 void
@@ -719,7 +719,7 @@ getMousePointerXY(CompScreen * s, short *x, short *y);
 
 void
 fxBeamupUpdateWindowAttrib (AnimScreen *as,
-			    AnimWindow *aw,
+			    CompWindow * w,
 			    WindowPaintAttrib *wAttrib);
 
 Bool
@@ -751,7 +751,7 @@ fxCurvedFoldModelStep (CompScreen *s,
 
 void
 fxFoldUpdateWindowAttrib(AnimScreen * as,
-			 AnimWindow * aw,
+			 CompWindow * w,
 			 WindowPaintAttrib * wAttrib);
 
 /* dodge.c */
@@ -786,7 +786,7 @@ fxDreamModelStep (CompScreen * s,
 
 void
 fxDreamUpdateWindowAttrib(AnimScreen * as,
-			  AnimWindow * aw, 
+			  CompWindow * w,
 			  WindowPaintAttrib * wAttrib);
 
 
@@ -801,7 +801,7 @@ fxExplode3DInit (CompScreen *s,
 
 void
 fxFadeUpdateWindowAttrib (AnimScreen *as,
-			  AnimWindow *aw,
+			  CompWindow * w,
 			  WindowPaintAttrib *wAttrib);
 
 
@@ -809,12 +809,12 @@ fxFadeUpdateWindowAttrib (AnimScreen *as,
 
 void
 fxFocusFadeUpdateWindowAttrib2 (AnimScreen *as,
-				AnimWindow *aw,
+				CompWindow * w,
 				WindowPaintAttrib *wAttrib);
 
 void
 fxFocusFadeUpdateWindowAttrib (AnimScreen *as,
-			       AnimWindow *aw,
+			       CompWindow * w,
 			       WindowPaintAttrib *wAttrib);
 
 
@@ -826,7 +826,7 @@ fxGlideInit (CompScreen *s,
 
 void
 fxGlideUpdateWindowAttrib (AnimScreen *as,
-			   AnimWindow *aw,
+			   CompWindow * w,
 			   WindowPaintAttrib *wAttrib);
 
 Bool
@@ -991,7 +991,7 @@ fxWaveModelStep (CompScreen * s,
 
 void
 fxZoomUpdateWindowAttrib (AnimScreen *as,
-			  AnimWindow *aw,
+			  CompWindow * w,
 			  WindowPaintAttrib *wAttrib);
 
 void

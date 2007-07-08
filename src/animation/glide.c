@@ -109,8 +109,11 @@ Bool fxGlideAnimStep(CompScreen * s, CompWindow * w, float time)
 
 void
 fxGlideUpdateWindowAttrib(AnimScreen * as,
-			  AnimWindow * aw, WindowPaintAttrib * wAttrib)
+			  CompWindow * w,
+			  WindowPaintAttrib * wAttrib)
 {
+    ANIM_WINDOW(w);
+
     if (fxGlideIsPolygonBased(as, aw))
 	return;
 
@@ -118,7 +121,7 @@ fxGlideUpdateWindowAttrib(AnimScreen * as,
 
     if (fxGlideZoomToTaskBar(as, aw))
     {
-	fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+	fxZoomUpdateWindowAttrib(as, w, wAttrib);
 	return;
     }
 

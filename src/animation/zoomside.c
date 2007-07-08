@@ -214,8 +214,11 @@ void fxZoomAnimProgress(AnimScreen * as,
 
 void
 fxZoomUpdateWindowAttrib(AnimScreen * as,
-			 AnimWindow * aw, WindowPaintAttrib * wAttrib)
+			 CompWindow * w,
+			 WindowPaintAttrib * wAttrib)
 {
+    ANIM_WINDOW(w);
+
     float forwardProgress;
     float dummy;
 

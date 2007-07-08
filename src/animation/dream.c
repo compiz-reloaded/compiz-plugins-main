@@ -91,28 +91,21 @@ Bool fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
 
 void
 fxDreamUpdateWindowAttrib(AnimScreen * as,
-			  AnimWindow * aw, WindowPaintAttrib * wAttrib)
+			  CompWindow * w,
+			  WindowPaintAttrib * wAttrib)
 {
+    ANIM_WINDOW(w);
+
     if ((aw->curWindowEvent == WindowEventMinimize ||
 	 aw->curWindowEvent == WindowEventUnminimize) &&
 	as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
 	value.b)
     {
-	fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+	fxZoomUpdateWindowAttrib(as, w, wAttrib);
 	return;
     }
 
-    float forwardProgress = 0;
-    if (aw->animTotalTime - aw->timestep != 0)
-	forwardProgress =
-	    1 - (aw->animRemainingTime - aw->timestep) /
-	    (aw->animTotalTime - aw->timestep);
-    forwardProgress = MIN(forwardProgress, 1);
-    forwardProgress = MAX(forwardProgress, 0);
-
-    if (aw->curWindowEvent == WindowEventCreate ||
-	aw->curWindowEvent == WindowEventUnminimize)
-	forwardProgress = 1 - forwardProgress;
+    float forwardProgress = defaultAnimProgress(aw);
 
     wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
 }

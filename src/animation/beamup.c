@@ -273,8 +273,11 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 
 void
 fxBeamupUpdateWindowAttrib(AnimScreen * as,
-			   AnimWindow * aw, WindowPaintAttrib * wAttrib)
+			   CompWindow *w,
+			   WindowPaintAttrib * wAttrib)
 {
+    ANIM_WINDOW(w);
+
     float forwardProgress = 0;
     if (aw->animTotalTime - aw->timestep != 0)
 	forwardProgress =

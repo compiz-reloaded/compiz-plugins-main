@@ -153,9 +153,11 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 
 void
 fxFoldUpdateWindowAttrib(AnimScreen * as,
-			 AnimWindow * aw,
+			 CompWindow * w,
 			 WindowPaintAttrib * wAttrib)
 {
+    ANIM_WINDOW(w);
+
     if (aw->curWindowEvent == WindowEventCreate ||
 	aw->curWindowEvent == WindowEventClose ||
 	((aw->curWindowEvent == WindowEventMinimize ||
@@ -181,7 +183,7 @@ fxFoldUpdateWindowAttrib(AnimScreen * as,
 	       as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
 	       value.b)))
     {
-	fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+	fxZoomUpdateWindowAttrib(as, w, wAttrib);
     }
     // if shade/unshade don't do anything
 }

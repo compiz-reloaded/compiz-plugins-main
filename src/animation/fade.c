@@ -40,8 +40,11 @@
 
 void
 fxFadeUpdateWindowAttrib(AnimScreen * as,
-			 AnimWindow * aw, WindowPaintAttrib * wAttrib)
+			 CompWindow * w,
+			 WindowPaintAttrib * wAttrib)
 {
+    ANIM_WINDOW(w);
+
     float forwardProgress = defaultAnimProgress(aw);
 
     wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));

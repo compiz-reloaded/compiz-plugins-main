@@ -334,7 +334,7 @@ AnimDirection getAnimationDirection(CompWindow * w,
 float defaultAnimProgress(AnimWindow * aw)
 {
     float forwardProgress =
-	1 - aw->animRemainingTime /	(aw->animTotalTime - aw->timestep);
+	1 - aw->animRemainingTime / (aw->animTotalTime - aw->timestep);
     forwardProgress = MIN(forwardProgress, 1);
     forwardProgress = MAX(forwardProgress, 0);
 
@@ -350,7 +350,7 @@ float defaultAnimProgress(AnimWindow * aw)
 float sigmoidAnimProgress(AnimWindow * aw)
 {
     float forwardProgress =
-	1 - aw->animRemainingTime /	(aw->animTotalTime - aw->timestep);
+	1 - aw->animRemainingTime / (aw->animTotalTime - aw->timestep);
     forwardProgress = MIN(forwardProgress, 1);
     forwardProgress = MAX(forwardProgress, 0);
 
@@ -418,9 +418,11 @@ Bool defaultAnimStep(CompScreen * s, CompWindow * w, float time)
 
 void
 defaultMinimizeUpdateWindowAttrib(AnimScreen * as,
-				  AnimWindow * aw,
+				  CompWindow * w,
 				  WindowPaintAttrib * wAttrib)
 {
+    ANIM_WINDOW(w);
+
     if ((aw->curWindowEvent == WindowEventMinimize ||
 	 aw->curWindowEvent == WindowEventUnminimize) &&
 	((aw->curAnimEffect == AnimEffectCurvedFold &&
@@ -439,7 +441,7 @@ defaultMinimizeUpdateWindowAttrib(AnimScreen * as,
 	  as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
 	  value.b)))
     {
-	fxZoomUpdateWindowAttrib(as, aw, wAttrib);
+	fxZoomUpdateWindowAttrib(as, w, wAttrib);
     }
 }
 
@@ -2429,7 +2431,7 @@ animPaintWindow(CompWindow * w,
 	    wAttrib2.yScale = 1.0f;
 
 	    if (aw2->curAnimEffect == AnimEffectFocusFade)
-		fxFocusFadeUpdateWindowAttrib2(as, aw2, &wAttrib2);
+		fxFocusFadeUpdateWindowAttrib2(as, w2, &wAttrib2);
 	    else // if dodge
 		wAttrib2.opacity = aw2->storedOpacity;
 
@@ -2495,7 +2497,7 @@ animPaintWindow(CompWindow * w,
 
 	if (animEffectProperties[aw->curAnimEffect].updateWindowAttribFunc)
 	    animEffectProperties[aw->curAnimEffect].
-		updateWindowAttribFunc(as, aw, &wAttrib);
+		updateWindowAttribFunc(as, w, &wAttrib);
 
 	if (animEffectProperties[aw->curAnimEffect].updateWindowTransformFunc)
 	    animEffectProperties[aw->curAnimEffect].
