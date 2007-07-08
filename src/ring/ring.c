@@ -232,17 +232,18 @@ ringRenderWindowTitle (CompScreen *s)
     CompTextAttrib tA;
     int            stride;
     void           *data;
-    RING_SCREEN(s);
 
-    ringFreeWindowTitle(s);
+    RING_SCREEN (s);
 
+    ringFreeWindowTitle (s);
     if (!ringGetWindowTitle (s))
 	return;
 
     int ox1, ox2, oy1, oy2;
     getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
-    tA.maxwidth = (ox2 - ox1) * 3 / 4; /* 75% of the output device as maximum width */
+    /* 75% of the output device as maximum width */
+    tA.maxwidth = (ox2 - ox1) * 3 / 4;
     tA.maxheight = 100;
     tA.screen = s;
     tA.size = ringGetTitleFontSize (s);
@@ -261,7 +262,8 @@ ringRenderWindowTitle (CompScreen *s)
     initTexture (s, &rs->textTexture);
 
     if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *)&tA,
-				   &rs->textWidth, &rs->textHeight, &stride, &data))
+			 	    &rs->textWidth, &rs->textHeight,
+				    &stride, &data))
     {
 	rs->textPixmap = (Pixmap)data;
 	bindPixmapToTexture (s, &rs->textTexture, rs->textPixmap,
@@ -276,7 +278,7 @@ ringRenderWindowTitle (CompScreen *s)
 }
 
 static void
-ringDrawWindowTitle(CompScreen *s)
+ringDrawWindowTitle (CompScreen *s)
 {
     RING_SCREEN(s);
     GLboolean wasBlend;
@@ -304,7 +306,8 @@ ringDrawWindowTitle(CompScreen *s)
 		XRectangle workArea;
 		getWorkareaForOutput (s, s->currentOutputDev, &workArea);
 
-	    	if (ringGetTitleTextPlacement (s) == TitleTextPlacementAboveRing)
+	    	if (ringGetTitleTextPlacement (s) == 
+		    TitleTextPlacementAboveRing)
     		    y = oy1 + workArea.y + (2 * border) + height;
 		else
 		    y = oy1 + workArea.y + workArea.height - (2 * border);
@@ -387,13 +390,13 @@ ringDrawWindowTitle(CompScreen *s)
 
     glBegin (GL_QUADS);
 
-    glTexCoord2f (COMP_TEX_COORD_X(m, 0), COMP_TEX_COORD_Y(m ,0));
+    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m ,0));
     glVertex2f (x, y - height);
-    glTexCoord2f (COMP_TEX_COORD_X(m, 0), COMP_TEX_COORD_Y(m, height));
+    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, height));
     glVertex2f (x, y);
-    glTexCoord2f (COMP_TEX_COORD_X(m, width), COMP_TEX_COORD_Y(m, height));
+    glTexCoord2f (COMP_TEX_COORD_X (m, width), COMP_TEX_COORD_Y (m, height));
     glVertex2f (x + width, y);
-    glTexCoord2f (COMP_TEX_COORD_X(m, width), COMP_TEX_COORD_Y(m, 0));
+    glTexCoord2f (COMP_TEX_COORD_X (m, width), COMP_TEX_COORD_Y (m, 0));
     glVertex2f (x + width, y - height);
 
     glEnd ();
@@ -407,11 +410,11 @@ ringDrawWindowTitle(CompScreen *s)
 }
 
 static Bool
-ringPaintWindow (CompWindow		  *w,
+ringPaintWindow (CompWindow		 *w,
        		 const WindowPaintAttrib *attrib,
-		 const CompTransform	  *transform,
-		 Region		          region,
-		 unsigned int		  mask)
+		 const CompTransform	 *transform,
+		 Region		         region,
+		 unsigned int		 mask)
 {
     CompScreen *s = w->screen;
     Bool       status;
@@ -488,7 +491,8 @@ ringPaintWindow (CompWindow		  *w,
 	}
 
 	if (scaled && (rs->state != RingStateIn) &&
-	    ((ringGetOverlayIcon (s) != OverlayIconNone) || !w->texture->pixmap))
+	    ((ringGetOverlayIcon (s) != OverlayIconNone) || 
+	     !w->texture->pixmap))
 	{
 	    CompIcon *icon;
 
@@ -589,7 +593,8 @@ ringPaintWindow (CompWindow		  *w,
 			fragment.brightness = (float) fragment.brightness * 
 			                      rw->slot->depthBrightness;
 
-		    matrixTranslate (&wTransform, w->attrib.x, w->attrib.y, 0.0f);
+		    matrixTranslate (&wTransform, 
+				     w->attrib.x, w->attrib.y, 0.0f);
 		    matrixScale (&wTransform, scale, scale, 1.0f);
 		    matrixTranslate (&wTransform,
 				     (x - w->attrib.x) / scale - w->attrib.x,
@@ -720,18 +725,18 @@ layoutThumbs (CompScreen *s)
 	   (the larger Y is, the nearer is the window), and scale/brightness
 	   are the y values for the interpolation */
 	rw->slot->depthScale = 
-	    ringLinearInterpolation(rw->slot->y, 
-				    centerY - ellipseB, 
-				    centerY + ellipseB, 
-				    ringGetMinScale (s),
-				    1.0f);
+	    ringLinearInterpolation (rw->slot->y, 
+				     centerY - ellipseB, 
+				     centerY + ellipseB, 
+				     ringGetMinScale (s),
+				     1.0f);
 
 	rw->slot->depthBrightness = 
-	    ringLinearInterpolation(rw->slot->y, 
-				    centerY - ellipseB, 
-				    centerY + ellipseB, 
-				    ringGetMinBrightness (s),
-				    1.0f);
+	    ringLinearInterpolation (rw->slot->y, 
+				     centerY - ellipseB, 
+				     centerY + ellipseB, 
+				     ringGetMinBrightness (s),
+				     1.0f);
 
 	rs->drawSlots[index].w    = w;
 	rs->drawSlots[index].slot = &rw->slot;
@@ -740,8 +745,8 @@ layoutThumbs (CompScreen *s)
     /* sort the draw list so that the windows with the 
        lowest Y value (the windows being farest away)
        are drawn first */
-    qsort(rs->drawSlots, rs->nWindows, sizeof(RingDrawSlot), 
-	  compareRingWindowDepth);
+    qsort (rs->drawSlots, rs->nWindows, sizeof (RingDrawSlot), 
+	   compareRingWindowDepth);
 
     return TRUE;
 }
@@ -892,7 +897,7 @@ static int adjustRingRotation (CompScreen *s, float chunk)
 
     rs->rVelocity = (amount * rs->rVelocity + adjust) / (amount + 1.0f);
 
-    if (fabs(dx) < 0.1f && fabs(rs->rVelocity) < 0.2f)
+    if (fabs (dx) < 0.1f && fabs (rs->rVelocity) < 0.2f)
     {
 	rs->rVelocity = 0.0f;
 	rs->rotTarget += rs->rotAdjust;
@@ -1280,7 +1285,8 @@ ringDoSwitch (CompDisplay     *d,
     		if (w)
     		{
     		    rs->type = RingTypeGroup;
-    		    rs->clientLeader = (w->clientLeader) ? w->clientLeader : w->id;
+    		    rs->clientLeader = 
+			(w->clientLeader) ? w->clientLeader : w->id;
 		    ret = ringInitiate (s, action, state, option, nOption);
 		}
 	    }
@@ -1475,14 +1481,14 @@ ringWindowRemove (CompDisplay * d,
 	    o.name = "root";
 	    o.value.i = w->screen->root;
 
-	    ringTerminate(d, NULL, 0, &o, 1);
+	    ringTerminate (d, NULL, 0, &o, 1);
 	    return;
 	}
 
 	if (!rs->grabIndex)
 	    return;
 
-	if (ringUpdateWindowList(w->screen))
+	if (ringUpdateWindowList (w->screen))
 	{
 	    rs->state = RingStateOut;
 	    damageScreen (w->screen);
