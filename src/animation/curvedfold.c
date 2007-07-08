@@ -136,6 +136,9 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 	else
 		forwardProgress = defaultAnimProgress(aw);
 
+	float curveMaxAmp =
+		as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_AMP].value.f * WIN_W(w) *
+		pow(WIN_H(w) / (s->height * 1.2f), 0.7);
 	int i;
 	for (i = 0; i < model->numObjects; i++)
 		fxCurvedFoldModelStepObject
@@ -143,7 +146,7 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 			 model,
 			 &model->objects[i],
 			 forwardProgress,
-			 as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_AMP].value.f * WIN_W(w));
+			 curveMaxAmp);
 	modelCalcBounds(model);
 	return TRUE;
 }
