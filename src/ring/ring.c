@@ -517,7 +517,7 @@ ringPaintWindow (CompWindow		  *w,
 		{
 	    	    case OverlayIconNone:
     		    case OverlayIconEmblem:
-			scale = 1.0f;
+			scale = (rw->slot) ? rw->slot->iconScale : 1.0f;
 			break;
 		    case OverlayIconBig:
 		    default:
@@ -530,8 +530,6 @@ ringPaintWindow (CompWindow		  *w,
 			break;
 		}
 
-		if (w->texture->pixmap && rw->slot)
-		    scale  = scale * rw->slot->iconScale;
 		width  = icon->width  * scale;
 		height = icon->height * scale;
 
