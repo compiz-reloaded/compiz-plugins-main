@@ -41,6 +41,7 @@
 // ratio of perceived length of animation compared to real duration
 // to make it appear to have the same speed with other animation effects
 #define SPRINGY_ZOOM_PERCEIVED_T 0.55f
+#define NONSPRINGY_ZOOM_PERCEIVED_T 0.6f
 
 void fxSidekickInit(CompScreen * s, CompWindow * w)
 {
@@ -106,6 +107,13 @@ void fxZoomInit(CompScreen * s, CompWindow * w)
 	fxZoomGetSpringiness(as, aw) > 1e-4)
     {
 	aw->animTotalTime /= SPRINGY_ZOOM_PERCEIVED_T;
+    }
+    else if ((aw->curAnimEffect == AnimEffectZoom ||
+	      aw->curAnimEffect == AnimEffectSidekick) &&
+	     (aw->curWindowEvent == WindowEventCreate ||
+	      aw->curWindowEvent == WindowEventClose))
+    {
+	aw->animTotalTime /= NONSPRINGY_ZOOM_PERCEIVED_T;
     }
     else
     {
