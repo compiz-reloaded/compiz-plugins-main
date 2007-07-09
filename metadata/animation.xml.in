@@ -18,10 +18,10 @@
 	<_short>Close Animation</_short>
 
 	<subgroup>
-	  <_short>Close #1 Animation</_short>
+	  <_short>Close Animation (Primary Windows)</_short>
 	  <option name="close1_effect" type="int">
-	    <_short>Animation</_short>
-	    <_long>The animation shown when closing a window.</_long>
+	    <_short>Close Effect</_short>
+	    <_long>The animation effect shown when closing a window.</_long>
 	    <min>0</min>
 	    <max>18</max>
 	    <default>18</default>
@@ -104,7 +104,7 @@
 	  </option>
 	  <option name="close1_duration" type="float">
 	    <_short>Animation Duration</_short>
-	    <_long>The number of seconds that the Close #1 animation will last.</_long>
+	    <_long>Animation duration in seconds for close effect.</_long>
 	    <default>0.2</default>
 	    <min>0.1</min>
 	    <max>10</max>
@@ -212,10 +212,10 @@
 	</subgroup>
 
 	<subgroup>
-	  <_short>Close #2 Animation</_short>
+	  <_short>Close Animation (Secondary Windows)</_short>
 	  <option name="close2_effect" type="int">
-	    <_short>Animation</_short>
-	    <_long>The animation shown when closing a window.</_long>
+	    <_short>Close Effect</_short>
+	    <_long>The animation effect shown when closing a window.</_long>
 	    <min>0</min>
 	    <max>18</max>
 	    <default>8</default>
@@ -298,7 +298,7 @@
 	  </option>
 	  <option name="close2_duration" type="float">
 	    <_short>Animation Duration</_short>
-	    <_long>The number of seconds that the Close #2 animation will last.</_long>
+	    <_long>Animation duration in seconds for close effect.</_long>
 	    <default>0.15</default>
 	    <min>0.1</min>
 	    <max>10</max>
@@ -410,10 +410,10 @@
 	<_short>Create Animation</_short>
 
 	<subgroup>
-	  <_short>Create #1 Animation</_short>
+	  <_short>Create Animation (Primary Windows)</_short>
 	  <option name="create1_effect" type="int">
-	    <_short>Create #1 Animation</_short>
-	    <_long>The animation shown when creating a window.</_long>
+	    <_short>Create Effect</_short>
+	    <_long>The animation effect shown when creating a window.</_long>
 	    <min>0</min>
 	    <max>18</max>
 	    <default>18</default>
@@ -496,7 +496,7 @@
 	  </option>
 	  <option name="create1_duration" type="float">
 	    <_short>Animation Duration</_short>
-	    <_long>Animation duration in seconds for create effect #1.</_long>
+	    <_long>Animation duration in seconds for create effect.</_long>
 	    <default>0.2</default>
 	    <min>0.1</min>
 	    <max>10</max>
@@ -604,10 +604,10 @@
 	</subgroup>
 
 	<subgroup>
-	  <_short>Create #2 Animation</_short>
+	  <_short>Create Animation (Secondary Windows)</_short>
 	  <option name="create2_effect" type="int">
-	    <_short>Create #2 Animation</_short>
-	    <_long>The animation shown when creating a window.</_long>
+	    <_short>Create Effect</_short>
+	    <_long>The animation effect shown when creating a window.</_long>
 	    <min>0</min>
 	    <max>18</max>
 	    <default>8</default>
@@ -690,7 +690,7 @@
 	  </option>
 	  <option name="create2_duration" type="float">
 	    <_short>Animation Duration</_short>
-	    <_long>Animation duration in seconds for create effect #2.</_long>
+	    <_long>Animation duration in seconds for create effect.</_long>
 	    <default>0.15</default>
 	    <min>0.1</min>
 	    <max>10</max>
@@ -801,8 +801,8 @@
       <group>
 	<_short>Minimize Animation</_short>
 	<option name="minimize_effect" type="int">
-	  <_short>Minimize Animation</_short>
-	  <_long>The animation shown when minimizing a window.</_long>
+	  <_short>Minimize Effect</_short>
+	  <_long>The animation effect shown when minimizing a window.</_long>
 	  <min>0</min>
 	  <max>16</max>
 	  <default>13</default>
@@ -877,7 +877,7 @@
 	</option>
 	<option name="minimize_duration" type="float">
 	  <_short>Animation Duration</_short>
-	  <_long>The number of seconds that the Minimize animation will last.</_long>
+	  <_long>Animation duration in seconds for minimize effect.</_long>
 	  <default>0.3</default>
 	  <min>0.1</min>
 	  <max>10</max>
@@ -977,8 +977,8 @@
       <group>
 	<_short>Shade Animation</_short>
 	<option name="shade_effect" type="int">
-	  <_short>Shade Animation</_short>
-	  <_long>Shade window effect.</_long>
+	  <_short>Shade Effect</_short>
+	  <_long>The animation effect shown when shading a window.</_long>
 	  <min>0</min>
 	  <max>4</max>
 	  <default>4</default>
@@ -1005,7 +1005,7 @@
 	</option>
 	<option name="shade_duration" type="float">
 	  <_short>Animation Duration</_short>
-	  <_long>Shade animation duration in seconds.</_long>
+	  <_long>Animation duration in seconds for shade effect.</_long>
 	  <default>0.3</default>
 	  <min>0.1</min>
 	  <max>10</max>
@@ -1045,8 +1045,8 @@
       <group>
 	<_short>Focus Animation</_short>
 	<option name="focus_effect" type="int">
-	  <_short>Focus Animation</_short>
-	  <_long>Focus window effect.</_long>
+	  <_short>Focus Effect</_short>
+	  <_long>The animation effect shown when focusing a window.</_long>
 	  <min>0</min>
 	  <max>3</max>
 	  <default>0</default>
@@ -1069,7 +1069,7 @@
 	</option>
 	<option name="focus_duration" type="float">
 	  <_short>Animation Duration</_short>
-	  <_long>Focus animation duration in seconds.</_long>
+	  <_long>Animation duration in seconds for focus effect.</_long>
 	  <default>0.3</default>
 	  <min>0.1</min>
 	  <max>10</max>
