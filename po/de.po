@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-09 10:46+0200\n"
-"PO-Revision-Date: 2007-07-09 10:59+0200\n"
+"POT-Creation-Date: 2007-07-09 11:22+0200\n"
+"PO-Revision-Date: 2007-07-09 11:22+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -59,6 +59,9 @@ msgstr "Verändert den Abstand zwischen den Fenstern."
 msgid "Change the speed of the 3D animation"
 msgstr "Verändert die Geschwindigkeit der 3D-Animation."
 
+msgid "Corner Bevelling"
+msgstr "Ecken-Abrundung"
+
 msgid "Create Mipmaps"
 msgstr "Mipmaps benutzen"
 
@@ -102,7 +105,7 @@ msgstr ""
 
 # FIXED -- 'betroffene' ginge auch
 msgid "Window Match"
-msgstr "Betreffende Fenster"
+msgstr "Betroffene Fenster"
 
 msgid "Window Space"
 msgstr "Fensterabstand"
@@ -732,22 +735,22 @@ msgid "Benchmark"
 msgstr "Leistungstest"
 
 msgid "Console Output"
-msgstr "Ausgabe in einem Terminal"
+msgstr "Ausgabe in Terminal"
 
 msgid "Console output update time"
-msgstr "Zeit zwischen den aktualisierten Terminalausgaben"
+msgstr "Zeit zwischen zwei Ausgaben von aktualisierten Werten im Terminal."
 
 msgid "Disable Compiz integrated FPS limiter"
-msgstr "Deaktiviere die integrierte FPS (Bilder Pro Sekunde)-Begrenzung"
+msgstr "Deaktiviert die integrierte FPS (Bilder Pro Sekunde)-Begrenzung"
 
 msgid "Disable limiter"
-msgstr "Deaktiviere Begrenzung"
+msgstr "Begrenzung deaktivieren"
 
 msgid "Display FPS on screen"
-msgstr "Deaktiviere FPS-Anzeige auf dem Bildschrim"
+msgstr "FPS-Anzeige auf dem Bildschirm deaktivieren"
 
 msgid "Enable"
-msgstr "Aktiviere"
+msgstr "Aktivieren"
 
 msgid "Initiate"
 msgstr "Auslösen"
@@ -863,7 +866,7 @@ msgstr ""
 "Automatischer Zoom nur bei manueller Rotation des Würfels mit der Maus."
 
 msgid "Zoom out automatically to make the cube fit to the screen."
-msgstr "Automatisch herauszoomen, um den Würfel dem Bildschrim anzupassen."
+msgstr "Automatisch herauszoomen, um den Würfel dem Bildschirm anzupassen."
 
 msgid "Animation used when switching to expo mode"
 msgstr "Beim Wechsel in den und aus dem Expo-Modus verwendete Animation."
@@ -1032,22 +1035,23 @@ msgid "Number of particles"
 msgstr "Anzahl der Partikel"
 
 msgid "Paint fire on the screen"
-msgstr "Zeichne Feuer auf den Bildschrim"
+msgstr "Zeichne Feuer auf den Bildschirm"
 
 msgid "Paint fire or other particles on the screen"
-msgstr "Zeichne Feuer oder andere Parktikel auf den Bildschrim"
+msgstr "Zeichne Feuer oder andere Partikel auf den Bildschirm"
 
 msgid "Begin"
-msgstr ""
+msgstr "Start"
 
 msgid "Begin entering viewport"
-msgstr ""
+msgstr "Arbeitsflächennummer-Eingabe starten"
 
 msgid "Goto Viewport"
-msgstr ""
+msgstr "Zu Arbeitsfläche bewegen"
 
 msgid "Goto viewport specified by numbers"
 msgstr ""
+"Erlaubt den direkten Sprung zu einer Arbeitsfläche durch Eingabe der Nummer"
 
 msgid "Animation Options"
 msgstr "Animationsoptionen"
@@ -1582,6 +1586,19 @@ msgstr "Aktiviere Bewegungsunschärfe-Effekt."
 msgid "Visibility/Performance"
 msgstr "Sichtbarkeit/Leistung"
 
+msgid "Begin Gesture"
+msgstr ""
+
+msgid "Begin Mouse Gesture"
+msgstr ""
+
+#, fuzzy
+msgid "Mouse switch"
+msgstr "Maus-Arbeitsflächenumschalter"
+
+msgid "Switch viewport in response to mouse gesture"
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "Ausgeschlossene Fenster"
 
@@ -1715,6 +1732,293 @@ msgid ""
 "usually when you start Compiz."
 msgstr ""
 
+msgid "Animation"
+msgstr "Animation"
+
+msgid "Animation speed"
+msgstr "Animationsgeschwindigkeit"
+
+msgid "Animation timestep"
+msgstr "Animations-Zeitschritt"
+
+msgid "Avoid Offscreen"
+msgstr ""
+
+msgid "Avoids putting window borders offscreen"
+msgstr ""
+
+msgid "Move window to a certain viewport"
+msgstr "Fenster zu einer bestimmten Arbeitsfläche bewegen"
+
+msgid "Move window to the bottom edge"
+msgstr "Fenster zur unteren Bildschirmkante bewegen"
+
+msgid "Move window to the bottom left corner"
+msgstr "Fenster zur unteren linken Bildschirmecke bewegen"
+
+msgid "Move window to the bottom right corner"
+msgstr "Fenster zur unteren rechten Bildschirmecke bewegen"
+
+msgid "Move window to the center"
+msgstr "Fenster in die Bildschirmmitte bewegen"
+
+msgid "Move window to the last position"
+msgstr "Fenster an seine vorherige Position bewegen"
+
+msgid "Move window to the left edge"
+msgstr "Fenster zur linken Bildschirmkante bewegen"
+
+msgid "Move window to the pointer position"
+msgstr "Fenster zur Mausposition bewegen"
+
+msgid "Move window to the right edge"
+msgstr "Fenster zur rechten Bildschirmkante bewegen"
+
+msgid "Move window to the top edge"
+msgstr "Fenster zur oberen Bildschirmkante bewegen"
+
+msgid "Move window to the top left corner"
+msgstr "Fenster zur oberen linken Bildschirmecke bewegen"
+
+msgid "Move window to the top right corner"
+msgstr "Fenster zur oberen rechten Bildschirmecke bewegen"
+
+#, fuzzy
+msgid "Move window to the viewport on the bottom"
+msgstr "Reflektion der Arbeitsflächen auf dem Boden anzeigen"
+
+#, fuzzy
+msgid "Move window to the viewport on the left"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to the viewport on the right"
+msgstr "Reflektion der Arbeitsflächen auf dem Boden anzeigen"
+
+#, fuzzy
+msgid "Move window to the viewport on the top"
+msgstr "Reflektion der Arbeitsflächen auf dem Boden anzeigen"
+
+#, fuzzy
+msgid "Move window to viewport 1"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 10"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 11"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 12"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 2"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 3"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 4"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 5"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 6"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 7"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 8"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Move window to viewport 9"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+msgid "Move window to x, y"
+msgstr ""
+
+msgid ""
+"Number of pixels from the bottom edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the left edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the right edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the top edge where the window will come to rest"
+msgstr ""
+
+#, fuzzy
+msgid "Pad Left"
+msgstr "Links"
+
+msgid "Padding"
+msgstr ""
+
+msgid "Put"
+msgstr "Fensterpositionierung"
+
+#, fuzzy
+msgid "Put Bottom"
+msgstr "Von oben nach unten"
+
+#, fuzzy
+msgid "Put Bottom Left"
+msgstr "Unten links abrunden"
+
+#, fuzzy
+msgid "Put Bottom Right"
+msgstr "Unten rechts abrunden"
+
+msgid "Put Center"
+msgstr ""
+
+msgid "Put Exact"
+msgstr ""
+
+#, fuzzy
+msgid "Put Left"
+msgstr "Links"
+
+#, fuzzy
+msgid "Put On Viewport"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 1"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 10"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 11"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 12"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 2"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 3"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 4"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 5"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 6"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 7"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 8"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Put On Viewport 9"
+msgstr "Zu Arbeitsfläche bewegen"
+
+msgid "Put Pointer"
+msgstr ""
+
+#, fuzzy
+msgid "Put Right"
+msgstr "Rechts"
+
+msgid "Put Top"
+msgstr ""
+
+#, fuzzy
+msgid "Put Top Left"
+msgstr "Oben links abrunden"
+
+#, fuzzy
+msgid "Put Top Right"
+msgstr "Oben rechts abrunden"
+
+msgid "Put pointer uses the center of the window"
+msgstr ""
+
+#, fuzzy
+msgid "Put to adjacent viewport"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+msgid "Put to arbitrary viewport"
+msgstr ""
+
+msgid "Put window"
+msgstr "Erlaubt die Bewegung von Fenstern an bestimmte Positionen"
+
+#, fuzzy
+msgid "Put within viewport"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Restore Position"
+msgstr "Fenster wiederherstellen"
+
+msgid "Speed"
+msgstr "Geschwindigkeit"
+
+msgid "Timestep"
+msgstr "Zeitschritt"
+
+#, fuzzy
+msgid "Unfocus Window"
+msgstr "Löse Gruppierung auf"
+
+msgid "Unfocus windows that are moved off the viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Viewport Bottom"
+msgstr "Von oben nach unten"
+
+#, fuzzy
+msgid "Viewport Left"
+msgstr "Maus-Arbeitsflächenumschalter"
+
+#, fuzzy
+msgid "Viewport Right"
+msgstr "Arbeitsflächenumschaltung"
+
+#, fuzzy
+msgid "Viewport Top"
+msgstr "Zu Arbeitsfläche bewegen"
+
+#, fuzzy
+msgid "Window Center"
+msgstr "Fenstertitel"
+
 # FIXME -- again no idea what this is
 msgid "Alpha Dependence Threshold"
 msgstr "Transparenz-Abhängigkeitsschwelle"
@@ -1754,7 +2058,7 @@ msgid "Reflection for Windows"
 msgstr "Reflektionen für Fenster"
 
 msgid "Window match"
-msgstr "Übereinstimmende Fenster"
+msgstr "Betroffene Fenster"
 
 msgid "Color 1 of the gradient background."
 msgstr "Farbe 1 für den Hintergrundfarbverlauf"
@@ -1990,9 +2294,6 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr "Zeige Fenstertitel für ausgewähltes Fenster an."
 
-msgid "Speed"
-msgstr "Geschwindigkeit"
-
 msgid "Text Placement"
 msgstr "Text-Platzierung"
 
@@ -2001,9 +2302,6 @@ msgstr "Fensterhöhe"
 
 msgid "Thumbnail Width"
 msgstr "Fensterbreite"
-
-msgid "Timestep"
-msgstr "Zeitschritt"
 
 msgid "Window title display"
 msgstr "Fenstertitelanzeige"
@@ -2224,54 +2522,6 @@ msgstr ""
 msgid "Window edges"
 msgstr "Fensterkanten"
 
-msgid "A simple splash plugin"
-msgstr "Ein einfaches Plugin, dass einen Ladebildschirm bereitstellt."
-
-msgid "Background File"
-msgstr "Hintergrundbild"
-
-msgid "Background brightness."
-msgstr "Hintergundhelligkeit"
-
-msgid "Background image File."
-msgstr "Hintergrundbild-Datei"
-
-msgid "Background saturation."
-msgstr "Hintergundsättigung"
-
-msgid "Display In/Out Time."
-msgstr "Anzeigezeit"
-
-msgid "Display Time"
-msgstr "Anzeigezeit"
-
-msgid "Fade In/Out Time."
-msgstr "Ein-/Ausblendzeit"
-
-msgid "Images"
-msgstr "Bilder"
-
-msgid "Initiate Splash"
-msgstr "Initiiere Ladebildschirm"
-
-msgid "Logo File"
-msgstr "Logo-Datei"
-
-msgid "Logo image File."
-msgstr "Logo-Datei."
-
-msgid "Show on first start"
-msgstr "Zeige bei erstem Start"
-
-msgid "Show splash on first start."
-msgstr "Zeige Ladebildschirm nur bei erstem Start."
-
-msgid "Splash"
-msgstr "Ladebildschirm"
-
-msgid "Start Splash."
-msgstr "Zeige Ladebildschirm."
-
 msgid "Bottom to Top"
 msgstr "Von unten nach oben"
 
@@ -2282,7 +2532,7 @@ msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
 "fall more smoothly, but will also increase CPU usage."
 msgstr ""
-"Verzögerung (in Millisekunden) zwischen den Bildschrim-Aktualisierungen."
+"Verzögerung (in Millisekunden) zwischen den Bildschirm-Aktualisierungen."
 
 msgid "Enable Blending"
 msgstr "Aktiviere Blending"
@@ -2310,7 +2560,7 @@ msgid ""
 "How far outside the screen resolution snow flakes can be before being "
 "removed. Needed because of FOV."
 msgstr ""
-"Die Entfernung die Schneeflocken außerhalb der Bildschrimauflösung "
+"Die Entfernung die Schneeflocken außerhalb der Bildschirmauflösung "
 "gezeichnet werden drüfen, bevor sie entfernt werden. Wird benötigt wegen FOV."
 
 msgid "Key Bindings"
@@ -2391,6 +2641,54 @@ msgstr "Von oben nach unten"
 
 msgid "Update Delay"
 msgstr "Verzögerung bis zum nächsten"
+
+msgid "A simple splash plugin"
+msgstr "Ein einfaches Plugin, dass einen Ladebildschirm bereitstellt."
+
+msgid "Background File"
+msgstr "Hintergrundbild"
+
+msgid "Background brightness."
+msgstr "Hintergundhelligkeit"
+
+msgid "Background image File."
+msgstr "Hintergrundbild-Datei"
+
+msgid "Background saturation."
+msgstr "Hintergundsättigung"
+
+msgid "Display In/Out Time."
+msgstr "Anzeigezeit"
+
+msgid "Display Time"
+msgstr "Anzeigezeit"
+
+msgid "Fade In/Out Time."
+msgstr "Ein-/Ausblendzeit"
+
+msgid "Images"
+msgstr "Bilder"
+
+msgid "Initiate Splash"
+msgstr "Initiiere Ladebildschirm"
+
+msgid "Logo File"
+msgstr "Logo-Datei"
+
+msgid "Logo image File."
+msgstr "Logo-Datei."
+
+msgid "Show on first start"
+msgstr "Bei Programmstart anzeigen"
+
+msgid "Show splash on first start."
+msgstr "Ladebildschirm beim Programmstart anzeigen"
+
+msgid "Splash"
+msgstr "Ladebildschirm"
+
+msgid "Start Splash."
+msgstr "Zeige Ladebildschirm."
 
 msgid "Render text to texture"
 msgstr "Text in Texturen rendern"
@@ -3027,9 +3325,6 @@ msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden sol
 
 msgid "Windows will not have focus"
 msgstr "Fenster, die niemals Fokus erhalten können sollen"
-
-#~ msgid "Animation"
-#~ msgstr "Animation"
 
 #~ msgid "Animation duration in seconds for create effect #2."
 #~ msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #2'"
