@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-05 21:05+0200\n"
-"PO-Revision-Date: 2007-07-05 21:06+0200\n"
+"POT-Creation-Date: 2007-07-06 13:37+0200\n"
+"PO-Revision-Date: 2007-07-09 09:21+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -425,22 +425,7 @@ msgstr ""
 msgid "Magic Lamp Min Wave Amplitude"
 msgstr ""
 
-msgid "Magic Lamp Vacuum"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Create Start Width"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Grid Y Resolution"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Max Wave Amplitude"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Max Waves"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Min Wave Amplitude"
+msgid "Magic Lamp Open/Close Moving End"
 msgstr ""
 
 msgid "Make fire effect duration be dependent on window height."
@@ -474,6 +459,12 @@ msgstr "Aus"
 
 msgid "On"
 msgstr "An"
+
+msgid "On open/close, move magic lamp ending point with the mouse pointer."
+msgstr ""
+
+msgid "On open/close, move vacuum ending point with the mouse pointer."
+msgstr ""
 
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
@@ -539,12 +530,11 @@ msgstr "Der Abstand zwischen den Vorschaubildern."
 
 msgid ""
 "Starting width of create effect and ending width of close effect for Magic "
-"Lamp Vacuum."
+"Lamp."
 msgstr ""
 
 msgid ""
-"Starting width of create effect and ending width of close effect for Magic "
-"Lamp."
+"Starting width of create effect and ending width of close effect for Vacuum."
 msgstr ""
 
 msgid "Tessellation Type"
@@ -588,19 +578,10 @@ msgstr ""
 "Gitters erzeugt. Geben sie die Breite der einzelnen Gitterspalten in Pixeln "
 "an."
 
-msgid "The maximum number of waves for Magic Lamp Vacuum."
-msgstr ""
-
 msgid "The maximum number of waves for Magic Lamp."
 msgstr "Maximale Anzahl der Wellenbewegungen für den Wunderlampen-Effekt."
 
-msgid "The maxmimum amplitude (size of the waves) Magic Lamp Vacuum will have."
-msgstr ""
-
 msgid "The maxmimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
-
-msgid "The minimum amplitude (size of the waves) Magic Lamp Vacuum will have."
 msgstr ""
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
@@ -643,6 +624,18 @@ msgstr "Hoch"
 msgid "Use various animations as window effects"
 msgstr ""
 
+msgid "Vacuum"
+msgstr ""
+
+msgid "Vacuum Create Start Width"
+msgstr ""
+
+msgid "Vacuum Grid Y Resolution"
+msgstr ""
+
+msgid "Vacuum Open/Close Moving End"
+msgstr ""
+
 msgid ""
 "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number "
 "of points used to define the curves. The higher the number, the smoother the "
@@ -650,10 +643,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Vertex grid resolution for Magic Lamp Vacuum (Y dimension only). This is the "
-"number of points used to define the curves. The higher the number, the "
-"smoother the curves. However there will be a loss of performance (CPU usage "
-"increases)."
+"Vertex grid resolution for Vacuum (Y dimension only). This is the number of "
+"points used to define the curves. The higher the number, the smoother the "
+"curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
 
 msgid "Wave"
@@ -1830,7 +1822,7 @@ msgid "Big"
 msgstr "Groß"
 
 msgid "Bold Font"
-msgstr "Fettdruck für Schift verwenden"
+msgstr "Fettdruck für Schrift verwenden"
 
 msgid "Centered on screen"
 msgstr "In der Bildschirmmitte"
@@ -2082,6 +2074,27 @@ msgstr "Fenster zoomen"
 
 msgid "Zoom windows while in scale mode"
 msgstr "Fenster in 'Fenster skalieren'-Modus auf Originalgröße zoomen"
+
+msgid "Filter Type Timeout"
+msgstr ""
+
+#, fuzzy
+msgid "Scale Window Title Filter"
+msgstr "Fenstertitel-Schrift"
+
+msgid "Show Filter Text"
+msgstr ""
+
+#, fuzzy
+msgid "Show filter text."
+msgstr "Zeige bei erstem Start"
+
+msgid "Time (in ms) after which the filter typing is automatically ended"
+msgstr ""
+
+#, fuzzy
+msgid "Window title filter facility for the scale plugin"
+msgstr "Einige nützliche Erweiterungen für das Plugin 'Skalieren'"
 
 msgid ""
 "Embeds a Guile scheme interpreter and provides bindings for meaningful "
