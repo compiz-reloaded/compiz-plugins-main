@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-06 13:37+0200\n"
+"POT-Creation-Date: 2007-07-09 09:23+0200\n"
 "PO-Revision-Date: 2007-07-09 09:21+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
@@ -116,7 +116,8 @@ msgstr "Fensterbreite"
 msgid "Windows that should be handled by 3D"
 msgstr "Fenster, die vom 3D-Modus betroffen sein sollen"
 
-msgid "AddHelper"
+#, fuzzy
+msgid "ADD Helper"
 msgstr "Konzentrationshilfe"
 
 msgid "Bindings"
@@ -185,9 +186,6 @@ msgstr ""
 msgid "Angle of window at the end of the animation."
 msgstr "Fensterwinkel am Animationsende"
 
-msgid "Animation"
-msgstr "Animation"
-
 msgid "Animation Duration"
 msgstr "Animationsdauer"
 
@@ -198,11 +196,25 @@ msgstr "Animations-Zeitschritt"
 msgid "Animation Time Step For Intense Effects"
 msgstr "Animations-Zeitschritt für aufregende Effekte"
 
-msgid "Animation duration in seconds for create effect #1."
+#, fuzzy
+msgid "Animation duration in seconds for close effect."
 msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
 
-msgid "Animation duration in seconds for create effect #2."
-msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #2'"
+#, fuzzy
+msgid "Animation duration in seconds for create effect."
+msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
+
+#, fuzzy
+msgid "Animation duration in seconds for focus effect."
+msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
+
+#, fuzzy
+msgid "Animation duration in seconds for minimize effect."
+msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
+
+#, fuzzy
+msgid "Animation duration in seconds for shade effect."
+msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
 
 msgid "Animations"
 msgstr "Animationen"
@@ -255,28 +267,38 @@ msgstr "Breite der Teleportation."
 msgid "Burn"
 msgstr "Verbrennen"
 
-msgid "Close #1 Animation"
-msgstr "Animation 'Schließen #1'"
-
-msgid "Close #2 Animation"
-msgstr "Animation 'Schließen #2'"
-
 msgid "Close Animation"
 msgstr "Fenster-Schließ-Animation"
+
+#, fuzzy
+msgid "Close Animation (Primary Windows)"
+msgstr "Fenster-Schließ-Animation"
+
+#, fuzzy
+msgid "Close Animation (Secondary Windows)"
+msgstr "Fenster-Schließ-Animation"
+
+msgid "Close Effect"
+msgstr ""
 
 msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
 "camera, -2.0: Away from camera)."
 msgstr ""
 
-msgid "Create #1 Animation"
-msgstr "Animation 'Neues Fenster #1'"
-
-msgid "Create #2 Animation"
-msgstr "Animation 'Neues Fenster #2'"
-
 msgid "Create Animation"
 msgstr "Fenster-Öffnen-Animation"
+
+#, fuzzy
+msgid "Create Animation (Primary Windows)"
+msgstr "Fenster-Öffnen-Animation"
+
+#, fuzzy
+msgid "Create Animation (Secondary Windows)"
+msgstr "Fenster-Öffnen-Animation"
+
+msgid "Create Effect"
+msgstr ""
 
 msgid "Create/Close Only"
 msgstr "Nur bei Öffnen/Schließen"
@@ -306,6 +328,10 @@ msgstr "Runter"
 
 msgid "Dream"
 msgstr "Traum"
+
+#, fuzzy
+msgid "Effect Settings"
+msgstr "Einstellungen"
 
 msgid "Explode"
 msgstr "Explodieren"
@@ -364,10 +390,8 @@ msgstr "Der Fensterinhalt bewegt sich beim einrollen nicht mit"
 msgid "Focus Animation"
 msgstr "Fokusanimation"
 
-msgid "Focus animation duration in seconds."
-msgstr "Dauer der Fokusanimation in Sekunden"
-
-msgid "Focus window effect."
+#, fuzzy
+msgid "Focus Effect"
 msgstr "Effekt für das Fokussieren von Fenstern"
 
 # siehe 'Razr'
@@ -432,6 +456,10 @@ msgid "Make fire effect duration be dependent on window height."
 msgstr ""
 
 msgid "Minimize Animation"
+msgstr "Fenster-Minimieren-Animation"
+
+#, fuzzy
+msgid "Minimize Effect"
 msgstr "Fenster-Minimieren-Animation"
 
 msgid "Minimize/Unminimize Only"
@@ -508,10 +536,8 @@ msgstr ""
 msgid "Shade Animation"
 msgstr "Fenster-Aufrollen-Animation"
 
-msgid "Shade animation duration in seconds."
-msgstr "Dauer der Animation beim Aufrollen von Fenstern"
-
-msgid "Shade window effect."
+#, fuzzy
+msgid "Shade Effect"
 msgstr "Effekt für das Aufrollen von Fenstern"
 
 #, fuzzy
@@ -554,14 +580,25 @@ msgid ""
 "become."
 msgstr ""
 
-msgid "The animation shown when closing a window."
+#, fuzzy
+msgid "The animation effect shown when closing a window."
 msgstr "Beim Schließen eines Fensters verwendete Animation"
 
-msgid "The animation shown when creating a window."
+#, fuzzy
+msgid "The animation effect shown when creating a window."
 msgstr "Beim Öffnen eines Fensters verwendete Animation"
 
-msgid "The animation shown when minimizing a window."
+#, fuzzy
+msgid "The animation effect shown when focusing a window."
+msgstr "Beim Schließen eines Fensters verwendete Animation"
+
+#, fuzzy
+msgid "The animation effect shown when minimizing a window."
 msgstr "Beim Minimieren eines Fensters verwendete Animation"
+
+#, fuzzy
+msgid "The animation effect shown when shading a window."
+msgstr "Beim Schließen eines Fensters verwendete Animation"
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
@@ -589,15 +626,6 @@ msgstr ""
 
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
-msgstr ""
-
-msgid "The number of seconds that the Close #1 animation will last."
-msgstr ""
-
-msgid "The number of seconds that the Close #2 animation will last."
-msgstr ""
-
-msgid "The number of seconds that the Minimize animation will last."
 msgstr ""
 
 msgid "The wave amplitude (size of the waves) relative to the window height."
@@ -3021,3 +3049,27 @@ msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden sol
 
 msgid "Windows will not have focus"
 msgstr "Fenster, die niemals Fokus erhalten können sollen"
+
+#~ msgid "Animation"
+#~ msgstr "Animation"
+
+#~ msgid "Animation duration in seconds for create effect #2."
+#~ msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #2'"
+
+#~ msgid "Close #1 Animation"
+#~ msgstr "Animation 'Schließen #1'"
+
+#~ msgid "Close #2 Animation"
+#~ msgstr "Animation 'Schließen #2'"
+
+#~ msgid "Create #1 Animation"
+#~ msgstr "Animation 'Neues Fenster #1'"
+
+#~ msgid "Create #2 Animation"
+#~ msgstr "Animation 'Neues Fenster #2'"
+
+#~ msgid "Focus animation duration in seconds."
+#~ msgstr "Dauer der Fokusanimation in Sekunden"
+
+#~ msgid "Shade animation duration in seconds."
+#~ msgstr "Dauer der Animation beim Aufrollen von Fenstern"
