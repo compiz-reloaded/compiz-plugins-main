@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-09 09:23+0200\n"
-"PO-Revision-Date: 2007-07-09 09:25+0200\n"
+"POT-Creation-Date: 2007-07-09 10:46+0200\n"
+"PO-Revision-Date: 2007-07-09 10:56+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,6 @@ msgstr "Fensterbreite"
 msgid "Windows that should be handled by 3D"
 msgstr "Fenster, die vom 3D-Modus betroffen sein sollen"
 
-#, fuzzy
 msgid "ADD Helper"
 msgstr "Konzentrationshilfe"
 
@@ -196,25 +195,20 @@ msgstr "Animations-Zeitschritt"
 msgid "Animation Time Step For Intense Effects"
 msgstr "Animations-Zeitschritt für aufregende Effekte"
 
-#, fuzzy
 msgid "Animation duration in seconds for close effect."
-msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
+msgstr "Animationsdauer (in s) für Effekt 'Fenster schließen'"
 
-#, fuzzy
 msgid "Animation duration in seconds for create effect."
-msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
+msgstr "Animationsdauer (in s) für Effekt 'Fenster öffnen'"
 
-#, fuzzy
 msgid "Animation duration in seconds for focus effect."
-msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
+msgstr "Animationsdauer (in s) für Effekt 'Fenster fokussieren'"
 
-#, fuzzy
 msgid "Animation duration in seconds for minimize effect."
-msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
+msgstr "Animationsdauer (in s) für Effekt 'Fenster minimieren'"
 
-#, fuzzy
 msgid "Animation duration in seconds for shade effect."
-msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #1'"
+msgstr "Animationsdauer (in s) für Effekt 'Fenster aufrollen'"
 
 msgid "Animations"
 msgstr "Animationen"
@@ -270,16 +264,14 @@ msgstr "Verbrennen"
 msgid "Close Animation"
 msgstr "Fenster-Schließ-Animation"
 
-#, fuzzy
-msgid "Close Animation (Primary Windows)"
-msgstr "Fenster-Schließ-Animation"
+msgid "Close Animation (Dialogs &amp; Windows)"
+msgstr "Fenster-Schließ-Animation (Dialoge &amp; Fenster)"
 
-#, fuzzy
-msgid "Close Animation (Secondary Windows)"
-msgstr "Fenster-Schließ-Animation"
+msgid "Close Animation (Menus &amp; Tooltips)"
+msgstr "Fenster-Schließ-Animation (Menüs &amp; Tooltips)"
 
 msgid "Close Effect"
-msgstr ""
+msgstr "Effekt für das Schließen von Fenstern"
 
 msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
@@ -287,18 +279,16 @@ msgid ""
 msgstr ""
 
 msgid "Create Animation"
-msgstr "Fenster-Öffnen-Animation"
+msgstr "Animation 'Öffnen'"
 
-#, fuzzy
-msgid "Create Animation (Primary Windows)"
-msgstr "Fenster-Öffnen-Animation"
+msgid "Create Animation (Dialogs &amp; Windows)"
+msgstr "Fenster-Öffnen-Animation (Dialoge &amp; Fenster)"
 
-#, fuzzy
-msgid "Create Animation (Secondary Windows)"
-msgstr "Fenster-Öffnen-Animation"
+msgid "Create Animation (Menus &amp; Tooltips)"
+msgstr "Fenster-Öffnen-Animation (Menüs &amp; Tooltips)"
 
 msgid "Create Effect"
-msgstr ""
+msgstr "Effekt für das Öffnen von Fenstern"
 
 msgid "Create/Close Only"
 msgstr "Nur bei Öffnen/Schließen"
@@ -329,9 +319,8 @@ msgstr "Runter"
 msgid "Dream"
 msgstr "Traum"
 
-#, fuzzy
 msgid "Effect Settings"
-msgstr "Einstellungen"
+msgstr "Effekt-Einstellungen"
 
 msgid "Explode"
 msgstr "Explodieren"
@@ -390,7 +379,6 @@ msgstr "Der Fensterinhalt bewegt sich beim einrollen nicht mit"
 msgid "Focus Animation"
 msgstr "Fokusanimation"
 
-#, fuzzy
 msgid "Focus Effect"
 msgstr "Effekt für das Fokussieren von Fenstern"
 
@@ -408,9 +396,8 @@ msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
 "Zufällige Farbene für die Feuerparktikel, auch bekannt als Mystisches Feuer"
 
-# kann ich in ccsm nicht finden
 msgid "Hexagonal"
-msgstr ""
+msgstr "Sechseckig"
 
 msgid "Horizontal Folds"
 msgstr "Horizontales Zusammenfalten"
@@ -456,11 +443,10 @@ msgid "Make fire effect duration be dependent on window height."
 msgstr ""
 
 msgid "Minimize Animation"
-msgstr "Fenster-Minimieren-Animation"
+msgstr "Animation 'Minimieren'"
 
-#, fuzzy
 msgid "Minimize Effect"
-msgstr "Fenster-Minimieren-Animation"
+msgstr "Effekt für das Minimieren von Fenstern"
 
 msgid "Minimize/Unminimize Only"
 msgstr "Nur bei Minimieren/Un-Minimieren"
@@ -534,9 +520,8 @@ msgid "Rollup Fixed Interior"
 msgstr ""
 
 msgid "Shade Animation"
-msgstr "Fenster-Aufrollen-Animation"
+msgstr "Animation 'Aufrollen'"
 
-#, fuzzy
 msgid "Shade Effect"
 msgstr "Effekt für das Aufrollen von Fenstern"
 
@@ -580,25 +565,20 @@ msgid ""
 "become."
 msgstr ""
 
-#, fuzzy
 msgid "The animation effect shown when closing a window."
 msgstr "Beim Schließen eines Fensters verwendete Animation"
 
-#, fuzzy
 msgid "The animation effect shown when creating a window."
 msgstr "Beim Öffnen eines Fensters verwendete Animation"
 
-#, fuzzy
 msgid "The animation effect shown when focusing a window."
-msgstr "Beim Schließen eines Fensters verwendete Animation"
+msgstr "Beim Fokussieren eines Fensters verwendete Animation"
 
-#, fuzzy
 msgid "The animation effect shown when minimizing a window."
 msgstr "Beim Minimieren eines Fensters verwendete Animation"
 
-#, fuzzy
 msgid "The animation effect shown when shading a window."
-msgstr "Beim Schließen eines Fensters verwendete Animation"
+msgstr "Beim Aufrollen eines Fensters verwendete Animation"
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
@@ -950,9 +930,8 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Reflektion der Arbeitsflächen auf dem Boden anzeigen"
 
-#, fuzzy
 msgid "Tilt view"
-msgstr "Kacheln"
+msgstr "Anischt kippen"
 
 msgid "Tilt window view in expo mode"
 msgstr ""
@@ -2116,11 +2095,12 @@ msgid "Show filter text."
 msgstr "Eingegebenen Filtertext anzeigen."
 
 msgid "Time (in ms) after which the filter typing is automatically ended"
-msgstr "Zeitspanne (in ms), nach der die Filtereingabe automatisch beendet wird."
+msgstr ""
+"Zeitspanne (in ms), nach der die Filtereingabe automatisch beendet wird."
 
 msgid "Window title filter facility for the scale plugin"
-msgstr "Gibt dem Plugin 'Skalieren' die Möglichkeit, nach Fenstertiteln"
-"zu filtern."
+msgstr ""
+"Gibt dem Plugin 'Skalieren' die Möglichkeit, nach Fenstertitelnzu filtern."
 
 msgid ""
 "Embeds a Guile scheme interpreter and provides bindings for meaningful "
