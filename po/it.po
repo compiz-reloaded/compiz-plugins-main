@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-07 22:52+0200\n"
-"Last-Translator: Emiliano Perulli <emiliano.perulli@alice.it>\n"
+"PO-Revision-Date: 2007-07-09 11:08+0200\n"
+"Last-Translator: Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,7 +175,7 @@ msgid "Animation Time Step"
 msgstr "Velocità di Animazione"
 
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "Intervallo Minimo Di Tempo Per L'Animazione Effetto Intenso"
 
 msgid "Animation duration in seconds for create effect #1."
 msgstr "Durata dell'animazione (in secondi) per creare l'effetto #1."
@@ -215,7 +215,7 @@ msgid "Beam Spacing"
 msgstr "Spazi tra i Fasci di luce"
 
 msgid "Beam Up"
-msgstr ""
+msgstr "Dissolvenza Radiosa"
 
 #, fuzzy
 msgid "Beam Width"
@@ -427,10 +427,10 @@ msgid "Magic Lamp Vacuum Max Wave Amplitude"
 msgstr "Ampiezza Massima Onde Lampada Magica nel Vuoto"
 
 msgid "Magic Lamp Vacuum Max Waves"
-msgstr ""
+msgstr "Numero Massimo di Onde per l'effetto Lampada Magica nel Vuoto"
 
 msgid "Magic Lamp Vacuum Min Wave Amplitude"
-msgstr ""
+msgstr "Ampiezza Minima delle Onde per l'effetto Lampada Magica nel Vuoto"
 
 msgid "Make fire effect duration be dependent on window height."
 msgstr "La massima durata dell'effetto fuoco dipende dall'altezza della finestra."
@@ -489,7 +489,7 @@ msgid "Razr"
 msgstr "Rasoio"
 
 msgid "Razr Fold Opening Direction"
-msgstr ""
+msgstr "Direzione di Apertura per la Piega a Rasoio"
 
 #, fuzzy
 msgid "Rectangular"
@@ -531,7 +531,7 @@ msgid "Spacing between beams."
 msgstr "Spazio fra le anteprime"
 
 msgid "Starting width of create effect and ending width of close effect for Magic Lamp Vacuum."
-msgstr ""
+msgstr "Larghzza di partenza per l'effetto di creazione e larghezza finale per l'effetto di chiusua per la Lampada Magica nel Vuoto"
 
 msgid "Starting width of create effect and ending width of close effect for Magic Lamp."
 msgstr "Larghezza iniziale alla creazione e larghezza finale al concludersi dell'effetto Lampada Magica."
@@ -541,7 +541,7 @@ msgid "Tessellation Type"
 msgstr "Tipo di animazione per l'accostamento"
 
 msgid "Tessellation type for exploding window pieces."
-msgstr ""
+msgstr "Tipologia dei tasselli per l'esplosione della finestra"
 
 msgid "The amount of time in milliseconds between each render of the animation. The higher the number, the jerkier the movements become."
 msgstr "Tempo in millisecondi tra gli aggiornamenti dell'animazione. Più alto è questo numero, più scattosa sarà l'animazione."
@@ -833,7 +833,7 @@ msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Esegui lo zoom in modo automatico per far mostrare tutto il cubo nello schermo."
 
 msgid "Animation used when switching to expo mode"
-msgstr ""
+msgstr "Animazione utilizzando nel passaggio alla modalità Expo"
 
 msgid "Appearance"
 msgstr "Aspetto"
@@ -845,7 +845,7 @@ msgid "Behaviour"
 msgstr "Comportamento"
 
 msgid "Distance of the expo wall"
-msgstr ""
+msgstr "Distanza del muro Expo"
 
 #, fuzzy
 msgid "Duration of the zoomout animation"
@@ -889,10 +889,10 @@ msgid "Reflection Scale"
 msgstr "Immagine Riflesso"
 
 msgid "Scale factor of the expo wall reflection"
-msgstr ""
+msgstr "Fattore di scala per la riflessione nell'effetto Expo"
 
 msgid "Selects if windows movements in expo mode should be immediate - this among other things disables wobbliness"
-msgstr ""
+msgstr "Stabilisce se i movimenti delle finestre nella modalità Expo debbano essere immedia - questa opzione disabilità, prima di tutto, il tremolio delle finestre"
 
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Mostra il riflesso delle viewports alla loro base delle"
@@ -1495,7 +1495,7 @@ msgid "Used to set a window or screen negative"
 msgstr "Raggruppa automaticamente le finestre aperte"
 
 msgid "Windows to be negative by default"
-msgstr ""
+msgstr "Le finestre saranno di default in negativo"
 
 #, fuzzy
 msgid "Windows to exclude from negating"
@@ -1512,7 +1512,7 @@ msgid "Bypass delay when the new active window is the focused window."
 msgstr ""
 
 msgid "Delay until Opacification"
-msgstr ""
+msgstr "Intervallo di tempo prima della Opacizzazione"
 
 msgid "Do not wait if the window we are hovering is the focused window. This allows us to instantly see the focused window. You probably want to disable this if you are not using 'Click to Focus'."
 msgstr ""
@@ -1735,7 +1735,7 @@ msgid "Minimum Brightness Factor"
 msgstr "Fattore di Luminosità Minimo"
 
 msgid "Minimum Scale Factor"
-msgstr ""
+msgstr "Fattore Minimo di Scala"
 
 #, fuzzy
 msgid "Next Window"
@@ -1759,7 +1759,7 @@ msgid "Previous Window"
 msgstr "Raggruppa Finestre"
 
 msgid "Previous Window (All Workspaces)"
-msgstr ""
+msgstr "Finestra Precedente (Tutte le Aree di Lavoro)"
 
 msgid "Previous Window (Group)"
 msgstr "Finestra precedente del gruppo"
@@ -1804,10 +1804,10 @@ msgid "Rotate ring clockwise for next window instead of counterclockwise"
 msgstr "Ruota il selezionatore ad anello per la selezione della prossima finestra in senso orario invece di antiorario"
 
 msgid "Selects if the window title should be displayed in bold font or not."
-msgstr ""
+msgstr "Stabilisce se il titolo della finestra deve essere mostrato in grassetto"
 
 msgid "Selects where to place the window title."
-msgstr ""
+msgstr "Stabilisce dove posizionare il titolo della finestra"
 
 msgid "Show Minimized"
 msgstr "Mostra Minimizzata"
@@ -1877,7 +1877,7 @@ msgid "Close windows while in scale mode"
 msgstr "Eleva le finestre mentre ruoti il cubo"
 
 msgid "Color used for highlighting the hovered window"
-msgstr ""
+msgstr "Colore utilizzato per evidenziare la finestra selezionata"
 
 #, fuzzy
 msgid "Draw Window Highlight"
@@ -1911,7 +1911,7 @@ msgid "Selects the mode to layout the windows in scale mode"
 msgstr ""
 
 msgid "Show window title in scale mode"
-msgstr ""
+msgstr "Mostra il titolo della finestra nella modalità in scala"
 
 #, fuzzy
 msgid "Size of the border around the window title"
@@ -1943,7 +1943,7 @@ msgid "Zoom Windows In Scale"
 msgstr "Spazio tra le finestre"
 
 msgid "Zoom windows while in scale mode"
-msgstr ""
+msgstr "Esegui lo zoom sulle finestre nella modalità in scala"
 
 msgid "Embeds a Guile scheme interpreter and provides bindings for meaningful Compiz integration."
 msgstr "Integra un interprete a schemi Guile e fornisce le funzioni per una significativa integrazione con Compiz"
@@ -2053,7 +2053,7 @@ msgid "Snapping Windows"
 msgstr "Elimina il raggruppamento delle finestre"
 
 msgid "The distance until edge attraction takes place."
-msgstr ""
+msgstr "La distanza alla quale si verificano gli effetti dell'attrazione dei bordi"
 
 msgid "The distance until edge resistance takes place."
 msgstr ""
@@ -2549,7 +2549,7 @@ msgid "Viewport Switching"
 msgstr "Selezione della Viewport"
 
 msgid "Viewport mouse switch"
-msgstr ""
+msgstr "Cambia Area di Lavoro con i movimenti del mouse"
 
 msgid "Allow Wrap-Around"
 msgstr ""
@@ -2595,19 +2595,19 @@ msgid "Flip Right"
 msgstr "Destra"
 
 msgid "Flip Up"
-msgstr ""
+msgstr "Ruota in alto"
 
 msgid "Flip down"
-msgstr ""
+msgstr "Ruota in basso"
 
 msgid "Flip left"
-msgstr ""
+msgstr "Ruota a sinistra"
 
 msgid "Flip right"
-msgstr ""
+msgstr "Ruota a destra"
 
 msgid "Flip up"
-msgstr ""
+msgstr "Ruota in alto"
 
 msgid "Flip viewport when dragging an object to a screen edge"
 msgstr "Cambia area di lavoro quando si trascina uno oggetto sul bordo dello schermo"
@@ -2677,7 +2677,7 @@ msgid "Show Viewport Switcher Preview"
 msgstr "Mostra Anteprima del Selezionatore di Viewport"
 
 msgid "Show live viewport previews in switcher window"
-msgstr ""
+msgstr "Mostra anteprime reali nella finestra del commutatore applicazioni"
 
 msgid "Show switcher window while switching viewports"
 msgstr ""

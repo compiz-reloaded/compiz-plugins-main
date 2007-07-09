@@ -1,3 +1,4 @@
+# translation of pt_PT.po to
 # compiz-fusion-plugins Portuguese (pt_PT) translation.
 # Copyright (C) 2007 opencompositing.org
 # This file is distributed under the same license as the compiz-fusion package.
@@ -8,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-09 22:01+0300\n"
+"PO-Revision-Date: 2007-07-07 00:40+0300\n"
 "Last-Translator: Nicolau Gonçalves\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -87,13 +88,10 @@ msgstr ""
 "Activar o desenho em 3D apenas quando a rotação é iniciada através do "
 "rato (Ex. Quando roda o cubo através do rato)"
 
-msgid "Misc. Options"
-msgstr "Opções diversas"
-
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr ""
-"Arredondar os cantos para manter a consistência com decorações "
-"com efeitos arredondados."
+"Tornar os cantos redondos para manter a consistência com decorações "
+"também com cantos redondos."
 
 msgid ""
 "This will create mipmaps which improve overall texture appearence, and "
@@ -103,7 +101,7 @@ msgstr ""
 "reduzem as arestas distorcidas."
 
 msgid "Window Match"
-msgstr "Tipos de janelas"
+msgstr "Correspondência entre janelas"
 
 msgid "Window Space"
 msgstr "Espaçamento entre janelas."
@@ -118,7 +116,7 @@ msgid "Windows that should be handled by 3D"
 msgstr "Janelas que devem ser mostradas em 3D"
 
 msgid "AddHelper"
-msgstr "Foco da janela activa"
+msgstr "Ajuda a focar uma janela"
 
 msgid "Bindings"
 msgstr "Atalhos"
@@ -130,7 +128,10 @@ msgid "Brightness of faded windows"
 msgstr "Brilho das janelas desvanecidas"
 
 msgid "Make it slightly easier to concentrate by dimming all but the active window."
-msgstr "Facilita a concentração ao diminuir a luminosidade das janelas à volta da janela activa."
+msgstr "Facilita a concentração ao reduzir a luminosidade de todas as janelas menos a activa"
+
+msgid "Misc. Options"
+msgstr "Opções diversas"
 
 msgid "Opacity"
 msgstr "Opacidade"
@@ -145,18 +146,18 @@ msgid "Saturation of faded windows"
 msgstr "Contraste das janelas desvanecidas"
 
 msgid "Toggle AddHelper"
-msgstr "Alternar Foco da janela activa"
+msgstr "Mudar o estado da ajuda a focar uma janela"
 
 msgid "Use this to enable/disable AddHelper on the fly."
 msgstr ""
-"Usar esta opção para activar/desactivar Foco da janela activa "
+"Usar esta opção para activar/desactivar a ajuda a focar uma janela "
 "instantaneamente"
 
 msgid "Window Types"
 msgstr "Tipos de janelas"
 
 msgid "Window types that should be Opacified."
-msgstr "Tipos de janelas cujas propriedades devem ser afectadas pelo plugin."
+msgstr "Tipos de janelas que devem ser tornadas opacas"
 
 msgid "A simple benchmark plugin"
 msgstr "Plugin de benchmark"
@@ -231,10 +232,10 @@ msgid "Start other window manager on Crash."
 msgstr "Iniciar outro gestor de janelas quando ocorre um crash."
 
 msgid "Window Manager Command Line"
-msgstr "Linha de comandos do gestor de janelas alternativo"
+msgstr "Linha de comandos do gestor de janelas"
 
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
-msgstr "Linha de comandos do gestor de janelas alternativo. NÃO INTRODUZA COMPIZ AQUI!!!"
+msgstr "Linha de comandos do gestor de janelas. NÃO INTRODUZA COMPIZ AQUI!!!"
 
 msgid "Above"
 msgstr "Topo"
@@ -252,10 +253,10 @@ msgid "Color of the ground (near)."
 msgstr "Cor do chão (perto)"
 
 msgid "Compiz cube reflection"
-msgstr "Criar uma reflexão do cubo"
+msgstr "Reflexão do cubo"
 
 msgid "Cube Reflection"
-msgstr "Cubo reflectido"
+msgstr "Reflexão do cubo"
 
 msgid "Distance"
 msgstr "Distância"
@@ -270,13 +271,13 @@ msgid "Intensity"
 msgstr "Intensidade"
 
 msgid "Jumpy"
-msgstr "Saltitante (A cubo acompanha a reflexão)"
+msgstr "Saltitante"
 
 msgid "Jumpy reflection"
-msgstr "Reflexão saltitante (A reflexão acompanha o cubo)"
+msgstr "Reflexão saltitante"
 
 msgid "Reflection ground size"
-msgstr "Tamanho da reflexão"
+msgstr "Tamanho da superfície de reflexão"
 
 msgid "Reflection ground size."
 msgstr "Tamanho da superfície de reflexão."
@@ -294,7 +295,7 @@ msgid "Zoom out automatically only on mouse rotate."
 msgstr "Retroceder o zoom automaticamente apenas com rotação através do rato."
 
 msgid "Zoom out automatically to myke the cube fit to the screen."
-msgstr "Diminuir o zoom automaticamente para o cubo caber no ecrã."
+msgstr "Retroceder o zoom automaticamente para o cubo caber no ecrã."
 
 msgid "Activate Window"
 msgstr "Activar janela"
@@ -309,7 +310,7 @@ msgid "Provides less commonly used WM actions"
 msgstr "Permite realizar acções menos comuns do gestor de janelas."
 
 msgid "Toggle Always-On-Top"
-msgstr "Alternar estado Sempre no topo"
+msgstr "Alternar estado sempre no topo"
 
 msgid "Toggle Fullscreen"
 msgstr "Alternar o modo de ecrã completo"
@@ -318,24 +319,22 @@ msgid "Toggle Redirect"
 msgstr "Alternar redirecção"
 
 msgid "Toggle Sticky"
-msgstr "Alternar modo de Mostrar em todos os ecrãs"
+msgstr "Alternar modo de mostrar em todos os ecrãs"
 
 msgid "Toggle always on top for the active window"
-msgstr "Alternar estado Sempre no topo para a janela activa"
+msgstr "Alternar estado sempre no topo para a janela activa"
 
 msgid "Toggle window fullscreen"
-msgstr "Alternar o modo de ecrã completo para a janela"
+msgstr "Alternar o modo de ecrã completa para a janela"
 
 msgid "Toggle window redirect"
 msgstr "Alternar redirecção para a janela"
 
 msgid "Toggle window stickyness"
-msgstr "Alternar modo de Mostrar em todos os ecrãs da janela"
+msgstr "Alternar modo de mostrar em todos os ecrãs da janela"
 
 msgid "Easily access your desktop"
-msgstr ""
-"Desvanece as janelas para o ambiente de trabalho, permitindo-lhe acedê-"
-"lo facilmente"
+msgstr "Aceder facilmente ao ambiente de trabalho"
 
 msgid "Fade Time"
 msgstr "Tempo de desvanecimento"
@@ -353,7 +352,7 @@ msgid "Alter window opacity based on color."
 msgstr "Alterar opacidade da janela com base na cor."
 
 msgid "Color Opacity"
-msgstr "Opacidade de cores"
+msgstr "Cor da opacidade"
 
 msgid "Toggle Window Fake ARGB"
 msgstr "Alternar ARGB falsos da janela"
@@ -365,42 +364,42 @@ msgid "Background brightness"
 msgstr "Brilho do fundo"
 
 msgid "Background brightness during paint"
-msgstr "Luminosidade do fundo durante o desenho"
+msgstr "Brilho do fundo durante o desenho"
 
 msgid "Clear"
 msgstr "Limpar"
 
 msgid "Fire Particle Color"
-msgstr "Cor das partículas"
+msgstr "Cor da partícula de fogo"
 
 msgid "Fire Particle Life"
-msgstr "Vida das partículas"
+msgstr "Vida da partícula de fogo"
 
 msgid "Fire Particle Size"
-msgstr "Tamanho das partículas"
+msgstr "Tamanho da partícula de fogo"
 
 msgid "Fire Particle Slowdown"
-msgstr "Abrandamento das partículas"
+msgstr "Abrandamento da partícula de fogo"
 
 msgid "Fire particle color."
-msgstr "Cor das partículas."
+msgstr "Cor da partícula de fogo."
 
 msgid "Fire particle life."
-msgstr "Vida das partículas."
+msgstr "Vida da partícula de fogo."
 
 msgid "Fire particle size."
-msgstr "Tamanho das partículas."
+msgstr "Tamanho da partícula de fogo."
 
 msgid "Fire particle slowdown."
-msgstr "Abrandamento das partículas."
+msgstr "Abrandamento da partícula de fogo."
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
-"Cores aleatórias para o efeito de fogo. Opção também conhecida "
+"Cores aleatórias para o efeito de fogo, também conhecido "
 "como Fogo Místico."
 
 msgid "Initiate fire drawing"
-msgstr "Iniciar a criação de partículas"
+msgstr "Iniciar o desenho do fogo"
 
 msgid "Maximum number of active particles"
 msgstr "Número máximo de partículas activas."
@@ -409,10 +408,10 @@ msgid "Number of particles"
 msgstr "Número de partículas"
 
 msgid "Paint fire on the screen"
-msgstr "Partículas de fogo"
+msgstr "Mostrar fogo no ecrã"
 
 msgid "Paint fire or other particles on the screen"
-msgstr "Cria partículas de fogo no ecrã"
+msgstr "Mostrar as partículas de fogo ou outras no ecrã"
 
 msgid "Randomly Colored Fire"
 msgstr "Fogo com cores aleatórias"
@@ -442,13 +441,13 @@ msgid "Brightness of selected windows"
 msgstr "Brilho das janelas selecionadas"
 
 msgid "Change Tab Left"
-msgstr "Mudar para a tab da esquerda"
+msgstr "Mudar Tab esquerda"
 
 msgid "Change Tab Right"
-msgstr "Mudar para a tab da direita"
+msgstr "Mudar Tab direita"
 
 msgid "Change tab animation duration"
-msgstr "Duração da animação"
+msgstr "Mudar duração da animação da tab"
 
 msgid "Close Group"
 msgstr "Fechar grupo"
@@ -467,9 +466,9 @@ msgid ""
 "the spring model. If the distance is larger than that value, the model isn't "
 "applied."
 msgstr ""
-"Distância (em píxeis) entre a barra das tabs e o espaço de "
-"arrastamento para aplicar o efeito de mola. Se a distância for maior que "
-"esse valor, este efeito não é aplicado."
+"Distância (em pixéis) entre a barra das tabs e o espaço de "
+"arrastamento para aplicar o modelo elástico. Se a distância for maior que "
+"esse valor, o modelo não é aplicado."
 
 msgid "Duration (in s) of the animation that happens when changing tabs"
 msgstr "Duração (em s) da animação que tem ocorre quando se muda de tab"
@@ -497,7 +496,7 @@ msgid "Enable grouped window glowing"
 msgstr "Activar aura para agrupamento de janelas"
 
 msgid "Fade time for tab bar animations"
-msgstr "Tempo de desvanecimento das animações"
+msgstr "Tempo de desvanecimento das animações das barras de tabs"
 
 msgid "Fade time for text animations"
 msgstr "Tempo de desvanecimento das animações de texto"
@@ -524,7 +523,7 @@ msgid "Glow"
 msgstr "Aura"
 
 msgid "Glow Color Change"
-msgstr "Mudar a cor da aura"
+msgstr "Mudança de cor da aura"
 
 msgid "Glow Size"
 msgstr "Tamanho da aura"
@@ -533,7 +532,7 @@ msgid "Glow Type"
 msgstr "Tipo de aura"
 
 msgid "Glow ring"
-msgstr "Aura circular"
+msgstr "Anel da aura"
 
 msgid "Gradient"
 msgstr "Gradiente"
@@ -624,16 +623,18 @@ msgid "Line color of the selection rectangle"
 msgstr "Cor da linha do rectângulo de selecção"
 
 msgid "Maximize/unmaximize with group"
-msgstr "Maximizar/restaurar o grupo"
+msgstr "Maximizar/restaurar com grupo"
 
 msgid "Metal"
 msgstr "Metal"
 
 msgid "Minimize with group"
-msgstr "Minimizar o grupo"
+msgstr "Minimizar com o grupo"
 
 msgid "Mouse pointer movement speed limit (in pixels/second) for the spring model"
-msgstr "Limite da velocidade do ponteiro do rato (em píxeis/segundo) para o efeito de mola"
+msgstr ""
+"Limite da velocidade do ponteiro do rato (em pixéis/segundo) para o "
+"modelo da mola"
 
 msgid "Move every window in the group"
 msgstr "Mover todas as janelas do grupo"
@@ -667,10 +668,10 @@ msgid "Rectangular glow"
 msgstr "Aura rectangular"
 
 msgid "Remove Group Window"
-msgstr "Remover janela do grupo"
+msgstr "Remover janela agrupada"
 
 msgid "Remove window from group after dropping it outside a tab bar"
-msgstr "Desagrupar janela quando esta for largada fora da barra de tabs"
+msgstr "Remover janela do grupo após largá-la fora da barra de tabs"
 
 msgid "Resize every window in the group"
 msgstr "Redimensionar todas as janelas do grupo"
@@ -691,25 +692,25 @@ msgid "Selection Color"
 msgstr "Cor da selecção"
 
 msgid "Shade with group"
-msgstr "Sombrear o grupo"
+msgstr "Sombrear com o grupo"
 
 msgid "Simple"
 msgstr "Simples"
 
 msgid "Slot Drag Spring K"
-msgstr "Constante K da mola"
+msgstr "Constante da mola durante o arrastamento a partir da slot"
 
 msgid "Slot Dragging"
 msgstr "Arrastamento da slot"
 
 msgid "Slot drag friction"
-msgstr "Fricção de arrastamento"
+msgstr "Fricção de arrastamento da slot"
 
 msgid "Space"
 msgstr "Espaçamento"
 
 msgid "Speed limit for spring model"
-msgstr "Velocidade limite para o efeito de mola"
+msgstr "Velocidade limite para o modelo da mola"
 
 msgid "Spring Konstant used for slot dragging"
 msgstr "Constante da mola usada durante o arrastamento a partir da slot"
@@ -718,10 +719,10 @@ msgid "Spring friction for slot dragging"
 msgstr "Fricção da mola para arrastamento a partir da slot"
 
 msgid "Spring model on move"
-msgstr "Activar o efeito de mola quando move janelas"
+msgstr "Modelo da mola quando move janelas"
 
 msgid "Tab Bar Show Delay"
-msgstr "Atraso no aparecimento da barra de tabs"
+msgstr "Tempo de atraso de aparecimento da barra de tabs"
 
 msgid "Tab Base Color"
 msgstr "Cor base da tab"
@@ -730,16 +731,16 @@ msgid "Tab Border Color"
 msgstr "Cor da margem da tab"
 
 msgid "Tab Group"
-msgstr "Agrupar em tab"
+msgstr "Grupo da tab"
 
 msgid "Tab Highlight Color"
-msgstr "Cor de realce da tab"
+msgstr "Cor de realçar a tab"
 
 msgid "Tab Style"
 msgstr "Estilo da tab"
 
 msgid "Tab bar visibility time after tab change"
-msgstr "Tempo de visibilidade após alterações"
+msgstr "Tempo em que a barra se mantém visível após alterações"
 
 msgid "Tabbing"
 msgstr "Tabulação"
@@ -748,10 +749,10 @@ msgid "Tabbing Speed"
 msgstr "Velocidade de criação das tabs"
 
 msgid "Tabbing Timestep"
-msgstr "Salto temporal de criação"
+msgstr "Salto temporal de criação das tabs"
 
 msgid "Tabbing speed"
-msgstr "Velocidade de criação"
+msgstr "Velocidade de criação das tabs"
 
 msgid "Tabbing timestep"
 msgstr "Salto temporal de criação das tabs"
@@ -829,10 +830,10 @@ msgid "Time (in s) the tab bar is visibly after a tab change"
 msgstr "Tempo (em s) que a barra das tabs é visível após uma mudança nas tabs"
 
 msgid "Time for tab bar pulse animation"
-msgstr "Tempo da animação da pulsação"
+msgstr "Tempo da animação da pulsação da barra das tabs"
 
 msgid "Time for tab bar reflex animation"
-msgstr "Tempo da animação da reflexão"
+msgstr "Tempo da animação da reflexão da barra das tabs"
 
 msgid ""
 "Timespan (in s) after which a grouped window is activated if a window of "
@@ -856,7 +857,7 @@ msgid "Untab when closing top tab"
 msgstr "Eliminar as tabs quando se fecha a tab do topo"
 
 msgid "Use spring model for the tab bar when moving the window"
-msgstr "Usar um efeito de mola para a barra das tabs quando se move a janela"
+msgstr "Usar modelo da mola para a barra das tabs quando se move a janela"
 
 msgid "Use tab bar animations"
 msgstr "Usar animações na barra das tabs"
@@ -871,13 +872,13 @@ msgid "With this plugin you can group and tab windows"
 msgstr "Com este plugin pode agrupar e criar tabs para janelas"
 
 msgid "Y distance for spring model"
-msgstr "Distância (Y) para o efeito de mola"
+msgstr "Distância (Y) para o modelo da mola"
 
 msgid "Accumulation buffer"
 msgstr "Buffer de acumulação"
 
 msgid "Activate"
-msgstr "Activações"
+msgstr "Activar"
 
 msgid "Execute Motion Blur if the screen is transformed."
 msgstr "Executar movimento de blur se o ecrã é transformado."
@@ -907,7 +908,7 @@ msgid "Texture Copy"
 msgstr "Cópia de texturas"
 
 msgid "Toggle Motion Blur"
-msgstr "Activar/desactivar movimento de blur"
+msgstr "Alternar estado do movimento de blur"
 
 msgid "Toggle motion Blur effect."
 msgstr "Alternar efeito do movimento de blur"
@@ -928,7 +929,7 @@ msgid "Draw Reflection for windows."
 msgstr "Desenhar reflexão para janelas."
 
 msgid "Draws reflections"
-msgstr "Desenhar reflexões"
+msgstr "Desenhar reflexão"
 
 msgid "Move the reflection on window move."
 msgstr "Mover a reflexão quando se move a janela."
@@ -949,10 +950,10 @@ msgid "Reflection Window Match"
 msgstr "Tipos de janelas que terão reflexão"
 
 msgid "Reflection for Decorations"
-msgstr "Activar reflexão de decorações"
+msgstr "Reflexão para decorações"
 
 msgid "Reflection for Windows"
-msgstr "Activar reflexão de janelas"
+msgstr "Reflexão para janelas"
 
 msgid "Window match"
 msgstr "Tipos de janelas"
@@ -974,25 +975,25 @@ msgid "Toggle prompt visible."
 msgstr "Alternar visibilidade da prompt."
 
 msgid "Access your desktop easily"
-msgstr "Aceda facilmente ao ambiente de trabalho"
+msgstr "Aceder ao ambiente de trabalho facilmente"
 
 msgid "Direction of window movement"
 msgstr "Direcção do movimento das janelas"
 
 msgid "Down"
-msgstr "Para baixo"
+msgstr "Baixo"
 
 msgid "Left"
-msgstr "Para a esquerda"
+msgstr "Esquerda"
 
 msgid "Left/Right"
-msgstr "Para a esquerda e para a direita"
+msgstr "Esquerda/Direita"
 
 msgid "Movement Direction"
 msgstr "Direcção do movimento"
 
 msgid "Right"
-msgstr "Para a direita"
+msgstr "Direita"
 
 msgid "Show desktop"
 msgstr "Mostrar ambiente de trabalho"
@@ -1007,13 +1008,13 @@ msgid "To Corners"
 msgstr "Para os cantos"
 
 msgid "Up"
-msgstr "Para cima"
+msgstr "Cima"
 
 msgid "Up/Down"
-msgstr "Para cima e para baixo"
+msgstr "Cima/Baixo"
 
 msgid "Window Opacity"
-msgstr "Opacidade das janelas ocultadas"
+msgstr "Opacidade da janela"
 
 msgid "Window Part Size"
 msgstr "Tamanho da parte não oculta das janelas"
@@ -1025,20 +1026,20 @@ msgid "Window movement timestep"
 msgstr "Espaço de tempo do movimento da janela."
 
 msgid "Window opacity when showdesktop'd"
-msgstr "Opacidade das janelas ocultadas"
+msgstr "Opacidade das janelas quando se mostra o ambiente de trabalho"
 
 msgid "Window part size when showdesktop'd"
 msgstr ""
-"Tamanho da parte não oculta das janelas quando se mostra o ambiente de "
-"trabalho"
+"Tamanho da parte não oculta das janelas, quando se mostra o ambiente "
+"de trabalho"
 
 msgid "Window types that should be moved out of sight when entering showdesktop mode"
 msgstr ""
-"Tipo de janelas que devem ser escondidas quando se mostra o ambiente de "
-"trabalho"
+"Tipo de janelas que devem ser movidas para fora do ecrã quando se "
+"mostra o ambiente de trabalho"
 
 msgid "A simple splash plugin"
-msgstr "Plugin para mostrar um ecrã de logótipo"
+msgstr "Plugin para mostra ecrã de logótipo"
 
 msgid "Background File"
 msgstr "Ficheiro com o fundo"
@@ -1131,7 +1132,7 @@ msgid "Key Bindings"
 msgstr "Teclas de atalho"
 
 msgid "Left to Right"
-msgstr "Da esquerda para a direita"
+msgstr "Esquerda para a direita"
 
 msgid "Number Of Snowflakes"
 msgstr "Número de flocos de neve"
@@ -1140,7 +1141,7 @@ msgid "Number of snowflakes"
 msgstr "Número de flocos de neve"
 
 msgid "Right to Left"
-msgstr "Da direita para a esquerda"
+msgstr "Direita para a esquerda"
 
 msgid "Rotate Flakes"
 msgstr "Rodar flocos de neve"
@@ -1182,7 +1183,7 @@ msgid "Snow Toggle"
 msgstr "Activar/Desactivar Neve"
 
 msgid "Snow for Compiz"
-msgstr "Cria um efeito de neve no ecrã"
+msgstr "Neve para Compiz"
 
 msgid "Snow is drawn above windows"
 msgstr "A Neve é mostrada por cima das janelas"
@@ -1200,7 +1201,7 @@ msgid "Textures"
 msgstr "Texturas"
 
 msgid "Top to Bottom"
-msgstr "De cima para baixo"
+msgstr "Cima para baixo"
 
 msgid "Update Delay"
 msgstr "Atraso de actualização"
@@ -1218,7 +1219,7 @@ msgid "Cascade Windows"
 msgstr "Mostrar janelas em cascata"
 
 msgid "Choose the tiling type you want when using toggle."
-msgstr "Escolher o tipo de mosaico que se pretende quando se activa/desactiva o modo mosaico."
+msgstr "Escolher o tipo de mosaico que se pretende quando se altera o estado."
 
 msgid "Distance between windows when using cascade"
 msgstr "Distância entre janelas quando em cascata"
@@ -1292,7 +1293,7 @@ msgstr ""
 "mosaico."
 
 msgid "Selects the animation used while tiling"
-msgstr "Seleccionar a animação a usar quando se entra em modo mosaico"
+msgstr "Seleccionar a animação a usar quando se entrar modo mosaico"
 
 msgid "Slide"
 msgstr "Deslizar"
@@ -1357,10 +1358,10 @@ msgid "Behaviour"
 msgstr "Comportamento"
 
 msgid "Brightness Level of Focused Windows"
-msgstr "Brilho das janelas focadas"
+msgstr "Nível de brilho de janelas focadas"
 
 msgid "Brightness Level of Unfocused Windows"
-msgstr "Brilho das janelas desfocadas"
+msgstr "Nível de brilho de janelas desfocadas"
 
 msgid ""
 "Brightness of the currently focused window. Windows will get opacity levels "
@@ -1379,20 +1380,20 @@ msgstr ""
 "o foco."
 
 msgid "Number of Windows to Track"
-msgstr "Número de janelas a acompanhar"
+msgstr "Número de janelas a manter o registo"
 
 msgid ""
 "Number of windows Trailfocus will keep track of. Windows that had focus this "
 "amount of windows ago or more will be considered completly unfocused."
 msgstr ""
-"Número de janelas de que o plugin irá manter o registo. Janelas que tinham"
-"foco há pelo menos este número serão consideradas completamente desfocadas."
+"Número de janelas que o plugin irá manter o registo. Janelas que tinham"
+"foco à este número atrás ou mais serão consideradas completamente desfocadas."
 
 msgid "Opacity Level of Focused Windows"
-msgstr "Opacidade das janelas focadas"
+msgstr "Nível de opacidade de janelas focadas"
 
 msgid "Opacity Level of Unfocused Windows"
-msgstr "Opacidade das janelas desfocadas"
+msgstr "Nível de opacidade de janelas desfocadas"
 
 msgid ""
 "Opacity of the currently focused window. Windows will get opacity levels "
@@ -1411,10 +1412,10 @@ msgstr ""
 "o foco."
 
 msgid "Saturation Level of Focused Windows"
-msgstr "Contraste das janelas focadas"
+msgstr "Nível de contraste de janelas focadas"
 
 msgid "Saturation Level of Unfocused Windows"
-msgstr "Contraste das contraste de janelas desfocadas"
+msgstr "Nível de contraste de janelas desfocadas"
 
 msgid ""
 "Saturation of the currently focused window. Windows will get opacity levels "
@@ -1440,11 +1441,11 @@ msgstr ""
 "Isto permite-lhe considerar as primeiras N janelas como completamente focadas."
 
 msgid "Trailfocus"
-msgstr "Seguimento de foco"
+msgstr "Seguimento do foco"
 
 msgid "Window to Start Fading"
-msgstr "Janela a desvanecer"
+msgstr "Janelas que desvanecem"
 
 msgid "Window types that should be handled by Trailfocus"
-msgstr "Tipos de janelas que deverão ser consideradas pelo Seguimento de foco."
+msgstr "Tipos de janelas que deverão ser consideradas pelo seguimento de foco."
 
