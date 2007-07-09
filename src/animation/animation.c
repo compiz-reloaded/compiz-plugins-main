@@ -1090,7 +1090,9 @@ static void cleanUpParentChildChainItem(AnimScreen *as, AnimWindow *aw)
     aw->skipPostPrepareScreen = FALSE;
 }
 
-void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
+void postAnimationCleanupClosing(CompWindow * w,
+				 Bool resetAnimation,
+				 Bool closing)
 {
     ANIM_WINDOW(w);
     ANIM_SCREEN(w->screen);
@@ -1139,7 +1141,7 @@ void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
 	    wCur = awCur->moreToBePaintedPrev;
 	}
     }
-    if (!thereIsUnfinishedChainElem)
+    if (closing || !thereIsUnfinishedChainElem)
     {
 	// Finish off all windows in parent-child chain
 	CompWindow *wCur = aw->moreToBePaintedNext;
@@ -1211,6 +1213,11 @@ void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
 	destroyWindow(w);
 	aw->destroyCnt--;
     }
+}
+
+void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
+{
+    postAnimationCleanupClosing(w, resetAnimation, FALSE);
 }
 
 static void
@@ -2952,7 +2959,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			}
 			else
 			{
-			    postAnimationCleanup(w, TRUE);
+			    postAnimationCleanupClosing(w, TRUE, TRUE);
 			}
 		    }
 
