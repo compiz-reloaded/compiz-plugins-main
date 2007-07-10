@@ -3813,7 +3813,6 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
 	return FALSE;
     }
 
-    ad->wmHintsAtom = XInternAtom(d->display, "WM_HINTS", FALSE);
     ad->winIconGeometryAtom =
 	XInternAtom(d->display, "_NET_WM_ICON_GEOMETRY", 0);
 
@@ -4057,7 +4056,7 @@ static Bool animInit(CompPlugin * p)
 					 animScreenOptionInfo,
 					 ANIM_SCREEN_OPTION_NUM))
 	return FALSE;
-		
+
     animDisplayPrivateIndex = allocateDisplayPrivateIndex();
     if (animDisplayPrivateIndex < 0)
     {
@@ -4068,6 +4067,7 @@ static Bool animInit(CompPlugin * p)
     compAddMetadataFromFile (&animMetadata, p->vTable->name);
 
     animEffectPropertiesTmp = animEffectProperties;
+
     return TRUE;
 }
 
