@@ -456,7 +456,8 @@ expoPaintScreen (CompScreen   *s,
 {
     EXPO_SCREEN (s);
 
-    if (es->expoCam > 0.0 && numOutputs > 1)
+    if (es->expoCam > 0.0 && numOutputs > 1 &&
+        expoGetMultioutputMode(s->display) == MultioutputModeOneBigWall)
     {
 	UNWRAP (es, s, paintScreen);
 	(*s->paintScreen) (s, &s->fullscreenOutput, 1, mask);
@@ -560,6 +561,9 @@ expoPaintWall (CompScreen              *s,
     int origVX = s->x;
     int origVY = s->y;
 
+    float sx = (float)s->width / output->width;
+    float sy = (float)s->height / output->height;
+
     /* amount of gap between viewports */
     const float gapy = 0.01f * es->expoCam; 
     const float gapx = 0.01f * s->height / s->width * es->expoCam;
@@ -570,23 +574,29 @@ expoPaintWall (CompScreen              *s,
 
     /* camera position during expo mode */
     Point3d expoCamPos = { 0, 0, 0 };
-    
-    vpCamPos.x = s->hsize * ( (s->x + 0.5) / s->hsize - 0.5) + gapx * (s->x);
-    vpCamPos.y = -s->vsize * ( (s->y + 0.5) / s->vsize - 0.5) - gapy * (s->y);
+
+    vpCamPos.x = ((s->x * sx) + 0.5 +
+		 (output->region.extents.x1 / output->width)) -
+		 (s->hsize * 0.5 * sx) + gapx * (s->x);
+    vpCamPos.y = -((s->y * sy) + 0.5 +
+		 ( output->region.extents.y1 / output->height)) +
+		 (s->vsize * 0.5 * sy) - gapy * (s->y);
     vpCamPos.z = 0;
 
     float biasz = 0;
 
     if (expoGetRotate (s->display) || expoGetReflection (s->display) )
-	biasz = MAX (s->hsize, s->vsize) * (0.15 + expoGetDistance (s->display) );
+	biasz = MAX (s->hsize * sx, s->vsize * sy) *
+		(0.15 + expoGetDistance (s->display));
     else
-	biasz = MAX (s->hsize, s->vsize) * expoGetDistance (s->display);
+	biasz = MAX (s->hsize * sx, s->vsize * sy) *
+		expoGetDistance (s->display);
 
     expoCamPos.x = gapx * (s->hsize - 1) * 0.5;
     expoCamPos.y = -gapy * (s->vsize - 1) * 0.5;
     expoCamPos.z = -DEFAULT_Z_CAMERA + DEFAULT_Z_CAMERA *
-		   (MAX (s->hsize +	(s->hsize - 1) * gapx,
-			 s->vsize +	(s->vsize - 1) * gapy) + biasz);
+		   (MAX (s->hsize + (s->hsize - 1) * gapx,
+			 s->vsize + (s->vsize - 1) * gapy) + biasz);
 
     float progress = sigmoidProgress (es->expoCam);
 
@@ -634,12 +644,17 @@ expoPaintWall (CompScreen              *s,
 
     /* ALL TRANSFORMATION ARE EXECUTED FROM BOTTOM TO TOP */
 
+    float oScale = 1 / (1 + ((MAX(sx,sy) - 1) * progress));
+
+    matrixScale (&sTransform, oScale, oScale, 1.0);
+
     if (reflection)
     {
 #define SCALE_FACTOR expoGetScaleFactor(s->display)
-	matrixTranslate (&sTransform, 0.0, -s->vsize, 0.0);
+	matrixTranslate (&sTransform, 0.0, -s->vsize * sy, 0.0);
 	matrixScale (&sTransform, 1.0, -1.0, 1.0);
-	matrixTranslate (&sTransform, 0.0, - (1 - SCALE_FACTOR) / 2*s->vsize, 0.0);
+	matrixTranslate (&sTransform, 0.0, - (1 - SCALE_FACTOR) / 2*s->vsize *
+			 sy, 0.0);
 	matrixScale (&sTransform, 1.0, SCALE_FACTOR, 1.0);
 	glCullFace (GL_FRONT);
 #undef SCALE_FACTOR
@@ -652,8 +667,10 @@ expoPaintWall (CompScreen              *s,
     matrixRotate (&sTransform, rotation, 0.0f, 1.0f, 0.0f);
     matrixScale (&sTransform, aspectx, aspecty, 1.0);
 
+
     /* translate expo to center */
-    matrixTranslate (&sTransform, s->hsize * -0.5, s->vsize * 0.5, 0.0f);
+    matrixTranslate (&sTransform, s->hsize * sx * -0.5,
+		     s->vsize * sy * 0.5, 0.0f);
     sTransformW = sTransform;
 
     /* revert prepareXCoords region shift. Now all screens display the same */
@@ -665,6 +682,7 @@ expoPaintWall (CompScreen              *s,
     {
 
 	CompTransform  sTransform2 = sTransform;
+	CompTransform  sTransform3;
 
 	for (i = 0; i < s->hsize; i++)
 	{
@@ -672,7 +690,12 @@ expoPaintWall (CompScreen              *s,
 		matrixRotate (&sTransform2, 360 * es->expoCam, 0.0f, 1.0f,
 			      2.0f * es->expoCam);
 
-	    paintTransformedOutput (s, sAttrib, &sTransform2, &s->region,
+	    sTransform3 = sTransform2;
+	    matrixTranslate (&sTransform3,
+			     output->region.extents.x1 / output->width,
+			     -output->region.extents.y1 / output->height, 0.0);
+
+	    paintTransformedOutput (s, sAttrib, &sTransform3, &s->region,
 				    output, mask);
 
 	    if (!reflection)
@@ -682,7 +705,7 @@ expoPaintWall (CompScreen              *s,
 		{
 		    int cursor[2] = { es->pointerX, es->pointerY };
 
-		    invertTransformedVertex (s, sAttrib, &sTransform2,
+		    invertTransformedVertex (s, sAttrib, &sTransform3,
 					     output, cursor);
 
 		    if ( (cursor[0] > 0) && (cursor[0] < s->width) &&
@@ -705,12 +728,12 @@ expoPaintWall (CompScreen              *s,
 	    }
 
 	    /* not sure this will work with different resolutions */
-	    matrixTranslate (&sTransform2, (1.0 + gapx), 0.0f, 0.0);
+	    matrixTranslate (&sTransform2, ((1.0 * sx) + gapx), 0.0f, 0.0);
 	    moveScreenViewport (s, -1, 0, FALSE);
 	}
 
 	/* not sure this will work with different resolutions */
-	matrixTranslate (&sTransform, 0, - (1.0 + gapy), 0.0f);
+	matrixTranslate (&sTransform, 0, - ((1.0 * sy) + gapy), 0.0f);
 	moveScreenViewport (s, 0, -1, FALSE);
     }
 
@@ -725,10 +748,10 @@ expoPaintWall (CompScreen              *s,
 	glColor4f (0.0, 0.0, 0.0, 1.0);
 	glVertex2f (0.0, 0.0);
 	glColor4f (0.0, 0.0, 0.0, 0.5);
-	glVertex2f (0.0, -s->vsize * (1.0 + gapy) );
-	glVertex2f (s->hsize * (1.0 + gapx), -s->vsize * (1.0 + gapy) );
+	glVertex2f (0.0, -s->vsize * (1.0 * sy + gapy) );
+	glVertex2f (s->hsize * sx * (1.0 + gapx), -s->vsize * sy * (1.0 + gapy));
 	glColor4f (0.0, 0.0, 0.0, 1.0);
-	glVertex2f (s->hsize * (1.0 + gapx), 0.0);
+	glVertex2f (s->hsize * sx * (1.0 + gapx), 0.0);
 	glEnd();
 	glCullFace (GL_BACK);
 
@@ -785,7 +808,7 @@ expoPaintTransformedOutput (CompScreen              *s,
 	(*s->paintTransformedOutput) (s, sAttrib, transform, region,
 				      output, mask);
     else
-	glClear (GL_COLOR_BUFFER_BIT);
+	clearScreenOutput (s, output, GL_COLOR_BUFFER_BIT);
 
     mask &= ~PAINT_SCREEN_CLEAR_MASK;
 
