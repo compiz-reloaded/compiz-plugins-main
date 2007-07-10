@@ -3626,19 +3626,29 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
-    if (isQt4TransientWindow(w)) // QT4 window
-	return;
-
-    if (aw->polygonSet && !aw->animInitialized)
+    // Don't let transient window open anim be interrupted with a resize notify
+    if (!(aw->curWindowEvent == WindowEventCreate &&
+	  (isQt3TransientWindow(w) || isQt4TransientWindow(w) ||
+	   (w->wmType &
+	    (CompWindowTypeDropdownMenuMask |
+	     CompWindowTypePopupMenuMask |
+	     CompWindowTypeMenuMask |
+	     CompWindowTypeTooltipMask |
+	     CompWindowTypeNotificationMask |
+	     CompWindowTypeComboMask |
+	     CompWindowTypeDndMask)))))
     {
-	// to refresh polygon coords
-	freePolygonSet(aw);
-    }
+	if (aw->polygonSet && !aw->animInitialized)
+	{
+	    // to refresh polygon coords
+	    freePolygonSet(aw);
+	}
 
-    if (aw->animRemainingTime > 0)
-    {
-	aw->animRemainingTime = 0;
-	postAnimationCleanup(w, TRUE);
+	if (aw->animRemainingTime > 0)
+	{
+	    aw->animRemainingTime = 0;
+	    postAnimationCleanup(w, TRUE);
+	}
     }
 
     if (aw->model)
