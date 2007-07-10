@@ -144,6 +144,17 @@ static AnimEffect shadeEffectType[] = {
     AnimEffectRollUp
 };
 
+static Bool inline
+isQt3TransientWindow(CompWindow * w)
+{
+    return (!w->resName && w->startupId && w->wmType == CompWindowTypeUnknownMask);
+}
+
+static Bool inline
+isQt4TransientWindow(CompWindow * w)
+{
+    return (!w->resName && !w->startupId && w->wmType == CompWindowTypeUnknownMask);
+}
 
 // iterate over given list
 // check if given effect name matches any implemented effect
@@ -1329,6 +1340,7 @@ initiateFocusAnimation(CompWindow *w)
 	    CompWindow *dw;
 	    for (dw = wStart; dw && dw != wEnd->next; dw = dw->next)
 	    {
+		//printf("%X, s: %X, e: %X\n", dw, wStart, wEnd);
 		if (!isWinVisible(dw) ||
 		    dw->wmType & CompWindowTypeDockMask)
 		    continue;
@@ -1752,7 +1764,9 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 	    {
 		if (aw->curAnimEffect != AnimEffectNone ||
 		    aw->unmapCnt > 0 || aw->destroyCnt > 0)
+		{
 		    postAnimationCleanup(w, TRUE);
+		}
 		aw->curWindowEvent = WindowEventNone;
 		aw->curAnimEffect = AnimEffectNone;
 	    }
@@ -2730,7 +2744,9 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			if (aw->curWindowEvent != WindowEventNone)
 			{
 			    if (aw->curWindowEvent != WindowEventUnshade)
+			    {
 				postAnimationCleanup(w, TRUE);
+			    }
 			    else
 			    {
 				// Play the unshade effect backwards from where it left
@@ -2804,7 +2820,9 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    if (aw->curWindowEvent != WindowEventNone)
 		    {
 			if (aw->curWindowEvent != WindowEventUnminimize)
+			{
 			    postAnimationCleanup(w, TRUE);
+			}
 			else
 			{
 			    // Play the unminimize effect backwards from where it left
@@ -2885,7 +2903,8 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
-		if (!(w->resName || w->startupId))
+		if (!(w->resName ||
+		      isQt3TransientWindow(w) || isQt4TransientWindow(w)))
 		    break;
 
 		AnimEffect windowsCloseEffect = AnimEffectNone;
@@ -2894,8 +2913,8 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		// Backup window type
 		int winType = w->wmType;
 
-		// Hack to handle KDE secondary windows
-		if (w->wmType == CompWindowTypeUnknownMask && w->startupId)
+		// Hack to handle Qt transient windows
+		if (isQt3TransientWindow(w) || isQt4TransientWindow(w))
 		{
 		    w->wmType = CompWindowTypeDropdownMenuMask;
 		}
@@ -3286,7 +3305,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		if (aw->curWindowEvent != WindowEventNone)
 		{
 		    if (aw->curWindowEvent != WindowEventMinimize)
+		    {
 			postAnimationCleanup(w, TRUE);
+		    }
 		    else
 		    {
 			// Play the minimize effect backwards from where it left
@@ -3355,7 +3376,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			addWindowDamage(w);
 		    }
 		    else
+		    {
 			postAnimationCleanup(w, TRUE);
+		    }
 		}
 	    }
 	}
@@ -3375,7 +3398,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		if (aw->curWindowEvent != WindowEventNone)
 		{
 		    if (aw->curWindowEvent != WindowEventShade)
+		    {
 			postAnimationCleanup(w, TRUE);
+		    }
 		    else
 		    {
 			// Play the shade effect backwards from where it left
@@ -3432,7 +3457,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (animEnsureModel(w, WindowEventUnshade, aw->curAnimEffect))
 			addWindowDamage(w);
 		    else
+		    {
 			postAnimationCleanup(w, TRUE);
+		    }
 		}
 	    }
 	}
@@ -3447,8 +3474,8 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    // Backup window type
 	    int winType = w->wmType;
 
-	    // Hack to handle KDE secondary windows
-	    if (w->wmType == CompWindowTypeUnknownMask && w->startupId)
+	    // Hack to handle Qt transient windows
+	    if (isQt3TransientWindow(w) || isQt4TransientWindow(w))
 	    {
 		w->wmType = CompWindowTypeDropdownMenuMask;
 	    }
@@ -3471,7 +3498,8 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    if (windowsCreateEffect &&
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
-		(w->resName || w->startupId) &&
+		(w->resName ||
+		 isQt3TransientWindow(w) || isQt4TransientWindow(w)) &&
 		// suppress switcher window
 		// (1st window that opens after switcher becomes active)
 		(!as->switcherActive || as->switcherWinOpeningSuppressed) &&
@@ -3486,7 +3514,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		if (aw->curWindowEvent != WindowEventNone)
 		{
 		    if (aw->curWindowEvent != WindowEventClose)
+		    {
 			postAnimationCleanup(w, TRUE);
+		    }
 		    else
 		    {
 			// Play the close effect backwards from where it left
@@ -3565,9 +3595,13 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			aw->lastKnownCoords.y = w->attrib.y;
 		    }
 		    if (animEnsureModel(w, WindowEventCreate, aw->curAnimEffect))
+		    {
 			addWindowDamage(w);
+		    }
 		    else
+		    {
 			postAnimationCleanup(w, TRUE);
+		    }
 		}
 	    }
 	    else if (as->switcherActive && !as->switcherWinOpeningSuppressed)
@@ -3591,6 +3625,9 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 {
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
+
+    if (isQt4TransientWindow(w)) // QT4 window
+	return;
 
     if (aw->polygonSet && !aw->animInitialized)
     {
