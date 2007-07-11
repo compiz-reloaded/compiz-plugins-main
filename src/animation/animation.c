@@ -1542,7 +1542,7 @@ relevantForFadeFocus(CompWindow *nw)
 {
     ANIM_SCREEN(nw->screen);
 
-    if (!((nw->type &
+    if (!((nw->wmType &
 	   // these two are to be used as "host" windows
 	   // to host the painting of windows being focused
 	   // at a stacking order lower than them
@@ -1610,26 +1610,41 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 			continue;
 		    }
 
-		    // Check if above window is focus-fading
-		    // (like a dialog of an app. window)
-		    // if so, focus-fade this together with the one above
-		    // (link to it)
+		    // Find the first window at a higher stacking order than w
 		    CompWindow *nw;
 		    for (nw = w->next; nw; nw = nw->next)
 		    {
 			if (relevantForFadeFocus(nw))
 			    break;
 		    }
-		    if (!nw)
-			continue;
 
-		    AnimWindow *awNext = GET_ANIM_WINDOW(nw, as);
-		    if (awNext && awNext->winThisIsPaintedBefore)
+		    // If w is being lowered, there has to be a window
+		    // at a higher stacking position than w (like a panel)
+		    // which this w's copy can be painted before.
+		    // Otherwise the animation will only show w fading in
+		    // rather than 2 copies of it cross-fading.
+		    if (!aw->restackInfo->raised && !nw)
 		    {
-			awNext->moreToBePaintedPrev = w;
-			aw->moreToBePaintedNext = nw;
-			aw->restackInfo->wOldAbove =
-			    awNext->winThisIsPaintedBefore;
+			// Free unnecessary restackInfo
+			free(aw->restackInfo);
+			aw->restackInfo = NULL;
+			continue;
+		    }
+
+		    // Check if above window is focus-fading too.
+		    // (like a dialog of an app. window)
+		    // If so, focus-fade this together with the one above
+		    // (link to it)
+		    if (nw)
+		    {
+			AnimWindow *awNext = GET_ANIM_WINDOW(nw, as);
+			if (awNext && awNext->winThisIsPaintedBefore)
+			{
+			    awNext->moreToBePaintedPrev = w;
+			    aw->moreToBePaintedNext = nw;
+			    aw->restackInfo->wOldAbove =
+				awNext->winThisIsPaintedBefore;
+			}
 		    }
 		    initiateFocusAnimation(w);
 		}
@@ -3251,10 +3266,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    }
 	    if (wRestacked && wStart && wEnd && wOldAbove)
 	    {
-		//printf("--- raised: %d, wRestacked: %X\n",
-		//	   raised, wRestacked->id);
-		//printf("=== wStart: %X, wEnd: %X, wOldAbove: %X\n",
-		//		wStart->id, wEnd->id, wOldAbove->id);
 		AnimWindow *awRestacked = GET_ANIM_WINDOW(wRestacked, as);
 		if (awRestacked->created)
 		{
