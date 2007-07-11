@@ -842,7 +842,8 @@ expoDrawWindow (CompWindow           *w,
 	    if (expoGetExpoAnimation (w->screen->display) != ExpoAnimationZoom)
 		fA.opacity = fragment->opacity * es->expoCam;
 
-	    if (w->wmType & CompWindowTypeDockMask)
+	    if (w->wmType & CompWindowTypeDockMask &&
+		expoGetHideDocks(w->screen->display))
 	    {
 		if (expoGetExpoAnimation (w->screen->display) ==
 		    ExpoAnimationZoom && ((w->screen->x == es->origVX &&
