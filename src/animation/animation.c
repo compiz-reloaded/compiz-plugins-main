@@ -1554,6 +1554,29 @@ relevantForFadeFocus(CompWindow *nw)
     return isWinVisible(nw);
 }
 
+static Bool
+restackInfoStillGood(CompScreen *s, RestackInfo *restackInfo)
+{
+    Bool wStartGood = FALSE;
+    Bool wEndGood = FALSE;
+    Bool wOldAboveGood = FALSE;
+    Bool wRestackedGood = FALSE;
+
+    CompWindow *w;
+    for (w = s->windows; w; w = w->next)
+    {
+	if (restackInfo->wStart == w && isWinVisible(w))
+	    wStartGood = TRUE;
+	if (restackInfo->wEnd == w && isWinVisible(w))
+	    wEndGood = TRUE;
+	if (restackInfo->wRestacked == w && isWinVisible(w))
+	    wRestackedGood = TRUE;
+	if (restackInfo->wOldAbove == w && isWinVisible(w))
+	    wOldAboveGood = TRUE;
+    }
+    return (wStartGood && wEndGood && wOldAboveGood && wRestackedGood);
+}
+
 static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 {
     CompWindow *w;
@@ -1578,6 +1601,15 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		    {
 			continue;
 		    }
+
+		    if (!restackInfoStillGood(s, aw->restackInfo))
+		    {
+			// Don't animate with stale restack info
+			free(aw->restackInfo);
+			aw->restackInfo = NULL;
+			continue;
+		    }
+
 		    // Check if above window is focus-fading
 		    // (like a dialog of an app. window)
 		    // if so, focus-fade this together with the one above
