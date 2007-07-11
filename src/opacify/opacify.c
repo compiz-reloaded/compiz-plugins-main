@@ -463,6 +463,9 @@ static Bool opacifyInitDisplay(CompPlugin * p, CompDisplay * d)
 {
 	OpacifyDisplay *od = (OpacifyDisplay *) malloc(sizeof(OpacifyDisplay));
 
+	if (!od)
+	    return FALSE;
+
 	od->screenPrivateIndex = allocateScreenPrivateIndex(d);
 	if (od->screenPrivateIndex < 0)
 	{
