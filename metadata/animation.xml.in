@@ -207,7 +207,7 @@
 	  <option name="close1_match" type="match">
 	    <_short>Window Match</_short>
 	    <_long>The windows that will be animated.</_long>
-	    <default>((type=Normal | Dialog | ModalDialog | Utility | Unknown) | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(role=toolTipTip | role=qtooltip_label) &amp; !(type=Normal &amp; override_redirect=1)</default>
+	    <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
 	  </option>
 	</subgroup>
 
@@ -401,7 +401,7 @@
 	  <option name="close2_match" type="match">
 	    <_short>Window Match</_short>
 	    <_long>The windows that will be animated.</_long>
-	    <default>((type=Menu | PopupMenu | DropdownMenu | Tooltip | Notification) | role=toolTipTip | role=qtooltip_label | name=sun-awt-X11-XWindowPeer | (type=Normal &amp; override_redirect=1)) &amp; !(name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(name=gnome-screensaver)</default>
+	    <default>(type=Menu | PopupMenu | DropdownMenu | Tooltip | Notification) &amp; !(name=gnome-screensaver)</default>
 	  </option>
 	</subgroup>
       </group>
@@ -599,7 +599,7 @@
 	  <option name="create1_match" type="match">
 	    <_short>Window Match</_short>
 	    <_long>Window that should animate with this effect when created.</_long>
-	    <default>((type=Normal | Dialog | ModalDialog | Utility | Unknown) | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(role=toolTipTip | role=qtooltip_label) &amp; !(type=Normal &amp; override_redirect=1)</default>
+	    <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
 	  </option>
 	</subgroup>
 
@@ -793,7 +793,7 @@
 	  <option name="create2_match" type="match">
 	    <_short>Window Match</_short>
 	    <_long>Window that should animate with this effect when created.</_long>
-	    <default>((type=Menu | PopupMenu | DropdownMenu | Tooltip | Notification) | role=toolTipTip | role=qtooltip_label | name=sun-awt-X11-XWindowPeer | (type=Normal &amp; override_redirect=1)) &amp; !(name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(name=gnome-screensaver)</default>
+	    <default>(type=Menu | PopupMenu | DropdownMenu | Tooltip | Notification) &amp; !(name=gnome-screensaver)</default>
 	  </option>
 	</subgroup>
       </group>
@@ -970,7 +970,7 @@
 	<option name="minimize_match" type="match">
 	  <_short>Window Match</_short>
 	  <_long>The windows that will be animated.</_long>
-	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
+	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
 	</option>
       </group>
 
@@ -1038,7 +1038,7 @@
 	<option name="shade_match" type="match">
 	  <_short>Window Match</_short>
 	  <_long>Window that should animate with this effect when shaded.</_long>
-	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
+	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
 	</option>
       </group>
 
@@ -1078,7 +1078,7 @@
 	<option name="focus_match" type="match">
 	  <_short>Window Match</_short>
 	  <_long>Window that should animate with this effect when focused.</_long>
-	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown | name=sun-awt-X11-XFramePeer | name=sun-awt-X11-XDialogPeer) &amp; !(type=Normal &amp; override_redirect=1)</default>
+	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
 	</option>
       </group>
 

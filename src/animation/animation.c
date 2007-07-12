@@ -145,15 +145,9 @@ static AnimEffect shadeEffectType[] = {
 };
 
 static Bool inline
-isQt3TransientWindow(CompWindow * w)
+isQtTransientWindow(CompWindow * w)
 {
-    return (!w->resName && w->startupId && w->wmType == CompWindowTypeUnknownMask);
-}
-
-static Bool inline
-isQt4TransientWindow(CompWindow * w)
-{
-    return (!w->resName && !w->startupId && w->wmType == CompWindowTypeUnknownMask);
+    return (!w->resName && w->wmType == CompWindowTypeUnknownMask);
 }
 
 // iterate over given list
@@ -1276,6 +1270,75 @@ getHostedOnWin (AnimScreen *as,
     aw->winThisIsPaintedBefore = wHost;
 }
 
+static Bool
+matchWithString(CompWindow *w, const char *matchStr)
+{
+    CompDisplay *d = w->screen->display;
+    CompMatch match;
+
+    matchInit (&match);
+    matchAddFromString (&match, (char *)matchStr);
+    matchUpdate (d, &match);
+
+    return matchEval (&match, w);
+}
+
+// Can be moved to the Workarounds plugin when
+// it is ready to be included and enabled by default in plugins-main.
+static unsigned int
+getActualWinType(CompWindow *w)
+{
+    if (isQtTransientWindow(w))
+	return CompWindowTypeDropdownMenuMask;
+
+    // Match Mozilla (Firefox, Thunderbird, etc.) menus
+    // and Java menus
+    if (matchWithString	(w, "(type=Normal & override_redirect=1) | \
+ name=sun-awt-X11-XMenuWindow | name=sun-awt-X11-XWindowPeer"))
+	return CompWindowTypeDropdownMenuMask;
+
+    // Match Qt3 and Qt4 tooltips, respectively
+    // Requires the Regexp plugin
+    if (matchWithString(w, "role=toolTipTip | role=qtooltip_label"))
+	return CompWindowTypeTooltipMask;
+
+    // Match Java normal windows
+    if (matchWithString(w, "name=sun-awt-X11-XFramePeer"))
+	return CompWindowTypeNormalMask;
+
+    // Match Java dialog windows
+    if (matchWithString(w, "name=sun-awt-X11-XDialogPeer"))
+	return CompWindowTypeDialogMask;
+
+    return w->wmType;
+}
+
+// Can be removed when getActualWinType is moved.
+static Bool
+matchEvalProxy(CompMatch *match, CompWindow *w)
+{
+    Bool result;
+
+    // Backup window type
+    int winType = w->wmType;
+
+    w->wmType = getActualWinType(w);
+
+    result = matchEval(match, w);
+
+    // Restore window type
+    w->wmType = winType;
+
+    return result;
+}
+
+static Bool inline
+otherPluginsActive(AnimScreen *as)
+{
+    return (as->scaleActive || as->switcherActive ||
+	    as->groupTabChangeActive || as->fadeDesktopActive);
+}
+
 static void
 initiateFocusAnimation(CompWindow *w)
 {
@@ -1283,14 +1346,11 @@ initiateFocusAnimation(CompWindow *w)
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    if (aw->curWindowEvent != WindowEventNone ||
-	as->scaleActive || as->switcherActive || 
-	as->groupTabChangeActive || as->fadeDesktopActive)
-    {
+    if (aw->curWindowEvent != WindowEventNone || otherPluginsActive(as))
 	return;
-    }
 
-    if (matchEval (&as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCH].value.match, w) &&
+    if (matchEvalProxy
+	(&as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCH].value.match, w) &&
 	as->focusEffect &&
 	// On unminimization, focus event is fired first.
 	// When this happens and minimize is in progress,
@@ -1596,8 +1656,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		if (aw->restackInfo)
 		{
 		    if (aw->curWindowEvent != WindowEventNone ||
-			as->scaleActive || as->switcherActive || 
-			as->groupTabChangeActive || as->fadeDesktopActive)
+			otherPluginsActive(as))
 		    {
 			continue;
 		    }
@@ -2533,6 +2592,9 @@ animPaintWindow(CompWindow * w,
 	    return FALSE;
 	}
 
+	if (aw->curWindowEvent == WindowEventFocus && otherPluginsActive(as))
+	    postAnimationCleanup(w, TRUE);
+
 	if (playingPolygonEffect(as, aw))
 	{
 	    if (mask & PAINT_WINDOW_TRANSFORMED_MASK)
@@ -2783,7 +2845,8 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    aw->nowShaded = TRUE;
 
 		    if (as->shadeEffect && 
-			matchEval (&as->opt[ANIM_SCREEN_OPTION_SHADE_MATCH].value.match, w))
+			matchEvalProxy
+			(&as->opt[ANIM_SCREEN_OPTION_SHADE_MATCH].value.match, w))
 		    {
 			//IPCS_SetBool(IPCS_OBJECT(w), aw->animatedAtom, TRUE);
 			Bool startingNew = TRUE;
@@ -2853,10 +2916,11 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			addWindowDamage(w);
 		    }
 		}
-		else if (!w->invisible
-			 && as->minimizeEffect
-			 && animGetWindowIconGeometry(w, &aw->icon)
-			 && matchEval (&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value.match, w))
+		else if (!w->invisible &&
+			 as->minimizeEffect &&
+			 animGetWindowIconGeometry(w, &aw->icon) &&
+			 matchEvalProxy
+			 (&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value.match, w))
 		{
 		    // MINIMIZE event!
 
@@ -2950,36 +3014,25 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
-		if (!(w->resName ||
-		      isQt3TransientWindow(w) || isQt4TransientWindow(w)))
+		if (!(w->resName || isQtTransientWindow(w)))
 		    break;
 
 		AnimEffect windowsCloseEffect = AnimEffectNone;
 		int whichClose = 1;	// either 1 or 2
 
-		// Backup window type
-		int winType = w->wmType;
-
-		// Hack to handle Qt transient windows
-		if (isQt3TransientWindow(w) || isQt4TransientWindow(w))
-		{
-		    w->wmType = CompWindowTypeDropdownMenuMask;
-		}
-
 		if (as->close1Effect && 
-		    matchEval (&as->opt[ANIM_SCREEN_OPTION_CLOSE1_MATCH].value.match, w))
+		    matchEvalProxy
+		    (&as->opt[ANIM_SCREEN_OPTION_CLOSE1_MATCH].value.match, w))
 		{
 		    windowsCloseEffect = as->close1Effect;
 		}
 		else if (as->close2Effect && 
-			 matchEval (&as->opt[ANIM_SCREEN_OPTION_CLOSE2_MATCH].value.match, w))
+			 matchEvalProxy
+			 (&as->opt[ANIM_SCREEN_OPTION_CLOSE2_MATCH].value.match, w))
 		{
 		    windowsCloseEffect = as->close2Effect;
 		    whichClose = 2;
 		}
-
-		// Restore window type
-		w->wmType = winType;
 
 		// CLOSE event!
 
@@ -3091,9 +3144,11 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    }
 		}
 		else if ((as->create1Effect &&
-			  matchEval (&as->opt[ANIM_SCREEN_OPTION_CREATE1_MATCH].value.match, w)) ||
+			  matchEvalProxy
+			  (&as->opt[ANIM_SCREEN_OPTION_CREATE1_MATCH].value.match, w)) ||
 			 (as->create2Effect &&
-			  matchEval (&as->opt[ANIM_SCREEN_OPTION_CREATE2_MATCH].value.match, w)))
+			  matchEvalProxy
+			  (&as->opt[ANIM_SCREEN_OPTION_CREATE2_MATCH].value.match, w)))
 		{
 		    // stop the current animation and prevent it from rewinding
 
@@ -3336,7 +3391,8 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    if (!w->invisible &&
 		as->minimizeEffect &&
 		!as->fadeDesktopActive &&
-		matchEval (&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value.match, w))
+		matchEvalProxy
+		(&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value.match, w))
 	    {
 		// UNMINIMIZE event!
 
@@ -3434,7 +3490,8 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    aw->nowShaded = FALSE;
 
 	    if (as->shadeEffect && 
-		matchEval (&as->opt[ANIM_SCREEN_OPTION_SHADE_MATCH].value.match, w))
+		matchEvalProxy
+		(&as->opt[ANIM_SCREEN_OPTION_SHADE_MATCH].value.match, w))
 	    {
 		Bool startingNew = TRUE;
 
@@ -3514,35 +3571,24 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 	    int whichCreate = 1;	// either 1 or 2
 
-	    // Backup window type
-	    int winType = w->wmType;
-
-	    // Hack to handle Qt transient windows
-	    if (isQt3TransientWindow(w) || isQt4TransientWindow(w))
-	    {
-		w->wmType = CompWindowTypeDropdownMenuMask;
-	    }
-
 	    if (as->create1Effect &&
-		matchEval (&as->opt[ANIM_SCREEN_OPTION_CREATE1_MATCH].value.match, w))
+		matchEvalProxy
+		(&as->opt[ANIM_SCREEN_OPTION_CREATE1_MATCH].value.match, w))
 	    {
 		windowsCreateEffect = as->create1Effect;
 	    }
 	    else if (as->create2Effect &&
-		     matchEval (&as->opt[ANIM_SCREEN_OPTION_CREATE2_MATCH].value.match, w))
+		     matchEvalProxy
+		     (&as->opt[ANIM_SCREEN_OPTION_CREATE2_MATCH].value.match, w))
 	    {
 		windowsCreateEffect = as->create2Effect;
 		whichCreate = 2;
 	    }
 
-	    // Restore window type
-	    w->wmType = winType;
-
 	    if (windowsCreateEffect &&
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
-		(w->resName ||
-		 isQt3TransientWindow(w) || isQt4TransientWindow(w)) &&
+		(w->resName || isQtTransientWindow(w)) &&
 		// suppress switcher window
 		// (1st window that opens after switcher becomes active)
 		(!as->switcherActive || as->switcherWinOpeningSuppressed) &&
@@ -3671,7 +3717,7 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 
     // Don't let transient window open anim be interrupted with a resize notify
     if (!(aw->curWindowEvent == WindowEventCreate &&
-	  (isQt3TransientWindow(w) || isQt4TransientWindow(w) ||
+	  (isQtTransientWindow(w) ||
 	   (w->wmType &
 	    (CompWindowTypeDropdownMenuMask |
 	     CompWindowTypePopupMenuMask |
