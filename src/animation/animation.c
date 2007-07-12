@@ -1293,7 +1293,7 @@ getActualWinType(CompWindow *w)
 
     // Match Mozilla (Firefox, Thunderbird, etc.) menus
     // and Java menus
-    if (matchWithString	(w, "(type=Normal & override_redirect=1) | \
+    if (matchWithString (w, "(type=Normal & override_redirect=1) | \
  name=sun-awt-X11-XMenuWindow | name=sun-awt-X11-XWindowPeer"))
 	return CompWindowTypeDropdownMenuMask;
 
@@ -1303,11 +1303,13 @@ getActualWinType(CompWindow *w)
 	return CompWindowTypeTooltipMask;
 
     // Match Java normal windows
-    if (matchWithString(w, "name=sun-awt-X11-XFramePeer"))
+    if (w->resName &&
+	strcmp(w->resName, "sun-awt-X11-XFramePeer") == 0)
 	return CompWindowTypeNormalMask;
 
     // Match Java dialog windows
-    if (matchWithString(w, "name=sun-awt-X11-XDialogPeer"))
+    if (w->resName &&
+	strcmp(w->resName, "sun-awt-X11-XDialogPeer") == 0)
 	return CompWindowTypeDialogMask;
 
     return w->wmType;
