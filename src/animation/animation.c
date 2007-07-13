@@ -2774,10 +2774,14 @@ updateLastClientListStacking(CompScreen *s)
 	Window *list;
 
 	list = realloc (as->lastClientListStacking, sizeof (Window) * n);
-	if (!list)
-	    return;
-
 	as->lastClientListStacking  = list;
+
+	if (!list)
+	{
+	    as->nLastClientListStacking = 0;
+	    return;
+	}
+
 	as->nLastClientListStacking = n;
     }
 
