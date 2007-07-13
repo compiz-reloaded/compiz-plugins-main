@@ -106,6 +106,7 @@ static void reset_opacity(CompScreen * s, Window id)
 
 	OPACIFY_WINDOW(w);
 	ow->opacified = FALSE;
+	addWindowDamage(w);
 	//resetWindowOpacity(w, PL_TEMP_HELLO);
 }
 
