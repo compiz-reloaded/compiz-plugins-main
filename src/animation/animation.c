@@ -87,7 +87,7 @@ CompMetadata animMetadata;
  * elements of these arrays are added or removed.
  */
 
-static AnimEffect minimizeEffectType[] = {
+static AnimEffect minimizeEffects[] = {
     AnimEffectNone,
     AnimEffectRandom,
     AnimEffectBeamUp,
@@ -107,7 +107,7 @@ static AnimEffect minimizeEffectType[] = {
     AnimEffectZoom
 };
 
-static AnimEffect closeEffectType[] = {
+static AnimEffect closeEffects[] = {
     AnimEffectNone,
     AnimEffectRandom,
     AnimEffectBeamUp,
@@ -129,14 +129,14 @@ static AnimEffect closeEffectType[] = {
     AnimEffectZoom
 };
 
-static AnimEffect focusEffectType[] = {
+static AnimEffect focusEffects[] = {
     AnimEffectNone,
     AnimEffectDodge,
     AnimEffectFocusFade,
     AnimEffectWave
 };
 
-static AnimEffect shadeEffectType[] = {
+static AnimEffect shadeEffects[] = {
     AnimEffectNone,
     AnimEffectRandom,
     AnimEffectCurvedFold,
@@ -197,7 +197,7 @@ void defaultMinimizeAnimInit(CompScreen * s, CompWindow * w)
     defaultAnimInit(s, w);
 }
 
-static Bool
+static inline Bool
 defaultLetOthersDrawGeoms (CompScreen *s, CompWindow *w)
 {
     return TRUE;
@@ -238,6 +238,156 @@ animStoreRandomEffectList (CompOptionValue *value,
     }
 
     *targetCount = count;
+}
+
+
+static Bool
+matchWithString(CompWindow *w, const char *matchStr)
+{
+    CompDisplay *d = w->screen->display;
+    CompMatch match;
+
+    matchInit (&match);
+    matchAddFromString (&match, (char *)matchStr);
+    matchUpdate (d, &match);
+
+    return matchEval (&match, w);
+}
+
+// Can be moved to the Workarounds plugin when
+// it is ready to be included and enabled by default in plugins-main.
+static unsigned int
+getActualWinType(CompWindow *w)
+{
+    if (isQtTransientWindow(w))
+	return CompWindowTypeDropdownMenuMask;
+
+    // Match Mozilla (Firefox, Thunderbird, etc.) menus
+    // and Java menus
+    if (matchWithString (w, "(type=Normal & override_redirect=1) | \
+ name=sun-awt-X11-XMenuWindow | name=sun-awt-X11-XWindowPeer"))
+	return CompWindowTypeDropdownMenuMask;
+
+    // Match Qt3 and Qt4 tooltips, respectively
+    // Requires the Regexp plugin
+    if (matchWithString(w, "role=toolTipTip | role=qtooltip_label"))
+	return CompWindowTypeTooltipMask;
+
+    // Match Java normal windows
+    if (w->resName &&
+	strcmp(w->resName, "sun-awt-X11-XFramePeer") == 0)
+	return CompWindowTypeNormalMask;
+
+    // Match Java dialog windows
+    if (w->resName &&
+	strcmp(w->resName, "sun-awt-X11-XDialogPeer") == 0)
+	return CompWindowTypeDialogMask;
+
+    return w->wmType;
+}
+
+// Can be removed when getActualWinType is moved.
+static Bool
+matchEvalProxy(CompMatch *match, CompWindow *w)
+{
+    Bool result;
+
+    // Backup window type
+    int winType = w->wmType;
+
+    w->wmType = getActualWinType(w);
+
+    result = matchEval(match, w);
+
+    // Restore window type
+    w->wmType = winType;
+
+    return result;
+}
+
+// Assumes events in the metadata are in
+// [Open, Close, Minimize, Focus, Shade] order
+// and effects among those are in alphabetical order
+// but with "(Event) None" first and "(Event) Random" last.
+static AnimEffect
+getMatchingAnimSelection (CompWindow *w,
+			  WindowEvent event,
+			  float *duration)
+{
+    ANIM_SCREEN(w->screen);
+
+    if (duration == NULL)
+    {
+	compLogMessage
+	    (w->screen->display, "animation", CompLogLevelError,
+	     "%s:%d: Null duration passed.", __FILE__, __LINE__);
+	return AnimEffectNone;
+    }
+    CompOptionValue *valMatch;
+    CompOptionValue *valEffect;
+    CompOptionValue *valDuration;
+    AnimEffect *effects;
+
+    switch (event)
+    {
+    case WindowEventOpen:
+	effects = closeEffects;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_OPEN_MATCH].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_OPEN_EFFECT].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_OPEN_DURATION].value;
+	break;
+    case WindowEventClose:
+	effects = closeEffects;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_CLOSE_MATCH].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_CLOSE_EFFECT].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_CLOSE_DURATION].value;
+	break;
+    case WindowEventMinimize:
+    case WindowEventUnminimize:
+	effects = minimizeEffects;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_EFFECT].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_DURATION].value;
+	break;
+    case WindowEventFocus:
+	effects = focusEffects;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCH].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_FOCUS_EFFECT].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_FOCUS_DURATION].value;
+	break;
+    case WindowEventShade:
+    case WindowEventUnshade:
+	effects = shadeEffects;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_SHADE_MATCH].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_SHADE_EFFECT].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_SHADE_DURATION].value;
+	break;
+    case WindowEventNone:
+	return AnimEffectNone;
+    }
+
+    int nRows = valMatch->list.nValue;
+    if (nRows != valEffect->list.nValue ||
+	nRows != valDuration->list.nValue)
+    {
+	compLogMessage
+	    (w->screen->display, "animation", CompLogLevelError,
+	     "Number of animation selection effects, durations, matches, and options are not the same.");
+	return AnimEffectNone;
+    }
+
+    // Find the first row that matches this window for this event
+    int i;
+    for (i = 0; i < nRows; i++)
+    {
+	if (!matchEvalProxy (&valMatch->list.value[i].match, w))
+	    continue;
+
+	*duration = valDuration->list.value[i].f;
+
+	return effects[valEffect->list.value[i].i];
+    }
+    return AnimEffectNone;
 }
 
 static inline AnimEffect
@@ -343,7 +493,7 @@ float defaultAnimProgress(AnimWindow * aw)
     forwardProgress = MIN(forwardProgress, 1);
     forwardProgress = MAX(forwardProgress, 0);
 
-    if (aw->curWindowEvent == WindowEventCreate ||
+    if (aw->curWindowEvent == WindowEventOpen ||
 	aw->curWindowEvent == WindowEventUnminimize ||
 	aw->curWindowEvent == WindowEventUnshade ||
 	aw->curWindowEvent == WindowEventFocus)
@@ -364,7 +514,7 @@ float sigmoidAnimProgress(AnimWindow * aw)
 	(sigmoid(forwardProgress) - sigmoid(0)) /
 	(sigmoid(1) - sigmoid(0));
 
-    if (aw->curWindowEvent == WindowEventCreate ||
+    if (aw->curWindowEvent == WindowEventOpen ||
 	aw->curWindowEvent == WindowEventUnminimize ||
 	aw->curWindowEvent == WindowEventUnshade ||
 	aw->curWindowEvent == WindowEventFocus)
@@ -624,52 +774,65 @@ animSetScreenOptions(CompPlugin *plugin,
 
     switch (index)
     {
-    case ANIM_SCREEN_OPTION_MINIMIZE_EFFECT:
-	if (compSetIntOption(o, value))
+    case ANIM_SCREEN_OPTION_OPEN_MATCH:
+	if (compSetOptionList(o, value))
 	{
-	    as->minimizeEffect = minimizeEffectType[o->value.i];
+	    int i;
+	    for (i = 0; i < o->value.list.nValue; i++)
+		matchUpdate (screen->display, &o->value.list.value[i].match);
+	}
+	break;
+    case ANIM_SCREEN_OPTION_CLOSE_MATCH:
+	if (compSetOptionList(o, value))
+	{
+	    int i;
+	    for (i = 0; i < o->value.list.nValue; i++)
+		matchUpdate (screen->display, &o->value.list.value[i].match);
+	}
+	break;
+    case ANIM_SCREEN_OPTION_MINIMIZE_MATCH:
+	if (compSetOptionList(o, value))
+	{
+	    int i;
+	    for (i = 0; i < o->value.list.nValue; i++)
+		matchUpdate (screen->display, &o->value.list.value[i].match);
+	}
+	break;
+    case ANIM_SCREEN_OPTION_FOCUS_MATCH:
+	if (compSetOptionList(o, value))
+	{
+	    int i;
+	    for (i = 0; i < o->value.list.nValue; i++)
+		matchUpdate (screen->display, &o->value.list.value[i].match);
+	}
+	break;
+    case ANIM_SCREEN_OPTION_SHADE_MATCH:
+	if (compSetOptionList(o, value))
+	{
+	    int i;
+	    for (i = 0; i < o->value.list.nValue; i++)
+		matchUpdate (screen->display, &o->value.list.value[i].match);
+	}
+	break;
+    case ANIM_SCREEN_OPTION_OPEN_RANDOM_EFFECTS:
+	if (compSetOptionList(o, value))
+	{
+	    animStoreRandomEffectList (&o->value,
+				       closeEffects + RANDOM_EFFECT_OFFSET,
+				       NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+				       as->openRandomEffects,
+				       &as->nOpenRandomEffects);
 	    return TRUE;
 	}
 	break;
-    case ANIM_SCREEN_OPTION_CLOSE1_EFFECT:
-	if (compSetIntOption(o, value))
+    case ANIM_SCREEN_OPTION_CLOSE_RANDOM_EFFECTS:
+	if (compSetOptionList(o, value))
 	{
-	    as->close1Effect = closeEffectType[o->value.i];
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_CLOSE2_EFFECT:
-	if (compSetIntOption(o, value))
-	{
-	    as->close2Effect = closeEffectType[o->value.i];
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_CREATE1_EFFECT:
-	if (compSetIntOption(o, value))
-	{
-	    as->create1Effect = closeEffectType[o->value.i];
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_CREATE2_EFFECT:
-	if (compSetIntOption(o, value))
-	{
-	    as->create2Effect = closeEffectType[o->value.i];
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_FOCUS_EFFECT:
-	if (compSetIntOption(o, value))
-	{
-	    as->focusEffect = focusEffectType[o->value.i];
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_SHADE_EFFECT:
-	if (compSetIntOption(o, value))
-	{
-	    as->shadeEffect = shadeEffectType[o->value.i];
+	    animStoreRandomEffectList (&o->value,
+				       closeEffects + RANDOM_EFFECT_OFFSET,
+				       NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
+				       as->closeRandomEffects,
+				       &as->nCloseRandomEffects);
 	    return TRUE;
 	}
 	break;
@@ -677,54 +840,10 @@ animSetScreenOptions(CompPlugin *plugin,
 	if (compSetOptionList(o, value))
 	{
 	    animStoreRandomEffectList (&o->value,
-				       minimizeEffectType + RANDOM_EFFECT_OFFSET,
+				       minimizeEffects + RANDOM_EFFECT_OFFSET,
 				       NUM_MINIMIZE_EFFECT - RANDOM_EFFECT_OFFSET,
 				       as->minimizeRandomEffects,
 				       &as->nMinimizeRandomEffects);
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_CLOSE1_RANDOM_EFFECTS:
-	if (compSetOptionList(o, value))
-	{
-	    animStoreRandomEffectList (&o->value,
-				       closeEffectType + RANDOM_EFFECT_OFFSET,
-				       NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
-				       as->close1RandomEffects,
-				       &as->nClose1RandomEffects);
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_CLOSE2_RANDOM_EFFECTS:
-	if (compSetOptionList(o, value))
-	{
-	    animStoreRandomEffectList (&o->value,
-				       closeEffectType + RANDOM_EFFECT_OFFSET,
-				       NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
-				       as->close2RandomEffects,
-				       &as->nClose2RandomEffects);
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_CREATE1_RANDOM_EFFECTS:
-	if (compSetOptionList(o, value))
-	{
-	    animStoreRandomEffectList (&o->value,
-				       closeEffectType + RANDOM_EFFECT_OFFSET,
-				       NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
-				       as->create1RandomEffects,
-				       &as->nCreate1RandomEffects);
-	    return TRUE;
-	}
-	break;
-    case ANIM_SCREEN_OPTION_CREATE2_RANDOM_EFFECTS:
-	if (compSetOptionList(o, value))
-	{
-	    animStoreRandomEffectList (&o->value,
-				       closeEffectType + RANDOM_EFFECT_OFFSET,
-				       NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
-				       as->create2RandomEffects,
-				       &as->nCreate2RandomEffects);
 	    return TRUE;
 	}
 	break;
@@ -732,7 +851,7 @@ animSetScreenOptions(CompPlugin *plugin,
 	if (compSetOptionList(o, value))
 	{
 	    animStoreRandomEffectList (&o->value,
-				       shadeEffectType + RANDOM_EFFECT_OFFSET,
+				       shadeEffects + RANDOM_EFFECT_OFFSET,
 				       NUM_SHADE_EFFECT - RANDOM_EFFECT_OFFSET,
 				       as->shadeRandomEffects,
 				       &as->nShadeRandomEffects);
@@ -748,37 +867,31 @@ animSetScreenOptions(CompPlugin *plugin,
 }
 
 static const CompMetadataOptionInfo animScreenOptionInfo[] = {
-    { "minimize_match", "match", 0, 0, 0 },
-    { "close1_match", "match", 0, 0, 0 },
-    { "close2_match", "match", 0, 0, 0 },
-    { "create1_match", "match", 0, 0, 0 },
-    { "create2_match", "match", 0, 0, 0 },
-    { "focus_match", "match", 0, 0, 0 },
-    { "shade_match", "match", 0, 0, 0 },
-    { "minimize_effect", "int", RESTOSTRING (0, LAST_MINIMIZE_EFFECT), 0, 0 },
-    { "minimize_duration", "float", "<min>0.1</min>", 0, 0 },
+    // Event settings
+    { "open_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
+    { "open_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
+    { "open_match", "list", "<type>match</type>", 0, 0 },
+    { "open_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
+    { "close_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
+    { "close_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
+    { "close_match", "list", "<type>match</type>", 0, 0 },
+    { "close_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
+    { "minimize_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_MINIMIZE_EFFECT), 0, 0 },
+    { "minimize_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
+    { "minimize_match", "list", "<type>match</type>", 0, 0 },
     { "minimize_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_MINIMIZE_EFFECT), 0, 0 },
-    { "close1_effect", "int", RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
-    { "close1_duration", "float", "<min>0.1</min>", 0, 0 },
-    { "close1_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
-    { "create1_effect", "int", RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
-    { "create1_duration", "float", "<min>0.1</min>", 0, 0 },
-    { "create1_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
-    { "close2_effect", "int", RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
-    { "close2_duration", "float", "<min>0.1</min>", 0, 0 },
-    { "close2_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
-    { "create2_effect", "int", RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
-    { "create2_duration", "float", "<min>0.1</min>", 0, 0 },
-    { "create2_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
-    { "focus_effect", "int", RESTOSTRING (0, LAST_FOCUS_EFFECT), 0, 0 },
-    { "focus_duration", "float", "<min>0.1</min>", 0, 0 },
-    { "shade_effect", "int", RESTOSTRING (0, LAST_SHADE_EFFECT), 0, 0 },
-    { "shade_duration", "float", "<min>0.1</min>", 0, 0 },
+    { "focus_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_FOCUS_EFFECT), 0, 0 },
+    { "focus_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
+    { "focus_match", "list", "<type>match</type>", 0, 0 },
+    { "shade_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_SHADE_EFFECT), 0, 0 },
+    { "shade_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
+    { "shade_match", "list", "<type>match</type>", 0, 0 },
     { "shade_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_SHADE_EFFECT), 0, 0 },
-    { "rollup_fixed_interior", "bool", 0, 0, 0 },
+    // Misc. settings
     { "all_random", "bool", 0, 0, 0 },
     { "time_step", "int", "<min>1</min>", 0, 0 },
     { "time_step_intense", "int", "<min>1</min>", 0, 0 },
+    // Effect settings
     { "beam_size", "float", "<min>0.1</min>", 0, 0 },
     { "beam_spacing", "int", "<min>1</min>", 0, 0 },
     { "beam_color", "color", 0, 0, 0 },
@@ -819,13 +932,14 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "magic_lamp_max_waves", "int", "<min>3</min>", 0, 0 },
     { "magic_lamp_amp_min", "float", "<min>200</min>", 0, 0 },
     { "magic_lamp_amp_max", "float", "<min>200</min>", 0, 0 },
-    { "magic_lamp_create_start_width", "int", "<min>0</min>", 0, 0 },
+    { "magic_lamp_open_start_width", "int", "<min>0</min>", 0, 0 },
+    { "rollup_fixed_interior", "bool", 0, 0, 0 },
     { "sidekick_num_rotations", "float", "<min>0</min>", 0, 0 },
     { "sidekick_springiness", "float", "<min>0</min><max>1</max>", 0, 0 },
     { "sidekick_zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },
     { "vacuum_moving_end", "bool", 0, 0, 0 },
     { "vacuum_grid_res", "int", "<min>4</min>", 0, 0 },
-    { "vacuum_create_start_width", "int", "<min>0</min>", 0, 0 },
+    { "vacuum_open_start_width", "int", "<min>0</min>", 0, 0 },
     { "wave_width", "float", "<min>0</min>", 0, 0 },
     { "wave_amp", "float", "<min>0</min>", 0, 0 },
     { "zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },
@@ -1270,70 +1384,6 @@ getHostedOnWin (AnimScreen *as,
     aw->winThisIsPaintedBefore = wHost;
 }
 
-static Bool
-matchWithString(CompWindow *w, const char *matchStr)
-{
-    CompDisplay *d = w->screen->display;
-    CompMatch match;
-
-    matchInit (&match);
-    matchAddFromString (&match, (char *)matchStr);
-    matchUpdate (d, &match);
-
-    return matchEval (&match, w);
-}
-
-// Can be moved to the Workarounds plugin when
-// it is ready to be included and enabled by default in plugins-main.
-static unsigned int
-getActualWinType(CompWindow *w)
-{
-    if (isQtTransientWindow(w))
-	return CompWindowTypeDropdownMenuMask;
-
-    // Match Mozilla (Firefox, Thunderbird, etc.) menus
-    // and Java menus
-    if (matchWithString (w, "(type=Normal & override_redirect=1) | \
- name=sun-awt-X11-XMenuWindow | name=sun-awt-X11-XWindowPeer"))
-	return CompWindowTypeDropdownMenuMask;
-
-    // Match Qt3 and Qt4 tooltips, respectively
-    // Requires the Regexp plugin
-    if (matchWithString(w, "role=toolTipTip | role=qtooltip_label"))
-	return CompWindowTypeTooltipMask;
-
-    // Match Java normal windows
-    if (w->resName &&
-	strcmp(w->resName, "sun-awt-X11-XFramePeer") == 0)
-	return CompWindowTypeNormalMask;
-
-    // Match Java dialog windows
-    if (w->resName &&
-	strcmp(w->resName, "sun-awt-X11-XDialogPeer") == 0)
-	return CompWindowTypeDialogMask;
-
-    return w->wmType;
-}
-
-// Can be removed when getActualWinType is moved.
-static Bool
-matchEvalProxy(CompMatch *match, CompWindow *w)
-{
-    Bool result;
-
-    // Backup window type
-    int winType = w->wmType;
-
-    w->wmType = getActualWinType(w);
-
-    result = matchEval(match, w);
-
-    // Restore window type
-    w->wmType = winType;
-
-    return result;
-}
-
 static Bool inline
 otherPluginsActive(AnimScreen *as)
 {
@@ -1351,15 +1401,17 @@ initiateFocusAnimation(CompWindow *w)
     if (aw->curWindowEvent != WindowEventNone || otherPluginsActive(as))
 	return;
 
-    if (matchEvalProxy
-	(&as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCH].value.match, w) &&
-	as->focusEffect &&
+    float duration = 0.2f;
+    AnimEffect chosenEffect =
+	getMatchingAnimSelection (w, WindowEventFocus, &duration);
+
+    if (chosenEffect &&
 	// On unminimization, focus event is fired first.
 	// When this happens and minimize is in progress,
 	// don't prevent rewinding of minimize when unminimize is fired
 	// right after this focus event.
 	aw->curWindowEvent != WindowEventMinimize &&
-	animEnsureModel(w, WindowEventFocus, as->focusEffect))
+	animEnsureModel(w, WindowEventFocus, chosenEffect))
     {
 	CompWindow *wStart = NULL;
 	CompWindow *wEnd = NULL;
@@ -1376,8 +1428,10 @@ initiateFocusAnimation(CompWindow *w)
 	    raised = restackInfo->raised;
 	}
 
-	if (as->focusEffect == AnimEffectFocusFade ||
-	    as->focusEffect == AnimEffectDodge)
+	// FOCUS event!
+
+	if (chosenEffect == AnimEffectFocusFade ||
+	    chosenEffect == AnimEffectDodge)
 	{
 	    // Find union region of all windows that will be
 	    // faded through by w. If the region is empty, don't
@@ -1418,7 +1472,7 @@ initiateFocusAnimation(CompWindow *w)
 		XUnionRegion(fadeRegion, thisAndSubjectIntersection,
 			     fadeRegion);
 
-		if (as->focusEffect == AnimEffectDodge &&
+		if (chosenEffect == AnimEffectDodge &&
 		    !XEmptyRegion(thisAndSubjectIntersection))
 		{
 		    AnimWindow *adw = GET_ANIM_WINDOW(dw, as);
@@ -1437,8 +1491,8 @@ initiateFocusAnimation(CompWindow *w)
 	    if (XEmptyRegion(fadeRegion))
 		return; // empty -> won't be drawn
 
-	    if ((as->focusEffect == AnimEffectFocusFade ||
-		 as->focusEffect == AnimEffectDodge) && wOldAbove)
+	    if ((chosenEffect == AnimEffectFocusFade ||
+		 chosenEffect == AnimEffectDodge) && wOldAbove)
 	    {
 		// Store this window in the next window
 		// so that this is drawn before that,
@@ -1449,9 +1503,9 @@ initiateFocusAnimation(CompWindow *w)
 	    float dodgeMaxStartProgress =
 		numDodgingWins *
 		as->opt[ANIM_SCREEN_OPTION_DODGE_GAP_RATIO].value.f *
-		as->opt[ANIM_SCREEN_OPTION_FOCUS_DURATION].value.f;
+		duration;
 
-	    if (as->focusEffect == AnimEffectDodge)
+	    if (chosenEffect == AnimEffectDodge)
 	    {
 		CompWindow *wDodgeChainLastVisited = NULL;
 
@@ -1493,8 +1547,7 @@ initiateFocusAnimation(CompWindow *w)
 			transformTotalProgress;
 
 		    adw->animTotalTime =
-			transformTotalProgress * 1000 *
-			as->opt[ANIM_SCREEN_OPTION_FOCUS_DURATION].value.f;
+			transformTotalProgress * 1000 * duration;
 		    adw->animRemainingTime = adw->animTotalTime;
 
 		    if (maxTransformTotalProgress < transformTotalProgress)
@@ -1567,14 +1620,10 @@ initiateFocusAnimation(CompWindow *w)
 		    aw->dodgeChainStart = wDodgeChainLastVisited;
 		}
 
-		aw->animTotalTime = maxTransformTotalProgress * 1000 *
-		    as->opt[ANIM_SCREEN_OPTION_FOCUS_DURATION].value.f;
+		aw->animTotalTime =
+		    maxTransformTotalProgress * 1000 * duration;
 	    }
 	}
-
-	// FOCUS event!
-
-	//printf("FOCUS event! %X\n", (unsigned)w->id);
 
 	if (aw->curWindowEvent != WindowEventNone)
 	{
@@ -1583,10 +1632,9 @@ initiateFocusAnimation(CompWindow *w)
 
 	animActivateEvent(s, TRUE);
 	aw->curWindowEvent = WindowEventFocus;
-	aw->curAnimEffect = as->focusEffect;
-	if (as->focusEffect != AnimEffectDodge)
-	    aw->animTotalTime =
-		as->opt[ANIM_SCREEN_OPTION_FOCUS_DURATION].value.f * 1000;
+	aw->curAnimEffect = chosenEffect;
+	if (chosenEffect != AnimEffectDodge)
+	    aw->animTotalTime = duration * 1000;
 	aw->animRemainingTime = aw->animTotalTime;
 
 	// Store coords in this viewport to omit 3d effect
@@ -1602,14 +1650,15 @@ initiateFocusAnimation(CompWindow *w)
 static Bool
 relevantForFadeFocus(CompWindow *nw)
 {
-    ANIM_SCREEN(nw->screen);
-
     if (!((nw->wmType &
 	   // these two are to be used as "host" windows
 	   // to host the painting of windows being focused
 	   // at a stacking order lower than them
 	   (CompWindowTypeDockMask | CompWindowTypeSplashMask)) ||
-	  matchEval(&as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCH].value.match, nw)))
+	  nw->wmType == CompWindowTypeNormalMask ||
+	  nw->wmType == CompWindowTypeDialogMask ||
+	  nw->wmType == CompWindowTypeUtilMask ||
+	  nw->wmType == CompWindowTypeUnknownMask))
     {
 	return FALSE;
     }
@@ -1645,8 +1694,8 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 
     ANIM_SCREEN(s);
 
-    if (as->focusEffect == AnimEffectFocusFade ||
-	as->focusEffect == AnimEffectDodge)
+    //if (as->focusEffect == AnimEffectFocusFade ||
+    //as->focusEffect == AnimEffectDodge)
     {
 	if (as->aWinWasRestackedJustNow)
 	{
@@ -1710,7 +1759,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		    initiateFocusAnimation(w);
 		}
 	    }
-	    if (as->focusEffect == AnimEffectDodge)
+	    //if (as->focusEffect == AnimEffectDodge)
 	    {
 		for (w = s->reverseWindows; w; w = w->prev)
 		{
@@ -2459,11 +2508,6 @@ animDrawWindowGeometry(CompWindow * w)
 {
     ANIM_WINDOW(w);
 
-    //if (aw->animRemainingTime > 0 &&
-    //	!animEffectProperties[aw->curAnimEffect].letOthersDrawGeoms)
-    //{
-    //printf("animDrawWindowGeometry: %X: coords: %d, %d, %f\n",
-    //       (unsigned)w->id, WIN_X (w), WIN_Y (w), aw->animRemainingTime);
     aw->nDrawGeometryCalls++;
 
     ANIM_SCREEN(w->screen);
@@ -2774,14 +2818,10 @@ updateLastClientListStacking(CompScreen *s)
 	Window *list;
 
 	list = realloc (as->lastClientListStacking, sizeof (Window) * n);
-	as->lastClientListStacking  = list;
-
 	if (!list)
-	{
-	    as->nLastClientListStacking = 0;
 	    return;
-	}
 
+	as->lastClientListStacking  = list;
 	as->nLastClientListStacking = n;
     }
 
@@ -2842,19 +2882,19 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    if (w->pendingUnmaps && onCurrentDesktop(w))	// Normal -> Iconic
 	    {
 		ANIM_WINDOW(w);
+
+		float duration = 0.2f;
+		AnimEffect chosenEffect =
+		    getMatchingAnimSelection (w, WindowEventShade, &duration);
+
 		if (w->shaded)
 		{
 		    // SHADE event!
 
-		    //printf("SHADE event! %X\n", (unsigned)w->id);
-
 		    aw->nowShaded = TRUE;
 
-		    if (as->shadeEffect && 
-			matchEvalProxy
-			(&as->opt[ANIM_SCREEN_OPTION_SHADE_MATCH].value.match, w))
+		    if (chosenEffect)
 		    {
-			//IPCS_SetBool(IPCS_OBJECT(w), aw->animatedAtom, TRUE);
 			Bool startingNew = TRUE;
 
 			if (aw->curWindowEvent != WindowEventNone)
@@ -2886,7 +2926,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    AnimEffect effectToBePlayed;
 			    effectToBePlayed = animGetAnimEffect(
-				as->shadeEffect,
+				chosenEffect,
 				as->shadeRandomEffects,
 				as->nShadeRandomEffects,
 				as->opt[ANIM_SCREEN_OPTION_ALL_RANDOM].value.b);
@@ -2896,9 +2936,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 				break;
 						
 			    aw->curAnimEffect = effectToBePlayed;
-
-			    aw->animTotalTime =
-				as->opt[ANIM_SCREEN_OPTION_SHADE_DURATION].value.f * 1000;
+			    aw->animTotalTime = duration * 1000;
 			    aw->animRemainingTime = aw->animTotalTime;
 			}
 
@@ -2923,94 +2961,93 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    }
 		}
 		else if (!w->invisible &&
-			 as->minimizeEffect &&
-			 animGetWindowIconGeometry(w, &aw->icon) &&
-			 matchEvalProxy
-			 (&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value.match, w))
+			 animGetWindowIconGeometry(w, &aw->icon))
 		{
 		    // MINIMIZE event!
 
-		    //printf("MINIMIZE event! %X\n", (unsigned)w->id);
+		    aw->newState = IconicState;
 
-		    Bool startingNew = TRUE;
+		    chosenEffect =
+			getMatchingAnimSelection (w, WindowEventMinimize, &duration);
 
-		    if (aw->curWindowEvent != WindowEventNone)
+		    if (chosenEffect)
 		    {
-			if (aw->curWindowEvent != WindowEventUnminimize)
+			Bool startingNew = TRUE;
+
+			if (aw->curWindowEvent != WindowEventNone)
+			{
+			    if (aw->curWindowEvent != WindowEventUnminimize)
+			    {
+				postAnimationCleanup(w, TRUE);
+			    }
+			    else
+			    {
+				// Play the unminimize effect backwards from where it left
+				aw->animRemainingTime =
+				    aw->animTotalTime - aw->animRemainingTime;
+
+				// avoid window remains
+				if (aw->animRemainingTime == 0)
+				    aw->animRemainingTime = 1;
+
+				startingNew = FALSE;
+				if (aw->animOverrideProgressDir == 0)
+				    aw->animOverrideProgressDir = 2;
+				else if (aw->animOverrideProgressDir == 1)
+				    aw->animOverrideProgressDir = 0;
+			    }
+			}
+
+			if (startingNew)
+			{
+			    AnimEffect effectToBePlayed;
+						
+			    effectToBePlayed = animGetAnimEffect(
+				chosenEffect,
+				as->minimizeRandomEffects,
+				as->nMinimizeRandomEffects,
+				as->opt[ANIM_SCREEN_OPTION_ALL_RANDOM].value.b);
+
+			    // handle empty random effect list
+			    if (effectToBePlayed == AnimEffectNone)
+				break;
+
+			    aw->curAnimEffect = effectToBePlayed;
+			    aw->animTotalTime = duration * 1000;
+			    aw->animRemainingTime = aw->animTotalTime;
+			}
+
+			animActivateEvent(w->screen, TRUE);
+			aw->curWindowEvent = WindowEventMinimize;
+
+			// Store coords in this viewport to omit 3d effect
+			// painting in other viewports
+			aw->lastKnownCoords.x = w->attrib.x;
+			aw->lastKnownCoords.y = w->attrib.y;
+
+			if (!animEnsureModel
+			    (w, WindowEventMinimize, aw->curAnimEffect))
 			{
 			    postAnimationCleanup(w, TRUE);
 			}
 			else
 			{
-			    // Play the unminimize effect backwards from where it left
-			    aw->animRemainingTime =
-				aw->animTotalTime - aw->animRemainingTime;
+			    /*
+			      if (!animGetWindowIconGeometry(w, &aw->icon))
+			      {
+			      // minimize to bottom-center if there is no window list
+			      aw->icon.x = w->screen->width / 2;
+			      aw->icon.y = w->screen->height;
+			      aw->icon.width = 100;
+			      aw->icon.height = 20;
+			      }
+			    */
 
-			    // avoid window remains
-			    if (aw->animRemainingTime == 0)
-				aw->animRemainingTime = 1;
+			    aw->unmapCnt++;
+			    w->unmapRefCnt++;
 
-			    startingNew = FALSE;
-			    if (aw->animOverrideProgressDir == 0)
-				aw->animOverrideProgressDir = 2;
-			    else if (aw->animOverrideProgressDir == 1)
-				aw->animOverrideProgressDir = 0;
+			    addWindowDamage(w);
 			}
-		    }
-
-		    if (startingNew)
-		    {
-			AnimEffect effectToBePlayed;
-						
-			effectToBePlayed = animGetAnimEffect(
-			    as->minimizeEffect,
-			    as->minimizeRandomEffects,
-			    as->nMinimizeRandomEffects,
-			    as->opt[ANIM_SCREEN_OPTION_ALL_RANDOM].value.b);
-
-			// handle empty random effect list
-			if (effectToBePlayed == AnimEffectNone)
-			    break;
-
-			aw->curAnimEffect = effectToBePlayed;
-
-			aw->animTotalTime =
-			    as->opt[ANIM_SCREEN_OPTION_MINIMIZE_DURATION].value.f * 1000;
-
-			aw->animRemainingTime = aw->animTotalTime;
-		    }
-
-		    aw->newState = IconicState;
-		    animActivateEvent(w->screen, TRUE);
-		    aw->curWindowEvent = WindowEventMinimize;
-
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    aw->lastKnownCoords.x = w->attrib.x;
-		    aw->lastKnownCoords.y = w->attrib.y;
-
-		    if (!animEnsureModel
-			(w, WindowEventMinimize, aw->curAnimEffect))
-		    {
-			postAnimationCleanup(w, TRUE);
-		    }
-		    else
-		    {
-			/*
-			  if (!animGetWindowIconGeometry(w, &aw->icon))
-			  {
-			  // minimize to bottom-center if there is no window list
-			  aw->icon.x = w->screen->width / 2;
-			  aw->icon.y = w->screen->height;
-			  aw->icon.width = 100;
-			  aw->icon.height = 20;
-			  }
-			*/
-
-			aw->unmapCnt++;
-			w->unmapRefCnt++;
-
-			addWindowDamage(w);
 		    }
 		}
 	    }
@@ -3023,42 +3060,30 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		if (!(w->resName || isQtTransientWindow(w)))
 		    break;
 
-		AnimEffect windowsCloseEffect = AnimEffectNone;
-		int whichClose = 1;	// either 1 or 2
-
-		if (as->close1Effect && 
-		    matchEvalProxy
-		    (&as->opt[ANIM_SCREEN_OPTION_CLOSE1_MATCH].value.match, w))
-		{
-		    windowsCloseEffect = as->close1Effect;
-		}
-		else if (as->close2Effect && 
-			 matchEvalProxy
-			 (&as->opt[ANIM_SCREEN_OPTION_CLOSE2_MATCH].value.match, w))
-		{
-		    windowsCloseEffect = as->close2Effect;
-		    whichClose = 2;
-		}
+		float duration = 0.2f;
+		AnimEffect chosenEffect =
+		    getMatchingAnimSelection (w, WindowEventClose, &duration);
 
 		// CLOSE event!
 
-		if (windowsCloseEffect)
+		aw->state = NormalState;
+		aw->newState = WithdrawnState;
+
+		if (chosenEffect)
 		{
 		    int tmpSteps = 0;
-
-		    //printf("CLOSE event! %X\n", (unsigned)w->id);
 
 		    Bool startingNew = TRUE;
 
 		    if (aw->animRemainingTime > 0 &&
-			aw->curWindowEvent != WindowEventCreate)
+			aw->curWindowEvent != WindowEventOpen)
 		    {
 			tmpSteps = aw->animRemainingTime;
 			aw->animRemainingTime = 0;
 		    }
 		    if (aw->curWindowEvent != WindowEventNone)
 		    {
-			if (aw->curWindowEvent == WindowEventCreate)
+			if (aw->curWindowEvent == WindowEventOpen)
 			{
 			    // Play the create effect backward from where it left
 			    aw->animRemainingTime =
@@ -3092,11 +3117,9 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    {
 			AnimEffect effectToBePlayed;
 			effectToBePlayed = animGetAnimEffect(
-			    windowsCloseEffect,
-			    (whichClose == 1) ? as->close1RandomEffects : 
-			    as->close2RandomEffects,
-			    (whichClose == 1) ? as->nClose1RandomEffects :
-			    as->nClose2RandomEffects,
+			    chosenEffect,
+			    as->closeRandomEffects,
+			    as->nCloseRandomEffects,
 			    as->opt[ANIM_SCREEN_OPTION_ALL_RANDOM].value.b);
 
 			// handle empty random effect list
@@ -3104,17 +3127,10 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			    break;
 					
 			aw->curAnimEffect = effectToBePlayed;
-
-			aw->animTotalTime =	
-			    as->opt[whichClose == 1 ?
-				    ANIM_SCREEN_OPTION_CLOSE1_DURATION :
-				    ANIM_SCREEN_OPTION_CLOSE2_DURATION].value.f * 1000;
-
+			aw->animTotalTime = duration * 1000;
 			aw->animRemainingTime = aw->animTotalTime;
 		    }
 
-		    aw->state = NormalState;
-		    aw->newState = WithdrawnState;
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventClose;
 
@@ -3137,11 +3153,11 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			if (aw->curAnimEffect == AnimEffectMagicLamp)
 			    aw->icon.width = 
 				MAX(aw->icon.width,
-				    as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_CREATE_START_WIDTH].value.i);
+				    as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_OPEN_START_WIDTH].value.i);
 			else if (aw->curAnimEffect == AnimEffectVacuum)
 			    aw->icon.width =
 				MAX(aw->icon.width,
-				    as->opt[ANIM_SCREEN_OPTION_VACUUM_CREATE_START_WIDTH].value.i);
+				    as->opt[ANIM_SCREEN_OPTION_VACUUM_OPEN_START_WIDTH].value.i);
 
 			aw->unmapCnt++;
 			w->unmapRefCnt++;
@@ -3149,17 +3165,12 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			addWindowDamage(w);
 		    }
 		}
-		else if ((as->create1Effect &&
-			  matchEvalProxy
-			  (&as->opt[ANIM_SCREEN_OPTION_CREATE1_MATCH].value.match, w)) ||
-			 (as->create2Effect &&
-			  matchEvalProxy
-			  (&as->opt[ANIM_SCREEN_OPTION_CREATE2_MATCH].value.match, w)))
+		else if (getMatchingAnimSelection (w, WindowEventOpen, &duration))
 		{
 		    // stop the current animation and prevent it from rewinding
 
 		    if (aw->animRemainingTime > 0 &&
-			aw->curWindowEvent != WindowEventCreate)
+			aw->curWindowEvent != WindowEventOpen)
 		    {
 			aw->animRemainingTime = 0;
 		    }
@@ -3169,10 +3180,8 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			postAnimationCleanup(w, TRUE);
 		    }
 		    // set some properties to make sure this window will use the
-		    // correct create effect the next time it's "created"
+		    // correct open effect the next time it's "opened"
 
-		    aw->state = NormalState;
-		    aw->newState = WithdrawnState;
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventClose;
 
@@ -3367,12 +3376,15 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	{
 	    ad->activeWindow = d->activeWindow;
 	    w = findWindowAtDisplay(d, d->activeWindow);
-			
+
 	    if (w)
 	    {
-		ANIM_SCREEN(w->screen);
-		if (!(as->focusEffect == AnimEffectFocusFade ||
-		      as->focusEffect == AnimEffectDodge))
+		float duration = 0.2f;
+		AnimEffect chosenEffect =
+		    getMatchingAnimSelection (w, WindowEventFocus, &duration);
+
+		if (!(chosenEffect == AnimEffectFocusFade ||
+		      chosenEffect == AnimEffectDodge))
 		    initiateFocusAnimation(w);
 	    }
 	}
@@ -3388,23 +3400,24 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
     ANIM_SCREEN(w->screen);
 
-    if (initial)				// Unminimize or Create
+    if (initial)				// Unminimize or Open
     {
 	ANIM_WINDOW(w);
 
+	float duration = 0.2f;
+	AnimEffect chosenEffect;
+
 	if (aw->state == IconicState)
 	{
+	    chosenEffect =
+		getMatchingAnimSelection (w, WindowEventUnminimize, &duration);
+
 	    if (!w->invisible &&
-		as->minimizeEffect &&
-		!as->fadeDesktopActive &&
-		matchEvalProxy
-		(&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value.match, w))
+		chosenEffect &&
+		!as->fadeDesktopActive)
 	    {
 		// UNMINIMIZE event!
 
-		//printf("UNMINIMIZE event! %X\n", (unsigned)w->id);
-
-		//IPCS_SetBool(IPCS_OBJECT(w), aw->animatedAtom, TRUE);
 		Bool startingNew = TRUE;
 
 		if (aw->curWindowEvent != WindowEventNone)
@@ -3437,7 +3450,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    AnimEffect effectToBePlayed;
 		    effectToBePlayed = animGetAnimEffect(
-			as->minimizeEffect,
+			chosenEffect,
 			as->minimizeRandomEffects,
 			as->nMinimizeRandomEffects,
 			as->opt[ANIM_SCREEN_OPTION_ALL_RANDOM].value.b);
@@ -3449,10 +3462,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (playEffect)
 		    {
 			aw->curAnimEffect = effectToBePlayed;
-
-			aw->animTotalTime =
-			    as->opt[ANIM_SCREEN_OPTION_MINIMIZE_DURATION].value.f * 1000;
-
+			aw->animTotalTime = duration * 1000;
 			aw->animRemainingTime = aw->animTotalTime;
 		    }
 		}
@@ -3489,15 +3499,14 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	}
 	else if (aw->nowShaded)
 	{
-	    // UNSHADE event!
-	    //printf("UNSHADE event! %X\n", (unsigned)w->id);
+	    chosenEffect =
+		getMatchingAnimSelection (w, WindowEventUnshade, &duration);
 
-	    //IPCS_SetBool(IPCS_OBJECT(w), aw->animatedAtom, TRUE);
+	    // UNSHADE event!
+
 	    aw->nowShaded = FALSE;
 
-	    if (as->shadeEffect && 
-		matchEvalProxy
-		(&as->opt[ANIM_SCREEN_OPTION_SHADE_MATCH].value.match, w))
+	    if (chosenEffect)
 	    {
 		Bool startingNew = TRUE;
 
@@ -3531,7 +3540,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    AnimEffect effectToBePlayed;
 		    effectToBePlayed = animGetAnimEffect(
-			as->shadeEffect,
+			chosenEffect,
 			as->shadeRandomEffects,
 			as->nShadeRandomEffects,
 			as->opt[ANIM_SCREEN_OPTION_ALL_RANDOM].value.b);
@@ -3543,9 +3552,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (playEffect)
 		    {
 			aw->curAnimEffect = effectToBePlayed;
-
-			aw->animTotalTime =
-			    as->opt[ANIM_SCREEN_OPTION_SHADE_DURATION].value.f * 1000;
+			aw->animTotalTime = duration * 1000;
 			aw->animRemainingTime = aw->animTotalTime;
 		    }
 		}
@@ -3573,25 +3580,13 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	{
 	    aw->created = TRUE;
 
-	    AnimEffect windowsCreateEffect = AnimEffectNone;
+	    float duration = 0.2f;
+	    AnimEffect chosenEffect =
+		getMatchingAnimSelection (w, WindowEventOpen, &duration);
 
-	    int whichCreate = 1;	// either 1 or 2
+	    // OPEN event!
 
-	    if (as->create1Effect &&
-		matchEvalProxy
-		(&as->opt[ANIM_SCREEN_OPTION_CREATE1_MATCH].value.match, w))
-	    {
-		windowsCreateEffect = as->create1Effect;
-	    }
-	    else if (as->create2Effect &&
-		     matchEvalProxy
-		     (&as->opt[ANIM_SCREEN_OPTION_CREATE2_MATCH].value.match, w))
-	    {
-		windowsCreateEffect = as->create2Effect;
-		whichCreate = 2;
-	    }
-
-	    if (windowsCreateEffect &&
+	    if (chosenEffect &&
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
 		(w->resName || isQtTransientWindow(w)) &&
@@ -3600,10 +3595,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		(!as->switcherActive || as->switcherWinOpeningSuppressed) &&
 		getMousePointerXY(w->screen, &aw->icon.x, &aw->icon.y))
 	    {
-		// CREATE event!
-
-		//printf("CREATE event! %X\n", (unsigned)w->id);
-
 		Bool startingNew = TRUE;
 
 		if (aw->curWindowEvent != WindowEventNone)
@@ -3636,11 +3627,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    AnimEffect effectToBePlayed;
 		    effectToBePlayed = animGetAnimEffect(
-			windowsCreateEffect,
-			(whichCreate == 1) ? as->create1RandomEffects :
-			as->create2RandomEffects,
-			(whichCreate == 1) ? as->nCreate1RandomEffects :
-			as->nCreate2RandomEffects,
+			chosenEffect,
+			as->openRandomEffects,
+			as->nOpenRandomEffects,
 			as->opt[ANIM_SCREEN_OPTION_ALL_RANDOM].value.b);
 
 		    // handle empty random effect list
@@ -3650,12 +3639,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (playEffect)
 		    {
 			aw->curAnimEffect = effectToBePlayed;
-
-			aw->animTotalTime =
-			    as->opt[whichCreate == 1 ?
-				    ANIM_SCREEN_OPTION_CREATE1_DURATION	:
-				    ANIM_SCREEN_OPTION_CREATE2_DURATION].value.f * 1000;
-
+			aw->animTotalTime = duration * 1000;
 			aw->animRemainingTime = aw->animTotalTime;
 		    }
 		}
@@ -3663,7 +3647,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		if (playEffect)
 		{
 		    animActivateEvent(w->screen, TRUE);
-		    aw->curWindowEvent = WindowEventCreate;
+		    aw->curWindowEvent = WindowEventOpen;
 
 		    aw->icon.width = FAKE_ICON_SIZE;
 		    aw->icon.height = FAKE_ICON_SIZE;
@@ -3671,16 +3655,14 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (aw->curAnimEffect == AnimEffectMagicLamp)
 			aw->icon.width = 
 			    MAX(aw->icon.width,
-				as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_CREATE_START_WIDTH].value.i);
+				as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_OPEN_START_WIDTH].value.i);
 		    else if (aw->curAnimEffect == AnimEffectVacuum)
 			aw->icon.width =
 			    MAX(aw->icon.width,
-				as->opt[ANIM_SCREEN_OPTION_VACUUM_CREATE_START_WIDTH].value.i);
+				as->opt[ANIM_SCREEN_OPTION_VACUUM_OPEN_START_WIDTH].value.i);
 
 		    aw->icon.x -= aw->icon.width / 2;
 		    aw->icon.y -= aw->icon.height / 2;
-
-		    aw->state = IconicState;	// we're doing this as a hack, it may not be necessary
 
 		    // Store coords in this viewport to omit 3d effect
 		    // painting in other viewports
@@ -3689,7 +3671,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			aw->lastKnownCoords.x = w->attrib.x;
 			aw->lastKnownCoords.y = w->attrib.y;
 		    }
-		    if (animEnsureModel(w, WindowEventCreate, aw->curAnimEffect))
+		    if (animEnsureModel(w, WindowEventOpen, aw->curAnimEffect))
 		    {
 			addWindowDamage(w);
 		    }
@@ -3722,7 +3704,7 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
     ANIM_WINDOW(w);
 
     // Don't let transient window open anim be interrupted with a resize notify
-    if (!(aw->curWindowEvent == WindowEventCreate &&
+    if (!(aw->curWindowEvent == WindowEventOpen &&
 	  (isQtTransientWindow(w) ||
 	   (w->wmType &
 	    (CompWindowTypeDropdownMenuMask |
@@ -3944,8 +3926,9 @@ static void animFiniDisplay(CompPlugin * p, CompDisplay * d)
 static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 {
     AnimScreen *as;
-	
-    ANIM_DISPLAY(s->display);
+    CompDisplay *d = s->display;
+
+    ANIM_DISPLAY(d);
 
     as = calloc(1, sizeof(AnimScreen));
     if (!as)
@@ -3971,54 +3954,30 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 
     as->animInProgress = FALSE;
 
-    as->minimizeEffect = minimizeEffectType[
-	as->opt[ANIM_SCREEN_OPTION_MINIMIZE_EFFECT].value.i];
-    as->create1Effect = closeEffectType[
-	as->opt[ANIM_SCREEN_OPTION_CREATE1_EFFECT].value.i];
-    as->create2Effect = closeEffectType[
-	as->opt[ANIM_SCREEN_OPTION_CREATE2_EFFECT].value.i];
-    as->close1Effect = closeEffectType[
-	as->opt[ANIM_SCREEN_OPTION_CLOSE1_EFFECT].value.i];
-    as->close2Effect = closeEffectType[
-	as->opt[ANIM_SCREEN_OPTION_CLOSE2_EFFECT].value.i];
-    as->focusEffect = focusEffectType[
-	as->opt[ANIM_SCREEN_OPTION_FOCUS_EFFECT].value.i];
-    as->shadeEffect = shadeEffectType[
-	as->opt[ANIM_SCREEN_OPTION_SHADE_EFFECT].value.i];
-	
     animStoreRandomEffectList (
 	&as->opt[ANIM_SCREEN_OPTION_MINIMIZE_RANDOM_EFFECTS].value,
-	minimizeEffectType + RANDOM_EFFECT_OFFSET,
+	minimizeEffects + RANDOM_EFFECT_OFFSET,
 	NUM_MINIMIZE_EFFECT - RANDOM_EFFECT_OFFSET,
 	as->minimizeRandomEffects,
 	&as->nMinimizeRandomEffects);
+
     animStoreRandomEffectList (
-	&as->opt[ANIM_SCREEN_OPTION_CLOSE1_RANDOM_EFFECTS].value,
-	closeEffectType + RANDOM_EFFECT_OFFSET,
+	&as->opt[ANIM_SCREEN_OPTION_CLOSE_RANDOM_EFFECTS].value,
+	closeEffects + RANDOM_EFFECT_OFFSET,
 	NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
-	as->close1RandomEffects,
-	&as->nClose1RandomEffects);
+	as->closeRandomEffects,
+	&as->nCloseRandomEffects);
+
     animStoreRandomEffectList (
-	&as->opt[ANIM_SCREEN_OPTION_CLOSE2_RANDOM_EFFECTS].value,
-	closeEffectType + RANDOM_EFFECT_OFFSET,
+	&as->opt[ANIM_SCREEN_OPTION_OPEN_RANDOM_EFFECTS].value,
+	closeEffects + RANDOM_EFFECT_OFFSET,
 	NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
-	as->close2RandomEffects,
-	&as->nClose2RandomEffects);
-    animStoreRandomEffectList (
-	&as->opt[ANIM_SCREEN_OPTION_CREATE1_RANDOM_EFFECTS].value,
-	closeEffectType + RANDOM_EFFECT_OFFSET,
-	NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
-	as->create1RandomEffects,
-	&as->nCreate1RandomEffects);
-    animStoreRandomEffectList (
-	&as->opt[ANIM_SCREEN_OPTION_CREATE2_RANDOM_EFFECTS].value,
-	closeEffectType + RANDOM_EFFECT_OFFSET,
-	NUM_CLOSE_EFFECT - RANDOM_EFFECT_OFFSET,
-	as->create2RandomEffects,
-	&as->nCreate2RandomEffects);
+	as->openRandomEffects,
+	&as->nOpenRandomEffects);
+
     animStoreRandomEffectList (
 	&as->opt[ANIM_SCREEN_OPTION_SHADE_RANDOM_EFFECTS].value,
-	shadeEffectType + RANDOM_EFFECT_OFFSET,
+	shadeEffects + RANDOM_EFFECT_OFFSET,
 	NUM_SHADE_EFFECT - RANDOM_EFFECT_OFFSET,
 	as->shadeRandomEffects,
 	&as->nShadeRandomEffects);
@@ -4028,9 +3987,6 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     as->scaleActive = FALSE;
     as->fadeDesktopActive = FALSE;
 
-    as->lastClientListStacking = NULL;
-    as->nLastClientListStacking = 0;
-
     WRAP(as, s, preparePaintScreen, animPreparePaintScreen);
     WRAP(as, s, donePaintScreen, animDonePaintScreen);
     WRAP(as, s, paintOutput, animPaintOutput);
@@ -4038,7 +3994,6 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     WRAP(as, s, damageWindowRect, animDamageWindowRect);
     WRAP(as, s, addWindowGeometry, animAddWindowGeometry);
     WRAP(as, s, drawWindowTexture, animDrawWindowTexture);
-    //WRAP(as, s, drawWindowGeometry, animDrawWindowGeometry);
     WRAP(as, s, windowResizeNotify, animWindowResizeNotify);
     WRAP(as, s, windowMoveNotify, animWindowMoveNotify);
     WRAP(as, s, windowGrabNotify, animWindowGrabNotify);
@@ -4070,7 +4025,6 @@ static void animFiniScreen(CompPlugin * p, CompScreen * s)
     UNWRAP(as, s, damageWindowRect);
     UNWRAP(as, s, addWindowGeometry);
     UNWRAP(as, s, drawWindowTexture);
-    //UNWRAP(as, s, drawWindowGeometry);
     UNWRAP(as, s, windowResizeNotify);
     UNWRAP(as, s, windowMoveNotify);
     UNWRAP(as, s, windowGrabNotify);

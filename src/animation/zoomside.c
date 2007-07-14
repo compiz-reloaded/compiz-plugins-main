@@ -79,7 +79,7 @@ void fxZoomInit(CompScreen * s, CompWindow * w)
 	    aw->curWindowEvent == WindowEventUnminimize) &&
 	   as->opt[ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER].value.i ==
 	   ZoomFromCenterMin) ||
-	  ((aw->curWindowEvent == WindowEventCreate ||
+	  ((aw->curWindowEvent == WindowEventOpen ||
 	    aw->curWindowEvent == WindowEventClose) &&
 	   as->opt[ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER].value.i ==
 	   ZoomFromCenterCreate))) ||
@@ -90,7 +90,7 @@ void fxZoomInit(CompScreen * s, CompWindow * w)
 	    aw->curWindowEvent == WindowEventUnminimize) &&
 	   as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i ==
 	   ZoomFromCenterMin) ||
-	  ((aw->curWindowEvent == WindowEventCreate ||
+	  ((aw->curWindowEvent == WindowEventOpen ||
 	    aw->curWindowEvent == WindowEventClose) &&
 	   as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i ==
 	   ZoomFromCenterCreate))))
@@ -103,14 +103,14 @@ void fxZoomInit(CompScreen * s, CompWindow * w)
 
     // allow extra time for spring damping / deceleration
     if ((aw->curWindowEvent == WindowEventUnminimize ||
-	 aw->curWindowEvent == WindowEventCreate) &&
+	 aw->curWindowEvent == WindowEventOpen) &&
 	fxZoomGetSpringiness(as, aw) > 1e-4)
     {
 	aw->animTotalTime /= SPRINGY_ZOOM_PERCEIVED_T;
     }
     else if ((aw->curAnimEffect == AnimEffectZoom ||
 	      aw->curAnimEffect == AnimEffectSidekick) &&
-	     (aw->curWindowEvent == WindowEventCreate ||
+	     (aw->curWindowEvent == WindowEventOpen ||
 	      aw->curWindowEvent == WindowEventClose))
     {
 	aw->animTotalTime /= NONSPRINGY_ZOOM_PERCEIVED_T;
@@ -141,13 +141,13 @@ void fxZoomAnimProgress(AnimScreen * as,
     int animProgressDir = 1;
 
     if (aw->curWindowEvent == WindowEventUnminimize ||
-	aw->curWindowEvent == WindowEventCreate)
+	aw->curWindowEvent == WindowEventOpen)
 	animProgressDir = 2;
     if (aw->animOverrideProgressDir != 0)
 	animProgressDir = aw->animOverrideProgressDir;
     if ((animProgressDir == 1 &&
 	 (aw->curWindowEvent == WindowEventUnminimize ||
-	  aw->curWindowEvent == WindowEventCreate)) ||
+	  aw->curWindowEvent == WindowEventOpen)) ||
 	(animProgressDir == 2 &&
 	 (aw->curWindowEvent == WindowEventMinimize ||
 	  aw->curWindowEvent == WindowEventClose)))
@@ -171,7 +171,7 @@ void fxZoomAnimProgress(AnimScreen * as,
 
 	// springy only when appearing
 	if ((aw->curWindowEvent == WindowEventUnminimize ||
-	     aw->curWindowEvent == WindowEventCreate) &&
+	     aw->curWindowEvent == WindowEventOpen) &&
 	    !neverSpringy)
 	{
 	    springiness = fxZoomGetSpringiness(as, aw);
@@ -203,14 +203,14 @@ void fxZoomAnimProgress(AnimScreen * as,
 	    *moveProgress = nonSpringyProgress;
 	}
 	if (aw->curWindowEvent == WindowEventUnminimize ||
-	    aw->curWindowEvent == WindowEventCreate)
+	    aw->curWindowEvent == WindowEventOpen)
 	    *moveProgress = 1 - *moveProgress;
 	if (backwards)
 	    *moveProgress = 1 - *moveProgress;
 
 	float scProgress = nonSpringyProgress;
 	if (aw->curWindowEvent == WindowEventUnminimize ||
-	    aw->curWindowEvent == WindowEventCreate)
+	    aw->curWindowEvent == WindowEventOpen)
 	    scProgress = 1 - scProgress;
 	if (backwards)
 	    scProgress = 1 - scProgress;
@@ -284,7 +284,7 @@ fxZoomUpdateWindowTransform(CompScreen *s, CompWindow *w, CompTransform *wTransf
     if (fxZoomGetSpringiness(as, aw) == 0.0f &&
 	(aw->curAnimEffect == AnimEffectZoom ||
 	 aw->curAnimEffect == AnimEffectSidekick) &&
-	(aw->curWindowEvent == WindowEventCreate ||
+	(aw->curWindowEvent == WindowEventOpen ||
 	 aw->curWindowEvent == WindowEventClose))
     {
 	matrixTranslate (wTransform,

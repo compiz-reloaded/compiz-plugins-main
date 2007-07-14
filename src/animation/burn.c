@@ -295,7 +295,7 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 
     stepSize = new - old;
 
-    if (aw->curWindowEvent == WindowEventCreate ||
+    if (aw->curWindowEvent == WindowEventOpen ||
 	aw->curWindowEvent == WindowEventUnminimize ||
 	aw->curWindowEvent == WindowEventUnshade)
     {

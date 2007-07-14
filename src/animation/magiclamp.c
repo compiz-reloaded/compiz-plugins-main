@@ -296,7 +296,7 @@ Bool fxMagicLampModelStep(CompScreen * s, CompWindow * w, float time)
 
     Model *model = aw->model;
 
-    if ((aw->curWindowEvent == WindowEventCreate ||
+    if ((aw->curWindowEvent == WindowEventOpen ||
 	 aw->curWindowEvent == WindowEventClose) &&
 	((aw->curAnimEffect == AnimEffectMagicLamp &&
 	  as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_MOVING_END].value.b) ||

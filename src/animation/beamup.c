@@ -199,7 +199,7 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 
     stepSize = new - old;
 
-    if (aw->curWindowEvent == WindowEventCreate ||
+    if (aw->curWindowEvent == WindowEventOpen ||
 	aw->curWindowEvent == WindowEventUnminimize ||
 	aw->curWindowEvent == WindowEventUnshade)
     {
@@ -286,7 +286,7 @@ fxBeamupUpdateWindowAttrib(AnimScreen * as,
     forwardProgress = MIN(forwardProgress, 1);
     forwardProgress = MAX(forwardProgress, 0);
 
-    if (aw->curWindowEvent == WindowEventCreate ||
+    if (aw->curWindowEvent == WindowEventOpen ||
 	aw->curWindowEvent == WindowEventUnminimize)
     {
 	forwardProgress = forwardProgress * forwardProgress;

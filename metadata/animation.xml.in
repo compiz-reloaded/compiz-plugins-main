@@ -13,18 +13,25 @@
 	<plugin>fade</plugin>
       </relation>
     </deps>
+
     <screen>
+
       <group>
 	<_short>Close Animation</_short>
 
 	<subgroup>
-	  <_short>Close Animation (Dialogs &amp; Windows)</_short>
-	  <option name="close1_effect" type="int">
+	  <_short>Animation Selection</_short>
+	  <option name="close_effect" type="list">
 	    <_short>Close Effect</_short>
 	    <_long>The animation effect shown when closing a window.</_long>
+	    <type>int</type>
 	    <min>0</min>
 	    <max>18</max>
-	    <default>18</default>
+	    <default>
+	      <value>18</value>
+	      <value>8</value>
+	      <value>8</value>
+	    </default>
 	    <desc>
 	      <value>0</value>
 	      <_name>None</_name>
@@ -102,211 +109,46 @@
 	      <_name>Zoom</_name>
 	    </desc>
 	  </option>
-	  <option name="close1_duration" type="float">
-	    <_short>Animation Duration</_short>
+	  <option name="close_duration" type="list">
+	    <_short>Duration</_short>
 	    <_long>Animation duration in seconds for close effect.</_long>
-	    <default>0.2</default>
+	    <type>float</type>
 	    <min>0.1</min>
 	    <max>10</max>
-	    <precision>0.02</precision>
-	  </option>
-	  <option name="close1_random_effects" type="list">
-	    <_short>Random Effect Pool</_short>
-	    <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list. If the list is empty, the default effect will be used.</_long>
-	    <type>int</type>
-	    <min>0</min>
-	    <max>16</max>
+	    <precision>0.01</precision>
 	    <default>
-	      <value>0</value>
-	      <value>1</value>
-	      <value>2</value>
-	      <value>3</value>
-	      <value>4</value>
-	      <value>5</value>
-	      <value>6</value>
-	      <value>7</value>
-	      <value>8</value>
-	      <value>9</value>
-	      <value>10</value>
-	      <value>11</value>
-	      <value>12</value>
-	      <value>13</value>
-	      <value>14</value>
-	      <value>15</value>
-	      <value>16</value>
+	      <value>0.2</value>
+	      <value>0.15</value>
+	      <value>0.15</value>
 	    </default>
-	    <desc>
-	      <value>0</value>
-	      <_name>Beam Up</_name>
-	    </desc>
-	    <desc>
-	      <value>1</value>
-	      <_name>Burn</_name>
-	    </desc>
-	    <desc>
-	      <value>2</value>
-	      <_name>Curved Fold</_name>
-	    </desc>
-	    <desc>
-	      <value>3</value>
-	      <_name>Domino</_name>
-	    </desc>
-	    <desc>
-	      <value>4</value>
-	      <_name>Dream</_name>
-	    </desc>
-	    <desc>
-	      <value>5</value>
-	      <_name>Explode</_name>
-	    </desc>
-	    <desc>
-	      <value>6</value>
-	      <_name>Fade</_name>
-	    </desc>
-	    <desc>
-	      <value>7</value>
-	      <_name>Glide 1</_name>
-	    </desc>
-	    <desc>
-	      <value>8</value>
-	      <_name>Glide 2</_name>
-	    </desc>
-	    <desc>
-	      <value>9</value>
-	      <_name>Horizontal Folds</_name>
-	    </desc>
-	    <desc>
-	      <value>10</value>
-	      <_name>Leaf Spread</_name>
-	    </desc>
-	    <desc>
-	      <value>11</value>
-	      <_name>Magic Lamp</_name>
-	    </desc>
-	    <desc>
-	      <value>12</value>
-	      <_name>Razr</_name>
-	    </desc>
-	    <desc>
-	      <value>13</value>
-	      <_name>Sidekick</_name>
-	    </desc>
-	    <desc>
-	      <value>14</value>
-	      <_name>Vacuum</_name>
-	    </desc>
-	    <desc>
-	      <value>15</value>
-	      <_name>Wave</_name>
-	    </desc>
-	    <desc>
-	      <value>16</value>
-	      <_name>Zoom</_name>
-	    </desc>
 	  </option>
-	  <option name="close1_match" type="match">
+	  <option name="close_match" type="list">
 	    <_short>Window Match</_short>
 	    <_long>The windows that will be animated.</_long>
-	    <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
+	    <type>match</type>
+	    <default>
+	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</value>
+	      <value>(type=Menu | PopupMenu | DropdownMenu) &amp; !(name=gnome-screensaver)</value>
+	      <value>(type=Tooltip | Notification)</value>
+	    </default>
+	  </option>
+	  <option name="close_options" type="list">
+	    <_short> </_short>
+	    <_long>(This part will be used in the near future. This place-holder is here now to prevent problems when it starts being used.)</_long>
+	    <type>string</type>
+	    <default>
+	      <value></value>
+	      <value></value>
+	      <value></value>
+	    </default>
 	  </option>
 	</subgroup>
 
 	<subgroup>
-	  <_short>Close Animation (Menus &amp; Tooltips)</_short>
-	  <option name="close2_effect" type="int">
-	    <_short>Close Effect</_short>
-	    <_long>The animation effect shown when closing a window.</_long>
-	    <min>0</min>
-	    <max>18</max>
-	    <default>8</default>
-	    <desc>
-	      <value>0</value>
-	      <_name>None</_name>
-	    </desc>
-	    <desc>
-	      <value>1</value>
-	      <_name>Random</_name>
-	    </desc>
-	    <desc>
-	      <value>2</value>
-	      <_name>Beam Up</_name>
-	    </desc>
-	    <desc>
-	      <value>3</value>
-	      <_name>Burn</_name>
-	    </desc>
-	    <desc>
-	      <value>4</value>
-	      <_name>Curved Fold</_name>
-	    </desc>
-	    <desc>
-	      <value>5</value>
-	      <_name>Domino</_name>
-	    </desc>
-	    <desc>
-	      <value>6</value>
-	      <_name>Dream</_name>
-	    </desc>
-	    <desc>
-	      <value>7</value>
-	      <_name>Explode</_name>
-	    </desc>
-	    <desc>
-	      <value>8</value>
-	      <_name>Fade</_name>
-	    </desc>
-	    <desc>
-	      <value>9</value>
-	      <_name>Glide 1</_name>
-	    </desc>
-	    <desc>
-	      <value>10</value>
-	      <_name>Glide 2</_name>
-	    </desc>
-	    <desc>
-	      <value>11</value>
-	      <_name>Horizontal Folds</_name>
-	    </desc>
-	    <desc>
-	      <value>12</value>
-	      <_name>Leaf Spread</_name>
-	    </desc>
-	    <desc>
-	      <value>13</value>
-	      <_name>Magic Lamp</_name>
-	    </desc>
-	    <desc>
-	      <value>14</value>
-	      <_name>Razr</_name>
-	    </desc>
-	    <desc>
-	      <value>15</value>
-	      <_name>Sidekick</_name>
-	    </desc>
-	    <desc>
-	      <value>16</value>
-	      <_name>Vacuum</_name>
-	    </desc>
-	    <desc>
-	      <value>17</value>
-	      <_name>Wave</_name>
-	    </desc>
-	    <desc>
-	      <value>18</value>
-	      <_name>Zoom</_name>
-	    </desc>
-	  </option>
-	  <option name="close2_duration" type="float">
-	    <_short>Animation Duration</_short>
-	    <_long>Animation duration in seconds for close effect.</_long>
-	    <default>0.15</default>
-	    <min>0.1</min>
-	    <max>10</max>
-	    <precision>0.02</precision>
-	  </option>
-	  <option name="close2_random_effects" type="list">
-	    <_short>Random Effect Pool</_short>
-	    <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list. If the list is empty, the default effect will be used.</_long>
+	  <_short>Random Effects</_short>
+	  <option name="close_random_effects" type="list">
+	    <_short>Pool</_short>
+	    <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list.</_long>
 	    <type>int</type>
 	    <min>0</min>
 	    <max>16</max>
@@ -398,25 +240,26 @@
 	      <_name>Zoom</_name>
 	    </desc>
 	  </option>
-	  <option name="close2_match" type="match">
-	    <_short>Window Match</_short>
-	    <_long>The windows that will be animated.</_long>
-	    <default>(type=Menu | PopupMenu | DropdownMenu | Tooltip | Notification) &amp; !(name=gnome-screensaver)</default>
-	  </option>
 	</subgroup>
+
       </group>
 
       <group>
-	<_short>Create Animation</_short>
+	<_short>Open Animation</_short>
 
 	<subgroup>
-	  <_short>Create Animation (Dialogs &amp; Windows)</_short>
-	  <option name="create1_effect" type="int">
-	    <_short>Create Effect</_short>
+	  <_short>Animation Selection</_short>
+	  <option name="open_effect" type="list">
+	    <_short>Open Effect</_short>
 	    <_long>The animation effect shown when creating a window.</_long>
+	    <type>int</type>
 	    <min>0</min>
 	    <max>18</max>
-	    <default>18</default>
+	    <default>
+	      <value>18</value>
+	      <value>8</value>
+	      <value>8</value>
+	    </default>
 	    <desc>
 	      <value>0</value>
 	      <_name>None</_name>
@@ -494,17 +337,46 @@
 	      <_name>Zoom</_name>
 	    </desc>
 	  </option>
-	  <option name="create1_duration" type="float">
-	    <_short>Animation Duration</_short>
-	    <_long>Animation duration in seconds for create effect.</_long>
-	    <default>0.2</default>
+	  <option name="open_duration" type="list">
+	    <_short>Duration</_short>
+	    <_long>Animation duration in seconds for open effect.</_long>
+	    <type>float</type>
 	    <min>0.1</min>
 	    <max>10</max>
-	    <precision>0.02</precision>
+	    <precision>0.01</precision>
+	    <default>
+	      <value>0.2</value>
+	      <value>0.15</value>
+	      <value>0.15</value>
+	    </default>
 	  </option>
-	  <option name="create1_random_effects" type="list">
-	    <_short>Random Effect Pool</_short>
-	    <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list. If the list is empty, the default effect will be used.</_long>
+	  <option name="open_match" type="list">
+	    <_short>Window Match</_short>
+	    <_long>The windows that will be animated.</_long>
+	    <type>match</type>
+	    <default>
+	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</value>
+	      <value>(type=Menu | PopupMenu | DropdownMenu) &amp; !(name=gnome-screensaver)</value>
+	      <value>(type=Tooltip | Notification)</value>
+	    </default>
+	  </option>
+	  <option name="open_options" type="list">
+	    <_short> </_short>
+	    <_long>(This part will be used in the near future. This place-holder is here now to prevent problems when it starts being used.)</_long>
+	    <type>string</type>
+	    <default>
+	      <value></value>
+	      <value></value>
+	      <value></value>
+	    </default>
+	  </option>
+	</subgroup>
+
+	<subgroup>
+	  <_short>Random Effects</_short>
+	  <option name="open_random_effects" type="list">
+	    <_short>Pool</_short>
+	    <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list.</_long>
 	    <type>int</type>
 	    <min>0</min>
 	    <max>16</max>
@@ -596,490 +468,364 @@
 	      <_name>Zoom</_name>
 	    </desc>
 	  </option>
-	  <option name="create1_match" type="match">
-	    <_short>Window Match</_short>
-	    <_long>Window that should animate with this effect when created.</_long>
-	    <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
-	  </option>
 	</subgroup>
 
-	<subgroup>
-	  <_short>Create Animation (Menus &amp; Tooltips)</_short>
-	  <option name="create2_effect" type="int">
-	    <_short>Create Effect</_short>
-	    <_long>The animation effect shown when creating a window.</_long>
-	    <min>0</min>
-	    <max>18</max>
-	    <default>8</default>
-	    <desc>
-	      <value>0</value>
-	      <_name>None</_name>
-	    </desc>
-	    <desc>
-	      <value>1</value>
-	      <_name>Random</_name>
-	    </desc>
-	    <desc>
-	      <value>2</value>
-	      <_name>Beam Up</_name>
-	    </desc>
-	    <desc>
-	      <value>3</value>
-	      <_name>Burn</_name>
-	    </desc>
-	    <desc>
-	      <value>4</value>
-	      <_name>Curved Fold</_name>
-	    </desc>
-	    <desc>
-	      <value>5</value>
-	      <_name>Domino</_name>
-	    </desc>
-	    <desc>
-	      <value>6</value>
-	      <_name>Dream</_name>
-	    </desc>
-	    <desc>
-	      <value>7</value>
-	      <_name>Explode</_name>
-	    </desc>
-	    <desc>
-	      <value>8</value>
-	      <_name>Fade</_name>
-	    </desc>
-	    <desc>
-	      <value>9</value>
-	      <_name>Glide 1</_name>
-	    </desc>
-	    <desc>
-	      <value>10</value>
-	      <_name>Glide 2</_name>
-	    </desc>
-	    <desc>
-	      <value>11</value>
-	      <_name>Horizontal Folds</_name>
-	    </desc>
-	    <desc>
-	      <value>12</value>
-	      <_name>Leaf Spread</_name>
-	    </desc>
-	    <desc>
-	      <value>13</value>
-	      <_name>Magic Lamp</_name>
-	    </desc>
-	    <desc>
-	      <value>14</value>
-	      <_name>Razr</_name>
-	    </desc>
-	    <desc>
-	      <value>15</value>
-	      <_name>Sidekick</_name>
-	    </desc>
-	    <desc>
-	      <value>16</value>
-	      <_name>Vacuum</_name>
-	    </desc>
-	    <desc>
-	      <value>17</value>
-	      <_name>Wave</_name>
-	    </desc>
-	    <desc>
-	      <value>18</value>
-	      <_name>Zoom</_name>
-	    </desc>
-	  </option>
-	  <option name="create2_duration" type="float">
-	    <_short>Animation Duration</_short>
-	    <_long>Animation duration in seconds for create effect.</_long>
-	    <default>0.15</default>
-	    <min>0.1</min>
-	    <max>10</max>
-	    <precision>0.02</precision>
-	  </option>
-	  <option name="create2_random_effects" type="list">
-	    <_short>Random Effect Pool</_short>
-	    <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list. If the list is empty, the default effect will be used.</_long>
-	    <type>int</type>
-	    <min>0</min>
-	    <max>16</max>
-	    <default>
-	      <value>0</value>
-	      <value>1</value>
-	      <value>2</value>
-	      <value>3</value>
-	      <value>4</value>
-	      <value>5</value>
-	      <value>6</value>
-	      <value>7</value>
-	      <value>8</value>
-	      <value>9</value>
-	      <value>10</value>
-	      <value>11</value>
-	      <value>12</value>
-	      <value>13</value>
-	      <value>14</value>
-	      <value>15</value>
-	      <value>16</value>
-	    </default>
-	    <desc>
-	      <value>0</value>
-	      <_name>Beam Up</_name>
-	    </desc>
-	    <desc>
-	      <value>1</value>
-	      <_name>Burn</_name>
-	    </desc>
-	    <desc>
-	      <value>2</value>
-	      <_name>Curved Fold</_name>
-	    </desc>
-	    <desc>
-	      <value>3</value>
-	      <_name>Domino</_name>
-	    </desc>
-	    <desc>
-	      <value>4</value>
-	      <_name>Dream</_name>
-	    </desc>
-	    <desc>
-	      <value>5</value>
-	      <_name>Explode</_name>
-	    </desc>
-	    <desc>
-	      <value>6</value>
-	      <_name>Fade</_name>
-	    </desc>
-	    <desc>
-	      <value>7</value>
-	      <_name>Glide 1</_name>
-	    </desc>
-	    <desc>
-	      <value>8</value>
-	      <_name>Glide 2</_name>
-	    </desc>
-	    <desc>
-	      <value>9</value>
-	      <_name>Horizontal Folds</_name>
-	    </desc>
-	    <desc>
-	      <value>10</value>
-	      <_name>Leaf Spread</_name>
-	    </desc>
-	    <desc>
-	      <value>11</value>
-	      <_name>Magic Lamp</_name>
-	    </desc>
-	    <desc>
-	      <value>12</value>
-	      <_name>Razr</_name>
-	    </desc>
-	    <desc>
-	      <value>13</value>
-	      <_name>Sidekick</_name>
-	    </desc>
-	    <desc>
-	      <value>14</value>
-	      <_name>Vacuum</_name>
-	    </desc>
-	    <desc>
-	      <value>15</value>
-	      <_name>Wave</_name>
-	    </desc>
-	    <desc>
-	      <value>16</value>
-	      <_name>Zoom</_name>
-	    </desc>
-	  </option>
-	  <option name="create2_match" type="match">
-	    <_short>Window Match</_short>
-	    <_long>Window that should animate with this effect when created.</_long>
-	    <default>(type=Menu | PopupMenu | DropdownMenu | Tooltip | Notification) &amp; !(name=gnome-screensaver)</default>
-	  </option>
-	</subgroup>
       </group>
 
       <group>
 	<_short>Minimize Animation</_short>
-	<option name="minimize_effect" type="int">
-	  <_short>Minimize Effect</_short>
-	  <_long>The animation effect shown when minimizing a window.</_long>
-	  <min>0</min>
-	  <max>16</max>
-	  <default>13</default>
-	  <desc>
-	    <value>0</value>
-	    <_name>None</_name>
-	  </desc>
-	  <desc>
-	    <value>1</value>
-	    <_name>Random</_name>
-	  </desc>
-	  <desc>
-	    <value>2</value>
-	    <_name>Beam Up</_name>
-	  </desc>
-	  <desc>
-	    <value>3</value>
-	    <_name>Burn</_name>
-	  </desc>
-	  <desc>
-	    <value>4</value>
-	    <_name>Curved Fold</_name>
-	  </desc>
-	  <desc>
-	    <value>5</value>
-	    <_name>Domino</_name>
-	  </desc>
-	  <desc>
-	    <value>6</value>
-	    <_name>Dream</_name>
-	  </desc>
-	  <desc>
-	    <value>7</value>
-	    <_name>Explode</_name>
-	  </desc>
-	  <desc>
-	    <value>8</value>
-	    <_name>Fade</_name>
-	  </desc>
-	  <desc>
-	    <value>9</value>
-	    <_name>Glide 1</_name>
-	  </desc>
-	  <desc>
-	    <value>10</value>
-	    <_name>Glide 2</_name>
-	  </desc>
-	  <desc>
-	    <value>11</value>
-	    <_name>Horizontal Folds</_name>
-	  </desc>
-	  <desc>
-	    <value>12</value>
-	    <_name>Leaf Spread</_name>
-	  </desc>
-	  <desc>
-	    <value>13</value>
-	    <_name>Magic Lamp</_name>
-	  </desc>
-	  <desc>
-	    <value>14</value>
-	    <_name>Razr</_name>
-	  </desc>
-	  <desc>
-	    <value>15</value>
-	    <_name>Sidekick</_name>
-	  </desc>
-	  <desc>
-	    <value>16</value>
-	    <_name>Zoom</_name>
-	  </desc>
-	</option>
-	<option name="minimize_duration" type="float">
-	  <_short>Animation Duration</_short>
-	  <_long>Animation duration in seconds for minimize effect.</_long>
-	  <default>0.3</default>
-	  <min>0.1</min>
-	  <max>10</max>
-	  <precision>0.02</precision>
-	</option>
-	<option name="minimize_random_effects" type="list">
-	  <_short>Random Effect Pool</_short>
-	  <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list. If the list is empty, the default effect will be used.</_long>
-	  <type>int</type>
-	  <min>0</min>
-	  <max>14</max>
-	  <default>
-	    <value>0</value>
-	    <value>1</value>
-	    <value>2</value>
-	    <value>3</value>
-	    <value>4</value>
-	    <value>5</value>
-	    <value>6</value>
-	    <value>7</value>
-	    <value>8</value>
-	    <value>9</value>
-	    <value>10</value>
-	    <value>11</value>
-	    <value>12</value>
-	    <value>13</value>
-	    <value>14</value>
-	  </default>
-	  <desc>
-	    <value>0</value>
-	    <_name>Beam Up</_name>
-	  </desc>
-	  <desc>
-	    <value>1</value>
-	    <_name>Burn</_name>
-	  </desc>
-	  <desc>
-	    <value>2</value>
-	    <_name>Curved Fold</_name>
-	  </desc>
-	  <desc>
-	    <value>3</value>
-	    <_name>Domino</_name>
-	  </desc>
-	  <desc>
-	    <value>4</value>
-	    <_name>Dream</_name>
-	  </desc>
-	  <desc>
-	    <value>5</value>
-	    <_name>Explode</_name>
-	  </desc>
-	  <desc>
-	    <value>6</value>
-	    <_name>Fade</_name>
-	  </desc>
-	  <desc>
-	    <value>7</value>
-	    <_name>Glide 1</_name>
-	  </desc>
-	  <desc>
-	    <value>8</value>
-	    <_name>Glide 2</_name>
-	  </desc>
-	  <desc>
-	    <value>9</value>
-	    <_name>Horizontal Folds</_name>
-	  </desc>
-	  <desc>
-	    <value>10</value>
-	    <_name>Leaf Spread</_name>
-	  </desc>
-	  <desc>
-	    <value>11</value>
-	    <_name>Magic Lamp</_name>
-	  </desc>
-	  <desc>
-	    <value>12</value>
-	    <_name>Razr</_name>
-	  </desc>
-	  <desc>
-	    <value>13</value>
-	    <_name>Sidekick</_name>
-	  </desc>
-	  <desc>
-	    <value>14</value>
-	    <_name>Zoom</_name>
-	  </desc>
-	</option>
-	<option name="minimize_match" type="match">
-	  <_short>Window Match</_short>
-	  <_long>The windows that will be animated.</_long>
-	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
-	</option>
+
+	<subgroup>
+	  <_short>Animation Selection</_short>
+	  <option name="minimize_effect" type="list">
+	    <_short>Minimize Effect</_short>
+	    <_long>The animation effect shown when minimizing a window.</_long>
+	    <type>int</type>
+	    <min>0</min>
+	    <max>16</max>
+	    <default>
+	      <value>13</value>
+	    </default>
+	    <desc>
+	      <value>0</value>
+	      <_name>None</_name>
+	    </desc>
+	    <desc>
+	      <value>1</value>
+	      <_name>Random</_name>
+	    </desc>
+	    <desc>
+	      <value>2</value>
+	      <_name>Beam Up</_name>
+	    </desc>
+	    <desc>
+	      <value>3</value>
+	      <_name>Burn</_name>
+	    </desc>
+	    <desc>
+	      <value>4</value>
+	      <_name>Curved Fold</_name>
+	    </desc>
+	    <desc>
+	      <value>5</value>
+	      <_name>Domino</_name>
+	    </desc>
+	    <desc>
+	      <value>6</value>
+	      <_name>Dream</_name>
+	    </desc>
+	    <desc>
+	      <value>7</value>
+	      <_name>Explode</_name>
+	    </desc>
+	    <desc>
+	      <value>8</value>
+	      <_name>Fade</_name>
+	    </desc>
+	    <desc>
+	      <value>9</value>
+	      <_name>Glide 1</_name>
+	    </desc>
+	    <desc>
+	      <value>10</value>
+	      <_name>Glide 2</_name>
+	    </desc>
+	    <desc>
+	      <value>11</value>
+	      <_name>Horizontal Folds</_name>
+	    </desc>
+	    <desc>
+	      <value>12</value>
+	      <_name>Leaf Spread</_name>
+	    </desc>
+	    <desc>
+	      <value>13</value>
+	      <_name>Magic Lamp</_name>
+	    </desc>
+	    <desc>
+	      <value>14</value>
+	      <_name>Razr</_name>
+	    </desc>
+	    <desc>
+	      <value>15</value>
+	      <_name>Sidekick</_name>
+	    </desc>
+	    <desc>
+	      <value>16</value>
+	      <_name>Zoom</_name>
+	    </desc>
+	  </option>
+	  <option name="minimize_duration" type="list">
+	    <_short>Duration</_short>
+	    <_long>Animation duration in seconds for minimize effect.</_long>
+	    <type>float</type>
+	    <default>
+	      <value>0.3</value>
+	    </default>
+	    <min>0.1</min>
+	    <max>10</max>
+	    <precision>0.01</precision>
+	  </option>
+	  <option name="minimize_match" type="list">
+	    <_short>Window Match</_short>
+	    <_long>The windows that will be animated.</_long>
+	    <type>match</type>
+	    <default>
+	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</value>
+	    </default>
+	  </option>
+	  <option name="minimize_options" type="list">
+	    <_short> </_short>
+	    <_long>(This part will be used in the near future. This place-holder is here now to prevent problems when it starts being used.)</_long>
+	    <type>string</type>
+	    <default>
+	      <value></value>
+	    </default>
+	  </option>
+	</subgroup>
+
+	<subgroup>
+	  <_short>Random Effects</_short>
+	  <option name="minimize_random_effects" type="list">
+	    <_short>Pool</_short>
+	    <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list.</_long>
+	    <type>int</type>
+	    <min>0</min>
+	    <max>14</max>
+	    <default>
+	      <value>0</value>
+	      <value>1</value>
+	      <value>2</value>
+	      <value>3</value>
+	      <value>4</value>
+	      <value>5</value>
+	      <value>6</value>
+	      <value>7</value>
+	      <value>8</value>
+	      <value>9</value>
+	      <value>10</value>
+	      <value>11</value>
+	      <value>12</value>
+	      <value>13</value>
+	      <value>14</value>
+	    </default>
+	    <desc>
+	      <value>0</value>
+	      <_name>Beam Up</_name>
+	    </desc>
+	    <desc>
+	      <value>1</value>
+	      <_name>Burn</_name>
+	    </desc>
+	    <desc>
+	      <value>2</value>
+	      <_name>Curved Fold</_name>
+	    </desc>
+	    <desc>
+	      <value>3</value>
+	      <_name>Domino</_name>
+	    </desc>
+	    <desc>
+	      <value>4</value>
+	      <_name>Dream</_name>
+	    </desc>
+	    <desc>
+	      <value>5</value>
+	      <_name>Explode</_name>
+	    </desc>
+	    <desc>
+	      <value>6</value>
+	      <_name>Fade</_name>
+	    </desc>
+	    <desc>
+	      <value>7</value>
+	      <_name>Glide 1</_name>
+	    </desc>
+	    <desc>
+	      <value>8</value>
+	      <_name>Glide 2</_name>
+	    </desc>
+	    <desc>
+	      <value>9</value>
+	      <_name>Horizontal Folds</_name>
+	    </desc>
+	    <desc>
+	      <value>10</value>
+	      <_name>Leaf Spread</_name>
+	    </desc>
+	    <desc>
+	      <value>11</value>
+	      <_name>Magic Lamp</_name>
+	    </desc>
+	    <desc>
+	      <value>12</value>
+	      <_name>Razr</_name>
+	    </desc>
+	    <desc>
+	      <value>13</value>
+	      <_name>Sidekick</_name>
+	    </desc>
+	    <desc>
+	      <value>14</value>
+	      <_name>Zoom</_name>
+	    </desc>
+	  </option>
+	</subgroup>
+
       </group>
 
       <group>
 	<_short>Shade Animation</_short>
-	<option name="shade_effect" type="int">
-	  <_short>Shade Effect</_short>
-	  <_long>The animation effect shown when shading a window.</_long>
-	  <min>0</min>
-	  <max>4</max>
-	  <default>4</default>
-	  <desc>
-	    <value>0</value>
-	    <_name>None</_name>
-	  </desc>
-	  <desc>
-	    <value>1</value>
-	    <_name>Random</_name>
-	  </desc>
-	  <desc>
-	    <value>2</value>
-	    <_name>Curved Fold</_name>
-	  </desc>
-	  <desc>
-	    <value>3</value>
-	    <_name>Horizontal Folds</_name>
-	  </desc>
-	  <desc>
-	    <value>4</value>
-	    <_name>Roll Up</_name>
-	  </desc>
-	</option>
-	<option name="shade_duration" type="float">
-	  <_short>Animation Duration</_short>
-	  <_long>Animation duration in seconds for shade effect.</_long>
-	  <default>0.3</default>
-	  <min>0.1</min>
-	  <max>10</max>
-	  <precision>0.02</precision>
-	</option>
-	<option name="shade_random_effects" type="list">
-	  <_short>Random Effect Pool</_short>
-	  <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list. If the list is empty, the default effect will be used.</_long>
-	  <type>int</type>
-	  <min>0</min>
-	  <max>2</max>
-	  <default>
-	    <value>0</value>
-	    <value>1</value>
-	    <value>2</value>
-	  </default>
-	  <desc>
-	    <value>0</value>
-	    <_name>Curved Fold</_name>
-	  </desc>
-	  <desc>
-	    <value>1</value>
-	    <_name>Horizontal Folds</_name>
-	  </desc>
-	  <desc>
-	    <value>2</value>
-	    <_name>Roll Up</_name>
-	  </desc>
-	</option>
-	<option name="shade_match" type="match">
-	  <_short>Window Match</_short>
-	  <_long>Window that should animate with this effect when shaded.</_long>
-	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
-	</option>
+
+	<subgroup>
+	  <_short>Animation Selection</_short>
+	  <option name="shade_effect" type="list">
+	    <_short>Shade Effect</_short>
+	    <_long>The animation effect shown when shading a window.</_long>
+	    <type>int</type>
+	    <min>0</min>
+	    <max>4</max>
+	    <default>
+	      <value>4</value>
+	    </default>
+	    <desc>
+	      <value>0</value>
+	      <_name>None</_name>
+	    </desc>
+	    <desc>
+	      <value>1</value>
+	      <_name>Random</_name>
+	    </desc>
+	    <desc>
+	      <value>2</value>
+	      <_name>Curved Fold</_name>
+	    </desc>
+	    <desc>
+	      <value>3</value>
+	      <_name>Horizontal Folds</_name>
+	    </desc>
+	    <desc>
+	      <value>4</value>
+	      <_name>Roll Up</_name>
+	    </desc>
+	  </option>
+	  <option name="shade_duration" type="list">
+	    <_short>Duration</_short>
+	    <_long>Animation duration in seconds for shade effect.</_long>
+	    <type>float</type>
+	    <default>
+	      <value>0.3</value>
+	    </default>
+	    <min>0.1</min>
+	    <max>10</max>
+	    <precision>0.01</precision>
+	  </option>
+	  <option name="shade_match" type="list">
+	    <_short>Window Match</_short>
+	    <_long>Window that should animate with this effect when shaded.</_long>
+	    <type>match</type>
+	    <default>
+	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</value>
+	    </default>
+	  </option>
+	  <option name="shade_options" type="list">
+	    <_short> </_short>
+	    <_long>(This part will be used in the near future. This place-holder is here now to prevent problems when it starts being used.)</_long>
+	    <type>string</type>
+	    <default>
+	      <value></value>
+	    </default>
+	  </option>
+	</subgroup>
+
+	<subgroup>
+	  <_short>Random Effects</_short>
+	  <option name="shade_random_effects" type="list">
+	    <_short>Pool</_short>
+	    <_long>Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list.</_long>
+	    <type>int</type>
+	    <min>0</min>
+	    <max>2</max>
+	    <default>
+	      <value>0</value>
+	      <value>1</value>
+	      <value>2</value>
+	    </default>
+	    <desc>
+	      <value>0</value>
+	      <_name>Curved Fold</_name>
+	    </desc>
+	    <desc>
+	      <value>1</value>
+	      <_name>Horizontal Folds</_name>
+	    </desc>
+	    <desc>
+	      <value>2</value>
+	      <_name>Roll Up</_name>
+	    </desc>
+	  </option>
+	</subgroup>
+
       </group>
 
       <group>
 	<_short>Focus Animation</_short>
-	<option name="focus_effect" type="int">
-	  <_short>Focus Effect</_short>
-	  <_long>The animation effect shown when focusing a window.</_long>
-	  <min>0</min>
-	  <max>3</max>
-	  <default>0</default>
-	  <desc>
-	    <value>0</value>
-	    <_name>None</_name>
-	  </desc>
-	  <desc>
-	    <value>1</value>
-	    <_name>Dodge</_name>
-	  </desc>
-	  <desc>
-	    <value>2</value>
-	    <_name>Fade</_name>
-	  </desc>
-	  <desc>
-	    <value>3</value>
-	    <_name>Wave</_name>
-	  </desc>
-	</option>
-	<option name="focus_duration" type="float">
-	  <_short>Animation Duration</_short>
-	  <_long>Animation duration in seconds for focus effect.</_long>
-	  <default>0.3</default>
-	  <min>0.1</min>
-	  <max>10</max>
-	  <precision>0.02</precision>
-	</option>
-	<option name="focus_match" type="match">
-	  <_short>Window Match</_short>
-	  <_long>Window that should animate with this effect when focused.</_long>
-	  <default>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</default>
-	</option>
+	<subgroup>
+	  <_short>Animation Selection</_short>
+	  <option name="focus_effect" type="list">
+	    <_short>Focus Effect</_short>
+	    <_long>The animation effect shown when focusing a window.</_long>
+	    <type>int</type>
+	    <min>0</min>
+	    <max>3</max>
+	    <default>
+	      <value>0</value>
+	    </default>
+	    <desc>
+	      <value>0</value>
+	      <_name>None</_name>
+	    </desc>
+	    <desc>
+	      <value>1</value>
+	      <_name>Dodge</_name>
+	    </desc>
+	    <desc>
+	      <value>2</value>
+	      <_name>Fade</_name>
+	    </desc>
+	    <desc>
+	      <value>3</value>
+	      <_name>Wave</_name>
+	    </desc>
+	  </option>
+	  <option name="focus_duration" type="list">
+	    <_short>Duration</_short>
+	    <_long>Animation duration in seconds for focus effect.</_long>
+	    <type>float</type>
+	    <min>0.1</min>
+	    <max>10</max>
+	    <precision>0.01</precision>
+	    <default>
+	      <value>0.3</value>
+	    </default>
+	  </option>
+	  <option name="focus_match" type="list">
+	    <_short>Window Match</_short>
+	    <_long>Window that should animate with this effect when focused.</_long>
+	    <type>match</type>
+	    <default>
+	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</value>
+	    </default>
+	  </option>
+	  <option name="focus_options" type="list">
+	    <_short> </_short>
+	    <_long>(This part will be used in the near future. This place-holder is here now to prevent problems when it starts being used.)</_long>
+	    <type>string</type>
+	    <default>
+	      <value></value>
+	    </default>
+	  </option>
+        </subgroup>
       </group>
 
       <group>
@@ -1305,7 +1051,7 @@
 	    </desc>
 	    <desc>
 	      <value>2</value>
-	      <_name>Create/Close Only</_name>
+	      <_name>Open/Close Only</_name>
 	    </desc>
 	    <desc>
 	      <value>3</value>
@@ -1365,7 +1111,7 @@
 	    </desc>
 	    <desc>
 	      <value>2</value>
-	      <_name>Create/Close Only</_name>
+	      <_name>Open/Close Only</_name>
 	    </desc>
 	    <desc>
 	      <value>3</value>
@@ -1382,7 +1128,7 @@
 	    <default>0.5</default>
 	    <min>0</min>
 	    <max>1</max>
-	    <precision>0.02</precision>
+	    <precision>0.01</precision>
 	  </option>
 	</subgroup>
 
@@ -1403,7 +1149,7 @@
 	    <default>0.7</default>
 	    <min>0.02</min>
 	    <max>3</max>
-	    <precision>0.02</precision>
+	    <precision>0.01</precision>
 	  </option>
 	  <option name="wave_amp" type="float">
 	    <_short>Wave Amplitude</_short>
@@ -1452,9 +1198,9 @@
 	    <max>2000</max>
 	    <precision>5</precision>
 	  </option>
-	  <option name="magic_lamp_create_start_width" type="int">
-	    <_short>Magic Lamp Create Start Width</_short>
-	    <_long>Starting width of create effect and ending width of close effect for Magic Lamp.</_long>
+	  <option name="magic_lamp_open_start_width" type="int">
+	    <_short>Magic Lamp Open Start Width</_short>
+	    <_long>Starting width of open effect and ending width of close effect for Magic Lamp.</_long>
 	    <default>30</default>
 	    <min>0</min>
 	    <max>500</max>
@@ -1475,9 +1221,9 @@
 	    <min>2</min>
 	    <max>200</max>
 	  </option>
-	  <option name="vacuum_create_start_width" type="int">
-	    <_short>Vacuum Create Start Width</_short>
-	    <_long>Starting width of create effect and ending width of close effect for Vacuum.</_long>
+	  <option name="vacuum_open_start_width" type="int">
+	    <_short>Vacuum Open Start Width</_short>
+	    <_long>Starting width of open effect and ending width of close effect for Vacuum.</_long>
 	    <default>30</default>
 	    <min>0</min>
 	    <max>500</max>
@@ -1660,4 +1406,3 @@
     </screen>
   </plugin>
 </compiz>
-

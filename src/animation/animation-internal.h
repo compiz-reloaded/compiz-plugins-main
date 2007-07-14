@@ -154,7 +154,7 @@ typedef enum
     WindowEventMinimize,
     WindowEventUnminimize,
     WindowEventClose,
-    WindowEventCreate,
+    WindowEventOpen,
     WindowEventFocus,
     WindowEventShade,
     WindowEventUnshade
@@ -345,36 +345,26 @@ typedef struct _AnimDisplay
 
 typedef enum
 {
-    // Match settings
-    ANIM_SCREEN_OPTION_MINIMIZE_MATCH = 0,
-    ANIM_SCREEN_OPTION_CLOSE1_MATCH,
-    ANIM_SCREEN_OPTION_CLOSE2_MATCH,
-    ANIM_SCREEN_OPTION_CREATE1_MATCH,
-    ANIM_SCREEN_OPTION_CREATE2_MATCH,
-    ANIM_SCREEN_OPTION_FOCUS_MATCH,
-    ANIM_SCREEN_OPTION_SHADE_MATCH,
     // Event settings
+    ANIM_SCREEN_OPTION_OPEN_EFFECT,
+    ANIM_SCREEN_OPTION_OPEN_DURATION,
+    ANIM_SCREEN_OPTION_OPEN_MATCH,
+    ANIM_SCREEN_OPTION_OPEN_RANDOM_EFFECTS,
+    ANIM_SCREEN_OPTION_CLOSE_EFFECT,
+    ANIM_SCREEN_OPTION_CLOSE_DURATION,
+    ANIM_SCREEN_OPTION_CLOSE_MATCH,
+    ANIM_SCREEN_OPTION_CLOSE_RANDOM_EFFECTS,
     ANIM_SCREEN_OPTION_MINIMIZE_EFFECT,
     ANIM_SCREEN_OPTION_MINIMIZE_DURATION,
+    ANIM_SCREEN_OPTION_MINIMIZE_MATCH,
     ANIM_SCREEN_OPTION_MINIMIZE_RANDOM_EFFECTS,
-    ANIM_SCREEN_OPTION_CLOSE1_EFFECT,
-    ANIM_SCREEN_OPTION_CLOSE1_DURATION,
-    ANIM_SCREEN_OPTION_CLOSE1_RANDOM_EFFECTS,
-    ANIM_SCREEN_OPTION_CREATE1_EFFECT,
-    ANIM_SCREEN_OPTION_CREATE1_DURATION,
-    ANIM_SCREEN_OPTION_CREATE1_RANDOM_EFFECTS,
-    ANIM_SCREEN_OPTION_CLOSE2_EFFECT,
-    ANIM_SCREEN_OPTION_CLOSE2_DURATION,
-    ANIM_SCREEN_OPTION_CLOSE2_RANDOM_EFFECTS,
-    ANIM_SCREEN_OPTION_CREATE2_EFFECT,
-    ANIM_SCREEN_OPTION_CREATE2_DURATION,
-    ANIM_SCREEN_OPTION_CREATE2_RANDOM_EFFECTS,
     ANIM_SCREEN_OPTION_FOCUS_EFFECT,
     ANIM_SCREEN_OPTION_FOCUS_DURATION,
+    ANIM_SCREEN_OPTION_FOCUS_MATCH,
     ANIM_SCREEN_OPTION_SHADE_EFFECT,
     ANIM_SCREEN_OPTION_SHADE_DURATION,
+    ANIM_SCREEN_OPTION_SHADE_MATCH,
     ANIM_SCREEN_OPTION_SHADE_RANDOM_EFFECTS,
-    ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR,
     // Misc. settings
     ANIM_SCREEN_OPTION_ALL_RANDOM,
     ANIM_SCREEN_OPTION_TIME_STEP,
@@ -420,13 +410,14 @@ typedef enum
     ANIM_SCREEN_OPTION_MAGIC_LAMP_MAX_WAVES,
     ANIM_SCREEN_OPTION_MAGIC_LAMP_WAVE_AMP_MIN,
     ANIM_SCREEN_OPTION_MAGIC_LAMP_WAVE_AMP_MAX,
-    ANIM_SCREEN_OPTION_MAGIC_LAMP_CREATE_START_WIDTH,
+    ANIM_SCREEN_OPTION_MAGIC_LAMP_OPEN_START_WIDTH,
+    ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR,
     ANIM_SCREEN_OPTION_SIDEKICK_NUM_ROTATIONS,
     ANIM_SCREEN_OPTION_SIDEKICK_SPRINGINESS,
     ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER,
     ANIM_SCREEN_OPTION_VACUUM_MOVING_END,
     ANIM_SCREEN_OPTION_VACUUM_GRID_RES,
-    ANIM_SCREEN_OPTION_VACUUM_CREATE_START_WIDTH,
+    ANIM_SCREEN_OPTION_VACUUM_OPEN_START_WIDTH,
     ANIM_SCREEN_OPTION_WAVE_WIDTH,
     ANIM_SCREEN_OPTION_WAVE_AMP,
     ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER,
@@ -445,7 +436,6 @@ typedef struct _AnimScreen
     PaintWindowProc paintWindow;
     DamageWindowRectProc damageWindowRect;
     AddWindowGeometryProc addWindowGeometry;
-    //DrawWindowGeometryProc drawWindowGeometry;
     DrawWindowTextureProc drawWindowTexture;
 
     WindowResizeNotifyProc windowResizeNotify;
@@ -472,24 +462,13 @@ typedef struct _AnimScreen
     // was started
 
     Bool animInProgress;
-    AnimEffect minimizeEffect;
-    AnimEffect create1Effect;
-    AnimEffect create2Effect;
-    AnimEffect close1Effect;
-    AnimEffect close2Effect;
-    AnimEffect focusEffect;
-    AnimEffect shadeEffect;
 
-    AnimEffect close1RandomEffects[NUM_CLOSE_EFFECT];
-    AnimEffect close2RandomEffects[NUM_CLOSE_EFFECT];
-    AnimEffect create1RandomEffects[NUM_CLOSE_EFFECT];
-    AnimEffect create2RandomEffects[NUM_CLOSE_EFFECT];
+    AnimEffect openRandomEffects[NUM_CLOSE_EFFECT];
+    AnimEffect closeRandomEffects[NUM_CLOSE_EFFECT];
     AnimEffect minimizeRandomEffects[NUM_MINIMIZE_EFFECT];
     AnimEffect shadeRandomEffects[NUM_SHADE_EFFECT];
-    unsigned int nClose1RandomEffects;
-    unsigned int nClose2RandomEffects;
-    unsigned int nCreate1RandomEffects;
-    unsigned int nCreate2RandomEffects;
+    unsigned int nCloseRandomEffects;
+    unsigned int nOpenRandomEffects;
     unsigned int nMinimizeRandomEffects;
     unsigned int nShadeRandomEffects;
 } AnimScreen;

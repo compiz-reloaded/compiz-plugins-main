@@ -158,7 +158,7 @@ fxFoldUpdateWindowAttrib(AnimScreen * as,
 {
     ANIM_WINDOW(w);
 
-    if (aw->curWindowEvent == WindowEventCreate ||
+    if (aw->curWindowEvent == WindowEventOpen ||
 	aw->curWindowEvent == WindowEventClose ||
 	((aw->curWindowEvent == WindowEventMinimize ||
 	  aw->curWindowEvent == WindowEventUnminimize) &&
