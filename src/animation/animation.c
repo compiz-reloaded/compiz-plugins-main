@@ -2818,10 +2818,14 @@ updateLastClientListStacking(CompScreen *s)
 	Window *list;
 
 	list = realloc (as->lastClientListStacking, sizeof (Window) * n);
-	if (!list)
-	    return;
-
 	as->lastClientListStacking  = list;
+
+	if (!list)
+	{
+	    as->nLastClientListStacking = 0;
+	    return;
+	}
+
 	as->nLastClientListStacking = n;
     }
 
@@ -3986,6 +3990,9 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     as->groupTabChangeActive = FALSE;
     as->scaleActive = FALSE;
     as->fadeDesktopActive = FALSE;
+
+    as->lastClientListStacking = NULL;
+    as->nLastClientListStacking = 0;
 
     WRAP(as, s, preparePaintScreen, animPreparePaintScreen);
     WRAP(as, s, donePaintScreen, animDonePaintScreen);
