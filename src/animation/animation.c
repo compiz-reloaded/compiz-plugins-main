@@ -262,6 +262,11 @@ getActualWinType(CompWindow *w)
     if (isQtTransientWindow(w))
 	return CompWindowTypeDropdownMenuMask;
 
+    // Correct notification-daemon window type (at least in gnome 2.18.1)
+    if (matchWithString (w, "type=Normal & override_redirect=1 & \
+name=notification-daemon"))
+	return CompWindowTypeNotificationMask;
+
     // Match Mozilla (Firefox, Thunderbird, etc.) menus
     // and Java menus
     if (matchWithString (w, "(type=Normal & override_redirect=1) | \
