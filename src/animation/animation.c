@@ -4180,10 +4180,6 @@ CompPluginVTable animVTable = {
     0,
     animGetScreenOptions,
     animSetScreenOptions,
-    0,
-    0,
-    0,
-    0
 };
 
 CompPluginVTable *getCompPluginInfo(void)
