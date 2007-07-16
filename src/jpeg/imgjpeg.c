@@ -375,10 +375,6 @@ CompPluginVTable JPEGVTable = {
 	0,
 	0,
 	0,
-	0,
-	0,
-	0,
-	0,
 	0
 };
 
