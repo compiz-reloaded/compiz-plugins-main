@@ -785,11 +785,7 @@ CompPluginVTable NEGVTable = {
     NULL,
     NULL,
     NULL,
-    NULL,
-    NULL,
-    0,
-    0,
-    0
+    NULL
 };
 
 CompPluginVTable*
