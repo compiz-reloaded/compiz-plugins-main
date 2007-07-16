@@ -1697,11 +1697,7 @@ CompPluginVTable wallVTable = {
 	NULL,
 	NULL,
 	NULL,
-	NULL,
-	0,
-	0,
-	0,
-	0
+	NULL
 };
 
 CompPluginVTable *getCompPluginInfo(void)
