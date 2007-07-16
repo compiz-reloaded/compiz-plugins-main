@@ -866,11 +866,7 @@ static CompPluginVTable winrulesVTable = {
     0, /* winrulesGetDisplayOptions, */
     0, /* winrulesSetDisplayOption,  */
     winrulesGetScreenOptions,
-    winrulesSetScreenOption,
-    0,
-    0,
-    0,
-    0
+    winrulesSetScreenOption
 };
 
 CompPluginVTable *
