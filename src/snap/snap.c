@@ -1155,11 +1155,7 @@ CompPluginVTable snapVTable = {
 	0,
 	0,
 	0,
-	0,
-	0,
-	0,
-	0,
-	0,
+	0
 };
 
 CompPluginVTable *getCompPluginInfo(void)
