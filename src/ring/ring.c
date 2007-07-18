@@ -1434,7 +1434,7 @@ ringWindowRemove (CompDisplay * d,
     {
 	Bool inList = FALSE;
 	int j, i = 0;
-	Window selected, old;
+	Window selected;
 
 	RING_SCREEN(w->screen);
 
@@ -1444,7 +1444,7 @@ ringWindowRemove (CompDisplay * d,
 	if (isRingWin(w))
     	    return;
 
-	old = selected = rs->selectedWindow;
+	selected = rs->selectedWindow;
 
 	while (i < rs->nWindows)
 	{
