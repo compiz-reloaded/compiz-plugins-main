@@ -184,7 +184,6 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
     aw->timestep = timestep;
 
     float old = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
-    float stepSize;
 
     aw->remainderSteps += time / timestep;
     steps = floor(aw->remainderSteps);
@@ -196,8 +195,6 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
     if (aw->animRemainingTime <= 0)
 	aw->animRemainingTime = 0;	// avoid sub-zero values
     float new = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
-
-    stepSize = new - old;
 
     if (aw->curWindowEvent == WindowEventOpen ||
 	aw->curWindowEvent == WindowEventUnminimize ||
