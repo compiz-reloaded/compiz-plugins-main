@@ -666,7 +666,7 @@ thumbHandleEvent (CompDisplay * d,
 	    {
 		THUMB_SCREEN (w->screen);
 
-		if (ts->thumb.win)
+		if (ts->thumb.win == w && thumbnailGetTitleEnabled (w->screen))
 		    renderThumbText (w->screen, &ts->thumb, TRUE);
 	    }
 	}
