@@ -924,7 +924,6 @@ layoutOrganicThumbs(CompScreen * s)
     CompWindow *w;
 
     int i;
-    int cx, cy;
     int moMode;
     XRectangle workArea;
 
@@ -944,8 +943,6 @@ layoutOrganicThumbs(CompScreen * s)
     }
 
     as->scale = 1.0f;
-
-    cx = cy = 0;
 
     qsort (ss->windows, ss->nWindows, sizeof(CompWindow *),
 	   organicCompareWindows);
