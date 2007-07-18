@@ -740,7 +740,8 @@ thumbPaintThumb (CompScreen          *s,
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
+	glDisableClientState (GL_TEXTURE_COORD_ARRAY);
+	
 	if (thumbnailGetWindowLike (s) )
 	{
 	    glColor4f (1.0, 1.0, 1.0, t->opacity);
@@ -885,6 +886,7 @@ thumbPaintThumb (CompScreen          *s,
 	    glColor4usv (defaultColor);
 	}
 
+	glEnableClientState (GL_TEXTURE_COORD_ARRAY);
 	glDisable (GL_BLEND);
 
 	screenTexEnvMode (s, GL_REPLACE);
