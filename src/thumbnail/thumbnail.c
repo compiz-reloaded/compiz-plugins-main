@@ -962,9 +962,13 @@ thumbPreparePaintScreen (CompScreen *s,
     if (!ts->showingThumb || ts->thumb.win != ts->pointedWin)
     {
 	ts->thumb.opacity = MAX (0.0, ts->thumb.opacity - val);
+	if (ts->thumb.opacity == 0.0)
+	    ts->thumb.win = NULL;
     }
 
     ts->oldThumb.opacity = MAX (0.0, ts->oldThumb.opacity - val);
+    if (ts->oldThumb.opacity == 0.0)
+	    ts->oldThumb.win = NULL;
 
     UNWRAP (ts, s, preparePaintScreen);
     (*s->preparePaintScreen) (s, ms);
