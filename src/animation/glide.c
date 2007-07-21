@@ -268,7 +268,7 @@ void fxGlideInit(CompScreen * s, CompWindow * w)
     pset->allFadeDuration = 1.0f;
     pset->backAndSidesFadeDur = 0.2f;
     pset->doLighting = TRUE;
-    pset->correctPerspective = TRUE;
+    pset->correctPerspective = CorrectPerspectivePolygon;
 }
 
 void fxGlidePrePaintWindow(CompScreen *s,

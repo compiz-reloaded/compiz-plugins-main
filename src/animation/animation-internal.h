@@ -117,6 +117,13 @@ typedef struct _Clip4Polygons	// Rectangular clips
     // ordered as p1.v1.x, p1.v1.y, p1.v2.x, p1.v2.y, p2.v1.x, p2.v1.y, ...
 } Clip4Polygons;
 
+typedef enum
+{
+    CorrectPerspectiveNone = 0,
+    CorrectPerspectivePolygon,
+    CorrectPerspectiveWindow
+} CorrectPerspective;
+
 typedef struct _PolygonSet		// Polygon objects with same thickness
 {
     int nClips;					// Rect. clips collected in AddWindowGeometries
@@ -128,7 +135,7 @@ typedef struct _PolygonSet		// Polygon objects with same thickness
 
     Bool doDepthTest;           // whether depth testing should be used in the effect
     Bool doLighting;            // whether lighting should be used in the effect
-    Bool correctPerspective;    // Whether perspective look should be neutralized
+    CorrectPerspective correctPerspective;
     PolygonObject *polygons;	// The polygons in this set
     int nPolygons;
     float thickness;			// Window thickness (depth along z axis)
