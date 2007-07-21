@@ -264,5 +264,5 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
     free(riseTimeRandSeed);
     pset->doDepthTest = TRUE;
     pset->doLighting = TRUE;
-    pset->correctPerspective = TRUE;
+    pset->correctPerspective = CorrectPerspectivePolygon;
 }

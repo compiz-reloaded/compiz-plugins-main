@@ -93,5 +93,5 @@ void fxLeafSpread3DInit(CompScreen * s, CompWindow * w)
     }
     pset->doDepthTest = TRUE;
     pset->doLighting = TRUE;
-    pset->correctPerspective = TRUE;
+    pset->correctPerspective = CorrectPerspectivePolygon;
 }

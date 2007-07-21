@@ -1345,12 +1345,25 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
 		glPushMatrix();
 
-		if (pset->correctPerspective)
+		if (pset->correctPerspective != CorrectPerspectiveNone)
 		{
-		    // Correct perspective appearance by skewing
+		    Point center;
 
-		    GLfloat skewx = -((p->centerPos.x - s->width / 2) * 1.15);
-		    GLfloat skewy = -((p->centerPos.y - s->height / 2) * 1.15);
+		    if (pset->correctPerspective == CorrectPerspectivePolygon)
+		    {
+			// use polygon's center
+			center.x = p->centerPos.x;
+			center.y = p->centerPos.y;
+		    }
+		    else // CorrectPerspectiveWindow
+		    {
+			// use window's center
+			center.x = WIN_X(w) + WIN_W(w) / 2;
+			center.y = WIN_Y(w) + WIN_H(w) / 2;
+		    }
+		    // Correct perspective appearance by skewing
+		    GLfloat skewx = -((center.x - s->width / 2) * 1.15);
+		    GLfloat skewy = -((center.y - s->height / 2) * 1.15);
 
 		    // column-major order
 		    GLfloat skewMat[16] =
