@@ -98,7 +98,7 @@ void fxExplode3DInit(CompScreen * s, CompWindow * w)
     pset->allFadeDuration = 0.3f;
     pset->doDepthTest = TRUE;
     pset->doLighting = TRUE;
-    pset->correctPerspective = CorrectPerspectivePolygon;
+    pset->correctPerspective = TRUE;
     pset->backAndSidesFadeDur = 0.2f;
 }
 

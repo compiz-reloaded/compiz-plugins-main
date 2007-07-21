@@ -780,37 +780,9 @@ animSetScreenOptions(CompPlugin *plugin,
     switch (index)
     {
     case ANIM_SCREEN_OPTION_OPEN_MATCH:
-	if (compSetOptionList(o, value))
-	{
-	    int i;
-	    for (i = 0; i < o->value.list.nValue; i++)
-		matchUpdate (screen->display, &o->value.list.value[i].match);
-	}
-	break;
     case ANIM_SCREEN_OPTION_CLOSE_MATCH:
-	if (compSetOptionList(o, value))
-	{
-	    int i;
-	    for (i = 0; i < o->value.list.nValue; i++)
-		matchUpdate (screen->display, &o->value.list.value[i].match);
-	}
-	break;
     case ANIM_SCREEN_OPTION_MINIMIZE_MATCH:
-	if (compSetOptionList(o, value))
-	{
-	    int i;
-	    for (i = 0; i < o->value.list.nValue; i++)
-		matchUpdate (screen->display, &o->value.list.value[i].match);
-	}
-	break;
     case ANIM_SCREEN_OPTION_FOCUS_MATCH:
-	if (compSetOptionList(o, value))
-	{
-	    int i;
-	    for (i = 0; i < o->value.list.nValue; i++)
-		matchUpdate (screen->display, &o->value.list.value[i].match);
-	}
-	break;
     case ANIM_SCREEN_OPTION_SHADE_MATCH:
 	if (compSetOptionList(o, value))
 	{
