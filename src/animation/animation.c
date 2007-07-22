@@ -251,7 +251,10 @@ matchWithString(CompWindow *w, const char *matchStr)
     matchAddFromString (&match, (char *)matchStr);
     matchUpdate (d, &match);
 
-    return matchEval (&match, w);
+    Bool result = matchEval (&match, w);
+    matchFini (&match);
+
+    return result;
 }
 
 // Can be moved to the Workarounds plugin when
