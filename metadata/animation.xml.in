@@ -21,7 +21,7 @@
 
 	<subgroup>
 	  <_short>Animation Selection</_short>
-	  <option name="close_effect" type="list">
+	  <option name="close_effects" type="list">
 	    <_short>Close Effect</_short>
 	    <_long>The animation effect shown when closing a window.</_long>
 	    <type>int</type>
@@ -109,20 +109,19 @@
 	      <_name>Zoom</_name>
 	    </desc>
 	  </option>
-	  <option name="close_duration" type="list">
+	  <option name="close_durations" type="list">
 	    <_short>Duration</_short>
-	    <_long>Animation duration in seconds for close effect.</_long>
-	    <type>float</type>
-	    <min>0.1</min>
-	    <max>10</max>
-	    <precision>0.01</precision>
+	    <_long>Animation duration in milliseconds for close effect.</_long>
+	    <type>int</type>
+	    <min>50</min>
+	    <max>4000</max>
 	    <default>
-	      <value>0.2</value>
-	      <value>0.15</value>
-	      <value>0.15</value>
+	      <value>200</value>
+	      <value>150</value>
+	      <value>150</value>
 	    </default>
 	  </option>
-	  <option name="close_match" type="list">
+	  <option name="close_matches" type="list">
 	    <_short>Window Match</_short>
 	    <_long>The windows that will be animated.</_long>
 	    <type>match</type>
@@ -249,7 +248,7 @@
 
 	<subgroup>
 	  <_short>Animation Selection</_short>
-	  <option name="open_effect" type="list">
+	  <option name="open_effects" type="list">
 	    <_short>Open Effect</_short>
 	    <_long>The animation effect shown when creating a window.</_long>
 	    <type>int</type>
@@ -337,20 +336,19 @@
 	      <_name>Zoom</_name>
 	    </desc>
 	  </option>
-	  <option name="open_duration" type="list">
+	  <option name="open_durations" type="list">
 	    <_short>Duration</_short>
-	    <_long>Animation duration in seconds for open effect.</_long>
-	    <type>float</type>
-	    <min>0.1</min>
-	    <max>10</max>
-	    <precision>0.01</precision>
+	    <_long>Animation duration in milliseconds for open effect.</_long>
+	    <type>int</type>
+	    <min>50</min>
+	    <max>4000</max>
 	    <default>
-	      <value>0.2</value>
-	      <value>0.15</value>
-	      <value>0.15</value>
+	      <value>200</value>
+	      <value>150</value>
+	      <value>150</value>
 	    </default>
 	  </option>
-	  <option name="open_match" type="list">
+	  <option name="open_matches" type="list">
 	    <_short>Window Match</_short>
 	    <_long>The windows that will be animated.</_long>
 	    <type>match</type>
@@ -477,7 +475,7 @@
 
 	<subgroup>
 	  <_short>Animation Selection</_short>
-	  <option name="minimize_effect" type="list">
+	  <option name="minimize_effects" type="list">
 	    <_short>Minimize Effect</_short>
 	    <_long>The animation effect shown when minimizing a window.</_long>
 	    <type>int</type>
@@ -555,18 +553,17 @@
 	      <_name>Zoom</_name>
 	    </desc>
 	  </option>
-	  <option name="minimize_duration" type="list">
+	  <option name="minimize_durations" type="list">
 	    <_short>Duration</_short>
-	    <_long>Animation duration in seconds for minimize effect.</_long>
-	    <type>float</type>
+	    <_long>Animation duration in milliseconds for minimize effect.</_long>
+	    <type>int</type>
+	    <min>50</min>
+	    <max>4000</max>
 	    <default>
-	      <value>0.3</value>
+	      <value>300</value>
 	    </default>
-	    <min>0.1</min>
-	    <max>10</max>
-	    <precision>0.01</precision>
 	  </option>
-	  <option name="minimize_match" type="list">
+	  <option name="minimize_matches" type="list">
 	    <_short>Window Match</_short>
 	    <_long>The windows that will be animated.</_long>
 	    <type>match</type>
@@ -679,7 +676,7 @@
 
 	<subgroup>
 	  <_short>Animation Selection</_short>
-	  <option name="shade_effect" type="list">
+	  <option name="shade_effects" type="list">
 	    <_short>Shade Effect</_short>
 	    <_long>The animation effect shown when shading a window.</_long>
 	    <type>int</type>
@@ -709,18 +706,17 @@
 	      <_name>Roll Up</_name>
 	    </desc>
 	  </option>
-	  <option name="shade_duration" type="list">
+	  <option name="shade_durations" type="list">
 	    <_short>Duration</_short>
-	    <_long>Animation duration in seconds for shade effect.</_long>
-	    <type>float</type>
+	    <_long>Animation duration in milliseconds for shade effect.</_long>
+	    <type>int</type>
+	    <min>50</min>
+	    <max>4000</max>
 	    <default>
-	      <value>0.3</value>
+	      <value>300</value>
 	    </default>
-	    <min>0.1</min>
-	    <max>10</max>
-	    <precision>0.01</precision>
 	  </option>
-	  <option name="shade_match" type="list">
+	  <option name="shade_matches" type="list">
 	    <_short>Window Match</_short>
 	    <_long>Window that should animate with this effect when shaded.</_long>
 	    <type>match</type>
@@ -772,7 +768,7 @@
 	<_short>Focus Animation</_short>
 	<subgroup>
 	  <_short>Animation Selection</_short>
-	  <option name="focus_effect" type="list">
+	  <option name="focus_effects" type="list">
 	    <_short>Focus Effect</_short>
 	    <_long>The animation effect shown when focusing a window.</_long>
 	    <type>int</type>
@@ -798,18 +794,17 @@
 	      <_name>Wave</_name>
 	    </desc>
 	  </option>
-	  <option name="focus_duration" type="list">
+	  <option name="focus_durations" type="list">
 	    <_short>Duration</_short>
-	    <_long>Animation duration in seconds for focus effect.</_long>
-	    <type>float</type>
-	    <min>0.1</min>
-	    <max>10</max>
-	    <precision>0.01</precision>
+	    <_long>Animation duration in milliseconds for focus effect.</_long>
+	    <type>int</type>
+	    <min>50</min>
+	    <max>4000</max>
 	    <default>
-	      <value>0.3</value>
+	      <value>300</value>
 	    </default>
 	  </option>
-	  <option name="focus_match" type="list">
+	  <option name="focus_matches" type="list">
 	    <_short>Window Match</_short>
 	    <_long>Window that should animate with this effect when focused.</_long>
 	    <type>match</type>

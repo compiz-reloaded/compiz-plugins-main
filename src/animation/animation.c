@@ -320,17 +320,13 @@ matchEvalProxy(CompMatch *match, CompWindow *w)
 static AnimEffect
 getMatchingAnimSelection (CompWindow *w,
 			  WindowEvent event,
-			  float *duration)
+			  int *duration)
 {
     ANIM_SCREEN(w->screen);
 
     if (duration == NULL)
-    {
-	compLogMessage
-	    (w->screen->display, "animation", CompLogLevelError,
-	     "%s:%d: Null duration passed.", __FILE__, __LINE__);
 	return AnimEffectNone;
-    }
+
     CompOptionValue *valMatch;
     CompOptionValue *valEffect;
     CompOptionValue *valDuration;
@@ -340,35 +336,35 @@ getMatchingAnimSelection (CompWindow *w,
     {
     case WindowEventOpen:
 	effects = closeEffects;
-	valMatch = &as->opt[ANIM_SCREEN_OPTION_OPEN_MATCH].value;
-	valEffect = &as->opt[ANIM_SCREEN_OPTION_OPEN_EFFECT].value;
-	valDuration = &as->opt[ANIM_SCREEN_OPTION_OPEN_DURATION].value;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_OPEN_MATCHES].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_OPEN_EFFECTS].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_OPEN_DURATIONS].value;
 	break;
     case WindowEventClose:
 	effects = closeEffects;
-	valMatch = &as->opt[ANIM_SCREEN_OPTION_CLOSE_MATCH].value;
-	valEffect = &as->opt[ANIM_SCREEN_OPTION_CLOSE_EFFECT].value;
-	valDuration = &as->opt[ANIM_SCREEN_OPTION_CLOSE_DURATION].value;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_CLOSE_MATCHES].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_CLOSE_EFFECTS].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_CLOSE_DURATIONS].value;
 	break;
     case WindowEventMinimize:
     case WindowEventUnminimize:
 	effects = minimizeEffects;
-	valMatch = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCH].value;
-	valEffect = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_EFFECT].value;
-	valDuration = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_DURATION].value;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCHES].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_EFFECTS].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_DURATIONS].value;
 	break;
     case WindowEventFocus:
 	effects = focusEffects;
-	valMatch = &as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCH].value;
-	valEffect = &as->opt[ANIM_SCREEN_OPTION_FOCUS_EFFECT].value;
-	valDuration = &as->opt[ANIM_SCREEN_OPTION_FOCUS_DURATION].value;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCHES].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_FOCUS_EFFECTS].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_FOCUS_DURATIONS].value;
 	break;
     case WindowEventShade:
     case WindowEventUnshade:
 	effects = shadeEffects;
-	valMatch = &as->opt[ANIM_SCREEN_OPTION_SHADE_MATCH].value;
-	valEffect = &as->opt[ANIM_SCREEN_OPTION_SHADE_EFFECT].value;
-	valDuration = &as->opt[ANIM_SCREEN_OPTION_SHADE_DURATION].value;
+	valMatch = &as->opt[ANIM_SCREEN_OPTION_SHADE_MATCHES].value;
+	valEffect = &as->opt[ANIM_SCREEN_OPTION_SHADE_EFFECTS].value;
+	valDuration = &as->opt[ANIM_SCREEN_OPTION_SHADE_DURATIONS].value;
 	break;
     case WindowEventNone:
 	return AnimEffectNone;
@@ -391,7 +387,7 @@ getMatchingAnimSelection (CompWindow *w,
 	if (!matchEvalProxy (&valMatch->list.value[i].match, w))
 	    continue;
 
-	*duration = valDuration->list.value[i].f;
+	*duration = valDuration->list.value[i].i;
 
 	return effects[valEffect->list.value[i].i];
     }
@@ -782,11 +778,11 @@ animSetScreenOptions(CompPlugin *plugin,
 
     switch (index)
     {
-    case ANIM_SCREEN_OPTION_OPEN_MATCH:
-    case ANIM_SCREEN_OPTION_CLOSE_MATCH:
-    case ANIM_SCREEN_OPTION_MINIMIZE_MATCH:
-    case ANIM_SCREEN_OPTION_FOCUS_MATCH:
-    case ANIM_SCREEN_OPTION_SHADE_MATCH:
+    case ANIM_SCREEN_OPTION_OPEN_MATCHES:
+    case ANIM_SCREEN_OPTION_CLOSE_MATCHES:
+    case ANIM_SCREEN_OPTION_MINIMIZE_MATCHES:
+    case ANIM_SCREEN_OPTION_FOCUS_MATCHES:
+    case ANIM_SCREEN_OPTION_SHADE_MATCHES:
 	if (compSetOptionList(o, value))
 	{
 	    int i;
@@ -848,24 +844,24 @@ animSetScreenOptions(CompPlugin *plugin,
 
 static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     // Event settings
-    { "open_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
-    { "open_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
-    { "open_match", "list", "<type>match</type>", 0, 0 },
+    { "open_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
+    { "open_durations", "list", "<type>int</type><min>50</min>", 0, 0 },
+    { "open_matches", "list", "<type>match</type>", 0, 0 },
     { "open_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
-    { "close_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
-    { "close_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
-    { "close_match", "list", "<type>match</type>", 0, 0 },
+    { "close_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_CLOSE_EFFECT), 0, 0 },
+    { "close_durations", "list", "<type>int</type><min>50</min>", 0, 0 },
+    { "close_matches", "list", "<type>match</type>", 0, 0 },
     { "close_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_CLOSE_EFFECT), 0, 0 },
-    { "minimize_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_MINIMIZE_EFFECT), 0, 0 },
-    { "minimize_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
-    { "minimize_match", "list", "<type>match</type>", 0, 0 },
+    { "minimize_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_MINIMIZE_EFFECT), 0, 0 },
+    { "minimize_durations", "list", "<type>int</type><min>50</min>", 0, 0 },
+    { "minimize_matches", "list", "<type>match</type>", 0, 0 },
     { "minimize_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_MINIMIZE_EFFECT), 0, 0 },
-    { "focus_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_FOCUS_EFFECT), 0, 0 },
-    { "focus_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
-    { "focus_match", "list", "<type>match</type>", 0, 0 },
-    { "shade_effect", "list", "<type>int</type>" RESTOSTRING (0, LAST_SHADE_EFFECT), 0, 0 },
-    { "shade_duration", "list", "<type>float</type><min>0.02</min>", 0, 0 },
-    { "shade_match", "list", "<type>match</type>", 0, 0 },
+    { "focus_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_FOCUS_EFFECT), 0, 0 },
+    { "focus_durations", "list", "<type>int</type><min>50</min>", 0, 0 },
+    { "focus_matches", "list", "<type>match</type>", 0, 0 },
+    { "shade_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_SHADE_EFFECT), 0, 0 },
+    { "shade_durations", "list", "<type>int</type><min>50</min>", 0, 0 },
+    { "shade_matches", "list", "<type>match</type>", 0, 0 },
     { "shade_random_effects", "list", "<type>int</type>" RESTOSTRING (0, LAST_RANDOM_SHADE_EFFECT), 0, 0 },
     // Misc. settings
     { "all_random", "bool", 0, 0, 0 },
@@ -1389,7 +1385,7 @@ initiateFocusAnimation(CompWindow *w)
     if (aw->curWindowEvent != WindowEventNone || otherPluginsActive(as))
 	return;
 
-    float duration = 0.2f;
+    int duration = 200;
     AnimEffect chosenEffect =
 	getMatchingAnimSelection (w, WindowEventFocus, &duration);
 
@@ -1534,7 +1530,7 @@ initiateFocusAnimation(CompWindow *w)
 			transformTotalProgress;
 
 		    adw->animTotalTime =
-			transformTotalProgress * 1000 * duration;
+			transformTotalProgress * duration;
 		    adw->animRemainingTime = adw->animTotalTime;
 
 		    if (maxTransformTotalProgress < transformTotalProgress)
@@ -1608,7 +1604,7 @@ initiateFocusAnimation(CompWindow *w)
 		}
 
 		aw->animTotalTime =
-		    maxTransformTotalProgress * 1000 * duration;
+		    maxTransformTotalProgress * duration;
 	    }
 	}
 
@@ -1621,7 +1617,7 @@ initiateFocusAnimation(CompWindow *w)
 	aw->curWindowEvent = WindowEventFocus;
 	aw->curAnimEffect = chosenEffect;
 	if (chosenEffect != AnimEffectDodge)
-	    aw->animTotalTime = duration * 1000;
+	    aw->animTotalTime = duration;
 	aw->animRemainingTime = aw->animTotalTime;
 
 	// Store coords in this viewport to omit 3d effect
@@ -2870,7 +2866,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    {
 		ANIM_WINDOW(w);
 
-		float duration = 0.2f;
+		int duration = 200;
 		AnimEffect chosenEffect =
 		    getMatchingAnimSelection (w, WindowEventShade, &duration);
 
@@ -2923,7 +2919,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 				break;
 						
 			    aw->curAnimEffect = effectToBePlayed;
-			    aw->animTotalTime = duration * 1000;
+			    aw->animTotalTime = duration;
 			    aw->animRemainingTime = aw->animTotalTime;
 			}
 
@@ -3000,7 +2996,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 				break;
 
 			    aw->curAnimEffect = effectToBePlayed;
-			    aw->animTotalTime = duration * 1000;
+			    aw->animTotalTime = duration;
 			    aw->animRemainingTime = aw->animTotalTime;
 			}
 
@@ -3047,7 +3043,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		if (!(w->resName || isQtTransientWindow(w)))
 		    break;
 
-		float duration = 0.2f;
+		int duration = 200;
 		AnimEffect chosenEffect =
 		    getMatchingAnimSelection (w, WindowEventClose, &duration);
 
@@ -3114,10 +3110,9 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			    break;
 					
 			aw->curAnimEffect = effectToBePlayed;
-			aw->animTotalTime = duration * 1000;
+			aw->animTotalTime = duration;
 			aw->animRemainingTime = aw->animTotalTime;
 		    }
-
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventClose;
 
@@ -3367,7 +3362,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 	    if (w)
 	    {
-		float duration = 0.2f;
+		int duration = 200;
 		AnimEffect chosenEffect =
 		    getMatchingAnimSelection (w, WindowEventFocus, &duration);
 
@@ -3392,7 +3387,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
     {
 	ANIM_WINDOW(w);
 
-	float duration = 0.2f;
+	int duration = 200;
 	AnimEffect chosenEffect;
 
 	if (aw->state == IconicState)
@@ -3450,7 +3445,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (playEffect)
 		    {
 			aw->curAnimEffect = effectToBePlayed;
-			aw->animTotalTime = duration * 1000;
+			aw->animTotalTime = duration;
 			aw->animRemainingTime = aw->animTotalTime;
 		    }
 		}
@@ -3540,7 +3535,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (playEffect)
 		    {
 			aw->curAnimEffect = effectToBePlayed;
-			aw->animTotalTime = duration * 1000;
+			aw->animTotalTime = duration;
 			aw->animRemainingTime = aw->animTotalTime;
 		    }
 		}
@@ -3568,7 +3563,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	{
 	    aw->created = TRUE;
 
-	    float duration = 0.2f;
+	    int duration = 200;
 	    AnimEffect chosenEffect =
 		getMatchingAnimSelection (w, WindowEventOpen, &duration);
 
@@ -3627,7 +3622,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (playEffect)
 		    {
 			aw->curAnimEffect = effectToBePlayed;
-			aw->animTotalTime = duration * 1000;
+			aw->animTotalTime = duration;
 			aw->animRemainingTime = aw->animTotalTime;
 		    }
 		}
