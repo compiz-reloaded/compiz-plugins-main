@@ -174,7 +174,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 	fadeDuration = 0.18;
 	riseDuration = 0.2;
     }
-    float *riseTimeRandSeed = calloc(1, nFallingColumns * sizeof(float));
+    float *riseTimeRandSeed = calloc(nFallingColumns, sizeof(float));
 
     if (!riseTimeRandSeed)
 	// TODO: log error here

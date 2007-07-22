@@ -1081,7 +1081,7 @@ static Model *createModel(CompWindow * w,
     model->gridWidth = gridWidth;
     model->gridHeight = gridHeight;
     model->numObjects = gridWidth * gridHeight;
-    model->objects = calloc(1, sizeof(Object) * model->numObjects);
+    model->objects = calloc(model->numObjects, sizeof(Object));
     if (!model->objects)
     {
 	compLogMessage (w->screen->display, "animation", CompLogLevelError,
@@ -1111,6 +1111,20 @@ static Model *createModel(CompWindow * w,
     modelCalcBounds(model);
 
     return model;
+}
+
+static void
+animFreeModel(AnimWindow *aw)
+{
+    if (!aw->model)
+	return;
+
+    if (aw->model->magicLampWaves)
+	free(aw->model->magicLampWaves);
+    if (aw->model->objects)
+	free(aw->model->objects);
+    free(aw->model);
+    aw->model = NULL;
 }
 
 static Bool
@@ -1143,13 +1157,7 @@ animEnsureModel(CompWindow * w,
 	(isShadeUnshadeEvent != wasShadeUnshadeEvent) ||
 	aw->model->winWidth != WIN_W(w) || aw->model->winHeight != WIN_H(w))
     {
-	if (aw->model)
-	{
-	    if (aw->model->magicLampWaves)
-		free(aw->model->magicLampWaves);
-	    free(aw->model->objects);
-	    free(aw->model);
-	}
+	animFreeModel(aw);
 	aw->model = createModel(w,
 				forWindowEvent, forAnimEffect,
 				gridWidth, gridHeight);
@@ -3319,7 +3327,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		AnimWindow *awRestacked = GET_ANIM_WINDOW(wRestacked, as);
 		if (awRestacked->created)
 		{
-		    RestackInfo *restackInfo = calloc(sizeof(RestackInfo), 1);
+		    RestackInfo *restackInfo = calloc(1, sizeof(RestackInfo));
 		    if (restackInfo)
 		    {
 			restackInfo->wRestacked = wRestacked;
@@ -4071,21 +4079,7 @@ static void animFiniWindow(CompPlugin * p, CompWindow * w)
 
     postAnimationCleanup(w, FALSE);
 
-    if (aw->model)
-    {
-	if (aw->model->magicLampWaves)
-	    free(aw->model->magicLampWaves);
-	aw->model->magicLampWaves = 0;
-	free(aw->model->objects);
-	aw->model->objects = 0;
-	free(aw->model);
-	aw->model = 0;
-    }
-    if (aw->restackInfo)
-    {
-	free(aw->restackInfo);
-	aw->restackInfo = NULL;
-    }
+    animFreeModel(aw);
 
     while (aw->unmapCnt--)
 	unmapWindow(w);

@@ -48,7 +48,7 @@ void fxBeamUpInit(CompScreen * s, CompWindow * w)
     ANIM_SCREEN(s);
     if (!aw->numPs)
     {
-	aw->ps = calloc(1, 2 * sizeof(ParticleSystem));
+	aw->ps = calloc(2, sizeof(ParticleSystem));
 	if (!aw->ps)
 	{
 	    postAnimationCleanup(w, TRUE);

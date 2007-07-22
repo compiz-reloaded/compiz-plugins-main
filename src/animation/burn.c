@@ -47,7 +47,7 @@ void fxBurnInit(CompScreen * s, CompWindow * w)
     modelInitObjects(aw->model, WIN_X(w), WIN_Y(w), WIN_W(w), WIN_H(w));
     if (!aw->numPs)
     {
-	aw->ps = calloc(1, 2 * sizeof(ParticleSystem));
+	aw->ps = calloc(2, sizeof(ParticleSystem));
 	if (!aw->ps)
 	{
 	    postAnimationCleanup(w, TRUE);

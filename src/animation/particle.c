@@ -40,7 +40,7 @@ void initParticles(int numParticles, ParticleSystem * ps)
 {
     if (ps->particles)
 	free(ps->particles);
-    ps->particles = calloc(1, sizeof(Particle) * numParticles);
+    ps->particles = calloc(numParticles, sizeof(Particle));
     ps->tex = 0;
     ps->numParticles = numParticles;
     ps->slowdown = 1;

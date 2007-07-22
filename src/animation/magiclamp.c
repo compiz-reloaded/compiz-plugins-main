@@ -97,7 +97,7 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
 
 	if (!(model->magicLampWaves))
 	    model->magicLampWaves =
-		calloc(1, model->magicLampWaveCount * sizeof(WaveParam));
+		calloc(model->magicLampWaveCount, sizeof(WaveParam));
 
 	int ampDirection = (RAND_FLOAT() < 0.5 ? 1 : -1);
 	int i;

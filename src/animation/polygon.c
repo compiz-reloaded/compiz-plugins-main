@@ -218,7 +218,7 @@ tessellateIntoRectangles(CompWindow * w,
 
 	pset->nPolygons = gridSizeX * gridSizeY;
 
-	pset->polygons = calloc(1, sizeof(PolygonObject) * pset->nPolygons);
+	pset->polygons = calloc(pset->nPolygons, sizeof(PolygonObject));
 	if (!pset->polygons)
 	{
 	    compLogMessage (w->screen->display, "animation", CompLogLevelError,
@@ -266,7 +266,7 @@ tessellateIntoRectangles(CompWindow * w,
 	    // 4 front, 4 back vertices
 	    if (!p->vertices)
 	    {
-		p->vertices = calloc(1, sizeof(GLfloat) * 8 * 3);
+		p->vertices = calloc(8 * 3, sizeof(GLfloat));
 	    }
 	    //if (!p->vertexOnEdge)
 	    //  p->vertexOnEdge = calloc (1, sizeof (int) * p->nSides);
@@ -319,8 +319,7 @@ tessellateIntoRectangles(CompWindow * w,
 	    // 16 indices for 4 sides (for quad strip)
 	    if (!p->sideIndices)
 	    {
-		//p->sideIndices = calloc(1, sizeof(GLushort) * 2 * (4 + 1));
-		p->sideIndices = calloc(1, sizeof(GLushort) * 4 * 4);
+		p->sideIndices = calloc(4 * 4, sizeof(GLushort));
 	    }
 	    if (!p->sideIndices)
 	    {
@@ -370,7 +369,7 @@ tessellateIntoRectangles(CompWindow * w,
 	    // Surface normals
 	    if (!p->normals)
 	    {
-		p->normals = calloc(1, sizeof(GLfloat) * (2 + 4) * 3);
+		p->normals = calloc((2 + 4) * 3, sizeof(GLfloat));
 	    }
 	    if (!p->normals)
 	    {
@@ -491,7 +490,7 @@ tessellateIntoHexagons(CompWindow * w,
 
 	pset->nPolygons = nPolygons;
 
-	pset->polygons = calloc(1, sizeof(PolygonObject) * pset->nPolygons);
+	pset->polygons = calloc(pset->nPolygons, sizeof(PolygonObject));
 	if (!pset->polygons)
 	{
 	    compLogMessage (w->screen->display, "animation", CompLogLevelError,
@@ -575,7 +574,7 @@ tessellateIntoHexagons(CompWindow * w,
 	    // 6 front, 6 back vertices
 	    if (!p->vertices)
 	    {
-		p->vertices = calloc(1, sizeof(GLfloat) * 6 * 2 * 3);
+		p->vertices = calloc(6 * 2 * 3, sizeof(GLfloat));
 		if (!p->vertices)
 		{
 		    compLogMessage (w->screen->display, "animation", CompLogLevelError,
@@ -642,7 +641,7 @@ tessellateIntoHexagons(CompWindow * w,
 	    // 24 indices per 6 sides (for quad strip)
 	    if (!p->sideIndices)
 	    {
-		p->sideIndices = calloc(1, sizeof(GLushort) * 4*6);
+		p->sideIndices = calloc(4 * 6, sizeof(GLushort));
 	    }
 	    if (!p->sideIndices)
 	    {
@@ -690,7 +689,7 @@ tessellateIntoHexagons(CompWindow * w,
 	    // Surface normals
 	    if (!p->normals)
 	    {
-		p->normals = calloc(1, sizeof(GLfloat) * (2 + 6) * 3);
+		p->normals = calloc((2 + 6) * 3, sizeof(GLfloat));
 	    }
 	    if (!p->normals)
 	    {
@@ -977,16 +976,15 @@ static Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset)
 
 	    if (!c->intersectingPolygons)
 	    {
-		c->intersectingPolygons = calloc(1, sizeof(int) *
-						 pset->nPolygons);
+		c->intersectingPolygons =
+		    calloc(pset->nPolygons, sizeof(int));
 	    }
 	    // allocate tex coords
 	    // 2 {x, y} * 2 {front, back} * <total # of polygon front vertices>
 	    if (!c->polygonVertexTexCoords)
 	    {
 		c->polygonVertexTexCoords =
-		    calloc(1, sizeof(GLfloat) * 2 * 2 *
-			   pset->nTotalFrontVertices);
+		    calloc(2 * 2 * pset->nTotalFrontVertices, sizeof(GLfloat));
 	    }
 	    if (!c->intersectingPolygons || !c->polygonVertexTexCoords)
 	    {
