@@ -1433,7 +1433,6 @@ initiateFocusAnimation(CompWindow *w)
 	    CompWindow *dw;
 	    for (dw = wStart; dw && dw != wEnd->next; dw = dw->next)
 	    {
-		//printf("%X, s: %X, e: %X\n", dw, wStart, wEnd);
 		if (!isWinVisible(dw) ||
 		    dw->wmType & CompWindowTypeDockMask)
 		    continue;
@@ -1684,14 +1683,10 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		if (aw->restackInfo)
 		{
 		    if (aw->curWindowEvent != WindowEventNone ||
-			otherPluginsActive(as))
-		    {
-			continue;
-		    }
-
-		    if (!restackInfoStillGood(s, aw->restackInfo))
-		    {
+			otherPluginsActive(as) ||
 			// Don't animate with stale restack info
+			!restackInfoStillGood(s, aw->restackInfo))
+		    {
 			free(aw->restackInfo);
 			aw->restackInfo = NULL;
 			continue;
@@ -3225,6 +3220,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    Bool raised = FALSE;
 	    int changeStart = -1;
 	    int changeEnd = -1;
+
 	    for (i = 0; i < n; i++)
 	    {
 		CompWindow *wi =
