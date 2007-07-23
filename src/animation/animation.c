@@ -1486,7 +1486,7 @@ initiateFocusAnimation(CompWindow *w)
 	    float dodgeMaxStartProgress =
 		numDodgingWins *
 		as->opt[ANIM_SCREEN_OPTION_DODGE_GAP_RATIO].value.f *
-		duration;
+		duration / 1000.0f;
 
 	    if (chosenEffect == AnimEffectDodge)
 	    {
