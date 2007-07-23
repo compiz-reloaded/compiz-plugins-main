@@ -34,6 +34,39 @@
 					<max>2.0</max>
 					<precision>0.05</precision>
 				</option>
+				<subgroup>
+					<_short>Appearence</_short>
+					<option name="background_gradient_base_color" type="color">
+						<_short>Background Base Color</_short>
+						<_long>First color for the background gradient of the switcher window.</_long>
+						<default>
+							<red>0xcccc</red>
+							<green>0xcccc</green>
+							<blue>0xe665</blue>
+							<alpha>0xd998</alpha>
+						</default>
+					</option>
+					<option name="background_gradient_highlight_color" type="color">
+						<_short>Background Highlight Color</_short>
+						<_long>Secound color for the background gradient of the switcher window.</_long>
+						<default>
+							<red>0xf332</red>
+							<green>0xf332</green>
+							<blue>0xffff</blue>
+							<alpha>0xd998</alpha>
+						</default>
+					</option>
+					<option name="background_gradient_shadow_color" type="color">
+						<_short>Background Shadow Color</_short>
+						<_long>Third color for the background gradient of the switcher window.</_long>
+						<default>
+							<red>0xf332</red>
+							<green>0xf332</green>
+							<blue>0xffff</blue>
+							<alpha>0xd998</alpha>
+						</default>
+					</option>
+				</subgroup>
 			</group>
 			<group>
 				<_short>Viewport Switching</_short>

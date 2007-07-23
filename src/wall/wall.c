@@ -43,6 +43,12 @@
 #define WIN_W(w) ((w)->width + (w)->input.left + (w)->input.right)
 #define WIN_H(w) ((w)->height + (w)->input.top + (w)->input.bottom)
 
+#define getColorRGBA(name, _display) \
+	r = wallGet##name##Red(_display) / 65535.0f;\
+	g = wallGet##name##Green(_display) / 65535.0f; \
+	b = wallGet##name##Blue(_display) / 65535.0f; \
+	a = wallGet##name##Alpha(_display) / 65535.0f
+
 static int displayPrivateIndex;
 
 /* Enums */
@@ -221,15 +227,19 @@ static void wallDrawSwitcherBackground(CompScreen *s)
 	float height = (float) ws->switcherContext->height;
 	height -= outline;
 
+	float r, g, b, a;
 	cairo_pattern_t *pattern;
 
 	cairo_translate(cr, outline/2.0f, outline/2.0f);
 
 	// set the pattern for the switcher's background
 	pattern = cairo_pattern_create_linear(0, 0, width, height);
-	cairo_pattern_add_color_stop_rgba(pattern, 0.00f, 0.80, 0.80, 0.90, 0.85);
-	cairo_pattern_add_color_stop_rgba(pattern, 0.65f, 0.95, 0.95, 1.0f, 0.85);
-	cairo_pattern_add_color_stop_rgba(pattern, 0.85f, 0.85, 0.85, 0.85, 0.85);
+	getColorRGBA(BackgroundGradientBaseColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 0.00f, r, g, b, a);
+	getColorRGBA(BackgroundGradientHighlightColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 0.65f, r, g, b, a);
+	getColorRGBA(BackgroundGradientShadowColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 0.85f, r, g, b, a);
 	cairo_set_source(cr, pattern);
 
 	// draw the border's shape
@@ -244,7 +254,7 @@ static void wallDrawSwitcherBackground(CompScreen *s)
 
 	// ... and draw an outline
 	cairo_set_line_width(cr, outline);
-	cairo_set_source_rgba(cr, 0.2,0.2,0.2,0.85);
+	cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.85);
 	cairo_stroke(cr);
 
 	cairo_pattern_destroy(pattern);
@@ -1461,6 +1471,24 @@ static void wallDonePaintScreen(CompScreen * s)
 
 }
 
+static void wallDisplayOptionChanged(CompDisplay *display, CompOption *opt, WallDisplayOptions num)
+{
+	CompScreen *s;
+
+	switch(num)
+	{
+		case WallDisplayOptionBackgroundGradientBaseColor:
+		case WallDisplayOptionBackgroundGradientHighlightColor:
+		case WallDisplayOptionBackgroundGradientShadowColor:
+			for (s = display->screens; s; s = s->next)
+				wallDrawSwitcherBackground(s);
+			break;
+
+		default:
+			break;
+	}
+}
+
 static
 Bool wallSetScreenOptionCore(CompScreen *screen, char *name, CompOptionValue *value)
 {
@@ -1537,6 +1565,10 @@ static Bool wallInitDisplay(CompPlugin * p, CompDisplay * d)
 	wallSetFlipRightInitiate(d, wallFlipRight);
 	wallSetFlipUpInitiate(d, wallFlipUp);
 	wallSetFlipDownInitiate(d, wallFlipDown);
+
+	wallSetBackgroundGradientBaseColorNotify(d, wallDisplayOptionChanged);
+	wallSetBackgroundGradientHighlightColorNotify(d, wallDisplayOptionChanged);
+	wallSetBackgroundGradientShadowColorNotify(d, wallDisplayOptionChanged);
 
 	WRAP(wd, d, handleEvent, wallHandleEvent);
 	d->privates[displayPrivateIndex].ptr = wd;
