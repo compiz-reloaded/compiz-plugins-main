@@ -37,19 +37,18 @@
 #include "animation-internal.h"
 
 void
-fxMagicLampInitGrid(AnimScreen * as,
-		    WindowEvent forWindowEvent,
+fxMagicLampInitGrid(AnimScreen *as, AnimWindow *aw,
 		    int *gridWidth, int *gridHeight)
 {
     *gridWidth = 2;
-    *gridHeight = as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_GRID_RES].value.i;
+    *gridHeight = animGetI(as, aw, ANIM_SCREEN_OPTION_MAGIC_LAMP_GRID_RES);
 }
 void
-fxVacuumInitGrid(AnimScreen * as, WindowEvent forWindowEvent,
+fxVacuumInitGrid(AnimScreen * as, AnimWindow *aw,
 		 int *gridWidth, int *gridHeight)
 {
     *gridWidth = 2;
-    *gridHeight = as->opt[ANIM_SCREEN_OPTION_VACUUM_GRID_RES].value.i;
+    *gridHeight = animGetI(as, aw, ANIM_SCREEN_OPTION_VACUUM_GRID_RES);
 }
 
 void fxMagicLampInit(CompScreen * s, CompWindow * w)
@@ -67,11 +66,11 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
 
     if (aw->curAnimEffect == AnimEffectMagicLamp)
     {
-	maxWaves = as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_MAX_WAVES].value.i;
+	maxWaves = animGetI(as, aw, ANIM_SCREEN_OPTION_MAGIC_LAMP_MAX_WAVES);
 	waveAmpMin =
-	    as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_WAVE_AMP_MIN].value.f;
+	    animGetF(as, aw, ANIM_SCREEN_OPTION_MAGIC_LAMP_WAVE_AMP_MIN);
 	waveAmpMax =
-	    as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_WAVE_AMP_MAX].value.f;
+	    animGetF(as, aw, ANIM_SCREEN_OPTION_MAGIC_LAMP_WAVE_AMP_MAX);
     }
     else
     {
@@ -299,9 +298,9 @@ Bool fxMagicLampModelStep(CompScreen * s, CompWindow * w, float time)
     if ((aw->curWindowEvent == WindowEventOpen ||
 	 aw->curWindowEvent == WindowEventClose) &&
 	((aw->curAnimEffect == AnimEffectMagicLamp &&
-	  as->opt[ANIM_SCREEN_OPTION_MAGIC_LAMP_MOVING_END].value.b) ||
+	  animGetB(as, aw, ANIM_SCREEN_OPTION_MAGIC_LAMP_MOVING_END)) ||
 	 (aw->curAnimEffect == AnimEffectVacuum &&
-	  as->opt[ANIM_SCREEN_OPTION_VACUUM_MOVING_END].value.b)))
+	  animGetB(as, aw, ANIM_SCREEN_OPTION_VACUUM_MOVING_END))))
     {
 	// Update icon position
 	getMousePointerXY(s, &aw->icon.x, &aw->icon.y);

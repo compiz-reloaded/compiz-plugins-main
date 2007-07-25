@@ -41,20 +41,20 @@ void fxExplode3DInit(CompScreen * s, CompWindow * w)
     ANIM_WINDOW(w);
     ANIM_SCREEN(s);
 
-    switch (as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_TESS].value.i)
+    switch (animGetI(as, aw, ANIM_SCREEN_OPTION_EXPLODE3D_TESS))
     {
     case PolygonTessRect:
 	if (!tessellateIntoRectangles(w, 
-				      as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_X].value.i,
-				      as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_Y].value.i,
-				      as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_THICKNESS].value.f))
+				      animGetI(as, aw, ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_X),
+				      animGetI(as, aw, ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_Y),
+				      animGetF(as, aw, ANIM_SCREEN_OPTION_EXPLODE3D_THICKNESS)))
 	    return;
 	break;
     case PolygonTessHex:
 	if (!tessellateIntoHexagons(w, 
-				    as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_X].value.i,
-				    as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_Y].value.i,
-				    as->opt[ANIM_SCREEN_OPTION_EXPLODE3D_THICKNESS].value.f))
+				    animGetI(as, aw, ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_X),
+				    animGetI(as, aw, ANIM_SCREEN_OPTION_EXPLODE3D_GRIDSIZE_Y),
+				    animGetF(as, aw, ANIM_SCREEN_OPTION_EXPLODE3D_THICKNESS)))
 	    return;
 	break;
     default:

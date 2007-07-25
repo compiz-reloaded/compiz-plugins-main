@@ -84,9 +84,9 @@ Bool fxWaveModelStep(CompScreen * s, CompWindow * w, float time)
 			      &model->objects[i],
 			      forwardProgress,
 			      WIN_H(w) * model->scale.y *
-			      as->opt[ANIM_SCREEN_OPTION_WAVE_AMP].value.f,
+			      animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_AMP),
 			      WIN_H(w) * model->scale.y *
-			      as->opt[ANIM_SCREEN_OPTION_WAVE_WIDTH].value.f /
+			      animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_WIDTH) /
 			      2);
     modelCalcBounds(model);
     return TRUE;

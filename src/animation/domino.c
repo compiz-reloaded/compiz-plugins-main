@@ -47,10 +47,10 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
 
     if (isRazr)
 	fallDir = getAnimationDirection
-	    (w, &as->opt[ANIM_SCREEN_OPTION_RAZR_DIRECTION].value, TRUE);
+	    (w, animGetOptVal(as, aw, ANIM_SCREEN_OPTION_RAZR_DIRECTION), TRUE);
     else
 	fallDir = getAnimationDirection
-	    (w, &as->opt[ANIM_SCREEN_OPTION_DOMINO_DIRECTION].value,
+	    (w, animGetOptVal(as, aw, ANIM_SCREEN_OPTION_DOMINO_DIRECTION),
 	     TRUE);
 
     int defaultGridSize = 20;

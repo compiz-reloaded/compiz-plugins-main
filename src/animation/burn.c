@@ -55,16 +55,16 @@ void fxBurnInit(CompScreen * s, CompWindow * w)
 	}
 	aw->numPs = 2;
     }
-    initParticles(as->opt[ANIM_SCREEN_OPTION_FIRE_PARTICLES].value.i /
+    initParticles(animGetI(as, aw, ANIM_SCREEN_OPTION_FIRE_PARTICLES)/
 		  10, &aw->ps[0]);
-    initParticles(as->opt[ANIM_SCREEN_OPTION_FIRE_PARTICLES].value.i,
+    initParticles(animGetI(as, aw, ANIM_SCREEN_OPTION_FIRE_PARTICLES),
 		  &aw->ps[1]);
-    aw->ps[1].slowdown = as->opt[ANIM_SCREEN_OPTION_FIRE_SLOWDOWN].value.f;
+    aw->ps[1].slowdown = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SLOWDOWN);
     aw->ps[1].darken = 0.5;
     aw->ps[1].blendMode = GL_ONE;
 
     aw->ps[0].slowdown =
-	as->opt[ANIM_SCREEN_OPTION_FIRE_SLOWDOWN].value.f / 2.0;
+	animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SLOWDOWN) / 2.0;
     aw->ps[0].darken = 0.0;
     aw->ps[0].blendMode = GL_ONE_MINUS_SRC_ALPHA;
 
@@ -91,9 +91,9 @@ void fxBurnInit(CompScreen * s, CompWindow * w)
     glBindTexture(GL_TEXTURE_2D, 0);
 
     aw->animFireDirection = getAnimationDirection
-	(w, &as->opt[ANIM_SCREEN_OPTION_FIRE_DIRECTION].value, FALSE);
+	(w, animGetOptVal(as, aw, ANIM_SCREEN_OPTION_FIRE_DIRECTION), FALSE);
 
-    if (as->opt[ANIM_SCREEN_OPTION_FIRE_CONSTANT_SPEED].value.b)
+    if (animGetB(as, aw, ANIM_SCREEN_OPTION_FIRE_CONSTANT_SPEED))
     {
 	aw->animTotalTime *= WIN_H(w) / 500.0;
 	aw->animRemainingTime *= WIN_H(w) / 500.0;
@@ -101,17 +101,22 @@ void fxBurnInit(CompScreen * s, CompWindow * w)
 }
 
 static void
-fxBurnGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
-		 int width, int height, float size, float time)
+fxBurnGenNewFire(CompScreen * s,
+		 CompWindow * w,
+		 ParticleSystem * ps,
+		 int x,
+		 int y,
+		 int width,
+		 int height,
+		 float size,
+		 float time)
 {
     ANIM_SCREEN(s);
+    ANIM_WINDOW(w);
 
     float max_new =
-	ps->numParticles * (time / 50) * (1.05 -
-					  as->
-					  opt
-					  [ANIM_SCREEN_OPTION_FIRE_LIFE].
-					  value.f);
+	ps->numParticles * (time / 50) *
+	(1.05 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE));
     int i;
     Particle *part;
     float rVal;
@@ -124,12 +129,12 @@ fxBurnGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
 	    // give gt new life
 	    rVal = (float)(random() & 0xff) / 255.0;
 	    part->life = 1.0f;
-	    part->fade = (rVal * (1 - as->opt[ANIM_SCREEN_OPTION_FIRE_LIFE].value.f)) + 
-		(0.2f * (1.01 - as->opt[ANIM_SCREEN_OPTION_FIRE_LIFE].value.f));	// Random Fade Value
+	    part->fade = (rVal * (1 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE))) + 
+		(0.2f * (1.01 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE)));	// Random Fade Value
 
 	    // set size
-	    part->width = as->opt[ANIM_SCREEN_OPTION_FIRE_SIZE].value.f;
-	    part->height = as->opt[ANIM_SCREEN_OPTION_FIRE_SIZE].value.f * 1.5;
+	    part->width = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE);
+	    part->height = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE) * 1.5;
 	    rVal = (float)(random() & 0xff) / 255.0;
 	    part->w_mod = size * rVal;
 	    part->h_mod = size * rVal;
@@ -152,7 +157,10 @@ fxBurnGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
 	    part->zi = 0.0f;
 	    rVal = (float)(random() & 0xff) / 255.0;
 
-	    if (as->opt[ANIM_SCREEN_OPTION_FIRE_MYSTICAL].value.b)
+	    // set color ABAB ANIM_SCREEN_OPTION_FIRE_COLOR
+	    unsigned short *c =
+		animGetC(as, aw, ANIM_SCREEN_OPTION_FIRE_COLOR);
+	    if (animGetB(as, aw, ANIM_SCREEN_OPTION_FIRE_MYSTICAL))
 	    {
 		// Random colors! (aka Mystical Fire)
 		rVal = (float)(random() & 0xff) / 255.0;
@@ -164,16 +172,15 @@ fxBurnGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
 	    }
 	    else
 	    {
-		// set color ABAB as->opt[ANIM_SCREEN_OPTION_FIRE_COLOR].value.f
-		part->r = (float)as->opt[ANIM_SCREEN_OPTION_FIRE_COLOR].value.c[0] / 0xffff -
-		    (rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_FIRE_COLOR].value.c[0] / 0xffff);
-		part->g = (float)as->opt[ANIM_SCREEN_OPTION_FIRE_COLOR].value.c[1] / 0xffff -
-		    (rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_FIRE_COLOR].value.c[1] / 0xffff);
-		part->b = (float)as->opt[ANIM_SCREEN_OPTION_FIRE_COLOR].value.c[2] / 0xffff -
-		    (rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_FIRE_COLOR].value.c[2] / 0xffff);
+		part->r = (float)c[0] / 0xffff -
+		    (rVal / 1.7 * (float)c[0] / 0xffff);
+		part->g = (float)c[1] / 0xffff -
+		    (rVal / 1.7 * (float)c[1] / 0xffff);
+		part->b = (float)c[2] / 0xffff -
+		    (rVal / 1.7 * (float)c[2] / 0xffff);
 	    }
 	    // set transparancy
-	    part->a = (float)as->opt[ANIM_SCREEN_OPTION_FIRE_COLOR].value.c[3] / 0xffff;
+	    part->a = (float)c[3] / 0xffff;
 
 	    // set gravity
 	    part->xg = (part->x < part->xo) ? 1.0 : -1.0;
@@ -192,17 +199,22 @@ fxBurnGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
 }
 
 static void
-fxBurnGenNewSmoke(CompScreen * s, ParticleSystem * ps, int x, int y,
-		  int width, int height, float size, float time)
+fxBurnGenNewSmoke(CompScreen * s,
+		  CompWindow * w,
+		  ParticleSystem * ps,
+		  int x,
+		  int y,
+		  int width,
+		  int height,
+		  float size,
+		  float time)
 {
     ANIM_SCREEN(s);
+    ANIM_WINDOW(w);
 
     float max_new =
-	ps->numParticles * (time / 50) * (1.05 -
-					  as->
-					  opt
-					  [ANIM_SCREEN_OPTION_FIRE_LIFE].
-					  value.f);
+	ps->numParticles * (time / 50) *
+	(1.05 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE));
     int i;
     Particle *part;
     float rVal;
@@ -215,12 +227,12 @@ fxBurnGenNewSmoke(CompScreen * s, ParticleSystem * ps, int x, int y,
 	    // give gt new life
 	    rVal = (float)(random() & 0xff) / 255.0;
 	    part->life = 1.0f;
-	    part->fade = (rVal * (1 - as->opt[ANIM_SCREEN_OPTION_FIRE_LIFE].value.f)) + 
-		(0.2f * (1.01 - as->opt[ANIM_SCREEN_OPTION_FIRE_LIFE].value.f));	// Random Fade Value
+	    part->fade = (rVal * (1 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE))) + 
+		(0.2f * (1.01 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE)));	// Random Fade Value
 
 	    // set size
-	    part->width = as->opt[ANIM_SCREEN_OPTION_FIRE_SIZE].value.f * size * 5;
-	    part->height = as->opt[ANIM_SCREEN_OPTION_FIRE_SIZE].value.f * size * 5;
+	    part->width = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE) * size * 5;
+	    part->height = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE) * size * 5;
 	    rVal = (float)(random() & 0xff) / 255.0;
 	    part->w_mod = -0.8;
 	    part->h_mod = -0.8;
@@ -275,7 +287,7 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 
     Model *model = aw->model;
 
-    Bool smoke = as->opt[ANIM_SCREEN_OPTION_FIRE_SMOKE].value.b;
+    Bool smoke = animGetB(as, aw, ANIM_SCREEN_OPTION_FIRE_SMOKE);
 
     float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
 		      as->opt[ANIM_SCREEN_OPTION_TIME_STEP_INTENSE].value.i);
@@ -354,34 +366,34 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	{
 	case AnimDirectionUp:
 	    if (smoke)
-		fxBurnGenNewSmoke(s, &aw->ps[0], WIN_X(w),
+		fxBurnGenNewSmoke(s, w, &aw->ps[0], WIN_X(w),
 				  WIN_Y(w) + ((1 - old) * WIN_H(w)),
 				  WIN_W(w), 1, WIN_W(w) / 40.0, time);
-	    fxBurnGenNewFire(s, &aw->ps[1], WIN_X(w),
+	    fxBurnGenNewFire(s, w, &aw->ps[1], WIN_X(w),
 			     WIN_Y(w) + ((1 - old) * WIN_H(w)),
 			     WIN_W(w), (stepSize) * WIN_H(w),
 			     WIN_W(w) / 40.0, time);
 	    break;
 	case AnimDirectionLeft:
 	    if (smoke)
-		fxBurnGenNewSmoke(s, &aw->ps[0],
+		fxBurnGenNewSmoke(s, w, &aw->ps[0],
 				  WIN_X(w) + ((1 - old) * WIN_W(w)),
 				  WIN_Y(w),
 				  (stepSize) * WIN_W(w),
 				  WIN_H(w), WIN_H(w) / 40.0, time);
-	    fxBurnGenNewFire(s, &aw->ps[1],
+	    fxBurnGenNewFire(s, w, &aw->ps[1],
 			     WIN_X(w) + ((1 - old) * WIN_W(w)),
 			     WIN_Y(w), (stepSize) * WIN_W(w),
 			     WIN_H(w), WIN_H(w) / 40.0, time);
 	    break;
 	case AnimDirectionRight:
 	    if (smoke)
-		fxBurnGenNewSmoke(s, &aw->ps[0],
+		fxBurnGenNewSmoke(s, w, &aw->ps[0],
 				  WIN_X(w) + (old * WIN_W(w)),
 				  WIN_Y(w),
 				  (stepSize) * WIN_W(w),
 				  WIN_H(w), WIN_H(w) / 40.0, time);
-	    fxBurnGenNewFire(s, &aw->ps[1],
+	    fxBurnGenNewFire(s, w, &aw->ps[1],
 			     WIN_X(w) + (old * WIN_W(w)),
 			     WIN_Y(w), (stepSize) * WIN_W(w),
 			     WIN_H(w), WIN_H(w) / 40.0, time);
@@ -389,10 +401,10 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	case AnimDirectionDown:
 	default:
 	    if (smoke)
-		fxBurnGenNewSmoke(s, &aw->ps[0], WIN_X(w),
+		fxBurnGenNewSmoke(s, w, &aw->ps[0], WIN_X(w),
 				  WIN_Y(w) + (old * WIN_H(w)),
 				  WIN_W(w), 1, WIN_W(w) / 40.0, time);
-	    fxBurnGenNewFire(s, &aw->ps[1], WIN_X(w),
+	    fxBurnGenNewFire(s, w, &aw->ps[1], WIN_X(w),
 			     WIN_Y(w) + (old * WIN_H(w)),
 			     WIN_W(w), (stepSize) * WIN_H(w),
 			     WIN_W(w) / 40.0, time);

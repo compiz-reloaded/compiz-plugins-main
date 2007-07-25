@@ -45,15 +45,15 @@ fxGlideGetParams
 {
     if (aw->curAnimEffect == AnimEffectGlide3D1)
     {
-	*finalDistFac = as->opt[ANIM_SCREEN_OPTION_GLIDE1_AWAY_POS].value.f;
-	*finalRotAng = as->opt[ANIM_SCREEN_OPTION_GLIDE1_AWAY_ANGLE].value.f;
-	*thickness = as->opt[ANIM_SCREEN_OPTION_GLIDE1_THICKNESS].value.f;
+	*finalDistFac = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE1_AWAY_POS);
+	*finalRotAng = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE1_AWAY_ANGLE);
+	*thickness = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE1_THICKNESS);
     }
     else
     {
-	*finalDistFac = as->opt[ANIM_SCREEN_OPTION_GLIDE2_AWAY_POS].value.f;
-	*finalRotAng = as->opt[ANIM_SCREEN_OPTION_GLIDE2_AWAY_ANGLE].value.f;
-	*thickness = as->opt[ANIM_SCREEN_OPTION_GLIDE2_THICKNESS].value.f;
+	*finalDistFac = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE2_AWAY_POS);
+	*finalRotAng = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE2_AWAY_ANGLE);
+	*thickness = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE2_THICKNESS);
     }
 }
 
@@ -61,9 +61,9 @@ Bool
 fxGlideIsPolygonBased (AnimScreen *as, AnimWindow *aw)
 {
     if (aw->curAnimEffect == AnimEffectGlide3D1)
-	return (as->opt[ANIM_SCREEN_OPTION_GLIDE1_THICKNESS].value.f > 1e-5);
+	return (animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE1_THICKNESS) > 1e-5);
     else
-	return (as->opt[ANIM_SCREEN_OPTION_GLIDE2_THICKNESS].value.f > 1e-5);
+	return (animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE2_THICKNESS) > 1e-5);
 }
 
 static inline Bool
@@ -73,11 +73,9 @@ fxGlideZoomToTaskBar (AnimScreen *as, AnimWindow *aw)
 	(aw->curWindowEvent == WindowEventMinimize ||
 	 aw->curWindowEvent == WindowEventUnminimize) &&
 	((aw->curAnimEffect == AnimEffectGlide3D1 &&
-	  as->opt[ANIM_SCREEN_OPTION_GLIDE1_Z2TOM].
-	  value.b) ||
+	  animGetB(as, aw, ANIM_SCREEN_OPTION_GLIDE1_Z2TOM)) ||
 	 (aw->curAnimEffect == AnimEffectGlide3D2 &&
-	  as->opt[ANIM_SCREEN_OPTION_GLIDE2_Z2TOM].
-	  value.b));
+	  animGetB(as, aw, ANIM_SCREEN_OPTION_GLIDE2_Z2TOM)));
 }
 
 Bool
@@ -229,7 +227,7 @@ void fxGlideInit(CompScreen * s, CompWindow * w)
 	// store window opacity
 	aw->storedOpacity = w->paint.opacity;
 	aw->timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo
-			as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
+			animGetI(as, aw, ANIM_SCREEN_OPTION_TIME_STEP));
 
 	return; // we're done with CompTransform-based glide initialization
     }

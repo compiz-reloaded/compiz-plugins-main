@@ -158,14 +158,15 @@ typedef struct _WaveParam
 typedef enum
 {
     WindowEventNone = 0,
+    WindowEventOpen,
+    WindowEventClose,
     WindowEventMinimize,
     WindowEventUnminimize,
-    WindowEventClose,
-    WindowEventOpen,
     WindowEventFocus,
     WindowEventShade,
     WindowEventUnshade
 } WindowEvent;
+#define NUM_EVENTS 7
 
 typedef struct _Object
 {
@@ -331,12 +332,31 @@ typedef enum
 #define LAST_SHADE_EFFECT 4
 #define LAST_RANDOM_SHADE_EFFECT 2
 
+#define NUM_NONEFFECT_OPTIONS 27
 
-typedef struct RestackInfo
+typedef struct _RestackInfo
 {
     CompWindow *wRestacked, *wStart, *wEnd, *wOldAbove;
     Bool raised;
 } RestackInfo;
+
+typedef struct _IdValuePair
+{
+    int id;
+    CompOptionValue value;
+} IdValuePair;
+    
+typedef struct _OptionSet
+{
+    int nPairs;
+    IdValuePair *pairs;
+} OptionSet;
+
+typedef struct _OptionSets
+{
+    int nSets;
+    OptionSet *sets;
+} OptionSets;
 
 extern int animDisplayPrivateIndex;
 extern CompMetadata animMetadata;
@@ -356,21 +376,26 @@ typedef enum
     ANIM_SCREEN_OPTION_OPEN_EFFECTS,
     ANIM_SCREEN_OPTION_OPEN_DURATIONS,
     ANIM_SCREEN_OPTION_OPEN_MATCHES,
+    ANIM_SCREEN_OPTION_OPEN_OPTIONS,
     ANIM_SCREEN_OPTION_OPEN_RANDOM_EFFECTS,
     ANIM_SCREEN_OPTION_CLOSE_EFFECTS,
     ANIM_SCREEN_OPTION_CLOSE_DURATIONS,
     ANIM_SCREEN_OPTION_CLOSE_MATCHES,
+    ANIM_SCREEN_OPTION_CLOSE_OPTIONS,
     ANIM_SCREEN_OPTION_CLOSE_RANDOM_EFFECTS,
     ANIM_SCREEN_OPTION_MINIMIZE_EFFECTS,
     ANIM_SCREEN_OPTION_MINIMIZE_DURATIONS,
     ANIM_SCREEN_OPTION_MINIMIZE_MATCHES,
+    ANIM_SCREEN_OPTION_MINIMIZE_OPTIONS,
     ANIM_SCREEN_OPTION_MINIMIZE_RANDOM_EFFECTS,
     ANIM_SCREEN_OPTION_FOCUS_EFFECTS,
     ANIM_SCREEN_OPTION_FOCUS_DURATIONS,
     ANIM_SCREEN_OPTION_FOCUS_MATCHES,
+    ANIM_SCREEN_OPTION_FOCUS_OPTIONS,
     ANIM_SCREEN_OPTION_SHADE_EFFECTS,
     ANIM_SCREEN_OPTION_SHADE_DURATIONS,
     ANIM_SCREEN_OPTION_SHADE_MATCHES,
+    ANIM_SCREEN_OPTION_SHADE_OPTIONS,
     ANIM_SCREEN_OPTION_SHADE_RANDOM_EFFECTS,
     // Misc. settings
     ANIM_SCREEN_OPTION_ALL_RANDOM,
@@ -478,6 +503,8 @@ typedef struct _AnimScreen
     unsigned int nOpenRandomEffects;
     unsigned int nMinimizeRandomEffects;
     unsigned int nShadeRandomEffects;
+
+    OptionSets *eventOptionSets[NUM_EVENTS];
 } AnimScreen;
 
 typedef struct _AnimWindow
@@ -535,6 +562,8 @@ typedef struct _AnimWindow
     int animFireDirection;
     Bool deceleratingMotion;	// For effects that have decel. motion
 
+    int curAnimSelectionRow;
+
     // for magic lamp
     Bool minimizeToTop;
 
@@ -573,7 +602,7 @@ typedef struct _AnimEffectProperties
     void (*postPaintWindowFunc) (CompScreen *, CompWindow *);
     Bool (*animStepFunc) (CompScreen *, CompWindow *, float time);
     void (*initFunc) (CompScreen *, CompWindow *);
-    void (*initGridFunc) (AnimScreen *, WindowEvent, int *, int *);
+    void (*initGridFunc) (AnimScreen *, AnimWindow *, int *, int *);
     void (*addCustomGeometryFunc) (CompScreen *, CompWindow *, int, Box *,
 				   int, CompMatrix *);
     void (*drawCustomGeometryFunc) (CompScreen *, CompWindow *);
@@ -698,7 +727,6 @@ animDrawWindowGeometry(CompWindow * w);
 
 Bool
 getMousePointerXY(CompScreen * s, short *x, short *y);
-
 
 /* beamup.c */
 
@@ -848,7 +876,7 @@ fxHorizontalFoldsModelStep (CompScreen *s,
 
 void
 fxHorizontalFoldsInitGrid (AnimScreen *as,
-			   WindowEvent forWindowEvent,
+			   AnimWindow *aw,
 			   int *gridWidth,
 			   int *gridHeight);
 
@@ -864,13 +892,13 @@ fxLeafSpread3DInit (CompScreen *s,
 
 void
 fxMagicLampInitGrid(AnimScreen * as,
-		    WindowEvent forWindowEvent,
+		    AnimWindow *aw,
 		    int *gridWidth, 
 		    int *gridHeight);
 
 void
 fxVacuumInitGrid (AnimScreen * as,
-		  WindowEvent forWindowEvent,
+		  AnimWindow *aw,
 		  int *gridWidth, 
 		  int *gridHeight);
 
@@ -883,6 +911,45 @@ fxMagicLampModelStep (CompScreen * s,
 		      CompWindow * w,
 		      float time);
 
+/* options.c */
+
+void
+updateOptionSets(CompScreen *s,
+		 OptionSets *oss,
+		 CompListValue *listVal);
+
+void
+freeAllOptionSets(OptionSets **eventsOss);
+
+CompOptionValue *
+animGetOptVal(AnimScreen *as,
+	      AnimWindow *aw,
+	      int optionId);
+
+inline Bool
+animGetB(AnimScreen *as,
+	 AnimWindow *aw,
+	 int optionId);
+
+inline int
+animGetI(AnimScreen *as,
+	 AnimWindow *aw,
+	 int optionId);
+
+inline float
+animGetF(AnimScreen *as,
+	 AnimWindow *aw,
+	 int optionId);
+
+inline char *
+animGetS(AnimScreen *as,
+	 AnimWindow *aw,
+	 int optionId);
+
+inline unsigned short *
+animGetC(AnimScreen *as,
+	 AnimWindow *aw,
+	 int optionId);
 
 /* particle.c */
 
@@ -958,7 +1025,7 @@ fxRollUpModelStep (CompScreen *s,
 		   float time);
  
 void fxRollUpInitGrid (AnimScreen *as,
-		       WindowEvent forWindowEvent,
+		       AnimWindow *aw,
 		       int *gridWidth,
 		       int *gridHeight);
  

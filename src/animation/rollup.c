@@ -43,12 +43,12 @@
 #define ROLLUP_PERCEIVED_T 0.6f
 
 void
-fxRollUpInitGrid(AnimScreen * as,
-		 WindowEvent forWindowEvent, int *gridWidth, int *gridHeight)
+fxRollUpInitGrid(AnimScreen * as, AnimWindow *aw,
+		 int *gridWidth, int *gridHeight)
 {
     *gridWidth = 2;
-    if (forWindowEvent == WindowEventShade ||
-	forWindowEvent == WindowEventUnshade)
+    if (aw->curWindowEvent == WindowEventShade ||
+	aw->curWindowEvent == WindowEventUnshade)
 	*gridHeight = 4;
     else
 	*gridHeight = 2;
@@ -134,13 +134,13 @@ Bool fxRollUpModelStep(CompScreen * s, CompWindow * w, float time)
 
     int i;
     for (i = 0; i < model->numObjects; i++)
-	fxRollUpModelStepObject(w, 
-				model,
-				&model->objects[i],
-				forwardProgress,
-				as->opt
-				[ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR].
-				value.b);
+	fxRollUpModelStepObject
+	    (w, 
+	     model,
+	     &model->objects[i],
+	     forwardProgress,
+	     animGetB(as, aw,
+		      ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR));
     modelCalcBounds(model);
     return TRUE;
 }

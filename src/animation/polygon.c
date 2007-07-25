@@ -221,9 +221,8 @@ tessellateIntoRectangles(CompWindow * w,
 	pset->polygons = calloc(pset->nPolygons, sizeof(PolygonObject));
 	if (!pset->polygons)
 	{
-	    compLogMessage (w->screen->display, "animation", CompLogLevelError,
-			    "%s: Not enough memory at line %d!",
-			    __FILE__, __LINE__);
+	    compLogMessage (w->screen->display, "animation",
+			    CompLogLevelError, "Not enough memory");
 	    pset->nPolygons = 0;
 	    return FALSE;
 	}
@@ -273,9 +272,8 @@ tessellateIntoRectangles(CompWindow * w,
 	    //p->vertexTexCoords4Clips = calloc (1, sizeof (GLfloat) * 4 * 2 * 2);
 	    if (!p->vertices)	// || !p->vertexOnEdge)// || !p->vertexTexCoords4Clips)
 	    {
-		compLogMessage (w->screen->display, "animation", CompLogLevelError,
-				"%s: Not enough memory at line %d!",
-				__FILE__, __LINE__);
+		compLogMessage (w->screen->display, "animation",
+				CompLogLevelError, "Not enough memory");
 		freePolygonObjects(pset);
 		return FALSE;
 	    }
@@ -323,9 +321,8 @@ tessellateIntoRectangles(CompWindow * w,
 	    }
 	    if (!p->sideIndices)
 	    {
-		compLogMessage (w->screen->display, "animation", CompLogLevelError,
-				"%s: Not enough memory at line %d!",
-				__FILE__, __LINE__);
+		compLogMessage (w->screen->display, "animation",
+				CompLogLevelError, "Not enough memory");
 		freePolygonObjects(pset);
 		return FALSE;
 	    }
@@ -373,9 +370,9 @@ tessellateIntoRectangles(CompWindow * w,
 	    }
 	    if (!p->normals)
 	    {
-		compLogMessage (w->screen->display, "animation", CompLogLevelError,
-				"%s: Not enough memory at line %d!",
-				__FILE__, __LINE__);
+		compLogMessage (w->screen->display, "animation",
+				CompLogLevelError,
+				"Not enough memory");
 		freePolygonObjects(pset);
 		return FALSE;
 	    }
@@ -494,8 +491,7 @@ tessellateIntoHexagons(CompWindow * w,
 	if (!pset->polygons)
 	{
 	    compLogMessage (w->screen->display, "animation", CompLogLevelError,
-			    "%s: Not enough memory at line %d!",
-			    __FILE__, __LINE__);
+			    "Not enough memory");
 	    pset->nPolygons = 0;
 	    return FALSE;
 	}
@@ -578,8 +574,7 @@ tessellateIntoHexagons(CompWindow * w,
 		if (!p->vertices)
 		{
 		    compLogMessage (w->screen->display, "animation", CompLogLevelError,
-				    "%s: Not enough memory at line %d!",
-				    __FILE__, __LINE__);
+				    "Not enough memory");
 		    freePolygonObjects(pset);
 		    return FALSE;
 		}
@@ -645,9 +640,8 @@ tessellateIntoHexagons(CompWindow * w,
 	    }
 	    if (!p->sideIndices)
 	    {
-		compLogMessage (w->screen->display, "animation", CompLogLevelError,
-				"%s: Not enough memory at line %d!",
-				__FILE__, __LINE__);
+		compLogMessage (w->screen->display, "animation",
+				CompLogLevelError, "Not enough memory");
 		freePolygonObjects(pset);
 		return FALSE;
 	    }
@@ -693,9 +687,8 @@ tessellateIntoHexagons(CompWindow * w,
 	    }
 	    if (!p->normals)
 	    {
-		compLogMessage (w->screen->display, "animation", CompLogLevelError,
-				"%s: Not enough memory at line %d!",
-				__FILE__, __LINE__);
+		compLogMessage (w->screen->display, "animation",
+				CompLogLevelError, "Not enough memory");
 		freePolygonObjects(pset);
 		return FALSE;
 	    }
@@ -811,9 +804,8 @@ polygonsStoreClips(CompScreen * s, CompWindow * w,
 
 	if (!ensureLargerClipCapacity(pset))
 	{
-	    compLogMessage (w->screen->display, "animation", CompLogLevelError,
-			    "%s: Not enough memory at line %d!",
-			    __FILE__, __LINE__);
+	    compLogMessage (s->display, "animation", CompLogLevelError,
+			    "Not enough memory");
 	    return;
 	}
 
@@ -989,8 +981,7 @@ static Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset)
 	    if (!c->intersectingPolygons || !c->polygonVertexTexCoords)
 	    {
 		compLogMessage (s->display, "animation", CompLogLevelError,
-				"%s: Not enough memory at line %d!",
-				__FILE__, __LINE__);
+				"Not enough memory");
 		freeClipsPolygons(pset);
 		return FALSE;
 	    }

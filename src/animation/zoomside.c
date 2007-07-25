@@ -50,7 +50,7 @@ void fxSidekickInit(CompScreen * s, CompWindow * w)
 
     // determine number of rotations randomly in [0.75, 1.25] range
     aw->numZoomRotations =
-	as->opt[ANIM_SCREEN_OPTION_SIDEKICK_NUM_ROTATIONS].value.f *
+	animGetF(as, aw, ANIM_SCREEN_OPTION_SIDEKICK_NUM_ROTATIONS) *
 	(1.0f + 0.2f * rand() / RAND_MAX - 0.1f);
 
     fxZoomInit(s, w);
@@ -60,9 +60,9 @@ static float
 fxZoomGetSpringiness(AnimScreen *as, AnimWindow *aw)
 {
     if (aw->curAnimEffect == AnimEffectZoom)
-	return 2 * as->opt[ANIM_SCREEN_OPTION_ZOOM_SPRINGINESS].value.f;
+	return 2 * animGetF(as, aw, ANIM_SCREEN_OPTION_ZOOM_SPRINGINESS);
     else if (aw->curAnimEffect == AnimEffectSidekick)
-	return 1.6 * as->opt[ANIM_SCREEN_OPTION_SIDEKICK_SPRINGINESS].value.f;
+	return 1.6 * animGetF(as, aw, ANIM_SCREEN_OPTION_SIDEKICK_SPRINGINESS);
     else
 	return 0.0f;
 }
@@ -73,26 +73,26 @@ void fxZoomInit(CompScreen * s, CompWindow * w)
     ANIM_WINDOW(w);
 
     if ((aw->curAnimEffect == AnimEffectSidekick &&
-	 (as->opt[ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER].value.i ==
+	 (animGetI(as, aw, ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER) ==
 	  ZoomFromCenterOn ||
 	  ((aw->curWindowEvent == WindowEventMinimize ||
 	    aw->curWindowEvent == WindowEventUnminimize) &&
-	   as->opt[ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER].value.i ==
+	   animGetI(as, aw, ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER) ==
 	   ZoomFromCenterMin) ||
 	  ((aw->curWindowEvent == WindowEventOpen ||
 	    aw->curWindowEvent == WindowEventClose) &&
-	   as->opt[ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER].value.i ==
+	   animGetI(as, aw, ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER) ==
 	   ZoomFromCenterCreate))) ||
 	(aw->curAnimEffect == AnimEffectZoom &&
-	 (as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i ==
+	 (animGetI(as, aw, ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER) ==
 	  ZoomFromCenterOn ||
 	  ((aw->curWindowEvent == WindowEventMinimize ||
 	    aw->curWindowEvent == WindowEventUnminimize) &&
-	   as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i ==
+	   animGetI(as, aw, ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER) ==
 	   ZoomFromCenterMin) ||
 	  ((aw->curWindowEvent == WindowEventOpen ||
 	    aw->curWindowEvent == WindowEventClose) &&
-	   as->opt[ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER].value.i ==
+	   animGetI(as, aw, ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER) ==
 	   ZoomFromCenterCreate))))
     {
 	aw->icon.x =

@@ -58,12 +58,12 @@ void fxBeamUpInit(CompScreen * s, CompWindow * w)
     }
     initParticles(particles / 10, &aw->ps[0]);
     initParticles(particles, &aw->ps[1]);
-    aw->ps[1].slowdown = as->opt[ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN].value.f;
+    aw->ps[1].slowdown = animGetF(as, aw, ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN);
     aw->ps[1].darken = 0.5;
     aw->ps[1].blendMode = GL_ONE;
 
     aw->ps[0].slowdown =
-	as->opt[ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN].value.f / 2.0;
+	animGetF(as, aw, ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN) / 2.0;
     aw->ps[0].darken = 0.0;
     aw->ps[0].blendMode = GL_ONE_MINUS_SRC_ALPHA;
 
@@ -92,19 +92,24 @@ void fxBeamUpInit(CompScreen * s, CompWindow * w)
 }
 
 static void
-fxBeamUpGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
-		   int width, int height, float size, float time)
+fxBeamUpGenNewFire(CompScreen * s,
+		   CompWindow * w,
+		   ParticleSystem * ps,
+		   int x,
+		   int y,
+		   int width,
+		   int height,
+		   float size,
+		   float time)
 {
     ANIM_SCREEN(s);
+    ANIM_WINDOW(w);
 
     ps->numParticles =
-	width / as->opt[ANIM_SCREEN_OPTION_BEAMUP_SPACING].value.i;
+	width / animGetI(as, aw, ANIM_SCREEN_OPTION_BEAMUP_SPACING);
     float max_new =
-	ps->numParticles * (time / 50) * (1.05 -
-					  as->
-					  opt
-					  [ANIM_SCREEN_OPTION_BEAMUP_LIFE].
-					  value.f);
+	ps->numParticles * (time / 50) *
+	(1.05 - animGetF(as, aw, ANIM_SCREEN_OPTION_BEAMUP_LIFE));
     int i;
     Particle *part;
     float rVal;
@@ -117,11 +122,11 @@ fxBeamUpGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
 	    // give gt new life
 	    rVal = (float)(random() & 0xff) / 255.0;
 	    part->life = 1.0f;
-	    part->fade = (rVal * (1 - as->opt[ANIM_SCREEN_OPTION_BEAMUP_LIFE].value.f)) + 
-		(0.2f * (1.01 - as->opt[ANIM_SCREEN_OPTION_BEAMUP_LIFE].value.f));	// Random Fade Value
+	    part->fade = (rVal * (1 - animGetF(as, aw, ANIM_SCREEN_OPTION_BEAMUP_LIFE))) + 
+		(0.2f * (1.01 - animGetF(as, aw, ANIM_SCREEN_OPTION_BEAMUP_LIFE)));	// Random Fade Value
 
 	    // set size
-	    part->width = 2.5 * as->opt[ANIM_SCREEN_OPTION_BEAMUP_SIZE].value.f;
+	    part->width = 2.5 * animGetF(as, aw, ANIM_SCREEN_OPTION_BEAMUP_SIZE);
 	    part->height = height;
 	    part->w_mod = size * 0.2;
 	    part->h_mod = size * 0.02;
@@ -140,14 +145,16 @@ fxBeamUpGenNewFire(CompScreen * s, ParticleSystem * ps, int x, int y,
 	    part->yi = 0.0f;
 	    part->zi = 0.0f;
 
-	    // set color ABAB as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.f
-	    part->r = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[0] / 0xffff -
-		(rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[0] / 0xffff);
-	    part->g = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[1] / 0xffff -
-		(rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[1] / 0xffff);
-	    part->b = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[2] / 0xffff -
-		(rVal / 1.7 * (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[2] / 0xffff);
-	    part->a = (float)as->opt[ANIM_SCREEN_OPTION_BEAMUP_COLOR].value.c[3] / 0xffff;
+	    // set color ABAB ANIM_SCREEN_OPTION_BEAMUP_COLOR
+	    unsigned short *c =
+		animGetC(as, aw, ANIM_SCREEN_OPTION_BEAMUP_COLOR);
+	    part->r = (float)c[0] / 0xffff -
+		(rVal / 1.7 * (float)c[0] / 0xffff);
+	    part->g = (float)c[1] / 0xffff -
+		(rVal / 1.7 * (float)c[1] / 0xffff);
+	    part->b = (float)c[2] / 0xffff -
+		(rVal / 1.7 * (float)c[2] / 0xffff);
+	    part->a = (float)c[3] / 0xffff;
 
 	    // set gravity
 	    part->xg = 0.0f;
@@ -228,7 +235,7 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 
     if (aw->animRemainingTime > 0 && aw->numPs)
     {
-	fxBeamUpGenNewFire(s, &aw->ps[1], 
+	fxBeamUpGenNewFire(s, w, &aw->ps[1], 
 			   WIN_X(w), WIN_Y(w) + (WIN_H(w) / 2), WIN_W(w),
 			   creating ? WIN_H(w) - (old / 2 * WIN_H(w)) : 
 			   (WIN_H(w) -   (old * WIN_H(w))),

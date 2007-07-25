@@ -127,8 +127,7 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
     float forwardProgress;
     if ((aw->curWindowEvent == WindowEventMinimize ||
 	 aw->curWindowEvent == WindowEventUnminimize) &&
-	as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
-	value.b)
+	animGetB(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM))
     {
 	float dummy;
 	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
@@ -137,7 +136,7 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 	forwardProgress = defaultAnimProgress(aw);
 
     float curveMaxAmp =
-	as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_AMP].value.f * WIN_W(w) *
+	animGetF(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_AMP) * WIN_W(w) *
 	pow(WIN_H(w) / (s->height * 1.2f), 0.7);
     int i;
     for (i = 0; i < model->numObjects; i++)
@@ -163,11 +162,9 @@ fxFoldUpdateWindowAttrib(AnimScreen * as,
 	((aw->curWindowEvent == WindowEventMinimize ||
 	  aw->curWindowEvent == WindowEventUnminimize) &&
 	 ((aw->curAnimEffect == AnimEffectCurvedFold &&
-	   !as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
-	   value.b) ||
+	   !animGetB(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM)) ||
 	  (aw->curAnimEffect == AnimEffectHorizontalFolds &&
-	   !as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
-	   value.b))))
+	   !animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM)))))
     {
 	float forwardProgress = defaultAnimProgress(aw);
 
@@ -177,11 +174,9 @@ fxFoldUpdateWindowAttrib(AnimScreen * as,
     else if ((aw->curWindowEvent == WindowEventMinimize ||
 	      aw->curWindowEvent == WindowEventUnminimize) &&
 	     ((aw->curAnimEffect == AnimEffectCurvedFold &&
-	       as->opt[ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM].
-	       value.b) ||
+	       animGetB(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM)) ||
 	      (aw->curAnimEffect == AnimEffectHorizontalFolds &&
-	       as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
-	       value.b)))
+	       animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM))))
     {
 	fxZoomUpdateWindowAttrib(as, w, wAttrib);
     }

@@ -40,18 +40,18 @@
 
 
 void
-fxHorizontalFoldsInitGrid(AnimScreen * as,
-			  WindowEvent forWindowEvent,
+fxHorizontalFoldsInitGrid(AnimScreen *as,
+			  AnimWindow *aw,
 			  int *gridWidth, int *gridHeight)
 {
     *gridWidth = 2;
-    if (forWindowEvent == WindowEventShade ||
-	forWindowEvent == WindowEventUnshade)
+    if (aw->curWindowEvent == WindowEventShade ||
+	aw->curWindowEvent == WindowEventUnshade)
 	*gridHeight = 3 + 2 *	
-	    as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS].value.i;
+	    animGetI(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
     else
 	*gridHeight = 1 + 2 *
-	    as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS].value.i;
+	    animGetI(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
 }
 
 static void
@@ -134,8 +134,7 @@ fxHorizontalFoldsModelStep(CompScreen * s, CompWindow * w, float time)
     float forwardProgress;
     if ((aw->curWindowEvent == WindowEventMinimize ||
 	 aw->curWindowEvent == WindowEventUnminimize) &&
-	as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM].
-	value.b)
+	animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM))
     {
 	float dummy;
 	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
@@ -149,7 +148,7 @@ fxHorizontalFoldsModelStep(CompScreen * s, CompWindow * w, float time)
 					 model,
 					 &model->objects[i],
 					 forwardProgress,
-					 as->opt[ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP].value.f *
+					 animGetF(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP) *
 					 WIN_W(w),
 					 i / model->gridWidth);
     modelCalcBounds(model);

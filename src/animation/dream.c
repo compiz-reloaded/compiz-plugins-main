@@ -71,8 +71,7 @@ Bool fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
     float forwardProgress;
     if ((aw->curWindowEvent == WindowEventMinimize ||
 	 aw->curWindowEvent == WindowEventUnminimize) &&
-	as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
-	value.b)
+	animGetB(as, aw, ANIM_SCREEN_OPTION_DREAM_Z2TOM))
     {
 	float dummy;
 	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
@@ -98,8 +97,7 @@ fxDreamUpdateWindowAttrib(AnimScreen * as,
 
     if ((aw->curWindowEvent == WindowEventMinimize ||
 	 aw->curWindowEvent == WindowEventUnminimize) &&
-	as->opt[ANIM_SCREEN_OPTION_DREAM_Z2TOM].
-	value.b)
+	animGetB(as, aw, ANIM_SCREEN_OPTION_DREAM_Z2TOM))
     {
 	fxZoomUpdateWindowAttrib(as, w, wAttrib);
 	return;
