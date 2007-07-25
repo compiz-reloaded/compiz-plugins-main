@@ -157,14 +157,14 @@ typedef struct _WaveParam
 
 typedef enum
 {
-    WindowEventNone = 0,
-    WindowEventOpen,
+    WindowEventOpen = 0,
     WindowEventClose,
     WindowEventMinimize,
     WindowEventUnminimize,
     WindowEventFocus,
     WindowEventShade,
-    WindowEventUnshade
+    WindowEventUnshade,
+    WindowEventNone
 } WindowEvent;
 #define NUM_EVENTS 7
 
