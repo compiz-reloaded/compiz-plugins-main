@@ -18,6 +18,7 @@ libanimation_la_SOURCES = animation.c \
 			  horizontalfold.c \
 			  leafspread.c \
 			  magiclamp.c \
+			  options.c \
 			  particle.c \
 			  polygon.c \
 			  rollup.c \
