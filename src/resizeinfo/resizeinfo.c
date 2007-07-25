@@ -564,6 +564,7 @@ infoInitScreen (CompPlugin *p,
 
 	is->pWindow = 0;
 	is->fadeTime = 0;
+	is->drawing  = FALSE;
 
 	is->resizeGeometry.x = 0;
 	is->resizeGeometry.y = 0;
