@@ -144,10 +144,13 @@ static AnimEffect shadeEffects[] = {
     AnimEffectRollUp
 };
 
-static Bool inline
+static Bool
 isQtTransientWindow(CompWindow * w)
 {
-    return (!w->resName && w->wmType == CompWindowTypeUnknownMask);
+    Time t;
+    Bool res = getWindowUserTime (w, &t);
+
+    return (res && !w->resName && w->wmType == CompWindowTypeUnknownMask);
 }
 
 // iterate over given list
