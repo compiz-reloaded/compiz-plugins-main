@@ -2906,7 +2906,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    if (aw->curWindowEvent != WindowEventUnshade)
 			    {
-				postAnimationCleanup(w, TRUE);
+				postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
 			    }
 			    else
 			    {
@@ -3519,7 +3519,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventShade)
 		    {
-			postAnimationCleanup(w, TRUE);
+			postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
 		    }
 		    else
 		    {
