@@ -100,7 +100,7 @@ void
 freeAllOptionSets(OptionSets **eventsOss)
 {
     int i;
-    for (i = 1; i < NUM_EVENTS; i++)
+    for (i = 0; i < NUM_EVENTS; i++)
     {
 	OptionSets *oss = eventsOss[i];
 	if (!oss->sets)
@@ -113,7 +113,7 @@ freeAllOptionSets(OptionSets **eventsOss)
     free (eventsOss[WindowEventFocus]);
     free (eventsOss[WindowEventShade]);
 
-    for (i = 1; i < NUM_EVENTS; i++)
+    for (i = 0; i < NUM_EVENTS; i++)
 	eventsOss[i] = NULL;
 }
 
