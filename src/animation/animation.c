@@ -3323,9 +3323,13 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    wOldAbove = wStart;
 		}
 		else if (clientListStacking[changeStart] ==
-			 as->lastClientListStacking[changeEnd])
+			 as->lastClientListStacking[changeEnd] && // lowered
+			 // We don't animate lowering if there is no
+			 // window above this window, since this window needs
+			 // to be drawn on such a "host" in animPaintWindow
+			 // (at least for now).
+			 changeEnd < n - 1)
 		{
-		    // lowered
 		    wRestacked = wChangeStart;
 		    wStart = wRestacked;
 		    wEnd = wChangeEnd;
