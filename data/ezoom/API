@@ -1,0 +1,56 @@
+			     API for enhanced zoom
+
+
+1. About this document
+2. Basic functions
+2.1 ensure_visiblity 
+2.2 ensure_area_visiblity
+2.3 fit_to_window
+
+1. About this document
+======================
+This is a working copy, and is in no way complete. It is meant to be used
+while developing the actual functions. 
+
+The idea is to use dbus to communicate events to the ezoom plugin. This API
+will define the functions available through dbus and expected use cases.
+External programs will be written to fetch events from at-spi for instance.
+
+2. Basic functions
+==================
+
+2.1 ensure_visiblity 
+--------------------
+Arguments:
+    int32: x
+    int32: y
+    int32: root
+
+Ensures the point bound by x,y on the screen with the root window 'root' is
+visible. Does not modify zoom level.
+
+2.2 ensure_area_visiblity
+--------------------
+Arguments:
+    int32: x
+    int32: y
+    int32: width
+    int32: height
+    int32: root
+    bool: auto_scale
+
+Same as ensure_visiblity, but for the area bound by the coordinates x
+through x+width and y through y+width. If auto_scale is true, this will zoom
+out if the area is too large for the current zoom level.
+
+2.3 fit_to_window
+-----------------
+Arguments:
+    int32: window
+    int32: root
+    bool: auto_scale
+
+If window is 0 or non-existant, target the currently focused window if it is
+present on the screen with the supplied root window. Otherwise, target the
+supplied window. If auto_scale is true, the zoom level will be adjusted to
+fit to the window.
