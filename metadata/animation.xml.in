@@ -1340,23 +1340,23 @@
 	  <_short>Explode</_short>
 	  <option name="explode_gridx" type="int">
 	    <_short>Window Grid Width</_short>
-	    <_long>The exploding window will be split into pieces along a grid.  Specify the width, in pixels, of the columns in the grid.</_long>
+	    <_long>The exploding window will be split into pieces along a grid. Specify the number of grid cells along the width of the window.</_long>
 	    <default>13</default>
 	    <min>1</min>
 	    <max>200</max>
 	  </option>
 	  <option name="explode_gridy" type="int">
 	    <_short>Window Grid Height</_short>
-	    <_long>The exploding window will be split into pieces along a grid.  Specify the height, in pixels, of the rows in the grid.</_long>
+	    <_long>The exploding window will be split into pieces along a grid. Specify the number of grid cells along the height of the window.</_long>
 	    <default>10</default>
 	    <min>1</min>
 	    <max>200</max>
 	  </option>
 	  <option name="explode_thickness" type="float">
 	    <_short>Thickness of Exploding Polygons</_short>
-	    <_long>Thickness of exploding window pieces.</_long>
+	    <_long>Thickness (in pixels) of exploding window pieces.</_long>
 	    <default>15</default>
-	    <min>0</min>
+	    <min>1</min>
 	    <max>100</max>
 	    <precision>1</precision>
 	  </option>

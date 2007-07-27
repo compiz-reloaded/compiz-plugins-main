@@ -889,7 +889,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "domino_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
     { "dream_zoom_to_taskbar", "bool", 0, 0, 0 },
     { "razr_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
-    { "explode_thickness", "float", "<min>0</min>", 0, 0 },
+    { "explode_thickness", "float", "<min>1</min>", 0, 0 },
     { "explode_gridx", "int", "<min>1</min>", 0, 0 },
     { "explode_gridy", "int", "<min>1</min>", 0, 0 },
     { "explode_tesselation", "int", RESTOSTRING (0, LAST_POLYGON_TESS), 0, 0 },
