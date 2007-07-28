@@ -332,8 +332,6 @@ typedef enum
 #define LAST_SHADE_EFFECT 4
 #define LAST_RANDOM_SHADE_EFFECT 2
 
-#define NUM_NONEFFECT_OPTIONS 27
-
 typedef struct _RestackInfo
 {
     CompWindow *wRestacked, *wStart, *wEnd, *wOldAbove;
@@ -373,7 +371,7 @@ typedef struct _AnimDisplay
 typedef enum
 {
     // Event settings
-    ANIM_SCREEN_OPTION_OPEN_EFFECTS,
+    ANIM_SCREEN_OPTION_OPEN_EFFECTS = 0,
     ANIM_SCREEN_OPTION_OPEN_DURATIONS,
     ANIM_SCREEN_OPTION_OPEN_MATCHES,
     ANIM_SCREEN_OPTION_OPEN_OPTIONS,
@@ -457,6 +455,9 @@ typedef enum
 
     ANIM_SCREEN_OPTION_NUM
 } AnimScreenOptions;
+
+// This must have the value of the first "effect option" in AnimScreenOptions
+#define NUM_NONEFFECT_OPTIONS ANIM_SCREEN_OPTION_BEAMUP_SIZE
 
 typedef struct _AnimScreen
 {
