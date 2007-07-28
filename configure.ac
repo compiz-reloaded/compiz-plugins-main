@@ -189,6 +189,7 @@ include/Makefile
 src/Makefile
 src/animation/Makefile
 src/expo/Makefile
+src/ezoom/Makefile
 src/jpeg/Makefile
 src/neg/Makefile
 src/opacify/Makefile

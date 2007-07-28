@@ -100,7 +100,7 @@ void
 freeAllOptionSets(OptionSets **eventsOss)
 {
     int i;
-    for (i = 1; i < NUM_EVENTS; i++)
+    for (i = 0; i < NUM_EVENTS; i++)
     {
 	OptionSets *oss = eventsOss[i];
 	if (!oss->sets)
@@ -113,7 +113,7 @@ freeAllOptionSets(OptionSets **eventsOss)
     free (eventsOss[WindowEventFocus]);
     free (eventsOss[WindowEventShade]);
 
-    for (i = 1; i < NUM_EVENTS; i++)
+    for (i = 0; i < NUM_EVENTS; i++)
 	eventsOss[i] = NULL;
 }
 
@@ -156,6 +156,8 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
     if (!os->pairs)
     {
 	os->nPairs = 0;
+	free(optNamesValues);
+	free(nameTrimmed);
 	compLogMessage (s->display, "animation", CompLogLevelError,
 			"Not enough memory");
 	return;
@@ -332,6 +334,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 	os->nPairs = 0;
     }
     free(optNamesValues);
+    free(nameTrimmed);
 }
 
 void

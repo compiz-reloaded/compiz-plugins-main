@@ -157,14 +157,14 @@ typedef struct _WaveParam
 
 typedef enum
 {
-    WindowEventNone = 0,
-    WindowEventOpen,
+    WindowEventOpen = 0,
     WindowEventClose,
     WindowEventMinimize,
     WindowEventUnminimize,
     WindowEventFocus,
     WindowEventShade,
-    WindowEventUnshade
+    WindowEventUnshade,
+    WindowEventNone
 } WindowEvent;
 #define NUM_EVENTS 7
 
@@ -332,8 +332,6 @@ typedef enum
 #define LAST_SHADE_EFFECT 4
 #define LAST_RANDOM_SHADE_EFFECT 2
 
-#define NUM_NONEFFECT_OPTIONS 27
-
 typedef struct _RestackInfo
 {
     CompWindow *wRestacked, *wStart, *wEnd, *wOldAbove;
@@ -370,10 +368,18 @@ typedef struct _AnimDisplay
     int activeWindow;
 } AnimDisplay;
 
+typedef struct _PluginEventInfo
+{
+    char *pluginName;
+    char *activateEventName;
+} PluginEventInfo;
+
+#define NUM_WATCHED_PLUGINS 5
+
 typedef enum
 {
     // Event settings
-    ANIM_SCREEN_OPTION_OPEN_EFFECTS,
+    ANIM_SCREEN_OPTION_OPEN_EFFECTS = 0,
     ANIM_SCREEN_OPTION_OPEN_DURATIONS,
     ANIM_SCREEN_OPTION_OPEN_MATCHES,
     ANIM_SCREEN_OPTION_OPEN_OPTIONS,
@@ -458,6 +464,9 @@ typedef enum
     ANIM_SCREEN_OPTION_NUM
 } AnimScreenOptions;
 
+// This must have the value of the first "effect option" in AnimScreenOptions
+#define NUM_NONEFFECT_OPTIONS ANIM_SCREEN_OPTION_BEAMUP_SIZE
+
 typedef struct _AnimScreen
 {
     int windowPrivateIndex;
@@ -479,10 +488,7 @@ typedef struct _AnimScreen
 
     Bool aWinWasRestackedJustNow; // a window was restacked this paint round
 
-    Bool switcherActive;
-    Bool groupTabChangeActive;
-    Bool scaleActive;
-    Bool fadeDesktopActive;
+    Bool pluginActive[NUM_WATCHED_PLUGINS];
 
     Bool switcherWinOpeningSuppressed; // whether switcher window opening
     // animation is suppressed yet

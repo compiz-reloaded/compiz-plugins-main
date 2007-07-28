@@ -144,12 +144,6 @@ static AnimEffect shadeEffects[] = {
     AnimEffectRollUp
 };
 
-static Bool inline
-isQtTransientWindow(CompWindow * w)
-{
-    return (!w->resName && w->wmType == CompWindowTypeUnknownMask);
-}
-
 // iterate over given list
 // check if given effect name matches any implemented effect
 // Check if it was already in the stored list
@@ -241,78 +235,6 @@ animStoreRandomEffectList (CompOptionValue *value,
     *targetCount = count;
 }
 
-static Bool
-matchWithString(CompWindow *w, const char *matchStr)
-{
-    CompDisplay *d = w->screen->display;
-    CompMatch match;
-
-    matchInit (&match);
-    matchAddFromString (&match, (char *)matchStr);
-    matchUpdate (d, &match);
-
-    Bool result = matchEval (&match, w);
-    matchFini (&match);
-
-    return result;
-}
-
-// Can be moved to the Workarounds plugin when
-// it is ready to be included and enabled by default in plugins-main.
-static unsigned int
-getActualWinType(CompWindow *w)
-{
-    if (isQtTransientWindow(w))
-	return CompWindowTypeDropdownMenuMask;
-
-    // Correct notification-daemon window type (at least in gnome 2.18.1)
-    if (matchWithString (w, "type=Normal & override_redirect=1 & \
-name=notification-daemon"))
-	return CompWindowTypeNotificationMask;
-
-    // Match Mozilla (Firefox, Thunderbird, etc.) menus
-    // and Java menus
-    if (matchWithString (w, "(type=Normal & override_redirect=1) | \
- name=sun-awt-X11-XMenuWindow | name=sun-awt-X11-XWindowPeer"))
-	return CompWindowTypeDropdownMenuMask;
-
-    // Match Qt3 and Qt4 tooltips, respectively
-    // Requires the Regexp plugin
-    if (matchWithString(w, "role=toolTipTip | role=qtooltip_label"))
-	return CompWindowTypeTooltipMask;
-
-    // Match Java normal windows
-    if (w->resName &&
-	strcmp(w->resName, "sun-awt-X11-XFramePeer") == 0)
-	return CompWindowTypeNormalMask;
-
-    // Match Java dialog windows
-    if (w->resName &&
-	strcmp(w->resName, "sun-awt-X11-XDialogPeer") == 0)
-	return CompWindowTypeDialogMask;
-
-    return w->wmType;
-}
-
-// Can be removed when getActualWinType is moved.
-static Bool
-matchEvalProxy(CompMatch *match, CompWindow *w)
-{
-    Bool result;
-
-    // Backup window type
-    int winType = w->wmType;
-
-    w->wmType = getActualWinType(w);
-
-    result = matchEval(match, w);
-
-    // Restore window type
-    w->wmType = winType;
-
-    return result;
-}
-
 // Assumes events in the metadata are in
 // [Open, Close, Minimize, Focus, Shade] order
 // and effects among those are in alphabetical order
@@ -386,7 +308,7 @@ getMatchingAnimSelection (CompWindow *w,
     int i;
     for (i = 0; i < nRows; i++)
     {
-	if (!matchEvalProxy (&valMatch->list.value[i].match, w))
+	if (!matchEval (&valMatch->list.value[i].match, w))
 	    continue;
 
 	aw->curAnimSelectionRow = i;
@@ -886,7 +808,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "domino_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
     { "dream_zoom_to_taskbar", "bool", 0, 0, 0 },
     { "razr_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
-    { "explode_thickness", "float", "<min>0</min>", 0, 0 },
+    { "explode_thickness", "float", "<min>1</min>", 0, 0 },
     { "explode_gridx", "int", "<min>1</min>", 0, 0 },
     { "explode_gridy", "int", "<min>1</min>", 0, 0 },
     { "explode_tesselation", "int", RESTOSTRING (0, LAST_POLYGON_TESS), 0, 0 },
@@ -1382,11 +1304,14 @@ getHostedOnWin (AnimScreen *as,
     aw->winThisIsPaintedBefore = wHost;
 }
 
-static Bool inline
+static Bool
 otherPluginsActive(AnimScreen *as)
 {
-    return (as->scaleActive || as->switcherActive ||
-	    as->groupTabChangeActive || as->fadeDesktopActive);
+    int i;
+    for (i = 0; i < NUM_WATCHED_PLUGINS; i++)
+	if (as->pluginActive[i])
+	    return TRUE;
+    return FALSE;
 }
 
 static void
@@ -2736,6 +2661,15 @@ static Bool animGetWindowIconGeometry(CompWindow * w, XRectangle * rect)
     return FALSE;
 }
 
+static const PluginEventInfo watchedPlugins[] =
+{
+    {"switcher", "activate"},
+    {"scale", "activate"},
+    {"group", "tabChangeActivate"},
+    {"fadedesktop", "activate"},
+    {"shift", "activate"},
+};
+
 static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
 				  char *eventName, CompOption * option, int nOption)
 {
@@ -2745,63 +2679,26 @@ static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
     (*d->handleCompizEvent) (d, pluginName, eventName, option, nOption);
     WRAP (ad, d, handleCompizEvent, animHandleCompizEvent);
 
-    if (strcmp(pluginName, "switcher") == 0)
-    {
-	if (strcmp(eventName, "activate") == 0)
+    int i;
+    for (i = 0; i < NUM_WATCHED_PLUGINS; i++)
+	if (strcmp(pluginName, watchedPlugins[i].pluginName) == 0)
 	{
-	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
-	    CompScreen *s = findScreenAtDisplay(d, xid);
-
-	    if (s)
+	    if (strcmp(eventName, "activate") == 0)
 	    {
-		ANIM_SCREEN(s);
-		as->switcherActive = getBoolOptionNamed(option, nOption, "active", FALSE);
-		as->switcherWinOpeningSuppressed = FALSE;
-	    }
-	}
-    }
-    else if (strcmp(pluginName, "group") == 0)
-    {
-	if (strcmp(eventName, "tabChangeActivate") == 0)
-	{
-	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
-	    CompScreen *s = findScreenAtDisplay(d, xid);
+		Window xid = getIntOptionNamed(option, nOption, "root", 0);
+		CompScreen *s = findScreenAtDisplay(d, xid);
 
-	    if (s)
-	    {
-		ANIM_SCREEN(s);
-		as->groupTabChangeActive = getBoolOptionNamed(option, nOption, "active", FALSE);
+		if (s)
+		{
+		    ANIM_SCREEN(s);
+		    as->pluginActive[i] =
+			getBoolOptionNamed(option, nOption, "active", FALSE);
+		    if (i == 0)
+			as->switcherWinOpeningSuppressed = FALSE;
+		}
 	    }
+	    break;
 	}
-    }
-    else if (strcmp(pluginName, "scale") == 0)
-    {
-	if (strcmp(eventName, "activate") == 0)
-	{
-	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
-	    CompScreen *s = findScreenAtDisplay(d, xid);
-
-	    if (s)
-	    {
-		ANIM_SCREEN(s);
-		as->scaleActive = getBoolOptionNamed(option, nOption, "active", FALSE);
-	    }
-	}
-    }
-    else if (strcmp(pluginName, "fadedesktop") == 0)
-    {
-	if (strcmp(eventName, "activate") == 0)
-	{
-	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
-	    CompScreen *s = findScreenAtDisplay(d, xid);
-
-	    if (s)
-	    {
-		ANIM_SCREEN(s);
-		as->fadeDesktopActive = getBoolOptionNamed(option, nOption, "active", FALSE);
-	    }
-	}
-    }
 }
 
 static void
@@ -2903,7 +2800,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    if (aw->curWindowEvent != WindowEventUnshade)
 			    {
-				postAnimationCleanup(w, TRUE);
+				postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
 			    }
 			    else
 			    {
@@ -3057,7 +2954,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
-		if (!(w->resName || isQtTransientWindow(w)))
+		if (!w->resName)
 		    break;
 
 		int duration = 200;
@@ -3320,9 +3217,13 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    wOldAbove = wStart;
 		}
 		else if (clientListStacking[changeStart] ==
-			 as->lastClientListStacking[changeEnd])
+			 as->lastClientListStacking[changeEnd] && // lowered
+			 // We don't animate lowering if there is no
+			 // window above this window, since this window needs
+			 // to be drawn on such a "host" in animPaintWindow
+			 // (at least for now).
+			 changeEnd < n - 1)
 		{
-		    // lowered
 		    wRestacked = wChangeStart;
 		    wStart = wRestacked;
 		    wEnd = wChangeEnd;
@@ -3413,7 +3314,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 	    if (!w->invisible &&
 		chosenEffect &&
-		!as->fadeDesktopActive)
+		!as->pluginActive[3]) // fadedesktop
 	    {
 		// UNMINIMIZE event!
 
@@ -3512,7 +3413,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventShade)
 		    {
-			postAnimationCleanup(w, TRUE);
+			postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -3585,10 +3486,10 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    if (chosenEffect &&
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
-		(w->resName || isQtTransientWindow(w)) &&
+		w->resName &&
 		// suppress switcher window
 		// (1st window that opens after switcher becomes active)
-		(!as->switcherActive || as->switcherWinOpeningSuppressed) &&
+		(!as->pluginActive[0] || as->switcherWinOpeningSuppressed) &&
 		getMousePointerXY(w->screen, &aw->icon.x, &aw->icon.y))
 	    {
 		Bool startingNew = TRUE;
@@ -3673,7 +3574,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			postAnimationCleanup(w, TRUE);
 		}
 	    }
-	    else if (as->switcherActive && !as->switcherWinOpeningSuppressed)
+	    else if (as->pluginActive[0] && !as->switcherWinOpeningSuppressed)
 	    {
 		// done suppressing open animation
 		as->switcherWinOpeningSuppressed = TRUE;
@@ -3697,15 +3598,14 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 
     // Don't let transient window open anim be interrupted with a resize notify
     if (!(aw->curWindowEvent == WindowEventOpen &&
-	  (isQtTransientWindow(w) ||
-	   (w->wmType &
-	    (CompWindowTypeDropdownMenuMask |
-	     CompWindowTypePopupMenuMask |
-	     CompWindowTypeMenuMask |
-	     CompWindowTypeTooltipMask |
-	     CompWindowTypeNotificationMask |
-	     CompWindowTypeComboMask |
-	     CompWindowTypeDndMask)))))
+	  (w->wmType &
+	   (CompWindowTypeDropdownMenuMask |
+	    CompWindowTypePopupMenuMask |
+       	    CompWindowTypeMenuMask |
+	    CompWindowTypeTooltipMask |
+	    CompWindowTypeNotificationMask |
+	    CompWindowTypeComboMask |
+	    CompWindowTypeDndMask))))
     {
 	if (aw->polygonSet && !aw->animInitialized)
 	{
@@ -3999,11 +3899,6 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     updateOptionSets
 	(s, as->eventOptionSets[WindowEventShade],
 	 &as->opt[ANIM_SCREEN_OPTION_SHADE_OPTIONS].value.list);
-
-    as->switcherActive = FALSE;
-    as->groupTabChangeActive = FALSE;
-    as->scaleActive = FALSE;
-    as->fadeDesktopActive = FALSE;
 
     as->lastClientListStacking = NULL;
     as->nLastClientListStacking = 0;
