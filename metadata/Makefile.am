@@ -13,6 +13,7 @@ xml_in_files = 	         \
 	thumbnail.xml.in 	 \
 	wall.xml.in	 \
 	winrules.xml.in     \
+	workarounds.xml.in \
 	scaleaddon.xml.in   \
 	vpswitch.xml.in
 

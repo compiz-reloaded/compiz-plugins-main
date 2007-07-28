@@ -202,6 +202,7 @@ src/text/Makefile
 src/thumbnail/Makefile
 src/wall/Makefile
 src/winrules/Makefile
+src/workarounds/Makefile
 src/vpswitch/Makefile
 po/Makefile.in
 ])
