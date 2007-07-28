@@ -6,255 +6,159 @@
 		<plugin>expo</plugin>
 	    </relation>
 	</deps>
-	<short>Enhanced Zoom Desktop</short>
-	<long>Enhanced zoom functions for visually imparied and others</long>
+	<_short>Enhanced Zoom Desktop</_short>
+	<_long>Enhanced zoom functions for visually imparied and others</_long>
 	<category>Accessibility</category>
 	<display>
 	    <group>
-		<short>Zoom Movement</short>
+		<_short>Zoom Movement</_short>
 		<option type="action" name="initiate">
-		    <short>Initiate</short>
-		    <short xml:lang="ca">Inicia</short>
-		    <short xml:lang="cs">Iniciovat</short>
-		    <short xml:lang="da">Start</short>
-		    <short xml:lang="de">Initiieren</short>
-		    <short xml:lang="es">Iniciar</short>
-		    <short xml:lang="fi">Aktivoi</short>
-		    <short xml:lang="fr">Lancer</short>
-		    <short xml:lang="hu">Indítás</short>
-		    <short xml:lang="it">Avvia</short>
-		    <short xml:lang="ja">開始</short>
-		    <short xml:lang="pl">Inicjuj</short>
-		    <short xml:lang="pt">Iniciar</short>
-		    <short xml:lang="pt_BR">Iniciar</short>
-		    <short xml:lang="ru">Инициировать</short>
-		    <short xml:lang="zh_CN">启动</short>
-		    <short xml:lang="zh_TW">起始化</short>
-		    <long>Zoom In</long>
-		    <long xml:lang="ca">Amplia el zoom</long>
-		    <long xml:lang="cs">Přiblížit</long>
-		    <long xml:lang="da">Zoom ind</long>
-		    <long xml:lang="de">Ansicht vergrößern</long>
-		    <long xml:lang="es">Ampliar</long>
-		    <long xml:lang="fi">Lähennys</long>
-		    <long xml:lang="fr">Zoom avant</long>
-		    <long xml:lang="hu">Nagyítás</long>
-		    <long xml:lang="it">Aumenta ingrandimento</long>
-		    <long xml:lang="ja">ズームイン</long>
-		    <long xml:lang="pl">Powiększ</long>
-		    <long xml:lang="pt">Aumentar o zoom</long>
-		    <long xml:lang="pt_BR">Aumentar o zoom</long>
-		    <long xml:lang="ru">Уменьшить</long>
-		    <long xml:lang="zh_CN">放大</long>
-		    <long xml:lang="zh_TW">放大</long>
+		    <_short>Initiate</_short>
+		    <_long>Zoom In</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<button>&lt;Super&gt;Button3</button>
 		    </default>
 		</option>
 		<option type="action" name="zoom_in">
-		    <short>Zoom In</short>
-		    <short xml:lang="ca">Amplia el zoom</short>
-		    <short xml:lang="cs">Přiblížit</short>
-		    <short xml:lang="da">Zoom ind</short>
-		    <short xml:lang="de">Ansicht vergrößern</short>
-		    <short xml:lang="es">Ampliar</short>
-		    <short xml:lang="fi">Lähennys</short>
-		    <short xml:lang="fr">Zoom avant</short>
-		    <short xml:lang="hu">Nagyítás</short>
-		    <short xml:lang="it">Aumenta ingrandimento</short>
-		    <short xml:lang="ja">ズームイン</short>
-		    <short xml:lang="pl">Powiększ</short>
-		    <short xml:lang="pt">Aumentar o zoom</short>
-		    <short xml:lang="pt_BR">Aumentar o zoom</short>
-		    <short xml:lang="ru">Уменьшить</short>
-		    <short xml:lang="zh_CN">放大</short>
-		    <short xml:lang="zh_TW">放大</short>
-		    <long>Zoom In</long>
-		    <long xml:lang="ca">Amplia el zoom</long>
-		    <long xml:lang="cs">Přiblížit</long>
-		    <long xml:lang="da">Zoom ind</long>
-		    <long xml:lang="de">Ansicht vergrößern</long>
-		    <long xml:lang="es">Ampliar</long>
-		    <long xml:lang="fi">Lähennys</long>
-		    <long xml:lang="fr">Zoom avant</long>
-		    <long xml:lang="hu">Nagyítás</long>
-		    <long xml:lang="it">Aumenta ingrandimento</long>
-		    <long xml:lang="ja">ズームイン</long>
-		    <long xml:lang="pl">Powiększ</long>
-		    <long xml:lang="pt">Aumentar o zoom</long>
-		    <long xml:lang="pt_BR">Aumentar o zoom</long>
-		    <long xml:lang="ru">Уменьшить</long>
-		    <long xml:lang="zh_CN">放大</long>
-		    <long xml:lang="zh_TW">放大</long>
+		    <_short>Zoom In</_short>
+		    <_long>Zoom In</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<button>&lt;Super&gt;Button4</button>
 		    </default>
 		</option>
 		<option type="action" name="lock_zoom">
-		    <short>Lock zoom area</short>
-		    <long>Locks the zoom area so it doesn't change on various events</long>
+		    <_short>Lock zoom area</_short>
+		    <_long>Locks the zoom area so it doesn't change on various events</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;l</key>
 		    </default>
 		</option>
 		<option type="action" name="unlock_zoom">
-		    <short>Unlock zoom area</short>
-		    <long>Unlocks a previously locked zoom area</long>
+		    <_short>Unlock zoom area</_short>
+		    <_long>Unlocks a previously locked zoom area</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;u</key>
 		    </default>
 		</option>
 		<option type="action" name="zoom_specific_1">
-		    <short>Zoom Specific Level 1</short>
-		    <long>Zoom to the specific zoom level 1</long>
+		    <_short>Zoom Specific Level 1</_short>
+		    <_long>Zoom to the specific zoom level 1</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;1</key>
 		    </default>
 		</option>
 		<option type="action" name="zoom_specific_2">
-		    <short>Zoom Specific Level 2</short>
-		    <long>Zoom to the specific zoom level 2</long>
+		    <_short>Zoom Specific Level 2</_short>
+		    <_long>Zoom to the specific zoom level 2</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;2</key>
 		    </default>
 		</option>
 		<option type="action" name="zoom_specific_3">
-		    <short>Zoom Specific Level 3</short>
-		    <long>Zoom to the specific zoom level 3</long>
+		    <_short>Zoom Specific Level 3</_short>
+		    <_long>Zoom to the specific zoom level 3</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;3</key>
 		    </default>
 		</option>
 		<option type="action" name="fit_to_window">
-		    <short>Fit zoomed area to window</short>
-		    <long>Zooms in/out so the focused window is zoomed to the maximum while still being fully visible.</long>
+		    <_short>Fit zoomed area to window</_short>
+		    <_long>Zooms in/out so the focused window is zoomed to the maximum while still being fully visible.</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;r</key>
 		    </default>
 		</option>
 		<option type="action" name="pan_left">
-		    <short>Pan Zoom Left</short>
-		    <long>Pan (move) the zoom area left</long>
+		    <_short>Pan Zoom Left</_short>
+		    <_long>Pan (move) the zoom area left</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;a</key>
 		    </default>
 		</option>
 		<option type="action" name="pan_right">
-		    <short>Pan Zoom Right</short>
-		    <long>Pan (move) the zoom area right</long>
+		    <_short>Pan Zoom Right</_short>
+		    <_long>Pan (move) the zoom area right</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;d</key>
 		    </default>
 		</option>
 		<option type="action" name="pan_up">
-		    <short>Pan Zoom Up</short>
-		    <long>Pan (move) the zoom area up</long>
+		    <_short>Pan Zoom Up</_short>
+		    <_long>Pan (move) the zoom area up</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;w</key>
 		    </default>
 		</option>
 		<option type="action" name="pan_down">
-		    <short>Pan Zoom Down</short>
-		    <long>Pan (move) the zoom area down</long>
+		    <_short>Pan Zoom Down</_short>
+		    <_long>Pan (move) the zoom area down</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;s</key>
 		    </default>
 		</option>
 		<option type="action" name="zoom_out">
-		    <short>Zoom Out</short>
-		    <short xml:lang="ca">Allunya el zoom</short>
-		    <short xml:lang="cs">Oddálit</short>
-		    <short xml:lang="da">Zoom ud</short>
-		    <short xml:lang="de">Ansicht verkleinern</short>
-		    <short xml:lang="es">Reducir</short>
-		    <short xml:lang="fi">Loitonnus</short>
-		    <short xml:lang="fr">Zoom arrière</short>
-		    <short xml:lang="hu">Kicsinyítés</short>
-		    <short xml:lang="it">Riduci ingrandimento</short>
-		    <short xml:lang="ja">ズームアウト</short>
-		    <short xml:lang="pl">Pomniejsz</short>
-		    <short xml:lang="pt">Diminuir o zoom</short>
-		    <short xml:lang="pt_BR">Diminuir o zoom</short>
-		    <short xml:lang="ru">Увеличить</short>
-		    <short xml:lang="zh_CN">缩小</short>
-		    <short xml:lang="zh_TW">縮小</short>
-		    <long>Zoom Out</long>
-		    <long xml:lang="ca">Allunya el zoom</long>
-		    <long xml:lang="cs">Oddálit</long>
-		    <long xml:lang="da">Zoom ud</long>
-		    <long xml:lang="de">Ansicht verkleinern</long>
-		    <long xml:lang="es">Reducir</long>
-		    <long xml:lang="fi">Loitonnus</long>
-		    <long xml:lang="fr">Zoom arrière</long>
-		    <long xml:lang="hu">Kicsinyítés</long>
-		    <long xml:lang="it">Riduci ingrandimento</long>
-		    <long xml:lang="ja">ズームアウト</long>
-		    <long xml:lang="pl">Pomniejsz</long>
-		    <long xml:lang="pt">Diminuir o zoom</long>
-		    <long xml:lang="pt_BR">Diminuir o zoom</long>
-		    <long xml:lang="ru">Увеличить</long>
-		    <long xml:lang="zh_CN">缩小</long>
-		    <long xml:lang="zh_TW">縮小</long>
+		    <_short>Zoom Out</_short>
+		    <_long>Zoom Out</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<button>&lt;Super&gt;Button5</button>
 		    </default>
 		</option>
 		<option type="float" name="zoom_spec1">
-		    <short>Specific zoom factor 1</short>
-		    <long>Zoom level to go to when triggering hotkey 1</long>
+		    <_short>Specific zoom factor 1</_short>
+		    <_long>Zoom level to go to when triggering hotkey 1</_long>
 		    <default>1.0</default>
 		    <min>0.1</min>
 		    <max>1.0</max>
 		    <precision>0.01</precision>
 		</option>
 		<option type="float" name="zoom_spec2">
-		    <short>Specific zoom factor 2</short>
-		    <long>Zoom level to go to when triggering hotkey 2</long>
+		    <_short>Specific zoom factor 2</_short>
+		    <_long>Zoom level to go to when triggering hotkey 2</_long>
 		    <default>0.5</default>
 		    <min>0.1</min>
 		    <max>1.0</max>
 		    <precision>0.01</precision>
 		</option>
 		<option type="float" name="zoom_spec3">
-		    <short>Specific zoom factor 3</short>
-		    <long>Zoom level to go to when triggering hotkey 3</long>
+		    <_short>Specific zoom factor 3</_short>
+		    <_long>Zoom level to go to when triggering hotkey 3</_long>
 		    <default>0.2</default>
 		    <min>0.1</min>
 		    <max>1.0</max>
 		    <precision>0.01</precision>
 		</option>
 		<option type="bool" name="spec_target_focus">
-		    <short>Target Focused Window on Specific level</short>
-		    <long>Enable this to target the focused window when jumping to a specific zoom level. Disable to target mouse.</long>
+		    <_short>Target Focused Window on Specific level</_short>
+		    <_long>Enable this to target the focused window when jumping to a specific zoom level. Disable to target mouse.</_long>
 		    <default>true</default>
 		</option>
 	    </group>
 	    <option type="action" name="fit_to_zoom">
-		<short>Fit the window to the zoom level</short>
-		<long>Resize the window so it matches the current zoom level.  </long>
+		<_short>Fit the window to the zoom level</_short>
+		<_long>Resize the window so it matches the current zoom level.  </_long>
 		<allowed key="true" button="true"/>
 		<default>
 		    <key>&lt;Super&gt;v</key>
 		</default>
 	    </option>
 	    <group>
-		<short>Mouse Behavior</short>
+		<_short>Mouse Behavior</_short>
 		<option type="action" name="center_mouse">
-		    <short>Center the mouse</short>
-		    <long>Puts the mouse in the middle of the screen (Regardless of zoom level)</long>
+		    <_short>Center the mouse</_short>
+		    <_long>Puts the mouse in the middle of the screen (Regardless of zoom level)</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;c</key>
@@ -264,33 +168,18 @@
 	</display>
 	<screen>
 	    <group>
-		<short>Zoom Movement</short>
+		<_short>Zoom Movement</_short>
 		<option type="float" name="pan_factor">
-		    <short>Pan Factor</short>
-		    <long>Move the zoomed area this much whenever you pan the zoomed area with keys.</long>
+		    <_short>Pan Factor</_short>
+		    <_long>Move the zoomed area this much whenever you pan the zoomed area with keys.</_long>
 		    <default>0.1</default>
 		    <min>0.001</min>
 		    <max>1.0</max>
 		    <precision>0.001</precision>
 		</option>
 		<option type="float" name="zoom_factor">
-		    <short>Zoom factor</short>
-		    <short xml:lang="ca">Factor del zoom</short>
-		    <short xml:lang="cs">Násobek přiblížení</short>
-		    <short xml:lang="da">Zoomfaktor</short>
-		    <short xml:lang="de">Zoomfaktor</short>
-		    <short xml:lang="es">Factor de zoom</short>
-		    <short xml:lang="fi">Zoomauskerroin</short>
-		    <short xml:lang="fr">Facteur du zoom</short>
-		    <short xml:lang="hu">Nagyítási arány</short>
-		    <short xml:lang="it">Fattore zoom</short>
-		    <short xml:lang="ja">ズーム要素</short>
-		    <short xml:lang="pl">Współczynnik przybliżania</short>
-		    <short xml:lang="pt_BR">Fator de zoom</short>
-		    <short xml:lang="ru">Коэффициент масштабирования</short>
-		    <short xml:lang="zh_CN">缩放比例</short>
-		    <short xml:lang="zh_TW">縮放倍率</short>
-		    <long>Zoom in/out by this factor. Higher value means quicker zooming.</long>
+		    <_short>Zoom factor</_short>
+		    <_long>Zoom in/out by this factor. Higher value means quicker zooming.</_long>
 		    <default>1.150</default>
 		    <min>1.01</min>
 		    <max>3</max>
@@ -298,171 +187,93 @@
 		</option>
 	    </group>
 	    <group>
-		<short>Focus Tracking</short>
+		<_short>Focus Tracking</_short>
 		<option type="bool" name="follow_focus">
-		    <short>Enable focus tracking</short>
-		    <long>Move the zoom area when focus changes.</long>
+		    <_short>Enable focus tracking</_short>
+		    <_long>Move the zoom area when focus changes.</_long>
 		    <default>true</default>
 		</option>
 		<option type="bool" name="focus_fit_window">
-		    <short>Fit zoom level to window on focus change</short>
-		    <long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking.</long>
+		    <_short>Fit zoom level to window on focus change</_short>
+		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking.</_long>
 		    <default>false</default>
 		</option>
 		<option type="bool" name="allways_focus_fit_window">
-		    <short>Allways fit to window on focus track</short>
-		    <long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking. Even when not initially zoomed in. </long>
+		    <_short>Allways fit to window on focus track</_short>
+		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking. Even when not initially zoomed in. </_long>
 		    <default>false</default>
 		</option>
 		<option type="int" name="follow_focus_delay">
-		    <short>Follow Focus Delay</short>
-		    <long>Only attempt to center newly focused windows if the mouse hasn't moved in this amount of seconds. Use this to avoid jumping when using sloppy focus.</long>
+		    <_short>Follow Focus Delay</_short>
+		    <_long>Only attempt to center newly focused windows if the mouse hasn't moved in this amount of seconds. Use this to avoid jumping when using sloppy focus.</_long>
 		    <default>1</default>
 		    <min>0</min>
 		    <max>15</max>
 		</option>
 	    </group>
 	    <group>
-		<short>Mouse Behavior</short>
+		<_short>Mouse Behavior</_short>
 		<option type="bool" name="sync_mouse">
-		    <short>Sync Mouse</short>
-		    <long>Allways keep the zoomed area in sync with where the mouse is, and vice versa. Use this if you don't intend to drraw a scaled pointer or hide the original pointer. The zoomed area will move as you move your mouse.</long>
+		    <_short>Sync Mouse</_short>
+		    <_long>Allways keep the zoomed area in sync with where the mouse is, and vice versa. Use this if you don't intend to drraw a scaled pointer or hide the original pointer. The zoomed area will move as you move your mouse.</_long>
 		    <default>true</default>
 		</option>
 		<option type="bool" name="scale_mouse">
-		    <short>Scale the mouse pointer</short>
-		    <long>Enable this to get a gradually larger mouse pointer as you zoom in</long>
+		    <_short>Scale the mouse pointer</_short>
+		    <_long>Enable this to get a gradually larger mouse pointer as you zoom in</_long>
 		    <default>false</default>
 		</option>
 		<option type="bool" name="hide_original_mouse">
-		    <short>Hide original mouse pointer</short>
-		    <long>Hides the original mouse pointer when zoomed in and scaling the mouse</long>
+		    <_short>Hide original mouse pointer</_short>
+		    <_long>Hides the original mouse pointer when zoomed in and scaling the mouse</_long>
 		    <default>false</default>
 		</option>
 		<option type="bool" name="restrain_mouse">
-		    <short>Restrain the mouse to the zoom area</short>
-		    <long>Attempt to keep the zoomed mouse visible by warping it when it is moved otuside the zoom area.</long>
+		    <_short>Restrain the mouse to the zoom area</_short>
+		    <_long>Attempt to keep the zoomed mouse visible by warping it when it is moved otuside the zoom area.</_long>
 		    <default>false</default>
 		</option>
 		<option type="bool" name="mouse_pan">
-		    <short>Mouse panning</short>
-		    <long>Pan the zoom area when the mouse cursor moves outside the visible area.</long>
+		    <_short>Mouse panning</_short>
+		    <_long>Pan the zoom area when the mouse cursor moves outside the visible area.</_long>
 		    <default>false</default>
 		</option>
 		<option type="int" name="restrain_margin">
-		    <short>Mouse Restrain Margin</short>
-		    <long>The size of the margin to add when attempting to restrain the mouse.  </long>
+		    <_short>Mouse Restrain Margin</_short>
+		    <_long>The size of the margin to add when attempting to restrain the mouse.  </_long>
 		    <default>5</default>
 		    <min>0</min>
 		    <max>50</max>
 		</option>
 		<option type="int" name="mouse_poll_interval">
-		    <short>Mouse Poll Interval</short>
-		    <long>How often to poll the mouse position, in miliseconds. Reduce this to reduce choppy behavior.</long>
+		    <_short>Mouse Poll Interval</_short>
+		    <_long>How often to poll the mouse position, in miliseconds. Reduce this to reduce choppy behavior.</_long>
 		    <default>10</default>
 		    <min>1</min>
 		    <max>500</max>
 		</option>
 	    </group>
 	    <group>
-		<short>Animation</short>
+		<_short>Animation</_short>
 		<option type="float" name="speed">
-		    <short>Speed</short>
-		    <short xml:lang="ca">Velocitat</short>
-		    <short xml:lang="cs">Rychlost</short>
-		    <short xml:lang="da">Hastighed</short>
-		    <short xml:lang="de">Geschwindigkeit</short>
-		    <short xml:lang="es">Velocidad</short>
-		    <short xml:lang="fi">Nopeus</short>
-		    <short xml:lang="fr">Vitesse</short>
-		    <short xml:lang="hu">Sebesség</short>
-		    <short xml:lang="it">Velocità</short>
-		    <short xml:lang="ja">速度</short>
-		    <short xml:lang="pl">Szybkość</short>
-		    <short xml:lang="pt">Velocidade</short>
-		    <short xml:lang="pt_BR">Velocidade</short>
-		    <short xml:lang="ru">Скорость</short>
-		    <short xml:lang="zh_CN">速度</short>
-		    <short xml:lang="zh_TW">速度</short>
-		    <long>Zoom Speed</long>
-		    <long xml:lang="ca">Velocitat del zoom</long>
-		    <long xml:lang="cs">Rychlost přiblížení</long>
-		    <long xml:lang="da">Zoomhastighed</long>
-		    <long xml:lang="de">Zoomgeschwindigkeit</long>
-		    <long xml:lang="es">Velocidad de zoom</long>
-		    <long xml:lang="fi">Zoomausnopeus</long>
-		    <long xml:lang="fr">Vitesse du zoom</long>
-		    <long xml:lang="hu">Nagyítás sebessége</long>
-		    <long xml:lang="it">Velocità zoom</long>
-		    <long xml:lang="ja">ズーム速度</long>
-		    <long xml:lang="pl">Szybkość przybliżania</long>
-		    <long xml:lang="pt_BR">Velocidade do Zoom</long>
-		    <long xml:lang="ru">Скорость изменения масштаба</long>
-		    <long xml:lang="zh_CN">缩放速度</long>
-		    <long xml:lang="zh_TW">縮放速度</long>
+		    <_short>Speed</_short>
+		    <_long>Zoom Speed</_long>
 		    <default>25</default>
 		    <min>0.1</min>
 		    <max>100</max>
 		    <precision>0.1</precision>
 		</option>
 		<option type="float" name="timestep">
-		    <short>Timestep</short>
-		    <short xml:lang="ca">Etapa</short>
-		    <short xml:lang="cs">Časový krok</short>
-		    <short xml:lang="da">Tidstrin</short>
-		    <short xml:lang="de">Zeitintervall</short>
-		    <short xml:lang="es">PAso</short>
-		    <short xml:lang="fi">Aikaviive</short>
-		    <short xml:lang="fr">Intervalle</short>
-		    <short xml:lang="hu">Időköz</short>
-		    <short xml:lang="it">Intervallo</short>
-		    <short xml:lang="ja">タイムステップ</short>
-		    <short xml:lang="pl">Opóźnienie</short>
-		    <short xml:lang="pt">Timestep</short>
-		    <short xml:lang="pt_BR">Timestep</short>
-		    <short xml:lang="ru">Квант времени </short>
-		    <short xml:lang="zh_CN">时间区间</short>
-		    <short xml:lang="zh_TW">時間間隔</short>
-		    <long>Zoom Timestep</long>
-		    <long xml:lang="ca">Etapa del zoom</long>
-		    <long xml:lang="cs">Časový krok přiblížení</long>
-		    <long xml:lang="da">Tidstrin for zoom</long>
-		    <long xml:lang="de">Zoomintervall</long>
-		    <long xml:lang="es">Paso de zoom</long>
-		    <long xml:lang="fi">Zoomausaikaväli</long>
-		    <long xml:lang="fr">Intervalle du zoom</long>
-		    <long xml:lang="hu">Nagyítás időköz</long>
-		    <long xml:lang="it">Intervallo zoom</long>
-		    <long xml:lang="ja">ズームタイムステップ</long>
-		    <long xml:lang="pl">Opóźnienie przybliżania</long>
-		    <long xml:lang="pt_BR">Timestep do Zoom</long>
-		    <long xml:lang="ru">Квант времени изменения масштаба</long>
-		    <long xml:lang="zh_CN">缩放时间区间</long>
-		    <long xml:lang="zh_TW">縮放時間間隔</long>
+		    <_short>Timestep</_short>
+		    <_long>Zoom Timestep</_long>
 		    <default>1.2</default>
 		    <min>0.1</min>
 		    <max>50</max>
 		    <precision>0.1</precision>
 		</option>
 		<option type="bool" name="filter_linear">
-		    <short>Filter Linear</short>
-		    <short xml:lang="ca">Filtre lineal</short>
-		    <short xml:lang="cs">Lineární filtr</short>
-		    <short xml:lang="da">Lineært filter</short>
-		    <short xml:lang="de">Linearer Filter</short>
-		    <short xml:lang="es">Filtro lineal</short>
-		    <short xml:lang="fi">Suodata lineaarisesti</short>
-		    <short xml:lang="fr">Filtre linéaire</short>
-		    <short xml:lang="hu">Egyenes szűrő</short>
-		    <short xml:lang="it">Filtro lineare</short>
-		    <short xml:lang="ja">線形のフィルタ</short>
-		    <short xml:lang="pl">Filtruj liniowo</short>
-		    <short xml:lang="pt">Filtro Linear</short>
-		    <short xml:lang="pt_BR">Filtro Linear</short>
-		    <short xml:lang="ru">Линейная фильтрация</short>
-		    <short xml:lang="zh_CN">过滤器线性</short>
-		    <short xml:lang="zh_TW">線性過濾器</short>
-		    <long>Use linear filter when zoomed in</long>
+		    <_short>Filter Linear</_short>
+		    <_long>Use linear filter when zoomed in</_long>
 		    <default>true</default>
 		</option>
 	    </group>
