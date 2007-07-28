@@ -35,14 +35,9 @@ typedef struct _WorkaroundsDisplay {
 } WorkaroundsDisplay;
 
 typedef struct _WorkaroundsScreen {
-    int windowPrivateIndex;
-
     WindowAddNotifyProc     windowAddNotify;
     WindowResizeNotifyProc  windowResizeNotify;
 } WorkaroundsScreen;
-
-typedef struct _WorkaroundsWindow {
-} WorkaroundsWindow;
 
 #define GET_WORKAROUNDS_DISPLAY(d) \
     ((WorkaroundsDisplay *) (d)->privates[displayPrivateIndex].ptr)
@@ -57,13 +52,6 @@ typedef struct _WorkaroundsWindow {
     WorkaroundsScreen *ws = GET_WORKAROUNDS_SCREEN (s, \
                             GET_WORKAROUNDS_DISPLAY (s->display))
 
-#define GET_WORKAROUNDS_WINDOW(w, ws) \
-    ((WorkaroundsWindow *) (w)->privates[(ws)->windowPrivateIndex].ptr)
-
-#define WORKAROUNDS_WINDOW(w) \
-    WorkaroundsWindow *ww = GET_WORKAROUNDS_WINDOW (w, \
-                            GET_WORKAROUNDS_SCREEN (w->screen, \
-                            GET_WORKAROUNDS_DISPLAY (w->screen->display)))
 
 static char *
 workaroundsGetWindowRoleAtom (CompWindow *w)
@@ -269,13 +257,6 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
     if (!ws)
         return FALSE;
 
-    ws->windowPrivateIndex = allocateWindowPrivateIndex (s);
-    if (ws->windowPrivateIndex < 0)
-    {
-        free (ws);
-        return FALSE;
-    }
-
     WRAP (ws, s, windowAddNotify, workaroundsWindowAddNotify);
     WRAP (ws, s, windowResizeNotify, workaroundsWindowResizeNotify);
 
@@ -295,31 +276,11 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
     free (ws);
 }
 
-static Bool
-workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
-{
-    WorkaroundsWindow *ww;
-
-    WORKAROUNDS_SCREEN (w->screen);
-
-    ww = malloc (sizeof (WorkaroundsWindow));
-    if (!ww)
-        return FALSE;
-
-    w->privates[ws->windowPrivateIndex].ptr = ww;
-
-    return TRUE;
-}
-
 static void
 workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 {
-    WORKAROUNDS_WINDOW (w);
-
     w->wmType = getWindowType (w->screen->display, w->id);
     recalcWindowType (w);
-
-    free (ww);
 }
 
 static Bool
@@ -372,7 +333,7 @@ CompPluginVTable workaroundsVTable =
     workaroundsFiniDisplay,
     workaroundsInitScreen,
     workaroundsFiniScreen,
-    workaroundsInitWindow,
+    0, /* InitWindow */
     workaroundsFiniWindow,
     0, /* GetDisplayOptions */
     0, /* SetDisplayOption */
