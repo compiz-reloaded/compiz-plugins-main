@@ -102,6 +102,16 @@ static void setupCairoLayer (CompScreen *s, InfoLayer * il)
 								     format, 
 								     w, h);
 	il->cr = cairo_create (il->surface);
+	if (cairo_status(il->cr) != CAIRO_STATUS_SUCCESS)
+	{
+		compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
+				"Could not create cairo context");
+		cairo_destroy (il->cr);
+		cairo_surface_destroy (il->surface);
+		XFreePixmap (s->display->display, il->pixmap);
+		il->cr = NULL;
+		return;
+	}
 }
 
 // Draw the window "size" derived from the window hints.
@@ -134,6 +144,9 @@ void updateTextLayer (CompScreen *s)
   
 	char * info;
 	cairo_t * cr = is->textLayer.cr;
+
+	if (cr == NULL)
+		return;
   
 	PangoLayout * layout;
 	PangoFontDescription * font;
@@ -193,6 +206,9 @@ static void drawCairoBackground (CompScreen *s)
 	int border = 7.5;
 	int height = RESIZE_POPUP_HEIGHT;
 	int width = RESIZE_POPUP_WIDTH;
+
+	if (cr == NULL)
+		return;
 	
 #define GET_GRADIENT(NUM)						\
 	float r##NUM = resizeinfoGetGradient##NUM##Red(s->display) / (float) 0xffff; \
