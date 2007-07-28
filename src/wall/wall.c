@@ -378,8 +378,10 @@ static void wallDrawHighlight(CompScreen *s)
 	cairo_pattern_t *pattern;
 
 	pattern = cairo_pattern_create_linear(0, 0, width, height);
-	cairo_pattern_add_color_stop_rgba(pattern, 0.0f, 1.0f, 1.0f, 1.0f ,0.95);
-	cairo_pattern_add_color_stop_rgba(pattern, 1.0f, 0.875, 0.875, 0.875, 0.65);
+	getColorRGBA(ThumbHighlightGradientBaseColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 0.0f, r, g, b, a);
+	getColorRGBA(ThumbHighlightGradientShadowColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 1.0f, r, g, b, a);
 
 	// apply the patter for thumb background
 	cairo_set_source(cr, pattern);
@@ -1514,6 +1516,12 @@ static void wallDisplayOptionChanged(CompDisplay *display, CompOption *opt, Wall
 				wallDrawThumb(s);
 			break;
 
+		case WallDisplayOptionThumbHighlightGradientBaseColor:
+		case WallDisplayOptionThumbHighlightGradientShadowColor:
+			for (s = display->screens; s; s = s->next)
+				wallDrawHighlight(s);
+			break;
+
 		default:
 			break;
 	}
@@ -1603,6 +1611,8 @@ static Bool wallInitDisplay(CompPlugin * p, CompDisplay * d)
 	wallSetBackgroundGradientShadowColorNotify(d, wallDisplayOptionChanged);
 	wallSetThumbGradientBaseColorNotify(d, wallDisplayOptionChanged);
 	wallSetThumbGradientHighlightColorNotify(d, wallDisplayOptionChanged);
+	wallSetThumbHighlightGradientBaseColorNotify(d, wallDisplayOptionChanged);
+	wallSetThumbHighlightGradientShadowColorNotify(d, wallDisplayOptionChanged);
 
 	WRAP(wd, d, handleEvent, wallHandleEvent);
 	d->privates[displayPrivateIndex].ptr = wd;
