@@ -1385,11 +1385,14 @@ getHostedOnWin (AnimScreen *as,
     aw->winThisIsPaintedBefore = wHost;
 }
 
-static Bool inline
+static Bool
 otherPluginsActive(AnimScreen *as)
 {
-    return (as->scaleActive || as->switcherActive ||
-	    as->groupTabChangeActive || as->fadeDesktopActive);
+    int i;
+    for (i = 0; i < NUM_WATCHED_PLUGINS; i++)
+	if (as->pluginActive[i])
+	    return TRUE;
+    return FALSE;
 }
 
 static void
@@ -2739,6 +2742,15 @@ static Bool animGetWindowIconGeometry(CompWindow * w, XRectangle * rect)
     return FALSE;
 }
 
+static const PluginEventInfo watchedPlugins[] =
+{
+    {"switcher", "activate"},
+    {"scale", "activate"},
+    {"group", "tabChangeActivate"},
+    {"fadedesktop", "activate"},
+    {"shift", "activate"},
+};
+
 static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
 				  char *eventName, CompOption * option, int nOption)
 {
@@ -2748,63 +2760,26 @@ static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
     (*d->handleCompizEvent) (d, pluginName, eventName, option, nOption);
     WRAP (ad, d, handleCompizEvent, animHandleCompizEvent);
 
-    if (strcmp(pluginName, "switcher") == 0)
-    {
-	if (strcmp(eventName, "activate") == 0)
+    int i;
+    for (i = 0; i < NUM_WATCHED_PLUGINS; i++)
+	if (strcmp(pluginName, watchedPlugins[i].pluginName) == 0)
 	{
-	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
-	    CompScreen *s = findScreenAtDisplay(d, xid);
-
-	    if (s)
+	    if (strcmp(eventName, "activate") == 0)
 	    {
-		ANIM_SCREEN(s);
-		as->switcherActive = getBoolOptionNamed(option, nOption, "active", FALSE);
-		as->switcherWinOpeningSuppressed = FALSE;
-	    }
-	}
-    }
-    else if (strcmp(pluginName, "group") == 0)
-    {
-	if (strcmp(eventName, "tabChangeActivate") == 0)
-	{
-	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
-	    CompScreen *s = findScreenAtDisplay(d, xid);
+		Window xid = getIntOptionNamed(option, nOption, "root", 0);
+		CompScreen *s = findScreenAtDisplay(d, xid);
 
-	    if (s)
-	    {
-		ANIM_SCREEN(s);
-		as->groupTabChangeActive = getBoolOptionNamed(option, nOption, "active", FALSE);
+		if (s)
+		{
+		    ANIM_SCREEN(s);
+		    as->pluginActive[i] =
+			getBoolOptionNamed(option, nOption, "active", FALSE);
+		    if (i == 0)
+			as->switcherWinOpeningSuppressed = FALSE;
+		}
 	    }
+	    break;
 	}
-    }
-    else if (strcmp(pluginName, "scale") == 0)
-    {
-	if (strcmp(eventName, "activate") == 0)
-	{
-	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
-	    CompScreen *s = findScreenAtDisplay(d, xid);
-
-	    if (s)
-	    {
-		ANIM_SCREEN(s);
-		as->scaleActive = getBoolOptionNamed(option, nOption, "active", FALSE);
-	    }
-	}
-    }
-    else if (strcmp(pluginName, "fadedesktop") == 0)
-    {
-	if (strcmp(eventName, "activate") == 0)
-	{
-	    Window xid = getIntOptionNamed(option, nOption, "root", 0);
-	    CompScreen *s = findScreenAtDisplay(d, xid);
-
-	    if (s)
-	    {
-		ANIM_SCREEN(s);
-		as->fadeDesktopActive = getBoolOptionNamed(option, nOption, "active", FALSE);
-	    }
-	}
-    }
 }
 
 static void
@@ -3420,7 +3395,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 	    if (!w->invisible &&
 		chosenEffect &&
-		!as->fadeDesktopActive)
+		!as->pluginActive[3]) // fadedesktop
 	    {
 		// UNMINIMIZE event!
 
@@ -3595,7 +3570,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		(w->resName || isQtTransientWindow(w)) &&
 		// suppress switcher window
 		// (1st window that opens after switcher becomes active)
-		(!as->switcherActive || as->switcherWinOpeningSuppressed) &&
+		(!as->pluginActive[0] || as->switcherWinOpeningSuppressed) &&
 		getMousePointerXY(w->screen, &aw->icon.x, &aw->icon.y))
 	    {
 		Bool startingNew = TRUE;
@@ -3680,7 +3655,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			postAnimationCleanup(w, TRUE);
 		}
 	    }
-	    else if (as->switcherActive && !as->switcherWinOpeningSuppressed)
+	    else if (as->pluginActive[0] && !as->switcherWinOpeningSuppressed)
 	    {
 		// done suppressing open animation
 		as->switcherWinOpeningSuppressed = TRUE;
@@ -4006,11 +3981,6 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     updateOptionSets
 	(s, as->eventOptionSets[WindowEventShade],
 	 &as->opt[ANIM_SCREEN_OPTION_SHADE_OPTIONS].value.list);
-
-    as->switcherActive = FALSE;
-    as->groupTabChangeActive = FALSE;
-    as->scaleActive = FALSE;
-    as->fadeDesktopActive = FALSE;
 
     as->lastClientListStacking = NULL;
     as->nLastClientListStacking = 0;

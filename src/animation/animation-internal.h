@@ -368,6 +368,14 @@ typedef struct _AnimDisplay
     int activeWindow;
 } AnimDisplay;
 
+typedef struct _PluginEventInfo
+{
+    char *pluginName;
+    char *activateEventName;
+} PluginEventInfo;
+
+#define NUM_WATCHED_PLUGINS 5
+
 typedef enum
 {
     // Event settings
@@ -480,10 +488,7 @@ typedef struct _AnimScreen
 
     Bool aWinWasRestackedJustNow; // a window was restacked this paint round
 
-    Bool switcherActive;
-    Bool groupTabChangeActive;
-    Bool scaleActive;
-    Bool fadeDesktopActive;
+    Bool pluginActive[NUM_WATCHED_PLUGINS];
 
     Bool switcherWinOpeningSuppressed; // whether switcher window opening
     // animation is suppressed yet
