@@ -144,15 +144,6 @@ static AnimEffect shadeEffects[] = {
     AnimEffectRollUp
 };
 
-static Bool
-isQtTransientWindow(CompWindow * w)
-{
-    Time t;
-    Bool res = getWindowUserTime (w, &t);
-
-    return (res && !w->resName && w->wmType == CompWindowTypeUnknownMask);
-}
-
 // iterate over given list
 // check if given effect name matches any implemented effect
 // Check if it was already in the stored list
@@ -244,78 +235,6 @@ animStoreRandomEffectList (CompOptionValue *value,
     *targetCount = count;
 }
 
-static Bool
-matchWithString(CompWindow *w, const char *matchStr)
-{
-    CompDisplay *d = w->screen->display;
-    CompMatch match;
-
-    matchInit (&match);
-    matchAddFromString (&match, (char *)matchStr);
-    matchUpdate (d, &match);
-
-    Bool result = matchEval (&match, w);
-    matchFini (&match);
-
-    return result;
-}
-
-// Can be moved to the Workarounds plugin when
-// it is ready to be included and enabled by default in plugins-main.
-static unsigned int
-getActualWinType(CompWindow *w)
-{
-    if (isQtTransientWindow(w))
-	return CompWindowTypeDropdownMenuMask;
-
-    // Correct notification-daemon window type (at least in gnome 2.18.1)
-    if (matchWithString (w, "type=Normal & override_redirect=1 & \
-name=notification-daemon"))
-	return CompWindowTypeNotificationMask;
-
-    // Match Mozilla (Firefox, Thunderbird, etc.) menus
-    // and Java menus
-    if (matchWithString (w, "(type=Normal & override_redirect=1) | \
- name=sun-awt-X11-XMenuWindow | name=sun-awt-X11-XWindowPeer"))
-	return CompWindowTypeDropdownMenuMask;
-
-    // Match Qt3 and Qt4 tooltips, respectively
-    // Requires the Regexp plugin
-    if (matchWithString(w, "role=toolTipTip | role=qtooltip_label"))
-	return CompWindowTypeTooltipMask;
-
-    // Match Java normal windows
-    if (w->resName &&
-	strcmp(w->resName, "sun-awt-X11-XFramePeer") == 0)
-	return CompWindowTypeNormalMask;
-
-    // Match Java dialog windows
-    if (w->resName &&
-	strcmp(w->resName, "sun-awt-X11-XDialogPeer") == 0)
-	return CompWindowTypeDialogMask;
-
-    return w->wmType;
-}
-
-// Can be removed when getActualWinType is moved.
-static Bool
-matchEvalProxy(CompMatch *match, CompWindow *w)
-{
-    Bool result;
-
-    // Backup window type
-    int winType = w->wmType;
-
-    w->wmType = getActualWinType(w);
-
-    result = matchEval(match, w);
-
-    // Restore window type
-    w->wmType = winType;
-
-    return result;
-}
-
 // Assumes events in the metadata are in
 // [Open, Close, Minimize, Focus, Shade] order
 // and effects among those are in alphabetical order
@@ -389,7 +308,7 @@ getMatchingAnimSelection (CompWindow *w,
     int i;
     for (i = 0; i < nRows; i++)
     {
-	if (!matchEvalProxy (&valMatch->list.value[i].match, w))
+	if (!matchEval (&valMatch->list.value[i].match, w))
 	    continue;
 
 	aw->curAnimSelectionRow = i;
@@ -3035,7 +2954,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
-		if (!(w->resName || isQtTransientWindow(w)))
+		if (!w->resName)
 		    break;
 
 		int duration = 200;
@@ -3567,7 +3486,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    if (chosenEffect &&
 		// don't animate windows that don't have properties
 		// like the fullscreen darkening layer of gksudo
-		(w->resName || isQtTransientWindow(w)) &&
+		w->resName &&
 		// suppress switcher window
 		// (1st window that opens after switcher becomes active)
 		(!as->pluginActive[0] || as->switcherWinOpeningSuppressed) &&
@@ -3679,15 +3598,14 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 
     // Don't let transient window open anim be interrupted with a resize notify
     if (!(aw->curWindowEvent == WindowEventOpen &&
-	  (isQtTransientWindow(w) ||
-	   (w->wmType &
-	    (CompWindowTypeDropdownMenuMask |
-	     CompWindowTypePopupMenuMask |
-	     CompWindowTypeMenuMask |
-	     CompWindowTypeTooltipMask |
-	     CompWindowTypeNotificationMask |
-	     CompWindowTypeComboMask |
-	     CompWindowTypeDndMask)))))
+	  (w->wmType &
+	   (CompWindowTypeDropdownMenuMask |
+	    CompWindowTypePopupMenuMask |
+       	    CompWindowTypeMenuMask |
+	    CompWindowTypeTooltipMask |
+	    CompWindowTypeNotificationMask |
+	    CompWindowTypeComboMask |
+	    CompWindowTypeDndMask))))
     {
 	if (aw->polygonSet && !aw->animInitialized)
 	{
