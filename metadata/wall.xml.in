@@ -35,9 +35,7 @@
 					<max>2.0</max>
 					<precision>0.05</precision>
 				</option>
-				<subgroup>
-					<_short>Appearence</_short>
-					<option name="edge_radius" type="int">
+				<option name="edge_radius" type="int">
 						<_short>Edge Radius</_short>
 						<_long>Radius of the rounded edge</_long>
 						<default>5</default>
@@ -54,8 +52,11 @@
 							<alpha>0xd998</alpha>
 						</default>
 					</option>
+				<subgroup>
+					<_short>Background Gradient</_short>
+					
 					<option name="background_gradient_base_color" type="color">
-						<_short>Background Base Color</_short>
+						<_short>Base Color</_short>
 						<_long>First color for the background gradient of the switcher window.</_long>
 						<default>
 							<red>0xcccc</red>
@@ -65,7 +66,7 @@
 						</default>
 					</option>
 					<option name="background_gradient_highlight_color" type="color">
-						<_short>Background Highlight Color</_short>
+						<_short>Highlight Color</_short>
 						<_long>Secound color for the background gradient of the switcher window.</_long>
 						<default>
 							<red>0xf332</red>
@@ -75,7 +76,7 @@
 						</default>
 					</option>
 					<option name="background_gradient_shadow_color" type="color">
-						<_short>Background Shadow Color</_short>
+						<_short>Shadow Color</_short>
 						<_long>Third color for the background gradient of the switcher window.</_long>
 						<default>
 							<red>0xf332</red>
@@ -84,8 +85,12 @@
 							<alpha>0xd998</alpha>
 						</default>
 					</option>
+				</subgroup>
+				<subgroup>
+					<_short>Thumb Gradient</_short>
+
 					<option name="thumb_gradient_base_color" type="color">
-						<_short>Thumb Base Color</_short>
+						<_short>Base Color</_short>
 						<_long>First color for the thumb gradient of the switcher window.</_long>
 						<default>
 							<red>0x3333</red>
@@ -95,7 +100,7 @@
 						</default>
 					</option>
 					<option name="thumb_gradient_highlight_color" type="color">
-						<_short>Thumb Highlight Color</_short>
+						<_short>Highlight Color</_short>
 						<_long>Secound color for the thumb gradient of the switcher window.</_long>
 						<default>
 							<red>0x3fff</red>
@@ -104,8 +109,12 @@
 							<alpha>0x3fff</alpha>
 						</default>
 					</option>
+				</subgroup>
+				<subgroup>
+					<_short>Highlight Gradient</_short>
+
 					<option name="thumb_highlight_gradient_base_color" type="color">
-						<_short>Thumb Highlight Base Color</_short>
+						<_short>Base Color</_short>
 						<_long>First color for the thumb highlight gradient of the switcher window.</_long>
 						<default>
 							<red>0xffff</red>
@@ -115,7 +124,7 @@
 						</default>
 					</option>
 					<option name="thumb_highlight_gradient_shadow_color" type="color">
-						<_short>Thumb Highlight Shadow Color</_short>
+						<_short>Shadow Color</_short>
 						<_long>Secound color for the thumb highlight gradient of the switcher window.</_long>
 						<default>
 							<red>0xdfff</red>
