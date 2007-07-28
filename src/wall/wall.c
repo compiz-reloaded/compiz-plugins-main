@@ -260,7 +260,8 @@ static void wallDrawSwitcherBackground(CompScreen *s)
 
 	// ... and draw an outline
 	cairo_set_line_width(cr, outline);
-	cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.85);
+	getColorRGBA(OutlineColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_stroke(cr);
 
 	cairo_pattern_destroy(pattern);
@@ -310,6 +311,8 @@ static void wallDrawThumb(CompScreen *s)
 	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 	cairo_save(cr);
 
+	float r, g, b, a;
+
 	float border = 10.0f;
 	float outline = 2.0f;
 
@@ -336,7 +339,8 @@ static void wallDrawThumb(CompScreen *s)
 	cairo_fill_preserve(cr);
 
 	cairo_set_line_width(cr, outline);
-	cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.65);
+	getColorRGBA(OutlineColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_stroke(cr);
 
 	cairo_pattern_destroy(pattern);
@@ -357,6 +361,8 @@ static void wallDrawHighlight(CompScreen *s)
 	cairo_restore(cr);
 	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 	cairo_save(cr);
+
+	float r, g, b, a;
 
 	float outline = 2.0f;
 
@@ -379,7 +385,8 @@ static void wallDrawHighlight(CompScreen *s)
 	cairo_fill_preserve(cr);
 
 	cairo_set_line_width(cr, outline);
-	cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.65);
+	getColorRGBA(OutlineColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_stroke(cr);
 
 	cairo_pattern_destroy(pattern);
@@ -1483,6 +1490,14 @@ static void wallDisplayOptionChanged(CompDisplay *display, CompOption *opt, Wall
 
 	switch(num)
 	{
+		case WallDisplayOptionOutlineColor:
+			for (s = display->screens; s; s = s->next) {
+				wallDrawSwitcherBackground(s);
+				wallDrawHighlight(s);
+				wallDrawThumb(s);
+			}
+			break;
+
 		case WallDisplayOptionEdgeRadius:
 		case WallDisplayOptionBackgroundGradientBaseColor:
 		case WallDisplayOptionBackgroundGradientHighlightColor:
@@ -1574,6 +1589,7 @@ static Bool wallInitDisplay(CompPlugin * p, CompDisplay * d)
 	wallSetFlipDownInitiate(d, wallFlipDown);
 
 	wallSetEdgeRadiusNotify(d, wallDisplayOptionChanged);
+	wallSetOutlineColorNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientBaseColorNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientHighlightColorNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientShadowColorNotify(d, wallDisplayOptionChanged);
