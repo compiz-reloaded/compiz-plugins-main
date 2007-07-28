@@ -19,8 +19,10 @@
  */
 
 #include <string.h>
+#include <limits.h>
 
 #include <compiz.h>
+#include <X11/Xatom.h>
 #include <workarounds_options.h>
 
 static CompMetadata workaroundsMetadata;
@@ -28,6 +30,8 @@ static int displayPrivateIndex;
 
 typedef struct _WorkaroundsDisplay {
     int screenPrivateIndex;
+
+    Atom roleAtom;
 } WorkaroundsDisplay;
 
 typedef struct _WorkaroundsScreen {
@@ -61,6 +65,39 @@ typedef struct _WorkaroundsWindow {
                             GET_WORKAROUNDS_SCREEN (w->screen, \
                             GET_WORKAROUNDS_DISPLAY (w->screen->display)))
 
+static char *
+workaroundsGetWindowRoleAtom (CompWindow *w)
+{
+    CompDisplay   *d = w->screen->display;
+    Atom	  type;
+    unsigned long nItems;
+    unsigned long bytesAfter;
+    unsigned char *str = NULL;
+    int		  format, result;
+    char	  *retval;
+
+    WORKAROUNDS_DISPLAY (d);
+
+    result = XGetWindowProperty (d->display, w->id, wd->roleAtom,
+				 0, LONG_MAX, FALSE, XA_STRING,
+				 &type, &format, &nItems, &bytesAfter,
+				 (unsigned char **) &str);
+
+    if (result != Success)
+	return NULL;
+
+    if (type != XA_STRING)
+    {
+	XFree (str);
+	return NULL;
+    }
+
+    retval = strdup ((char *) str);
+
+    XFree (str);
+
+    return retval;
+}
 
 static void
 workaroundsDoLegacyFullscreen (CompWindow *w)
@@ -145,6 +182,39 @@ workaroundsWindowAddNotify (CompWindow *w)
         }
     }
 
+    if (workaroundsGetQtFix (w->screen->display) && !appliedFix)
+    {
+	char *windowRole;
+
+	/* fix tooltips */
+	windowRole = workaroundsGetWindowRoleAtom (w);
+	if (windowRole)
+	{
+	    if ((strcmp (windowRole, "toolTipTip") == 0) ||
+		(strcmp (windowRole, "qtooltip_label") == 0))
+	    {
+		w->wmType = CompWindowTypeTooltipMask;
+		appliedFix = TRUE;
+	    }
+
+	    free (windowRole);
+	}
+
+	/* fix Qt transients - FIXME: is there a better way to detect them? */
+	if (!appliedFix)
+	{
+	    Time t;
+	    Bool res;
+	    
+	    res = getWindowUserTime (w, &t);
+	    if (res && !w->resName && (w->wmType == CompWindowTypeUnknownMask))
+	    {
+		w->wmType = CompWindowTypeDropdownMenuMask;
+		appliedFix = TRUE;
+	    }
+	}
+    }
+
     recalcWindowType (w);
 
     if (workaroundsGetLegacyFullscreen (w->screen->display))
@@ -170,6 +240,8 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
         free (wd);
         return FALSE;
     }
+
+    wd->roleAtom = XInternAtom (d->display, "WM_WINDOW_ROLE", 0);
 
     d->privates[displayPrivateIndex].ptr = wd;
 
