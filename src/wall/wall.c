@@ -243,10 +243,16 @@ static void wallDrawSwitcherBackground(CompScreen *s)
 	cairo_set_source(cr, pattern);
 
 	// draw the border's shape
-	cairo_arc(cr, border, border, border, PI, 1.5f*PI);
-	cairo_arc(cr, border+width-2*border, border, border, 1.5f*PI, 2.0*PI);
-	cairo_arc(cr, width-border, height-border, border, 0,  PI/2.0f);
-	cairo_arc(cr, border, height-border, border,  PI/2.0f, PI);
+	float radius = (float) wallGetEdgeRadius(s->display);
+	if (radius)
+	{
+		cairo_arc(cr, radius, radius, radius, PI, 1.5f*PI);
+		cairo_arc(cr, radius+width-2*radius, radius, radius, 1.5f*PI, 2.0*PI);
+		cairo_arc(cr, width-radius, height-radius, radius, 0,  PI/2.0f);
+		cairo_arc(cr, radius, height-radius, radius,  PI/2.0f, PI);
+	}
+	else
+		cairo_rectangle(cr, 0, 0, width, height);
 	cairo_close_path(cr);
 
 	// apply pattern to background...
@@ -1477,6 +1483,7 @@ static void wallDisplayOptionChanged(CompDisplay *display, CompOption *opt, Wall
 
 	switch(num)
 	{
+		case WallDisplayOptionEdgeRadius:
 		case WallDisplayOptionBackgroundGradientBaseColor:
 		case WallDisplayOptionBackgroundGradientHighlightColor:
 		case WallDisplayOptionBackgroundGradientShadowColor:
@@ -1566,6 +1573,7 @@ static Bool wallInitDisplay(CompPlugin * p, CompDisplay * d)
 	wallSetFlipUpInitiate(d, wallFlipUp);
 	wallSetFlipDownInitiate(d, wallFlipDown);
 
+	wallSetEdgeRadiusNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientBaseColorNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientHighlightColorNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientShadowColorNotify(d, wallDisplayOptionChanged);

@@ -37,6 +37,13 @@
 				</option>
 				<subgroup>
 					<_short>Appearence</_short>
+					<option name="edge_radius" type="int">
+						<_short>Edge Radius</_short>
+						<_long>Radius of the rounded edge</_long>
+						<default>5</default>
+						<min>0</min>
+						<max>20</max>
+					</option>
 					<option name="background_gradient_base_color" type="color">
 						<_short>Background Base Color</_short>
 						<_long>First color for the background gradient of the switcher window.</_long>
