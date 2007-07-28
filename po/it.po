@@ -1,6 +1,7 @@
 # compiz-fusion-plugins Italian translation.
 # Copyright (C) 2007 opencompositing.org
 # This file is distributed under the same license as the compiz-fusion package.
+#
 # Marco Trevisan (Treviño) <trevi55@gmail.com>, 2007.
 # Matteo Suppo (Triex) <alpha3ex@gmail.com>, 2007.
 # Danilo Saruis (DDany) <ddany83@gmail.com>, 2007.
@@ -13,7 +14,7 @@ msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-28 17:28+0100\n"
+"PO-Revision-Date: 2007-07-28 18:03+0200\n"
 "Last-Translator: Marco Trevisan (Treviño) <trevi55@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +64,7 @@ msgid "Change the speed of the 3D animation"
 msgstr "Cambia la velocità dell'animazione 3D"
 
 msgid "Corner Bevelling"
-msgstr ""
+msgstr "Smussa Angoli"
 
 msgid "Create Mipmaps"
 msgstr "Crea Mipmap"
@@ -110,9 +111,8 @@ msgstr "Larghezza finestre"
 msgid "Windows that should be handled by 3D"
 msgstr "Finestre che devono essere mostrate in 3D"
 
-#, fuzzy
 msgid "ADD Helper"
-msgstr "AddHelper"
+msgstr "ADD Helper"
 
 msgid "Bindings"
 msgstr "Scorciatoie"
@@ -162,44 +162,35 @@ msgstr "Ampiezza (dimensione delle onde nella piega) delle Pieghe Orizzontali re
 msgid "Amplitude (size of the waves in the fold) of the curved fold relative to window width. Negative values fold outward."
 msgstr "Ampiezza (misura delle onde nella piega) della piega curvata relativamente alla larghezza della finestra. Valori negativi portano le pieghe in avanti."
 
-#, fuzzy
 msgid "Angle of window at the end of the animation."
-msgstr "Cambia la velocità dell'animazione 3D"
+msgstr "Angolo della finestra alla fine dell'animazone"
 
-#, fuzzy
 msgid "Animation Selection"
-msgstr "Opzioni  delle Animazioni"
+msgstr "Selezione Animazione"
 
-#, fuzzy
 msgid "Animation Time Step"
-msgstr "Velocità di Animazione"
+msgstr "Attesa Animazione"
 
 msgid "Animation Time Step For Intense Effects"
 msgstr "Intervallo Minimo Di Tempo Per L'Animazione Effetto Intenso"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for close effect."
-msgstr "Durata dell'animazione (in secondi) per creare l'effetto #1."
+msgstr "Durata in millisecondi dell'animazione di chiusura"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for focus effect."
-msgstr "Durata dell'animazione (in secondi) per creare l'effetto #1."
+msgstr "Durata in millisecondi dell'animazione di selezione"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for minimize effect."
-msgstr "Durata dell'animazione (in secondi) per creare l'effetto #1."
+msgstr "Durata in millisecondi dell'animazione di minimizzazione"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for open effect."
-msgstr "Durata dell'animazione (in secondi) per creare l'effetto #1."
+msgstr "Durata in millisecondi dell'animazione di apertura"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for shade effect."
-msgstr "Durata dell'animazione (in secondi) per creare l'effetto #1."
+msgstr "Durata in millisecondi dell'animazione di sfumatura"
 
-#, fuzzy
 msgid "Animations"
-msgstr "Opzioni  delle Animazioni"
+msgstr "Animazioni"
 
 msgid "Automatic"
 msgstr "Automatico"
@@ -207,23 +198,20 @@ msgstr "Automatico"
 msgid "Away Angle"
 msgstr "Angolo lontano"
 
-#, fuzzy
 msgid "Away Position"
-msgstr "Posizione orizzontale"
+msgstr "Posizione lontana"
 
 msgid "Beam"
 msgstr "Fascio di luce"
 
-#, fuzzy
 msgid "Beam Color"
-msgstr "Colore Linea"
+msgstr "Colore Fascio di Luce"
 
 msgid "Beam Life"
 msgstr "Durata del fascio di luce"
 
-#, fuzzy
 msgid "Beam Slowdown"
-msgstr "Velocità delle Fiamme"
+msgstr "Velocità del fascio di luce"
 
 msgid "Beam Spacing"
 msgstr "Spazi tra i Fasci di luce"
@@ -231,9 +219,8 @@ msgstr "Spazi tra i Fasci di luce"
 msgid "Beam Up"
 msgstr "Dissolvenza Radiosa"
 
-#, fuzzy
 msgid "Beam Width"
-msgstr "Larghezza Bordo"
+msgstr "Larghezza Fascio di Luce"
 
 msgid "Beam color."
 msgstr "Colore del fascio di luce"
@@ -241,29 +228,26 @@ msgstr "Colore del fascio di luce"
 msgid "Beam life."
 msgstr "Durata del fascio di luce"
 
-#, fuzzy
 msgid "Beam slowdown."
-msgstr "Velocità di evoluzione di ogni fiamma."
+msgstr "Velocità del Fascio di luce"
 
-#, fuzzy
 msgid "Beam width."
-msgstr "Larghezza Bordo"
+msgstr "Larghezza fascio di luce"
 
 msgid "Burn"
 msgstr "Brucia"
 
-#, fuzzy
 msgid "Close Animation"
-msgstr "Tipo di animazione per l'accostamento"
+msgstr "Animazione di Chiusura"
 
 msgid "Close Effect"
-msgstr ""
+msgstr "Effetto di Chiusura"
 
 msgid "Closeness of window to camera at the end of the animation (1.0: Close to camera, -2.0: Away from camera)."
 msgstr "Vicinanza della finestra alla fotocamera alla fine dell'animazione (1.0: Vicino alla fotocamera; 2.0: Lontano dalla fotocamera)"
 
 msgid "Comma separated list of option value assignments to override effect settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
-msgstr ""
+msgstr "Lista di opzioni separate da una virgola da sovrapporre alle impostazioni standard, per esempio: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 
 msgid "Curved Fold"
 msgstr "Ripiegatura curva"
@@ -271,15 +255,16 @@ msgstr "Ripiegatura curva"
 msgid "Curved Fold Amplitude"
 msgstr "Ampiezza della ripiegatura curva"
 
+#, fuzzy
 msgid "Dodge"
-msgstr ""
-
-msgid "Dodge Gap Ratio"
-msgstr ""
+msgstr "Balzo"
 
 #, fuzzy
+msgid "Dodge Gap Ratio"
+msgstr "Rapporto Balzo"
+
 msgid "Domino"
-msgstr "Giù"
+msgstr "Domino"
 
 msgid "Domino Piece Falling Direction"
 msgstr "Direzione di Caduta dei Pezzi del Domino"
@@ -290,13 +275,11 @@ msgstr "Giù"
 msgid "Dream"
 msgstr "Sogno"
 
-#, fuzzy
 msgid "Duration"
-msgstr "Saturazione"
+msgstr "Durata"
 
-#, fuzzy
 msgid "Effect Settings"
-msgstr "Impostazioni"
+msgstr "Impostazioni Effetto"
 
 msgid "Explode"
 msgstr "Esplodi"
@@ -328,13 +311,11 @@ msgstr "Fumo del Fuoco"
 msgid "Fire constant speed"
 msgstr "Costante di velocità del fuoco"
 
-#, fuzzy
 msgid "Fire direction"
-msgstr "Direzione della neve"
+msgstr "Direzione del Fuoco"
 
-#, fuzzy
 msgid "Fire direction."
-msgstr "Direzione della neve"
+msgstr "Direzione del fuoco."
 
 msgid "Fire particle color."
 msgstr "Colore delle fiamme."
@@ -354,24 +335,20 @@ msgstr "Fumo del fuoco"
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Interno della finestra fisso durante l'animazione di arrotolamento"
 
-#, fuzzy
 msgid "Focus Animation"
-msgstr "Velocità di Animazione"
+msgstr "Animazione di Selezione"
 
-#, fuzzy
 msgid "Focus Effect"
-msgstr "Reindirizza finestra"
+msgstr "Effetto Selezione"
 
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Direzione di apertura dei pezzi nell'effetto Razr."
 
-#, fuzzy
 msgid "Glide 1"
-msgstr "Diapositiva"
+msgstr "Plana 1"
 
-#, fuzzy
 msgid "Glide 2"
-msgstr "Diapositiva"
+msgstr "Plana 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr "Colora le fiamme in modo casuale, l'effetto viene anche chiamato \"Fuoco Mistico\""
@@ -379,7 +356,6 @@ msgstr "Colora le fiamme in modo casuale, l'effetto viene anche chiamato \"Fuoco
 msgid "Hexagonal"
 msgstr "Esagonale"
 
-#, fuzzy
 msgid "Horizontal Folds"
 msgstr "Accosta orizzontalmente"
 
@@ -393,7 +369,7 @@ msgid "How spring-like the Zoom animation should be."
 msgstr "Quanto dovrebbe essere simile ad una molla l'animazione di Zoom."
 
 msgid "Leaf Spread"
-msgstr ""
+msgstr "Caduta di Foglie"
 
 msgid "Left"
 msgstr "Sinistra"
@@ -413,23 +389,20 @@ msgstr "Numero Massimo di Onde della Lampada Magica"
 msgid "Magic Lamp Min Wave Amplitude"
 msgstr "Ampiezza Minima delle Onde della Lampada Magica"
 
-#, fuzzy
 msgid "Magic Lamp Open Start Width"
-msgstr "Larghezza Iniziale alla Creaione della Lampada Magica"
+msgstr "Larghezza Iniziale della Lampada Magica"
 
 msgid "Magic Lamp Open/Close Moving End"
-msgstr ""
+msgstr "Movimento Finale in Apertura/Chiusura della Lampada Magica"
 
 msgid "Make fire effect duration be dependent on window height."
 msgstr "La massima durata dell'effetto fuoco dipende dall'altezza della finestra."
 
-#, fuzzy
 msgid "Minimize Animation"
-msgstr "Minimizza con il gruppo"
+msgstr "Animazione di Minimizzazione"
 
-#, fuzzy
 msgid "Minimize Effect"
-msgstr "Minimizza con il gruppo"
+msgstr "Effetto di Minimizzazione"
 
 msgid "Minimize/Unminimize Only"
 msgstr "Minimizza/Deminimizza solamente"
@@ -437,17 +410,14 @@ msgstr "Minimizza/Deminimizza solamente"
 msgid "None"
 msgstr "Nessuno"
 
-#, fuzzy
 msgid "Number Of Fire Particles"
-msgstr "Numero di fiamme"
+msgstr "Numero di Particelle di Fuoco"
 
-#, fuzzy
 msgid "Number of Horizontal Folds"
-msgstr "Numero di fiamme"
+msgstr "Numero di Pieghe Orizzontali"
 
-#, fuzzy
 msgid "Number of fire particles."
-msgstr "Numero di fiamme"
+msgstr "Numero di particelle di fuoco."
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -465,14 +435,12 @@ msgstr ""
 msgid "On open/close, move vacuum ending point with the mouse pointer."
 msgstr ""
 
-#, fuzzy
 msgid "Open Animation"
-msgstr "Velocità di Animazione"
+msgstr "Animazione di Apertura"
 
 msgid "Open Effect"
-msgstr ""
+msgstr "Effetto di Apertura"
 
-#, fuzzy
 msgid "Open/Close Only"
 msgstr "Crea/Chiudi solamente"
 
@@ -480,7 +448,7 @@ msgid "Options"
 msgstr "Opzioni"
 
 msgid "Pool"
-msgstr ""
+msgstr "Lista Effetti"
 
 #, fuzzy
 msgid "Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list."
@@ -492,9 +460,8 @@ msgstr "Casuale"
 msgid "Random Animations For All Events"
 msgstr "Animazioni casuali per tutti gli eventi"
 
-#, fuzzy
 msgid "Random Effects"
-msgstr "Lista degli effetti casuali"
+msgstr "Effetti Casuali"
 
 msgid "Randomly Colored Fire"
 msgstr "Fuoco Mistico"
