@@ -156,6 +156,8 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
     if (!os->pairs)
     {
 	os->nPairs = 0;
+	free(optNamesValues);
+	free(nameTrimmed);
 	compLogMessage (s->display, "animation", CompLogLevelError,
 			"Not enough memory");
 	return;
@@ -332,6 +334,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 	os->nPairs = 0;
     }
     free(optNamesValues);
+    free(nameTrimmed);
 }
 
 void
