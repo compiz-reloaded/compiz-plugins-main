@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-05 14:17+0200\n"
+"POT-Creation-Date: 2007-07-28 14:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,6 +56,9 @@ msgid "Change the amount of space between the windows."
 msgstr ""
 
 msgid "Change the speed of the 3D animation"
+msgstr ""
+
+msgid "Corner Bevelling"
 msgstr ""
 
 msgid "Create Mipmaps"
@@ -107,7 +110,7 @@ msgstr ""
 msgid "Windows that should be handled by 3D"
 msgstr ""
 
-msgid "AddHelper"
+msgid "ADD Helper"
 msgstr ""
 
 msgid "Bindings"
@@ -168,10 +171,7 @@ msgstr ""
 msgid "Angle of window at the end of the animation."
 msgstr ""
 
-msgid "Animation"
-msgstr ""
-
-msgid "Animation Duration"
+msgid "Animation Selection"
 msgstr ""
 
 msgid "Animation Time Step"
@@ -180,10 +180,19 @@ msgstr ""
 msgid "Animation Time Step For Intense Effects"
 msgstr ""
 
-msgid "Animation duration in seconds for create effect #1."
+msgid "Animation duration in milliseconds for close effect."
 msgstr ""
 
-msgid "Animation duration in seconds for create effect #2."
+msgid "Animation duration in milliseconds for focus effect."
+msgstr ""
+
+msgid "Animation duration in milliseconds for minimize effect."
+msgstr ""
+
+msgid "Animation duration in milliseconds for open effect."
+msgstr ""
+
+msgid "Animation duration in milliseconds for shade effect."
 msgstr ""
 
 msgid "Animations"
@@ -234,13 +243,10 @@ msgstr ""
 msgid "Burn"
 msgstr ""
 
-msgid "Close #1 Animation"
-msgstr ""
-
-msgid "Close #2 Animation"
-msgstr ""
-
 msgid "Close Animation"
+msgstr ""
+
+msgid "Close Effect"
 msgstr ""
 
 msgid ""
@@ -248,16 +254,9 @@ msgid ""
 "camera, -2.0: Away from camera)."
 msgstr ""
 
-msgid "Create #1 Animation"
-msgstr ""
-
-msgid "Create #2 Animation"
-msgstr ""
-
-msgid "Create Animation"
-msgstr ""
-
-msgid "Create/Close Only"
+msgid ""
+"Comma separated list of option value assignments to override effect "
+"settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
 
 msgid "Curved Fold"
@@ -282,6 +281,12 @@ msgid "Down"
 msgstr ""
 
 msgid "Dream"
+msgstr ""
+
+msgid "Duration"
+msgstr ""
+
+msgid "Effect Settings"
 msgstr ""
 
 msgid "Explode"
@@ -341,10 +346,7 @@ msgstr ""
 msgid "Focus Animation"
 msgstr ""
 
-msgid "Focus animation duration in seconds."
-msgstr ""
-
-msgid "Focus window effect."
+msgid "Focus Effect"
 msgstr ""
 
 msgid "Fold opening direction for pieces in Razr effect."
@@ -383,9 +385,6 @@ msgstr ""
 msgid "Magic Lamp"
 msgstr ""
 
-msgid "Magic Lamp Create Start Width"
-msgstr ""
-
 msgid "Magic Lamp Grid Y Resolution"
 msgstr ""
 
@@ -398,28 +397,19 @@ msgstr ""
 msgid "Magic Lamp Min Wave Amplitude"
 msgstr ""
 
-msgid "Magic Lamp Vacuum"
+msgid "Magic Lamp Open Start Width"
 msgstr ""
 
-msgid "Magic Lamp Vacuum Create Start Width"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Grid Y Resolution"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Max Wave Amplitude"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Max Waves"
-msgstr ""
-
-msgid "Magic Lamp Vacuum Min Wave Amplitude"
+msgid "Magic Lamp Open/Close Moving End"
 msgstr ""
 
 msgid "Make fire effect duration be dependent on window height."
 msgstr ""
 
 msgid "Minimize Animation"
+msgstr ""
+
+msgid "Minimize Effect"
 msgstr ""
 
 msgid "Minimize/Unminimize Only"
@@ -447,9 +437,30 @@ msgstr ""
 msgid "On"
 msgstr ""
 
+msgid "On open/close, move magic lamp ending point with the mouse pointer."
+msgstr ""
+
+msgid "On open/close, move vacuum ending point with the mouse pointer."
+msgstr ""
+
+msgid "Open Animation"
+msgstr ""
+
+msgid "Open Effect"
+msgstr ""
+
+msgid "Open/Close Only"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Pool"
+msgstr ""
+
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list. If the list is empty, the default effect will be used."
+"to restore full list."
 msgstr ""
 
 msgid "Random"
@@ -458,7 +469,7 @@ msgstr ""
 msgid "Random Animations For All Events"
 msgstr ""
 
-msgid "Random Effect Pool"
+msgid "Random Effects"
 msgstr ""
 
 msgid "Randomly Colored Fire"
@@ -488,10 +499,7 @@ msgstr ""
 msgid "Shade Animation"
 msgstr ""
 
-msgid "Shade animation duration in seconds."
-msgstr ""
-
-msgid "Shade window effect."
+msgid "Shade Effect"
 msgstr ""
 
 msgid "Sidekick"
@@ -507,13 +515,12 @@ msgid "Spacing between beams."
 msgstr ""
 
 msgid ""
-"Starting width of create effect and ending width of close effect for Magic "
-"Lamp Vacuum."
+"Starting width of open effect and ending width of close effect for Magic "
+"Lamp."
 msgstr ""
 
 msgid ""
-"Starting width of create effect and ending width of close effect for Magic "
-"Lamp."
+"Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
 
 msgid "Tessellation Type"
@@ -533,38 +540,35 @@ msgid ""
 "become."
 msgstr ""
 
-msgid "The animation shown when closing a window."
+msgid "The animation effect shown when closing a window."
 msgstr ""
 
-msgid "The animation shown when creating a window."
+msgid "The animation effect shown when creating a window."
 msgstr ""
 
-msgid "The animation shown when minimizing a window."
+msgid "The animation effect shown when focusing a window."
+msgstr ""
+
+msgid "The animation effect shown when minimizing a window."
+msgstr ""
+
+msgid "The animation effect shown when shading a window."
 msgstr ""
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
-"height, in pixels, of the rows in the grid."
+"number of grid cells along the height of the window."
 msgstr ""
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
-"width, in pixels, of the columns in the grid."
-msgstr ""
-
-msgid "The maximum number of waves for Magic Lamp Vacuum."
+"number of grid cells along the width of the window."
 msgstr ""
 
 msgid "The maximum number of waves for Magic Lamp."
 msgstr ""
 
-msgid "The maxmimum amplitude (size of the waves) Magic Lamp Vacuum will have."
-msgstr ""
-
 msgid "The maxmimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
-
-msgid "The minimum amplitude (size of the waves) Magic Lamp Vacuum will have."
 msgstr ""
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
@@ -572,15 +576,6 @@ msgstr ""
 
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
-msgstr ""
-
-msgid "The number of seconds that the Close #1 animation will last."
-msgstr ""
-
-msgid "The number of seconds that the Close #2 animation will last."
-msgstr ""
-
-msgid "The number of seconds that the Minimize animation will last."
 msgstr ""
 
 msgid "The wave amplitude (size of the waves) relative to the window height."
@@ -595,16 +590,28 @@ msgstr ""
 msgid "Thickness"
 msgstr ""
 
-msgid "Thickness of Exploding Polygons"
+msgid "Thickness (in pixels) of exploding window pieces."
 msgstr ""
 
-msgid "Thickness of exploding window pieces."
+msgid "Thickness of Exploding Polygons"
 msgstr ""
 
 msgid "Up"
 msgstr ""
 
 msgid "Use various animations as window effects"
+msgstr ""
+
+msgid "Vacuum"
+msgstr ""
+
+msgid "Vacuum Grid Y Resolution"
+msgstr ""
+
+msgid "Vacuum Open Start Width"
+msgstr ""
+
+msgid "Vacuum Open/Close Moving End"
 msgstr ""
 
 msgid ""
@@ -614,10 +621,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Vertex grid resolution for Magic Lamp Vacuum (Y dimension only). This is the "
-"number of points used to define the curves. The higher the number, the "
-"smoother the curves. However there will be a loss of performance (CPU usage "
-"increases)."
+"Vertex grid resolution for Vacuum (Y dimension only). This is the number of "
+"points used to define the curves. The higher the number, the smoother the "
+"curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
 
 msgid "Wave"
@@ -655,9 +661,6 @@ msgid "Window Grid Height"
 msgstr ""
 
 msgid "Window Grid Width"
-msgstr ""
-
-msgid "Window that should animate with this effect when created."
 msgstr ""
 
 msgid "Window that should animate with this effect when focused."
@@ -866,10 +869,25 @@ msgstr ""
 msgid "Generate mipmaps in expo mode"
 msgstr ""
 
+msgid "Hide panels/docks in expo"
+msgstr ""
+
+msgid "Hide panels/docks in expo."
+msgstr ""
+
 msgid "Immediate moves"
 msgstr ""
 
 msgid "Mipmaps"
+msgstr ""
+
+msgid "Multi Output Mode"
+msgstr ""
+
+msgid "One big wall"
+msgstr ""
+
+msgid "One wall per output"
 msgstr ""
 
 msgid "Reflection"
@@ -879,6 +897,10 @@ msgid "Reflection Scale"
 msgstr ""
 
 msgid "Scale factor of the expo wall reflection"
+msgstr ""
+
+msgid ""
+"Selects how the expo wall is displayed if multiple output devices are used."
 msgstr ""
 
 msgid ""
@@ -986,6 +1008,12 @@ msgid "Paint fire on the screen"
 msgstr ""
 
 msgid "Paint fire or other particles on the screen"
+msgstr ""
+
+msgid "Cube Gears"
+msgstr ""
+
+msgid "Render gears inside of the transparent cube"
 msgstr ""
 
 msgid "Begin"
@@ -1203,9 +1231,6 @@ msgid "Murrina"
 msgstr ""
 
 msgid "Opacity of selected windows"
-msgstr ""
-
-msgid "Options"
 msgstr ""
 
 msgid "Play animations on the tab bar e.g. on fade in."
@@ -1478,6 +1503,18 @@ msgstr ""
 msgid "Visibility/Performance"
 msgstr ""
 
+msgid "Begin Gesture"
+msgstr ""
+
+msgid "Begin Mouse Gesture"
+msgstr ""
+
+msgid "Mouse switch"
+msgstr ""
+
+msgid "Switch viewport in response to mouse gesture"
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr ""
 
@@ -1596,6 +1633,247 @@ msgstr ""
 msgid ""
 "With this enabled, opacify will be on when you load Opacify, which is "
 "usually when you start Compiz."
+msgstr ""
+
+msgid "Animation"
+msgstr ""
+
+msgid "Animation speed"
+msgstr ""
+
+msgid "Animation timestep"
+msgstr ""
+
+msgid "Avoid Offscreen"
+msgstr ""
+
+msgid "Avoids putting window borders offscreen"
+msgstr ""
+
+msgid "Move window to a certain viewport"
+msgstr ""
+
+msgid "Move window to the bottom edge"
+msgstr ""
+
+msgid "Move window to the bottom left corner"
+msgstr ""
+
+msgid "Move window to the bottom right corner"
+msgstr ""
+
+msgid "Move window to the center"
+msgstr ""
+
+msgid "Move window to the last position"
+msgstr ""
+
+msgid "Move window to the left edge"
+msgstr ""
+
+msgid "Move window to the pointer position"
+msgstr ""
+
+msgid "Move window to the right edge"
+msgstr ""
+
+msgid "Move window to the top edge"
+msgstr ""
+
+msgid "Move window to the top left corner"
+msgstr ""
+
+msgid "Move window to the top right corner"
+msgstr ""
+
+msgid "Move window to the viewport on the bottom"
+msgstr ""
+
+msgid "Move window to the viewport on the left"
+msgstr ""
+
+msgid "Move window to the viewport on the right"
+msgstr ""
+
+msgid "Move window to the viewport on the top"
+msgstr ""
+
+msgid "Move window to viewport 1"
+msgstr ""
+
+msgid "Move window to viewport 10"
+msgstr ""
+
+msgid "Move window to viewport 11"
+msgstr ""
+
+msgid "Move window to viewport 12"
+msgstr ""
+
+msgid "Move window to viewport 2"
+msgstr ""
+
+msgid "Move window to viewport 3"
+msgstr ""
+
+msgid "Move window to viewport 4"
+msgstr ""
+
+msgid "Move window to viewport 5"
+msgstr ""
+
+msgid "Move window to viewport 6"
+msgstr ""
+
+msgid "Move window to viewport 7"
+msgstr ""
+
+msgid "Move window to viewport 8"
+msgstr ""
+
+msgid "Move window to viewport 9"
+msgstr ""
+
+msgid "Move window to x, y"
+msgstr ""
+
+msgid ""
+"Number of pixels from the bottom edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the left edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the right edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the top edge where the window will come to rest"
+msgstr ""
+
+msgid "Pad Left"
+msgstr ""
+
+msgid "Padding"
+msgstr ""
+
+msgid "Put"
+msgstr ""
+
+msgid "Put Bottom"
+msgstr ""
+
+msgid "Put Bottom Left"
+msgstr ""
+
+msgid "Put Bottom Right"
+msgstr ""
+
+msgid "Put Center"
+msgstr ""
+
+msgid "Put Exact"
+msgstr ""
+
+msgid "Put Left"
+msgstr ""
+
+msgid "Put On Viewport"
+msgstr ""
+
+msgid "Put On Viewport 1"
+msgstr ""
+
+msgid "Put On Viewport 10"
+msgstr ""
+
+msgid "Put On Viewport 11"
+msgstr ""
+
+msgid "Put On Viewport 12"
+msgstr ""
+
+msgid "Put On Viewport 2"
+msgstr ""
+
+msgid "Put On Viewport 3"
+msgstr ""
+
+msgid "Put On Viewport 4"
+msgstr ""
+
+msgid "Put On Viewport 5"
+msgstr ""
+
+msgid "Put On Viewport 6"
+msgstr ""
+
+msgid "Put On Viewport 7"
+msgstr ""
+
+msgid "Put On Viewport 8"
+msgstr ""
+
+msgid "Put On Viewport 9"
+msgstr ""
+
+msgid "Put Pointer"
+msgstr ""
+
+msgid "Put Right"
+msgstr ""
+
+msgid "Put Top"
+msgstr ""
+
+msgid "Put Top Left"
+msgstr ""
+
+msgid "Put Top Right"
+msgstr ""
+
+msgid "Put pointer uses the center of the window"
+msgstr ""
+
+msgid "Put to adjacent viewport"
+msgstr ""
+
+msgid "Put to arbitrary viewport"
+msgstr ""
+
+msgid "Put window"
+msgstr ""
+
+msgid "Put within viewport"
+msgstr ""
+
+msgid "Restore Position"
+msgstr ""
+
+msgid "Speed"
+msgstr ""
+
+msgid "Timestep"
+msgstr ""
+
+msgid "Unfocus Window"
+msgstr ""
+
+msgid "Unfocus windows that are moved off the viewport"
+msgstr ""
+
+msgid "Viewport Bottom"
+msgstr ""
+
+msgid "Viewport Left"
+msgstr ""
+
+msgid "Viewport Right"
+msgstr ""
+
+msgid "Viewport Top"
+msgstr ""
+
+msgid "Window Center"
 msgstr ""
 
 msgid "Alpha Dependence Threshold"
@@ -1849,9 +2127,6 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr ""
 
-msgid "Speed"
-msgstr ""
-
 msgid "Text Placement"
 msgstr ""
 
@@ -1859,9 +2134,6 @@ msgid "Thumbnail Height"
 msgstr ""
 
 msgid "Thumbnail Width"
-msgstr ""
-
-msgid "Timestep"
 msgstr ""
 
 msgid "Window title display"
@@ -1939,6 +2211,30 @@ msgstr ""
 msgid "Zoom windows while in scale mode"
 msgstr ""
 
+msgid "Filter Case Insensitive"
+msgstr ""
+
+msgid "Filter Type Timeout"
+msgstr ""
+
+msgid "Scale Window Title Filter"
+msgstr ""
+
+msgid "Show Filter Text"
+msgstr ""
+
+msgid "Show filter text."
+msgstr ""
+
+msgid "Time (in ms) after which the filter typing is automatically ended"
+msgstr ""
+
+msgid "Use case insensitive string matching when filtering."
+msgstr ""
+
+msgid "Window title filter facility for the scale plugin"
+msgstr ""
+
 msgid ""
 "Embeds a Guile scheme interpreter and provides bindings for meaningful "
 "Compiz integration."
@@ -1951,6 +2247,99 @@ msgid "Toggle Prompt Visible"
 msgstr ""
 
 msgid "Toggle prompt visible."
+msgstr ""
+
+msgid "Background intensity"
+msgstr ""
+
+msgid "Background intensity."
+msgstr ""
+
+msgid "Below"
+msgstr ""
+
+msgid "Click duration"
+msgstr ""
+
+msgid "Cover"
+msgstr ""
+
+msgid "Cover movement offset."
+msgstr ""
+
+msgid "Cover offset"
+msgstr ""
+
+msgid "Fade in/out speed"
+msgstr ""
+
+msgid "Fade speed"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Flip angle"
+msgstr ""
+
+msgid "Generate mipmaps"
+msgstr ""
+
+msgid "Initiate (All Workspaces)"
+msgstr ""
+
+msgid "Initiate switcher (All Workspaces)."
+msgstr ""
+
+msgid "Initiate switcher."
+msgstr ""
+
+msgid "Max window size"
+msgstr ""
+
+msgid "Maximum click duration in miliseconds."
+msgstr ""
+
+msgid "Maximum window size (in percent of the screen width)"
+msgstr ""
+
+msgid "Mouse movement speed"
+msgstr ""
+
+msgid "Mouse speed"
+msgstr ""
+
+msgid "Overlay an icon on windows in the shift switcher"
+msgstr ""
+
+msgid "Rotation angle of the flip animation"
+msgstr ""
+
+msgid "Shift Switcher"
+msgstr ""
+
+msgid "Shift Switcher Plugin"
+msgstr ""
+
+msgid "Shift Windows"
+msgstr ""
+
+msgid "Shift animaton speed"
+msgstr ""
+
+msgid "Shift speed"
+msgstr ""
+
+msgid "Shift timestep"
+msgstr ""
+
+msgid "Switcher mode"
+msgstr ""
+
+msgid "Switcher mode."
+msgstr ""
+
+msgid "Windows that should be shown in the shift switcher"
 msgstr ""
 
 msgid "Access your desktop easily"
@@ -2054,54 +2443,6 @@ msgid "Use this bindings to avoid snapping."
 msgstr ""
 
 msgid "Window edges"
-msgstr ""
-
-msgid "A simple splash plugin"
-msgstr ""
-
-msgid "Background File"
-msgstr ""
-
-msgid "Background brightness."
-msgstr ""
-
-msgid "Background image File."
-msgstr ""
-
-msgid "Background saturation."
-msgstr ""
-
-msgid "Display In/Out Time."
-msgstr ""
-
-msgid "Display Time"
-msgstr ""
-
-msgid "Fade In/Out Time."
-msgstr ""
-
-msgid "Images"
-msgstr ""
-
-msgid "Initiate Splash"
-msgstr ""
-
-msgid "Logo File"
-msgstr ""
-
-msgid "Logo image File."
-msgstr ""
-
-msgid "Show on first start"
-msgstr ""
-
-msgid "Show splash on first start."
-msgstr ""
-
-msgid "Splash"
-msgstr ""
-
-msgid "Start Splash."
 msgstr ""
 
 msgid "Bottom to Top"
@@ -2216,6 +2557,54 @@ msgstr ""
 msgid "Update Delay"
 msgstr ""
 
+msgid "A simple splash plugin"
+msgstr ""
+
+msgid "Background File"
+msgstr ""
+
+msgid "Background brightness."
+msgstr ""
+
+msgid "Background image File."
+msgstr ""
+
+msgid "Background saturation."
+msgstr ""
+
+msgid "Display In/Out Time."
+msgstr ""
+
+msgid "Display Time"
+msgstr ""
+
+msgid "Fade In/Out Time."
+msgstr ""
+
+msgid "Images"
+msgstr ""
+
+msgid "Initiate Splash"
+msgstr ""
+
+msgid "Logo File"
+msgstr ""
+
+msgid "Logo image File."
+msgstr ""
+
+msgid "Show on first start"
+msgstr ""
+
+msgid "Show splash on first start."
+msgstr ""
+
+msgid "Splash"
+msgstr ""
+
+msgid "Start Splash."
+msgstr ""
+
 msgid "Render text to texture"
 msgstr ""
 
@@ -2301,6 +2690,9 @@ msgid "Window title Font Color."
 msgstr ""
 
 msgid "Window title Font Size."
+msgstr ""
+
+msgid "Animation Duration"
 msgstr ""
 
 msgid "Cascade"
@@ -2559,6 +2951,18 @@ msgstr ""
 msgid "Allow wrap-around when moving the wall up/down/left/right"
 msgstr ""
 
+msgid "Appearence"
+msgstr ""
+
+msgid "Background Base Color"
+msgstr ""
+
+msgid "Background Highlight Color"
+msgstr ""
+
+msgid "Background Shadow Color"
+msgstr ""
+
 msgid "Desktop Wall"
 msgstr ""
 
@@ -2583,6 +2987,9 @@ msgid "Edge Flip Pointer"
 msgstr ""
 
 msgid "Edge Flipping"
+msgstr ""
+
+msgid "First color for the background gradient of the switcher window."
 msgstr ""
 
 msgid "Flip Down"
@@ -2666,6 +3073,9 @@ msgstr ""
 msgid "Multimonitor behavior"
 msgstr ""
 
+msgid "Secound color for the background gradient of the switcher window."
+msgstr ""
+
 msgid "Show Live Viewport Previews"
 msgstr ""
 
@@ -2687,16 +3097,34 @@ msgstr ""
 msgid "Switch separately"
 msgstr ""
 
+msgid "Third color for the background gradient of the switcher window."
+msgstr ""
+
 msgid "Viewport Switch Preview"
 msgstr ""
 
 msgid "Wall Sliding Duration"
 msgstr ""
 
-msgid "Above others windows"
+msgid "Backgrounds"
 msgstr ""
 
-msgid "Below"
+msgid "Draw the desktop wallpaper"
+msgstr ""
+
+msgid "The background specifications (as explained in DOCUMENTATION) to use."
+msgstr ""
+
+msgid "Tile backgrounds as opposed to stretching"
+msgstr ""
+
+msgid "Tile or Stretch"
+msgstr ""
+
+msgid "Wallpaper"
+msgstr ""
+
+msgid "Above others windows"
 msgstr ""
 
 msgid "Below others windows"
@@ -2796,4 +3224,34 @@ msgid "Windows that should be resized by default"
 msgstr ""
 
 msgid "Windows will not have focus"
+msgstr ""
+
+msgid "Firefox Menu Fix"
+msgstr ""
+
+msgid "Fix window type of Firefox and Thunderbird menus."
+msgstr ""
+
+msgid "Fix window type of notification daemon windows."
+msgstr ""
+
+msgid "Fix window type of various Java windows."
+msgstr ""
+
+msgid "Java Window Fix"
+msgstr ""
+
+msgid "Legacy Fullscreen Support"
+msgstr ""
+
+msgid "Make Wine and legacy applications fullscreen properly."
+msgstr ""
+
+msgid "Metacity-like workarounds."
+msgstr ""
+
+msgid "Notification Daemon Fix"
+msgstr ""
+
+msgid "Workarounds"
 msgstr ""
