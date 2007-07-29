@@ -101,6 +101,9 @@ typedef struct _PolygonObject
 
     float fadeStartTime;		// Fade out starts at this time ([0,1] range)
     float fadeDuration;			// Duration of fade out         ([0,1] range)
+
+    void *effectParameters;             /* Pointer to a struct that can contain
+					   custom parameters for an individual effect */
 } PolygonObject;
 
 typedef struct _Clip4Polygons	// Rectangular clips
@@ -146,6 +149,8 @@ typedef struct _PolygonSet		// Polygon objects with same thickness
     // If >-1, this overrides fadeDuration in PolygonObject
 
     Bool includeShadows;        // include shadows in polygon
+
+    void (*extraPolygonTransformationFunc) (PolygonObject *);
 } PolygonSet;
 
 typedef struct _WaveParam
@@ -1011,9 +1016,12 @@ polygonsPrePaintWindow (CompScreen * s,
 void
 polygonsPostPaintWindow (CompScreen * s,
 			 CompWindow * w);
- 
+
 void
 freePolygonSet (AnimWindow * aw);
+
+void
+freePolygonObjects(PolygonSet * pset);
  
 void
 polygonsLinearAnimStepPolygon(CompWindow * w,

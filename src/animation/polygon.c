@@ -71,7 +71,8 @@ static Bool ensureLargerClipCapacity(PolygonSet * pset)
 }
 
 // Frees up polygon objects in pset
-static void freePolygonObjects(PolygonSet * pset)
+void
+freePolygonObjects(PolygonSet * pset)
 {
     PolygonObject *p = pset->polygons;
 
@@ -92,12 +93,9 @@ static void freePolygonObjects(PolygonSet * pset)
 		free(p->sideIndices);
 	    if (p->normals)
 		free(p->normals);
-	    p->vertices = 0;
-	    p->sideIndices = 0;
-	    p->normals = 0;
-	    p->nVertices = 0;
 	}
-	p->nSides = 0;
+	if (p->effectParameters)
+	    free(p->effectParameters);
     }
     free(pset->polygons);
     pset->polygons = 0;
@@ -135,10 +133,6 @@ void freePolygonSet(AnimWindow * aw)
     {
 	freeClipsPolygons(pset);
 	free(pset->clips);
-	pset->clips = 0;
-	pset->nClips = 0;
-	pset->firstNondrawnClip = 0;
-	pset->clipCapacity = 0;
     }
     free(pset);
     aw->polygonSet = 0;
@@ -1142,6 +1136,9 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
 		// Scale z first
 		glScalef(1.0f, 1.0f, 1.0f / s->width);
+
+		if (pset->extraPolygonTransformationFunc)
+		    pset->extraPolygonTransformationFunc (p);
 
 		// Move by "rotation axis offset"
 		glTranslatef(p->rotAxisOffset.x, p->rotAxisOffset.y,
