@@ -35,10 +35,28 @@
 					<max>2.0</max>
 					<precision>0.05</precision>
 				</option>
+				<option name="edge_radius" type="int">
+						<_short>Edge Radius</_short>
+						<_long>Radius of the rounded edge</_long>
+						<default>5</default>
+						<min>0</min>
+						<max>20</max>
+					</option>
+					<option name="outline_color" type="color">
+						<_short>Outline Color</_short>
+						<_long>Outline color of the switcher window.</_long>
+						<default>
+							<red>0x3333</red>
+							<green>0x3333</green>
+							<blue>0x3333</blue>
+							<alpha>0xd998</alpha>
+						</default>
+					</option>
 				<subgroup>
-					<_short>Appearence</_short>
+					<_short>Background Gradient</_short>
+					
 					<option name="background_gradient_base_color" type="color">
-						<_short>Background Base Color</_short>
+						<_short>Base Color</_short>
 						<_long>First color for the background gradient of the switcher window.</_long>
 						<default>
 							<red>0xcccc</red>
@@ -48,7 +66,7 @@
 						</default>
 					</option>
 					<option name="background_gradient_highlight_color" type="color">
-						<_short>Background Highlight Color</_short>
+						<_short>Highlight Color</_short>
 						<_long>Secound color for the background gradient of the switcher window.</_long>
 						<default>
 							<red>0xf332</red>
@@ -58,13 +76,61 @@
 						</default>
 					</option>
 					<option name="background_gradient_shadow_color" type="color">
-						<_short>Background Shadow Color</_short>
+						<_short>Shadow Color</_short>
 						<_long>Third color for the background gradient of the switcher window.</_long>
 						<default>
 							<red>0xf332</red>
 							<green>0xf332</green>
 							<blue>0xffff</blue>
 							<alpha>0xd998</alpha>
+						</default>
+					</option>
+				</subgroup>
+				<subgroup>
+					<_short>Thumb Gradient</_short>
+
+					<option name="thumb_gradient_base_color" type="color">
+						<_short>Base Color</_short>
+						<_long>First color for the thumb gradient of the switcher window.</_long>
+						<default>
+							<red>0x3333</red>
+							<green>0x3333</green>
+							<blue>0x3333</blue>
+							<alpha>0x5999</alpha>
+						</default>
+					</option>
+					<option name="thumb_gradient_highlight_color" type="color">
+						<_short>Highlight Color</_short>
+						<_long>Secound color for the thumb gradient of the switcher window.</_long>
+						<default>
+							<red>0x3fff</red>
+							<green>0x3fff</green>
+							<blue>0x3fff</blue>
+							<alpha>0x3fff</alpha>
+						</default>
+					</option>
+				</subgroup>
+				<subgroup>
+					<_short>Highlight Gradient</_short>
+
+					<option name="thumb_highlight_gradient_base_color" type="color">
+						<_short>Base Color</_short>
+						<_long>First color for the thumb highlight gradient of the switcher window.</_long>
+						<default>
+							<red>0xffff</red>
+							<green>0xffff</green>
+							<blue>0xffff</blue>
+							<alpha>0xf332</alpha>
+						</default>
+					</option>
+					<option name="thumb_highlight_gradient_shadow_color" type="color">
+						<_short>Shadow Color</_short>
+						<_long>Secound color for the thumb highlight gradient of the switcher window.</_long>
+						<default>
+							<red>0xdfff</red>
+							<green>0xdfff</green>
+							<blue>0xdfff</blue>
+							<alpha>0xa665</alpha>
 						</default>
 					</option>
 				</subgroup>

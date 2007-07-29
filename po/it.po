@@ -1,6 +1,7 @@
 # compiz-fusion-plugins Italian translation.
 # Copyright (C) 2007 opencompositing.org
 # This file is distributed under the same license as the compiz-fusion package.
+#
 # Marco Trevisan (Treviño) <trevi55@gmail.com>, 2007.
 # Matteo Suppo (Triex) <alpha3ex@gmail.com>, 2007.
 # Danilo Saruis (DDany) <ddany83@gmail.com>, 2007.
@@ -8,14 +9,13 @@
 # Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>, 2007.
 # Emiliano Perulli <emiliano.perulli@alice.it>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-11 01:50+0200\n"
-"Last-Translator: Emiliano Perulli <emiliano.perulli@alice.it>\n"
+"PO-Revision-Date: 2007-07-28 18:03+0200\n"
+"Last-Translator: Marco Trevisan (Treviño) <trevi55@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,6 +63,9 @@ msgstr "Cambia la quantità di spazio tra le finestre"
 msgid "Change the speed of the 3D animation"
 msgstr "Cambia la velocità dell'animazione 3D"
 
+msgid "Corner Bevelling"
+msgstr "Smussa Angoli"
+
 msgid "Create Mipmaps"
 msgstr "Crea Mipmap"
 
@@ -108,8 +111,8 @@ msgstr "Larghezza finestre"
 msgid "Windows that should be handled by 3D"
 msgstr "Finestre che devono essere mostrate in 3D"
 
-msgid "AddHelper"
-msgstr "AddHelper"
+msgid "ADD Helper"
+msgstr "ADD Helper"
 
 msgid "Bindings"
 msgstr "Scorciatoie"
@@ -159,33 +162,35 @@ msgstr "Ampiezza (dimensione delle onde nella piega) delle Pieghe Orizzontali re
 msgid "Amplitude (size of the waves in the fold) of the curved fold relative to window width. Negative values fold outward."
 msgstr "Ampiezza (misura delle onde nella piega) della piega curvata relativamente alla larghezza della finestra. Valori negativi portano le pieghe in avanti."
 
-#, fuzzy
 msgid "Angle of window at the end of the animation."
-msgstr "Cambia la velocità dell'animazione 3D"
+msgstr "Angolo della finestra alla fine dell'animazone"
 
-#, fuzzy
-msgid "Animation"
-msgstr "Velocità di Animazione"
+msgid "Animation Selection"
+msgstr "Selezione Animazione"
 
-msgid "Animation Duration"
-msgstr "Durata dell'animazione"
-
-#, fuzzy
 msgid "Animation Time Step"
-msgstr "Velocità di Animazione"
+msgstr "Attesa Animazione"
 
 msgid "Animation Time Step For Intense Effects"
 msgstr "Intervallo Minimo Di Tempo Per L'Animazione Effetto Intenso"
 
-msgid "Animation duration in seconds for create effect #1."
-msgstr "Durata dell'animazione (in secondi) per creare l'effetto #1."
+msgid "Animation duration in milliseconds for close effect."
+msgstr "Durata in millisecondi dell'animazione di chiusura"
 
-msgid "Animation duration in seconds for create effect #2."
-msgstr "Durata dell'animazione (in secondi) per creare l'effetto #2."
+msgid "Animation duration in milliseconds for focus effect."
+msgstr "Durata in millisecondi dell'animazione di selezione"
 
-#, fuzzy
+msgid "Animation duration in milliseconds for minimize effect."
+msgstr "Durata in millisecondi dell'animazione di minimizzazione"
+
+msgid "Animation duration in milliseconds for open effect."
+msgstr "Durata in millisecondi dell'animazione di apertura"
+
+msgid "Animation duration in milliseconds for shade effect."
+msgstr "Durata in millisecondi dell'animazione di sfumatura"
+
 msgid "Animations"
-msgstr "Opzioni  delle Animazioni"
+msgstr "Animazioni"
 
 msgid "Automatic"
 msgstr "Automatico"
@@ -193,23 +198,20 @@ msgstr "Automatico"
 msgid "Away Angle"
 msgstr "Angolo lontano"
 
-#, fuzzy
 msgid "Away Position"
-msgstr "Posizione orizzontale"
+msgstr "Posizione lontana"
 
 msgid "Beam"
 msgstr "Fascio di luce"
 
-#, fuzzy
 msgid "Beam Color"
-msgstr "Colore Linea"
+msgstr "Colore Fascio di Luce"
 
 msgid "Beam Life"
 msgstr "Durata del fascio di luce"
 
-#, fuzzy
 msgid "Beam Slowdown"
-msgstr "Velocità delle Fiamme"
+msgstr "Velocità del fascio di luce"
 
 msgid "Beam Spacing"
 msgstr "Spazi tra i Fasci di luce"
@@ -217,9 +219,8 @@ msgstr "Spazi tra i Fasci di luce"
 msgid "Beam Up"
 msgstr "Dissolvenza Radiosa"
 
-#, fuzzy
 msgid "Beam Width"
-msgstr "Larghezza Bordo"
+msgstr "Larghezza Fascio di Luce"
 
 msgid "Beam color."
 msgstr "Colore del fascio di luce"
@@ -227,46 +228,26 @@ msgstr "Colore del fascio di luce"
 msgid "Beam life."
 msgstr "Durata del fascio di luce"
 
-#, fuzzy
 msgid "Beam slowdown."
-msgstr "Velocità di evoluzione di ogni fiamma."
+msgstr "Velocità del Fascio di luce"
 
-#, fuzzy
 msgid "Beam width."
-msgstr "Larghezza Bordo"
+msgstr "Larghezza fascio di luce"
 
 msgid "Burn"
 msgstr "Brucia"
 
-#, fuzzy
-msgid "Close #1 Animation"
-msgstr "Usa animazioni della barra delle schede"
-
-#, fuzzy
-msgid "Close #2 Animation"
-msgstr "Usa animazioni della barra delle schede"
-
-#, fuzzy
 msgid "Close Animation"
-msgstr "Tipo di animazione per l'accostamento"
+msgstr "Animazione di Chiusura"
+
+msgid "Close Effect"
+msgstr "Effetto di Chiusura"
 
 msgid "Closeness of window to camera at the end of the animation (1.0: Close to camera, -2.0: Away from camera)."
 msgstr "Vicinanza della finestra alla fotocamera alla fine dell'animazione (1.0: Vicino alla fotocamera; 2.0: Lontano dalla fotocamera)"
 
-#, fuzzy
-msgid "Create #1 Animation"
-msgstr "Crea Mipmap"
-
-#, fuzzy
-msgid "Create #2 Animation"
-msgstr "Crea Mipmap"
-
-#, fuzzy
-msgid "Create Animation"
-msgstr "Crea Mipmap"
-
-msgid "Create/Close Only"
-msgstr "Crea/Chiudi solamente"
+msgid "Comma separated list of option value assignments to override effect settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
+msgstr "Lista di opzioni separate da una virgola da sovrapporre alle impostazioni standard, per esempio: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 
 msgid "Curved Fold"
 msgstr "Ripiegatura curva"
@@ -274,15 +255,16 @@ msgstr "Ripiegatura curva"
 msgid "Curved Fold Amplitude"
 msgstr "Ampiezza della ripiegatura curva"
 
+#, fuzzy
 msgid "Dodge"
-msgstr ""
-
-msgid "Dodge Gap Ratio"
-msgstr ""
+msgstr "Balzo"
 
 #, fuzzy
+msgid "Dodge Gap Ratio"
+msgstr "Rapporto Balzo"
+
 msgid "Domino"
-msgstr "Giù"
+msgstr "Domino"
 
 msgid "Domino Piece Falling Direction"
 msgstr "Direzione di Caduta dei Pezzi del Domino"
@@ -292,6 +274,12 @@ msgstr "Giù"
 
 msgid "Dream"
 msgstr "Sogno"
+
+msgid "Duration"
+msgstr "Durata"
+
+msgid "Effect Settings"
+msgstr "Impostazioni Effetto"
 
 msgid "Explode"
 msgstr "Esplodi"
@@ -323,13 +311,11 @@ msgstr "Fumo del Fuoco"
 msgid "Fire constant speed"
 msgstr "Costante di velocità del fuoco"
 
-#, fuzzy
 msgid "Fire direction"
-msgstr "Direzione della neve"
+msgstr "Direzione del Fuoco"
 
-#, fuzzy
 msgid "Fire direction."
-msgstr "Direzione della neve"
+msgstr "Direzione del fuoco."
 
 msgid "Fire particle color."
 msgstr "Colore delle fiamme."
@@ -349,27 +335,20 @@ msgstr "Fumo del fuoco"
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Interno della finestra fisso durante l'animazione di arrotolamento"
 
-#, fuzzy
 msgid "Focus Animation"
-msgstr "Velocità di Animazione"
+msgstr "Animazione di Selezione"
 
-msgid "Focus animation duration in seconds."
-msgstr "Durata in secondi dell'animazione di focus"
-
-#, fuzzy
-msgid "Focus window effect."
-msgstr "Reindirizza finestra"
+msgid "Focus Effect"
+msgstr "Effetto Selezione"
 
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Direzione di apertura dei pezzi nell'effetto Razr."
 
-#, fuzzy
 msgid "Glide 1"
-msgstr "Diapositiva"
+msgstr "Plana 1"
 
-#, fuzzy
 msgid "Glide 2"
-msgstr "Diapositiva"
+msgstr "Plana 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr "Colora le fiamme in modo casuale, l'effetto viene anche chiamato \"Fuoco Mistico\""
@@ -377,7 +356,6 @@ msgstr "Colora le fiamme in modo casuale, l'effetto viene anche chiamato \"Fuoco
 msgid "Hexagonal"
 msgstr "Esagonale"
 
-#, fuzzy
 msgid "Horizontal Folds"
 msgstr "Accosta orizzontalmente"
 
@@ -391,16 +369,13 @@ msgid "How spring-like the Zoom animation should be."
 msgstr "Quanto dovrebbe essere simile ad una molla l'animazione di Zoom."
 
 msgid "Leaf Spread"
-msgstr ""
+msgstr "Caduta di Foglie"
 
 msgid "Left"
 msgstr "Sinistra"
 
 msgid "Magic Lamp"
 msgstr "Lampada magica"
-
-msgid "Magic Lamp Create Start Width"
-msgstr "Larghezza Iniziale alla Creaione della Lampada Magica"
 
 msgid "Magic Lamp Grid Y Resolution"
 msgstr "Risoluzione Verticale Griglia per l'effetto Lampada Magica"
@@ -414,30 +389,20 @@ msgstr "Numero Massimo di Onde della Lampada Magica"
 msgid "Magic Lamp Min Wave Amplitude"
 msgstr "Ampiezza Minima delle Onde della Lampada Magica"
 
-msgid "Magic Lamp Vacuum"
-msgstr "Lampada Magica nel Vuoto"
+msgid "Magic Lamp Open Start Width"
+msgstr "Larghezza Iniziale della Lampada Magica"
 
-msgid "Magic Lamp Vacuum Create Start Width"
-msgstr "Larghezza iniziale per l'effetto Lampada Magica nel Vuoto"
-
-msgid "Magic Lamp Vacuum Grid Y Resolution"
-msgstr "Risoluzione verticale Lampada Magica nel Vuoto"
-
-msgid "Magic Lamp Vacuum Max Wave Amplitude"
-msgstr "Ampiezza Massima Onde Lampada Magica nel Vuoto"
-
-msgid "Magic Lamp Vacuum Max Waves"
-msgstr "Numero Massimo di Onde per l'effetto Lampada Magica nel Vuoto"
-
-msgid "Magic Lamp Vacuum Min Wave Amplitude"
-msgstr "Ampiezza Minima delle Onde per l'effetto Lampada Magica nel Vuoto"
+msgid "Magic Lamp Open/Close Moving End"
+msgstr "Movimento Finale in Apertura/Chiusura della Lampada Magica"
 
 msgid "Make fire effect duration be dependent on window height."
 msgstr "La massima durata dell'effetto fuoco dipende dall'altezza della finestra."
 
-#, fuzzy
 msgid "Minimize Animation"
-msgstr "Minimizza con il gruppo"
+msgstr "Animazione di Minimizzazione"
+
+msgid "Minimize Effect"
+msgstr "Effetto di Minimizzazione"
 
 msgid "Minimize/Unminimize Only"
 msgstr "Minimizza/Deminimizza solamente"
@@ -445,17 +410,14 @@ msgstr "Minimizza/Deminimizza solamente"
 msgid "None"
 msgstr "Nessuno"
 
-#, fuzzy
 msgid "Number Of Fire Particles"
-msgstr "Numero di fiamme"
+msgstr "Numero di Particelle di Fuoco"
 
-#, fuzzy
 msgid "Number of Horizontal Folds"
-msgstr "Numero di fiamme"
+msgstr "Numero di Pieghe Orizzontali"
 
-#, fuzzy
 msgid "Number of fire particles."
-msgstr "Numero di fiamme"
+msgstr "Numero di particelle di fuoco."
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -467,7 +429,29 @@ msgstr "Spento"
 msgid "On"
 msgstr "Acceso"
 
-msgid "Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list. If the list is empty, the default effect will be used."
+msgid "On open/close, move magic lamp ending point with the mouse pointer."
+msgstr ""
+
+msgid "On open/close, move vacuum ending point with the mouse pointer."
+msgstr ""
+
+msgid "Open Animation"
+msgstr "Animazione di Apertura"
+
+msgid "Open Effect"
+msgstr "Effetto di Apertura"
+
+msgid "Open/Close Only"
+msgstr "Crea/Chiudi solamente"
+
+msgid "Options"
+msgstr "Opzioni"
+
+msgid "Pool"
+msgstr "Lista Effetti"
+
+#, fuzzy
+msgid "Pool of effects to be chosen from if Random effect is selected. Click reset to restore full list."
 msgstr "Lista degli effetti tra i quali scegliere sel'ozione Effetti casuali è attivata. Clicca  reset per ripristinare la lista completa. Se a lista è vuota saranno usati gli effetti di default."
 
 msgid "Random"
@@ -476,8 +460,8 @@ msgstr "Casuale"
 msgid "Random Animations For All Events"
 msgstr "Animazioni casuali per tutti gli eventi"
 
-msgid "Random Effect Pool"
-msgstr "Lista degli effetti casuali"
+msgid "Random Effects"
+msgstr "Effetti Casuali"
 
 msgid "Randomly Colored Fire"
 msgstr "Fuoco Mistico"
@@ -509,11 +493,7 @@ msgid "Shade Animation"
 msgstr "Velocità di Animazione"
 
 #, fuzzy
-msgid "Shade animation duration in seconds."
-msgstr "Durata dell'animazione"
-
-#, fuzzy
-msgid "Shade window effect."
+msgid "Shade Effect"
 msgstr "Reindirizza finestra"
 
 #, fuzzy
@@ -530,10 +510,12 @@ msgstr "Elasticità della sidekick"
 msgid "Spacing between beams."
 msgstr "Spazio fra le anteprime"
 
-msgid "Starting width of create effect and ending width of close effect for Magic Lamp Vacuum."
-msgstr "Larghzza di partenza per l'effetto di creazione e larghezza finale per l'effetto di chiusua per la Lampada Magica nel Vuoto"
+#, fuzzy
+msgid "Starting width of open effect and ending width of close effect for Magic Lamp."
+msgstr "Larghezza iniziale alla creazione e larghezza finale al concludersi dell'effetto Lampada Magica."
 
-msgid "Starting width of create effect and ending width of close effect for Magic Lamp."
+#, fuzzy
+msgid "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr "Larghezza iniziale alla creazione e larghezza finale al concludersi dell'effetto Lampada Magica."
 
 #, fuzzy
@@ -549,51 +531,46 @@ msgstr "Tempo in millisecondi tra gli aggiornamenti dell'animazione. Più alto �
 msgid "The amount of time in milliseconds between each render of the intense animation (Ex. Burn, Beam). The higher the number, the jerkier the movements become."
 msgstr "Tempo in millisecondi tra ogni aggiornamento dell'animazione (L'effetto era conosciuto come Raggio Infuocato). Più alto è questo numero, più scattosa sarà l'animazione."
 
-msgid "The animation shown when closing a window."
+#, fuzzy
+msgid "The animation effect shown when closing a window."
 msgstr "Animazione mosttrata alla chiusura di una finestra."
 
-msgid "The animation shown when creating a window."
+#, fuzzy
+msgid "The animation effect shown when creating a window."
 msgstr "Animazione mostrata all'apertura di una finestra."
 
-msgid "The animation shown when minimizing a window."
+#, fuzzy
+msgid "The animation effect shown when focusing a window."
+msgstr "Animazione mosttrata alla chiusura di una finestra."
+
+#, fuzzy
+msgid "The animation effect shown when minimizing a window."
 msgstr "Animazione mostrata alla minimizzazione di una finestra."
 
-msgid "The exploding window will be split into pieces along a grid. Specify the height, in pixels, of the rows in the grid."
+#, fuzzy
+msgid "The animation effect shown when shading a window."
+msgstr "Animazione mosttrata alla chiusura di una finestra."
+
+#, fuzzy
+msgid "The exploding window will be split into pieces along a grid. Specify the number of grid cells along the height of the window."
 msgstr "La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica l'altezza, in pixel, della griglia."
 
-msgid "The exploding window will be split into pieces along a grid. Specify the width, in pixels, of the columns in the grid."
-msgstr "La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica la larghezza, in pixel, della griglia."
-
-msgid "The maximum number of waves for Magic Lamp Vacuum."
-msgstr "Il numero massimo di onde per l'effetto Lampada Magica nel Vuoto"
+#, fuzzy
+msgid "The exploding window will be split into pieces along a grid. Specify the number of grid cells along the width of the window."
+msgstr "La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica l'altezza, in pixel, della griglia."
 
 #, fuzzy
 msgid "The maximum number of waves for Magic Lamp."
 msgstr "Numero massimo di fiamme attive."
 
-msgid "The maxmimum amplitude (size of the waves) Magic Lamp Vacuum will have."
-msgstr "La massima ampiezza (dimensione delle onde) che avrà l'effetto Lampada Magica nel Vuoto"
-
 msgid "The maxmimum amplitude (size of the waves) Magic Lamp will have."
 msgstr "La massima ampiezza (dimensione delle onde) che avrà l'effetto Lampada Magica"
-
-msgid "The minimum amplitude (size of the waves) Magic Lamp Vacuum will have."
-msgstr "L'ampiezza minima (dimensione delle onde) che avrà l'effetto Lampada Magica nel Vuoto"
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
 msgstr "L'ampiezza minima (dimensione delle onde) che avrà l'effetto Lampada Magica"
 
 msgid "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr "Il numero di piege orizzontali rappresentate dall'animazione Piegatura Orizzontale"
-
-msgid "The number of seconds that the Close #1 animation will last."
-msgstr "Durata, in secondi, dell'animazione di Chiusura #1."
-
-msgid "The number of seconds that the Close #2 animation will last."
-msgstr "Durata, in secondi, dell'animazione di Chiusura #2."
-
-msgid "The number of seconds that the Minimize animation will last."
-msgstr "Durata, in secondi, dell'animazione di minimizzazione di una finestra."
 
 msgid "The wave amplitude (size of the waves) relative to the window height."
 msgstr "L'ampiezza delle onde (dimensione) relativa all'altezza della finestra"
@@ -609,12 +586,12 @@ msgstr "Tipi di finestre che dovrebbero essere rese Trasparenti."
 msgid "Thickness"
 msgstr "Spessore"
 
+#, fuzzy
+msgid "Thickness (in pixels) of exploding window pieces."
+msgstr "Tasto per raggruppare le finestre"
+
 msgid "Thickness of Exploding Polygons"
 msgstr "Spessore dell'effetto di Esplosione in Poligoni"
-
-#, fuzzy
-msgid "Thickness of exploding window pieces."
-msgstr "Tasto per raggruppare le finestre"
 
 msgid "Up"
 msgstr "Su"
@@ -622,11 +599,26 @@ msgstr "Su"
 msgid "Use various animations as window effects"
 msgstr "Usa varie animazioni come effetti per le finestre."
 
+msgid "Vacuum"
+msgstr ""
+
+#, fuzzy
+msgid "Vacuum Grid Y Resolution"
+msgstr "Risoluzione verticale Lampada Magica nel Vuoto"
+
+#, fuzzy
+msgid "Vacuum Open Start Width"
+msgstr "Larghezza iniziale per l'effetto Lampada Magica nel Vuoto"
+
+msgid "Vacuum Open/Close Moving End"
+msgstr ""
+
 msgid "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number of points used to define the curves. The higher the number, the smoother the curves. However there will be a loss of performance (CPU usage increases)."
 msgstr "Risoluzione per la griglia Vertex per l'effetto Lampada Magica (solo dimensione verticale). Rappresenta il numero di punti utilizzati per definire le curve. Più è alto tale numero e più le curve appariranno smussate. Ci sarà, tuttavia, una perdita di prestazione (aumenta l'uso della CPU)"
 
-msgid "Vertex grid resolution for Magic Lamp Vacuum (Y dimension only). This is the number of points used to define the curves. The higher the number, the smoother the curves. However there will be a loss of performance (CPU usage increases)."
-msgstr "Risoluzione per la griglia Vertex per l'effetto Lampada Magica nel Vuoto (solo dimensione verticale). Rappresenta il numero di punti utilizzati per definire le curve. Più è alto tale numero e più le curve appariranno smussate. Ci sarà, tuttavia, una perdita di prestazione (aumenta l'uso della CPU)"
+#, fuzzy
+msgid "Vertex grid resolution for Vacuum (Y dimension only). This is the number of points used to define the curves. The higher the number, the smoother the curves. However there will be a loss of performance (CPU usage increases)."
+msgstr "Risoluzione per la griglia Vertex per l'effetto Lampada Magica (solo dimensione verticale). Rappresenta il numero di punti utilizzati per definire le curve. Più è alto tale numero e più le curve appariranno smussate. Ci sarà, tuttavia, una perdita di prestazione (aumenta l'uso della CPU)"
 
 msgid "Wave"
 msgstr "Onde"
@@ -660,9 +652,6 @@ msgstr "Larghezza Finestre"
 #, fuzzy
 msgid "Window Grid Width"
 msgstr "Larghezza Finestre"
-
-msgid "Window that should animate with this effect when created."
-msgstr "Finestra che  alla creazione dovrebbe essere animata con questo effetto."
 
 #, fuzzy
 msgid "Window that should animate with this effect when focused."
@@ -874,12 +863,27 @@ msgstr "Durata Dissolvenza"
 msgid "Generate mipmaps in expo mode"
 msgstr "Genera mipmap in modalità expo"
 
+msgid "Hide panels/docks in expo"
+msgstr ""
+
+msgid "Hide panels/docks in expo."
+msgstr ""
+
 msgid "Immediate moves"
 msgstr "Movimenti immediati"
 
 #, fuzzy
 msgid "Mipmaps"
 msgstr "Crea Mipmap"
+
+msgid "Multi Output Mode"
+msgstr ""
+
+msgid "One big wall"
+msgstr ""
+
+msgid "One wall per output"
+msgstr ""
 
 msgid "Reflection"
 msgstr "Riflessi"
@@ -890,6 +894,9 @@ msgstr "Immagine Riflesso"
 
 msgid "Scale factor of the expo wall reflection"
 msgstr "Fattore di scala per la riflessione nell'effetto Expo"
+
+msgid "Selects how the expo wall is displayed if multiple output devices are used."
+msgstr ""
 
 msgid "Selects if windows movements in expo mode should be immediate - this among other things disables wobbliness"
 msgstr "Stabilisce se i movimenti delle finestre nella modalità Expo debbano essere immedia - questa opzione disabilità, prima di tutto, il tremolio delle finestre"
@@ -997,6 +1004,12 @@ msgstr "Disegna sullo schermo col fuoco"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "Scrivi sullo schermo usando il fuoco"
+
+msgid "Cube Gears"
+msgstr ""
+
+msgid "Render gears inside of the transparent cube"
+msgstr ""
 
 msgid "Begin"
 msgstr "Inizio"
@@ -1195,9 +1208,6 @@ msgstr "Murrina"
 
 msgid "Opacity of selected windows"
 msgstr "Trasparenza della finestra selezionata"
-
-msgid "Options"
-msgstr "Opzioni"
 
 msgid "Play animations on the tab bar e.g. on fade in."
 msgstr "Mostra animazioni nella barra delle etichette. Mostra, ad esempio, le dissolvenze"
@@ -1463,6 +1473,19 @@ msgstr "Attiva l'effetto Movimento sfocato"
 msgid "Visibility/Performance"
 msgstr "Visibilità/Prestazioni"
 
+msgid "Begin Gesture"
+msgstr ""
+
+msgid "Begin Mouse Gesture"
+msgstr ""
+
+#, fuzzy
+msgid "Mouse switch"
+msgstr "Cambia Area di Lavoro con i movimenti del mouse"
+
+msgid "Switch viewport in response to mouse gesture"
+msgstr ""
+
 #, fuzzy
 msgid "Exclude Windows"
 msgstr "Finestre escluse"
@@ -1572,6 +1595,308 @@ msgstr "Tipi di finestre che dovrebbero essere rese Trasparenti."
 
 msgid "With this enabled, opacify will be on when you load Opacify, which is usually when you start Compiz."
 msgstr "Con questa opzione abilitata, la trasparenza sarà abilitata al caricamento dell'effetto Trasparenza, che avviene solitamente all'avvio di Compiz."
+
+#, fuzzy
+msgid "Animation"
+msgstr "Velocità di Animazione"
+
+#, fuzzy
+msgid "Animation speed"
+msgstr "Velocità di Animazione"
+
+#, fuzzy
+msgid "Animation timestep"
+msgstr "Velocità di Animazione"
+
+msgid "Avoid Offscreen"
+msgstr ""
+
+msgid "Avoids putting window borders offscreen"
+msgstr ""
+
+#, fuzzy
+msgid "Move window to a certain viewport"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to the bottom edge"
+msgstr "Muoviti, con la finestra, verso sinistra sul muro"
+
+#, fuzzy
+msgid "Move window to the bottom left corner"
+msgstr "Smussa gli angoli in basso a sinistra delle finestre "
+
+#, fuzzy
+msgid "Move window to the bottom right corner"
+msgstr "Smussa gli angoli in basso a destra delle finestre "
+
+#, fuzzy
+msgid "Move window to the center"
+msgstr "Muhoviti verso sinstra"
+
+#, fuzzy
+msgid "Move window to the last position"
+msgstr "Muovi tutte le finestre del gruppo"
+
+#, fuzzy
+msgid "Move window to the left edge"
+msgstr "Muhoviti verso sinstra"
+
+#, fuzzy
+msgid "Move window to the pointer position"
+msgstr "Cambia la velocità dell'animazione 3D"
+
+#, fuzzy
+msgid "Move window to the right edge"
+msgstr "Da sinistra a destra"
+
+#, fuzzy
+msgid "Move window to the top edge"
+msgstr "Muovi tutte le finestre del gruppo"
+
+#, fuzzy
+msgid "Move window to the top left corner"
+msgstr "Smussa gli angoli in basso a sinistra delle finestre "
+
+#, fuzzy
+msgid "Move window to the top right corner"
+msgstr "Smussa gli angoli in basso a destra delle finestre "
+
+#, fuzzy
+msgid "Move window to the viewport on the bottom"
+msgstr "Muoviti, con la finestra, verso sinistra sul muro"
+
+#, fuzzy
+msgid "Move window to the viewport on the left"
+msgstr "Muoviti, con la finestra, verso sinistra sul muro"
+
+#, fuzzy
+msgid "Move window to the viewport on the right"
+msgstr "Muoviti, con la finestra, verso destra sul muro"
+
+#, fuzzy
+msgid "Move window to the viewport on the top"
+msgstr "Muoviti, con la finestra, verso sinistra sul muro"
+
+#, fuzzy
+msgid "Move window to viewport 1"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 10"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 11"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 12"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 2"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 3"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 4"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 5"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 6"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 7"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 8"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Move window to viewport 9"
+msgstr "Muoviti alla Viewport successiva"
+
+msgid "Move window to x, y"
+msgstr ""
+
+msgid "Number of pixels from the bottom edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the left edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the right edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the top edge where the window will come to rest"
+msgstr ""
+
+#, fuzzy
+msgid "Pad Left"
+msgstr "Sinistra"
+
+msgid "Padding"
+msgstr ""
+
+msgid "Put"
+msgstr ""
+
+#, fuzzy
+msgid "Put Bottom"
+msgstr "Dall'alto al basso"
+
+#, fuzzy
+msgid "Put Bottom Left"
+msgstr "Smussa l'angolo in Basso a Sinistra"
+
+#, fuzzy
+msgid "Put Bottom Right"
+msgstr "Smussa l'angolo in Basso a Destra"
+
+msgid "Put Center"
+msgstr ""
+
+msgid "Put Exact"
+msgstr ""
+
+#, fuzzy
+msgid "Put Left"
+msgstr "Sinistra"
+
+#, fuzzy
+msgid "Put On Viewport"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 1"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 10"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 11"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 12"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 2"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 3"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 4"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 5"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 6"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 7"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 8"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Put On Viewport 9"
+msgstr "Vai alla Viewport"
+
+msgid "Put Pointer"
+msgstr ""
+
+#, fuzzy
+msgid "Put Right"
+msgstr "Destra"
+
+msgid "Put Top"
+msgstr ""
+
+#, fuzzy
+msgid "Put Top Left"
+msgstr "Smussa l'angolo in Alto a Sinistra"
+
+#, fuzzy
+msgid "Put Top Right"
+msgstr "Smussa l'angolo in Alto a Destra"
+
+msgid "Put pointer uses the center of the window"
+msgstr ""
+
+#, fuzzy
+msgid "Put to adjacent viewport"
+msgstr "Muoviti alla Viewport successiva"
+
+msgid "Put to arbitrary viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Put window"
+msgstr "Accosta le finestre"
+
+#, fuzzy
+msgid "Put within viewport"
+msgstr "Muoviti alla Viewport successiva"
+
+#, fuzzy
+msgid "Restore Position"
+msgstr "Rispristina la finestra"
+
+msgid "Speed"
+msgstr "Velocità"
+
+msgid "Timestep"
+msgstr "Passo"
+
+#, fuzzy
+msgid "Unfocus Window"
+msgstr "Elimina il raggruppamento delle finestre"
+
+msgid "Unfocus windows that are moved off the viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Viewport Bottom"
+msgstr "Dall'alto al basso"
+
+#, fuzzy
+msgid "Viewport Left"
+msgstr "Cambia Area di Lavoro con i movimenti del mouse"
+
+#, fuzzy
+msgid "Viewport Right"
+msgstr "Selezione della Viewport"
+
+#, fuzzy
+msgid "Viewport Top"
+msgstr "Vai alla Viewport"
+
+#, fuzzy
+msgid "Window Center"
+msgstr "Font del titolo della finestra"
 
 msgid "Alpha Dependence Threshold"
 msgstr "Trasparenza del Riflesso"
@@ -1841,9 +2166,6 @@ msgstr "Mostra il selezionatore se non è visibile e seleziona la finestra prece
 msgid "Show window title of currently selected window."
 msgstr "Mostra il titolo della finestra attualmente selezionata"
 
-msgid "Speed"
-msgstr "Velocità"
-
 msgid "Text Placement"
 msgstr "Posizione del testo"
 
@@ -1852,9 +2174,6 @@ msgstr "Altezza dell'anteprima"
 
 msgid "Thumbnail Width"
 msgstr "Larghezza dell'anteprima"
-
-msgid "Timestep"
-msgstr "Passo"
 
 #, fuzzy
 msgid "Window title display"
@@ -1945,6 +2264,33 @@ msgstr "Spazio tra le finestre"
 msgid "Zoom windows while in scale mode"
 msgstr "Esegui lo zoom sulle finestre nella modalità in scala"
 
+msgid "Filter Case Insensitive"
+msgstr ""
+
+msgid "Filter Type Timeout"
+msgstr ""
+
+#, fuzzy
+msgid "Scale Window Title Filter"
+msgstr "Font del titolo della finestra"
+
+msgid "Show Filter Text"
+msgstr ""
+
+#, fuzzy
+msgid "Show filter text."
+msgstr "Mostra al primo avvio"
+
+msgid "Time (in ms) after which the filter typing is automatically ended"
+msgstr ""
+
+msgid "Use case insensitive string matching when filtering."
+msgstr ""
+
+#, fuzzy
+msgid "Window title filter facility for the scale plugin"
+msgstr "Alcune aggiunte utili al plugin di ridimensionamento."
+
 msgid "Embeds a Guile scheme interpreter and provides bindings for meaningful Compiz integration."
 msgstr "Integra un interprete a schemi Guile e fornisce le funzioni per una significativa integrazione con Compiz"
 
@@ -1956,6 +2302,126 @@ msgstr "Rendi il Prompt visibile"
 
 msgid "Toggle prompt visible."
 msgstr "Rendi il prompt visibile."
+
+#, fuzzy
+msgid "Background intensity"
+msgstr "Immagine di Sfondo"
+
+#, fuzzy
+msgid "Background intensity."
+msgstr "Luminosità immagine di sfondo"
+
+#, fuzzy
+msgid "Below"
+msgstr "Incandescente"
+
+msgid "Click duration"
+msgstr ""
+
+#, fuzzy
+msgid "Cover"
+msgstr "Sopra"
+
+#, fuzzy
+msgid "Cover movement offset."
+msgstr "Velocità del movimento della finestra"
+
+msgid "Cover offset"
+msgstr ""
+
+#, fuzzy
+msgid "Fade in/out speed"
+msgstr "Durata della Dissolvenza dello Splash."
+
+#, fuzzy
+msgid "Fade speed"
+msgstr "Durata Dissolvenza"
+
+#, fuzzy
+msgid "Flip"
+msgstr "Ruota in alto"
+
+#, fuzzy
+msgid "Flip angle"
+msgstr "Ruota a sinistra"
+
+#, fuzzy
+msgid "Generate mipmaps"
+msgstr "Crea Mipmap"
+
+#, fuzzy
+msgid "Initiate (All Workspaces)"
+msgstr "Finestra successiva (tutte le aree di lavoro)"
+
+#, fuzzy
+msgid "Initiate switcher (All Workspaces)."
+msgstr "Finestra successiva (tutte le aree di lavoro)"
+
+#, fuzzy
+msgid "Initiate switcher."
+msgstr "Mostra lo Splash"
+
+#, fuzzy
+msgid "Max window size"
+msgstr "Accosta finestre"
+
+#, fuzzy
+msgid "Maximum click duration in miliseconds."
+msgstr "Durata in secondi dell'animazione di focus"
+
+#, fuzzy
+msgid "Maximum window size (in percent of the screen width)"
+msgstr "Lunghezza dell'anello (in percentuale rispetto alla larghezza delllo schermo)"
+
+#, fuzzy
+msgid "Mouse movement speed"
+msgstr "Velocità del movimento della finestra"
+
+msgid "Mouse speed"
+msgstr ""
+
+#, fuzzy
+msgid "Overlay an icon on windows in the shift switcher"
+msgstr "Tasto per chiudere tutte le finestre del gruppo"
+
+#, fuzzy
+msgid "Rotation angle of the flip animation"
+msgstr "Durata (in millisecondi) dell'animazione "
+
+#, fuzzy
+msgid "Shift Switcher"
+msgstr "Selettore Finestre ad anello"
+
+#, fuzzy
+msgid "Shift Switcher Plugin"
+msgstr "Mostra Anteprima del Selezionatore di Viewport"
+
+#, fuzzy
+msgid "Shift Windows"
+msgstr "Accosta le finestre"
+
+#, fuzzy
+msgid "Shift animaton speed"
+msgstr "Velocità di Animazione"
+
+#, fuzzy
+msgid "Shift speed"
+msgstr "Velocità di passaggio da un tab ad un altro"
+
+#, fuzzy
+msgid "Shift timestep"
+msgstr "Passo raggruppamento schede"
+
+#, fuzzy
+msgid "Switcher mode"
+msgstr "Selettore Finestre ad anello"
+
+msgid "Switcher mode."
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in the shift switcher"
+msgstr "Finestre che devono essere mostrate in 3D"
 
 msgid "Access your desktop easily"
 msgstr "Accedi al tuo desktop facilmente"
@@ -2065,54 +2531,6 @@ msgstr ""
 msgid "Window edges"
 msgstr "Tipi di Finestre"
 
-msgid "A simple splash plugin"
-msgstr "Plugin che genera un semplice Splash"
-
-msgid "Background File"
-msgstr "Immagine di Sfondo"
-
-msgid "Background brightness."
-msgstr "Luminosità immagine di sfondo"
-
-msgid "Background image File."
-msgstr "File Immagine da usare come sfondo."
-
-msgid "Background saturation."
-msgstr "Saturazione immagine di sfondo."
-
-msgid "Display In/Out Time."
-msgstr "Periodo per cui visualizzare lo Splash"
-
-msgid "Display Time"
-msgstr "Durata Splash"
-
-msgid "Fade In/Out Time."
-msgstr "Durata della Dissolvenza dello Splash."
-
-msgid "Images"
-msgstr "Immagini"
-
-msgid "Initiate Splash"
-msgstr "Mostra lo Splash"
-
-msgid "Logo File"
-msgstr "File di logo"
-
-msgid "Logo image File."
-msgstr "Immagine del logo"
-
-msgid "Show on first start"
-msgstr "Mostra al primo avvio"
-
-msgid "Show splash on first start."
-msgstr "Mostra la finestra di benvenuto al primo avvio"
-
-msgid "Splash"
-msgstr "Splash"
-
-msgid "Start Splash."
-msgstr "Inizia lo splash"
-
 msgid "Bottom to Top"
 msgstr "Dal basso verso l'alto"
 
@@ -2221,6 +2639,54 @@ msgstr "Dall'alto al basso"
 msgid "Update Delay"
 msgstr "Ritardo aggiornamento"
 
+msgid "A simple splash plugin"
+msgstr "Plugin che genera un semplice Splash"
+
+msgid "Background File"
+msgstr "Immagine di Sfondo"
+
+msgid "Background brightness."
+msgstr "Luminosità immagine di sfondo"
+
+msgid "Background image File."
+msgstr "File Immagine da usare come sfondo."
+
+msgid "Background saturation."
+msgstr "Saturazione immagine di sfondo."
+
+msgid "Display In/Out Time."
+msgstr "Periodo per cui visualizzare lo Splash"
+
+msgid "Display Time"
+msgstr "Durata Splash"
+
+msgid "Fade In/Out Time."
+msgstr "Durata della Dissolvenza dello Splash."
+
+msgid "Images"
+msgstr "Immagini"
+
+msgid "Initiate Splash"
+msgstr "Mostra lo Splash"
+
+msgid "Logo File"
+msgstr "File di logo"
+
+msgid "Logo image File."
+msgstr "Immagine del logo"
+
+msgid "Show on first start"
+msgstr "Mostra al primo avvio"
+
+msgid "Show splash on first start."
+msgstr "Mostra la finestra di benvenuto al primo avvio"
+
+msgid "Splash"
+msgstr "Splash"
+
+msgid "Start Splash."
+msgstr "Inizia lo splash"
+
 msgid "Render text to texture"
 msgstr "Renderizza il testo come immagine"
 
@@ -2322,6 +2788,9 @@ msgstr "Font del titolo della finestra"
 #, fuzzy
 msgid "Window title Font Size."
 msgstr "Font del titolo della finestra"
+
+msgid "Animation Duration"
+msgstr "Durata dell'animazione"
 
 msgid "Cascade"
 msgstr "Cascata"
@@ -2557,6 +3026,22 @@ msgstr "Consenti Movimento Libero"
 msgid "Allow wrap-around when moving the wall up/down/left/right"
 msgstr "Consente il movimento libero quando si muove la muraglia in su/giù/sinistra/destra"
 
+#, fuzzy
+msgid "Appearence"
+msgstr "Aspetto"
+
+#, fuzzy
+msgid "Background Base Color"
+msgstr "Immagine di Sfondo"
+
+#, fuzzy
+msgid "Background Highlight Color"
+msgstr "Immagine di Sfondo"
+
+#, fuzzy
+msgid "Background Shadow Color"
+msgstr "Immagine di Sfondo"
+
 msgid "Desktop Wall"
 msgstr "Muraglia di Desktop"
 
@@ -2581,6 +3066,9 @@ msgstr "Rotazione ombra durante lo spostamento del puntatore del mouse"
 
 msgid "Edge Flipping"
 msgstr "Rotazione ombra"
+
+msgid "First color for the background gradient of the switcher window."
+msgstr ""
 
 #, fuzzy
 msgid "Flip Down"
@@ -2670,6 +3158,9 @@ msgstr "Muovi tutte le finestre del gruppo"
 msgid "Multimonitor behavior"
 msgstr "Comportamente della modalità multimonitor"
 
+msgid "Secound color for the background gradient of the switcher window."
+msgstr ""
+
 msgid "Show Live Viewport Previews"
 msgstr "Mostra Anteprima delle Viewport in Tempo Reale"
 
@@ -2691,6 +3182,9 @@ msgstr "Cambia tutte"
 msgid "Switch separately"
 msgstr "Cambia separatamente"
 
+msgid "Third color for the background gradient of the switcher window."
+msgstr ""
+
 msgid "Viewport Switch Preview"
 msgstr "Anteprima cambio viewport"
 
@@ -2698,12 +3192,28 @@ msgstr "Anteprima cambio viewport"
 msgid "Wall Sliding Duration"
 msgstr "Durata dell'animazione"
 
-msgid "Above others windows"
-msgstr "Al di sopra delle altre finestre"
+#, fuzzy
+msgid "Backgrounds"
+msgstr "Immagine di Sfondo"
+
+msgid "Draw the desktop wallpaper"
+msgstr ""
+
+msgid "The background specifications (as explained in DOCUMENTATION) to use."
+msgstr ""
+
+msgid "Tile backgrounds as opposed to stretching"
+msgstr ""
 
 #, fuzzy
-msgid "Below"
-msgstr "Incandescente"
+msgid "Tile or Stretch"
+msgstr "Dimensione dei Titoli nei Bordi"
+
+msgid "Wallpaper"
+msgstr ""
+
+msgid "Above others windows"
+msgstr "Al di sopra delle altre finestre"
 
 #, fuzzy
 msgid "Below others windows"
@@ -2820,4 +3330,35 @@ msgstr "Finestre che devono essere mostrate in 3D"
 
 msgid "Windows will not have focus"
 msgstr "Le finestre non avranno il focus"
+
+msgid "Firefox Menu Fix"
+msgstr ""
+
+msgid "Fix window type of Firefox and Thunderbird menus."
+msgstr ""
+
+msgid "Fix window type of notification daemon windows."
+msgstr ""
+
+msgid "Fix window type of various Java windows."
+msgstr ""
+
+#, fuzzy
+msgid "Java Window Fix"
+msgstr "Attiva Finestra"
+
+msgid "Legacy Fullscreen Support"
+msgstr ""
+
+msgid "Make Wine and legacy applications fullscreen properly."
+msgstr ""
+
+msgid "Metacity-like workarounds."
+msgstr ""
+
+msgid "Notification Daemon Fix"
+msgstr ""
+
+msgid "Workarounds"
+msgstr ""
 

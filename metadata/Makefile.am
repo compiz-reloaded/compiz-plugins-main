@@ -2,6 +2,7 @@ xmldir       = $(metadatadir)
 xml_in_files = 	         \
 	animation.xml.in	 \
 	expo.xml.in	 \
+	ezoom.xml.in	 \
 	imgjpeg.xml.in 	 \
 	neg.xml.in          \
 	opacify.xml.in      \
@@ -13,6 +14,7 @@ xml_in_files = 	         \
 	thumbnail.xml.in 	 \
 	wall.xml.in	 \
 	winrules.xml.in     \
+	workarounds.xml.in \
 	scaleaddon.xml.in   \
 	vpswitch.xml.in
 

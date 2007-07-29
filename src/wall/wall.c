@@ -243,10 +243,16 @@ static void wallDrawSwitcherBackground(CompScreen *s)
 	cairo_set_source(cr, pattern);
 
 	// draw the border's shape
-	cairo_arc(cr, border, border, border, PI, 1.5f*PI);
-	cairo_arc(cr, border+width-2*border, border, border, 1.5f*PI, 2.0*PI);
-	cairo_arc(cr, width-border, height-border, border, 0,  PI/2.0f);
-	cairo_arc(cr, border, height-border, border,  PI/2.0f, PI);
+	float radius = (float) wallGetEdgeRadius(s->display);
+	if (radius)
+	{
+		cairo_arc(cr, radius, radius, radius, PI, 1.5f*PI);
+		cairo_arc(cr, radius+width-2*radius, radius, radius, 1.5f*PI, 2.0*PI);
+		cairo_arc(cr, width-radius, height-radius, radius, 0,  PI/2.0f);
+		cairo_arc(cr, radius, height-radius, radius,  PI/2.0f, PI);
+	}
+	else
+		cairo_rectangle(cr, 0, 0, width, height);
 	cairo_close_path(cr);
 
 	// apply pattern to background...
@@ -254,7 +260,8 @@ static void wallDrawSwitcherBackground(CompScreen *s)
 
 	// ... and draw an outline
 	cairo_set_line_width(cr, outline);
-	cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.85);
+	getColorRGBA(OutlineColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_stroke(cr);
 
 	cairo_pattern_destroy(pattern);
@@ -304,6 +311,8 @@ static void wallDrawThumb(CompScreen *s)
 	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 	cairo_save(cr);
 
+	float r, g, b, a;
+
 	float border = 10.0f;
 	float outline = 2.0f;
 
@@ -321,8 +330,10 @@ static void wallDrawThumb(CompScreen *s)
 	cairo_pattern_t *pattern;
 
 	pattern = cairo_pattern_create_linear(0, 0, width, height);
-	cairo_pattern_add_color_stop_rgba(pattern, 0.0f, 0.2, 0.2, 0.2 ,0.35);
-	cairo_pattern_add_color_stop_rgba(pattern, 1.0f, 0.25, 0.25, 0.25, 0.25);
+	getColorRGBA(ThumbGradientBaseColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 0.0f, r, g, b, a);
+	getColorRGBA(ThumbGradientHighlightColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 1.0f, r, g, b, a);
 
 	// apply the patter for thumb background
 	cairo_set_source(cr, pattern);
@@ -330,7 +341,8 @@ static void wallDrawThumb(CompScreen *s)
 	cairo_fill_preserve(cr);
 
 	cairo_set_line_width(cr, outline);
-	cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.65);
+	getColorRGBA(OutlineColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_stroke(cr);
 
 	cairo_pattern_destroy(pattern);
@@ -352,6 +364,8 @@ static void wallDrawHighlight(CompScreen *s)
 	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 	cairo_save(cr);
 
+	float r, g, b, a;
+
 	float outline = 2.0f;
 
 	float width  = (float) ws->highlightContext->width;
@@ -364,8 +378,10 @@ static void wallDrawHighlight(CompScreen *s)
 	cairo_pattern_t *pattern;
 
 	pattern = cairo_pattern_create_linear(0, 0, width, height);
-	cairo_pattern_add_color_stop_rgba(pattern, 0.0f, 1.0f, 1.0f, 1.0f ,0.95);
-	cairo_pattern_add_color_stop_rgba(pattern, 1.0f, 0.875, 0.875, 0.875, 0.65);
+	getColorRGBA(ThumbHighlightGradientBaseColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 0.0f, r, g, b, a);
+	getColorRGBA(ThumbHighlightGradientShadowColor, s->display);
+	cairo_pattern_add_color_stop_rgba(pattern, 1.0f, r, g, b, a);
 
 	// apply the patter for thumb background
 	cairo_set_source(cr, pattern);
@@ -373,7 +389,8 @@ static void wallDrawHighlight(CompScreen *s)
 	cairo_fill_preserve(cr);
 
 	cairo_set_line_width(cr, outline);
-	cairo_set_source_rgba(cr, 0.2, 0.2, 0.2, 0.65);
+	getColorRGBA(OutlineColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_stroke(cr);
 
 	cairo_pattern_destroy(pattern);
@@ -1477,11 +1494,32 @@ static void wallDisplayOptionChanged(CompDisplay *display, CompOption *opt, Wall
 
 	switch(num)
 	{
+		case WallDisplayOptionOutlineColor:
+			for (s = display->screens; s; s = s->next) {
+				wallDrawSwitcherBackground(s);
+				wallDrawHighlight(s);
+				wallDrawThumb(s);
+			}
+			break;
+
+		case WallDisplayOptionEdgeRadius:
 		case WallDisplayOptionBackgroundGradientBaseColor:
 		case WallDisplayOptionBackgroundGradientHighlightColor:
 		case WallDisplayOptionBackgroundGradientShadowColor:
 			for (s = display->screens; s; s = s->next)
 				wallDrawSwitcherBackground(s);
+			break;
+
+		case WallDisplayOptionThumbGradientBaseColor:
+		case WallDisplayOptionThumbGradientHighlightColor:
+			for (s = display->screens; s; s = s->next)
+				wallDrawThumb(s);
+			break;
+
+		case WallDisplayOptionThumbHighlightGradientBaseColor:
+		case WallDisplayOptionThumbHighlightGradientShadowColor:
+			for (s = display->screens; s; s = s->next)
+				wallDrawHighlight(s);
 			break;
 
 		default:
@@ -1566,9 +1604,15 @@ static Bool wallInitDisplay(CompPlugin * p, CompDisplay * d)
 	wallSetFlipUpInitiate(d, wallFlipUp);
 	wallSetFlipDownInitiate(d, wallFlipDown);
 
+	wallSetEdgeRadiusNotify(d, wallDisplayOptionChanged);
+	wallSetOutlineColorNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientBaseColorNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientHighlightColorNotify(d, wallDisplayOptionChanged);
 	wallSetBackgroundGradientShadowColorNotify(d, wallDisplayOptionChanged);
+	wallSetThumbGradientBaseColorNotify(d, wallDisplayOptionChanged);
+	wallSetThumbGradientHighlightColorNotify(d, wallDisplayOptionChanged);
+	wallSetThumbHighlightGradientBaseColorNotify(d, wallDisplayOptionChanged);
+	wallSetThumbHighlightGradientShadowColorNotify(d, wallDisplayOptionChanged);
 
 	WRAP(wd, d, handleEvent, wallHandleEvent);
 	d->privates[displayPrivateIndex].ptr = wd;
