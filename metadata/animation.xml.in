@@ -126,8 +126,8 @@
 	    <_long>The windows that will be animated.</_long>
 	    <type>match</type>
 	    <default>
-	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</value>
-	      <value>(type=Menu | PopupMenu | DropdownMenu) &amp; !(name=gnome-screensaver)</value>
+	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown) &amp; !(name=gnome-screensaver)</value>
+	      <value>(type=Menu | PopupMenu | DropdownMenu)</value>
 	      <value>(type=Tooltip | Notification)</value>
 	    </default>
 	  </option>
@@ -353,8 +353,8 @@
 	    <_long>The windows that will be animated.</_long>
 	    <type>match</type>
 	    <default>
-	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</value>
-	      <value>(type=Menu | PopupMenu | DropdownMenu) &amp; !(name=gnome-screensaver)</value>
+	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown) &amp; !(name=gnome-screensaver)</value>
+	      <value>(type=Menu | PopupMenu | DropdownMenu)</value>
 	      <value>(type=Tooltip | Notification)</value>
 	    </default>
 	  </option>
