@@ -73,14 +73,6 @@ typedef struct _PolygonObject
     // Tex coords for each intersecting clip and for each vertex
     // ordered as c1.v1.x, c1.v1.y, c1.v2.x, c1.v2.y, c2.v1.x, c2.v1.y, ...
 
-    /*
-      int *vertexOnEdge;           // 1,2,3,4: W,E,N,S edge  0: not edge
-      // 5,6,7,8: NW,NE,SW,SE corner
-      // (used for shadow quad generation)
-      int nShadowQuads;
-      GLfloat *shadowVertices; // Shadow vertices positions relative to center
-      GLfloat *shadowTexCoords;    // Texture coords of shadow vertices
-    */
     // Animation effect parameters
 
     Point3d centerPosStart;		// Starting position of center
@@ -107,12 +99,12 @@ typedef struct _PolygonObject
 } PolygonObject;
 
 typedef struct _Clip4Polygons	// Rectangular clips
-{								// (to hold clips passed to AddWindowGeometry)
-    int id;						// clip id (what number this clip is among
+{				// (to hold clips passed to AddWindowGeometry)
+    int id;			// clip id (what number this clip is among
     // passed clips)
-    Box box;					// Coords
-    Boxf boxf;					// Float coords (for small clipping adjustment)
-    CompMatrix texMatrix;		// Corresponding texture coord. matrix
+    Box box;			// Coords
+    Boxf boxf;			// Float coords (for small clipping adjustment)
+    CompMatrix texMatrix;	// Corresponding texture coord. matrix
     int *intersectingPolygons;
     int nIntersectingPolygons;	// Clips (in PolygonSet) that intersect
     GLfloat *polygonVertexTexCoords;
@@ -127,13 +119,13 @@ typedef enum
     CorrectPerspectiveWindow
 } CorrectPerspective;
 
-typedef struct _PolygonSet		// Polygon objects with same thickness
+typedef struct _PolygonSet	// Polygon objects with same thickness
 {
-    int nClips;					// Rect. clips collected in AddWindowGeometries
-    Clip4Polygons *clips;		// List of clips
-    int clipCapacity;			// # of clips this list can hold
+    int nClips;			// Rect. clips collected in AddWindowGeometries
+    Clip4Polygons *clips;	// List of clips
+    int clipCapacity;		// # of clips this list can hold
     int firstNondrawnClip;
-    int *lastClipInGroup;		// index of the last clip in each group of clips
+    int *lastClipInGroup;	// index of the last clip in each group of clips
     // drawn in drawGeometry func.
 
     Bool doDepthTest;           // whether depth testing should be used in the effect
@@ -141,12 +133,12 @@ typedef struct _PolygonSet		// Polygon objects with same thickness
     CorrectPerspective correctPerspective;
     PolygonObject *polygons;	// The polygons in this set
     int nPolygons;
-    float thickness;			// Window thickness (depth along z axis)
+    float thickness;		// Window thickness (depth along z axis)
     int nTotalFrontVertices;	// Total # of polygon vertices on front faces
     float backAndSidesFadeDur;	// How long side and back faces should fade in/out
-    float allFadeDuration;		// Duration of fade out at the end in [0,1] range
-    // when all polygons fade out at the same time.
-    // If >-1, this overrides fadeDuration in PolygonObject
+    float allFadeDuration;	/* Duration of fade out at the end in [0,1] range
+				   when all polygons fade out at the same time.
+				   If >-1, this overrides fadeDuration in PolygonObject */
 
     Bool includeShadows;        // include shadows in polygon
 
@@ -176,9 +168,9 @@ typedef enum
 typedef struct _Object
 {
     Point gridPosition;		// position on window in [0,1] range
-    Point position;			// position on screen
-    Point3d posRel3d;			// position relative to model center
-    //						   (for 3d looking effects)
+    Point position;		// position on screen
+    Point3d posRel3d;		/* position relative to model center
+				   (for 3d looking effects) */
 
     // Texture x, y coordinates will be offset by given amounts
     // for quads that fall after and before this object in x and y directions.
@@ -194,8 +186,8 @@ typedef struct _Model
     int gridWidth;
     int gridHeight;
 
-    int winWidth;				// keeps win. size when model was created
-    int winHeight;				//
+    int winWidth;		// keeps win. size when model was created
+    int winHeight;
 
     Vector scale;
     Point scaleOrigin;
@@ -211,28 +203,28 @@ typedef struct _Model
 
 typedef struct _Particle
 {
-    float life;					// particle life
-    float fade;					// fade speed
-    float width;				// particle width
-    float height;				// particle height
-    float w_mod;				// particle size modification during life
-    float h_mod;				// particle size modification during life
-    float r;					// red value
-    float g;					// green value
-    float b;					// blue value
-    float a;					// alpha value
-    float x;					// X position
-    float y;					// Y position
-    float z;					// Z position
-    float xi;					// X direction
-    float yi;					// Y direction
-    float zi;					// Z direction
-    float xg;					// X gravity
-    float yg;					// Y gravity
-    float zg;					// Z gravity
-    float xo;					// orginal X position
-    float yo;					// orginal Y position
-    float zo;					// orginal Z position
+    float life;			// particle life
+    float fade;			// fade speed
+    float width;		// particle width
+    float height;		// particle height
+    float w_mod;		// particle size modification during life
+    float h_mod;		// particle size modification during life
+    float r;			// red value
+    float g;			// green value
+    float b;			// blue value
+    float a;			// alpha value
+    float x;			// X position
+    float y;			// Y position
+    float z;			// Z position
+    float xi;			// X direction
+    float yi;			// Y direction
+    float zi;			// Z direction
+    float xg;			// X gravity
+    float yg;			// Y gravity
+    float zg;			// Z gravity
+    float xo;			// orginal X position
+    float yo;			// orginal Y position
+    float zo;			// orginal Z position
 } Particle;
 
 typedef struct _ParticleSystem
@@ -495,8 +487,8 @@ typedef struct _AnimScreen
 
     Bool pluginActive[NUM_WATCHED_PLUGINS];
 
-    Bool switcherWinOpeningSuppressed; // whether switcher window opening
-    // animation is suppressed yet
+    Bool switcherWinOpeningSuppressed; /* whether switcher window opening
+					  animation is suppressed yet */
 
     Window *lastClientListStacking; // to store last known stacking order
     int nLastClientListStacking;
@@ -535,20 +527,20 @@ typedef struct _AnimWindow
     XRectangle icon;
     XRectangle origWindowRect;
 
-    XRectangle lastKnownCoords;	// used to determine if paintWindow is drawing
-    // on the viewport that the animation started
+    XRectangle lastKnownCoords;	/* used to determine if paintWindow is drawing
+				   on the viewport that the animation started */
 
     float numZoomRotations;
     GLushort storedOpacity;
-    float timestep;				// to be used in updateWindowAttribFunc
+    float timestep;		// to be used in updateWindowAttribFunc
 
     int nDrawGeometryCalls;
 
-    Bool animInitialized;		// whether the animation effect (not the window) is initialized
+    Bool animInitialized;	// whether the animation effect (not the window) is initialized
     float animTotalTime;
     float animRemainingTime;
     float remainderSteps;
-    int animOverrideProgressDir;	// 0: default dir, 1: forward, 2: backward
+    int animOverrideProgressDir; // 0: default dir, 1: forward, 2: backward
 
     float transformStartProgress;
     float transformProgress;
@@ -562,8 +554,8 @@ typedef struct _AnimWindow
     int unmapCnt;
     int destroyCnt;
 
-    int nClipsPassed;			// # of clips passed to animAddWindowGeometry so far
-    // in this draw step
+    int nClipsPassed;	        /* # of clips passed to animAddWindowGeometry so far
+				   in this draw step */
     Bool clipsUpdated;          // whether stored clips are updated in this anim step
     FragmentAttrib curPaintAttrib;
     CompTexture *curTexture;
@@ -579,7 +571,7 @@ typedef struct _AnimWindow
     Bool minimizeToTop;
 
     // for glide effect
-    float glideModRotAngle;		// The angle of rotation modulo 360
+    float glideModRotAngle;	// The angle of rotation modulo 360
 
     // for focus fade effect:
     RestackInfo *restackInfo;   // restack info if window was restacked this paint round
@@ -591,12 +583,12 @@ typedef struct _AnimWindow
     Bool configureNotified;     // was configureNotified before restack check
 
     // for dodge
-    Bool isDodgeSubject;			// TRUE if this window is the cause of dodging
-    CompWindow *dodgeSubjectWin;	// The window being dodged
-    float dodgeMaxAmount;		// max # pixels it should dodge
-    // (neg. values dodge left)
-    int dodgeOrder;				// dodge order (used temporarily)
-    Bool dodgeDirection;		// 0: up, down, left, right
+    Bool isDodgeSubject;	// TRUE if this window is the cause of dodging
+    CompWindow *dodgeSubjectWin;// The window being dodged
+    float dodgeMaxAmount;	/* max # pixels it should dodge
+				   (neg. values dodge left) */
+    int dodgeOrder;		// dodge order (used temporarily)
+    Bool dodgeDirection;	// 0: up, down, left, right
 
     CompWindow *dodgeChainStart;// for the subject window
     CompWindow *dodgeChainPrev;	// for dodging windows
@@ -643,9 +635,8 @@ AnimEffectProperties *animEffectPropertiesTmp;
     ((AnimWindow *) (w)->privates[(as)->windowPrivateIndex].ptr)
 
 #define ANIM_WINDOW(w)							\
-    AnimWindow *aw = GET_ANIM_WINDOW  (w,				\
-				       GET_ANIM_SCREEN  (w->screen,	\
-							 GET_ANIM_DISPLAY (w->screen->display)))
+    AnimWindow *aw =                                                    \
+	GET_ANIM_WINDOW (w, GET_ANIM_SCREEN (w->screen,	GET_ANIM_DISPLAY (w->screen->display)))
 
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
