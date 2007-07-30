@@ -25,7 +25,6 @@
 #include <X11/Xatom.h>
 #include <workarounds_options.h>
 
-static CompMetadata workaroundsMetadata;
 static int displayPrivateIndex;
 
 typedef struct _WorkaroundsDisplay {
@@ -275,19 +274,9 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 static Bool
 workaroundsInit (CompPlugin *plugin)
 {
-    if (!compInitPluginMetadataFromInfo (&workaroundsMetadata,
-                                         plugin->vTable->name,
-                                         0, 0, 0, 0))
-        return FALSE;
-
     displayPrivateIndex = allocateDisplayPrivateIndex ();
     if (displayPrivateIndex < 0)
-    {
-        compFiniMetadata (&workaroundsMetadata);
         return FALSE;
-    }
-
-    compAddMetadataFromFile (&workaroundsMetadata, plugin->vTable->name);
 
     return TRUE;
 }
@@ -296,7 +285,6 @@ static void
 workaroundsFini (CompPlugin *plugin)
 {
     freeDisplayPrivateIndex (displayPrivateIndex);
-    compFiniMetadata (&workaroundsMetadata);
 }
 
 static int
@@ -305,17 +293,11 @@ workaroundsGetVersion (CompPlugin *plugin, int version)
     return ABIVERSION;
 }
 
-static CompMetadata *
-workaroundsGetMetadata (CompPlugin *plugin)
-{
-    return &workaroundsMetadata;
-}
-
 CompPluginVTable workaroundsVTable = 
 {
     "workarounds",
     workaroundsGetVersion,
-    workaroundsGetMetadata,
+    0,
     workaroundsInit,
     workaroundsFini,
     workaroundsInitDisplay,
