@@ -200,7 +200,7 @@ isRingWin (CompWindow *w)
 	return FALSE;
     }
 
-    if (w->state & CompWindowStateSkipPagerMask)
+    if (w->state & CompWindowStateSkipTaskbarMask)
 	return FALSE;
 
     if (w->state & CompWindowStateShadedMask)
