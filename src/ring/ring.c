@@ -170,7 +170,7 @@ isRingWin (CompWindow *w)
     {
 	if (ringGetMinimized (w->screen))
 	{
-	    if (!w->minimized && !w->shaded)
+	    if (!w->minimized && !w->inShowDesktopMode && !w->shaded)
 		return FALSE;
 	}
 	else
