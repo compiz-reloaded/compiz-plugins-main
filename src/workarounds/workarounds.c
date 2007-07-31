@@ -184,10 +184,13 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
 	    free (windowRole);
 	}
 
-	/* fix Qt transients - FIXME: is there a better way to detect them? */
+	/* fix Qt transients - FIXME: is there a better way to detect them?
+	   Especially we have to take care of windows which get a class name
+	   later on */
 	if (!appliedFix)
 	{
-	    if (!w->resName && (w->wmType == CompWindowTypeUnknownMask))
+	    if (!w->resName && w->attrib.override_redirect &&
+		(w->wmType == CompWindowTypeUnknownMask))
 	    {
 		w->wmType = CompWindowTypeDropdownMenuMask;
 		appliedFix = TRUE;
