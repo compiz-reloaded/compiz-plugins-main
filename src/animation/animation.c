@@ -2683,7 +2683,7 @@ static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
     for (i = 0; i < NUM_WATCHED_PLUGINS; i++)
 	if (strcmp(pluginName, watchedPlugins[i].pluginName) == 0)
 	{
-	    if (strcmp(eventName, "activate") == 0)
+	    if (strcmp(eventName, watchedPlugins[i].activateEventName) == 0)
 	    {
 		Window xid = getIntOptionNamed(option, nOption, "root", 0);
 		CompScreen *s = findScreenAtDisplay(d, xid);
