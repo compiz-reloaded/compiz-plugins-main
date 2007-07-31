@@ -71,7 +71,8 @@ static Bool ensureLargerClipCapacity(PolygonSet * pset)
 }
 
 // Frees up polygon objects in pset
-static void freePolygonObjects(PolygonSet * pset)
+void
+freePolygonObjects(PolygonSet * pset)
 {
     PolygonObject *p = pset->polygons;
 
@@ -92,22 +93,9 @@ static void freePolygonObjects(PolygonSet * pset)
 		free(p->sideIndices);
 	    if (p->normals)
 		free(p->normals);
-	    p->vertices = 0;
-	    p->sideIndices = 0;
-	    p->normals = 0;
-	    p->nVertices = 0;
 	}
-	/*if (p->nShadowQuads > 0)
-	  {
-	  if (p->shadowVertices)
-	  free(p->shadowVertices);
-	  if (p->shadowTexCoords)
-	  free(p->shadowTexCoords);
-	  p->shadowVertices = 0;
-	  p->shadowTexCoords = 0;
-	  p->nShadowQuads = 0;
-	  } */
-	p->nSides = 0;
+	if (p->effectParameters)
+	    free(p->effectParameters);
     }
     free(pset->polygons);
     pset->polygons = 0;
@@ -145,31 +133,10 @@ void freePolygonSet(AnimWindow * aw)
     {
 	freeClipsPolygons(pset);
 	free(pset->clips);
-	pset->clips = 0;
-	pset->nClips = 0;
-	pset->firstNondrawnClip = 0;
-	pset->clipCapacity = 0;
     }
     free(pset);
     aw->polygonSet = 0;
 }
-
-/*
-// Tessellates window into extruded rectangular objects
-// in a brick wall formation
-static Bool
-tessellateIntoBricks(CompWindow * w,
-int gridSizeX, int gridSizeY, float thickness)
-{
-}
-
-// Tessellates window into Voronoi segments
-static Bool
-tessellateVoronoi(CompWindow * w,
-float thickness)
-{
-}
-*/
 
 // Tessellates window into extruded rectangular objects
 Bool
@@ -241,8 +208,6 @@ tessellateIntoRectangles(CompWindow * w,
     PolygonObject *p = pset->polygons;
     int x, y;
 
-    //float vec = 1 / sqrt(3); // vector component for normals
-
     for (y = 0; y < gridSizeY; y++)
     {
 	float posY = winLimitsY + cellH * (y + 0.5);
@@ -267,10 +232,8 @@ tessellateIntoRectangles(CompWindow * w,
 	    {
 		p->vertices = calloc(8 * 3, sizeof(GLfloat));
 	    }
-	    //if (!p->vertexOnEdge)
-	    //  p->vertexOnEdge = calloc (1, sizeof (int) * p->nSides);
-	    //p->vertexTexCoords4Clips = calloc (1, sizeof (GLfloat) * 4 * 2 * 2);
-	    if (!p->vertices)	// || !p->vertexOnEdge)// || !p->vertexTexCoords4Clips)
+
+	    if (!p->vertices)
 	    {
 		compLogMessage (w->screen->display, "animation",
 				CompLogLevelError, "Not enough memory");
@@ -329,18 +292,6 @@ tessellateIntoRectangles(CompWindow * w,
 
 	    GLushort *ind = p->sideIndices;
 
-	    /*
-	      ind[0] = 0;
-	      ind[1] = 7;
-	      ind[2] = 1;
-	      ind[3] = 6;
-	      ind[4] = 2;
-	      ind[5] = 5;
-	      ind[6] = 3;
-	      ind[7] = 4;
-	      ind[8] = 0;
-	      ind[9] = 7;
-	    */
 	    int id = 0;
 
 	    ind[id++] = 0;
@@ -411,28 +362,6 @@ tessellateIntoRectangles(CompWindow * w,
 	    p->boundingBox.y1 = -halfH + p->centerPos.y;
 	    p->boundingBox.x2 = ceil(halfW + p->centerPos.x);
 	    p->boundingBox.y2 = ceil(halfH + p->centerPos.y);
-	    /*
-	    // Determine edge/corner status
-	    if (x == 0)
-	    {
-	    p->nShadowQuads++;
-	    if (y == 0)
-	    p->vertexOnEdge[0] = 5;
-	    if (y == gridSizeY - 1)
-	    p->nShadowQuads++;
-	    }
-	    if (x == gridSizeX - 1)
-	    {
-	    p->nShadowQuads++;
-	    if (y == 0)
-	    p->nShadowQuads++;
-	    if (y == gridSizeY - 1)
-	    p->nShadowQuads++;
-	    }
-	    if (y == 0)
-	    p->nShadowQuads++;
-	    if (y == gridSizeY - 1)
-	    p->nShadowQuads++; */
 	}
     }
     return TRUE;
@@ -839,91 +768,6 @@ polygonsStoreClips(CompScreen * s, CompWindow * w,
 
 	pset->nClips++;
 	aw->clipsUpdated = TRUE;
-
-	/*
-	// Look for a container / contained clip to minimize # of clips.
-	// Go backward, since such a clip is likely to be one of the last ones.
-	// Go until you hit the clips corresponding to the previous texture.
-	int i;
-	for (i=pset->nClips-1; i>=pset->firstClipWithNoTex; i--)
-	{
-	Clip4Polygons *clip = &pset->clips[i];
-
-	// if tex matrices are different
-	if (clip->texMatrix.xx != matrix->xx ||
-	clip->texMatrix.yy != matrix->yy ||
-	clip->texMatrix.x0 != matrix->x0 ||
-	clip->texMatrix.y0 != matrix->y0)
-	continue;
-
-	// if an old clip contains the new clip
-	if (x1 >= clip->box.x1 && y1 >= clip->box.y1 &&
-	x2 <= clip->box.x2 && y2 <= clip->box.y2)
-	{
-	newClipNo = i;
-	updateCoords = FALSE;
-	break;
-	}
-	// if the new clip contains an old clip
-	if (x1 <= clip->box.x1 && y1 <= clip->box.y1 &&
-	x2 >= clip->box.x2 && y2 >= clip->box.y2)
-	{
-	// update the old clip in this case
-	newClipNo = i;
-	break;
-	}
-	}
-	if (pset->firstClipWithNoTex > 0)
-	{
-	// Go through clip's of earlier textures to look for
-	// an identical clip. If such clips are found, their
-	// texture should be updated with the latest one
-	for (i=pset->firstClipWithNoTex-1; i>=0; i--)
-	{
-	Clip4Polygons *clip = &pset->clips[i];
-
-	// if tex matrices are different
-	if (clip->texMatrix.xx != matrix->xx ||
-	clip->texMatrix.yy != matrix->yy ||
-	clip->texMatrix.x0 != matrix->x0 ||
-	clip->texMatrix.y0 != matrix->y0)
-	continue;
-
-	// if an old clip == the new clip
-	if (x1 == clip->box.x1 && y1 == clip->box.y1 &&
-	x2 == clip->box.x2 && y2 == clip->box.y2)
-	{
-	newClipNo = i;
-	updateCoords = FALSE;
-	clip->textureNo = aw->nTextures;
-	break;
-	}
-	}
-	}
-
-	if (newClipNo == pset->nClips && // if no such old clip is found
-	!ensureLargerClipCapacity (pset))
-	{
-	fprintf(stderr, "%s: Not enough memory at line %d!\n",
-	__FILE__, __LINE__);
-	return;
-	}
-	Clip4Polygons *newClip = &pset->clips[newClipNo];
-	if (updateCoords)
-	{
-	memcpy (&newClip->box, pClip, sizeof (Box));
-	memcpy (&newClip->texMatrix, matrix, sizeof (CompMatrix));
-	// nMatrix is not used for now
-	// (i.e. only first texture matrix is considered)
-	}
-	if (newClipNo == pset->nClips) // if new clip is being added
-	{
-	//printf("adding x1: %4d, y1: %4d, x2: %4d, y2: %4d\n",
-	//       pClip->x1, pClip->y1, pClip->x2, pClip->y2);
-
-	newClip->textureNo = aw->nTextures;
-	pset->nClips++;
-	} */
     }
 }
 
@@ -1026,82 +870,6 @@ static Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset)
 
     return TRUE;
 }
-
-/*
-  static Bool computePolygonShadows(PolygonSet * pset)
-  {
-  PolygonObject *p = pset->polygons;
-  int i;
-  for (i=0; i<pset->nPolygons; i++, p++)
-  {
-  p->nShadowQuads = 0;
-
-  // If an edge polygon, determine shadow quads
-  // First count them
-  if (x == 0)
-  {
-  p->nShadowQuads++;
-  if (y == 0)
-  p->nShadowQuads++;
-  if (y == gridSizeY - 1)
-  p->nShadowQuads++;
-  }
-  if (x == gridSizeX - 1)
-  {
-  p->nShadowQuads++;
-  if (y == 0)
-  p->nShadowQuads++;
-  if (y == gridSizeY - 1)
-  p->nShadowQuads++;
-  }
-  if (y == 0)
-  p->nShadowQuads++;
-  if (y == gridSizeY - 1)
-  p->nShadowQuads++;
-
-  // Allocate them
-  p->shadowVertices = calloc (1, sizeof (GLfloat) * 3 *
-  4 * p->nShadowQuads);
-  if (!p->shadowVertices)
-  {
-  fprintf(stderr, "%s: Not enough memory at line %d!\n",
-  __FILE__, __LINE__);
-  freePolygonObjects (pset);
-  return FALSE;
-  }
-  // Store them
-  int n = 0;
-  GLfloat *v = p->shadowVertices;
-  if (x == 0)
-  {
-  // Left quad
-  v[12 * n]     = w->attrib.x - w->output.left;
-  v[12 * n + 1] = w->attrib.x - w->output.left;
-  v[12 * n + 2] = w->attrib.x - w->output.left;
-  n++;
-  if (y == 0)
-  n++;
-  if (y == gridSizeY - 1)
-  n++;
-  }
-  if (x == gridSizeX - 1)
-  {
-  n++;
-  if (y == 0)
-  n++;
-  if (y == gridSizeY - 1)
-  n++;
-  }
-  if (y == 0)
-  n++;
-  if (y == gridSizeY - 1)
-  n++;
-
-  p->nShadowQuads = n;
-  }
-  return TRUE;
-  }
-*/
 
 void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 {
@@ -1369,6 +1137,9 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 		// Scale z first
 		glScalef(1.0f, 1.0f, 1.0f / s->width);
 
+		if (pset->extraPolygonTransformationFunc)
+		    pset->extraPolygonTransformationFunc (p);
+
 		// Move by "rotation axis offset"
 		glTranslatef(p->rotAxisOffset.x, p->rotAxisOffset.y,
 			     p->rotAxisOffset.z);
@@ -1482,32 +1253,25 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 				  c->polygonVertexTexCoords +
 				  2 * 2 * nFrontVerticesTilThisPoly);
 
-		//if (pset->thickness > 1e-5)
+		// TODO: Surface normals for sides
+		// Draw quad strip for sides
+		if (TRUE)
 		{
-		    // TODO: Surface normals for sides
-		    // Draw quad strip for sides
-		    if (TRUE)
+		    // Do each quad separately to be able to specify
+		    // different normals
+		    for (k = 0; k < p->nSides; k++)
 		    {
-			// Do each quad separately to be able to specify
-			// different normals
-			for (k = 0; k < p->nSides; k++)
-			{
-			    /*
-			      int k2 = (k + 2) * 3;
-			      glNormal3f(p->normals[k2 + 0],
-			      p->normals[k2 + 1],
-			      p->normals[k2 + 2]); */
-			    glNormal3f(p->normals[0],	// front face normal for now
-				       p->normals[1], p->normals[2]);
-			    glDrawElements(GL_QUADS, 4,
-					   GL_UNSIGNED_SHORT,
-					   p->sideIndices + k * 4);
-			}
+			glNormal3f(p->normals[0],	// front face normal for now
+				   p->normals[1], p->normals[2]);
+			glDrawElements(GL_QUADS, 4,
+				       GL_UNSIGNED_SHORT,
+				       p->sideIndices + k * 4);
 		    }
-		    else			// no need for separate quad rendering
-			glDrawElements(GL_QUAD_STRIP, 2 * (p->nSides + 1),
-				       GL_UNSIGNED_SHORT, p->sideIndices);
 		}
+		else			// no need for separate quad rendering
+		    glDrawElements(GL_QUAD_STRIP, 2 * (p->nSides + 1),
+				   GL_UNSIGNED_SHORT, p->sideIndices);
+
 		if (fadeBackAndSides)
 		    // if opacity was changed just above
 		{
@@ -1558,7 +1322,6 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
     // Restore old color values
     glColor4f(oldColor[0], oldColor[1], oldColor[2], oldColor[3]);
-    //screenTexEnvMode(w->screen, GL_REPLACE);
 
     glPopAttrib();
     if (pset->doDepthTest)
@@ -1566,9 +1329,6 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 	glPopAttrib();
 	glPopAttrib();
     }
-
-    //if (!normalArrayWas)
-    //  glDisableClientState(GL_NORMAL_ARRAY);
 
     // Restore texture stuff
     if (saturationFull)

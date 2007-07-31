@@ -1,18 +1,18 @@
 /*
  * Copyright (C) 2007 Andrew Riedi <andrewriedi@gmail.com>
- *  
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software 
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *
  * This plug-in for Metacity-like workarounds.
@@ -25,7 +25,6 @@
 #include <X11/Xatom.h>
 #include <workarounds_options.h>
 
-static CompMetadata workaroundsMetadata;
 static int displayPrivateIndex;
 
 typedef struct _WorkaroundsDisplay {
@@ -35,7 +34,6 @@ typedef struct _WorkaroundsDisplay {
 } WorkaroundsDisplay;
 
 typedef struct _WorkaroundsScreen {
-    WindowAddNotifyProc     windowAddNotify;
     WindowResizeNotifyProc  windowResizeNotify;
 } WorkaroundsScreen;
 
@@ -120,12 +118,10 @@ workaroundsWindowResizeNotify (CompWindow *w, int dx, int dy,
     WRAP (ws, w->screen, windowResizeNotify, workaroundsWindowResizeNotify);
 }
 
-static void
-workaroundsWindowAddNotify (CompWindow *w)
+static Bool
+workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
 {
     Bool appliedFix = FALSE;
-
-    WORKAROUNDS_SCREEN (w->screen);
 
     /* FIXME: Is this the best way to detect a notification type window? */
     if (workaroundsGetNotificationDaemonFix (w->screen->display) && w->resName)
@@ -138,7 +134,7 @@ workaroundsWindowAddNotify (CompWindow *w)
              appliedFix = TRUE;
         }
     }
-    
+
     if (workaroundsGetFirefoxMenuFix (w->screen->display) && !appliedFix)
     {
         if (w->wmType == CompWindowTypeNormalMask &&
@@ -188,14 +184,13 @@ workaroundsWindowAddNotify (CompWindow *w)
 	    free (windowRole);
 	}
 
-	/* fix Qt transients - FIXME: is there a better way to detect them? */
+	/* fix Qt transients - FIXME: is there a better way to detect them?
+	   Especially we have to take care of windows which get a class name
+	   later on */
 	if (!appliedFix)
 	{
-	    Time t;
-	    Bool res;
-	    
-	    res = getWindowUserTime (w, &t);
-	    if (res && !w->resName && (w->wmType == CompWindowTypeUnknownMask))
+	    if (!w->resName && w->attrib.override_redirect &&
+		(w->wmType == CompWindowTypeUnknownMask))
 	    {
 		w->wmType = CompWindowTypeDropdownMenuMask;
 		appliedFix = TRUE;
@@ -208,9 +203,7 @@ workaroundsWindowAddNotify (CompWindow *w)
     if (workaroundsGetLegacyFullscreen (w->screen->display))
         workaroundsDoLegacyFullscreen (w);
 
-    UNWRAP (ws, w->screen, windowAddNotify);
-    (*w->screen->windowAddNotify) (w);
-    WRAP (ws, w->screen, windowAddNotify, workaroundsWindowAddNotify);
+    return TRUE;
 }
 
 static Bool
@@ -257,7 +250,6 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
     if (!ws)
         return FALSE;
 
-    WRAP (ws, s, windowAddNotify, workaroundsWindowAddNotify);
     WRAP (ws, s, windowResizeNotify, workaroundsWindowResizeNotify);
 
     s->privates[wd->screenPrivateIndex].ptr = ws;
@@ -270,7 +262,6 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
 {
     WORKAROUNDS_SCREEN (s);
 
-    UNWRAP (ws, s, windowAddNotify);
     UNWRAP (ws, s, windowResizeNotify);
 
     free (ws);
@@ -286,19 +277,9 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 static Bool
 workaroundsInit (CompPlugin *plugin)
 {
-    if (!compInitPluginMetadataFromInfo (&workaroundsMetadata,
-                                         plugin->vTable->name,
-                                         0, 0, 0, 0))
-        return FALSE;
-
     displayPrivateIndex = allocateDisplayPrivateIndex ();
     if (displayPrivateIndex < 0)
-    {
-        compFiniMetadata (&workaroundsMetadata);
         return FALSE;
-    }
-
-    compAddMetadataFromFile (&workaroundsMetadata, plugin->vTable->name);
 
     return TRUE;
 }
@@ -307,33 +288,26 @@ static void
 workaroundsFini (CompPlugin *plugin)
 {
     freeDisplayPrivateIndex (displayPrivateIndex);
-    compFiniMetadata (&workaroundsMetadata);
 }
 
 static int
 workaroundsGetVersion (CompPlugin *plugin, int version)
-{   
+{
     return ABIVERSION;
 }
 
-static CompMetadata *
-workaroundsGetMetadata (CompPlugin *plugin)
-{
-    return &workaroundsMetadata;
-}
-
-CompPluginVTable workaroundsVTable = 
+CompPluginVTable workaroundsVTable =
 {
     "workarounds",
     workaroundsGetVersion,
-    workaroundsGetMetadata,
+    0,
     workaroundsInit,
     workaroundsFini,
     workaroundsInitDisplay,
     workaroundsFiniDisplay,
     workaroundsInitScreen,
     workaroundsFiniScreen,
-    0, /* InitWindow */
+    workaroundsInitWindow,
     workaroundsFiniWindow,
     0, /* GetDisplayOptions */
     0, /* SetDisplayOption */

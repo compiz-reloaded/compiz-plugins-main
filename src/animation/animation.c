@@ -2683,7 +2683,7 @@ static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
     for (i = 0; i < NUM_WATCHED_PLUGINS; i++)
 	if (strcmp(pluginName, watchedPlugins[i].pluginName) == 0)
 	{
-	    if (strcmp(eventName, "activate") == 0)
+	    if (strcmp(eventName, watchedPlugins[i].activateEventName) == 0)
 	    {
 		Window xid = getIntOptionNamed(option, nOption, "root", 0);
 		CompScreen *s = findScreenAtDisplay(d, xid);
@@ -2727,6 +2727,13 @@ updateLastClientListStacking(CompScreen *s)
     // Store new client stack listing
     memcpy(as->lastClientListStacking, clientListStacking,
 	   sizeof (Window) * n);
+}
+
+static Bool
+windowHasUserTime(CompWindow *w)
+{
+    Time t;
+    return getWindowUserTime (w, &t);
 }
 
 static void animHandleEvent(CompDisplay * d, XEvent * event)
@@ -2952,9 +2959,9 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    {
 		ANIM_WINDOW(w);
 
-		// don't animate windows that don't have properties
+		// don't animate windows that don't have certain properties
 		// like the fullscreen darkening layer of gksudo
-		if (!w->resName)
+		if (!(w->resName || windowHasUserTime (w)))
 		    break;
 
 		int duration = 200;
@@ -3484,9 +3491,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    // OPEN event!
 
 	    if (chosenEffect &&
-		// don't animate windows that don't have properties
+		// don't animate windows that don't have certain properties
 		// like the fullscreen darkening layer of gksudo
-		w->resName &&
+		(w->resName || windowHasUserTime (w)) &&
 		// suppress switcher window
 		// (1st window that opens after switcher becomes active)
 		(!as->pluginActive[0] || as->switcherWinOpeningSuppressed) &&
