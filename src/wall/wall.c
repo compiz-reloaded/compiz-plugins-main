@@ -429,7 +429,8 @@ static void wallDrawArrow(CompScreen *s)
 	cairo_set_line_width(cr, outline);
 
 	// draw top part of the arrow
-	cairo_set_source_rgba(cr, 0.9, 0.9, 0.9, 0.85);
+	getColorRGBA(ArrowBaseColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_move_to(cr, 15, 0);
 	cairo_line_to(cr, 30, 30);
 	cairo_line_to(cr, 15, 24.5);
@@ -437,7 +438,8 @@ static void wallDrawArrow(CompScreen *s)
 	cairo_fill(cr);
 
 	// draw bottom part of the arrow
-	cairo_set_source_rgba(cr, 0.86, 0.86, 0.86, 0.85);
+	getColorRGBA(ArrowShadowColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_move_to(cr, 15, 0);
 	cairo_line_to(cr, 0, 30);
 	cairo_line_to(cr, 15, 24.5);
@@ -1526,6 +1528,12 @@ static void wallDisplayOptionChanged(CompDisplay *display, CompOption *opt, Wall
 				wallDrawHighlight(s);
 			break;
 
+		case WallDisplayOptionArrowBaseColor:
+		case WallDisplayOptionArrowShadowColor:
+			for (s = display->screens; s; s = s->next)
+				wallDrawArrow(s);
+			break;
+
 		default:
 			break;
 	}
@@ -1617,6 +1625,8 @@ static Bool wallInitDisplay(CompPlugin * p, CompDisplay * d)
 	wallSetThumbGradientHighlightColorNotify(d, wallDisplayOptionChanged);
 	wallSetThumbHighlightGradientBaseColorNotify(d, wallDisplayOptionChanged);
 	wallSetThumbHighlightGradientShadowColorNotify(d, wallDisplayOptionChanged);
+	wallSetArrowBaseColorNotify(d, wallDisplayOptionChanged);
+	wallSetArrowShadowColorNotify(d, wallDisplayOptionChanged);
 
 	WRAP(wd, d, handleEvent, wallHandleEvent);
 	d->privates[displayPrivateIndex].ptr = wd;
