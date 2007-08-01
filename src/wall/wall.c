@@ -412,6 +412,8 @@ static void wallDrawArrow(CompScreen *s)
 	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 	cairo_save(cr);
 
+	float r, g, b, a;
+
 	float outline = 2.0f;
 
 	float width  = (float) ws->arrowContext->width;
@@ -443,7 +445,8 @@ static void wallDrawArrow(CompScreen *s)
 	cairo_fill(cr);
 
 	// draw the arrow outline
-	cairo_set_source_rgba(cr, 0.2,0.2,0.2,0.65);
+	getColorRGBA(OutlineColor, s->display);
+	cairo_set_source_rgba(cr, r, g, b, a);
 	cairo_move_to(cr, 15, 0);
 	cairo_line_to(cr, 30, 30);
 	cairo_line_to(cr, 15, 24.5);
@@ -1499,6 +1502,7 @@ static void wallDisplayOptionChanged(CompDisplay *display, CompOption *opt, Wall
 				wallDrawSwitcherBackground(s);
 				wallDrawHighlight(s);
 				wallDrawThumb(s);
+				wallDrawArrow(s);
 			}
 			break;
 
