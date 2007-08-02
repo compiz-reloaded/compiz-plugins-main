@@ -251,13 +251,27 @@ expoHandleEvent (CompDisplay *d,
 	    {
 		if (es->dndWindow)
 		{
-		    syncWindowPosition (es->dndWindow);
-		    (*s->windowUngrabNotify) (es->dndWindow);
+		    int lastOutput;
+		    int centerX, centerY;
+		    CompWindow *w = es->dndWindow;
+
+		    syncWindowPosition (w);
+		    (*s->windowUngrabNotify) (w);
 		    /* update window attibutes to make sure a
 		       moved maximized window is properly snapped
 		       to the work area */
-		    updateWindowAttributes (es->dndWindow,
-					    CompStackingUpdateModeNone);
+
+		    /* make sure we snap to the right output */
+		    lastOutput = s->currentOutputDev;
+		    centerX = (WIN_X (w) + WIN_W (w) / 2) % s->width;
+		    centerY = (WIN_Y (w) + WIN_H (w) / 2) % s->height;
+
+		    s->currentOutputDev = outputDeviceForPoint (s, centerX,
+								centerY);
+
+		    updateWindowAttributes (w, CompStackingUpdateModeNone);
+
+		    s->currentOutputDev = lastOutput;
 		}
 
 		es->dndState = DnDNone;
