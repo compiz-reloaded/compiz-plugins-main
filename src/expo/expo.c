@@ -505,12 +505,6 @@ expoPaintOutput (CompScreen              *s,
 
 	es->origVY = es->mouseOverViewY;
 
-	if (es->leaveExpo)
-	{
-	    es->expoMode = FALSE;
-	    es->leaveExpo = FALSE;
-	}
-
 	es->updateVP = FALSE;
 
 	while (s->x != es->mouseOverViewX)
@@ -519,7 +513,13 @@ expoPaintOutput (CompScreen              *s,
 	while (s->y != es->mouseOverViewY)
 	    moveScreenViewport (s, 0, 1, TRUE);
 
-	focusDefaultWindow (s->display);
+	if (es->leaveExpo)
+	{
+	    focusDefaultWindow (s->display);
+
+	    es->expoMode = FALSE;
+	    es->leaveExpo = FALSE;
+	}
     }
 
     return status;
@@ -719,8 +719,12 @@ expoPaintWall (CompScreen              *s,
 			if (es->anyClick || es->dndState != DnDNone)
 			{
 			    /* Used to save last viewport interaction was in */
-			    es->origVX = i;	
-			    es->origVY = j;
+			    if (es->origVX != i || es->origVY != j)
+			    {
+				es->origVX = i;
+				es->origVY = j;
+				es->updateVP = TRUE;
+			    }
 			    es->anyClick = FALSE;
 			}
 		    }
