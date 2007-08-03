@@ -42,12 +42,12 @@
 
 static int displayPrivateIndex;
 
-enum DnDState
+typedef enum
 {
     DnDNone = 0,
     DnDDuring,
     DnDStart
-};
+} DnDState;
 
 typedef struct _ExpoDisplay
 {
@@ -59,14 +59,10 @@ typedef struct _ExpoDisplay
     KeyCode rightKey;
     KeyCode upKey;
     KeyCode downKey;
-}
-
-ExpoDisplay;
+} ExpoDisplay;
 
 typedef struct _ExpoScreen
 {
-    int windowPrivateIndex;
-
     DonePaintScreenProc        donePaintScreen;
     PaintOutputProc            paintOutput;
     PaintScreenProc            paintScreen;
@@ -82,19 +78,13 @@ typedef struct _ExpoScreen
     /* In expo mode? */
     Bool  expoMode;
 
-    /* Updated in donePaintScreen with XQueryPointer
-       if pointer location is neccesary i.e. moving miniview */
-    int pointerX;
-    int pointerY;
-
     /* For expo grab */
     int grabIndex;
 
     GLint viewport[4];
 
-    int dndState;
-    
     /* Window being dragged in expo mode */
+    DnDState   dndState;
     CompWindow *dndWindow;
     
     int prevCursorX, prevCursorY;
@@ -110,26 +100,13 @@ typedef struct _ExpoScreen
 
     Bool leaveExpo;
     Bool updateVP;
-
-}
-ExpoScreen;
-
-typedef struct _ExpoWindow
-{
-    /* Is a window hovered over in expo mode? */
-    Bool hovered;
-    Bool skipNotify;
-    int origx;
-    int origy;
-}
-ExpoWindow;
+} ExpoScreen;
 
 typedef struct _xyz_tuple
 {
     float x, y, z;
 }
 Point3d;
-
 
 /* Helpers */
 #define GET_EXPO_DISPLAY(d) \
@@ -142,24 +119,9 @@ Point3d;
 #define EXPO_SCREEN(s) \
     ExpoScreen *es = GET_EXPO_SCREEN(s, GET_EXPO_DISPLAY(s->display))
 
-#define GET_EXPO_WINDOW(w, es)                                     \
-    ((ExpoWindow *) (w)->privates[(es)->windowPrivateIndex].ptr)
-#define EXPO_WINDOW(w)    \
-    ExpoWindow *ew = GET_EXPO_WINDOW  (w,                     \
-				       GET_EXPO_SCREEN  (w->screen,\
-				       GET_EXPO_DISPLAY (w->screen->display)))
-
-#define GET_SCREEN \
-    CompScreen *s;\
-    Window xid; \
-    xid = getIntOptionNamed(option, nOption, "root", 0); \
-    s = findScreenAtDisplay(d, xid); \
-    if (!s) \
-	return FALSE;
-
-#define sigmoid(x) (1.0f/(1.0f+exp(-5.5f*2*((x)-0.5))))
-#define sigmoidProgress(x) ((sigmoid(x) - sigmoid(0)) / \
-			    (sigmoid(1) - sigmoid(0)))
+#define sigmoid(x) (1.0f / (1.0f + exp (-5.5f * 2 * ((x) - 0.5))))
+#define sigmoidProgress(x) ((sigmoid (x) - sigmoid (0)) / \
+			    (sigmoid (1) - sigmoid (0)))
 
 static void
 expoMoveFocusViewport (CompScreen *s,
@@ -179,7 +141,6 @@ expoMoveFocusViewport (CompScreen *s,
     damageScreen (s);
 }
 
-
 static void
 expoHandleEvent (CompDisplay *d,
 		 XEvent      *event)
@@ -189,7 +150,6 @@ expoHandleEvent (CompDisplay *d,
 
     switch (event->type)
     {
-
     case KeyPress:
 	s = findScreenAtDisplay (d, event->xkey.root);
 
@@ -233,11 +193,7 @@ expoHandleEvent (CompDisplay *d,
 		else if (event->xbutton.button != Button5)
 		    es->leaveExpo = TRUE;
 	    }
-
-	    es->pointerX = event->xbutton.x_root;
-	    es->pointerY = event->xbutton.y_root;
 	}
-
 	break;
 
     case ButtonRelease:
@@ -277,23 +233,7 @@ expoHandleEvent (CompDisplay *d,
 		es->dndState = DnDNone;
 		es->dndWindow = NULL;
 	    }
-
-	    es->pointerX = event->xbutton.x_root;
-	    es->pointerY = event->xbutton.y_root;
 	}
-
-	break;
-
-    case MotionNotify:
-	s = findScreenAtDisplay (d, event->xbutton.root);
-
-	if (s)
-	{
-	    EXPO_SCREEN (s);
-	    es->pointerX = event->xmotion.x_root;
-	    es->pointerY = event->xmotion.y_root;
-	}
-
 	break;
     }
 
@@ -309,46 +249,55 @@ expoExpo (CompDisplay     *d,
 	  CompOption      *option,
 	  int             nOption)
 {
-    GET_SCREEN;
-    EXPO_SCREEN (s);
+    CompScreen *s;
+    Window     xid;
 
-    if (otherScreenGrabExist (s, "expo", 0) )
-	return FALSE;
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s   = findScreenAtDisplay(d, xid);
 
-    es->expoMode = !es->expoMode;
-    es->anyClick = FALSE;
-
-    if (es->expoMode && !es->grabIndex)
-	es->grabIndex =	pushScreenGrab (s, None, "expo");
-
-    if (es->dndWindow)
-	syncWindowPosition (es->dndWindow);
-
-    es->dndState  = DnDNone;
-    es->dndWindow = 0;
-
-    if (!es->expoMode && es->origVX >= 0 && es->origVY >= 0)
+    if (s)
     {
-	while (s->x != es->origVX)
-	    moveScreenViewport (s, 1, 0, TRUE);
+    	EXPO_SCREEN (s);
 
-	while (s->y != es->origVY)
-	    moveScreenViewport (s, 0, 1, TRUE);
+	if (otherScreenGrabExist (s, "expo", 0))
+	    return FALSE;
+
+	es->expoMode = !es->expoMode;
+	es->anyClick = FALSE;
+
+	if (es->expoMode && !es->grabIndex)
+	    es->grabIndex =	pushScreenGrab (s, None, "expo");
+
+	if (es->dndWindow)
+	    syncWindowPosition (es->dndWindow);
+
+	es->dndState  = DnDNone;
+	es->dndWindow = 0;
+
+	if (!es->expoMode && es->origVX >= 0 && es->origVY >= 0)
+	{
+	    while (s->x != es->origVX)
+		moveScreenViewport (s, 1, 0, TRUE);
+
+	    while (s->y != es->origVY)
+		moveScreenViewport (s, 0, 1, TRUE);
+	}
+
+	if (es->expoMode)
+	{
+	    es->origVX = -1;
+	    es->origVY = -1;
+	    es->rorigx = s->x;
+	    es->rorigy = s->y;
+	}
+
+	damageScreen (s);
+    	focusDefaultWindow (s->display);
+
+	return TRUE;
     }
 
-    if (es->expoMode)
-    {
-	es->origVX = -1;
-	es->origVY = -1;
-	es->rorigx = s->x;
-	es->rorigy = s->y;
-    }
-
-    damageScreen (s);
-
-    focusDefaultWindow (s->display);
-
-    return TRUE;
+    return FALSE;
 }
 
 static Bool
@@ -389,14 +338,12 @@ expoTermExpo (CompDisplay     *d,
 	}
 
 	damageScreen (s);
-
 	focusDefaultWindow (s->display);
     }
 
     return TRUE;
 }
 
-//Other way around
 static void
 invertTransformedVertex (CompScreen              *s,
 			 const ScreenPaintAttrib *sAttrib,
@@ -404,24 +351,17 @@ invertTransformedVertex (CompScreen              *s,
 			 CompOutput              *output,
 			 int                     vertex[2])
 {
-    //Projection Matrix.
+    CompTransform sTransform = *transform;
+    GLdouble p1[3], p2[3], v[3], alpha;
+    GLdouble mvm[16], pm[16];
+    int      i;
+
     EXPO_SCREEN (s);
 
-    CompTransform     sTransform = *transform;
-
-    (s->applyScreenTransform) (s, sAttrib, output, &sTransform);
+    (*s->applyScreenTransform) (s, sAttrib, output, &sTransform);
     transformToScreenSpace (s, output, -sAttrib->zTranslate, &sTransform);
 
     glGetIntegerv (GL_VIEWPORT, es->viewport);
-
-    GLdouble p1[3];
-    GLdouble p2[3];
-    GLdouble v[3];
-    GLdouble alpha;
-    int i;
-
-    GLdouble mvm[16];
-    GLdouble pm[16];
 
     for (i = 0; i < 16; i++)
     {
@@ -439,18 +379,17 @@ invertTransformedVertex (CompScreen              *s,
 
     alpha = -p1[2] / v[2];
 
-    vertex[0] = ceil (p1[0] + (alpha * v[0]) );
-    vertex[1] = ceil (p1[1] + (alpha * v[1]) );
+    vertex[0] = ceil (p1[0] + (alpha * v[0]));
+    vertex[1] = ceil (p1[1] + (alpha * v[1]));
 }
-
 
 static Bool
 expoDamageWindowRect (CompWindow *w,
 		      Bool       initial,
 		      BoxPtr     rect)
 {
-    EXPO_SCREEN (w->screen);
     Bool status;
+    EXPO_SCREEN (w->screen);
 
     UNWRAP (es, w->screen, damageWindowRect);
     status = (*w->screen->damageWindowRect) (w, initial, rect);
@@ -471,18 +410,15 @@ expoPaintScreen (CompScreen   *s,
     EXPO_SCREEN (s);
 
     if (es->expoCam > 0.0 && numOutputs > 1 &&
-        expoGetMultioutputMode(s->display) == MultioutputModeOneBigWall)
+        expoGetMultioutputMode (s->display) == MultioutputModeOneBigWall)
     {
-	UNWRAP (es, s, paintScreen);
-	(*s->paintScreen) (s, &s->fullscreenOutput, 1, mask);
-	WRAP (es, s, paintScreen, expoPaintScreen);
+	outputs = &s->fullscreenOutput;
+	numOutputs = 1;
     }
-    else
-    {
-	UNWRAP (es, s, paintScreen);
-	(*s->paintScreen) (s, outputs, numOutputs, mask);
-	WRAP (es, s, paintScreen, expoPaintScreen);
-    }
+
+    UNWRAP (es, s, paintScreen);
+    (*s->paintScreen) (s, outputs, numOutputs, mask);
+    WRAP (es, s, paintScreen, expoPaintScreen);
 }
 
 static Bool
@@ -498,43 +434,11 @@ expoPaintOutput (CompScreen              *s,
     EXPO_SCREEN (s);
 
     if (es->expoCam > 0.0)
-    {
 	mask |= PAINT_SCREEN_TRANSFORMED_MASK | PAINT_SCREEN_CLEAR_MASK;
-    }
 
     UNWRAP (es, s, paintOutput);
     status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
     WRAP (es, s, paintOutput, expoPaintOutput);
-
-    if (es->expoMode && es->updateVP)
-    {
-	CompWindow *w;
-
-	for (w = s->windows; w; w = w->next)
-	    syncWindowPosition (w);
-
-	damageScreen (s);
-
-	es->origVX = es->mouseOverViewX;
-
-	es->origVY = es->mouseOverViewY;
-
-	es->updateVP = FALSE;
-
-	while (s->x != es->mouseOverViewX)
-	    moveScreenViewport (s, 1, 0, TRUE);
-
-	while (s->y != es->mouseOverViewY)
-	    moveScreenViewport (s, 0, 1, TRUE);
-
-	if (es->leaveExpo)
-	{
-	    focusDefaultWindow (s->display);
-
-	    es->expoMode = FALSE;
-	    es->leaveExpo = FALSE;
-	}
-    }
 
     return status;
 }
@@ -545,7 +449,7 @@ expoPreparePaintScreen (CompScreen *s,
 {
     EXPO_SCREEN (s);
 
-    float val = ( (float) ms / 1000.0) / expoGetZoomTime (s->display);
+    float val = ((float) ms / 1000.0) / expoGetZoomTime (s->display);
 
     if (es->expoMode)
 	es->expoCam = MIN (1.0, es->expoCam + val);
@@ -569,18 +473,22 @@ expoPaintWall (CompScreen              *s,
     EXPO_SCREEN (s);
 
     CompTransform sTransformW, sTransform = *transform;
-    int i, j;
-    int oldFilter = s->display->textureFilter;
+    int           i, j;
+    int           oldFilter = s->display->textureFilter;
 
     int origVX = s->x;
     int origVY = s->y;
 
     float sx = (float)s->width / output->width;
     float sy = (float)s->height / output->height;
+    float biasZ;
+    float oScale, rotation = 0.0f, progress;
+    float aspectX = 1.0f, aspectY = 1.0f;
+    float camX, camY, camZ;
 
     /* amount of gap between viewports */
-    const float gapy = 0.01f * es->expoCam; 
-    const float gapx = 0.01f * s->height / s->width * es->expoCam;
+    const float gapY = 0.01f * es->expoCam; 
+    const float gapX = 0.01f * s->height / s->width * es->expoCam;
 
     /* Zoom animation stuff */
     /* camera position for the selected viewport */
@@ -591,61 +499,54 @@ expoPaintWall (CompScreen              *s,
 
     vpCamPos.x = ((s->x * sx) + 0.5 +
 		 (output->region.extents.x1 / output->width)) -
-		 (s->hsize * 0.5 * sx) + gapx * (s->x);
+		 (s->hsize * 0.5 * sx) + gapX * (s->x);
     vpCamPos.y = -((s->y * sy) + 0.5 +
 		 ( output->region.extents.y1 / output->height)) +
-		 (s->vsize * 0.5 * sy) - gapy * (s->y);
+		 (s->vsize * 0.5 * sy) - gapY * (s->y);
     vpCamPos.z = 0;
 
-    float biasz = 0;
-
-    if (expoGetRotate (s->display) || expoGetReflection (s->display) )
-	biasz = MAX (s->hsize * sx, s->vsize * sy) *
+    if (expoGetRotate (s->display) || expoGetReflection (s->display))
+	biasZ = MAX (s->hsize * sx, s->vsize * sy) *
 		(0.15 + expoGetDistance (s->display));
     else
-	biasz = MAX (s->hsize * sx, s->vsize * sy) *
+	biasZ = MAX (s->hsize * sx, s->vsize * sy) *
 		expoGetDistance (s->display);
 
-    expoCamPos.x = gapx * (s->hsize - 1) * 0.5;
-    expoCamPos.y = -gapy * (s->vsize - 1) * 0.5;
+    expoCamPos.x = gapX * (s->hsize - 1) * 0.5;
+    expoCamPos.y = -gapY * (s->vsize - 1) * 0.5;
     expoCamPos.z = -DEFAULT_Z_CAMERA + DEFAULT_Z_CAMERA *
-		   (MAX (s->hsize + (s->hsize - 1) * gapx,
-			 s->vsize + (s->vsize - 1) * gapy) + biasz);
+		   (MAX (s->hsize + (s->hsize - 1) * gapX,
+			 s->vsize + (s->vsize - 1) * gapY) + biasZ);
 
-    float progress = sigmoidProgress (es->expoCam);
+    progress = sigmoidProgress (es->expoCam);
 
     /* interpolate between vpCamPos and expoCamPos */
-    float camx = vpCamPos.x * (1 - progress) + expoCamPos.x * progress;
-    float camy = vpCamPos.y * (1 - progress) + expoCamPos.y * progress;
-    float camz = vpCamPos.z * (1 - progress) + expoCamPos.z * progress;
-
-    float aspectx = 1.0;
-    float aspecty = 1.0;
+    camX = vpCamPos.x * (1 - progress) + expoCamPos.x * progress;
+    camY = vpCamPos.y * (1 - progress) + expoCamPos.y * progress;
+    camZ = vpCamPos.z * (1 - progress) + expoCamPos.z * progress;
 
     if (s->hsize > s->vsize)
     {
-	aspecty = (float) s->hsize / (float) s->vsize;
-	aspecty -= 1.0;
-	aspecty *= -expoGetAspectRatio (s->display) + 1.0;
-	aspecty *= progress;
-	aspecty += 1.0;
+	aspectY = (float) s->hsize / (float) s->vsize;
+	aspectY -= 1.0;
+	aspectY *= -expoGetAspectRatio (s->display) + 1.0;
+	aspectY *= progress;
+	aspectY += 1.0;
     }
     else
     {
-	aspectx = (float) s->vsize / (float) s->hsize;
-	aspectx -= 1.0;
-	aspectx *= -expoGetAspectRatio (s->display) + 1.0;
-	aspectx *= progress;
-	aspectx += 1.0;
+	aspectX = (float) s->vsize / (float) s->hsize;
+	aspectX -= 1.0;
+	aspectX *= -expoGetAspectRatio (s->display) + 1.0;
+	aspectX *= progress;
+	aspectX += 1.0;
     }
 
     /* End of Zoom animation stuff */
 
     moveScreenViewport (s, s->x, s->y, FALSE);
 
-    float rotation = 0.0;
-
-    if (expoGetRotate (s->display) )
+    if (expoGetRotate (s->display))
     {
 	if (expoGetExpoAnimation (s->display) == ExpoAnimationZoom)
 	    rotation = 10.0 * sigmoidProgress (es->expoCam);
@@ -653,34 +554,33 @@ expoPaintWall (CompScreen              *s,
 	    rotation = 10.0 * es->expoCam;
     }
 
-    if (expoGetMipmaps (s->display) )
+    if (expoGetMipmaps (s->display))
 	s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
 
     /* ALL TRANSFORMATION ARE EXECUTED FROM BOTTOM TO TOP */
 
-    float oScale = 1 / (1 + ((MAX(sx,sy) - 1) * progress));
+    oScale = 1 / (1 + ((MAX (sx,sy) - 1) * progress));
 
     matrixScale (&sTransform, oScale, oScale, 1.0);
 
     if (reflection)
     {
-#define SCALE_FACTOR expoGetScaleFactor(s->display)
+	float scaleFactor = expoGetScaleFactor (s->display);
+
 	matrixTranslate (&sTransform, 0.0, -s->vsize * sy, 0.0);
 	matrixScale (&sTransform, 1.0, -1.0, 1.0);
-	matrixTranslate (&sTransform, 0.0, - (1 - SCALE_FACTOR) / 2*s->vsize *
-			 sy, 0.0);
-	matrixScale (&sTransform, 1.0, SCALE_FACTOR, 1.0);
+	matrixTranslate (&sTransform, 0.0,
+			 - (1 - scaleFactor) / 2 * s->vsize * sy, 0.0);
+	matrixScale (&sTransform, 1.0, scaleFactor, 1.0);
 	glCullFace (GL_FRONT);
-#undef SCALE_FACTOR
     }
 
     /* zoom out */
-    matrixTranslate (&sTransform, -camx, -camy, -camz - DEFAULT_Z_CAMERA);
+    matrixTranslate (&sTransform, -camX, -camY, -camZ - DEFAULT_Z_CAMERA);
 
     /* rotate */
     matrixRotate (&sTransform, rotation, 0.0f, 1.0f, 0.0f);
-    matrixScale (&sTransform, aspectx, aspecty, 1.0);
-
+    matrixScale (&sTransform, aspectX, aspectY, 1.0);
 
     /* translate expo to center */
     matrixTranslate (&sTransform, s->hsize * sx * -0.5,
@@ -714,44 +614,40 @@ expoPaintWall (CompScreen              *s,
 
 	    if (!reflection)
 	    {
-		if ( (es->pointerX >= 0)	&& (es->pointerX < s->width)
-		     && (es->pointerY >= 0) && (es->pointerY < s->height) )
+	    	int cursor[2] = { pointerX, pointerY };
+
+    		invertTransformedVertex (s, sAttrib, &sTransform3,
+					 output, cursor);
+
+		if ((cursor[0] > 0) && (cursor[0] < s->width) &&
+	   	    (cursor[1] > 0) && (cursor[1] < s->height))
 		{
-		    int cursor[2] = { es->pointerX, es->pointerY };
+	    	    es->mouseOverViewX = i;
+    		    es->mouseOverViewY = j;
+		    es->newCursorX = i * s->width + cursor[0];
+		    es->newCursorY = j * s->height + cursor[1];
 
-		    invertTransformedVertex (s, sAttrib, &sTransform3,
-					     output, cursor);
-
-		    if ( (cursor[0] > 0) && (cursor[0] < s->width) &&
-			 (cursor[1] > 0) && (cursor[1] < s->height) )
+		    if (es->anyClick || es->dndState != DnDNone)
 		    {
-			es->mouseOverViewX = i;
-			es->mouseOverViewY = j;
-			es->newCursorX = i * s->width + cursor[0];
-			es->newCursorY = j * s->height + cursor[1];
-
-			if (es->anyClick || es->dndState != DnDNone)
+			/* Used to save last viewport interaction was in */
+			if (es->origVX != i || es->origVY != j)
 			{
-			    /* Used to save last viewport interaction was in */
-			    if (es->origVX != i || es->origVY != j)
-			    {
-				es->origVX = i;
-				es->origVY = j;
-				es->updateVP = TRUE;
-			    }
-			    es->anyClick = FALSE;
+			    es->origVX = i;
+			    es->origVY = j;
+			    es->updateVP = TRUE;
 			}
+			es->anyClick = FALSE;
 		    }
 		}
 	    }
 
 	    /* not sure this will work with different resolutions */
-	    matrixTranslate (&sTransform2, ((1.0 * sx) + gapx), 0.0f, 0.0);
+	    matrixTranslate (&sTransform2, ((1.0 * sx) + gapX), 0.0f, 0.0);
 	    moveScreenViewport (s, -1, 0, FALSE);
 	}
 
 	/* not sure this will work with different resolutions */
-	matrixTranslate (&sTransform, 0, - ((1.0 * sy) + gapy), 0.0f);
+	matrixTranslate (&sTransform, 0, - ((1.0 * sy) + gapY), 0.0f);
 	moveScreenViewport (s, 0, -1, FALSE);
     }
 
@@ -766,33 +662,34 @@ expoPaintWall (CompScreen              *s,
 	glColor4f (0.0, 0.0, 0.0, 1.0);
 	glVertex2f (0.0, 0.0);
 	glColor4f (0.0, 0.0, 0.0, 0.5);
-	glVertex2f (0.0, -s->vsize * (1.0 * sy + gapy) );
-	glVertex2f (s->hsize * sx * (1.0 + gapx), -s->vsize * sy * (1.0 + gapy));
+	glVertex2f (0.0, -s->vsize * (1.0 * sy + gapY));
+	glVertex2f (s->hsize * sx * (1.0 + gapX),
+		    -s->vsize * sy * (1.0 + gapY));
 	glColor4f (0.0, 0.0, 0.0, 1.0);
-	glVertex2f (s->hsize * sx * (1.0 + gapx), 0.0);
-	glEnd();
+	glVertex2f (s->hsize * sx * (1.0 + gapX), 0.0);
+	glEnd ();
 	glCullFace (GL_BACK);
 
-	glLoadIdentity();
+	glLoadIdentity ();
 	glTranslatef (0.0, 0.0, -DEFAULT_Z_CAMERA);
 
 	if (expoGetGroundSize (s->display) > 0.0)
 	{
 	    glBegin (GL_QUADS);
-	    glColor4usv (expoGetGroundColor1 (s->display) );
+	    glColor4usv (expoGetGroundColor1 (s->display));
 	    glVertex2f (-0.5, -0.5);
 	    glVertex2f (0.5, -0.5);
-	    glColor4usv (expoGetGroundColor2 (s->display) );
-	    glVertex2f (0.5, -0.5 + expoGetGroundSize (s->display) );
-	    glVertex2f (-0.5, -0.5 + expoGetGroundSize (s->display) );
-	    glEnd();
+	    glColor4usv (expoGetGroundColor2 (s->display));
+	    glVertex2f (0.5, -0.5 + expoGetGroundSize (s->display));
+	    glVertex2f (-0.5, -0.5 + expoGetGroundSize (s->display));
+	    glEnd ();
 	}
 
 	glColor4usv (defaultColor);
 
 	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable (GL_BLEND);
-	glPopMatrix();
+	glPopMatrix ();
     }
 
     es->expoActive = FALSE;
@@ -801,7 +698,6 @@ expoPaintWall (CompScreen              *s,
 
     s->filter[SCREEN_TRANS_FILTER] = oldFilter;
     s->display->textureFilter = oldFilter;
-    sTransform = *transform;
 }
 
 static void
@@ -823,8 +719,10 @@ expoPaintTransformedOutput (CompScreen              *s,
 
     if (es->expoCam <= 0 || (es->expoCam < 1.0 && es->expoCam > 0.0 &&
 	expoGetExpoAnimation (s->display) != ExpoAnimationZoom))
+    {
 	(*s->paintTransformedOutput) (s, sAttrib, transform, region,
 				      output, mask);
+    }
     else
 	clearScreenOutput (s, output, GL_COLOR_BUFFER_BIT);
 
@@ -832,7 +730,7 @@ expoPaintTransformedOutput (CompScreen              *s,
 
     if (es->expoCam > 0.0)
     {
-	if (expoGetReflection (s->display) )
+	if (expoGetReflection (s->display))
 	    expoPaintWall (s, sAttrib, transform, region, output, mask, TRUE);
 
 	expoPaintWall (s, sAttrib, transform, region, output, mask, FALSE);
@@ -848,51 +746,64 @@ expoDrawWindow (CompWindow           *w,
 		Region	             region,
 		unsigned int	     mask)
 {
-    EXPO_SCREEN (w->screen);
-    Bool status;
+    Bool       status;
+    CompScreen *s = w->screen;
 
-    FragmentAttrib fA = *fragment;
+    EXPO_SCREEN (s);
 
     if (es->expoCam > 0.0)
     {
+	FragmentAttrib fA = *fragment;
+	ExpoExpoAnimationEnum expoAnimation;
+
+	expoAnimation = expoGetExpoAnimation (s->display);
+
 	if (es->expoActive)
 	{
-	    if (expoGetExpoAnimation (w->screen->display) != ExpoAnimationZoom)
+	    if (expoAnimation != ExpoAnimationZoom)
 		fA.opacity = fragment->opacity * es->expoCam;
 
 	    if (w->wmType & CompWindowTypeDockMask &&
-		expoGetHideDocks(w->screen->display))
+		expoGetHideDocks (s->display))
 	    {
-		if (expoGetExpoAnimation (w->screen->display) ==
-		    ExpoAnimationZoom && ((w->screen->x == es->origVX &&
-		    w->screen->y == es->origVY) ||
-		    (w->screen->x == es->rorigx &&
-		    w->screen->y == es->rorigy && es->origVY < 0 &&
-		    es->origVX < 0)))
+		if (expoAnimation == ExpoAnimationZoom &&
+		    ((s->x == es->origVX && s->y == es->origVY) ||
+		     (s->x == es->rorigx && s->y == es->rorigy &&
+		      es->origVY < 0 && es->origVX < 0)))
+		{
 		    fA.opacity = fragment->opacity *
 				 (1 - sigmoidProgress (es->expoCam));
+		}
 		else
 		    fA.opacity = 0;
 	    }
 
-	    if (!(w->screen->x == es->origVX && w->screen->y == es->origVY) &&
-		!(w->screen->x == es->rorigx && w->screen->y == es->rorigy &&
-		es->origVY < 0 && es->origVX < 0))
+	    if ((s->x != es->origVX || s->y != es->origVY) &&
+		(s->x != es->rorigx || s->y != es->rorigy ||
+		 es->origVY >= 0 || es->origVX >= 0))
+	    {
 		fA.brightness = fragment->brightness * .75;
+	    }
 	}
 	else
 	{
-	    if (expoGetExpoAnimation (w->screen->display) == ExpoAnimationZoom)
+	    if (expoAnimation == ExpoAnimationZoom)
 		fA.brightness = 0;
 	    else
 		fA.brightness = fragment->brightness *
-				(1 - sigmoidProgress (es->expoCam) );
+				(1 - sigmoidProgress (es->expoCam));
 	}
-    }
 
-    UNWRAP (es, w->screen, drawWindow);
-    status = (*w->screen->drawWindow) (w, transform, &fA, region, mask);
-    WRAP (es, w->screen, drawWindow, expoDrawWindow);
+    	UNWRAP (es, s, drawWindow);
+	status = (*s->drawWindow) (w, transform, &fA, region, mask);
+	WRAP (es, s, drawWindow, expoDrawWindow);
+    }
+    else
+    {
+    	UNWRAP (es, s, drawWindow);
+	status = (*s->drawWindow) (w, transform, fragment, region, mask);
+	WRAP (es, s, drawWindow, expoDrawWindow);
+    }
 
     return status;
 }
@@ -905,7 +816,7 @@ expoPaintWindow (CompWindow              *w,
 		 unsigned int            mask)
 {
     CompScreen *s = w->screen;
-    Bool status;
+    Bool       status;
 
     EXPO_SCREEN (s);
 
@@ -925,7 +836,35 @@ expoDonePaintScreen (CompScreen * s)
 {
     EXPO_SCREEN (s);
 
-    if ( (es->expoCam > 0.0f && es->expoCam < 1.0f) || es->dndState != DnDNone)
+    if (es->expoMode && es->updateVP)
+    {
+	CompWindow *w;
+
+	for (w = s->windows; w; w = w->next)
+	    syncWindowPosition (w);
+
+	damageScreen (s);
+
+	es->origVX = es->mouseOverViewX;
+	es->origVY = es->mouseOverViewY;
+	es->updateVP = FALSE;
+
+	while (s->x != es->mouseOverViewX)
+	    moveScreenViewport (s, 1, 0, TRUE);
+
+	while (s->y != es->mouseOverViewY)
+	    moveScreenViewport (s, 0, 1, TRUE);
+
+	if (es->leaveExpo)
+	{
+	    focusDefaultWindow (s->display);
+
+	    es->expoMode = FALSE;
+	    es->leaveExpo = FALSE;
+	}
+    }
+
+    if ((es->expoCam > 0.0f && es->expoCam < 1.0f) || es->dndState != DnDNone)
 	damageScreen (s);
 
     if (es->grabIndex && es->expoCam <= 0.0f && !es->expoMode)
@@ -993,9 +932,9 @@ expoDonePaintScreen (CompScreen * s)
 	    es->dndState  = DnDDuring;
 	    es->dndWindow = w;
 
-	    (*w->screen->windowGrabNotify) (w, es->newCursorX, es->newCursorY,
-					    0, CompWindowGrabMoveMask |
-					    CompWindowGrabButtonMask);
+	    (*s->windowGrabNotify) (w, es->newCursorX, es->newCursorY,
+				    0, CompWindowGrabMoveMask |
+				    CompWindowGrabButtonMask);
 	    break;
 	}
     }
@@ -1007,12 +946,6 @@ expoDonePaintScreen (CompScreen * s)
     }
 
     moveScreenViewport (s, -origView, -origViewY, FALSE);
-
-    for (w = s->windows; w; w = w->next)
-    {
-	EXPO_WINDOW (w);
-	ew->hovered = FALSE;
-    }
 
     if (es->dndState == DnDStart)	// No window is hovered
 	es->dndState = DnDNone;
@@ -1027,7 +960,7 @@ expoInitDisplay (CompPlugin  *p,
 {
     ExpoDisplay *ed;
 
-    ed = malloc (sizeof (ExpoDisplay) );
+    ed = malloc (sizeof (ExpoDisplay));
 
     if (!ed)
 	return FALSE;
@@ -1074,12 +1007,10 @@ expoInitScreen (CompPlugin *p,
 
     EXPO_DISPLAY (s->display);
 
-    es = malloc (sizeof (ExpoScreen) );
+    es = malloc (sizeof (ExpoScreen));
 
     if (!es)
 	return FALSE;
-
-    es->windowPrivateIndex = allocateWindowPrivateIndex (s);
 
     es->anyClick  = FALSE;
     es->leaveExpo = FALSE;
@@ -1092,9 +1023,6 @@ expoInitScreen (CompPlugin *p,
     es->origVY = 0;
 
     es->grabIndex = 0;
-
-    es->pointerX = 0;
-    es->pointerY = 0;
 
     es->expoCam  = 0.0f;
     es->expoMode = 0;
@@ -1141,36 +1069,6 @@ expoFiniScreen (CompPlugin *p,
 }
 
 static Bool
-expoInitWindow (CompPlugin *p,
-		CompWindow *w)
-{
-    ExpoWindow *ew;
-
-    EXPO_SCREEN (w->screen);
-
-    ew = malloc (sizeof (ExpoWindow) );
-
-    if (!ew)
-	return FALSE;
-
-    ew->skipNotify = ew->hovered = FALSE;
-    ew->origx = ew->origy = 0;
-
-    w->privates[es->windowPrivateIndex].ptr = ew;
-
-    return TRUE;
-}
-
-static void
-expoFiniWindow (CompPlugin *p,
-		CompWindow *w)
-{
-    EXPO_WINDOW (w);
-
-    free (ew);
-}
-
-static Bool
 expoInit (CompPlugin * p)
 {
     displayPrivateIndex = allocateDisplayPrivateIndex();
@@ -1184,8 +1082,7 @@ expoInit (CompPlugin * p)
 static void
 expoFini (CompPlugin * p)
 {
-    if (displayPrivateIndex >= 0)
-	freeDisplayPrivateIndex (displayPrivateIndex);
+    freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
 static int
@@ -1196,7 +1093,6 @@ expoGetVersion (CompPlugin *p,
 }
 
 CompPluginVTable expoVTable = {
-
     "expo",
     expoGetVersion,
     0,
@@ -1206,8 +1102,8 @@ CompPluginVTable expoVTable = {
     expoFiniDisplay,
     expoInitScreen,
     expoFiniScreen,
-    expoInitWindow,
-    expoFiniWindow,
+    NULL,
+    NULL,
     NULL,
     NULL,
     NULL,
