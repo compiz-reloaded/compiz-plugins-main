@@ -213,21 +213,40 @@ expoHandleEvent (CompDisplay *d,
 
 		    syncWindowPosition (w);
 		    (*s->windowUngrabNotify) (w);
+
 		    /* update window attibutes to make sure a
 		       moved maximized window is properly snapped
 		       to the work area */
+		    if (w->state & MAXIMIZE_STATE)
+		    {
+			if (w->saveMask & CWX)
+			{
+			    w->saveWc.x = w->saveWc.x % s->width;
+			    if (w->saveWc.x < 0)
+				w->saveWc.x += s->width;
+			}
+			if (w->saveMask & CWY)
+			{
+			    w->saveWc.y = w->saveWc.y % s->height;
+			    if (w->saveWc.y < 0)
+				w->saveWc.y += s->height;
+			}
+			/* make sure we snap to the right output */
+    			lastOutput = s->currentOutputDev;
+    			centerX = (WIN_X (w) + WIN_W (w) / 2) % s->width;
+    			if (centerX < 0)
+    			    centerX += s->width;
+    			centerY = (WIN_Y (w) + WIN_H (w) / 2) % s->height;
+    			if (centerY < 0)
+    			    centerY += s->height;
 
-		    /* make sure we snap to the right output */
-		    lastOutput = s->currentOutputDev;
-		    centerX = (WIN_X (w) + WIN_W (w) / 2) % s->width;
-		    centerY = (WIN_Y (w) + WIN_H (w) / 2) % s->height;
+			s->currentOutputDev = outputDeviceForPoint (s, centerX,
+			    					    centerY);
 
-		    s->currentOutputDev = outputDeviceForPoint (s, centerX,
-								centerY);
+			updateWindowAttributes (w, CompStackingUpdateModeNone);
 
-		    updateWindowAttributes (w, CompStackingUpdateModeNone);
-
-		    s->currentOutputDev = lastOutput;
+			s->currentOutputDev = lastOutput;
+		    }
 		}
 
 		es->dndState = DnDNone;
