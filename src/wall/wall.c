@@ -83,8 +83,6 @@ typedef struct _WallDisplay
 
 typedef struct _WallScreen
 {
-    int windowPrivateIndex;
-
     DonePaintScreenProc        donePaintScreen;
     PaintOutputProc            paintOutput;
     PaintScreenProc            paintScreen;
@@ -1771,8 +1769,6 @@ wallInitScreen (CompPlugin *p,
     ws = malloc (sizeof (WallScreen));
     if (!ws)
 	return FALSE;
-
-    ws->windowPrivateIndex = allocateWindowPrivateIndex (s);
 
     ws->boxTimeout = 0;
     ws->moving = FALSE;
