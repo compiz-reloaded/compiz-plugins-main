@@ -184,6 +184,16 @@ screenGrabExist (CompScreen *s, ...)
     return FALSE;
 }
 
+static void
+wallClearCairoLayer (cairo_t *cr)
+{
+    cairo_save (cr);
+    cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
+    cairo_paint (cr);
+    cairo_restore (cr);
+    cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
+    cairo_save (cr);
+}
 
 static void
 wallDrawSwitcherBackground (CompScreen *s)
@@ -199,13 +209,7 @@ wallDrawSwitcherBackground (CompScreen *s)
     WALL_SCREEN (s);
 
     cr = ws->switcherContext.cr;
-
-    cairo_save (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
-    cairo_paint (cr);
-    cairo_restore (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-    cairo_save (cr);
+    wallClearCairoLayer (cr);
 
     width = (float) ws->switcherContext.width - outline;
     height = (float) ws->switcherContext.height - outline;
@@ -294,13 +298,7 @@ wallDrawThumb (CompScreen *s)
     WALL_SCREEN(s);
 
     cr = ws->thumbContext.cr;
-
-    cairo_save (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
-    cairo_paint (cr);
-    cairo_restore (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-    cairo_save (cr);
+    wallClearCairoLayer (cr);
 
     width  = (float) ws->thumbContext.width;
     height = (float) ws->thumbContext.height;
@@ -348,13 +346,7 @@ wallDrawHighlight(CompScreen *s)
     WALL_SCREEN(s);
 
     cr = ws->highlightContext.cr;
-
-    cairo_save (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
-    cairo_paint (cr);
-    cairo_restore (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-    cairo_save (cr);
+    wallClearCairoLayer (cr);
 
     width  = (float) ws->highlightContext.width - outline;
     height = (float) ws->highlightContext.height - outline;
@@ -392,13 +384,7 @@ wallDrawArrow (CompScreen *s)
     WALL_SCREEN(s);
 
     cr = ws->arrowContext.cr;
-
-    cairo_save (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
-    cairo_paint (cr);
-    cairo_restore (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-    cairo_save (cr);
+    wallClearCairoLayer (cr);
 
     width  = (float) ws->arrowContext.width - outline;
     height = (float) ws->arrowContext.height - outline;
@@ -443,7 +429,6 @@ wallSetupCairoContext (CompScreen       *s,
     XRenderPictFormat *format;
     Screen            *screen;
     int               width, height;
-    cairo_t           *cr;
 
     screen = ScreenOfDisplay (s->display->display, s->screenNum);
 
@@ -472,13 +457,7 @@ wallSetupCairoContext (CompScreen       *s,
 						       width, height);
 
     context->cr = cairo_create (context->surface);
-
-    cr = context->cr;
-    cairo_save (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
-    cairo_paint (cr);
-    cairo_restore (cr);
-    cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
+    wallClearCairoLayer (context->cr);
 }
 
 static void
