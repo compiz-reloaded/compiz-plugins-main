@@ -134,30 +134,6 @@
 						</default>
 					</option>
 				</subgroup>
-				<subgroup>
-					<_short>Arrow Colors</_short>
-
-					<option name="arrow_base_color" type="color">
-						<_short>Base Color</_short>
-						<_long>First color of the arrow of the switcher window.</_long>
-						<default>
-							<red>0xe665</red>
-							<green>0xe665</green>
-							<blue>0xe665</blue>
-							<alpha>0xd998</alpha>
-						</default>
-					</option>
-					<option name="arrow_shadow_color" type="color">
-						<_short>Shadow Color</_short>
-						<_long>Secound color of the arrow of the switcher window.</_long>
-						<default>
-							<red>0xdc28</red>
-							<green>0xdc28</green>
-							<blue>0xdc28</blue>
-							<alpha>0xd998</alpha>
-						</default>
-					</option>
-				</subgroup>
 			</group>
 			<group>
 				<_short>Viewport Switching</_short>
@@ -257,6 +233,7 @@
 				<option name="flip_left" type="action">
 					<_short>Flip Left</_short>
 					<_long>Flip left</_long>
+					<ignore_edge_delay>true</ignore_edge_delay>
 					<allowed edge="true" edgednd="true"/>
 					<default>
 						<edges left="true"/>
@@ -265,6 +242,7 @@
 				<option name="flip_right" type="action">
 					<_short>Flip Right</_short>
 					<_long>Flip right</_long>
+					<ignore_edge_delay>true</ignore_edge_delay>
 					<allowed edge="true" edgednd="true"/>
 					<default>
 						<edges right="true"/>
@@ -273,6 +251,7 @@
 				<option name="flip_up" type="action">
 					<_short>Flip Up</_short>
 					<_long>Flip up</_long>
+					<ignore_edge_delay>true</ignore_edge_delay>
 					<allowed edge="true" edgednd="true"/>
 					<default>
 						<edges top="true"/>
@@ -281,6 +260,7 @@
 				<option name="flip_down" type="action">
 					<_short>Flip Down</_short>
 					<_long>Flip down</_long>
+					<ignore_edge_delay>true</ignore_edge_delay>
 					<allowed edge="true" edgednd="true"/>
 					<default>
 						<edges bottom="true"/>
