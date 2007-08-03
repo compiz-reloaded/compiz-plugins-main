@@ -1547,8 +1547,8 @@ wallCreateCairoContexts (CompScreen *s,
 
     if (initial)
     {
-	ws->arrowContext.width = 33;
-	ws->arrowContext.height = 33;
+	ws->arrowContext.width = ARROW_SIZE;
+	ws->arrowContext.height = ARROW_SIZE;
 	wallSetupCairoContext (s, &ws->arrowContext);
 	wallDrawArrow (s);
     }
