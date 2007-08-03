@@ -37,6 +37,8 @@
 #include <cairo.h>
 
 #define PI 3.14159265359f
+#define VIEWPORT_SWITCHER_SIZE 70
+#define ARROW_SIZE 33
 
 #define WIN_X(w) ((w)->attrib.x - (w)->input.left)
 #define WIN_Y(w) ((w)->attrib.y - (w)->input.top)
@@ -120,10 +122,10 @@ typedef struct _WallScreen
     int moveWindowX;
     int moveWindowY;
 
-    WallCairoContext *switcherContext;
-    WallCairoContext *thumbContext;
-    WallCairoContext *highlightContext;
-    WallCairoContext *arrowContext;
+    WallCairoContext switcherContext;
+    WallCairoContext thumbContext;
+    WallCairoContext highlightContext;
+    WallCairoContext arrowContext;
 } WallScreen;
 
 /* Helpers */
@@ -198,7 +200,7 @@ wallDrawSwitcherBackground (CompScreen *s)
 
     WALL_SCREEN (s);
 
-    cr = ws->switcherContext->cr;
+    cr = ws->switcherContext.cr;
 
     cairo_save (cr);
     cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
@@ -207,8 +209,8 @@ wallDrawSwitcherBackground (CompScreen *s)
     cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
     cairo_save (cr);
 
-    width = (float) ws->switcherContext->width - outline;
-    height = (float) ws->switcherContext->height - outline;
+    width = (float) ws->switcherContext.width - outline;
+    height = (float) ws->switcherContext.height - outline;
 
     cairo_translate (cr, outline / 2.0f, outline / 2.0f);
 
@@ -293,7 +295,7 @@ wallDrawThumb (CompScreen *s)
 
     WALL_SCREEN(s);
 
-    cr = ws->thumbContext->cr;
+    cr = ws->thumbContext.cr;
 
     cairo_save (cr);
     cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
@@ -302,8 +304,8 @@ wallDrawThumb (CompScreen *s)
     cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
     cairo_save (cr);
 
-    width  = (float) ws->thumbContext->width;
-    height = (float) ws->thumbContext->height;
+    width  = (float) ws->thumbContext.width;
+    height = (float) ws->thumbContext.height;
 
     ws->viewportWidth = width;
     ws->viewportHeight = height;
@@ -347,7 +349,7 @@ wallDrawHighlight(CompScreen *s)
 
     WALL_SCREEN(s);
 
-    cr = ws->highlightContext->cr;
+    cr = ws->highlightContext.cr;
 
     cairo_save (cr);
     cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
@@ -356,8 +358,8 @@ wallDrawHighlight(CompScreen *s)
     cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
     cairo_save (cr);
 
-    width  = (float) ws->highlightContext->width - outline;
-    height = (float) ws->highlightContext->height - outline;
+    width  = (float) ws->highlightContext.width - outline;
+    height = (float) ws->highlightContext.height - outline;
 
     cairo_translate (cr, outline / 2.0f, outline / 2.0f);
 
@@ -391,7 +393,7 @@ wallDrawArrow (CompScreen *s)
 
     WALL_SCREEN(s);
 
-    cr = ws->arrowContext->cr;
+    cr = ws->arrowContext.cr;
 
     cairo_save (cr);
     cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
@@ -400,8 +402,8 @@ wallDrawArrow (CompScreen *s)
     cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
     cairo_save (cr);
 
-    width  = (float) ws->arrowContext->width - outline;
-    height = (float) ws->arrowContext->height - outline;
+    width  = (float) ws->arrowContext.width - outline;
+    height = (float) ws->arrowContext.height - outline;
 
     cairo_translate (cr, outline / 2.0f, outline / 2.0f);
 
@@ -984,8 +986,8 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
     centerY = s->outputDev[ws->boxOutputDevice].region.extents.y1 +
 	      (s->outputDev[ws->boxOutputDevice].height / 2.0f);
 
-    width  = (float) ws->switcherContext->width;
-    height = (float) ws->switcherContext->height;
+    width  = (float) ws->switcherContext.width;
+    height = (float) ws->switcherContext.height;
 
     topLeftX = centerX - floor (width / 2.0f);
     topLeftY = centerY - floor (height / 2.0f);
@@ -1017,9 +1019,9 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	ws->mSzCamera = 0.0f;
 
     /* draw background */
-    enableTexture (s, &ws->switcherContext->texture, COMP_TEXTURE_FILTER_FAST);
+    enableTexture (s, &ws->switcherContext.texture, COMP_TEXTURE_FILTER_FAST);
 
-    matrix = ws->switcherContext->texture.matrix;
+    matrix = ws->switcherContext.texture.matrix;
     matrix.x0 -= topLeftX * matrix.xx;
     matrix.y0 -= topLeftY * matrix.yy;
 
@@ -1043,13 +1045,13 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
     glVertex2i (box.x1, box.y1);
     glEnd ();
 
-    disableTexture (s, &ws->switcherContext->texture);
+    disableTexture (s, &ws->switcherContext.texture);
 
     /* draw thumb */
-    width = (float) ws->thumbContext->width;
-    height = (float) ws->thumbContext->height;
+    width = (float) ws->thumbContext.width;
+    height = (float) ws->thumbContext.height;
 
-    enableTexture (s, &ws->thumbContext->texture, COMP_TEXTURE_FILTER_FAST);
+    enableTexture (s, &ws->thumbContext.texture, COMP_TEXTURE_FILTER_FAST);
     glBegin (GL_QUADS);
     for (i = 0; i < s->hsize; i++)
     {
@@ -1065,7 +1067,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	    box.y1 += topLeftY + border;
 	    box.y2 = box.y1 + height;
 
-	    matrix = ws->thumbContext->texture.matrix;
+	    matrix = ws->thumbContext.texture.matrix;
 	    matrix.x0 -= box.x1 * matrix.xx;
 	    matrix.y0 -= box.y1 * matrix.yy;
 
@@ -1084,7 +1086,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	}
     }
     glEnd ();
-    disableTexture (s, &ws->thumbContext->texture);
+    disableTexture (s, &ws->thumbContext.texture);
 
     if (ws->moving)
     {
@@ -1098,11 +1100,11 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	box.y1 = s->y * (height + border) + topLeftY + border;
 	box.y2 = box.y1 + height;
 
-	matrix = ws->highlightContext->texture.matrix;
+	matrix = ws->highlightContext.texture.matrix;
 	matrix.x0 -= box.x1 * matrix.xx;
 	matrix.y0 -= box.y1 * matrix.yy;
 
-	enableTexture (s, &ws->highlightContext->texture,
+	enableTexture (s, &ws->highlightContext.texture,
 		       COMP_TEXTURE_FILTER_FAST);
 	glBegin (GL_QUADS);
 	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
@@ -1118,10 +1120,10 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 		      COMP_TEX_COORD_Y (&matrix, box.y1));
 	glVertex2i (box.x1, box.y1);
 	glEnd ();
-	disableTexture (s, &ws->highlightContext->texture);
+	disableTexture (s, &ws->highlightContext.texture);
 
 	/* draw arrow */
-	enableTexture (s, &ws->arrowContext->texture, COMP_TEXTURE_FILTER_GOOD);
+	enableTexture (s, &ws->arrowContext.texture, COMP_TEXTURE_FILTER_GOOD);
 
 	dx = ws->gotoX - ws->curPosX;
 	dy = ws->gotoY - ws->curPosY;
@@ -1147,15 +1149,15 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 		angle = 45.0f;
 	}
 
-	aW = ws->arrowContext->width;
-	aH = ws->arrowContext->height;
+	aW = ws->arrowContext.width;
+	aH = ws->arrowContext.height;
 
 	/* if we have a viewport preview we just paint the
 	   arrow outside the switcher */
 	if (wallGetMiniscreen (s->display))
 	{
-	    width  = (float) ws->switcherContext->width;
-	    height = (float) ws->switcherContext->height;
+	    width  = (float) ws->switcherContext.width;
+	    height = (float) ws->switcherContext.height;
 
 	    switch ((int)angle)
 	    {
@@ -1219,7 +1221,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	glRotatef (angle, 0.0f, 0.0f, 1.0f);
 	glTranslatef (-box.x1 - aW / 2, -box.y1 - aH / 2, 0.0f);
 
-	matrix = ws->arrowContext->texture.matrix;
+	matrix = ws->arrowContext.texture.matrix;
 	matrix.x0 -= box.x1 * matrix.xx;
 	matrix.y0 -= box.y1 * matrix.yy;
 
@@ -1238,7 +1240,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	glVertex2i (box.x1, box.y1);
 	glEnd ();
 
-	disableTexture (s, &ws->arrowContext->texture);
+	disableTexture (s, &ws->arrowContext.texture);
     }
 
     glDisable (GL_BLEND);
@@ -1593,6 +1595,46 @@ wallDonePaintScreen (CompScreen *s)
 }
 
 static void
+wallCreateCairoContexts (CompScreen *s,
+			 Bool       initial)
+{
+    float border = 10.0f;
+    float width, height;
+
+    WALL_SCREEN (s);
+
+    width = VIEWPORT_SWITCHER_SIZE * s->hsize + (2 * border * (s->hsize - 1));
+    width *= (float)s->width / (float)s->height;
+    height = VIEWPORT_SWITCHER_SIZE * s->vsize + (2 * border * (s->vsize - 1));
+
+    wallDestroyCairoContext (s, &ws->switcherContext);
+    ws->switcherContext.width = width;
+    ws->switcherContext.height = height;
+    wallSetupCairoContext (s, &ws->switcherContext);
+    wallDrawSwitcherBackground (s);
+
+    wallDestroyCairoContext (s, &ws->thumbContext);
+    ws->thumbContext.width = (width - border * (s->hsize + 1)) / s->hsize;
+    ws->thumbContext.height = (height - border * (s->vsize + 1)) / s->vsize;
+    wallSetupCairoContext (s, &ws->thumbContext);
+    wallDrawThumb (s);
+
+    wallDestroyCairoContext (s, &ws->highlightContext);
+    ws->highlightContext.width = (width - border * (s->hsize + 1)) / s->hsize;
+    ws->highlightContext.height = (height - border * (s->vsize + 1)) / s->vsize;
+    wallSetupCairoContext (s, &ws->highlightContext);
+    wallDrawHighlight (s);
+
+    if (initial)
+    {
+	ws->arrowContext.width = 33;
+	ws->arrowContext.height = 33;
+	wallSetupCairoContext (s, &ws->arrowContext);
+	wallDrawArrow (s);
+    }
+}
+
+static void
 wallDisplayOptionChanged (CompDisplay        *display,
 			  CompOption         *opt,
 			  WallDisplayOptions num)
@@ -1651,39 +1693,7 @@ wallSetScreenOptionCore (CompScreen      *screen,
     if (status)
     {
 	if (strcmp (name, "hsize") == 0 || strcmp (name, "vsize") == 0)
-	{
-	    float border = 10.0f;
-	    float width, height;
-
-	    width = 70 * screen->hsize + (2 * border * (screen->hsize - 1));
-	    width *= (float)screen->width / (float)screen->height;
-	    height = 70 * screen->vsize + (2 * border * (screen->vsize - 1));
-
-	    wallDestroyCairoContext (screen, ws->switcherContext);
-	    ws->switcherContext =  malloc (sizeof (WallCairoContext));
-	    ws->switcherContext->width = width;
-	    ws->switcherContext->height = height;
-	    wallSetupCairoContext (screen, ws->switcherContext);
-	    wallDrawSwitcherBackground (screen);
-
-	    wallDestroyCairoContext (screen, ws->thumbContext);
-    	    ws->thumbContext = malloc (sizeof (WallCairoContext));
-	    ws->thumbContext->width =
-		(width - border * (screen->hsize + 1)) / screen->hsize;
-	    ws->thumbContext->height =
-    		(height - border * (screen->vsize + 1)) / screen->vsize;
-	    wallSetupCairoContext (screen, ws->thumbContext);
-	    wallDrawThumb (screen);
-
-	    wallDestroyCairoContext (screen, ws->highlightContext);
-	    ws->highlightContext = malloc(sizeof(WallCairoContext));
-	    ws->highlightContext->width =
-		(width - border * (screen->hsize + 1)) / screen->hsize;
-	    ws->highlightContext->height =
-		(height - border * (screen->vsize + 1)) / screen->vsize;
-	    wallSetupCairoContext (screen, ws->highlightContext);
-	    wallDrawHighlight (screen);
-	}
+	    wallCreateCairoContexts (screen, FALSE);
     }
 
     return status;
@@ -1755,8 +1765,6 @@ wallInitScreen (CompPlugin *p,
 		CompScreen *s)
 {
     WallScreen *ws;
-    float      border = 10.0f;
-    float      width, height;
 
     WALL_DISPLAY (s->display);
 
@@ -1770,6 +1778,11 @@ wallInitScreen (CompPlugin *p,
     ws->moving = FALSE;
     ws->activatedEdges = FALSE;
 
+    memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
+    memset (&ws->thumbContext, 0, sizeof (WallCairoContext));
+    memset (&ws->highlightContext, 0, sizeof (WallCairoContext));
+    memset (&ws->arrowContext, 0, sizeof (WallCairoContext));
+
     WRAP (ws, s, paintScreen, wallPaintScreen);
     WRAP (ws, s, paintOutput, wallPaintOutput);
     WRAP (ws, s, donePaintScreen, wallDonePaintScreen);
@@ -1780,35 +1793,7 @@ wallInitScreen (CompPlugin *p,
 
     s->privates[wd->screenPrivateIndex].ptr = ws;
 
-    /* calculate the width of the switcher window */
-    width = 70 * s->hsize  + (2 * border * (s->hsize - 1));
-    width *= (float)s->width / (float)s->height;
-    height = 70*s->vsize + (2 * border * (s->vsize - 1));
-
-    ws->switcherContext = malloc (sizeof (WallCairoContext));
-    ws->switcherContext->width = width;
-    ws->switcherContext->height = height;
-    wallSetupCairoContext (s, ws->switcherContext);
-    wallDrawSwitcherBackground (s);
-
-    ws->thumbContext = malloc (sizeof (WallCairoContext));
-    ws->thumbContext->width = (width - border * (s->hsize + 1)) / s->hsize;
-    ws->thumbContext->height = (height - border * (s->vsize + 1)) / s->vsize;
-    wallSetupCairoContext (s, ws->thumbContext);
-    wallDrawThumb (s);
-
-    ws->highlightContext = malloc (sizeof (WallCairoContext));
-    ws->highlightContext->width = (width - border * (s->hsize + 1)) / s->hsize;
-    ws->highlightContext->height =
-	(height - border * (s->vsize + 1)) / s->vsize;
-    wallSetupCairoContext (s, ws->highlightContext);
-    wallDrawHighlight (s);
-
-    ws->arrowContext = malloc (sizeof (WallCairoContext));
-    ws->arrowContext->width = 33;
-    ws->arrowContext->height = 33;
-    wallSetupCairoContext (s, ws->arrowContext);
-    wallDrawArrow (s);
+    wallCreateCairoContexts (s, TRUE);
 
     return TRUE;
 }
@@ -1819,10 +1804,10 @@ wallFiniScreen (CompPlugin *p,
 {
     WALL_SCREEN (s);
 
-    wallDestroyCairoContext (s, ws->switcherContext);
-    wallDestroyCairoContext (s, ws->thumbContext);
-    wallDestroyCairoContext (s, ws->highlightContext);
-    wallDestroyCairoContext (s, ws->arrowContext);
+    wallDestroyCairoContext (s, &ws->switcherContext);
+    wallDestroyCairoContext (s, &ws->thumbContext);
+    wallDestroyCairoContext (s, &ws->highlightContext);
+    wallDestroyCairoContext (s, &ws->arrowContext);
 
     UNWRAP (ws, s, paintScreen);
     UNWRAP (ws, s, paintOutput);
