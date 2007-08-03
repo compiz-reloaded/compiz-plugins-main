@@ -1000,8 +1000,8 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 
 	screenTexEnvMode (s, GL_MODULATE);
 
-	glColor4f (left,left,left,left);
-	glTranslatef (0.0f,0.0f,-(1-left));
+	glColor4f (left, left, left, left);
+	glTranslatef (0.0f,0.0f, -(1 - left));
 
 	ws->mSzCamera = -(1 - left);
     }
