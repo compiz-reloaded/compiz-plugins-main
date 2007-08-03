@@ -126,19 +126,6 @@ typedef struct _WallScreen
     WallCairoContext *arrowContext;
 } WallScreen;
 
-typedef struct _WallWindow
-{
-    Bool skipNotify;
-    int  origx;
-    int  origy;
-} WallWindow;
-
-typedef struct _xyz_tuple
-{
-    float x, y, z;
-} Point3d;
-
-
 /* Helpers */
 #define GET_WALL_DISPLAY(d)						\
     ((WallDisplay *) (d)->privates[displayPrivateIndex].ptr)
@@ -149,13 +136,6 @@ typedef struct _xyz_tuple
     ((WallScreen *) (s)->privates[(wd)->screenPrivateIndex].ptr)
 #define WALL_SCREEN(s)							\
     WallScreen *ws = GET_WALL_SCREEN(s, GET_WALL_DISPLAY(s->display))
-
-#define GET_WALL_WINDOW(w, ws)						\
-    ((WallWindow *) (w)->privates[(ws)->windowPrivateIndex].ptr)
-#define WALL_WINDOW(w)							\
-    WallWindow *ww = GET_WALL_WINDOW  (w,				\
-    		     GET_WALL_SCREEN  (w->screen,	\
-		     GET_WALL_DISPLAY (w->screen->display)))
 
 #define GET_SCREEN					\
     CompScreen *s;					\
@@ -1856,35 +1836,6 @@ wallFiniScreen (CompPlugin *p,
 }
 
 static Bool
-wallInitWindow (CompPlugin *p,
-		CompWindow *w)
-{
-    WallWindow *ww;
-
-    WALL_SCREEN (w->screen);
-
-    ww = malloc (sizeof (WallWindow));
-    if (!ww)
-	return FALSE;
-
-    ww->skipNotify = FALSE;
-    ww->origx = ww->origy = 0;
-
-    w->privates[ws->windowPrivateIndex].ptr = ww;
-
-    return TRUE;
-}
-
-static void
-wallFiniWindow (CompPlugin *p,
-		CompWindow *w)
-{
-    WALL_WINDOW (w);
-
-    free (ww);
-}
-
-static Bool
 wallInit (CompPlugin *p)
 {
     displayPrivateIndex = allocateDisplayPrivateIndex ();
@@ -1917,8 +1868,8 @@ CompPluginVTable wallVTable = {
     wallFiniDisplay,
     wallInitScreen,
     wallFiniScreen,
-    wallInitWindow,
-    wallFiniWindow,
+    NULL,
+    NULL,
     NULL,
     NULL,
     NULL,
