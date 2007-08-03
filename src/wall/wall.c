@@ -938,6 +938,23 @@ wallDownWithWindow (CompDisplay     *d,
     return wallInitiate (s, 0, 1, win);
 }
 
+static inline void
+wallDrawQuad (CompMatrix *matrix, BOX *box)
+{
+    glTexCoord2f (COMP_TEX_COORD_X (matrix, box->x1),
+		  COMP_TEX_COORD_Y (matrix, box->y2));
+    glVertex2i (box->x1, box->y2);
+    glTexCoord2f (COMP_TEX_COORD_X (matrix, box->x2),
+		  COMP_TEX_COORD_Y (matrix, box->y2));
+    glVertex2i (box->x2, box->y2);
+    glTexCoord2f (COMP_TEX_COORD_X (matrix, box->x2),
+		  COMP_TEX_COORD_Y (matrix, box->y1));
+    glVertex2i (box->x2, box->y1);
+    glTexCoord2f (COMP_TEX_COORD_X (matrix, box->x1),
+		  COMP_TEX_COORD_Y (matrix, box->y1));
+    glVertex2i (box->x1, box->y1);
+}
+
 static void
 wallDrawCairoTextureOnScreen (CompScreen *s)
 {
@@ -992,7 +1009,6 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	ws->mSzCamera = 0.0f;
 
     /* draw background */
-    enableTexture (s, &ws->switcherContext.texture, COMP_TEXTURE_FILTER_FAST);
 
     matrix = ws->switcherContext.texture.matrix;
     matrix.x0 -= topLeftX * matrix.xx;
@@ -1003,21 +1019,10 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
     box.y1 = topLeftY;
     box.y2 = box.y1 + height;
 
+    enableTexture (s, &ws->switcherContext.texture, COMP_TEXTURE_FILTER_FAST);
     glBegin (GL_QUADS);
-    glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
-		  COMP_TEX_COORD_Y (&matrix, box.y2));
-    glVertex2i (box.x1, box.y2);
-    glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2),
-		  COMP_TEX_COORD_Y (&matrix, box.y2));
-    glVertex2i (box.x2, box.y2);
-    glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2),
-		  COMP_TEX_COORD_Y (&matrix, box.y1));
-    glVertex2i (box.x2, box.y1);
-    glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
-		  COMP_TEX_COORD_Y (&matrix, box.y1));
-    glVertex2i (box.x1, box.y1);
+    wallDrawQuad (&matrix, &box);
     glEnd ();
-
     disableTexture (s, &ws->switcherContext.texture);
 
     /* draw thumb */
@@ -1044,18 +1049,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	    matrix.x0 -= box.x1 * matrix.xx;
 	    matrix.y0 -= box.y1 * matrix.yy;
 
-	    glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
-			  COMP_TEX_COORD_Y (&matrix, box.y2));
-    	    glVertex2i (box.x1, box.y2);
-	    glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2),
-			  COMP_TEX_COORD_Y (&matrix, box.y2));
-	    glVertex2i (box.x2, box.y2);
-	    glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2),
-			  COMP_TEX_COORD_Y (&matrix, box.y1));
-	    glVertex2i (box.x2, box.y1);
-	    glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
-			  COMP_TEX_COORD_Y (&matrix, box.y1));
-	    glVertex2i (box.x1, box.y1);
+	    wallDrawQuad (&matrix, &box);
 	}
     }
     glEnd ();
@@ -1080,18 +1074,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	enableTexture (s, &ws->highlightContext.texture,
 		       COMP_TEXTURE_FILTER_FAST);
 	glBegin (GL_QUADS);
-	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
-		      COMP_TEX_COORD_Y (&matrix, box.y2));
-	glVertex2i (box.x1, box.y2);
-	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2),
-		      COMP_TEX_COORD_Y (&matrix, box.y2));
-	glVertex2i (box.x2, box.y2);
-	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2),
-		      COMP_TEX_COORD_Y (&matrix, box.y1));
-	glVertex2i (box.x2, box.y1);
-	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
-		      COMP_TEX_COORD_Y (&matrix, box.y1));
-	glVertex2i (box.x1, box.y1);
+	wallDrawQuad (&matrix, &box);
 	glEnd ();
 	disableTexture (s, &ws->highlightContext.texture);
 
@@ -1199,18 +1182,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	matrix.y0 -= box.y1 * matrix.yy;
 
 	glBegin (GL_QUADS);
-	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
-		      COMP_TEX_COORD_Y (&matrix, box.y2));
-	glVertex2i (box.x1, box.y2);
-	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2),
-		      COMP_TEX_COORD_Y (&matrix, box.y2));
-	glVertex2i (box.x2, box.y2);
-	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x2),
-		      COMP_TEX_COORD_Y (&matrix, box.y1));
-	glVertex2i (box.x2, box.y1);
-	glTexCoord2f (COMP_TEX_COORD_X (&matrix, box.x1),
-		      COMP_TEX_COORD_Y (&matrix, box.y1));
-	glVertex2i (box.x1, box.y1);
+	wallDrawQuad (&matrix, &box);
 	glEnd ();
 
 	disableTexture (s, &ws->arrowContext.texture);
