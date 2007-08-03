@@ -91,11 +91,7 @@ typedef struct _WallScreen
     PaintWindowProc            paintWindow;
     SetScreenOptionProc        setScreenOption;
 
-    Bool activatedEdges;
-
     Bool moving; /* Used to track miniview movement */
-
-    GLint viewport[4];
 
     float curPosX;
     float curPosY;
@@ -1751,7 +1747,6 @@ wallInitScreen (CompPlugin *p,
 
     ws->boxTimeout = 0;
     ws->moving = FALSE;
-    ws->activatedEdges = FALSE;
 
     memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
     memset (&ws->thumbContext, 0, sizeof (WallCairoContext));
