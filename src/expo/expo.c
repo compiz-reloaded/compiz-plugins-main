@@ -251,13 +251,27 @@ expoHandleEvent (CompDisplay *d,
 	    {
 		if (es->dndWindow)
 		{
-		    syncWindowPosition (es->dndWindow);
-		    (*s->windowUngrabNotify) (es->dndWindow);
+		    int lastOutput;
+		    int centerX, centerY;
+		    CompWindow *w = es->dndWindow;
+
+		    syncWindowPosition (w);
+		    (*s->windowUngrabNotify) (w);
 		    /* update window attibutes to make sure a
 		       moved maximized window is properly snapped
 		       to the work area */
-		    updateWindowAttributes (es->dndWindow,
-					    CompStackingUpdateModeNone);
+
+		    /* make sure we snap to the right output */
+		    lastOutput = s->currentOutputDev;
+		    centerX = (WIN_X (w) + WIN_W (w) / 2) % s->width;
+		    centerY = (WIN_Y (w) + WIN_H (w) / 2) % s->height;
+
+		    s->currentOutputDev = outputDeviceForPoint (s, centerX,
+								centerY);
+
+		    updateWindowAttributes (w, CompStackingUpdateModeNone);
+
+		    s->currentOutputDev = lastOutput;
 		}
 
 		es->dndState = DnDNone;
@@ -505,12 +519,6 @@ expoPaintOutput (CompScreen              *s,
 
 	es->origVY = es->mouseOverViewY;
 
-	if (es->leaveExpo)
-	{
-	    es->expoMode = FALSE;
-	    es->leaveExpo = FALSE;
-	}
-
 	es->updateVP = FALSE;
 
 	while (s->x != es->mouseOverViewX)
@@ -519,7 +527,13 @@ expoPaintOutput (CompScreen              *s,
 	while (s->y != es->mouseOverViewY)
 	    moveScreenViewport (s, 0, 1, TRUE);
 
-	focusDefaultWindow (s->display);
+	if (es->leaveExpo)
+	{
+	    focusDefaultWindow (s->display);
+
+	    es->expoMode = FALSE;
+	    es->leaveExpo = FALSE;
+	}
     }
 
     return status;
@@ -719,8 +733,12 @@ expoPaintWall (CompScreen              *s,
 			if (es->anyClick || es->dndState != DnDNone)
 			{
 			    /* Used to save last viewport interaction was in */
-			    es->origVX = i;	
-			    es->origVY = j;
+			    if (es->origVX != i || es->origVY != j)
+			    {
+				es->origVX = i;
+				es->origVY = j;
+				es->updateVP = TRUE;
+			    }
 			    es->anyClick = FALSE;
 			}
 		    }

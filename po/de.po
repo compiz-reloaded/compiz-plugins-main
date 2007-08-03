@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-07-09 11:22+0200\n"
+"POT-Creation-Date: 2007-08-01 11:34+0530\n"
 "PO-Revision-Date: 2007-07-09 11:22+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
@@ -44,7 +44,8 @@ msgstr "Oben rechts abrunden"
 msgid "Bevel bottom left corner"
 msgstr "Ecke unten links abrunden"
 
-msgid "Bevel top bottom right corner"
+#, fuzzy
+msgid "Bevel bottom right corner"
 msgstr "Ecke unten rechts abrunden"
 
 msgid "Bevel top left corner"
@@ -188,8 +189,9 @@ msgstr ""
 msgid "Angle of window at the end of the animation."
 msgstr "Fensterwinkel am Animationsende"
 
-msgid "Animation Duration"
-msgstr "Animationsdauer"
+#, fuzzy
+msgid "Animation Selection"
+msgstr "Animationsoptionen"
 
 msgid "Animation Time Step"
 msgstr "Animations-Zeitschritt"
@@ -198,19 +200,24 @@ msgstr "Animations-Zeitschritt"
 msgid "Animation Time Step For Intense Effects"
 msgstr "Animations-Zeitschritt für aufregende Effekte"
 
-msgid "Animation duration in seconds for close effect."
+#, fuzzy
+msgid "Animation duration in milliseconds for close effect."
 msgstr "Animationsdauer (in s) für Effekt 'Fenster schließen'"
 
-msgid "Animation duration in seconds for create effect."
-msgstr "Animationsdauer (in s) für Effekt 'Fenster öffnen'"
-
-msgid "Animation duration in seconds for focus effect."
+#, fuzzy
+msgid "Animation duration in milliseconds for focus effect."
 msgstr "Animationsdauer (in s) für Effekt 'Fenster fokussieren'"
 
-msgid "Animation duration in seconds for minimize effect."
+#, fuzzy
+msgid "Animation duration in milliseconds for minimize effect."
 msgstr "Animationsdauer (in s) für Effekt 'Fenster minimieren'"
 
-msgid "Animation duration in seconds for shade effect."
+#, fuzzy
+msgid "Animation duration in milliseconds for open effect."
+msgstr "Animationsdauer (in s) für Effekt 'Fenster schließen'"
+
+#, fuzzy
+msgid "Animation duration in milliseconds for shade effect."
 msgstr "Animationsdauer (in s) für Effekt 'Fenster aufrollen'"
 
 msgid "Animations"
@@ -267,12 +274,6 @@ msgstr "Verbrennen"
 msgid "Close Animation"
 msgstr "Animation 'Schließen'"
 
-msgid "Close Animation (Dialogs &amp; Windows)"
-msgstr "Fenster-Schließ-Animation (Dialoge &amp; Fenster)"
-
-msgid "Close Animation (Menus &amp; Tooltips)"
-msgstr "Fenster-Schließ-Animation (Menüs &amp; Tooltips)"
-
 msgid "Close Effect"
 msgstr "Effekt für das Schließen von Fenstern"
 
@@ -281,20 +282,10 @@ msgid ""
 "camera, -2.0: Away from camera)."
 msgstr ""
 
-msgid "Create Animation"
-msgstr "Animation 'Öffnen'"
-
-msgid "Create Animation (Dialogs &amp; Windows)"
-msgstr "Fenster-Öffnen-Animation (Dialoge &amp; Fenster)"
-
-msgid "Create Animation (Menus &amp; Tooltips)"
-msgstr "Fenster-Öffnen-Animation (Menüs &amp; Tooltips)"
-
-msgid "Create Effect"
-msgstr "Effekt für das Öffnen von Fenstern"
-
-msgid "Create/Close Only"
-msgstr "Nur bei Öffnen/Schließen"
+msgid ""
+"Comma separated list of option value assignments to override effect "
+"settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
+msgstr ""
 
 # 'einklappen' auch möglich
 msgid "Curved Fold"
@@ -321,6 +312,10 @@ msgstr "Runter"
 
 msgid "Dream"
 msgstr "Traum"
+
+#, fuzzy
+msgid "Duration"
+msgstr "Sättigung"
 
 msgid "Effect Settings"
 msgstr "Effekt-Einstellungen"
@@ -424,9 +419,6 @@ msgstr "Links"
 msgid "Magic Lamp"
 msgstr "Wunderlampe"
 
-msgid "Magic Lamp Create Start Width"
-msgstr ""
-
 msgid "Magic Lamp Grid Y Resolution"
 msgstr ""
 
@@ -437,6 +429,9 @@ msgid "Magic Lamp Max Waves"
 msgstr ""
 
 msgid "Magic Lamp Min Wave Amplitude"
+msgstr ""
+
+msgid "Magic Lamp Open Start Width"
 msgstr ""
 
 msgid "Magic Lamp Open/Close Moving End"
@@ -483,9 +478,27 @@ msgstr ""
 msgid "On open/close, move vacuum ending point with the mouse pointer."
 msgstr ""
 
+#, fuzzy
+msgid "Open Animation"
+msgstr "Verwendete Animation"
+
+#, fuzzy
+msgid "Open Effect"
+msgstr "Effekt für das Schließen von Fenstern"
+
+#, fuzzy
+msgid "Open/Close Only"
+msgstr "Nur bei Öffnen/Schließen"
+
+msgid "Options"
+msgstr "Optionen"
+
+msgid "Pool"
+msgstr ""
+
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list. If the list is empty, the default effect will be used."
+"to restore full list."
 msgstr ""
 
 msgid "Random"
@@ -494,8 +507,9 @@ msgstr "Zufällig"
 msgid "Random Animations For All Events"
 msgstr ""
 
-msgid "Random Effect Pool"
-msgstr ""
+#, fuzzy
+msgid "Random Effects"
+msgstr "Effekt für das Aufrollen von Fenstern"
 
 msgid "Randomly Colored Fire"
 msgstr "Zufällige Feuerfarbe"
@@ -543,12 +557,12 @@ msgid "Spacing between beams."
 msgstr "Der Abstand zwischen den Vorschaubildern."
 
 msgid ""
-"Starting width of create effect and ending width of close effect for Magic "
+"Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
 msgstr ""
 
 msgid ""
-"Starting width of create effect and ending width of close effect for Vacuum."
+"Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
 
 msgid "Tessellation Type"
@@ -583,20 +597,21 @@ msgstr "Beim Minimieren eines Fensters verwendete Animation"
 msgid "The animation effect shown when shading a window."
 msgstr "Beim Aufrollen eines Fensters verwendete Animation"
 
+#, fuzzy
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
-"height, in pixels, of the rows in the grid."
+"number of grid cells along the height of the window."
 msgstr ""
 "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
 "Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
 
+#, fuzzy
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
-"width, in pixels, of the columns in the grid."
+"number of grid cells along the width of the window."
 msgstr ""
 "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Breite der einzelnen Gitterspalten in Pixeln "
-"an."
+"Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
 
 msgid "The maximum number of waves for Magic Lamp."
 msgstr "Maximale Anzahl der Wellenbewegungen für den Wunderlampen-Effekt."
@@ -623,11 +638,12 @@ msgstr "Fenster, die animiert werden sollen"
 msgid "Thickness"
 msgstr "Dicke"
 
+#, fuzzy
+msgid "Thickness (in pixels) of exploding window pieces."
+msgstr "Dicke der bei der Explosion entstehenden Fensterteile."
+
 msgid "Thickness of Exploding Polygons"
 msgstr "Dicke der explodierenden Polygone"
-
-msgid "Thickness of exploding window pieces."
-msgstr "Dicke der bei der Explosion entstehenden Fensterteile."
 
 msgid "Up"
 msgstr "Hoch"
@@ -638,10 +654,10 @@ msgstr ""
 msgid "Vacuum"
 msgstr ""
 
-msgid "Vacuum Create Start Width"
+msgid "Vacuum Grid Y Resolution"
 msgstr ""
 
-msgid "Vacuum Grid Y Resolution"
+msgid "Vacuum Open Start Width"
 msgstr ""
 
 msgid "Vacuum Open/Close Moving End"
@@ -695,9 +711,6 @@ msgstr "Fenstergitterhöhe"
 
 msgid "Window Grid Width"
 msgstr "Fenstergitterbreite"
-
-msgid "Window that should animate with this effect when created."
-msgstr "Fenster, für die dieser Effekt beim Öffnen verwendet werden soll."
 
 msgid "Window that should animate with this effect when focused."
 msgstr "Fenster, für die dieser Effekt beim Fokussieren verwendet werden soll."
@@ -909,11 +922,26 @@ msgid "Generate mipmaps in expo mode"
 msgstr ""
 "Mipmaps im Expo-Modus verwenden, um die Darstellungsqualität zu verbessern"
 
+msgid "Hide panels/docks in expo"
+msgstr ""
+
+msgid "Hide panels/docks in expo."
+msgstr ""
+
 msgid "Immediate moves"
 msgstr ""
 
 msgid "Mipmaps"
 msgstr "Mipmaps benutzen"
+
+msgid "Multi Output Mode"
+msgstr ""
+
+msgid "One big wall"
+msgstr ""
+
+msgid "One wall per output"
+msgstr ""
 
 msgid "Reflection"
 msgstr "Reflektionen"
@@ -923,6 +951,10 @@ msgid "Reflection Scale"
 msgstr "Reflektionsbild"
 
 msgid "Scale factor of the expo wall reflection"
+msgstr ""
+
+msgid ""
+"Selects how the expo wall is displayed if multiple output devices are used."
 msgstr ""
 
 msgid ""
@@ -1039,6 +1071,12 @@ msgstr "Zeichne Feuer auf den Bildschirm"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "Zeichne Feuer oder andere Partikel auf den Bildschirm"
+
+msgid "Cube Gears"
+msgstr ""
+
+msgid "Render gears inside of the transparent cube"
+msgstr ""
 
 msgid "Begin"
 msgstr "Start"
@@ -1285,9 +1323,6 @@ msgstr "Murrina"
 
 msgid "Opacity of selected windows"
 msgstr "Sichtbarkeit selektierter Fenster"
-
-msgid "Options"
-msgstr "Optionen"
 
 msgid "Play animations on the tab bar e.g. on fade in."
 msgstr "Löse Animationen z.B. beim Einblenden der Tab-Leiste aus."
@@ -2380,6 +2415,9 @@ msgstr "Fenster zoomen"
 msgid "Zoom windows while in scale mode"
 msgstr "Fenster in 'Fenster skalieren'-Modus auf Originalgröße zoomen"
 
+msgid "Filter Case Insensitive"
+msgstr ""
+
 msgid "Filter Type Timeout"
 msgstr "Timeout für Filtereingabe"
 
@@ -2395,6 +2433,9 @@ msgstr "Eingegebenen Filtertext anzeigen."
 msgid "Time (in ms) after which the filter typing is automatically ended"
 msgstr ""
 "Zeitspanne (in ms), nach der die Filtereingabe automatisch beendet wird."
+
+msgid "Use case insensitive string matching when filtering."
+msgstr ""
 
 msgid "Window title filter facility for the scale plugin"
 msgstr ""
@@ -2413,6 +2454,127 @@ msgstr "Zeige Eingabefenster"
 
 msgid "Toggle prompt visible."
 msgstr "Zeige Eingabefenster für Echtzeit-Scheme-Skripting."
+
+#, fuzzy
+msgid "Background intensity"
+msgstr "Hintergrundbild"
+
+#, fuzzy
+msgid "Background intensity."
+msgstr "Hintergundhelligkeit"
+
+msgid "Below"
+msgstr "Unter"
+
+msgid "Click duration"
+msgstr ""
+
+#, fuzzy
+msgid "Cover"
+msgstr "Über"
+
+#, fuzzy
+msgid "Cover movement offset."
+msgstr "Bewegungsgeschwindigkeit der Fenster"
+
+#, fuzzy
+msgid "Cover offset"
+msgstr "Effekt für das Schließen von Fenstern"
+
+#, fuzzy
+msgid "Fade in/out speed"
+msgstr "Ein-/Ausblendzeit"
+
+#, fuzzy
+msgid "Fade speed"
+msgstr "Ein-/Ausblendzeit"
+
+#, fuzzy
+msgid "Flip"
+msgstr "Nach oben umschalten"
+
+#, fuzzy
+msgid "Flip angle"
+msgstr "Nach links umschalten"
+
+#, fuzzy
+msgid "Generate mipmaps"
+msgstr "Mipmaps benutzen"
+
+#, fuzzy
+msgid "Initiate (All Workspaces)"
+msgstr "Nächstes Fenster (alle Arbeitsflächen)"
+
+#, fuzzy
+msgid "Initiate switcher (All Workspaces)."
+msgstr "Nächstes Fenster (alle Arbeitsflächen)"
+
+#, fuzzy
+msgid "Initiate switcher."
+msgstr "Initiiere Ladebildschirm"
+
+#, fuzzy
+msgid "Max window size"
+msgstr "Größe des Vorschaubildes"
+
+#, fuzzy
+msgid "Maximum click duration in miliseconds."
+msgstr "Dauer der Fokusanimation in Sekunden"
+
+#, fuzzy
+msgid "Maximum window size (in percent of the screen width)"
+msgstr "Breite des Ringes in Prozent der Bildschirmbreite"
+
+#, fuzzy
+msgid "Mouse movement speed"
+msgstr "Bewegungsgeschwindigkeit der Fenster"
+
+#, fuzzy
+msgid "Mouse speed"
+msgstr "Maus-Arbeitsflächenumschalter"
+
+#, fuzzy
+msgid "Overlay an icon on windows in the shift switcher"
+msgstr "Fenstersymbol über Fenster im Ring anzeigen"
+
+#, fuzzy
+msgid "Rotation angle of the flip animation"
+msgstr "Dauer (in Millisekunden) für die Anordnungsanimation"
+
+#, fuzzy
+msgid "Shift Switcher"
+msgstr "Ring-Anwendungs-Umschalter"
+
+#, fuzzy
+msgid "Shift Switcher Plugin"
+msgstr "Vorschaufenster beim Umschalten anzeigen"
+
+#, fuzzy
+msgid "Shift Windows"
+msgstr "Fenster"
+
+#, fuzzy
+msgid "Shift animaton speed"
+msgstr "Animationsgeschwindigkeit"
+
+#, fuzzy
+msgid "Shift speed"
+msgstr "Animationsgeschwindigkeit"
+
+#, fuzzy
+msgid "Shift timestep"
+msgstr "Animationszeitschritt"
+
+#, fuzzy
+msgid "Switcher mode"
+msgstr "Ring-Anwendungs-Umschalter"
+
+msgid "Switcher mode."
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in the shift switcher"
+msgstr "Fenster, die im Ring angezeigt werden sollen"
 
 msgid "Access your desktop easily"
 msgstr "Zeige den Desktop"
@@ -2781,6 +2943,9 @@ msgstr "Schriftfarbe für Fenstertitel"
 msgid "Window title Font Size."
 msgstr "Schriftgröße für Fenstertitel"
 
+msgid "Animation Duration"
+msgstr "Animationsdauer"
+
 msgid "Cascade"
 msgstr "Stufenförmig"
 
@@ -3075,6 +3240,18 @@ msgstr ""
 msgid "Allow wrap-around when moving the wall up/down/left/right"
 msgstr ""
 
+#, fuzzy
+msgid "Arrow Colors"
+msgstr "Farben"
+
+#, fuzzy
+msgid "Background Gradient"
+msgstr "Hintergrundbild"
+
+#, fuzzy
+msgid "Base Color"
+msgstr "Basisfarbe der Tab-Leiste"
+
 msgid "Desktop Wall"
 msgstr "Desktop-Tafel"
 
@@ -3103,6 +3280,23 @@ msgstr "An Rand wechseln (Mausbewegung)"
 
 msgid "Edge Flipping"
 msgstr "Umschaltung an Desktoprand"
+
+#, fuzzy
+msgid "Edge Radius"
+msgstr "Rahmenradius"
+
+msgid "First color for the background gradient of the switcher window."
+msgstr ""
+
+msgid "First color for the thumb gradient of the switcher window."
+msgstr ""
+
+#, fuzzy
+msgid "First color for the thumb highlight gradient of the switcher window."
+msgstr "Farbe, die zum Hervorheben des aktuellen Fensters verwendet wird"
+
+msgid "First color of the arrow of the switcher window."
+msgstr ""
 
 msgid "Flip Down"
 msgstr "Nach unten umschalten"
@@ -3139,6 +3333,10 @@ msgstr ""
 msgid "Flip viewport when moving the pointer to a screen edge"
 msgstr ""
 "Arbeitsfläche beim Bewegen des Mauszeigers an eine Bildschirmkante umschalten"
+
+#, fuzzy
+msgid "Highlight Gradient"
+msgstr "Hervorhebungsfarbe"
 
 msgid "How should a multimonitor configuration be handeled"
 msgstr ""
@@ -3191,6 +3389,37 @@ msgstr "Bewege alle Fenster der Gruppe"
 msgid "Multimonitor behavior"
 msgstr "Verhalten bei mehreren Monitoren"
 
+#, fuzzy
+msgid "Outline Color"
+msgstr "Linienfarbe"
+
+#, fuzzy
+msgid "Outline color of the switcher window."
+msgstr "Farbe des Fenstertitels"
+
+#, fuzzy
+msgid "Radius of the rounded edge"
+msgstr "Der Radius für die Ecken der Tab-Leiste."
+
+msgid "Secound color for the background gradient of the switcher window."
+msgstr ""
+
+msgid "Secound color for the thumb gradient of the switcher window."
+msgstr ""
+
+#, fuzzy
+msgid "Secound color for the thumb highlight gradient of the switcher window."
+msgstr "Farbe, die zum Hervorheben des aktuellen Fensters verwendet wird"
+
+#, fuzzy
+msgid "Secound color of the arrow of the switcher window."
+msgstr "Hintergrundfarbe für Fenstertitel"
+
+# Vielleicht ein bisschen gewagt aber 'Teleportation' wäre die korrekte Übersetzung - zu lang?
+#, fuzzy
+msgid "Shadow Color"
+msgstr "Farbe der Teleportation"
+
 msgid "Show Live Viewport Previews"
 msgstr "Live-Arbeitsflächenvorschau anzeigen"
 
@@ -3213,17 +3442,41 @@ msgstr "Über alle Monitore verschieben"
 msgid "Switch separately"
 msgstr "Monitore separat verschieben"
 
+msgid "Third color for the background gradient of the switcher window."
+msgstr ""
+
+#, fuzzy
+msgid "Thumb Gradient"
+msgstr "Farbverlauf"
+
 msgid "Viewport Switch Preview"
 msgstr "Umschalt-Vorschau"
 
 msgid "Wall Sliding Duration"
 msgstr "Animationsdauer"
 
+#, fuzzy
+msgid "Backgrounds"
+msgstr "Hintergrundbild"
+
+msgid "Draw the desktop wallpaper"
+msgstr ""
+
+msgid "The background specifications (as explained in DOCUMENTATION) to use."
+msgstr ""
+
+msgid "Tile backgrounds as opposed to stretching"
+msgstr ""
+
+#, fuzzy
+msgid "Tile or Stretch"
+msgstr "Titelrahmen-Größe"
+
+msgid "Wallpaper"
+msgstr ""
+
 msgid "Above others windows"
 msgstr "Fenster, die immer über anderen Fenstern angeordnet werden sollen"
-
-msgid "Below"
-msgstr "Unter"
 
 msgid "Below others windows"
 msgstr "Fenster, die immer unter anderen Fenstern angeordnet werden sollen"
@@ -3326,6 +3579,76 @@ msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden sol
 msgid "Windows will not have focus"
 msgstr "Fenster, die niemals Fokus erhalten können sollen"
 
+msgid "Firefox Menu Fix"
+msgstr ""
+
+msgid "Fix window type of Firefox and Thunderbird menus."
+msgstr ""
+
+msgid "Fix window type of notification daemon windows."
+msgstr ""
+
+msgid "Fix window type of various Java windows."
+msgstr ""
+
+msgid "Fix window type of various Qt windows."
+msgstr ""
+
+#, fuzzy
+msgid "Java Window Fix"
+msgstr "Aktiviere Fenster"
+
+msgid "Legacy Fullscreen Support"
+msgstr ""
+
+msgid "Make Wine and legacy applications fullscreen properly."
+msgstr ""
+
+msgid "Metacity-like workarounds."
+msgstr ""
+
+msgid "Notification Daemon Fix"
+msgstr ""
+
+#, fuzzy
+msgid "Qt Window Fix"
+msgstr "Nächstes Fenster"
+
+msgid "Workarounds"
+msgstr ""
+
+#~ msgid "Animation duration in seconds for create effect."
+#~ msgstr "Animationsdauer (in s) für Effekt 'Fenster öffnen'"
+
+#~ msgid "Close Animation (Dialogs &amp; Windows)"
+#~ msgstr "Fenster-Schließ-Animation (Dialoge &amp; Fenster)"
+
+#~ msgid "Close Animation (Menus &amp; Tooltips)"
+#~ msgstr "Fenster-Schließ-Animation (Menüs &amp; Tooltips)"
+
+#~ msgid "Create Animation"
+#~ msgstr "Animation 'Öffnen'"
+
+#~ msgid "Create Animation (Dialogs &amp; Windows)"
+#~ msgstr "Fenster-Öffnen-Animation (Dialoge &amp; Fenster)"
+
+#~ msgid "Create Animation (Menus &amp; Tooltips)"
+#~ msgstr "Fenster-Öffnen-Animation (Menüs &amp; Tooltips)"
+
+#~ msgid "Create Effect"
+#~ msgstr "Effekt für das Öffnen von Fenstern"
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "width, in pixels, of the columns in the grid."
+#~ msgstr ""
+#~ "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe "
+#~ "eines Gitters erzeugt. Geben sie die Breite der einzelnen Gitterspalten "
+#~ "in Pixeln an."
+
+#~ msgid "Window that should animate with this effect when created."
+#~ msgstr "Fenster, für die dieser Effekt beim Öffnen verwendet werden soll."
+
 #~ msgid "Animation duration in seconds for create effect #2."
 #~ msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #2'"
 
@@ -3340,9 +3663,6 @@ msgstr "Fenster, die niemals Fokus erhalten können sollen"
 
 #~ msgid "Create #2 Animation"
 #~ msgstr "Animation 'Neues Fenster #2'"
-
-#~ msgid "Focus animation duration in seconds."
-#~ msgstr "Dauer der Fokusanimation in Sekunden"
 
 #~ msgid "Shade animation duration in seconds."
 #~ msgstr "Dauer der Animation beim Aufrollen von Fenstern"
