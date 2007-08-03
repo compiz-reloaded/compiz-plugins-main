@@ -146,40 +146,6 @@ typedef struct _WallScreen
 			    (sigmoid (1) - sigmoid (0)))
 
 
-/* functions pending for core inclusion */
-#include <stdarg.h>
-static Bool
-screenGrabExist (CompScreen *s, ...)
-{
-    va_list ap;
-    char    *name;
-    int	    i;
-
-    for (i = 0; i < s->maxGrab; i++)
-    {
-	if (s->grabs[i].active)
-	{
-	    va_start (ap, s);
-
-	    name = va_arg (ap, char *);
-	    while (name)
-	    {
-		if (strcmp (name, s->grabs[i].name) == 0)
-		    break;
-
-		name = va_arg (ap, char *);
-	    }
-
-	    va_end (ap);
-
-	    if (name)
-		return TRUE;
-	}
-    }
-
-    return FALSE;
-}
-
 static void
 wallClearCairoLayer (cairo_t *cr)
 {
@@ -709,6 +675,9 @@ wallInitiateFlip (CompScreen *s,
 {
     int dx, dy;
 
+    if (otherScreenGrabExist (s, "wall", "move", "group-drag", 0))
+	return FALSE;
+
     if (dnd)
     {
 	if (!wallGetEdgeflipDnd (s))
@@ -717,13 +686,15 @@ wallInitiateFlip (CompScreen *s,
 	if (otherScreenGrabExist (s, "wall", 0))
 	    return FALSE;
     }
-    else if (screenGrabExist (s, "move", 0))
+    else if (otherScreenGrabExist (s, "wall", "group-drag", 0))
     {
+	/* not wall or group means move */
 	if (!wallGetEdgeflipMove (s))
 	    return FALSE;
     }
-    else if (screenGrabExist (s, "group-drag", 0))
+    else if (otherScreenGrabExist (s, "wall", 0))
     {
+	/* move was ruled out before, so we have group */
 	if (!wallGetEdgeflipDnd (s))
 	    return FALSE;
     }
