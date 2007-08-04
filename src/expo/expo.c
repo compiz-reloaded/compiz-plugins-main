@@ -97,9 +97,7 @@ typedef struct _ExpoScreen
     int mouseOverViewY;
 
     Bool anyClick;
-
     Bool leaveExpo;
-    Bool updateVP;
 } ExpoScreen;
 
 typedef struct _xyz_tuple
@@ -182,14 +180,10 @@ expoHandleEvent (CompDisplay *d,
 	    if (es->expoMode)
 	    {
 		es->anyClick = TRUE;
-		es->updateVP = TRUE;
 		damageScreen (s);
 
 		if (event->xbutton.button == Button1)
-		{
-		    es->updateVP = FALSE;
 		    es->dndState = DnDStart;
-		}
 		else if (event->xbutton.button != Button5)
 		    es->leaveExpo = TRUE;
 	    }
@@ -213,6 +207,10 @@ expoHandleEvent (CompDisplay *d,
 
 		    syncWindowPosition (w);
 		    (*s->windowUngrabNotify) (w);
+
+		    if (es->origVX >= 0 && es->origVY >= 0)
+			moveScreenViewport (s, s->x - es->origVX,
+					    s->y - es->origVY, TRUE);
 
 		    /* update window attibutes to make sure a
 		       moved maximized window is properly snapped
@@ -294,13 +292,7 @@ expoExpo (CompDisplay     *d,
 	es->dndWindow = 0;
 
 	if (!es->expoMode && es->origVX >= 0 && es->origVY >= 0)
-	{
-	    while (s->x != es->origVX)
-		moveScreenViewport (s, 1, 0, TRUE);
-
-	    while (s->y != es->origVY)
-		moveScreenViewport (s, 0, 1, TRUE);
-	}
+	    moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
 
 	if (es->expoMode)
 	{
@@ -348,13 +340,7 @@ expoTermExpo (CompDisplay     *d,
 	es->dndWindow = 0;
 
 	if (es->origVX >= 0 && es->origVY >= 0)
-	{
-	    while (s->x != es->origVX)
-		moveScreenViewport (s, 1, 0, TRUE);
-
-	    while (s->y != es->origVY)
-		moveScreenViewport (s, 0, 1, TRUE);
-	}
+	    moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
 
 	damageScreen (s);
 	focusDefaultWindow (s->display);
@@ -649,12 +635,8 @@ expoPaintWall (CompScreen              *s,
 		    if (es->anyClick || es->dndState != DnDNone)
 		    {
 			/* Used to save last viewport interaction was in */
-			if (es->origVX != i || es->origVY != j)
-			{
-			    es->origVX = i;
-			    es->origVY = j;
-			    es->updateVP = TRUE;
-			}
+		    	es->origVX = i;
+	    		es->origVY = j;
 			es->anyClick = FALSE;
 		    }
 		}
@@ -855,25 +837,8 @@ expoDonePaintScreen (CompScreen * s)
 {
     EXPO_SCREEN (s);
 
-    if (es->expoMode && es->updateVP)
+    if (es->expoMode && es->leaveExpo)
     {
-	CompWindow *w;
-
-	for (w = s->windows; w; w = w->next)
-	    syncWindowPosition (w);
-
-	damageScreen (s);
-
-	es->origVX = es->mouseOverViewX;
-	es->origVY = es->mouseOverViewY;
-	es->updateVP = FALSE;
-
-	while (s->x != es->mouseOverViewX)
-	    moveScreenViewport (s, 1, 0, TRUE);
-
-	while (s->y != es->mouseOverViewY)
-	    moveScreenViewport (s, 0, 1, TRUE);
-
 	if (es->leaveExpo)
 	{
 	    focusDefaultWindow (s->display);
@@ -1033,7 +998,6 @@ expoInitScreen (CompPlugin *p,
 
     es->anyClick  = FALSE;
     es->leaveExpo = FALSE;
-    es->updateVP  = FALSE;
 
     es->mouseOverViewX = 0;
     es->mouseOverViewY = 0;
