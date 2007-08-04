@@ -139,6 +139,94 @@ expoMoveFocusViewport (CompScreen *s,
     damageScreen (s);
 }
 
+static Bool
+expoTermExpo (CompDisplay     *d,
+	      CompAction      *action,
+	      CompActionState state,
+	      CompOption      *option,
+	      int             nOption)
+{
+    CompScreen *s;
+
+    if (!(state & CompActionStateCancel))
+	return FALSE;
+
+    for (s = d->screens; s; s = s->next)
+    {
+	EXPO_SCREEN (s);
+
+	if (!es->expoMode)
+	    continue;
+
+	es->expoMode = FALSE;
+	es->anyClick = FALSE;
+
+	if (es->dndWindow)
+	    syncWindowPosition (es->dndWindow);
+
+	es->dndState  = DnDNone;
+	es->dndWindow = 0;
+
+	if (es->origVX >= 0 && es->origVY >= 0)
+	    moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
+
+	damageScreen (s);
+	focusDefaultWindow (s->display);
+    }
+
+    return TRUE;
+}
+
+static Bool
+expoExpo (CompDisplay     *d,
+	  CompAction      *action,
+	  CompActionState state,
+	  CompOption      *option,
+	  int             nOption)
+{
+    CompScreen *s;
+    Window     xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s   = findScreenAtDisplay (d, xid);
+
+    if (s)
+    {
+    	EXPO_SCREEN (s);
+
+	if (otherScreenGrabExist (s, "expo", 0))
+	    return FALSE;
+
+	es->expoMode = !es->expoMode;
+
+	if (es->expoMode)
+	{
+	    if (!es->grabIndex)
+		es->grabIndex = pushScreenGrab (s, None, "expo");
+
+	    es->anyClick = FALSE;
+    	    es->dndState  = DnDNone;
+    	    es->dndWindow = None;
+
+	    es->origVX = -1;
+	    es->origVY = -1;
+	    es->rorigx = s->x;
+	    es->rorigy = s->y;
+
+	    damageScreen (s);
+	}
+	else
+	{
+	    expoTermExpo (d, action, state | CompActionStateCancel,
+			  option, nOption);
+	}
+
+	return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void
 expoHandleEvent (CompDisplay *d,
 		 XEvent      *event)
@@ -185,7 +273,12 @@ expoHandleEvent (CompDisplay *d,
 		if (event->xbutton.button == Button1)
 		    es->dndState = DnDStart;
 		else if (event->xbutton.button != Button5)
-		    es->leaveExpo = TRUE;
+		{
+		    CompAction *action;
+			
+		    action = expoGetExpo (d);
+		    expoTermExpo (d, action, CompActionStateCancel, NULL, 0);
+		}
 	    }
 	}
 	break;
@@ -257,96 +350,6 @@ expoHandleEvent (CompDisplay *d,
     UNWRAP (ed, d, handleEvent);
     (*d->handleEvent) (d, event);
     WRAP (ed, d, handleEvent, expoHandleEvent);
-}
-
-static Bool
-expoExpo (CompDisplay     *d,
-	  CompAction      *action,
-	  CompActionState state,
-	  CompOption      *option,
-	  int             nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay(d, xid);
-
-    if (s)
-    {
-    	EXPO_SCREEN (s);
-
-	if (otherScreenGrabExist (s, "expo", 0))
-	    return FALSE;
-
-	es->expoMode = !es->expoMode;
-	es->anyClick = FALSE;
-
-	if (es->expoMode && !es->grabIndex)
-	    es->grabIndex =	pushScreenGrab (s, None, "expo");
-
-	if (es->dndWindow)
-	    syncWindowPosition (es->dndWindow);
-
-	es->dndState  = DnDNone;
-	es->dndWindow = 0;
-
-	if (!es->expoMode && es->origVX >= 0 && es->origVY >= 0)
-	    moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
-
-	if (es->expoMode)
-	{
-	    es->origVX = -1;
-	    es->origVY = -1;
-	    es->rorigx = s->x;
-	    es->rorigy = s->y;
-	}
-
-	damageScreen (s);
-    	focusDefaultWindow (s->display);
-
-	return TRUE;
-    }
-
-    return FALSE;
-}
-
-static Bool
-expoTermExpo (CompDisplay     *d,
-	      CompAction      *action,
-	      CompActionState state,
-	      CompOption      *option,
-	      int             nOption)
-{
-    CompScreen *s;
-
-    if (state != CompActionStateCancel)
-	return FALSE;
-
-    for (s = d->screens; s; s = s->next)
-    {
-	EXPO_SCREEN (s);
-
-	if (!es->expoMode)
-	    continue;
-
-	es->expoMode = FALSE;
-	es->anyClick = FALSE;
-
-	if (es->dndWindow)
-	    syncWindowPosition (es->dndWindow);
-
-	es->dndState  = DnDNone;
-	es->dndWindow = 0;
-
-	if (es->origVX >= 0 && es->origVY >= 0)
-	    moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
-
-	damageScreen (s);
-	focusDefaultWindow (s->display);
-    }
-
-    return TRUE;
 }
 
 static void
