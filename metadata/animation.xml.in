@@ -1513,7 +1513,7 @@
 	  <option name="skewer_direction" type="int">
 	    <_short>Skewer Direction</_short>
 	    <_long>Movement direction(s) for window pieces.</_long>
-	    <default>2</default>
+	    <default>8</default>
 	    <min>0</min>
 	    <max>9</max>
 	    <desc>
@@ -1575,14 +1575,14 @@
  	  <option name="skewer_gridx" type="int">
 	    <_short>Window Grid Width</_short>
 	    <_long>The animated window will be split into pieces along a grid. Specify the number of grid cells along the width of the window.</_long>
-	    <default>4</default>
+	    <default>6</default>
 	    <min>1</min>
 	    <max>100</max>
 	  </option>
 	  <option name="skewer_gridy" type="int">
 	    <_short>Window Grid Height</_short>
 	    <_long>The animated window will be split into pieces along a grid. Specify the number of grid cells along the height of the window.</_long>
-	    <default>3</default>
+	    <default>4</default>
 	    <min>1</min>
 	    <max>100</max>
 	  </option>
