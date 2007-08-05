@@ -321,18 +321,58 @@ expoHandleEvent (CompDisplay *d,
 
 	    if (es->expoMode)
 	    {
-		es->anyClick = TRUE;
-		damageScreen (s);
-
-		if (event->xbutton.button == Button1)
+		switch (event->xbutton.button) {
+		case Button1:
 		    es->dndState = DnDStart;
-		else if (event->xbutton.button != Button5)
-		{
-		    CompAction *action;
+		    break;
+		case Button3:
+		    {
+    			CompAction *action;
 			
-		    action = expoGetExpo (d);
-		    expoTermExpo (d, action, 0, NULL, 0);
+    			action = expoGetExpo (d);
+    			expoTermExpo (d, action, 0, NULL, 0);
+			es->anyClick = TRUE;
+		    }
+		    break;
+		case Button4:
+		    {
+			int newX = es->selectedVX - 1;
+			int newY = es->selectedVY;
+
+			if (newX < 0)
+			{
+			    newX = s->hsize - 1;
+			    newY = newY - 1;
+			    if (newY < 0)
+				newY = s->vsize - 1;
+			}
+
+			expoMoveFocusViewport (s, newX - es->selectedVX,
+					       newY - es->selectedVY);
+		    }
+		    break;
+		case Button5:
+		    {
+			int newX = es->selectedVX + 1;
+			int newY = es->selectedVY;
+
+			if (newX >= s->hsize)
+			{
+			    newX = 0;
+			    newY = newY + 1;
+			    if (newY >= s->vsize)
+				newY = 0;
+			}
+
+			expoMoveFocusViewport (s, newX - es->selectedVX,
+					       newY - es->selectedVY);
+		    }
+		    break;
+		default:
+    		    es->anyClick = TRUE;
+		    break;
 		}
+    		damageScreen (s);
 	    }
 	}
 	break;
