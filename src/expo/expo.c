@@ -49,6 +49,13 @@ typedef enum
     DnDStart
 } DnDState;
 
+typedef enum
+{
+    VPUpdateNone = 0,
+    VPUpdateMouseOver,
+    VPUpdatePrevious
+} VPUpdateMode;
+
 typedef struct _ExpoDisplay
 {
     int screenPrivateIndex;
@@ -95,6 +102,8 @@ typedef struct _ExpoScreen
     int rorigy;
     int mouseOverViewX;
     int mouseOverViewY;
+
+    VPUpdateMode vpUpdateMode;
 
     Bool anyClick;
     Bool leaveExpo;
@@ -159,16 +168,14 @@ expoTermExpo (CompDisplay     *d,
 	    continue;
 
 	es->expoMode = FALSE;
-	es->anyClick = FALSE;
 
 	if (es->dndWindow)
 	    syncWindowPosition (es->dndWindow);
 
+	es->vpUpdateMode = VPUpdateMouseOver;
+
 	es->dndState  = DnDNone;
 	es->dndWindow = 0;
-
-	if (es->origVX >= 0 && es->origVY >= 0)
-	    moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
 
 	damageScreen (s);
 	focusDefaultWindow (s->display);
@@ -840,15 +847,21 @@ expoDonePaintScreen (CompScreen * s)
 {
     EXPO_SCREEN (s);
 
+    switch (es->vpUpdateMode) {
+    case VPUpdateMouseOver:
+	if (es->origVX >= 0 && es->origVY >= 0)
+	    moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
+	break;
+    default:
+	break;
+    }
+
     if (es->expoMode && es->leaveExpo)
     {
-	if (es->leaveExpo)
-	{
-	    focusDefaultWindow (s->display);
+	focusDefaultWindow (s->display);
 
-	    es->expoMode = FALSE;
-	    es->leaveExpo = FALSE;
-	}
+	es->expoMode = FALSE;
+	es->leaveExpo = FALSE;
     }
 
     if ((es->expoCam > 0.0f && es->expoCam < 1.0f) || es->dndState != DnDNone)
@@ -1001,6 +1014,7 @@ expoInitScreen (CompPlugin *p,
 
     es->anyClick  = FALSE;
     es->leaveExpo = FALSE;
+    es->vpUpdateMode = VPUpdateNone;
 
     es->mouseOverViewX = 0;
     es->mouseOverViewY = 0;
