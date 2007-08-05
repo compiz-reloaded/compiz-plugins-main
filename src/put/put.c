@@ -85,8 +85,6 @@ typedef struct _PutScreen
 
     int        moreAdjust;			/* animation flag           */
     int        grabIndex;			/* screen grab index        */
-    Bool       vpMoving;			/* viewport move flag       */
-    CompWindow *current;		        /* window being moved       */
 } PutScreen;
 
 typedef struct _PutWindow
@@ -94,9 +92,8 @@ typedef struct _PutWindow
     GLfloat xVelocity, yVelocity;	/* animation velocity       */
     GLfloat tx, ty;			/* animation translation    */
 
-    int dx, dy;				/* change in position       */
-    int x, y;				/* current position         */
     int lastX, lastY;			/* starting position        */
+    int targetX, targetY;               /* target of the animation  */
 
     Bool adjust;			/* animation flag           */
 } PutWindow;
@@ -112,11 +109,11 @@ adjustPutVelocity (CompWindow *w)
 
     PUT_WINDOW (w);
 
-    x1 = pw->lastX + pw->dx;
-    y1 = pw->lastY + pw->dy;
+    x1 = pw->targetX;
+    y1 = pw->targetY;
 
-    dx = x1 - (pw->lastX + pw->tx);
-    dy = y1 - (pw->lastY + pw->ty);
+    dx = x1 - (w->attrib.x + pw->tx);
+    dy = y1 - (w->attrib.y + pw->ty);
 
     adjust = dx * 0.15f;
     amount = fabs (dx) * 1.5;
@@ -142,17 +139,8 @@ adjustPutVelocity (CompWindow *w)
 	/* animation done */
 	pw->xVelocity = pw->yVelocity = 0.0f;
 
-	pw->tx = x1 - pw->lastX;
-	pw->ty = y1 - pw->lastY;
-
-	pw->dx = pw->dy = 0;
-
-	dx = (pw->lastX + pw->tx) - pw->x;
-	dy = (pw->lastY + pw->ty) - pw->y;
-
-	moveWindow (w, dx, dy, TRUE, TRUE);
-	/* sync position with X server */
-	syncWindowPosition (w);
+	pw->tx = x1 - w->attrib.x;
+	pw->ty = y1 - w->attrib.y;
 	return 0;
     }
     return 1;
@@ -170,7 +158,7 @@ putPreparePaintScreen (CompScreen *s,
     if (ps->moreAdjust && ps->grabIndex)
     {
 	CompWindow *w;
-	int        steps, dx, dy;
+	int        steps;
 	float      amount, chunk;
 
 	amount = msSinceLastPaint * 0.025f * putGetSpeed (s);
@@ -188,24 +176,20 @@ putPreparePaintScreen (CompScreen *s,
 
 		if (pw->adjust)
 		{
+		    pw->adjust = adjustPutVelocity (w);
+		    ps->moreAdjust |= pw->adjust;
+
 		    pw->tx += pw->xVelocity * chunk;
 		    pw->ty += pw->yVelocity * chunk;
 
-		    int adjx =
-			(pw->xVelocity > 0 ? 1 : pw->xVelocity < 0 ? -1 : 0);
-		    int adjy =
-			(pw->yVelocity > 0 ? 1 : pw->yVelocity < 0 ? -1 : 0);
-
-		    dx = (pw->lastX + pw->tx + adjx) - pw->x;
-    		    dy = (pw->lastY + pw->ty + adjy) - pw->y;
-
-		    moveWindow (w, dx, dy, TRUE, TRUE);
-
-    		    pw->x += dx;
-		    pw->y += dy;
-
-		    pw->adjust = adjustPutVelocity (w);
-		    ps->moreAdjust |= pw->adjust;
+		    if (!pw->adjust)
+		    {
+			/* animation done */
+			moveWindow (w, pw->targetX - w->attrib.x,
+				    pw->targetY - w->attrib.y, TRUE, TRUE);
+			syncWindowPosition (w);
+			pw->tx = pw->ty = 0;
+		    }
 		}
     	    }
 	    if (!ps->moreAdjust)
@@ -232,28 +216,14 @@ putDonePaintScreen (CompScreen *s)
     PUT_SCREEN (s);
 
     if (ps->moreAdjust && ps->grabIndex)
-    {
-	CompWindow *w;
-
-	for (w = s->windows; w; w = w->next)
-	{
-	    PUT_WINDOW (w);
-
-    	    if (pw->adjust)
-	    {
-		/* more animating to do */
-		addWindowDamage (w);
-	    }
-	}
-    }
+	damageScreen (s);
     else
     {
 	if (ps->grabIndex)
 	{
 	    /* release the screen grab */
-	    /* removeScreenGrab (s, ps->grabIndex, NULL); */
+	    removeScreenGrab (s, ps->grabIndex, NULL);
 	    ps->grabIndex = 0;
-	    ps->current = NULL;
 	}
     }
 
@@ -298,11 +268,23 @@ putPaintWindow (CompWindow              *w,
     PUT_WINDOW (w);
 
     if (pw->adjust)
+    {
+	CompTransform wTransform = *transform;
+
+	matrixTranslate (&wTransform, pw->tx, pw->ty, 0.0f);
+
 	mask |= PAINT_WINDOW_TRANSFORMED_MASK;
 
-    UNWRAP (ps, s, paintWindow);
-    status = (*s->paintWindow) (w, attrib, transform, region, mask);
-    WRAP (ps, s, paintWindow, putPaintWindow);
+	UNWRAP (ps, s, paintWindow);
+	status = (*s->paintWindow) (w, attrib, &wTransform, region, mask);
+	WRAP (ps, s, paintWindow, putPaintWindow);
+    }
+    else
+    {
+    	UNWRAP (ps, s, paintWindow);
+	status = (*s->paintWindow) (w, attrib, transform, region, mask);
+	WRAP (ps, s, paintWindow, putPaintWindow);
+    }
 
     return status;
 }
@@ -327,18 +309,19 @@ putInitiate (CompDisplay     *d,
     w = findWindowAtDisplay (d, xid);
     if (w)
     {
-	PUT_SCREEN (w->screen);
+	CompScreen *s = w->screen;
+
+	PUT_SCREEN (s);
 
 	if (!ps->grabIndex)
 	{
 	    /* this will keep put from working while something
 	       else has a screen grab */
-	    if (otherScreenGrabExist (w->screen, "put", 0))
+	    if (otherScreenGrabExist (s, "put", 0))
 		return FALSE;
 
 	    /* we are ok, so grab the screen */
-	    ps->grabIndex = 1;
-	    /* pushScreenGrab (w->screen, w->screen->invisibleCursor, "put"); */
+	    ps->grabIndex = pushScreenGrab (s, s->invisibleCursor, "put");
 	}
 
 	if (ps->grabIndex)
@@ -354,17 +337,11 @@ putInitiate (CompDisplay     *d,
 	    py = getIntOptionNamed (option, nOption, "y", 0);
 	    type = getIntOptionNamed (option, nOption, "type", PutCenter);
 
-	    /* save a pointer to the moving window for later */
-	    ps->current = w;
-
-	    /* reset the viewport moving flag */
-	    ps->vpMoving = FALSE;
-
 	    /* we don't want to do anything with override redirect windows */
 	    if (w->attrib.override_redirect)
 		return FALSE;
 
-	    /* we dont want to be moving the desktop, docks,
+	    /* we don't want to be moving the desktop, docks,
 	       or fullscreen windows */
 	    if (w->type & CompWindowTypeDesktopMask ||
 		w->type & CompWindowTypeDockMask ||
@@ -378,17 +355,17 @@ putInitiate (CompDisplay     *d,
 
 	    /* no head in options list so we use the current head */
 	    if (head == -1)
-		head = w->screen->currentOutputDev;
+		head = s->currentOutputDev;
 
 	    /* make sure the head number is not out of bounds */
-	    head = MIN (head,w->screen->nOutputDev - 1);
+	    head = MIN (head, s->nOutputDev - 1);
 
     	    /* some error has occured so we bail out */
 	    if (head < 0)
 		return FALSE;
 
 	    /* working area of the screen */
-	    getWorkareaForOutput (w->screen, head, &workArea);
+	    getWorkareaForOutput (s, head, &workArea);
 	    width  = workArea.width;
     	    height = workArea.height;
 	    hx     = workArea.x;
@@ -410,49 +387,49 @@ putInitiate (CompDisplay     *d,
 		break;
 	    case PutLeft:
 		/* center of the left edge */
-		dx = -(x - hx) + w->input.left + putGetPadLeft (w->screen);
+		dx = -(x - hx) + w->input.left + putGetPadLeft (s);
 		dy = (height / 2) - (w->height / 2) - (y - hy);
 		break;
 	    case PutTopLeft:
 		/* top left corner */
-		dx = -(x - hx) + w->input.left + putGetPadLeft (w->screen);
-		dy = -(y - hy) + w->input.top + putGetPadTop (w->screen);
+		dx = -(x - hx) + w->input.left + putGetPadLeft (s);
+		dy = -(y - hy) + w->input.top + putGetPadTop (s);
 		break;
 	    case PutTop:
 		/* center of top edge */
 		dx = (width / 2) - (w->width / 2) - (x - hx);
-		dy = -(y - hy) + w->input.top + putGetPadTop (w->screen);
+		dy = -(y - hy) + w->input.top + putGetPadTop (s);
 		break;
 	    case PutTopRight:
 		/* top right corner */
 		dx = width - w->width - (x - hx) -
-		     w->input.right - putGetPadRight (w->screen);
-		dy = -(y - hy) + w->input.top + putGetPadTop (w->screen);
+		     w->input.right - putGetPadRight (s);
+		dy = -(y - hy) + w->input.top + putGetPadTop (s);
 		break;
 	    case PutRight:
 		/* center of right edge */
 		dx = width - w->width - (x - hx) -
-		     w->input.right - putGetPadRight (w->screen);
+		     w->input.right - putGetPadRight (s);
 		dy = (height / 2) - (w->height / 2) - (y - hy);
 		break;
 	    case PutBottomRight:
 		/* bottom right corner */
 		dx = width - w->width - (x - hx) -
-		     w->input.right - putGetPadRight (w->screen);
+		     w->input.right - putGetPadRight (s);
 		dy = height - w->height - (y - hy) -
-		     w->input.bottom - putGetPadBottom (w->screen);
+		     w->input.bottom - putGetPadBottom (s);
 		break;
 	    case PutBottom:
 		/* center of bottom edge */
 		dx = (width / 2) - (w->width / 2) - (x - hx);
 		dy = height - w->height - (y - hy) -
-		     w->input.bottom - putGetPadBottom (w->screen);
+		     w->input.bottom - putGetPadBottom (s);
 		break;
 	    case PutBottomLeft:
 		/* bottom left corner */
-		dx = -(x - hx) + w->input.left + putGetPadLeft (w->screen);
+		dx = -(x - hx) + w->input.left + putGetPadLeft (s);
 		dy = height - w->height - (y - hy) -
-		     w->input.bottom - putGetPadBottom (w->screen);
+		     w->input.bottom - putGetPadBottom (s);
 		break;
 	    case PutRestore:
 		/* back to last position */
@@ -463,7 +440,7 @@ putInitiate (CompDisplay     *d,
 		{
 		    int face, faceX, faceY, hDirection, vDirection;
 
-		    /* get the fave to move to from the options list */
+		    /* get the face to move to from the options list */
 		    face = getIntOptionNamed(option, nOption, "face", -1);
 
 		    /* if it wasn't supplied, bail out */
@@ -471,73 +448,64 @@ putInitiate (CompDisplay     *d,
 			return FALSE;
 
 		    /* split 1D face value into 2D x and y face */
-		    faceX = face % w->screen->hsize;
-		    faceY = face / w->screen->hsize;
-		    if (faceY > w->screen->vsize)
-			faceY = w->screen->vsize - 1;
+		    faceX = face % s->hsize;
+		    faceY = face / s->hsize;
+		    if (faceY > s->vsize)
+			faceY = s->vsize - 1;
 
 	    	    /* take the shortest horizontal path to the
 		       destination viewport */
-    		    hDirection = (faceX - w->screen->x);
-		    if (hDirection > w->screen->hsize / 2)
-			hDirection = (hDirection - w->screen->hsize);
-		    else if (hDirection < -w->screen->hsize / 2)
-			hDirection = (hDirection + w->screen->hsize);
+    		    hDirection = (faceX - s->x);
+		    if (hDirection > s->hsize / 2)
+			hDirection = (hDirection - s->hsize);
+		    else if (hDirection < -s->hsize / 2)
+			hDirection = (hDirection + s->hsize);
 
 		    /* we need to do this for the vertical
 		       destination viewport too */
-    		    vDirection = (faceY - w->screen->y);
-		    if (vDirection > w->screen->vsize / 2)
-			vDirection = (vDirection - w->screen->vsize);
-		    else if (vDirection < -w->screen->hsize / 2)
-			vDirection = (vDirection + w->screen->vsize);
+    		    vDirection = (faceY - s->y);
+		    if (vDirection > s->vsize / 2)
+			vDirection = (vDirection - s->vsize);
+		    else if (vDirection < -s->hsize / 2)
+			vDirection = (vDirection + s->vsize);
 
-		    dx = w->screen->width * hDirection;
-	    	    dy = w->screen->height * vDirection;
-
-		    /* this is a viewport move so we flag it */
-		    ps->vpMoving = TRUE;
+		    dx = s->width * hDirection;
+	    	    dy = s->height * vDirection;
     		    break;
 		}
 	    case PutViewportLeft:
 		/* move to the viewport on the left */
-		dx = -w->screen->workArea.width;
+		dx = -s->width;
 		dy = 0;
-		ps->vpMoving = TRUE;
 		break;
 	    case PutViewportRight:
 		/* move to the viewport on the right */
-		dx = w->screen->workArea.width;
+		dx = s->width;
 		dy = 0;
-		ps->vpMoving = TRUE;
 		break;
 	    case PutViewportUp:
 		/* move to the viewport above */
 		dx = 0;
-		dy = -w->screen->workArea.height;
-		ps->vpMoving = TRUE;
+		dy = -s->height;
 		break;
 	    case PutViewportDown:
 		/* move to the viewport below */
 		dx = 0;
-		dy = w->screen->workArea.height;
-		ps->vpMoving = TRUE;
+		dy = s->height;
 		break;
 	    case PutExact:
 		/* move the window to an exact position */
 		if (px < 0)
 		    /* account for a specified negative position,
 		       like geometry without (-0) */
-		    dx = px + w->screen->workArea.width -
-			 w->width - x - w->input.right;
+		    dx = px + s->width - w->width - x - w->input.right;
 		else
 		    dx = px - x + w->input.left;
 
 		if (py < 0)
 		    /* account for a specified negative position,
 		       like geometry without (-0) */
-		    dy = py + w->screen->workArea.height -
-			 w->height - y - w->input.bottom;
+		    dy = py + s->height - w->height - y - w->input.bottom;
 		else
 		    dy = py - y + w->input.top;
 		break;
@@ -556,28 +524,28 @@ putInitiate (CompDisplay     *d,
     		    XQueryPointer (d->display, w->id, &root, &child,
 				   &rx, &ry, &winX, &winY, &pMask);
 
-		    if (putGetWindowCenter (w->screen))
+		    if (putGetWindowCenter (s))
 		    {
 			/* window center */
 			dx = rx - (w->width / 2) - x;
 			dy = ry - (w->height / 2) - y;
 		    }
-		    else if (rx < w->screen->workArea.width / 2 &&
-			     ry < w->screen->workArea.height / 2)
+		    else if (rx < s->workArea.width / 2 &&
+			     ry < s->workArea.height / 2)
 	    	    {
 			/* top left quad */
 			dx = rx - x + w->input.left;
 			dy = ry - y + w->input.top;
 		    }
-		    else if (rx < w->screen->workArea.width / 2 &&
-			     ry >= w->screen->workArea.height / 2)
+		    else if (rx < s->workArea.width / 2 &&
+			     ry >= s->workArea.height / 2)
 	    	    {
 			/* bottom left quad */
 			dx = rx - x + w->input.left;
 			dy = ry - w->height - y - w->input.bottom;
 		    }
-		    else if (rx >= w->screen->workArea.width / 2 &&
-			     ry < w->screen->workArea.height / 2)
+		    else if (rx >= s->workArea.width / 2 &&
+			     ry < s->workArea.height / 2)
 	    	    {
 			/* top right quad */
 			dx = rx - w->width - x - w->input.right;
@@ -600,33 +568,29 @@ putInitiate (CompDisplay     *d,
 	    /* don't do anything if there is nothing to do */
 	    if (dx != 0 || dy != 0)
 	    {
-		if (putGetAvoidOffscreen (w->screen))
+		if (putGetAvoidOffscreen (s))
 		{
 		    /* avoids window borders offscreen */
-		    if ((-(x - hx) + w->input.left +
-			 putGetPadLeft (w->screen)) > dx)
+		    if ((-(x - hx) + w->input.left + putGetPadLeft (s)) > dx)
 		    {
-			dx = -(x - hx) + w->input.left +
-			     putGetPadLeft (w->screen);
+			dx = -(x - hx) + w->input.left + putGetPadLeft (s);
 		    }
 	    	    else if ((width - w->width - (x - hx) -
-			      w->input.right - putGetPadRight (w->screen)) < dx)
+			      w->input.right - putGetPadRight (s)) < dx)
 		    {
 			dx = width - w->width - (x - hx) -
-			     w->input.right - putGetPadRight (w->screen);
+			     w->input.right - putGetPadRight (s);
 		    }
 
-	    	    if ((-(y - hy) + w->input.top +
-    			 putGetPadTop (w->screen)) > dy)
+	    	    if ((-(y - hy) + w->input.top + putGetPadTop (s)) > dy)
 		    {
-			dy = -(y - hy) + w->input.top +
-			     putGetPadTop (w->screen);
+			dy = -(y - hy) + w->input.top + putGetPadTop (s);
 		    }
 	    	    else if ((height - w->height - (y - hy) - w->input.bottom -
-			      putGetPadBottom (w->screen)) < dy)
+			      putGetPadBottom (s)) < dy)
 		    {
 			dy = height - w->height - (y - hy) -
-			     w->input.bottom - putGetPadBottom (w->screen);
+			     w->input.bottom - putGetPadBottom (s);
 		    }
 		}
 		/* save the windows position in the saveMask
@@ -640,19 +604,15 @@ putInitiate (CompDisplay     *d,
 
 		/* Make sure everyting starts out at the windows
 		   current position */
-		pw->lastX = pw->x = x;
-		pw->lastY = pw->y = y;
+		pw->lastX = x;
+		pw->lastY = y;
 
-		/* save the change in position to the window */
-		pw->dx = dx;
-		pw->dy = dy;
+		pw->targetX = x + dx;
+		pw->targetY = y + dy;
 
 		/* mark for animation */
 		pw->adjust = TRUE;
 		ps->moreAdjust = TRUE;
-
-		/* reset values */
-		pw->tx = pw->ty = 0;
 
 		/* cause repainting */
 		addWindowDamage (w);
@@ -1380,8 +1340,6 @@ putInitScreen (CompPlugin *p,
      * bad stuff happens if we don't do this
      */
     ps->moreAdjust = FALSE;
-    ps->vpMoving = FALSE;
-    ps->current = NULL;
     ps->grabIndex = 0;
 
     /* wrap the overloaded functions */
@@ -1426,9 +1384,8 @@ putInitWindow(CompPlugin *p,
      * I don't need to repeat it
      */
     pw->tx = pw->ty = pw->xVelocity = pw->yVelocity = 0.0f;
-    pw->dx = pw->dy = 0;
-    pw->lastX = pw->x = w->serverX;
-    pw->lastY = pw->y = w->serverY;
+    pw->lastX = w->serverX;
+    pw->lastY = w->serverY;
     pw->adjust = FALSE;
 
     w->privates[ps->windowPrivateIndex].ptr = pw;
