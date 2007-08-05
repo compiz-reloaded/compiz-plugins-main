@@ -10,17 +10,21 @@
  *           : David Reveman
  * E-mail    : davidr@novell.com>
  *
- * Particle system added by : (C) 2006 Dennis Kasprzyk
- * E-mail                   : onestone@beryl-project.org
+ * Airplane added by : Carlo Palma
+ * E-mail            : carlopalma@salug.it
+ * Based on code originally written by Mark J. Kilgard
  *
  * Beam-Up added by : Florencio Guimaraes
  * E-mail           : florencio@nexcorp.com.br
  *
+ * Fold and Skewer added by : Tomasz Kolodziejski
+ * E-mail                   : tkolodziejski@gmail.com
+ *
  * Hexagon tessellator added by : Mike Slegeir
  * E-mail                       : mikeslegeir@mail.utexas.edu>
  *
- * Fold and Skewer added by   : Tomasz Kolodziejski
- * E-mail                     : tkolodziejski@gmail.com
+ * Particle system added by : (C) 2006 Dennis Kasprzyk
+ * E-mail                   : onestone@beryl-project.org
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -93,6 +97,7 @@ CompMetadata animMetadata;
 static AnimEffect minimizeEffects[] = {
     AnimEffectNone,
     AnimEffectRandom,
+    AnimEffectAirplane3D,
     AnimEffectBeamUp,
     AnimEffectBurn,
     AnimEffectCurvedFold,
@@ -115,6 +120,7 @@ static AnimEffect minimizeEffects[] = {
 static AnimEffect closeEffects[] = {
     AnimEffectNone,
     AnimEffectRandom,
+    AnimEffectAirplane3D,
     AnimEffectBeamUp,
     AnimEffectBurn,
     AnimEffectCurvedFold,
@@ -537,6 +543,10 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     // AnimEffectRandom
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    // AnimEffectAirplane3D
+    {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
+     fxAirplane3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
+     fxAirplane3DLinearAnimStepPolygon, 0, 0, 0},
     // AnimEffectBeamUp
     {fxBeamupUpdateWindowAttrib, 0, drawParticleSystems, fxBeamUpModelStep,
      fxBeamUpInit, 0, 0, 0, 1, 0, 0, 0, 0},
@@ -812,6 +822,8 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "time_step", "int", "<min>1</min>", 0, 0 },
     { "time_step_intense", "int", "<min>1</min>", 0, 0 },
     // Effect settings
+    { "airplane_path_length", "float", "<min>0.2</min>", 0, 0 },
+    { "airplane_fly_to_taskbar", "bool", 0, 0, 0 },
     { "beam_size", "float", "<min>0.1</min>", 0, 0 },
     { "beam_spacing", "int", "<min>1</min>", 0, 0 },
     { "beam_color", "color", 0, 0, 0 },

@@ -52,6 +52,48 @@ typedef struct _xyz_tuple
     float x, y, z;
 } Point3d, Vector3d;
 
+typedef struct _AirplaneEffectParameters
+{
+    /// added for airplane folding and flying
+    // airplane fold phase.
+
+    Vector3d rotAxisA;			// Rotation axis vector A
+    Vector3d rotAxisB;			// Rotation axis vector B
+
+    Point3d rotAxisOffsetA;		// Rotation axis translate amount A 
+    Point3d rotAxisOffsetB; 	        // Rotation axis translate amount B
+
+    float rotAngleA;			// Rotation angle A
+    float finalRotAngA;			// Final rotation angle A
+
+    float rotAngleB;			// Rotation angle B
+    float finalRotAngB;			// Final rotation angle B
+
+    // airplane fly phase:
+
+    Vector3d centerPosFly;	// center position (offset) during the flying phases
+
+    Vector3d flyRotation;	// airplane rotation during the flying phases
+    Vector3d flyFinalRotation;	// airplane rotation during the flying phases 
+
+    float flyScale;             // Scale for airplane flying effect 
+    float flyFinalScale;        // Final Scale for airplane flying effect 
+  
+    float flyTheta;		// Theta parameter for fly rotations and positions
+
+    float moveStartTime2;		// Movement starts at this time ([0-1] range)
+    float moveDuration2;		// Movement lasts this long     ([0-1] range)
+
+    float moveStartTime3;		// Movement starts at this time ([0-1] range)
+    float moveDuration3;		// Movement lasts this long     ([0-1] range)
+
+    float moveStartTime4;		// Movement starts at this time ([0-1] range)
+    float moveDuration4;		// Movement lasts this long     ([0-1] range)
+
+    float moveStartTime5;	        // Movement starts at this time ([0-1] range)
+    float moveDuration5;		// Movement lasts this long     ([0-1] range)
+} AirplaneEffectParameters;
+
 // This is intended to be a closed 3D piece of a window with convex polygon
 // faces and quad-strip sides. Since decoration texture is separate from
 // the window texture, it is more complicated than it would be with a single
@@ -282,6 +324,7 @@ typedef enum
 {
     AnimEffectNone = 0,
     AnimEffectRandom,
+    AnimEffectAirplane3D,
     AnimEffectBeamUp,
     AnimEffectBurn,
     AnimEffectCurvedFold,
@@ -316,13 +359,13 @@ typedef enum
    LAST_RANDOM_*_EFFECT always must be LAST_*_EFFECT - RANDOM_EFFECT_OFFSET
 */
 
-#define NUM_MINIMIZE_EFFECT 19
-#define LAST_MINIMIZE_EFFECT 18
-#define LAST_RANDOM_MINIMIZE_EFFECT 16
+#define NUM_MINIMIZE_EFFECT 20
+#define LAST_MINIMIZE_EFFECT 19
+#define LAST_RANDOM_MINIMIZE_EFFECT 17
 
-#define NUM_CLOSE_EFFECT 21
-#define LAST_CLOSE_EFFECT 20
-#define LAST_RANDOM_CLOSE_EFFECT 18
+#define NUM_CLOSE_EFFECT 22
+#define LAST_CLOSE_EFFECT 21
+#define LAST_RANDOM_CLOSE_EFFECT 19
 
 #define NUM_FOCUS_EFFECT 4
 #define LAST_FOCUS_EFFECT 3
@@ -407,6 +450,8 @@ typedef enum
     ANIM_SCREEN_OPTION_TIME_STEP,
     ANIM_SCREEN_OPTION_TIME_STEP_INTENSE,
     // Effect settings
+    ANIM_SCREEN_OPTION_AIRPLANE_PATHLENGTH,
+    ANIM_SCREEN_OPTION_AIRPLANE_FLY2TOM,
     ANIM_SCREEN_OPTION_BEAMUP_SIZE,
     ANIM_SCREEN_OPTION_BEAMUP_SPACING,
     ANIM_SCREEN_OPTION_BEAMUP_COLOR,
@@ -606,6 +651,10 @@ typedef struct _AnimWindow
     CompWindow *dodgeChainNext;	// for dodging windows
     Bool skipPostPrepareScreen;
     Bool drawnOnHostSkip;
+ 
+    // for airplane
+    float airplanePathLength;
+    Bool airplaneFly2TaskBar;
 } AnimWindow;
 
 typedef struct _AnimEffectProperties
@@ -740,6 +789,26 @@ animDrawWindowGeometry(CompWindow * w);
 
 Bool
 getMousePointerXY(CompScreen * s, short *x, short *y);
+
+
+/* airplane3d.c */
+
+void
+fxAirplane3DInit (CompScreen *s,
+		  CompWindow *w);
+
+void
+fxAirplane3DLinearAnimStepPolygon (CompWindow * w,
+				   PolygonObject * p, 
+				   float forwardProgress);
+
+void 
+fxAirplane3DDrawCustomGeometry (CompScreen * s,
+				CompWindow * w);
+
+void 
+AirplaneExtraPolygonTransformationFunc (PolygonObject * p);
+
 
 /* beamup.c */
 
