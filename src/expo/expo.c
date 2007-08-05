@@ -859,10 +859,12 @@ expoDonePaintScreen (CompScreen * s)
 				s->y - es->selectedVY, TRUE);
 	    focusDefaultWindow (s->display);
 	}
+	es->vpUpdateMode = VPUpdateNone;
 	break;
     case VPUpdatePrevious:
 	moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
 	focusDefaultWindow (s->display);
+	es->vpUpdateMode = VPUpdateNone;
 	break;
     default:
 	break;
