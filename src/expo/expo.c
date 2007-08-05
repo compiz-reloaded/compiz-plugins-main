@@ -202,21 +202,18 @@ expoExpo (CompDisplay     *d,
 	if (otherScreenGrabExist (s, "expo", 0))
 	    return FALSE;
 
-	es->expoMode = !es->expoMode;
-
-	if (es->expoMode)
+	if (!es->expoMode)
 	{
 	    if (!es->grabIndex)
 		es->grabIndex = pushScreenGrab (s, None, "expo");
 
+	    es->expoMode = TRUE;
 	    es->anyClick = FALSE;
     	    es->dndState  = DnDNone;
     	    es->dndWindow = None;
 
-	    es->selectedVX = -1;
-	    es->selectedVY = -1;
-	    es->origVX = s->x;
-	    es->origVY = s->y;
+	    es->selectedVX = es->origVX = s->x;
+	    es->selectedVY = es->origVY = s->y;
 
 	    damageScreen (s);
 	}
@@ -241,9 +238,8 @@ expoFinishWindowMovement (CompWindow *w)
     syncWindowPosition (w);
     (*s->windowUngrabNotify) (w);
 
-    if (es->selectedVX >= 0 && es->selectedVY >= 0)
-	moveScreenViewport (s, s->x - es->selectedVX,
-			    s->y - es->selectedVY, TRUE);
+    moveScreenViewport (s, s->x - es->selectedVX,
+    			s->y - es->selectedVY, TRUE);
 
     /* update saved window attributes in case we moved the
        window to a new viewport */
@@ -782,9 +778,7 @@ expoDrawWindow (CompWindow           *w,
 		expoGetHideDocks (s->display))
 	    {
 		if (expoAnimation == ExpoAnimationZoom &&
-		    ((s->x == es->selectedVX && s->y == es->selectedVY) ||
-		     (s->x == es->origVX && s->y == es->origVY &&
-		      es->selectedVY < 0 && es->selectedVX < 0)))
+		    (s->x == es->selectedVX && s->y == es->selectedVY))
 		{
 		    fA.opacity = fragment->opacity *
 				 (1 - sigmoidProgress (es->expoCam));
@@ -793,9 +787,7 @@ expoDrawWindow (CompWindow           *w,
 		    fA.opacity = 0;
 	    }
 
-	    if ((s->x != es->selectedVX || s->y != es->selectedVY) &&
-		(s->x != es->origVX || s->y != es->origVX ||
-		 es->selectedVY >= 0 || es->selectedVX >= 0))
+	    if (s->x != es->selectedVX || s->y != es->selectedVY)
 	    {
 		fA.brightness = fragment->brightness * .75;
 	    }
@@ -853,12 +845,9 @@ expoDonePaintScreen (CompScreen * s)
 
     switch (es->vpUpdateMode) {
     case VPUpdateMouseOver:
-	if (es->selectedVX >= 0 && es->selectedVY >= 0)
-	{
-	    moveScreenViewport (s, s->x - es->selectedVX, 
-				s->y - es->selectedVY, TRUE);
-	    focusDefaultWindow (s->display);
-	}
+    	moveScreenViewport (s, s->x - es->selectedVX, 
+			    s->y - es->selectedVY, TRUE);
+	focusDefaultWindow (s->display);
 	es->vpUpdateMode = VPUpdateNone;
 	break;
     case VPUpdatePrevious:
@@ -1036,10 +1025,8 @@ expoInitScreen (CompPlugin *p,
     es->anyClick  = FALSE;
     es->vpUpdateMode = VPUpdateNone;
 
-    es->selectedVX = 0;
-    es->selectedVY = 0;
-    es->origVX = s->x;
-    es->origVY = s->y;
+    es->selectedVX = es->origVX = s->x;
+    es->selectedVY = es->origVY = s->y;
 
     es->grabIndex = 0;
 
