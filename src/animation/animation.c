@@ -1,4 +1,4 @@
-/*
+/**
  * Animation plugin for compiz/beryl
  *
  * animation.c
@@ -19,6 +19,9 @@
  * Hexagon tessellator added by : Mike Slegeir
  * E-mail                       : mikeslegeir@mail.utexas.edu>
  *
+ * Fold and Skewer added by   : Tomasz Kolodziejski
+ * E-mail                     : tkolodziejski@gmail.com
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -32,7 +35,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
+ **/
 
 /*
  * TODO:
@@ -97,6 +100,7 @@ static AnimEffect minimizeEffects[] = {
     AnimEffectDream,
     AnimEffectExplode3D,
     AnimEffectFade,
+    AnimEffectFold3D,
     AnimEffectGlide3D1,
     AnimEffectGlide3D2,
     AnimEffectHorizontalFolds,
@@ -104,6 +108,7 @@ static AnimEffect minimizeEffects[] = {
     AnimEffectMagicLamp,
     AnimEffectRazr3D,
     AnimEffectSidekick,
+    AnimEffectSkewer,
     AnimEffectZoom
 };
 
@@ -117,6 +122,7 @@ static AnimEffect closeEffects[] = {
     AnimEffectDream,
     AnimEffectExplode3D,
     AnimEffectFade,
+    AnimEffectFold3D,
     AnimEffectGlide3D1,
     AnimEffectGlide3D2,
     AnimEffectHorizontalFolds,
@@ -124,6 +130,7 @@ static AnimEffect closeEffects[] = {
     AnimEffectMagicLamp,
     AnimEffectRazr3D,
     AnimEffectSidekick,
+    AnimEffectSkewer,
     AnimEffectVacuum,
     AnimEffectWave,
     AnimEffectZoom
@@ -562,6 +569,10 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
     // AnimEffectFocusFade
     {fxFocusFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
      0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0},
+    // AnimEffectFold3D
+    {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
+    fxFold3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
+    fxFold3dAnimStepPolygon, 0, 0, 0},
     // AnimEffectGlide3D1
     {fxGlideUpdateWindowAttrib, fxGlidePrePaintWindow,
      fxGlidePostPaintWindow, fxGlideAnimStep,
@@ -596,6 +607,10 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
     {fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxSidekickInit,
      0, 0, 0, 1, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
      0},
+    // AnimEffectSkewer
+    {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
+    fxSkewerInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
+    fxSkewerAnimStepPolygon, 0, 0, 0},
     // AnimEffectVacuum
     {0, 0, 0, fxMagicLampModelStep, fxMagicLampInit,
      fxVacuumInitGrid, 0, 0, 0, 0, 0, 0, 0},
@@ -821,6 +836,9 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "fire_constant_speed", "bool", 0, 0, 0 },
     { "fire_smoke", "bool", 0, 0, 0 },
     { "fire_mystical", "bool", 0, 0, 0 },
+    { "fold_gridx", "int", "<min>1</min>", 0, 0 },
+    { "fold_gridy", "int", "<min>1</min>", 0, 0 },
+    { "fold_dir", "int", "<min>0</min>", 0, 0 },
     { "glide1_away_position", "float", 0, 0, 0 },
     { "glide1_away_angle", "float", 0, 0, 0 },
     { "glide1_thickness", "float", "<min>0</min>", 0, 0 },
@@ -842,6 +860,12 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "sidekick_num_rotations", "float", "<min>0</min>", 0, 0 },
     { "sidekick_springiness", "float", "<min>0</min><max>1</max>", 0, 0 },
     { "sidekick_zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },
+    { "skewer_gridx", "int", "<min>1</min>", 0, 0 },
+    { "skewer_gridy", "int", "<min>1</min>", 0, 0 },
+    { "skewer_thickness", "float", "<min>1</min>", 0, 0 },
+    { "skewer_direction", "int", "<min>0</min>", 0, 0 },
+    { "skewer_tessellation", "int", RESTOSTRING (0, LAST_POLYGON_TESS), 0, 0 },
+    { "skewer_rotation", "int", 0, 0, 0 },
     { "vacuum_moving_end", "bool", 0, 0, 0 },
     { "vacuum_grid_res", "int", "<min>4</min>", 0, 0 },
     { "vacuum_open_start_width", "int", "<min>0</min>", 0, 0 },

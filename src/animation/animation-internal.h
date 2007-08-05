@@ -291,6 +291,7 @@ typedef enum
     AnimEffectExplode3D,
     AnimEffectFade,
     AnimEffectFocusFade,
+    AnimEffectFold3D,
     AnimEffectGlide3D1,
     AnimEffectGlide3D2,
     AnimEffectHorizontalFolds,
@@ -299,6 +300,7 @@ typedef enum
     AnimEffectRazr3D,
     AnimEffectRollUp,
     AnimEffectSidekick,
+    AnimEffectSkewer,
     AnimEffectVacuum,
     AnimEffectWave,
     AnimEffectZoom,
@@ -314,13 +316,13 @@ typedef enum
    LAST_RANDOM_*_EFFECT always must be LAST_*_EFFECT - RANDOM_EFFECT_OFFSET
 */
 
-#define NUM_MINIMIZE_EFFECT 17
-#define LAST_MINIMIZE_EFFECT 16
-#define LAST_RANDOM_MINIMIZE_EFFECT 14
+#define NUM_MINIMIZE_EFFECT 19
+#define LAST_MINIMIZE_EFFECT 18
+#define LAST_RANDOM_MINIMIZE_EFFECT 16
 
-#define NUM_CLOSE_EFFECT 19
-#define LAST_CLOSE_EFFECT 18
-#define LAST_RANDOM_CLOSE_EFFECT 16
+#define NUM_CLOSE_EFFECT 21
+#define LAST_CLOSE_EFFECT 20
+#define LAST_RANDOM_CLOSE_EFFECT 18
 
 #define NUM_FOCUS_EFFECT 4
 #define LAST_FOCUS_EFFECT 3
@@ -429,6 +431,9 @@ typedef enum
     ANIM_SCREEN_OPTION_FIRE_CONSTANT_SPEED,
     ANIM_SCREEN_OPTION_FIRE_SMOKE,
     ANIM_SCREEN_OPTION_FIRE_MYSTICAL,
+    ANIM_SCREEN_OPTION_FOLD3D_GRIDSIZE_X,
+    ANIM_SCREEN_OPTION_FOLD3D_GRIDSIZE_Y,
+    ANIM_SCREEN_OPTION_FOLD3D_DIR,
     ANIM_SCREEN_OPTION_GLIDE1_AWAY_POS,
     ANIM_SCREEN_OPTION_GLIDE1_AWAY_ANGLE,
     ANIM_SCREEN_OPTION_GLIDE1_THICKNESS,
@@ -450,6 +455,12 @@ typedef enum
     ANIM_SCREEN_OPTION_SIDEKICK_NUM_ROTATIONS,
     ANIM_SCREEN_OPTION_SIDEKICK_SPRINGINESS,
     ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER,
+    ANIM_SCREEN_OPTION_SKEWER_GRIDSIZE_X,
+    ANIM_SCREEN_OPTION_SKEWER_GRIDSIZE_Y,
+    ANIM_SCREEN_OPTION_SKEWER_THICKNESS,
+    ANIM_SCREEN_OPTION_SKEWER_DIRECTION,
+    ANIM_SCREEN_OPTION_SKEWER_TESS,
+    ANIM_SCREEN_OPTION_SKEWER_ROTATION,
     ANIM_SCREEN_OPTION_VACUUM_MOVING_END,
     ANIM_SCREEN_OPTION_VACUUM_GRID_RES,
     ANIM_SCREEN_OPTION_VACUUM_OPEN_START_WIDTH,
@@ -832,6 +843,16 @@ fxFocusFadeUpdateWindowAttrib (AnimScreen *as,
 			       CompWindow * w,
 			       WindowPaintAttrib *wAttrib);
 
+/* fold3d.c */
+
+void
+fxFold3DInit (CompScreen * s, CompWindow * w);
+
+void
+fxFold3dAnimStepPolygon (CompWindow * w,
+			 PolygonObject * p,
+			 float forwardProgress);
+
 
 /* glide.c */
 
@@ -1035,6 +1056,16 @@ void fxRollUpInitGrid (AnimScreen *as,
 		       int *gridHeight);
  
 void fxRollUpAnimInit(CompScreen * s, CompWindow * w);
+
+/* skewer.c */
+
+void
+fxSkewerInit (CompScreen * s, CompWindow * w);
+
+void
+fxSkewerAnimStepPolygon (CompWindow * w,
+			 PolygonObject * p,
+			 float forwardProgress);
 
 /* wave.c */
  
