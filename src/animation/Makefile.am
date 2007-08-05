@@ -5,6 +5,7 @@ libanimation_la_LIBADD = @COMPIZ_LIBS@
 libanimation_la_SOURCES = animation.c \
 			  animation-internal.h \
 			  animation_tex.h \
+			  airplane3d.c \
 			  beamup.c \
 			  burn.c \
 			  curvedfold.c \
@@ -14,6 +15,7 @@ libanimation_la_SOURCES = animation.c \
 			  explode3d.c \
 			  fade.c \
 			  focusfade.c \
+			  fold3d.c \
 			  glide.c \
 			  horizontalfold.c \
 			  leafspread.c \
@@ -22,6 +24,7 @@ libanimation_la_SOURCES = animation.c \
 			  particle.c \
 			  polygon.c \
 			  rollup.c \
+			  skewer.c \
 			  wave.c \
 			  zoomside.c
 
