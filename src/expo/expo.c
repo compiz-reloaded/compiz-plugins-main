@@ -96,12 +96,11 @@ typedef struct _ExpoScreen
     
     int prevCursorX, prevCursorY;
     int newCursorX, newCursorY;
+
     int origVX;
     int origVY;
-    int rorigx;
-    int rorigy;
-    int mouseOverViewX;
-    int mouseOverViewY;
+    int selectedVX;
+    int selectedVY;
 
     VPUpdateMode vpUpdateMode;
 
@@ -137,13 +136,13 @@ expoMoveFocusViewport (CompScreen *s,
 {
     EXPO_SCREEN (s);
 
-    es->origVX += dx;
-    es->origVY += dy;
+    es->selectedVX += dx;
+    es->selectedVY += dy;
 
-    es->origVX = MIN (s->hsize - 1, es->origVX);
-    es->origVX = MAX (0, es->origVX);
-    es->origVY = MIN (s->vsize - 1, es->origVY);
-    es->origVY = MAX (0, es->origVY);
+    es->selectedVX = MIN (s->hsize - 1, es->selectedVX);
+    es->selectedVX = MAX (0, es->selectedVX);
+    es->selectedVY = MIN (s->vsize - 1, es->selectedVY);
+    es->selectedVY = MAX (0, es->selectedVY);
 
     damageScreen (s);
 }
@@ -215,10 +214,10 @@ expoExpo (CompDisplay     *d,
     	    es->dndState  = DnDNone;
     	    es->dndWindow = None;
 
-	    es->origVX = -1;
-	    es->origVY = -1;
-	    es->rorigx = s->x;
-	    es->rorigy = s->y;
+	    es->selectedVX = -1;
+	    es->selectedVY = -1;
+	    es->origVX = s->x;
+	    es->origVY = s->y;
 
 	    damageScreen (s);
 	}
@@ -308,9 +307,9 @@ expoHandleEvent (CompDisplay *d,
 		    syncWindowPosition (w);
 		    (*s->windowUngrabNotify) (w);
 
-		    if (es->origVX >= 0 && es->origVY >= 0)
-			moveScreenViewport (s, s->x - es->origVX,
-					    s->y - es->origVY, TRUE);
+		    if (es->selectedVX >= 0 && es->selectedVY >= 0)
+			moveScreenViewport (s, s->x - es->selectedVX,
+					    s->y - es->selectedVY, TRUE);
 
 		    /* update window attibutes to make sure a
 		       moved maximized window is properly snapped
@@ -637,16 +636,14 @@ expoPaintWall (CompScreen              *s,
 		if ((cursor[0] > 0) && (cursor[0] < s->width) &&
 	   	    (cursor[1] > 0) && (cursor[1] < s->height))
 		{
-	    	    es->mouseOverViewX = i;
-    		    es->mouseOverViewY = j;
 		    es->newCursorX = i * s->width + cursor[0];
 		    es->newCursorY = j * s->height + cursor[1];
 
 		    if (es->anyClick || es->dndState != DnDNone)
 		    {
 			/* Used to save last viewport interaction was in */
-		    	es->origVX = i;
-	    		es->origVY = j;
+		    	es->selectedVX = i;
+	    		es->selectedVY = j;
 			es->anyClick = FALSE;
 		    }
 		}
@@ -778,9 +775,9 @@ expoDrawWindow (CompWindow           *w,
 		expoGetHideDocks (s->display))
 	    {
 		if (expoAnimation == ExpoAnimationZoom &&
-		    ((s->x == es->origVX && s->y == es->origVY) ||
-		     (s->x == es->rorigx && s->y == es->rorigy &&
-		      es->origVY < 0 && es->origVX < 0)))
+		    ((s->x == es->selectedVX && s->y == es->selectedVY) ||
+		     (s->x == es->origVX && s->y == es->origVY &&
+		      es->selectedVY < 0 && es->selectedVX < 0)))
 		{
 		    fA.opacity = fragment->opacity *
 				 (1 - sigmoidProgress (es->expoCam));
@@ -789,9 +786,9 @@ expoDrawWindow (CompWindow           *w,
 		    fA.opacity = 0;
 	    }
 
-	    if ((s->x != es->origVX || s->y != es->origVY) &&
-		(s->x != es->rorigx || s->y != es->rorigy ||
-		 es->origVY >= 0 || es->origVX >= 0))
+	    if ((s->x != es->selectedVX || s->y != es->selectedVY) &&
+		(s->x != es->origVX || s->y != es->origVX ||
+		 es->selectedVY >= 0 || es->selectedVX >= 0))
 	    {
 		fA.brightness = fragment->brightness * .75;
 	    }
@@ -849,8 +846,9 @@ expoDonePaintScreen (CompScreen * s)
 
     switch (es->vpUpdateMode) {
     case VPUpdateMouseOver:
-	if (es->origVX >= 0 && es->origVY >= 0)
-	    moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
+	if (es->selectedVX >= 0 && es->selectedVY >= 0)
+	    moveScreenViewport (s, s->x - es->selectedVX, 
+				s->y - es->selectedVY, TRUE);
 	break;
     default:
 	break;
@@ -1016,11 +1014,10 @@ expoInitScreen (CompPlugin *p,
     es->leaveExpo = FALSE;
     es->vpUpdateMode = VPUpdateNone;
 
-    es->mouseOverViewX = 0;
-    es->mouseOverViewY = 0;
-
-    es->origVX = 0;
-    es->origVY = 0;
+    es->selectedVX = 0;
+    es->selectedVY = 0;
+    es->origVX = s->x;
+    es->origVY = s->y;
 
     es->grabIndex = 0;
 
