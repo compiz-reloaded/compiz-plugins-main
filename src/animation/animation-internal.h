@@ -517,8 +517,9 @@ typedef enum
     ANIM_SCREEN_OPTION_NUM
 } AnimScreenOptions;
 
-// This must have the value of the first "effect option" in AnimScreenOptions
-#define NUM_NONEFFECT_OPTIONS ANIM_SCREEN_OPTION_BEAMUP_SIZE
+// This must have the value of the first "effect setting" above
+// in AnimScreenOptions
+#define NUM_NONEFFECT_OPTIONS ANIM_SCREEN_OPTION_AIRPLANE_PATHLENGTH
 
 typedef struct _AnimScreen
 {
