@@ -105,7 +105,6 @@ typedef struct _ExpoScreen
     VPUpdateMode vpUpdateMode;
 
     Bool anyClick;
-    Bool leaveExpo;
 } ExpoScreen;
 
 typedef struct _xyz_tuple
@@ -233,6 +232,60 @@ expoExpo (CompDisplay     *d,
 }
 
 static void
+expoFinishWindowMovement (CompWindow *w)
+{
+    CompScreen *s = w->screen;
+
+    EXPO_SCREEN (s);
+
+    syncWindowPosition (w);
+    (*s->windowUngrabNotify) (w);
+
+    if (es->selectedVX >= 0 && es->selectedVY >= 0)
+	moveScreenViewport (s, s->x - es->selectedVX,
+			    s->y - es->selectedVY, TRUE);
+
+    /* update saved window attributes in case we moved the
+       window to a new viewport */
+    if (w->saveMask & CWX)
+    {
+	w->saveWc.x = w->saveWc.x % s->width;
+	if (w->saveWc.x < 0)
+	    w->saveWc.x += s->width;
+    }
+    if (w->saveMask & CWY)
+    {
+	w->saveWc.y = w->saveWc.y % s->height;
+	if (w->saveWc.y < 0)
+	    w->saveWc.y += s->height;
+    }
+
+    /* update window attibutes to make sure a
+       moved maximized window is properly snapped
+       to the work area */
+    if (w->state & MAXIMIZE_STATE)
+    {
+    	int lastOutput;
+	int centerX, centerY;
+
+	/* make sure we snap to the correct output */
+	lastOutput = s->currentOutputDev;
+	centerX = (WIN_X (w) + WIN_W (w) / 2) % s->width;
+	if (centerX < 0)
+	    centerX += s->width;
+	centerY = (WIN_Y (w) + WIN_H (w) / 2) % s->height;
+	if (centerY < 0)
+	    centerY += s->height;
+
+	s->currentOutputDev = outputDeviceForPoint (s, centerX, centerY);
+
+	updateWindowAttributes (w, CompStackingUpdateModeNone);
+
+	s->currentOutputDev = lastOutput;
+    }
+}
+
+static void
 expoHandleEvent (CompDisplay *d,
 		 XEvent      *event)
 {
@@ -298,52 +351,7 @@ expoHandleEvent (CompDisplay *d,
 	    if (es->dndState == DnDDuring || es->dndState == DnDStart)
 	    {
 		if (es->dndWindow)
-		{
-		    int lastOutput;
-		    int centerX, centerY;
-		    CompWindow *w = es->dndWindow;
-
-		    syncWindowPosition (w);
-		    (*s->windowUngrabNotify) (w);
-
-		    if (es->selectedVX >= 0 && es->selectedVY >= 0)
-			moveScreenViewport (s, s->x - es->selectedVX,
-					    s->y - es->selectedVY, TRUE);
-
-		    /* update window attibutes to make sure a
-		       moved maximized window is properly snapped
-		       to the work area */
-		    if (w->state & MAXIMIZE_STATE)
-		    {
-			if (w->saveMask & CWX)
-			{
-			    w->saveWc.x = w->saveWc.x % s->width;
-			    if (w->saveWc.x < 0)
-				w->saveWc.x += s->width;
-			}
-			if (w->saveMask & CWY)
-			{
-			    w->saveWc.y = w->saveWc.y % s->height;
-			    if (w->saveWc.y < 0)
-				w->saveWc.y += s->height;
-			}
-			/* make sure we snap to the right output */
-    			lastOutput = s->currentOutputDev;
-    			centerX = (WIN_X (w) + WIN_W (w) / 2) % s->width;
-    			if (centerX < 0)
-    			    centerX += s->width;
-    			centerY = (WIN_Y (w) + WIN_H (w) / 2) % s->height;
-    			if (centerY < 0)
-    			    centerY += s->height;
-
-			s->currentOutputDev = outputDeviceForPoint (s, centerX,
-			    					    centerY);
-
-			updateWindowAttributes (w, CompStackingUpdateModeNone);
-
-			s->currentOutputDev = lastOutput;
-		    }
-		}
+		    expoFinishWindowMovement (es->dndWindow);
 
 		es->dndState = DnDNone;
 		es->dndWindow = NULL;
@@ -846,22 +854,18 @@ expoDonePaintScreen (CompScreen * s)
     switch (es->vpUpdateMode) {
     case VPUpdateMouseOver:
 	if (es->selectedVX >= 0 && es->selectedVY >= 0)
+	{
 	    moveScreenViewport (s, s->x - es->selectedVX, 
 				s->y - es->selectedVY, TRUE);
+	    focusDefaultWindow (s->display);
+	}
 	break;
     case VPUpdatePrevious:
 	moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
+	focusDefaultWindow (s->display);
 	break;
     default:
 	break;
-    }
-
-    if (es->expoMode && es->leaveExpo)
-    {
-	focusDefaultWindow (s->display);
-
-	es->expoMode = FALSE;
-	es->leaveExpo = FALSE;
     }
 
     if ((es->expoCam > 0.0f && es->expoCam < 1.0f) || es->dndState != DnDNone)
@@ -877,81 +881,96 @@ expoDonePaintScreen (CompScreen * s)
     (*s->donePaintScreen) (s);
     WRAP (es, s, donePaintScreen, expoDonePaintScreen);
 
-    if (es->dndState == DnDDuring)
-    {
-	int dx = es->newCursorX - es->prevCursorX;
-	int dy = es->newCursorY - es->prevCursorY;
-
-	if (es->dndWindow)
-	    moveWindow (es->dndWindow, dx, dy, TRUE,
-			expoGetExpoImmediateMove (s->display));
-
-	es->prevCursorX = es->newCursorX;
-	es->prevCursorY = es->newCursorY;
-
-	damageScreen (s);
-    }
-
-    if (es->dndState != DnDStart)
-	return;
-
-    int origView  = s->x;
-    int origViewY = s->y;
-
-    // needs to be moved into handle event
-    moveScreenViewport (s, s->x, s->y, FALSE);
-
-    CompWindow *w;
-
-    for (w = s->reverseWindows; w; w = w->prev)
-    {
-	if (w->destroyed)
-	    continue;
-
-	if (!w->shaded)
+    switch (es->dndState) {
+    case DnDDuring:
 	{
-	    if (w->attrib.map_state != IsViewable || !w->damaged)
-		continue;
-	}
+	    int dx = es->newCursorX - es->prevCursorX;
+	    int dy = es->newCursorY - es->prevCursorY;
 
-	if (w->type & CompWindowTypeNormalMask)
+	    if (es->dndWindow)
+		moveWindow (es->dndWindow, dx, dy, TRUE,
+			    expoGetExpoImmediateMove (s->display));
+
+	    es->prevCursorX = es->newCursorX;
+	    es->prevCursorY = es->newCursorY;
+
+	    damageScreen (s);
+	}
+	break;
+
+    case DnDStart:
 	{
-	    if ((es->newCursorX < WIN_X (w) ||
-		es->newCursorX > WIN_X (w) + WIN_W (w) ) &&
-		(es->newCursorX < WIN_X (w) + (s->hsize * s->width) ||
-		es->newCursorX > WIN_X (w) + WIN_W (w) + (s->hsize * s->width)))
-		continue;
+	    int        origView  = s->x;
+	    int        origViewY = s->y;
+	    CompWindow *w;
 
-	    if ((es->newCursorY < WIN_Y (w) ||
-		es->newCursorY > WIN_Y (w) + WIN_H (w) ) &&
-		(es->newCursorY < WIN_Y (w) + (s->vsize * s->height) ||
-		es->newCursorY > WIN_Y (w) + WIN_H (w) +
-		(s->vsize * s->height)))
-		continue;
+	    moveScreenViewport (s, s->x, s->y, FALSE);
 
-	    es->dndState  = DnDDuring;
-	    es->dndWindow = w;
+	    for (w = s->reverseWindows; w; w = w->prev)
+	    {
+		if (w->destroyed)
+		    continue;
 
-	    (*s->windowGrabNotify) (w, es->newCursorX, es->newCursorY,
-				    0, CompWindowGrabMoveMask |
-				    CompWindowGrabButtonMask);
-	    break;
+		if (!w->shaded)
+		{
+		    if (w->attrib.map_state != IsViewable || !w->damaged)
+			continue;
+		}
+
+		if (w->type & CompWindowTypeNormalMask)
+		{
+		    Bool inWindow;
+
+		    inWindow = (es->newCursorX >= WIN_X (w)) &&
+			       (es->newCursorX <= WIN_X (w) + WIN_W (w)) &&
+			       (es->newCursorY >= WIN_Y (w)) &&
+			       (es->newCursorY <= WIN_Y (w) + WIN_H (w));
+
+		    if (!inWindow)
+		    {
+			int xOffset = s->hsize * s->width;
+			int yOffset = s->vsize * s->height;
+
+			inWindow = (es->newCursorX >= (WIN_X (w) + xOffset));
+			inWindow &= (es->newCursorX <= (WIN_X (w) + WIN_W (w) + 
+							xOffset));
+			inWindow &= (es->newCursorY >= (WIN_Y (w) + yOffset));
+			inWindow &= (es->newCursorY <= (WIN_Y (w) + WIN_H (w) +
+							yOffset));
+		    }
+
+		    if (!inWindow)
+			continue;
+
+		    es->dndState  = DnDDuring;
+		    es->dndWindow = w;
+
+		    (*s->windowGrabNotify) (w, es->newCursorX, es->newCursorY,
+					    0, CompWindowGrabMoveMask |
+					    CompWindowGrabButtonMask);
+		    break;
+		}
+	    }
+	    if (w)
+	    {
+		raiseWindow (es->dndWindow);
+		moveInputFocusToWindow (es->dndWindow);
+	    }
+	    else
+	    {
+		/* no window was hovered */
+		es->dndState = DnDNone;
+	    }
+    
+	    moveScreenViewport (s, -origView, -origViewY, FALSE);
+
+	    es->prevCursorX = es->newCursorX;
+	    es->prevCursorY = es->newCursorY;
 	}
+	break;
+    default:
+	break;
     }
-
-    if (es->dndWindow)
-    {
-	raiseWindow (es->dndWindow);
-	moveInputFocusToWindow (es->dndWindow);
-    }
-
-    moveScreenViewport (s, -origView, -origViewY, FALSE);
-
-    if (es->dndState == DnDStart)	// No window is hovered
-	es->dndState = DnDNone;
-
-    es->prevCursorX = es->newCursorX;
-    es->prevCursorY = es->newCursorY;
 }
 
 static Bool
@@ -1013,7 +1032,6 @@ expoInitScreen (CompPlugin *p,
 	return FALSE;
 
     es->anyClick  = FALSE;
-    es->leaveExpo = FALSE;
     es->vpUpdateMode = VPUpdateNone;
 
     es->selectedVX = 0;
