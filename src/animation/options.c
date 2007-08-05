@@ -313,7 +313,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 	    break;
 	case 5:
 	    compLogMessage (s->display, "animation", CompLogLevelError,
-			    "Option \"%s\" cannot be changed like this.",
+			    "Option \"%s\" cannot be changed in option strings.",
 			    nameTrimmed);
 	    break;
 	case 6:

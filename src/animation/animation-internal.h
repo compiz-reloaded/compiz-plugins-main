@@ -52,6 +52,48 @@ typedef struct _xyz_tuple
     float x, y, z;
 } Point3d, Vector3d;
 
+typedef struct _AirplaneEffectParameters
+{
+    /// added for airplane folding and flying
+    // airplane fold phase.
+
+    Vector3d rotAxisA;			// Rotation axis vector A
+    Vector3d rotAxisB;			// Rotation axis vector B
+
+    Point3d rotAxisOffsetA;		// Rotation axis translate amount A 
+    Point3d rotAxisOffsetB; 	        // Rotation axis translate amount B
+
+    float rotAngleA;			// Rotation angle A
+    float finalRotAngA;			// Final rotation angle A
+
+    float rotAngleB;			// Rotation angle B
+    float finalRotAngB;			// Final rotation angle B
+
+    // airplane fly phase:
+
+    Vector3d centerPosFly;	// center position (offset) during the flying phases
+
+    Vector3d flyRotation;	// airplane rotation during the flying phases
+    Vector3d flyFinalRotation;	// airplane rotation during the flying phases 
+
+    float flyScale;             // Scale for airplane flying effect 
+    float flyFinalScale;        // Final Scale for airplane flying effect 
+  
+    float flyTheta;		// Theta parameter for fly rotations and positions
+
+    float moveStartTime2;		// Movement starts at this time ([0-1] range)
+    float moveDuration2;		// Movement lasts this long     ([0-1] range)
+
+    float moveStartTime3;		// Movement starts at this time ([0-1] range)
+    float moveDuration3;		// Movement lasts this long     ([0-1] range)
+
+    float moveStartTime4;		// Movement starts at this time ([0-1] range)
+    float moveDuration4;		// Movement lasts this long     ([0-1] range)
+
+    float moveStartTime5;	        // Movement starts at this time ([0-1] range)
+    float moveDuration5;		// Movement lasts this long     ([0-1] range)
+} AirplaneEffectParameters;
+
 // This is intended to be a closed 3D piece of a window with convex polygon
 // faces and quad-strip sides. Since decoration texture is separate from
 // the window texture, it is more complicated than it would be with a single
@@ -282,6 +324,7 @@ typedef enum
 {
     AnimEffectNone = 0,
     AnimEffectRandom,
+    AnimEffectAirplane3D,
     AnimEffectBeamUp,
     AnimEffectBurn,
     AnimEffectCurvedFold,
@@ -291,6 +334,7 @@ typedef enum
     AnimEffectExplode3D,
     AnimEffectFade,
     AnimEffectFocusFade,
+    AnimEffectFold3D,
     AnimEffectGlide3D1,
     AnimEffectGlide3D2,
     AnimEffectHorizontalFolds,
@@ -299,6 +343,7 @@ typedef enum
     AnimEffectRazr3D,
     AnimEffectRollUp,
     AnimEffectSidekick,
+    AnimEffectSkewer,
     AnimEffectVacuum,
     AnimEffectWave,
     AnimEffectZoom,
@@ -314,13 +359,13 @@ typedef enum
    LAST_RANDOM_*_EFFECT always must be LAST_*_EFFECT - RANDOM_EFFECT_OFFSET
 */
 
-#define NUM_MINIMIZE_EFFECT 17
-#define LAST_MINIMIZE_EFFECT 16
-#define LAST_RANDOM_MINIMIZE_EFFECT 14
+#define NUM_MINIMIZE_EFFECT 20
+#define LAST_MINIMIZE_EFFECT 19
+#define LAST_RANDOM_MINIMIZE_EFFECT 17
 
-#define NUM_CLOSE_EFFECT 19
-#define LAST_CLOSE_EFFECT 18
-#define LAST_RANDOM_CLOSE_EFFECT 16
+#define NUM_CLOSE_EFFECT 22
+#define LAST_CLOSE_EFFECT 21
+#define LAST_RANDOM_CLOSE_EFFECT 19
 
 #define NUM_FOCUS_EFFECT 4
 #define LAST_FOCUS_EFFECT 3
@@ -405,6 +450,8 @@ typedef enum
     ANIM_SCREEN_OPTION_TIME_STEP,
     ANIM_SCREEN_OPTION_TIME_STEP_INTENSE,
     // Effect settings
+    ANIM_SCREEN_OPTION_AIRPLANE_PATHLENGTH,
+    ANIM_SCREEN_OPTION_AIRPLANE_FLY2TOM,
     ANIM_SCREEN_OPTION_BEAMUP_SIZE,
     ANIM_SCREEN_OPTION_BEAMUP_SPACING,
     ANIM_SCREEN_OPTION_BEAMUP_COLOR,
@@ -429,6 +476,9 @@ typedef enum
     ANIM_SCREEN_OPTION_FIRE_CONSTANT_SPEED,
     ANIM_SCREEN_OPTION_FIRE_SMOKE,
     ANIM_SCREEN_OPTION_FIRE_MYSTICAL,
+    ANIM_SCREEN_OPTION_FOLD3D_GRIDSIZE_X,
+    ANIM_SCREEN_OPTION_FOLD3D_GRIDSIZE_Y,
+    ANIM_SCREEN_OPTION_FOLD3D_DIR,
     ANIM_SCREEN_OPTION_GLIDE1_AWAY_POS,
     ANIM_SCREEN_OPTION_GLIDE1_AWAY_ANGLE,
     ANIM_SCREEN_OPTION_GLIDE1_THICKNESS,
@@ -450,6 +500,12 @@ typedef enum
     ANIM_SCREEN_OPTION_SIDEKICK_NUM_ROTATIONS,
     ANIM_SCREEN_OPTION_SIDEKICK_SPRINGINESS,
     ANIM_SCREEN_OPTION_SIDEKICK_ZOOM_FROM_CENTER,
+    ANIM_SCREEN_OPTION_SKEWER_GRIDSIZE_X,
+    ANIM_SCREEN_OPTION_SKEWER_GRIDSIZE_Y,
+    ANIM_SCREEN_OPTION_SKEWER_THICKNESS,
+    ANIM_SCREEN_OPTION_SKEWER_DIRECTION,
+    ANIM_SCREEN_OPTION_SKEWER_TESS,
+    ANIM_SCREEN_OPTION_SKEWER_ROTATION,
     ANIM_SCREEN_OPTION_VACUUM_MOVING_END,
     ANIM_SCREEN_OPTION_VACUUM_GRID_RES,
     ANIM_SCREEN_OPTION_VACUUM_OPEN_START_WIDTH,
@@ -461,8 +517,9 @@ typedef enum
     ANIM_SCREEN_OPTION_NUM
 } AnimScreenOptions;
 
-// This must have the value of the first "effect option" in AnimScreenOptions
-#define NUM_NONEFFECT_OPTIONS ANIM_SCREEN_OPTION_BEAMUP_SIZE
+// This must have the value of the first "effect setting" above
+// in AnimScreenOptions
+#define NUM_NONEFFECT_OPTIONS ANIM_SCREEN_OPTION_AIRPLANE_PATHLENGTH
 
 typedef struct _AnimScreen
 {
@@ -595,6 +652,10 @@ typedef struct _AnimWindow
     CompWindow *dodgeChainNext;	// for dodging windows
     Bool skipPostPrepareScreen;
     Bool drawnOnHostSkip;
+ 
+    // for airplane
+    float airplanePathLength;
+    Bool airplaneFly2TaskBar;
 } AnimWindow;
 
 typedef struct _AnimEffectProperties
@@ -730,6 +791,26 @@ animDrawWindowGeometry(CompWindow * w);
 Bool
 getMousePointerXY(CompScreen * s, short *x, short *y);
 
+
+/* airplane3d.c */
+
+void
+fxAirplane3DInit (CompScreen *s,
+		  CompWindow *w);
+
+void
+fxAirplane3DLinearAnimStepPolygon (CompWindow * w,
+				   PolygonObject * p, 
+				   float forwardProgress);
+
+void 
+fxAirplane3DDrawCustomGeometry (CompScreen * s,
+				CompWindow * w);
+
+void 
+AirplaneExtraPolygonTransformationFunc (PolygonObject * p);
+
+
 /* beamup.c */
 
 void
@@ -831,6 +912,16 @@ void
 fxFocusFadeUpdateWindowAttrib (AnimScreen *as,
 			       CompWindow * w,
 			       WindowPaintAttrib *wAttrib);
+
+/* fold3d.c */
+
+void
+fxFold3DInit (CompScreen * s, CompWindow * w);
+
+void
+fxFold3dAnimStepPolygon (CompWindow * w,
+			 PolygonObject * p,
+			 float forwardProgress);
 
 
 /* glide.c */
@@ -1035,6 +1126,16 @@ void fxRollUpInitGrid (AnimScreen *as,
 		       int *gridHeight);
  
 void fxRollUpAnimInit(CompScreen * s, CompWindow * w);
+
+/* skewer.c */
+
+void
+fxSkewerInit (CompScreen * s, CompWindow * w);
+
+void
+fxSkewerAnimStepPolygon (CompWindow * w,
+			 PolygonObject * p,
+			 float forwardProgress);
 
 /* wave.c */
  

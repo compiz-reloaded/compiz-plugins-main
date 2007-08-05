@@ -152,7 +152,7 @@
 					<option name="put_center" type="action">
 						<_short>Put Center</_short>
 						<_long>Move window to the center</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_Begin</key>
 						</default>
@@ -160,7 +160,7 @@
 					<option name="put_left" type="action">
 						<_short>Put Left</_short>
 						<_long>Move window to the left edge</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_Left</key>
 						</default>
@@ -168,7 +168,7 @@
 					<option name="put_right" type="action">
 						<_short>Put Right</_short>
 						<_long>Move window to the right edge</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_Right</key>
 						</default>
@@ -176,7 +176,7 @@
 					<option name="put_top" type="action">
 						<_short>Put Top</_short>
 						<_long>Move window to the top edge</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_Up</key>
 						</default>
@@ -184,7 +184,7 @@
 					<option name="put_bottom" type="action">
 						<_short>Put Bottom</_short>
 						<_long>Move window to the bottom edge</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_Down</key>
 						</default>
@@ -192,7 +192,7 @@
 					<option name="put_topleft" type="action">
 						<_short>Put Top Left</_short>
 						<_long>Move window to the top left corner</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_Home</key>
 						</default>
@@ -200,7 +200,7 @@
 					<option name="put_topright" type="action">
 						<_short>Put Top Right</_short>
 						<_long>Move window to the top right corner</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_Prior</key>
 						</default>
@@ -208,7 +208,7 @@
 					<option name="put_bottomleft" type="action">
 						<_short>Put Bottom Left</_short>
 						<_long>Move window to the bottom left corner</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_End</key>
 						</default>
@@ -216,7 +216,7 @@
 					<option name="put_bottomright" type="action">
 						<_short>Put Bottom Right</_short>
 						<_long>Move window to the bottom right corner</_long>
-						<allowed key="true"/>
+						<allowed key="true" button="true"/>
 						<default>
 							<key>&lt;Super&gt;KP_Next</key>
 						</default>
@@ -225,7 +225,7 @@
 				<option name="put_restore" type="action">
 					<_short>Restore Position</_short>
 					<_long>Move window to the last position</_long>
-					<allowed key="true"/>
+					<allowed key="true" button="true"/>
 					<default>
 						<key>&lt;Super&gt;KP_Insert</key>
 					</default>
@@ -233,7 +233,7 @@
 				<option name="put_pointer" type="action">
 					<_short>Put Pointer</_short>
 					<_long>Move window to the pointer position</_long>
-					<allowed key="true"/>
+					<allowed key="true" button="true"/>
 					<default>
 						<key>&lt;Super&gt;z</key>
 					</default>
@@ -259,21 +259,21 @@
 						<max>500</max>
 					</option>
 					<option name="pad_right" type="int">
-						<_short>Pad Left</_short>
+						<_short>Pad Right</_short>
 						<_long>Number of pixels from the right edge where the window will come to rest</_long>
 						<default>0</default>
 						<min>0</min>
 						<max>500</max>
 					</option>
 					<option name="pad_top" type="int">
-						<_short>Pad Left</_short>
+						<_short>Pad Top</_short>
 						<_long>Number of pixels from the top edge where the window will come to rest</_long>
 						<default>0</default>
 						<min>0</min>
 						<max>500</max>
 					</option>
 					<option name="pad_bottom" type="int">
-						<_short>Pad Left</_short>
+						<_short>Pad Bottom</_short>
 						<_long>Number of pixels from the bottom edge where the window will come to rest</_long>
 						<default>0</default>
 						<min>0</min>
