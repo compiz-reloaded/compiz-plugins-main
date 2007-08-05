@@ -156,9 +156,6 @@ expoTermExpo (CompDisplay     *d,
 {
     CompScreen *s;
 
-    if (!(state & CompActionStateCancel))
-	return FALSE;
-
     for (s = d->screens; s; s = s->next)
     {
 	EXPO_SCREEN (s);
@@ -171,7 +168,10 @@ expoTermExpo (CompDisplay     *d,
 	if (es->dndWindow)
 	    syncWindowPosition (es->dndWindow);
 
-	es->vpUpdateMode = VPUpdateMouseOver;
+	if (state & CompActionStateCancel)
+	    es->vpUpdateMode = VPUpdatePrevious;
+	else
+	    es->vpUpdateMode = VPUpdateMouseOver;
 
 	es->dndState  = DnDNone;
 	es->dndWindow = 0;
@@ -223,8 +223,7 @@ expoExpo (CompDisplay     *d,
 	}
 	else
 	{
-	    expoTermExpo (d, action, state | CompActionStateCancel,
-			  option, nOption);
+	    expoTermExpo (d, action, state, option, nOption);
 	}
 
 	return TRUE;
@@ -283,7 +282,7 @@ expoHandleEvent (CompDisplay *d,
 		    CompAction *action;
 			
 		    action = expoGetExpo (d);
-		    expoTermExpo (d, action, CompActionStateCancel, NULL, 0);
+		    expoTermExpo (d, action, 0, NULL, 0);
 		}
 	    }
 	}
@@ -849,6 +848,9 @@ expoDonePaintScreen (CompScreen * s)
 	if (es->selectedVX >= 0 && es->selectedVY >= 0)
 	    moveScreenViewport (s, s->x - es->selectedVX, 
 				s->y - es->selectedVY, TRUE);
+	break;
+    case VPUpdatePrevious:
+	moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
 	break;
     default:
 	break;
