@@ -951,24 +951,20 @@ expoDonePaintScreen (CompScreen * s)
 		if (w->type & CompWindowTypeNormalMask)
 		{
 		    Bool inWindow;
+		    int xOffset = s->hsize * s->width;
+		    int yOffset = s->vsize * s->height;
 
-		    inWindow = (es->newCursorX >= WIN_X (w)) &&
-			       (es->newCursorX <= WIN_X (w) + WIN_W (w)) &&
-			       (es->newCursorY >= WIN_Y (w)) &&
-			       (es->newCursorY <= WIN_Y (w) + WIN_H (w));
+		    inWindow = ((es->newCursorX >= WIN_X (w)) &&
+				(es->newCursorX <= WIN_X (w) + WIN_W (w))) ||
+			       ((es->newCursorX >= (WIN_X (w) + xOffset)) &&
+				(es->newCursorX <= (WIN_X (w) + WIN_W (w) +
+						    xOffset)));
 
-		    if (!inWindow)
-		    {
-			int xOffset = s->hsize * s->width;
-			int yOffset = s->vsize * s->height;
-
-			inWindow = (es->newCursorX >= (WIN_X (w) + xOffset));
-			inWindow &= (es->newCursorX <= (WIN_X (w) + WIN_W (w) + 
-							xOffset));
-			inWindow &= (es->newCursorY >= (WIN_Y (w) + yOffset));
-			inWindow &= (es->newCursorY <= (WIN_Y (w) + WIN_H (w) +
-							yOffset));
-		    }
+		    inWindow &= ((es->newCursorY >= WIN_Y (w)) &&
+				 (es->newCursorY <= WIN_Y (w) + WIN_H (w))) ||
+			        ((es->newCursorY >= (WIN_Y (w) + yOffset)) &&
+				 (es->newCursorY <= (WIN_Y (w) + WIN_H (w) +
+			     			     yOffset)));
 
 		    if (!inWindow)
 			continue;
