@@ -939,6 +939,9 @@ expoDonePaintScreen (CompScreen * s)
 
 	    for (w = s->reverseWindows; w; w = w->prev)
 	    {
+		Bool inWindow;
+		int xOffset, yOffset;
+
 		if (w->destroyed)
 		    continue;
 
@@ -948,36 +951,36 @@ expoDonePaintScreen (CompScreen * s)
 			continue;
 		}
 
-		if (w->type & CompWindowTypeNormalMask)
-		{
-		    Bool inWindow;
-		    int xOffset = s->hsize * s->width;
-		    int yOffset = s->vsize * s->height;
+		if (!(w->type & CompWindowTypeNormalMask))
+		    continue;
 
-		    inWindow = ((es->newCursorX >= WIN_X (w)) &&
-				(es->newCursorX <= WIN_X (w) + WIN_W (w))) ||
-			       ((es->newCursorX >= (WIN_X (w) + xOffset)) &&
-				(es->newCursorX <= (WIN_X (w) + WIN_W (w) +
-						    xOffset)));
+		xOffset = s->hsize * s->width;
+		yOffset = s->vsize * s->height;
 
-		    inWindow &= ((es->newCursorY >= WIN_Y (w)) &&
-				 (es->newCursorY <= WIN_Y (w) + WIN_H (w))) ||
-			        ((es->newCursorY >= (WIN_Y (w) + yOffset)) &&
-				 (es->newCursorY <= (WIN_Y (w) + WIN_H (w) +
-			     			     yOffset)));
+		inWindow = ((es->newCursorX >= WIN_X (w)) &&
+			    (es->newCursorX <= WIN_X (w) + WIN_W (w))) ||
+		           ((es->newCursorX >= (WIN_X (w) + xOffset)) &&
+			    (es->newCursorX <= (WIN_X (w) + WIN_W (w) +
+						xOffset)));
 
-		    if (!inWindow)
-			continue;
+		inWindow &= ((es->newCursorY >= WIN_Y (w)) &&
+			     (es->newCursorY <= WIN_Y (w) + WIN_H (w))) ||
+		            ((es->newCursorY >= (WIN_Y (w) + yOffset)) &&
+		    	     (es->newCursorY <= (WIN_Y (w) + WIN_H (w) +
+						 yOffset)));
 
-		    es->dndState  = DnDDuring;
-		    es->dndWindow = w;
+		if (!inWindow)
+		    continue;
 
-		    (*s->windowGrabNotify) (w, es->newCursorX, es->newCursorY,
-					    0, CompWindowGrabMoveMask |
-					    CompWindowGrabButtonMask);
-		    break;
-		}
+		es->dndState  = DnDDuring;
+		es->dndWindow = w;
+
+		(*s->windowGrabNotify) (w, es->newCursorX, es->newCursorY,
+					0, CompWindowGrabMoveMask |
+					CompWindowGrabButtonMask);
+		break;
 	    }
+
 	    if (w)
 	    {
 		raiseWindow (es->dndWindow);
