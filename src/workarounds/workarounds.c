@@ -86,42 +86,11 @@ workaroundsGetWindowRoleAtom (CompWindow *w)
 }
 
 static void
-workaroundsDoLegacyFullscreen (CompWindow *w)
-{
-    unsigned int type;
-
-    type = w->type;
-
-    /* Some code to make Wine and legacy applications work. */
-    if (w->width == w->screen->width && w->height == w->screen->height &&
-        !(type & CompWindowTypeDesktopMask))
-            type = CompWindowTypeFullscreenMask;
-
-    w->type = type;
-}
-
-static void
-workaroundsWindowResizeNotify (CompWindow *w, int dx, int dy,
-                               int dwidth, int dheight)
-{
-    WORKAROUNDS_SCREEN (w->screen);
-
-    if (workaroundsGetLegacyFullscreen (w->screen->display))
-    {
-        /* Fix up the window type. */
-        recalcWindowType (w);
-        workaroundsDoLegacyFullscreen (w);
-    }
-
-    UNWRAP (ws, w->screen, windowResizeNotify);
-    (*w->screen->windowResizeNotify) (w, dx, dy, dwidth, dheight);
-    WRAP (ws, w->screen, windowResizeNotify, workaroundsWindowResizeNotify);
-}
-
-static Bool
-workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
+workaroundsDoFixes (CompWindow *w)
 {
     Bool appliedFix = FALSE;
+
+    w->wmType = getWindowType (w->screen->display, w->id);
 
     /* FIXME: Is this the best way to detect a notification type window? */
     if (workaroundsGetNotificationDaemonFix (w->screen->display) && w->resName)
@@ -130,8 +99,8 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
             w->attrib.override_redirect &&
             strcmp (w->resName, "notification-daemon") == 0)
         {
-             w->wmType = CompWindowTypeNotificationMask;
-             appliedFix = TRUE;
+            w->wmType = CompWindowTypeNotificationMask;
+            appliedFix = TRUE;
         }
     }
 
@@ -201,9 +170,28 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
     recalcWindowType (w);
 
     if (workaroundsGetLegacyFullscreen (w->screen->display))
-        workaroundsDoLegacyFullscreen (w);
+    {
+        /* Some code to make Wine and legacy applications work. */
+        if (w->width == w->screen->width && w->height == w->screen->height &&
+            !(w->type & CompWindowTypeDesktopMask))
+                w->type = CompWindowTypeFullscreenMask;
+    }
+}
 
-    return TRUE;
+static void
+workaroundsWindowResizeNotify (CompWindow *w, int dx, int dy,
+                               int dwidth, int dheight)
+{
+    WORKAROUNDS_SCREEN (w->screen);
+
+    if (workaroundsGetLegacyFullscreen (w->screen->display))
+    {
+        workaroundsDoFixes (w);
+    }
+
+    UNWRAP (ws, w->screen, windowResizeNotify);
+    (*w->screen->windowResizeNotify) (w, dx, dy, dwidth, dheight);
+    WRAP (ws, w->screen, windowResizeNotify, workaroundsWindowResizeNotify);
 }
 
 static Bool
@@ -265,6 +253,14 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
     UNWRAP (ws, s, windowResizeNotify);
 
     free (ws);
+}
+
+static Bool
+workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
+{
+    workaroundsDoFixes (w);
+
+    return TRUE;
 }
 
 static void
