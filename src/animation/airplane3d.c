@@ -883,10 +883,16 @@ fxAirplane3DLinearAnimStepPolygon (CompWindow * w,
 	    aw->curWindowEvent == WindowEventClose)
 	{
 	    // flying path ends at icon/pointer
+
+	    int sign = 1;
+	    if (aw->curWindowEvent == WindowEventUnminimize ||
+		aw->curWindowEvent == WindowEventOpen)
+		sign = -1;
+
 	    icondiffx =
 		(((aw->icon.x + aw->icon.width / 2)
 		  - (p->centerPosStart.x +
-		     w->screen->width * .4 *
+		     sign * w->screen->width * .4 *
 		     sin (2 * -M_PI_2 * airplanePathLength))) *
 		 moveProgress5);
 	    aep->centerPosFly.y =
