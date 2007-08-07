@@ -123,9 +123,6 @@ workaroundsUpdateSticky (CompWindow *w)
 	matchEval (workaroundsGetAlldesktopStickyMatch (d), w))
 	makeSticky = TRUE;
 
-    if (matchEval (workaroundsGetStickyMatch (d), w))
-	makeSticky = TRUE;
-
     if (makeSticky)
     {
 	if (!(w->state & CompWindowStateStickyMask))
@@ -304,7 +301,6 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
     workaroundsSetStickyAlldesktopsNotify (d, workaroundsDisplayOptionChanged);
     workaroundsSetAlldesktopStickyMatchNotify (d,
 					       workaroundsDisplayOptionChanged);
-    workaroundsSetStickyMatchNotify (d, workaroundsDisplayOptionChanged);
 
     d->privates[displayPrivateIndex].ptr = wd;
 
