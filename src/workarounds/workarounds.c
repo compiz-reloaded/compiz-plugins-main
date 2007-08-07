@@ -1,6 +1,8 @@
 /*
  * Copyright (C) 2007 Andrew Riedi <andrewriedi@gmail.com>
  *
+ * Sticky window handling by Dennis Kasprzyk <onestone@opencompositing.org>
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -30,12 +32,20 @@ static int displayPrivateIndex;
 typedef struct _WorkaroundsDisplay {
     int screenPrivateIndex;
 
+    HandleEventProc handleEvent;
+
     Atom roleAtom;
 } WorkaroundsDisplay;
 
 typedef struct _WorkaroundsScreen {
+    int windowPrivateIndex;
+
     WindowResizeNotifyProc  windowResizeNotify;
 } WorkaroundsScreen;
+
+typedef struct _WorkaroundsWindow {
+    Bool madeSticky;
+} WorkaroundsWindow;
 
 #define GET_WORKAROUNDS_DISPLAY(d) \
     ((WorkaroundsDisplay *) (d)->privates[displayPrivateIndex].ptr)
@@ -50,6 +60,12 @@ typedef struct _WorkaroundsScreen {
     WorkaroundsScreen *ws = GET_WORKAROUNDS_SCREEN (s, \
                             GET_WORKAROUNDS_DISPLAY (s->display))
 
+#define GET_WORKAROUNDS_WINDOW(w, ns) \
+    ((WorkaroundsWindow *) (w)->privates[(ns)->windowPrivateIndex].ptr)
+#define WORKAROUNDS_WINDOW(w) \
+    WorkaroundsWindow *ww = GET_WORKAROUNDS_WINDOW  (w, \
+		    GET_WORKAROUNDS_SCREEN  (w->screen, \
+		    GET_WORKAROUNDS_DISPLAY (w->screen->display)))
 
 static char *
 workaroundsGetWindowRoleAtom (CompWindow *w)
@@ -83,6 +99,44 @@ workaroundsGetWindowRoleAtom (CompWindow *w)
     XFree (str);
 
     return retval;
+}
+
+static void
+workaroundsRemoveSticky (CompWindow *w)
+{
+    WORKAROUNDS_WINDOW (w);
+
+    if (w->state & CompWindowStateStickyMask && ww->madeSticky)
+	changeWindowState (w, w->state & ~CompWindowStateStickyMask);
+    ww->madeSticky = FALSE;
+}
+
+static void
+workaroundsUpdateSticky (CompWindow *w)
+{
+    WORKAROUNDS_WINDOW (w);
+
+    CompDisplay *d  = w->screen->display;
+    Bool makeSticky = FALSE;
+
+    if (workaroundsGetStickyAlldesktops (d) && w->desktop == 0xffffffff &&
+	matchEval (workaroundsGetAlldesktopStickyMatch (d), w))
+	makeSticky = TRUE;
+
+    if (matchEval (workaroundsGetStickyMatch (d), w))
+	makeSticky = TRUE;
+
+    if (makeSticky)
+    {
+	if (!(w->state & CompWindowStateStickyMask))
+	{
+	    ww->madeSticky = TRUE;
+	    changeWindowState (w, w->state | CompWindowStateStickyMask);
+	}
+    }
+    else
+	workaroundsRemoveSticky (w);
+
 }
 
 static void
@@ -179,6 +233,41 @@ workaroundsDoFixes (CompWindow *w)
 }
 
 static void
+workaroundsDisplayOptionChanged (CompDisplay               *d,
+				 CompOption                *opt,
+				 WorkaroundsDisplayOptions num)
+{
+    CompScreen *s;
+    CompWindow *w;
+
+    for (s = d->screens; s; s = s->next)
+	for (w = s->windows; w; w = w->next)
+	    workaroundsUpdateSticky (w);
+}
+
+static void
+workaroundsHandleEvent (CompDisplay *d,
+			XEvent      *event)
+{
+    CompWindow *w;
+
+    WORKAROUNDS_DISPLAY (d);
+
+    UNWRAP (wd, d, handleEvent);
+    (*d->handleEvent) (d, event);
+    WRAP (wd, d, handleEvent, workaroundsHandleEvent);
+
+    if (event->type == ClientMessage)
+    {
+	if (event->xclient.message_type == d->winDesktopAtom)
+        {
+            w = findWindowAtDisplay (d, event->xclient.window);
+	    workaroundsUpdateSticky (w);
+        }
+    }
+}
+
+static void
 workaroundsWindowResizeNotify (CompWindow *w, int dx, int dy,
                                int dwidth, int dheight)
 {
@@ -212,7 +301,14 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
 
     wd->roleAtom = XInternAtom (d->display, "WM_WINDOW_ROLE", 0);
 
+    workaroundsSetStickyAlldesktopsNotify (d, workaroundsDisplayOptionChanged);
+    workaroundsSetAlldesktopStickyMatchNotify (d,
+					       workaroundsDisplayOptionChanged);
+    workaroundsSetStickyMatchNotify (d, workaroundsDisplayOptionChanged);
+
     d->privates[displayPrivateIndex].ptr = wd;
+
+    WRAP (wd, d, handleEvent, workaroundsHandleEvent);
 
     return TRUE;
 }
@@ -223,6 +319,8 @@ workaroundsFiniDisplay (CompPlugin *plugin, CompDisplay *d)
     WORKAROUNDS_DISPLAY (d);
 
     freeScreenPrivateIndex (d, wd->screenPrivateIndex);
+
+    UNWRAP (wd, d, handleEvent);
 
     free (wd);
 }
@@ -238,6 +336,13 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
     if (!ws)
         return FALSE;
 
+    ws->windowPrivateIndex = allocateWindowPrivateIndex (s);
+    if (ws->windowPrivateIndex < 0)
+    {
+	free (ws);
+	return FALSE;
+    }
+
     WRAP (ws, s, windowResizeNotify, workaroundsWindowResizeNotify);
 
     s->privates[wd->screenPrivateIndex].ptr = ws;
@@ -250,6 +355,8 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
 {
     WORKAROUNDS_SCREEN (s);
 
+    freeWindowPrivateIndex (s, ws->windowPrivateIndex);
+
     UNWRAP (ws, s, windowResizeNotify);
 
     free (ws);
@@ -258,6 +365,18 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
 static Bool
 workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
 {
+    WORKAROUNDS_SCREEN (w->screen);
+    WorkaroundsWindow *ww;
+
+    ww = malloc (sizeof (WorkaroundsWindow));
+    if (!ww)
+	return FALSE;
+
+    ww->madeSticky = FALSE;
+
+    w->privates[ws->windowPrivateIndex].ptr = ww;
+
+    workaroundsUpdateSticky (w);
     workaroundsDoFixes (w);
 
     return TRUE;
@@ -266,8 +385,13 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
 static void
 workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 {
+    WORKAROUNDS_WINDOW (w);
+
     w->wmType = getWindowType (w->screen->display, w->id);
     recalcWindowType (w);
+    workaroundsRemoveSticky (w);
+
+    free (ww);
 }
 
 static Bool

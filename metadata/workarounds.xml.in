@@ -33,6 +33,24 @@
                 <_long>Fix window type of various Qt windows.</_long>
                 <default>true</default>
             </option>
+            <subgroup>
+                <_short>Window stickyness</_short>
+                <option type="bool" name="sticky_alldesktops">
+                    <_short>Make "on all desktops" windows "sticky"</_short>
+                    <_long>Make "on all desktops" windows sticky. Sticky windows are visable on all viewports.</_long>
+                    <default>false</default>
+                </option>
+                <option name="alldesktop_sticky_match" type="match">
+                    <_short>"On all desktops" sticky match</_short>
+                    <_long>Windows on all desktops that should be made sticky</_long>
+                    <default>any</default>
+                </option>
+                <option name="sticky_match" type="match">
+                    <_short>Stckiy windows match</_short>
+                    <_long>Windows that should be made sticky</_long>
+                    <default></default>
+                </option>
+            </subgroup>
         </display>
         <screen>
         </screen>
