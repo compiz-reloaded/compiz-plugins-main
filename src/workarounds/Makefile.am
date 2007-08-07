@@ -9,7 +9,7 @@ libworkarounds_la_SOURCES = workarounds_options.c \
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	-DDATADIR='"$(datadir)"'          \
+	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \

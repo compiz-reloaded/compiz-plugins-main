@@ -7,7 +7,7 @@ libwinrules_la_SOURCES = winrules.c
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	-DDATADIR='"$(datadir)"'          \
+	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \

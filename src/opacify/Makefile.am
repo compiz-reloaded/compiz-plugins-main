@@ -7,7 +7,7 @@ libopacify_la_SOURCES = opacify_options.c opacify_options.h opacify.c
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	-DDATADIR='"$(datadir)"'          \
+	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \

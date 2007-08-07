@@ -11,7 +11,7 @@ libezoom_la_SOURCES = colorfilter_options.h \
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	-DDATADIR='"$(datadir)"'          \
+	-DDATADIR='"$(compdatadir)"'       \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \

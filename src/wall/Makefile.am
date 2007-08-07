@@ -10,7 +10,7 @@ endif
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
 	@CAIRO_CFLAGS@			\
-	-DDATADIR='"$(datadir)"'          \
+	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \

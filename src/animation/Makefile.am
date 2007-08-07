@@ -30,7 +30,7 @@ libanimation_la_SOURCES = animation.c \
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                     \
-	-DDATADIR='"$(datadir)"'            \
+	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \

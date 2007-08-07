@@ -7,7 +7,7 @@ libneg_la_SOURCES = neg_options.c neg_options.h neg.c
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	-DDATADIR='"$(datadir)"'          \
+	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \
