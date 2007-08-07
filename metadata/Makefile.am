@@ -29,7 +29,7 @@ schemadir   = $(GCONF_SCHEMA_FILE_DIR)
 schema_files = $(patsubst %.xml.in,compiz-%.schemas,$(xml_in_files))
 schema_DATA  = $(schema_files)
 
-%.schemas: $(meta_DATA)
+%.schemas: $(xml_files)
 	xsltproc -o $@ $(xsltdir)/schemas.xslt $(subst compiz-,,$*).xml;
 
 if GCONF_SCHEMAS_INSTALL
