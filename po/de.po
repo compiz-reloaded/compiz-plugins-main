@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-08-01 11:34+0530\n"
-"PO-Revision-Date: 2007-07-09 11:22+0200\n"
+"POT-Creation-Date: 2007-08-07 17:54+0200\n"
+"PO-Revision-Date: 2007-08-07 18:07+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,6 @@ msgstr "Oben rechts abrunden"
 msgid "Bevel bottom left corner"
 msgstr "Ecke unten links abrunden"
 
-#, fuzzy
 msgid "Bevel bottom right corner"
 msgstr "Ecke unten rechts abrunden"
 
@@ -165,6 +164,12 @@ msgstr "Fenstertypen"
 msgid "Window types that should be Opacified."
 msgstr "Fenstertypen, die sichtbar sein sollen"
 
+msgid "Airplane"
+msgstr "Papierflugzeug"
+
+msgid "Airplane Flying Path Length"
+msgstr "Länge des vom Flugzeug zurückgelegten Weges"
+
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -189,9 +194,8 @@ msgstr ""
 msgid "Angle of window at the end of the animation."
 msgstr "Fensterwinkel am Animationsende"
 
-#, fuzzy
 msgid "Animation Selection"
-msgstr "Animationsoptionen"
+msgstr "Animationsauswahl"
 
 msgid "Animation Time Step"
 msgstr "Animations-Zeitschritt"
@@ -200,25 +204,20 @@ msgstr "Animations-Zeitschritt"
 msgid "Animation Time Step For Intense Effects"
 msgstr "Animations-Zeitschritt für aufregende Effekte"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for close effect."
-msgstr "Animationsdauer (in s) für Effekt 'Fenster schließen'"
+msgstr "Animationsdauer (in ms) für Effekt 'Fenster schließen'"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for focus effect."
-msgstr "Animationsdauer (in s) für Effekt 'Fenster fokussieren'"
+msgstr "Animationsdauer (in ms) für Effekt 'Fenster fokussieren'"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for minimize effect."
-msgstr "Animationsdauer (in s) für Effekt 'Fenster minimieren'"
+msgstr "Animationsdauer (in ms) für Effekt 'Fenster minimieren'"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for open effect."
-msgstr "Animationsdauer (in s) für Effekt 'Fenster schließen'"
+msgstr "Animationsdauer (in ms) für Effekt 'Fenster öffnen'"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for shade effect."
-msgstr "Animationsdauer (in s) für Effekt 'Fenster aufrollen'"
+msgstr "Animationsdauer (in ms) für Effekt 'Fenster aufrollen'"
 
 msgid "Animations"
 msgstr "Animationen"
@@ -286,6 +285,8 @@ msgid ""
 "Comma separated list of option value assignments to override effect "
 "settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
+"Durch Kommata getrennte Liste von Optionswerten, die die Effekteinstellungen "
+"überschreiben. Beispiel: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 
 # 'einklappen' auch möglich
 msgid "Curved Fold"
@@ -313,9 +314,8 @@ msgstr "Runter"
 msgid "Dream"
 msgstr "Traum"
 
-#, fuzzy
 msgid "Duration"
-msgstr "Sättigung"
+msgstr "Dauer"
 
 msgid "Effect Settings"
 msgstr "Effekt-Einstellungen"
@@ -374,11 +374,21 @@ msgstr "Fügt dem Feuer Rauch hinzu"
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Der Fensterinhalt bewegt sich beim einrollen nicht mit"
 
+msgid "Fly to TaskBar on Minimize"
+msgstr ""
+
 msgid "Focus Animation"
 msgstr "Fokusanimation"
 
 msgid "Focus Effect"
 msgstr "Effekt für das Fokussieren von Fenstern"
+
+msgid "Fold"
+msgstr ""
+
+#, fuzzy
+msgid "Fold Direction"
+msgstr "Schnee-Richtung"
 
 # siehe 'Razr'
 msgid "Fold opening direction for pieces in Razr effect."
@@ -410,11 +420,24 @@ msgstr ""
 msgid "How spring-like the Zoom animation should be."
 msgstr ""
 
+#FIXME: Herein und Heraus sind noch nicht optimal
+msgid "In"
+msgstr "Herein"
+
+msgid "In-out"
+msgstr "Herein/Heraus"
+
 msgid "Leaf Spread"
 msgstr ""
 
 msgid "Left"
 msgstr "Links"
+
+msgid "Left-right"
+msgstr "Links/Rechts"
+
+msgid "Length of airplane's flying path."
+msgstr ""
 
 msgid "Magic Lamp"
 msgstr "Wunderlampe"
@@ -449,6 +472,9 @@ msgstr "Effekt für das Minimieren von Fenstern"
 msgid "Minimize/Unminimize Only"
 msgstr "Nur bei Minimieren/Un-Minimieren"
 
+msgid "Movement direction(s) for window pieces."
+msgstr "Richtung, in die die Fensterteile fallen."
+
 msgid "None"
 msgstr "Nichts"
 
@@ -478,20 +504,20 @@ msgstr ""
 msgid "On open/close, move vacuum ending point with the mouse pointer."
 msgstr ""
 
-#, fuzzy
 msgid "Open Animation"
-msgstr "Verwendete Animation"
+msgstr "Animation 'Öffnen'"
 
-#, fuzzy
 msgid "Open Effect"
-msgstr "Effekt für das Schließen von Fenstern"
+msgstr "Effekt für das Öffnen von Fenstern"
 
-#, fuzzy
 msgid "Open/Close Only"
 msgstr "Nur bei Öffnen/Schließen"
 
 msgid "Options"
 msgstr "Optionen"
+
+msgid "Out"
+msgstr "Heraus"
 
 msgid "Pool"
 msgstr ""
@@ -507,9 +533,8 @@ msgstr "Zufällig"
 msgid "Random Animations For All Events"
 msgstr ""
 
-#, fuzzy
 msgid "Random Effects"
-msgstr "Effekt für das Aufrollen von Fenstern"
+msgstr "Zufällige Effekte"
 
 msgid "Randomly Colored Fire"
 msgstr "Zufällige Feuerfarbe"
@@ -536,6 +561,13 @@ msgstr "Aufrollen"
 msgid "Rollup Fixed Interior"
 msgstr "Von unten aufrollen"
 
+msgid "Rotation Angle"
+msgstr ""
+
+# FIXME: besser Bruchstücke statt Teile?
+msgid "Rotation angle of animated window pieces (in degrees)."
+msgstr "Rotationswinkel für animierte Fensterteile (in Grad)."
+
 msgid "Shade Animation"
 msgstr "Animation 'Aufrollen'"
 
@@ -551,6 +583,13 @@ msgstr ""
 
 msgid "Sidekick Springiness"
 msgstr ""
+
+msgid "Skewer"
+msgstr ""
+
+#, fuzzy
+msgid "Skewer Direction"
+msgstr "Schnee-Richtung"
 
 #, fuzzy
 msgid "Spacing between beams."
@@ -571,6 +610,10 @@ msgstr "Tesselations-Typ"
 msgid "Tessellation type for exploding window pieces."
 msgstr "Tesselations-Typ für Explosions-Effekt"
 
+#, fuzzy
+msgid "Tessellation type for window pieces."
+msgstr "Tesselations-Typ für Explosions-Effekt"
+
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
@@ -581,6 +624,22 @@ msgid ""
 "animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
 "become."
 msgstr ""
+
+#, fuzzy
+msgid ""
+"The animated window will be split into pieces along a grid. Specify the "
+"number of grid cells along the height of the window."
+msgstr ""
+"Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
+"Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
+
+#, fuzzy
+msgid ""
+"The animated window will be split into pieces along a grid. Specify the "
+"number of grid cells along the width of the window."
+msgstr ""
+"Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
+"Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
 
 msgid "The animation effect shown when closing a window."
 msgstr "Beim Schließen eines Fensters verwendete Animation"
@@ -638,15 +697,23 @@ msgstr "Fenster, die animiert werden sollen"
 msgid "Thickness"
 msgstr "Dicke"
 
-#, fuzzy
-msgid "Thickness (in pixels) of exploding window pieces."
-msgstr "Dicke der bei der Explosion entstehenden Fensterteile."
+msgid "Thickness of Animated Polygons"
+msgstr "Dicke der animierten Polygone"
 
 msgid "Thickness of Exploding Polygons"
 msgstr "Dicke der explodierenden Polygone"
 
+msgid "Thickness of animated window pieces (in pixels)."
+msgstr "Dicke der bei der Animation entstehenden Fensterteile (in Pixeln)."
+
+msgid "Thickness of exploding window pieces (in pixels)."
+msgstr "Dicke der bei der Explosion entstehenden Fensterteile (in Pixeln)."
+
 msgid "Up"
 msgstr "Hoch"
+
+msgid "Up-down"
+msgstr "Hoch/Runter"
 
 msgid "Use various animations as window effects"
 msgstr ""
@@ -685,6 +752,10 @@ msgid "Wave Width"
 msgstr "Wellenbreite"
 
 msgid ""
+"Whether the window should fly to taskbar when minimized with Airplane effect."
+msgstr ""
+
+msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
@@ -711,6 +782,10 @@ msgstr "Fenstergitterhöhe"
 
 msgid "Window Grid Width"
 msgstr "Fenstergitterbreite"
+
+#, fuzzy
+msgid "Window folding direction."
+msgstr "Fallrichtung der Dominosteine"
 
 msgid "Window that should animate with this effect when focused."
 msgstr "Fenster, für die dieser Effekt beim Fokussieren verwendet werden soll."
@@ -796,6 +871,62 @@ msgstr "Y-Position des Fensters"
 msgid "Y position"
 msgstr "Y-Position"
 
+msgid "Color filter"
+msgstr "Farbfilter"
+
+msgid "Exclude windows"
+msgstr "Ausgeschlossene Fenster"
+
+msgid "Filter colors for accessibility purposes"
+msgstr ""
+
+msgid "Filter window decorations"
+msgstr "Fensterrahmen filtern"
+
+msgid "Filtered windows"
+msgstr "Gefilterte Fenster"
+
+msgid "Filters files"
+msgstr "Filterdateien"
+
+msgid ""
+"List of plain text filter files that should be applied when filtering "
+"windows or screen."
+msgstr ""
+
+msgid ""
+"Select filter to use from filters list : either apply all filters or only "
+"one specific filter (triggering this action switches filters one by one and "
+"eventually comes back to the \"all filters\" mode)."
+msgstr ""
+
+msgid "Switch filter"
+msgstr "Filter umschalten"
+
+msgid "Toggle filtering for currently focused window."
+msgstr "Filter für gewähltes Fenster umschalten."
+
+msgid "Toggle filtering for every window on the screen."
+msgstr "Filter für alle Fenster auf dem Bildschirm umschalten."
+
+msgid "Toggle screen filtering"
+msgstr "Schaltet den Filter für den gesamten Bildschirminhalt um."
+
+msgid "Toggle window filtering"
+msgstr "Schaltet den Filter für das gewählte Fenster um."
+
+msgid ""
+"Window decorations (borders and titlebar) will be filtered as well as window "
+"contents if enabled."
+msgstr ""
+"Fensterrahmen werden zusammen mit dem Fensterinhalt gefiltert."
+
+msgid "Windows to be filtered by default."
+msgstr "Fenster, die standardmäßig gefiltert werden sollen."
+
+msgid "Windows to exclude from filtering."
+msgstr "Fenster, die niemals gefiltert werden sollen"
+
 msgid "Activate Crash Handler."
 msgstr "Aktiviere Absturzverwaltung"
 
@@ -819,6 +950,104 @@ msgstr "Befehl zum Starten des Fenstermanagers"
 
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Befehl zum Starten des Fenstermanagers. HIER NICHT COMPIZ EINTRAGEN!"
+
+msgid "Adjust bottom face image to rotation"
+msgstr ""
+
+#, fuzzy
+msgid "Adjust bottom image"
+msgstr "Unten rechts abrunden"
+
+msgid "Adjust top face image to rotation"
+msgstr ""
+
+msgid "Adjust top image"
+msgstr ""
+
+msgid "Advance to next image for bottom face of the cube"
+msgstr ""
+
+msgid "Advance to next image for top face of the cube"
+msgstr ""
+
+#, fuzzy
+msgid "Bottom image files"
+msgstr "Logo-Datei."
+
+msgid "Color of bottom face of the cube"
+msgstr ""
+
+msgid "Color of top face of the cube"
+msgstr ""
+
+#, fuzzy
+msgid "Cube Bottom Color"
+msgstr "Rahmenfarbe der Tab-Leiste"
+
+msgid "Cube Caps"
+msgstr ""
+
+#, fuzzy
+msgid "Cube Top Color"
+msgstr "Rahmenfarbe der Tab-Leiste"
+
+msgid "Draw bottom face"
+msgstr ""
+
+msgid "Draw bottom face of the cube"
+msgstr ""
+
+msgid "Draw top face"
+msgstr ""
+
+msgid "Draw top face of the cube"
+msgstr ""
+
+msgid "Go back to previous image for bottom face of the cube"
+msgstr ""
+
+msgid "Go back to previous image for top face of the cube"
+msgstr ""
+
+msgid ""
+"List of PNG and SVG files that should be rendered on bottom face of cube"
+msgstr ""
+
+msgid "List of PNG and SVG files that should be rendered on top face of cube"
+msgstr ""
+
+#, fuzzy
+msgid "Next bottom image"
+msgstr "Unten rechts abrunden"
+
+msgid "Next top image"
+msgstr ""
+
+#, fuzzy
+msgid "Prev bottom image"
+msgstr "Unten rechts abrunden"
+
+msgid "Prev top image"
+msgstr ""
+
+msgid "Render images on top and bottom of the cube"
+msgstr ""
+
+msgid "Scale bottom image"
+msgstr ""
+
+msgid "Scale image to cover bottom face of cube"
+msgstr ""
+
+msgid "Scale image to cover top face of cube"
+msgstr ""
+
+msgid "Scale top image"
+msgstr ""
+
+#, fuzzy
+msgid "Top image files"
+msgstr "Logo-Datei."
 
 msgid "Above"
 msgstr "Über"
@@ -910,7 +1139,7 @@ msgid "Expo Animation"
 msgstr "Verwendete Animation"
 
 msgid "Expo Plugin"
-msgstr ""
+msgstr "Expo-Plugin"
 
 msgid "Expo mode aspect ratio"
 msgstr "Seitenverhältnis der Expo-Wand"
@@ -1352,7 +1581,7 @@ msgstr ""
 "Tab-Leiste fallen gelassen wurde."
 
 msgid "Resize every window in the group"
-msgstr "Skaliere alle Fenster der Gruppse"
+msgstr "Skaliere alle Fenster der Gruppe"
 
 msgid "Saturation of selected windows"
 msgstr "Sättigung der selektierten Fenster"
@@ -1899,8 +2128,19 @@ msgid "Number of pixels from the top edge where the window will come to rest"
 msgstr ""
 
 #, fuzzy
+msgid "Pad Bottom"
+msgstr "Von oben nach unten"
+
+#, fuzzy
 msgid "Pad Left"
 msgstr "Links"
+
+#, fuzzy
+msgid "Pad Right"
+msgstr "Rechts"
+
+msgid "Pad Top"
+msgstr ""
 
 msgid "Padding"
 msgstr ""
@@ -3594,9 +3834,8 @@ msgstr ""
 msgid "Fix window type of various Qt windows."
 msgstr ""
 
-#, fuzzy
 msgid "Java Window Fix"
-msgstr "Aktiviere Fenster"
+msgstr "Workaround für Java-Fenster"
 
 msgid "Legacy Fullscreen Support"
 msgstr ""
@@ -3608,61 +3847,11 @@ msgid "Metacity-like workarounds."
 msgstr ""
 
 msgid "Notification Daemon Fix"
-msgstr ""
+msgstr "Workaround für Fenster von 'Notification Daemon'"
 
-#, fuzzy
 msgid "Qt Window Fix"
-msgstr "Nächstes Fenster"
+msgstr "Workaround für Qt-Fenster"
 
 msgid "Workarounds"
 msgstr ""
 
-#~ msgid "Animation duration in seconds for create effect."
-#~ msgstr "Animationsdauer (in s) für Effekt 'Fenster öffnen'"
-
-#~ msgid "Close Animation (Dialogs &amp; Windows)"
-#~ msgstr "Fenster-Schließ-Animation (Dialoge &amp; Fenster)"
-
-#~ msgid "Close Animation (Menus &amp; Tooltips)"
-#~ msgstr "Fenster-Schließ-Animation (Menüs &amp; Tooltips)"
-
-#~ msgid "Create Animation"
-#~ msgstr "Animation 'Öffnen'"
-
-#~ msgid "Create Animation (Dialogs &amp; Windows)"
-#~ msgstr "Fenster-Öffnen-Animation (Dialoge &amp; Fenster)"
-
-#~ msgid "Create Animation (Menus &amp; Tooltips)"
-#~ msgstr "Fenster-Öffnen-Animation (Menüs &amp; Tooltips)"
-
-#~ msgid "Create Effect"
-#~ msgstr "Effekt für das Öffnen von Fenstern"
-
-#~ msgid ""
-#~ "The exploding window will be split into pieces along a grid. Specify the "
-#~ "width, in pixels, of the columns in the grid."
-#~ msgstr ""
-#~ "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe "
-#~ "eines Gitters erzeugt. Geben sie die Breite der einzelnen Gitterspalten "
-#~ "in Pixeln an."
-
-#~ msgid "Window that should animate with this effect when created."
-#~ msgstr "Fenster, für die dieser Effekt beim Öffnen verwendet werden soll."
-
-#~ msgid "Animation duration in seconds for create effect #2."
-#~ msgstr "Animationsdauer (in s) für Effekt 'Neues Fenster #2'"
-
-#~ msgid "Close #1 Animation"
-#~ msgstr "Animation 'Schließen #1'"
-
-#~ msgid "Close #2 Animation"
-#~ msgstr "Animation 'Schließen #2'"
-
-#~ msgid "Create #1 Animation"
-#~ msgstr "Animation 'Neues Fenster #1'"
-
-#~ msgid "Create #2 Animation"
-#~ msgstr "Animation 'Neues Fenster #2'"
-
-#~ msgid "Shade animation duration in seconds."
-#~ msgstr "Dauer der Animation beim Aufrollen von Fenstern"
