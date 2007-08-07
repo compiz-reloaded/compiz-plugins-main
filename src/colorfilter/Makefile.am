@@ -1,17 +1,18 @@
 ## Process this file with automake to produce Makefile.in
 PFLAGS=-module -avoid-version -no-undefined
 
-libezoom_la_LDFLAGS = $(PFLAGS)
-libezoom_la_LIBADD = @COMPIZ_LIBS@
-libezoom_la_SOURCES = colorfilter_options.h \
-		      colorfilter_options.c \
-		      colorfilter.c         \
-		      parser.c              \
-		      parser.h
+libcolorfilter_la_LDFLAGS = $(PFLAGS)
+libcolorfilter_la_LIBADD = @COMPIZ_LIBS@
+libcolorfilter_la_SOURCES = colorfilter_options.c \
+			    colorfilter_options.h \
+			    colorfilter.c         \
+			    parser.c              \
+			    parser.h
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'       \
+	-DPREFIX='"$(prefix)"'             \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \
