@@ -54,28 +54,28 @@ typedef struct _WorkaroundsScreen {
 static char *
 workaroundsGetWindowRoleAtom (CompWindow *w)
 {
-    CompDisplay   *d = w->screen->display;
-    Atom	  type;
+    CompDisplay *d = w->screen->display;
+    Atom type;
     unsigned long nItems;
     unsigned long bytesAfter;
     unsigned char *str = NULL;
-    int		  format, result;
-    char	  *retval;
+    int format, result;
+    char *retval;
 
     WORKAROUNDS_DISPLAY (d);
 
     result = XGetWindowProperty (d->display, w->id, wd->roleAtom,
-				 0, LONG_MAX, FALSE, XA_STRING,
-				 &type, &format, &nItems, &bytesAfter,
-				 (unsigned char **) &str);
+                                 0, LONG_MAX, FALSE, XA_STRING,
+                                 &type, &format, &nItems, &bytesAfter,
+                                 (unsigned char **) &str);
 
     if (result != Success)
-	return NULL;
+        return NULL;
 
     if (type != XA_STRING)
     {
-	XFree (str);
-	return NULL;
+        XFree (str);
+        return NULL;
     }
 
     retval = strdup ((char *) str);
@@ -137,34 +137,34 @@ workaroundsDoFixes (CompWindow *w)
 
     if (workaroundsGetQtFix (w->screen->display) && !appliedFix)
     {
-	char *windowRole;
+        char *windowRole;
 
-	/* fix tooltips */
-	windowRole = workaroundsGetWindowRoleAtom (w);
-	if (windowRole)
-	{
-	    if ((strcmp (windowRole, "toolTipTip") == 0) ||
-		(strcmp (windowRole, "qtooltip_label") == 0))
-	    {
-		w->wmType = CompWindowTypeTooltipMask;
-		appliedFix = TRUE;
-	    }
+        /* fix tooltips */
+        windowRole = workaroundsGetWindowRoleAtom (w);
+        if (windowRole)
+        {
+            if ((strcmp (windowRole, "toolTipTip") == 0) ||
+                (strcmp (windowRole, "qtooltip_label") == 0))
+            {
+                w->wmType = CompWindowTypeTooltipMask;
+                appliedFix = TRUE;
+            }
 
-	    free (windowRole);
-	}
+            free (windowRole);
+        }
 
-	/* fix Qt transients - FIXME: is there a better way to detect them?
-	   Especially we have to take care of windows which get a class name
-	   later on */
-	if (!appliedFix)
-	{
-	    if (!w->resName && w->attrib.override_redirect &&
-		(w->wmType == CompWindowTypeUnknownMask))
-	    {
-		w->wmType = CompWindowTypeDropdownMenuMask;
-		appliedFix = TRUE;
-	    }
-	}
+        /* fix Qt transients - FIXME: is there a better way to detect them?
+           Especially we have to take care of windows which get a class name
+           later on */
+        if (!appliedFix)
+        {
+            if (!w->resName && w->attrib.override_redirect &&
+                (w->wmType == CompWindowTypeUnknownMask))
+            {
+                w->wmType = CompWindowTypeDropdownMenuMask;
+                appliedFix = TRUE;
+            }
+        }
     }
 
     recalcWindowType (w);
