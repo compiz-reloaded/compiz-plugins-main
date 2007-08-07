@@ -544,7 +544,7 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
     // AnimEffectRandom
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     // AnimEffectAirplane3D
-    {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
+    {0, polygonsPrePaintWindow, polygonsPostPaintWindow, fxAirplane3DAnimStep,
      fxAirplane3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
      fxAirplane3DLinearAnimStepPolygon, 0, 0, 0},
     // AnimEffectBeamUp

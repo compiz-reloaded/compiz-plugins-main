@@ -798,6 +798,11 @@ void
 fxAirplane3DInit (CompScreen *s,
 		  CompWindow *w);
 
+Bool
+fxAirplane3DAnimStep (CompScreen * s,
+		      CompWindow * w,
+		      float time);
+
 void
 fxAirplane3DLinearAnimStepPolygon (CompWindow * w,
 				   PolygonObject * p, 
