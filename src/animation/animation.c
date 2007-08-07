@@ -175,7 +175,7 @@ void defaultAnimInit(CompScreen * s, CompWindow * w)
 		    as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 }
 
-Bool animZoomToIcon(AnimScreen *as, AnimWindow *aw)
+static Bool animZoomToIcon(AnimScreen *as, AnimWindow *aw)
 {
     return
 	(aw->curWindowEvent == WindowEventMinimize ||
@@ -192,7 +192,7 @@ Bool animZoomToIcon(AnimScreen *as, AnimWindow *aw)
 	  animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM)));
 }
 
-void defaultMinimizeAnimInit(CompScreen * s, CompWindow * w)
+static void defaultMinimizeAnimInit(CompScreen * s, CompWindow * w)
 {
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -1156,10 +1156,10 @@ static void cleanUpParentChildChainItem(AnimScreen *as, AnimWindow *aw)
     aw->skipPostPrepareScreen = FALSE;
 }
 
-void postAnimationCleanupCustom(CompWindow * w,
-				Bool resetAnimation,
-				Bool closing,
-				Bool clearMatchingRow)
+static void postAnimationCleanupCustom(CompWindow * w,
+       				       Bool resetAnimation,
+       				       Bool closing,
+       				       Bool clearMatchingRow)
 {
     ANIM_WINDOW(w);
     ANIM_SCREEN(w->screen);
@@ -1283,11 +1283,6 @@ void postAnimationCleanupCustom(CompWindow * w,
 	destroyWindow(w);
 	aw->destroyCnt--;
     }
-}
-
-void postAnimationCleanupClosing(CompWindow * w, Bool resetAnimation, Bool closing)
-{
-    postAnimationCleanupCustom(w, resetAnimation, closing, TRUE);
 }
 
 void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
