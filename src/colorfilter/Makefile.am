@@ -1,13 +1,18 @@
 ## Process this file with automake to produce Makefile.in
 PFLAGS=-module -avoid-version -no-undefined
 
-libneg_la_LDFLAGS = $(PFLAGS)
-libneg_la_LIBADD = @COMPIZ_LIBS@
-libneg_la_SOURCES = neg_options.c neg_options.h neg.c
+libcolorfilter_la_LDFLAGS = $(PFLAGS)
+libcolorfilter_la_LIBADD = @COMPIZ_LIBS@
+libcolorfilter_la_SOURCES = colorfilter_options.c \
+			    colorfilter_options.h \
+			    colorfilter.c         \
+			    parser.c              \
+			    parser.h
 
 INCLUDES =                              \
 	@COMPIZ_CFLAGS@                  \
-	-DDATADIR='"$(compdatadir)"'        \
+	-DDATADIR='"$(compdatadir)"'       \
+	-DPREFIX='"$(prefix)"'             \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'          \
@@ -16,7 +21,7 @@ INCLUDES =                              \
 moduledir = $(plugindir)
 
 
-module_LTLIBRARIES = libneg.la
+module_LTLIBRARIES = libcolorfilter.la
 
 CLEANFILES = *_options.c *_options.h
 

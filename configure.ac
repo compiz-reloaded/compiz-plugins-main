@@ -83,6 +83,8 @@ AC_SUBST(imagedir)
 metadatadir=$datadir/compiz
 AC_SUBST(metadatadir)
 
+compdatadir=$datadir/compiz
+AC_SUBST(compdatadir)
 
 dnl ============================================================
 dnl Check for the pkg-config path.
@@ -188,6 +190,7 @@ metadata/Makefile
 include/Makefile
 src/Makefile
 src/animation/Makefile
+src/colorfilter/Makefile
 src/expo/Makefile
 src/ezoom/Makefile
 src/jpeg/Makefile
