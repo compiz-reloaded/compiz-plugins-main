@@ -204,5 +204,6 @@ src/wall/Makefile
 src/winrules/Makefile
 src/workarounds/Makefile
 src/vpswitch/Makefile
+src/shift/Makefile
 po/Makefile.in
 ])

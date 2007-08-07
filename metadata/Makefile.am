@@ -16,7 +16,8 @@ xml_in_files = 	         \
 	winrules.xml.in     \
 	workarounds.xml.in \
 	scaleaddon.xml.in   \
-	vpswitch.xml.in
+	vpswitch.xml.in \
+	shift.xml.in
 
 
 xml_files    = $(xml_in_files:.xml.in=.xml)
