@@ -405,6 +405,7 @@ typedef struct _AnimDisplay
 {
     int screenPrivateIndex;
     Atom winIconGeometryAtom;
+    Atom wmNameAtom;
     HandleEventProc handleEvent;
     HandleCompizEventProc handleCompizEvent;
     int activeWindow;
@@ -574,6 +575,8 @@ typedef struct _AnimWindow
     ParticleSystem *ps;
     unsigned int state;
     unsigned int newState;
+
+    char *wmName;
 
     PolygonSet *polygonSet;
     float mvm[16];

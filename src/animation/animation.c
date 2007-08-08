@@ -82,6 +82,7 @@
 #include <config.h>
 #endif
 
+#include <limits.h>
 #include "animation-internal.h"
 
 int animDisplayPrivateIndex;
@@ -2767,6 +2768,37 @@ windowHasUserTime(CompWindow *w)
     return getWindowUserTime (w, &t);
 }
 
+static char *
+animGetWindowName (CompWindow *w)
+{
+    CompDisplay *d = w->screen->display;
+    Atom type;
+    unsigned long nItems;
+    unsigned long bytesAfter;
+    unsigned char *str = NULL;
+    int format, result;
+    char *retval;
+
+    ANIM_DISPLAY (d);
+
+    result = XGetWindowProperty (d->display, w->id, ad->wmNameAtom,
+                                 0, LONG_MAX, FALSE, XA_STRING,
+                                 &type, &format, &nItems, &bytesAfter,
+                                 (unsigned char **) &str);
+    if (result != Success)
+        return NULL;
+
+    if (type != XA_STRING)
+    {
+        XFree (str);
+        return NULL;
+    }
+    retval = strdup ((char *) str);
+    XFree (str);
+
+    return retval;
+}
+
 static void animHandleEvent(CompDisplay * d, XEvent * event)
 {
     CompWindow *w;
@@ -2992,7 +3024,9 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 		// don't animate windows that don't have certain properties
 		// like the fullscreen darkening layer of gksudo
-		if (!(w->resName || windowHasUserTime (w)))
+		// or the darkening layer of x-session-manager
+		if (!(w->resName || windowHasUserTime (w)) ||
+		    (aw->wmName && strcasecmp (aw->wmName, "x-session-manager") == 0))
 		    break;
 
 		int duration = 200;
@@ -3525,6 +3559,8 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		// don't animate windows that don't have certain properties
 		// like the fullscreen darkening layer of gksudo
 		(w->resName || windowHasUserTime (w)) &&
+		// don't animate darkening layer of x-session-manager
+		!(aw->wmName && strcasecmp (aw->wmName, "x-session-manager") == 0) &&
 		// suppress switcher window
 		// (1st window that opens after switcher becomes active)
 		(!as->pluginActive[0] || as->switcherWinOpeningSuppressed) &&
@@ -3830,6 +3866,7 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
 	return FALSE;
     }
 
+    ad->wmNameAtom = XInternAtom (d->display, "WM_NAME", 0);
     ad->winIconGeometryAtom =
 	XInternAtom(d->display, "_NET_WM_ICON_GEOMETRY", 0);
 
@@ -4035,6 +4072,8 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
 	aw->nowShaded = FALSE;
     }
 
+    aw->wmName = animGetWindowName(w);
+
     w->privates[as->windowPrivateIndex].ptr = aw;
 
     return TRUE;
@@ -4043,6 +4082,9 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
 static void animFiniWindow(CompPlugin * p, CompWindow * w)
 {
     ANIM_WINDOW(w);
+
+    if (aw->wmName)
+	free (aw->wmName);
 
     postAnimationCleanup(w, FALSE);
 
