@@ -2213,6 +2213,12 @@ shiftDamageWindowRect (CompWindow *w,
 	    shiftAddWindowToList (w->screen, w);
 	    if (shiftUpdateWindowList (w->screen))
 	    {
+		SHIFT_WINDOW (w);
+
+    		sw->active = TRUE;
+		sw->slots[0].adjust = TRUE;
+		sw->slots[1].adjust = TRUE;
+		ss->moreAdjust = TRUE;
 		ss->state = ShiftStateOut;
 		damageScreen (w->screen);
 	    }
