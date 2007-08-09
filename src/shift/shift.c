@@ -1945,10 +1945,12 @@ shiftWindowRemove (CompDisplay * d,
 
 		if (w->id == selected)
 		{
-		    if (i < ss->nWindows)
+		    if (i < (ss->nWindows - 1))
 			selected = ss->windows[i + 1]->id;
     		    else
 			selected = ss->windows[0]->id;
+
+		    ss->selectedWindow = selected;
 		}
 
 		ss->nWindows--;
@@ -1981,6 +1983,7 @@ shiftWindowRemove (CompDisplay * d,
 
 	if (shiftUpdateWindowList (w->screen))
 	{
+	    ss->moreAdjust = TRUE;
 	    ss->state = ShiftStateOut;
 	    damageScreen (w->screen);
 	}
