@@ -1454,10 +1454,12 @@ ringWindowRemove (CompDisplay * d,
 
 		if (w->id == selected)
 		{
-		    if (i < rs->nWindows)
+		    if (i < (rs->nWindows - 1))
 			selected = rs->windows[i + 1]->id;
     		    else
 			selected = rs->windows[0]->id;
+
+		    rs->selectedWindow = selected;
 		}
 
 		rs->nWindows--;
@@ -1490,6 +1492,7 @@ ringWindowRemove (CompDisplay * d,
 
 	if (ringUpdateWindowList (w->screen))
 	{
+	    rs->moreAdjust = TRUE;
 	    rs->state = RingStateOut;
 	    damageScreen (w->screen);
 	}
