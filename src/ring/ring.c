@@ -1564,6 +1564,10 @@ ringDamageWindowRect (CompWindow *w,
 	    ringAddWindowToList (w->screen, w);
 	    if (ringUpdateWindowList (w->screen))
 	    {
+		RING_WINDOW (w);
+
+		rw->adjust = TRUE;
+		rs->moreAdjust = TRUE;
 		rs->state = RingStateOut;
 		damageScreen (w->screen);
 	    }
