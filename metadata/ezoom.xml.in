@@ -29,19 +29,11 @@
 		    </default>
 		</option>
 		<option type="action" name="lock_zoom">
-		    <_short>Lock zoom area</_short>
-		    <_long>Locks the zoom area so it doesn't change on various events</_long>
+		    <_short>Toggle zoom area lock</_short>
+		    <_long>Toggles a lock on the zoom area so it doesn't change on various events</_long>
 		    <allowed key="true" button="true"/>
 		    <default>
 			<key>&lt;Super&gt;l</key>
-		    </default>
-		</option>
-		<option type="action" name="unlock_zoom">
-		    <_short>Unlock zoom area</_short>
-		    <_long>Unlocks a previously locked zoom area</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<key>&lt;Super&gt;u</key>
 		    </default>
 		</option>
 		<option type="action" name="zoom_specific_1">

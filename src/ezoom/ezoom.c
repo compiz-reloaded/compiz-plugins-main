@@ -111,7 +111,6 @@ typedef enum _ZdOpt
     DOPT_ENSURE_VISIBILITY,
     DOPT_SET_ZOOM_AREA,
     DOPT_LOCK_ZOOM,
-    DOPT_UNLOCK_ZOOM,
     DOPT_NUM
 } ZoomDisplayOptions;
 
@@ -1282,19 +1281,6 @@ zoomIn (CompDisplay     *d,
     return TRUE;
 }
 
-/* Locks/unlocks the zoom area */
-static inline void
-lockZoom (ZoomArea *za)
-{
-    za->locked = TRUE;
-}
-
-static inline void
-unlockZoom (ZoomArea *za)
-{
-    za->locked = FALSE;
-}
-
 /* Locks down the current zoom area
  */
 static Bool
@@ -1314,32 +1300,11 @@ lockZoomAction (CompDisplay     *d,
     {
 	ZOOM_SCREEN (s);
 	int out = outputDeviceForPoint (s, pointerX, pointerY);
-	lockZoom (&zs->zooms[out]);
+	zs->zooms[out].locked = !zs->zooms[out].locked;
     }
     return TRUE;
 }
 
-static Bool
-unlockZoomAction (CompDisplay     *d,
-		  CompAction      *action,
-		  CompActionState state,
-		  CompOption      *option,
-		  int		nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s = findScreenAtDisplay (d, xid);
-
-    if (s)
-    {
-	ZOOM_SCREEN (s);
-	int out = outputDeviceForPoint (s, pointerX, pointerY);
-	unlockZoom (&zs->zooms[out]);
-    }
-    return TRUE;
-}
 /* Zoom to a specific level.
  * taget defines the target zoom level.
  * First set the scale level and mark the display as grabbed internally (to
@@ -1770,7 +1735,6 @@ static const CompMetadataOptionInfo zoomDisplayOptionInfo[] = {
     { "ensure_visibility", "action", 0, ensureVisibilityAction, 0}, 
     { "set_zoom_area", "action", 0, setZoomAreaAction, 0}, 
     { "lock_zoom", "action", 0, lockZoomAction, 0},
-    { "unlock_zoom", "action", 0, unlockZoomAction, 0}
 };
 
 static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
