@@ -147,7 +147,10 @@ programReadSource (char *fname)
     /* Alloc memory */
     data = malloc (sizeof (char) * (length + 1));
     if (!data)
+    {
+	fclose (fp);
 	return NULL;
+    }
 
     /* Read file */
     fread (data, length, 1, fp);
@@ -538,6 +541,8 @@ buildFragmentProgram (char *source, char *name,
     int handle;
     /* Create the function data */
     data = createFunctionData ();
+    if (!data)
+	return 0;
     /* Parse the source and fill the function data */
     programParseSource (data, target, source);
     /* Create the function */
