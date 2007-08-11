@@ -36,6 +36,10 @@
 
 #include "animation-internal.h"
 
+// ratio of perceived length of animation compared to real duration
+// to make it appear to have the same speed with other animation effects
+#define EXPLODE_PERCEIVED_T 0.7f
+
 void fxExplode3DInit(CompScreen * s, CompWindow * w)
 {
     ANIM_WINDOW(w);
@@ -100,5 +104,8 @@ void fxExplode3DInit(CompScreen * s, CompWindow * w)
     pset->doLighting = TRUE;
     pset->correctPerspective = CorrectPerspectivePolygon;
     pset->backAndSidesFadeDur = 0.2f;
+
+    aw->animTotalTime /= EXPLODE_PERCEIVED_T;
+    aw->animRemainingTime = aw->animTotalTime;
 }
 

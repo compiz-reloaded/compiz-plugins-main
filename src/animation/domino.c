@@ -36,6 +36,10 @@
 
 #include "animation-internal.h"
 
+// ratio of perceived length of animation compared to real duration
+// to make it appear to have the same speed with other animation effects
+#define DOMINO_PERCEIVED_T 0.8f
+
 void fxDomino3DInit(CompScreen * s, CompWindow * w)
 {
     ANIM_WINDOW(w);
@@ -265,4 +269,7 @@ void fxDomino3DInit(CompScreen * s, CompWindow * w)
     pset->doDepthTest = TRUE;
     pset->doLighting = TRUE;
     pset->correctPerspective = CorrectPerspectivePolygon;
+
+    aw->animTotalTime /= DOMINO_PERCEIVED_T;
+    aw->animRemainingTime = aw->animTotalTime;
 }
