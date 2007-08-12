@@ -98,7 +98,7 @@ AC_SUBST(PKG_CONFIG_PATH)
 AC_MSG_NOTICE([Using PKG_CONFIG_PATH=$PKG_CONFIG_PATH])
 
 PKG_CHECK_MODULES(COMPIZ, compiz)
-PKG_CHECK_MODULES(BCOP, bcop >= 0.1.1, [bcop_found=yes])
+PKG_CHECK_MODULES(BCOP, bcop >= 0.5.2, [bcop_found=yes])
 if test "$bcop_found" = yes; then
   if test -z "$PKG_CONFIG"; then
       AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
