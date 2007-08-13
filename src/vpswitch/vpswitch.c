@@ -142,14 +142,22 @@ vpswitchNext (CompDisplay     *d,
 	      CompOption      *option,
 	      int             nOption)
 {
+    int targetX, targetY;
+
     GET_DATA;
 
-    if ((s->x == s->hsize - 1) && (s->y == s->vsize - 1))
-	vpswitchGoto (s, 0, 0);
-    else if (s->x == s->hsize - 1)
-	vpswitchGoto (s, 0, s->y + 1);
-    else
-	vpswitchGoto (s, s->x + 1, s->y);
+    targetX = s->x + 1;
+    targetY = s->y;
+
+    if (targetX >= s->hsize)
+    {
+	targetX = 0;
+	targetY++;
+    }
+    if (targetY >= s->vsize)
+	targetY = 0;
+
+    vpswitchGoto (s, targetX, targetY);
 
     return TRUE;
 }
@@ -161,14 +169,22 @@ vpswitchPrev (CompDisplay     *d,
 	      CompOption      *option,
 	      int             nOption)
 {
+    int targetX, targetY;
+
     GET_DATA;
 
-    if ((s->x == 0) && (s->y == 0))
-	vpswitchGoto (s, s->hsize - 1, s->vsize - 1);
-    else if (s->x == 0)
-	vpswitchGoto (s, s->hsize - 1, s->y - 1);
-    else
-	vpswitchGoto (s, s->x - 1, s->y);
+    targetX = s->x - 1;
+    targetY = s->y;
+
+    if (targetX < 0)
+    {
+	targetX = s->hsize - 1;
+	targetY--;
+    }
+    if (targetY < 0)
+	targetY = s->vsize - 1;
+
+    vpswitchGoto (s, targetX, targetY);
 
     return TRUE;
 }
