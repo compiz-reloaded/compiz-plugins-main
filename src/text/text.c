@@ -87,18 +87,15 @@ textGetTextProperty (CompDisplay *d,
 		     Atom        atom)
 {
     XTextProperty text;
-    char          *retval;
+    char          *retval = NULL;
 
     text.nitems = 0;
     if (XGetTextProperty (d->display, id, &text, atom))
     {
-	retval = strndup ((char *)text.value,text.nitems);
-	if (text.value)
+        if (text.value) {
+	    retval = strndup ((char *)text.value,text.nitems);
 	    XFree (text.value);
-    }
-    else
-    {
-	retval = NULL;
+	}
     }
 
     return retval;
