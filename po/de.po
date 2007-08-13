@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-08-07 17:54+0200\n"
-"PO-Revision-Date: 2007-08-07 18:07+0200\n"
+"POT-Creation-Date: 2007-08-13 20:35+0200\n"
+"PO-Revision-Date: 2007-08-13 20:39+0200\n"
 "Last-Translator: Patrick Niklaus <patrick.niklaus@googlemail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -286,7 +286,8 @@ msgid ""
 "settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
 "Durch Kommata getrennte Liste von Optionswerten, die die Effekteinstellungen "
-"überschreiben. Beispiel: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
+"überschreiben. Beispiel: fire_color=#0080ffff, fire_particles=700, "
+"fire_smoke=1"
 
 # 'einklappen' auch möglich
 msgid "Curved Fold"
@@ -420,7 +421,7 @@ msgstr ""
 msgid "How spring-like the Zoom animation should be."
 msgstr ""
 
-#FIXME: Herein und Heraus sind noch nicht optimal
+# FIXME: Herein und Heraus sind noch nicht optimal
 msgid "In"
 msgstr "Herein"
 
@@ -918,8 +919,7 @@ msgstr "Schaltet den Filter für das gewählte Fenster um."
 msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
 "contents if enabled."
-msgstr ""
-"Fensterrahmen werden zusammen mit dem Fensterinhalt gefiltert."
+msgstr "Fensterrahmen werden zusammen mit dem Fensterinhalt gefiltert."
 
 msgid "Windows to be filtered by default."
 msgstr "Fenster, die standardmäßig gefiltert werden sollen."
@@ -970,9 +970,33 @@ msgstr ""
 msgid "Advance to next image for top face of the cube"
 msgstr ""
 
+msgid "Appearance"
+msgstr "Aussehen"
+
+msgid "Behaviour"
+msgstr "Verhalten"
+
 #, fuzzy
 msgid "Bottom image files"
 msgstr "Logo-Datei."
+
+msgid "Clamp bottom face image to border"
+msgstr ""
+
+msgid ""
+"Clamp bottom face image to border. This is often the best if your image "
+"doesn't fit the size of the cube or if it's transparent. It can lead to some "
+"ugly dotted lines when enabled (especially with large enough images) though."
+msgstr ""
+
+msgid "Clamp top face image to border"
+msgstr ""
+
+msgid ""
+"Clamp top face image to border. This is often the best if your image doesn't "
+"fit the size of the cube or if it's transparent. It can lead to some ugly "
+"dotted lines when enabled (especially with large enough images) though."
+msgstr ""
 
 msgid "Color of bottom face of the cube"
 msgstr ""
@@ -1113,14 +1137,8 @@ msgstr "Automatisch herauszoomen, um den Würfel dem Bildschirm anzupassen."
 msgid "Animation used when switching to expo mode"
 msgstr "Beim Wechsel in den und aus dem Expo-Modus verwendete Animation."
 
-msgid "Appearance"
-msgstr "Aussehen"
-
 msgid "Aspect Ratio"
 msgstr "Seitenverhältnis"
-
-msgid "Behaviour"
-msgstr "Verhalten"
 
 # FIXME - is wall really == Wand here? -- Maybe we could use Ebene, Tafel or Brett here?
 msgid "Distance of the expo wall"
@@ -1205,6 +1223,250 @@ msgstr ""
 
 msgid "Zoom time"
 msgstr "Zoomdauer"
+
+msgid "Allways fit to window on focus track"
+msgstr ""
+
+msgid ""
+"Allways keep the zoomed area in sync with where the mouse is, and vice "
+"versa. Use this if you don't intend to drraw a scaled pointer or hide the "
+"original pointer. The zoomed area will move as you move your mouse."
+msgstr ""
+
+msgid "Animation"
+msgstr "Animation"
+
+msgid ""
+"Attempt to keep the zoomed mouse visible by warping it when it is moved "
+"otuside the zoom area."
+msgstr ""
+
+#, fuzzy
+msgid "Center the mouse"
+msgstr "In der Bildschirmmitte"
+
+msgid "Enable focus tracking"
+msgstr ""
+
+msgid "Enable this to get a gradually larger mouse pointer as you zoom in"
+msgstr ""
+
+msgid ""
+"Enable this to target the focused window when jumping to a specific zoom "
+"level. Disable to target mouse."
+msgstr ""
+
+# FIXME
+#, fuzzy
+msgid "Enhanced Zoom Desktop"
+msgstr "Desktop Einblenden"
+
+msgid "Enhanced zoom functions for visually imparied and others"
+msgstr ""
+
+#, fuzzy
+msgid "Filter Linear"
+msgstr "Filterdateien"
+
+#, fuzzy
+msgid "Fit the window to the zoom level"
+msgstr "Fenster zur unteren Bildschirmkante bewegen"
+
+msgid ""
+"Fit the zoomed area to the window when the zoomed area moves as a result of "
+"focus tracking."
+msgstr ""
+
+msgid ""
+"Fit the zoomed area to the window when the zoomed area moves as a result of "
+"focus tracking. Even when not initially zoomed in."
+msgstr ""
+
+msgid "Fit zoom level to window on focus change"
+msgstr ""
+
+#, fuzzy
+msgid "Fit zoomed area to window"
+msgstr "Gefilterte Fenster"
+
+#, fuzzy
+msgid "Focus Tracking"
+msgstr "Fokusanimation"
+
+msgid "Follow Focus Delay"
+msgstr ""
+
+msgid "Hide original mouse pointer"
+msgstr ""
+
+msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
+msgstr ""
+
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
+#, fuzzy
+msgid "Mouse Behavior"
+msgstr "Verhalten"
+
+msgid "Mouse Poll Interval"
+msgstr ""
+
+msgid "Mouse Restrain Margin"
+msgstr ""
+
+msgid "Mouse panning"
+msgstr ""
+
+msgid "Move the zoom area when focus changes."
+msgstr ""
+
+msgid ""
+"Move the zoomed area this much whenever you pan the zoomed area with keys."
+msgstr ""
+
+msgid ""
+"Only attempt to center newly focused windows if the mouse hasn't moved in "
+"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgstr ""
+
+msgid "Pan (move) the zoom area down"
+msgstr ""
+
+msgid "Pan (move) the zoom area left"
+msgstr ""
+
+msgid "Pan (move) the zoom area right"
+msgstr ""
+
+msgid "Pan (move) the zoom area up"
+msgstr ""
+
+msgid "Pan Factor"
+msgstr ""
+
+msgid "Pan Zoom Down"
+msgstr ""
+
+#, fuzzy
+msgid "Pan Zoom Left"
+msgstr "Unten links abrunden"
+
+#, fuzzy
+msgid "Pan Zoom Right"
+msgstr "Unten rechts abrunden"
+
+msgid "Pan Zoom Up"
+msgstr ""
+
+msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
+msgstr ""
+
+msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
+msgstr ""
+
+msgid "Resize the window so it matches the current zoom level."
+msgstr ""
+
+msgid "Restrain the mouse to the zoom area"
+msgstr ""
+
+msgid "Scale the mouse pointer"
+msgstr ""
+
+msgid "Specific zoom factor 1"
+msgstr ""
+
+msgid "Specific zoom factor 2"
+msgstr ""
+
+msgid "Specific zoom factor 3"
+msgstr ""
+
+msgid "Speed"
+msgstr "Geschwindigkeit"
+
+msgid "Sync Mouse"
+msgstr ""
+
+msgid "Target Focused Window on Specific level"
+msgstr ""
+
+msgid "The size of the margin to add when attempting to restrain the mouse."
+msgstr ""
+
+msgid "Timestep"
+msgstr "Zeitschritt"
+
+msgid "Toggle zoom area lock"
+msgstr ""
+
+msgid "Toggles a lock on the zoom area so it doesn't change on various events"
+msgstr ""
+
+msgid "Use linear filter when zoomed in"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom In"
+msgstr "Zoom"
+
+#, fuzzy
+msgid "Zoom Movement"
+msgstr "Aus der Mitte zoomen"
+
+#, fuzzy
+msgid "Zoom Out"
+msgstr "Zoomdauer"
+
+msgid "Zoom Specific Level 1"
+msgstr ""
+
+msgid "Zoom Specific Level 2"
+msgstr ""
+
+msgid "Zoom Specific Level 3"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom Speed"
+msgstr "Schneegeschwindigkeit"
+
+#, fuzzy
+msgid "Zoom Timestep"
+msgstr "Zeitschritt"
+
+#, fuzzy
+msgid "Zoom factor"
+msgstr "Zoomdauer"
+
+msgid "Zoom in/out by this factor. Higher value means quicker zooming."
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 1"
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 2"
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 3"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 1"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 2"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 3"
+msgstr ""
+
+msgid ""
+"Zooms in/out so the focused window is zoomed to the maximum while still "
+"being fully visible."
+msgstr ""
 
 msgid "Activate Window"
 msgstr "Aktiviere Fenster"
@@ -1306,19 +1568,6 @@ msgstr ""
 
 msgid "Render gears inside of the transparent cube"
 msgstr ""
-
-msgid "Begin"
-msgstr "Start"
-
-msgid "Begin entering viewport"
-msgstr "Arbeitsflächennummer-Eingabe starten"
-
-msgid "Goto Viewport"
-msgstr "Zu Arbeitsfläche bewegen"
-
-msgid "Goto viewport specified by numbers"
-msgstr ""
-"Erlaubt den direkten Sprung zu einer Arbeitsfläche durch Eingabe der Nummer"
 
 msgid "Animation Options"
 msgstr "Animationsoptionen"
@@ -1996,9 +2245,6 @@ msgid ""
 "usually when you start Compiz."
 msgstr ""
 
-msgid "Animation"
-msgstr "Animation"
-
 msgid "Animation speed"
 msgstr "Animationsgeschwindigkeit"
 
@@ -2260,12 +2506,6 @@ msgstr "Zur nächsten Arbeitsfläche wechseln"
 #, fuzzy
 msgid "Restore Position"
 msgstr "Fenster wiederherstellen"
-
-msgid "Speed"
-msgstr "Geschwindigkeit"
-
-msgid "Timestep"
-msgstr "Zeitschritt"
 
 #, fuzzy
 msgid "Unfocus Window"
@@ -3416,12 +3656,23 @@ msgstr ""
 msgid "Action name for initiate/terminate"
 msgstr ""
 
-msgid "Change viewport on mouse events on the Desktop"
-msgstr "Arbeitsfläche bei Mausereignissen auf dem Desktop wechseln"
+msgid "Begin Viewport Switch"
+msgstr "Arbeitsflächenwechsel beginnen"
 
-#, fuzzy
+msgid "Begin entering viewport number"
+msgstr "Arbeitsflächennummer-Eingabe starten"
+
+msgid "Desktop-based Viewport Switching"
+msgstr "Arbeitsflächenumschaltung auf dem Desktop"
+
+msgid "Go to specific viewport"
+msgstr "Zu bestimmter Arbeitsfläche bewegen"
+
 msgid "Initiate plugin action"
-msgstr "Zeichnen mit Feuer aktivieren"
+msgstr "Plugin-Aktion initiieren"
+
+msgid "Initiate viewport changes through several events"
+msgstr "Arbeitsflächenwechsel durch verschiedene Ereignisse starten"
 
 msgid "Initiate/Terminate the selected plugin action"
 msgstr ""
@@ -3462,17 +3713,101 @@ msgstr "Nach rechts bewegen"
 msgid "Move up"
 msgstr "Nach oben bewegen"
 
+msgid "Number-Based Viewport Switching"
+msgstr "Arbeitsflächenumschaltung durch Nummerneingabe"
+
 msgid "Plugin for initiate action"
 msgstr ""
 
 msgid "Plugin for initiate/action action"
 msgstr ""
 
-msgid "Viewport Switching"
-msgstr "Arbeitsflächenumschaltung"
+msgid "Switch to Viewport 1"
+msgstr "Zu Arbeitsfläche 1 bewegen"
 
-msgid "Viewport mouse switch"
-msgstr "Maus-Arbeitsflächenumschalter"
+msgid "Switch to Viewport 10"
+msgstr "Zu Arbeitsfläche 10 bewegen"
+
+msgid "Switch to Viewport 11"
+msgstr "Zu Arbeitsfläche 11 bewegen"
+
+msgid "Switch to Viewport 12"
+msgstr "Zu Arbeitsfläche 12 bewegen"
+
+msgid "Switch to Viewport 2"
+msgstr "Zu Arbeitsfläche 2 bewegen"
+
+msgid "Switch to Viewport 3"
+msgstr "Zu Arbeitsfläche 3 bewegen"
+
+msgid "Switch to Viewport 4"
+msgstr "Zu Arbeitsfläche 4 bewegen"
+
+msgid "Switch to Viewport 5"
+msgstr "Zu Arbeitsfläche 5 bewegen"
+
+msgid "Switch to Viewport 6"
+msgstr "Zu Arbeitsfläche 6 bewegen"
+
+msgid "Switch to Viewport 7"
+msgstr "Zu Arbeitsfläche 7 bewegen"
+
+msgid "Switch to Viewport 8"
+msgstr "Zu Arbeitsfläche 8 bewegen"
+
+msgid "Switch to Viewport 9"
+msgstr "Zu Arbeitsfläche 9 bewegen"
+
+#, fuzzy
+msgid "Switch to viewport 1"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 10"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 11"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 12"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 2"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 3"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 4"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 5"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 6"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 7"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 8"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+#, fuzzy
+msgid "Switch to viewport 9"
+msgstr "Zur nächsten Arbeitsfläche wechseln"
+
+msgid "Viewport Switcher"
+msgstr "Arbeitsflächenumschalter"
 
 msgid "Allow Wrap-Around"
 msgstr ""
@@ -3692,6 +4027,9 @@ msgstr "Farbverlauf"
 msgid "Viewport Switch Preview"
 msgstr "Umschalt-Vorschau"
 
+msgid "Viewport Switching"
+msgstr "Arbeitsflächenumschaltung"
+
 msgid "Wall Sliding Duration"
 msgstr "Animationsdauer"
 
@@ -3819,6 +4157,9 @@ msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden sol
 msgid "Windows will not have focus"
 msgstr "Fenster, die niemals Fokus erhalten können sollen"
 
+msgid "\"On all desktops\" sticky match"
+msgstr ""
+
 msgid "Firefox Menu Fix"
 msgstr ""
 
@@ -3840,6 +4181,14 @@ msgstr "Workaround für Java-Fenster"
 msgid "Legacy Fullscreen Support"
 msgstr ""
 
+msgid "Make \"on all desktops\" windows \"sticky\""
+msgstr ""
+
+msgid ""
+"Make \"on all desktops\" windows sticky. Sticky windows are visable on all "
+"viewports."
+msgstr ""
+
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""
 
@@ -3852,6 +4201,28 @@ msgstr "Workaround für Fenster von 'Notification Daemon'"
 msgid "Qt Window Fix"
 msgstr "Workaround für Qt-Fenster"
 
+# FIXME
+#, fuzzy
+msgid "Window stickyness"
+msgstr "Aktiviere Stickyness für das momentan aktive Fenster"
+
+#, fuzzy
+msgid "Windows on all desktops that should be made sticky"
+msgstr "Fenster, die ausgeblendet werden sollen"
+
 msgid "Workarounds"
 msgstr ""
 
+#~ msgid "Change viewport on mouse events on the Desktop"
+#~ msgstr "Arbeitsfläche bei Mausereignissen auf dem Desktop wechseln"
+
+#~ msgid "Viewport mouse switch"
+#~ msgstr "Maus-Arbeitsflächenumschalter"
+
+#~ msgid "Begin"
+#~ msgstr "Start"
+
+#~ msgid "Goto viewport specified by numbers"
+#~ msgstr ""
+#~ "Erlaubt den direkten Sprung zu einer Arbeitsfläche durch Eingabe der "
+#~ "Nummer"
