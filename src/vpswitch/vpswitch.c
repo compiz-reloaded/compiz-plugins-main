@@ -49,7 +49,7 @@ vpswitchInitPlugin (CompDisplay    *d,
 
     CompOption *tOption;
     int        nTOption;
-    CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d) );
+    CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
     Bool       rv = FALSE;
 
     if (!plugin || !plugin->vTable->getDisplayOptions)
@@ -60,7 +60,7 @@ vpswitchInitPlugin (CompDisplay    *d,
     while (nTOption--)
     {
 	if (tOption->type == CompOptionTypeAction)
-	    if (strcmp (tOption->name, vpswitchGetInitAction (d) ) == 0)
+	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0)
 	    {
 		rv = (tOption->value.action.initiate)
 		     (d, &tOption->value.action, state, option, nOption);
@@ -85,7 +85,7 @@ vpswitchTermPlugin (CompDisplay     *d,
 {
     CompOption *tOption;
     int	       nTOption;
-    CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d) );
+    CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
     Bool       rv = FALSE;
 
     if (!plugin || !plugin->vTable->getDisplayOptions)
@@ -96,7 +96,7 @@ vpswitchTermPlugin (CompDisplay     *d,
     while (nTOption--)
     {
 	if (tOption->type == CompOptionTypeAction)
-	    if (strcmp (tOption->name, vpswitchGetInitAction (d) ) == 0)
+	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0)
 	    {
 		rv = (tOption->value.action.terminate)
 		     (d, &tOption->value.action, state, option, nOption);
@@ -113,8 +113,8 @@ vpswitchTermPlugin (CompDisplay     *d,
 
 static void
 vpswitchGoto (CompScreen *s,
-	      int x,
-	      int y)
+	      int        x,
+	      int        y)
 {
     XEvent xev;
 
@@ -144,7 +144,7 @@ vpswitchNext (CompDisplay     *d,
 {
     GET_DATA;
 
-    if ( (s->x == s->hsize - 1) && (s->y == s->vsize - 1) )
+    if ((s->x == s->hsize - 1) && (s->y == s->vsize - 1))
 	vpswitchGoto (s, 0, 0);
     else if (s->x == s->hsize - 1)
 	vpswitchGoto (s, 0, s->y + 1);
@@ -163,7 +163,7 @@ vpswitchPrev (CompDisplay     *d,
 {
     GET_DATA;
 
-    if ( (s->x == 0) && (s->y == 0) )
+    if ((s->x == 0) && (s->y == 0))
 	vpswitchGoto (s, s->hsize - 1, s->vsize - 1);
     else if (s->x == 0)
 	vpswitchGoto (s, s->hsize - 1, s->y - 1);
@@ -266,7 +266,6 @@ vpswitchGetVersion (CompPlugin *p,
 }
 
 CompPluginVTable vpswitchVTable = {
-
     "vpswitch",
     vpswitchGetVersion,
     0,
