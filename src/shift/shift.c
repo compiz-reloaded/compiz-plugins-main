@@ -689,15 +689,6 @@ shiftPaintWindow (CompWindow		 *w,
     return status;
 }
 
-static inline float 
-shiftLinearInterpolation(float valX,
-			float minX, float maxX, 
-			float minY, float maxY)
-{
-    double factor = (maxY - minY) / (maxX - minX);
-    return (minY + (factor * (valX - minX)));
-}
-
 static int
 compareWindows (const void *elem1,
 		const void *elem2)
