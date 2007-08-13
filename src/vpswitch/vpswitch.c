@@ -5,6 +5,15 @@
  *
  * Copyright (c) 2007 Dennis Kasprzyk <onestone@opencompositing.org>
  *
+ * Go-to-numbered-viewport functionality by
+ * 
+ * Copyright (c) 2007 Robert Carr <racarr@opencompositing.org>
+ *           (c) 2007 Danny Baumann <maniac@opencompositing.org>
+ *
+ * Go-to-specific-viewport functionality by
+ *
+ * Copyright (c) 2007 Michael Vogt <mvo@ubuntu.com>
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
