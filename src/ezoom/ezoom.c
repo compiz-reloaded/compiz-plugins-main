@@ -1066,9 +1066,10 @@ zoomUpdateCursor (CompScreen * s, CursorTexture * cursor)
     unsigned char *pixels = malloc(ci->width * ci->height * 4);
     int i;
 
-    if (!pixels) {
-        XFree (ci);
-        return;
+    if (!pixels) 
+    {
+	XFree (ci);
+	return;
     }
 
     for (i = 0; i < ci->width * ci->height; i++)
