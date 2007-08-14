@@ -340,6 +340,7 @@ static void
 wallDrawArrow (CompScreen *s)
 {
     cairo_t *cr;
+    float   width, height;
     float   outline = 2.0f;
     float   r, g, b, a;
 
@@ -347,6 +348,9 @@ wallDrawArrow (CompScreen *s)
 
     cr = ws->arrowContext.cr;
     wallClearCairoLayer (cr);
+
+    width  = (float) ws->arrowContext.width - outline;
+    height = (float) ws->arrowContext.height - outline;
 
     cairo_translate (cr, outline / 2.0f, outline / 2.0f);
 
