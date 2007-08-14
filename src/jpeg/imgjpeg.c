@@ -300,7 +300,7 @@ JPEGFileToImage (CompDisplay *d,
 	    strcasecmp (extension, ".jpg") == 0)
 	{
 	    FILE *file;
-	    
+
 	    file = fopen (fileName, "rb");
 	    if (file)
 	    {
