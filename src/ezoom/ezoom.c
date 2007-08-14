@@ -1065,6 +1065,12 @@ zoomUpdateCursor (CompScreen * s, CursorTexture * cursor)
     cursor->hotY = ci->yhot;
     unsigned char *pixels = malloc(ci->width * ci->height * 4);
     int i;
+
+    if (!pixels) {
+        XFree (ci);
+        return;
+    }
+
     for (i = 0; i < ci->width * ci->height; i++)
     {
 	unsigned long pix = ci->pixels[i];
