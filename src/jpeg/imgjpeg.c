@@ -131,8 +131,8 @@ readJPEGFileToImage (FILE *file,
     *height = cinfo.output_height;
     *width = cinfo.output_width;
 
-    buf = malloc (cinfo.output_height * cinfo.output_width *
- 		  cinfo.output_components * sizeof (JSAMPLE));
+    buf = calloc (cinfo.output_height * cinfo.output_width *
+ 		  cinfo.output_components, sizeof (JSAMPLE));
     if (!buf)
     {
 	jpeg_finish_decompress (&cinfo);
