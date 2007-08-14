@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-08-01 11:34+0530\n"
-"PO-Revision-Date: 2007-07-16 01:00+0200\n"
+"POT-Creation-Date: 2007-07-05 14:17+0200\n"
+"PO-Revision-Date: 2007-07-24 04:00+0200\n"
 "Last-Translator: djdoo <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -58,9 +58,6 @@ msgstr "Αλλαγή του ποσοστού του χώρου μεταξύ τω
 msgid "Change the speed of the 3D animation"
 msgstr "Αλλαγή της ταχύτητας της τρισδιάστατης γραφικής απεικόνισης"
 
-msgid "Corner Bevelling"
-msgstr ""
-
 msgid "Create Mipmaps"
 msgstr "Δημιουργία Mipmaps"
 
@@ -85,7 +82,7 @@ msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
 "cube via the mouse)"
 msgstr ""
-"Εισάγει την τρισδιάστατη εικόνα μόνο αν κινηθεί με το ποντίκι.  (Πχ. "
+"Εκκινεί την τρισδιάστατη απεικόνιση μόνο αν κινηθεί με το ποντίκι.  (Πχ. "
 "Γυρίζετε τον κύβο με το ποντίκι)"
 
 msgid "Misc. Options"
@@ -116,8 +113,7 @@ msgstr "Πλάτος Παραθύρου"
 msgid "Windows that should be handled by 3D"
 msgstr "Παράθυρα που πρέπει να διαχειριστούν ως τρισδιάστατα"
 
-#, fuzzy
-msgid "ADD Helper"
+msgid "AddHelper"
 msgstr "AddHelper"
 
 msgid "Bindings"
@@ -150,7 +146,7 @@ msgid "Saturation of faded windows"
 msgstr "Κορεσμός των ξεθωριασμένων παραθύρων"
 
 msgid "Toggle AddHelper"
-msgstr "Εκκίνηση του AddHelper"
+msgstr "Ενεργοποίηση του AddHelper"
 
 msgid "Use this to enable/disable AddHelper on the fly."
 msgstr ""
@@ -166,163 +162,157 @@ msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
+"Επιλογή τυχαίων εφέ, αγνοώντας το επιλεγμένο. Αν έχει επιλεγεί 'Κανενα' για"
+"κάποιο γεγονός, αυτο δεν θα απεικονιστεί γραφικα."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
 msgstr ""
+"Έκταση (μέγεθος των κυμάτων στην πτυχή) των Οριζόντιων Πτυχών σε σχέση με το "
+"πλάτος του παραθύρου(Μήκος Κύματος). Οι αρνητικές τιμές κάνουν πτυχές προς τα"
+" έξω"
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
+"Έκταση (μέγεθος των κυμάτων στην πτυχή) των καμπυλώτων πτυχών σε σχέση με το "
+"πλάτος του παραθύρου(Πλάτος Ταλάντωσης). Οι αρνητικές τιμές κάνουν πτυχές προς"
+" τα έξω"
 
-#, fuzzy
 msgid "Angle of window at the end of the animation."
-msgstr "Αλλαγή της ταχύτητας της τρισδιάστατης γραφικής απεικόνισης"
+msgstr "Γωνία του παραθύρου μετά την ολοκλήρωση της γραφικής απεικόνισης."
 
-#, fuzzy
-msgid "Animation Selection"
-msgstr "Επιλογές Γραφικής Κίνησης"
+msgid "Animation"
+msgstr "Γραφική Απεικόνιση"
 
-#, fuzzy
+msgid "Animation Duration"
+msgstr "Διάρκεια Γραφικής Απεικόνησης"
+
 msgid "Animation Time Step"
-msgstr "Ταχύτητα Γραφικής Απεικόνισης"
+msgstr "Χρονικό Βήμα Γραφικής Απεικόνισης"
 
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "Χρονικό Βήμα Γραφικής Απεικόνισης για Έντονα Εφέ"
 
-msgid "Animation duration in milliseconds for close effect."
-msgstr ""
+msgid "Animation duration in seconds for create effect #1."
+msgstr "Διάρκεια γραφικής απεικόνισης σε δευτερολεπτα για δημιουργία εφέ #1."
 
-msgid "Animation duration in milliseconds for focus effect."
-msgstr ""
+msgid "Animation duration in seconds for create effect #2."
+msgstr "Διάρκεια γραφικής απεικόνισης σε δευτερολεπτα για δημιουργία εφέ #2."
 
-msgid "Animation duration in milliseconds for minimize effect."
-msgstr ""
-
-msgid "Animation duration in milliseconds for open effect."
-msgstr ""
-
-msgid "Animation duration in milliseconds for shade effect."
-msgstr ""
-
-#, fuzzy
 msgid "Animations"
-msgstr "Επιλογές Γραφικής Κίνησης"
+msgstr "Γραφικές Απεικονίσεις"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Αυτόματα" 
 
 msgid "Away Angle"
-msgstr ""
+msgstr "Γωνία Απομάκρυνσης"
 
-#, fuzzy
 msgid "Away Position"
-msgstr "X Θέση"
+msgstr "Θέση Απομάκρυνσης"
 
 msgid "Beam"
-msgstr ""
+msgstr "Δέσμη Ακτίνων"
 
-#, fuzzy
 msgid "Beam Color"
-msgstr "Χρώμα Γραμμής"
+msgstr "Χρώμα Δέσμης Ακτίνων"
 
 msgid "Beam Life"
-msgstr ""
+msgstr "Διάρκεια Ζωής Δέσμης Ακτίνων"
 
-#, fuzzy
 msgid "Beam Slowdown"
-msgstr "Φρενάρισμα Στοιχείων Φωτιάς"
+msgstr "Φρενάρισμα της Δέσμης Ακτίνων"
 
 msgid "Beam Spacing"
-msgstr ""
+msgstr "Χώρος Ανάπτυξης της Δέσμης Ακτίνων"
 
 msgid "Beam Up"
-msgstr ""
+msgstr "Διακτίνηση"
 
-#, fuzzy
 msgid "Beam Width"
-msgstr "Οριοθέτηση Πλάτους"
+msgstr "Πλάτος Δέσμης Ακτίνων"
 
 msgid "Beam color."
-msgstr ""
+msgstr "Χρώμα δέσμης ακτίνων."
 
 msgid "Beam life."
-msgstr ""
+msgstr "Διάρκεια ζωής δέσμης ακτίνων."
 
-#, fuzzy
 msgid "Beam slowdown."
-msgstr "Φρενάρισμα στοιχείων φωτιάς."
+msgstr "Φρενάρισμα δέσμης ακτίνων."
 
-#, fuzzy
 msgid "Beam width."
-msgstr "Οριοθέτηση Πλάτους"
+msgstr "Πλάτος δέσμης ακτίνων."
 
 msgid "Burn"
-msgstr ""
+msgstr "Κάψιμο"
 
-#, fuzzy
+msgid "Close #1 Animation"
+msgstr "Γραφική Απεικόνιση Κλείσιμο #1"
+
+msgid "Close #2 Animation"
+msgstr "Γραφική Απεικόνιση Κλείσιμο #2"
+
 msgid "Close Animation"
-msgstr "Γραφική Απεικόνηση Πλακιδίων"
-
-msgid "Close Effect"
-msgstr ""
+msgstr "Γραφική Απεικόνιση Κλείσιμο"
 
 msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
 "camera, -2.0: Away from camera)."
 msgstr ""
+"Προσέγγιση του παραθύρου στην κάμερα στην ολοκλήρωση της γραφικής απεικόνισης"
+" (1.0: Προσέγγιση στην κάμερα, -2.0: Απομάκρυνση από την κάμερα)."
 
-msgid ""
-"Comma separated list of option value assignments to override effect "
-"settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
-msgstr ""
+msgid "Create #1 Animation"
+msgstr "Δημιουργία #1 Γραφικής Απεικόνισης"
+
+msgid "Create #2 Animation"
+msgstr "Δημιουργία #2 Γραφικής Απεικόνισης"
+
+msgid "Create Animation"
+msgstr "Δημιουργία Γραφικής Απεικόνισης"
+
+msgid "Create/Close Only"
+msgstr "Δημιουργία/Κλείσιμο Μόνο"
 
 msgid "Curved Fold"
-msgstr ""
+msgstr "Καμπυλωτή Πτυχή"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "Έκταση Καμπυλωτής Πτυχής"
 
 msgid "Dodge"
-msgstr ""
+msgstr "Ελιγμός"
 
 msgid "Dodge Gap Ratio"
-msgstr ""
+msgstr "Αναλογία Κενού Διάστηματος του Ελιγμού"
 
-#, fuzzy
 msgid "Domino"
-msgstr "Κάτω"
+msgstr "Ντόμινο"
 
 msgid "Domino Piece Falling Direction"
-msgstr ""
+msgstr "Κατεύθυνση Πτώσης Κομματιών του Ντόμινο"
 
 msgid "Down"
 msgstr "Κάτω"
 
 msgid "Dream"
-msgstr ""
-
-#, fuzzy
-msgid "Duration"
-msgstr "Κορεσμός"
-
-#, fuzzy
-msgid "Effect Settings"
-msgstr "Ρυθμίσεις"
+msgstr "Όνειρο"
 
 msgid "Explode"
-msgstr ""
+msgstr "Έκρηξη"
 
 msgid "Fade"
 msgstr "Ξεθώριασμα"
 
 msgid "Falling direction for Domino pieces."
-msgstr ""
+msgstr "Κατεύθυνση πτώσης για τα κομμάτια του Ντόμινο."
 
 msgid "Fire"
-msgstr ""
+msgstr "Φωτιά"
 
 msgid "Fire Particle Color"
 msgstr "Χρώμα Στοιχείων Φωτιάς"
@@ -337,18 +327,16 @@ msgid "Fire Particle Slowdown"
 msgstr "Φρενάρισμα Στοιχείων Φωτιάς"
 
 msgid "Fire Smoke"
-msgstr ""
+msgstr "Καπνός Φωτιάς"
 
 msgid "Fire constant speed"
-msgstr ""
+msgstr "Σταθερή ταχύτητα φωτιάς"
 
-#, fuzzy
 msgid "Fire direction"
-msgstr "Κατεύθυνση χιονιού"
+msgstr "Κατεύθυνση φωτιάς"
 
-#, fuzzy
 msgid "Fire direction."
-msgstr "Κατεύθυνση χιονιού"
+msgstr "Κατεύθυνση φωτιάς."
 
 msgid "Fire particle color."
 msgstr "Χρώμα Στοιχείων Φωτιάς."
@@ -363,380 +351,413 @@ msgid "Fire particle slowdown."
 msgstr "Φρενάρισμα στοιχείων φωτιάς."
 
 msgid "Fire smoke."
-msgstr ""
+msgstr "Καπνός φωτιάς."
 
 msgid "Fixed window interior during the Rollup animation."
 msgstr ""
+"Διορθωμένο εσωτερικό παραθύρου κατα την διάρκεια γραφικής απεικόνισης "
+"του Τυλίγματος."
 
-#, fuzzy
 msgid "Focus Animation"
-msgstr "Ταχύτητα Γραφικής Απεικόνισης"
+msgstr "Γραφική Απεικόνιση της Εστίασης"
 
-msgid "Focus Effect"
-msgstr ""
+msgid "Focus animation duration in seconds."
+msgstr "Διάρκεια σε δευτερόλεπτα της Γραφικής Απεικόνισης της Εστίασης."
+
+msgid "Focus window effect."
+msgstr "Εφέ εστίασης σε παράθυρο."
 
 msgid "Fold opening direction for pieces in Razr effect."
-msgstr ""
+msgstr "Κατεύθυνση ανοίγματος των πτυχών των κομματιών στο εφέ Ξυράφι."
 
-#, fuzzy
 msgid "Glide 1"
-msgstr "Σλάιντ"
+msgstr "Glide 1"
 
-#, fuzzy
 msgid "Glide 2"
-msgstr "Σλάιντ"
+msgstr "Glide 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr "Τυχαία χρώματα για το εφέ φωτιάς, επίσης γνωστό κ ως Μυστική Φωτιά."
 
 msgid "Hexagonal"
-msgstr ""
+msgstr "Εξάγωνο"
 
-#, fuzzy
 msgid "Horizontal Folds"
-msgstr "Θέσε Πλακίδια Οριζόντια"
+msgstr "Οριζόντιες Πτυχές"
 
 msgid "Horizontal Folds Amplitude"
-msgstr ""
+msgstr "Έκταση Οριζόντιων Πτυχών"
 
 msgid "How spring-like the Sidekick animation should be."
-msgstr ""
+msgstr "Πόσο θα πάλλεται η γραφική απεικόνηση Πλαινό Χτύπημα."
 
 msgid "How spring-like the Zoom animation should be."
-msgstr ""
+msgstr "Πόσο θα πάλλεται η γραφική απεικόνηση Ζουμ."
 
 msgid "Leaf Spread"
-msgstr ""
+msgstr "Διασπορά Φύλλων"
 
 msgid "Left"
 msgstr "Αριστερά"
 
 msgid "Magic Lamp"
-msgstr ""
+msgstr "Μαγικό Λυχνάρι"
+
+msgid "Magic Lamp Create Start Width"
+msgstr "Δημιουργία Αρχικού Πλάτους του Μαγικού Λυχναριού"
 
 msgid "Magic Lamp Grid Y Resolution"
-msgstr ""
+msgstr "Υ Ανάλυση Πλέγματος του Μαγικού Λυχναριού"
 
 msgid "Magic Lamp Max Wave Amplitude"
-msgstr ""
+msgstr "Μέγιστη Έκταση Κύματος του Μαγικού Λυχναριού"
 
 msgid "Magic Lamp Max Waves"
-msgstr ""
+msgstr "Μεγιστος Αριθμός Κυμάτων του Μαγικού Λυχναριού"
 
 msgid "Magic Lamp Min Wave Amplitude"
-msgstr ""
+msgstr "Ελάχιστη Έκταση Κύματος του Μαγικού Λυχναριού"
 
-msgid "Magic Lamp Open Start Width"
-msgstr ""
+msgid "Magic Lamp Vacuum"
+msgstr "Ρούφηγμα του Μαγικού Λυχναριού"
 
-msgid "Magic Lamp Open/Close Moving End"
-msgstr ""
+msgid "Magic Lamp Vacuum Create Start Width"
+msgstr "Δημιουργία Αρχικού Πλάτους του Ρούφηγματος του Μαγικού Λυχναριού"
+
+msgid "Magic Lamp Vacuum Grid Y Resolution"
+msgstr "Υ Ανάλυση Πλέγματος του Ρούφηγματος του Μαγικού Λυχναριού"
+
+msgid "Magic Lamp Vacuum Max Wave Amplitude"
+msgstr "Μέγιστη Έκταση Κύματος του Ρούφηγματος του Μαγικού Λυχναριού"
+
+msgid "Magic Lamp Vacuum Max Waves"
+msgstr "Μεγιστος Αριθμός Κυμάτων του Ρούφηγματος του Μαγικού Λυχναριού"
+
+msgid "Magic Lamp Vacuum Min Wave Amplitude"
+msgstr "Ελάχιστη Έκταση Κύματος του Ρούφηγματος του Μαγικού Λυχναριού"
 
 msgid "Make fire effect duration be dependent on window height."
-msgstr ""
+msgstr "Εξάρτηση διάρκειας εφέ φωτιάς ανάλογα με το ύψος του παραθύρου."
 
-#, fuzzy
 msgid "Minimize Animation"
-msgstr "Ελαχιστοποίηση με ομάδα"
-
-msgid "Minimize Effect"
-msgstr ""
+msgstr "Ελαχιστοποίηση Γραφικής Απεικόνισης"
 
 msgid "Minimize/Unminimize Only"
-msgstr ""
+msgstr "Ελαχιστοποίηση/Αποελαχιστοποίηση Μόνο"
 
 msgid "None"
 msgstr "Κανένα"
 
-#, fuzzy
 msgid "Number Of Fire Particles"
-msgstr "Αριθμός στοχείων"
+msgstr "Αριθμός Στοιχείων Φωτιάς"
 
-#, fuzzy
 msgid "Number of Horizontal Folds"
-msgstr "Αριθμός στοχείων"
+msgstr "Αριθμός Οριζόντιων Πτυχών"
 
-#, fuzzy
 msgid "Number of fire particles."
-msgstr "Αριθμός στοχείων"
+msgstr "Αριθμός στοιχείων φωτιάς."
 
-#, no-c-format
+#, c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
+"Αριθμός στροφών για το πρόσθετο Πλαινό Χτύπημα (συν ή πλην 10% για "
+"τυχαιοποίηση."
 
 msgid "Off"
-msgstr ""
+msgstr "Κλειστό"
 
 msgid "On"
-msgstr ""
-
-msgid "On open/close, move magic lamp ending point with the mouse pointer."
-msgstr ""
-
-msgid "On open/close, move vacuum ending point with the mouse pointer."
-msgstr ""
-
-#, fuzzy
-msgid "Open Animation"
-msgstr "Γραφική Απεικόνηση Πλακιδίων"
-
-msgid "Open Effect"
-msgstr ""
-
-msgid "Open/Close Only"
-msgstr ""
-
-msgid "Options"
-msgstr "Ιδιότητες"
-
-msgid "Pool"
-msgstr ""
+msgstr "Ανοιχτό"
 
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to restore full list. If the list is empty, the default effect will be used."
 msgstr ""
+"Συλλογή εφέ που θα επιλεγούν αν η Τυχαία Επιλογή εφέ εχει επιλεχθεί. Κάνοντας "
+"κλικ στο reset θα επανακτηθεί η πλήρης λίστα. Αν η λίστα είναι άδεια, το "
+"προεπιλεγμένο εφέ θα χρησιμοποιηθεί"
 
 msgid "Random"
-msgstr ""
+msgstr "Τυχαία Επιλογή"
 
 msgid "Random Animations For All Events"
-msgstr ""
+msgstr "Τυχαία Επιλογή Γραφικών Απεικονίσεων Για Ολα τα Γεγονότα"
 
-msgid "Random Effects"
-msgstr ""
+msgid "Random Effect Pool"
+msgstr "Συλλογή Εφέ Τυχαίας Επιλογής"
 
 msgid "Randomly Colored Fire"
 msgstr "Τυχαία Χρωματισμένη Φωτιά"
 
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr ""
+"Αναλογία κενών διαστημάτων μεταξύ των χρόνων εκκίνησης του ελιγμού και της "
+"διάρκειας εστίασης."
 
 msgid "Razr"
-msgstr ""
+msgstr "Ξυράφι"
 
 msgid "Razr Fold Opening Direction"
-msgstr ""
+msgstr "Κατεύθυνση Ανοίγματος Πτυχών του Ξυραφιού"
 
-#, fuzzy
 msgid "Rectangular"
-msgstr "Ορθογώνια λάμψη"
+msgstr "Ορθογώνιο"
 
 msgid "Right"
 msgstr "Δεξιά"
 
 msgid "Roll Up"
-msgstr ""
+msgstr "Τύλιγμα"
 
 msgid "Rollup Fixed Interior"
-msgstr ""
+msgstr "Διορθωμένο Εσωτερικό του Τυλίγματος"
 
-#, fuzzy
 msgid "Shade Animation"
-msgstr "Ταχύτητα Γραφικής Απεικόνισης"
+msgstr "Γραφική Απεικόνιση Σκίασης"
 
-msgid "Shade Effect"
-msgstr ""
+msgid "Shade animation duration in seconds."
+msgstr "Διάρκεια της γραφικής απεικόνισης της σκίασης."
 
-#, fuzzy
+msgid "Shade window effect."
+msgstr "Εφέ σκίασης παραθύρου."
+
 msgid "Sidekick"
-msgstr "Σλάιντ"
+msgstr "Πλαινό Χτύπημα"
 
 msgid "Sidekick Number of Rotations"
-msgstr ""
+msgstr "Αριθμός Στροφών του Πλαινού Χτυπήματος"
 
 msgid "Sidekick Springiness"
-msgstr ""
+msgstr "Ελαστικότητα του Πλαινού Χτυπήματος"
 
-#, fuzzy
 msgid "Spacing between beams."
-msgstr "Χώρος μεταξύ προεπισκοπίσεων"
+msgstr "Χώρος μεταξύ δεσμών ακτίνων."
 
 msgid ""
-"Starting width of open effect and ending width of close effect for Magic "
+"Starting width of create effect and ending width of close effect for Magic "
+"Lamp Vacuum."
+msgstr ""
+"Αρχικό πλάτος δημιουργίας εφέ και τελικό πλάτος τέλους εφέ για το Ρούφηγμα "
+"Μαγικού Λυχναριού."
+
+msgid ""
+"Starting width of create effect and ending width of close effect for Magic "
 "Lamp."
 msgstr ""
+"Αρχικό πλάτος δημιουργίας εφέ και τελικό πλάτος τέλους εφέ για το Μαγικό "
+"Λυχνάρι"
 
-msgid ""
-"Starting width of open effect and ending width of close effect for Vacuum."
-msgstr ""
-
-#, fuzzy
 msgid "Tessellation Type"
-msgstr "Γραφική Απεικόνηση Πλακιδίων"
+msgstr "Είδος Μωσαικού"
 
 msgid "Tessellation type for exploding window pieces."
-msgstr ""
+msgstr "Είδος Μωσαικού για τα εκτοξευόμενα κομμάτια του παραθύρου."
 
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
+"Πόσος χρόνος σε χιλιοστά του δευτερολέπτου απαιτείται μεταξύ κάθε "
+"πραγματοποίησης της γραφικής απεικόνισης. Όσο Υψηλότερος είναι ο αριθμός, "
+"τόσο χειρότερες γίνονται οι κινήσεις."
 
 msgid ""
 "The amount of time in milliseconds between each render of the intense "
 "animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
 "become."
 msgstr ""
+"Πόσος χρόνος σε χιλιοστά του δευτερολέπτου απαιτείται μεταξύ κάθε "
+"πραγματοποίησης έντονης γραφικής απεικόνισης (Πχ Κάψιμο, Δέσμη Ακτίνων). "
+"Όσο Υψηλότερος είναι ο αριθμός, τόσο χειρότερες γίνονται οι κινήσεις."
 
-msgid "The animation effect shown when closing a window."
-msgstr ""
+msgid "The animation shown when closing a window."
+msgstr "Η γραφική απεικόνιση που χρησιμοποιείται στο κλείσιμο ένος παράθυρου."
 
-msgid "The animation effect shown when creating a window."
+msgid "The animation shown when creating a window."
 msgstr ""
+"Η γραφική απεικόνιση που χρησιμοποιείται στην δημιουργία ένος παράθυρου."
 
-msgid "The animation effect shown when focusing a window."
+msgid "The animation shown when minimizing a window."
 msgstr ""
-
-msgid "The animation effect shown when minimizing a window."
-msgstr ""
-
-msgid "The animation effect shown when shading a window."
-msgstr ""
+"Η γραφική απεικόνιση που χρησιμοποιείται στην ελαχιστοποίηση ένος παράθυρου."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
+"height, in pixels, of the rows in the grid."
 msgstr ""
+"Το παράθυρο που εκρύγνειται θα χωριστεί σε κομμάτια σύμφωνα με ένα πλέγμα. "
+"Ορίστε το ύψος, σε pixels, των σειρών στο πλέγμα."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
+"width, in pixels, of the columns in the grid."
 msgstr ""
+"Το παράθυρο που εκρύγνειται θα χωριστεί σε κομμάτια σύμφωνα με ένα πλέγμα. "
+"Ορίστε το πλάτος, σε pixels, των στηλών στο πλέγμα."
 
-#, fuzzy
+msgid "The maximum number of waves for Magic Lamp Vacuum."
+msgstr "Μέγιστος αριθμός κυμάτων για το Ρούφηγμα Μαγικού Λυχναριού."
+
 msgid "The maximum number of waves for Magic Lamp."
-msgstr "Μέγιστος αριθμός ενεργών στοιχείων"
+msgstr "Μέγιστος αριθμός κυμάτων για το Μαγικό Λυχνάρι."
 
-msgid "The maxmimum amplitude (size of the waves) Magic Lamp will have."
+msgid "The maximum amplitude (size of the waves) Magic Lamp Vacuum will have."
 msgstr ""
+"Μέγιστη έκταση (μέγεθος κυμάτων) που το Ρούφηγμα Μαγικού Λυχναριού θα έχει."
+
+msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
+msgstr "Μέγιστη έκταση (μέγεθος κυμάτων) που το Μαγικό Λυχνάρι Θα έχει."
+
+msgid "The minimum amplitude (size of the waves) Magic Lamp Vacuum will have."
+msgstr ""
+"Ελάχιστη έκταση (μέγεθος κυμάτων) που το Ρούφηγμα Μαγικού Λυχναριού θα έχει."
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
+msgstr "Ελάχιστη έκταση (μέγεθος κυμάτων) που το Μαγικό Λυχνάρι Θα έχει."
 
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
+"Αριθμός των οριζόντιων πτυχών που εμφανίζονται στην γραφική απεικόνιση "
+"Οριζόντιας Πτύχωσης."
+
+msgid "The number of seconds that the Close #1 animation will last."
+msgstr "Αριθμός δευτερολέπτων που διαρκεί η γραφική απεικόνιση Κλείσιμο #1."
+
+msgid "The number of seconds that the Close #2 animation will last."
+msgstr "Αριθμός δευτερολέπτων που διαρκεί η γραφική απεικόνιση Κλείσιμο #2."
+
+msgid "The number of seconds that the Minimize animation will last."
+msgstr "Αριθμός δευτερολέπτων που διαρκεί η γραφική απεικόνιση Ελαχιστοποίηση."
 
 msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
+msgstr "Έκταση κυμάτων (μέγεθος κυμάτων) σε σχέση με το ύψος του παραθύρου."
 
-#, fuzzy
 msgid "The width of the wave relative to the window height."
-msgstr "Πλάτος περιγράμματος της μπάρας ετικετών"
+msgstr "Πλάτος του κύματος σε σχέση με το ύψος του παραθύρου."
 
-#, fuzzy
 msgid "The windows that will be animated."
-msgstr "Είδη παραθύρων που πρέπει να χρησιμοποιήσουν την αδιαφάνεια."
+msgstr "Παράθυρα που θα έχουν γραφική απεικόνιση."
 
 msgid "Thickness"
-msgstr ""
-
-msgid "Thickness (in pixels) of exploding window pieces."
-msgstr ""
+msgstr "Πάχος"
 
 msgid "Thickness of Exploding Polygons"
-msgstr ""
+msgstr "Πάχος των Πολυγώνων που Εκρήγνυνται"
+
+msgid "Thickness of exploding window pieces."
+msgstr "Πάχος των κομματιών των παραθύρων που εκρήγνυνται."
 
 msgid "Up"
 msgstr "Πάνω"
 
 msgid "Use various animations as window effects"
-msgstr ""
-
-msgid "Vacuum"
-msgstr ""
-
-msgid "Vacuum Grid Y Resolution"
-msgstr ""
-
-msgid "Vacuum Open Start Width"
-msgstr ""
-
-msgid "Vacuum Open/Close Moving End"
-msgstr ""
+msgstr "Χρησιμοποίηση διάφορων γραφικών απεικονίσεων ως εφέ παραθύρου"
 
 msgid ""
 "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number "
 "of points used to define the curves. The higher the number, the smoother the "
 "curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
+"Ανάλυση κορυφαίου πλέγματος για το Μαγικό Λυχνάρι (Υ διάσταση μόνο). Αυτός "
+"είναι ο αριθμός των σημείων που χρησιμοποιούνται για να ορίσουν τις καμπύλες. "
+"Όσο μεγαλύτερος είναι ο αριθμός, τόσο πιο στρωτές θα είναι οι καμπύλες. "
+"Όμως θα υπάρξει πτώση της απόδοσης (Η χρηση της ΚΜΕ αυξάνεται)."
 
 msgid ""
-"Vertex grid resolution for Vacuum (Y dimension only). This is the number of "
-"points used to define the curves. The higher the number, the smoother the "
-"curves. However there will be a loss of performance (CPU usage increases)."
+"Vertex grid resolution for Magic Lamp Vacuum (Y dimension only). This is the "
+"number of points used to define the curves. The higher the number, the "
+"smoother the curves. However there will be a loss of performance (CPU usage "
+"increases)."
 msgstr ""
+"Ανάλυση κορυφαίου πλέγματος για το Ρούφηγμα Μαγικού Λυχναριού (Υ διάσταση "
+"μόνο). Αυτός είναι ο αριθμός των σημείων που χρησιμοποιούνται για να ορίσουν "
+"τις καμπύλες. Όσο μεγαλύτερος είναι ο αριθμός, τόσο πιο στρωτές θα είναι οι "
+"καμπύλες. Όμως θα υπάρξει πτώση της απόδοσης (Η χρηση της ΚΜΕ αυξάνεται)."
 
 msgid "Wave"
-msgstr ""
+msgstr "Κύμα"
 
 msgid "Wave Amplitude"
-msgstr ""
+msgstr "Έκταση Κύματος"
 
-#, fuzzy
 msgid "Wave Width"
-msgstr "Πλάτος Παραθύρου"
+msgstr "Πλάτος Κύματος"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
+"Εαν το παράθυρο θα ζουμάρει στην γραμμή εργασιών όταν ελαχιστοποιείται με το "
+"εφέ της Καμπυλωτής Πτύχωσης."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Dream effect."
 msgstr ""
+"Εαν το παράθυρο θα ζουμάρει στην γραμμή εργασιών όταν ελαχιστοποιείται με το "
+"εφέ του Ονείρου."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 1 effect."
 msgstr ""
+"Εαν το παράθυρο θα ζουμάρει στην γραμμή εργασιών όταν ελαχιστοποιείται με το "
+"εφέ του Glide 1."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 2 effect."
 msgstr ""
+"Εαν το παράθυρο θα ζουμάρει στην γραμμή εργασιών όταν ελαχιστοποιείται με το "
+"εφέ του Glide 2."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Horizontal "
 "Folds effect."
 msgstr ""
+"Εαν το παράθυρο θα ζουμάρει στην γραμμή εργασιών όταν ελαχιστοποιείται με το "
+"εφέ της Οριζόντιας Πτύχωσης."
 
-#, fuzzy
 msgid "Window Grid Height"
-msgstr "Πλάτος Παραθύρου"
+msgstr "Ύψος Πλέγματος Παραθύρου"
 
-#, fuzzy
 msgid "Window Grid Width"
-msgstr "Πλάτος Παραθύρου"
+msgstr "Πλάτος Πλέγματος Παραθύρου"
 
-#, fuzzy
+msgid "Window that should animate with this effect when created."
+msgstr "Παράθυρο που θα απεικονιστεί γραφικά με αυτό το εφέ όταν δημιουργηθεί."
+
 msgid "Window that should animate with this effect when focused."
-msgstr "Παράθυρα που επιτρέπεται να ομαδοποιηθούν"
+msgstr "Παράθυρο που θα απεικονιστεί γραφικά με αυτό το εφέ όταν εστιαστεί."
 
 msgid "Window that should animate with this effect when shaded."
-msgstr ""
+msgstr "Παράθυρο που θα απεικονιστεί γραφικά με αυτό το εφέ όταν σκιαστεί."
 
 msgid ""
 "Window thickness in pixels. Setting this to larger than 0 will disable "
 "shadow, blur, and reflection during the animation."
 msgstr ""
+"Πάχος παραθύρου σε pixels. Ορισμός του σε μεγαλύτερη τιμή απ'το 0 θα "
+"απενεργοποιήσει την σκίαση, το θόλωμα, και την αντανάκλαση κατα την διάρκεια "
+"της γραφικής απεικόνισης."
 
 msgid "Zoom"
-msgstr "Μεγέθυνση"
+msgstr "Ζουμ"
 
 msgid "Zoom Springiness"
-msgstr ""
+msgstr "Ελαστικότητα Ζουμ"
 
 msgid "Zoom from Center"
-msgstr ""
+msgstr "Ζουμ απ'το Κέντρο"
 
 msgid "Zoom from center when playing the Sidekick animation."
 msgstr ""
+"Ζουμ απ'το κέντρο κατα τη διάρκεια της γραφικής απεικόνισης του Πλαινού "
+"Χτυπήματος."
 
 msgid "Zoom from center when playing the Zoom animation."
-msgstr ""
+msgstr "Ζουμ απ'το κέντρο κατα τη διάρκεια της γραφικής απεικόνισης του Ζουμ."
 
 msgid "Zoom to TaskBar on Minimize"
-msgstr ""
+msgstr "Ζουμ στην Γραμμή Εργασιών"
 
 msgid "A simple benchmark plugin"
 msgstr "Ένα απλό τεστ επιδόσεων"
@@ -750,9 +771,8 @@ msgstr "Εξαγωγή στην κονσόλα"
 msgid "Console output update time"
 msgstr "Ανανέωση του χρόνου εξαγωγής στην κονσόλα"
 
-#, fuzzy
 msgid "Disable Compiz integrated FPS limiter"
-msgstr "Απενεργοποίηση του εσωτερικού περιοριστή FPS του beryl"
+msgstr "Απενεργοποίηση του περιοριστή FPS του Compiz"
 
 msgid "Disable limiter"
 msgstr "Απενεργοποίηση περιοριστή"
@@ -803,7 +823,7 @@ msgid "Crash handler"
 msgstr "Διαχειριστής Καταρρεύσεων"
 
 msgid "Enable Crash Handler"
-msgstr "Ενεργοποίηση του Δισχειριστή Καταρρεύσεων"
+msgstr "Ενεργοποίηση του Διαχειριστή Καταρρεύσεων"
 
 msgid "Start Other Window Manager"
 msgstr "Εκκίνηση Άλλου Διαχειριστή Παραθύρων"
@@ -872,110 +892,86 @@ msgid "Reflection mode."
 msgstr "Είδος αντανάκλασης."
 
 msgid "Zoom out automatically only on mouse rotate."
-msgstr "Αυτόματο zoom out μόνο στο γύρισμα με το ποντίκι."
+msgstr "Αυτόματο ζουμ out μόνο στο γύρισμα με το ποντίκι."
 
 msgid "Zoom out automatically to make the cube fit to the screen."
-msgstr "Αυτόματο zoom out για να χορέσει ο κύβος στην οθόνη."
+msgstr "Αυτόματο ζουμ out για να χορέσει ο κύβος στην οθόνη."
 
 msgid "Animation used when switching to expo mode"
-msgstr ""
+msgstr "Γραφική απεικόνιση για την αλλαγή σε μέθοδο expo"
 
 msgid "Appearance"
 msgstr "Εμφάνιση"
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "Αναλογία Διαστάσεων"
 
 msgid "Behaviour"
 msgstr "Συμπεριφορά"
 
 msgid "Distance of the expo wall"
-msgstr ""
+msgstr "Απόσταση του τοίχου του expo"
 
-#, fuzzy
 msgid "Duration of the zoomout animation"
-msgstr "Διάρκεια (σε ms) της γραφικής απεικόνησης πλακιδίων"
+msgstr "Διάρκεια (σε ms) της γραφικής απεικόνισης του ζουμ out"
 
 msgid "Engage wall expo mode"
-msgstr ""
+msgstr "Ενεργοποίηση τοίχου της μεθόδου expo"
 
 msgid "Expo"
-msgstr ""
+msgstr "Expo"
 
-#, fuzzy
 msgid "Expo Animation"
-msgstr "Ταχύτητα Γραφικής Απεικόνισης"
+msgstr "Γραφική Απεικόνιση του Expo"
 
 msgid "Expo Plugin"
-msgstr ""
+msgstr "Πρόσθετο Expo"
 
 msgid "Expo mode aspect ratio"
-msgstr ""
+msgstr "Αναλογία διαστάσεων της μεθόδου expo"
 
-#, fuzzy
 msgid "Fade + Zoom"
-msgstr "Χρόνος Ξεθωριάσματος"
+msgstr "Ξεθώριασμα + Ζουμ"
 
 msgid "Generate mipmaps in expo mode"
-msgstr ""
-
-msgid "Hide panels/docks in expo"
-msgstr ""
-
-msgid "Hide panels/docks in expo."
-msgstr ""
+msgstr "Δημιουργία mipmaps στο expo mode"
 
 msgid "Immediate moves"
-msgstr ""
+msgstr "Άμεσες κινήσεις"
 
-#, fuzzy
 msgid "Mipmaps"
-msgstr "Δημιουργία Mipmaps"
-
-msgid "Multi Output Mode"
-msgstr ""
-
-msgid "One big wall"
-msgstr ""
-
-msgid "One wall per output"
-msgstr ""
+msgstr "Mipmaps"
 
 msgid "Reflection"
 msgstr "Αντανάκλαση"
 
-#, fuzzy
 msgid "Reflection Scale"
-msgstr "Εικόνα αντανάκλασης"
+msgstr "Κλίμακα Αντανάκλασης"
 
 msgid "Scale factor of the expo wall reflection"
-msgstr ""
-
-msgid ""
-"Selects how the expo wall is displayed if multiple output devices are used."
-msgstr ""
+msgstr "Συντελεστής κλίμακας αντανάκλασης του τοίχου του expo"
 
 msgid ""
 "Selects if windows movements in expo mode should be immediate - this among "
 "other things disables wobbliness"
 msgstr ""
+"Επιλέγει το αν οι κινήσεις των παραθύρων στο expo mode πρέπει να είναι αμεσες "
+"- μεταξύ άλλων απενεργοποιεί κ την ταλάντωση"
 
 msgid "Show a reflection of the viewports on the ground"
-msgstr ""
+msgstr "Απεικόνιση αντανάκλασης των επιφανειών εργασίας στο έδαφος"
 
-#, fuzzy
 msgid "Tilt view"
-msgstr "Πλακίδιο"
+msgstr "Απεικόνιση Κλίσης"
 
 msgid "Tilt window view in expo mode"
-msgstr ""
+msgstr "Απεικόνιση κλίσης παραθύρου στο expo mode"
 
 msgid "Vortex"
-msgstr ""
+msgstr "Κορυφαίο"
 
-#, fuzzy
 msgid "Zoom time"
-msgstr "Μεγέθυνση"
+msgstr "Χρόνος Ζουμ"
 
 msgid "Activate Window"
 msgstr "Ενεργοποίηση Παράθυρου"
@@ -1064,23 +1060,17 @@ msgstr "Γράψτε με φωτιά στην οθόνη"
 msgid "Paint fire or other particles on the screen"
 msgstr "Γράψτε με φωτια σε αλλα στοιχεία στην οθόνη"
 
-msgid "Cube Gears"
-msgstr ""
-
-msgid "Render gears inside of the transparent cube"
-msgstr ""
-
 msgid "Begin"
-msgstr ""
+msgstr "Εκκίνηση"
 
 msgid "Begin entering viewport"
-msgstr ""
+msgstr "Εκκίνηση εισόδου σε μια επιφάνεια εργασίας"
 
 msgid "Goto Viewport"
-msgstr ""
+msgstr "Πήγαινε στην Επιφάνεια Εργασίας"
 
 msgid "Goto viewport specified by numbers"
-msgstr ""
+msgstr "Πήγαινε στην ορισμένη αριθμητικά επιφάνεια εργασίας"
 
 msgid "Animation Options"
 msgstr "Επιλογές Γραφικής Κίνησης"
@@ -1140,7 +1130,7 @@ msgstr ""
 msgid "Duration (in s) of the tab bar fading animation when showing/hiding it"
 msgstr ""
 "Διάρκεια (σε s) της γραφικής απεικόνισης ξεθωριάσματος της μπάρας "
-"ετικετώνόταν εμφανίζεται/εξαφανίζεται"
+"ετικετών όταν εμφανίζεται/εξαφανίζεται"
 
 msgid "Duration (in s) of the tab bar pulse animation"
 msgstr "Διάρκεια (σε s) της γραφικής απεικόνισης παλμού της μπάρας ετικετών"
@@ -1152,7 +1142,7 @@ msgstr ""
 msgid "Duration (in s) of the text fading animation when showing/hiding it"
 msgstr ""
 "Διάρκεια (σε s) της γραφικής απεικόνισης του ξεθωριάσματος κειμένου "
-"ότανεμφανίζεται/εξαφανίζεται"
+"όταν εμφανίζεται/εξαφανίζεται"
 
 msgid "Enable Glow"
 msgstr "Ενεργοποίηση Λάμψης"
@@ -1314,6 +1304,9 @@ msgstr "Murrina"
 
 msgid "Opacity of selected windows"
 msgstr "Αδιαφάνεια των επιλεγμένων παραθύρων"
+
+msgid "Options"
+msgstr "Ιδιότητες"
 
 msgid "Play animations on the tab bar e.g. on fade in."
 msgstr ""
@@ -1548,16 +1541,16 @@ msgid "Y distance for spring model"
 msgstr "Υ απόσταση για το μοντέλο ελατηρίου"
 
 msgid "Compression Quality"
-msgstr ""
+msgstr "Ποιότητα Συμπίεσης"
 
 msgid "JPEG"
-msgstr ""
+msgstr "JPEG"
 
 msgid "JPEG image format plugin"
-msgstr ""
+msgstr "Πρόσθετο φορμά εικόνας JPEG"
 
 msgid "Quality of compression when saving JPEG images"
-msgstr ""
+msgstr "Ποιότητα συμπίεσης όταν αποθηκεύονται εικόνες JPEG"
 
 msgid "Accumulation buffer"
 msgstr "Ρυθμιστής συσσώρευσης"
@@ -1601,418 +1594,153 @@ msgstr "Εκκίνηση εφέ Θολώματος κίνησης."
 msgid "Visibility/Performance"
 msgstr "Ορατότητα/Απόδοση"
 
-msgid "Begin Gesture"
-msgstr ""
-
-msgid "Begin Mouse Gesture"
-msgstr ""
-
-msgid "Mouse switch"
-msgstr ""
-
-msgid "Switch viewport in response to mouse gesture"
-msgstr ""
-
-#, fuzzy
 msgid "Exclude Windows"
-msgstr "Αποκλεισμένα Παράθυρα"
+msgstr "Αποκλεισμός Παραθύρων"
 
-#, fuzzy
 msgid "Neg Windows"
-msgstr "Μετατροπή Παραθύρων σε Πλακίδια"
+msgstr "Μετατροπή Παραθύρων σε Αρνητικά"
 
 msgid "Negative"
-msgstr ""
+msgstr "Αρνητικό"
 
-#, fuzzy
 msgid "Toggle Screen Negative"
-msgstr "Εκκίνηση Πλήρους Οθόνης"
+msgstr "Εκκίνηση Αρνητικής Οθόνης"
 
-#, fuzzy
 msgid "Toggle Window Negative"
-msgstr "Εκκίνηση επαναδιεύθυνσης παραθύρου"
+msgstr "Εκκίνηση Αρνητικού Παραθύρου"
 
-#, fuzzy
 msgid "Toggle active window negative"
-msgstr "Εκκίνηση επαναδιεύθυνσης παραθύρου"
+msgstr "Εκκίνηση ενεργού αρνητικού παραθύρου"
 
-#, fuzzy
 msgid "Toggle screen negative"
-msgstr "Εκκίνηση Πλήρους Οθόνης"
+msgstr "Εκκίνηση αρνητικής οθόνης"
 
-#, fuzzy
 msgid "Used to set a window or screen negative"
-msgstr "Θέσε αυτόματα ετικέτες στα παράθυρα κατα τη δημιουργία τους"
+msgstr "Ορισμός ενός παραθύρου ή της οθόνης ως αρνητικά"
 
 msgid "Windows to be negative by default"
-msgstr ""
+msgstr "Παράθυρα που θα είναι αρνητικά απο προεπιλογή"
 
-#, fuzzy
 msgid "Windows to exclude from negating"
-msgstr "Παράθυρα που πρέπει να αποκλειστούν απ το να γίνουν πλακίδια"
+msgstr "Παράθυρα αποκλείονται απ'το να γίνουν αρνητικά"
 
-#, fuzzy
 msgid "Active Opacity"
-msgstr "Αδιαφάνεια"
+msgstr "Ενεργή Αδιαφάνεια"
 
 msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
 "already."
 msgstr ""
+"Χωρίς καθυστέρηση όταν η Εφαρμογή Αδιαφάνειας μειώνει ήδη την αδιαφάνεια σε "
+"ένα ή περισσότερα παράθυρα."
 
 msgid "Bypass delay when the new active window is the focused window."
-msgstr ""
+msgstr "Χωρίς καθυστέρηση όταν το νέο ενεργό παράθυρο είναι το εστιασμένο."
 
 msgid "Delay until Opacification"
-msgstr ""
+msgstr "Καθυστέρηση μέχρι την Αρχή της Αδιαφάνειας"
 
 msgid ""
 "Do not wait if the window we are hovering is the focused window. This allows "
 "us to instantly see the focused window. You probably want to disable this if "
 "you are not using 'Click to Focus'."
 msgstr ""
+"Δεν περιμένει αν το παράθυρο στο οποίο βρίσκεται πάνω του το ποντίκι είναι το "
+"εστιασμένο. Αυτό μας επιτρέπει άμεσα να δούμε το εστιασμένο παράθυρο. "
+"Πιθανώς να θέλετε να το απενεργοποιήσετε αν δεν χρησιμοποιείτε το 'Κλικ για "
+"Εστίαση'."
 
 msgid "Make windows easily visible by hovering the mouse over them"
-msgstr ""
+msgstr "Κάνε τα παράθυρα ευδιάκριτα όταν το ποντίκι παραμένει απο πάνω τους"
 
 msgid "Only increase opacity if a window is blocking"
-msgstr ""
+msgstr "Αυξάνει την αδιαφάνεια μόνο αν ενα παράθυρο μπλοκάρει τα άλλα"
 
 msgid ""
 "Only increase the opacity on the targeted window if it has one or more "
 "windows blocking it from view."
 msgstr ""
+"Αυξάνει την αδιαφάνεια μόνο στο παράθυρο-στόχο αν μπλοκάρεται η θέαση του "
+"απο ένα ή περισσότερα παράθυρα"
 
-#, fuzzy
 msgid "Opacify"
-msgstr "Αδιαφάνεια"
+msgstr "Εφαρμογή Αδιαφάνειας"
 
-#, fuzzy
 msgid "Opacity Levels"
-msgstr "Αδιαφάνεια"
+msgstr "Επίπεδα Αδιαφάνειας"
 
-#, fuzzy
 msgid "Passive Opacity"
-msgstr "Αδιαφάνεια"
+msgstr "Παθητική Αδιαφάνεια"
 
 msgid "Reset opacity to original values when toggling"
-msgstr ""
+msgstr "Επαναφέρει την αδιαφάνεια στις αρχικές τιμές όταν ενεργοποιείται"
 
 msgid ""
 "Reset the opacity of all windows modified by opacify when toggling Opacify "
 "with the defined key-combination."
 msgstr ""
+"Επαναφέρει τον βαθμό αδιαφάνειας όλων των πειραγμένων παραθύρων όταν "
+"ενεργοποιείται η Εφαρμογή Αδιαφάνειας με τον επιλεγμένο συνδυασμό-"
+"πλήκτρων."
 
 msgid ""
 "The delay (in ms) before Opacify changes opacity after the active window has "
 "changed."
 msgstr ""
+"Καθυστέρηση (σε ms) πριν η Εφαρμογή Αδιαφάνειας αλλάξει την αδιαφάνεια μετα "
+"την αλλαγή του ενεργού παραθύρου."
 
 msgid ""
 "The maximum opacity percentage a window blocking the current targeted window "
 "can have. A blocking window will have either this opacity or the preset "
 "opacity, whichever is lower."
 msgstr ""
+"Το μέγιστο ποσοστό αδιαφάνειας που μπορεί να έχει ένα παράθυρο που μπλοκάρει "
+"το τρέχων παράθυρο-στόχο. Ένα παράθυρο που μπλοκάρει θα έχει είτε αυτό το "
+"ποσοστό αδιαφάνειας είτε το προκαθορισμένο, όποιο είναι μικρότερο."
 
 msgid ""
 "The minimum opacity percentage to ensure a targeted window has. A target "
 "window will have either this opacity or the preset opacity, whichever is "
 "higher."
 msgstr ""
+"Το μικρότερο ποσοστό αδιαφάνειας που διασφαλίζεται για το παράθυρο-στόχο. Ενα "
+"παράθυρο-στόχος θα έχει είτε αυτό το ποσοστό αδιαφάνειας είτε το "
+"προκαθορισμένο, όποιο είναι υψηλότερο."
 
 msgid ""
 "This enables you to let Opacify instantly opacify new windows when you're "
 "already making one or more windows invisible. Makes for faster behavior "
 "while looking through layers of hidden windows."
 msgstr ""
+"Αυτο σας δίνει τη δυνατότητα να επιτρέπετε στην Εφαρμογή Αδιαφάνειας να κάνει "
+"αδιαφανή τα νέα παράθυρα όταν εσείς κάνετε ένα ή περισσότερα παράθυρα διάφανα."
+" Κανει γρηγορότερη την συμπεριφορά όταν κοιτάτε μέσα απο στρώματα κρυμμένων "
+"παραθύρων."
 
-#, fuzzy
 msgid "Toggle Opacify"
-msgstr "Εκκίνηση του Κολλημένου στοιχείου"
+msgstr "Ενεργοποίηση της Εφαρμογής Αδιαφάνειας"
 
 msgid "Toggle Opacify on by default"
-msgstr ""
+msgstr "Ενεργοποίηση της Εφαρμογής Αδιαφάνειας απο προεπιλογή"
 
 msgid ""
 "Use this to enable/disable Opacify on the fly. Previously opacified windows "
 "will not be reset once you disable it like this."
 msgstr ""
+"Χρησιμοποιήστε αυτό για να ενεργοποιήσετε/απενεργοποιήσετε την Εφαρμογή "
+"Αδιαφάνειας κατευθείαν. Τα προηγουμένως αδιαφανή παράθυρα δεν θα επανέλθουν "
+"εκτός αν το απενεργοποιήσετε κατ αυτήν την έννοια."
 
-#, fuzzy
 msgid "Windows that should be opacified."
-msgstr "Είδη παραθύρων που πρέπει να χρησιμοποιήσουν την αδιαφάνεια."
+msgstr "Είδη παραθύρων που πρέπει να γίνουν αδιαφανή."
 
 msgid ""
 "With this enabled, opacify will be on when you load Opacify, which is "
 "usually when you start Compiz."
 msgstr ""
-
-#, fuzzy
-msgid "Animation"
-msgstr "Ταχύτητα Γραφικής Απεικόνισης"
-
-#, fuzzy
-msgid "Animation speed"
-msgstr "Ταχύτητα Γραφικής Απεικόνισης"
-
-#, fuzzy
-msgid "Animation timestep"
-msgstr "Επιλογές Γραφικής Κίνησης"
-
-msgid "Avoid Offscreen"
-msgstr ""
-
-msgid "Avoids putting window borders offscreen"
-msgstr ""
-
-msgid "Move window to a certain viewport"
-msgstr ""
-
-#, fuzzy
-msgid "Move window to the bottom edge"
-msgstr "Κίνηση κάθε παραθύρου στην ομάδα"
-
-#, fuzzy
-msgid "Move window to the bottom left corner"
-msgstr "Λόξεψη της κάτω αριστερής γωνίας"
-
-#, fuzzy
-msgid "Move window to the bottom right corner"
-msgstr "Λόξεψη της κάτω δεξιάς γωνίας"
-
-#, fuzzy
-msgid "Move window to the center"
-msgstr "Κίνηση κάθε παραθύρου στην ομάδα"
-
-msgid "Move window to the last position"
-msgstr ""
-
-#, fuzzy
-msgid "Move window to the left edge"
-msgstr "Κίνηση κάθε παραθύρου στην ομάδα"
-
-msgid "Move window to the pointer position"
-msgstr ""
-
-#, fuzzy
-msgid "Move window to the right edge"
-msgstr "Κίνηση κάθε παραθύρου στην ομάδα"
-
-#, fuzzy
-msgid "Move window to the top edge"
-msgstr "Κίνηση κάθε παραθύρου στην ομάδα"
-
-#, fuzzy
-msgid "Move window to the top left corner"
-msgstr "Λόξεψη της κάτω αριστερής γωνίας"
-
-#, fuzzy
-msgid "Move window to the top right corner"
-msgstr "Λόξεψη της κάτω δεξιάς γωνίας"
-
-msgid "Move window to the viewport on the bottom"
-msgstr ""
-
-msgid "Move window to the viewport on the left"
-msgstr ""
-
-msgid "Move window to the viewport on the right"
-msgstr ""
-
-#, fuzzy
-msgid "Move window to the viewport on the top"
-msgstr "Κίνηση κάθε παραθύρου στην ομάδα"
-
-msgid "Move window to viewport 1"
-msgstr ""
-
-msgid "Move window to viewport 10"
-msgstr ""
-
-msgid "Move window to viewport 11"
-msgstr ""
-
-msgid "Move window to viewport 12"
-msgstr ""
-
-msgid "Move window to viewport 2"
-msgstr ""
-
-msgid "Move window to viewport 3"
-msgstr ""
-
-msgid "Move window to viewport 4"
-msgstr ""
-
-msgid "Move window to viewport 5"
-msgstr ""
-
-msgid "Move window to viewport 6"
-msgstr ""
-
-msgid "Move window to viewport 7"
-msgstr ""
-
-msgid "Move window to viewport 8"
-msgstr ""
-
-msgid "Move window to viewport 9"
-msgstr ""
-
-msgid "Move window to x, y"
-msgstr ""
-
-msgid ""
-"Number of pixels from the bottom edge where the window will come to rest"
-msgstr ""
-
-msgid "Number of pixels from the left edge where the window will come to rest"
-msgstr ""
-
-msgid "Number of pixels from the right edge where the window will come to rest"
-msgstr ""
-
-msgid "Number of pixels from the top edge where the window will come to rest"
-msgstr ""
-
-#, fuzzy
-msgid "Pad Left"
-msgstr "Αριστερά"
-
-msgid "Padding"
-msgstr ""
-
-msgid "Put"
-msgstr ""
-
-#, fuzzy
-msgid "Put Bottom"
-msgstr "Απο Πάνω προς τα Κάτω"
-
-#, fuzzy
-msgid "Put Bottom Left"
-msgstr "Λόξεψη Κάτω Αριστερά"
-
-#, fuzzy
-msgid "Put Bottom Right"
-msgstr "Λόξεψη Κάτω Δεξιά"
-
-msgid "Put Center"
-msgstr ""
-
-msgid "Put Exact"
-msgstr ""
-
-#, fuzzy
-msgid "Put Left"
-msgstr "Αριστερά"
-
-msgid "Put On Viewport"
-msgstr ""
-
-msgid "Put On Viewport 1"
-msgstr ""
-
-msgid "Put On Viewport 10"
-msgstr ""
-
-msgid "Put On Viewport 11"
-msgstr ""
-
-msgid "Put On Viewport 12"
-msgstr ""
-
-msgid "Put On Viewport 2"
-msgstr ""
-
-msgid "Put On Viewport 3"
-msgstr ""
-
-msgid "Put On Viewport 4"
-msgstr ""
-
-msgid "Put On Viewport 5"
-msgstr ""
-
-msgid "Put On Viewport 6"
-msgstr ""
-
-msgid "Put On Viewport 7"
-msgstr ""
-
-msgid "Put On Viewport 8"
-msgstr ""
-
-msgid "Put On Viewport 9"
-msgstr ""
-
-msgid "Put Pointer"
-msgstr ""
-
-#, fuzzy
-msgid "Put Right"
-msgstr "Δεξιά"
-
-msgid "Put Top"
-msgstr ""
-
-#, fuzzy
-msgid "Put Top Left"
-msgstr "Λόξεψη Πάνω Αριστερά"
-
-#, fuzzy
-msgid "Put Top Right"
-msgstr "Λόξεψη Πάνω Δεξιά"
-
-msgid "Put pointer uses the center of the window"
-msgstr ""
-
-msgid "Put to adjacent viewport"
-msgstr ""
-
-msgid "Put to arbitrary viewport"
-msgstr ""
-
-#, fuzzy
-msgid "Put window"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
-
-msgid "Put within viewport"
-msgstr ""
-
-#, fuzzy
-msgid "Restore Position"
-msgstr "Επανάκτηση Παραθύρων"
-
-msgid "Speed"
-msgstr "Ταχύτητα"
-
-msgid "Timestep"
-msgstr "Χρονικό Βήμα"
-
-#, fuzzy
-msgid "Unfocus Window"
-msgstr "Αποομαδοποίηση Παραθύρων"
-
-msgid "Unfocus windows that are moved off the viewport"
-msgstr ""
-
-#, fuzzy
-msgid "Viewport Bottom"
-msgstr "Απο Πάνω προς τα Κάτω"
-
-msgid "Viewport Left"
-msgstr ""
-
-msgid "Viewport Right"
-msgstr ""
-
-msgid "Viewport Top"
-msgstr ""
-
-#, fuzzy
-msgid "Window Center"
-msgstr "Γραμματοσειρά Τίτλου Παραθύρου"
+"Με αυτό ενεργοποιημένο, η αδιαφάνεια θα εφαρμόζεται όταν φορτώνετε την "
+"Εφαρμογή Αδιαφάνειας, που γίνεται συνήθως όταν ξεκινά το Compiz"
 
 msgid "Alpha Dependence Threshold"
 msgstr "Κατώφλι Εξάρτησης Alpha"
@@ -2053,372 +1781,329 @@ msgstr "Αντανάκλαση Παραθύρων"
 msgid "Window match"
 msgstr "Ταίριασμα Παραθύρου"
 
-#, fuzzy
 msgid "Color 1 of the gradient background."
-msgstr "Χρώμα Δαπέδου (μακρινό)."
+msgstr "Χρώμα 1 του κεκλιμένου φόντου."
 
-#, fuzzy
 msgid "Color 2 of the gradient background."
-msgstr "Χρώμα Δαπέδου (μακρινό)."
+msgstr "Χρώμα 2 του κεκλιμένου φόντου."
 
-#, fuzzy
 msgid "Color 3 of the gradient background."
-msgstr "Χρώμα Δαπέδου (μακρινό)."
+msgstr "Χρώμα 3 του κεκλιμένου φόντου."
 
-#, fuzzy
 msgid "Color of text on resize popup."
-msgstr "Χρώμα Δαπέδου (μακρινό)."
+msgstr "Χρώμα κειμένου στην αλλαγή διαστάσεων popup."
 
 msgid "Display info on resize similar to metacity"
-msgstr ""
+msgstr "Εμφάνιση πληροφοριών στην αλλαγή διαστάσεων παρόμοια του metacity"
 
-#, fuzzy
 msgid "Fade time (in ms) for popup window"
-msgstr "Χρόνος ξεθωριάσματος (σε ms)"
+msgstr "Χρόνος ξεθωριάσματος (σε ms) για το παράθυρο popup"
 
-#, fuzzy
 msgid "Gradient Color 1"
-msgstr "Κλίση"
+msgstr "Χρώμα 1 Κλίσης"
 
-#, fuzzy
 msgid "Gradient Color 2"
-msgstr "Κλίση"
+msgstr "Χρώμα 2 Κλίσης"
 
-#, fuzzy
 msgid "Gradient Color 3"
-msgstr "Κλίση"
+msgstr "Χρώμα 3 Κλίσης"
 
 msgid "Resize Info"
-msgstr ""
+msgstr "Πληροφορίες Αλλαγής Διαστάσεων"
 
 msgid ""
 "Show resize info for all windows as opposed to just windows with a resize "
 "increment of greater than 1."
 msgstr ""
+"Δείχνει τις πληροφορίες αλλαγής διαστάσεων για όλα τα παράθυρα σε αντίθεση με "
+"το απλα παράθυρα με αλλαγή διαστάσεων περισσότερο του 1."
 
-#, fuzzy
 msgid "Show resize info for all windows."
-msgstr "Απεικόνιση Αντανάκλασης παραθύρων."
+msgstr "Δείχνει τις πληροφορίες αλλαγής διαστάσεων για όλα τα παράθυρα."
 
 msgid "Text color."
-msgstr ""
+msgstr "Χρώμα Κειμένου."
 
-#, fuzzy
 msgid "Above ring"
-msgstr "Απο Πάνω"
+msgstr "Δαχτυλίδι απο πάνω"
 
-#, fuzzy
 msgid "Allow Mouse Selection"
-msgstr "Αντανάκλαση του Κύβου"
+msgstr "Επιτρέπεται η Επιλογή με το Ποντίκι"
 
 msgid ""
 "Allow the selection of windows by just clicking on them while the switcher "
 "is active."
 msgstr ""
+"Να επιτρέπεται η επιλογή παραθύρων με απλό κλικ πάνω τους καθώς ο επιλογέας "
+"είναι ενεργός."
 
 msgid ""
 "Amount of opacity (in percent) for windows in the ring which are not selected"
 msgstr ""
+"Ποσό αδιαφάνειας (σε ποσοστό) για τα παράθυρα στο δαχτυλίδι που δεν είναι "
+"επιλεγμένα"
 
-#, fuzzy
 msgid "Background Color"
-msgstr "Αρχείο Φόντου"
+msgstr "Χρώμα Φόντου"
 
-#, fuzzy
 msgid "Background color for the window title"
-msgstr "Χρώμα του τίτλου παραθύρου στην μπάρα ετικετών"
+msgstr "Χρώμα τίτλου του παραθύρου"
 
-#, fuzzy
 msgid "Below ring"
-msgstr "Δαχτυλίδι Λάμψης"
+msgstr "Κάτω απ'το δαχτυλίδι"
 
 msgid "Big"
-msgstr ""
+msgstr "Μεγάλο"
 
 msgid "Bold Font"
-msgstr ""
+msgstr "Έντονη Γραμματοσειρά"
 
-#, fuzzy
 msgid "Centered on screen"
-msgstr "Γράψτε με φωτιά στην οθόνη"
+msgstr "Κεντραρισμένο στην οθόνη"
 
 msgid ""
 "Changes the minimum brightness factor for windows in the ring. The farer "
 "away windows are, the less bright are they."
 msgstr ""
+"Αλλάζει τον ελάχιστο συντελεστή φωτεινότητας των παραθύρων του δαχτυλιδιού. "
+"Όσο πιο μακριά βρίσκονται τα παράθυρα, τόσο λιγότερο φωτεινά είναι."
 
 msgid ""
 "Changes the minimum scale factor for windows in the ring. The farer away "
 "windows are, the smaller are they."
 msgstr ""
+"Αλλάζει τον ελάχιστο συντελεστή μεγέθους των παραθύρων του δαχτυλιδιού. Όσο "
+"πιο μακριά βρίσκονται τα παράθυρα, τόσο μικρότερα είναι."
 
-#, fuzzy
 msgid "Darken Background"
-msgstr "Αρχείο Φόντου"
+msgstr "Σκοτείνιασμα Φόντου"
 
 msgid "Darken background when showing the ring"
-msgstr ""
+msgstr "Σκοτείνιασμα φόντου όταν εμφανίζεται το δαχτυλίδι"
 
-#, fuzzy
 msgid "Emblem"
-msgstr "Ενεργοποίηση"
+msgstr "Έμβλημα"
 
-#, fuzzy
 msgid "Font color for the window title"
-msgstr "Χρώμα του τίτλου παραθύρου στην μπάρα ετικετών"
+msgstr "Χρώμα γραμματοσειράς για τον τίτλο παραθύρου"
 
-#, fuzzy
 msgid "Font size for the window title"
-msgstr "Μέγεθος της λάμψης του ομαδοποιημένου παραθύρου"
+msgstr "Μέγεθος γραμματοσειράς για τον τίτλο παραθύρου"
 
-#, fuzzy
 msgid "Inactive Window Opacity"
-msgstr "Αδιαφάνεια Παραθύρου"
+msgstr "Αδιαφάνεια Ανενεργού Παραθύρου"
 
 msgid "Maximum horizontal size of a thumbnail in the ring"
-msgstr ""
+msgstr "Μέγιστο οριζόντιο μέγεθος ενός thumbnail στο δαχτυλίδι"
 
 msgid "Maximum vertical size of a thumbnail in the ring"
-msgstr ""
+msgstr "Μέγιστο κάθετο μέγεθος ενός thumbnail στο δαχτυλίδι"
 
 msgid "Minimum Brightness Factor"
-msgstr ""
+msgstr "Ελάχιστος Συντελεστής Φωτεινότητας"
 
 msgid "Minimum Scale Factor"
-msgstr ""
+msgstr "Ελάχιστος Συντελεστής Μεγέθους"
 
-#, fuzzy
 msgid "Next Window"
-msgstr "Μετατροπή Παραθύρων σε Πλακίδια"
+msgstr "Επόμενο Παράθυρο"
 
 msgid "Next Window (All Workspaces)"
-msgstr ""
+msgstr "Επόμενο Παράθυρο (Όλες οι Επιφάνειες Εργασίας)"
 
 msgid "Next Window (Group)"
-msgstr ""
+msgstr "Επόμενο Παράθυρο (Ομάδα)"
 
 msgid "Overlay Icon"
-msgstr ""
+msgstr "Εικονίδιο Επίστρωσης"
 
-#, fuzzy
 msgid "Overlay an icon on windows in the ring"
-msgstr "Πλήκτρο κλεισίματος όλων των παραθύρων της ομάδας."
+msgstr "Επίστρωση ενός εικονιδίου πάνω στα παράθυρα του δαχτυλιδιού"
 
-#, fuzzy
 msgid "Previous Window"
-msgstr "Ομαδοποίηση Παραθύρων"
+msgstr "Προηγούμενο Παράθυρο"
 
 msgid "Previous Window (All Workspaces)"
-msgstr ""
+msgstr "Προηγούμενο Παράθυρο (Όλες οι Επιφάνειες Εργασίας)"
 
 msgid "Previous Window (Group)"
-msgstr ""
+msgstr "Προηγούμενο Παράθυρο (Ομάδα)"
 
-#, fuzzy
 msgid "Ring Height"
-msgstr "Δεξιά"
+msgstr "Ύψος Δαχτυλιδιού"
 
 msgid "Ring Switcher"
-msgstr ""
+msgstr "Επιλογέας Δαχτυλιδιού"
 
-#, fuzzy
 msgid "Ring Width"
-msgstr "Πλάτος Παραθύρου"
+msgstr "Πλάτος Δαχτυλιδιού"
 
-#, fuzzy
 msgid "Ring Windows"
-msgstr "Μετατροπή Παραθύρων σε Πλακίδια"
+msgstr "Τοποθέτηση Παραθύρων στο Δαχτυλίδι"
 
-#, fuzzy
 msgid "Ring appearance"
-msgstr "Εμφάνιση"
+msgstr "Εμφάνιση Δαχτυλιδιού"
 
 msgid "Ring height (in percent of the screen height)"
-msgstr ""
+msgstr "Ύψος δαχτυλιδιού (σε ποσοστό του ύψους της οθόνης)"
 
-#, fuzzy
 msgid "Ring speed"
-msgstr "Ταχύτητα Τοποθέτησης Ετικετών"
+msgstr "Ταχύτητα δαχτυλιδιού"
 
-#, fuzzy
 msgid "Ring timestep"
-msgstr "Βήμα Χρονου Τοποθέτησης Ετικετών"
+msgstr "Βήμα χρόνου δαχτυλιδιού"
 
 msgid "Ring width (in percent of the screen width)"
-msgstr ""
+msgstr "Πλάτος δαχτυλιδιού (σε ποσοατό του πλάτους της οθόνης)"
 
 msgid "Rotate Ring Clockwise on Next"
-msgstr ""
+msgstr "Περιστροφή Δαχτυλιδιού με τους Δείκτες του Ρολογιού στο Επόμενο"
 
 msgid "Rotate ring clockwise for next window instead of counterclockwise"
 msgstr ""
+"Περιστροφή δαχτυλιδιού με τους δείκτες του ρολογιού στο επόμενο παράθυρο "
+"αντι για ανάποδα."
 
 msgid "Selects if the window title should be displayed in bold font or not."
-msgstr ""
+msgstr "Επιλέγει αν η γραμματοσειρά του τίτλου παραθύρου θα είναι έντονη ή οχι."
 
 msgid "Selects where to place the window title."
-msgstr ""
+msgstr "Επιλέγει που να τοποθετήσει τον τίτλο παραθύρου"
 
 msgid "Show Minimized"
-msgstr ""
+msgstr "Ελαχιστοποιημένη Εμφάνιση"
 
-#, fuzzy
 msgid "Show Window Title"
-msgstr "Γραμματοσειρά Τίτλου Παραθύρου"
+msgstr "Εμφάνιση Τίτλου Παραθύρου"
 
-#, fuzzy
 msgid "Show minimized windows"
-msgstr "Χιόνι Πάνω απ τα Παράθυρα"
+msgstr "Εμφάνιση ελαχιστοποιημένων παραθύρων"
 
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
 msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή επόμενου παραθύρου για την "
+"τρέχουσα εφαρμογή."
 
 msgid "Show switcher if not visible and select next window out of all windows."
 msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή επόμενου παραθύρου μέσα απο "
+"όλα τα παράθυρα."
 
 msgid "Show switcher if not visible and select next window."
-msgstr ""
+msgstr "Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή επόμενου παραθύρου."
 
 msgid ""
 "Show switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή προηγούμενου παραθύρου της "
+"τρέχουσας εφαρμογής."
 
 msgid ""
 "Show switcher if not visible and select previous window out of all windows."
 msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή προηγούμενου παραθύρου "
+"μέσα απο όλα τα παράθυρα."
 
 msgid "Show switcher if not visible and select previous window."
 msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή προηγούμενου παραθύρου."
 
 msgid "Show window title of currently selected window."
-msgstr ""
+msgstr "Εμφάνιση τίτλου παραθύρου για το τρέχων επιλεγμένο παράθυρο."
+
+msgid "Speed"
+msgstr "Ταχύτητα"
 
 msgid "Text Placement"
-msgstr ""
+msgstr "Τοποθέτηση Κειμένου"
 
 msgid "Thumbnail Height"
-msgstr ""
+msgstr "Υψος Απεικόνισης Προεπισκοπήσεων"
 
 msgid "Thumbnail Width"
-msgstr ""
+msgstr "Πλάτος Απεικόνισης Προεπισκοπήσεων"
 
-#, fuzzy
+msgid "Timestep"
+msgstr "Χρονικό Βήμα"
+
 msgid "Window title display"
-msgstr "Γραμματοσειρά Τίτλου Παραθύρου"
+msgstr "ΕμφάνισηΤίτλου Παραθύρου"
 
-#, fuzzy
 msgid "Windows that should be shown in ring"
-msgstr "Παράθυρα που πρέπει να διαχειριστούν ως τρισδιάστατα"
+msgstr "Παράθυρα που πρέπει να εμφανίζονται στο δαχτυλίδι"
 
-#, fuzzy
 msgid "Background color of the window title"
-msgstr "Χρώμα του τίτλου παραθύρου στην μπάρα ετικετών"
+msgstr "Χρώμα φόντου του τίτλου παραθύρου"
 
-#, fuzzy
 msgid "Close Windows In Scale"
-msgstr "Μετατροπή Παραθύρων σε Πλακίδια Κάθετα"
+msgstr "Κλείσιμο Παραθύρων στην Αλλαγή Διαστάσεων"
 
-#, fuzzy
 msgid "Close windows while in scale mode"
-msgstr "Ανυψώνει τα παράθυρα όταν γυρίζει ο κύβος"
+msgstr "Κλείσιμο παραθύρων στην μέθοδο Αλλαγής Διαστάσεων"
 
 msgid "Color used for highlighting the hovered window"
-msgstr ""
+msgstr "Χρώμα τονισμού του παραθύρου που το ποντίκι μένει επάνω του."
 
-#, fuzzy
 msgid "Draw Window Highlight"
-msgstr "Σχεδίαση της Πίσω Πλευράς του Παραθύρου"
+msgstr "Σχεδίαση Τονισμού Παραθύρου"
 
-#, fuzzy
 msgid "Font color of the window title"
-msgstr "Χρώμα του τίτλου παραθύρου στην μπάρα ετικετών"
+msgstr "Χρώμα γραμματοσειράς του τίτλου παραθύρου"
 
 msgid "Font size for window title display"
-msgstr ""
+msgstr "Χρώμα γραμματοσειράς εμφάνισης του τίτλου παραθύρου"
 
-#, fuzzy
 msgid "Highlight Color"
-msgstr "Χρώμα Τονισμού Ετικετών"
+msgstr "Χρώμα Τονισμού"
 
 msgid "Highlights the hovered window with the given color"
-msgstr ""
+msgstr "Τονίζει το παράθυρο που το ποντίκι μένει επάνω του με το δωθέν χρώμα."
 
 msgid "Normal"
-msgstr ""
+msgstr "Κανονικό"
 
-#, fuzzy
 msgid "Organic - EXPERIMENTAL"
-msgstr "Ένωση Παραθύρων (ΠΕΙΡΑΜΑΤΙΚΟ)"
+msgstr "Οργανικό - (ΠΕΙΡΑΜΑΤΙΚΟ)"
 
 msgid "Scale Addons"
-msgstr ""
+msgstr "Κλιμάκωση Addons"
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
+msgstr "Επιλογή της μεθόδου διάταξης των παραθύρων στην μέθοδο κλιμάκωσης"
 
 msgid "Show window title in scale mode"
-msgstr ""
+msgstr "Εμφάνιση του τίτλου παραθύρου στην μέθοδο κλιμάκωσης"
 
-#, fuzzy
 msgid "Size of the border around the window title"
-msgstr "Μέγεθος της λάμψης του ομαδοποιημένου παραθύρου"
+msgstr "Μέγεθος του ορίου γύρω απ τον τίτλο παραθύρου"
 
 msgid "Some useful additions to the scale plugin"
-msgstr ""
+msgstr "Μερικές χρήσιμες εναλλακτικές για το πρόσθετο της κλιμάκωσης"
 
 msgid "Title Border Size"
-msgstr ""
+msgstr "Μέγεθος Ορίου Τίτλου"
 
 msgid "Use bold font for window title display"
 msgstr ""
+"Χρησιμοποίηση έντονης γραμματοσειράς για την εμφάνιση του τίτλου παραθύρου"
 
-#, fuzzy
 msgid "Window Highlight"
-msgstr "Πλάτος Παραθύρου"
+msgstr "Τονισμός Παραθύρου"
 
-#, fuzzy
 msgid "Window Layout Mode"
-msgstr "Μέγεθος Τμήματος Παραθύρου"
+msgstr "Μέθοδος Διάταξης Παραθύρου"
 
-#, fuzzy
 msgid "Window Title"
-msgstr "Γραμματοσειρά Τίτλου Παραθύρου"
+msgstr "Τίτλος Παραθύρου"
 
-#, fuzzy
 msgid "Zoom Windows In Scale"
-msgstr "Χώρος Παραθύρου"
+msgstr "Ζουμ Παραθύρων Στην Κλιμάκωση"
 
 msgid "Zoom windows while in scale mode"
-msgstr ""
-
-msgid "Filter Case Insensitive"
-msgstr ""
-
-msgid "Filter Type Timeout"
-msgstr ""
-
-#, fuzzy
-msgid "Scale Window Title Filter"
-msgstr "Γραμματοσειρά Τίτλου Παραθύρου"
-
-msgid "Show Filter Text"
-msgstr ""
-
-#, fuzzy
-msgid "Show filter text."
-msgstr "Εμφάνιση στην πρώτη εκκίνηση"
-
-msgid "Time (in ms) after which the filter typing is automatically ended"
-msgstr ""
-
-msgid "Use case insensitive string matching when filtering."
-msgstr ""
-
-msgid "Window title filter facility for the scale plugin"
-msgstr ""
+msgstr "Ζουμ παραθύρων στην μέθοδο κλιμάκωσης"
 
 msgid ""
 "Embeds a Guile scheme interpreter and provides bindings for meaningful "
@@ -2435,117 +2120,6 @@ msgstr "Εκκίνηση Ορατής Παρακίνησης"
 
 msgid "Toggle prompt visible."
 msgstr "Εκκίνηση ορατής παρακίνησης."
-
-#, fuzzy
-msgid "Background intensity"
-msgstr "Αρχείο Φόντου"
-
-#, fuzzy
-msgid "Background intensity."
-msgstr "Φωτεινότητα φόντου."
-
-#, fuzzy
-msgid "Below"
-msgstr "Λάμψη"
-
-msgid "Click duration"
-msgstr ""
-
-#, fuzzy
-msgid "Cover"
-msgstr "Απο Πάνω"
-
-#, fuzzy
-msgid "Cover movement offset."
-msgstr "Ταχύτητα μετακίνησης παραθύρου"
-
-msgid "Cover offset"
-msgstr ""
-
-#, fuzzy
-msgid "Fade in/out speed"
-msgstr "Χρόνος Ξεθωριάσματος."
-
-#, fuzzy
-msgid "Fade speed"
-msgstr "Χρόνος Ξεθωριάσματος"
-
-msgid "Flip"
-msgstr ""
-
-msgid "Flip angle"
-msgstr ""
-
-#, fuzzy
-msgid "Generate mipmaps"
-msgstr "Δημιουργία Mipmaps"
-
-#, fuzzy
-msgid "Initiate (All Workspaces)"
-msgstr "Εισαγωγή Αρχικής Οθόνης"
-
-msgid "Initiate switcher (All Workspaces)."
-msgstr ""
-
-#, fuzzy
-msgid "Initiate switcher."
-msgstr "Εισαγωγή Αρχικής Οθόνης"
-
-#, fuzzy
-msgid "Max window size"
-msgstr "Σχεδίαση της Πίσω Πλευράς του Παραθύρου"
-
-msgid "Maximum click duration in miliseconds."
-msgstr ""
-
-msgid "Maximum window size (in percent of the screen width)"
-msgstr ""
-
-#, fuzzy
-msgid "Mouse movement speed"
-msgstr "Ταχύτητα μετακίνησης παραθύρου"
-
-msgid "Mouse speed"
-msgstr ""
-
-msgid "Overlay an icon on windows in the shift switcher"
-msgstr ""
-
-#, fuzzy
-msgid "Rotation angle of the flip animation"
-msgstr "Διάρκεια (σε ms) της γραφικής απεικόνησης πλακιδίων"
-
-msgid "Shift Switcher"
-msgstr ""
-
-msgid "Shift Switcher Plugin"
-msgstr ""
-
-#, fuzzy
-msgid "Shift Windows"
-msgstr "Μετατροπή Παραθύρων σε Πλακίδια"
-
-#, fuzzy
-msgid "Shift animaton speed"
-msgstr "Ταχύτητα Γραφικής Απεικόνισης"
-
-#, fuzzy
-msgid "Shift speed"
-msgstr "Ταχύτητα"
-
-#, fuzzy
-msgid "Shift timestep"
-msgstr "Βήμα Χρονου Τοποθέτησης Ετικετών"
-
-msgid "Switcher mode"
-msgstr ""
-
-msgid "Switcher mode."
-msgstr ""
-
-#, fuzzy
-msgid "Windows that should be shown in the shift switcher"
-msgstr "Παράθυρα που επιτρέπεται να ομαδοποιηθούν"
 
 msgid "Access your desktop easily"
 msgstr "Εύκολη πρόσβαση επιφάνειας εργασίας"
@@ -2593,70 +2167,112 @@ msgstr ""
 "στο  στοιχείο εμφάνισης επιφάνειας εργασίας"
 
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Avoid Snap Modifier"
-msgstr ""
+msgstr "Αποφυγή Εναλλάκτη Στιγμιότυπου"
 
 msgid "Choose 'Resistance', 'Attraction' or 'Full Mode'."
-msgstr ""
+msgstr "Επιλογή 'Αντίστασης', 'Έλξης' ή 'Πλήρης Τύπος'."
 
 msgid "Control"
-msgstr ""
+msgstr "Έλεγχος"
 
 msgid "Edge Attraction Distance"
-msgstr ""
+msgstr "Απόσταση Έλξης Άκρης"
 
 msgid "Edge Resistance Distance"
-msgstr ""
+msgstr "Απόσταση Αντίστασης Άκρης"
 
-#, fuzzy
 msgid "Edge attraction"
-msgstr "Κορεσμός"
+msgstr "Έλξη άκρης"
 
-#, fuzzy
 msgid "Edge resistance"
-msgstr "Απόσταση"
+msgstr "Αντίσταση άκρης"
 
 msgid "Edges"
-msgstr ""
+msgstr "Άκρες"
 
 msgid "Enables windows edges resistance"
-msgstr ""
+msgstr "Ενεργοποιεί την αντίσταση των ακρών των παραθύρων"
 
-#, fuzzy
 msgid "Meta"
-msgstr "Μέταλλο"
+msgstr "Meta"
 
-#, fuzzy
 msgid "Screen edges"
-msgstr "Βάθος Οθόνης"
+msgstr "Άκρες Οθόνης"
 
 msgid "Shift"
-msgstr ""
+msgstr "Αλλαγή"
 
 msgid "Snap Type"
-msgstr ""
+msgstr "Είδος Γρήγορης Μεταφοράς"
 
 msgid "Snap to 'Screen Edges', 'Windows Edges' or 'Both'."
-msgstr ""
+msgstr "Γρήγορη Μεταφορά σε 'Άκρες Οθόνης', 'Άκρες Παραθύρων' ή 'Και τα Δύο'."
 
-#, fuzzy
 msgid "Snapping Windows"
-msgstr "Αποομαδοποίηση Παραθύρων"
+msgstr "Γρήγορη Μεταφορά Παραθύρων"
 
 msgid "The distance until edge attraction takes place."
-msgstr ""
+msgstr "Απόσταση οσότου να λάβει χώρα η έλξη άκρης."
 
 msgid "The distance until edge resistance takes place."
-msgstr ""
+msgstr "Απόσταση οσότου να λάβει χώρα η αντίσταση άκρης."
 
 msgid "Use this bindings to avoid snapping."
-msgstr ""
+msgstr "Χρησιμοποίηση αυτών των συνδυασμών για αποφυγή γρήγορης μεταφοράς"
 
-#, fuzzy
 msgid "Window edges"
-msgstr "Είδη Παραθύρων"
+msgstr "Άκρες Παραθύρου"
+
+msgid "A simple splash plugin"
+msgstr "Ενα απλό πρόσθετο αρχικής οθόνης"
+
+msgid "Background File"
+msgstr "Αρχείο Φόντου"
+
+msgid "Background brightness."
+msgstr "Φωτεινότητα φόντου."
+
+msgid "Background image File."
+msgstr "Αρχείο εικόνας Φόντου."
+
+msgid "Background saturation."
+msgstr "Κορεσμός Φόντου."
+
+msgid "Display In/Out Time."
+msgstr "Χρόνος Εμφάνισης εντός/εκτός."
+
+msgid "Display Time"
+msgstr "Χρόνος Εμφάνισης"
+
+msgid "Fade In/Out Time."
+msgstr "Χρόνος Ξεθωριάσματος."
+
+msgid "Images"
+msgstr "Εικόνες"
+
+msgid "Initiate Splash"
+msgstr "Εισαγωγή Αρχικής Οθόνης"
+
+msgid "Logo File"
+msgstr "Αρχείο Λογότυπου"
+
+msgid "Logo image File."
+msgstr "Αρχείο εικόνας Λογότυπου."
+
+msgid "Show on first start"
+msgstr "Εμφάνιση στην πρώτη εκκίνηση"
+
+msgid "Show splash on first start."
+msgstr "Εμφάνιση αρχικής οθόνης στην πρώτη εκκίνηση."
+
+msgid "Splash"
+msgstr "Αρχική Οθόνη"
+
+msgid "Start Splash."
+msgstr "Εκκίνηση Αρχικής Οθόνης."
 
 msgid "Bottom to Top"
 msgstr "Απο κάτω προς τα Πάνω"
@@ -2774,158 +2390,95 @@ msgstr "Απο Πάνω προς τα Κάτω"
 msgid "Update Delay"
 msgstr "Καθυστέρηση Ανανέωσης"
 
-msgid "A simple splash plugin"
-msgstr "Ενα απλό πρόσθετο αρχικής οθόνης"
-
-msgid "Background File"
-msgstr "Αρχείο Φόντου"
-
-msgid "Background brightness."
-msgstr "Φωτεινότητα φόντου."
-
-msgid "Background image File."
-msgstr "Αρχείο εικόνας Φόντου."
-
-msgid "Background saturation."
-msgstr "Κορεσμός Φόντου."
-
-msgid "Display In/Out Time."
-msgstr "Χρόνος Εμφάνισης εντός/εκτός."
-
-msgid "Display Time"
-msgstr "Χρόνος Εμφάνισης"
-
-msgid "Fade In/Out Time."
-msgstr "Χρόνος Ξεθωριάσματος."
-
-msgid "Images"
-msgstr "Εικόνες"
-
-msgid "Initiate Splash"
-msgstr "Εισαγωγή Αρχικής Οθόνης"
-
-msgid "Logo File"
-msgstr "Αρχείο Λογότυπου"
-
-msgid "Logo image File."
-msgstr "Αρχείο εικόνας Λογότυπου."
-
-msgid "Show on first start"
-msgstr "Εμφάνιση στην πρώτη εκκίνηση"
-
-msgid "Show splash on first start."
-msgstr "Εμφάνιση αρχικής οθόνης στην πρώτη εκκίνηση."
-
-msgid "Splash"
-msgstr "Αρχική Οθόνη"
-
-msgid "Start Splash."
-msgstr "Εκκίνηση Αρχικής Οθόνης."
-
 msgid "Render text to texture"
-msgstr ""
+msgstr "Προσθήκη κειμένου στην υφή"
 
-#, fuzzy
 msgid "Text"
-msgstr "Υφές"
+msgstr "Κείμενο"
 
-#, fuzzy
 msgid "Enable Titles"
-msgstr "Ενεργοποίηση Υφών"
+msgstr "Ενεργοποίηση Τίτλων"
 
-#, fuzzy
 msgid "Fade In/Out Duration"
-msgstr "Χρόνος Ξεθωριάσματος."
+msgstr "Διάρκεια Ξεθωριάσματος"
 
-#, fuzzy
 msgid "Fade In/Out Duration in seconds."
-msgstr "Χρόνος Ξεθωριάσματος."
+msgstr "Διάρκεια Ξεθωριάσματος σε δευτερόλεπτα."
 
-#, fuzzy
 msgid "Generate Mipmaps"
 msgstr "Δημιουργία Mipmaps"
 
 msgid "Generate mipmaps when possible for higher quality scaling."
-msgstr ""
+msgstr "Δημιουργία mipmaps ει δυνατόν για υψηλότερη ποιότητα κλιμάκωσης."
 
 msgid "Paint Thumbnails Always on Top."
-msgstr ""
+msgstr "Ζωγράφισε τις Απεικόνισης Προεπισκοπήσεων Παντα απο Πάνω."
 
 msgid "Paint Window Like Background"
-msgstr ""
+msgstr "Ζωγράφισε το Παράθυρο Όπως το Φόντο"
 
 msgid "Paint Window Like Background instead of Glow."
-msgstr ""
+msgstr "Ζωγράφισε το Παράθυρο Όπως το Φόντο εκτός απ'τη Λάμψη."
 
 msgid "Set it if the Taskbar shows only Windows of Current Viewport."
 msgstr ""
+"Ρύθμιση αν τα Παράθυρα που εμφανίζονται στην Γραμμή Εργασιών ανήκουν στην "
+"Τρέχουσα Επιφάνεια Εργασιών."
 
 msgid "Should be the window title Bold."
-msgstr ""
+msgstr "Αν πρέπει ο τίτλος παραθύρου να γίνει Έντονος."
 
-#, fuzzy
 msgid "Show Delay"
-msgstr "Καθυστέρηση Εμφάνισης Μπάρας Ετικετών"
+msgstr "Καθυστέρηση Εμφάνισης"
 
 msgid "Show Window Title in Thumbnail."
-msgstr ""
+msgstr "Εμφάνιση του Τίτλου Παραθύρου στην Απεικόνιση Προεπισκοπήσεων."
 
 msgid "Size of Thumbnail Border."
-msgstr ""
+msgstr "Μέγεθος Ορίου Απεικόνισης Προεπισκοπήσεων."
 
 msgid "Taskbar"
-msgstr ""
+msgstr "Γραμμή Εργασιών"
 
 msgid "Taskbar Shows Only Windows of Current Viewport"
 msgstr ""
+"Η Γραμμή Εργασιών Δείχνει Μόνο Παράθυρα της Τρέχουσας Επιφάνειας Εργασιών"
 
 msgid "Thumbnail Background and Border Glow Color."
-msgstr ""
+msgstr "Φόντο Απεικόνισης Προεπισκοπήσεων και Χρώμα Ορίου Λάμψης."
 
-#, fuzzy
 msgid "Thumbnail Border Glow Color"
-msgstr "Χρώμα Ορίου Ετικετών"
+msgstr "Χρώμα Ορίου Λάμψης Απεικόνισης Προεπισκοπήσεων"
 
-#, fuzzy
 msgid "Thumbnail Border Size"
-msgstr "Μέγεθος Απεικόνισης Προεπισκοπήσεων"
+msgstr "Μέγεθος Ορίου Απεικόνισης Προεπισκοπήσεων"
 
-#, fuzzy
 msgid "Thumbnail Window Size"
-msgstr "Μέγεθος Απεικόνισης Προεπισκοπήσεων"
+msgstr "Μέγεθος Παραθύρου Απεικόνισης Προεπισκοπήσεων"
 
-#, fuzzy
 msgid "Thumbnail window size."
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Μέγεθος παραθύρου απεικόνισης προεπισκοπήσεων."
 
 msgid "Thumbnails Always on Top"
-msgstr ""
+msgstr "Απεικόνισεις Προεπισκοπήσεων Πάντα απο Πάνω"
 
 msgid "Time (in ms) before Thumbnail is shown."
-msgstr ""
+msgstr "Χρόνος (σε ms) πριν εμφανιστει η Απεικόνιση Προεπισκοπήσεων"
 
-#, fuzzy
 msgid "Window Previews"
-msgstr "Μέγεθος Τμήματος Παραθύρου"
+msgstr "Προεπισκοπίσεις Παραθύρου"
 
-#, fuzzy
 msgid "Window thumbnails at the taskbar"
-msgstr "Μέγεθος της απεικόνισης του παραθύρου στην μπάρα εργασιών"
+msgstr "Μέγεθος των απεικονίσεων προεπισκοπήσεων στην γραμμή εργασιών"
 
-#, fuzzy
 msgid "Window title"
-msgstr "Γραμματοσειρά Τίτλου Παραθύρου"
+msgstr "Τίτλος Παραθύρου"
 
-#, fuzzy
 msgid "Window title Font Color."
-msgstr "Γραμματοσειρά Τίτλου Παραθύρου"
+msgstr "Χρώμα Γραμματοσειράς Τίτλου Παραθύρου."
 
-#, fuzzy
 msgid "Window title Font Size."
-msgstr "Γραμματοσειρά Τίτλου Παραθύρου"
-
-msgid "Animation Duration"
-msgstr "Διάρκεια Γραφικής Απεικόνησης"
+msgstr "Μέγεθος Γραμματοσειράς Τίτλου Παραθύρου."
 
 msgid "Cascade"
 msgstr "Καταρράκτης"
@@ -3068,23 +2621,19 @@ msgstr "Επίπεδο Φωτεινότητας Εστιασμένων Παρα�
 msgid "Brightness Level of Unfocused Windows"
 msgstr "Επίπεδο Φωτεινότητας μη Εστιασμένων Παραθύρων"
 
-#, fuzzy
 msgid ""
 "Brightness of the currently focused window. Windows will get brightness "
 "levels between the focused and minimum."
 msgstr ""
 "Φωτεινότητα του τρέχοντος εστιασμένου παραθύρου. Τα παράθυρα θα αποκτήσουν "
-"επίπεδα αδιαφάνειας μεταξύ της ελάχιστης τιμής και της τιμής του εστιασμένου "
-"παραθύρου."
+"επίπεδα φωτεινότητας μεταξύ της τιμής του εστιασμένου και της ελάχιστης τιμής."
 
-#, fuzzy
 msgid ""
 "Brightness of the least focused window. Windows will get brightness levels "
 "between the focused and minimum."
 msgstr ""
 "Η φωτεινότητα του λιγότερο εστιασμένου παραθύρου. Τα παράθυρα θα αποκτήσουν "
-"επίπεδα αδιαφάνειας μεταξύ της ελάχιστης τιμής και της τιμής του εστιασμένου "
-"παραθύρου."
+"επίπεδα φωτεινότητας μεταξύ της τιμής του εστιασμένου και της ελάχιστης τιμής."
 
 msgid "Number of Windows to Track"
 msgstr "Ο Αριθμός των Παραθύρων που θα Παρακολουθούνται"
@@ -3123,21 +2672,19 @@ msgstr "Επίπεδο Κορεσμού των Εστιασμένων Παραθ
 msgid "Saturation Level of Unfocused Windows"
 msgstr "Επίπεδο Κορεσμού των Μη Εστιασμένων Παραθύρων"
 
-#, fuzzy
 msgid ""
 "Saturation of the currently focused window. Windows will get saturation "
 "levels between the focused and minimum."
 msgstr ""
 "Κορεσμός του τρέχοντος εστιασμένου παραθύρου. Τα παράθυρα θα έχουν επίπεδα "
-"αδιαφάνειας μεταξύ του εστιασμένου και του ελάχιστου."
+"κορεσμού μεταξύ της τιμής του εστιασμένου και της ελάχιστης τιμής."
 
-#, fuzzy
 msgid ""
 "Saturation of the least focused window. Windows will get saturation levels "
 "between the focused and minimum."
 msgstr ""
 "Κορεσμός του λιγότερο εστιασμένου παραθύρου. Τα παράθυρα θα έχουν επίπεδα "
-"αδιαφάνειας μεταξύ του εστιασμένου και του ελάχιστου."
+"κορεσμού μεταξύ της τιμής του εστιασμένου και της ελάχιστης τιμής."
 
 msgid ""
 "This defines when Trailfocus will start fading windows. This lets you set up "
@@ -3157,460 +2704,322 @@ msgid "Window types that should be handled by Trailfocus"
 msgstr "Είδη παραθύρων που πρέπει να χειριστούν απο το Trailfocus"
 
 msgid "Action name for initiate"
-msgstr ""
+msgstr "Όνομα ενέργειας για εκκίνηση"
 
 msgid "Action name for initiate/terminate"
-msgstr ""
+msgstr "Όνομα ενέργειας για εκκίνηση/τερματισμό"
 
 msgid "Change viewport on mouse events on the Desktop"
-msgstr ""
+msgstr "Αλλαγή επιφάνειας εργασίας με το ποντίκι στην Επιφάνεια Εργασίας"
 
-#, fuzzy
 msgid "Initiate plugin action"
-msgstr "Άνοιγμα γράψιμου φωτιάς"
+msgstr "Εκκίνηση ενέργειας πρόσθετου"
 
 msgid "Initiate/Terminate the selected plugin action"
-msgstr ""
+msgstr "Εκκίνηση/Τερματισμός της επιλεγμένης ενέργειας πρόσθετου"
 
-#, fuzzy
 msgid "Move Down"
-msgstr "Κάτω"
+msgstr "Μετακίνηση Κάτω"
 
-#, fuzzy
 msgid "Move Left"
-msgstr "Αριστερά"
+msgstr "Μετακίνηση Αριστερά"
 
 msgid "Move Next"
-msgstr ""
+msgstr "Μετακίνηση Επόμενου"
 
 msgid "Move Prev"
-msgstr ""
+msgstr "Μετακίνηση Προηγούμενου"
 
-#, fuzzy
 msgid "Move Right"
-msgstr "Δεξιά"
+msgstr "Μετακίνηση Δεξιά"
 
 msgid "Move Up"
-msgstr ""
+msgstr "Μετακίνηση Πάνω"
 
 msgid "Move down"
-msgstr ""
+msgstr "Μετακίνηση κάτω"
 
 msgid "Move to the left"
-msgstr ""
+msgstr "Μετακίνηση προς τα αριστερά"
 
 msgid "Move to the next viewport"
-msgstr ""
+msgstr "Μετακίνηση προς την επόμενη επιφάνεια εργασίας"
 
 msgid "Move to the previous viewport"
-msgstr ""
+msgstr "Μετακίνηση προς την προηγούμενη επιφάνεια εργασίας"
 
-#, fuzzy
 msgid "Move to the right"
-msgstr "Απο Αριστερά προς τα Δεξιά"
+msgstr "Μετακίνηση προς τα δεξιά"
 
 msgid "Move up"
-msgstr ""
+msgstr "Μετακίνηση πάνω"
 
 msgid "Plugin for initiate action"
-msgstr ""
+msgstr "Πρόσθετο για εκκίνηση ενέργειας"
 
 msgid "Plugin for initiate/action action"
-msgstr ""
+msgstr "Πρόσθετο για ενέργεια εκκίνηση/ενέργειας"
 
 msgid "Viewport Switching"
-msgstr ""
+msgstr "Αλλαγή Επιφάνειας Εργασίας"
 
 msgid "Viewport mouse switch"
-msgstr ""
+msgstr "Αλλαγή επιφάνειας εργασίας με το ποντίκι"
 
 msgid "Allow Wrap-Around"
-msgstr ""
+msgstr "Επιτρέπει το Τύλιγμα-Γύρω Απο"
 
 msgid "Allow wrap-around when moving the wall up/down/left/right"
 msgstr ""
-
-#, fuzzy
-msgid "Arrow Colors"
-msgstr "Χρώματα"
-
-#, fuzzy
-msgid "Background Gradient"
-msgstr "Αρχείο Φόντου"
-
-#, fuzzy
-msgid "Base Color"
-msgstr "Βασικό Χρώμα Ετικετών"
+"Επιτρέπει το τύλιγμα-γύρω απο όταν μετακινείται ο τοίχος πάνω/κάτω/αριστερά/"
+"δεξια"
 
 msgid "Desktop Wall"
-msgstr ""
+msgstr "Τοίχος Επιφάνειας Εργασίας"
 
 msgid "Desktop Wall Plugin"
-msgstr ""
+msgstr "Πρόσθετο Τοίχου Επιφάνειας Εργασίας"
 
-#, fuzzy
 msgid "Duration (in s) for wall sliding viewport switching animation"
-msgstr "Διάρκεια (σε ms) της γραφικής απεικόνησης πλακιδίων"
+msgstr ""
+"Διάρκεια (σε s) της γραφικής απεικόνισης γλυστρίματος τοίχου για αλλαγή "
+"επιφάνειας εργασίας"
 
 msgid ""
 "Duration (in s) the switch target preview should remain visible after "
 "switching ends."
 msgstr ""
+"Διάρκεια (σε s) κατα την οποία η προεπισκόπιση της αλλαγής στόχου θα "
+"παραμείνει ορατή μετά το τέλος της αλλαγής."
 
 msgid "Edge Flip DnD"
-msgstr ""
+msgstr "Ακριανό Γύρισμα DnD"
 
 msgid "Edge Flip Move"
-msgstr ""
+msgstr "Ακριανό Γύρισμα Μεταφοράς"
 
 msgid "Edge Flip Pointer"
-msgstr ""
+msgstr "Ακριανό Γύρισμα Δείκτη Ποντικιού"
 
 msgid "Edge Flipping"
-msgstr ""
+msgstr "Ακριανό Γύρισμα"
 
-#, fuzzy
-msgid "Edge Radius"
-msgstr "Οριοθέτηση Ακτίνας"
-
-msgid "First color for the background gradient of the switcher window."
-msgstr ""
-
-msgid "First color for the thumb gradient of the switcher window."
-msgstr ""
-
-msgid "First color for the thumb highlight gradient of the switcher window."
-msgstr ""
-
-msgid "First color of the arrow of the switcher window."
-msgstr ""
-
-#, fuzzy
 msgid "Flip Down"
-msgstr "Πάνω/Κάτω"
+msgstr "Γύρισμα Κάτω"
 
-#, fuzzy
 msgid "Flip Left"
-msgstr "Αριστερά"
+msgstr "Γύρισμα Αριστερά"
 
-#, fuzzy
 msgid "Flip Right"
-msgstr "Δεξιά"
+msgstr "Γύρισμα Δεξιά"
 
 msgid "Flip Up"
-msgstr ""
+msgstr "Γύρισμα Πάνω"
 
 msgid "Flip down"
-msgstr ""
+msgstr "Γύρισμα κάτω"
 
 msgid "Flip left"
-msgstr ""
+msgstr "Γύρισμα αριστερά"
 
 msgid "Flip right"
-msgstr ""
+msgstr "Γύρισμα δεξιά"
 
 msgid "Flip up"
-msgstr ""
+msgstr "Γύρισμα πάνω"
 
 msgid "Flip viewport when dragging an object to a screen edge"
 msgstr ""
+"Γύρισμα επιφάνειας εργασίας όταν τραβιέται ένα αντικείμενο σε μια άκρη της "
+"οθόνης"
 
 msgid "Flip viewport when moving a window to a screen edge"
 msgstr ""
+"Γύρισμα επιφάνειας εργασίας όταν μετακινείται ένα παράθυρο σε μια άκρη της "
+"οθόνης"
 
 msgid "Flip viewport when moving the pointer to a screen edge"
 msgstr ""
-
-#, fuzzy
-msgid "Highlight Gradient"
-msgstr "Κλίση"
+"Γύρισμα επιφάνειας εργασίας όταν μετακινείται ο δείκτης του ποντικιού σε μια "
+"άκρη της οθόνης"
 
 msgid "How should a multimonitor configuration be handeled"
-msgstr ""
+msgstr "Καθορισμός του χειρισμού πολλαπλών οθονών"
 
-#, fuzzy
 msgid "Move Down With Window"
-msgstr "Αφαίρεση Παραθύρου Ομάδας"
+msgstr "Μετακίνηση Κάτω Με Παράθυρο"
 
 msgid "Move Left With Window"
-msgstr ""
+msgstr "Μετακίνηση Αριστερά Με Παράθυρο"
 
 msgid "Move Right With Window"
-msgstr ""
+msgstr "Μετακίνηση Δεξιά Με Παράθυρο"
 
-#, fuzzy
 msgid "Move Up With Window"
-msgstr "Αφαίρεση Παραθύρου Ομάδας"
+msgstr "Μετακίνηση Πάνω Με Παράθυρο"
 
 msgid "Move along the wall down"
-msgstr ""
+msgstr "Μετακίνηση κάτω κατα μήκος του τοίχου"
 
 msgid "Move along the wall to the left"
-msgstr ""
+msgstr "Μετακίνηση στα αριστερά κατα μήκος του τοίχου"
 
 msgid "Move along the wall to the next viewport"
-msgstr ""
+msgstr "Μετακίνηση στην επόμενη επιφάνεια εργασίας κατα μήκος του τοίχου"
 
 msgid "Move along the wall to the previous viewport"
-msgstr ""
+msgstr "Μετακίνηση στην προηγούμενη επιφάνεια εργασίας κατα μήκος του τοίχου"
 
 msgid "Move along the wall to the right"
-msgstr ""
+msgstr "Μετακίνηση στα δεξιά κατα μήκος του τοίχου"
 
 msgid "Move along the wall up"
-msgstr ""
+msgstr "Μετακίνηση πάνω κατα μήκος του τοίχου"
 
-#, fuzzy
 msgid "Move with window along the wall down"
-msgstr "Κίνηση κάθε παραθύρου στην ομάδα"
+msgstr "Μετακίνηση με παράθυρο κάτω κατα μήκος του τοίχου"
 
 msgid "Move with window along the wall to the left"
-msgstr ""
+msgstr "Μετακίνηση με παράθυρο στα αριστερά κατα μήκος του τοίχου"
 
 msgid "Move with window along the wall to the right"
-msgstr ""
+msgstr "Μετακίνηση με παράθυρο στα δεξιά κατα μήκος του τοίχου"
 
-#, fuzzy
 msgid "Move with window along the wall up"
-msgstr "Κίνηση κάθε παραθύρου στην ομάδα"
+msgstr "Μετακίνηση με παράθυρο πάνω κατα μήκος του τοίχου"
 
 msgid "Multimonitor behavior"
-msgstr ""
-
-#, fuzzy
-msgid "Outline Color"
-msgstr "Χρώμα Γραμμής"
-
-msgid "Outline color of the switcher window."
-msgstr ""
-
-#, fuzzy
-msgid "Radius of the rounded edge"
-msgstr "Ακτίνα για τις άκρες της μπάρας ετικετών"
-
-msgid "Secound color for the background gradient of the switcher window."
-msgstr ""
-
-msgid "Secound color for the thumb gradient of the switcher window."
-msgstr ""
-
-msgid "Secound color for the thumb highlight gradient of the switcher window."
-msgstr ""
-
-msgid "Secound color of the arrow of the switcher window."
-msgstr ""
-
-#, fuzzy
-msgid "Shadow Color"
-msgstr "Χρώμα Γραμματοσειράς"
+msgstr "Συμπεριφορά πολλαπλών οθονών"
 
 msgid "Show Live Viewport Previews"
-msgstr ""
+msgstr "Εμφάνιση Ζωντανών Προεπισκοπίσεων Επιφανειών Εργασίας"
 
 msgid "Show Viewport Switcher Preview"
-msgstr ""
+msgstr "Εμφάνιση Επιλογέα Προεπισκοπίσεων Επιφανειών Εργασίας"
 
 msgid "Show live viewport previews in switcher window"
 msgstr ""
+"Εμφάνιση ζωντανών προεπισκοπίσεων επιφανειών εργασίας στο παράθυρο αλλαγής"
 
 msgid "Show switcher window while switching viewports"
-msgstr ""
+msgstr "Εμφάνιση παραθύρου αλλαγής καθώς αλλάζουν οι επιφάνειες εργασίας"
 
 msgid "Switch Target Preview Visibility Time"
-msgstr ""
+msgstr "Αλλαγή του Χρόνου που θα είναι Ορατή η Προεπισκόπιση του Στόχου"
 
 msgid "Switch all"
-msgstr ""
+msgstr "Αλλαγή όλων"
 
 msgid "Switch separately"
-msgstr ""
-
-msgid "Third color for the background gradient of the switcher window."
-msgstr ""
-
-#, fuzzy
-msgid "Thumb Gradient"
-msgstr "Κλίση"
+msgstr "Αλλαγή ξεχωριστά"
 
 msgid "Viewport Switch Preview"
-msgstr ""
+msgstr "Αλλαγή Προεπισκόπισης Επιφάνειας Εργασίας"
 
-#, fuzzy
 msgid "Wall Sliding Duration"
-msgstr "Διάρκεια Γραφικής Απεικόνησης"
-
-#, fuzzy
-msgid "Backgrounds"
-msgstr "Αρχείο Φόντου"
-
-msgid "Draw the desktop wallpaper"
-msgstr ""
-
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
-msgstr ""
-
-msgid "Tile backgrounds as opposed to stretching"
-msgstr ""
-
-msgid "Tile or Stretch"
-msgstr ""
-
-msgid "Wallpaper"
-msgstr ""
+msgstr "Διάρκεια Γλυστρίματος Τοίχου"
 
 msgid "Above others windows"
-msgstr ""
+msgstr "Πάνω απο όλα τα άλλα παράθυρα"
 
-#, fuzzy
+msgid "Below"
+msgstr "Απο Κάτω"
+
 msgid "Below others windows"
-msgstr "Χιόνι Πάνω απ τα Παράθυρα"
+msgstr "Κάτω απο όλα τα άλλα παράθυρα"
 
 msgid "Don't show application in pager"
-msgstr ""
+msgstr "Μη εμφάνιση εφαρμογής στο pager"
 
 msgid "Don't show application in taskbar"
-msgstr ""
+msgstr "Μη εμφάνιση εφαρμογής στην γραμμή εργασιών"
 
-#, fuzzy
 msgid "Fixed Size Windows"
-msgstr "Μετατροπή Παραθύρων σε Πλακίδια"
+msgstr "Παράθυρα Σταθερού Μεγέθους"
 
-#, fuzzy
 msgid "Fullscreen"
-msgstr "Εκκίνηση Πλήρους Οθόνης"
+msgstr "Πλήρης Οθόνη"
 
-#, fuzzy
 msgid "Fullscreen windows"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Παράθυρα πλήρους οθόνης"
 
-#, fuzzy
 msgid "Height"
-msgstr "Δεξιά"
+msgstr "Ύψος"
 
 msgid "Height values"
-msgstr ""
+msgstr "Τιμές ύψους"
 
 msgid "Matches"
-msgstr ""
+msgstr "Ταιριάσματα"
 
 msgid "No focus"
-msgstr ""
+msgstr "Μη εστίαση"
 
-#, fuzzy
 msgid "Non closable windows"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Μη κλεινόμενα παράθυρα"
 
-#, fuzzy
 msgid "Non maximizable windows"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Μη μεγιστοποιούμενα παράθυρα"
 
-#, fuzzy
 msgid "Non minimizable windows"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Μη ελαχιστοποιούμενα παράθυρα"
 
-#, fuzzy
 msgid "Non movable windows"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Μη μετακινούμενα παράθυρα"
 
-#, fuzzy
 msgid "Non resizable windows"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Παράθυρα με μη δυνατότητα αλλαγής διαστάσεων"
 
 msgid "Set window as non closable"
-msgstr ""
+msgstr "Θέσε παράθυρο ως μη κλεινόμενο"
 
 msgid "Set window as non maximizable"
-msgstr ""
+msgstr "Θέσε παράθυρο ως μη μεγιστοποιούμενο"
 
 msgid "Set window as non minimizable"
-msgstr ""
+msgstr "Θέσε παράθυρο ως μη ελαχιστοποιούμενο"
 
 msgid "Set window as non movable"
-msgstr ""
+msgstr "Θέσε παράθυρο ως μη μετακινούμενο"
 
 msgid "Set window as non resizable"
-msgstr ""
+msgstr "Θέσε παράθυρο χωρίς δυνατότητα αλλαγής διαστάσεων"
 
-#, fuzzy
 msgid "Set window as widget"
-msgstr "Πλάτος Παραθύρου"
+msgstr "Θέσε παράθυρο ως συσκευή"
 
-#, fuzzy
 msgid "Set windows rules"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Θέσε κανόνες παραθύρων"
 
-#, fuzzy
 msgid "Sized Windows"
-msgstr "Μετατροπή Παραθύρων σε Πλακίδια"
+msgstr "Παράθυρα με Διαστάσεις"
 
 msgid "Skip pager"
-msgstr ""
+msgstr "Αγνόηση του pager"
 
 msgid "Skip taskbar"
-msgstr ""
+msgstr "Αγνόηση γραμμής εργασιών"
 
-#, fuzzy
 msgid "Sticky"
-msgstr "Εκκίνηση του Κολλημένου στοιχείου"
+msgstr "Κολλημένο"
 
-#, fuzzy
 msgid "Sticky windows"
-msgstr "Μετατροπή παραθύρων σε πλακίδια"
+msgstr "Κολλημένα παράθυρα"
 
 msgid "Widget"
-msgstr ""
+msgstr "Συσκευή"
 
 msgid "Width"
-msgstr ""
+msgstr "Πλάτο"
 
 msgid "Width values"
-msgstr ""
+msgstr "Τιμές πλάτους"
 
-#, fuzzy
 msgid "Window Rules"
-msgstr "Είδη Παραθύρων"
+msgstr "Κανόνες Παραθύρων"
 
-#, fuzzy
 msgid "Windows that should be resized by default"
-msgstr "Παράθυρα που πρέπει να διαχειριστούν ως τρισδιάστατα"
+msgstr "Παράθυρα που πρέπει να αλλάξουν διαστάσεις απο προεπιλογή"
 
 msgid "Windows will not have focus"
-msgstr ""
-
-msgid "Firefox Menu Fix"
-msgstr ""
-
-msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr ""
-
-msgid "Fix window type of notification daemon windows."
-msgstr ""
-
-msgid "Fix window type of various Java windows."
-msgstr ""
-
-msgid "Fix window type of various Qt windows."
-msgstr ""
-
-#, fuzzy
-msgid "Java Window Fix"
-msgstr "Ενεργοποίηση Παράθυρου"
-
-msgid "Legacy Fullscreen Support"
-msgstr ""
-
-msgid "Make Wine and legacy applications fullscreen properly."
-msgstr ""
-
-msgid "Metacity-like workarounds."
-msgstr ""
-
-msgid "Notification Daemon Fix"
-msgstr ""
-
-#, fuzzy
-msgid "Qt Window Fix"
-msgstr "Πλάτος Παραθύρου"
-
-msgid "Workarounds"
-msgstr ""
+msgstr "Παράθυρα που δεν θα έχουν εστίαση"
