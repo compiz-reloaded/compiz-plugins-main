@@ -951,7 +951,8 @@ expoDonePaintScreen (CompScreen * s)
 			continue;
 		}
 
-		if (!(w->type & CompWindowTypeNormalMask))
+		if (!(w->type & (CompWindowTypeNormalMask |
+				 CompWindowTypeFullscreenMask)))
 		    continue;
 
 		xOffset = s->hsize * s->width;
