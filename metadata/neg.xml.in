@@ -4,6 +4,11 @@
 		<_short>Negative</_short>
 		<_long>Used to set a window or screen negative</_long>
 		<category>Accessibility</category>
+		<deps>
+			<relation type="after">
+				<plugin>blur</plugin>
+			</relation>
+		</deps>
 		<display>
 			<option name="window_toggle" type="action">
 				<_short>Toggle Window Negative</_short>
