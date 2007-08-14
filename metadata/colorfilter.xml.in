@@ -4,6 +4,11 @@
     <_short>Color filter</_short>
     <_long>Filter colors for accessibility purposes</_long>
     <category>Accessibility</category>
+    <deps>
+      <relation type="after">
+	<plugin>blur</plugin>
+      </relation>
+    </deps>
     <display>
       <option name="toggle_window" type="action">
         <_short>Toggle window filtering</_short>
