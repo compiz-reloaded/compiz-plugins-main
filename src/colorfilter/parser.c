@@ -174,7 +174,7 @@ programReadSource (char *fname)
 static char *
 getFirstArgument (char **source)
 {
-    char *next, *arg;
+    char *next, *arg, *temp;
     char *string, *orig;
     int length;
 
@@ -193,6 +193,14 @@ getFirstArgument (char **source)
 	{
 	    (*source)++;
 	    return getFirstArgument (source);
+	}
+	if ((temp = strstr (string, "{")) && temp < next &&
+	    (temp = strstr (string, "}")) && temp > next)
+	{
+	    if ((next = strstr (temp, ",")) || (next = strstr (temp, ";")))
+		length = next - string;
+	    else
+		length = strlen (string);
 	}
     }
     else
