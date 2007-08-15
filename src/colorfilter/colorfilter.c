@@ -368,7 +368,7 @@ colorFilterDrawWindowTexture (CompWindow *w, CompTexture *texture,
      *   o Texture's window is filtered */
     /* Note : if required, filter window contents only and not decorations
      * (use that w->texture->name != texture->name for decorations) */
-    if (w->screen->fragmentProgram && cfs->filtersCount && cfw->isFiltered
+    if (cfs->filtersCount && cfw->isFiltered
 	    && (colorfilterGetFilterDecorations (w->screen)
 		|| (texture->name == w->texture->name)))
     {
