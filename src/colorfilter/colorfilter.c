@@ -206,7 +206,7 @@ colorFilterToggle (CompDisplay * d, CompAction * action,
 
     w = findWindowAtDisplay (d, xid);
 
-    if (w)
+    if (w && w->screen->fragmentProgram)
 	colorFilterToggleWindow (w);
 
     return TRUE;
@@ -226,7 +226,7 @@ colorFilterToggleAll (CompDisplay * d, CompAction * action,
 
     s = findScreenAtDisplay(d, xid);
 
-    if (s)
+    if (s && s->fragmentProgram)
 	colorFilterToggleScreen (s);
 
     return TRUE;
@@ -246,7 +246,7 @@ colorFilterSwitch (CompDisplay * d, CompAction * action,
 
     s = findScreenAtDisplay(d, xid);
 
-    if (s)
+    if (s && s->fragmentProgram)
 	colorFilterSwitchFilter (s);
 
     return TRUE;
@@ -446,13 +446,16 @@ colorFilterHandleEvent (CompDisplay *d, XEvent *event)
 	w = findWindowAtDisplay (d, event->xmap.window);
 	if (w)
 	{
-	    FILTER_WINDOW (w);
-	    if (cfw->createEvent)
+	    if (w->screen->fragmentProgram)
 	    {
-		if (w && matchEval (colorfilterGetFilterMatch (w->screen), w))
-		    colorFilterToggleWindow (w);
-		cfw->createEvent = FALSE;
-	    }    
+		FILTER_WINDOW (w);
+		if (cfw->createEvent)
+		{
+		    if (w && matchEval (colorfilterGetFilterMatch (w->screen), w))
+			colorFilterToggleWindow (w);
+		    cfw->createEvent = FALSE;
+		}
+	    }
 	}
     }
 
@@ -559,7 +562,7 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     {
 	compLogMessage (s->display, "colorfilter", CompLogLevelFatal,
 			"Fragment program support missing.");
-	return FALSE;
+	return TRUE;
     }
 
     cfs = malloc (sizeof (ColorFilterScreen));
@@ -611,6 +614,9 @@ colorFilterInitWindow (CompPlugin * p, CompWindow * w)
 {
     ColorFilterWindow *cfw;
 
+    if (!w->screen->fragmentProgram)
+	return TRUE;
+
     FILTER_SCREEN (w->screen);
 
     cfw = malloc (sizeof (ColorFilterWindow));
@@ -628,6 +634,9 @@ colorFilterInitWindow (CompPlugin * p, CompWindow * w)
 static void
 colorFilterFiniWindow (CompPlugin * p, CompWindow * w)
 {
+    if (!w->screen->fragmentProgram)
+	return;
+
     FILTER_WINDOW (w);
     free (cfw);
 }
