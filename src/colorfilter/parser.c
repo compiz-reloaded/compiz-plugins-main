@@ -121,7 +121,7 @@ programReadSource (char *fname)
     /* If failed, try as user filter file (in ~/.compiz/filters) */
     if (!fp && home && strlen (home))
     {
-	asprintf (&path, "%s/.compiz/filters/%s", home, fname);
+	asprintf (&path, "%s/.compiz/data/filters/%s", home, fname);
 	fp = fopen (path, "r");
 	free (path);
     }
