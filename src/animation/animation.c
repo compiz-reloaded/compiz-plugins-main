@@ -1581,16 +1581,11 @@ initiateFocusAnimation(CompWindow *w)
 	    }
 	}
 
-	animEnsureModel(w);
-	/*
-	if (chosenEffect != AnimEffectFocusFade &&
-	    chosenEffect != AnimEffectDodge &&
-	    !animEnsureModel(w))
+	if (!animEnsureModel(w))
 	{
 	    postAnimationCleanup(w, TRUE);
 	    return;
-	}*/
-
+	}
 
 	animActivateEvent(s, TRUE);
 
