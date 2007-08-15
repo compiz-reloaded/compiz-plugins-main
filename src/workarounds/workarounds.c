@@ -259,7 +259,9 @@ workaroundsHandleEvent (CompDisplay *d,
 	if (event->xclient.message_type == d->winDesktopAtom)
         {
             w = findWindowAtDisplay (d, event->xclient.window);
-	    workaroundsUpdateSticky (w);
+	    if (w) { 
+	        workaroundsUpdateSticky (w);
+	    }
         }
     }
 }
