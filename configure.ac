@@ -185,6 +185,8 @@ fi
 
 AC_OUTPUT([
 compiz-text.pc
+data/Makefile
+data/filters/Makefile
 Makefile
 metadata/Makefile
 include/Makefile
