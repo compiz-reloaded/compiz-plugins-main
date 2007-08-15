@@ -451,7 +451,7 @@ colorFilterHandleEvent (CompDisplay *d, XEvent *event)
 		FILTER_WINDOW (w);
 		if (cfw->createEvent)
 		{
-		    if (w && matchEval (colorfilterGetFilterMatch (w->screen), w))
+		    if (matchEval (colorfilterGetFilterMatch (w->screen), w))
 			colorFilterToggleWindow (w);
 		    cfw->createEvent = FALSE;
 		}
