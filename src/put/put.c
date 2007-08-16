@@ -521,41 +521,45 @@ putInitiate (CompDisplay     *d,
 		    unsigned int pMask;
 
 		    /* get the pointers position from the X server */
-    		    XQueryPointer (d->display, w->id, &root, &child,
-				   &rx, &ry, &winX, &winY, &pMask);
+    		    if (XQueryPointer (d->display, w->id, &root, &child,
+				       &rx, &ry, &winX, &winY, &pMask)) 
+		    {
 
-		    if (putGetWindowCenter (s))
-		    {
-			/* window center */
-			dx = rx - (w->width / 2) - x;
-			dy = ry - (w->height / 2) - y;
-		    }
-		    else if (rx < s->workArea.width / 2 &&
-			     ry < s->workArea.height / 2)
-	    	    {
-			/* top left quad */
-			dx = rx - x + w->input.left;
-			dy = ry - y + w->input.top;
-		    }
-		    else if (rx < s->workArea.width / 2 &&
-			     ry >= s->workArea.height / 2)
-	    	    {
-			/* bottom left quad */
-			dx = rx - x + w->input.left;
-			dy = ry - w->height - y - w->input.bottom;
-		    }
-		    else if (rx >= s->workArea.width / 2 &&
-			     ry < s->workArea.height / 2)
-	    	    {
-			/* top right quad */
-			dx = rx - w->width - x - w->input.right;
-			dy = ry - y + w->input.top;
-		    }
-		    else
-		    {
-			/* bottom right quad */
-			dx = rx - w->width - x - w->input.right;
-			dy = ry - w->height - y - w->input.bottom;
+		        if (putGetWindowCenter (s))
+			    {
+			        /* window center */
+			        dx = rx - (w->width / 2) - x;
+				dy = ry - (w->height / 2) - y;
+			    }
+			else if (rx < s->workArea.width / 2 &&
+				ry < s->workArea.height / 2)
+			    {
+			        /* top left quad */
+			        dx = rx - x + w->input.left;
+				dy = ry - y + w->input.top;
+			    }
+			else if (rx < s->workArea.width / 2 &&
+				ry >= s->workArea.height / 2)
+			    {
+			        /* bottom left quad */
+			        dx = rx - x + w->input.left;
+				dy = ry - w->height - y - w->input.bottom;
+			    }
+			else if (rx >= s->workArea.width / 2 &&
+				ry < s->workArea.height / 2)
+			    {
+			        /* top right quad */
+			        dx = rx - w->width - x - w->input.right;
+				dy = ry - y + w->input.top;
+			    }
+			else
+			    {
+			        /* bottom right quad */
+			        dx = rx - w->width - x - w->input.right;
+				dy = ry - w->height - y - w->input.bottom;
+			    }
+		    } else {
+		        dx = dy = 0;
 		    }
 		}
 		break;
