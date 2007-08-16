@@ -474,6 +474,10 @@ checkPosition (CompWindow *w)
 	/* TODO: We need a faster calculation here */
 	Bool onViewport = FALSE;
 	Region reg = XCreateRegion ();
+	
+	if (!reg)
+	    return FALSE;
+
 	XIntersectRegion (w->region, &w->screen->region, reg);
 
 	if (reg->numRects)
