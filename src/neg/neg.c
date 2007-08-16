@@ -34,8 +34,6 @@ static int displayPrivateIndex;
 
 typedef struct _NEGDisplay
 {
-    HandleEventProc handleEvent;
-
     int screenPrivateIndex;
 } NEGDisplay;
 
@@ -45,7 +43,7 @@ typedef struct _NEGSCreen
     int windowPrivateIndex;
 
     DrawWindowTextureProc drawWindowTexture;
-    DamageWindowRectProc  damageWindowRect;
+    WindowAddNotifyProc   windowAddNotify;
 
     Bool isNeg; /* negative screen flag */
 
@@ -56,7 +54,6 @@ typedef struct _NEGSCreen
 typedef struct _NEGWindow
 {
     Bool isNeg; /* negative window flag */
-    Bool createEvent;
 } NEGWindow;
 
 #define GET_NEG_DISPLAY(d) \
@@ -543,59 +540,21 @@ NEGDrawWindowTexture (CompWindow           *w,
     }
 }
 
-static Bool
-NEGDamageWindowRect (CompWindow *w,
-		     Bool       initial,
-		     BoxPtr     rect)
-{
-    int status;
-
-    NEG_SCREEN (w->screen);
-    NEG_WINDOW (w);
-
-    /* the window is initial when it is being mapped */
-    if (initial)
-    {
-	/* if the screen is negative, negate the new window */
-	if (ns->isNeg && !nw->isNeg)
-	    NEGToggle (w);
-    }
-
-    UNWRAP (ns, w->screen, damageWindowRect);
-    status = (*w->screen->damageWindowRect) (w, initial, rect);
-    WRAP (ns, w->screen, damageWindowRect, NEGDamageWindowRect);
-
-    return status;
-}
-
 static void
-NEGHandleEvent (CompDisplay *d,
-		XEvent      *event)
+NEGWindowAddNotify (CompWindow *w)
 {
-    CompWindow *w;
+    CompScreen *s = w->screen;
 
-    NEG_DISPLAY (d);
-    /* Only apply at window creation.
-     * Using CreateNotify not working.
-     */
-    if (event->type == MapNotify)
-    {
-	w = findWindowAtDisplay (d, event->xmap.window);
-	if (w)
-	{
-	    NEG_WINDOW (w);
-	    if (nw->createEvent)
-	    {
-		if (w && matchEval (negGetNegMatch (w->screen), w))
-		    NEGToggle (w);
-		nw->createEvent = FALSE;
-	    }	
-	}
-    }
-	
-    UNWRAP (nd, d, handleEvent);
-    (*d->handleEvent) (d, event);
-    WRAP (nd, d, handleEvent, NEGHandleEvent);
+    NEG_SCREEN (s);
+
+    UNWRAP (ns, s, windowAddNotify);
+    (*s->windowAddNotify) (w);
+    WRAP (ns, s, windowAddNotify, NEGWindowAddNotify);
+
+    /* nw->isNeg is initialized to FALSE in InitWindow, so we only
+       have to toggle it to TRUE if necessary */
+    if (ns->isNeg && matchEval (negGetNegMatch (s), w))
+	NEGToggle (w);
 }
 
 static void
@@ -608,12 +567,30 @@ NEGScreenOptionChanged (CompScreen       *s,
     case NegScreenOptionNegMatch:
 	{
 	    CompWindow *w;
+	    NEG_SCREEN (s);
+
+	    for (w = s->windows; w; w = w->next)
+	    {
+		Bool isNeg;
+		NEG_WINDOW (w);
+
+		isNeg = matchEval (negGetNegMatch (s), w);
+		if (isNeg && ns->isNeg && !nw->isNeg)
+		    NEGToggle (w);
+		else if (!isNeg && nw->isNeg)
+		    NEGToggle (w);
+	    }
+	}
+	break;
+    case NegScreenOptionExcludeMatch:
+	{
+	    CompWindow *w;
+
 	    for (w = s->windows; w; w = w->next)
 	    {
 		NEG_WINDOW (w);
-		if (matchEval (negGetNegMatch (s), w) && !nw->isNeg)
-		    NEGToggle (w);
-		else if (!matchEval (negGetNegMatch (s), w) && nw->isNeg)
+
+		if (matchEval (negGetExcludeMatch (s), w) && nw->isNeg)
 		    NEGToggle (w);
 	    }
 	}
@@ -643,7 +620,6 @@ NEGInitDisplay (CompPlugin  *p,
     negSetWindowToggleInitiate (d, negToggle);
     negSetScreenToggleInitiate (d, negToggleAll);
 
-    WRAP (nd, d, handleEvent, NEGHandleEvent);
     d->privates[displayPrivateIndex].ptr = nd;
 
     return TRUE;
@@ -656,7 +632,6 @@ NEGFiniDisplay (CompPlugin  *p,
     NEG_DISPLAY (d);
 
     freeScreenPrivateIndex (d, nd->screenPrivateIndex);
-    UNWRAP (nd, d, handleEvent);
 
     free (nd);
 }
@@ -692,7 +667,7 @@ NEGInitScreen (CompPlugin *p,
 
     /* wrap overloaded functions */
     WRAP (ns, s, drawWindowTexture, NEGDrawWindowTexture);
-    WRAP (ns, s, damageWindowRect, NEGDamageWindowRect);
+    WRAP (ns, s, windowAddNotify, NEGWindowAddNotify);
 
     s->privates[nd->screenPrivateIndex].ptr = ns;
 
@@ -708,7 +683,7 @@ NEGFiniScreen (CompPlugin *p,
     freeWindowPrivateIndex (s, ns->windowPrivateIndex);
 
     UNWRAP (ns, s, drawWindowTexture);
-    UNWRAP (ns, s, damageWindowRect);
+    UNWRAP (ns, s, windowAddNotify);
 
     if (ns->negFunction)
 	destroyFragmentFunction (s, ns->negFunction);
@@ -731,7 +706,6 @@ NEGInitWindow (CompPlugin *p,
 	return FALSE;
 
     nw->isNeg       = FALSE;
-    nw->createEvent = TRUE;
 
     w->privates[ns->windowPrivateIndex].ptr = nw;
 
