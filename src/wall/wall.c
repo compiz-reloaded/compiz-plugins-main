@@ -637,28 +637,39 @@ wallPrev (CompDisplay     *d,
     return TRUE;
 }
 
+static void
+wallCheckAmount (CompScreen *s,
+		 int        dx,
+		 int        dy,
+		 int        *amountX,
+		 int        *amountY)
+{
+    *amountX = -dx;
+    *amountY = -dy;
+
+    if (wallGetAllowWraparound (s->display))
+    {
+	if ((s->x + dx) < 0)
+	    *amountX = -(s->hsize + dx);
+	else if ((s->x + dx) >= s->hsize)
+	    *amountX = s->hsize - dx;
+
+	if ((s->y + dy) < 0)
+	    *amountY = -(s->vsize + dy);
+	else if ((s->y + dy) >= s->vsize)
+	    *amountY = s->vsize - dy;
+    }
+}
+
 static Bool
 wallInitiate (CompScreen *s,
 	      int        dx,
 	      int        dy,
 	      Window     win)
 {
-    int amountX = -dx;
-    int amountY = -dy;
+    int amountX, amountY;
 
-    if (wallGetAllowWraparound (s->display))
-    {
-	if ((s->x + dx) < 0)
-	    amountX = -(s->hsize + dx);
-	else if ((s->x + dx) >= s->hsize)
-	    amountX = s->hsize - dx;
-
-	if ((s->y + dy) < 0)
-	    amountY = -(s->vsize + dy);
-	else if ((s->y + dy) >= s->vsize)
-	    amountY = s->vsize - dy;
-    }
-
+    wallCheckAmount (s, dx, dy, &amountX, &amountY);
     wallMoveViewport (s, amountX, amountY, win);
 
     return TRUE;
@@ -670,6 +681,7 @@ wallInitiateFlip (CompScreen *s,
 		  Bool       dnd)
 {
     int dx, dy;
+    int amountX, amountY;
 
     if (otherScreenGrabExist (s, "wall", "move", "group-drag", 0))
 	return FALSE;
@@ -700,33 +712,34 @@ wallInitiateFlip (CompScreen *s,
     switch (direction)
     {
     case Left:
-	dx = 1; dy = 0;
-	break;
-    case Right:
 	dx = -1; dy = 0;
 	break;
+    case Right:
+	dx = 1; dy = 0;
+	break;
     case Up:
-	dx = 0; dy = 1;
+	dx = 0; dy = -1;
 	break;
     case Down:
-	dx = 0; dy = -1;
+	dx = 0; dy = 1;
 	break;
     default:
 	dx = 0; dy = 0;
 	break;
     }
 
-    if (wallMoveViewport (s, dx, dy, None))
+    wallCheckAmount (s, dx, dy, &amountX, &amountY);
+    if (wallMoveViewport (s, amountX, amountY, None))
     {
 	int offsetX, offsetY;
 	int warpX, warpY;
 
-	if (dx > 0)
+	if (dx < 0)
 	{
 	    offsetX = s->width - 10;
 	    warpX = pointerX + s->width;
 	}
-	else if (dx < 0)
+	else if (dx > 0)
 	{
 	    offsetX = 1- s->width;
 	    warpX = pointerX - s->width;
@@ -737,12 +750,12 @@ wallInitiateFlip (CompScreen *s,
 	    warpX = lastPointerX;
 	}
 
-	if (dy > 0)
+	if (dy < 0)
 	{
 	    offsetY = s->height - 10;
 	    warpY = pointerY + s->height;
 	}
-	else if (dy < 0)
+	else if (dy > 0)
 	{
 	    offsetY = 1- s->height;
 	    warpY = pointerY - s->height;
