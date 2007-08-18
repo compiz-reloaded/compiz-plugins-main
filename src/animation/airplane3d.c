@@ -48,20 +48,10 @@ tessellateIntoAirplane (CompWindow * w)
     float winLimitsW;
     float winLimitsH;
 
-    if (pset->includeShadows)
-    {
-	winLimitsX = WIN_X (w);
-	winLimitsY = WIN_Y (w);
-	winLimitsW = WIN_W (w) - 1;	// avoid artifact on right edge
-	winLimitsH = WIN_H (w);
-    }
-    else
-    {
-	winLimitsX = BORDER_X (w);
-	winLimitsY = BORDER_Y (w);
-	winLimitsW = BORDER_W (w);
-	winLimitsH = BORDER_H (w);
-    }
+    winLimitsX = BORDER_X (w);
+    winLimitsY = BORDER_Y (w);
+    winLimitsW = BORDER_W (w);
+    winLimitsH = BORDER_H (w);
 
     int numpol = 8;
     if (pset->nPolygons != numpol)
@@ -447,25 +437,11 @@ fxAirplane3DInit (CompScreen * s, CompWindow * w)
     PolygonSet *pset = aw->polygonSet;
     PolygonObject *p = pset->polygons;
 
-    float winLimitsX;		// boundaries of polygon tessellation
-    float winLimitsY;
-    float winLimitsW;
+    float winLimitsW;		// boundaries of polygon tessellation
     float winLimitsH;
 
-    if (pset->includeShadows)
-    {
-	winLimitsX = WIN_X (w);
-	winLimitsY = WIN_Y (w);
-	winLimitsW = WIN_W (w) - 1;	// avoid artifact on right edge
-	winLimitsH = WIN_H (w);
-    }
-    else
-    {
-	winLimitsX = BORDER_X (w);
-	winLimitsY = BORDER_Y (w);
-	winLimitsW = BORDER_W (w);
-	winLimitsH = BORDER_H (w);
-    }
+    winLimitsW = BORDER_W (w);
+    winLimitsH = BORDER_H (w);
 
     float H4 = (float)winLimitsH / 4;
     float H6 = (float)winLimitsH / 6;
