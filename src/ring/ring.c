@@ -1615,18 +1615,31 @@ ringInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    ringSetNextInitiate (d, ringNext);
-    ringSetNextTerminate (d, ringTerminate);
-    ringSetPrevInitiate (d, ringPrev);
-    ringSetPrevTerminate (d, ringTerminate);
-    ringSetNextAllInitiate (d, ringNextAll);
-    ringSetNextAllTerminate (d, ringTerminate);
-    ringSetPrevAllInitiate (d, ringPrevAll);
-    ringSetPrevAllTerminate (d, ringTerminate);
-    ringSetNextGroupInitiate (d, ringNextGroup);
-    ringSetNextGroupTerminate (d, ringTerminate);
-    ringSetPrevGroupInitiate (d, ringPrevGroup);
-    ringSetPrevGroupTerminate (d, ringTerminate);
+    ringSetNextKeyInitiate (d, ringNext);
+    ringSetNextKeyTerminate (d, ringTerminate);
+    ringSetPrevKeyInitiate (d, ringPrev);
+    ringSetPrevKeyTerminate (d, ringTerminate);
+    ringSetNextAllKeyInitiate (d, ringNextAll);
+    ringSetNextAllKeyTerminate (d, ringTerminate);
+    ringSetPrevAllKeyInitiate (d, ringPrevAll);
+    ringSetPrevAllKeyTerminate (d, ringTerminate);
+    ringSetNextGroupKeyInitiate (d, ringNextGroup);
+    ringSetNextGroupKeyTerminate (d, ringTerminate);
+    ringSetPrevGroupKeyInitiate (d, ringPrevGroup);
+    ringSetPrevGroupKeyTerminate (d, ringTerminate);
+
+    ringSetNextButtonInitiate (d, ringNext);
+    ringSetNextButtonTerminate (d, ringTerminate);
+    ringSetPrevButtonInitiate (d, ringPrev);
+    ringSetPrevButtonTerminate (d, ringTerminate);
+    ringSetNextAllButtonInitiate (d, ringNextAll);
+    ringSetNextAllButtonTerminate (d, ringTerminate);
+    ringSetPrevAllButtonInitiate (d, ringPrevAll);
+    ringSetPrevAllButtonTerminate (d, ringTerminate);
+    ringSetNextGroupButtonInitiate (d, ringNextGroup);
+    ringSetNextGroupButtonTerminate (d, ringTerminate);
+    ringSetPrevGroupButtonInitiate (d, ringPrevGroup);
+    ringSetPrevGroupButtonTerminate (d, ringTerminate);
 
     WRAP (rd, d, handleEvent, ringHandleEvent);
 
