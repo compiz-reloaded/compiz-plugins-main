@@ -607,8 +607,8 @@ NEGInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    negSetWindowToggleInitiate (d, negToggle);
-    negSetScreenToggleInitiate (d, negToggleAll);
+    negSetWindowToggleKeyInitiate (d, negToggle);
+    negSetScreenToggleKeyInitiate (d, negToggleAll);
 
     d->privates[displayPrivateIndex].ptr = nd;
 

@@ -10,21 +10,15 @@
 			</relation>
 		</deps>
 		<display>
-			<option name="window_toggle" type="action">
+			<option name="window_toggle_key" type="key">
 				<_short>Toggle Window Negative</_short>
 				<_long>Toggle active window negative</_long>
-				<allowed key="true"/>
-				<default>
-					<key>&lt;Super&gt;n</key>
-				</default>
+				<default>&lt;Super&gt;n</default>
 			</option>
-			<option name="screen_toggle" type="action">
+			<option name="screen_toggle_key" type="key">
 				<_short>Toggle Screen Negative</_short>
 				<_long>Toggle screen negative</_long>
-				<allowed key="true"/>
-				<default>
-					<key>&lt;Super&gt;m</key>
-				</default>
+				<default>&lt;Super&gt;m</default>
 			</option>
 		</display>
 		<screen>
