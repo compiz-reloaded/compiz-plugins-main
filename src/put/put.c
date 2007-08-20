@@ -647,14 +647,14 @@ putToViewport (CompDisplay     *d,
 	PutDisplayOptions i;
 	CompOption        *opt;
 
-	i = PutDisplayOptionPutViewport1;
+	i = PutDisplayOptionPutViewport1Key;
 
-	while (i <= PutDisplayOptionPutViewport12)
+	while (i <= PutDisplayOptionPutViewport12Key)
 	{
 	    opt = putGetDisplayOption (d, i);
 	    if (&opt->value.action == action)
 	    {
-		face = i - PutDisplayOptionPutViewport1;
+		face = i - PutDisplayOptionPutViewport1Key;
 		break;
 	    }
 	    i++;
@@ -1274,34 +1274,45 @@ putInitDisplay (CompPlugin  *p,
 					  "_COMPIZ_PUT_WINDOW", 0);
 
     putSetPutViewportInitiate (d, putToViewport);
-    putSetPutViewport1Initiate (d, putToViewport);
-    putSetPutViewport2Initiate (d, putToViewport);
-    putSetPutViewport3Initiate (d, putToViewport);
-    putSetPutViewport4Initiate (d, putToViewport);
-    putSetPutViewport5Initiate (d, putToViewport);
-    putSetPutViewport6Initiate (d, putToViewport);
-    putSetPutViewport7Initiate (d, putToViewport);
-    putSetPutViewport8Initiate (d, putToViewport);
-    putSetPutViewport9Initiate (d, putToViewport);
-    putSetPutViewport10Initiate (d, putToViewport);
-    putSetPutViewport11Initiate (d, putToViewport);
-    putSetPutViewport12Initiate (d, putToViewport);
-    putSetPutViewportLeftInitiate (d, putViewportLeft);
-    putSetPutViewportRightInitiate (d, putViewportRight);
-    putSetPutViewportUpInitiate (d, putViewportUp);
-    putSetPutViewportDownInitiate (d, putViewportDown);
-    putSetPutRestoreInitiate (d, restore);
-    putSetPutPointerInitiate (d, putPointer);
+    putSetPutViewport1KeyInitiate (d, putToViewport);
+    putSetPutViewport2KeyInitiate (d, putToViewport);
+    putSetPutViewport3KeyInitiate (d, putToViewport);
+    putSetPutViewport4KeyInitiate (d, putToViewport);
+    putSetPutViewport5KeyInitiate (d, putToViewport);
+    putSetPutViewport6KeyInitiate (d, putToViewport);
+    putSetPutViewport7KeyInitiate (d, putToViewport);
+    putSetPutViewport8KeyInitiate (d, putToViewport);
+    putSetPutViewport9KeyInitiate (d, putToViewport);
+    putSetPutViewport10KeyInitiate (d, putToViewport);
+    putSetPutViewport11KeyInitiate (d, putToViewport);
+    putSetPutViewport12KeyInitiate (d, putToViewport);
+    putSetPutViewportLeftKeyInitiate (d, putViewportLeft);
+    putSetPutViewportRightKeyInitiate (d, putViewportRight);
+    putSetPutViewportUpKeyInitiate (d, putViewportUp);
+    putSetPutViewportDownKeyInitiate (d, putViewportDown);
+    putSetPutRestoreKeyInitiate (d, restore);
+    putSetPutPointerKeyInitiate (d, putPointer);
+    putSetPutRestoreButtonInitiate (d, restore);
+    putSetPutPointerButtonInitiate (d, putPointer);
     putSetPutExactInitiate (d, putExact);
-    putSetPutCenterInitiate (d, putCenter);
-    putSetPutLeftInitiate (d, putLeft);
-    putSetPutRightInitiate (d, putRight);
-    putSetPutTopInitiate (d, putTop);
-    putSetPutBottomInitiate (d, putBottom);
-    putSetPutTopleftInitiate (d, putTopLeft);
-    putSetPutToprightInitiate (d, putTopRight);
-    putSetPutBottomleftInitiate (d, putBottomLeft);
-    putSetPutBottomrightInitiate (d, putBottomRight);
+    putSetPutCenterKeyInitiate (d, putCenter);
+    putSetPutLeftKeyInitiate (d, putLeft);
+    putSetPutRightKeyInitiate (d, putRight);
+    putSetPutTopKeyInitiate (d, putTop);
+    putSetPutBottomKeyInitiate (d, putBottom);
+    putSetPutTopleftKeyInitiate (d, putTopLeft);
+    putSetPutToprightKeyInitiate (d, putTopRight);
+    putSetPutBottomleftKeyInitiate (d, putBottomLeft);
+    putSetPutBottomrightKeyInitiate (d, putBottomRight);
+    putSetPutCenterButtonInitiate (d, putCenter);
+    putSetPutLeftButtonInitiate (d, putLeft);
+    putSetPutRightButtonInitiate (d, putRight);
+    putSetPutTopButtonInitiate (d, putTop);
+    putSetPutBottomButtonInitiate (d, putBottom);
+    putSetPutTopleftButtonInitiate (d, putTopLeft);
+    putSetPutToprightButtonInitiate (d, putTopRight);
+    putSetPutBottomleftButtonInitiate (d, putBottomLeft);
+    putSetPutBottomrightButtonInitiate (d, putBottomRight);
 
     WRAP (pd, d, handleEvent, putHandleEvent);
     d->privates[displayPrivateIndex].ptr = pd;
