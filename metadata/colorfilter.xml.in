@@ -40,7 +40,13 @@
         <_short>Filters files</_short>
         <_long>List of plain text filter files that should be applied when filtering windows or screen.</_long>
         <type>string</type>
-        <default></default>
+        <default>
+	    <value>negative</value>
+	    <value>negative-green</value>
+	    <value>blueish-filter</value>
+	    <value>sepia</value>
+	    <value>grayscale</value>
+	</default>
         <hints>file;</hints>
       </option>
       <option name="filter_decorations" type="bool">
