@@ -1,11 +1,11 @@
 !!ARBfp1.0
-TEMP output, neg;
-TEX output, fragment.texcoord[0], texture[0], RECT;
-RCP neg.a, output.a;
-MAD output.rgb, -neg.a, output, 1.0;
-MUL output.rgb, output.a, output;
-MUL output, fragment.color, output;
+TEMP temp, neg;
+TEX temp, fragment.texcoord[0], texture[0], RECT;
+RCP neg.a, temp.a;
+MAD temp.rgb, -neg.a, temp, 1.0;
+MUL temp.rgb, temp.a, temp;
+MUL temp, fragment.color, temp;
 SUB output.r, output, output;
 SUB output.b, output, output;
-MOV result.color, output;
+MOV result.color, temp;
 END
