@@ -51,14 +51,14 @@
       <option name="filter_match" type="match">
         <_short>Filtered windows</_short>
         <_long>Windows to be filtered by default.</_long>
-        <default></default>
+        <default>any</default>
       </option>
     </screen>
     <screen>
       <option name="exclude_match" type="match">
         <_short>Exclude windows</_short>
         <_long>Windows to exclude from filtering.</_long>
-        <default>Type=Desktop</default>
+        <default>type=Desktop</default>
       </option>
     </screen>
   </plugin>
