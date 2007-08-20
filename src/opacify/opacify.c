@@ -477,7 +477,7 @@ static Bool opacifyInitDisplay(CompPlugin * p, CompDisplay * d)
 	od->active_screen = d->screens->screenNum;
 	od->toggle = TRUE;
 
-	opacifySetToggleInitiate (d, opacify_toggle);	
+	opacifySetToggleKeyInitiate (d, opacify_toggle);	
 	opacifySetInitToggleNotify(d, opacifyDisplayOptionChanged);
 
 	WRAP(od, d, handleEvent, opacifyHandleEvent);

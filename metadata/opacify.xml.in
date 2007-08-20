@@ -12,13 +12,10 @@
     <display>
       <group>
         <_short>Bindings</_short>
-        <option name="toggle" type="action">
+        <option name="toggle_key" type="key">
           <_short>Toggle Opacify</_short>
           <_long>Use this to enable/disable Opacify on the fly. Previously opacified windows will not be reset once you disable it like this.</_long>
-          <allowed key="true"/>
-          <default>
-            <key>&lt;Super&gt;o</key>
-          </default>
+          <default>&lt;Super&gt;o</default>
         </option>
       </group>
       <group>
