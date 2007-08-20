@@ -327,7 +327,7 @@ winrulesGetScreenOptions (CompPlugin *plugin,
 static Bool
 winrulesSetScreenOption (CompPlugin *plugin,
 			 CompScreen      *screen,
-                         char            *name, 
+                         const char      *name,
                          CompOptionValue *value)
 {
     CompOption *o;
