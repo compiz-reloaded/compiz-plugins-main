@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-08-01 11:35+0530\n"
-"PO-Revision-Date: 2007-07-30 03:29+0200\n"
+"PO-Revision-Date: 2007-07-31 13:07+0200\n"
 "Last-Translator: Emiliano Perulli <emiliano.perulli@alice.it>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -649,9 +649,8 @@ msgstr ""
 msgid "The wave amplitude (size of the waves) relative to the window height."
 msgstr "L'ampiezza delle onde (dimensione) relativa all'altezza della finestra"
 
-#, fuzzy
 msgid "The width of the wave relative to the window height."
-msgstr "Dimensione del contorno della barra delle schede"
+msgstr "Ampiezza dell'onda in relazione all'altezza della finestra"
 
 #, fuzzy
 msgid "The windows that will be animated."
@@ -716,9 +715,8 @@ msgstr "Onde"
 msgid "Wave Amplitude"
 msgstr "Ampiezza delle Onde"
 
-#, fuzzy
 msgid "Wave Width"
-msgstr "Larghezza Finestre"
+msgstr "Larghezza onda"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
@@ -971,9 +969,8 @@ msgstr "Plugin Expo"
 msgid "Expo mode aspect ratio"
 msgstr "Proporzioni visive per la modalità Expo"
 
-#, fuzzy
 msgid "Fade + Zoom"
-msgstr "Durata Dissolvenza"
+msgstr "Dissolvenza + Ingrandimento"
 
 msgid "Generate mipmaps in expo mode"
 msgstr "Genera mipmap in modalità expo"
@@ -1003,9 +1000,8 @@ msgstr "Una muraglia per output"
 msgid "Reflection"
 msgstr "Riflessi"
 
-#, fuzzy
 msgid "Reflection Scale"
-msgstr "Immagine Riflesso"
+msgstr "Scala Riflesso"
 
 msgid "Scale factor of the expo wall reflection"
 msgstr "Fattore di scala per la riflessione nell'effetto Expo"
@@ -1027,9 +1023,8 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Mostra il riflesso delle viewports alla loro base delle"
 
-#, fuzzy
 msgid "Tilt view"
-msgstr "Titolo"
+msgstr "Blocca visuale"
 
 msgid "Tilt window view in expo mode"
 msgstr "Blocca vista delle finestre in modalità expo"
@@ -1763,9 +1758,8 @@ msgstr ""
 msgid "Opacify"
 msgstr "Trasparenza"
 
-#, fuzzy
 msgid "Opacity Levels"
-msgstr "Trasparenza"
+msgstr "Livelli Trasparenza"
 
 msgid "Passive Opacity"
 msgstr "Trasparenza passiva"
@@ -1842,9 +1836,8 @@ msgstr "Velocità di Animazione"
 msgid "Animation speed"
 msgstr "Velocità di Animazione"
 
-#, fuzzy
 msgid "Animation timestep"
-msgstr "Velocità di Animazione"
+msgstr "Passo animazione"
 
 msgid "Avoid Offscreen"
 msgstr ""
@@ -1857,9 +1850,8 @@ msgstr ""
 msgid "Move window to a certain viewport"
 msgstr "Muovi finestra su un Viewport specifico"
 
-#, fuzzy
 msgid "Move window to the bottom edge"
-msgstr "Muoviti, con la finestra, verso sinistra sul muro"
+msgstr "Muovi finestra verso l'ombra in basso"
 
 #, fuzzy
 msgid "Move window to the bottom left corner"
@@ -1875,20 +1867,17 @@ msgstr "Muovi la finestra al centro"
 msgid "Move window to the last position"
 msgstr "Muovi tutte le finestre del gruppo"
 
-#, fuzzy
 msgid "Move window to the left edge"
-msgstr "Muhoviti verso sinstra"
+msgstr "Muovi finestra verso l'ombra sinistra"
 
 msgid "Move window to the pointer position"
 msgstr "Muovi finestra verso la posizione del puntatore"
 
-#, fuzzy
 msgid "Move window to the right edge"
-msgstr "Da sinistra a destra"
+msgstr "Muovi finestra verso l'ombra destra"
 
-#, fuzzy
 msgid "Move window to the top edge"
-msgstr "Muovi tutte le finestre del gruppo"
+msgstr "Muovi finestra verso l'ombra in alto"
 
 #, fuzzy
 msgid "Move window to the top left corner"
@@ -2077,7 +2066,7 @@ msgid "Put Top Right"
 msgstr "Smussa l'angolo in Alto a Destra"
 
 msgid "Put pointer uses the center of the window"
-msgstr ""
+msgstr "Il posizionamento del puntatore usa il centro della finestra"
 
 #, fuzzy
 msgid "Put to adjacent viewport"
@@ -2093,9 +2082,8 @@ msgstr "Posiziona finestra"
 msgid "Put within viewport"
 msgstr "Muoviti alla Viewport successiva"
 
-#, fuzzy
 msgid "Restore Position"
-msgstr "Rispristina la finestra"
+msgstr "Ripristina Posizione"
 
 msgid "Speed"
 msgstr "Velocità"
@@ -2240,9 +2228,8 @@ msgstr ""
 "Ammontare della trasparenza (in percentuale) per le finestre nel "
 "selezionatore ad anello che non sono selezionate"
 
-#, fuzzy
 msgid "Background Color"
-msgstr "Immagine di Sfondo"
+msgstr "Colore di sfondo"
 
 #, fuzzy
 msgid "Background color for the window title"
@@ -2521,7 +2508,7 @@ msgid "Zoom windows while in scale mode"
 msgstr "Esegui lo zoom sulle finestre nella modalità in scala"
 
 msgid "Filter Case Insensitive"
-msgstr ""
+msgstr "Filtro Case Insensitive"
 
 msgid "Filter Type Timeout"
 msgstr ""
@@ -2538,7 +2525,7 @@ msgid "Show filter text."
 msgstr "Mostra al primo avvio"
 
 msgid "Time (in ms) after which the filter typing is automatically ended"
-msgstr ""
+msgstr "Tempo (in millisecondi) trascorso il quale il filtro di scrittura termina automaticamente"
 
 msgid "Use case insensitive string matching when filtering."
 msgstr ""
@@ -2766,7 +2753,7 @@ msgid "Shift"
 msgstr "Sposta"
 
 msgid "Snap Type"
-msgstr ""
+msgstr "Tipo gommosità"
 
 msgid "Snap to 'Screen Edges', 'Windows Edges' or 'Both'."
 msgstr "Attacca ai 'Bordi dello Schermo', 'Bordi della Finestra' o 'Entrambi'"
@@ -2782,7 +2769,7 @@ msgid "The distance until edge resistance takes place."
 msgstr "La distanza alla quale si verifica la resistenza dei bordi"
 
 msgid "Use this bindings to avoid snapping."
-msgstr ""
+msgstr "Usa queste scorciatoie per evitare la gommosità"
 
 #, fuzzy
 msgid "Window edges"
@@ -3617,7 +3604,7 @@ msgid "Below others windows"
 msgstr "Neve sulle finestre"
 
 msgid "Don't show application in pager"
-msgstr ""
+msgstr "Non mostrare l'applicazione nel pager"
 
 msgid "Don't show application in taskbar"
 msgstr "Non mostrare le applicazione nella barra dei programmi."
@@ -3688,10 +3675,10 @@ msgid "Sized Windows"
 msgstr "Accosta le finestre"
 
 msgid "Skip pager"
-msgstr ""
+msgstr "Salta pager"
 
 msgid "Skip taskbar"
-msgstr ""
+msgstr "Salta barra delle applicazioni"
 
 msgid "Sticky"
 msgstr "Appiccicoso"
@@ -3718,16 +3705,16 @@ msgid "Windows will not have focus"
 msgstr "Le finestre non avranno il focus"
 
 msgid "Firefox Menu Fix"
-msgstr ""
+msgstr "Fix per Menu Firefox"
 
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr ""
+msgstr "Fissa il tipo di finestra di Firefox e dei menu Thunderbird"
 
 msgid "Fix window type of notification daemon windows."
-msgstr ""
+msgstr "Fissa il tipo di finestra per le finestre del demone di notifica"
 
 msgid "Fix window type of various Java windows."
-msgstr ""
+msgstr "Fissa il tipo di finestra di varie finestre Java"
 
 msgid "Fix window type of various Qt windows."
 msgstr ""
@@ -3748,7 +3735,7 @@ msgid "Metacity-like workarounds."
 msgstr ""
 
 msgid "Notification Daemon Fix"
-msgstr ""
+msgstr "Fix per il Demone di Notifica"
 
 #, fuzzy
 msgid "Qt Window Fix"
