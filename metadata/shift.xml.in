@@ -7,63 +7,76 @@
 		<display>
 			<group>
 				<_short>Key bindings</_short>
-				<option name="initiate" type="action">
+				<option name="initiate_key" type="key">
 					<_short>Initiate</_short>
 					<_long>Initiate switcher.</_long>
-					<allowed key="true" button="true" edge="true"/>
-					<default>
-						<key>&lt;Super&gt;&lt;Shift&gt;s</key>
-					</default>
+					<default>&lt;Super&gt;&lt;Shift&gt;s</default>
 				</option>
-				<option name="initiate_all" type="action">
+				<option name="initiate_button" type="button">
+					<_short>Initiate</_short>
+					<_long>Initiate switcher.</_long>
+				</option>
+				<option name="initiate_all_key" type="key">
 					<_short>Initiate (All Workspaces)</_short>
 					<_long>Initiate switcher (All Workspaces).</_long>
-					<allowed key="true" button="true" edge="true"/>
-					<default/>
 				</option>
-				<option name="next" type="action">
+				<option name="initiate_all_button" type="button">
+					<_short>Initiate (All Workspaces)</_short>
+					<_long>Initiate switcher (All Workspaces).</_long>
+				</option>
+				<option name="next_key" type="key">
 					<_short>Next Window</_short>
 					<_long>Show switcher if not visible and select next window.</_long>
-					<allowed key="true" button="true"/>
-					<default>
-						<key>&lt;Super&gt;Tab</key>
-					</default>
+					<default>&lt;Super&gt;Tab</default>
 				</option>
-				<option name="prev" type="action">
+				<option name="next_button" type="button">
+					<_short>Next Window</_short>
+					<_long>Show switcher if not visible and select next window.</_long>
+				</option>
+				<option name="prev_key" type="key">
 					<_short>Previous Window</_short>
 					<_long>Show switcher if not visible and select previous window.</_long>
-					<allowed key="true" button="true"/>
-					<default>
-						<key>&lt;Super&gt;&lt;Shift&gt;Tab</key>
-					</default>
+					<default>&lt;Super&gt;&lt;Shift&gt;Tab</default>
 				</option>
-				<option name="next_all" type="action">
+				<option name="prev_button" type="button">
+					<_short>Previous Window</_short>
+					<_long>Show switcher if not visible and select previous window.</_long>
+				</option>
+				<option name="next_all_key" type="key">
 					<_short>Next Window (All Workspaces)</_short>
 					<_long>Show switcher if not visible and select next window out of all windows.</_long>
-					<allowed key="true" button="true"/>
-					<default>
-						<key>&lt;Super&gt;&lt;Alt&gt;Tab</key>
-					</default>
+					<default>&lt;Super&gt;&lt;Alt&gt;Tab</default>
 				</option>
-				<option name="prev_all" type="action">
+				<option name="next_all_button" type="button">
+					<_short>Next Window (All Workspaces)</_short>
+					<_long>Show switcher if not visible and select next window out of all windows.</_long>
+				</option>
+				<option name="prev_all_key" type="key">
 					<_short>Previous Window (All Workspaces)</_short>
 					<_long>Show switcher if not visible and select previous window out of all windows.</_long>
-					<allowed key="true" button="true"/>
-					<default>
-						<key>&lt;Super&gt;&lt;Shift&gt;&lt;Alt&gt;Tab</key>
-					</default>
+					<default>&lt;Super&gt;&lt;Shift&gt;&lt;Alt&gt;Tab</default>
 				</option>
-				<option name="next_group" type="action">
+				<option name="prev_all_button" type="button">
+					<_short>Previous Window (All Workspaces)</_short>
+					<_long>Show switcher if not visible and select previous window out of all windows.</_long>
+				</option>
+				<option name="next_group_key" type="key">
+					<_short>Next Window (Group)</_short>
+					<_long>Show switcher if not visible and select next window of the current application.</_long>
+				</option>
+				<option name="next_group_button" type="button">
 					<_short>Next Window (Group)</_short>
 					<_long>Show switcher if not visible and select next window of the current application.</_long>
 					<allowed key="true" button="true"/>
 					<default/>
 				</option>
-				<option name="prev_group" type="action">
+				<option name="prev_group_key" type="key">
 					<_short>Previous Window (Group)</_short>
 					<_long>Show switcher if not visible and select previous window of the current application.</_long>
-					<allowed key="true" button="true"/>
-					<default/>
+				</option>
+				<option name="prev_group_button" type="button">
+					<_short>Previous Window (Group)</_short>
+					<_long>Show switcher if not visible and select previous window of the current application.</_long>
 				</option>
 			</group>
 		</display>

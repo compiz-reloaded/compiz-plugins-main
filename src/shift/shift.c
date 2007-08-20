@@ -2258,22 +2258,39 @@ shiftInitDisplay (CompPlugin  *p,
     sd->upKey    = XKeysymToKeycode (d->display, XStringToKeysym ("Up"));
     sd->downKey  = XKeysymToKeycode (d->display, XStringToKeysym ("Down"));
 
-    shiftSetInitiateInitiate (d, shiftInitiate);
-    shiftSetInitiateTerminate (d, shiftTerminate);
-    shiftSetInitiateAllInitiate (d, shiftInitiateAll);
-    shiftSetInitiateAllTerminate (d, shiftTerminate);
-    shiftSetNextInitiate (d, shiftNext);
-    shiftSetNextTerminate (d, shiftTerminate);
-    shiftSetPrevInitiate (d, shiftPrev);
-    shiftSetPrevTerminate (d, shiftTerminate);
-    shiftSetNextAllInitiate (d, shiftNextAll);
-    shiftSetNextAllTerminate (d, shiftTerminate);
-    shiftSetPrevAllInitiate (d, shiftPrevAll);
-    shiftSetPrevAllTerminate (d, shiftTerminate);
-    shiftSetNextGroupInitiate (d, shiftNextGroup);
-    shiftSetNextGroupTerminate (d, shiftTerminate);
-    shiftSetPrevGroupInitiate (d, shiftPrevGroup);
-    shiftSetPrevGroupTerminate (d, shiftTerminate);
+    shiftSetInitiateKeyInitiate (d, shiftInitiate);
+    shiftSetInitiateKeyTerminate (d, shiftTerminate);
+    shiftSetInitiateAllKeyInitiate (d, shiftInitiateAll);
+    shiftSetInitiateAllKeyTerminate (d, shiftTerminate);
+    shiftSetNextKeyInitiate (d, shiftNext);
+    shiftSetNextKeyTerminate (d, shiftTerminate);
+    shiftSetPrevKeyInitiate (d, shiftPrev);
+    shiftSetPrevKeyTerminate (d, shiftTerminate);
+    shiftSetNextAllKeyInitiate (d, shiftNextAll);
+    shiftSetNextAllKeyTerminate (d, shiftTerminate);
+    shiftSetPrevAllKeyInitiate (d, shiftPrevAll);
+    shiftSetPrevAllKeyTerminate (d, shiftTerminate);
+    shiftSetNextGroupKeyInitiate (d, shiftNextGroup);
+    shiftSetNextGroupKeyTerminate (d, shiftTerminate);
+    shiftSetPrevGroupKeyInitiate (d, shiftPrevGroup);
+    shiftSetPrevGroupKeyTerminate (d, shiftTerminate);
+
+    shiftSetInitiateButtonInitiate (d, shiftInitiate);
+    shiftSetInitiateButtonTerminate (d, shiftTerminate);
+    shiftSetInitiateAllButtonInitiate (d, shiftInitiateAll);
+    shiftSetInitiateAllButtonTerminate (d, shiftTerminate);
+    shiftSetNextButtonInitiate (d, shiftNext);
+    shiftSetNextButtonTerminate (d, shiftTerminate);
+    shiftSetPrevButtonInitiate (d, shiftPrev);
+    shiftSetPrevButtonTerminate (d, shiftTerminate);
+    shiftSetNextAllButtonInitiate (d, shiftNextAll);
+    shiftSetNextAllButtonTerminate (d, shiftTerminate);
+    shiftSetPrevAllButtonInitiate (d, shiftPrevAll);
+    shiftSetPrevAllButtonTerminate (d, shiftTerminate);
+    shiftSetNextGroupButtonInitiate (d, shiftNextGroup);
+    shiftSetNextGroupButtonTerminate (d, shiftTerminate);
+    shiftSetPrevGroupButtonInitiate (d, shiftPrevGroup);
+    shiftSetPrevGroupButtonTerminate (d, shiftTerminate);
 
     WRAP (sd, d, handleEvent, shiftHandleEvent);
 
