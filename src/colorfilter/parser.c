@@ -130,7 +130,7 @@ programReadSource (char *fname)
      * (in PREFIX/share/compiz/filters) */
     if (!fp)
     {
-	asprintf (&path, "%s/share/compiz/filters/%s", PREFIX, fname);
+	asprintf (&path, "%s/filters/%s", DATADIR, fname);
 	fp = fopen (path, "r");
 	free (path);
     }
