@@ -33,7 +33,6 @@ static int displayPrivateIndex;
 
 typedef struct _ColorFilterDisplay
 {
-    HandleEventProc handleEvent;
     int		    screenPrivateIndex;
 } ColorFilterDisplay;
 
@@ -42,7 +41,7 @@ typedef struct _ColorFilterScreen
     int			    windowPrivateIndex;
 
     DrawWindowTextureProc   drawWindowTexture;
-    DamageWindowRectProc    damageWindowRect;
+    WindowAddNotifyProc     windowAddNotify;
 
     Bool		    isFiltered;
     int			    currentFilter; /* 0 : cumulative mode
@@ -60,7 +59,6 @@ typedef struct _ColorFilterScreen
 typedef struct _ColorFilterWindow
 {
     Bool    isFiltered;
-    Bool    createEvent;
 } ColorFilterWindow;
 
 #define GET_FILTER_DISPLAY(d)					    \
@@ -404,66 +402,22 @@ colorFilterDrawWindowTexture (CompWindow *w, CompTexture *texture,
     }
 }
 
-/*
- * Enable filtering for newly created windows when first damaged
- */
-static Bool
-colorFilterDamageWindowRect (CompWindow * w, Bool initial, BoxPtr rect)
-{
-    int status;
-
-    FILTER_SCREEN (w->screen);
-    FILTER_WINDOW (w);
-
-    /* The window is initial when it is being mapped */
-    if (initial)
-    {
-	/* If the screen is filtered, filter the new window if required */
-	if (cfs->isFiltered && !cfw->isFiltered)
-	    colorFilterToggleWindow (w);
-    }
-
-    UNWRAP (cfs, w->screen, damageWindowRect);
-    status = (*w->screen->damageWindowRect) (w, initial, rect);
-    WRAP (cfs, w->screen, damageWindowRect, colorFilterDamageWindowRect);
-
-    return status;
-}
-
-/*
- * Filter a window on map if required
- */
 static void
-colorFilterHandleEvent (CompDisplay *d, XEvent *event)
+colorFilterWindowAddNotify (CompWindow *w)
 {
-    CompWindow *w;
+    CompScreen *s = w->screen;
 
-    FILTER_DISPLAY (d);
-    /* Only apply when window is mapped.
-     * Using CreateNotify doesn't work. */
-    if (event->type == MapNotify)
-    {
-	w = findWindowAtDisplay (d, event->xmap.window);
-	if (w)
-	{
-	    if (w->screen->fragmentProgram)
-	    {
-		FILTER_WINDOW (w);
-		if (cfw->createEvent)
-		{
-		    if (matchEval (colorfilterGetFilterMatch (w->screen), w))
-			colorFilterToggleWindow (w);
-		    cfw->createEvent = FALSE;
-		}
-	    }
-	}
-    }
+    FILTER_SCREEN (s);
 
-    UNWRAP (cfd, d, handleEvent);
-    (*d->handleEvent) (d, event);
-    WRAP (cfd, d, handleEvent, colorFilterHandleEvent);
+    UNWRAP (cfs, s, windowAddNotify);
+    (*s->windowAddNotify) (w);
+    WRAP (cfs, s, windowAddNotify, colorFilterWindowAddNotify);
+
+    /* cfw->isNeg is initialized to FALSE in InitWindow, so we only
+       have to toggle it to TRUE if necessary */
+    if (cfs->isFiltered && matchEval (colorfilterGetFilterMatch (s), w))
+	colorFilterToggleWindow (w);
 }
-
 
 /* Internal stuff ----------------------------------------------------------- */
 
@@ -475,13 +429,18 @@ colorfilterFilterMatchsChanged (CompScreen *s, CompOption *opt,
 				ColorfilterScreenOptions num)
 {
     CompWindow *w;
+
+    FILTER_SCREEN (s);
+
     /* Re-check every window against new match settings */
     for (w = s->windows; w; w = w->next)
     {
 	FILTER_WINDOW (w);
-	if (matchEval (colorfilterGetFilterMatch (s), w)
-		&& !cfw->isFiltered)
+	if (matchEval (colorfilterGetFilterMatch (s), w) &&
+	    cfs->isFiltered && !cfw->isFiltered)
+	{
 	    colorFilterToggleWindow (w);
+	}
     }
 }
 
@@ -497,8 +456,7 @@ colorfilterExcludeMatchsChanged (CompScreen *s, CompOption *opt,
     for (w = s->windows; w; w = w->next)
     {
 	FILTER_WINDOW (w);
-	if (matchEval (colorfilterGetFilterMatch (s), w)
-		&& cfw->isFiltered)
+	if (matchEval (colorfilterGetFilterMatch (s), w) && cfw->isFiltered)
 	    colorFilterToggleWindow (w);
     }
 }
@@ -536,7 +494,6 @@ colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
     colorfilterSetToggleScreenInitiate (d, colorFilterToggleAll);
     colorfilterSetSwitchFilterInitiate (d, colorFilterSwitch);
 
-    WRAP (cfd, d, handleEvent, colorFilterHandleEvent);
     d->privates[displayPrivateIndex].ptr = cfd;
 
     return TRUE;
@@ -547,7 +504,6 @@ colorFilterFiniDisplay (CompPlugin * p, CompDisplay * d)
 {
     FILTER_DISPLAY (d);
     freeScreenPrivateIndex (d, cfd->screenPrivateIndex);
-    UNWRAP (cfd, d, handleEvent);
     free (cfd);
 }
 
@@ -588,7 +544,7 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     colorfilterSetFiltersNotify (s, colorFiltersChanged);
 
     WRAP (cfs, s, drawWindowTexture, colorFilterDrawWindowTexture);
-    WRAP (cfs, s, damageWindowRect, colorFilterDamageWindowRect);
+    WRAP (cfs, s, windowAddNotify, colorFilterWindowAddNotify);
 
     s->privates[cfd->screenPrivateIndex].ptr = cfs;
 
@@ -602,7 +558,7 @@ colorFilterFiniScreen (CompPlugin * p, CompScreen * s)
 
     freeWindowPrivateIndex (s, cfs->windowPrivateIndex);
     UNWRAP (cfs, s, drawWindowTexture);
-    UNWRAP (cfs, s, damageWindowRect);
+    UNWRAP (cfs, s, windowAddNotify);
 
     unloadFilters (s);
 
@@ -624,7 +580,6 @@ colorFilterInitWindow (CompPlugin * p, CompWindow * w)
 	return FALSE;
 
     cfw->isFiltered = FALSE;
-    cfw->createEvent = TRUE;
 
     w->privates[cfs->windowPrivateIndex].ptr = cfw;
 
