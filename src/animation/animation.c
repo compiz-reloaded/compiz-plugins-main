@@ -679,7 +679,7 @@ static int animGetWindowState(CompWindow * w)
 static Bool
 animSetScreenOptions(CompPlugin *plugin,
 		     CompScreen * screen,
-		     char *name,
+		     const char *name,
 		     CompOptionValue * value)
 {
     CompOption *o;
@@ -2697,8 +2697,9 @@ static const PluginEventInfo watchedPlugins[] =
     {"shift", "activate"},
 };
 
-static void animHandleCompizEvent(CompDisplay * d, char *pluginName,
-				  char *eventName, CompOption * option, int nOption)
+static void animHandleCompizEvent(CompDisplay * d, const char *pluginName,
+				  const char *eventName, CompOption * option,
+				  int nOption)
 {
     ANIM_DISPLAY(d);
 
