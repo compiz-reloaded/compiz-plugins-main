@@ -5,7 +5,6 @@ RCP neg.a, temp.a;
 MAD temp.rgb, -neg.a, temp, 1.0;
 MUL temp.rgb, temp.a, temp;
 MUL temp, fragment.color, temp;
-SUB output.r, output, output;
-SUB output.b, output, output;
+SUB temp.rb, temp, temp;
 MOV result.color, temp;
 END
