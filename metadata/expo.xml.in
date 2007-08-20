@@ -13,13 +13,21 @@
 		<display>
 			<group>
 				<_short>Bindings</_short>
-				<option name="expo" type="action">
-					<_short>Expo</_short>
-					<_long>Engage wall expo mode</_long>
-					<allowed key="true" edge="true"/>
+				<option name="expo_key" type="key">
+					<_short>Expo key</_short>
+					<_long>Engage wall expo mode key binding</_long>
+					<default>&lt;Super&gt;e</default>
+				</option>
+				<option name="expo_button" type="button">
+					<_short>Expo button</_short>
+					<_long>Engage wall expo mode button binding</_long>
+					<default></default>
+				</option>
+				<option name="expo_edge" type="edge">
+					<_short>Expo edge</_short>
+					<_long>Engage wall expo mode edge binding</_long>
 					<default>
-						<key>&lt;Super&gt;e</key>
-						<edges top_left="true"/>
+						<edge name="TopLeft"/>
 					</default>
 				</option>
 			</group>

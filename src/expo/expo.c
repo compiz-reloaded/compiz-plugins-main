@@ -329,7 +329,7 @@ expoHandleEvent (CompDisplay *d,
 		    {
     			CompAction *action;
 			
-    			action = expoGetExpo (d);
+    			action = expoGetExpoKey (d);
     			expoTermExpo (d, action, 0, NULL, 0);
 			es->anyClick = TRUE;
 		    }
@@ -1023,8 +1023,12 @@ expoInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    expoSetExpoInitiate (d, expoExpo);
-    expoSetExpoTerminate (d, expoTermExpo);
+    expoSetExpoKeyInitiate (d, expoExpo);
+    expoSetExpoKeyTerminate (d, expoTermExpo);
+    expoSetExpoButtonInitiate (d, expoExpo);
+    expoSetExpoButtonTerminate (d, expoTermExpo);
+    expoSetExpoEdgeInitiate (d, expoExpo);
+    expoSetExpoEdgeTerminate (d, expoTermExpo);
 
     ed->leftKey  = XKeysymToKeycode (d->display, XStringToKeysym ("Left"));
     ed->rightKey = XKeysymToKeycode (d->display, XStringToKeysym ("Right"));
