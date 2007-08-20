@@ -589,8 +589,8 @@ scaleaddonScalePaintDecoration (CompWindow              *w,
 
 static void
 scaleaddonHandleCompizEvent (CompDisplay *d,
-			     char        *pluginName,
-			     char        *eventName,
+			     const char  *pluginName,
+			     const char  *eventName,
 			     CompOption  *option,
 			     int         nOption)
 {
@@ -611,8 +611,10 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 	{
 	    if (activated)
 	    {
-		addScreenAction (s, scaleaddonGetClose (s->display));
-		addScreenAction (s, scaleaddonGetZoom (s->display));
+		addScreenAction (s, scaleaddonGetCloseKey (s->display));
+		addScreenAction (s, scaleaddonGetZoomKey (s->display));
+		addScreenAction (s, scaleaddonGetCloseButton (s->display));
+		addScreenAction (s, scaleaddonGetZoomButton (s->display));
 	    }
 	    else
 	    {
@@ -624,8 +626,10 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 		    aw->rescaled = FALSE;
 		}
 
-		removeScreenAction (s, scaleaddonGetClose (s->display));
-		removeScreenAction (s, scaleaddonGetZoom (s->display));
+		removeScreenAction (s, scaleaddonGetCloseKey (s->display));
+		removeScreenAction (s, scaleaddonGetZoomKey (s->display));
+		removeScreenAction (s, scaleaddonGetCloseButton (s->display));
+		removeScreenAction (s, scaleaddonGetZoomButton (s->display));
 	    }
 	}
     }
@@ -1095,8 +1099,10 @@ scaleaddonInitDisplay (CompPlugin  *p,
 
     ad->lastHoveredWindow = None;
 
-    scaleaddonSetCloseInitiate (d, scaleaddonCloseWindow);
-    scaleaddonSetZoomInitiate (d, scaleaddonZoomWindow);
+    scaleaddonSetCloseKeyInitiate (d, scaleaddonCloseWindow);
+    scaleaddonSetZoomKeyInitiate (d, scaleaddonZoomWindow);
+    scaleaddonSetCloseButtonInitiate (d, scaleaddonCloseWindow);
+    scaleaddonSetZoomButtonInitiate (d, scaleaddonZoomWindow);
 
     return TRUE;
 }
