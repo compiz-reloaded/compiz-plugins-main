@@ -336,7 +336,6 @@ programParseSource (CompFunctionData *data,
     char *strtok_ptr;
     int   length, oplength, type;
     FragmentOffset *offsets = NULL;
-    Bool colorDone = FALSE;
 
     char *arg1, *arg2, *temp;
 
@@ -488,7 +487,6 @@ programParseSource (CompFunctionData *data,
 		}
 		break;
 	    case ColorOp:
-		if (colorDone) break;
 		if (strncmp (current, "MUL", 3) == 0) /* MUL op, 2 ops */
 		{
 		    /* Example : MUL output, fragment.color, output;
@@ -526,7 +524,6 @@ programParseSource (CompFunctionData *data,
 			free (arg1);
 		    }
 		}
-		colorDone = TRUE;
 		break;
 	    default:
 		break;
