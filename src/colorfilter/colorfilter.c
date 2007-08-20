@@ -452,11 +452,20 @@ colorfilterExcludeMatchsChanged (CompScreen *s, CompOption *opt,
 				 ColorfilterScreenOptions num)
 {
     CompWindow *w;
+
+    FILTER_SCREEN (s);
+
     /* Re-check every window against new match settings */
     for (w = s->windows; w; w = w->next)
     {
+	Bool isExcluded;
+
 	FILTER_WINDOW (w);
-	if (matchEval (colorfilterGetFilterMatch (s), w) && cfw->isFiltered)
+
+	isExcluded = matchEval (colorfilterGetExcludeMatch (s), w);
+	if (isExcluded && cfw->isFiltered)
+	    colorFilterToggleWindow (w);
+	else if (!isExcluded && cfs->isFiltered && !cfw->isFiltered)
 	    colorFilterToggleWindow (w);
     }
 }
