@@ -1,17 +1,17 @@
-From 94c6aa406d710a63c2bc20fab3a6c154549e0fa9 Mon Sep 17 00:00:00 2001
+From fc642f1752caa156d41f5245e5f05b583bb8b886 Mon Sep 17 00:00:00 2001
 From: Guillaume Seguin <guillaume@segu.in>
-Date: Thu, 5 Jul 2007 02:04:06 +0200
+Date: Thu, 16 Aug 2007 02:14:17 +0200
 Subject: [PATCH] * Add fragment program pretty printer
 
 ---
- src/fragment.c |   48 ++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 48 insertions(+), 0 deletions(-)
+ src/fragment.c |   49 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 49 insertions(+), 0 deletions(-)
 
 diff --git a/src/fragment.c b/src/fragment.c
-index 1c35858..c272d6d 100644
+index a1c9e6e..04ae571 100644
 --- a/src/fragment.c
 +++ b/src/fragment.c
-@@ -154,6 +154,52 @@ static CompFunction initialLoadFunction = {
+@@ -154,6 +154,53 @@ static CompFunction initialLoadFunction = {
      COMP_FUNCTION_MASK
  };
  
@@ -56,15 +56,16 @@ index 1c35858..c272d6d 100644
 +	}
 +	result[strlen (source) + feeds] = '\0';
 +    }
-+	compLogMessage (NULL, "core", CompLogLevelInfo,
-+			"Using fragment program :\n%s", result);
++    compLogMessage (NULL, "core", CompLogLevelInfo,
++		    "Using fragment program :");
++    printf ("%s", result);
 +    free (result);
 +}
 +
  static CompFunction *
  findFragmentFunction (CompScreen *s,
  		      int	 id)
-@@ -630,6 +676,8 @@ buildFragmentProgram (CompScreen     *s,
+@@ -630,6 +677,8 @@ buildFragmentProgram (CompScreen     *s,
  
      glGetError ();
  
@@ -74,5 +75,5 @@ index 1c35858..c272d6d 100644
      (*s->bindProgram) (GL_FRAGMENT_PROGRAM_ARB, program->name);
      (*s->programString) (GL_FRAGMENT_PROGRAM_ARB,
 -- 
-1.5.1.3
+1.5.2.4
 
