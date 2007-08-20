@@ -425,8 +425,8 @@ colorFilterWindowAddNotify (CompWindow *w)
  * Filtering match settings update callback
  */
 static void
-colorfilterFilterMatchsChanged (CompScreen *s, CompOption *opt,
-				ColorfilterScreenOptions num)
+colorFilterMatchsChanged (CompScreen *s, CompOption *opt,
+			  ColorfilterScreenOptions num)
 {
     CompWindow *w;
 
@@ -448,7 +448,7 @@ colorfilterFilterMatchsChanged (CompScreen *s, CompOption *opt,
  * Exclude match settings update callback
  */
 static void
-colorfilterExcludeMatchsChanged (CompScreen *s, CompOption *opt,
+colorFilterExcludeMatchsChanged (CompScreen *s, CompOption *opt,
 				 ColorfilterScreenOptions num)
 {
     CompWindow *w;
@@ -558,8 +558,8 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     cfs->filtersFunctions = NULL;
     cfs->filtersCount = 0;
 
-    colorfilterSetFilterMatchNotify (s, colorfilterFilterMatchsChanged);
-    colorfilterSetExcludeMatchNotify (s, colorfilterExcludeMatchsChanged);
+    colorfilterSetFilterMatchNotify (s, colorFilterMatchsChanged);
+    colorfilterSetExcludeMatchNotify (s, colorFilterExcludeMatchsChanged);
     colorfilterSetFiltersNotify (s, colorFiltersChanged);
     colorfilterSetFilterDecorationsNotify (s, colorFilterDamageDecorations);
 
