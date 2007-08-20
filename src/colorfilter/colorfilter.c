@@ -483,6 +483,16 @@ colorFiltersChanged (CompScreen *s, CompOption *opt,
     cfs->filtersLoaded = FALSE;
 }
 
+/*
+ * Damage decorations after the "Filter Decorations" setting got changed
+ */
+static void
+colorFilterDamageDecorations (CompScreen *s, CompOption *opt,
+			      ColorfilterScreenOptions num)
+{
+    damageScreen (s);
+}
+
 static Bool
 colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
 {
@@ -551,6 +561,7 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     colorfilterSetFilterMatchNotify (s, colorfilterFilterMatchsChanged);
     colorfilterSetExcludeMatchNotify (s, colorfilterExcludeMatchsChanged);
     colorfilterSetFiltersNotify (s, colorFiltersChanged);
+    colorfilterSetFilterDecorationsNotify (s, colorFilterDamageDecorations);
 
     WRAP (cfs, s, drawWindowTexture, colorFilterDrawWindowTexture);
     WRAP (cfs, s, windowAddNotify, colorFilterWindowAddNotify);
