@@ -417,15 +417,15 @@ vpswitchSwitchTo (CompDisplay     *d,
 
     VPSWITCH_DISPLAY (d);
 
-    for (i = VpswitchDisplayOptionSwitchTo1;
-	 i <= VpswitchDisplayOptionSwitchTo12; i++)
+    for (i = VpswitchDisplayOptionSwitchTo1Key;
+	 i <= VpswitchDisplayOptionSwitchTo12Key; i++)
     {
 	if (action == &vpswitchGetDisplayOption (d, i)->value.action)
 	{
 	    Window xid = getIntOptionNamed (option, nOption, "root", 0);
 
 	    vd->activeScreen = findScreenAtDisplay (d, xid);
-	    vd->destination  = i - VpswitchDisplayOptionSwitchTo1 + 1;
+	    vd->destination  = i - VpswitchDisplayOptionSwitchTo1Key + 1;
 	    break;
 	}
     }
@@ -449,30 +449,30 @@ vpswitchInitDisplay (CompPlugin  *p,
 
     d->privates[displayPrivateIndex].ptr = vd;
 
-    vpswitchSetLeftInitiate (d, vpswitchLeft);
-    vpswitchSetRightInitiate (d, vpswitchRight);
-    vpswitchSetUpInitiate (d, vpswitchUp);
-    vpswitchSetDownInitiate (d, vpswitchDown);
-    vpswitchSetNextInitiate (d, vpswitchNext);
-    vpswitchSetPrevInitiate (d, vpswitchPrev);
-    vpswitchSetInitiateInitiate (d, vpswitchInitPlugin);
-    vpswitchSetInitiateTerminate (d, vpswitchTermPlugin);
+    vpswitchSetLeftButtonInitiate (d, vpswitchLeft);
+    vpswitchSetRightButtonInitiate (d, vpswitchRight);
+    vpswitchSetUpButtonInitiate (d, vpswitchUp);
+    vpswitchSetDownButtonInitiate (d, vpswitchDown);
+    vpswitchSetNextButtonInitiate (d, vpswitchNext);
+    vpswitchSetPrevButtonInitiate (d, vpswitchPrev);
+    vpswitchSetInitiateButtonInitiate (d, vpswitchInitPlugin);
+    vpswitchSetInitiateButtonTerminate (d, vpswitchTermPlugin);
 
-    vpswitchSetBeginInitiate (d, vpswitchBeginNumbered);
-    vpswitchSetBeginTerminate (d, vpswitchTermNumbered);
+    vpswitchSetBeginKeyInitiate (d, vpswitchBeginNumbered);
+    vpswitchSetBeginKeyTerminate (d, vpswitchTermNumbered);
 
-    vpswitchSetSwitchTo1Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo2Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo3Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo4Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo5Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo6Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo7Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo8Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo9Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo10Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo11Initiate (d, vpswitchSwitchTo);
-    vpswitchSetSwitchTo12Initiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo1KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo2KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo3KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo4KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo5KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo6KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo7KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo8KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo9KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo10KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo11KeyInitiate (d, vpswitchSwitchTo);
+    vpswitchSetSwitchTo12KeyInitiate (d, vpswitchSwitchTo);
 
     return TRUE;
 }

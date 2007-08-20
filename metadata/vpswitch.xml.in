@@ -7,120 +7,94 @@
 		<display>
 			<group>
 				<_short>Number-Based Viewport Switching</_short>
-				<option name="begin" type="action">
+				<option name="begin_key" type="key">
 					<_short>Begin Viewport Switch</_short>
 					<_long>Begin entering viewport number</_long>
-					<allowed key="true"/>
 				</option>
 			</group>
 			<group>
 				<_short>Go to specific viewport</_short>
-				<option name="switch_to_1" type="action">
+				<option name="switch_to_1_key" type="key">
 					<_short>Switch to Viewport 1</_short>
 					<_long>Switch to viewport 1</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_2" type="action">
+				<option name="switch_to_2_key" type="key">
 					<_short>Switch to Viewport 2</_short>
 					<_long>Switch to viewport 2</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_3" type="action">
+				<option name="switch_to_3_key" type="key">
 					<_short>Switch to Viewport 3</_short>
 					<_long>Switch to viewport 3</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_4" type="action">
+				<option name="switch_to_4_key" type="key">
 					<_short>Switch to Viewport 4</_short>
 					<_long>Switch to viewport 4</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_5" type="action">
+				<option name="switch_to_5_key" type="key">
 					<_short>Switch to Viewport 5</_short>
 					<_long>Switch to viewport 5</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_6" type="action">
+				<option name="switch_to_6_key" type="key">
 					<_short>Switch to Viewport 6</_short>
 					<_long>Switch to viewport 6</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_7" type="action">
+				<option name="switch_to_7_key" type="key">
 					<_short>Switch to Viewport 7</_short>
 					<_long>Switch to viewport 7</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_8" type="action">
+				<option name="switch_to_8_key" type="key">
 					<_short>Switch to Viewport 8</_short>
 					<_long>Switch to viewport 8</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_9" type="action">
+				<option name="switch_to_9_key" type="key">
 					<_short>Switch to Viewport 9</_short>
 					<_long>Switch to viewport 9</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_10" type="action">
+				<option name="switch_to_10_key" type="key">
 					<_short>Switch to Viewport 10</_short>
 					<_long>Switch to viewport 10</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_11" type="action">
+				<option name="switch_to_11_key" type="key">
 					<_short>Switch to Viewport 11</_short>
 					<_long>Switch to viewport 11</_long>
-					<allowed key="true"/>
 				</option>
-				<option name="switch_to_12" type="action">
+				<option name="switch_to_12_key" type="key">
 					<_short>Switch to Viewport 12</_short>
 					<_long>Switch to viewport 12</_long>
-					<allowed key="true"/>
 				</option>
 			</group>
 			<group>
 				<_short>Desktop-based Viewport Switching</_short>
-				<option name="left" type="action">
+				<option name="left_button" type="button">
 					<_short>Move Left</_short>
 					<_long>Move to the left</_long>
-					<allowed button="true"/>
 				</option>
-				<option name="right" type="action">
+				<option name="right_button" type="button">
 					<_short>Move Right</_short>
 					<_long>Move to the right</_long>
-					<allowed button="true"/>
 				</option>
-				<option name="up" type="action">
+				<option name="up_button" type="button">
 					<_short>Move Up</_short>
 					<_long>Move up</_long>
-					<allowed button="true"/>
 				</option>
-				<option name="down" type="action">
+				<option name="down_button" type="button">
 					<_short>Move Down</_short>
 					<_long>Move down</_long>
-					<allowed button="true"/>
 				</option>
-				<option name="next" type="action">
+				<option name="next_button" type="button">
 					<_short>Move Next</_short>
 					<_long>Move to the next viewport</_long>
-					<allowed button="true"/>
-					<default>
-						<button>Button5</button>
-					</default>
+					<default>Button5</default>
 				</option>
-				<option name="prev" type="action">
+				<option name="prev_button" type="button">
 					<_short>Move Prev</_short>
 					<_long>Move to the previous viewport</_long>
-					<allowed button="true"/>
-					<default>
-						<button>Button4</button>
-					</default>
+					<default>Button4</default>
 				</option>
-				<option name="initiate" type="action">
+				<option name="initiate_button" type="button">
 					<_short>Initiate plugin action</_short>
 					<_long>Initiate/Terminate the selected plugin action</_long>
-					<allowed button="true"/>
-					<default>
-						<button>Button2</button>
-					</default>
+					<default>Button2</default>
 				</option>
 				<option name="init_plugin" type="string">
 					<_short>Plugin for initiate action</_short>
