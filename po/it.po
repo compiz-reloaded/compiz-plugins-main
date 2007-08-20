@@ -8,14 +8,15 @@
 # Fabio Fiorentini (Ahren / FaBBio) <fabio.fiorentini@gmail.com>, 2007.
 # Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>, 2007.
 # Emiliano Perulli <emiliano.perulli@alice.it>, 2007.
+# Maurizio Berti <mauriziob@jidesk.net>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-08-01 11:35+0530\n"
-"PO-Revision-Date: 2007-07-31 13:07+0200\n"
-"Last-Translator: Emiliano Perulli <emiliano.perulli@alice.it>\n"
+"PO-Revision-Date: 2007-08-06 01:04+0200\n"
+"Last-Translator: Maurizio Berti <mauriziob@jidesk.net>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,14 +91,13 @@ msgstr "Attiva la visualizzazione della parte posteriore delle finestre"
 msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
 "cube via the mouse)"
-msgstr "Abilita le finestre 3D solo se stai ruotando il cubo usando il mouse."
+msgstr "Abilita le finestre 3D solo se stai ruotando il cubo con il mouse."
 
 msgid "Misc. Options"
 msgstr "Altre Opzioni"
 
 msgid "Roundoff corners for consistency with rounded decorations"
-msgstr ""
-"Smussa gli angoli delle finestre per coerenza con le decorazioni arrotondate"
+msgstr "Smussa gli angoli delle finestre per coerenza con le decorazioni arrotondate"
 
 msgid ""
 "This will create mipmaps which improve overall texture appearence, and "
@@ -133,11 +133,8 @@ msgstr "Luminosità"
 msgid "Brightness of faded windows"
 msgstr "Luminosità delle finestre in secondo piano"
 
-msgid ""
-"Make it slightly easier to concentrate by dimming all but the active window."
-msgstr ""
-"Rende più facile concentrarsi su una finestra oscurando tutte le finestre in "
-"secondo piano."
+msgid "Make it slightly easier to concentrate by dimming all but the active window."
+msgstr "Rende più facile concentrarsi su una finestra oscurando tutte le altre finestre eccetto quella attiva."
 
 msgid "Misc. options"
 msgstr "Opzioni Varie"
@@ -155,7 +152,7 @@ msgid "Saturation of faded windows"
 msgstr "Saturazione delle finestre in secondo piano"
 
 msgid "Toggle AddHelper"
-msgstr "Attiva AddHelper"
+msgstr "Attiva/Disattiva AddHelper"
 
 msgid "Use this to enable/disable AddHelper on the fly."
 msgstr "Usa questo comando per attivare e disattivare AddHelper al volo."
@@ -170,9 +167,8 @@ msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
-"Tutti gli effetti sono scelti casualmente ifnorando l'effetto selzionato. Se "
-"per un effetto non è selezionato nessun effetto, l'evento non avrà "
-"animazione."
+"Tutti gli effetti sono scelti casualmente ignorando l'effetto selezionato. Se "
+"non è stato selezionato nessun effetto per un evento, questo non sarà animato."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
@@ -196,7 +192,7 @@ msgid "Animation Selection"
 msgstr "Selezione Animazione"
 
 msgid "Animation Time Step"
-msgstr "Attesa Animazione"
+msgstr "Intervallo Animazione"
 
 msgid "Animation Time Step For Intense Effects"
 msgstr "Intervallo Minimo Di Tempo Per L'Animazione Effetto Intenso"
@@ -232,34 +228,35 @@ msgid "Beam"
 msgstr "Fascio di luce"
 
 msgid "Beam Color"
-msgstr "Colore Fascio di Luce"
+msgstr "Colore del Fascio di luce"
 
 msgid "Beam Life"
-msgstr "Durata del fascio di luce"
+msgstr "Durata del Fascio di luce"
 
 msgid "Beam Slowdown"
-msgstr "Velocità del fascio di luce"
+msgstr "Velocità del Fascio di luce"
 
 msgid "Beam Spacing"
 msgstr "Spazi tra i Fasci di luce"
 
+# Fascio di luce è giusto, ma forse l'idea originale è Teletrasporto ("to Beam Up" in Star Trek significa "Teletrasportare)
 msgid "Beam Up"
 msgstr "Dissolvenza Radiosa"
 
 msgid "Beam Width"
-msgstr "Larghezza Fascio di Luce"
+msgstr "Larghezza del Fascio di luce"
 
 msgid "Beam color."
-msgstr "Colore del fascio di luce"
+msgstr "Colore del Fascio di luce"
 
 msgid "Beam life."
-msgstr "Durata del fascio di luce"
+msgstr "Durata del Fascio di luce"
 
 msgid "Beam slowdown."
 msgstr "Velocità del Fascio di luce"
 
 msgid "Beam width."
-msgstr "Larghezza fascio di luce"
+msgstr "Larghezza del Fascio di luce"
 
 msgid "Burn"
 msgstr "Brucia"
@@ -281,7 +278,7 @@ msgid ""
 "Comma separated list of option value assignments to override effect "
 "settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
-"Lista di opzioni separate da una virgola da sovrapporre alle impostazioni "
+"Lista di opzioni separate da virgola per alterare le impostazioni "
 "standard, per esempio: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 
 msgid "Curved Fold"
@@ -365,10 +362,10 @@ msgid "Fire particle slowdown."
 msgstr "Velocità di evoluzione di ogni fiamma."
 
 msgid "Fire smoke."
-msgstr "Fumo del fuoco"
+msgstr "Fumo del fuoco."
 
 msgid "Fixed window interior during the Rollup animation."
-msgstr "Interno della finestra fisso durante l'animazione di arrotolamento"
+msgstr "Contenuto fisso della finestra durante l'animazione di arrotolamento."
 
 msgid "Focus Animation"
 msgstr "Animazione di Selezione"
@@ -377,7 +374,7 @@ msgid "Focus Effect"
 msgstr "Effetto Selezione"
 
 msgid "Fold opening direction for pieces in Razr effect."
-msgstr "Direzione di apertura dei pezzi nell'effetto Razr."
+msgstr "Direzione di apertura dei pezzi nell'effetto Rasoio."
 
 msgid "Glide 1"
 msgstr "Plana 1"
@@ -418,7 +415,7 @@ msgid "Magic Lamp Grid Y Resolution"
 msgstr "Risoluzione Verticale Griglia per l'effetto Lampada Magica"
 
 msgid "Magic Lamp Max Wave Amplitude"
-msgstr "Ampiezza Massima delle onde della Lampada Magica"
+msgstr "Ampiezza Massima delle Onde della Lampada Magica"
 
 msgid "Magic Lamp Max Waves"
 msgstr "Numero Massimo di Onde della Lampada Magica"
@@ -433,8 +430,7 @@ msgid "Magic Lamp Open/Close Moving End"
 msgstr "Movimento Finale in Apertura/Chiusura della Lampada Magica"
 
 msgid "Make fire effect duration be dependent on window height."
-msgstr ""
-"La massima durata dell'effetto fuoco dipende dall'altezza della finestra."
+msgstr "La massima durata dell'effetto fuoco dipende dall'altezza della finestra."
 
 msgid "Minimize Animation"
 msgstr "Animazione di Minimizzazione"
@@ -470,10 +466,10 @@ msgid "On"
 msgstr "Acceso"
 
 msgid "On open/close, move magic lamp ending point with the mouse pointer."
-msgstr ""
+msgstr "All'apertura/chiusura sposta il punto finale della Lampada Magica con il puntatore del mouse"
 
 msgid "On open/close, move vacuum ending point with the mouse pointer."
-msgstr ""
+msgstr "All'apertura/chiusura sposta il punto di attrazione con il puntatore del mouse"
 
 msgid "Open Animation"
 msgstr "Animazione di Apertura"
@@ -490,12 +486,11 @@ msgstr "Opzioni"
 msgid "Pool"
 msgstr "Lista Effetti"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
 msgstr ""
-"Lista degli effetti tra i quali scegliere sel'ozione Effetti casuali è "
+"Lista degli effetti tra i quali scegliere se l'opzione Effetti casuali è "
 "attivata. Clicca  reset per ripristinare la lista completa. Se a lista è "
 "vuota saranno usati gli effetti di default."
 
@@ -511,8 +506,9 @@ msgstr "Effetti Casuali"
 msgid "Randomly Colored Fire"
 msgstr "Fuoco Mistico"
 
+#, fuzzy?
 msgid "Ratio of gaps between dodge start times to focus duration."
-msgstr ""
+msgstr "Intervallo tra l'inizio del Balzo e la durata del focus"
 
 msgid "Razr"
 msgstr "Rasoio"
@@ -633,15 +629,12 @@ msgid "The maximum number of waves for Magic Lamp."
 msgstr "Numero massimo di fiamme attive."
 
 msgid "The maxmimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
-"La massima ampiezza (dimensione delle onde) che avrà l'effetto Lampada Magica"
+msgstr "La massima ampiezza (dimensione delle onde) che avrà l'effetto Lampada Magica"
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
-"L'ampiezza minima (dimensione delle onde) che avrà l'effetto Lampada Magica"
+msgstr "L'ampiezza minima (dimensione delle onde) che avrà l'effetto Lampada Magica"
 
-msgid ""
-"The number of horizontal folds that occur in the Horizontal Fold animation."
+msgid "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
 "Il numero di piege orizzontali rappresentate dall'animazione Piegatura "
 "Orizzontale"
@@ -763,8 +756,7 @@ msgid "Window that should animate with this effect when focused."
 msgstr "Finestre delle quali si dovrebbe permettere il raggruppamento"
 
 msgid "Window that should animate with this effect when shaded."
-msgstr ""
-"Finestra che, quando sfumata, dovrebbe essere animata con questo effetto."
+msgstr "Finestra che, quando sfumata, dovrebbe essere animata con questo effetto."
 
 msgid ""
 "Window thickness in pixels. Setting this to larger than 0 will disable "
@@ -3744,14 +3736,3 @@ msgstr "Attiva Finestra"
 msgid "Workarounds"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Appearence"
-#~ msgstr "Aspetto"
-
-#, fuzzy
-#~ msgid "Background Base Color"
-#~ msgstr "Immagine di Sfondo"
-
-#, fuzzy
-#~ msgid "Background Highlight Color"
-#~ msgstr "Immagine di Sfondo"
