@@ -8,7 +8,7 @@
  *
  * Authors:
  * Robert Carr <racarr@beryl-project.org>
- * Dennis Kasprzyk <onestone@beryl-project.org>
+ * Dennis Kasprzyk <onestone@opencompositing.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -1613,7 +1613,7 @@ wallDisplayOptionChanged (CompDisplay        *display,
 
 static Bool
 wallSetScreenOptionCore (CompScreen      *screen,
-			 char            *name,
+			 const char      *name,
 			 CompOptionValue *value)
 {
     Bool status;
@@ -1650,20 +1650,26 @@ wallInitDisplay (CompPlugin  *p,
  	return FALSE;
     }
 
-    wallSetLeftInitiate (d, wallLeft);
-    wallSetRightInitiate (d, wallRight);
-    wallSetUpInitiate (d, wallUp);
-    wallSetDownInitiate (d, wallDown);
-    wallSetNextInitiate (d, wallNext);
-    wallSetPrevInitiate (d, wallPrev);
-    wallSetLeftWindowInitiate (d, wallLeftWithWindow);
-    wallSetRightWindowInitiate (d, wallRightWithWindow);
-    wallSetUpWindowInitiate (d, wallUpWithWindow);
-    wallSetDownWindowInitiate (d, wallDownWithWindow);
-    wallSetFlipLeftInitiate (d, wallFlipLeft);
-    wallSetFlipRightInitiate (d, wallFlipRight);
-    wallSetFlipUpInitiate (d, wallFlipUp);
-    wallSetFlipDownInitiate (d, wallFlipDown);
+    wallSetLeftKeyInitiate (d, wallLeft);
+    wallSetRightKeyInitiate (d, wallRight);
+    wallSetUpKeyInitiate (d, wallUp);
+    wallSetDownKeyInitiate (d, wallDown);
+    wallSetNextKeyInitiate (d, wallNext);
+    wallSetPrevKeyInitiate (d, wallPrev);
+    wallSetLeftButtonInitiate (d, wallLeft);
+    wallSetRightButtonInitiate (d, wallRight);
+    wallSetUpButtonInitiate (d, wallUp);
+    wallSetDownButtonInitiate (d, wallDown);
+    wallSetNextButtonInitiate (d, wallNext);
+    wallSetPrevButtonInitiate (d, wallPrev);
+    wallSetLeftWindowKeyInitiate (d, wallLeftWithWindow);
+    wallSetRightWindowKeyInitiate (d, wallRightWithWindow);
+    wallSetUpWindowKeyInitiate (d, wallUpWithWindow);
+    wallSetDownWindowKeyInitiate (d, wallDownWithWindow);
+    wallSetFlipLeftEdgeInitiate (d, wallFlipLeft);
+    wallSetFlipRightEdgeInitiate (d, wallFlipRight);
+    wallSetFlipUpEdgeInitiate (d, wallFlipUp);
+    wallSetFlipDownEdgeInitiate (d, wallFlipDown);
 
     wallSetEdgeRadiusNotify (d, wallDisplayOptionChanged);
     wallSetOutlineColorNotify (d, wallDisplayOptionChanged);
