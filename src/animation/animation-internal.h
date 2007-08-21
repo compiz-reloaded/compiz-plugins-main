@@ -655,10 +655,6 @@ typedef struct _AnimWindow
     CompWindow *dodgeChainNext;	// for dodging windows
     Bool skipPostPrepareScreen;
     Bool drawnOnHostSkip;
- 
-    // for airplane
-    float airplanePathLength;
-    Bool airplaneFly2TaskBar;
 } AnimWindow;
 
 typedef struct _AnimEffectProperties
