@@ -15,12 +15,12 @@ msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
 "POT-Creation-Date: 2007-08-01 11:35+0530\n"
-"PO-Revision-Date: 2007-08-06 01:04+0200\n"
-"Last-Translator: Maurizio Berti <mauriziob@jidesk.net>\n"
+"PO-Revision-Date: 2007-08-21 13:08+0200\n"
+"Last-Translator: Emiliano Perulli <emiliano.perulli@alice.it>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "Mostra finestre in 3D solo ruotando con il mouse"
@@ -608,13 +608,11 @@ msgstr "Animazione mostrata alla minimizzazione di una finestra."
 msgid "The animation effect shown when shading a window."
 msgstr "Animazione mosttrata alla chiusura di una finestra."
 
-#, fuzzy
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
-"La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica "
-"l'altezza, in pixel, della griglia."
+"La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica il numero di celle della griglia lungo l'altezza della finestra"
 
 #, fuzzy
 msgid ""
@@ -743,17 +741,15 @@ msgstr ""
 "Stabilisce se la finestra debba essere zoomata vero la barra dei programmi "
 "quando viene minimizzata con l'effetto Horizontal Fold."
 
-#, fuzzy
 msgid "Window Grid Height"
-msgstr "Larghezza Finestre"
+msgstr "Altezza della griglia della finestra"
 
 #, fuzzy
 msgid "Window Grid Width"
 msgstr "Larghezza Finestre"
 
-#, fuzzy
 msgid "Window that should animate with this effect when focused."
-msgstr "Finestre delle quali si dovrebbe permettere il raggruppamento"
+msgstr "Finestre che dovrebbero animarsi con questo effetto quando hanno il focus"
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "Finestra che, quando sfumata, dovrebbe essere animata con questo effetto."
@@ -1024,9 +1020,8 @@ msgstr "Blocca vista delle finestre in modalità expo"
 msgid "Vortex"
 msgstr "Vortice"
 
-#, fuzzy
 msgid "Zoom time"
-msgstr "Ingrandisci"
+msgstr "Durata ingrandimento"
 
 msgid "Activate Window"
 msgstr "Attiva Finestra"
@@ -1677,25 +1672,20 @@ msgstr "Negativo finestre"
 msgid "Negative"
 msgstr "Negativo"
 
-#, fuzzy
 msgid "Toggle Screen Negative"
-msgstr "Finestra a Schermo Intero"
+msgstr "Attiva Negativo dello Schermo"
 
-#, fuzzy
 msgid "Toggle Window Negative"
-msgstr "Reindirizza finestra"
+msgstr "Attiva Negativo Finestra"
 
-#, fuzzy
 msgid "Toggle active window negative"
-msgstr "Reindirizza finestra"
+msgstr "Abilita il negativo per la finestra attiva"
 
-#, fuzzy
 msgid "Toggle screen negative"
-msgstr "Finestra a Schermo Intero"
+msgstr "Attiva negativo dello schermo"
 
-#, fuzzy
 msgid "Used to set a window or screen negative"
-msgstr "Raggruppa automaticamente le finestre aperte"
+msgstr "Usato per impostare il negativo di una finestra o dello schermo"
 
 msgid "Windows to be negative by default"
 msgstr "Le finestre saranno di default in negativo"
@@ -1820,9 +1810,8 @@ msgstr ""
 "Con questa opzione abilitata, la trasparenza sarà abilitata al caricamento "
 "dell'effetto Trasparenza, che avviene solitamente all'avvio di Compiz."
 
-#, fuzzy
 msgid "Animation"
-msgstr "Velocità di Animazione"
+msgstr "Animazione"
 
 #, fuzzy
 msgid "Animation speed"
@@ -1845,9 +1834,8 @@ msgstr "Muovi finestra su un Viewport specifico"
 msgid "Move window to the bottom edge"
 msgstr "Muovi finestra verso l'ombra in basso"
 
-#, fuzzy
 msgid "Move window to the bottom left corner"
-msgstr "Smussa gli angoli in basso a sinistra delle finestre "
+msgstr "Muovi finestra verso l'angolo in basso a sinistra"
 
 msgid "Move window to the bottom right corner"
 msgstr "Muovi la finestra nell'angolo in basso a destra"
@@ -1855,9 +1843,8 @@ msgstr "Muovi la finestra nell'angolo in basso a destra"
 msgid "Move window to the center"
 msgstr "Muovi la finestra al centro"
 
-#, fuzzy
 msgid "Move window to the last position"
-msgstr "Muovi tutte le finestre del gruppo"
+msgstr "Muovi finestra verso l'ultima posizione"
 
 msgid "Move window to the left edge"
 msgstr "Muovi finestra verso l'ombra sinistra"
@@ -1871,77 +1858,59 @@ msgstr "Muovi finestra verso l'ombra destra"
 msgid "Move window to the top edge"
 msgstr "Muovi finestra verso l'ombra in alto"
 
-#, fuzzy
 msgid "Move window to the top left corner"
-msgstr "Smussa gli angoli in basso a sinistra delle finestre "
+msgstr "Muovi finestra verso l'angolo in alto a sinistra"
 
-#, fuzzy
 msgid "Move window to the top right corner"
-msgstr "Smussa gli angoli in basso a destra delle finestre "
+msgstr "Muovi finestra verso l'angolo in alto a destra"
 
-#, fuzzy
 msgid "Move window to the viewport on the bottom"
-msgstr "Muoviti, con la finestra, verso sinistra sul muro"
+msgstr "Muovi finestra verso il viewport in alto"
 
-#, fuzzy
 msgid "Move window to the viewport on the left"
-msgstr "Muoviti, con la finestra, verso sinistra sul muro"
+msgstr "Muovi la finestra al viewport a sinistra"
 
-#, fuzzy
 msgid "Move window to the viewport on the right"
-msgstr "Muoviti, con la finestra, verso destra sul muro"
+msgstr "Muovi finestra verso il viewport a destra"
 
-#, fuzzy
 msgid "Move window to the viewport on the top"
-msgstr "Muoviti, con la finestra, verso sinistra sul muro"
+msgstr "Muovi finestra verso il viewport in alto"
 
-#, fuzzy
 msgid "Move window to viewport 1"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 1"
 
-#, fuzzy
 msgid "Move window to viewport 10"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 10"
 
-#, fuzzy
 msgid "Move window to viewport 11"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 11"
 
-#, fuzzy
 msgid "Move window to viewport 12"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 12"
 
-#, fuzzy
 msgid "Move window to viewport 2"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 2"
 
-#, fuzzy
 msgid "Move window to viewport 3"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 3"
 
-#, fuzzy
 msgid "Move window to viewport 4"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 4"
 
-#, fuzzy
 msgid "Move window to viewport 5"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 5"
 
-#, fuzzy
 msgid "Move window to viewport 6"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 6"
 
-#, fuzzy
 msgid "Move window to viewport 7"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 7"
 
-#, fuzzy
 msgid "Move window to viewport 8"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 8"
 
-#, fuzzy
 msgid "Move window to viewport 9"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Muovi finestra al viewport 9"
 
 msgid "Move window to x, y"
 msgstr "Muove finestra verso x, y"
@@ -2060,9 +2029,8 @@ msgstr "Smussa l'angolo in Alto a Destra"
 msgid "Put pointer uses the center of the window"
 msgstr "Il posizionamento del puntatore usa il centro della finestra"
 
-#, fuzzy
 msgid "Put to adjacent viewport"
-msgstr "Muoviti alla Viewport successiva"
+msgstr "Metti al viewport adiacente"
 
 msgid "Put to arbitrary viewport"
 msgstr "Posiziona su un viewport arbitrario"
@@ -2170,9 +2138,8 @@ msgstr ""
 "Mostra informazione al ridimensionamento, in maniera simile a quella di "
 "metacity"
 
-#, fuzzy
 msgid "Fade time (in ms) for popup window"
-msgstr "Durata dell'effetto di dissolvenza (in ms) "
+msgstr "Durata della dissolvenza (in millisecondi) per la finestra di popup"
 
 #, fuzzy
 msgid "Gradient Color 1"
@@ -2227,9 +2194,8 @@ msgstr "Colore di sfondo"
 msgid "Background color for the window title"
 msgstr "Colore del titolo della finestra nella barra delle schede"
 
-#, fuzzy
 msgid "Below ring"
-msgstr "Anello incandescente"
+msgstr "Anello in basso"
 
 msgid "Big"
 msgstr "Grande"
@@ -2254,9 +2220,8 @@ msgstr ""
 "Cambia il fattore di scala minimo per le finestre nel'anello. Più lontane "
 "sono le finestre e più esse appaiono piccole"
 
-#, fuzzy
 msgid "Darken Background"
-msgstr "Immagine di Sfondo"
+msgstr "Sfondo Oscurato"
 
 msgid "Darken background when showing the ring"
 msgstr "Sfondo più scuro alla visualizzazione del selettore ad anello"
@@ -2270,9 +2235,8 @@ msgstr "Colore del carattere per il titolo della finestra"
 msgid "Font size for the window title"
 msgstr "Dimensione del carattere per il titolo della finestra"
 
-#, fuzzy
 msgid "Inactive Window Opacity"
-msgstr "Trasparenza della finestra"
+msgstr "Trasparenza della Finestra Inattiva"
 
 msgid "Maximum horizontal size of a thumbnail in the ring"
 msgstr "Larghezza massima di un anteprima nel selettore ad anello."
@@ -2317,9 +2281,8 @@ msgstr "Altezza anello"
 msgid "Ring Switcher"
 msgstr "Selettore Finestre ad anello"
 
-#, fuzzy
 msgid "Ring Width"
-msgstr "Larghezza Finestre"
+msgstr "Larghezza Anello"
 
 msgid "Ring Windows"
 msgstr "Finestre ad anello"
@@ -2419,9 +2382,8 @@ msgstr "Font del titolo della finestra"
 msgid "Windows that should be shown in ring"
 msgstr "Finestre che devono essere mostrate in 3D"
 
-#, fuzzy
 msgid "Background color of the window title"
-msgstr "Colore del titolo della finestra nella barra delle schede"
+msgstr "Coloro di sfondo per il titolo della finestra"
 
 #, fuzzy
 msgid "Close Windows In Scale"
@@ -2456,9 +2418,8 @@ msgstr ""
 msgid "Normal"
 msgstr "Normale"
 
-#, fuzzy
 msgid "Organic - EXPERIMENTAL"
-msgstr "Unisce le finestre (SPERIMENTALE)"
+msgstr "Organico - SPERIMENTALE"
 
 msgid "Scale Addons"
 msgstr "Proprietà Aggiuntive di Scala"
@@ -2512,9 +2473,8 @@ msgstr "Font del titolo della finestra"
 msgid "Show Filter Text"
 msgstr "Mostra filtro del testo"
 
-#, fuzzy
 msgid "Show filter text."
-msgstr "Mostra al primo avvio"
+msgstr "Mostra filtro testo"
 
 msgid "Time (in ms) after which the filter typing is automatically ended"
 msgstr "Tempo (in millisecondi) trascorso il quale il filtro di scrittura termina automaticamente"
@@ -2550,9 +2510,8 @@ msgstr "Immagine di Sfondo"
 msgid "Background intensity."
 msgstr "Luminosità immagine di sfondo"
 
-#, fuzzy
 msgid "Below"
-msgstr "Incandescente"
+msgstr "In basso"
 
 msgid "Click duration"
 msgstr "Durata click"
@@ -2572,9 +2531,8 @@ msgstr ""
 msgid "Fade in/out speed"
 msgstr "Durata della Dissolvenza dello Splash."
 
-#, fuzzy
 msgid "Fade speed"
-msgstr "Durata Dissolvenza"
+msgstr "Velocità dissolvenza"
 
 msgid "Flip"
 msgstr "Rotazione"
@@ -2592,9 +2550,8 @@ msgstr "Inizializza (tutte le aree di lavoro)"
 msgid "Initiate switcher (All Workspaces)."
 msgstr "Inizializza selettore (tutte le aree di lavoro)"
 
-#, fuzzy
 msgid "Initiate switcher."
-msgstr "Mostra lo Splash"
+msgstr "Inizializza selettore."
 
 msgid "Max window size"
 msgstr "Dimensione massima della finestra"
@@ -2603,10 +2560,8 @@ msgstr "Dimensione massima della finestra"
 msgid "Maximum click duration in miliseconds."
 msgstr "Durata in secondi dell'animazione di focus"
 
-#, fuzzy
 msgid "Maximum window size (in percent of the screen width)"
-msgstr ""
-"Lunghezza dell'anello (in percentuale rispetto alla larghezza delllo schermo)"
+msgstr "Dimensione massima della finestra (in percentuale rispetto alla larghezza delllo schermo)"
 
 #, fuzzy
 msgid "Mouse movement speed"
@@ -2647,9 +2602,8 @@ msgstr "Velocità di passaggio da un tab ad un altro"
 msgid "Shift timestep"
 msgstr "Passo raggruppamento schede"
 
-#, fuzzy
 msgid "Switcher mode"
-msgstr "Selettore Finestre ad anello"
+msgstr "Modalità selettore"
 
 msgid "Switcher mode."
 msgstr "Modalità Selettore"
@@ -2733,13 +2687,11 @@ msgstr "Ombre"
 msgid "Enables windows edges resistance"
 msgstr "Abilita resistenza alle ombre per le finestre"
 
-#, fuzzy
 msgid "Meta"
-msgstr "Metallo"
+msgstr "Meta"
 
-#, fuzzy
 msgid "Screen edges"
-msgstr "Profondità dello schermo"
+msgstr "Ombre dello schermo"
 
 msgid "Shift"
 msgstr "Sposta"
@@ -2763,9 +2715,8 @@ msgstr "La distanza alla quale si verifica la resistenza dei bordi"
 msgid "Use this bindings to avoid snapping."
 msgstr "Usa queste scorciatoie per evitare la gommosità"
 
-#, fuzzy
 msgid "Window edges"
-msgstr "Tipi di Finestre"
+msgstr "Ombre finestra"
 
 msgid "Bottom to Top"
 msgstr "Dal basso verso l'alto"
@@ -3028,9 +2979,8 @@ msgid "Window thumbnails at the taskbar"
 msgstr ""
 "La dimensione delle anteprime delle finestre nella barra delle applicazioni"
 
-#, fuzzy
 msgid "Window title"
-msgstr "Font del titolo della finestra"
+msgstr "Titolo finestra"
 
 msgid "Window title Font Color."
 msgstr "Colore del carattere per il titolo della finestra"
@@ -3709,7 +3659,7 @@ msgid "Fix window type of various Java windows."
 msgstr "Fissa il tipo di finestra di varie finestre Java"
 
 msgid "Fix window type of various Qt windows."
-msgstr ""
+msgstr "Fissa il tipo di finestra di varie finestre Qt"
 
 #, fuzzy
 msgid "Java Window Fix"
