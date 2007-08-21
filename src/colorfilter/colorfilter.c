@@ -509,9 +509,9 @@ colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
 	return FALSE;
     }
 
-    colorfilterSetToggleWindowInitiate (d, colorFilterToggle);
-    colorfilterSetToggleScreenInitiate (d, colorFilterToggleAll);
-    colorfilterSetSwitchFilterInitiate (d, colorFilterSwitch);
+    colorfilterSetToggleWindowKeyInitiate (d, colorFilterToggle);
+    colorfilterSetToggleScreenKeyInitiate (d, colorFilterToggleAll);
+    colorfilterSetSwitchFilterKeyInitiate (d, colorFilterSwitch);
 
     d->privates[displayPrivateIndex].ptr = cfd;
 
