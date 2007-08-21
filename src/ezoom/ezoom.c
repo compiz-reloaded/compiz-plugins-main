@@ -135,6 +135,14 @@ typedef enum _ZsOpt
     SOPT_NUM
 } ZoomScreenOptions;
 
+typedef enum { 
+    NORTHEAST,
+    NORTHWEST,
+    SOUTHEAST,
+    SOUTHWEST,
+    CENTER
+} ZoomGravity;
+
 typedef struct _CursorTexture
 {
     Bool isSet;
@@ -828,6 +836,119 @@ ensureVisibility (CompScreen *s, int x, int y, int margin)
     constrainZoomTranslate (s);
     return TRUE;
 }
+
+/* Attempt to ensure the visibility of an area defined
+ * by x1/y1 and x2/y2. See ensureVisibility () for details.
+ * This attempts to find the translations that leaves the biggest part of the
+ * area visible. 
+ * gravity defines what part of the window that should get
+ * priority if it isn't possible to fit all of it.
+ */
+static void
+ensureVisibilityArea (CompScreen *s, 
+		      int x1,
+		      int y1,
+		      int x2,
+		      int y2,
+		      int margin,
+		      ZoomGravity gravity)
+{
+    int targetX, targetY, targetW, targetH;
+    int out = outputDeviceForPoint (s, x1 + (x2-x1/2), y1 + (y2-y1/2));
+    CompOutput *o = &s->outputDev[out];
+    ZOOM_SCREEN (s);
+
+#define WIDTHOK (float)(x2-x1) / (float)o->width < zs->zooms[out].newZoom
+#define HEIGHTOK (float)(y2-y1) / (float)o->height < zs->zooms[out].newZoom
+
+    if (WIDTHOK &&
+	HEIGHTOK) {
+	ensureVisibility (s, x1, y1, margin);
+	ensureVisibility (s, x2, y2, margin);
+	return;
+    }
+
+    switch (gravity)
+    {
+	case NORTHWEST:
+	    targetX = x1;
+	    targetY = y1;
+	    if (WIDTHOK) 
+		targetW = x2 - x1;
+	    else 
+		targetW = o->width * zs->zooms[out].newZoom;
+	    if (HEIGHTOK) 
+		targetH = y2 - y1;
+	    else 
+		targetH = o->height * zs->zooms[out].newZoom;
+	    break;
+	case NORTHEAST:
+	    targetY = y1;
+	    if (WIDTHOK)
+	    {
+		targetX = x1;
+		targetW = x2-x1;
+	    } 
+	    else
+	    {
+		targetX = x2 - o->width * zs->zooms[out].newZoom;
+		targetW = o->width * zs->zooms[out].newZoom;
+	    }
+
+	    if (HEIGHTOK)
+		targetH = y2-y1;
+	    else 
+		targetH = o->height * zs->zooms[out].newZoom;
+	    break;
+	case SOUTHWEST:
+	    targetX = x1;
+	    if (WIDTHOK)
+		targetW = x2-x1;
+	    else
+		targetW = o->width * zs->zooms[out].newZoom;
+	    if (HEIGHTOK)
+	    {
+		targetY = y1;
+		targetH = y2-y1;
+	    } 
+	    else
+	    {
+		targetY = y2 - (o->width * zs->zooms[out].newZoom);
+		targetH = o->width * zs->zooms[out].newZoom;
+	    }
+	    break;
+	case SOUTHEAST:
+	    if (WIDTHOK)
+	    {
+		targetX = x1;
+		targetW = x2-x1;
+	    } 
+	    else 
+	    {
+		targetW = o->width * zs->zooms[out].newZoom;
+		targetX = x2 - targetW;
+	    }
+	    
+	    if (HEIGHTOK)
+	    {
+		targetY = y1;
+		targetH = y2 - y1;
+	    }
+	    else
+	    {
+		targetH = o->height * zs->zooms[out].newZoom;
+		targetY = y2 - targetH;
+	    }
+	    break;
+	case CENTER:
+	    setCenter (s, x1 + (x2 - x1 / 2), y1 + (y2 - y1 / 2), FALSE);
+	    return;
+	    break;
+    }
+    setZoomArea (s, targetX, targetY, targetW, targetH, FALSE);
+    return ;
+}
+
 /* Ensures that the cursor is visible on the given head.
  * Note that we check if currentZoom is 1.0f, because that
  * often means that mouseX and mouseY is not up-to-date (since
@@ -877,15 +998,15 @@ cursorMoved (CompScreen *s)
 	    restrainCursor (s, out);
 	if (zs->opt[SOPT_MOUSE_PAN].value.b)
 	{
-	    ensureVisibility (s,
-			      zs->mouseX,
-			      zs->mouseY,
-			      zs->opt[SOPT_RESTRAIN_MARGIN].value.i);
-	    /* ensureVisibility (s,
-			      zs->mouseX + zs->cursor.width/2,
-			      zs->mouseY + zs->cursor.height/2,
-			      zs->opt[SOPT_RESTRAIN_MARGIN].value.i);
-			      */
+	    ensureVisibilityArea (s, 
+				  zs->mouseX - zs->cursor.hotX,
+				  zs->mouseY - zs->cursor.hotY,
+				  zs->mouseX + zs->cursor.width -
+				  zs->cursor.hotX,
+				  zs->mouseY + zs->cursor.height - 
+				  zs->cursor.hotY,
+				  zs->opt[SOPT_RESTRAIN_MARGIN].value.i,
+				  NORTHWEST);
 	}
 	cursorZoomActive (s);
     }
