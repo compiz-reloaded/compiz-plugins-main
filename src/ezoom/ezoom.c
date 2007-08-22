@@ -957,7 +957,7 @@ ensureVisibilityArea (CompScreen *s,
 static void
 restrainCursor (CompScreen *s, int out)
 {
-    int x,y;
+    int x1,y1,x2,y2;
     int diffX = 0, diffY = 0;
     CompOutput *o = &s->outputDev[out];
     ZOOM_SCREEN (s);
@@ -965,15 +965,20 @@ restrainCursor (CompScreen *s, int out)
     int margin = zs->opt[SOPT_RESTRAIN_MARGIN].value.i;
     if (zs->zooms[out].currentZoom == 1.0f)
 	fetchMousePosition (s);
-    convertToZoomedTarget (s, out, zs->mouseX, zs->mouseY, &x, &y);
-    if (x > o->region.extents.x2 - margin)
-	diffX = x - o->region.extents.x2 + margin;
-    else if (x < o->region.extents.x1 + margin)
-	diffX = x - o->region.extents.x1 - margin;
-    if (y > o->region.extents.y2 - margin)
-	diffY = y - o->region.extents.y2 + margin;
-    else if (y < o->region.extents.y1 + margin)
-	diffY = y - o->region.extents.y1 - margin;
+    convertToZoomedTarget (s, out, zs->mouseX - zs->cursor.hotX, 
+			   zs->mouseY - zs->cursor.hotY, &x1, &y1);
+    convertToZoomedTarget (s, out, 
+			   zs->mouseX - zs->cursor.hotX + zs->cursor.width, 
+			   zs->mouseY - zs->cursor.hotY + zs->cursor.height,
+			   &x2, &y2);
+    if (x2 > o->region.extents.x2 - margin)
+	diffX = x2 - o->region.extents.x2 + margin;
+    else if (x1 < o->region.extents.x1 + margin)
+	diffX = x1 - o->region.extents.x1 - margin;
+    if (y2 > o->region.extents.y2 - margin)
+	diffY = y2 - o->region.extents.y2 + margin;
+    else if (y1 < o->region.extents.y1 + margin)
+	diffY = y1 - o->region.extents.y1 - margin;
     if (abs(diffX)*z > 0  || abs(diffY)*z > 0)
 	warpPointer (s,
 		(int) (zs->mouseX - pointerX) -  (int) ((float)diffX * z),
