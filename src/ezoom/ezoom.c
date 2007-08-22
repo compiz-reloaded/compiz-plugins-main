@@ -143,6 +143,13 @@ typedef enum {
     CENTER
 } ZoomGravity;
 
+typedef enum {
+    NORTH,
+    SOUTH,
+    EAST,
+    WEST
+} ZoomEdge;
+
 typedef struct _CursorTexture
 {
     Bool isSet;
@@ -224,6 +231,12 @@ static void drawCursor (CompScreen *s, CompOutput *output, const CompTransform
 			*transform);
 static void restrainCursor (CompScreen *s, int out);
 static Bool fetchMousePosition (CompScreen *s);
+static void convertToZoomedTarget (CompScreen *s,
+				   int	  out,
+				   int	  x,
+				   int	  y,
+				   int	  *resultX,
+				   int	  *resultY);
 
 #define GET_ZOOM_DISPLAY(d)				      \
     ((ZoomDisplay *) (d)->privates[displayPrivateIndex].ptr)
@@ -291,6 +304,29 @@ isZoomed (CompScreen *s, int out)
     if (zs->zooms[out].zVelocity != 0.0f)
 	return TRUE;
     return FALSE;
+}
+
+/* Returns the distance the edge defined.
+ */
+static int
+distanceToEdge (CompScreen *s, int out, ZoomEdge edge)
+{
+    int x1,y1,x2,y2;
+    CompOutput *o = &s->outputDev[out];
+    if (!isActive (s, out))
+	return 0;
+    convertToZoomedTarget (s, out, o->region.extents.x2, 
+			   o->region.extents.y2, &x2, &y2);
+    convertToZoomedTarget (s, out, o->region.extents.x1, 
+			   o->region.extents.y1, &x1, &y1);
+    switch (edge) 
+    {
+	case NORTH: return o->region.extents.y1 - y1;
+	case SOUTH: return y2 - o->region.extents.y2;
+	case EAST: return x2 - o->region.extents.x2;
+	case WEST: return o->region.extents.x1 - x1;
+    }
+    return 0; // Never reached.
 }
 
 /* Update/set translations based on zoom level and real translate.
@@ -957,12 +993,18 @@ ensureVisibilityArea (CompScreen *s,
 static void
 restrainCursor (CompScreen *s, int out)
 {
-    int x1,y1,x2,y2;
+    int x1,y1,x2,y2,margin;
     int diffX = 0, diffY = 0;
+    int north,south,east,west;
+    float z;
     CompOutput *o = &s->outputDev[out];
     ZOOM_SCREEN (s);
-    float z = zs->zooms[out].newZoom;
-    int margin = zs->opt[SOPT_RESTRAIN_MARGIN].value.i;
+    z = zs->zooms[out].newZoom;
+    margin = zs->opt[SOPT_RESTRAIN_MARGIN].value.i;
+    north = distanceToEdge (s, out, NORTH);
+    south = distanceToEdge (s, out, SOUTH);
+    east = distanceToEdge (s, out, EAST);
+    west = distanceToEdge (s, out, WEST);
     if (zs->zooms[out].currentZoom == 1.0f)
 	fetchMousePosition (s);
     convertToZoomedTarget (s, out, zs->mouseX - zs->cursor.hotX, 
@@ -971,13 +1013,13 @@ restrainCursor (CompScreen *s, int out)
 			   zs->mouseX - zs->cursor.hotX + zs->cursor.width, 
 			   zs->mouseY - zs->cursor.hotY + zs->cursor.height,
 			   &x2, &y2);
-    if (x2 > o->region.extents.x2 - margin)
+    if (x2 > o->region.extents.x2 - margin && east > 0)
 	diffX = x2 - o->region.extents.x2 + margin;
-    else if (x1 < o->region.extents.x1 + margin)
+    else if (x1 < o->region.extents.x1 + margin && west > 0)
 	diffX = x1 - o->region.extents.x1 - margin;
-    if (y2 > o->region.extents.y2 - margin)
+    if (y2 > o->region.extents.y2 - margin && south > 0)
 	diffY = y2 - o->region.extents.y2 + margin;
-    else if (y1 < o->region.extents.y1 + margin)
+    else if (y1 < o->region.extents.y1 + margin && north > 0) 
 	diffY = y1 - o->region.extents.y1 - margin;
     if (abs(diffX)*z > 0  || abs(diffY)*z > 0)
 	warpPointer (s,
