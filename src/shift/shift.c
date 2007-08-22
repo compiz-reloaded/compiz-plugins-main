@@ -67,13 +67,9 @@ typedef struct _ShiftSlot {
     float scale;           /* size scale (fit to maximal thumb size */
     float opacity;
     float rotation;
-    
-    GLfloat opacityVelocity;
 
     GLfloat tx;
     GLfloat ty;
-    GLfloat topacity;
-
 
     Bool    adjust;
     Bool    active;
@@ -527,9 +523,9 @@ shiftPaintWindow (CompWindow		 *w,
 	    float sopacity;
 	    
 	    if (slot->primary && !ss->reflectActive)
-		sopacity = slot->topacity;
+		sopacity = slot->opacity;
 	    else
-		sopacity = ss->anim * slot->topacity;
+		sopacity = ss->anim * slot->opacity;
 
 
 	    if (mask & PAINT_WINDOW_OCCLUSION_DETECTION_MASK)
@@ -597,7 +593,7 @@ shiftPaintWindow (CompWindow		 *w,
 		float sz       = ss->anim * slot->z;
 		float sscale   = (ss->anim * slot->scale) + (1 - ss->anim);
 		float srot     = (ss->anim * slot->rotation);
-		float sopacity = ss->anim * slot->topacity;
+		float sopacity = ss->anim * slot->opacity;
 
 		scaledWinWidth  = w->width  * sscale;
 		scaledWinHeight = w->height * sscale;
@@ -1215,33 +1211,6 @@ static int adjustShiftMovement (CompScreen *s, float chunk)
 }
 
 static Bool
-adjustShiftVelocity (CompWindow *w, ShiftSlot *slot)
-{
-    float dp, adjust, amount;
-
-    dp = slot->opacity - slot->topacity;
-    adjust = dp * 0.1f;
-    amount = fabs (dp) * 7.0f;
-    if (amount < 0.01f)
-	amount = 0.01f;
-    else if (amount > 0.15f)
-	amount = 0.15f;
-
-    slot->opacityVelocity = (amount * slot->opacityVelocity + adjust) /
-	(amount + 1.0f);
-
-
-    if (fabs (dp) < 0.01f && fabs (slot->opacityVelocity) < 0.02f)
-    {
-	slot->topacity = slot->opacity;
-
-	return FALSE;
-    }
-
-    return TRUE;
-}
-
-static Bool
 adjustShiftWindowAttribs (CompWindow *w, float chunk)
 {
     float dp, db, adjust, amount;
@@ -1549,21 +1518,12 @@ shiftPreparePaintScreen (CompScreen *s,
 		{
 		    ShiftSlot *slot = &sw->slots[i];
 		    if (slot->adjust)
-		    {
-			slot->adjust = adjustShiftVelocity (w, slot) | animAdj;
-			
-			ss->moreAdjust |= slot->adjust;
-			
-			slot->topacity += slot->opacityVelocity * chunk;
-		    }
-		    else
-			slot->topacity = slot->opacity;
+			slot->adjust = animAdj;			
 
 		    slot->tx = slot->x - w->attrib.x -
 			(w->attrib.width * slot->scale) / 2;
 		    slot->ty = slot->y - w->attrib.y -
 			(w->attrib.height * slot->scale) / 2;
-		    slot->topacity = MIN (1.0, MAX (0.0, slot->topacity));
 		}
 	    }
 
