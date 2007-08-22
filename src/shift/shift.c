@@ -2325,6 +2325,11 @@ shiftInitDisplay (CompPlugin  *p,
     shiftSetPrevGroupButtonInitiate (d, shiftPrevGroup);
     shiftSetPrevGroupButtonTerminate (d, shiftTerminate);
 
+    shiftSetInitiateEdgeInitiate (d, shiftInitiate);
+    shiftSetInitiateEdgeTerminate (d, shiftTerminate);
+    shiftSetInitiateAllEdgeInitiate (d, shiftInitiateAll);
+    shiftSetInitiateAllEdgeTerminate (d, shiftTerminate);
+
     WRAP (sd, d, handleEvent, shiftHandleEvent);
 
     d->privates[displayPrivateIndex].ptr = sd;
