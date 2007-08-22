@@ -1570,6 +1570,22 @@ shiftDonePaintScreen (CompScreen *s)
     WRAP (ss, s, donePaintScreen, shiftDonePaintScreen);
 }
 
+static Bool
+canStackRelativeTo (CompWindow *w)
+{
+    if (w->attrib.override_redirect)
+        return FALSE;
+
+    if (!w->shaded && !w->pendingMaps)
+    {
+        if (w->attrib.map_state != IsViewable || w->mapNum == 0)
+            return FALSE;
+    }
+
+    return TRUE;
+}
+
+
 static void
 shiftTerm (CompScreen *s, Bool cancel)
 {
@@ -1590,11 +1606,12 @@ shiftTerm (CompScreen *s, Bool cancel)
 	
 	for (i = 0; i < ss->nSlots; i++)
 	{
-	    if (ss->drawSlots[i].slot->primary)
+	    w = ss->drawSlots[i].w;
+	    if (ss->drawSlots[i].slot->primary && canStackRelativeTo (w))
 	    {
 		if (pw)
-		    restackWindowAbove (ss->drawSlots[i].w,pw);
-		pw = ss->drawSlots[i].w;
+		    restackWindowAbove (w,pw);
+		pw = w;
 	    }
 	}
 
@@ -1621,6 +1638,7 @@ shiftTerm (CompScreen *s, Bool cancel)
 	    if (w)
 		sendWindowActivationRequest (s, w->id);
 	}
+	
     }
 }
 
