@@ -78,6 +78,8 @@ typedef struct _ShiftSlot {
     Bool    adjust;
     Bool    active;
 
+    Bool    primary;
+
 } ShiftSlot;
 
 typedef struct _ShiftDrawSlot {
@@ -145,9 +147,11 @@ typedef struct _ShiftScreen {
     CompOutput *output;
     int        usedOutput;
 
-    float reflect;
-    float reflectVelocity;
+    float anim;
+    float animVelocity;
+    
     float reflectBrightness;
+    Bool  reflectActive;
 
     int	  buttonPressTime;
     Bool  buttonPressed;
@@ -499,6 +503,11 @@ shiftPaintWindow (CompWindow		 *w,
 	else
 	    mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
 
+	if ((sw->active || sw->slots[0].adjust || sw->slots[1].adjust) &&
+	    ss->output->id == ss->usedOutput)
+	    mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
+	
+
 	UNWRAP (ss, s, paintWindow);
 	status = (*s->paintWindow) (w, &sAttrib, transform, region, mask);
 	WRAP (ss, s, paintWindow, shiftPaintWindow);
@@ -509,34 +518,48 @@ shiftPaintWindow (CompWindow		 *w,
 	    CompTransform  wTransform = *transform;
 	    ShiftSlot      *slot = ss->activeSlot->slot;
 
+	    float sx     = ss->anim * slot->tx;
+	    float sy     = ss->anim * slot->ty;
+	    float sz     = ss->anim * slot->z;
+	    float sscale = (ss->anim * slot->scale) + (1 - ss->anim);
+	    float srot   = (ss->anim * slot->rotation);
+
+	    float sopacity;
+	    
+	    if (slot->primary && !ss->reflectActive)
+		sopacity = slot->topacity;
+	    else
+		sopacity = ss->anim * slot->topacity;
+
+
 	    if (mask & PAINT_WINDOW_OCCLUSION_DETECTION_MASK)
 		return FALSE;
 
 	    initFragmentAttrib (&fragment, &w->paint);
 
-	    fragment.opacity    = (float)fragment.opacity * slot->topacity;
+	    fragment.opacity    = (float)fragment.opacity * sopacity;
 	    fragment.brightness = (float)fragment.brightness *
 				  ss->reflectBrightness;
 
 	    if (w->alpha || fragment.opacity != OPAQUE)
 		mask |= PAINT_WINDOW_TRANSLUCENT_MASK;
 
-	    matrixTranslate (&wTransform, slot->tx, slot->ty, slot->z);
+	    matrixTranslate (&wTransform, sx, sy, sz);
 
 	    matrixTranslate (&wTransform,
-			     w->attrib.x + (w->width  * slot->scale / 2),
-			     w->attrib.y + (w->height  * slot->scale / 2.0),
+			     w->attrib.x + (w->width  * sscale / 2),
+			     w->attrib.y + (w->height  * sscale / 2.0),
 			     0.0f);
 
 	    matrixScale (&wTransform, ss->output->width, -ss->output->height,
                 	 1.0f);
 	
-	    matrixRotate (&wTransform, slot->rotation, 0.0, 1.0, 0.0);
+	    matrixRotate (&wTransform, srot, 0.0, 1.0, 0.0);
 
 	    matrixScale (&wTransform, 1.0f  / ss->output->width,
                 	 -1.0f / ss->output->height, 1.0f);
 
-	    matrixScale (&wTransform, slot->scale, slot->scale, 1.0f);
+	    matrixScale (&wTransform, sscale, sscale, 1.0f);
 	    matrixTranslate (&wTransform, -w->attrib.x - (w->width / 2),
 			     -w->attrib.y - (w->height / 2), 0.0f);
 
@@ -569,8 +592,15 @@ shiftPaintWindow (CompWindow		 *w,
 		ShiftOverlayIconEnum iconOverlay = shiftGetOverlayIcon (s);
 		ShiftSlot      *slot = ss->activeSlot->slot;
 
-		scaledWinWidth  = w->width  * slot->scale;
-		scaledWinHeight = w->height * slot->scale;
+		float sx       = ss->anim * slot->tx;
+		float sy       = ss->anim * slot->ty;
+		float sz       = ss->anim * slot->z;
+		float sscale   = (ss->anim * slot->scale) + (1 - ss->anim);
+		float srot     = (ss->anim * slot->rotation);
+		float sopacity = ss->anim * slot->topacity;
+
+		scaledWinWidth  = w->width  * sscale;
+		scaledWinHeight = w->height * sscale;
 
 		if (!w->texture->pixmap)
 		    iconOverlay = OverlayIconBig;
@@ -642,28 +672,28 @@ shiftPaintWindow (CompWindow		 *w,
 
 		    initFragmentAttrib (&fragment, &sAttrib);
 
-		    fragment.opacity = (float)fragment.opacity * slot->topacity;
+		    fragment.opacity = (float)fragment.opacity * sopacity;
 		    fragment.brightness = (float)fragment.brightness *
 					  ss->reflectBrightness;
 
-		    matrixTranslate (&wTransform, slot->tx, slot->ty, slot->z);
+		    matrixTranslate (&wTransform, sx, sy, sz);
 
 		    matrixTranslate (&wTransform, w->attrib.x +
-				     (w->width  * slot->scale / 2),
+				     (w->width  * sscale / 2),
 				     w->attrib.y +
-				     (w->height  * slot->scale / 2.0), 0.0f);
+				     (w->height  * sscale / 2.0), 0.0f);
 	
 		    matrixScale (&wTransform, ss->output->width,
                 		 -ss->output->height, 1.0f);
 
-		    matrixRotate (&wTransform, slot->rotation, 0.0, 1.0, 0.0);
+		    matrixRotate (&wTransform, srot, 0.0, 1.0, 0.0);
 
 		    matrixScale (&wTransform, 1.0f  / ss->output->width,
                 		 -1.0f / ss->output->height, 1.0f);
 
 		    matrixTranslate (&wTransform, x -
-				     (w->width  * slot->scale / 2), y -
-				     (w->height  * slot->scale / 2.0), 0.0f);
+				     (w->width  * sscale / 2), y -
+				     (w->height  * sscale / 2.0), 0.0f);
 		    matrixScale (&wTransform, scale, scale, 1.0f);
 
 		    glPushMatrix ();
@@ -833,6 +863,19 @@ layoutThumbsCover (CompScreen *s)
 		ss->drawSlots[index * 2 + i].distance = fabs(distance);
 		
 	}
+
+	if (ss->drawSlots[index * 2].distance >
+	    ss->drawSlots[index * 2 + 1].distance)
+	{
+	    ss->drawSlots[index * 2].slot->primary     = FALSE;
+	    ss->drawSlots[index * 2 + 1].slot->primary = TRUE;
+	}
+	else
+	{
+	    ss->drawSlots[index * 2].slot->primary     = TRUE;
+	    ss->drawSlots[index * 2 + 1].slot->primary = FALSE;
+	}
+
     }
 
     ss->nSlots = ss->nWindows * 2;
@@ -906,9 +949,13 @@ layoutThumbsFlip (CompScreen *s)
 		}
 
 		if (distance > 0.0)
+		{
+		    sw->slots[i].primary = FALSE;
 		    sw->slots[i].opacity = MAX (0.0, 1.0 - (distance * 1.0));
+		}
 		else
 		{
+		    sw->slots[i].primary = TRUE;
 		    if (distance < -(ss->nWindows - 1))
 		    	sw->slots[i].opacity = MAX (0.0, ss->nWindows +
 						    distance);
@@ -1171,16 +1218,8 @@ static Bool
 adjustShiftVelocity (CompWindow *w, ShiftSlot *slot)
 {
     float dp, adjust, amount;
-    float opacity;
 
-    SHIFT_WINDOW (w);
-
-    if (sw->active)
-	opacity = slot->opacity;
-    else
-	opacity = 0.0;
-
-    dp = opacity - slot->topacity;
+    dp = slot->opacity - slot->topacity;
     adjust = dp * 0.1f;
     amount = fabs (dp) * 7.0f;
     if (amount < 0.01f)
@@ -1194,7 +1233,7 @@ adjustShiftVelocity (CompWindow *w, ShiftSlot *slot)
 
     if (fabs (dp) < 0.01f && fabs (slot->opacityVelocity) < 0.02f)
     {
-	slot->topacity = opacity;
+	slot->topacity = slot->opacity;
 
 	return FALSE;
     }
@@ -1260,19 +1299,19 @@ adjustShiftWindowAttribs (CompWindow *w, float chunk)
 }
 
 static Bool
-adjustShiftReflectionAttribs (CompScreen *s, float chunk)
+adjustShiftAnimationAttribs (CompScreen *s, float chunk)
 {
     float dr, adjust, amount;
-    float reflect;
+    float anim;
 
     SHIFT_SCREEN (s);
 
     if (ss->state != ShiftStateIn && ss->state != ShiftStateNone)
-	reflect = 1.0;
+	anim = 1.0;
     else
-	reflect = 0.0;
+	anim = 0.0;
 
-    dr = reflect - ss->reflect;
+    dr = anim - ss->anim;
     adjust = dr * 0.1f;
     amount = fabs (dr) * 7.0f;
     if (amount < 0.01f)
@@ -1280,17 +1319,17 @@ adjustShiftReflectionAttribs (CompScreen *s, float chunk)
     else if (amount > 0.15f)
 	amount = 0.15f;
 
-    ss->reflectVelocity = (amount * ss->reflectVelocity + adjust) /
+    ss->animVelocity = (amount * ss->animVelocity + adjust) /
 	(amount + 1.0f);
 
-    if (fabs (dr) < 0.01f && fabs (ss->reflectVelocity) < 0.02f)
+    if (fabs (dr) < 0.01f && fabs (ss->animVelocity) < 0.02f)
     {
 
-	ss->reflect = reflect;
+	ss->anim = anim;
 	return FALSE;
     }
 
-    ss->reflect += ss->reflectVelocity * chunk;
+    ss->anim += ss->animVelocity * chunk;
     return TRUE;
 }
 
@@ -1357,12 +1396,13 @@ shiftPaintOutput (CompScreen		  *s,
 		s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
 
 
-	    if (ss->reflect == 1.0)
+	    if (ss->anim == 1.0)
 	    {
 		glClipPlane (GL_CLIP_PLANE0, clip);
 		glEnable (GL_CLIP_PLANE0);
 	    }
 
+	    ss->reflectActive = TRUE;
 	    ss->reflectBrightness = shiftGetIntensity(s);
 	    for (i = 0; i < ss->nSlots; i++)
 	    {
@@ -1390,7 +1430,7 @@ shiftPaintOutput (CompScreen		  *s,
 	    glVertex2f (-0.5, 0.0);
 	    glColor4f (0.0, 0.0, 0.0,
 		       MIN (1.0, 1.0 - shiftGetIntensity (s)) * 2.0 *
-		       ss->reflect);
+		       ss->anim);
 	    glVertex2f (-0.5, -0.5);
 	    glVertex2f (0.5, -0.5);
 	    glEnd();
@@ -1401,14 +1441,14 @@ shiftPaintOutput (CompScreen		  *s,
 		color[0] = shiftGetGroundColor1 (s)[0];
 		color[1] = shiftGetGroundColor1 (s)[1];
 		color[2] = shiftGetGroundColor1 (s)[2];
-		color[3] = (float)shiftGetGroundColor1 (s)[3] * ss->reflect;
+		color[3] = (float)shiftGetGroundColor1 (s)[3] * ss->anim;
 		glColor4usv (color);
 		glVertex2f (-0.5, -0.5);
 		glVertex2f (0.5, -0.5);
 		color[0] = shiftGetGroundColor2 (s)[0];
 		color[1] = shiftGetGroundColor2 (s)[1];
 		color[2] = shiftGetGroundColor2 (s)[2];
-		color[3] = (float)shiftGetGroundColor2 (s)[3] * ss->reflect;
+		color[3] = (float)shiftGetGroundColor2 (s)[3] * ss->anim;
 		glColor4usv (color);
 		glVertex2f (0.5, -0.5 + shiftGetGroundSize (s));
 		glVertex2f (-0.5, -0.5 + shiftGetGroundSize (s));
@@ -1424,13 +1464,14 @@ shiftPaintOutput (CompScreen		  *s,
 	glPushMatrix ();
 	glLoadMatrixf (sTransform.m);
 
-	if (shiftGetReflection (s) && ss->reflect == 1.0)
+	if (shiftGetReflection (s) && ss->anim == 1.0)
 	{
 	    glClipPlane (GL_CLIP_PLANE0, clip);
 	    glEnable (GL_CLIP_PLANE0);
 	}
 
 	ss->reflectBrightness = 1.0;
+	ss->reflectActive     = FALSE;
 	
 	for (i = 0; i < ss->nSlots; i++)
 	{
@@ -1471,6 +1512,7 @@ shiftPreparePaintScreen (CompScreen *s,
 	int        steps;
 	float      amount, chunk;
 	int        i;
+	Bool       animAdj = FALSE;
 
 	amount = msSinceLastPaint * 0.05f * shiftGetShiftSpeed (s);
 	steps  = amount / (0.5f * shiftGetTimestep (s));
@@ -1496,7 +1538,7 @@ shiftPreparePaintScreen (CompScreen *s,
 
 	while (steps--)
 	{
-	    ss->moreAdjust = adjustShiftReflectionAttribs (s, chunk);
+	    ss->moreAdjust = animAdj = adjustShiftAnimationAttribs (s, chunk);
 
 	    for (w = s->windows; w; w = w->next)
 	    {
@@ -1508,7 +1550,7 @@ shiftPreparePaintScreen (CompScreen *s,
 		    ShiftSlot *slot = &sw->slots[i];
 		    if (slot->adjust)
 		    {
-			slot->adjust = adjustShiftVelocity (w, slot);
+			slot->adjust = adjustShiftVelocity (w, slot) | animAdj;
 			
 			ss->moreAdjust |= slot->adjust;
 			
@@ -1582,6 +1624,19 @@ shiftTerm (CompScreen *s, Bool cancel)
     if (ss->state != ShiftStateNone)
     {
 	CompWindow *w;
+
+	CompWindow *pw = NULL;
+	int i;
+	
+	for (i = 0; i < ss->nSlots; i++)
+	{
+	    if (ss->drawSlots[i].slot->primary)
+	    {
+		if (pw)
+		    restackWindowAbove (ss->drawSlots[i].w,pw);
+		pw = ss->drawSlots[i].w;
+	    }
+	}
 
 	for (w = s->windows; w; w = w->next)
 	{
@@ -2356,8 +2411,8 @@ shiftInitScreen (CompPlugin *p,
 
     ss->textPixmap = None;
 
-    ss->reflect         = 0.0;
-    ss->reflectVelocity = 0.0;
+    ss->anim         = 0.0;
+    ss->animVelocity = 0.0;
 
     ss->buttonPressed = FALSE;
 
