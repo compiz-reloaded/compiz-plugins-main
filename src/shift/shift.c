@@ -1283,15 +1283,15 @@ adjustShiftAnimationAttribs (CompScreen *s, float chunk)
     dr = anim - ss->anim;
     adjust = dr * 0.1f;
     amount = fabs (dr) * 7.0f;
-    if (amount < 0.01f)
-	amount = 0.01f;
+    if (amount < 0.002f)
+	amount = 0.002f;
     else if (amount > 0.15f)
 	amount = 0.15f;
 
     ss->animVelocity = (amount * ss->animVelocity + adjust) /
 	(amount + 1.0f);
 
-    if (fabs (dr) < 0.01f && fabs (ss->animVelocity) < 0.02f)
+    if (fabs (dr) < 0.002f && fabs (ss->animVelocity) < 0.004f)
     {
 
 	ss->anim = anim;
@@ -1518,7 +1518,7 @@ shiftPreparePaintScreen (CompScreen *s,
 		{
 		    ShiftSlot *slot = &sw->slots[i];
 		    if (slot->adjust)
-			slot->adjust = animAdj;			
+			slot->adjust = animAdj;
 
 		    slot->tx = slot->x - w->attrib.x -
 			(w->attrib.width * slot->scale) / 2;
