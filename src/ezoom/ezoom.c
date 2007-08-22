@@ -306,7 +306,7 @@ isZoomed (CompScreen *s, int out)
     return FALSE;
 }
 
-/* Returns the distance the edge defined.
+/* Returns the distance to the defined edge in zoomed pixels.
  */
 static int
 distanceToEdge (CompScreen *s, int out, ZoomEdge edge)
