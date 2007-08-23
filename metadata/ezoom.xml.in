@@ -12,89 +12,70 @@
 	<display>
 	    <group>
 		<_short>Zoom Movement</_short>
-		<option type="action" name="initiate">
+		<option type="button" name="initiate">
 		    <_short>Initiate</_short>
 		    <_long>Zoom In</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<button>&lt;Super&gt;Button3</button>
-		    </default>
+		    <default>&lt;Super&gt;Button3</default>
 		</option>
-		<option type="action" name="zoom_in">
+		<option type="button" name="zoom_in">
 		    <_short>Zoom In</_short>
 		    <_long>Zoom In</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<button>&lt;Super&gt;Button4</button>
-		    </default>
+		    <default>&lt;Super&gt;Button4</default>
 		</option>
-		<option type="action" name="lock_zoom">
+		<option type="key" name="zoom_in_key">
+		    <_short>Zoom In</_short>
+		    <_long>Zoom In</_long>
+		    <default>&lt;Super&gt;Button4</default>
+		</option>
+		<option type="key" name="lock_zoom">
 		    <_short>Toggle zoom area lock</_short>
 		    <_long>Toggles a lock on the zoom area so it doesn't change on various events</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<key>&lt;Super&gt;l</key>
-		    </default>
+		    <default>&lt;Super&gt;l</default>
 		</option>
-		<option type="action" name="zoom_specific_1">
+		<option type="key" name="zoom_specific_1">
 		    <_short>Zoom Specific Level 1</_short>
 		    <_long>Zoom to the specific zoom level 1</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<key>&lt;Super&gt;1</key>
-		    </default>
+		    <default>&lt;Super&gt;1</default>
 		</option>
-		<option type="action" name="zoom_specific_2">
+		<option type="key" name="zoom_specific_2">
 		    <_short>Zoom Specific Level 2</_short>
 		    <_long>Zoom to the specific zoom level 2</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<key>&lt;Super&gt;2</key>
-		    </default>
+		    <default>&lt;Super&gt;2</default>
 		</option>
-		<option type="action" name="zoom_specific_3">
+		<option type="key" name="zoom_specific_3">
 		    <_short>Zoom Specific Level 3</_short>
 		    <_long>Zoom to the specific zoom level 3</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<key>&lt;Super&gt;3</key>
-		    </default>
+		    <default>&lt;Super&gt;3</default>
 		</option>
-		<option type="action" name="fit_to_window">
+		<option type="key" name="fit_to_window">
 		    <_short>Fit zoomed area to window</_short>
 		    <_long>Zooms in/out so the focused window is zoomed to the maximum while still being fully visible.</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<key>&lt;Super&gt;r</key>
-		    </default>
+		    <default>&lt;Super&gt;r</default>
 		</option>
-		<option type="action" name="pan_left">
+		<option type="key" name="pan_left">
 		    <_short>Pan Zoom Left</_short>
 		    <_long>Pan (move) the zoom area left</_long>
-		    <allowed key="true" button="true"/>
 		</option>
-		<option type="action" name="pan_right">
+		<option type="key" name="pan_right">
 		    <_short>Pan Zoom Right</_short>
 		    <_long>Pan (move) the zoom area right</_long>
-		    <allowed key="true" button="true"/>
 		</option>
-		<option type="action" name="pan_up">
+		<option type="key" name="pan_up">
 		    <_short>Pan Zoom Up</_short>
 		    <_long>Pan (move) the zoom area up</_long>
-		    <allowed key="true" button="true"/>
 		</option>
-		<option type="action" name="pan_down">
+		<option type="key" name="pan_down">
 		    <_short>Pan Zoom Down</_short>
 		    <_long>Pan (move) the zoom area down</_long>
-		    <allowed key="true" button="true"/>
 		</option>
-		<option type="action" name="zoom_out">
+		<option type="key" name="zoom_out_key">
 		    <_short>Zoom Out</_short>
 		    <_long>Zoom Out</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<button>&lt;Super&gt;Button5</button>
-		    </default>
+		</option>
+		<option type="button" name="zoom_out">
+		    <_short>Zoom Out</_short>
+		    <_long>Zoom Out</_long>
+		    <default>&lt;Super&gt;Button5</default>
 		</option>
 		<option type="float" name="zoom_spec1">
 		    <_short>Specific zoom factor 1</_short>
@@ -126,23 +107,17 @@
 		    <default>true</default>
 		</option>
 	    </group>
-	    <option type="action" name="fit_to_zoom">
+	    <option type="key" name="fit_to_zoom">
 		<_short>Fit the window to the zoom level</_short>
 		<_long>Resize the window so it matches the current zoom level.  </_long>
-		<allowed key="true" button="true"/>
-		<default>
-		    <key>&lt;Super&gt;v</key>
-		</default>
+		<default>&lt;Super&gt;v</default>
 	    </option>
 	    <group>
 		<_short>Mouse Behavior</_short>
-		<option type="action" name="center_mouse">
+		<option type="key" name="center_mouse">
 		    <_short>Center the mouse</_short>
 		    <_long>Puts the mouse in the middle of the screen (Regardless of zoom level)</_long>
-		    <allowed key="true" button="true"/>
-		    <default>
-			<key>&lt;Super&gt;c</key>
-		    </default>
+		    <default>&lt;Super&gt;c</default>
 		</option>
 	    </group>
 	</display>
