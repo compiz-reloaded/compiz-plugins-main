@@ -105,6 +105,10 @@ typedef struct _ExpoScreen
     VPUpdateMode vpUpdateMode;
 
     Bool anyClick;
+
+    unsigned int clickTime;
+    Bool         doubleClick;
+    
 } ExpoScreen;
 
 typedef struct _xyz_tuple
@@ -324,6 +328,20 @@ expoHandleEvent (CompDisplay *d,
 		switch (event->xbutton.button) {
 		case Button1:
 		    es->dndState = DnDStart;
+		    if (es->clickTime == 0)
+		    {
+			es->clickTime = event->xbutton.time;
+		    }
+		    else if (event->xbutton.time - es->clickTime <=
+			     expoGetDoubleClickTime (d))
+		    {
+			es->doubleClick = TRUE;
+		    }
+		    else
+		    {
+			es->clickTime   = event->xbutton.time;
+			es->doubleClick = FALSE;
+		    }
 		    break;
 		case Button3:
 		    {
@@ -391,6 +409,31 @@ expoHandleEvent (CompDisplay *d,
 
 		es->dndState = DnDNone;
 		es->dndWindow = NULL;
+	    }
+	    
+	    if (es->expoMode)
+	    {
+		if (event->xbutton.button == Button1)
+		{
+		    if (event->xbutton.time - es->clickTime >
+			     expoGetDoubleClickTime (d))
+		    {
+			es->clickTime   = 0;
+			es->doubleClick = FALSE;
+		    }
+		    else if (es->doubleClick)
+		    {
+			CompAction *action;
+			
+			es->clickTime   = 0;
+			es->doubleClick = FALSE;
+			
+    			action = expoGetExpoKey (d);
+    			expoTermExpo (d, action, 0, NULL, 0);
+			es->anyClick = TRUE;
+		    }
+		    break;
+		}
 	    }
 	}
 	break;
@@ -1079,6 +1122,9 @@ expoInitScreen (CompPlugin *p,
 
     es->dndState  = DnDNone;
     es->dndWindow = NULL;
+
+    es->clickTime   = 0;
+    es->doubleClick = FALSE;
 
     WRAP (es, s, paintOutput, expoPaintOutput);
     WRAP (es, s, paintScreen, expoPaintScreen);
