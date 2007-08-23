@@ -516,7 +516,8 @@ shiftPaintWindow (CompWindow		 *w,
 	else
 	    mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
 
-	if (sw->active && ss->output->id == ss->usedOutput)
+	if (sw->active &&
+	    (ss->output->id == ss->usedOutput || ss->output->id == ~0))
 	    mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
 	
 
