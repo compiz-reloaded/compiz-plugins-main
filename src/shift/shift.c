@@ -544,6 +544,8 @@ shiftPaintWindow (CompWindow		 *w,
 	    else
 		sopacity = ss->anim * slot->opacity;
 
+	    if (sopacity <= 0.0)
+		return status;
 
 	    if (mask & PAINT_WINDOW_OCCLUSION_DETECTION_MASK)
 		return FALSE;
