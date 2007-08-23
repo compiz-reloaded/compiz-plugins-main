@@ -96,6 +96,7 @@ typedef struct _ShiftScreen {
 
     PreparePaintScreenProc preparePaintScreen;
     DonePaintScreenProc    donePaintScreen;
+    PaintScreenProc        paintScreen;
     PaintOutputProc        paintOutput;
     PaintWindowProc        paintWindow;
     DamageWindowRectProc   damageWindowRect;
@@ -289,7 +290,15 @@ shiftRenderWindowTitle (CompScreen *s)
 	return;
 
     int ox1, ox2, oy1, oy2;
-    getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
+
+    if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
+    {
+	ox1 = oy1 = 0;
+	ox2 = s->width;
+	oy2 = s->height;
+    }
+    else
+	getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
     /* 75% of the output device as maximum width */
     tA.maxwidth = (ox2 - ox1) * 3 / 4;
@@ -337,10 +346,21 @@ shiftDrawWindowTitle (CompScreen *s)
     float height = ss->textHeight;
     float border = 10.0f;
 
-    int ox1 = s->outputDev[ss->usedOutput].region.extents.x1;
-    int ox2 = s->outputDev[ss->usedOutput].region.extents.x2;
-    int oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
-    int oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+    int ox1, ox2, oy1, oy2;
+
+    if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
+    {
+	ox1 = oy1 = 0;
+	ox2 = s->width;
+	oy2 = s->height;
+    }
+    else
+    {
+        ox1 = s->outputDev[ss->usedOutput].region.extents.x1;
+        ox2 = s->outputDev[ss->usedOutput].region.extents.x2;
+        oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
+        oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+    }
 
     float x = ox1 + ((ox2 - ox1) / 2) - (ss->textWidth / 2);
     float y;
@@ -753,10 +773,21 @@ layoutThumbsCover (CompScreen *s)
     float distance;
     int i;
 
-    int ox1 = s->outputDev[ss->usedOutput].region.extents.x1;
-    int ox2 = s->outputDev[ss->usedOutput].region.extents.x2;
-    int oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
-    int oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+    int ox1, ox2, oy1, oy2;
+
+    if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
+    {
+	ox1 = oy1 = 0;
+	ox2 = s->width;
+	oy2 = s->height;
+    }
+    else
+    {
+        ox1 = s->outputDev[ss->usedOutput].region.extents.x1;
+        ox2 = s->outputDev[ss->usedOutput].region.extents.x2;
+        oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
+        oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+    }
     
     /* the center of the ellipse is in the middle 
        of the used output device */
@@ -889,10 +920,21 @@ layoutThumbsFlip (CompScreen *s)
     float angle;
     int slotNum;
 
-    int ox1 = s->outputDev[ss->usedOutput].region.extents.x1;
-    int ox2 = s->outputDev[ss->usedOutput].region.extents.x2;
-    int oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
-    int oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+    int ox1, ox2, oy1, oy2;
+
+    if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
+    {
+	ox1 = oy1 = 0;
+	ox2 = s->width;
+	oy2 = s->height;
+    }
+    else
+    {
+        ox1 = s->outputDev[ss->usedOutput].region.extents.x1;
+        ox2 = s->outputDev[ss->usedOutput].region.extents.x2;
+        oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
+        oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+    }
     
     /* the center of the ellipse is in the middle 
        of the used output device */
@@ -1311,7 +1353,8 @@ shiftPaintOutput (CompScreen		  *s,
     status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
     WRAP (ss, s, paintOutput, shiftPaintOutput);
 
-    if (ss->state != ShiftStateNone && output->id == ss->usedOutput)
+    if (ss->state != ShiftStateNone &&
+	(output->id == ss->usedOutput || output->id == ~0))
     {
 	int           i;
 	
@@ -1319,6 +1362,13 @@ shiftPaintOutput (CompScreen		  *s,
 	CompTransform sTransform = *transform;
 	int oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
 	int oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+
+	if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
+	{
+	    oy1 = 0;
+	    oy2 = s->height;
+	}
+	
 	int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
 
 	int oldFilter = s->display->textureFilter;
@@ -1334,9 +1384,6 @@ shiftPaintOutput (CompScreen		  *s,
 	    CompTransform rTransform = sTransform;
 
 	    unsigned short color[4];
-
-	    int oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
-	    int oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
 
 	    int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
 
@@ -1454,6 +1501,26 @@ shiftPaintOutput (CompScreen		  *s,
     }
 
     return status;
+}
+
+static void
+shiftPaintScreen (CompScreen   *s,
+		  CompOutput   *outputs,
+		  int          numOutputs,
+		  unsigned int mask)
+{
+    SHIFT_SCREEN (s);
+
+    if (ss->state != ShiftStateNone && numOutputs > 0 &&
+        shiftGetMultioutputMode (s) != MultioutputModeDisabled)
+    {
+	outputs = &s->fullscreenOutput;
+	numOutputs = 1;
+    }
+
+    UNWRAP (ss, s, paintScreen);
+    (*s->paintScreen) (s, outputs, numOutputs, mask);
+    WRAP (ss, s, paintScreen, shiftPaintScreen);
 }
 
 static void
@@ -2378,6 +2445,7 @@ shiftInitScreen (CompPlugin *p,
 
     WRAP (ss, s, preparePaintScreen, shiftPreparePaintScreen);
     WRAP (ss, s, donePaintScreen, shiftDonePaintScreen);
+    WRAP (ss, s, paintScreen, shiftPaintScreen);
     WRAP (ss, s, paintOutput, shiftPaintOutput);
     WRAP (ss, s, paintWindow, shiftPaintWindow);
     WRAP (ss, s, damageWindowRect, shiftDamageWindowRect);
@@ -2399,6 +2467,7 @@ shiftFiniScreen (CompPlugin *p,
 
     UNWRAP (ss, s, preparePaintScreen);
     UNWRAP (ss, s, donePaintScreen);
+    UNWRAP (ss, s, paintScreen);
     UNWRAP (ss, s, paintOutput);
     UNWRAP (ss, s, paintWindow);
     UNWRAP (ss, s, damageWindowRect);
