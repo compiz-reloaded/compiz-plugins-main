@@ -71,9 +71,6 @@ typedef struct _ShiftSlot {
     GLfloat tx;
     GLfloat ty;
 
-    Bool    adjust;
-    Bool    active;
-
     Bool    primary;
 
 } ShiftSlot;
@@ -488,7 +485,7 @@ shiftPaintWindow (CompWindow		 *w,
 	}
 
 	
-	if (sw->active || sw->slots[0].adjust || sw->slots[1].adjust)
+	if (sw->active)
 	    scaled = (ss->activeSlot != NULL);
 	
 	if (sw->opacity > 0.0 && (ss->activeSlot == NULL))
@@ -499,8 +496,7 @@ shiftPaintWindow (CompWindow		 *w,
 	else
 	    mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
 
-	if ((sw->active || sw->slots[0].adjust || sw->slots[1].adjust) &&
-	    ss->output->id == ss->usedOutput)
+	if (sw->active && ss->output->id == ss->usedOutput)
 	    mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
 	
 
@@ -775,8 +771,6 @@ layoutThumbsCover (CompScreen *s)
 	w = ss->windows[index];
 	SHIFT_WINDOW (w);
 
- 	sw->slots[0].active = TRUE;
-
 	ww = w->width  + w->input.left + w->input.right;
 	wh = w->height + w->input.top  + w->input.bottom;
 
@@ -914,8 +908,6 @@ layoutThumbsFlip (CompScreen *s)
     {
 	w = ss->windows[index];
 	SHIFT_WINDOW (w);
-
- 	sw->slots[0].active = TRUE;
 
 	ww = w->width  + w->input.left + w->input.right;
 	wh = w->height + w->input.top  + w->input.bottom;
@@ -1073,7 +1065,6 @@ static Bool
 shiftCreateWindowList (CompScreen *s)
 {
     CompWindow *w;
-    int i;
     SHIFT_SCREEN (s);
 
     ss->nWindows = 0;
@@ -1086,9 +1077,6 @@ shiftCreateWindowList (CompScreen *s)
 
 	    shiftAddWindowToList (s, w);
 	    sw->active = TRUE;
-
-	    for (i = 0; i < 2; i++)
-	    	sw->slots[i].adjust = TRUE;
 	}
     }
 
@@ -1481,7 +1469,6 @@ shiftPreparePaintScreen (CompScreen *s,
 	int        steps;
 	float      amount, chunk;
 	int        i;
-	Bool       animAdj = FALSE;
 
 	amount = msSinceLastPaint * 0.05f * shiftGetShiftSpeed (s);
 	steps  = amount / (0.5f * shiftGetTimestep (s));
@@ -1507,7 +1494,7 @@ shiftPreparePaintScreen (CompScreen *s,
 
 	while (steps--)
 	{
-	    ss->moreAdjust = animAdj = adjustShiftAnimationAttribs (s, chunk);
+	    ss->moreAdjust = adjustShiftAnimationAttribs (s, chunk);
 
 	    for (w = s->windows; w; w = w->next)
 	    {
@@ -1517,9 +1504,6 @@ shiftPreparePaintScreen (CompScreen *s,
 		for (i = 0; i < 2; i++)
 		{
 		    ShiftSlot *slot = &sw->slots[i];
-		    if (slot->adjust)
-			slot->adjust = animAdj;
-
 		    slot->tx = slot->x - w->attrib.x -
 			(w->attrib.width * slot->scale) / 2;
 		    slot->ty = slot->y - w->attrib.y -
@@ -1541,6 +1525,7 @@ static void
 shiftDonePaintScreen (CompScreen *s)
 {
     SHIFT_SCREEN (s);
+    CompWindow *w;
 
     if (ss->state != ShiftStateNone)
     {
@@ -1559,6 +1544,11 @@ shiftDonePaintScreen (CompScreen *s)
 	    {
 		ss->state = ShiftStateNone;
 		shiftActivateEvent(s, FALSE);
+		for (w = s->windows; w; w = w->next)
+		{
+		    SHIFT_WINDOW (w);
+		    sw->active = FALSE;
+		}
 	    }
 	    else if (ss->state == ShiftStateOut)
 		ss->state = ShiftStateSwitching;
@@ -1615,19 +1605,6 @@ shiftTerm (CompScreen *s, Bool cancel)
 	    }
 	}
 
-	for (w = s->windows; w; w = w->next)
-	{
-	    SHIFT_WINDOW (w);
-
-	    sw->slots[0].active = FALSE;
-	    sw->slots[1].active = FALSE;
-	    if (sw->active)
-	    {
-		sw->slots[0].adjust = TRUE;
-		sw->slots[1].adjust = TRUE;
-	    }
-	    sw->active = FALSE;
-	}
 	ss->moreAdjust = TRUE;
 	ss->state = ShiftStateIn;
 	damageScreen (s);
@@ -2243,8 +2220,6 @@ shiftDamageWindowRect (CompWindow *w,
 		SHIFT_WINDOW (w);
 
     		sw->active = TRUE;
-		sw->slots[0].adjust = TRUE;
-		sw->slots[1].adjust = TRUE;
 		ss->moreAdjust = TRUE;
 		ss->state = ShiftStateOut;
 		damageScreen (w->screen);
