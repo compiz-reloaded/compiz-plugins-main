@@ -740,7 +740,20 @@ compareWindows (const void *elem1,
 {
     CompWindow *w1 = *((CompWindow **) elem1);
     CompWindow *w2 = *((CompWindow **) elem2);
+    CompWindow *w  = w1;
 
+    if (w1 == w2)
+	return 0;
+
+    while (w)
+    {
+	if (w == w2)
+	    return 1;
+	w = w->next;
+    }
+    return -1;
+
+    /*
     if (w1->mapNum && !w2->mapNum)
 	return -1;
 
@@ -748,6 +761,7 @@ compareWindows (const void *elem1,
 	return 1;
 
     return w2->activeNum - w1->activeNum;
+    */
 }
 
 static int 
@@ -1838,7 +1852,7 @@ shiftDoSwitch (CompDisplay     *d,
 	if (ret)
 	{
     	    switchToWindow (s, nextWindow);
-	    if (initial)
+	    if (initial && FALSE)
 	    {
 		ss->mvTarget += ss->mvAdjust;
 		ss->mvAdjust  = 0.0;
