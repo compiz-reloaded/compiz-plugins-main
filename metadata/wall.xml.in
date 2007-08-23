@@ -174,108 +174,120 @@
 					<max>5.0</max>
 					<precision>0.05</precision>
 				</option>
-				<option name="left_key" type="key">
-					<_short>Move Left</_short>
-					<_long>Move along the wall to the left</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;Left</default>
-				</option>
-				<option name="left_button" type="button">
-					<_short>Move Left</_short>
-					<_long>Move along the wall to the left</_long>
-				</option>
-				<option name="right_key" type="key">
-					<_short>Move Right</_short>
-					<_long>Move along the wall to the right</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;Right</default>
-				</option>
-				<option name="right_button" type="button">
-					<_short>Move Right</_short>
-					<_long>Move along the wall to the right</_long>
-				</option>
-				<option name="up_key" type="key">
-					<_short>Move Up</_short>
-					<_long>Move along the wall up</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;Up</default>
-				</option>
-				<option name="up_button" type="button">
-					<_short>Move Up</_short>
-					<_long>Move along the wall up</_long>
-				</option>
-				<option name="down_key" type="key">
-					<_short>Move Down</_short>
-					<_long>Move along the wall down</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;Down</default>
-				</option>
-				<option name="down_button" type="button">
-					<_short>Move Down</_short>
-					<_long>Move along the wall down</_long>
-				</option>
-				<option name="next_key" type="key">
-					<_short>Move Next</_short>
-					<_long>Move along the wall to the next viewport</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;Next</default>
-				</option>
-				<option name="next_button" type="button">
-					<_short>Move Next</_short>
-					<_long>Move along the wall to the next viewport</_long>
-				</option>
-				<option name="prev_key" type="key">
-					<_short>Move Prev</_short>
-					<_long>Move along the wall to the previous viewport</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;Prev</default>
-				</option>
-				<option name="prev_button" type="button">
-					<_short>Move Prev</_short>
-					<_long>Move along the wall to the previous viewport</_long>
-				</option>
-				<option name="left_window_key" type="key">
-					<_short>Move Left With Window</_short>
-					<_long>Move with window along the wall to the left</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Left</default>
-				</option>
-				<option name="right_window_key" type="key">
-					<_short>Move Right With Window</_short>
-					<_long>Move with window along the wall to the right</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Right</default>
-				</option>
-				<option name="up_window_key" type="key">
-					<_short>Move Up With Window</_short>
-					<_long>Move with window along the wall up</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Up</default>
-				</option>
-				<option name="down_window_key" type="key">
-					<_short>Move Down With Window</_short>
-					<_long>Move with window along the wall down</_long>
-					<default>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Down</default>
-				</option>
-				<option name="flip_left_edge" type="edge">
-					<_short>Flip Left</_short>
-					<_long>Flip left</_long>
-					<default>
-						<edge name="Left"/>
-					</default>
-				</option>
-				<option name="flip_right_edge" type="edge">
-					<_short>Flip Right</_short>
-					<_long>Flip right</_long>
-					<default>
-						<edge name="Right"/>
-					</default>
-				</option>
-				<option name="flip_up_edge" type="edge">
-					<_short>Flip Up</_short>
-					<_long>Flip up</_long>
-					<default>
-						<edge name="Top"/>
-					</default>
-				</option>
-				<option name="flip_down_edge" type="edge">
-					<_short>Flip Down</_short>
-					<_long>Flip down</_long>
-					<default>
-						<edge name="Bottom"/>
-					</default>
-				</option>
+			</group>
+			<group>
+				<_short>Bindings</_short>
+				<subgroup>
+					<_short>Move within wall</_short>
+					<option name="left_key" type="key">
+						<_short>Move Left</_short>
+						<_long>Move along the wall to the left</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;Left</default>
+					</option>
+					<option name="left_button" type="button">
+						<_short>Move Left</_short>
+						<_long>Move along the wall to the left</_long>
+					</option>
+					<option name="right_key" type="key">
+						<_short>Move Right</_short>
+						<_long>Move along the wall to the right</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;Right</default>
+					</option>
+					<option name="right_button" type="button">
+						<_short>Move Right</_short>
+						<_long>Move along the wall to the right</_long>
+					</option>
+					<option name="up_key" type="key">
+						<_short>Move Up</_short>
+						<_long>Move along the wall up</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;Up</default>
+					</option>
+					<option name="up_button" type="button">
+						<_short>Move Up</_short>
+						<_long>Move along the wall up</_long>
+					</option>
+					<option name="down_key" type="key">
+						<_short>Move Down</_short>
+						<_long>Move along the wall down</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;Down</default>
+					</option>
+					<option name="down_button" type="button">
+						<_short>Move Down</_short>
+						<_long>Move along the wall down</_long>
+					</option>
+					<option name="next_key" type="key">
+						<_short>Move Next</_short>
+						<_long>Move along the wall to the next viewport</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;Next</default>
+					</option>
+					<option name="next_button" type="button">
+						<_short>Move Next</_short>
+						<_long>Move along the wall to the next viewport</_long>
+					</option>
+					<option name="prev_key" type="key">
+						<_short>Move Prev</_short>
+						<_long>Move along the wall to the previous viewport</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;Prev</default>
+					</option>
+					<option name="prev_button" type="button">
+						<_short>Move Prev</_short>
+						<_long>Move along the wall to the previous viewport</_long>
+					</option>
+				</subgroup>
+				<subgroup>
+					<_short>Move with window within wall</_short>
+					<option name="left_window_key" type="key">
+						<_short>Move Left With Window</_short>
+						<_long>Move with window along the wall to the left</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Left</default>
+					</option>
+					<option name="right_window_key" type="key">
+						<_short>Move Right With Window</_short>
+						<_long>Move with window along the wall to the right</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Right</default>
+					</option>
+					<option name="up_window_key" type="key">
+						<_short>Move Up With Window</_short>
+						<_long>Move with window along the wall up</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Up</default>
+					</option>
+					<option name="down_window_key" type="key">
+						<_short>Move Down With Window</_short>
+						<_long>Move with window along the wall down</_long>
+						<default>&lt;Control&gt;&lt;Alt&gt;&lt;Shift&gt;Down</default>
+					</option>
+				</subgroup>
+				<subgroup>
+					<_short>Edge flipping</_short>
+					<option name="flip_left_edge" type="edge">
+						<_short>Flip Left</_short>
+						<_long>Flip left</_long>
+						<default>
+							<edge name="Left"/>
+						</default>
+					</option>
+					<option name="flip_right_edge" type="edge">
+						<_short>Flip Right</_short>
+						<_long>Flip right</_long>
+						<default>
+							<edge name="Right"/>
+						</default>
+					</option>
+					<option name="flip_up_edge" type="edge">
+						<_short>Flip Up</_short>
+						<_long>Flip up</_long>
+						<default>
+							<edge name="Top"/>
+						</default>
+					</option>
+					<option name="flip_down_edge" type="edge">
+						<_short>Flip Down</_short>
+						<_long>Flip down</_long>
+						<default>
+							<edge name="Bottom"/>
+						</default>
+					</option>
+				</subgroup>
 			</group>
 		</display>
 		<screen>
