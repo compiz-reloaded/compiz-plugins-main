@@ -1619,6 +1619,7 @@ shiftDonePaintScreen (CompScreen *s)
 		    SHIFT_WINDOW (w);
 		    sw->active = FALSE;
 		}
+		damageScreen (s);
 	    }
 	    else if (ss->state == ShiftStateOut)
 		ss->state = ShiftStateSwitching;
