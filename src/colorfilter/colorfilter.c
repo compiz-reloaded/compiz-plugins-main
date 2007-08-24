@@ -315,6 +315,11 @@ loadFilters (CompScreen *s, CompTexture *texture)
     for (i = 0; i < count; i++)
     {
 	name = base_name (filters->value[i].s);
+	if (!strlen (name))
+	{
+	    free (name);
+	    continue;
+	}
 	compLogMessage (s->display, "colorfilter", CompLogLevelInfo,
 			"Loading filter %s (item %s).", name,
 			filters->value[i].s);
@@ -330,6 +335,9 @@ loadFilters (CompScreen *s, CompTexture *texture)
 	compLogMessage (s->display, "colorfilter", CompLogLevelWarn,
 			"Tried to load %d filter(s), %d succeeded.",
 			count, loaded);
+
+    if (!loaded)
+	cfs->filtersCount = 0;
 
     /* Damage currently filtered windows */
     for (w = s->windows; w; w = w->next)
