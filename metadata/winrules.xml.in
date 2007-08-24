@@ -4,11 +4,6 @@
 		<_short>Window Rules</_short>
 		<_long>Set windows rules</_long>
 		<category>Window Management</category>
-		<deps>
-			<relation type="before">
-				<plugin>widget</plugin>
-			</relation>
-		</deps>
 		<screen>
 			<group>
 				<_short>Matches</_short>
@@ -40,11 +35,6 @@
 				<option name="fullscreen_match" type="match">
 					<_short>Fullscreen</_short>
 					<_long>Fullscreen windows</_long>
-					<default/>
-				</option>
-				<option name="widget_match" type="match">
-					<_short>Widget</_short>
-					<_long>Set window as widget</_long>
 					<default/>
 				</option>
 				<option name="no_move_match" type="match">

@@ -34,7 +34,6 @@
 #define WINRULES_SCREEN_OPTION_BELOW_MATCH        3
 #define WINRULES_SCREEN_OPTION_STICKY_MATCH       4
 #define WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH   5
-#define WINRULES_SCREEN_OPTION_WIDGET_MATCH       6
 #define WINRULES_SCREEN_OPTION_NOMOVE_MATCH       7
 #define WINRULES_SCREEN_OPTION_NORESIZE_MATCH     8
 #define WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH   9
@@ -55,7 +54,6 @@ typedef struct _WinrulesWindow {
     unsigned int allowedActions;
     unsigned int stateSetMask;
     unsigned int protocolSetMask;
-    Bool widgetSet;
 
     Bool firstMap;
 } WinrulesWindow;
@@ -197,37 +195,6 @@ winrulesUpdateState (CompWindow *w,
 	    updateWindowAttributes (w, CompStackingUpdateModeNormal);
 	else
 	    updateWindowAttributes (w, CompStackingUpdateModeNone);
-    }
-}
-
-static void
-winrulesUpdateWidget (CompWindow *w)
-{
-    Atom compizWidget = XInternAtom (w->screen->display->display,
-				     "_COMPIZ_WIDGET",
-				     FALSE);
-
-    WINRULES_SCREEN (w->screen);
-    WINRULES_WINDOW (w);
-
-    if (matchEval
-	(&ws->opt[WINRULES_SCREEN_OPTION_WIDGET_MATCH].value.match, w))
-    {
-	if (w->inShowDesktopMode || w->mapNum ||
-                w->attrib.map_state == IsViewable || w->minimized)
-	{
-	    if (w->minimized || w->inShowDesktopMode)
-		unminimizeWindow (w);
-	    XChangeProperty (w->screen->display->display, w->id, compizWidget,
-			     XA_STRING, 8, PropModeReplace,
-			     (unsigned char *)(int[]){-2}, 1);
-	    ww->widgetSet = TRUE;
-	}
-    }
-    else if (ww->widgetSet)
-    {
-	XDeleteProperty (w->screen->display->display, w->id, compizWidget);
-	ww->widgetSet = FALSE;
     }
 }
 
@@ -532,19 +499,6 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	    return TRUE;
 	}
 	break;
-    case WINRULES_SCREEN_OPTION_WIDGET_MATCH:
-	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-	    	winrulesUpdateWidget (w);
-	    }
-	    return TRUE;
-	}
-	break;
     case WINRULES_SCREEN_OPTION_SIZE_MATCHES:
 	if (compSetOptionList (o, value))
 	{
@@ -609,8 +563,6 @@ winrulesHandleEvent (CompDisplay *d,
 		winrulesUpdateState (w,
 				     WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH,
 				     CompWindowStateFullscreenMask);
-
-		winrulesUpdateWidget (w);
 
 		winrulesSetAllowedActions (w,
 					   WINRULES_SCREEN_OPTION_NOMOVE_MATCH,
@@ -709,7 +661,6 @@ static const CompMetadataOptionInfo winrulesScreenOptionInfo[] = {
     { "below_match", "match", 0, 0, 0 },
     { "sticky_match", "match", 0, 0, 0 },
     { "fullscreen_match", "match", 0, 0, 0 },
-    { "widget_match", "match", 0, 0, 0 },
     { "no_move_match", "match", 0, 0, 0 },
     { "no_resize_match", "match", 0, 0, 0 },
     { "no_minimize_match", "match", 0, 0, 0 },
@@ -786,7 +737,6 @@ winrulesInitWindow (CompPlugin *p,
         return FALSE;
     }
 
-    ww->widgetSet       = FALSE;
     ww->stateSetMask    = 0;
     ww->protocolSetMask = 0;
 
