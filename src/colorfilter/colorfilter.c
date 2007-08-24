@@ -402,6 +402,9 @@ colorFilterDrawWindowTexture (CompWindow *w, CompTexture *texture,
     }
 }
 
+/*
+ * Filter windows when they are open if they match the filtering rules
+ */
 static void
 colorFilterWindowAddNotify (CompWindow *w)
 {
@@ -413,7 +416,7 @@ colorFilterWindowAddNotify (CompWindow *w)
     (*s->windowAddNotify) (w);
     WRAP (cfs, s, windowAddNotify, colorFilterWindowAddNotify);
 
-    /* cfw->isNeg is initialized to FALSE in InitWindow, so we only
+    /* cfw->isFiltered is initialized to FALSE in InitWindow, so we only
        have to toggle it to TRUE if necessary */
     if (cfs->isFiltered && matchEval (colorfilterGetFilterMatch (s), w))
 	colorFilterToggleWindow (w);
