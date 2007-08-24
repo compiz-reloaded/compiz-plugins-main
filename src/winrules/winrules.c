@@ -56,8 +56,6 @@ typedef struct _WinrulesWindow {
     unsigned int allowedActions;
     unsigned int stateSetMask;
     unsigned int protocolSetMask;
-
-    Bool firstMap;
 } WinrulesWindow;
 
 typedef struct _WinrulesDisplay {
@@ -438,76 +436,11 @@ winrulesHandleEvent (CompDisplay *d,
 
     WINRULES_DISPLAY (d);
 
-    if (event->type == MapNotify)
+    if (event->type == MapRequest)
     {
 	w = findWindowAtDisplay (d, event->xmap.window);
 	if (w && w->type & WINRULES_TARGET_WINDOWS)
-	{
-	    WINRULES_WINDOW (w);
-	    /* Only apply at window creation.
-	     * Using CreateNotify not working.
-	     */
-	    if (ww->firstMap)
-	    {
-		int width, height;
-		
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_SKIPTASKBAR_MATCH,
-				     CompWindowStateSkipTaskbarMask);
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_SKIPPAGER_MATCH,
-				     CompWindowStateSkipPagerMask);
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_ABOVE_MATCH,
-				     CompWindowStateAboveMask);
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_BELOW_MATCH,
-				     CompWindowStateBelowMask);
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_STICKY_MATCH,
-				     CompWindowStateStickyMask);
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH,
-				     CompWindowStateFullscreenMask);
-
-		winrulesSetAllowedActions (w,
-					   WINRULES_SCREEN_OPTION_NOMOVE_MATCH,
-					   CompWindowActionMoveMask);
-
-		winrulesSetAllowedActions (w,
-					   WINRULES_SCREEN_OPTION_NORESIZE_MATCH,
-					   CompWindowActionResizeMask);
-
-		winrulesSetAllowedActions (w,
-					   WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH,
-					   CompWindowActionMinimizeMask);
-
-		winrulesSetAllowedActions (w,
-					   WINRULES_SCREEN_OPTION_NOMAXIMIZE_MATCH,
-					   CompWindowActionMaximizeVertMask|
-					   CompWindowActionMaximizeHorzMask);
-	
-		winrulesSetAllowedActions (w,
-					   WINRULES_SCREEN_OPTION_NOCLOSE_MATCH,
-					   CompWindowActionCloseMask);
-		
-		if (winrulesMatchSize (w, &width, &height))
-		    winrulesUpdateWindowSize (w, width, height);
-	    }
-
-	    ww->firstMap = FALSE;
-	}
-    }
-    else if (event->type == MapRequest)
-    {
-	w = findWindowAtDisplay (d, event->xmap.window);
-	if (w && w->type & WINRULES_TARGET_WINDOWS)
-	    winrulesSetNoFocus (w,WINRULES_SCREEN_OPTION_NOFOCUS_MATCH);
+	    winrulesSetNoFocus (w, WINRULES_SCREEN_OPTION_NOFOCUS_MATCH);
     }
 
     UNWRAP (wd, d, handleEvent);
@@ -530,6 +463,66 @@ winrulesGetAllowedActionsForWindow (CompWindow *w)
 
     return actions & ww->allowedActions;
 
+}
+
+static Bool
+winrulesApplyRules (void *closure)
+{
+    CompWindow *w = (CompWindow *) closure;
+    int        width, height;
+
+    if (!(w->type & WINRULES_TARGET_WINDOWS))
+	return FALSE;
+
+    winrulesUpdateState (w,
+			 WINRULES_SCREEN_OPTION_SKIPTASKBAR_MATCH,
+			 CompWindowStateSkipTaskbarMask);
+
+    winrulesUpdateState (w,
+			 WINRULES_SCREEN_OPTION_SKIPPAGER_MATCH,
+			 CompWindowStateSkipPagerMask);
+
+    winrulesUpdateState (w,
+			 WINRULES_SCREEN_OPTION_ABOVE_MATCH,
+			 CompWindowStateAboveMask);
+
+    winrulesUpdateState (w,
+			 WINRULES_SCREEN_OPTION_BELOW_MATCH,
+			 CompWindowStateBelowMask);
+
+    winrulesUpdateState (w,
+			 WINRULES_SCREEN_OPTION_STICKY_MATCH,
+			 CompWindowStateStickyMask);
+
+    winrulesUpdateState (w,
+			 WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH,
+			 CompWindowStateFullscreenMask);
+
+    winrulesSetAllowedActions (w,
+			       WINRULES_SCREEN_OPTION_NOMOVE_MATCH,
+			       CompWindowActionMoveMask);
+
+    winrulesSetAllowedActions (w,
+			       WINRULES_SCREEN_OPTION_NORESIZE_MATCH,
+			       CompWindowActionResizeMask);
+
+    winrulesSetAllowedActions (w,
+			       WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH,
+			       CompWindowActionMinimizeMask);
+
+    winrulesSetAllowedActions (w,
+			       WINRULES_SCREEN_OPTION_NOMAXIMIZE_MATCH,
+			       CompWindowActionMaximizeVertMask |
+			       CompWindowActionMaximizeHorzMask);
+
+    winrulesSetAllowedActions (w,
+			       WINRULES_SCREEN_OPTION_NOCLOSE_MATCH,
+			       CompWindowActionCloseMask);
+
+    if (winrulesMatchSize (w, &width, &height))
+	winrulesUpdateWindowSize (w, width, height);
+
+    return FALSE;
 }
 
 static Bool
@@ -644,18 +637,16 @@ winrulesInitWindow (CompPlugin *p,
 
     WinrulesWindow *ww = malloc (sizeof (WinrulesWindow));
     if (!ww)
-    {
         return FALSE;
-    }
 
     ww->stateSetMask    = 0;
     ww->protocolSetMask = 0;
 
     ww->allowedActions = ~0;
 
-    ww->firstMap = TRUE;
-
     w->privates[ws->windowPrivateIndex].ptr = ww;
+
+    compAddTimeout (0, winrulesApplyRules, w);
 
     return TRUE;
 }
