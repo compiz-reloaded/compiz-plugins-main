@@ -60,7 +60,10 @@ typedef struct _WinrulesWindow {
 
 typedef struct _WinrulesDisplay {
     int screenPrivateIndex;
-    HandleEventProc handleEvent;
+
+    HandleEventProc            handleEvent;
+    MatchExpHandlerChangedProc matchExpHandlerChanged;
+    MatchPropertyChangedProc   matchPropertyChanged;
 } WinrulesDisplay;
 
 typedef struct _WinrulesScreen {
@@ -525,6 +528,38 @@ winrulesApplyRules (void *closure)
     return FALSE;
 }
 
+
+static void
+winrulesMatchExpHandlerChanged (CompDisplay *d)
+{
+    CompScreen *s;
+    CompWindow *w;
+
+    WINRULES_DISPLAY (d);
+
+    UNWRAP (wd, d, matchExpHandlerChanged);
+    (*d->matchExpHandlerChanged) (d);
+    WRAP (wd, d, matchExpHandlerChanged, winrulesMatchExpHandlerChanged);
+
+    /* match options are up to date after the call to matchExpHandlerChanged */
+    for (s = d->screens; s; s = s->next)
+	for (w = s->windows; w; w = w->next)
+	    winrulesApplyRules (w);
+}
+
+static void
+winrulesMatchPropertyChanged (CompDisplay *d,
+	    		      CompWindow  *w)
+{
+    WINRULES_DISPLAY (d);
+
+    winrulesApplyRules (w);
+
+    UNWRAP (wd, d, matchPropertyChanged);
+    (*d->matchPropertyChanged) (d, w);
+    WRAP (wd, d, matchPropertyChanged, winrulesMatchPropertyChanged);
+}
+
 static Bool
 winrulesInitDisplay (CompPlugin  *p,
 		     CompDisplay *d)
@@ -541,7 +576,11 @@ winrulesInitDisplay (CompPlugin  *p,
         free (wd);
         return FALSE;
     }
+
     WRAP (wd, d, handleEvent, winrulesHandleEvent);
+    WRAP (wd, d, matchExpHandlerChanged, winrulesMatchExpHandlerChanged);
+    WRAP (wd, d, matchPropertyChanged, winrulesMatchPropertyChanged);
+
     d->privates[displayPrivateIndex].ptr = wd;
 
     return TRUE;
@@ -554,7 +593,11 @@ winrulesFiniDisplay (CompPlugin  *p,
     WINRULES_DISPLAY (d);
 
     freeScreenPrivateIndex (d, wd->screenPrivateIndex);
+
     UNWRAP (wd, d, handleEvent);
+    UNWRAP (wd, d, matchExpHandlerChanged);
+    UNWRAP (wd, d, matchPropertyChanged);
+
     free (wd);
 }
 
