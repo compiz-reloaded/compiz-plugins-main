@@ -13,8 +13,10 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * along with this program; if not, write to the
+ * Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301, USA.
  */
 
 #include <compiz.h>
@@ -69,36 +71,36 @@ typedef struct _WinrulesScreen {
     CompOption opt[WINRULES_SCREEN_OPTION_NUM];
 } WinrulesScreen;
 
-#define GET_WINRULES_DISPLAY(d)				     			   \
+#define GET_WINRULES_DISPLAY(d)				\
     ((WinrulesDisplay *) (d)->privates[displayPrivateIndex].ptr)
 
-#define WINRULES_DISPLAY(d)			   				   \
+#define WINRULES_DISPLAY(d)			   	\
     WinrulesDisplay *wd = GET_WINRULES_DISPLAY (d)
 
-#define GET_WINRULES_SCREEN(s, wd)					 	   \
+#define GET_WINRULES_SCREEN(s, wd)				    \
     ((WinrulesScreen *) (s)->privates[(wd)->screenPrivateIndex].ptr)
 
-#define WINRULES_SCREEN(s)							   \
-    WinrulesScreen *ws = GET_WINRULES_SCREEN (s, GET_WINRULES_DISPLAY (s->display))
+#define WINRULES_SCREEN(s)			    \
+    WinrulesScreen *ws = GET_WINRULES_SCREEN (s,    \
+			 GET_WINRULES_DISPLAY (s->display))
 
-#define GET_WINRULES_WINDOW(w, ws)                                   		   \
+#define GET_WINRULES_WINDOW(w, ws)                                  \
     ((WinrulesWindow *) (w)->privates[(ws)->windowPrivateIndex].ptr)
-    
-#define WINRULES_WINDOW(w)							   \
-    WinrulesWindow *ww = GET_WINRULES_WINDOW  (w,				   \
-					    GET_WINRULES_SCREEN  (w->screen,	   \
-					    GET_WINRULES_DISPLAY (w->screen->display)))
+
+#define WINRULES_WINDOW(w)					\
+    WinrulesWindow *ww = GET_WINRULES_WINDOW  (w,		\
+   			 GET_WINRULES_SCREEN  (w->screen,	\
+			 GET_WINRULES_DISPLAY (w->screen->display)))
 
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
-
 static void
-winrulesSetProtocols (CompDisplay *display,
+winrulesSetProtocols (CompDisplay  *display,
 		      unsigned int protocols,
-		      Window id)
+		      Window       id)
 {
     Atom *protocol = NULL;
-    int count = 0;
+    int  count = 0;
 
     if (protocols & CompWindowProtocolDeleteMask)
     {
@@ -131,7 +133,7 @@ winrulesSetProtocols (CompDisplay *display,
 /* FIXME? Directly set inputHint, not a problem for now */
 static void
 winrulesSetNoFocus (CompWindow *w,
-		    int optNum)
+		    int        optNum)
 {
     unsigned int newProtocol = w->protocols;
 
@@ -162,8 +164,8 @@ winrulesSetNoFocus (CompWindow *w,
 
 static void
 winrulesUpdateState (CompWindow *w,
-		     int optNum,
-		     int mask)
+		     int        optNum,
+		     int        mask)
 {
     unsigned int newState = w->state;
 
@@ -200,15 +202,15 @@ winrulesUpdateState (CompWindow *w,
 
 static void
 winrulesSetAllowedActions (CompWindow *w,
-			   int optNum,
-			   int action)
+			   int        optNum,
+			   int        action)
 {
     WINRULES_SCREEN (w->screen);
     WINRULES_WINDOW (w);
 
     if (matchEval (&ws->opt[optNum].value.match, w))
 	ww->allowedActions &= ~action;
-    else if ( !(ww->allowedActions & action))
+    else if (!(ww->allowedActions & action))
 	ww->allowedActions |= action;
 
     recalcWindowActions (w);
@@ -252,20 +254,19 @@ winrulesMatchSize (CompWindow *w,
     WINRULES_SCREEN (w->screen);
 
     return winrulesMatchSizeValue (w,
-				   &ws->opt[WINRULES_SCREEN_OPTION_SIZE_MATCHES],
-				   &ws->opt[WINRULES_SCREEN_OPTION_SIZE_WIDTH_VALUES],
-				   &ws->opt[WINRULES_SCREEN_OPTION_SIZE_HEIGHT_VALUES],
-				   width,
-				   height);
+	&ws->opt[WINRULES_SCREEN_OPTION_SIZE_MATCHES],
+	&ws->opt[WINRULES_SCREEN_OPTION_SIZE_WIDTH_VALUES],
+	&ws->opt[WINRULES_SCREEN_OPTION_SIZE_HEIGHT_VALUES],
+	width, height);
 }
 
 static void
 winrulesUpdateWindowSize (CompWindow *w,
-			  int width,
-			  int height)
+			  int        width,
+			  int        height)
 {
     XWindowChanges xwc;
-    unsigned int xwcm = 0;
+    unsigned int   xwcm = 0;
 
     if (width != w->serverWidth)
 	xwcm |= CWWidth;
@@ -297,9 +298,9 @@ winrulesSetScreenOption (CompPlugin *plugin,
                          const char      *name,
                          CompOptionValue *value)
 {
-    CompOption *o;
-    CompWindow *w;
-    int index;
+    CompOption   *o;
+    int          index;
+    unsigned int updateStateMask = 0, updateActionsMask = 0;
 
     WINRULES_SCREEN (screen);
 
@@ -311,184 +312,64 @@ winrulesSetScreenOption (CompPlugin *plugin,
     {
     case WINRULES_SCREEN_OPTION_SKIPTASKBAR_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_SKIPTASKBAR_MATCH,
-				     CompWindowStateSkipTaskbarMask);
-	    }
-				
-	    return TRUE;
-	}
+	    updateStateMask = CompWindowStateSkipTaskbarMask;
 	break;
 
     case WINRULES_SCREEN_OPTION_SKIPPAGER_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_SKIPPAGER_MATCH,
-				     CompWindowStateSkipPagerMask);
-	    }
-	    return TRUE;
-	}
+	    updateStateMask = CompWindowStateSkipPagerMask;
 	break;
 
     case WINRULES_SCREEN_OPTION_ABOVE_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_ABOVE_MATCH,
-				     CompWindowStateAboveMask);
-	    }
-	    return TRUE;
-	}
+	    updateStateMask = CompWindowStateAboveMask;
 	break;
 	
     case WINRULES_SCREEN_OPTION_BELOW_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_BELOW_MATCH,
-				     CompWindowStateBelowMask);
-	    }
-	    return TRUE;
-	}
+	    updateStateMask = CompWindowStateBelowMask;
 	break;
 	
     case WINRULES_SCREEN_OPTION_STICKY_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_STICKY_MATCH,
-				     CompWindowStateStickyMask);
-	    }
-	    return TRUE;
-	}
+	    updateStateMask = CompWindowStateStickyMask;
 	break;
 	
     case WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesUpdateState (w,
-				     WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH,
-				     CompWindowStateFullscreenMask);
-	    }
-	    return TRUE;
-	}
+	    updateStateMask = CompWindowStateFullscreenMask;
 	break;
 
     case WINRULES_SCREEN_OPTION_NOMOVE_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesSetAllowedActions (w,
-					   WINRULES_SCREEN_OPTION_NOMOVE_MATCH,
-					   CompWindowActionMoveMask);
-	    }
-	    return TRUE;
-	}
+	    updateActionsMask = CompWindowActionMoveMask;
 	break;
 
     case WINRULES_SCREEN_OPTION_NORESIZE_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesSetAllowedActions (w,
-					   WINRULES_SCREEN_OPTION_NORESIZE_MATCH,
-					   CompWindowActionResizeMask);
-	    }
-	    return TRUE;
-	}
+	    updateActionsMask = CompWindowActionResizeMask;
 	break;
 
     case WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesSetAllowedActions (w, 
-					   WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH,
-					   CompWindowActionMinimizeMask);
-	    }
-	    return TRUE;
-	}
+	    updateActionsMask = CompWindowActionMinimizeMask;
 	break;
 
     case WINRULES_SCREEN_OPTION_NOMAXIMIZE_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesSetAllowedActions (w, 
-					   WINRULES_SCREEN_OPTION_NOMAXIMIZE_MATCH,
-					   CompWindowActionMaximizeVertMask|
-					   CompWindowActionMaximizeHorzMask);
-	    }
-	    return TRUE;
-	}
+	    updateActionsMask = CompWindowActionMaximizeVertMask |
+		                CompWindowActionMaximizeHorzMask;
 	break;
 
     case WINRULES_SCREEN_OPTION_NOCLOSE_MATCH:
 	if (compSetMatchOption (o, value))
-	{
-	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-
-		winrulesSetAllowedActions (w, 
-					   WINRULES_SCREEN_OPTION_NOCLOSE_MATCH,
-					   CompWindowActionCloseMask);
-	    }
-	    return TRUE;
-	}
+	    updateActionsMask = CompWindowActionCloseMask;
 	break;
     case WINRULES_SCREEN_OPTION_NOFOCUS_MATCH:
 	if (compSetMatchOption (o, value))
 	{
+	    CompWindow *w;
+
 	    for (w = screen->windows; w; w = w->next)
 	    {
 		if (!w->type & WINRULES_TARGET_WINDOWS)
@@ -514,6 +395,36 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	if (compSetOption (o, value))
 	    return TRUE;
         break;
+    }
+
+    if (updateStateMask)
+    {
+	CompWindow *w;
+
+	for (w = screen->windows; w; w = w->next)
+	{
+	    if (!w->type & WINRULES_TARGET_WINDOWS)
+		continue;
+
+	    winrulesUpdateState (w, index, updateStateMask);
+	}
+
+	return TRUE;
+    }
+
+    if (updateActionsMask)
+    {
+	CompWindow *w;
+
+	for (w = screen->windows; w; w = w->next)
+	{
+	    if (!w->type & WINRULES_TARGET_WINDOWS)
+		continue;
+
+	    winrulesSetAllowedActions (w, index, updateActionsMask);
+	}
+
+	return TRUE;
     }
 
     return FALSE;
@@ -622,7 +533,7 @@ winrulesGetAllowedActionsForWindow (CompWindow *w)
 }
 
 static Bool
-winrulesInitDisplay (CompPlugin  *p, 
+winrulesInitDisplay (CompPlugin  *p,
 		     CompDisplay *d)
 {
     WinrulesDisplay *wd;
@@ -644,7 +555,7 @@ winrulesInitDisplay (CompPlugin  *p,
 }
 
 static void
-winrulesFiniDisplay (CompPlugin  *p, 
+winrulesFiniDisplay (CompPlugin  *p,
 		     CompDisplay *d)
 {
     WINRULES_DISPLAY (d);
@@ -673,7 +584,7 @@ static const CompMetadataOptionInfo winrulesScreenOptionInfo[] = {
 };
 
 static Bool
-winrulesInitScreen (CompPlugin *p, 
+winrulesInitScreen (CompPlugin *p,
 		    CompScreen *s)
 {
     WinrulesScreen *ws;
@@ -711,7 +622,7 @@ winrulesInitScreen (CompPlugin *p,
 }
 
 static void
-winrulesFiniScreen (CompPlugin *p, 
+winrulesFiniScreen (CompPlugin *p,
                     CompScreen *s)
 {
     WINRULES_SCREEN (s);
@@ -726,7 +637,7 @@ winrulesFiniScreen (CompPlugin *p,
 }
 
 static Bool
-winrulesInitWindow (CompPlugin *p, 
+winrulesInitWindow (CompPlugin *p,
 		    CompWindow *w)
 {
     WINRULES_SCREEN (w->screen);
@@ -750,7 +661,7 @@ winrulesInitWindow (CompPlugin *p,
 }
 
 static void
-winrulesFiniWindow (CompPlugin *p, 
+winrulesFiniWindow (CompPlugin *p,
                     CompWindow *w)
 {
     WINRULES_WINDOW (w);
