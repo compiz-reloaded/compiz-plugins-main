@@ -6,6 +6,9 @@
  *
  * Copyright (c) 2007 Robert Carr <racarr@opencompositing.org>
  *
+ * Compiz resize atom usage and general cleanups by
+ * Copyright (c) 2007 Danny Baumann <maniac@opencompositing.org>
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
