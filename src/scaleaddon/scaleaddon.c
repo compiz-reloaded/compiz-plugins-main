@@ -93,9 +93,10 @@ typedef struct _ScaleAddonWindow {
 #define GET_ADDON_WINDOW(w, as)				              \
     ((ScaleAddonWindow *) (w)->privates[(as)->windowPrivateIndex].ptr)
 
-#define ADDON_WINDOW(w)						                 \
-    ScaleAddonWindow *aw = GET_ADDON_WINDOW (w,                                  \
-	    GET_ADDON_SCREEN (w->screen, GET_ADDON_DISPLAY (w->screen->display)))
+#define ADDON_WINDOW(w)						   \
+    ScaleAddonWindow *aw = GET_ADDON_WINDOW (w,                    \
+	                   GET_ADDON_SCREEN (w->screen,            \
+			   GET_ADDON_DISPLAY (w->screen->display)))
 
 
 static void
@@ -106,7 +107,7 @@ scaleaddonFreeWindowTitle (CompScreen *s)
     if (!as->textPixmap)
 	return;
 
-    releasePixmapFromTexture(s, &as->textTexture);
+    releasePixmapFromTexture (s, &as->textTexture);
     initTexture (s, &as->textTexture);
     XFreePixmap (s->display->display, as->textPixmap);
     as->textPixmap = None;
@@ -119,27 +120,26 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     float          scale;
     int            stride;
     void*          data;
+    CompScreen     *s = w->screen;
 
-    ADDON_SCREEN (w->screen);
+    ADDON_SCREEN (s);
     SCALE_WINDOW (w);
 
-    scaleaddonFreeWindowTitle(w->screen);
-
-    if (!scaleaddonGetWindowTitle (w->screen))
+    scaleaddonFreeWindowTitle (s);
+    if (!scaleaddonGetWindowTitle (s))
 	return;
 
     scale = sw->slot ? sw->slot->scale : sw->scale;
-    tA.maxwidth = (w->attrib.width * scale) -
-	          (2 * scaleaddonGetBorderSize (w->screen));
-    tA.maxheight = (w->attrib.height * scale) -
-     	           (2 * scaleaddonGetBorderSize (w->screen));
-    tA.screen = w->screen;
-    tA.size = scaleaddonGetTitleSize (w->screen);
-    tA.color[0] = scaleaddonGetFontColorRed (w->screen);
-    tA.color[1] = scaleaddonGetFontColorGreen (w->screen);
-    tA.color[2] = scaleaddonGetFontColorBlue (w->screen);
-    tA.color[3] = scaleaddonGetFontColorAlpha (w->screen);
-    tA.style = (scaleaddonGetTitleBold (w->screen)) ?
+    tA.maxwidth = (w->attrib.width * scale) - (2 * scaleaddonGetBorderSize (s));
+    tA.maxheight = (w->attrib.height * scale) - 
+	           (2 * scaleaddonGetBorderSize (s));
+    tA.screen = s;
+    tA.size = scaleaddonGetTitleSize (s);
+    tA.color[0] = scaleaddonGetFontColorRed (s);
+    tA.color[1] = scaleaddonGetFontColorGreen (s);
+    tA.color[2] = scaleaddonGetFontColorBlue (s);
+    tA.color[3] = scaleaddonGetFontColorAlpha (s);
+    tA.style = (scaleaddonGetTitleBold (s)) ?
 	       TEXT_STYLE_BOLD : TEXT_STYLE_NORMAL;
     tA.family = "Sans";
     tA.ellipsize = TRUE;
@@ -147,12 +147,21 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     tA.renderMode = TextRenderWindowTitle;
     tA.data = (void*)w->id;
 
-    if ((*w->screen->display->fileToImage) (w->screen->display, TEXT_ID, (char *)&tA,
-					    &as->textWidth, &as->textHeight, &stride, &data))
+    if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *)&tA,
+				    &as->textWidth, &as->textHeight,
+				    &stride, &data))
     {
 	as->textPixmap = (Pixmap)data;
-	bindPixmapToTexture (w->screen, &as->textTexture, as->textPixmap,
-			     as->textWidth, as->textHeight, 32);
+	if (!bindPixmapToTexture (s, &as->textTexture, as->textPixmap,
+	     			  as->textWidth, as->textHeight, 32))
+	{
+	    compLogMessage (s->display, "scaleaddon", CompLogLevelError,
+			    "Bind pixmap to texture failed.\n");
+	    XFreePixmap (s->display->display, as->textPixmap);
+	    as->textPixmap = None;
+	    as->textWidth = 0;
+	    as->textHeight = 0;
+	}
     }
     else
     {
@@ -165,20 +174,21 @@ scaleaddonRenderWindowTitle (CompWindow *w)
 static void
 scaleaddonDrawWindowTitle (CompWindow *w)
 {
-    ADDON_SCREEN (w->screen);
+    GLboolean  wasBlend;
+    GLint      oldBlendSrc, oldBlendDst;
+    float      x, y, width, height, border;
+    CompScreen *s = w->screen;
+    CompMatrix *m;
+
+    ADDON_SCREEN (s);
     SCALE_WINDOW (w);
 
-    GLboolean wasBlend;
-    GLint     oldBlendSrc, oldBlendDst;
+    width = as->textWidth;
+    height = as->textHeight;
+    border = scaleaddonGetBorderSize (s);
 
-    float width = as->textWidth;
-    float height = as->textHeight;
-    float border = scaleaddonGetBorderSize (w->screen);
-
-    float x = sw->tx + w->attrib.x +
-	      ((w->attrib.width * sw->scale) / 2) - (as->textWidth / 2);
-    float y = sw->ty + w->attrib.y +
-	      ((w->attrib.height * sw->scale) / 2) - (as->textHeight / 2);
+    x = sw->tx + w->attrib.x + ((WIN_W (w) * sw->scale) / 2) - (width / 2);
+    y = sw->ty + w->attrib.y + ((WIN_H (w) * sw->scale) / 2) - (height / 2);
 
     x = floor (x);
     y = floor (y);
@@ -192,10 +202,10 @@ scaleaddonDrawWindowTitle (CompWindow *w)
 
     glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-    glColor4us (scaleaddonGetBackColorRed (w->screen),
-		scaleaddonGetBackColorGreen (w->screen),
-		scaleaddonGetBackColorBlue (w->screen),
-		scaleaddonGetBackColorAlpha (w->screen));
+    glColor4us (scaleaddonGetBackColorRed (s),
+		scaleaddonGetBackColorGreen (s),
+		scaleaddonGetBackColorBlue (s),
+		scaleaddonGetBackColorAlpha (s));
 
     glPushMatrix ();
 
@@ -210,7 +220,7 @@ scaleaddonDrawWindowTitle (CompWindow *w)
 #define CORNER(a,b) \
     for (k = a; k < b; k++) \
     {\
-	float rad = k* (3.14159 / 180.0f);\
+	float rad = k * (3.14159 / 180.0f);\
 	glVertex2f (0.0f, 0.0f);\
 	glVertex2f (cos (rad) * border, sin (rad) * border);\
 	glVertex2f (cos ((k - 1) * (3.14159 / 180.0f)) * border, \
@@ -247,24 +257,24 @@ scaleaddonDrawWindowTitle (CompWindow *w)
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glColor4f (1.0, 1.0, 1.0, 1.0);
 
-    enableTexture (w->screen, &as->textTexture, COMP_TEXTURE_FILTER_GOOD);
+    enableTexture (s, &as->textTexture, COMP_TEXTURE_FILTER_GOOD);
 
-    CompMatrix *m = &as->textTexture.matrix;
+    m = &as->textTexture.matrix;
 
     glBegin (GL_QUADS);
 
-    glTexCoord2f (COMP_TEX_COORD_X(m, 0),COMP_TEX_COORD_Y(m ,0));
+    glTexCoord2f (COMP_TEX_COORD_X (m, 0),COMP_TEX_COORD_Y (m ,0));
     glVertex2f (x, y - height);
-    glTexCoord2f (COMP_TEX_COORD_X(m, 0),COMP_TEX_COORD_Y(m, height));
+    glTexCoord2f (COMP_TEX_COORD_X (m, 0),COMP_TEX_COORD_Y (m, height));
     glVertex2f (x, y);
-    glTexCoord2f (COMP_TEX_COORD_X(m, width),COMP_TEX_COORD_Y(m, height));
+    glTexCoord2f (COMP_TEX_COORD_X (m, width),COMP_TEX_COORD_Y (m, height));
     glVertex2f (x + width, y);
-    glTexCoord2f (COMP_TEX_COORD_X(m, width),COMP_TEX_COORD_Y(m, 0));
+    glTexCoord2f (COMP_TEX_COORD_X (m, width),COMP_TEX_COORD_Y (m, 0));
     glVertex2f (x + width, y - height);
 
     glEnd ();
 
-    disableTexture (w->screen, &as->textTexture);
+    disableTexture (s, &as->textTexture);
     glColor4usv (defaultColor);
 
     if (!wasBlend)
@@ -275,19 +285,21 @@ scaleaddonDrawWindowTitle (CompWindow *w)
 static void
 scaleaddonDrawWindowHighlight (CompWindow *w)
 {
+    GLboolean  wasBlend;
+    GLint      oldBlendSrc, oldBlendDst;
+    float      x, y, width, height;
+    CompScreen *s = w->screen;
+
     SCALE_WINDOW (w);
     ADDON_WINDOW (w);
-
-    GLboolean wasBlend;
-    GLint     oldBlendSrc, oldBlendDst;
 
     if (aw->rescaled)
 	return;
 
-    float x      = sw->tx + w->attrib.x - (w->input.left * sw->scale);
-    float y      = sw->ty + w->attrib.y - (w->input.top * sw->scale);
-    float width  = WIN_W(w) * sw->scale;
-    float height = WIN_H(w) * sw->scale;
+    x      = sw->tx + w->attrib.x - (w->input.left * sw->scale);
+    y      = sw->ty + w->attrib.y - (w->input.top * sw->scale);
+    width  = WIN_W (w) * sw->scale;
+    height = WIN_H (w) * sw->scale;
 
     /* we use a poor replacement for roundf()
      * (available in C99 only) here */
@@ -303,10 +315,10 @@ scaleaddonDrawWindowHighlight (CompWindow *w)
 
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glColor4us (scaleaddonGetHighlightColorRed (w->screen),
-		scaleaddonGetHighlightColorGreen (w->screen),
-		scaleaddonGetHighlightColorBlue (w->screen),
-		scaleaddonGetHighlightColorAlpha (w->screen));
+    glColor4us (scaleaddonGetHighlightColorRed (s),
+		scaleaddonGetHighlightColorGreen (s),
+		scaleaddonGetHighlightColorBlue (s),
+		scaleaddonGetHighlightColorAlpha (s));
 
     glRectf (x, y + height, x + width, y);
 
@@ -346,27 +358,24 @@ scaleaddonCheckHoveredWindow (CompScreen *s)
     }
 }
 
-static CompWindow *
-scaleaddonCheckForWindowAt (CompScreen * s, int x, int y)
+static CompWindow*
+scaleaddonCheckForWindowAt (CompScreen *s,
+			    int        x,
+			    int        y)
 {
-    int x1, y1, x2, y2;
+    int        x1, y1, x2, y2;
     CompWindow *w;
 
     for (w = s->reverseWindows; w; w = w->prev)
     {
-        SCALE_WINDOW(w);
+        SCALE_WINDOW (w);
 
         if (sw->slot)
 	{
-	    x1 = w->attrib.x - w->input.left * sw->scale;
-            y1 = w->attrib.y - w->input.top * sw->scale;
-            x2 = w->attrib.x + (w->width + w->input.right) * sw->scale;
-            y2 = w->attrib.y + (w->height + w->input.bottom) * sw->scale;
-
-            x1 += sw->tx;
-            y1 += sw->ty;
-            x2 += sw->tx;
-            y2 += sw->ty;
+	    x1 = sw->tx + WIN_X (w) - w->input.left * sw->scale;
+            y1 = sw->ty + WIN_Y (w) - w->input.top * sw->scale;
+            x2 = sw->tx + WIN_X (w) + (w->width + w->input.right) * sw->scale;
+            y2 = sw->ty + WIN_Y (w) + (w->height + w->input.bottom) * sw->scale;
 
             if (x1 <= x && y1 <= y && x2 > x && y2 > y)
                 return w;
@@ -452,8 +461,8 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	    ADDON_WINDOW (w);
 
 	    XRectangle outputRect;
-	    BOX outputBox;
-	    int head;
+	    BOX        outputBox;
+	    int        head;
 
 	    if (!sw->slot)
 		return FALSE;
@@ -469,7 +478,7 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	    if (!aw->rescaled)
 	    {
 		aw->oldAbove = w->next;
-		raiseWindow(w);
+		raiseWindow (w);
 	
 		/* backup old values */
 		aw->origSlot = *sw->slot;
@@ -566,9 +575,11 @@ scaleaddonScalePaintDecoration (CompWindow              *w,
 				Region                  region,
 				unsigned int            mask)
 {
-    ADDON_SCREEN (w->screen);
-    SCALE_SCREEN (w->screen);
-    SCALE_DISPLAY (w->screen->display);
+    CompScreen *s = w->screen;
+
+    ADDON_SCREEN (s);
+    SCALE_SCREEN (s);
+    SCALE_DISPLAY (s->display);
 
     UNWRAP (as, ss, scalePaintDecoration);
     (*ss->scalePaintDecoration) (w, attrib, transform, region, mask);
@@ -579,7 +590,7 @@ scaleaddonScalePaintDecoration (CompWindow              *w,
     if ((w->id == sd->hoveredWindow) &&
 	((ss->state == SCALE_STATE_WAIT) || (ss->state == SCALE_STATE_OUT)))
     {
-	if (scaleaddonGetWindowHighlight (w->screen))
+	if (scaleaddonGetWindowHighlight (s))
 	    scaleaddonDrawWindowHighlight (w);
 
 	if (as->textPixmap)
@@ -603,18 +614,22 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
     if ((strcmp (pluginName, "scale") == 0) &&
 	(strcmp (eventName, "activate") == 0))
     {
-	Window xid = getIntOptionNamed (option, nOption, "root", 0);
-	Bool activated = getIntOptionNamed (option, nOption, "activated", FALSE);
-	CompScreen *s = findScreenAtDisplay (d, xid);
+	Window     xid;
+	Bool       activated;
+	CompScreen *s;
+	
+	xid = getIntOptionNamed (option, nOption, "root", 0);
+	activated = getIntOptionNamed (option, nOption, "activated", FALSE);
+	s = findScreenAtDisplay (d, xid);
 
 	if (s)
 	{
 	    if (activated)
 	    {
-		addScreenAction (s, scaleaddonGetCloseKey (s->display));
-		addScreenAction (s, scaleaddonGetZoomKey (s->display));
-		addScreenAction (s, scaleaddonGetCloseButton (s->display));
-		addScreenAction (s, scaleaddonGetZoomButton (s->display));
+		addScreenAction (s, scaleaddonGetCloseKey (d));
+		addScreenAction (s, scaleaddonGetZoomKey (d));
+		addScreenAction (s, scaleaddonGetCloseButton (d));
+		addScreenAction (s, scaleaddonGetZoomButton (d));
 	    }
 	    else
 	    {
@@ -626,10 +641,10 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 		    aw->rescaled = FALSE;
 		}
 
-		removeScreenAction (s, scaleaddonGetCloseKey (s->display));
-		removeScreenAction (s, scaleaddonGetZoomKey (s->display));
-		removeScreenAction (s, scaleaddonGetCloseButton (s->display));
-		removeScreenAction (s, scaleaddonGetZoomButton (s->display));
+		removeScreenAction (s, scaleaddonGetCloseKey (d));
+		removeScreenAction (s, scaleaddonGetZoomKey (d));
+		removeScreenAction (s, scaleaddonGetCloseButton (d));
+		removeScreenAction (s, scaleaddonGetZoomButton (d));
 	    }
 	}
     }
@@ -642,16 +657,20 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 #define ORGANIC_STEP 0.05
 
 static int
-organicCompareWindows (const void *elem1, const void *elem2)
+organicCompareWindows (const void *elem1,
+		       const void *elem2)
 {
     CompWindow *w1 = *((CompWindow **) elem1);
     CompWindow *w2 = *((CompWindow **) elem2);
 
-    return (WIN_X(w1) + WIN_Y(w1)) - (WIN_X(w2) + WIN_Y(w2));
+    return (WIN_X (w1) + WIN_Y (w1)) - (WIN_X (w2) + WIN_Y (w2));
 }
 
 static double
-layoutOrganicCalculateOverlap (CompScreen * s, int win, int x, int y)
+layoutOrganicCalculateOverlap (CompScreen *s,
+			       int        win,
+			       int        x,
+			       int        y)
 {
     SCALE_SCREEN (s);
     ADDON_SCREEN (s);
@@ -923,12 +942,10 @@ layoutOrganicRemoveOverlap (CompScreen * s, int areaWidth, int areaHeight)
 }
 
 static Bool
-layoutOrganicThumbs(CompScreen * s)
+layoutOrganicThumbs (CompScreen *s)
 {
     CompWindow *w;
-
-    int i;
-    int moMode;
+    int        i, moMode;
     XRectangle workArea;
 
     SCALE_SCREEN (s);
