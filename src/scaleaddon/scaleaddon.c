@@ -672,185 +672,202 @@ layoutOrganicCalculateOverlap (CompScreen *s,
 			       int        x,
 			       int        y)
 {
+    int    i;
+    int    x1, y1, x2, y2;
+    int    overlapX, overlapY;
+    int    xMin, xMax, yMin, yMax;
+    double result = -0.01;
+
     SCALE_SCREEN (s);
     ADDON_SCREEN (s);
 
-    int i;
-    int x1 = x;
-    int y1 = y;
-    int x2 = x1 + WIN_W (ss->windows[win]) * as->scale;
-    int y2 = y1 + WIN_H (ss->windows[win]) * as->scale;
-    int overlapx = 0, overlapy = 0;
-    int xmin, xmax;
-    int ymin, ymax;
-
-    double result = -0.01;
+    x1 = x;
+    y1 = y;
+    x2 = x1 + WIN_W (ss->windows[win]) * as->scale;
+    y2 = y1 + WIN_H (ss->windows[win]) * as->scale;
 
     for (i = 0; i < ss->nWindows; i++)
     {
 	if (i == win)
 	    continue;
-	overlapx = overlapy = 0;
-	xmax = MAX (ss->slots[i].x1, x1);
-	xmin = MIN (ss->slots[i].x1 + WIN_W(ss->windows[i]) * as->scale, x2);
-	if (xmax <= xmin)
-	    overlapx = xmin - xmax;
 
-	ymax = MAX (ss->slots[i].y1, y1);
-	ymin = MIN (ss->slots[i].y1 + WIN_H(ss->windows[i]) * as->scale, y2);
+	overlapX = overlapY = 0;
+	xMax = MAX (ss->slots[i].x1, x1);
+	xMin = MIN (ss->slots[i].x1 + WIN_W (ss->windows[i]) * as->scale, x2);
+	if (xMax <= xMin)
+	    overlapX = xMin - xMax;
 
-	if (ymax <= ymin)
-	    overlapy = ymin - ymax;
+	yMax = MAX (ss->slots[i].y1, y1);
+	yMin = MIN (ss->slots[i].y1 + WIN_H (ss->windows[i]) * as->scale, y2);
 
-	result += (double)overlapx * overlapy;
+	if (yMax <= yMin)
+	    overlapY = yMin - yMax;
+
+	result += (double)overlapX * overlapY;
     }
+
     return result;
 }
 
 static double
-layoutOrganicFindBestHorizontalPosition (CompScreen * s, int win,
-					 int *bestx, int areaWidth)
+layoutOrganicFindBestHorizontalPosition (CompScreen *s,
+					 int        win,
+					 int        *bestX,
+					 int        areaWidth)
 {
+    int    i, y1, y2, w;
+    double bestOverlap = 1e31, overlap;
+
     SCALE_SCREEN (s);
     ADDON_SCREEN (s);
 
-    int i;
-    int y1 = ss->slots[win].y1;
-    int y2 = ss->slots[win].y1 + WIN_H(ss->windows[win]) * as->scale;
+    y1 = ss->slots[win].y1;
+    y2 = ss->slots[win].y1 + WIN_H (ss->windows[win]) * as->scale;
 
-    double bestoverlap = 1e31, overlap;
-    int w = WIN_W(ss->windows[win]) * as->scale;
-
-    *bestx = ss->slots[win].x1;
+    w = WIN_W (ss->windows[win]) * as->scale;
+    *bestX = ss->slots[win].x1;
 
     for (i = 0; i < ss->nWindows; i++)
     {
+	CompWindow *lw = ss->windows[i];
 	if (i == win)
 	    continue;
 
 	if (ss->slots[i].y1 < y2 &&
-	    ss->slots[i].y1 + WIN_H(ss->windows[i]) * as->scale > y1)
+	    ss->slots[i].y1 + WIN_H (lw) * as->scale > y1)
 	{
 	    if (ss->slots[i].x1 - w >= 0)
 	    {
-		double overlap = layoutOrganicCalculateOverlap (s, win,
-								ss->slots[i].x1 - w, y1);
+		double overlap;
+		
+		overlap = layoutOrganicCalculateOverlap (s, win,
+		 					 ss->slots[i].x1 - w,
+							 y1);
 
-		if (overlap < bestoverlap)
+		if (overlap < bestOverlap)
 		{
-		    *bestx = ss->slots[i].x1 - w;
-		    bestoverlap = overlap;
+		    *bestX = ss->slots[i].x1 - w;
+		    bestOverlap = overlap;
 		}
 	    }
-	    if (WIN_W(ss->windows[i]) * as->scale +
-		ss->slots[i].x1 + w < areaWidth)
+	    if (WIN_W (lw) * as->scale + ss->slots[i].x1 + w < areaWidth)
 	    {
-		double overlap = layoutOrganicCalculateOverlap (s, win,
-								ss->slots[i].x1 +
-								WIN_W(ss->windows[i]) *
-		     						as->scale, y1);
+		double overlap;
+		
+		overlap = layoutOrganicCalculateOverlap (s, win,
+		 					 ss->slots[i].x1 +
+		 					 WIN_W (lw) * as->scale,
+		 					 y1);
 
-		if (overlap < bestoverlap)
+		if (overlap < bestOverlap)
 		{
-		    *bestx = ss->slots[i].x1 + WIN_W(ss->windows[i]) * as->scale;
-		    bestoverlap = overlap;
+		    *bestX = ss->slots[i].x1 + WIN_W (lw) * as->scale;
+		    bestOverlap = overlap;
 		}
 	    }
 	}
     }
 
     overlap = layoutOrganicCalculateOverlap (s, win, 0, y1);
-    if (overlap < bestoverlap)
+    if (overlap < bestOverlap)
     {
-	*bestx = 0;
-	bestoverlap = overlap;
+	*bestX = 0;
+	bestOverlap = overlap;
     }
 
     overlap = layoutOrganicCalculateOverlap (s, win, areaWidth - w, y1);
-    if (overlap < bestoverlap)
+    if (overlap < bestOverlap)
     {
-	*bestx = areaWidth - w;
-	bestoverlap = overlap;
+	*bestX = areaWidth - w;
+	bestOverlap = overlap;
     }
 
-    return bestoverlap;
+    return bestOverlap;
 }
 
 static double
-layoutOrganicFindBestVerticalPosition (CompScreen * s, int win,
-				       int *besty, int areaHeight)
+layoutOrganicFindBestVerticalPosition (CompScreen *s,
+				       int        win,
+				       int        *bestY,
+				       int        areaHeight)
 {
+    int    i, x1, x2, h;
+    double bestOverlap = 1e31, overlap;
+
     SCALE_SCREEN (s);
     ADDON_SCREEN (s);
 
-    int i;
-    int x1 = ss->slots[win].x1;
-    int x2 = ss->slots[win].x1 + WIN_W(ss->windows[win]) * as->scale;
-
-    double bestoverlap = 1e31, overlap;
-    int h = WIN_H(ss->windows[win]) * as->scale;
-
-    *besty = ss->slots[win].y1;
+    x1 = ss->slots[win].x1;
+    x2 = ss->slots[win].x1 + WIN_W (ss->windows[win]) * as->scale;
+    h = WIN_H (ss->windows[win]) * as->scale;
+    *bestY = ss->slots[win].y1;
 
     for (i = 0; i < ss->nWindows; i++)
     {
+	CompWindow *w = ss->windows[i];
+
 	if (i == win)
 	    continue;
 
 	if (ss->slots[i].x1 < x2 &&
-	    ss->slots[i].x1 + WIN_W(ss->windows[i]) * as->scale > x1)
+	    ss->slots[i].x1 + WIN_W (w) * as->scale > x1)
 	{
 	    if (ss->slots[i].y1 - h >= 0 && ss->slots[i].y1 < areaHeight)
 	    {
-		double overlap = layoutOrganicCalculateOverlap (s, win, x1,
-								ss->slots[i].y1 - h);
-		if (overlap < bestoverlap)
+		double overlap;
+		overlap = layoutOrganicCalculateOverlap (s, win, x1,
+	 						 ss->slots[i].y1 - h);
+		if (overlap < bestOverlap)
 		{
-		    *besty = ss->slots[i].y1 - h;
-		    bestoverlap = overlap;
+		    *bestY = ss->slots[i].y1 - h;
+		    bestOverlap = overlap;
 		}
 	    }
-	    if (WIN_H(ss->windows[i]) * as->scale + ss->slots[i].y1 > 0 &&
-		WIN_H(ss->windows[i]) * as->scale + h + ss->slots[i].y1 < areaHeight)
+	    if (WIN_H (w) * as->scale + ss->slots[i].y1 > 0 &&
+		WIN_H (w) * as->scale + h + ss->slots[i].y1 < areaHeight)
 	    {
-		double overlap = layoutOrganicCalculateOverlap (s, win, x1,
-								WIN_H(ss->windows[i]) *
-		     						as->scale +
-								ss->slots[i].y1);
+		double overlap;
+		
+		overlap = layoutOrganicCalculateOverlap (s, win, x1,
+		 					 WIN_H (w) * as->scale +
+							 ss->slots[i].y1);
 
-		if (overlap < bestoverlap)
+		if (overlap < bestOverlap)
 		{
-		    *besty = ss->slots[i].y1 + WIN_H(ss->windows[i]) * as->scale;
-		    bestoverlap = overlap;
+		    *bestY = ss->slots[i].y1 + WIN_H(w) * as->scale;
+		    bestOverlap = overlap;
 		}
 	    }
 	}
     }
 
     overlap = layoutOrganicCalculateOverlap (s, win, x1, 0);
-    if (overlap < bestoverlap)
+    if (overlap < bestOverlap)
     {
-	*besty = 0;
-	bestoverlap = overlap;
+	*bestY = 0;
+	bestOverlap = overlap;
     }
 
     overlap = layoutOrganicCalculateOverlap (s, win, x1, areaHeight - h);
-    if (overlap < bestoverlap)
+    if (overlap < bestOverlap)
     {
-	*besty = areaHeight - h;
-	bestoverlap = overlap;
+	*bestY = areaHeight - h;
+	bestOverlap = overlap;
     }
 
-    return bestoverlap;
+    return bestOverlap;
 }
 
 static Bool
-layoutOrganicLocalSearch (CompScreen * s, int areaWidth, int areaHeight)
+layoutOrganicLocalSearch (CompScreen *s,
+			  int        areaWidth,
+			  int        areaHeight)
 {
-    SCALE_SCREEN(s);
-    Bool improvement;
-    int i;
-    double totaloverlap;
+    Bool   improvement;
+    int    i;
+    double totalOverlap;
+
+    SCALE_SCREEN (s);
 
     do
     {
@@ -861,51 +878,54 @@ layoutOrganicLocalSearch (CompScreen * s, int areaWidth, int areaHeight)
 
 	    do
 	    {
-		int newx, newy;
-		double oldoverlap, overlaph, overlapv;
+		int    newX, newY;
+		double oldOverlap, overlapH, overlapV;
 
 		improved = FALSE;
-		oldoverlap = layoutOrganicCalculateOverlap (s, i,
+		oldOverlap = layoutOrganicCalculateOverlap (s, i,
  							    ss->slots[i].x1,
 							    ss->slots[i].y1);
 
-		overlaph =
-		    layoutOrganicFindBestHorizontalPosition (s, i, &newx, areaWidth);
-		overlapv =
-		    layoutOrganicFindBestVerticalPosition (s, i, &newy, areaHeight);
+		overlapH = layoutOrganicFindBestHorizontalPosition (s, i,
+								    &newX,
+								    areaWidth);
+		overlapV = layoutOrganicFindBestVerticalPosition (s, i,
+								  &newY,
+								  areaHeight);
 
-		if (overlaph < oldoverlap - 0.1 ||
-		    overlapv < oldoverlap - 0.1)
+		if (overlapH < oldOverlap - 0.1 ||
+		    overlapV < oldOverlap - 0.1)
 		{
 		    improved = TRUE;
 		    improvement = TRUE;
-		    if (overlapv > overlaph)
-			ss->slots[i].x1 = newx;
+		    if (overlapV > overlapH)
+			ss->slots[i].x1 = newX;
 		    else
-			ss->slots[i].y1 = newy;
+			ss->slots[i].y1 = newY;
 		}
-
     	    }
 	    while (improved);
 	}
     }
     while (improvement);
 
-    totaloverlap = 0.0;
+    totalOverlap = 0.0;
     for (i = 0; i < ss->nWindows; i++)
     {
-	totaloverlap += layoutOrganicCalculateOverlap (s,
-						       i, ss->slots[i].x1,
+	totalOverlap += layoutOrganicCalculateOverlap (s, i,
+						       ss->slots[i].x1,
 						       ss->slots[i].y1);
     }
-    return (totaloverlap > 0.1);
+
+    return (totalOverlap > 0.1);
 }
 
 static void
-layoutOrganicRemoveOverlap (CompScreen * s, int areaWidth, int areaHeight)
+layoutOrganicRemoveOverlap (CompScreen *s,
+			    int        areaWidth,
+			    int        areaHeight)
 {
-    int i;
-    int spacing;
+    int        i, spacing;
     CompWindow *w;
 
     SCALE_SCREEN (s);
@@ -922,20 +942,20 @@ layoutOrganicRemoveOverlap (CompScreen * s, int areaWidth, int areaHeight)
 
 	    w = ss->windows[i];
 
-	    centerX = ss->slots[i].x1 + WIN_W(w) / 2;
-	    centerY = ss->slots[i].y1 + WIN_H(w) / 2;
+	    centerX = ss->slots[i].x1 + WIN_W (w) / 2;
+	    centerY = ss->slots[i].y1 + WIN_H (w) / 2;
 
 	    newWidth = (int)((1.0 - ORGANIC_STEP) *
-			     (double)WIN_W(w)) - spacing / 2;
+			     (double)WIN_W (w)) - spacing / 2;
 	    newHeight = (int)((1.0 - ORGANIC_STEP) *
-			      (double)WIN_H(w)) - spacing / 2;
+			      (double)WIN_H (w)) - spacing / 2;
 	    newX = centerX - (newWidth / 2);
 	    newY = centerY - (newHeight / 2);
 
 	    ss->slots[i].x1 = newX;
 	    ss->slots[i].y1 = newY;
-	    ss->slots[i].x2 = newX + WIN_W(w);
-	    ss->slots[i].y2 = newY + WIN_H(w);
+	    ss->slots[i].x2 = newX + WIN_W (w);
+	    ss->slots[i].y2 = newY + WIN_H (w);
 	}
 	as->scale -= ORGANIC_STEP;
     }
@@ -970,8 +990,8 @@ layoutOrganicThumbs (CompScreen *s)
 
     for (i = 0; i < ss->nWindows; i++)
     {
-	SCALE_WINDOW (ss->windows[i]);
 	w = ss->windows[i];
+	SCALE_WINDOW (w);
 
 	sw->slot = &ss->slots[i];
 	ss->slots[i].x1 = WIN_X (w) - workArea.x;
@@ -1009,15 +1029,16 @@ layoutOrganicThumbs (CompScreen *s)
 				workArea.height - workArea.y);
     for (i = 0; i < ss->nWindows; i++)
     {
-	SCALE_WINDOW (ss->windows[i]);
+	w = ss->windows[i];
+	SCALE_WINDOW (w);
 
 	if (ss->type == ScaleTypeGroup)
 	    raiseWindow (ss->windows[i]);
 
-	ss->slots[i].x1 += ss->windows[i]->input.left + workArea.x;
-	ss->slots[i].x2 += ss->windows[i]->input.left + workArea.x;
-	ss->slots[i].y1 += ss->windows[i]->input.top + workArea.y;
-	ss->slots[i].y2 += ss->windows[i]->input.top + workArea.y;
+	ss->slots[i].x1 += w->input.left + workArea.x;
+	ss->slots[i].x2 += w->input.left + workArea.x;
+	ss->slots[i].y1 += w->input.top + workArea.y;
+	ss->slots[i].y2 += w->input.top + workArea.y;
 	sw->adjust = TRUE;
     }
 
