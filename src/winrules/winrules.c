@@ -36,26 +36,28 @@
 #define WINRULES_SCREEN_OPTION_BELOW_MATCH        3
 #define WINRULES_SCREEN_OPTION_STICKY_MATCH       4
 #define WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH   5
-#define WINRULES_SCREEN_OPTION_NOMOVE_MATCH       6
-#define WINRULES_SCREEN_OPTION_NORESIZE_MATCH     7
-#define WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH   8
-#define WINRULES_SCREEN_OPTION_NOMAXIMIZE_MATCH   9
-#define WINRULES_SCREEN_OPTION_NOCLOSE_MATCH      10
-#define WINRULES_SCREEN_OPTION_NOFOCUS_MATCH      11
-#define WINRULES_SCREEN_OPTION_SIZE_MATCHES	  12
-#define WINRULES_SCREEN_OPTION_SIZE_WIDTH_VALUES  13
-#define WINRULES_SCREEN_OPTION_SIZE_HEIGHT_VALUES 14
-#define WINRULES_SCREEN_OPTION_NUM		  15
+#define WINRULES_SCREEN_OPTION_NOARGB_MATCH       6
+#define WINRULES_SCREEN_OPTION_NOMOVE_MATCH       7
+#define WINRULES_SCREEN_OPTION_NORESIZE_MATCH     8
+#define WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH   9
+#define WINRULES_SCREEN_OPTION_NOMAXIMIZE_MATCH   10
+#define WINRULES_SCREEN_OPTION_NOCLOSE_MATCH      11
+#define WINRULES_SCREEN_OPTION_NOFOCUS_MATCH      12
+#define WINRULES_SCREEN_OPTION_SIZE_MATCHES	  13
+#define WINRULES_SCREEN_OPTION_SIZE_WIDTH_VALUES  14
+#define WINRULES_SCREEN_OPTION_SIZE_HEIGHT_VALUES 15
+#define WINRULES_SCREEN_OPTION_NUM		  16
 
 static CompMetadata winrulesMetadata;
 
 static int displayPrivateIndex;
 
 typedef struct _WinrulesWindow {
-
     unsigned int allowedActions;
     unsigned int stateSetMask;
     unsigned int protocolSetMask;
+
+    Bool hasAlpha;
 } WinrulesWindow;
 
 typedef struct _WinrulesDisplay {
@@ -161,6 +163,24 @@ winrulesSetNoFocus (CompWindow *w,
 	winrulesSetProtocols (w->screen->display,
 		      w->protocols,
 		      w->id);
+}
+
+static void
+winrulesSetNoAlpha (CompWindow *w,
+	  	    int        optNum)
+{
+    WINRULES_SCREEN (w->screen);
+    WINRULES_WINDOW (w);
+
+    if (matchEval (&ws->opt[optNum].value.match, w))
+    {
+	ww->hasAlpha = w->alpha;
+	w->alpha = FALSE;
+    }
+    else
+    {
+	w->alpha = ww->hasAlpha;
+    }
 }
 
 static void
@@ -366,6 +386,21 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	if (compSetMatchOption (o, value))
 	    updateActionsMask = CompWindowActionCloseMask;
 	break;
+    case WINRULES_SCREEN_OPTION_NOARGB_MATCH:
+	if (compSetMatchOption (o, value))
+	{
+	    CompWindow *w;
+
+	    for (w = screen->windows; w; w = w->next)
+	    {
+		if (!w->type & WINRULES_TARGET_WINDOWS)
+		    continue;
+		
+		winrulesSetNoAlpha (w, WINRULES_SCREEN_OPTION_NOARGB_MATCH);
+	    }
+	    return TRUE;
+	}
+	break;
     case WINRULES_SCREEN_OPTION_NOFOCUS_MATCH:
 	if (compSetMatchOption (o, value))
 	{
@@ -522,6 +557,8 @@ winrulesApplyRules (void *closure)
 			       WINRULES_SCREEN_OPTION_NOCLOSE_MATCH,
 			       CompWindowActionCloseMask);
 
+    winrulesSetNoAlpha (w, WINRULES_SCREEN_OPTION_NOARGB_MATCH);
+
     if (winrulesMatchSize (w, &width, &height))
 	winrulesUpdateWindowSize (w, width, height);
 
@@ -608,6 +645,7 @@ static const CompMetadataOptionInfo winrulesScreenOptionInfo[] = {
     { "below_match", "match", 0, 0, 0 },
     { "sticky_match", "match", 0, 0, 0 },
     { "fullscreen_match", "match", 0, 0, 0 },
+    { "no_argb_match", "match", 0, 0, 0 },
     { "no_move_match", "match", 0, 0, 0 },
     { "no_resize_match", "match", 0, 0, 0 },
     { "no_minimize_match", "match", 0, 0, 0 },
@@ -686,6 +724,8 @@ winrulesInitWindow (CompPlugin *p,
     ww->protocolSetMask = 0;
 
     ww->allowedActions = ~0;
+
+    ww->hasAlpha = w->alpha;
 
     w->privates[ws->windowPrivateIndex].ptr = ww;
 
