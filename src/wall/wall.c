@@ -83,13 +83,13 @@ typedef struct _WallDisplay
 
 typedef struct _WallScreen
 {
-    DonePaintScreenProc        donePaintScreen;
-    PaintOutputProc            paintOutput;
-    PaintScreenProc            paintScreen;
-    PreparePaintScreenProc     preparePaintScreen;
-    PaintTransformedOutputProc paintTransformedOutput;
-    PaintWindowProc            paintWindow;
-    SetScreenOptionProc        setScreenOption;
+    DonePaintScreenProc          donePaintScreen;
+    PaintOutputProc              paintOutput;
+    PaintScreenProc              paintScreen;
+    PreparePaintScreenProc       preparePaintScreen;
+    PaintTransformedOutputProc   paintTransformedOutput;
+    PaintWindowProc              paintWindow;
+    SetScreenOptionForPluginProc setScreenOptionForPlugin;
 
     Bool moving; /* Used to track miniview movement */
 
@@ -1612,22 +1612,24 @@ wallDisplayOptionChanged (CompDisplay        *display,
 }
 
 static Bool
-wallSetScreenOptionCore (CompScreen      *screen,
-			 const char      *name,
-			 CompOptionValue *value)
+wallSetScreenOptionForPlugin (CompScreen      *s,
+			      const char      *plugin,
+			      const char      *name,
+			      CompOptionValue *value)
 {
     Bool status;
 
-    WALL_SCREEN (screen);
+    WALL_SCREEN (s);
 
-    UNWRAP (ws, screen, setScreenOption);
-    status = (*screen->setScreenOption) (screen, name, value);
-    WRAP (ws, screen, setScreenOption, wallSetScreenOptionCore);
+    UNWRAP (ws, s, setScreenOptionForPlugin);
+    status = (*s->setScreenOptionForPlugin) (s, plugin, name, value);
+    WRAP (ws, s, setScreenOptionForPlugin, wallSetScreenOptionForPlugin);
 
     if (status)
     {
-	if (strcmp (name, "hsize") == 0 || strcmp (name, "vsize") == 0)
-	    wallCreateCairoContexts (screen, FALSE);
+	if (strcmp (plugin, "core") == 0)
+	    if (strcmp (name, "hsize") == 0 || strcmp (name, "vsize") == 0)
+		wallCreateCairoContexts (s, FALSE);
     }
 
     return status;
@@ -1728,7 +1730,7 @@ wallInitScreen (CompPlugin *p,
     WRAP (ws, s, paintTransformedOutput, wallPaintTransformedOutput);
     WRAP (ws, s, preparePaintScreen, wallPreparePaintScreen);
     WRAP (ws, s, paintWindow, wallPaintWindow);
-    WRAP (ws, s, setScreenOption, wallSetScreenOptionCore);
+    WRAP (ws, s, setScreenOptionForPlugin, wallSetScreenOptionForPlugin);
 
     s->privates[wd->screenPrivateIndex].ptr = ws;
 
@@ -1754,7 +1756,7 @@ wallFiniScreen (CompPlugin *p,
     UNWRAP (ws, s, paintTransformedOutput);
     UNWRAP (ws, s, preparePaintScreen);
     UNWRAP (ws, s, paintWindow);
-    UNWRAP (ws, s, setScreenOption);
+    UNWRAP (ws, s, setScreenOptionForPlugin);
 
     free(ws);
 }
