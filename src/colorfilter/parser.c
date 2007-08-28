@@ -118,7 +118,7 @@ programReadSource (char *fname)
     /* Try to open file fname as is */
     fp = fopen (fname, "r");
 
-    /* If failed, try as user filter file (in ~/.compiz/filters) */
+    /* If failed, try as user filter file (in ~/.compiz/data/filters) */
     if (!fp && home && strlen (home))
     {
 	asprintf (&path, "%s/.compiz/data/filters/%s", home, fname);
