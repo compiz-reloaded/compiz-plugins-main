@@ -540,7 +540,7 @@ shiftPaintWindow (CompWindow		 *w,
 	    float sopacity;
 	    
 	    if (slot->primary && !ss->reflectActive)
-		sopacity = slot->opacity;
+		sopacity = (ss->anim * slot->opacity) + (1 - ss->anim);
 	    else
 		sopacity = ss->anim * slot->opacity;
 
@@ -996,19 +996,21 @@ layoutThumbsFlip (CompScreen *s)
 		}
 
 		if (distance > 0.0)
-		{
-		    sw->slots[i].primary = FALSE;
 		    sw->slots[i].opacity = MAX (0.0, 1.0 - (distance * 1.0));
-		}
 		else
 		{
-		    sw->slots[i].primary = TRUE;
 		    if (distance < -(ss->nWindows - 1))
 		    	sw->slots[i].opacity = MAX (0.0, ss->nWindows +
 						    distance);
 		    else
 			sw->slots[i].opacity = 1.0;
 		}
+
+		if (distance > 0.0 && w->id != ss->selectedWindow)
+		    sw->slots[i].primary = FALSE;
+		else
+		    sw->slots[i].primary = TRUE;
+
 
 		sw->slots[i].scale   = MIN (xScale, yScale);
 		
