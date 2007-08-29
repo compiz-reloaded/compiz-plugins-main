@@ -1281,7 +1281,10 @@ adjustShiftWindowAttribs (CompWindow *w, float chunk)
     SHIFT_WINDOW (w);
     SHIFT_SCREEN (w->screen);
 
-    if (sw->active && ss->state != ShiftStateIn && ss->state != ShiftStateNone)
+    if ((sw->active && ss->state != ShiftStateIn &&
+	ss->state != ShiftStateNone) ||
+	(shiftGetHideAll(w->screen) && !(w->type & CompWindowTypeDesktopMask) &&
+	(ss->state == ShiftStateOut || ss->state == ShiftStateSwitching)))
 	opacity = 0.0;
     else
 	opacity = 1.0;
