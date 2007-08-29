@@ -153,6 +153,8 @@ typedef struct _ShiftScreen {
     int   startY;
     float startTarget;
     float lastTitle;
+
+    Bool  paintingAbove;
 } ShiftScreen;
 
 typedef struct _ShiftWindow {
@@ -162,8 +164,10 @@ typedef struct _ShiftWindow {
     float brightness;
     float opacityVelocity;
     float brightnessVelocity;
-    
-    Bool      active;
+
+    Bool active;
+
+    Bool isAbove;
 } ShiftWindow;
 
 #define PI 3.1415926
@@ -490,13 +494,12 @@ shiftPaintWindow (CompWindow		 *w,
     Bool       status;
 
     SHIFT_SCREEN (s);
+    SHIFT_WINDOW (w);
 
-    if (ss->state != ShiftStateNone)
+    if (ss->state != ShiftStateNone && !ss->paintingAbove)
     {
 	WindowPaintAttrib sAttrib = *attrib;
 	Bool		  scaled = FALSE;
-
-	SHIFT_WINDOW (w);
 
     	if (w->mapNum)
 	{
@@ -726,8 +729,18 @@ shiftPaintWindow (CompWindow		 *w,
     }
     else
     {
+	WindowPaintAttrib sAttrib = *attrib;
+	
+	if (ss->paintingAbove)
+	{
+	    if (!sw->isAbove)
+		mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
+	    else
+	    	sAttrib.opacity = sAttrib.opacity * (1.0 - ss->anim);
+	}
+	
 	UNWRAP (ss, s, paintWindow);
-	status = (*s->paintWindow) (w, attrib, transform, region, mask);
+	status = (*s->paintWindow) (w, &sAttrib, transform, region, mask);
 	WRAP (ss, s, paintWindow, shiftPaintWindow);
     }
 
@@ -1366,6 +1379,8 @@ shiftPaintOutput (CompScreen		  *s,
     if (ss->state != ShiftStateNone)
 	mask |= PAINT_SCREEN_WITH_TRANSFORMED_WINDOWS_MASK;
 
+    ss->paintingAbove = FALSE;
+
     ss->output = output;
 
     UNWRAP (ss, s, paintOutput);
@@ -1517,6 +1532,26 @@ shiftPaintOutput (CompScreen		  *s,
 	    shiftDrawWindowTitle (s);
 	
 	glPopMatrix ();
+
+	if (ss->state == ShiftStateIn || ss->state == ShiftStateOut)
+	{
+	    Bool above = FALSE;
+
+	    for (w = s->windows; w; w = w->next)
+	    {
+		SHIFT_WINDOW (w);
+		sw->isAbove = above;
+		if (w->id == ss->selectedWindow)
+		    above = TRUE;
+	    }
+
+		
+	    ss->paintingAbove = TRUE;
+	    UNWRAP (ss, s, paintOutput);
+	    status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
+	    WRAP (ss, s, paintOutput, shiftPaintOutput);
+	    ss->paintingAbove = FALSE;
+	}
     }
 
     return status;
