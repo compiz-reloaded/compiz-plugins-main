@@ -44,6 +44,9 @@ typedef struct _WorkaroundsScreen {
 } WorkaroundsScreen;
 
 typedef struct _WorkaroundsWindow {
+    CompTimeoutHandle updateHandle;
+
+    Bool adjustedWinType;
     Bool madeSticky;
 } WorkaroundsWindow;
 
@@ -133,60 +136,104 @@ workaroundsUpdateSticky (CompWindow *w)
     }
     else
 	workaroundsRemoveSticky (w);
+}
 
+static void
+workaroundsFixupFullscreen (CompWindow *w)
+{
+    Bool   isFullSize;
+    int    output;
+    BoxPtr box;
+
+    if (w->type & CompWindowTypeDesktopMask)
+	return;
+
+    /* get output region for window */
+    output = outputDeviceForWindow (w);
+    box = &w->screen->outputDev[output].region.extents;
+
+    /* does the size match the output rectangle? */
+    isFullSize = (w->serverX == box->x1) && (w->serverY == box->y1) &&
+	         (w->serverWidth == (box->x2 - box->x1)) &&
+		 (w->serverHeight == (box->y2 - box->y1));
+
+    /* if not, check if it matches the whole screen */
+    if (!isFullSize)
+    {
+	if ((w->serverX == 0) && (w->serverY == 0) &&
+	    (w->serverWidth == w->screen->width) &&
+	    (w->serverHeight == w->screen->height))
+	{
+	    isFullSize = TRUE;
+	}
+    }
+
+    if ((isFullSize && !(w->state & CompWindowStateFullscreenMask)) ||
+	(!isFullSize && (w->state & CompWindowStateFullscreenMask)))
+    {
+	unsigned int state = w->state & ~CompWindowStateFullscreenMask;
+
+	if (isFullSize)
+	    state |= CompWindowStateFullscreenMask;
+
+	if (state != w->state)
+	{
+	    changeWindowState (w, state);
+	    recalcWindowType (w);
+	    recalcWindowActions (w);
+	    updateWindowAttributes (w, CompStackingUpdateModeNormal);
+	}
+    }
 }
 
 static void
 workaroundsDoFixes (CompWindow *w)
 {
-    Bool appliedFix = FALSE;
+    CompDisplay  *d = w->screen->display;
+    unsigned int newWmType;
 
-    w->wmType = getWindowType (w->screen->display, w->id);
+    w->wmType = newWmType = getWindowType (d, w->id);
 
     /* FIXME: Is this the best way to detect a notification type window? */
-    if (workaroundsGetNotificationDaemonFix (w->screen->display) && w->resName)
+    if (workaroundsGetNotificationDaemonFix (d))
     {
         if (w->wmType == CompWindowTypeNormalMask &&
-            w->attrib.override_redirect &&
+            w->attrib.override_redirect && w->resName &&
             strcmp (w->resName, "notification-daemon") == 0)
         {
-            w->wmType = CompWindowTypeNotificationMask;
-            appliedFix = TRUE;
+            newWmType = CompWindowTypeNotificationMask;
         }
     }
 
-    if (workaroundsGetFirefoxMenuFix (w->screen->display) && !appliedFix)
+    if ((w->wmType == newWmType) && workaroundsGetFirefoxMenuFix (d))
     {
         if (w->wmType == CompWindowTypeNormalMask &&
-            w->attrib.override_redirect)
+            w->attrib.override_redirect && w->resName &&
+	    strcmp (w->resName, "gecko"))
         {
-            w->wmType = CompWindowTypeDropdownMenuMask;
-            appliedFix = TRUE;
+            newWmType = CompWindowTypeDropdownMenuMask;
         }
     }
 
     /* FIXME: Basic hack to get Java windows working correctly. */
-    if (workaroundsGetJavaFix (w->screen->display) && !appliedFix && w->resName)
+    if ((w->wmType == newWmType) && workaroundsGetJavaFix (d) && w->resName)
     {
         if ((strcmp (w->resName, "sun-awt-X11-XMenuWindow") == 0) ||
             (strcmp (w->resName, "sun-awt-X11-XWindowPeer") == 0))
         {
-            w->wmType = CompWindowTypeDropdownMenuMask;
-            appliedFix = TRUE;
+            newWmType = CompWindowTypeDropdownMenuMask;
         }
         else if (strcmp (w->resName, "sun-awt-X11-XDialogPeer") == 0)
         {
-            w->wmType = CompWindowTypeDialogMask;
-            appliedFix = TRUE;
+            newWmType = CompWindowTypeDialogMask;
         }
         else if (strcmp (w->resName, "sun-awt-X11-XFramePeer") == 0)
         {
-            w->wmType = CompWindowTypeNormalMask;
-            appliedFix = TRUE;
+            newWmType = CompWindowTypeNormalMask;
         }
     }
 
-    if (workaroundsGetQtFix (w->screen->display) && !appliedFix)
+    if ((newWmType == w->wmType) && workaroundsGetQtFix (d))
     {
         char *windowRole;
 
@@ -197,8 +244,7 @@ workaroundsDoFixes (CompWindow *w)
             if ((strcmp (windowRole, "toolTipTip") == 0) ||
                 (strcmp (windowRole, "qtooltip_label") == 0))
             {
-                w->wmType = CompWindowTypeTooltipMask;
-                appliedFix = TRUE;
+                newWmType = CompWindowTypeTooltipMask;
             }
 
             free (windowRole);
@@ -207,26 +253,46 @@ workaroundsDoFixes (CompWindow *w)
         /* fix Qt transients - FIXME: is there a better way to detect them?
            Especially we have to take care of windows which get a class name
            later on */
-        if (!appliedFix)
+        if (w->wmType == newWmType)
         {
             if (!w->resName && w->attrib.override_redirect &&
                 (w->wmType == CompWindowTypeUnknownMask))
             {
-                w->wmType = CompWindowTypeDropdownMenuMask;
-                appliedFix = TRUE;
+                newWmType = CompWindowTypeDropdownMenuMask;
             }
         }
     }
 
-    recalcWindowType (w);
+    if (newWmType != w->wmType)
+    {
+	WORKAROUNDS_WINDOW (w);
+
+	ww->adjustedWinType = TRUE;
+	w->wmType = newWmType;
+
+	recalcWindowType (w);
+	recalcWindowActions (w);
+
+	(*d->matchPropertyChanged) (d, w);
+    }
 
     if (workaroundsGetLegacyFullscreen (w->screen->display))
-    {
-        /* Some code to make Wine and legacy applications work. */
-        if (w->width == w->screen->width && w->height == w->screen->height &&
-            !(w->type & CompWindowTypeDesktopMask))
-                w->type = CompWindowTypeFullscreenMask;
-    }
+	workaroundsFixupFullscreen (w);
+}
+
+static Bool
+workaroundsUpdateTimeout (void *closure)
+{
+    CompWindow *w = (CompWindow *) closure;
+
+    WORKAROUNDS_WINDOW (w);
+
+    workaroundsUpdateSticky (w);
+    workaroundsDoFixes (w);
+
+    ww->updateHandle = 0;
+
+    return FALSE;
 }
 
 static void
@@ -259,9 +325,8 @@ workaroundsHandleEvent (CompDisplay *d,
 	if (event->xclient.message_type == d->winDesktopAtom)
         {
             w = findWindowAtDisplay (d, event->xclient.window);
-	    if (w) { 
+	    if (w)
 	        workaroundsUpdateSticky (w);
-	    }
         }
     }
 }
@@ -273,9 +338,7 @@ workaroundsWindowResizeNotify (CompWindow *w, int dx, int dy,
     WORKAROUNDS_SCREEN (w->screen);
 
     if (workaroundsGetLegacyFullscreen (w->screen->display))
-    {
-        workaroundsDoFixes (w);
-    }
+	workaroundsFixupFullscreen (w);
 
     UNWRAP (ws, w->screen, windowResizeNotify);
     (*w->screen->windowResizeNotify) (w, dx, dy, dwidth, dheight);
@@ -371,11 +434,11 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
 	return FALSE;
 
     ww->madeSticky = FALSE;
+    ww->adjustedWinType = FALSE;
 
     w->privates[ws->windowPrivateIndex].ptr = ww;
 
-    workaroundsUpdateSticky (w);
-    workaroundsDoFixes (w);
+    ww->updateHandle = compAddTimeout (0, workaroundsUpdateTimeout, (void *) w);
 
     return TRUE;
 }
@@ -385,9 +448,17 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 {
     WORKAROUNDS_WINDOW (w);
 
-    w->wmType = getWindowType (w->screen->display, w->id);
-    recalcWindowType (w);
+    if (ww->adjustedWinType)
+    {
+	w->wmType = getWindowType (w->screen->display, w->id);
+	recalcWindowType (w);
+	recalcWindowActions (w);
+    }
+
     workaroundsRemoveSticky (w);
+
+    if (ww->updateHandle)
+	compRemoveTimeout (ww->updateHandle);
 
     free (ww);
 }
