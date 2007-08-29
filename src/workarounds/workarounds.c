@@ -256,6 +256,7 @@ workaroundsDoFixes (CompWindow *w)
         if (w->wmType == newWmType)
         {
             if (!w->resName && w->attrib.override_redirect &&
+		(w->attrib.class == InputOutput) &&
                 (w->wmType == CompWindowTypeUnknownMask))
             {
                 newWmType = CompWindowTypeDropdownMenuMask;
