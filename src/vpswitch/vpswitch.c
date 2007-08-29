@@ -95,7 +95,7 @@ vpswitchInitPlugin (CompDisplay    *d,
 
     while (nTOption--)
     {
-	if (tOption->type == CompOptionTypeAction)
+	if (tOption->type == CompOptionTypeButton)
 	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0)
 	    {
 		rv = (tOption->value.action.initiate)
