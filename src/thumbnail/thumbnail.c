@@ -33,26 +33,26 @@
 #include <X11/Xatom.h>
 #include <X11/extensions/Xrender.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include <text.h>
 
 #include "thumbnail_tex.h"
 #include "thumbnail_options.h"
 
 #define GET_THUMB_DISPLAY(d)				       \
-    ((ThumbDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((ThumbDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define THUMB_DISPLAY(d)		       \
     ThumbDisplay *td = GET_THUMB_DISPLAY (d)
 
 #define GET_THUMB_SCREEN(s, td)				   \
-    ((ThumbScreen *) (s)->privates[(td)->screenPrivateIndex].ptr)
+    ((ThumbScreen *) (s)->object.privates[(td)->screenPrivateIndex].ptr)
 
 #define THUMB_SCREEN(s)						      \
     ThumbScreen *ts = GET_THUMB_SCREEN (s, GET_THUMB_DISPLAY (s->display))
 
 #define GET_THUMB_WINDOW(w, ts)                               \
-    ((ThumbWindow *) (w)->privates[(ts)->windowPrivateIndex].ptr)
+    ((ThumbWindow *) (w)->object.privates[(ts)->windowPrivateIndex].ptr)
 
 #define THUMB_WINDOW_PTR(w)                                   \
     GET_THUMB_WINDOW  (w,                                    \
@@ -1161,6 +1161,9 @@ thumbInitDisplay (CompPlugin  *p,
 {
     ThumbDisplay *td;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     td = malloc (sizeof (ThumbDisplay) );
 
     if (!td)
@@ -1179,7 +1182,7 @@ thumbInitDisplay (CompPlugin  *p,
 
     WRAP (td, d, handleEvent, thumbHandleEvent);
 
-    d->privates[displayPrivateIndex].ptr = td;
+    d->object.privates[displayPrivateIndex].ptr = td;
 
     return TRUE;
 }
@@ -1212,7 +1215,7 @@ thumbInitWindow (CompPlugin *p,
     if (!tw)
 	return FALSE;
 
-    w->privates[ts->windowPrivateIndex].ptr = tw;
+    w->object.privates[ts->windowPrivateIndex].ptr = tw;
 
     updateWindowIconGeometry (w);
 
@@ -1338,7 +1341,7 @@ thumbInitScreen (CompPlugin *p,
     ts->oldThumb.win   = NULL;
     ts->showingThumb   = FALSE;
 
-    s->privates[td->screenPrivateIndex].ptr = ts;
+    s->object.privates[td->screenPrivateIndex].ptr = ts;
 
     ts->mouseTimeout =
 	compAddTimeout (THUMB_MOUSE_UPDATE_SPEED, thumbUpdateMouse, s);
@@ -1402,29 +1405,40 @@ thumbFini (CompPlugin *p)
 	freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-thumbnailGetVersion (CompPlugin *plugin,
-		     int        version)
+static CompBool
+thumbInitObject (CompPlugin *p,
+		 CompObject *o)
 {
-    return ABIVERSION;
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) thumbInitDisplay,
+	(InitPluginObjectProc) thumbInitScreen,
+	(InitPluginObjectProc) thumbInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
 }
 
+static void
+thumbFiniObject (CompPlugin *p,
+		 CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) thumbFiniDisplay,
+	(FiniPluginObjectProc) thumbFiniScreen,
+	(FiniPluginObjectProc) thumbFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
 
 CompPluginVTable thumbVTable = {
 
     "thumbnail",
-    thumbnailGetVersion,
     0,
     thumbInit,
     thumbFini,
-    thumbInitDisplay,
-    thumbFiniDisplay,
-    thumbInitScreen,
-    thumbFiniScreen,
-    thumbInitWindow,
-    thumbFiniWindow,
-    0,			/* thumbGetDisplayOptions */
-    0,			/* thumbSetDisplayOption */
+    thumbInitObject,
+    thumbFiniObject,
     0,
     0
 };
