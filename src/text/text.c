@@ -30,7 +30,7 @@
 #include <pango/pango.h>
 #include <pango/pangocairo.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include "text.h"
 
 static int displayPrivateIndex;
@@ -43,7 +43,7 @@ typedef struct _TextDisplay
 } TextDisplay;
 
 #define GET_TEXT_DISPLAY(d)				    \
-    ((TextDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((TextDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define TEXT_DISPLAY(d)			 \
     TextDisplay *td = GET_TEXT_DISPLAY (d)
@@ -359,6 +359,9 @@ textInitDisplay (CompPlugin  *p,
 {
     TextDisplay *td;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     td = malloc (sizeof (TextDisplay));
     if (!td)
 	return FALSE;
@@ -368,7 +371,7 @@ textInitDisplay (CompPlugin  *p,
 
     WRAP (td, d, fileToImage, textFileToImage);
 
-    d->privates[displayPrivateIndex].ptr = td;
+    d->object.privates[displayPrivateIndex].ptr = td;
 
     return TRUE;
 }
@@ -384,6 +387,27 @@ textFiniDisplay (CompPlugin  *p,
     free (td);
 }
 
+static CompBool
+textInitObject (CompPlugin *p,
+		CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) textInitDisplay
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+textFiniObject (CompPlugin *p,
+		CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) textFiniDisplay
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
 
 static Bool
 textInit (CompPlugin *p)
@@ -401,33 +425,19 @@ textFini (CompPlugin *p)
     freeDisplayPrivateIndex(displayPrivateIndex);
 }
 
-static int
-textGetVersion (CompPlugin *p,
-		int        version)
-{
-    return ABIVERSION;
-}
-
 CompPluginVTable textVTable = {
     "text",
-    textGetVersion,
     0,
     textInit,
     textFini,
-    textInitDisplay,
-    textFiniDisplay,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
+    textInitObject,
+    textFiniObject,
     0,
     0
 };
 
 CompPluginVTable*
-getCompPluginInfo (void)
+getCompPluginInfo20070830 (void)
 {
     return &textVTable;
 }
