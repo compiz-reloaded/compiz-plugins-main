@@ -596,6 +596,9 @@ NEGInitDisplay (CompPlugin  *p,
 {
     NEGDisplay *nd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     nd = malloc (sizeof (NEGDisplay));
     if (!nd)
 	return FALSE;
