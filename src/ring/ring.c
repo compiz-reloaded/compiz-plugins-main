@@ -40,7 +40,7 @@
 #include <X11/Xatom.h>
 #include <X11/cursorfont.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include <text.h>
 #include "ring_options.h"
 
@@ -136,19 +136,19 @@ typedef struct _RingWindow {
 #define DIST_ROT (3600 / rs->nWindows)
 
 #define GET_RING_DISPLAY(d)				      \
-    ((RingDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((RingDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define RING_DISPLAY(d)		     \
     RingDisplay *rd = GET_RING_DISPLAY (d)
 
 #define GET_RING_SCREEN(s, rd)					  \
-    ((RingScreen *) (s)->privates[(rd)->screenPrivateIndex].ptr)
+    ((RingScreen *) (s)->object.privates[(rd)->screenPrivateIndex].ptr)
 
 #define RING_SCREEN(s)							   \
     RingScreen *rs = GET_RING_SCREEN (s, GET_RING_DISPLAY (s->display))
 
 #define GET_RING_WINDOW(w, rs)					  \
-    ((RingWindow *) (w)->privates[(rs)->windowPrivateIndex].ptr)
+    ((RingWindow *) (w)->object.privates[(rs)->windowPrivateIndex].ptr)
 
 #define RING_WINDOW(w)					       \
     RingWindow *rw = GET_RING_WINDOW  (w,		       \
@@ -1604,6 +1604,9 @@ ringInitDisplay (CompPlugin  *p,
 {
     RingDisplay *rd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     rd = malloc (sizeof (RingDisplay));
     if (!rd)
 	return FALSE;
@@ -1643,7 +1646,7 @@ ringInitDisplay (CompPlugin  *p,
 
     WRAP (rd, d, handleEvent, ringHandleEvent);
 
-    d->privates[displayPrivateIndex].ptr = rd;
+    d->object.privates[displayPrivateIndex].ptr = rd;
 
     return TRUE;
 }
@@ -1710,7 +1713,7 @@ ringInitScreen (CompPlugin *p,
 
     rs->cursor = XCreateFontCursor (s->display->display, XC_left_ptr);
 
-    s->privates[rd->screenPrivateIndex].ptr = rs;
+    s->object.privates[rd->screenPrivateIndex].ptr = rs;
 
     return TRUE;
 }
@@ -1763,7 +1766,7 @@ ringInitWindow (CompPlugin *p,
     rw->xVelocity = rw->yVelocity = 0.0f;
     rw->scaleVelocity = 0.0f;
 
-    w->privates[rs->windowPrivateIndex].ptr = rw;
+    w->object.privates[rs->windowPrivateIndex].ptr = rw;
 
     return TRUE;
 }
@@ -1775,6 +1778,32 @@ ringFiniWindow (CompPlugin *p,
     RING_WINDOW (w);
 
     free (rw);
+}
+
+static CompBool
+ringInitObject (CompPlugin *p,
+		CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) ringInitDisplay,
+	(InitPluginObjectProc) ringInitScreen,
+	(InitPluginObjectProc) ringInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+ringFiniObject (CompPlugin *p,
+		CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) ringFiniDisplay,
+	(FiniPluginObjectProc) ringFiniScreen,
+	(FiniPluginObjectProc) ringFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 static Bool
@@ -1794,27 +1823,13 @@ ringFini (CompPlugin *p)
 	freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-ringGetVersion (CompPlugin *plugin,
-		int	    version)
-{
-    return ABIVERSION;
-}
-
 CompPluginVTable ringVTable = {
     "ring",
-    ringGetVersion,
     0,
     ringInit,
     ringFini,
-    ringInitDisplay,
-    ringFiniDisplay,
-    ringInitScreen,
-    ringFiniScreen,
-    ringInitWindow,
-    ringFiniWindow,
-    0,
-    0,
+    ringInitObject,
+    ringFiniObject,
     0,
     0
 };
