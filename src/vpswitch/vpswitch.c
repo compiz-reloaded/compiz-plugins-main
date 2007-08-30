@@ -88,12 +88,12 @@ vpswitchInitPlugin (CompDisplay    *d,
     CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
     Bool       rv = FALSE;
 
-    /* FIXME: getDisplayOptions no longer in vTable */
-#if 0
-    if (!plugin || !plugin->vTable->getDisplayOptions)
+
+    if (!plugin)
 	return FALSE;
 
-    tOption = (*plugin->vTable->getDisplayOptions) (plugin, d, &nTOption);
+    tOption = (*plugin->vTable->getObjectOptions) (plugin, &d->object,
+						   &nTOption);
 
     while (nTOption--)
     {
@@ -112,9 +112,6 @@ vpswitchInitPlugin (CompDisplay    *d,
 	action->state |= CompActionStateTermButton;
 
     return rv;
-#else
-    return FALSE;
-#endif
 }
 
 static Bool
@@ -129,12 +126,11 @@ vpswitchTermPlugin (CompDisplay     *d,
     CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
     Bool       rv = FALSE;
 
-    /* FIXME */
-#if 0
-    if (!plugin || !plugin->vTable->getDisplayOptions)
+    if (!plugin)
 	return FALSE;
 
-    tOption = (*plugin->vTable->getDisplayOptions) (plugin, d, &nTOption);
+    tOption = (*plugin->vTable->getObjectOptions) (plugin, &d->object,
+						   &nTOption);
 
     while (nTOption--)
     {
@@ -152,9 +148,6 @@ vpswitchTermPlugin (CompDisplay     *d,
     action->state &= ~CompActionStateTermButton;
 
     return rv;
-#else
-    return FALSE;
-#endif
 }
 
 static void
