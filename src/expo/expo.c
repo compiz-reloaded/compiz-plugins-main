@@ -150,59 +150,6 @@ expoMoveFocusViewport (CompScreen *s,
     damageScreen (s);
 }
 
-static void
-expoFinishWindowMovement (CompWindow *w)
-{
-    CompScreen *s = w->screen;
-
-    EXPO_SCREEN (s);
-
-    syncWindowPosition (w);
-    (*s->windowUngrabNotify) (w);
-
-    moveScreenViewport (s, s->x - es->selectedVX,
-    			s->y - es->selectedVY, TRUE);
-
-    /* update saved window attributes in case we moved the
-       window to a new viewport */
-    if (w->saveMask & CWX)
-    {
-	w->saveWc.x = w->saveWc.x % s->width;
-	if (w->saveWc.x < 0)
-	    w->saveWc.x += s->width;
-    }
-    if (w->saveMask & CWY)
-    {
-	w->saveWc.y = w->saveWc.y % s->height;
-	if (w->saveWc.y < 0)
-	    w->saveWc.y += s->height;
-    }
-
-    /* update window attibutes to make sure a
-       moved maximized window is properly snapped
-       to the work area */
-    if (w->state & MAXIMIZE_STATE)
-    {
-    	int lastOutput;
-	int centerX, centerY;
-
-	/* make sure we snap to the correct output */
-	lastOutput = s->currentOutputDev;
-	centerX = (WIN_X (w) + WIN_W (w) / 2) % s->width;
-	if (centerX < 0)
-	    centerX += s->width;
-	centerY = (WIN_Y (w) + WIN_H (w) / 2) % s->height;
-	if (centerY < 0)
-	    centerY += s->height;
-
-	s->currentOutputDev = outputDeviceForPoint (s, centerX, centerY);
-
-	updateWindowAttributes (w, CompStackingUpdateModeNone);
-
-	s->currentOutputDev = lastOutput;
-    }
-}
-
 static Bool
 expoTermExpo (CompDisplay     *d,
 	      CompAction      *action,
@@ -285,190 +232,57 @@ expoExpo (CompDisplay     *d,
     return FALSE;
 }
 
-static Bool
-expoDnDInit (CompDisplay     *d,
-	     CompAction      *action,
-	     CompActionState state,
-	     CompOption      *option,
-	     int             nOption)
+static void
+expoFinishWindowMovement (CompWindow *w)
 {
-    CompScreen *s;
-    Window     xid;
+    CompScreen *s = w->screen;
 
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
+    EXPO_SCREEN (s);
 
-    if (s)
+    syncWindowPosition (w);
+    (*s->windowUngrabNotify) (w);
+
+    moveScreenViewport (s, s->x - es->selectedVX,
+    			s->y - es->selectedVY, TRUE);
+
+    /* update saved window attributes in case we moved the
+       window to a new viewport */
+    if (w->saveMask & CWX)
     {
-    	EXPO_SCREEN (s);
-
-	if (es->expoMode)
-	{
-	    es->dndState = DnDStart;
-	    action->state |= CompActionStateTermButton;
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
-
-	return TRUE;
+	w->saveWc.x = w->saveWc.x % s->width;
+	if (w->saveWc.x < 0)
+	    w->saveWc.x += s->width;
+    }
+    if (w->saveMask & CWY)
+    {
+	w->saveWc.y = w->saveWc.y % s->height;
+	if (w->saveWc.y < 0)
+	    w->saveWc.y += s->height;
     }
 
-    return FALSE;
-}
-
-static Bool
-expoDnDFini (CompDisplay     *d,
-	     CompAction      *action,
-	     CompActionState state,
-	     CompOption      *option,
-	     int             nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
-
-    if (s)
+    /* update window attibutes to make sure a
+       moved maximized window is properly snapped
+       to the work area */
+    if (w->state & MAXIMIZE_STATE)
     {
-    	EXPO_SCREEN (s);
+    	int lastOutput;
+	int centerX, centerY;
 
-	if (es->dndState == DnDDuring || es->dndState == DnDStart)
-	{
-	    if (es->dndWindow)
-		expoFinishWindowMovement (es->dndWindow);
+	/* make sure we snap to the correct output */
+	lastOutput = s->currentOutputDev;
+	centerX = (WIN_X (w) + WIN_W (w) / 2) % s->width;
+	if (centerX < 0)
+	    centerX += s->width;
+	centerY = (WIN_Y (w) + WIN_H (w) / 2) % s->height;
+	if (centerY < 0)
+	    centerY += s->height;
 
-	    es->dndState = DnDNone;
-	    es->dndWindow = NULL;
-	    action->state &= ~CompActionStateTermButton;
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
+	s->currentOutputDev = outputDeviceForPoint (s, centerX, centerY);
 
-	return TRUE;
+	updateWindowAttributes (w, CompStackingUpdateModeNone);
+
+	s->currentOutputDev = lastOutput;
     }
-
-    return FALSE;
-}
-
-static Bool
-expoExitExpo (CompDisplay     *d,
-	      CompAction      *action,
-	      CompActionState state,
-	      CompOption      *option,
-	      int             nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
-
-    if (s)
-    {
-    	EXPO_SCREEN (s);
-
-	if (es->expoMode)
-	{
-	    expoTermExpo (d, action, 0, NULL, 0);
-	    es->anyClick = TRUE;
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
-
-	return TRUE;
-    }
-
-    return FALSE;
-}
-
-static Bool
-expoNextVp (CompDisplay     *d,
-	    CompAction      *action,
-	    CompActionState state,
-	    CompOption      *option,
-	    int             nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
-
-    if (s)
-    {
-    	EXPO_SCREEN (s);
-
-	if (es->expoMode)
-	{
-	    int newX = es->selectedVX + 1;
-	    int newY = es->selectedVY;
-
-	    if (newX >= s->hsize)
-	    {
-		newX = 0;
-		newY = newY + 1;
-		if (newY >= s->vsize)
-		    newY = 0;
-	    }
-
-	    expoMoveFocusViewport (s, newX - es->selectedVX,
-				   newY - es->selectedVY);
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
-
-	return TRUE;
-    }
-
-    return FALSE;
-}
-
-static Bool
-expoPrevVp (CompDisplay     *d,
-	    CompAction      *action,
-	    CompActionState state,
-	    CompOption      *option,
-	    int             nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
-
-    if (s)
-    {
-    	EXPO_SCREEN (s);
-
-	if (es->expoMode)
-	{
-	    int newX = es->selectedVX - 1;
-	    int newY = es->selectedVY;
-
-	    if (newX < 0)
-	    {
-		newX = s->hsize - 1;
-		newY = newY - 1;
-		if (newY < 0)
-		    newY = s->vsize - 1;
-	    }
-
-	    expoMoveFocusViewport (s, newX - es->selectedVX,
-				   newY - es->selectedVY);
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
-
-	return TRUE;
-    }
-
-    return FALSE;
 }
 
 static void
@@ -509,24 +323,74 @@ expoHandleEvent (CompDisplay *d,
 	{
 	    EXPO_SCREEN (s);
 
-	    if (es->expoMode && event->xbutton.button == Button1)
+	    if (es->expoMode)
 	    {
-		es->anyClick = TRUE;
-		if (es->clickTime == 0)
-		{
-		    es->clickTime = event->xbutton.time;
+		switch (event->xbutton.button) {
+		case Button1:
+		    es->dndState = DnDStart;
+		    if (es->clickTime == 0)
+		    {
+			es->clickTime = event->xbutton.time;
+		    }
+		    else if (event->xbutton.time - es->clickTime <=
+			     expoGetDoubleClickTime (d))
+		    {
+			es->doubleClick = TRUE;
+		    }
+		    else
+		    {
+			es->clickTime   = event->xbutton.time;
+			es->doubleClick = FALSE;
+		    }
+		    break;
+		case Button3:
+		    {
+    			CompAction *action;
+			
+    			action = expoGetExpoKey (d);
+    			expoTermExpo (d, action, 0, NULL, 0);
+			es->anyClick = TRUE;
+		    }
+		    break;
+		case Button4:
+		    {
+			int newX = es->selectedVX - 1;
+			int newY = es->selectedVY;
+
+			if (newX < 0)
+			{
+			    newX = s->hsize - 1;
+			    newY = newY - 1;
+			    if (newY < 0)
+				newY = s->vsize - 1;
+			}
+
+			expoMoveFocusViewport (s, newX - es->selectedVX,
+					       newY - es->selectedVY);
+		    }
+		    break;
+		case Button5:
+		    {
+			int newX = es->selectedVX + 1;
+			int newY = es->selectedVY;
+
+			if (newX >= s->hsize)
+			{
+			    newX = 0;
+			    newY = newY + 1;
+			    if (newY >= s->vsize)
+				newY = 0;
+			}
+
+			expoMoveFocusViewport (s, newX - es->selectedVX,
+					       newY - es->selectedVY);
+		    }
+		    break;
+		default:
+    		    es->anyClick = TRUE;
+		    break;
 		}
-		else if (event->xbutton.time - es->clickTime <=
-			 expoGetDoubleClickTime (d))
-		{
-		    es->doubleClick = TRUE;
-		}
-		else
-		{
-		    es->clickTime   = event->xbutton.time;
-		    es->doubleClick = FALSE;
-		}
-		damageScreen(s);
+    		damageScreen (s);
 	    }
 	}
 	break;
@@ -537,6 +401,15 @@ expoHandleEvent (CompDisplay *d,
 	if (s)
 	{
 	    EXPO_SCREEN (s);
+
+	    if (es->dndState == DnDDuring || es->dndState == DnDStart)
+	    {
+		if (es->dndWindow)
+		    expoFinishWindowMovement (es->dndWindow);
+
+		es->dndState = DnDNone;
+		es->dndWindow = NULL;
+	    }
 	    
 	    if (es->expoMode)
 	    {
@@ -1183,9 +1056,7 @@ expoInitDisplay (CompPlugin  *p,
     if (!checkPluginABI ("core", CORE_ABIVERSION))
 	return FALSE;
 
-
     ed = malloc (sizeof (ExpoDisplay));
-
     if (!ed)
 	return FALSE;
 
@@ -1203,13 +1074,6 @@ expoInitDisplay (CompPlugin  *p,
     expoSetExpoButtonTerminate (d, expoTermExpo);
     expoSetExpoEdgeInitiate (d, expoExpo);
     expoSetExpoEdgeTerminate (d, expoTermExpo);
-
-    expoSetDndButtonInitiate (d, expoDnDInit);
-    expoSetDndButtonTerminate (d, expoDnDFini);
-    expoSetExitButtonInitiate (d, expoExitExpo);
-    expoSetNextVpButtonInitiate (d, expoNextVp);
-    expoSetPrevVpButtonInitiate (d, expoPrevVp);
-
 
     ed->leftKey  = XKeysymToKeycode (d->display, XStringToKeysym ("Left"));
     ed->rightKey = XKeysymToKeycode (d->display, XStringToKeysym ("Right"));
@@ -1302,6 +1166,31 @@ expoFiniScreen (CompPlugin *p,
     free (es);
 }
 
+static CompBool
+expoInitObject (CompPlugin *p,
+		CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) expoInitDisplay,
+	(InitPluginObjectProc) expoInitScreen
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+expoFiniObject (CompPlugin *p,
+		CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) expoFiniDisplay,
+	(FiniPluginObjectProc) expoFiniScreen
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
+
+
 static Bool
 expoInit (CompPlugin * p)
 {
@@ -1317,30 +1206,6 @@ static void
 expoFini (CompPlugin * p)
 {
     freeDisplayPrivateIndex (displayPrivateIndex);
-}
-
-static CompBool
-expoInitObject (CompPlugin *p,
-		 CompObject *o)
-{
-    static InitPluginObjectProc dispTab[] = {
-	(InitPluginObjectProc) expoInitDisplay,
-	(InitPluginObjectProc) expoInitScreen
-    };
-
-    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
-}
-
-static void
-expoFiniObject (CompPlugin *p,
-		 CompObject *o)
-{
-    static FiniPluginObjectProc dispTab[] = {
-	(FiniPluginObjectProc) expoFiniDisplay,
-	(FiniPluginObjectProc) expoFiniScreen
-    };
-
-    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 CompPluginVTable expoVTable = {
