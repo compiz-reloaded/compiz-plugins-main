@@ -23,9 +23,9 @@
 #include <string.h>
 #include <limits.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include <X11/Xatom.h>
-#include <workarounds_options.h>
+#include "workarounds_options.h"
 
 static int displayPrivateIndex;
 
@@ -51,20 +51,20 @@ typedef struct _WorkaroundsWindow {
 } WorkaroundsWindow;
 
 #define GET_WORKAROUNDS_DISPLAY(d) \
-    ((WorkaroundsDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((WorkaroundsDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define WORKAROUNDS_DISPLAY(d) \
     WorkaroundsDisplay *wd = GET_WORKAROUNDS_DISPLAY (d)
 
 #define GET_WORKAROUNDS_SCREEN(s, wd) \
-    ((WorkaroundsScreen *) (s)->privates[(wd)->screenPrivateIndex].ptr)
+    ((WorkaroundsScreen *) (s)->object.privates[(wd)->screenPrivateIndex].ptr)
 
 #define WORKAROUNDS_SCREEN(s) \
     WorkaroundsScreen *ws = GET_WORKAROUNDS_SCREEN (s, \
                             GET_WORKAROUNDS_DISPLAY (s->display))
 
 #define GET_WORKAROUNDS_WINDOW(w, ns) \
-    ((WorkaroundsWindow *) (w)->privates[(ns)->windowPrivateIndex].ptr)
+    ((WorkaroundsWindow *) (w)->object.privates[(ns)->windowPrivateIndex].ptr)
 #define WORKAROUNDS_WINDOW(w) \
     WorkaroundsWindow *ww = GET_WORKAROUNDS_WINDOW  (w, \
 		    GET_WORKAROUNDS_SCREEN  (w->screen, \
@@ -351,6 +351,9 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
 {
     WorkaroundsDisplay *wd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     wd = malloc (sizeof (WorkaroundsDisplay));
     if (!wd)
         return FALSE;
@@ -368,7 +371,7 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
     workaroundsSetAlldesktopStickyMatchNotify (d,
 					       workaroundsDisplayOptionChanged);
 
-    d->privates[displayPrivateIndex].ptr = wd;
+    d->object.privates[displayPrivateIndex].ptr = wd;
 
     WRAP (wd, d, handleEvent, workaroundsHandleEvent);
 
@@ -407,7 +410,7 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
 
     WRAP (ws, s, windowResizeNotify, workaroundsWindowResizeNotify);
 
-    s->privates[wd->screenPrivateIndex].ptr = ws;
+    s->object.privates[wd->screenPrivateIndex].ptr = ws;
 
     return TRUE;
 }
@@ -427,8 +430,9 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
 static Bool
 workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
 {
-    WORKAROUNDS_SCREEN (w->screen);
     WorkaroundsWindow *ww;
+
+    WORKAROUNDS_SCREEN (w->screen);
 
     ww = malloc (sizeof (WorkaroundsWindow));
     if (!ww)
@@ -437,7 +441,7 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
     ww->madeSticky = FALSE;
     ww->adjustedWinType = FALSE;
 
-    w->privates[ws->windowPrivateIndex].ptr = ww;
+    w->object.privates[ws->windowPrivateIndex].ptr = ww;
 
     ww->updateHandle = compAddTimeout (0, workaroundsUpdateTimeout, (void *) w);
 
@@ -456,7 +460,7 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 	recalcWindowActions (w);
     }
 
-    if (w->state & CompWindowStateStickyMask && ww->madeSticky)
+     if (w->state & CompWindowStateStickyMask && ww->madeSticky)
 	setWindowState (w->screen->display,
 			w->state & ~CompWindowStateStickyMask, w->id);
 
@@ -464,6 +468,32 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 	compRemoveTimeout (ww->updateHandle);
 
     free (ww);
+}
+
+static CompBool
+workaroundsInitObject (CompPlugin *p,
+		       CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) workaroundsInitDisplay,
+	(InitPluginObjectProc) workaroundsInitScreen,
+	(InitPluginObjectProc) workaroundsInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+workaroundsFiniObject (CompPlugin *p,
+		       CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) workaroundsFiniDisplay,
+	(FiniPluginObjectProc) workaroundsFiniScreen,
+	(FiniPluginObjectProc) workaroundsFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 static Bool
@@ -482,29 +512,16 @@ workaroundsFini (CompPlugin *plugin)
     freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-workaroundsGetVersion (CompPlugin *plugin, int version)
-{
-    return ABIVERSION;
-}
-
 CompPluginVTable workaroundsVTable =
 {
     "workarounds",
-    workaroundsGetVersion,
     0,
     workaroundsInit,
     workaroundsFini,
-    workaroundsInitDisplay,
-    workaroundsFiniDisplay,
-    workaroundsInitScreen,
-    workaroundsFiniScreen,
-    workaroundsInitWindow,
-    workaroundsFiniWindow,
-    0, /* GetDisplayOptions */
-    0, /* SetDisplayOption */
-    0, /* GetScreenOptions */
-    0  /* SetScreenOption */
+    workaroundsInitObject,
+    workaroundsFiniObject,
+    0,
+    0
 };
 
 CompPluginVTable *
