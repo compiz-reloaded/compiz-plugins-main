@@ -83,7 +83,7 @@
 #include <sys/time.h>
 #include <time.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 
 static CompMetadata zoomMetadata;
 
@@ -241,13 +241,13 @@ static void convertToZoomedTarget (CompScreen *s,
 				   int	  *resultY);
 
 #define GET_ZOOM_DISPLAY(d)				      \
-    ((ZoomDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((ZoomDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define ZOOM_DISPLAY(d)		           \
     ZoomDisplay *zd = GET_ZOOM_DISPLAY (d)
 
 #define GET_ZOOM_SCREEN(s, zd)				         \
-    ((ZoomScreen *) (s)->privates[(zd)->screenPrivateIndex].ptr)
+    ((ZoomScreen *) (s)->object.privates[(zd)->screenPrivateIndex].ptr)
 
 #define ZOOM_SCREEN(s)						        \
     ZoomScreen *zs = GET_ZOOM_SCREEN (s, GET_ZOOM_DISPLAY (s->display))
@@ -2036,7 +2036,7 @@ zoomInitDisplay (CompPlugin  *p,
 	zd->canHideCursor = FALSE;
 
     WRAP (zd, d, handleEvent, zoomHandleEvent);
-    d->privates[displayPrivateIndex].ptr = zd;
+    d->object.privates[displayPrivateIndex].ptr = zd;
     return TRUE;
 }
 
@@ -2092,7 +2092,7 @@ zoomInitScreen (CompPlugin *p,
     WRAP (zs, s, donePaintScreen, zoomDonePaintScreen);
     WRAP (zs, s, paintOutput, zoomPaintOutput);
 
-    s->privates[zd->screenPrivateIndex].ptr = zs;
+    s->object.privates[zd->screenPrivateIndex].ptr = zs;
     return TRUE;
 }
 
@@ -2110,6 +2110,30 @@ zoomFiniScreen (CompPlugin *p,
 
     compFiniScreenOptions (s, zs->opt, SOPT_NUM);
     free (zs);
+}
+
+static CompBool
+zoomInitObject (CompPlugin *p,
+		CompObject *o)
+{
+	static InitPluginObjectProc dispTab[] = {
+		(InitPluginObjectProc) zoomInitDisplay,
+		(InitPluginObjectProc) zoomInitScreen
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+zoomFiniObject (CompPlugin *p,
+		CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+		(FiniPluginObjectProc) zoomFiniDisplay,
+		(FiniPluginObjectProc) zoomFiniScreen
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 static Bool
@@ -2133,18 +2157,40 @@ zoomInit (CompPlugin *p)
     return TRUE;
 }
 
+static CompOption *
+zoomGetObjectOptions (CompPlugin *plugin,
+		      CompObject *object,
+		      int	 *count)
+{
+    static GetPluginObjectOptionsProc dispTab[] = {
+	(GetPluginObjectOptionsProc) zoomGetDisplayOptions,
+	(GetPluginObjectOptionsProc) zoomGetScreenOptions
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab),
+		     (void *) (*count = 0), (plugin, object, count));
+}
+
+static CompBool
+zoomSetObjectOption (CompPlugin      *plugin,
+		     CompObject      *object,
+		     const char      *name,
+		     CompOptionValue *value)
+{
+    static SetPluginObjectOptionProc dispTab[] = {
+	(SetPluginObjectOptionProc) zoomSetDisplayOption,
+	(SetPluginObjectOptionProc) zoomSetScreenOption
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), FALSE,
+		     (plugin, object, name, value));
+}
+
 static void
 zoomFini (CompPlugin *p)
 {
     freeDisplayPrivateIndex (displayPrivateIndex);
     compFiniMetadata (&zoomMetadata);
-}
-
-static int
-zoomGetVersion (CompPlugin *plugin,
-		int	   version)
-{
-    return ABIVERSION;
 }
 
 static CompMetadata *
@@ -2155,24 +2201,17 @@ zoomGetMetadata (CompPlugin *plugin)
 
 CompPluginVTable zoomVTable = {
     "ezoom",
-    zoomGetVersion,
     zoomGetMetadata,
     zoomInit,
     zoomFini,
-    zoomInitDisplay,
-    zoomFiniDisplay,
-    zoomInitScreen,
-    zoomFiniScreen,
-    0, /* InitWindow */
-    0, /* FiniWindow */
-    zoomGetDisplayOptions,
-    zoomSetDisplayOption,
-    zoomGetScreenOptions,
-    zoomSetScreenOption
+    zoomInitObject,
+    zoomFiniObject,
+    zoomGetObjectOptions,
+    zoomSetObjectOption
 };
 
 CompPluginVTable *
-getCompPluginInfo (void)
+getCompPluginInfo20070830 (void)
 {
     return &zoomVTable;
 }
