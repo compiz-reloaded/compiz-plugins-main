@@ -2199,8 +2199,6 @@ shiftHandleEvent (CompDisplay *d,
 		    ss->startY          = event->xbutton.y_root;
 		    ss->startTarget     = ss->mvTarget + ss->mvAdjust;
 		}
-		else if (event->xbutton.button == Button3)
-		    shiftTerm (s, TRUE);
 	    }
 	}
 	break;
@@ -2436,6 +2434,8 @@ shiftInitDisplay (CompPlugin  *p,
     shiftSetInitiateEdgeTerminate (d, shiftTerminate);
     shiftSetInitiateAllEdgeInitiate (d, shiftInitiateAll);
     shiftSetInitiateAllEdgeTerminate (d, shiftTerminate);
+
+    shiftSetTerminateButtonInitiate (d, shiftTerminate);
 
     WRAP (sd, d, handleEvent, shiftHandleEvent);
 
