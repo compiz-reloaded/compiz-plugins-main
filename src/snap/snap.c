@@ -32,7 +32,7 @@
 #include <string.h>
 #include <math.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 
 #include "snap_options.h"
 
@@ -145,19 +145,19 @@ typedef struct _SnapWindow
 } SnapWindow;
 
 #define GET_SNAP_DISPLAY(d) \
-    ((SnapDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((SnapDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define SNAP_DISPLAY(d) \
     SnapDisplay *sd = GET_SNAP_DISPLAY (d)
 
 #define GET_SNAP_SCREEN(s, sd) \
-    ((SnapScreen *) (s)->privates[(sd)->screenPrivateIndex].ptr)
+    ((SnapScreen *) (s)->object.privates[(sd)->screenPrivateIndex].ptr)
 
 #define SNAP_SCREEN(s) \
     SnapScreen *ss = GET_SNAP_SCREEN (s, GET_SNAP_DISPLAY (s->display))
 
 #define GET_SNAP_WINDOW(w, ss) \
-    ((SnapWindow *) (w)->privates[(ss)->windowPrivateIndex].ptr)
+    ((SnapWindow *) (w)->object.privates[(ss)->windowPrivateIndex].ptr)
 
 #define SNAP_WINDOW(w)                                   \
     SnapWindow *sw = GET_SNAP_WINDOW  (w,                \
@@ -1014,6 +1014,9 @@ static Bool snapInitDisplay(CompPlugin * p, CompDisplay * d)
 {
 	SnapDisplay *sd;
 
+	if (!checkPluginABI ("core", CORE_ABIVERSION))
+		return FALSE;
+
 	sd = malloc(sizeof(SnapDisplay));
 	if (!sd)
 		return FALSE;
@@ -1032,7 +1035,7 @@ static Bool snapInitDisplay(CompPlugin * p, CompDisplay * d)
 	sd->avoidSnapMask = 0;
 	sd->snapping = TRUE;
 
-	d->privates[displayPrivateIndex].ptr = sd;
+	d->object.privates[displayPrivateIndex].ptr = sd;
 
 	return TRUE;
 }
@@ -1070,7 +1073,7 @@ static Bool snapInitScreen(CompPlugin * p, CompScreen * s)
 	WRAP(ss, s, windowGrabNotify, snapWindowGrabNotify);
 	WRAP(ss, s, windowUngrabNotify, snapWindowUngrabNotify);
 
-	s->privates[sd->screenPrivateIndex].ptr = ss;
+	s->object.privates[sd->screenPrivateIndex].ptr = ss;
 
 	return TRUE;
 }
@@ -1106,9 +1109,35 @@ static Bool snapInitWindow(CompPlugin * p, CompWindow * w)
 	sw->snapped = FALSE;
 	sw->skipNotify = FALSE;
 
-	w->privates[ss->windowPrivateIndex].ptr = sw;
+	w->object.privates[ss->windowPrivateIndex].ptr = sw;
 
 	return TRUE;
+}
+
+static CompBool
+snapInitObject (CompPlugin *p,
+		CompObject *o)
+{
+	static InitPluginObjectProc dispTab[] = {
+		(InitPluginObjectProc) snapInitDisplay,
+		(InitPluginObjectProc) snapInitScreen,
+		(InitPluginObjectProc) snapInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+snapFiniObject (CompPlugin *p,
+		CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+		(FiniPluginObjectProc) snapFiniDisplay,
+		(FiniPluginObjectProc) snapFiniScreen,
+		(FiniPluginObjectProc) snapFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 static void snapFiniWindow(CompPlugin * p, CompWindow * w)
@@ -1134,26 +1163,13 @@ static void snapFini(CompPlugin * p)
 		freeDisplayPrivateIndex(displayPrivateIndex);
 }
 
-static int
-snapGetVersion(CompPlugin * plugin, int version)
-{
-	return ABIVERSION;
-}
-
 CompPluginVTable snapVTable = {
 	"snap",
-	snapGetVersion,
 	0,
 	snapInit,
 	snapFini,
-	snapInitDisplay,
-	snapFiniDisplay,
-	snapInitScreen,
-	snapFiniScreen,
-	snapInitWindow,
-	snapFiniWindow,
-	0,
-	0,
+	snapInitObject,
+	snapFiniObject,
 	0,
 	0
 };
