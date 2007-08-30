@@ -2216,7 +2216,7 @@ shiftHandleEvent (CompDisplay *d,
 		if (event->xbutton.button == Button1 && ss->buttonPressed)
 		{
 		    int new;
-		    if (event->xbutton.time - ss->buttonPressTime <
+		    if ((int)(event->xbutton.time - ss->buttonPressTime) <
 		        shiftGetClickDuration (s))
 		    	shiftTerm (s, FALSE);
 
