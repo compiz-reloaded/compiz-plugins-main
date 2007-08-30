@@ -27,7 +27,7 @@
 #include <X11/Xatom.h>
 #include <X11/extensions/Xrender.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include "neg_options.h"
 
 static int displayPrivateIndex;
@@ -57,15 +57,15 @@ typedef struct _NEGWindow
 } NEGWindow;
 
 #define GET_NEG_DISPLAY(d) \
-    ((NEGDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((NEGDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 #define NEG_DISPLAY(d) \
     NEGDisplay *nd = GET_NEG_DISPLAY (d)
 #define GET_NEG_SCREEN(s, nd) \
-    ((NEGScreen *) (s)->privates[(nd)->screenPrivateIndex].ptr)
+    ((NEGScreen *) (s)->object.privates[(nd)->screenPrivateIndex].ptr)
 #define NEG_SCREEN(s) \
     NEGScreen *ns = GET_NEG_SCREEN (s, GET_NEG_DISPLAY (s->display))
 #define GET_NEG_WINDOW(w, ns) \
-    ((NEGWindow *) (w)->privates[(ns)->windowPrivateIndex].ptr)
+    ((NEGWindow *) (w)->object.privates[(ns)->windowPrivateIndex].ptr)
 #define NEG_WINDOW(w) \
     NEGWindow *nw = GET_NEG_WINDOW  (w, \
 		    GET_NEG_SCREEN  (w->screen, \
@@ -610,7 +610,7 @@ NEGInitDisplay (CompPlugin  *p,
     negSetWindowToggleKeyInitiate (d, negToggle);
     negSetScreenToggleKeyInitiate (d, negToggleAll);
 
-    d->privates[displayPrivateIndex].ptr = nd;
+    d->object.privates[displayPrivateIndex].ptr = nd;
 
     return TRUE;
 }
@@ -660,7 +660,7 @@ NEGInitScreen (CompPlugin *p,
     WRAP (ns, s, drawWindowTexture, NEGDrawWindowTexture);
     WRAP (ns, s, windowAddNotify, NEGWindowAddNotify);
 
-    s->privates[nd->screenPrivateIndex].ptr = ns;
+    s->object.privates[nd->screenPrivateIndex].ptr = ns;
 
     return TRUE;
 }
@@ -698,7 +698,7 @@ NEGInitWindow (CompPlugin *p,
 
     nw->isNeg       = FALSE;
 
-    w->privates[ns->windowPrivateIndex].ptr = nw;
+    w->object.privates[ns->windowPrivateIndex].ptr = nw;
 
     return TRUE;
 }
@@ -728,29 +728,41 @@ NEGFini (CompPlugin * p)
     freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-NEGGetVersion (CompPlugin *p,
-	       int        version)
+static CompBool
+NEGInitObject (CompPlugin *p,
+	       CompObject *o)
 {
-    return ABIVERSION;
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) NEGInitDisplay,
+	(InitPluginObjectProc) NEGInitScreen,
+	(InitPluginObjectProc) NEGInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+NEGFiniObject (CompPlugin *p,
+	       CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) NEGFiniDisplay,
+	(FiniPluginObjectProc) NEGFiniScreen,
+	(FiniPluginObjectProc) NEGFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 CompPluginVTable NEGVTable = {
     "neg",
-    NEGGetVersion,
     0,
     NEGInit,
     NEGFini,
-    NEGInitDisplay,
-    NEGFiniDisplay,
-    NEGInitScreen,
-    NEGFiniScreen,
-    NEGInitWindow,
-    NEGFiniWindow,
-    NULL,
-    NULL,
-    NULL,
-    NULL
+    NEGInitObject,
+    NEGFiniObject,
+    0,
+    0,
 };
 
 CompPluginVTable*
@@ -758,3 +770,5 @@ getCompPluginInfo(void)
 {
     return &NEGVTable;
 }
+
+
