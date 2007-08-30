@@ -28,7 +28,7 @@
 #include <math.h>
 #include <sys/time.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include "expo_options.h"
 
 #include <GL/glu.h>
@@ -119,12 +119,12 @@ Point3d;
 
 /* Helpers */
 #define GET_EXPO_DISPLAY(d) \
-    ((ExpoDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((ExpoDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 #define EXPO_DISPLAY(d) \
     ExpoDisplay *ed = GET_EXPO_DISPLAY(d);
 
 #define GET_EXPO_SCREEN(s, ed) \
-    ((ExpoScreen *) (s)->privates[(ed)->screenPrivateIndex].ptr)
+    ((ExpoScreen *) (s)->object.privates[(ed)->screenPrivateIndex].ptr)
 #define EXPO_SCREEN(s) \
     ExpoScreen *es = GET_EXPO_SCREEN(s, GET_EXPO_DISPLAY(s->display))
 
@@ -1180,6 +1180,10 @@ expoInitDisplay (CompPlugin  *p,
 {
     ExpoDisplay *ed;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
+
     ed = malloc (sizeof (ExpoDisplay));
 
     if (!ed)
@@ -1213,7 +1217,7 @@ expoInitDisplay (CompPlugin  *p,
     ed->downKey  = XKeysymToKeycode (d->display, XStringToKeysym ("Down"));
 
     WRAP (ed, d, handleEvent, expoHandleEvent);
-    d->privates[displayPrivateIndex].ptr = ed;
+    d->object.privates[displayPrivateIndex].ptr = ed;
 
     return TRUE;
 }
@@ -1269,7 +1273,7 @@ expoInitScreen (CompPlugin *p,
     WRAP (es, s, damageWindowRect, expoDamageWindowRect);
     WRAP (es, s, paintWindow, expoPaintWindow);
 
-    s->privates[ed->screenPrivateIndex].ptr = es;
+    s->object.privates[ed->screenPrivateIndex].ptr = es;
 
     return TRUE;
 }
@@ -1315,29 +1319,39 @@ expoFini (CompPlugin * p)
     freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-expoGetVersion (CompPlugin *p,
-		int        version)
+static CompBool
+expoInitObject (CompPlugin *p,
+		 CompObject *o)
 {
-    return ABIVERSION;
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) expoInitDisplay,
+	(InitPluginObjectProc) expoInitScreen
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+expoFiniObject (CompPlugin *p,
+		 CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) expoFiniDisplay,
+	(FiniPluginObjectProc) expoFiniScreen
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 CompPluginVTable expoVTable = {
     "expo",
-    expoGetVersion,
     0,
     expoInit,
     expoFini,
-    expoInitDisplay,
-    expoFiniDisplay,
-    expoInitScreen,
-    expoFiniScreen,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL
+    expoInitObject,
+    expoFiniObject,
+    0,
+    0
 };
 
 CompPluginVTable *
