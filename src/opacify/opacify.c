@@ -28,19 +28,19 @@
 #include <X11/Xatom.h>
 #include <X11/extensions/Xrender.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include "opacify_options.h"
 
 #define GET_OPACIFY_DISPLAY(d)                            \
-	((OpacifyDisplay *) (d)->privates[displayPrivateIndex].ptr)
+	((OpacifyDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 #define OPACIFY_DISPLAY(d)                                \
 	OpacifyDisplay *od = GET_OPACIFY_DISPLAY (d)
 #define GET_OPACIFY_SCREEN(s, od)                         \
-	((OpacifyScreen *) (s)->privates[(od)->screenPrivateIndex].ptr)
+	((OpacifyScreen *) (s)->object.privates[(od)->screenPrivateIndex].ptr)
 #define OPACIFY_SCREEN(s)                                 \
 	OpacifyScreen *os = GET_OPACIFY_SCREEN (s, GET_OPACIFY_DISPLAY (s->display))
 #define GET_OPACIFY_WINDOW(w, os)                         \
-	((OpacifyWindow *) (w)->privates[(os)->windowPrivateIndex].ptr)
+	((OpacifyWindow *) (w)->object.privates[(os)->windowPrivateIndex].ptr)
 #define OPACIFY_WINDOW(s)                                 \
 	OpacifyWindow *ow = GET_OPACIFY_WINDOW(w, GET_OPACIFY_SCREEN (w->screen, GET_OPACIFY_DISPLAY (w->screen->display)))
 
@@ -394,7 +394,7 @@ static Bool opacifyInitWindow(CompPlugin * p, CompWindow * w)
 
 	ow->opacified = FALSE;
 	
-	w->privates[os->windowPrivateIndex].ptr = ow;
+	w->object.privates[os->windowPrivateIndex].ptr = ow;
 
 	return TRUE;
 }
@@ -430,7 +430,7 @@ static Bool opacifyInitScreen(CompPlugin * p, CompScreen * s)
 
 	WRAP(os, s, paintWindow, opacifyPaintWindow);
 
-	s->privates[od->screenPrivateIndex].ptr = os;
+	s->object.privates[od->screenPrivateIndex].ptr = os;
 	os->intersect = XCreateRegion();
 	os->just_moved = False;
 	
@@ -462,7 +462,12 @@ static void opacifyDisplayOptionChanged(CompDisplay *d, CompOption *opt, Opacify
 
 static Bool opacifyInitDisplay(CompPlugin * p, CompDisplay * d)
 {
-	OpacifyDisplay *od = (OpacifyDisplay *) malloc(sizeof(OpacifyDisplay));
+	OpacifyDisplay *od;
+
+	if (!checkPluginABI ("core", CORE_ABIVERSION))
+	    return FALSE;
+    
+	od = (OpacifyDisplay *) malloc (sizeof (OpacifyDisplay));
 
 	if (!od)
 	    return FALSE;
@@ -473,7 +478,7 @@ static Bool opacifyInitDisplay(CompPlugin * p, CompDisplay * d)
 		free(od);
 		return FALSE;
 	}
-	d->privates[displayPrivateIndex].ptr = od;
+	d->object.privates[displayPrivateIndex].ptr = od;
 	od->active_screen = d->screens->screenNum;
 	od->toggle = TRUE;
 
@@ -494,6 +499,32 @@ static void opacifyFiniDisplay(CompPlugin * p, CompDisplay * d)
 	free(od);
 }
 
+static CompBool
+opacifyInitObject (CompPlugin *p,
+		   CompObject *o)
+{
+	static InitPluginObjectProc dispTab[] = {
+		(InitPluginObjectProc) opacifyInitDisplay,
+		(InitPluginObjectProc) opacifyInitScreen,
+		(InitPluginObjectProc) opacifyInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+opacifyFiniObject (CompPlugin *p,
+		   CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+		(FiniPluginObjectProc) opacifyFiniDisplay,
+		(FiniPluginObjectProc) opacifyFiniScreen,
+		(FiniPluginObjectProc) opacifyFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
+
 static Bool opacifyInit(CompPlugin * p)
 {
 	displayPrivateIndex = allocateDisplayPrivateIndex();
@@ -508,25 +539,13 @@ static void opacifyFini(CompPlugin * p)
 		freeDisplayPrivateIndex(displayPrivateIndex);
 }
 
-static int opacifyGetVersion(CompPlugin * p, int version)
-{
-	return ABIVERSION;
-}
-
 CompPluginVTable opacifyVTable = {
 	"opacify",
-	opacifyGetVersion,
 	0,
 	opacifyInit,
 	opacifyFini,
-	opacifyInitDisplay,
-	opacifyFiniDisplay,
-	opacifyInitScreen,
-	opacifyFiniScreen,
-	opacifyInitWindow,
-	opacifyFiniWindow,
-	0,
-	0,
+	opacifyInitObject,
+	opacifyFiniObject,
 	0,
 	0
 };
