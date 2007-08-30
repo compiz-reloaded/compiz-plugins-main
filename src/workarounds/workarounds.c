@@ -456,7 +456,7 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 	recalcWindowActions (w);
     }
 
-     if (w->state & CompWindowStateStickyMask && ww->madeSticky)
+    if (w->state & CompWindowStateStickyMask && ww->madeSticky)
 	setWindowState (w->screen->display,
 			w->state & ~CompWindowStateStickyMask, w->id);
 
