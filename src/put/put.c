@@ -23,19 +23,21 @@
 #include <math.h>
 #include <X11/Xatom.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include "put_options.h"
 
 #define GET_PUT_DISPLAY(d) \
-    ((PutDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((PutDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 #define PUT_DISPLAY(d) \
     PutDisplay *pd = GET_PUT_DISPLAY (d)
+
 #define GET_PUT_SCREEN(s, pd) \
-    ((PutScreen *) (s)->privates[(pd)->screenPrivateIndex].ptr)
+    ((PutScreen *) (s)->object.privates[(pd)->screenPrivateIndex].ptr)
 #define PUT_SCREEN(s) \
     PutScreen *ps = GET_PUT_SCREEN (s, GET_PUT_DISPLAY (s->display))
+
 #define GET_PUT_WINDOW(w, ps) \
-    ((PutWindow *) (w)->privates[(ps)->windowPrivateIndex].ptr)
+    ((PutWindow *) (w)->object.privates[(ps)->windowPrivateIndex].ptr)
 #define PUT_WINDOW(w) \
     PutWindow *pw = GET_PUT_WINDOW (w, \
 		    GET_PUT_SCREEN (w->screen, \
@@ -1258,6 +1260,9 @@ putInitDisplay (CompPlugin  *p,
 {
     PutDisplay *pd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     pd = malloc (sizeof (PutDisplay));
     if (!pd)
 	return FALSE;
@@ -1315,7 +1320,7 @@ putInitDisplay (CompPlugin  *p,
     putSetPutBottomrightButtonInitiate (d, putBottomRight);
 
     WRAP (pd, d, handleEvent, putHandleEvent);
-    d->privates[displayPrivateIndex].ptr = pd;
+    d->object.privates[displayPrivateIndex].ptr = pd;
 
     return TRUE;
 }
@@ -1363,7 +1368,7 @@ putInitScreen (CompPlugin *p,
     WRAP (ps, s, paintOutput, putPaintOutput);
     WRAP (ps, s, paintWindow, putPaintWindow);
 
-    s->privates[pd->screenPrivateIndex].ptr = ps;
+    s->object.privates[pd->screenPrivateIndex].ptr = ps;
     return TRUE;
 }
 
@@ -1384,8 +1389,8 @@ putFiniScreen (CompPlugin *p,
 }
 
 static Bool
-putInitWindow(CompPlugin *p,
-	      CompWindow *w)
+putInitWindow (CompPlugin *p,
+	       CompWindow *w)
 {
     PutWindow *pw;
 
@@ -1403,7 +1408,7 @@ putInitWindow(CompPlugin *p,
     pw->lastY = w->serverY;
     pw->adjust = FALSE;
 
-    w->privates[ps->windowPrivateIndex].ptr = pw;
+    w->object.privates[ps->windowPrivateIndex].ptr = pw;
 
     return TRUE;
 }
@@ -1417,8 +1422,34 @@ putFiniWindow (CompPlugin *p,
     free (pw);
 }
 
+static CompBool
+putInitObject (CompPlugin *p,
+	       CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) putInitDisplay,
+	(InitPluginObjectProc) putInitScreen,
+	(InitPluginObjectProc) putInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+putFiniObject (CompPlugin *p,
+	       CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) putFiniDisplay,
+	(FiniPluginObjectProc) putFiniScreen,
+	(FiniPluginObjectProc) putFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
+
 static Bool
-putInit (CompPlugin * p)
+putInit (CompPlugin *p)
 {
     displayPrivateIndex = allocateDisplayPrivateIndex ();
     if (displayPrivateIndex < 0)
@@ -1428,16 +1459,9 @@ putInit (CompPlugin * p)
 }
 
 static void
-putFini (CompPlugin * p)
+putFini (CompPlugin *p)
 {
     freeDisplayPrivateIndex (displayPrivateIndex);
-}
-
-static int
-putGetVersion (CompPlugin *p,
-	       int        version)
-{
-    return ABIVERSION;
 }
 
 /*
@@ -1446,20 +1470,13 @@ putGetVersion (CompPlugin *p,
  */
 CompPluginVTable putVTable = {
     "put",
-    putGetVersion,
     0,
     putInit,
     putFini,
-    putInitDisplay,
-    putFiniDisplay,
-    putInitScreen,
-    putFiniScreen,
-    putInitWindow,
-    putFiniWindow,
-    NULL,
-    NULL,
-    NULL,
-    NULL
+    putInitObject,
+    putFiniObject,
+    0,
+    0
 };
 
 CompPluginVTable*
