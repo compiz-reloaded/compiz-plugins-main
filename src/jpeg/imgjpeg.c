@@ -25,7 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include <jpeglib.h>
 #include "imgjpeg_options.h"
 
@@ -38,7 +38,7 @@ typedef struct _JPEGDisplay
 } JPEGDisplay;
 
 #define GET_JPEG_DISPLAY(d)				    \
-    ((JPEGDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((JPEGDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define JPEG_DISPLAY(d)			 \
     JPEGDisplay *jd = GET_JPEG_DISPLAY (d)
@@ -332,6 +332,9 @@ JPEGInitDisplay (CompPlugin  *p,
 {
     JPEGDisplay *jd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     jd = malloc (sizeof (JPEGDisplay));
     if (!jd)
 	return FALSE;
@@ -339,7 +342,7 @@ JPEGInitDisplay (CompPlugin  *p,
     WRAP (jd, d, fileToImage, JPEGFileToImage);
     WRAP (jd, d, imageToFile, JPEGImageToFile);
 
-    d->privates[displayPrivateIndex].ptr = jd;
+    d->object.privates[displayPrivateIndex].ptr = jd;
 
     return TRUE;
 }
@@ -356,6 +359,27 @@ JPEGFiniDisplay (CompPlugin  *p,
     free (jd);
 }
 
+static CompBool
+JPEGInitObject (CompPlugin *p,
+		CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) JPEGInitDisplay,
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+JPEGFiniObject (CompPlugin *p,
+		CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) JPEGFiniDisplay,
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
 
 static Bool
 JPEGInit (CompPlugin *p)
@@ -373,27 +397,13 @@ JPEGFini (CompPlugin *p)
     freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-JPEGGetVersion (CompPlugin *p,
-		int        version)
-{
-    return ABIVERSION;
-}
-
 CompPluginVTable JPEGVTable = {
     "imgjpeg",
-    JPEGGetVersion,
     0,
     JPEGInit,
     JPEGFini,
-    JPEGInitDisplay,
-    JPEGFiniDisplay,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
+    JPEGInitObject,
+    JPEGFiniObject,
     0,
     0
 };
