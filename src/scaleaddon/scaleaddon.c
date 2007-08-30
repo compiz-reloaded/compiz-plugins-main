@@ -1100,6 +1100,9 @@ scaleaddonInitDisplay (CompPlugin  *p,
 {
     ScaleAddonDisplay *ad;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     if (!checkPluginABI ("scale", SCALE_ABIVERSION))
 	return FALSE;
 
@@ -1148,7 +1151,7 @@ scaleaddonFiniDisplay (CompPlugin  *p,
 
 static Bool
 scaleaddonInitScreen (CompPlugin *p,
-	      	      CompScreen *s)
+		      CompScreen *s)
 {
     ScaleAddonScreen *as;
 
