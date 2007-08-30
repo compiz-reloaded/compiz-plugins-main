@@ -3851,6 +3851,9 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
 {
     AnimDisplay *ad;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     ad = calloc(1, sizeof(AnimDisplay));
     if (!ad)
 	return FALSE;
@@ -3869,7 +3872,7 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
     WRAP(ad, d, handleEvent, animHandleEvent);
     WRAP(ad, d, handleCompizEvent, animHandleCompizEvent);
 
-    d->privates[animDisplayPrivateIndex].ptr = ad;
+    d->object.privates[animDisplayPrivateIndex].ptr = ad;
 
     return TRUE;
 }
@@ -3988,7 +3991,7 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 
     as->markAllWinCreatedCountdown = 5; // start countdown
 
-    s->privates[ad->screenPrivateIndex].ptr = as;
+    s->object.privates[ad->screenPrivateIndex].ptr = as;
 
     return TRUE;
 }
@@ -4070,7 +4073,7 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
 
     aw->wmName = animGetWindowName(w);
 
-    w->privates[as->windowPrivateIndex].ptr = aw;
+    w->object.privates[as->windowPrivateIndex].ptr = aw;
 
     return TRUE;
 }
@@ -4090,6 +4093,61 @@ static void animFiniWindow(CompPlugin * p, CompWindow * w)
 	unmapWindow(w);
 
     free(aw);
+}
+
+static CompBool
+animInitObject (CompPlugin *p,
+		CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) animInitDisplay,
+	(InitPluginObjectProc) animInitScreen,
+	(InitPluginObjectProc) animInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+animFiniObject (CompPlugin *p,
+		  CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) animFiniDisplay,
+	(FiniPluginObjectProc) animFiniScreen,
+	(FiniPluginObjectProc) animFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
+
+static CompOption *
+animGetObjectOptions (CompPlugin *plugin,
+		      CompObject *object,
+		      int	   *count)
+{
+    static GetPluginObjectOptionsProc dispTab[] = {
+	(GetPluginObjectOptionsProc) 0, /* etDisplayOptions */
+	(GetPluginObjectOptionsProc) animGetScreenOptions
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab),
+		     (void *) (*count = 0), (plugin, object, count));
+}
+
+static CompBool
+animSetObjectOption (CompPlugin      *plugin,
+		     CompObject      *object,
+		     const char      *name,
+		     CompOptionValue *value)
+{
+    static SetPluginObjectOptionProc dispTab[] = {
+	(SetPluginObjectOptionProc) 0, /* SetDisplayOption */
+	(SetPluginObjectOptionProc) animSetScreenOptions
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), FALSE,
+		     (plugin, object, name, value));
 }
 
 static Bool animInit(CompPlugin * p)
@@ -4121,13 +4179,6 @@ static void animFini(CompPlugin * p)
     compFiniMetadata (&animMetadata);
 }
 
-static int
-animGetVersion (CompPlugin *plugin,
-		int	   version)
-{
-    return ABIVERSION;
-}
-
 static CompMetadata *
 animGetMetadata (CompPlugin *plugin)
 {
@@ -4136,23 +4187,17 @@ animGetMetadata (CompPlugin *plugin)
 
 CompPluginVTable animVTable = {
     "animation",
-    animGetVersion,
     animGetMetadata,
     animInit,
     animFini,
-    animInitDisplay,
-    animFiniDisplay,
-    animInitScreen,
-    animFiniScreen,
-    animInitWindow,
-    animFiniWindow,
-    0,
-    0,
-    animGetScreenOptions,
-    animSetScreenOptions,
+    animInitObject,
+    animFiniObject,
+    animGetObjectOptions,
+    animSetObjectOption,
 };
 
-CompPluginVTable *getCompPluginInfo(void)
+CompPluginVTable*
+getCompPluginInfo20070830 (void)
 {
     return &animVTable;
 }
