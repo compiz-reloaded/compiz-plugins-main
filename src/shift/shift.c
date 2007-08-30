@@ -155,6 +155,7 @@ typedef struct _ShiftScreen {
     float lastTitle;
 
     Bool  paintingAbove;
+    int   currX, currY;
 } ShiftScreen;
 
 typedef struct _ShiftWindow {
@@ -733,7 +734,7 @@ shiftPaintWindow (CompWindow		 *w,
 	
 	if (ss->paintingAbove)
 	{
-	    if (!sw->isAbove)
+	    if (!sw->isAbove || ss->currX != s->x || ss->currY != s->y)
 		mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
 	    else
 	    	sAttrib.opacity = sAttrib.opacity * (1.0 - ss->anim);
@@ -1548,6 +1549,8 @@ shiftPaintOutput (CompScreen		  *s,
 		    above = TRUE;
 	    }
 
+	    ss->currX = s->x;
+	    ss->currY = s->y;
 		
 	    ss->paintingAbove = TRUE;
 	    UNWRAP (ss, s, paintOutput);
