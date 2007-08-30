@@ -4,6 +4,11 @@
 		<_short>Shift Switcher</_short>
 		<_long>Shift Switcher Plugin</_long>
 		<category>Window Management</category>
+		<deps>
+			<relation type="before">
+				<plugin>fade</plugin>
+			</relation>
+		</deps>
 		<display>
 			<group>
 				<_short>Key bindings</_short>
