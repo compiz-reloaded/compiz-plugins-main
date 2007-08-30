@@ -1114,6 +1114,15 @@ static Bool snapInitWindow(CompPlugin * p, CompWindow * w)
 	return TRUE;
 }
 
+static void snapFiniWindow(CompPlugin * p, CompWindow * w)
+{
+	SNAP_WINDOW(w);
+
+	snapFreeEdges(w);
+
+	free(sw);
+}
+
 static CompBool
 snapInitObject (CompPlugin *p,
 		CompObject *o)
@@ -1138,15 +1147,6 @@ snapFiniObject (CompPlugin *p,
     };
 
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
-}
-
-static void snapFiniWindow(CompPlugin * p, CompWindow * w)
-{
-	SNAP_WINDOW(w);
-
-	snapFreeEdges(w);
-
-	free(sw);
 }
 
 static Bool snapInit(CompPlugin * p)
