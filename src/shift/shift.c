@@ -155,7 +155,6 @@ typedef struct _ShiftScreen {
     float lastTitle;
 
     Bool  paintingAbove;
-    int   currX, currY;
 } ShiftScreen;
 
 typedef struct _ShiftWindow {
@@ -167,8 +166,6 @@ typedef struct _ShiftWindow {
     float brightnessVelocity;
 
     Bool active;
-
-    Bool isAbove;
 } ShiftWindow;
 
 #define PI 3.1415926
@@ -734,9 +731,6 @@ shiftPaintWindow (CompWindow		 *w,
 	
 	if (ss->paintingAbove)
 	{
-	    if (!sw->isAbove || ss->currX != s->x || ss->currY != s->y)
-		mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
-	    else
 	    	sAttrib.opacity = sAttrib.opacity * (1.0 - ss->anim);
 	}
 	
@@ -1534,30 +1528,40 @@ shiftPaintOutput (CompScreen		  *s,
 
 	if (ss->textPixmap && (ss->state != ShiftStateIn))
 	    shiftDrawWindowTitle (s);
-	
-	glPopMatrix ();
 
 	if (ss->state == ShiftStateIn || ss->state == ShiftStateOut)
 	{
-	    Bool above = FALSE;
+	    Bool found;
+	    ss->paintingAbove = TRUE;
 
-	    for (w = s->windows; w; w = w->next)
+	    w = findWindowAtScreen (s, ss->selectedWindow);
+	    
+	    for (; w; w = w->next)
 	    {
-		SHIFT_WINDOW (w);
-		sw->isAbove = above;
-		if (w->id == ss->selectedWindow)
-		    above = TRUE;
+		if (w->destroyed)
+		    continue;
+
+		if (!w->shaded)
+		{
+		    if (w->attrib.map_state != IsViewable || !w->damaged)
+			continue;
+		}
+		found = FALSE;
+		for (i = 0; i < ss->nWindows; i++)
+		    if (ss->windows[i] == w)
+			found = TRUE;
+		if (found)
+		    continue;
+		(*s->paintWindow) (w, &w->paint, &sTransform,
+				   &infiniteRegion, 0);
 	    }
 
-	    ss->currX = s->x;
-	    ss->currY = s->y;
-		
-	    ss->paintingAbove = TRUE;
-	    UNWRAP (ss, s, paintOutput);
-	    status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
-	    WRAP (ss, s, paintOutput, shiftPaintOutput);
 	    ss->paintingAbove = FALSE;
-	}
+	}	
+	
+	glPopMatrix ();
+
+
     }
 
     return status;
