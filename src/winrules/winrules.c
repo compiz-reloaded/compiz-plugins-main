@@ -19,7 +19,7 @@
  * Boston, MA  02110-1301, USA.
  */
 
-#include <compiz.h>
+#include <compiz-core.h>
 
 #include <X11/Xatom.h>
 
@@ -75,20 +75,20 @@ typedef struct _WinrulesScreen {
 } WinrulesScreen;
 
 #define GET_WINRULES_DISPLAY(d)				\
-    ((WinrulesDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((WinrulesDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define WINRULES_DISPLAY(d)			   	\
     WinrulesDisplay *wd = GET_WINRULES_DISPLAY (d)
 
 #define GET_WINRULES_SCREEN(s, wd)				    \
-    ((WinrulesScreen *) (s)->privates[(wd)->screenPrivateIndex].ptr)
+    ((WinrulesScreen *) (s)->object.privates[(wd)->screenPrivateIndex].ptr)
 
 #define WINRULES_SCREEN(s)			    \
     WinrulesScreen *ws = GET_WINRULES_SCREEN (s,    \
 			 GET_WINRULES_DISPLAY (s->display))
 
 #define GET_WINRULES_WINDOW(w, ws)                                  \
-    ((WinrulesWindow *) (w)->privates[(ws)->windowPrivateIndex].ptr)
+    ((WinrulesWindow *) (w)->object.privates[(ws)->windowPrivateIndex].ptr)
 
 #define WINRULES_WINDOW(w)					\
     WinrulesWindow *ww = GET_WINRULES_WINDOW  (w,		\
@@ -603,6 +603,9 @@ winrulesInitDisplay (CompPlugin  *p,
 {
     WinrulesDisplay *wd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     wd = malloc (sizeof (WinrulesDisplay));
     if (!wd)
         return FALSE;
@@ -618,7 +621,7 @@ winrulesInitDisplay (CompPlugin  *p,
     WRAP (wd, d, matchExpHandlerChanged, winrulesMatchExpHandlerChanged);
     WRAP (wd, d, matchPropertyChanged, winrulesMatchPropertyChanged);
 
-    d->privates[displayPrivateIndex].ptr = wd;
+    d->object.privates[displayPrivateIndex].ptr = wd;
 
     return TRUE;
 }
@@ -690,7 +693,7 @@ winrulesInitScreen (CompPlugin *p,
     WRAP (ws, s, getAllowedActionsForWindow,
 	  winrulesGetAllowedActionsForWindow);
 
-    s->privates[wd->screenPrivateIndex].ptr = ws;
+    s->object.privates[wd->screenPrivateIndex].ptr = ws;
 
     return TRUE;
 }
@@ -714,9 +717,11 @@ static Bool
 winrulesInitWindow (CompPlugin *p,
 		    CompWindow *w)
 {
+    WinrulesWindow *ww;
+
     WINRULES_SCREEN (w->screen);
 
-    WinrulesWindow *ww = malloc (sizeof (WinrulesWindow));
+    ww = malloc (sizeof (WinrulesWindow));
     if (!ww)
         return FALSE;
 
@@ -727,7 +732,7 @@ winrulesInitWindow (CompPlugin *p,
 
     ww->hasAlpha = w->alpha;
 
-    w->privates[ws->windowPrivateIndex].ptr = ww;
+    w->object.privates[ws->windowPrivateIndex].ptr = ww;
 
     compAddTimeout (0, winrulesApplyRules, w);
 
@@ -741,6 +746,61 @@ winrulesFiniWindow (CompPlugin *p,
     WINRULES_WINDOW (w);
 
     free (ww);
+}
+
+static CompBool
+winrulesInitObject (CompPlugin *p,
+		    CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) winrulesInitDisplay,
+	(InitPluginObjectProc) winrulesInitScreen,
+	(InitPluginObjectProc) winrulesInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+winrulesFiniObject (CompPlugin *p,
+		    CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) winrulesFiniDisplay,
+	(FiniPluginObjectProc) winrulesFiniScreen,
+	(FiniPluginObjectProc) winrulesFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
+
+static CompOption *
+winrulesGetObjectOptions (CompPlugin *plugin,
+	  		  CompObject *object,
+	  		  int	     *count)
+{
+    static GetPluginObjectOptionsProc dispTab[] = {
+	(GetPluginObjectOptionsProc) 0, /* GetDisplayOptions */
+	(GetPluginObjectOptionsProc) winrulesGetScreenOptions
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab),
+		     (void *) (*count = 0), (plugin, object, count));
+}
+
+static CompBool
+winrulesSetObjectOption (CompPlugin      *plugin,
+	  		 CompObject      *object,
+	  		 const char      *name,
+	  		 CompOptionValue *value)
+{
+    static SetPluginObjectOptionProc dispTab[] = {
+	(SetPluginObjectOptionProc) 0, /* SetDisplayOption */
+	(SetPluginObjectOptionProc) winrulesSetScreenOption
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), FALSE,
+		     (plugin, object, name, value));
 }
 
 static Bool
@@ -773,13 +833,6 @@ winrulesFini (CompPlugin *p)
     compFiniMetadata (&winrulesMetadata);
 }
 
-static int
-winrulesGetVersion (CompPlugin *plugin,
-		int	    version)
-{
-    return ABIVERSION;
-}
-
 static CompMetadata *
 winrulesGetMetadata (CompPlugin *plugin)
 {
@@ -788,24 +841,17 @@ winrulesGetMetadata (CompPlugin *plugin)
 
 static CompPluginVTable winrulesVTable = {
     "winrules",
-    winrulesGetVersion,
     winrulesGetMetadata,
     winrulesInit,
     winrulesFini,
-    winrulesInitDisplay,
-    winrulesFiniDisplay,
-    winrulesInitScreen,
-    winrulesFiniScreen,
-    winrulesInitWindow,
-    winrulesFiniWindow,
-    0, /* winrulesGetDisplayOptions, */
-    0, /* winrulesSetDisplayOption,  */
-    winrulesGetScreenOptions,
-    winrulesSetScreenOption
+    winrulesInitObject,
+    winrulesFiniObject,
+    winrulesGetObjectOptions,
+    winrulesSetObjectOption,
 };
 
 CompPluginVTable *
-getCompPluginInfo (void)
+getCompPluginInfo20070830 (void)
 {
     return &winrulesVTable;
 }
