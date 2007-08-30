@@ -42,7 +42,7 @@
 #include <X11/Xatom.h>
 #include <X11/cursorfont.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include <text.h>
 #include "shift_options.h"
 
@@ -171,19 +171,19 @@ typedef struct _ShiftWindow {
 #define PI 3.1415926
 
 #define GET_SHIFT_DISPLAY(d)				      \
-    ((ShiftDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((ShiftDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define SHIFT_DISPLAY(d)		     \
     ShiftDisplay *sd = GET_SHIFT_DISPLAY (d)
 
 #define GET_SHIFT_SCREEN(s, sd)					  \
-    ((ShiftScreen *) (s)->privates[(sd)->screenPrivateIndex].ptr)
+    ((ShiftScreen *) (s)->object.privates[(sd)->screenPrivateIndex].ptr)
 
 #define SHIFT_SCREEN(s)							   \
     ShiftScreen *ss = GET_SHIFT_SCREEN (s, GET_SHIFT_DISPLAY (s->display))
 
 #define GET_SHIFT_WINDOW(w, ss)					  \
-    ((ShiftWindow *) (w)->privates[(ss)->windowPrivateIndex].ptr)
+    ((ShiftWindow *) (w)->object.privates[(ss)->windowPrivateIndex].ptr)
 
 #define SHIFT_WINDOW(w)					       \
     ShiftWindow *sw = GET_SHIFT_WINDOW  (w,		       \
@@ -2380,6 +2380,9 @@ shiftInitDisplay (CompPlugin  *p,
 {
     ShiftDisplay *sd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     sd = malloc (sizeof (ShiftDisplay));
     if (!sd)
 	return FALSE;
@@ -2439,7 +2442,7 @@ shiftInitDisplay (CompPlugin  *p,
 
     WRAP (sd, d, handleEvent, shiftHandleEvent);
 
-    d->privates[displayPrivateIndex].ptr = sd;
+    d->object.privates[displayPrivateIndex].ptr = sd;
 
     return TRUE;
 }
@@ -2517,7 +2520,7 @@ shiftInitScreen (CompPlugin *p,
 
     ss->cursor = XCreateFontCursor (s->display->display, XC_left_ptr);
 
-    s->privates[sd->screenPrivateIndex].ptr = ss;
+    s->object.privates[sd->screenPrivateIndex].ptr = ss;
 
     return TRUE;
 }
@@ -2567,7 +2570,7 @@ shiftInitWindow (CompPlugin *p,
     sw->slots[0].scale = 1.0;
     sw->slots[1].scale = 1.0;
     
-    w->privates[ss->windowPrivateIndex].ptr = sw;
+    w->object.privates[ss->windowPrivateIndex].ptr = sw;
 
     return TRUE;
 }
@@ -2598,27 +2601,39 @@ shiftFini (CompPlugin *p)
 	freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-shiftGetVersion (CompPlugin *plugin,
-		int	    version)
+static CompBool
+shiftInitObject (CompPlugin *p,
+		 CompObject *o)
 {
-    return ABIVERSION;
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) shiftInitDisplay,
+	(InitPluginObjectProc) shiftInitScreen,
+	(InitPluginObjectProc) shiftInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+shiftFiniObject (CompPlugin *p,
+		 CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) shiftFiniDisplay,
+	(FiniPluginObjectProc) shiftFiniScreen,
+	(FiniPluginObjectProc) shiftFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 CompPluginVTable shiftVTable = {
     "shift",
-    shiftGetVersion,
     0,
     shiftInit,
     shiftFini,
-    shiftInitDisplay,
-    shiftFiniDisplay,
-    shiftInitScreen,
-    shiftFiniScreen,
-    shiftInitWindow,
-    shiftFiniWindow,
-    0,
-    0,
+    shiftInitObject,
+    shiftFiniObject,
     0,
     0
 };
