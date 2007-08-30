@@ -25,7 +25,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include "parser.h"
 #include "colorfilter_options.h"
 
@@ -62,16 +62,16 @@ typedef struct _ColorFilterWindow
 } ColorFilterWindow;
 
 #define GET_FILTER_DISPLAY(d)					    \
-    ((ColorFilterDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((ColorFilterDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 #define FILTER_DISPLAY(d)			    \
     ColorFilterDisplay *cfd = GET_FILTER_DISPLAY (d)
 #define GET_FILTER_SCREEN(s, cfd)					\
-    ((ColorFilterScreen *) (s)->privates[(cfd)->screenPrivateIndex].ptr)
+    ((ColorFilterScreen *) (s)->object.privates[(cfd)->screenPrivateIndex].ptr)
 #define FILTER_SCREEN(s)					\
     ColorFilterScreen *cfs = GET_FILTER_SCREEN (s,		\
 			     GET_FILTER_DISPLAY (s->display))
 #define GET_FILTER_WINDOW(w, cfs)					\
-    ((ColorFilterWindow *) (w)->privates[(cfs)->windowPrivateIndex].ptr)
+    ((ColorFilterWindow *) (w)->object.privates[(cfs)->windowPrivateIndex].ptr)
 #define FILTER_WINDOW(w)						\
     ColorFilterWindow *cfw = GET_FILTER_WINDOW  (w,			\
 			     GET_FILTER_SCREEN  (w->screen,		\
@@ -509,6 +509,9 @@ colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
 {
     ColorFilterDisplay *cfd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     cfd = malloc (sizeof (ColorFilterDisplay));
     if (!cfd)
 	return FALSE;
@@ -524,7 +527,7 @@ colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
     colorfilterSetToggleScreenKeyInitiate (d, colorFilterToggleAll);
     colorfilterSetSwitchFilterKeyInitiate (d, colorFilterSwitch);
 
-    d->privates[displayPrivateIndex].ptr = cfd;
+    d->object.privates[displayPrivateIndex].ptr = cfd;
 
     return TRUE;
 }
@@ -577,7 +580,7 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     WRAP (cfs, s, drawWindowTexture, colorFilterDrawWindowTexture);
     WRAP (cfs, s, windowAddNotify, colorFilterWindowAddNotify);
 
-    s->privates[cfd->screenPrivateIndex].ptr = cfs;
+    s->object.privates[cfd->screenPrivateIndex].ptr = cfs;
 
     return TRUE;
 }
@@ -612,7 +615,7 @@ colorFilterInitWindow (CompPlugin * p, CompWindow * w)
 
     cfw->isFiltered = FALSE;
 
-    w->privates[cfs->windowPrivateIndex].ptr = cfw;
+    w->object.privates[cfs->windowPrivateIndex].ptr = cfw;
 
     return TRUE;
 }
@@ -625,6 +628,32 @@ colorFilterFiniWindow (CompPlugin * p, CompWindow * w)
 
     FILTER_WINDOW (w);
     free (cfw);
+}
+
+static CompBool
+colorFilterInitObject (CompPlugin *p,
+		       CompObject *o)
+{
+	static InitPluginObjectProc dispTab[] = {
+		(InitPluginObjectProc) colorFilterInitDisplay,
+		(InitPluginObjectProc) colorFilterInitScreen,
+		(InitPluginObjectProc) colorFilterInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+colorFilterFiniObject (CompPlugin *p,
+		       CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+		(FiniPluginObjectProc) colorFilterFiniDisplay,
+		(FiniPluginObjectProc) colorFilterFiniScreen,
+		(FiniPluginObjectProc) colorFilterFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 static Bool
@@ -644,26 +673,13 @@ colorFilterFini (CompPlugin * p)
 	freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-colorFilterGetVersion (CompPlugin * p, int version)
-{
-    return ABIVERSION;
-}
-
 CompPluginVTable colorFilterVTable = {
     "colorfilter",
-    colorFilterGetVersion,
     0,
     colorFilterInit,
     colorFilterFini,
-    colorFilterInitDisplay,
-    colorFilterFiniDisplay,
-    colorFilterInitScreen,
-    colorFilterFiniScreen,
-    colorFilterInitWindow,
-    colorFilterFiniWindow,
-    NULL,
-    NULL,
+    colorFilterInitObject,
+    colorFilterFiniObject,
     NULL,
     NULL
 };
