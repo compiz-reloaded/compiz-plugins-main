@@ -32,8 +32,8 @@
 #include <string.h>
 #include <X11/Xatom.h>
 
-#include <compiz.h>
-#include <scale.h>
+#include <compiz-core.h>
+#include <compiz-scale.h>
 #include <text.h>
 
 #include "scaleaddon_options.h"
@@ -79,19 +79,19 @@ typedef struct _ScaleAddonWindow {
 } ScaleAddonWindow;
 
 #define GET_ADDON_DISPLAY(d)				          \
-    ((ScaleAddonDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((ScaleAddonDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define ADDON_DISPLAY(d)		          \
     ScaleAddonDisplay *ad = GET_ADDON_DISPLAY (d)
 
 #define GET_ADDON_SCREEN(s, ad)				              \
-    ((ScaleAddonScreen *) (s)->privates[(ad)->screenPrivateIndex].ptr)
+    ((ScaleAddonScreen *) (s)->object.privates[(ad)->screenPrivateIndex].ptr)
 
 #define ADDON_SCREEN(s)						               \
     ScaleAddonScreen *as = GET_ADDON_SCREEN (s, GET_ADDON_DISPLAY (s->display))
 
 #define GET_ADDON_WINDOW(w, as)				              \
-    ((ScaleAddonWindow *) (w)->privates[(as)->windowPrivateIndex].ptr)
+    ((ScaleAddonWindow *) (w)->object.privates[(as)->windowPrivateIndex].ptr)
 
 #define ADDON_WINDOW(w)						   \
     ScaleAddonWindow *aw = GET_ADDON_WINDOW (w,                    \
@@ -1120,7 +1120,7 @@ scaleaddonInitDisplay (CompPlugin  *p,
     WRAP (ad, d, handleEvent, scaleaddonHandleEvent);
     WRAP (ad, d, handleCompizEvent, scaleaddonHandleCompizEvent);
 
-    d->privates[displayPrivateIndex].ptr = ad;
+    d->object.privates[displayPrivateIndex].ptr = ad;
 
     ad->lastHoveredWindow = None;
 
@@ -1181,7 +1181,7 @@ scaleaddonInitScreen (CompPlugin *p,
     scaleaddonSetFontColorNotify (s, scaleaddonScreenOptionChanged);
     scaleaddonSetBackColorNotify (s, scaleaddonScreenOptionChanged);
 
-    s->privates[ad->screenPrivateIndex].ptr = as;
+    s->object.privates[ad->screenPrivateIndex].ptr = as;
 
     return TRUE;
 }
@@ -1216,7 +1216,7 @@ scaleaddonInitWindow (CompPlugin *p,
 
     aw->rescaled = FALSE;
 
-    w->privates[as->windowPrivateIndex].ptr = aw;
+    w->object.privates[as->windowPrivateIndex].ptr = aw;
 
     return TRUE;
 }
@@ -1228,6 +1228,32 @@ scaleaddonFiniWindow (CompPlugin *p,
     ADDON_WINDOW (w);
 
     free (aw);
+}
+
+static CompBool
+scaleaddonInitObject (CompPlugin *p,
+		      CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) scaleaddonInitDisplay,
+	(InitPluginObjectProc) scaleaddonInitScreen,
+	(InitPluginObjectProc) scaleaddonInitWindow
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+scaleaddonFiniObject (CompPlugin *p,
+		      CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) scaleaddonFiniDisplay,
+	(FiniPluginObjectProc) scaleaddonFiniScreen,
+	(FiniPluginObjectProc) scaleaddonFiniWindow
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 static Bool
@@ -1246,27 +1272,13 @@ scaleaddonFini (CompPlugin *p)
     freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-scaleaddonGetVersion (CompPlugin *plugin,
-	      	      int	 version)
-{
-    return ABIVERSION;
-}
-
 CompPluginVTable scaleaddonVTable = {
     "scaleaddon",
-    scaleaddonGetVersion,
     0,
     scaleaddonInit,
     scaleaddonFini,
-    scaleaddonInitDisplay,
-    scaleaddonFiniDisplay,
-    scaleaddonInitScreen,
-    scaleaddonFiniScreen,
-    scaleaddonInitWindow,
-    scaleaddonFiniWindow,
-    0,
-    0,
+    scaleaddonInitObject,
+    scaleaddonFiniObject,
     0,
     0
 };
