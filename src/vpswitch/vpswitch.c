@@ -88,12 +88,11 @@ vpswitchInitPlugin (CompDisplay    *d,
     CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
     Bool       rv = FALSE;
 
-
-    if (!plugin)
+    if (!plugin || !plugin->vTable->getObjectOptions)
 	return FALSE;
 
-    tOption = (*plugin->vTable->getObjectOptions) (plugin, &d->object,
-						   &nTOption);
+    tOption = (*plugin->vTable->getObjectOptions) (plugin,
+						   &d->object, &nTOption);
 
     while (nTOption--)
     {
@@ -126,11 +125,11 @@ vpswitchTermPlugin (CompDisplay     *d,
     CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
     Bool       rv = FALSE;
 
-    if (!plugin)
+    if (!plugin || !plugin->vTable->getObjectOptions)
 	return FALSE;
 
-    tOption = (*plugin->vTable->getObjectOptions) (plugin, &d->object,
-						   &nTOption);
+    tOption = (*plugin->vTable->getObjectOptions) (plugin,
+						   &d->object, &nTOption);
 
     while (nTOption--)
     {
