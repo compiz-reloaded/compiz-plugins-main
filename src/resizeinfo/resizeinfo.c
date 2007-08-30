@@ -27,7 +27,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include <cairo-xlib-xrender.h>
 #include <math.h>
 #include <pango/pango.h>
@@ -39,7 +39,7 @@
 
 static int displayPrivateIndex;
 
-typedef struct _InfoDisplay 
+typedef struct _InfoDisplay
 {
     int screenPrivateIndex;
 
@@ -65,13 +65,13 @@ typedef struct _InfoScreen
     DonePaintScreenProc    donePaintScreen;
   
     CompWindow *pWindow;
-  
+
     Bool drawing;
     int  fadeTime;
 
     InfoLayer backgroundLayer;
     InfoLayer textLayer;
-  
+ 
     XRectangle resizeGeometry;
 } InfoScreen;
 
@@ -79,13 +79,13 @@ typedef struct _InfoScreen
 #define RESIZE_POPUP_HEIGHT 50
 
 #define GET_INFO_DISPLAY(d)				    \
-    ((InfoDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((InfoDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 
 #define INFO_DISPLAY(d)			  \
     InfoDisplay *id = GET_INFO_DISPLAY (d)
 
 #define GET_INFO_SCREEN(s, id)					\
-    ((InfoScreen *) (s)->privates[(id)->screenPrivateIndex].ptr)
+    ((InfoScreen *) (s)->object.privates[(id)->screenPrivateIndex].ptr)
 
 #define INFO_SCREEN(s)						       \
     InfoScreen *is = GET_INFO_SCREEN (s, GET_INFO_DISPLAY (s->display))
@@ -541,6 +541,9 @@ infoInitDisplay (CompPlugin  *p,
 {
     InfoDisplay *id;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     id = malloc (sizeof (InfoDisplay));
     if (!id)
 	return FALSE;
@@ -558,7 +561,7 @@ infoInitDisplay (CompPlugin  *p,
 
     id->resizeNotifyAtom = XInternAtom (d->display, "_COMPIZ_RESIZE_NOTIFY", 0);
 
-    d->privates[displayPrivateIndex].ptr = id;
+    d->object.privates[displayPrivateIndex].ptr = id;
 
     WRAP (id, d, handleEvent, infoHandleEvent);
 
@@ -578,7 +581,7 @@ infoFiniDisplay (CompPlugin  *p,
     free (id);
 }
 
-static Bool 
+static Bool
 infoInitScreen (CompPlugin *p,
 		CompScreen *s)
 {
@@ -601,22 +604,22 @@ infoInitScreen (CompPlugin *p,
 
     initTexture (s, &is->backgroundLayer.texture);
     initTexture (s, &is->textLayer.texture);
-	
+    
     WRAP (is, s, windowGrabNotify, infoWindowGrabNotify);
     WRAP (is, s, windowUngrabNotify, infoWindowUngrabNotify);
     WRAP (is, s, preparePaintScreen, infoPreparePaintScreen);
     WRAP (is, s, paintOutput, infoPaintOutput);
     WRAP (is, s, donePaintScreen, infoDonePaintScreen);
 
-    s->privates[id->screenPrivateIndex].ptr = is;
+    s->object.privates[id->screenPrivateIndex].ptr = is;
 
     /* setup and draw cairo background */
     setupCairoLayer (s, &is->backgroundLayer);
     drawCairoBackground (s);
-	
+    
     /* setup text layer */
     setupCairoLayer (s, &is->textLayer);
-  
+
     return TRUE;
 }
 
@@ -628,9 +631,9 @@ freeInfoLayer (CompScreen *s,
 	cairo_destroy (is->cr);
     if (is->surface)
 	cairo_surface_destroy (is->surface);
-  
+
     finiTexture (s, &is->texture);
-  
+
     if (is->pixmap)
 	XFreePixmap (s->display->display, is->pixmap);
 }
@@ -643,7 +646,7 @@ infoFiniScreen (CompPlugin *p,
 	
     freeInfoLayer (s, &is->backgroundLayer);
     freeInfoLayer (s, &is->textLayer);
-         
+
     UNWRAP (is, s, windowGrabNotify);
     UNWRAP (is, s, windowUngrabNotify);
     UNWRAP (is, s, preparePaintScreen);
@@ -651,6 +654,30 @@ infoFiniScreen (CompPlugin *p,
     UNWRAP (is, s, donePaintScreen);
 
     free (is);
+}
+
+static CompBool
+infoInitObject (CompPlugin *p,
+		CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) infoInitDisplay,
+	(InitPluginObjectProc) infoInitScreen
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+infoFiniObject (CompPlugin *p,
+		CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) infoFiniDisplay,
+	(FiniPluginObjectProc) infoFiniScreen
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
 static Bool
@@ -669,29 +696,15 @@ infoFini (CompPlugin *p)
     freeDisplayPrivateIndex(displayPrivateIndex);
 }
 
-static int
-infoGetVersion(CompPlugin *plugin,
-	       int        version)
-{
-    return ABIVERSION;
-}
-
 static CompPluginVTable infoVTable = {
     "resizeinfo",
-    infoGetVersion,
     0,
     infoInit,
     infoFini,
-    infoInitDisplay,
-    infoFiniDisplay,
-    infoInitScreen,
-    infoFiniScreen,
-    0, /* InitWindow */
-    0, /* FiniWindow */
-    0, /* GetDisplayOptions */
-    0, /* SetDisplayOption */
-    0, /* GetScreenOptions */
-    0 /* SetScreenOption */
+    infoInitObject,
+    infoFiniObject,
+    0,
+    0
 };
 
 CompPluginVTable*
