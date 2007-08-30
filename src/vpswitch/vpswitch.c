@@ -26,7 +26,7 @@
  *
  */
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include <string.h>
 #include <X11/keysymdef.h>
 #include "vpswitch_options.h"
@@ -54,7 +54,7 @@ typedef struct _VpSwitchDisplay
 } VpSwitchDisplay;
 
 #define GET_VPSWITCH_DISPLAY(d)					\
-    ((VpSwitchDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((VpSwitchDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 #define VPSWITCH_DISPLAY(d)			\
     VpSwitchDisplay * vd = GET_VPSWITCH_DISPLAY (d)
 
@@ -88,6 +88,8 @@ vpswitchInitPlugin (CompDisplay    *d,
     CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
     Bool       rv = FALSE;
 
+    /* FIXME: getDisplayOptions no longer in vTable */
+#if 0
     if (!plugin || !plugin->vTable->getDisplayOptions)
 	return FALSE;
 
@@ -110,6 +112,9 @@ vpswitchInitPlugin (CompDisplay    *d,
 	action->state |= CompActionStateTermButton;
 
     return rv;
+#else
+    return FALSE;
+#endif
 }
 
 static Bool
@@ -124,6 +129,8 @@ vpswitchTermPlugin (CompDisplay     *d,
     CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
     Bool       rv = FALSE;
 
+    /* FIXME */
+#if 0
     if (!plugin || !plugin->vTable->getDisplayOptions)
 	return FALSE;
 
@@ -145,6 +152,9 @@ vpswitchTermPlugin (CompDisplay     *d,
     action->state &= ~CompActionStateTermButton;
 
     return rv;
+#else
+    return FALSE;
+#endif
 }
 
 static void
@@ -439,6 +449,9 @@ vpswitchInitDisplay (CompPlugin  *p,
 {
     VpSwitchDisplay *vd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     vd = malloc (sizeof (VpSwitchDisplay));
     if (!vd)
 	return FALSE;
@@ -447,7 +460,7 @@ vpswitchInitDisplay (CompPlugin  *p,
 
     WRAP (vd, d, handleEvent, vpswitchHandleEvent);
 
-    d->privates[displayPrivateIndex].ptr = vd;
+    d->object.privates[displayPrivateIndex].ptr = vd;
 
     vpswitchSetLeftButtonInitiate (d, vpswitchLeft);
     vpswitchSetRightButtonInitiate (d, vpswitchRight);
@@ -488,6 +501,28 @@ vpswitchFiniDisplay(CompPlugin  *p,
     free (vd);
 }
 
+static CompBool
+vpswitchInitObject (CompPlugin *p,
+		    CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) vpswitchInitDisplay
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+vpswitchFiniObject (CompPlugin *p,
+		    CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) vpswitchFiniDisplay,
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
+
 static Bool
 vpswitchInit (CompPlugin *p)
 {
@@ -504,30 +539,15 @@ vpswitchFini (CompPlugin *p)
     freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-
-static int
-vpswitchGetVersion (CompPlugin *p,
-		    int        version)
-{
-    return ABIVERSION;
-}
-
 CompPluginVTable vpswitchVTable = {
     "vpswitch",
-    vpswitchGetVersion,
     0,
     vpswitchInit,
     vpswitchFini,
-    vpswitchInitDisplay,
-    vpswitchFiniDisplay,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL
+    vpswitchInitObject,
+    vpswitchFiniObject,
+    0,
+    0
 };
 
 CompPluginVTable *
