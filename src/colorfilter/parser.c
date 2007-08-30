@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include "parser.h"
 
 /* Internal prototypes ------------------------------------------------------ */
