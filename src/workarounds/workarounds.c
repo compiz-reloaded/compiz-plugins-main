@@ -456,7 +456,9 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 	recalcWindowActions (w);
     }
 
-    workaroundsRemoveSticky (w);
+     if (w->state & CompWindowStateStickyMask && ww->madeSticky)
+	setWindowState (w->screen->display,
+			w->state & ~CompWindowStateStickyMask, w->id);
 
     if (ww->updateHandle)
 	compRemoveTimeout (ww->updateHandle);
