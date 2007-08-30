@@ -28,7 +28,7 @@
 #include <math.h>
 #include <sys/time.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 #include "wall_options.h"
 
 #include <GL/glu.h>
@@ -124,12 +124,12 @@ typedef struct _WallScreen
 
 /* Helpers */
 #define GET_WALL_DISPLAY(d)						\
-    ((WallDisplay *) (d)->privates[displayPrivateIndex].ptr)
+    ((WallDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
 #define WALL_DISPLAY(d)				\
     WallDisplay *wd = GET_WALL_DISPLAY(d);
 
 #define GET_WALL_SCREEN(s, wd)						\
-    ((WallScreen *) (s)->privates[(wd)->screenPrivateIndex].ptr)
+    ((WallScreen *) (s)->object.privates[(wd)->screenPrivateIndex].ptr)
 #define WALL_SCREEN(s)							\
     WallScreen *ws = GET_WALL_SCREEN(s, GET_WALL_DISPLAY(s->display))
 
@@ -1641,6 +1641,9 @@ wallInitDisplay (CompPlugin  *p,
 {
     WallDisplay *wd;
 
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     wd = malloc (sizeof (WallDisplay));
     if (!wd)
 	return FALSE;
@@ -1687,7 +1690,7 @@ wallInitDisplay (CompPlugin  *p,
     wallSetArrowShadowColorNotify (d, wallDisplayOptionChanged);
 
     WRAP (wd, d, handleEvent, wallHandleEvent);
-    d->privates[displayPrivateIndex].ptr = wd;
+    d->object.privates[displayPrivateIndex].ptr = wd;
 
     return TRUE;
 }
@@ -1732,7 +1735,7 @@ wallInitScreen (CompPlugin *p,
     WRAP (ws, s, paintWindow, wallPaintWindow);
     WRAP (ws, s, setScreenOptionForPlugin, wallSetScreenOptionForPlugin);
 
-    s->privates[wd->screenPrivateIndex].ptr = ws;
+    s->object.privates[wd->screenPrivateIndex].ptr = ws;
 
     wallCreateCairoContexts (s, TRUE);
 
@@ -1761,6 +1764,30 @@ wallFiniScreen (CompPlugin *p,
     free(ws);
 }
 
+static CompBool
+wallInitObject (CompPlugin *p,
+		CompObject *o)
+{
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) wallInitDisplay,
+	(InitPluginObjectProc) wallInitScreen
+    };
+
+    RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
+}
+
+static void
+wallFiniObject (CompPlugin *p,
+		CompObject *o)
+{
+    static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) wallFiniDisplay,
+	(FiniPluginObjectProc) wallFiniScreen
+    };
+
+    DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
+}
+
 static Bool
 wallInit (CompPlugin *p)
 {
@@ -1777,29 +1804,15 @@ wallFini (CompPlugin *p)
     freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
-static int
-wallGetVersion (CompPlugin *p,
-		int        version)
-{
-    return ABIVERSION;
-}
-
 CompPluginVTable wallVTable = {
     "wall",
-    wallGetVersion,
     0,
     wallInit,
     wallFini,
-    wallInitDisplay,
-    wallFiniDisplay,
-    wallInitScreen,
-    wallFiniScreen,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL
+    wallInitObject,
+    wallFiniObject,
+    0,
+    0
 };
 
 CompPluginVTable*
