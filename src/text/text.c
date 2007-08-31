@@ -31,7 +31,7 @@
 #include <pango/pangocairo.h>
 
 #include <compiz-core.h>
-#include "text.h"
+#include "compiz-text.h"
 
 static int displayPrivateIndex;
 
