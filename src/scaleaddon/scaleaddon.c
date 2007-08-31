@@ -34,7 +34,7 @@
 
 #include <compiz-core.h>
 #include <compiz-scale.h>
-#include <text.h>
+#include <compiz-text.h>
 
 #include "scaleaddon_options.h"
 
