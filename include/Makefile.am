@@ -1,3 +1,3 @@
 compizincludedir = $(includedir)/compiz
 compizinclude_HEADERS = \
-	text.h
+	compiz-text.h
