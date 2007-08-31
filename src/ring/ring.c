@@ -41,7 +41,7 @@
 #include <X11/cursorfont.h>
 
 #include <compiz-core.h>
-#include <text.h>
+#include <compiz-text.h>
 #include "ring_options.h"
 
 typedef enum {
