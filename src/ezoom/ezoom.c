@@ -2005,6 +2005,10 @@ zoomInitDisplay (CompPlugin  *p,
 		 CompDisplay *d)
 {
     ZoomDisplay *zd;
+
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
     zd = malloc (sizeof (ZoomDisplay));
     if (!zd)
 	return FALSE;
