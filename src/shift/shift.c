@@ -43,7 +43,7 @@
 #include <X11/cursorfont.h>
 
 #include <compiz-core.h>
-#include <text.h>
+#include <compiz-text.h>
 #include "shift_options.h"
 
 typedef enum {
