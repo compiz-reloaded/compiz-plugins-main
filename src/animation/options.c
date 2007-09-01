@@ -136,7 +136,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 
     char *name;
     char *nameTrimmed = calloc(len + 1, 1);
-    char *valueStr;
+    char *valueStr = NULL;
     char *betweenPairs = ",";
     char *betweenOptVal = "=";
 
