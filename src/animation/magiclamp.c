@@ -312,6 +312,5 @@ Bool fxMagicLampModelStep(CompScreen * s, CompWindow * w, float time)
 	fxMagicLampModelStepObject(w, model, &model->objects[i],
 				   forwardProgress);
 
-    modelCalcBounds(model);
     return TRUE;
 }

@@ -34,6 +34,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <GL/glu.h>
 #include "animation-internal.h"
 
 static Bool ensureLargerClipCapacity(PolygonSet * pset)
@@ -362,6 +363,9 @@ tessellateIntoRectangles(CompWindow * w,
 	    p->boundingBox.y1 = -halfH + p->centerPos.y;
 	    p->boundingBox.x2 = ceil(halfW + p->centerPos.x);
 	    p->boundingBox.y2 = ceil(halfH + p->centerPos.y);
+
+	    p->boundSphereRadius =
+		sqrt (halfW * halfW + halfH * halfH + halfThick * halfThick);
 	}
     }
     return TRUE;
@@ -664,6 +668,10 @@ tessellateIntoHexagons(CompWindow * w,
 	    p->boundingBox.y1 = topY + p->centerPos.y;
 	    p->boundingBox.x2 = ceil(bottomRightX + p->centerPos.x);
 	    p->boundingBox.y2 = ceil(bottomY + p->centerPos.y);
+
+	    p->boundSphereRadius = sqrt((topRightX - topLeftX) * (topRightX - topLeftX) / 4 +
+					(bottomY - topY) * (bottomY - topY) / 4 +
+					halfThick * halfThick);
 	}
     }
     if (pset->nPolygons != p - pset->polygons)
@@ -671,7 +679,6 @@ tessellateIntoHexagons(CompWindow * w,
 			"%s: Error in tessellateIntoHexagons at line %d!",
 			__FILE__, __LINE__);
     return TRUE;
-
 }
 
 void
@@ -871,6 +878,54 @@ static Bool processIntersectingPolygons(CompScreen * s, PolygonSet * pset)
     return TRUE;
 }
 
+// Correct perspective appearance by skewing
+static void
+getPerspectiveCorrectionMat (CompWindow *w,
+			     PolygonObject *p,
+			     GLfloat *mat,
+			     float *matf)
+{
+    CompScreen *s = w->screen;
+    Point center;
+
+    if (p) // for CorrectPerspectivePolygon
+    {
+	// use polygon's center
+	center.x = p->centerPos.x;
+	center.y = p->centerPos.y;
+    }
+    else // for CorrectPerspectiveWindow
+    {
+	// use window's center
+	center.x = WIN_X(w) + WIN_W(w) / 2;
+	center.y = WIN_Y(w) + WIN_H(w) / 2;
+    }
+
+    GLfloat skewx = -((center.x - s->width / 2) * 1.15);
+    GLfloat skewy = -((center.y - s->height / 2) * 1.15);
+
+    if (mat)
+    {
+	// column-major order skew matrix
+	GLfloat skewMat[16] =
+	    {1,0,0,0,
+	     0,1,0,0,
+	     skewx,skewy,1,0,
+	     0,0,0,1};
+	memcpy (mat, skewMat, 16 * sizeof (GLfloat));
+    }
+    else if (matf)
+    {
+	// column-major order skew matrix
+	float skewMat[16] =
+	    {1,0,0,0,
+	     0,1,0,0,
+	     skewx,skewy,1,0,
+	     0,0,0,1};
+	memcpy (matf, skewMat, 16 * sizeof (float));
+    }
+}
+
 void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 {
     ANIM_WINDOW(w);
@@ -1044,6 +1099,10 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 	}
     }
 
+    GLfloat skewMat[16];
+    if (pset->correctPerspective == CorrectPerspectiveWindow)
+	getPerspectiveCorrectionMat (w, NULL, skewMat, NULL);
+
     int pass;
     // 0: draw opaque ones
     // 2: draw transparent ones
@@ -1102,34 +1161,11 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
 		glPushMatrix();
 
+		if (pset->correctPerspective == CorrectPerspectivePolygon)
+		    getPerspectiveCorrectionMat (w, p, skewMat, NULL);
+
 		if (pset->correctPerspective != CorrectPerspectiveNone)
-		{
-		    Point center;
-
-		    if (pset->correctPerspective == CorrectPerspectivePolygon)
-		    {
-			// use polygon's center
-			center.x = p->centerPos.x;
-			center.y = p->centerPos.y;
-		    }
-		    else // CorrectPerspectiveWindow
-		    {
-			// use window's center
-			center.x = WIN_X(w) + WIN_W(w) / 2;
-			center.y = WIN_Y(w) + WIN_H(w) / 2;
-		    }
-		    // Correct perspective appearance by skewing
-		    GLfloat skewx = -((center.x - s->width / 2) * 1.15);
-		    GLfloat skewy = -((center.y - s->height / 2) * 1.15);
-
-		    // column-major order
-		    GLfloat skewMat[16] =
-			{1,0,0,0,
-			 0,1,0,0,
-			 skewx,skewy,1,0,
-			 0,0,0,1};
-		    glMultMatrixf( skewMat);
-		}
+		    glMultMatrixf (skewMat);
 
 		// Center
 		glTranslatef(p->centerPos.x, p->centerPos.y, p->centerPos.z);
@@ -1137,8 +1173,8 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 		// Scale z first
 		glScalef(1.0f, 1.0f, 1.0f / s->width);
 
-		if (pset->extraPolygonTransformationFunc)
-		    pset->extraPolygonTransformationFunc (p);
+		if (pset->extraPolygonTransformFunc)
+		    pset->extraPolygonTransformFunc (p);
 
 		// Move by "rotation axis offset"
 		glTranslatef(p->rotAxisOffset.x, p->rotAxisOffset.y,
@@ -1433,8 +1469,6 @@ Bool polygonsAnimStep(CompScreen * s, CompWindow * w, float time)
 
     ANIM_WINDOW(w);
 
-    Model *model = aw->model;
-
     float forwardProgress = defaultAnimProgress(aw);
 
     if (aw->polygonSet)
@@ -1453,6 +1487,82 @@ Bool polygonsAnimStep(CompScreen * s, CompWindow * w, float time)
     else
 	compLogMessage (s->display, "animation", CompLogLevelDebug,
 			"%s: pset null at line %d\n",__FILE__,  __LINE__);
-    modelCalcBounds(model);
     return TRUE;
+}
+
+void
+polygonsUpdateBB (CompWindow * w)
+{
+    CompScreen *s = w->screen;
+    ANIM_SCREEN (s);
+    ANIM_WINDOW (w);
+
+    PolygonSet *pset = aw->polygonSet;
+    if (!pset)
+	return;
+
+    CompTransform wTransform;
+    CompTransform wTransform2;
+
+    resetToIdentity (&wTransform2);
+    prepareTransform (s, &wTransform, &wTransform2);
+
+    GLdouble dModel[16];
+    GLdouble px, py, pz;
+
+    PolygonObject *p = aw->polygonSet->polygons;
+    CompTransform *modelViewTransform = &wTransform;
+
+    float skewMat[16];
+    if (pset->correctPerspective == CorrectPerspectiveWindow)
+    {
+	getPerspectiveCorrectionMat (w, NULL, NULL, skewMat);
+	matmul4 (wTransform2.m, wTransform.m, skewMat);
+    }
+    if (pset->correctPerspective == CorrectPerspectiveWindow ||
+	pset->correctPerspective == CorrectPerspectivePolygon)
+	modelViewTransform = &wTransform2;
+
+    int i;
+    for (i = 0; i < aw->polygonSet->nPolygons; i++, p++)
+    {
+	if (pset->correctPerspective == CorrectPerspectivePolygon)
+	{
+	    getPerspectiveCorrectionMat (w, p, NULL, skewMat);
+	    matmul4 (wTransform2.m, wTransform.m, skewMat);
+	}
+
+	int j;
+	for (j = 0; j < 16; j++)
+	    dModel[j] = modelViewTransform->m[j];
+
+	Point3d center = p->centerPos;
+	float radius = p->boundSphereRadius + 2;
+
+	float zradius = radius / s->width;
+#define N_POINTS 8
+	// Corners of almost-bounding rect. prism
+	Point3d cubeCorners[N_POINTS] =
+	    {{center.x - radius, center.y - radius, center.z + zradius},
+	     {center.x - radius, center.y + radius, center.z + zradius},
+	     {center.x + radius, center.y - radius, center.z + zradius},
+	     {center.x + radius, center.y + radius, center.z + zradius},
+	     {center.x - radius, center.y - radius, center.z - zradius},
+	     {center.x - radius, center.y + radius, center.z - zradius},
+	     {center.x + radius, center.y - radius, center.z - zradius},
+	     {center.x + radius, center.y + radius, center.z - zradius}};
+	Point3d *pnt = cubeCorners;
+
+	for (j = 0; j < N_POINTS; j++, pnt++)
+	{
+	    if (!gluProject (pnt->x, pnt->y, pnt->z,
+			     dModel, as->dProjection, as->viewport,
+			     &px, &py, &pz))
+		return;
+
+	    py = s->height - py;
+	    expandBoxWithPoint (&aw->BB, px + 0.5, py + 0.5);
+	}
+#undef N_POINTS
+    }
 }

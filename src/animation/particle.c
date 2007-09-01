@@ -307,3 +307,44 @@ void finiParticles(ParticleSystem * ps)
 	free(ps->dcolors_cache);
 }
 
+void
+particlesUpdateBB (CompWindow * w)
+{
+    ANIM_WINDOW(w);
+
+    int i;
+    for (i = 0; i < aw->numPs; i++)
+    {
+	ParticleSystem * ps = &aw->ps[i];
+	if (ps->active)
+	{
+	    int j;
+	    for (j = 0; j < ps->numParticles; j++)
+	    {
+		Particle *part = &ps->particles[j];
+
+		float w = part->width / 2;
+		float h = part->height / 2;
+
+		w += (w * part->w_mod) * part->life;
+		h += (h * part->h_mod) * part->life;
+
+		Box particleBox =
+		    {part->x - w, part->x + w,
+		     part->y - h, part->y + h};
+
+		expandBoxWithBox (&aw->BB, &particleBox);
+	    }
+	}
+    }
+    if (aw->useDrawRegion)
+    {
+	int nClip = aw->drawRegion->numRects;
+	Box *pClip = aw->drawRegion->rects;
+
+	for (; nClip--; pClip++)
+	    expandBoxWithBox (&aw->BB, pClip);
+    }
+    else // drawing full window
+	updateBBWindow (w);
+}

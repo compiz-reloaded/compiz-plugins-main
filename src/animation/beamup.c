@@ -175,7 +175,6 @@ fxBeamUpGenNewFire(CompScreen * s,
 Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 {
     int steps;
-    int creating = 0;
 
     if (!defaultAnimStep(s, w, time))
 	return FALSE;
@@ -183,34 +182,32 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    Model *model = aw->model;
-
     float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
 		      as->opt[ANIM_SCREEN_OPTION_TIME_STEP_INTENSE].value.i);
 
     aw->timestep = timestep;
 
-    float old = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
-
+    Bool creating = (aw->curWindowEvent == WindowEventOpen ||
+		     aw->curWindowEvent == WindowEventUnminimize ||
+		     aw->curWindowEvent == WindowEventUnshade);
     aw->remainderSteps += time / timestep;
     steps = floor(aw->remainderSteps);
     aw->remainderSteps -= steps;
     if (!steps && aw->animRemainingTime < aw->animTotalTime)
+    {
+	// Might be interrupted in the middle.
+	// Therefore, if creating, schedule whole window to be damaged.
+	if (creating)
+	    updateBBWindow (w);
 	return FALSE;
-
+    }
     aw->animRemainingTime -= timestep;
     if (aw->animRemainingTime <= 0)
 	aw->animRemainingTime = 0;	// avoid sub-zero values
-    float new = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
+    float new = 1 - (aw->animRemainingTime) / (aw->animTotalTime - timestep);
 
-    if (aw->curWindowEvent == WindowEventOpen ||
-	aw->curWindowEvent == WindowEventUnminimize ||
-	aw->curWindowEvent == WindowEventUnshade)
-    {
-	old = 1 - old;
+    if (creating)
 	new = 1 - new;
-	creating = 1;
-    }
 
     if (!aw->drawRegion)
 	aw->drawRegion = XCreateRegion();
@@ -218,27 +215,26 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
     {
 	XRectangle rect;
 
-	rect.x = ((old / 2) * WIN_W(w));
-	rect.width = WIN_W(w) - (old * WIN_W(w));
-	rect.y = ((old / 2) * WIN_H(w));
-	rect.height = WIN_H(w) - (old * WIN_H(w));
+	rect.x = ((new / 2) * WIN_W(w));
+	rect.width = (1 - new) * WIN_W(w);
+	rect.y = ((new / 2) * WIN_H(w));
+	rect.height = (1 - new) * WIN_H(w);
 	XUnionRectWithRegion(&rect, &emptyRegion, aw->drawRegion);
     }
     else
     {
 	XUnionRegion(&emptyRegion, &emptyRegion, aw->drawRegion);
     }
-    if (new != 0)
-	aw->useDrawRegion = TRUE;
-    else
-	aw->useDrawRegion = FALSE;
+
+    aw->useDrawRegion = (fabs (new) > 1e-5);
 
     if (aw->animRemainingTime > 0 && aw->numPs)
     {
 	fxBeamUpGenNewFire(s, w, &aw->ps[1], 
 			   WIN_X(w), WIN_Y(w) + (WIN_H(w) / 2), WIN_W(w),
-			   creating ? WIN_H(w) - (old / 2 * WIN_H(w)) : 
-			   (WIN_H(w) -   (old * WIN_H(w))),
+			   creating ?
+			   (1 - new / 2) * WIN_H(w) : 
+			   (1 - new) * WIN_H(w),
 			   WIN_W(w) / 40.0, time);
 
     }
@@ -271,7 +267,6 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
     aw->ps[1].x = WIN_X(w);
     aw->ps[1].y = WIN_Y(w);
 
-    modelCalcBounds(model);
     return TRUE;
 }
 

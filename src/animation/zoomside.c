@@ -237,9 +237,9 @@ fxZoomUpdateWindowAttrib(AnimScreen * as,
 }
 
 void
-fxZoomUpdateWindowTransform(CompScreen *s, CompWindow *w, CompTransform *wTransform)
+applyZoomTransform (CompWindow * w, CompTransform *transform)
 {
-    ANIM_SCREEN(s);
+    ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
     Point winCenter =
@@ -287,44 +287,55 @@ fxZoomUpdateWindowTransform(CompScreen *s, CompWindow *w, CompTransform *wTransf
 	(aw->curWindowEvent == WindowEventOpen ||
 	 aw->curWindowEvent == WindowEventClose))
     {
-	matrixTranslate (wTransform,
+	matrixTranslate (transform,
 			 iconCenter.x, iconCenter.y, 0);
-	matrixScale (wTransform, curScale.x, curScale.y, 1.0f);
-	matrixTranslate (wTransform,
+	matrixScale (transform, curScale.x, curScale.y, 1.0f);
+	matrixTranslate (transform,
 			 -iconCenter.x, -iconCenter.y, 0);
 
 	if (aw->curAnimEffect == AnimEffectSidekick)
 	{
-	    matrixTranslate (wTransform, winCenter.x, winCenter.y, 0);
-	    matrixRotate (wTransform, rotateProgress * 360 * aw->numZoomRotations,
+	    matrixTranslate (transform, winCenter.x, winCenter.y, 0);
+	    matrixRotate (transform, rotateProgress * 360 * aw->numZoomRotations,
 			  0.0f, 0.0f, 1.0f);
-	    matrixTranslate (wTransform, -winCenter.x, -winCenter.y, 0);
+	    matrixTranslate (transform, -winCenter.x, -winCenter.y, 0);
 	}
     }
     else
     {
-	matrixTranslate (wTransform, winCenter.x, winCenter.y, 0);
+	matrixTranslate (transform, winCenter.x, winCenter.y, 0);
 	float tx, ty;
 	if (aw->curAnimEffect != AnimEffectZoom)
 	{
 	    // avoid parallelogram look
 	    float maxScale = MAX(curScale.x, curScale.y);
-	    matrixScale (wTransform, maxScale, maxScale, 1.0f);
+	    matrixScale (transform, maxScale, maxScale, 1.0f);
 	    tx = (curCenter.x - winCenter.x) / maxScale;
 	    ty = (curCenter.y - winCenter.y) / maxScale;
 	}
 	else
 	{
-	    matrixScale (wTransform, curScale.x, curScale.y, 1.0f);
+	    matrixScale (transform, curScale.x, curScale.y, 1.0f);
 	    tx = (curCenter.x - winCenter.x) / curScale.x;
 	    ty = (curCenter.y - winCenter.y) / curScale.y;
 	}
-	matrixTranslate (wTransform, tx, ty, 0);
+	matrixTranslate (transform, tx, ty, 0);
 	if (aw->curAnimEffect == AnimEffectSidekick)
 	{
-	    matrixRotate (wTransform, rotateProgress * 360 * aw->numZoomRotations,
+	    matrixRotate (transform, rotateProgress * 360 * aw->numZoomRotations,
 			  0.0f, 0.0f, 1.0f);
 	}
-	matrixTranslate (wTransform, -winCenter.x, -winCenter.y, 0);
+	matrixTranslate (transform, -winCenter.x, -winCenter.y, 0);
     }
+}
+
+void
+fxZoomUpdateWindowTransform (CompScreen *s,
+			     CompWindow *w,
+			     CompTransform *wTransform)
+{
+    ANIM_WINDOW(w);
+
+    // Apply transform to wTransform
+    matmul4 (wTransform->m, wTransform->m, aw->transform.m);
 }

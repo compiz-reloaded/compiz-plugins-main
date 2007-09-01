@@ -441,3 +441,4 @@ getCompPluginInfo20070830 (void)
 {
     return &textVTable;
 }
+

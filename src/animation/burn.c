@@ -285,13 +285,11 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    Model *model = aw->model;
-
     Bool smoke = animGetB(as, aw, ANIM_SCREEN_OPTION_FIRE_SMOKE);
 
     float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
 		      as->opt[ANIM_SCREEN_OPTION_TIME_STEP_INTENSE].value.i);
-    float old = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
+    float old = 1 - (aw->animRemainingTime) / (aw->animTotalTime - timestep);
     float stepSize;
 
     aw->remainderSteps += time / timestep;
@@ -303,7 +301,7 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
     aw->animRemainingTime -= timestep;
     if (aw->animRemainingTime <= 0)
 	aw->animRemainingTime = 0;	// avoid sub-zero values
-    float new = 1 - (aw->animRemainingTime) / (aw->animTotalTime);
+    float new = 1 - (aw->animRemainingTime) / (aw->animTotalTime - timestep);
 
     stepSize = new - old;
 
@@ -311,10 +309,8 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	aw->curWindowEvent == WindowEventUnminimize ||
 	aw->curWindowEvent == WindowEventUnshade)
     {
-	old = 1 - old;
 	new = 1 - new;
     }
-
     if (!aw->drawRegion)
 	aw->drawRegion = XCreateRegion();
     if (aw->animRemainingTime > 0)
@@ -327,26 +323,26 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	    rect.x = 0;
 	    rect.y = 0;
 	    rect.width = WIN_W(w);
-	    rect.height = WIN_H(w) - (old * WIN_H(w));
+	    rect.height = WIN_H(w) - (new * WIN_H(w));
 	    break;
 	case AnimDirectionRight:
-	    rect.x = (old * WIN_W(w));
+	    rect.x = (new * WIN_W(w));
 	    rect.y = 0;
-	    rect.width = WIN_W(w) - (old * WIN_W(w));
+	    rect.width = WIN_W(w) - (new * WIN_W(w));
 	    rect.height = WIN_H(w);
 	    break;
 	case AnimDirectionLeft:
 	    rect.x = 0;
 	    rect.y = 0;
-	    rect.width = WIN_W(w) - (old * WIN_W(w));
+	    rect.width = WIN_W(w) - (new * WIN_W(w));
 	    rect.height = WIN_H(w);
 	    break;
 	case AnimDirectionDown:
 	default:
 	    rect.x = 0;
-	    rect.y = (old * WIN_H(w));
+	    rect.y = (new * WIN_H(w));
 	    rect.width = WIN_W(w);
-	    rect.height = WIN_H(w) - (old * WIN_H(w));
+	    rect.height = WIN_H(w) - (new * WIN_H(w));
 	    break;
 	}
 	XUnionRectWithRegion(&rect, &emptyRegion, aw->drawRegion);
@@ -355,10 +351,7 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
     {
 	XUnionRegion(&emptyRegion, &emptyRegion, aw->drawRegion);
     }
-    if (new != 0)
-	aw->useDrawRegion = TRUE;
-    else
-	aw->useDrawRegion = FALSE;
+    aw->useDrawRegion = (fabs (new) > 1e-5);
 
     if (aw->animRemainingTime > 0 && aw->numPs)
     {
@@ -367,34 +360,34 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	case AnimDirectionUp:
 	    if (smoke)
 		fxBurnGenNewSmoke(s, w, &aw->ps[0], WIN_X(w),
-				  WIN_Y(w) + ((1 - old) * WIN_H(w)),
+				  WIN_Y(w) + ((1 - new) * WIN_H(w)),
 				  WIN_W(w), 1, WIN_W(w) / 40.0, time);
 	    fxBurnGenNewFire(s, w, &aw->ps[1], WIN_X(w),
-			     WIN_Y(w) + ((1 - old) * WIN_H(w)),
+			     WIN_Y(w) + ((1 - new) * WIN_H(w)),
 			     WIN_W(w), (stepSize) * WIN_H(w),
 			     WIN_W(w) / 40.0, time);
 	    break;
 	case AnimDirectionLeft:
 	    if (smoke)
 		fxBurnGenNewSmoke(s, w, &aw->ps[0],
-				  WIN_X(w) + ((1 - old) * WIN_W(w)),
+				  WIN_X(w) + ((1 - new) * WIN_W(w)),
 				  WIN_Y(w),
 				  (stepSize) * WIN_W(w),
 				  WIN_H(w), WIN_H(w) / 40.0, time);
 	    fxBurnGenNewFire(s, w, &aw->ps[1],
-			     WIN_X(w) + ((1 - old) * WIN_W(w)),
+			     WIN_X(w) + ((1 - new) * WIN_W(w)),
 			     WIN_Y(w), (stepSize) * WIN_W(w),
 			     WIN_H(w), WIN_H(w) / 40.0, time);
 	    break;
 	case AnimDirectionRight:
 	    if (smoke)
 		fxBurnGenNewSmoke(s, w, &aw->ps[0],
-				  WIN_X(w) + (old * WIN_W(w)),
+				  WIN_X(w) + (new * WIN_W(w)),
 				  WIN_Y(w),
 				  (stepSize) * WIN_W(w),
 				  WIN_H(w), WIN_H(w) / 40.0, time);
 	    fxBurnGenNewFire(s, w, &aw->ps[1],
-			     WIN_X(w) + (old * WIN_W(w)),
+			     WIN_X(w) + (new * WIN_W(w)),
 			     WIN_Y(w), (stepSize) * WIN_W(w),
 			     WIN_H(w), WIN_H(w) / 40.0, time);
 	    break;
@@ -402,10 +395,10 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	default:
 	    if (smoke)
 		fxBurnGenNewSmoke(s, w, &aw->ps[0], WIN_X(w),
-				  WIN_Y(w) + (old * WIN_H(w)),
+				  WIN_Y(w) + (new * WIN_H(w)),
 				  WIN_W(w), 1, WIN_W(w) / 40.0, time);
 	    fxBurnGenNewFire(s, w, &aw->ps[1], WIN_X(w),
-			     WIN_Y(w) + (old * WIN_H(w)),
+			     WIN_Y(w) + (new * WIN_H(w)),
 			     WIN_W(w), (stepSize) * WIN_H(w),
 			     WIN_W(w) / 40.0, time);
 	    break;
@@ -448,7 +441,6 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
     aw->ps[1].x = WIN_X(w);
     aw->ps[1].y = WIN_Y(w);
 
-    modelCalcBounds(model);
     return TRUE;
 }
 

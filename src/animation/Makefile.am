@@ -1,4 +1,4 @@
-PFLAGS=-module -avoid-version -no-undefined  
+PFLAGS=-module -avoid-version -no-undefined -lGLU 
 
 libanimation_la_LDFLAGS = $(PFLAGS)
 libanimation_la_LIBADD = @COMPIZ_LIBS@

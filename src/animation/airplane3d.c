@@ -745,8 +745,8 @@ fxAirplane3DInit (CompScreen * s, CompWindow * w)
     pset->doLighting = TRUE;
     pset->correctPerspective = CorrectPerspectivePolygon;
 
-    pset->extraPolygonTransformationFunc =
-	&AirplaneExtraPolygonTransformationFunc;
+    pset->extraPolygonTransformFunc =
+	&AirplaneExtraPolygonTransformFunc;
 
     // Duration extension
     aw->animTotalTime *= 2 + airplanePathLength;
@@ -916,7 +916,7 @@ fxAirplane3DLinearAnimStepPolygon (CompWindow * w,
 }
 
 void
-AirplaneExtraPolygonTransformationFunc (PolygonObject * p)
+AirplaneExtraPolygonTransformFunc (PolygonObject * p)
 {
     AirplaneEffectParameters *aep = p->effectParameters;
 

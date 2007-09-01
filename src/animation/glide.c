@@ -39,9 +39,11 @@
 // =====================  Effect: Glide  =========================
 
 static void
-fxGlideGetParams
-(AnimScreen *as, AnimWindow *aw,
- float *finalDistFac, float *finalRotAng, float *thickness)
+fxGlideGetParams (AnimScreen *as,
+		  AnimWindow *aw,
+		  float *finalDistFac,
+		  float *finalRotAng,
+		  float *thickness)
 {
     if (aw->curAnimEffect == AnimEffectGlide3D1)
     {
@@ -94,6 +96,79 @@ float fxGlideAnimProgress(AnimWindow * aw)
     return decelerateProgress(forwardProgress);
 }
 
+// Scales z by 0 and does perspective distortion so that it
+// looks the same wherever on screen
+static void
+resetAndPerspectiveDistortOnZ (CompTransform *wTransform, float v)
+{
+    /*
+      This does
+      wTransform = M * wTransform, where M is
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 0, v,
+      0, 0, 0, 1
+    */
+    float *m = wTransform->m;
+    m[8] = v * m[12];
+    m[9] = v * m[13];
+    m[10] = v * m[14];
+    m[11] = v * m[15];
+}
+
+static void
+applyGlideTransform (CompWindow *w, CompTransform *transform)
+{
+    ANIM_SCREEN(w->screen);
+    ANIM_WINDOW(w);
+
+    float finalDistFac;
+    float finalRotAng;
+    float thickness;
+
+    fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
+
+    float forwardProgress;
+    if (fxGlideZoomToTaskBar(as, aw))
+    {
+	float dummy;
+	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
+    }
+    else
+	forwardProgress = fxGlideAnimProgress(aw);
+
+    float finalz = finalDistFac * 0.8 * DEFAULT_Z_CAMERA *
+	w->screen->width;
+
+    Vector3d rotAxis = {1, 0, 0};
+    Point3d rotAxisOffset =
+	{WIN_X(w) + WIN_W(w) / 2.0f,
+	 WIN_Y(w) + WIN_H(w) / 2.0f,
+	 0};
+    Point3d translation = {0, 0, finalz * forwardProgress};
+
+    float rotAngle = finalRotAng * forwardProgress;
+    aw->glideModRotAngle = fmodf(rotAngle + 720, 360.0f);
+
+    // put back to window position
+    matrixTranslate (transform, rotAxisOffset.x, rotAxisOffset.y, 0);
+
+    resetAndPerspectiveDistortOnZ (transform, -1.0 / w->screen->width);
+
+    // animation movement
+    matrixTranslate (transform, translation.x, translation.y, translation.z);
+
+    // animation rotation
+    matrixRotate (transform, rotAngle, rotAxis.x, rotAxis.y, rotAxis.z);
+
+    // intentional scaling of z by 0 to prevent weird opacity results and
+    // flashing that happen when z coords are between 0 and 1 (bug in compiz?)
+    matrixScale (transform, 1.0f, 1.0f, 0.0f);
+
+    // place window rotation axis at origin
+    matrixTranslate (transform, -rotAxisOffset.x, -rotAxisOffset.y, 0);
+}
+
 Bool fxGlideAnimStep(CompScreen * s, CompWindow * w, float time)
 {
     ANIM_SCREEN(s);
@@ -102,7 +177,14 @@ Bool fxGlideAnimStep(CompScreen * s, CompWindow * w, float time)
     if (fxGlideIsPolygonBased(as, aw))
 	return polygonsAnimStep(s, w, time);
     else
-	return defaultAnimStep(s, w, time);
+    {
+	if (!defaultAnimStep(s, w, time))
+	    return FALSE;
+
+	applyGlideTransform (w, &aw->transform);
+
+	return TRUE;
+    }
 }
 
 void
@@ -128,30 +210,10 @@ fxGlideUpdateWindowAttrib(AnimScreen * as,
     wAttrib->opacity = aw->storedOpacity * (1 - forwardProgress);
 }
 
-// Scales z by 0 and does perspective distortion so that it
-// looks the same wherever on screen
-static void
-resetAndPerspectiveDistortOnZ (CompTransform *wTransform, float v)
-{
-    /*
-      This does
-      wTransform = M * wTransform, where M is
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 0, v,
-      0, 0, 0, 1
-    */
-    float *m = wTransform->m;
-    m[8] = v * m[12];
-    m[9] = v * m[13];
-    m[10] = v * m[14];
-    m[11] = v * m[15];
-}
-
 void
-fxGlideUpdateWindowTransform(CompScreen *s,
-			     CompWindow *w,
-			     CompTransform *wTransform)
+fxGlideUpdateWindowTransform (CompScreen *s,
+			      CompWindow *w,
+			      CompTransform *wTransform)
 {
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -159,56 +221,10 @@ fxGlideUpdateWindowTransform(CompScreen *s,
     if (fxGlideIsPolygonBased (as, aw))
 	return;
 
-    float finalDistFac;
-    float finalRotAng;
-    float thickness;
+    // apply the zoom transform (if minimizing to taskbar)
+    matmul4 (wTransform->m, wTransform->m, aw->transform.m);
 
-    fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
-
-    float forwardProgress;
-    if (fxGlideZoomToTaskBar(as, aw))
-    {
-	float dummy;
-	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
-    }
-    else
-	forwardProgress = fxGlideAnimProgress(aw);
-
-    float finalz = finalDistFac * 0.8 * DEFAULT_Z_CAMERA * s->width;
-
-    Vector3d rotAxis = {1, 0, 0};
-    Point3d rotAxisOffset =
-	{WIN_X(w) + WIN_W(w) / 2.0f,
-	 WIN_Y(w) + WIN_H(w) / 2.0f,
-	 0};
-    Point3d translation = {0, 0, finalz * forwardProgress};
-
-    float rotAngle = finalRotAng * forwardProgress;
-    aw->glideModRotAngle = fmodf(rotAngle + 720, 360.0f);
-
-    if (fxGlideZoomToTaskBar(as, aw))
-    {
-	// Zoom to icon
-	fxZoomUpdateWindowTransform(s, w, wTransform);
-    }
-
-    // put back to window position
-    matrixTranslate (wTransform, rotAxisOffset.x, rotAxisOffset.y, 0);
-
-    resetAndPerspectiveDistortOnZ (wTransform, -1.0/s->width);
-
-    // animation movement
-    matrixTranslate (wTransform, translation.x, translation.y, translation.z);
-
-    // animation rotation
-    matrixRotate (wTransform, rotAngle, rotAxis.x, rotAxis.y, rotAxis.z);
-
-    // intentional scaling of z by 0 to prevent weird opacity results and
-    // flashing that happen when z coords are between 0 and 1 (bug in compiz?)
-    matrixScale (wTransform, 1.0f, 1.0f, 0.0f);
-
-    // place window rotation axis at origin
-    matrixTranslate (wTransform, -rotAxisOffset.x, -rotAxisOffset.y, 0);
+    applyGlideTransform (w, wTransform);
 }
 
 void fxGlideInit(CompScreen * s, CompWindow * w)
@@ -224,11 +240,7 @@ void fxGlideInit(CompScreen * s, CompWindow * w)
 
     if (!fxGlideIsPolygonBased(as, aw))
     {
-	// store window opacity
-	aw->storedOpacity = w->paint.opacity;
-	aw->timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo
-			animGetI(as, aw, ANIM_SCREEN_OPTION_TIME_STEP));
-
+	defaultAnimInit (s, w);
 	return; // we're done with CompTransform-based glide initialization
     }
 
@@ -292,4 +304,16 @@ void fxGlidePostPaintWindow(CompScreen * s, CompWindow * w)
     else if (90 < aw->glideModRotAngle &&
 	     aw->glideModRotAngle < 270)
 	glCullFace(GL_BACK);
+}
+
+void
+fxGlideUpdateBB (CompWindow *w)
+{
+    ANIM_SCREEN(w->screen);
+    ANIM_WINDOW(w);
+
+    if (fxGlideIsPolygonBased (as, aw))
+	polygonsUpdateBB (w);
+    else
+	compTransformUpdateBB (w);
 }

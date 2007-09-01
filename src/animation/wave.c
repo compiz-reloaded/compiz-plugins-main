@@ -88,6 +88,6 @@ Bool fxWaveModelStep(CompScreen * s, CompWindow * w, float time)
 			      WIN_H(w) * model->scale.y *
 			      animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_WIDTH) /
 			      2);
-    modelCalcBounds(model);
+
     return TRUE;
 }
