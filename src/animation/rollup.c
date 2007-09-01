@@ -141,7 +141,7 @@ Bool fxRollUpModelStep(CompScreen * s, CompWindow * w, float time)
 	     forwardProgress,
 	     animGetB(as, aw,
 		      ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR));
-    modelCalcBounds(model);
+
     return TRUE;
 }
 

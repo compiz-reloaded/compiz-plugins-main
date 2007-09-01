@@ -14,7 +14,7 @@
 #include <X11/Xatom.h>
 #include <X11/Xproto.h>
 
-#include <compiz-core.h>
+#include <compiz.h>
 
 #define FAKE_ICON_SIZE 4
 
@@ -138,6 +138,8 @@ typedef struct _PolygonObject
 
     void *effectParameters;             /* Pointer to a struct that can contain
 					   custom parameters for an individual effect */
+
+    float boundSphereRadius;            // Radius of bounding sphere
 } PolygonObject;
 
 typedef struct _Clip4Polygons	// Rectangular clips
@@ -184,7 +186,7 @@ typedef struct _PolygonSet	// Polygon objects with same thickness
 
     Bool includeShadows;        // include shadows in polygon
 
-    void (*extraPolygonTransformationFunc) (PolygonObject *);
+    void (*extraPolygonTransformFunc) (PolygonObject *);
 } PolygonSet;
 
 typedef struct _WaveParam
@@ -233,8 +235,6 @@ typedef struct _Model
 
     Vector scale;
     Point scaleOrigin;
-    Point topLeft;
-    Point bottomRight;
 
     int magicLampWaveCount;
     WaveParam *magicLampWaves;
@@ -565,6 +565,10 @@ typedef struct _AnimScreen
     unsigned int nMinimizeRandomEffects;
     unsigned int nShadeRandomEffects;
 
+    CompOutput *output;
+    GLint      viewport[4];
+    GLdouble   dProjection[16];
+
     OptionSets *eventOptionSets[NUM_EVENTS];
 } AnimScreen;
 
@@ -627,6 +631,11 @@ typedef struct _AnimWindow
 
     int curAnimSelectionRow;
 
+    CompTransform transform;
+
+    Box BB;       // Bounding box for damage region calc. of CompTransform fx
+    Box lastBB;   // Last bounding box
+
     // for magic lamp
     Bool minimizeToTop;
 
@@ -675,29 +684,29 @@ typedef struct _AnimEffectProperties
     void (*updateWindowTransformFunc)
     (CompScreen *, CompWindow *, CompTransform *);
     void (*postPreparePaintScreenFunc) (CompScreen *, CompWindow *);
+    void (*updateBBFunc) (CompWindow *);
 } AnimEffectProperties;
 
 AnimEffectProperties *animEffectPropertiesTmp;
 
 #define GET_ANIM_DISPLAY(d)						\
-    ((AnimDisplay *) (d)->object.privates[animDisplayPrivateIndex].ptr)
+    ((AnimDisplay *) (d)->privates[animDisplayPrivateIndex].ptr)
 
 #define ANIM_DISPLAY(d)				\
     AnimDisplay *ad = GET_ANIM_DISPLAY (d)
 
 #define GET_ANIM_SCREEN(s, ad)						\
-    ((AnimScreen *) (s)->object.privates[(ad)->screenPrivateIndex].ptr)
+    ((AnimScreen *) (s)->privates[(ad)->screenPrivateIndex].ptr)
 
 #define ANIM_SCREEN(s)							\
     AnimScreen *as = GET_ANIM_SCREEN (s, GET_ANIM_DISPLAY (s->display))
 
 #define GET_ANIM_WINDOW(w, as)						\
-    ((AnimWindow *) (w)->object.privates[(as)->windowPrivateIndex].ptr)
+    ((AnimWindow *) (w)->privates[(as)->windowPrivateIndex].ptr)
 
-#define ANIM_WINDOW(w)					     \
-    AnimWindow *aw = GET_ANIM_WINDOW (w,                     \
-		     GET_ANIM_SCREEN (w->screen,             \
-		     GET_ANIM_DISPLAY (w->screen->display)))
+#define ANIM_WINDOW(w)							\
+    AnimWindow *aw =                                                    \
+	GET_ANIM_WINDOW (w, GET_ANIM_SCREEN (w->screen,	GET_ANIM_DISPLAY (w->screen->display)))
 
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
@@ -733,14 +742,11 @@ void
 modelInitObjects (Model * model,
 		  int x, int y,
 		  int width, int height);
- 
+
 void
 postAnimationCleanup (CompWindow * w,
 		      Bool resetAnimation);
- 
-void
-modelCalcBounds (Model * model);
- 
+
 float
 defaultAnimProgress (AnimWindow * aw);
 
@@ -750,13 +756,13 @@ sigmoidAnimProgress(AnimWindow * aw);
 float
 decelerateProgressCustom (float progress,
 			  float minx, float maxx);
- 
+
 float
 decelerateProgress (float progress);
- 
+
 void
 applyTransformToObject (Object *obj, GLfloat *mat);
- 
+
 Bool polygonsAnimStep (CompScreen * s,
 		       CompWindow * w,
 		       float time);
@@ -791,6 +797,38 @@ animDrawWindowGeometry(CompWindow * w);
 Bool
 getMousePointerXY(CompScreen * s, short *x, short *y);
 
+void
+multiplyMatrixVector (float *result,
+		      const float *mat,
+		      const float *v);
+
+void
+matmul4 (float *product,
+	 const float *a,
+	 const float *b);
+
+void
+expandBoxWithBox (Box *target, Box *source);
+
+void
+expandBoxWithPoint (Box *, short x, short y);
+
+void
+updateBBWindow (CompWindow * w);
+
+void
+updateBBScreen (CompWindow * w);
+
+void
+compTransformUpdateBB (CompWindow *w);
+
+void
+prepareTransform (CompScreen *s,
+		  CompTransform *resultTransform,
+		  CompTransform *transform);
+
+inline void
+resetToIdentity (CompTransform *transform);
 
 /* airplane3d.c */
 
@@ -813,7 +851,7 @@ fxAirplane3DDrawCustomGeometry (CompScreen * s,
 				CompWindow * w);
 
 void 
-AirplaneExtraPolygonTransformationFunc (PolygonObject * p);
+AirplaneExtraPolygonTransformFunc (PolygonObject * p);
 
 
 /* beamup.c */
@@ -965,6 +1003,9 @@ fxGlidePrePaintWindow(CompScreen * s, CompWindow * w);
 void
 fxGlidePostPaintWindow(CompScreen * s, CompWindow * w);
 
+void
+fxGlideUpdateBB (CompWindow *w);
+
 /* horizontalfold.c */
 
 Bool
@@ -1071,6 +1112,8 @@ void
 drawParticleSystems (CompScreen *s,
 		     CompWindow *w);
 
+void
+particlesUpdateBB (CompWindow * w);
 
 /* polygon.c */
 
@@ -1117,6 +1160,9 @@ polygonsLinearAnimStepPolygon(CompWindow * w,
 void
 polygonsDeceleratingAnimStepPolygon(CompWindow * w,
 				    PolygonObject * p, float forwardProgress);
+
+void
+polygonsUpdateBB (CompWindow * w);
 
 /* rollup.c */
  
@@ -1176,3 +1222,12 @@ fxSidekickInit (CompScreen *s,
 void
 fxZoomInit (CompScreen * s,
 	    CompWindow * w);
+
+Bool
+fxZoomAnimStep (CompScreen * s,
+		CompWindow * w,
+		float time);
+
+void
+applyZoomTransform (CompWindow * w,
+		    CompTransform *transform);

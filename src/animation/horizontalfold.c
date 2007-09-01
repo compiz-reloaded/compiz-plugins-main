@@ -151,6 +151,6 @@ fxHorizontalFoldsModelStep(CompScreen * s, CompWindow * w, float time)
 					 animGetF(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP) *
 					 WIN_W(w),
 					 i / model->gridWidth);
-    modelCalcBounds(model);
+
     return TRUE;
 }

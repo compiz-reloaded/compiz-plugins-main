@@ -146,7 +146,7 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 	     &model->objects[i],
 	     forwardProgress,
 	     curveMaxAmp);
-    modelCalcBounds(model);
+
     return TRUE;
 }
 

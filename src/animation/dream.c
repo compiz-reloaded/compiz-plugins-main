@@ -84,7 +84,7 @@ Bool fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
 	fxDreamModelStepObject(w,
 			       model,
 			       &model->objects[i], forwardProgress);
-    modelCalcBounds(model);
+
     return TRUE;
 }
 
