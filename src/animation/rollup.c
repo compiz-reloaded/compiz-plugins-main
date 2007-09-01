@@ -38,10 +38,6 @@
 
 // =====================  Effect: Roll Up  =========================
 
-// ratio of perceived length of animation compared to real duration
-// to make it appear to have the same speed with other animation effects
-#define ROLLUP_PERCEIVED_T 0.6f
-
 void
 fxRollUpInitGrid(AnimScreen * as, AnimWindow *aw,
 		 int *gridWidth, int *gridHeight)

@@ -242,7 +242,8 @@ void defaultAnimInit(CompScreen * s, CompWindow * w)
 		    as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 }
 
-static Bool animZoomToIcon(AnimScreen *as, AnimWindow *aw)
+Bool
+animZoomToIcon (AnimScreen *as, AnimWindow *aw)
 {
     return
 	aw->curAnimEffect == AnimEffectZoom ||
@@ -261,7 +262,8 @@ static Bool animZoomToIcon(AnimScreen *as, AnimWindow *aw)
 	   animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM))));
 }
 
-static void defaultMinimizeAnimInit(CompScreen * s, CompWindow * w)
+static void
+defaultMinimizeAnimInit (CompScreen * s, CompWindow * w)
 {
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -818,7 +820,7 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
      fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
      polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB},
     // AnimEffectDream
-    {fxDreamUpdateWindowAttrib, 0, 0, fxDreamModelStep, defaultMinimizeAnimInit,
+    {fxDreamUpdateWindowAttrib, 0, 0, fxDreamModelStep, fxDreamAnimInit,
      fxMagicLampInitGrid, 0, 0, 0, 0, 0, defaultMinimizeUpdateWindowTransform,
      0, modelUpdateBB},
     // AnimEffectExplode3D

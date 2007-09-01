@@ -36,6 +36,22 @@
 
 #include "animation-internal.h"
 
+void
+fxDreamAnimInit (CompScreen * s, CompWindow * w)
+{
+    ANIM_SCREEN(s);
+    ANIM_WINDOW(w);
+
+    if (animZoomToIcon(as, aw))
+	aw->animTotalTime /= ZOOM_PERCEIVED_T;
+    else
+	aw->animTotalTime /= DREAM_PERCEIVED_T;
+
+    aw->animRemainingTime = aw->animTotalTime;
+
+    defaultAnimInit(s, w);
+}
+
 static void
 fxDreamModelStepObject(CompWindow * w,
 		       Model * model, Object * object, float forwardProgress)
