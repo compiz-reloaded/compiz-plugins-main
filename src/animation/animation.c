@@ -1428,6 +1428,13 @@ static void postAnimationCleanupCustom(CompWindow * w,
 	 aw->curWindowEvent == WindowEventFocus))
 	updateBBWindow (w);
 
+    // make sure the window gets fully damaged with
+    // effects that possibly have models that don't cover
+    // the whole window (like in magic lamp with menus)
+    if (aw->curAnimEffect == AnimEffectMagicLamp ||
+	aw->curAnimEffect == AnimEffectVacuum)
+	updateBBWindow (w);
+
     if (resetAnimation)
     {
 	aw->curWindowEvent = WindowEventNone;
