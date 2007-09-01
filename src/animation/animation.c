@@ -777,8 +777,8 @@ damageBoundingBox (CompWindow * w)
 
     // Find union of BB and lastBB
     Box box;
-    box.x1 = MAX (0, MIN (aw->BB.x1, aw->lastBB.x1));
-    box.y1 = MAX (0, MIN (aw->BB.y1, aw->lastBB.y1));
+    box.x1 = MAX (0, MIN (aw->BB.x1, aw->lastBB.x1)) - 1;
+    box.y1 = MAX (0, MIN (aw->BB.y1, aw->lastBB.y1)) - 1;
     box.x2 = MIN (s->width, MAX (aw->BB.x2, aw->lastBB.x2)) + 1;
     box.y2 = MIN (s->height, MAX (aw->BB.y2, aw->lastBB.y2)) + 1;
     // prevent occasional 1 pixel line artifact
