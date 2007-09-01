@@ -14,7 +14,7 @@
 #include <X11/Xatom.h>
 #include <X11/Xproto.h>
 
-#include <compiz.h>
+#include <compiz-core.h>
 
 #define FAKE_ICON_SIZE 4
 
@@ -690,23 +690,24 @@ typedef struct _AnimEffectProperties
 AnimEffectProperties *animEffectPropertiesTmp;
 
 #define GET_ANIM_DISPLAY(d)						\
-    ((AnimDisplay *) (d)->privates[animDisplayPrivateIndex].ptr)
+    ((AnimDisplay *) (d)->object.privates[animDisplayPrivateIndex].ptr)
 
 #define ANIM_DISPLAY(d)				\
     AnimDisplay *ad = GET_ANIM_DISPLAY (d)
 
 #define GET_ANIM_SCREEN(s, ad)						\
-    ((AnimScreen *) (s)->privates[(ad)->screenPrivateIndex].ptr)
+    ((AnimScreen *) (s)->object.privates[(ad)->screenPrivateIndex].ptr)
 
 #define ANIM_SCREEN(s)							\
     AnimScreen *as = GET_ANIM_SCREEN (s, GET_ANIM_DISPLAY (s->display))
 
 #define GET_ANIM_WINDOW(w, as)						\
-    ((AnimWindow *) (w)->privates[(as)->windowPrivateIndex].ptr)
+    ((AnimWindow *) (w)->object.privates[(as)->windowPrivateIndex].ptr)
 
-#define ANIM_WINDOW(w)							\
-    AnimWindow *aw =                                                    \
-	GET_ANIM_WINDOW (w, GET_ANIM_SCREEN (w->screen,	GET_ANIM_DISPLAY (w->screen->display)))
+#define ANIM_WINDOW(w)					     \
+    AnimWindow *aw = GET_ANIM_WINDOW (w,                     \
+		     GET_ANIM_SCREEN (w->screen,             \
+		     GET_ANIM_DISPLAY (w->screen->display)))
 
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
