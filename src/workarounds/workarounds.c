@@ -209,7 +209,7 @@ workaroundsDoFixes (CompWindow *w)
     {
         if (w->wmType == CompWindowTypeNormalMask &&
             w->attrib.override_redirect && w->resName &&
-	    strcmp (w->resName, "gecko"))
+	    (strcmp (w->resName, "gecko") == 0))
         {
             newWmType = CompWindowTypeDropdownMenuMask;
         }
@@ -250,9 +250,7 @@ workaroundsDoFixes (CompWindow *w)
             free (windowRole);
         }
 
-        /* fix Qt transients - FIXME: is there a better way to detect them?
-           Especially we have to take care of windows which get a class name
-           later on */
+        /* fix Qt transients - FIXME: is there a better way to detect them? */
         if (w->wmType == newWmType)
         {
             if (!w->resName && w->attrib.override_redirect &&
@@ -321,14 +319,25 @@ workaroundsHandleEvent (CompDisplay *d,
     (*d->handleEvent) (d, event);
     WRAP (wd, d, handleEvent, workaroundsHandleEvent);
 
-    if (event->type == ClientMessage)
-    {
+    switch (event->type) {
+    case ClientMessage:
 	if (event->xclient.message_type == d->winDesktopAtom)
         {
             w = findWindowAtDisplay (d, event->xclient.window);
 	    if (w)
 	        workaroundsUpdateSticky (w);
         }
+	break;
+    case PropertyNotify:
+	if (event->xproperty.atom == XA_WM_CLASS)
+	{
+	    w = findWindowAtDisplay (d, event->xproperty.window);
+	    if (w)
+		workaroundsDoFixes (w);
+	}
+	break;
+    default:
+	break;
     }
 }
 
