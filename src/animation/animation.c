@@ -2113,7 +2113,9 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 			(aw->curWindowEvent == WindowEventClose ||
 			 aw->curWindowEvent == WindowEventMinimize ||
 			 aw->curWindowEvent == WindowEventShade ||
-			 aw->curWindowEvent == WindowEventFocus))
+			 aw->curWindowEvent == WindowEventFocus ||
+			 // for dodging windows
+			 aw->curAnimEffect == AnimEffectDodge))
 			updateBBWindow (w);
 		}
 		if (animEffectProperties[aw->curAnimEffect].animStepFunc)
