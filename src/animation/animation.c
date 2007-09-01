@@ -1417,10 +1417,13 @@ static void postAnimationCleanupCustom(CompWindow * w,
     ANIM_WINDOW(w);
     ANIM_SCREEN(w->screen);
 
+    // make sure window shadows (which are not drawn by polygon engine)
+    // are damaged
     if (playingPolygonEffect(as, aw) &&
 	(aw->curWindowEvent == WindowEventOpen ||
 	 aw->curWindowEvent == WindowEventUnminimize ||
-	 aw->curWindowEvent == WindowEventUnshade))
+	 aw->curWindowEvent == WindowEventUnshade ||
+	 aw->curWindowEvent == WindowEventFocus))
 	updateBBWindow (w);
 
     if (resetAnimation)
