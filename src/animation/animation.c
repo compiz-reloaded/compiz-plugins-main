@@ -2082,16 +2082,13 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		    aw->nClipsPassed = 0;
 		    aw->clipsUpdated = FALSE;
 		}
-		Bool justStarted = FALSE;
 
 		// If just starting, call fx init func.
 		if (!aw->animInitialized &&
 		    animEffectProperties[aw->curAnimEffect].initFunc)
 		{
 		    animEffectProperties[aw->curAnimEffect].initFunc(s, w);
-		    justStarted = TRUE;
 		}
-		aw->animInitialized = TRUE;
 
 		if (aw->model)
 		{
@@ -2109,7 +2106,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		{
 		    copyResetBB (aw);
 
-		    if (justStarted &&
+		    if (!aw->animInitialized &&
 			(aw->curWindowEvent == WindowEventClose ||
 			 aw->curWindowEvent == WindowEventMinimize ||
 			 aw->curWindowEvent == WindowEventShade ||
@@ -2118,6 +2115,8 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 			 aw->curAnimEffect == AnimEffectDodge))
 			updateBBWindow (w);
 		}
+		aw->animInitialized = TRUE;
+
 		if (animEffectProperties[aw->curAnimEffect].animStepFunc)
 		    animEffectProperties[aw->curAnimEffect].animStepFunc
 			(s, w, msSinceLastPaint);
