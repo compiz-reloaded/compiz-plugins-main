@@ -381,6 +381,7 @@ textInitDisplay (CompPlugin  *p,
 		 CompDisplay *d)
 {
     TextDisplay *td;
+    CompOption  *o;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION))
 	return FALSE;
@@ -395,6 +396,9 @@ textInitDisplay (CompPlugin  *p,
     WRAP (td, d, fileToImage, textFileToImage);
 
     d->object.privates[displayPrivateIndex].ptr = td;
+
+    o = textGetAbiOption (d);
+    o->value.i = TEXT_ABIVERSION;
 
     return TRUE;
 }
