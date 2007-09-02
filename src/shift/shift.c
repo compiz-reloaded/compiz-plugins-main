@@ -760,6 +760,18 @@ compareWindows (const void *elem1,
     if (w1 == w2)
 	return 0;
 
+    if (!w1->shaded && w1->attrib.map_state != IsViewable &&
+        (w2->shaded || w2->attrib.map_state == IsViewable))
+    {
+	return 1;
+    }
+
+    if (!w2->shaded && w2->attrib.map_state != IsViewable &&
+        (w1->shaded || w1->attrib.map_state == IsViewable))
+    {
+	return -1;
+    }
+
     while (w)
     {
 	if (w == w2)
