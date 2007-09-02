@@ -79,6 +79,8 @@ typedef struct _ThumbDisplay
 
     HandleEventProc handleEvent;
 
+    Bool textAvailable;
+
     Atom winIconGeometryAtom;
 }
 ThumbDisplay;
@@ -179,13 +181,18 @@ renderThumbText (CompScreen *s,
     int stride;
     void *data;
 
+    THUMB_DISPLAY (s->display);
+
     if (freeThumb)
 	freeThumbText (s, t);
 
+    if (!td->textAvailable)
+	return;
+
     CompTextAttrib tA;
 
-    tA.maxwidth   = t->width;
-    tA.maxheight  = 100;
+    tA.maxWidth   = t->width;
+    tA.maxHeight  = 100;
     tA.screen     = s;
     tA.size       = thumbnailGetFontSize (s);
     tA.color[0]   = thumbnailGetFontColorRed (s);
@@ -1176,6 +1183,11 @@ thumbInitDisplay (CompPlugin  *p,
 	free (td);
 	return FALSE;
     }
+
+    td->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
+    if (!td->textAvailable)
+	compLogMessage (d, "thumbnail", CompLogLevelWarn,
+			"No compatible text plugin found.");
 
     td->winIconGeometryAtom = XInternAtom (d->display,
 					   "_NET_WM_ICON_GEOMETRY", FALSE);
