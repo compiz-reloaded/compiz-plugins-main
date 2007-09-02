@@ -730,7 +730,19 @@ AnimEffectProperties *animEffectPropertiesTmp;
 
 // ratio of perceived length of animation compared to real duration
 // to make it appear to have the same speed with other animation effects
+
+#define DOMINO_PERCEIVED_T 0.8f
+#define DREAM_PERCEIVED_T 0.6f
+#define EXPLODE_PERCEIVED_T 0.7f
+#define FOLD_PERCEIVED_T 0.55f
+#define LEAFSPREAD_PERCEIVED_T 0.6f
+#define ROLLUP_PERCEIVED_T 0.6f
+#define SKEWER_PERCEIVED_T 0.6f
+
+#define SPRINGY_ZOOM_PERCEIVED_T 0.55f
+#define NONSPRINGY_ZOOM_PERCEIVED_T 0.6f
 #define ZOOM_PERCEIVED_T 0.75f
+
 
 /*
  * Function prototypes
@@ -791,6 +803,9 @@ void
 defaultMinimizeUpdateWindowTransform(CompScreen *s,
 				     CompWindow *w,
 				     CompTransform *wTransform);
+
+Bool
+animZoomToIcon (AnimScreen *as, AnimWindow *aw);
 
 void
 animDrawWindowGeometry(CompWindow * w);
@@ -918,6 +933,10 @@ fxDomino3DInit (CompScreen *s,
 
 
 /* dream.c */
+
+void
+fxDreamAnimInit (CompScreen * s,
+		 CompWindow * w);
 
 Bool
 fxDreamModelStep (CompScreen * s,

@@ -128,6 +128,22 @@ fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
     XClipBox(dodgeRegion, dodgeBox);
 }
 
+static void
+applyDodgeTransform (CompWindow * w, CompTransform *transform)
+{
+    ANIM_WINDOW(w);
+
+    if (aw->isDodgeSubject)
+	return;
+
+    float amount = sin(M_PI * aw->transformProgress) * aw->dodgeMaxAmount;
+
+    if (aw->dodgeDirection > 1) // if x axis
+	matrixTranslate (transform, amount, 0.0f, 0.0f);
+    else
+	matrixTranslate (transform, 0.0f, amount, 0.0f);
+}
+
 Bool
 fxDodgeAnimStep (CompScreen * s, CompWindow * w, float time)
 {
@@ -169,23 +185,25 @@ fxDodgeAnimStep (CompScreen * s, CompWindow * w, float time)
 	    aw->dodgeMaxAmount = newDodgeAmount;
 	}
     }
+
+    resetToIdentity (&aw->transform);
+    applyDodgeTransform (w, &aw->transform);
+
     return TRUE;
 }
 
 void
-fxDodgeUpdateWindowTransform
-(CompScreen *s, CompWindow *w, CompTransform *wTransform)
+fxDodgeUpdateWindowTransform (CompScreen *s,
+			      CompWindow *w,
+			      CompTransform *wTransform)
 {
     ANIM_WINDOW(w);
 
     if (aw->isDodgeSubject)
 	return;
-    float amount = sin(M_PI * aw->transformProgress) * aw->dodgeMaxAmount;
 
-    if (aw->dodgeDirection > 1) // if x axis
-	matrixTranslate (wTransform, amount, 0.0f, 0.0f);
-    else
-	matrixTranslate (wTransform, 0.0f, amount, 0.0f);
+    // Apply transform to wTransform
+    matmul4 (wTransform->m, wTransform->m, aw->transform.m);
 }
 
 void

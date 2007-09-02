@@ -52,6 +52,8 @@ typedef struct _ScaleAddonDisplay {
     HandleEventProc       handleEvent;
     HandleCompizEventProc handleCompizEvent;
 
+    Bool textAvailable;
+
     Window lastHoveredWindow;
 } ScaleAddonDisplay;
 
@@ -123,15 +125,20 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     CompScreen     *s = w->screen;
 
     ADDON_SCREEN (s);
+    ADDON_DISPLAY (s->display);
     SCALE_WINDOW (w);
 
     scaleaddonFreeWindowTitle (s);
+
+    if (!ad->textAvailable)
+	return;
+
     if (!scaleaddonGetWindowTitle (s))
 	return;
 
     scale = sw->slot ? sw->slot->scale : sw->scale;
-    tA.maxwidth = (w->attrib.width * scale) - (2 * scaleaddonGetBorderSize (s));
-    tA.maxheight = (w->attrib.height * scale) - 
+    tA.maxWidth = (w->attrib.width * scale) - (2 * scaleaddonGetBorderSize (s));
+    tA.maxHeight = (w->attrib.height * scale) - 
 	           (2 * scaleaddonGetBorderSize (s));
     tA.screen = s;
     tA.size = scaleaddonGetTitleSize (s);
@@ -1119,6 +1126,11 @@ scaleaddonInitDisplay (CompPlugin  *p,
 	free (ad);
 	return FALSE;
     }
+
+    ad->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
+    if (!ad->textAvailable)
+	compLogMessage (d, "scaleaddon", CompLogLevelWarn,
+			"No compatible text plugin found.");
 
     WRAP (ad, d, handleEvent, scaleaddonHandleEvent);
     WRAP (ad, d, handleCompizEvent, scaleaddonHandleCompizEvent);

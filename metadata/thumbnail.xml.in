@@ -4,6 +4,11 @@
     <_short>Window Previews</_short>
     <_long>Window thumbnails at the taskbar</_long>
 	<category>Extras</category>
+	<deps>
+		<relation type="after">
+			<plugin>text</plugin>
+		</relation>
+	</deps>
     <screen>
       <group>
         <_short>Settings</_short>

@@ -54,13 +54,10 @@
 #define GET_THUMB_WINDOW(w, ts)                               \
     ((ThumbWindow *) (w)->object.privates[(ts)->windowPrivateIndex].ptr)
 
-#define THUMB_WINDOW_PTR(w)                                   \
-    GET_THUMB_WINDOW  (w,                                    \
-		       GET_THUMB_SCREEN  (w->screen,                            \
-					  GET_THUMB_DISPLAY (w->screen->display)))
-
 #define THUMB_WINDOW(w)                                       \
-    ThumbWindow *tw = THUMB_WINDOW_PTR(w)
+    ThumbWindow *tw = GET_THUMB_WINDOW  (w,                   \
+		      GET_THUMB_SCREEN  (w->screen,           \
+		      GET_THUMB_DISPLAY (w->screen->display)))
 
 #define WIN_X(w) ((w)->attrib.x - (w)->input.left)
 #define WIN_Y(w) ((w)->attrib.y - (w)->input.top)
@@ -79,9 +76,10 @@ typedef struct _ThumbDisplay
 
     HandleEventProc handleEvent;
 
+    Bool textAvailable;
+
     Atom winIconGeometryAtom;
-}
-ThumbDisplay;
+} ThumbDisplay;
 
 typedef struct _Thumbnail
 {
@@ -101,8 +99,7 @@ typedef struct _Thumbnail
     
     int tWidth;
     int tHeight;
-}
-Thumbnail;
+} Thumbnail;
 
 typedef struct _ThumbScreen
 {
@@ -132,9 +129,7 @@ typedef struct _ThumbScreen
 
     int x;
     int y;
-
-}
-ThumbScreen;
+} ThumbScreen;
 
 typedef struct _IconGeometry
 {
@@ -144,16 +139,12 @@ typedef struct _IconGeometry
     int height;
     
     Bool isSet;
-}
-
-IconGeometry;
+} IconGeometry;
 
 typedef struct _ThumbWindow
 {
     IconGeometry ig;
-}
-
-ThumbWindow;
+} ThumbWindow;
 
 static void
 freeThumbText (CompScreen *s,
@@ -176,23 +167,27 @@ renderThumbText (CompScreen *s,
 		 Thumbnail  *t,
 		 Bool       freeThumb)
 {
-    int stride;
-    void *data;
+    int            stride;
+    void           *data;
+    CompTextAttrib tA;
+
+    THUMB_DISPLAY (s->display);
 
     if (freeThumb)
 	freeThumbText (s, t);
 
-    CompTextAttrib tA;
+    if (!td->textAvailable)
+	return;
 
-    tA.maxwidth   = t->width;
-    tA.maxheight  = 100;
+    tA.maxWidth   = t->width;
+    tA.maxHeight  = 100;
     tA.screen     = s;
     tA.size       = thumbnailGetFontSize (s);
     tA.color[0]   = thumbnailGetFontColorRed (s);
     tA.color[1]   = thumbnailGetFontColorGreen (s);
     tA.color[2]   = thumbnailGetFontColorBlue (s);
     tA.color[3]   = thumbnailGetFontColorAlpha (s);
-    tA.style      = (thumbnailGetFontBold (s) ) ?
+    tA.style      = (thumbnailGetFontBold (s)) ?
 		    TEXT_STYLE_BOLD : TEXT_STYLE_NORMAL;
     tA.family     = "Sans";
     tA.ellipsize  = TRUE;
@@ -201,8 +196,8 @@ renderThumbText (CompScreen *s,
 
     initTexture (s, &t->textTexture);
 
-    if ( (*s->display->fileToImage) (s->display, TEXT_ID, (char *) &tA,
-				     &t->tWidth, &t->tHeight, &stride, &data) )
+    if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *) &tA,
+				    &t->tWidth, &t->tHeight, &stride, &data))
     {
 	t->textPixmap = (Pixmap) data;
 	bindPixmapToTexture (s, &t->textTexture, t->textPixmap,
@@ -216,18 +211,17 @@ renderThumbText (CompScreen *s,
     }
 }
 
-
 static void
 updateWindowIconGeometry (CompWindow *w)
 {
-    THUMB_DISPLAY (w->screen->display);
-    THUMB_WINDOW (w);
-
-    Atom actual;
-    int result, format;
+    Atom          actual;
+    int           result, format;
     unsigned long n, left;
     unsigned char *data;
     unsigned long *mydata;
+
+    THUMB_DISPLAY (w->screen->display);
+    THUMB_WINDOW (w);
 
     result = XGetWindowProperty (w->screen->display->display,
 				 w->id, td->winIconGeometryAtom, 0L, 4L,
@@ -238,13 +232,16 @@ updateWindowIconGeometry (CompWindow *w)
 
     tw->ig.isSet = FALSE;
 
-    if (result == Success && actual == XA_CARDINAL && n == 4)
+    if (result == Success)
     {
-	tw->ig.x      = mydata[0];
-	tw->ig.y      = mydata[1];
-	tw->ig.width  = mydata[2];
-	tw->ig.height = mydata[3];
-	tw->ig.isSet  = TRUE;
+	if (actual == XA_CARDINAL && n == 4)
+	{
+	    tw->ig.x      = mydata[0];
+	    tw->ig.y      = mydata[1];
+	    tw->ig.width  = mydata[2];
+	    tw->ig.height = mydata[3];
+	    tw->ig.isSet  = TRUE;
+	}
 	XFree (data);
     }
 }
@@ -254,6 +251,7 @@ damageThumbRegion (CompScreen *s,
 		   Thumbnail  *t)
 {
     REGION region;
+
     region.extents.x1 = t->x - t->offset;
     region.extents.y1 = t->y - t->offset;
     region.extents.x2 = region.extents.x1 + t->width + (t->offset * 2);
@@ -275,10 +273,15 @@ damageThumbRegion (CompScreen *s,
 static void
 thumbUpdateThumbnail (CompScreen *s)
 {
-    THUMB_SCREEN (s);
-
-    float maxSize = thumbnailGetThumbSize (s);
+    int    igMidPoint[2], tMidPoint[2];
+    int    tPos[2], tmpPos[2];
+    float  distance = 1000000;
+    int    off, oDev, tHeight;
+    int    ox1, oy1, ox2, oy2, ow, oh;
+    float  maxSize = thumbnailGetThumbSize (s);
     double scale  = 1.0;
+
+    THUMB_SCREEN (s);
 
     if (ts->thumb.win == ts->pointedWin)
 	return;
@@ -313,25 +316,17 @@ thumbUpdateThumbnail (CompScreen *s)
 
     THUMB_WINDOW (ts->thumb.win);
 
-    if (thumbnailGetTitleEnabled (s) )
+    if (thumbnailGetTitleEnabled (s))
 	renderThumbText (s, &ts->thumb, FALSE);
     else
 	freeThumbText (s, &ts->thumb);
 
-    int igMidPoint[2] = { tw->ig.x + (tw->ig.width / 2),
-			  tw->ig.y + (tw->ig.height / 2) };
-    int tMidPoint[2];
-    int tPos[2];
-    int tmpPos[2];
+    igMidPoint[0] = tw->ig.x + (tw->ig.width / 2);
+    igMidPoint[1] = tw->ig.y + (tw->ig.height / 2);
 
-    float distance = 1000000;
-
-    int off = thumbnailGetBorder (s);
-
-    int oDev = outputDeviceForPoint (s, tw->ig.x + (tw->ig.width / 2),
-				     tw->ig.y + (tw->ig.height / 2) );
-
-    int ox1, oy1, ox2, oy2, ow, oh;
+    off = thumbnailGetBorder (s);
+    oDev = outputDeviceForPoint (s, tw->ig.x + (tw->ig.width / 2),
+				 tw->ig.y + (tw->ig.height / 2) );
 
     if (s->nOutputDev == 1 || oDev > s->nOutputDev)
     {
@@ -352,8 +347,7 @@ thumbUpdateThumbnail (CompScreen *s)
 	oh  = oy2 - oy1;
     }
 
-    int tHeight = ts->thumb.height;
-
+    tHeight = ts->thumb.height;
     if (ts->thumb.textPixmap)
 	tHeight += ts->thumb.tHeight + TEXT_DISTANCE;
 
@@ -459,20 +453,23 @@ static Bool
 thumbShowThumbnail (void *vs)
 {
     CompScreen *s = (CompScreen *) vs;
+
     THUMB_SCREEN (s);
+
     ts->showingThumb = TRUE;
     thumbUpdateThumbnail (s);
     damageThumbRegion (s, &ts->thumb);
+
     return TRUE;
 }
 
 static Bool
 checkPosition (CompWindow *w)
 {
-    if (thumbnailGetCurrentViewport (w->screen) )
+    if (thumbnailGetCurrentViewport (w->screen))
     {
 	/* TODO: We need a faster calculation here */
-	Bool onViewport = FALSE;
+	Bool   onViewport = FALSE;
 	Region reg = XCreateRegion ();
 	
 	if (!reg)
@@ -495,24 +492,27 @@ checkPosition (CompWindow *w)
 static Bool
 thumbUpdateMouse (void *vs)
 {
-    CompScreen *s = (CompScreen *) vs;
-
-    THUMB_SCREEN (s);
-
+    CompScreen   *s = (CompScreen *) vs;
+    CompWindow   *w;
     int          winX, winY;
     int          rootX, rootY;
     unsigned int mask_return;
     Window       root_return;
     Window       child_return;
 
+    THUMB_SCREEN (s);
+
     XQueryPointer (s->display->display, s->root,
 		   &root_return, &child_return,
 		   &rootX, &rootY, &winX, &winY, &mask_return);
 
-    CompWindow *w = findWindowAtDisplay (s->display, child_return);
+    w = findWindowAtDisplay (s->display, child_return);
 
     if (w && w->type & CompWindowTypeDockMask)
     {
+	CompWindow *cw    = s->windows;
+	CompWindow *found = NULL;
+
 	if (ts->dock != w)
 	{
 	    ts->dock = w;
@@ -526,9 +526,6 @@ thumbUpdateMouse (void *vs)
 	    ts->pointedWin   = NULL;
 	    ts->showingThumb = FALSE;
 	}
-
-	CompWindow *cw    = s->windows;
-	CompWindow *found = NULL;
 
 	for (; cw && !found; cw = cw->next)
 	{
@@ -629,13 +626,15 @@ thumbWindowResizeNotify (CompWindow *w,
 			 int        dwidth,
 			 int        dheight)
 {
-    THUMB_SCREEN (w->screen);
+    CompScreen *s = w->screen;
 
-    thumbUpdateThumbnail (w->screen);
+    THUMB_SCREEN (s);
 
-    UNWRAP (ts, w->screen, windowResizeNotify);
-    (*w->screen->windowResizeNotify) (w, dx, dy, dwidth, dheight);
-    WRAP (ts, w->screen, windowResizeNotify, thumbWindowResizeNotify);
+    thumbUpdateThumbnail (s);
+
+    UNWRAP (ts, s, windowResizeNotify);
+    (*s->windowResizeNotify) (w, dx, dy, dwidth, dheight);
+    WRAP (ts, s, windowResizeNotify, thumbWindowResizeNotify);
 }
 
 static void
@@ -709,20 +708,20 @@ thumbPaintThumb (CompScreen          *s,
 		 Thumbnail           *t,
 		 const CompTransform *transform)
 {
-    THUMB_SCREEN (s);
     AddWindowGeometryProc oldAddWindowGeometry;
-    CompWindow *w = t->win;
+    CompWindow            *w = t->win;
+    int                   wx = t->x;
+    int                   wy = t->y;
+    float                 width  = t->width;
+    float                 height = t->height;
+    WindowPaintAttrib     sAttrib = w->paint;
+    unsigned int          mask = PAINT_WINDOW_TRANSFORMED_MASK |
+	                         PAINT_WINDOW_TRANSLUCENT_MASK;
+
+    THUMB_SCREEN (s);
 
     if (!w)
 	return;
-
-    int wx = t->x;
-    int wy = t->y;
-
-    float width  = t->width;
-    float height = t->height;
-
-    WindowPaintAttrib sAttrib = w->paint;
 
     if (t->textPixmap)
 	height += t->tHeight + TEXT_DISTANCE;
@@ -730,23 +729,21 @@ thumbPaintThumb (CompScreen          *s,
     /* Wrap drawWindowGeometry to make sure the general
        drawWindowGeometry function is used */
     oldAddWindowGeometry = w->screen->addWindowGeometry;
-
     w->screen->addWindowGeometry = addWindowGeometry;
-
-    unsigned int mask = PAINT_WINDOW_TRANSFORMED_MASK |
-			PAINT_WINDOW_TRANSLUCENT_MASK;
 
     if (w->texture->pixmap)
     {
-
-	int off = t->offset;
+	int            off = t->offset;
+	GLenum         filter = s->display->textureFilter;
+	FragmentAttrib fragment;
+	CompTransform  wTransform = *transform;
 
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glDisableClientState (GL_TEXTURE_COORD_ARRAY);
 	
-	if (thumbnailGetWindowLike (s) )
+	if (thumbnailGetWindowLike (s))
 	{
 	    glColor4f (1.0, 1.0, 1.0, t->opacity);
 	    enableTexture (s, &ts->windowTexture, COMP_TEXTURE_FILTER_GOOD);
@@ -843,7 +840,7 @@ thumbPaintThumb (CompScreen          *s,
 
 	glEnd ();
 
-	if (thumbnailGetWindowLike (s) )
+	if (thumbnailGetWindowLike (s))
 	{
 	    disableTexture (s, &ts->windowTexture);
 	}
@@ -858,6 +855,9 @@ thumbPaintThumb (CompScreen          *s,
 
 	if (t->textPixmap)
 	{
+	    float ox = 0.0;
+	    float w,h;
+
 	    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	    glColor4f (1.0, 1.0, 1.0, t->opacity);
 
@@ -865,23 +865,20 @@ thumbPaintThumb (CompScreen          *s,
 
 	    CompMatrix *m = &t->textTexture.matrix;
 
-	    float ox = 0.0;
-
 	    if (t->tWidth < width)
 		ox = (width - t->tWidth) / 2.0;
 
-	    float w = MIN (width, t->tWidth);
-
-	    float h = t->tHeight;
+	    w = MIN (width, t->tWidth);
+	    h = t->tHeight;
 
 	    glBegin (GL_QUADS);
-	    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, 0) );
+	    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, 0));
 	    glVertex2f (wx + ox, wy + height - h);
-	    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, h) );
+	    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, h));
 	    glVertex2f (wx + ox, wy + height);
-	    glTexCoord2f (COMP_TEX_COORD_X (m, w), COMP_TEX_COORD_Y (m, h) );
+	    glTexCoord2f (COMP_TEX_COORD_X (m, w), COMP_TEX_COORD_Y (m, h));
 	    glVertex2f (wx + ox + w, wy + height);
-	    glTexCoord2f (COMP_TEX_COORD_X (m, w), COMP_TEX_COORD_Y (m, 0) );
+	    glTexCoord2f (COMP_TEX_COORD_X (m, w), COMP_TEX_COORD_Y (m, 0));
 	    glVertex2f (wx + ox + w, wy + height - h);
 	    glEnd ();
 
@@ -904,14 +901,8 @@ thumbPaintThumb (CompScreen          *s,
 	sAttrib.xTranslate = wx - w->attrib.x + w->input.left * sAttrib.xScale;
 	sAttrib.yTranslate = wy - w->attrib.y + w->input.top * sAttrib.yScale;
 
-	GLenum filter = s->display->textureFilter;
-
-	if (thumbnailGetMipmap (s) )
+	if (thumbnailGetMipmap (s))
 	    s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
-
-	FragmentAttrib fragment;
-
-	CompTransform wTransform = *transform;
 
 	initFragmentAttrib (&fragment, &sAttrib);
 
@@ -924,8 +915,8 @@ thumbPaintThumb (CompScreen          *s,
 
 	glPushMatrix ();
 	glLoadMatrixf (wTransform.m);
-	(w->screen->drawWindow) (w, &wTransform, &fragment, &infiniteRegion,
-				 mask);
+	(*w->screen->drawWindow) (w, &wTransform, &fragment,
+				  &infiniteRegion, mask);
 	glPopMatrix ();
 
 	s->display->textureFilter = filter;
@@ -938,13 +929,14 @@ static void
 thumbPreparePaintScreen (CompScreen *s,
 			 int        ms)
 {
+    float val = ms;
+
     THUMB_SCREEN (s);
 
-    float val = ms;
     val /= 1000;
     val /= thumbnailGetFadeSpeed (s);
 
-    if (otherScreenGrabExist (s, 0) )
+    if (otherScreenGrabExist (s, 0))
     {
 	ts->dock = NULL;
 
@@ -1003,7 +995,8 @@ thumbPaintOutput (CompScreen              *s,
 		  CompOutput              *output,
 		  unsigned int            mask)
 {
-    Bool status;
+    Bool         status;
+    unsigned int newMask = mask;
 
     THUMB_SCREEN (s);
 
@@ -1012,11 +1005,11 @@ thumbPaintOutput (CompScreen              *s,
     ts->x = s->x;
     ts->y = s->y;
 
-    unsigned int newMask = mask;
-
-    if ( (ts->oldThumb.opacity > 0.0 && ts->oldThumb.win) ||
-	 (ts->thumb.opacity > 0.0 && ts->thumb.win) )
+    if ((ts->oldThumb.opacity > 0.0 && ts->oldThumb.win) ||
+       	(ts->thumb.opacity > 0.0 && ts->thumb.win))
+    {
 	newMask |= PAINT_SCREEN_WITH_TRANSFORMED_WINDOWS_MASK;
+    }
 
     UNWRAP (ts, s, paintOutput);
     status = (*s->paintOutput) (s, sAttrib, transform, region,
@@ -1076,7 +1069,7 @@ thumbPaintTransformedOutput (CompScreen              *s,
 	{
 	    CompTransform sTransform = *transform;
 
-	    (s->applyScreenTransform) (s, sAttrib, output, &sTransform);
+	    (*s->applyScreenTransform) (s, sAttrib, output, &sTransform);
 	    transformToScreenSpace (s, output, -sAttrib->zTranslate,
 				    &sTransform);
 	    glPushMatrix ();
@@ -1089,7 +1082,7 @@ thumbPaintTransformedOutput (CompScreen              *s,
 	{
 	    CompTransform sTransform = *transform;
 
-	    (s->applyScreenTransform) (s, sAttrib, output, &sTransform);
+	    (*s->applyScreenTransform) (s, sAttrib, output, &sTransform);
 	    transformToScreenSpace (s, output, -sAttrib->zTranslate,
 				    &sTransform);
 	    glPushMatrix ();
@@ -1164,8 +1157,7 @@ thumbInitDisplay (CompPlugin  *p,
     if (!checkPluginABI ("core", CORE_ABIVERSION))
 	return FALSE;
 
-    td = malloc (sizeof (ThumbDisplay) );
-
+    td = malloc (sizeof (ThumbDisplay));
     if (!td)
 	return FALSE;
 
@@ -1176,6 +1168,11 @@ thumbInitDisplay (CompPlugin  *p,
 	free (td);
 	return FALSE;
     }
+
+    td->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
+    if (!td->textAvailable)
+	compLogMessage (d, "thumbnail", CompLogLevelWarn,
+			"No compatible text plugin found.");
 
     td->winIconGeometryAtom = XInternAtom (d->display,
 					   "_NET_WM_ICON_GEOMETRY", FALSE);
@@ -1210,8 +1207,7 @@ thumbInitWindow (CompPlugin *p,
     THUMB_SCREEN (w->screen);
 
     /* create window */
-    tw = calloc (1, sizeof (ThumbWindow) );
-
+    tw = calloc (1, sizeof (ThumbWindow));
     if (!tw)
 	return FALSE;
 
@@ -1248,70 +1244,6 @@ thumbFiniWindow (CompPlugin *p,
 }
 
 static Bool
-thumbRGBAimageToTexture (CompScreen   *screen,
-			 CompTexture  *texture,
-			 char         *image,
-			 unsigned int width,
-			 unsigned int height)
-{
-    char *data;
-    int i;
-
-    makeScreenCurrent (screen);
-
-    data = malloc (4 * width * height);
-
-    if (!data)
-	return FALSE;
-
-    for (i = 0; i < height; i++)
-	memcpy (&data[i * width * 4],
-		&image[ (height - i - 1) * width * 4], width * 4);
-
-    releasePixmapFromTexture (screen, texture);
-
-    if (screen->textureNonPowerOfTwo ||
-	(POWER_OF_TWO (width) && POWER_OF_TWO (height) ) )
-    {
-	texture->target = GL_TEXTURE_2D;
-	texture->matrix.xx = 1.0f / width;
-	texture->matrix.yy = -1.0f / height;
-	texture->matrix.y0 = 1.0f;
-    }
-    else
-    {
-	texture->target = GL_TEXTURE_RECTANGLE_NV;
-	texture->matrix.xx = 1.0f;
-	texture->matrix.yy = -1.0f;
-	texture->matrix.y0 = height;
-    }
-
-    if (!texture->name)
-	glGenTextures (1, &texture->name);
-
-    glBindTexture (texture->target, texture->name);
-
-    glTexImage2D (texture->target, 0, GL_RGBA, width, height, 0, GL_RGBA,
-		  GL_UNSIGNED_BYTE, data);
-
-    texture->filter = GL_NEAREST;
-
-    glTexParameteri (texture->target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri (texture->target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri (texture->target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri (texture->target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-    texture->wrap   = GL_CLAMP_TO_EDGE;
-    texture->mipmap = TRUE;
-
-    glBindTexture (texture->target, 0);
-
-    free (data);
-
-    return TRUE;
-}
-
-static Bool
 thumbInitScreen (CompPlugin *p,
 		 CompScreen *s)
 {
@@ -1319,8 +1251,7 @@ thumbInitScreen (CompPlugin *p,
 
     THUMB_DISPLAY (s->display);
 
-    ts = calloc (1, sizeof (ThumbScreen) );
-
+    ts = calloc (1, sizeof (ThumbScreen));
     if (!ts)
 	return FALSE;
 
@@ -1349,8 +1280,10 @@ thumbInitScreen (CompPlugin *p,
     initTexture (s, &ts->glowTexture);
     initTexture (s, &ts->windowTexture);
 
-    thumbRGBAimageToTexture (s, &ts->glowTexture, glowTex, 32, 32);
-    thumbRGBAimageToTexture (s, &ts->windowTexture, windowTex, 32, 32);
+    imageDataToTexture (s, &ts->glowTexture, glowTex, 32, 32,
+			GL_RGBA, GL_UNSIGNED_BYTE);
+    imageDataToTexture (s, &ts->windowTexture, windowTex, 32, 32,
+			GL_RGBA, GL_UNSIGNED_BYTE);
 
     ts->thumb.textPixmap    = None;
     ts->oldThumb.textPixmap = None;
@@ -1390,7 +1323,6 @@ static Bool
 thumbInit (CompPlugin *p)
 {
     displayPrivateIndex = allocateDisplayPrivateIndex ();
-
     if (displayPrivateIndex < 0)
 	return FALSE;
 
@@ -1401,8 +1333,7 @@ thumbInit (CompPlugin *p)
 static void
 thumbFini (CompPlugin *p)
 {
-    if (displayPrivateIndex >= 0)
-	freeDisplayPrivateIndex (displayPrivateIndex);
+    freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
 static CompBool
@@ -1432,7 +1363,6 @@ thumbFiniObject (CompPlugin *p,
 }
 
 CompPluginVTable thumbVTable = {
-
     "thumbnail",
     0,
     thumbInit,

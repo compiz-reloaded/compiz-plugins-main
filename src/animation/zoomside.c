@@ -38,11 +38,6 @@
 
 // =====================  Effect: Zoom and Sidekick  =========================
 
-// ratio of perceived length of animation compared to real duration
-// to make it appear to have the same speed with other animation effects
-#define SPRINGY_ZOOM_PERCEIVED_T 0.55f
-#define NONSPRINGY_ZOOM_PERCEIVED_T 0.6f
-
 void fxSidekickInit(CompScreen * s, CompWindow * w)
 {
     ANIM_SCREEN(s);

@@ -242,7 +242,8 @@ void defaultAnimInit(CompScreen * s, CompWindow * w)
 		    as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 }
 
-static Bool animZoomToIcon(AnimScreen *as, AnimWindow *aw)
+Bool
+animZoomToIcon (AnimScreen *as, AnimWindow *aw)
 {
     return
 	aw->curAnimEffect == AnimEffectZoom ||
@@ -261,7 +262,8 @@ static Bool animZoomToIcon(AnimScreen *as, AnimWindow *aw)
 	   animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM))));
 }
 
-static void defaultMinimizeAnimInit(CompScreen * s, CompWindow * w)
+static void
+defaultMinimizeAnimInit (CompScreen * s, CompWindow * w)
 {
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -775,8 +777,8 @@ damageBoundingBox (CompWindow * w)
 
     // Find union of BB and lastBB
     Box box;
-    box.x1 = MAX (0, MIN (aw->BB.x1, aw->lastBB.x1));
-    box.y1 = MAX (0, MIN (aw->BB.y1, aw->lastBB.y1));
+    box.x1 = MAX (0, MIN (aw->BB.x1, aw->lastBB.x1)) - 1;
+    box.y1 = MAX (0, MIN (aw->BB.y1, aw->lastBB.y1)) - 1;
     box.x2 = MIN (s->width, MAX (aw->BB.x2, aw->lastBB.x2)) + 1;
     box.y2 = MIN (s->height, MAX (aw->BB.y2, aw->lastBB.y2)) + 1;
     // prevent occasional 1 pixel line artifact
@@ -811,13 +813,14 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
     // AnimEffectDodge
     {0, 0, 0, fxDodgeAnimStep, defaultAnimInit, 0, 0, 0, 0, 0,
      defaultLetOthersDrawGeoms,
-     fxDodgeUpdateWindowTransform, fxDodgePostPreparePaintScreen, modelUpdateBB},
+     fxDodgeUpdateWindowTransform, fxDodgePostPreparePaintScreen,
+     compTransformUpdateBB},
     // AnimEffectDomino3D
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
      fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
      polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB},
     // AnimEffectDream
-    {fxDreamUpdateWindowAttrib, 0, 0, fxDreamModelStep, defaultMinimizeAnimInit,
+    {fxDreamUpdateWindowAttrib, 0, 0, fxDreamModelStep, fxDreamAnimInit,
      fxMagicLampInitGrid, 0, 0, 0, 0, 0, defaultMinimizeUpdateWindowTransform,
      0, modelUpdateBB},
     // AnimEffectExplode3D
@@ -1416,10 +1419,20 @@ static void postAnimationCleanupCustom(CompWindow * w,
     ANIM_WINDOW(w);
     ANIM_SCREEN(w->screen);
 
+    // make sure window shadows (which are not drawn by polygon engine)
+    // are damaged
     if (playingPolygonEffect(as, aw) &&
 	(aw->curWindowEvent == WindowEventOpen ||
 	 aw->curWindowEvent == WindowEventUnminimize ||
-	 aw->curWindowEvent == WindowEventUnshade))
+	 aw->curWindowEvent == WindowEventUnshade ||
+	 aw->curWindowEvent == WindowEventFocus))
+	updateBBWindow (w);
+
+    // make sure the window gets fully damaged with
+    // effects that possibly have models that don't cover
+    // the whole window (like in magic lamp with menus)
+    if (aw->curAnimEffect == AnimEffectMagicLamp ||
+	aw->curAnimEffect == AnimEffectVacuum)
 	updateBBWindow (w);
 
     if (resetAnimation)
@@ -2078,16 +2091,13 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		    aw->nClipsPassed = 0;
 		    aw->clipsUpdated = FALSE;
 		}
-		Bool justStarted = FALSE;
 
 		// If just starting, call fx init func.
 		if (!aw->animInitialized &&
 		    animEffectProperties[aw->curAnimEffect].initFunc)
 		{
 		    animEffectProperties[aw->curAnimEffect].initFunc(s, w);
-		    justStarted = TRUE;
 		}
-		aw->animInitialized = TRUE;
 
 		if (aw->model)
 		{
@@ -2105,13 +2115,17 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		{
 		    copyResetBB (aw);
 
-		    if (justStarted &&
+		    if (!aw->animInitialized &&
 			(aw->curWindowEvent == WindowEventClose ||
 			 aw->curWindowEvent == WindowEventMinimize ||
 			 aw->curWindowEvent == WindowEventShade ||
-			 aw->curWindowEvent == WindowEventFocus))
+			 aw->curWindowEvent == WindowEventFocus ||
+			 // for dodging windows
+			 aw->curAnimEffect == AnimEffectDodge))
 			updateBBWindow (w);
 		}
+		aw->animInitialized = TRUE;
+
 		if (animEffectProperties[aw->curAnimEffect].animStepFunc)
 		    animEffectProperties[aw->curAnimEffect].animStepFunc
 			(s, w, msSinceLastPaint);
