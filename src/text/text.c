@@ -32,6 +32,7 @@
 
 #include <compiz-core.h>
 #include "compiz-text.h"
+#include "text_options.h"
 
 static int displayPrivateIndex;
 
@@ -273,11 +274,11 @@ textFileToImage (CompDisplay *d,
 
 	pango_layout_get_pixel_size (layout, &w, &h);
 
-	w = MIN (textAttrib->maxwidth, w);
-	h = MIN (textAttrib->maxheight, h);
+	w = MIN (textAttrib->maxWidth, w);
+	h = MIN (textAttrib->maxHeight, h);
 
 	/* update the size of the pango layout */
-	pango_layout_set_width (layout, textAttrib->maxwidth * PANGO_SCALE);
+	pango_layout_set_width (layout, textAttrib->maxWidth * PANGO_SCALE);
 
 	cairo_surface_destroy (surface);
 	cairo_destroy (cr);
@@ -437,7 +438,7 @@ CompPluginVTable textVTable = {
 };
 
 CompPluginVTable*
-getCompPluginInfo20070830 (void)
+getCompPluginInfo (void)
 {
     return &textVTable;
 }

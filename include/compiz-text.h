@@ -21,6 +21,8 @@
 #ifndef _COMPIZ_TEXT_H
 #define _COMPIZ_TEXT_H
 
+#define TEXT_ABIVERSION 20070902
+
 #define TEXT_ID "TextToPixmap"
 
 #define TEXT_STYLE_NORMAL		(1 << 0)
@@ -28,23 +30,24 @@
 #define TEXT_STYLE_ITALIC		(1 << 2)
 
 typedef enum {
-	TextRenderNormal = 0,
-	TextRenderWindowTitle
+    TextRenderNormal = 0,
+    TextRenderWindowTitle
 } TextRenderMode;
 
 typedef struct _CompTextAttrib {
-	TextRenderMode renderMode;
-	void *data;
-	int maxwidth;
-	int maxheight;
-	CompScreen *screen;
-	char *family;
-	int size;
-	unsigned short color[4];
-	unsigned int style;
-	Bool ellipsize;
-} CompTextAttrib;
+    TextRenderMode renderMode;
 
-typedef Pixmap (*TextToPixmapProc) (CompDisplay *d, CompTextAttrib* text_attrib, int *width, int *height);
+    void *data;
+
+    CompScreen *screen;
+    int        maxWidth;
+    int        maxHeight;
+
+    char           *family;
+    int            size;
+    unsigned short color[4];
+    unsigned int   style;
+    Bool           ellipsize;
+} CompTextAttrib;
 
 #endif
