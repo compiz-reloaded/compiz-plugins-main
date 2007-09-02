@@ -85,6 +85,8 @@ typedef struct _ShiftDisplay {
     int		    screenPrivateIndex;
     HandleEventProc handleEvent;
 
+    Bool textAvailable;
+
     KeyCode leftKey;
     KeyCode rightKey;
     KeyCode upKey;
@@ -286,8 +288,13 @@ shiftRenderWindowTitle (CompScreen *s)
     void           *data;
 
     SHIFT_SCREEN (s);
+    SHIFT_DISPLAY (s->display);
 
     shiftFreeWindowTitle (s);
+
+    if (!sd->textAvailable)
+	return;
+
     if (!shiftGetWindowTitle (s))
 	return;
 
@@ -303,8 +310,8 @@ shiftRenderWindowTitle (CompScreen *s)
 	getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
     /* 75% of the output device as maximum width */
-    tA.maxwidth = (ox2 - ox1) * 3 / 4;
-    tA.maxheight = 100;
+    tA.maxWidth = (ox2 - ox1) * 3 / 4;
+    tA.maxHeight = 100;
     tA.screen = s;
     tA.size = shiftGetTitleFontSize (s);
     tA.color[0] = shiftGetTitleFontColorRed (s);
@@ -2393,6 +2400,11 @@ shiftInitDisplay (CompPlugin  *p,
 	free (sd);
 	return FALSE;
     }
+
+    sd->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
+    if (!sd->textAvailable)
+	compLogMessage (d, "shift", CompLogLevelWarn,
+			"No compatible text plugin loaded.");
 
     sd->leftKey  = XKeysymToKeycode (d->display, XStringToKeysym ("Left"));
     sd->rightKey = XKeysymToKeycode (d->display, XStringToKeysym ("Right"));
