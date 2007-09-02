@@ -31,7 +31,8 @@
 
 typedef enum {
     TextRenderNormal = 0,
-    TextRenderWindowTitle
+    TextRenderWindowTitle,
+    TextRenderWindowTitleWithViewport
 } TextRenderMode;
 
 typedef struct _CompTextAttrib {

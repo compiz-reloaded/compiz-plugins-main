@@ -147,6 +147,7 @@ textFileToImage (CompDisplay *d,
 	Display              *dpy = d->display;
 	Screen               *screen;
 	int                  w, h;
+	char                 *text = NULL;
 	
 	textAttrib = (CompTextAttrib*) name; /* get it through the name */
 	screen = ScreenOfDisplay (dpy, textAttrib->screen->screenNum);
@@ -242,34 +243,55 @@ textFileToImage (CompDisplay *d,
 
 	switch (textAttrib->renderMode) {
 	case TextRenderNormal:
-	    {
-		char *text = (char*) textAttrib->data;
-		pango_layout_set_text (layout, text, -1);
-	    }
+	    text = strdup ((char*) textAttrib->data);
 	    break;
 	case TextRenderWindowTitle:
 	    {
 		Window xid = (Window) textAttrib->data;
-		char   *text = textGetWindowName (d, xid);
+		text = textGetWindowName (d, xid);
+	    }
+	    break;
+	case TextRenderWindowTitleWithViewport:
+	    {
+		Window xid = (Window) textAttrib->data;
+		char *title = textGetWindowName (d, xid);
 
-		if (text)
+		if (title)
 		{
-		    pango_layout_set_text (layout, text, -1);
-		    free (text);
+		    CompWindow *w;
+
+		    w = findWindowAtDisplay (d, xid);
+		    if (w)
+		    {
+			int vx, vy, viewport;
+
+			defaultViewportForWindow (w, &vx, &vy);
+			viewport = vy * w->screen->hsize + vx;
+			asprintf (&text, "%s -[%d]-", title, viewport);
+			free (title);
+		    }
+		    else
+			text = title;
 		}
-		else
-		{
-		    pango_font_description_free (font);
-		    g_object_unref (layout);
-		    cairo_destroy (cr);
-		    cairo_surface_destroy (surface);
-		    XFreePixmap (dpy, pixmap);
-		    return FALSE;
-		}
-    	    }
+	    }
 	    break;
 	default:
 	    break;
+	}
+
+	if (text)
+	{
+	    pango_layout_set_text (layout, text, -1);
+	    free (text);
+	}
+	else
+	{
+	    pango_font_description_free (font);
+	    g_object_unref (layout);
+	    cairo_destroy (cr);
+	    cairo_surface_destroy (surface);
+	    XFreePixmap (dpy, pixmap);
+	    return FALSE;
 	}
 
 	pango_layout_get_pixel_size (layout, &w, &h);
