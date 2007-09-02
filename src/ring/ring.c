@@ -74,6 +74,7 @@ typedef struct _RingDrawSlot {
 typedef struct _RingDisplay {
     int		    screenPrivateIndex;
     HandleEventProc handleEvent;
+    Bool            textAvailable;
 } RingDisplay;
 
 typedef struct _RingScreen {
@@ -234,8 +235,13 @@ ringRenderWindowTitle (CompScreen *s)
     void           *data;
 
     RING_SCREEN (s);
+    RING_DISPLAY (s->display);
 
     ringFreeWindowTitle (s);
+
+    if (!rd->textAvailable)
+	return;
+
     if (!ringGetWindowTitle (s))
 	return;
 
@@ -243,8 +249,8 @@ ringRenderWindowTitle (CompScreen *s)
     getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
     /* 75% of the output device as maximum width */
-    tA.maxwidth = (ox2 - ox1) * 3 / 4;
-    tA.maxheight = 100;
+    tA.maxWidth = (ox2 - ox1) * 3 / 4;
+    tA.maxHeight = 100;
     tA.screen = s;
     tA.size = ringGetTitleFontSize (s);
     tA.color[0] = ringGetTitleFontColorRed (s);
@@ -1617,6 +1623,11 @@ ringInitDisplay (CompPlugin  *p,
 	free (rd);
 	return FALSE;
     }
+
+    rd->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
+    if (!rd->textAvailable)
+	compLogMessage (d, "ring", CompLogLevelWarn,
+			"No compatible text plugin found.");
 
     ringSetNextKeyInitiate (d, ringNext);
     ringSetNextKeyTerminate (d, ringTerminate);

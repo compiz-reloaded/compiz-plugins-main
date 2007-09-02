@@ -4,6 +4,11 @@
 		<_short>Ring Switcher</_short>
 		<_long>Ring Switcher</_long>
 		<category>Window Management</category>
+		<deps>
+			<relation type="after">
+				<plugin>text</plugin>
+			</relation>
+		</deps>
 		<display>
 			<group>
 				<_short>Key bindings</_short>
