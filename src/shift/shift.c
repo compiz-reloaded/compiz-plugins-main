@@ -323,11 +323,7 @@ shiftRenderWindowTitle (CompScreen *s)
     tA.family = "Sans";
     tA.ellipsize = TRUE;
 
-    if (ss->type == ShiftTypeAll)
-	tA.renderMode = TextRenderWindowTitleWithViewport;
-    else
-	tA.renderMode = TextRenderWindowTitle;
-
+    tA.renderMode = TextRenderWindowTitle;
     tA.data = (void*)ss->selectedWindow;
 
     initTexture (s, &ss->textTexture);
@@ -520,7 +516,7 @@ shiftPaintWindow (CompWindow		 *w,
 	if (sw->active)
 	    scaled = (ss->activeSlot != NULL);
 	
-	if (sw->opacity > 0.0 && (ss->activeSlot == NULL))
+	if (sw->opacity > 0.01 && (ss->activeSlot == NULL))
 	{
 	    sAttrib.brightness = sAttrib.brightness * sw->brightness;
 	    sAttrib.opacity = sAttrib.opacity * sw->opacity;
@@ -546,17 +542,24 @@ shiftPaintWindow (CompWindow		 *w,
 	    float sx     = ss->anim * slot->tx;
 	    float sy     = ss->anim * slot->ty;
 	    float sz     = ss->anim * slot->z;
-	    float sscale = (ss->anim * slot->scale) + (1 - ss->anim);
 	    float srot   = (ss->anim * slot->rotation);
+	    float anim   = MIN (1.0, MAX (0.0, ss->anim));
 
+	    float sscale;
 	    float sopacity;
 	    
+
+	    if (slot->primary)
+		sscale = (ss->anim * slot->scale) + (1 - ss->anim);
+	    else
+		sscale = ss->anim * slot->scale;
+	
 	    if (slot->primary && !ss->reflectActive)
 		sopacity = (ss->anim * slot->opacity) + (1 - ss->anim);
 	    else
-		sopacity = ss->anim * slot->opacity;
+		sopacity = anim * anim * slot->opacity;
 
-	    if (sopacity <= 0.0)
+	    if (sopacity <= 0.05)
 		return status;
 
 	    if (mask & PAINT_WINDOW_OCCLUSION_DETECTION_MASK)
@@ -599,8 +602,7 @@ shiftPaintWindow (CompWindow		 *w,
 	    glPopMatrix ();
 	}
 
-	if (scaled && (ss->state != ShiftStateIn) &&
-	    ((shiftGetOverlayIcon (s) != OverlayIconNone) ||
+	if (scaled && ((shiftGetOverlayIcon (s) != OverlayIconNone) ||
 	     !w->texture->pixmap))
 	{
 	    CompIcon *icon;
@@ -622,9 +624,15 @@ shiftPaintWindow (CompWindow		 *w,
 		float sx       = ss->anim * slot->tx;
 		float sy       = ss->anim * slot->ty;
 		float sz       = ss->anim * slot->z;
-		float sscale   = (ss->anim * slot->scale) + (1 - ss->anim);
 		float srot     = (ss->anim * slot->rotation);
 		float sopacity = ss->anim * slot->opacity;
+
+		float sscale;
+
+		if (slot->primary)
+		    sscale = (ss->anim * slot->scale) + (1 - ss->anim);
+		else
+		    sscale = ss->anim * ss->anim * slot->scale;
 
 		scaledWinWidth  = w->width  * sscale;
 		scaledWinHeight = w->height * sscale;
@@ -742,7 +750,10 @@ shiftPaintWindow (CompWindow		 *w,
 	
 	if (ss->paintingAbove)
 	{
-	    	sAttrib.opacity = sAttrib.opacity * (1.0 - ss->anim);
+	    sAttrib.opacity = sAttrib.opacity * (1.0 - ss->anim);
+	    
+	    if (ss->anim > 0.99)
+		mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
 	}
 	
 	UNWRAP (ss, s, paintWindow);
@@ -2597,6 +2608,9 @@ shiftInitWindow (CompPlugin *p,
 
     sw->slots[0].scale = 1.0;
     sw->slots[1].scale = 1.0;
+
+    sw->brightness = 1.0;
+    sw->opacity    = 1.0;
     
     w->object.privates[ss->windowPrivateIndex].ptr = sw;
 
