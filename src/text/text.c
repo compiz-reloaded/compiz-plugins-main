@@ -266,7 +266,7 @@ textFileToImage (CompDisplay *d,
 			int vx, vy, viewport;
 
 			defaultViewportForWindow (w, &vx, &vy);
-			viewport = vy * w->screen->hsize + vx;
+			viewport = vy * w->screen->hsize + vx + 1;
 			asprintf (&text, "%s -[%d]-", title, viewport);
 			free (title);
 		    }
