@@ -126,6 +126,7 @@ scaleaddonRenderWindowTitle (CompWindow *w)
 
     ADDON_SCREEN (s);
     ADDON_DISPLAY (s->display);
+    SCALE_SCREEN (s);
     SCALE_WINDOW (w);
 
     scaleaddonFreeWindowTitle (s);
@@ -151,7 +152,11 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     tA.family = "Sans";
     tA.ellipsize = TRUE;
 
-    tA.renderMode = TextRenderWindowTitle;
+    if (ss->type == ScaleTypeAll)
+	tA.renderMode = TextRenderWindowTitleWithViewport;
+    else
+	tA.renderMode = TextRenderWindowTitle;
+
     tA.data = (void*)w->id;
 
     if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *)&tA,
