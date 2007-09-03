@@ -4,17 +4,19 @@ PFLAGS=-module -avoid-version -no-undefined
 if RESIZEINFO_PLUGIN
 libresizeinfo_la_LDFLAGS = $(PFLAGS)
 libresizeinfo_la_LIBADD = @COMPIZ_LIBS@ @PANGO_LIBS@
-libresizeinfo_la_SOURCES = resizeinfo_options.c resizeinfo_options.h resizeinfo.c
+libresizeinfo_la_SOURCES = resizeinfo_options.c \
+			   resizeinfo_options.h \
+			   resizeinfo.c
 endif
 
 INCLUDES =                              \
+	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	@PANGO_CFLAGS@		\
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
-	-DIMAGEDIR='"$(imagedir)"'          \
-	-I$(top_srcdir)/include
+	-DIMAGEDIR='"$(imagedir)"'          
 
 moduledir = $(plugindir)
 

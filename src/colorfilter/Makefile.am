@@ -10,13 +10,13 @@ libcolorfilter_la_SOURCES = colorfilter_options.c \
 			    parser.h
 
 INCLUDES =                              \
+	-I$(top_srcdir)/include		\
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'       \
 	-DPREFIX='"$(prefix)"'             \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
-	-DIMAGEDIR='"$(imagedir)"'          \
-	-I$(top_srcdir)/include
+	-DIMAGEDIR='"$(imagedir)"'          
 
 moduledir = $(plugindir)
 

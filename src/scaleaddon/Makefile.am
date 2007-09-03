@@ -8,13 +8,13 @@ libscaleaddon_la_SOURCES = scaleaddon_options.c scaleaddon_options.h scaleaddon.
 endif
 
 INCLUDES =                              \
+	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	@SCALE_CFLAGS@                   \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
-	-DIMAGEDIR='"$(imagedir)"'          \
-	-I$(top_srcdir)/include
+	-DIMAGEDIR='"$(imagedir)"'          
 
 moduledir = $(plugindir)
 

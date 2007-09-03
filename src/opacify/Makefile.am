@@ -6,12 +6,12 @@ libopacify_la_LIBADD = @COMPIZ_LIBS@
 libopacify_la_SOURCES = opacify_options.c opacify_options.h opacify.c
 
 INCLUDES =                              \
+	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
-	-DIMAGEDIR='"$(imagedir)"'          \
-	-I$(top_srcdir)/include
+	-DIMAGEDIR='"$(imagedir)"'         
 
 moduledir = $(plugindir)
 

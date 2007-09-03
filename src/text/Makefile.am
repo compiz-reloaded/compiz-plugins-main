@@ -8,13 +8,13 @@ libtext_la_SOURCES = text_options.c text_options.h text.c
 endif
 
 INCLUDES =                              \
+	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	@PANGO_CFLAGS@			\
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
-	-DIMAGEDIR='"$(imagedir)"'          \
-	-I$(top_srcdir)/include
+	-DIMAGEDIR='"$(imagedir)"'          
 
 moduledir = $(plugindir)
 

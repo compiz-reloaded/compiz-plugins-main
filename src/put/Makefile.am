@@ -6,12 +6,12 @@ libput_la_LIBADD = @COMPIZ_LIBS@
 libput_la_SOURCES = put_options.c put_options.h put.c
 
 INCLUDES =                              \
+	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
-	-DIMAGEDIR='"$(imagedir)"'          \
-	-I$(top_srcdir)/include
+	-DIMAGEDIR='"$(imagedir)"'          
 
 moduledir = $(plugindir)
 

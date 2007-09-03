@@ -6,12 +6,12 @@ libezoom_la_LIBADD = @COMPIZ_LIBS@ -lGLU
 libezoom_la_SOURCES = ezoom_options.c ezoom_options.h ezoom.c
 
 INCLUDES =                              \
+	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(datadir)"'          \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
-	-DIMAGEDIR='"$(imagedir)"'          \
-	-I$(top_srcdir)/include
+	-DIMAGEDIR='"$(imagedir)"'          
 
 moduledir = $(plugindir)
 
