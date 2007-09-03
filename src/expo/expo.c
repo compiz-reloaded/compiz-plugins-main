@@ -1037,9 +1037,44 @@ expoPaintWindow (CompWindow              *w,
 
     EXPO_SCREEN (s);
 
-    if (es->expoCam > 0.0 && es->expoActive &&
-	(es->expoCam < 1.0 || (w->wmType & CompWindowTypeDockMask)))
-	mask |= PAINT_WINDOW_TRANSLUCENT_MASK;
+    if (es->expoActive)
+    {
+	float opacity = 1.0;
+	Bool  hideDocks;
+
+	ExpoExpoAnimationEnum expoAnimation;
+
+	expoAnimation = expoGetExpoAnimation (s->display);
+
+	hideDocks = expoGetHideDocks (s->display);
+
+	if (es->expoCam > 0.0 && es->expoCam < 1.0 &&
+	    expoAnimation != ExpoAnimationZoom)
+	    mask |= PAINT_WINDOW_TRANSLUCENT_MASK;
+
+	if (es->expoCam > 0.0 && hideDocks &&
+	    w->wmType & CompWindowTypeDockMask)
+	    mask |= PAINT_WINDOW_TRANSLUCENT_MASK;
+	
+	if (expoAnimation != ExpoAnimationZoom)
+	    opacity = attrib->opacity * es->expoCam;
+
+	if (w->wmType & CompWindowTypeDockMask &&
+		expoGetHideDocks (s->display))
+	{
+	    if (expoAnimation == ExpoAnimationZoom &&
+		(s->x == es->selectedVX && s->y == es->selectedVY))
+	    {
+		opacity = attrib->opacity *
+			  (1 - sigmoidProgress (es->expoCam));
+	    }
+	    else
+		opacity = 0;
+
+	    if (opacity <= 0)
+		mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
+	}
+    }
 
     UNWRAP (es, s, paintWindow);
     status = (*s->paintWindow) (w, attrib, transform, region, mask);
