@@ -262,7 +262,11 @@ ringRenderWindowTitle (CompScreen *s)
     tA.family = "Sans";
     tA.ellipsize = TRUE;
 
-    tA.renderMode = TextRenderWindowTitle;
+    if (rs->type == RingTypeAll)
+	tA.renderMode = TextRenderWindowTitleWithViewport;
+    else
+	tA.renderMode = TextRenderWindowTitle;
+
     tA.data = (void*)rs->selectedWindow;
 
     initTexture (s, &rs->textTexture);
