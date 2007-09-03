@@ -558,7 +558,7 @@ shiftPaintWindow (CompWindow		 *w,
 	    if (mask & PAINT_WINDOW_OCCLUSION_DETECTION_MASK)
 		return FALSE;
 
-	    initFragmentAttrib (&fragment, &w->paint);
+	    initFragmentAttrib (&fragment, attrib);
 
 	    fragment.opacity    = (float)fragment.opacity * sopacity;
 	    fragment.brightness = (float)fragment.brightness *
@@ -693,7 +693,7 @@ shiftPaintWindow (CompWindow		 *w,
 			sAttrib.opacity = w->opacity;
 		    }
 
-		    initFragmentAttrib (&fragment, &sAttrib);
+		    initFragmentAttrib (&fragment, attrib);
 
 		    fragment.opacity = (float)fragment.opacity * sopacity;
 		    fragment.brightness = (float)fragment.brightness *
