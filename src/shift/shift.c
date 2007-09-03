@@ -323,7 +323,11 @@ shiftRenderWindowTitle (CompScreen *s)
     tA.family = "Sans";
     tA.ellipsize = TRUE;
 
-    tA.renderMode = TextRenderWindowTitle;
+    if (ss->type == ShiftTypeAll)
+	tA.renderMode = TextRenderWindowTitleWithViewport;
+    else
+	tA.renderMode = TextRenderWindowTitle;
+
     tA.data = (void*)ss->selectedWindow;
 
     initTexture (s, &ss->textTexture);
@@ -558,7 +562,7 @@ shiftPaintWindow (CompWindow		 *w,
 	    if (mask & PAINT_WINDOW_OCCLUSION_DETECTION_MASK)
 		return FALSE;
 
-	    initFragmentAttrib (&fragment, attrib);
+	    initFragmentAttrib (&fragment, &w->paint);
 
 	    fragment.opacity    = (float)fragment.opacity * sopacity;
 	    fragment.brightness = (float)fragment.brightness *
@@ -693,7 +697,7 @@ shiftPaintWindow (CompWindow		 *w,
 			sAttrib.opacity = w->opacity;
 		    }
 
-		    initFragmentAttrib (&fragment, attrib);
+		    initFragmentAttrib (&fragment, &sAttrib);
 
 		    fragment.opacity = (float)fragment.opacity * sopacity;
 		    fragment.brightness = (float)fragment.brightness *
