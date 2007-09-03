@@ -221,10 +221,8 @@ fxGlideUpdateWindowTransform (CompScreen *s,
     if (fxGlideIsPolygonBased (as, aw))
 	return;
 
-    // apply the zoom transform (if minimizing to taskbar)
+    // apply the transform
     matmul4 (wTransform->m, wTransform->m, aw->transform.m);
-
-    applyGlideTransform (w, wTransform);
 }
 
 void fxGlideInit(CompScreen * s, CompWindow * w)
