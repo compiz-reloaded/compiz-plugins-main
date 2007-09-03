@@ -679,7 +679,8 @@ expandBoxWithPoints3DTransform (CompScreen          *s,
 }
 
 static void
-modelUpdateBB (CompWindow * w)
+modelUpdateBB (CompOutput *output,
+	       CompWindow * w)
 {
     ANIM_WINDOW (w);
     ANIM_SCREEN (w->screen);
@@ -704,7 +705,8 @@ modelUpdateBB (CompWindow * w)
 }
 
 void
-updateBBWindow (CompWindow * w)
+updateBBWindow (CompOutput *output,
+		CompWindow * w)
 {
     ANIM_WINDOW(w);
     Box windowBox = {WIN_X(w), WIN_X(w) + WIN_W(w),
@@ -713,7 +715,8 @@ updateBBWindow (CompWindow * w)
 }
 
 void
-updateBBScreen (CompWindow * w)
+updateBBScreen (CompOutput *output,
+		CompWindow * w)
 {
     ANIM_WINDOW(w);
 
@@ -730,6 +733,7 @@ resetToIdentity (CompTransform *transform)
 
 void
 prepareTransform (CompScreen *s,
+		  CompOutput *output,
 		  CompTransform *resultTransform,
 		  CompTransform *transform)
 {
@@ -737,20 +741,21 @@ prepareTransform (CompScreen *s,
 
     resetToIdentity (&sTransform);
 
-    transformToScreenSpace (s, s->outputDev,
+    transformToScreenSpace (s, output,
 			    -DEFAULT_Z_CAMERA, &sTransform);
 
     matmul4 (resultTransform->m, sTransform.m, transform->m);
 }
 
 void
-compTransformUpdateBB (CompWindow *w)
+compTransformUpdateBB (CompOutput *output,
+		       CompWindow *w)
 {
     ANIM_WINDOW(w);
     CompScreen *s = w->screen;
     CompTransform wTransform;
 
-    prepareTransform (s, &wTransform, &aw->transform);
+    prepareTransform (s, output, &wTransform, &aw->transform);
 
     float corners[4*3] = {WIN_X(w), WIN_Y(w), 0,
 			  WIN_X(w) + WIN_W(w), WIN_Y(w), 0,
@@ -1426,14 +1431,14 @@ static void postAnimationCleanupCustom(CompWindow * w,
 	 aw->curWindowEvent == WindowEventUnminimize ||
 	 aw->curWindowEvent == WindowEventUnshade ||
 	 aw->curWindowEvent == WindowEventFocus))
-	updateBBWindow (w);
+	updateBBWindow (NULL, w);
 
     // make sure the window gets fully damaged with
     // effects that possibly have models that don't cover
     // the whole window (like in magic lamp with menus)
     if (aw->curAnimEffect == AnimEffectMagicLamp ||
 	aw->curAnimEffect == AnimEffectVacuum)
-	updateBBWindow (w);
+	updateBBWindow (NULL, w);
 
     if (resetAnimation)
     {
@@ -2122,7 +2127,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 			 aw->curWindowEvent == WindowEventFocus ||
 			 // for dodging windows
 			 aw->curAnimEffect == AnimEffectDodge))
-			updateBBWindow (w);
+			updateBBWindow (NULL, w);
 		}
 		aw->animInitialized = TRUE;
 
@@ -2132,7 +2137,10 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 
 		if (animEffectProperties[aw->curAnimEffect].updateBBFunc)
 		{
-		    animEffectProperties[aw->curAnimEffect].updateBBFunc (w);
+		    int i;
+		    for (i = 0; i < s->nOutputDev; i++)
+			animEffectProperties[aw->curAnimEffect].
+			    updateBBFunc (&s->outputDev[i], w);
 
 		    if (!(s->damageMask & COMP_SCREEN_DAMAGE_ALL_MASK))
 			damageBoundingBox (w);

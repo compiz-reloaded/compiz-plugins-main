@@ -305,13 +305,15 @@ void fxGlidePostPaintWindow(CompScreen * s, CompWindow * w)
 }
 
 void
-fxGlideUpdateBB (CompWindow *w)
+fxGlideUpdateBB (CompOutput *output,
+		 CompWindow *w)
 {
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
     if (fxGlideIsPolygonBased (as, aw))
-	polygonsUpdateBB (w);
+	polygonsUpdateBB (output,
+			  w);
     else
-	compTransformUpdateBB (w);
+	compTransformUpdateBB (output, w);
 }

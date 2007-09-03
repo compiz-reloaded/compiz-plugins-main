@@ -308,7 +308,8 @@ void finiParticles(ParticleSystem * ps)
 }
 
 void
-particlesUpdateBB (CompWindow * w)
+particlesUpdateBB (CompOutput *output,
+		   CompWindow * w)
 {
     ANIM_WINDOW(w);
 
@@ -346,5 +347,5 @@ particlesUpdateBB (CompWindow * w)
 	    expandBoxWithBox (&aw->BB, pClip);
     }
     else // drawing full window
-	updateBBWindow (w);
+	updateBBWindow (output, w);
 }

@@ -198,7 +198,7 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	// Might be interrupted in the middle.
 	// Therefore, if creating, schedule whole window to be damaged.
 	if (creating)
-	    updateBBWindow (w);
+	    updateBBWindow (NULL, w);
 	return FALSE;
     }
     aw->animRemainingTime -= timestep;

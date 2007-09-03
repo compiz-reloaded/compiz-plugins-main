@@ -1491,7 +1491,8 @@ Bool polygonsAnimStep(CompScreen * s, CompWindow * w, float time)
 }
 
 void
-polygonsUpdateBB (CompWindow * w)
+polygonsUpdateBB (CompOutput *output,
+		  CompWindow * w)
 {
     CompScreen *s = w->screen;
     ANIM_SCREEN (s);
@@ -1505,7 +1506,7 @@ polygonsUpdateBB (CompWindow * w)
     CompTransform wTransform2;
 
     resetToIdentity (&wTransform2);
-    prepareTransform (s, &wTransform, &wTransform2);
+    prepareTransform (s, output, &wTransform, &wTransform2);
 
     GLdouble dModel[16];
     GLdouble px, py, pz;

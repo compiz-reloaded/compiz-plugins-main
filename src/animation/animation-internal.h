@@ -684,7 +684,7 @@ typedef struct _AnimEffectProperties
     void (*updateWindowTransformFunc)
     (CompScreen *, CompWindow *, CompTransform *);
     void (*postPreparePaintScreenFunc) (CompScreen *, CompWindow *);
-    void (*updateBBFunc) (CompWindow *);
+    void (*updateBBFunc) (CompOutput *, CompWindow *);
 } AnimEffectProperties;
 
 AnimEffectProperties *animEffectPropertiesTmp;
@@ -830,16 +830,20 @@ void
 expandBoxWithPoint (Box *, short x, short y);
 
 void
-updateBBWindow (CompWindow * w);
+updateBBWindow (CompOutput *output,
+		CompWindow * w);
 
 void
-updateBBScreen (CompWindow * w);
+updateBBScreen (CompOutput *output,
+		CompWindow * w);
 
 void
-compTransformUpdateBB (CompWindow *w);
+compTransformUpdateBB (CompOutput *output,
+		       CompWindow *w);
 
 void
 prepareTransform (CompScreen *s,
+		  CompOutput *output,
 		  CompTransform *resultTransform,
 		  CompTransform *transform);
 
@@ -1024,7 +1028,8 @@ void
 fxGlidePostPaintWindow(CompScreen * s, CompWindow * w);
 
 void
-fxGlideUpdateBB (CompWindow *w);
+fxGlideUpdateBB (CompOutput *output,
+		 CompWindow *w);
 
 /* horizontalfold.c */
 
@@ -1133,7 +1138,8 @@ drawParticleSystems (CompScreen *s,
 		     CompWindow *w);
 
 void
-particlesUpdateBB (CompWindow * w);
+particlesUpdateBB (CompOutput *output,
+		   CompWindow * w);
 
 /* polygon.c */
 
@@ -1182,7 +1188,8 @@ polygonsDeceleratingAnimStepPolygon(CompWindow * w,
 				    PolygonObject * p, float forwardProgress);
 
 void
-polygonsUpdateBB (CompWindow * w);
+polygonsUpdateBB (CompOutput *output,
+		  CompWindow * w);
 
 /* rollup.c */
  
