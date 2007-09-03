@@ -323,7 +323,11 @@ shiftRenderWindowTitle (CompScreen *s)
     tA.family = "Sans";
     tA.ellipsize = TRUE;
 
-    tA.renderMode = TextRenderWindowTitle;
+    if (ss->type == ShiftTypeAll)
+	tA.renderMode = TextRenderWindowTitleWithViewport;
+    else
+	tA.renderMode = TextRenderWindowTitle;
+
     tA.data = (void*)ss->selectedWindow;
 
     initTexture (s, &ss->textTexture);
