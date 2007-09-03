@@ -775,17 +775,16 @@ static void
 damageBoundingBox (CompWindow * w)
 {
     ANIM_WINDOW(w);
-    CompScreen *s = w->screen;
 
     if (aw->BB.x1 == MAXSHORT) // unintialized BB
 	return;
 
     // Find union of BB and lastBB
     Box box;
-    box.x1 = MAX (0, MIN (aw->BB.x1, aw->lastBB.x1)) - 1;
-    box.y1 = MAX (0, MIN (aw->BB.y1, aw->lastBB.y1)) - 1;
-    box.x2 = MIN (s->width, MAX (aw->BB.x2, aw->lastBB.x2)) + 1;
-    box.y2 = MIN (s->height, MAX (aw->BB.y2, aw->lastBB.y2)) + 1;
+    box.x1 = MIN (aw->BB.x1, aw->lastBB.x1) - 1;
+    box.y1 = MIN (aw->BB.y1, aw->lastBB.y1) - 1;
+    box.x2 = MAX (aw->BB.x2, aw->lastBB.x2) + 1;
+    box.y2 = MAX (aw->BB.y2, aw->lastBB.y2) + 1;
     // prevent occasional 1 pixel line artifact
 
     box.x1 -= w->attrib.x + w->attrib.border_width;
