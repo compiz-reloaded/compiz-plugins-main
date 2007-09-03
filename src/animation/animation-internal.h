@@ -929,6 +929,10 @@ fxDodgeAnimStep (CompScreen *s,
 		 CompWindow *w,
 		 float time);
 
+void
+fxDodgeUpdateBB (CompOutput *output,
+		 CompWindow * w);
+
 /* domino.c */
 
 void

@@ -305,3 +305,12 @@ fxDodgePostPreparePaintScreen(CompScreen *s, CompWindow *w)
     }
 }
 
+void
+fxDodgeUpdateBB (CompOutput *output,
+		 CompWindow * w)
+{
+    ANIM_WINDOW(w);
+
+    if (!aw->isDodgeSubject)
+	compTransformUpdateBB (output, w);
+}

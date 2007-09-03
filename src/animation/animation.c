@@ -818,7 +818,7 @@ AnimEffectProperties animEffectProperties[AnimEffectNum] = {
     {0, 0, 0, fxDodgeAnimStep, defaultAnimInit, 0, 0, 0, 0, 0,
      defaultLetOthersDrawGeoms,
      fxDodgeUpdateWindowTransform, fxDodgePostPreparePaintScreen,
-     compTransformUpdateBB},
+     fxDodgeUpdateBB},
     // AnimEffectDomino3D
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
      fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
