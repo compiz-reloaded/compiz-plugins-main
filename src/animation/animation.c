@@ -2123,9 +2123,10 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 			(aw->curWindowEvent == WindowEventClose ||
 			 aw->curWindowEvent == WindowEventMinimize ||
 			 aw->curWindowEvent == WindowEventShade ||
-			 aw->curWindowEvent == WindowEventFocus ||
-			 // for dodging windows
-			 aw->curAnimEffect == AnimEffectDodge))
+			 ((aw->curWindowEvent == WindowEventFocus ||
+			   // for dodging windows
+			   aw->curAnimEffect == AnimEffectDodge) &&
+			  !aw->isDodgeSubject)))
 			updateBBWindow (NULL, w);
 		}
 		aw->animInitialized = TRUE;
@@ -2834,10 +2835,7 @@ animPaintWindow(CompWindow * w,
 		aw2->drawnOnHostSkip = TRUE;
 	    }
 	    w2->indexCount = 0;
-	    WindowPaintAttrib wAttrib2 = w2->paint;
-
-	    wAttrib2.xScale = 1.0f;
-	    wAttrib2.yScale = 1.0f;
+	    WindowPaintAttrib wAttrib2 = w2->lastPaint;
 
 	    if (aw2->curAnimEffect == AnimEffectFocusFade)
 		fxFocusFadeUpdateWindowAttrib2(as, w2, &wAttrib2);
