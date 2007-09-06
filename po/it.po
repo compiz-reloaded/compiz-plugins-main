@@ -46,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-09-05 14:46+0530\n"
-"PO-Revision-Date: 2007-08-31 22:57+0200\n"
+"POT-Creation-Date: 2007-09-05 21:41+0200\n"
+"PO-Revision-Date: 2007-09-05 21:35+0200\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -152,7 +152,7 @@ msgid "Window width"
 msgstr "Larghezza finestre"
 
 msgid "Windows that should be handled by 3D"
-msgstr "Finestre che devono essere gestite dal 3D"
+msgstr "Finestre da gestire col 3D"
 
 # (ndt) nome del plug-in
 # ADD: Attention Deficit Disorder (sindrome da deficit di attenzione)
@@ -1766,7 +1766,7 @@ msgid "Fade to Desktop"
 msgstr "Dissolvi verso la scrivania"
 
 msgid "Windows that should be faded to desktop"
-msgstr "Finestre che devono svanire sulla scrivania"
+msgstr "Finestre da far svanire sulla scrivania"
 
 msgid "Alter window opacity based on color."
 msgstr "Altera l'opacità della finestra in base al colore."
@@ -1974,43 +1974,41 @@ msgid ""
 "If one window in the group is (un)maximized, all other group windows are (un)"
 "maximized as well."
 msgstr ""
-"Se una finestra del gruppo è massimizzata (demassimizzata), tutte le altre "
-"finestre del gruppo sono massimizzate (demassimizzate)."
+"Se una delle finestre del gruppo è massimizzata (demassimizzata), anche le "
+"altre sono massimizzate (demassimizzate)."
 
 msgid ""
 "If one window in the group is (un)minimized, all other group windows are (un)"
 "minimized as well."
 msgstr ""
-"Se una finestra del gruppo è minimizzata (deminimizzata), tutte le altre "
-"finestre del gruppo vengono minimizzate (deminimizzate)."
+"Se una delle finestre del gruppo è minimizzata (deminimizzata), anche le "
+"altre sono minimizzate (deminimizzate)."
 
 msgid ""
 "If one window in the group is (un)shaded, all other group windows are (un)"
 "shaded as well."
 msgstr ""
-"Se una delle finestre del gruppo (non) è sfumata anche le altre (non) sono "
+"Se una delle finestre del gruppo (non) è sfumata, anche le altre (non) sono "
 "sfumate."
 
 msgid ""
 "If one window in the group is activated, all other group windows are raised "
 "as well."
 msgstr ""
-"Se una finestra nel gruppo è attivata, tutte le altre finestre del gruppo "
-"vengono attivate."
+"Se una delle finestre del gruppo è attivata, anche le altre sono attivate."
 
 msgid ""
 "If one window in the group is moved, all other group windows are moved as "
 "well."
 msgstr ""
-"Se una finestra nel gruppo è spostata, vengono spostate anche tutte le altre "
-"finestre del gruppo."
+"Se una delle finestre del gruppo è spostata, anche le altre sono spostate."
 
 msgid ""
 "If one window in the group is resized, all other group windows are resized "
 "as well."
 msgstr ""
-"Se una finestra nel gruppo è ridimensionata, tutte le altre finestre del "
-"gruppo sono ridimensionate."
+"Se una delle finestre del gruppo è ridimensionata, anche le altre sono "
+"ridimensionate."
 
 msgid "If there is only 1 window left in the group, it will be ungrouped."
 msgstr "Se resta solo una finestra nel gruppo, il gruppo viene eliminato."
@@ -2067,8 +2065,7 @@ msgstr "Opacità delle finestre selezionate"
 
 msgid "Play animations on the tab bar e.g. on fade in."
 msgstr ""
-"Mostra animazioni nella barra delle etichette. Mostra, ad esempio, le "
-"dissolvenze"
+"Mostra animazioni nella barra delle etichette. Per esempio le dissolvenze."
 
 msgid "Precision"
 msgstr "Precisione"
@@ -2079,7 +2076,7 @@ msgid ""
 "be selected for the selection to be recognized)."
 msgstr ""
 "Precisione della selezione (percentuale dell'area della finestra visibile da "
-"selezionare affinché la selezione sia riconosciuta)"
+"selezionare affinché la selezione sia riconosciuta)."
 
 # (ndt) opzione
 msgid "Raise every window in the group"
@@ -2355,10 +2352,10 @@ msgid "Motion Blur on Transformed Screen"
 msgstr "Movimento sfocato al mutare dello schermo"
 
 msgid "Motion Blur render mode."
-msgstr "Modalità di render del «Movimento sfocato»"
+msgstr "Modalità di render del «Movimento sfocato»."
 
 msgid "Motion Blur strength."
-msgstr "Intensità del «Movimento sfocato»"
+msgstr "Intensità del «Movimento sfocato»."
 
 msgid "Motion blur"
 msgstr "Movimento sfocato"
@@ -2420,7 +2417,7 @@ msgstr "Finestre impostate in negativo in modo predefinito"
 
 # (ndt) suggerimento
 msgid "Windows to exclude from negating"
-msgstr "Finestre che dovrebbero essere escluse dal negativo"
+msgstr "Finestre da escludere dal negativo"
 
 msgid "Active Opacity"
 msgstr "Opacità attiva"
@@ -2430,7 +2427,7 @@ msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
 "already."
 msgstr ""
-"Eliminare ritardo quando «Opacizza» sta riducendo l'opacità di una o più "
+"Eliminare ritardo quando «Opacizza» sta già riducendo l'opacità di una o più "
 "finestre"
 
 # (ndt) opzione
@@ -2536,7 +2533,7 @@ msgstr ""
 "in questo modo."
 
 msgid "Windows that should be opacified."
-msgstr "Finestre che dovrebbero essere opacizzate."
+msgstr "Finestre da opacizzare."
 
 msgid ""
 "With this enabled, opacify will be on when you load Opacify, which is "
@@ -2583,7 +2580,7 @@ msgid "Move window to the left edge"
 msgstr "Muove la finestra al bordo sinistro"
 
 msgid "Move window to the pointer position"
-msgstr "Muovi finestra alla posizione del puntatore"
+msgstr "Muove la finestra alla posizione del puntatore"
 
 msgid "Move window to the right edge"
 msgstr "Muove la finestra al bordo destro"
@@ -2598,7 +2595,7 @@ msgid "Move window to the top right corner"
 msgstr "Muove la finestra nell'angolo in alto a destra"
 
 msgid "Move window to the viewport on the bottom"
-msgstr "Muove la finestre nell'area di lavoro in basso"
+msgstr "Muove la finestra nell'area di lavoro in basso"
 
 msgid "Move window to the viewport on the left"
 msgstr "Muove la finestra nell'area di lavoro a sinistra"
@@ -2656,7 +2653,7 @@ msgid "Number of pixels from the left edge where the window will come to rest"
 msgstr "Numero di pixel dal bordo sinistro a cui la finestra si fermerà"
 
 msgid "Number of pixels from the right edge where the window will come to rest"
-msgstr "Numero di pixel dal bordo destro a cui la finestra di fermerà"
+msgstr "Numero di pixel dal bordo destro a cui la finestra si fermerà"
 
 msgid "Number of pixels from the top edge where the window will come to rest"
 msgstr "Numero di pixel dal bordo superiore a cui la finestra si fermerà"
@@ -2686,7 +2683,7 @@ msgid "Put Bottom Left"
 msgstr "Posiziona in basso a sinistra"
 
 msgid "Put Bottom Right"
-msgstr "Posiziona in basso a sinistra"
+msgstr "Posiziona in basso a destra"
 
 msgid "Put Center"
 msgstr "Posiziona al centro"
@@ -2775,7 +2772,7 @@ msgstr "Togliere il focus alla finestra"
 
 # (ndt) suggerimento
 msgid "Unfocus windows that are moved off the viewport"
-msgstr "Toglie il focus alle finestre al di fuori dall'area di lavoro"
+msgstr "Toglie il focus alle finestre spostate al di fuori dall'area di lavoro"
 
 msgid "Viewport Bottom"
 msgstr "Area di lavoro in basso"
@@ -2878,8 +2875,8 @@ msgid ""
 "Show resize info for all windows as opposed to just windows with a resize "
 "increment of greater than 1."
 msgstr ""
-"Mostra informazioni sul ridimensionamento per tutte le finestre invece che a "
-"solo le finestre con un ridimensionamento maggior di 1."
+"Mostra informazioni sul ridimensionamento per tutte le finestre invece che "
+"solo per le finestre con un ridimensionamento maggiore di 1."
 
 # (ndt) opzione
 msgid "Show resize info for all windows."
@@ -2988,7 +2985,7 @@ msgstr "Icona sovrapposta"
 
 # (ndt) suggerimento
 msgid "Overlay an icon on windows in the ring"
-msgstr "Sovrappone un'icona alle fineste nel selettore ad anello"
+msgstr "Sovrappone un'icona alle finestre nel selettore ad anello"
 
 msgid "Previous Window"
 msgstr "Finestra precedente"
@@ -3028,7 +3025,7 @@ msgstr "Intervallo anello"
 # (ndt) suggerimento
 msgid "Ring width (in percent of the screen width)"
 msgstr ""
-"Lunghezza dell'anello (in percentuale rispetto alla larghezza dello schermo)"
+"Larghezza dell'anello (in percentuale rispetto alla larghezza dello schermo)"
 
 # (ndt) opzione
 msgid "Rotate Ring Clockwise on Next"
@@ -3108,7 +3105,7 @@ msgid "Window title display"
 msgstr "Visualizzazione titolo finestra"
 
 msgid "Windows that should be shown in ring"
-msgstr "Finestre che devono essere mostrate nell'anello"
+msgstr "Finestre da mostrare nell'anello"
 
 # (ndt) suggerimento
 msgid "Background color of the window title"
@@ -3171,7 +3168,7 @@ msgid "Some useful additions to the scale plugin"
 msgstr "Alcune aggiunte utili al plug-in «Scala finestre»"
 
 msgid "Title Border Size"
-msgstr "Dimensione bordo titoli"
+msgstr "Dimensione bordo titolo"
 
 msgid "Use bold font for window title display"
 msgstr "Usa il carattere grassetto per mostrare il titolo della finestra"
@@ -3382,7 +3379,7 @@ msgstr "Termina il selettore."
 
 # (ndt) suggerimento
 msgid "Windows that should be shown in the shift switcher"
-msgstr "Finestre che devono essere mostrare nel selettore a scorrimento"
+msgstr "Finestre da mostrare nel selettore a scorrimento"
 
 msgid "Access your desktop easily"
 msgstr "Accedere facilmente alla scrivania "
@@ -3531,7 +3528,7 @@ msgstr ""
 "sono utilizzati i gradienti di colore."
 
 msgid "Flakes rotate if checked."
-msgstr "I fiocchi ruotano facendoci clic."
+msgstr "Indica se i fiocchi devono ruotare."
 
 msgid "How deep into the screen snowflakes can be drawn before being removed"
 msgstr ""
@@ -3843,7 +3840,7 @@ msgstr ""
 msgid ""
 "Move and resize all visible windows with the delta value set for cascading."
 msgstr ""
-"Muove e ridimensiona tutte le finestre utilizzando il valore di delta "
+"Muove e ridimensiona tutte le finestre utilizzando il valore dell'intervallo "
 "impostato per l'ordinamento a cascata."
 
 msgid ""
@@ -3860,7 +3857,7 @@ msgid "Restore Windows"
 msgstr "Ripristina le finestre"
 
 msgid "Restore windows to their original position they had before tiling."
-msgstr "Riporta le finestre nella loro posizione precente all'accostamento."
+msgstr "Riporta le finestre nella loro posizione precedente all'accostamento."
 
 msgid "Selects the animation used while tiling"
 msgstr "Seleziona l'animazione da usare durante l'accostamento"
@@ -3912,7 +3909,7 @@ msgstr ""
 "causare problemi se non viene lasciato loro abbastanza spazio."
 
 msgid "Windows which should be excluded from tiling"
-msgstr "Finestre che dovrebbero essere escluse dall'accostamento"
+msgstr "Finestre da escludere dall'accostamento"
 
 msgid ""
 "Adjust the opacity, saturation and brightness of windows based on when they "
@@ -4261,7 +4258,7 @@ msgstr "Scorre in alto"
 
 msgid "Flip viewport when dragging an object to a screen edge"
 msgstr ""
-"Scorre l'area di lavoro quando si trascina uno oggetto su un bordo dello "
+"Scorre l'area di lavoro quando si trascina un oggetto su un bordo dello "
 "schermo"
 
 msgid "Flip viewport when moving a window to a screen edge"
@@ -4284,10 +4281,10 @@ msgid "Move Down With Window"
 msgstr "Muovi in basso con la finestra"
 
 msgid "Move Left With Window"
-msgstr "Muoviti verso Sinistra con la Finestra"
+msgstr "Muovi verso sinistra con la finestra"
 
 msgid "Move Right With Window"
-msgstr "Muoviti verso Destra con la Finestra"
+msgstr "Muovi verso destra con la finestra"
 
 msgid "Move Up With Window"
 msgstr "Muovi in alto con la finestra"
@@ -4426,12 +4423,11 @@ msgstr "Sopra le altre finestre"
 msgid "Below others windows"
 msgstr "Sotto le altre finestre"
 
-# (ndt) suggerimento
 msgid "Don't show application in pager"
-msgstr "Non mostra le applicazioni nel paginatore"
+msgstr "Non mostrare l'applicazione nel paginatore"
 
 msgid "Don't show application in taskbar"
-msgstr "Non mostrare le applicazione nella barra dei programmi"
+msgstr "Non mostrare l'applicazione nella barra dei programmi"
 
 msgid "Fixed Size Windows"
 msgstr "Finestre a dimensione fissa"
@@ -4557,7 +4553,7 @@ msgid ""
 "viewports."
 msgstr ""
 "Rende le finestre adesive su tutte le scrivanie. Le finestre adesive sono "
-"visibili in tutte le area di lavoro."
+"visibili in tutte le aree di lavoro."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""
@@ -4577,7 +4573,7 @@ msgid "Window stickyness"
 msgstr "Adesività finestre"
 
 msgid "Windows on all desktops that should be made sticky"
-msgstr "Finestre che dovrebbero essere rese adesive su tutte le scrivanie"
+msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
