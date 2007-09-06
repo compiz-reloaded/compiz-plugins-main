@@ -153,8 +153,8 @@
 		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking.</_long>
 		    <default>false</default>
 		</option>
-		<option type="bool" name="allways_focus_fit_window">
-		    <_short>Allways fit to window on focus track</_short>
+		<option type="bool" name="always_focus_fit_window">
+		    <_short>Always fit to window on focus track</_short>
 		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking. Even when not initially zoomed in. </_long>
 		    <default>false</default>
 		</option>
@@ -170,7 +170,7 @@
 		<_short>Mouse Behavior</_short>
 		<option type="bool" name="sync_mouse">
 		    <_short>Sync Mouse</_short>
-		    <_long>Allways keep the zoomed area in sync with where the mouse is, and vice versa. Use this if you don't intend to drraw a scaled pointer or hide the original pointer. The zoomed area will move as you move your mouse.</_long>
+		    <_long>Always keep the zoomed area in sync with where the mouse is, and vice versa. Use this if you don't intend to draw a scaled pointer or hide the original pointer. The zoomed area will move as you move your mouse.</_long>
 		    <default>true</default>
 		</option>
 		<option type="bool" name="scale_mouse">
@@ -185,7 +185,7 @@
 		</option>
 		<option type="bool" name="restrain_mouse">
 		    <_short>Restrain the mouse to the zoom area</_short>
-		    <_long>Attempt to keep the zoomed mouse visible by warping it when it is moved otuside the zoom area.</_long>
+		    <_long>Attempt to keep the zoomed mouse visible by warping it when it is moved outside the zoom area.</_long>
 		    <default>false</default>
 		</option>
 		<option type="bool" name="mouse_pan">
