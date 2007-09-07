@@ -119,12 +119,12 @@ Point3d;
 
 /* Helpers */
 #define GET_EXPO_DISPLAY(d) \
-    ((ExpoDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((ExpoDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 #define EXPO_DISPLAY(d) \
     ExpoDisplay *ed = GET_EXPO_DISPLAY(d);
 
 #define GET_EXPO_SCREEN(s, ed) \
-    ((ExpoScreen *) (s)->object.privates[(ed)->screenPrivateIndex].ptr)
+    ((ExpoScreen *) (s)->base.privates[(ed)->screenPrivateIndex].ptr)
 #define EXPO_SCREEN(s) \
     ExpoScreen *es = GET_EXPO_SCREEN(s, GET_EXPO_DISPLAY(s->display))
 
@@ -1250,7 +1250,7 @@ expoInitDisplay (CompPlugin  *p,
     ed->downKey  = XKeysymToKeycode (d->display, XStringToKeysym ("Down"));
 
     WRAP (ed, d, handleEvent, expoHandleEvent);
-    d->object.privates[displayPrivateIndex].ptr = ed;
+    d->base.privates[displayPrivateIndex].ptr = ed;
 
     return TRUE;
 }
@@ -1306,7 +1306,7 @@ expoInitScreen (CompPlugin *p,
     WRAP (es, s, damageWindowRect, expoDamageWindowRect);
     WRAP (es, s, paintWindow, expoPaintWindow);
 
-    s->object.privates[ed->screenPrivateIndex].ptr = es;
+    s->base.privates[ed->screenPrivateIndex].ptr = es;
 
     return TRUE;
 }
@@ -1340,6 +1340,7 @@ expoInitObject (CompPlugin *p,
 		CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) expoInitDisplay,
 	(InitPluginObjectProc) expoInitScreen
     };
@@ -1352,6 +1353,7 @@ expoFiniObject (CompPlugin *p,
 		CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) expoFiniDisplay,
 	(FiniPluginObjectProc) expoFiniScreen
     };
