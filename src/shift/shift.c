@@ -173,19 +173,19 @@ typedef struct _ShiftWindow {
 #define PI 3.1415926
 
 #define GET_SHIFT_DISPLAY(d)				      \
-    ((ShiftDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((ShiftDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define SHIFT_DISPLAY(d)		     \
     ShiftDisplay *sd = GET_SHIFT_DISPLAY (d)
 
 #define GET_SHIFT_SCREEN(s, sd)					  \
-    ((ShiftScreen *) (s)->object.privates[(sd)->screenPrivateIndex].ptr)
+    ((ShiftScreen *) (s)->base.privates[(sd)->screenPrivateIndex].ptr)
 
 #define SHIFT_SCREEN(s)							   \
     ShiftScreen *ss = GET_SHIFT_SCREEN (s, GET_SHIFT_DISPLAY (s->display))
 
 #define GET_SHIFT_WINDOW(w, ss)					  \
-    ((ShiftWindow *) (w)->object.privates[(ss)->windowPrivateIndex].ptr)
+    ((ShiftWindow *) (w)->base.privates[(ss)->windowPrivateIndex].ptr)
 
 #define SHIFT_WINDOW(w)					       \
     ShiftWindow *sw = GET_SHIFT_WINDOW  (w,		       \
@@ -2485,7 +2485,7 @@ shiftInitDisplay (CompPlugin  *p,
 
     WRAP (sd, d, handleEvent, shiftHandleEvent);
 
-    d->object.privates[displayPrivateIndex].ptr = sd;
+    d->base.privates[displayPrivateIndex].ptr = sd;
 
     return TRUE;
 }
@@ -2563,7 +2563,7 @@ shiftInitScreen (CompPlugin *p,
 
     ss->cursor = XCreateFontCursor (s->display->display, XC_left_ptr);
 
-    s->object.privates[sd->screenPrivateIndex].ptr = ss;
+    s->base.privates[sd->screenPrivateIndex].ptr = ss;
 
     return TRUE;
 }
@@ -2616,7 +2616,7 @@ shiftInitWindow (CompPlugin *p,
     sw->brightness = 1.0;
     sw->opacity    = 1.0;
     
-    w->object.privates[ss->windowPrivateIndex].ptr = sw;
+    w->base.privates[ss->windowPrivateIndex].ptr = sw;
 
     return TRUE;
 }
@@ -2652,6 +2652,7 @@ shiftInitObject (CompPlugin *p,
 		 CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) shiftInitDisplay,
 	(InitPluginObjectProc) shiftInitScreen,
 	(InitPluginObjectProc) shiftInitWindow
@@ -2665,6 +2666,7 @@ shiftFiniObject (CompPlugin *p,
 		 CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) shiftFiniDisplay,
 	(FiniPluginObjectProc) shiftFiniScreen,
 	(FiniPluginObjectProc) shiftFiniWindow
