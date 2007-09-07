@@ -76,7 +76,10 @@ textGetUtf8Property (CompDisplay *d,
 	return NULL;
     }
 
-    retval = strndup (val, nitems);
+    retval = malloc (sizeof (char) * (nitems + 1));
+    if (retval)
+	strncpy (retval, val, nitems);
+
     XFree (val);
 
     return retval;
@@ -93,8 +96,12 @@ textGetTextProperty (CompDisplay *d,
     text.nitems = 0;
     if (XGetTextProperty (d->display, id, &text, atom))
     {
-        if (text.value) {
-	    retval = strndup ((char *)text.value,text.nitems);
+        if (text.value)
+	{
+	    retval = malloc (sizeof (char) * (text.nitems + 1));
+	    if (retval)
+		strncpy (retval, (char *) text.value, text.nitems);
+
 	    XFree (text.value);
 	}
     }
