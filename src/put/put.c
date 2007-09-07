@@ -27,17 +27,17 @@
 #include "put_options.h"
 
 #define GET_PUT_DISPLAY(d) \
-    ((PutDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((PutDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 #define PUT_DISPLAY(d) \
     PutDisplay *pd = GET_PUT_DISPLAY (d)
 
 #define GET_PUT_SCREEN(s, pd) \
-    ((PutScreen *) (s)->object.privates[(pd)->screenPrivateIndex].ptr)
+    ((PutScreen *) (s)->base.privates[(pd)->screenPrivateIndex].ptr)
 #define PUT_SCREEN(s) \
     PutScreen *ps = GET_PUT_SCREEN (s, GET_PUT_DISPLAY (s->display))
 
 #define GET_PUT_WINDOW(w, ps) \
-    ((PutWindow *) (w)->object.privates[(ps)->windowPrivateIndex].ptr)
+    ((PutWindow *) (w)->base.privates[(ps)->windowPrivateIndex].ptr)
 #define PUT_WINDOW(w) \
     PutWindow *pw = GET_PUT_WINDOW (w, \
 		    GET_PUT_SCREEN (w->screen, \
@@ -1320,7 +1320,7 @@ putInitDisplay (CompPlugin  *p,
     putSetPutBottomrightButtonInitiate (d, putBottomRight);
 
     WRAP (pd, d, handleEvent, putHandleEvent);
-    d->object.privates[displayPrivateIndex].ptr = pd;
+    d->base.privates[displayPrivateIndex].ptr = pd;
 
     return TRUE;
 }
@@ -1368,7 +1368,7 @@ putInitScreen (CompPlugin *p,
     WRAP (ps, s, paintOutput, putPaintOutput);
     WRAP (ps, s, paintWindow, putPaintWindow);
 
-    s->object.privates[pd->screenPrivateIndex].ptr = ps;
+    s->base.privates[pd->screenPrivateIndex].ptr = ps;
     return TRUE;
 }
 
@@ -1408,7 +1408,7 @@ putInitWindow (CompPlugin *p,
     pw->lastY = w->serverY;
     pw->adjust = FALSE;
 
-    w->object.privates[ps->windowPrivateIndex].ptr = pw;
+    w->base.privates[ps->windowPrivateIndex].ptr = pw;
 
     return TRUE;
 }
@@ -1427,6 +1427,7 @@ putInitObject (CompPlugin *p,
 	       CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) putInitDisplay,
 	(InitPluginObjectProc) putInitScreen,
 	(InitPluginObjectProc) putInitWindow
@@ -1440,6 +1441,7 @@ putFiniObject (CompPlugin *p,
 	       CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) putFiniDisplay,
 	(FiniPluginObjectProc) putFiniScreen,
 	(FiniPluginObjectProc) putFiniWindow
