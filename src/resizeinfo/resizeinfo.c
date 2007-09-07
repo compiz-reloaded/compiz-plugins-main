@@ -79,13 +79,13 @@ typedef struct _InfoScreen
 #define RESIZE_POPUP_HEIGHT 50
 
 #define GET_INFO_DISPLAY(d)				    \
-    ((InfoDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((InfoDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define INFO_DISPLAY(d)			  \
     InfoDisplay *id = GET_INFO_DISPLAY (d)
 
 #define GET_INFO_SCREEN(s, id)					\
-    ((InfoScreen *) (s)->object.privates[(id)->screenPrivateIndex].ptr)
+    ((InfoScreen *) (s)->base.privates[(id)->screenPrivateIndex].ptr)
 
 #define INFO_SCREEN(s)						       \
     InfoScreen *is = GET_INFO_SCREEN (s, GET_INFO_DISPLAY (s->display))
@@ -561,7 +561,7 @@ infoInitDisplay (CompPlugin  *p,
 
     id->resizeNotifyAtom = XInternAtom (d->display, "_COMPIZ_RESIZE_NOTIFY", 0);
 
-    d->object.privates[displayPrivateIndex].ptr = id;
+    d->base.privates[displayPrivateIndex].ptr = id;
 
     WRAP (id, d, handleEvent, infoHandleEvent);
 
@@ -611,7 +611,7 @@ infoInitScreen (CompPlugin *p,
     WRAP (is, s, paintOutput, infoPaintOutput);
     WRAP (is, s, donePaintScreen, infoDonePaintScreen);
 
-    s->object.privates[id->screenPrivateIndex].ptr = is;
+    s->base.privates[id->screenPrivateIndex].ptr = is;
 
     /* setup and draw cairo background */
     setupCairoLayer (s, &is->backgroundLayer);
@@ -661,6 +661,7 @@ infoInitObject (CompPlugin *p,
 		CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) infoInitDisplay,
 	(InitPluginObjectProc) infoInitScreen
     };
@@ -673,6 +674,7 @@ infoFiniObject (CompPlugin *p,
 		CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) infoFiniDisplay,
 	(FiniPluginObjectProc) infoFiniScreen
     };
