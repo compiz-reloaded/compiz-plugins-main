@@ -690,19 +690,19 @@ typedef struct _AnimEffectProperties
 AnimEffectProperties *animEffectPropertiesTmp;
 
 #define GET_ANIM_DISPLAY(d)						\
-    ((AnimDisplay *) (d)->object.privates[animDisplayPrivateIndex].ptr)
+    ((AnimDisplay *) (d)->base.privates[animDisplayPrivateIndex].ptr)
 
 #define ANIM_DISPLAY(d)				\
     AnimDisplay *ad = GET_ANIM_DISPLAY (d)
 
 #define GET_ANIM_SCREEN(s, ad)						\
-    ((AnimScreen *) (s)->object.privates[(ad)->screenPrivateIndex].ptr)
+    ((AnimScreen *) (s)->base.privates[(ad)->screenPrivateIndex].ptr)
 
 #define ANIM_SCREEN(s)							\
     AnimScreen *as = GET_ANIM_SCREEN (s, GET_ANIM_DISPLAY (s->display))
 
 #define GET_ANIM_WINDOW(w, as)						\
-    ((AnimWindow *) (w)->object.privates[(as)->windowPrivateIndex].ptr)
+    ((AnimWindow *) (w)->base.privates[(as)->windowPrivateIndex].ptr)
 
 #define ANIM_WINDOW(w)					     \
     AnimWindow *aw = GET_ANIM_WINDOW (w,                     \

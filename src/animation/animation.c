@@ -4160,7 +4160,7 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
     WRAP(ad, d, handleEvent, animHandleEvent);
     WRAP(ad, d, handleCompizEvent, animHandleCompizEvent);
 
-    d->object.privates[animDisplayPrivateIndex].ptr = ad;
+    d->base.privates[animDisplayPrivateIndex].ptr = ad;
 
     return TRUE;
 }
@@ -4279,7 +4279,7 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
 
     as->markAllWinCreatedCountdown = 5; // start countdown
 
-    s->object.privates[ad->screenPrivateIndex].ptr = as;
+    s->base.privates[ad->screenPrivateIndex].ptr = as;
 
     return TRUE;
 }
@@ -4364,7 +4364,7 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
 
     aw->wmName = animGetWindowName(w);
 
-    w->object.privates[as->windowPrivateIndex].ptr = aw;
+    w->base.privates[as->windowPrivateIndex].ptr = aw;
 
     return TRUE;
 }
@@ -4391,6 +4391,7 @@ animInitObject (CompPlugin *p,
 		CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) animInitDisplay,
 	(InitPluginObjectProc) animInitScreen,
 	(InitPluginObjectProc) animInitWindow
@@ -4404,6 +4405,7 @@ animFiniObject (CompPlugin *p,
 		  CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) animFiniDisplay,
 	(FiniPluginObjectProc) animFiniScreen,
 	(FiniPluginObjectProc) animFiniWindow
@@ -4418,7 +4420,8 @@ animGetObjectOptions (CompPlugin *plugin,
 		      int	   *count)
 {
     static GetPluginObjectOptionsProc dispTab[] = {
-	(GetPluginObjectOptionsProc) 0, /* etDisplayOptions */
+	(GetPluginObjectOptionsProc) 0, /* GetCoreOptions */
+	(GetPluginObjectOptionsProc) 0, /* GetDisplayOptions */
 	(GetPluginObjectOptionsProc) animGetScreenOptions
     };
 
@@ -4433,6 +4436,7 @@ animSetObjectOption (CompPlugin      *plugin,
 		     CompOptionValue *value)
 {
     static SetPluginObjectOptionProc dispTab[] = {
+	(SetPluginObjectOptionProc) 0, /* SetCoreOption */
 	(SetPluginObjectOptionProc) 0, /* SetDisplayOption */
 	(SetPluginObjectOptionProc) animSetScreenOptions
     };
