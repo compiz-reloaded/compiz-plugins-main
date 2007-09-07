@@ -32,15 +32,15 @@
 #include "opacify_options.h"
 
 #define GET_OPACIFY_DISPLAY(d)                            \
-	((OpacifyDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+	((OpacifyDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 #define OPACIFY_DISPLAY(d)                                \
 	OpacifyDisplay *od = GET_OPACIFY_DISPLAY (d)
 #define GET_OPACIFY_SCREEN(s, od)                         \
-	((OpacifyScreen *) (s)->object.privates[(od)->screenPrivateIndex].ptr)
+	((OpacifyScreen *) (s)->base.privates[(od)->screenPrivateIndex].ptr)
 #define OPACIFY_SCREEN(s)                                 \
 	OpacifyScreen *os = GET_OPACIFY_SCREEN (s, GET_OPACIFY_DISPLAY (s->display))
 #define GET_OPACIFY_WINDOW(w, os)                         \
-	((OpacifyWindow *) (w)->object.privates[(os)->windowPrivateIndex].ptr)
+	((OpacifyWindow *) (w)->base.privates[(os)->windowPrivateIndex].ptr)
 #define OPACIFY_WINDOW(s)                                 \
 	OpacifyWindow *ow = GET_OPACIFY_WINDOW(w, GET_OPACIFY_SCREEN (w->screen, GET_OPACIFY_DISPLAY (w->screen->display)))
 
@@ -394,7 +394,7 @@ static Bool opacifyInitWindow(CompPlugin * p, CompWindow * w)
 
 	ow->opacified = FALSE;
 	
-	w->object.privates[os->windowPrivateIndex].ptr = ow;
+	w->base.privates[os->windowPrivateIndex].ptr = ow;
 
 	return TRUE;
 }
@@ -430,7 +430,7 @@ static Bool opacifyInitScreen(CompPlugin * p, CompScreen * s)
 
 	WRAP(os, s, paintWindow, opacifyPaintWindow);
 
-	s->object.privates[od->screenPrivateIndex].ptr = os;
+	s->base.privates[od->screenPrivateIndex].ptr = os;
 	os->intersect = XCreateRegion();
 	os->just_moved = False;
 	
@@ -478,7 +478,7 @@ static Bool opacifyInitDisplay(CompPlugin * p, CompDisplay * d)
 		free(od);
 		return FALSE;
 	}
-	d->object.privates[displayPrivateIndex].ptr = od;
+	d->base.privates[displayPrivateIndex].ptr = od;
 	od->active_screen = d->screens->screenNum;
 	od->toggle = TRUE;
 
@@ -504,6 +504,7 @@ opacifyInitObject (CompPlugin *p,
 		   CompObject *o)
 {
 	static InitPluginObjectProc dispTab[] = {
+		(InitPluginObjectProc) 0, /* InitCore */
 		(InitPluginObjectProc) opacifyInitDisplay,
 		(InitPluginObjectProc) opacifyInitScreen,
 		(InitPluginObjectProc) opacifyInitWindow
@@ -517,6 +518,7 @@ opacifyFiniObject (CompPlugin *p,
 		   CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+		(FiniPluginObjectProc) 0, /* FiniCore */
 		(FiniPluginObjectProc) opacifyFiniDisplay,
 		(FiniPluginObjectProc) opacifyFiniScreen,
 		(FiniPluginObjectProc) opacifyFiniWindow
@@ -535,8 +537,7 @@ static Bool opacifyInit(CompPlugin * p)
 
 static void opacifyFini(CompPlugin * p)
 {
-	if (displayPrivateIndex >= 0)
-		freeDisplayPrivateIndex(displayPrivateIndex);
+	freeDisplayPrivateIndex(displayPrivateIndex);
 }
 
 CompPluginVTable opacifyVTable = {
