@@ -137,19 +137,19 @@ typedef struct _RingWindow {
 #define DIST_ROT (3600 / rs->nWindows)
 
 #define GET_RING_DISPLAY(d)				      \
-    ((RingDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((RingDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define RING_DISPLAY(d)		     \
     RingDisplay *rd = GET_RING_DISPLAY (d)
 
 #define GET_RING_SCREEN(s, rd)					  \
-    ((RingScreen *) (s)->object.privates[(rd)->screenPrivateIndex].ptr)
+    ((RingScreen *) (s)->base.privates[(rd)->screenPrivateIndex].ptr)
 
 #define RING_SCREEN(s)							   \
     RingScreen *rs = GET_RING_SCREEN (s, GET_RING_DISPLAY (s->display))
 
 #define GET_RING_WINDOW(w, rs)					  \
-    ((RingWindow *) (w)->object.privates[(rs)->windowPrivateIndex].ptr)
+    ((RingWindow *) (w)->base.privates[(rs)->windowPrivateIndex].ptr)
 
 #define RING_WINDOW(w)					       \
     RingWindow *rw = GET_RING_WINDOW  (w,		       \
@@ -1661,7 +1661,7 @@ ringInitDisplay (CompPlugin  *p,
 
     WRAP (rd, d, handleEvent, ringHandleEvent);
 
-    d->object.privates[displayPrivateIndex].ptr = rd;
+    d->base.privates[displayPrivateIndex].ptr = rd;
 
     return TRUE;
 }
@@ -1728,7 +1728,7 @@ ringInitScreen (CompPlugin *p,
 
     rs->cursor = XCreateFontCursor (s->display->display, XC_left_ptr);
 
-    s->object.privates[rd->screenPrivateIndex].ptr = rs;
+    s->base.privates[rd->screenPrivateIndex].ptr = rs;
 
     return TRUE;
 }
@@ -1781,7 +1781,7 @@ ringInitWindow (CompPlugin *p,
     rw->xVelocity = rw->yVelocity = 0.0f;
     rw->scaleVelocity = 0.0f;
 
-    w->object.privates[rs->windowPrivateIndex].ptr = rw;
+    w->base.privates[rs->windowPrivateIndex].ptr = rw;
 
     return TRUE;
 }
@@ -1800,6 +1800,7 @@ ringInitObject (CompPlugin *p,
 		CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) ringInitDisplay,
 	(InitPluginObjectProc) ringInitScreen,
 	(InitPluginObjectProc) ringInitWindow
@@ -1813,6 +1814,7 @@ ringFiniObject (CompPlugin *p,
 		CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) ringFiniDisplay,
 	(FiniPluginObjectProc) ringFiniScreen,
 	(FiniPluginObjectProc) ringFiniWindow
@@ -1834,8 +1836,7 @@ ringInit (CompPlugin *p)
 static void
 ringFini (CompPlugin *p)
 {
-    if (displayPrivateIndex >= 0)
-	freeDisplayPrivateIndex (displayPrivateIndex);
+    freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
 CompPluginVTable ringVTable = {
