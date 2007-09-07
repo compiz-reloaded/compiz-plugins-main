@@ -241,13 +241,13 @@ static void convertToZoomedTarget (CompScreen *s,
 				   int	  *resultY);
 
 #define GET_ZOOM_DISPLAY(d)				      \
-    ((ZoomDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((ZoomDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define ZOOM_DISPLAY(d)		           \
     ZoomDisplay *zd = GET_ZOOM_DISPLAY (d)
 
 #define GET_ZOOM_SCREEN(s, zd)				         \
-    ((ZoomScreen *) (s)->object.privates[(zd)->screenPrivateIndex].ptr)
+    ((ZoomScreen *) (s)->base.privates[(zd)->screenPrivateIndex].ptr)
 
 #define ZOOM_SCREEN(s)						        \
     ZoomScreen *zs = GET_ZOOM_SCREEN (s, GET_ZOOM_DISPLAY (s->display))
@@ -2040,7 +2040,7 @@ zoomInitDisplay (CompPlugin  *p,
 	zd->canHideCursor = FALSE;
 
     WRAP (zd, d, handleEvent, zoomHandleEvent);
-    d->object.privates[displayPrivateIndex].ptr = zd;
+    d->base.privates[displayPrivateIndex].ptr = zd;
     return TRUE;
 }
 
@@ -2096,7 +2096,7 @@ zoomInitScreen (CompPlugin *p,
     WRAP (zs, s, donePaintScreen, zoomDonePaintScreen);
     WRAP (zs, s, paintOutput, zoomPaintOutput);
 
-    s->object.privates[zd->screenPrivateIndex].ptr = zs;
+    s->base.privates[zd->screenPrivateIndex].ptr = zs;
     return TRUE;
 }
 
@@ -2120,9 +2120,10 @@ static CompBool
 zoomInitObject (CompPlugin *p,
 		CompObject *o)
 {
-	static InitPluginObjectProc dispTab[] = {
-		(InitPluginObjectProc) zoomInitDisplay,
-		(InitPluginObjectProc) zoomInitScreen
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
+	(InitPluginObjectProc) zoomInitDisplay,
+	(InitPluginObjectProc) zoomInitScreen
     };
 
     RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
@@ -2133,8 +2134,9 @@ zoomFiniObject (CompPlugin *p,
 		CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
-		(FiniPluginObjectProc) zoomFiniDisplay,
-		(FiniPluginObjectProc) zoomFiniScreen
+	(FiniPluginObjectProc) 0, /* FiniCore */
+	(FiniPluginObjectProc) zoomFiniDisplay,
+	(FiniPluginObjectProc) zoomFiniScreen
     };
 
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
@@ -2167,6 +2169,7 @@ zoomGetObjectOptions (CompPlugin *plugin,
 		      int	 *count)
 {
     static GetPluginObjectOptionsProc dispTab[] = {
+	(GetPluginObjectOptionsProc) 0, /* GetCoreOptions */
 	(GetPluginObjectOptionsProc) zoomGetDisplayOptions,
 	(GetPluginObjectOptionsProc) zoomGetScreenOptions
     };
@@ -2182,6 +2185,7 @@ zoomSetObjectOption (CompPlugin      *plugin,
 		     CompOptionValue *value)
 {
     static SetPluginObjectOptionProc dispTab[] = {
+	(SetPluginObjectOptionProc) 0, /* SetCoreOption */
 	(SetPluginObjectOptionProc) zoomSetDisplayOption,
 	(SetPluginObjectOptionProc) zoomSetScreenOption
     };
