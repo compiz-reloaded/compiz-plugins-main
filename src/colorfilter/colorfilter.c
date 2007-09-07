@@ -30,6 +30,11 @@
 #include "colorfilter_options.h"
 
 static int displayPrivateIndex;
+static int corePrivateIndex;
+
+typedef struct _ColorFilterCore {
+    ObjectAddProc objectAdd;
+} ColorFilterCore;
 
 typedef struct _ColorFilterDisplay
 {
@@ -41,7 +46,6 @@ typedef struct _ColorFilterScreen
     int			    windowPrivateIndex;
 
     DrawWindowTextureProc   drawWindowTexture;
-    WindowAddNotifyProc     windowAddNotify;
 
     Bool		    isFiltered;
     int			    currentFilter; /* 0 : cumulative mode
@@ -61,17 +65,21 @@ typedef struct _ColorFilterWindow
     Bool    isFiltered;
 } ColorFilterWindow;
 
+#define GET_FILTER_CORE(c) \
+    ((ColorFilterCore *) (c)->base.privates[corePrivateIndex].ptr)
+#define FILTER_CORE(c) \
+    ColorFilterCore *fc = GET_FILTER_CORE (c)
 #define GET_FILTER_DISPLAY(d)					    \
-    ((ColorFilterDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((ColorFilterDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 #define FILTER_DISPLAY(d)			    \
     ColorFilterDisplay *cfd = GET_FILTER_DISPLAY (d)
 #define GET_FILTER_SCREEN(s, cfd)					\
-    ((ColorFilterScreen *) (s)->object.privates[(cfd)->screenPrivateIndex].ptr)
+    ((ColorFilterScreen *) (s)->base.privates[(cfd)->screenPrivateIndex].ptr)
 #define FILTER_SCREEN(s)					\
     ColorFilterScreen *cfs = GET_FILTER_SCREEN (s,		\
 			     GET_FILTER_DISPLAY (s->display))
 #define GET_FILTER_WINDOW(w, cfs)					\
-    ((ColorFilterWindow *) (w)->object.privates[(cfs)->windowPrivateIndex].ptr)
+    ((ColorFilterWindow *) (w)->base.privates[(cfs)->windowPrivateIndex].ptr)
 #define FILTER_WINDOW(w)						\
     ColorFilterWindow *cfw = GET_FILTER_WINDOW  (w,			\
 			     GET_FILTER_SCREEN  (w->screen,		\
@@ -414,15 +422,10 @@ colorFilterDrawWindowTexture (CompWindow *w, CompTexture *texture,
  * Filter windows when they are open if they match the filtering rules
  */
 static void
-colorFilterWindowAddNotify (CompWindow *w)
+colorFilterWindowAdd (CompScreen *s,
+		      CompWindow *w)
 {
-    CompScreen *s = w->screen;
-
     FILTER_SCREEN (s);
-
-    UNWRAP (cfs, s, windowAddNotify);
-    (*s->windowAddNotify) (w);
-    WRAP (cfs, s, windowAddNotify, colorFilterWindowAddNotify);
 
     /* cfw->isFiltered is initialized to FALSE in InitWindow, so we only
        have to toggle it to TRUE if necessary */
@@ -504,13 +507,70 @@ colorFilterDamageDecorations (CompScreen *s, CompOption *opt,
     damageScreen (s);
 }
 
+static void
+colorFilterObjectAdd (CompObject *parent,
+		      CompObject *object)
+{
+    static ObjectAddProc dispTab[] = {
+	(ObjectAddProc) 0, /* CoreAdd */
+        (ObjectAddProc) 0, /* DisplayAdd */
+        (ObjectAddProc) 0, /* ScreenAdd */
+        (ObjectAddProc) colorFilterWindowAdd
+    };
+
+    FILTER_CORE (&core);
+
+    UNWRAP (fc, &core, objectAdd);
+    (*core.objectAdd) (parent, object);
+    WRAP (fc, &core, objectAdd, colorFilterObjectAdd);
+
+    DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), (parent, object));
+}
+
+static Bool
+colorFilterInitCore (CompPlugin *p,
+		     CompCore   *c)
+{
+    ColorFilterCore *fc;
+
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+        return FALSE;
+
+    fc = malloc (sizeof (ColorFilterCore));
+    if (!fc)
+        return FALSE;
+
+    displayPrivateIndex = allocateDisplayPrivateIndex ();
+    if (displayPrivateIndex < 0)
+    {
+        free (fc);
+        return FALSE;
+    }
+
+    WRAP (fc, c, objectAdd, colorFilterObjectAdd);
+
+    c->base.privates[corePrivateIndex].ptr = fc;
+
+    return TRUE;
+}
+
+static void
+colorFilterFiniCore (CompPlugin *p,
+		     CompCore   *c)
+{
+    FILTER_CORE (c);
+
+    freeDisplayPrivateIndex (displayPrivateIndex);
+
+    UNWRAP (fc, c, objectAdd);
+
+    free (fc);
+}
+
 static Bool
 colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
 {
     ColorFilterDisplay *cfd;
-
-    if (!checkPluginABI ("core", CORE_ABIVERSION))
-	return FALSE;
 
     cfd = malloc (sizeof (ColorFilterDisplay));
     if (!cfd)
@@ -527,7 +587,7 @@ colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
     colorfilterSetToggleScreenKeyInitiate (d, colorFilterToggleAll);
     colorfilterSetSwitchFilterKeyInitiate (d, colorFilterSwitch);
 
-    d->object.privates[displayPrivateIndex].ptr = cfd;
+    d->base.privates[displayPrivateIndex].ptr = cfd;
 
     return TRUE;
 }
@@ -578,9 +638,8 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     colorfilterSetFilterDecorationsNotify (s, colorFilterDamageDecorations);
 
     WRAP (cfs, s, drawWindowTexture, colorFilterDrawWindowTexture);
-    WRAP (cfs, s, windowAddNotify, colorFilterWindowAddNotify);
 
-    s->object.privates[cfd->screenPrivateIndex].ptr = cfs;
+    s->base.privates[cfd->screenPrivateIndex].ptr = cfs;
 
     return TRUE;
 }
@@ -592,7 +651,6 @@ colorFilterFiniScreen (CompPlugin * p, CompScreen * s)
 
     freeWindowPrivateIndex (s, cfs->windowPrivateIndex);
     UNWRAP (cfs, s, drawWindowTexture);
-    UNWRAP (cfs, s, windowAddNotify);
 
     unloadFilters (s);
 
@@ -615,7 +673,7 @@ colorFilterInitWindow (CompPlugin * p, CompWindow * w)
 
     cfw->isFiltered = FALSE;
 
-    w->object.privates[cfs->windowPrivateIndex].ptr = cfw;
+    w->base.privates[cfs->windowPrivateIndex].ptr = cfw;
 
     return TRUE;
 }
@@ -634,10 +692,11 @@ static CompBool
 colorFilterInitObject (CompPlugin *p,
 		       CompObject *o)
 {
-	static InitPluginObjectProc dispTab[] = {
-		(InitPluginObjectProc) colorFilterInitDisplay,
-		(InitPluginObjectProc) colorFilterInitScreen,
-		(InitPluginObjectProc) colorFilterInitWindow
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) colorFilterInitCore,
+	(InitPluginObjectProc) colorFilterInitDisplay,
+	(InitPluginObjectProc) colorFilterInitScreen,
+	(InitPluginObjectProc) colorFilterInitWindow
     };
 
     RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
@@ -648,9 +707,10 @@ colorFilterFiniObject (CompPlugin *p,
 		       CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
-		(FiniPluginObjectProc) colorFilterFiniDisplay,
-		(FiniPluginObjectProc) colorFilterFiniScreen,
-		(FiniPluginObjectProc) colorFilterFiniWindow
+	(FiniPluginObjectProc) colorFilterFiniCore,
+	(FiniPluginObjectProc) colorFilterFiniDisplay,
+	(FiniPluginObjectProc) colorFilterFiniScreen,
+	(FiniPluginObjectProc) colorFilterFiniWindow
     };
 
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
@@ -659,8 +719,8 @@ colorFilterFiniObject (CompPlugin *p,
 static Bool
 colorFilterInit (CompPlugin * p)
 {
-    displayPrivateIndex = allocateDisplayPrivateIndex ();
-    if (displayPrivateIndex < 0)
+    corePrivateIndex = allocateCorePrivateIndex ();
+    if (corePrivateIndex < 0)
 	return FALSE;
 
     return TRUE;
@@ -669,8 +729,7 @@ colorFilterInit (CompPlugin * p)
 static void
 colorFilterFini (CompPlugin * p)
 {
-    if (displayPrivateIndex >= 0)
-	freeDisplayPrivateIndex (displayPrivateIndex);
+    freeCorePrivateIndex (corePrivateIndex);
 }
 
 CompPluginVTable colorFilterVTable = {
