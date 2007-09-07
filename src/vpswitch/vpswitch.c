@@ -54,7 +54,7 @@ typedef struct _VpSwitchDisplay
 } VpSwitchDisplay;
 
 #define GET_VPSWITCH_DISPLAY(d)					\
-    ((VpSwitchDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((VpSwitchDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 #define VPSWITCH_DISPLAY(d)			\
     VpSwitchDisplay * vd = GET_VPSWITCH_DISPLAY (d)
 
@@ -83,6 +83,7 @@ vpswitchInitPlugin (CompDisplay    *d,
 {
     GET_DATA;
 
+    CompObject *object;
     CompOption *tOption;
     int        nTOption;
     CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
@@ -91,9 +92,11 @@ vpswitchInitPlugin (CompDisplay    *d,
     if (!plugin || !plugin->vTable->getObjectOptions)
 	return FALSE;
 
-    tOption = (*plugin->vTable->getObjectOptions) (plugin,
-						   &d->object, &nTOption);
+    object = compObjectFind (&core.base, COMP_OBJECT_TYPE_DISPLAY, NULL);
+    if (!object)
+	return FALSE;
 
+    tOption = (*plugin->vTable->getObjectOptions) (plugin, object, &nTOption);
     while (nTOption--)
     {
 	if (tOption->type == CompOptionTypeButton)
@@ -120,6 +123,7 @@ vpswitchTermPlugin (CompDisplay     *d,
 		    CompOption      *option,
 		    int             nOption)
 {
+    CompObject *object;
     CompOption *tOption;
     int	       nTOption;
     CompPlugin *plugin = findActivePlugin (vpswitchGetInitPlugin (d));
@@ -128,9 +132,11 @@ vpswitchTermPlugin (CompDisplay     *d,
     if (!plugin || !plugin->vTable->getObjectOptions)
 	return FALSE;
 
-    tOption = (*plugin->vTable->getObjectOptions) (plugin,
-						   &d->object, &nTOption);
+    object = compObjectFind (&core.base, COMP_OBJECT_TYPE_DISPLAY, NULL);
+    if (!object)
+	return FALSE;
 
+    tOption = (*plugin->vTable->getObjectOptions) (plugin, object, &nTOption);
     while (nTOption--)
     {
 	if (tOption->type == CompOptionTypeAction)
@@ -452,7 +458,7 @@ vpswitchInitDisplay (CompPlugin  *p,
 
     WRAP (vd, d, handleEvent, vpswitchHandleEvent);
 
-    d->object.privates[displayPrivateIndex].ptr = vd;
+    d->base.privates[displayPrivateIndex].ptr = vd;
 
     vpswitchSetLeftButtonInitiate (d, vpswitchLeft);
     vpswitchSetRightButtonInitiate (d, vpswitchRight);
@@ -498,6 +504,7 @@ vpswitchInitObject (CompPlugin *p,
 		    CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) vpswitchInitDisplay
     };
 
@@ -509,6 +516,7 @@ vpswitchFiniObject (CompPlugin *p,
 		    CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) vpswitchFiniDisplay,
     };
 
