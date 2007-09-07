@@ -145,19 +145,19 @@ typedef struct _SnapWindow
 } SnapWindow;
 
 #define GET_SNAP_DISPLAY(d) \
-    ((SnapDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((SnapDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define SNAP_DISPLAY(d) \
     SnapDisplay *sd = GET_SNAP_DISPLAY (d)
 
 #define GET_SNAP_SCREEN(s, sd) \
-    ((SnapScreen *) (s)->object.privates[(sd)->screenPrivateIndex].ptr)
+    ((SnapScreen *) (s)->base.privates[(sd)->screenPrivateIndex].ptr)
 
 #define SNAP_SCREEN(s) \
     SnapScreen *ss = GET_SNAP_SCREEN (s, GET_SNAP_DISPLAY (s->display))
 
 #define GET_SNAP_WINDOW(w, ss) \
-    ((SnapWindow *) (w)->object.privates[(ss)->windowPrivateIndex].ptr)
+    ((SnapWindow *) (w)->base.privates[(ss)->windowPrivateIndex].ptr)
 
 #define SNAP_WINDOW(w)                                   \
     SnapWindow *sw = GET_SNAP_WINDOW  (w,                \
@@ -1035,7 +1035,7 @@ static Bool snapInitDisplay(CompPlugin * p, CompDisplay * d)
 	sd->avoidSnapMask = 0;
 	sd->snapping = TRUE;
 
-	d->object.privates[displayPrivateIndex].ptr = sd;
+	d->base.privates[displayPrivateIndex].ptr = sd;
 
 	return TRUE;
 }
@@ -1073,7 +1073,7 @@ static Bool snapInitScreen(CompPlugin * p, CompScreen * s)
 	WRAP(ss, s, windowGrabNotify, snapWindowGrabNotify);
 	WRAP(ss, s, windowUngrabNotify, snapWindowUngrabNotify);
 
-	s->object.privates[sd->screenPrivateIndex].ptr = ss;
+	s->base.privates[sd->screenPrivateIndex].ptr = ss;
 
 	return TRUE;
 }
@@ -1109,7 +1109,7 @@ static Bool snapInitWindow(CompPlugin * p, CompWindow * w)
 	sw->snapped = FALSE;
 	sw->skipNotify = FALSE;
 
-	w->object.privates[ss->windowPrivateIndex].ptr = sw;
+	w->base.privates[ss->windowPrivateIndex].ptr = sw;
 
 	return TRUE;
 }
@@ -1128,6 +1128,7 @@ snapInitObject (CompPlugin *p,
 		CompObject *o)
 {
 	static InitPluginObjectProc dispTab[] = {
+		(InitPluginObjectProc) 0, /* InitCore */
 		(InitPluginObjectProc) snapInitDisplay,
 		(InitPluginObjectProc) snapInitScreen,
 		(InitPluginObjectProc) snapInitWindow
@@ -1141,6 +1142,7 @@ snapFiniObject (CompPlugin *p,
 		CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+		(FiniPluginObjectProc) 0, /* FiniCore */
 		(FiniPluginObjectProc) snapFiniDisplay,
 		(FiniPluginObjectProc) snapFiniScreen,
 		(FiniPluginObjectProc) snapFiniWindow
@@ -1159,8 +1161,7 @@ static Bool snapInit(CompPlugin * p)
 
 static void snapFini(CompPlugin * p)
 {
-	if (displayPrivateIndex >= 0)
-		freeDisplayPrivateIndex(displayPrivateIndex);
+	freeDisplayPrivateIndex(displayPrivateIndex);
 }
 
 CompPluginVTable snapVTable = {
