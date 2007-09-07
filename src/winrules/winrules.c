@@ -75,20 +75,20 @@ typedef struct _WinrulesScreen {
 } WinrulesScreen;
 
 #define GET_WINRULES_DISPLAY(d)				\
-    ((WinrulesDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((WinrulesDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define WINRULES_DISPLAY(d)			   	\
     WinrulesDisplay *wd = GET_WINRULES_DISPLAY (d)
 
 #define GET_WINRULES_SCREEN(s, wd)				    \
-    ((WinrulesScreen *) (s)->object.privates[(wd)->screenPrivateIndex].ptr)
+    ((WinrulesScreen *) (s)->base.privates[(wd)->screenPrivateIndex].ptr)
 
 #define WINRULES_SCREEN(s)			    \
     WinrulesScreen *ws = GET_WINRULES_SCREEN (s,    \
 			 GET_WINRULES_DISPLAY (s->display))
 
 #define GET_WINRULES_WINDOW(w, ws)                                  \
-    ((WinrulesWindow *) (w)->object.privates[(ws)->windowPrivateIndex].ptr)
+    ((WinrulesWindow *) (w)->base.privates[(ws)->windowPrivateIndex].ptr)
 
 #define WINRULES_WINDOW(w)					\
     WinrulesWindow *ww = GET_WINRULES_WINDOW  (w,		\
@@ -621,7 +621,7 @@ winrulesInitDisplay (CompPlugin  *p,
     WRAP (wd, d, matchExpHandlerChanged, winrulesMatchExpHandlerChanged);
     WRAP (wd, d, matchPropertyChanged, winrulesMatchPropertyChanged);
 
-    d->object.privates[displayPrivateIndex].ptr = wd;
+    d->base.privates[displayPrivateIndex].ptr = wd;
 
     return TRUE;
 }
@@ -693,7 +693,7 @@ winrulesInitScreen (CompPlugin *p,
     WRAP (ws, s, getAllowedActionsForWindow,
 	  winrulesGetAllowedActionsForWindow);
 
-    s->object.privates[wd->screenPrivateIndex].ptr = ws;
+    s->base.privates[wd->screenPrivateIndex].ptr = ws;
 
     return TRUE;
 }
@@ -732,7 +732,7 @@ winrulesInitWindow (CompPlugin *p,
 
     ww->hasAlpha = w->alpha;
 
-    w->object.privates[ws->windowPrivateIndex].ptr = ww;
+    w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
     compAddTimeout (0, winrulesApplyRules, w);
 
@@ -753,6 +753,7 @@ winrulesInitObject (CompPlugin *p,
 		    CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) winrulesInitDisplay,
 	(InitPluginObjectProc) winrulesInitScreen,
 	(InitPluginObjectProc) winrulesInitWindow
@@ -766,6 +767,7 @@ winrulesFiniObject (CompPlugin *p,
 		    CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) winrulesFiniDisplay,
 	(FiniPluginObjectProc) winrulesFiniScreen,
 	(FiniPluginObjectProc) winrulesFiniWindow
@@ -780,6 +782,7 @@ winrulesGetObjectOptions (CompPlugin *plugin,
 	  		  int	     *count)
 {
     static GetPluginObjectOptionsProc dispTab[] = {
+	(GetPluginObjectOptionsProc) 0, /* GetCoreOptions */
 	(GetPluginObjectOptionsProc) 0, /* GetDisplayOptions */
 	(GetPluginObjectOptionsProc) winrulesGetScreenOptions
     };
@@ -795,6 +798,7 @@ winrulesSetObjectOption (CompPlugin      *plugin,
 	  		 CompOptionValue *value)
 {
     static SetPluginObjectOptionProc dispTab[] = {
+	(SetPluginObjectOptionProc) 0, /* SetCoreOption */
 	(SetPluginObjectOptionProc) 0, /* SetDisplayOption */
 	(SetPluginObjectOptionProc) winrulesSetScreenOption
     };
