@@ -40,19 +40,19 @@
 #include "thumbnail_options.h"
 
 #define GET_THUMB_DISPLAY(d)				       \
-    ((ThumbDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((ThumbDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define THUMB_DISPLAY(d)		       \
     ThumbDisplay *td = GET_THUMB_DISPLAY (d)
 
 #define GET_THUMB_SCREEN(s, td)				   \
-    ((ThumbScreen *) (s)->object.privates[(td)->screenPrivateIndex].ptr)
+    ((ThumbScreen *) (s)->base.privates[(td)->screenPrivateIndex].ptr)
 
 #define THUMB_SCREEN(s)						      \
     ThumbScreen *ts = GET_THUMB_SCREEN (s, GET_THUMB_DISPLAY (s->display))
 
 #define GET_THUMB_WINDOW(w, ts)                               \
-    ((ThumbWindow *) (w)->object.privates[(ts)->windowPrivateIndex].ptr)
+    ((ThumbWindow *) (w)->base.privates[(ts)->windowPrivateIndex].ptr)
 
 #define THUMB_WINDOW(w)                                       \
     ThumbWindow *tw = GET_THUMB_WINDOW  (w,                   \
@@ -1179,7 +1179,7 @@ thumbInitDisplay (CompPlugin  *p,
 
     WRAP (td, d, handleEvent, thumbHandleEvent);
 
-    d->object.privates[displayPrivateIndex].ptr = td;
+    d->base.privates[displayPrivateIndex].ptr = td;
 
     return TRUE;
 }
@@ -1211,7 +1211,7 @@ thumbInitWindow (CompPlugin *p,
     if (!tw)
 	return FALSE;
 
-    w->object.privates[ts->windowPrivateIndex].ptr = tw;
+    w->base.privates[ts->windowPrivateIndex].ptr = tw;
 
     updateWindowIconGeometry (w);
 
@@ -1272,7 +1272,7 @@ thumbInitScreen (CompPlugin *p,
     ts->oldThumb.win   = NULL;
     ts->showingThumb   = FALSE;
 
-    s->object.privates[td->screenPrivateIndex].ptr = ts;
+    s->base.privates[td->screenPrivateIndex].ptr = ts;
 
     ts->mouseTimeout =
 	compAddTimeout (THUMB_MOUSE_UPDATE_SPEED, thumbUpdateMouse, s);
@@ -1341,6 +1341,7 @@ thumbInitObject (CompPlugin *p,
 		 CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) thumbInitDisplay,
 	(InitPluginObjectProc) thumbInitScreen,
 	(InitPluginObjectProc) thumbInitWindow
@@ -1354,6 +1355,7 @@ thumbFiniObject (CompPlugin *p,
 		 CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) thumbFiniDisplay,
 	(FiniPluginObjectProc) thumbFiniScreen,
 	(FiniPluginObjectProc) thumbFiniWindow
