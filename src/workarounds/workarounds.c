@@ -51,20 +51,20 @@ typedef struct _WorkaroundsWindow {
 } WorkaroundsWindow;
 
 #define GET_WORKAROUNDS_DISPLAY(d) \
-    ((WorkaroundsDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((WorkaroundsDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define WORKAROUNDS_DISPLAY(d) \
     WorkaroundsDisplay *wd = GET_WORKAROUNDS_DISPLAY (d)
 
 #define GET_WORKAROUNDS_SCREEN(s, wd) \
-    ((WorkaroundsScreen *) (s)->object.privates[(wd)->screenPrivateIndex].ptr)
+    ((WorkaroundsScreen *) (s)->base.privates[(wd)->screenPrivateIndex].ptr)
 
 #define WORKAROUNDS_SCREEN(s) \
     WorkaroundsScreen *ws = GET_WORKAROUNDS_SCREEN (s, \
                             GET_WORKAROUNDS_DISPLAY (s->display))
 
 #define GET_WORKAROUNDS_WINDOW(w, ns) \
-    ((WorkaroundsWindow *) (w)->object.privates[(ns)->windowPrivateIndex].ptr)
+    ((WorkaroundsWindow *) (w)->base.privates[(ns)->windowPrivateIndex].ptr)
 #define WORKAROUNDS_WINDOW(w) \
     WorkaroundsWindow *ww = GET_WORKAROUNDS_WINDOW  (w, \
 		    GET_WORKAROUNDS_SCREEN  (w->screen, \
@@ -380,7 +380,7 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
     workaroundsSetAlldesktopStickyMatchNotify (d,
 					       workaroundsDisplayOptionChanged);
 
-    d->object.privates[displayPrivateIndex].ptr = wd;
+    d->base.privates[displayPrivateIndex].ptr = wd;
 
     WRAP (wd, d, handleEvent, workaroundsHandleEvent);
 
@@ -419,7 +419,7 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
 
     WRAP (ws, s, windowResizeNotify, workaroundsWindowResizeNotify);
 
-    s->object.privates[wd->screenPrivateIndex].ptr = ws;
+    s->base.privates[wd->screenPrivateIndex].ptr = ws;
 
     return TRUE;
 }
@@ -450,7 +450,7 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
     ww->madeSticky = FALSE;
     ww->adjustedWinType = FALSE;
 
-    w->object.privates[ws->windowPrivateIndex].ptr = ww;
+    w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
     ww->updateHandle = compAddTimeout (0, workaroundsUpdateTimeout, (void *) w);
 
@@ -484,6 +484,7 @@ workaroundsInitObject (CompPlugin *p,
 		       CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) workaroundsInitDisplay,
 	(InitPluginObjectProc) workaroundsInitScreen,
 	(InitPluginObjectProc) workaroundsInitWindow
@@ -497,6 +498,7 @@ workaroundsFiniObject (CompPlugin *p,
 		       CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) workaroundsFiniDisplay,
 	(FiniPluginObjectProc) workaroundsFiniScreen,
 	(FiniPluginObjectProc) workaroundsFiniWindow
