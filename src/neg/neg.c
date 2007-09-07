@@ -31,6 +31,11 @@
 #include "neg_options.h"
 
 static int displayPrivateIndex;
+static int corePrivateIndex;
+
+typedef struct _NEGCore {
+    ObjectAddProc objectAdd;
+} NEGCore;
 
 typedef struct _NEGDisplay
 {
@@ -43,7 +48,6 @@ typedef struct _NEGSCreen
     int windowPrivateIndex;
 
     DrawWindowTextureProc drawWindowTexture;
-    WindowAddNotifyProc   windowAddNotify;
 
     Bool isNeg; /* negative screen flag */
 
@@ -56,16 +60,20 @@ typedef struct _NEGWindow
     Bool isNeg; /* negative window flag */
 } NEGWindow;
 
+#define GET_NEG_CORE(c) \
+    ((NEGCore *) (c)->base.privates[corePrivateIndex].ptr)
+#define NEG_CORE(c) \
+    NEGCore *nc = GET_NEG_CORE (c)
 #define GET_NEG_DISPLAY(d) \
-    ((NEGDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((NEGDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 #define NEG_DISPLAY(d) \
     NEGDisplay *nd = GET_NEG_DISPLAY (d)
 #define GET_NEG_SCREEN(s, nd) \
-    ((NEGScreen *) (s)->object.privates[(nd)->screenPrivateIndex].ptr)
+    ((NEGScreen *) (s)->base.privates[(nd)->screenPrivateIndex].ptr)
 #define NEG_SCREEN(s) \
     NEGScreen *ns = GET_NEG_SCREEN (s, GET_NEG_DISPLAY (s->display))
 #define GET_NEG_WINDOW(w, ns) \
-    ((NEGWindow *) (w)->object.privates[(ns)->windowPrivateIndex].ptr)
+    ((NEGWindow *) (w)->base.privates[(ns)->windowPrivateIndex].ptr)
 #define NEG_WINDOW(w) \
     NEGWindow *nw = GET_NEG_WINDOW  (w, \
 		    GET_NEG_SCREEN  (w->screen, \
@@ -541,15 +549,10 @@ NEGDrawWindowTexture (CompWindow           *w,
 }
 
 static void
-NEGWindowAddNotify (CompWindow *w)
+NEGWindowAdd (CompScreen *s,
+	      CompWindow *w)
 {
-    CompScreen *s = w->screen;
-
     NEG_SCREEN (s);
-
-    UNWRAP (ns, s, windowAddNotify);
-    (*s->windowAddNotify) (w);
-    WRAP (ns, s, windowAddNotify, NEGWindowAddNotify);
 
     /* nw->isNeg is initialized to FALSE in InitWindow, so we only
        have to toggle it to TRUE if necessary */
@@ -590,14 +593,71 @@ NEGScreenOptionChanged (CompScreen       *s,
     }
 }
 
+static void
+NEGObjectAdd (CompObject *parent,
+	      CompObject *object)
+{
+    static ObjectAddProc dispTab[] = {
+	(ObjectAddProc) 0, /* CoreAdd */
+        (ObjectAddProc) 0, /* DisplayAdd */
+        (ObjectAddProc) 0, /* ScreenAdd */
+        (ObjectAddProc) NEGWindowAdd
+    };
+
+    NEG_CORE (&core);
+
+    UNWRAP (nc, &core, objectAdd);
+    (*core.objectAdd) (parent, object);
+    WRAP (nc, &core, objectAdd, NEGObjectAdd);
+
+    DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), (parent, object));
+}
+
+static Bool
+NEGInitCore (CompPlugin *p,
+  	     CompCore   *c)
+{
+    NEGCore *nc;
+
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+        return FALSE;
+
+    nc = malloc (sizeof (NEGCore));
+    if (!nc)
+        return FALSE;
+
+    displayPrivateIndex = allocateDisplayPrivateIndex ();
+    if (displayPrivateIndex < 0)
+    {
+        free (nc);
+        return FALSE;
+    }
+
+    WRAP (nc, c, objectAdd, NEGObjectAdd);
+
+    c->base.privates[corePrivateIndex].ptr = nc;
+
+    return TRUE;
+}
+
+static void
+NEGFiniCore (CompPlugin *p,
+  	     CompCore   *c)
+{
+    NEG_CORE (c);
+
+    freeDisplayPrivateIndex (displayPrivateIndex);
+
+    UNWRAP (nc, c, objectAdd);
+
+    free (nc);
+}
+
 static Bool
 NEGInitDisplay (CompPlugin  *p,
 		CompDisplay *d)
 {
     NEGDisplay *nd;
-
-    if (!checkPluginABI ("core", CORE_ABIVERSION))
-	return FALSE;
 
     nd = malloc (sizeof (NEGDisplay));
     if (!nd)
@@ -613,7 +673,7 @@ NEGInitDisplay (CompPlugin  *p,
     negSetWindowToggleKeyInitiate (d, negToggle);
     negSetScreenToggleKeyInitiate (d, negToggleAll);
 
-    d->object.privates[displayPrivateIndex].ptr = nd;
+    d->base.privates[displayPrivateIndex].ptr = nd;
 
     return TRUE;
 }
@@ -661,9 +721,8 @@ NEGInitScreen (CompPlugin *p,
 
     /* wrap overloaded functions */
     WRAP (ns, s, drawWindowTexture, NEGDrawWindowTexture);
-    WRAP (ns, s, windowAddNotify, NEGWindowAddNotify);
 
-    s->object.privates[nd->screenPrivateIndex].ptr = ns;
+    s->base.privates[nd->screenPrivateIndex].ptr = ns;
 
     return TRUE;
 }
@@ -677,7 +736,6 @@ NEGFiniScreen (CompPlugin *p,
     freeWindowPrivateIndex (s, ns->windowPrivateIndex);
 
     UNWRAP (ns, s, drawWindowTexture);
-    UNWRAP (ns, s, windowAddNotify);
 
     if (ns->negFunction)
 	destroyFragmentFunction (s, ns->negFunction);
@@ -701,7 +759,7 @@ NEGInitWindow (CompPlugin *p,
 
     nw->isNeg       = FALSE;
 
-    w->object.privates[ns->windowPrivateIndex].ptr = nw;
+    w->base.privates[ns->windowPrivateIndex].ptr = nw;
 
     return TRUE;
 }
@@ -718,8 +776,8 @@ NEGFiniWindow (CompPlugin *p,
 static Bool
 NEGInit (CompPlugin * p)
 {
-    displayPrivateIndex = allocateDisplayPrivateIndex ();
-    if (displayPrivateIndex < 0)
+    corePrivateIndex = allocateCorePrivateIndex ();
+    if (corePrivateIndex < 0)
 	return FALSE;
 
     return TRUE;
@@ -728,7 +786,7 @@ NEGInit (CompPlugin * p)
 static void
 NEGFini (CompPlugin * p)
 {
-    freeDisplayPrivateIndex (displayPrivateIndex);
+    freeCorePrivateIndex (corePrivateIndex);
 }
 
 static CompBool
@@ -736,6 +794,7 @@ NEGInitObject (CompPlugin *p,
 	       CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) NEGInitCore,
 	(InitPluginObjectProc) NEGInitDisplay,
 	(InitPluginObjectProc) NEGInitScreen,
 	(InitPluginObjectProc) NEGInitWindow
@@ -749,6 +808,7 @@ NEGFiniObject (CompPlugin *p,
 	       CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) NEGFiniCore,
 	(FiniPluginObjectProc) NEGFiniDisplay,
 	(FiniPluginObjectProc) NEGFiniScreen,
 	(FiniPluginObjectProc) NEGFiniWindow
