@@ -81,19 +81,19 @@ typedef struct _ScaleAddonWindow {
 } ScaleAddonWindow;
 
 #define GET_ADDON_DISPLAY(d)				          \
-    ((ScaleAddonDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((ScaleAddonDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define ADDON_DISPLAY(d)		          \
     ScaleAddonDisplay *ad = GET_ADDON_DISPLAY (d)
 
 #define GET_ADDON_SCREEN(s, ad)				              \
-    ((ScaleAddonScreen *) (s)->object.privates[(ad)->screenPrivateIndex].ptr)
+    ((ScaleAddonScreen *) (s)->base.privates[(ad)->screenPrivateIndex].ptr)
 
 #define ADDON_SCREEN(s)						               \
     ScaleAddonScreen *as = GET_ADDON_SCREEN (s, GET_ADDON_DISPLAY (s->display))
 
 #define GET_ADDON_WINDOW(w, as)				              \
-    ((ScaleAddonWindow *) (w)->object.privates[(as)->windowPrivateIndex].ptr)
+    ((ScaleAddonWindow *) (w)->base.privates[(as)->windowPrivateIndex].ptr)
 
 #define ADDON_WINDOW(w)						   \
     ScaleAddonWindow *aw = GET_ADDON_WINDOW (w,                    \
@@ -1140,7 +1140,7 @@ scaleaddonInitDisplay (CompPlugin  *p,
     WRAP (ad, d, handleEvent, scaleaddonHandleEvent);
     WRAP (ad, d, handleCompizEvent, scaleaddonHandleCompizEvent);
 
-    d->object.privates[displayPrivateIndex].ptr = ad;
+    d->base.privates[displayPrivateIndex].ptr = ad;
 
     ad->lastHoveredWindow = None;
 
@@ -1201,7 +1201,7 @@ scaleaddonInitScreen (CompPlugin *p,
     scaleaddonSetFontColorNotify (s, scaleaddonScreenOptionChanged);
     scaleaddonSetBackColorNotify (s, scaleaddonScreenOptionChanged);
 
-    s->object.privates[ad->screenPrivateIndex].ptr = as;
+    s->base.privates[ad->screenPrivateIndex].ptr = as;
 
     return TRUE;
 }
@@ -1236,7 +1236,7 @@ scaleaddonInitWindow (CompPlugin *p,
 
     aw->rescaled = FALSE;
 
-    w->object.privates[as->windowPrivateIndex].ptr = aw;
+    w->base.privates[as->windowPrivateIndex].ptr = aw;
 
     return TRUE;
 }
@@ -1255,6 +1255,7 @@ scaleaddonInitObject (CompPlugin *p,
 		      CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) scaleaddonInitDisplay,
 	(InitPluginObjectProc) scaleaddonInitScreen,
 	(InitPluginObjectProc) scaleaddonInitWindow
@@ -1268,6 +1269,7 @@ scaleaddonFiniObject (CompPlugin *p,
 		      CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) scaleaddonFiniDisplay,
 	(FiniPluginObjectProc) scaleaddonFiniScreen,
 	(FiniPluginObjectProc) scaleaddonFiniWindow
