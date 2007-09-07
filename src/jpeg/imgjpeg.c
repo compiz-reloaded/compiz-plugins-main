@@ -38,7 +38,7 @@ typedef struct _JPEGDisplay
 } JPEGDisplay;
 
 #define GET_JPEG_DISPLAY(d)				    \
-    ((JPEGDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((JPEGDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define JPEG_DISPLAY(d)			 \
     JPEGDisplay *jd = GET_JPEG_DISPLAY (d)
@@ -342,7 +342,7 @@ JPEGInitDisplay (CompPlugin  *p,
     WRAP (jd, d, fileToImage, JPEGFileToImage);
     WRAP (jd, d, imageToFile, JPEGImageToFile);
 
-    d->object.privates[displayPrivateIndex].ptr = jd;
+    d->base.privates[displayPrivateIndex].ptr = jd;
 
     return TRUE;
 }
@@ -364,6 +364,7 @@ JPEGInitObject (CompPlugin *p,
 		CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) JPEGInitDisplay,
     };
 
@@ -375,6 +376,7 @@ JPEGFiniObject (CompPlugin *p,
 		CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) JPEGFiniDisplay,
     };
 
