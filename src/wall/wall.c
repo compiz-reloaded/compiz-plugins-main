@@ -52,6 +52,7 @@
     a = wallGet##name##Alpha(_display) / 65535.0f
 
 static int displayPrivateIndex;
+static int corePrivateIndex;
 
 /* Enums */
 typedef enum
@@ -74,6 +75,11 @@ typedef struct _WallCairoContext
     int height;
 } WallCairoContext;
 
+typedef struct _WallCore
+{
+    SetOptionForPluginProc setOptionForPlugin;
+} WallCore;
+
 typedef struct _WallDisplay
 {
     int screenPrivateIndex;
@@ -89,7 +95,6 @@ typedef struct _WallScreen
     PreparePaintScreenProc       preparePaintScreen;
     PaintTransformedOutputProc   paintTransformedOutput;
     PaintWindowProc              paintWindow;
-    SetScreenOptionForPluginProc setScreenOptionForPlugin;
 
     Bool moving; /* Used to track miniview movement */
 
@@ -123,13 +128,17 @@ typedef struct _WallScreen
 } WallScreen;
 
 /* Helpers */
+#define GET_WALL_CORE(c) \
+    ((WallCore *) (c)->base.privates[corePrivateIndex].ptr)
+#define WALL_CORE(c) \
+    WallCore *wc = GET_WALL_CORE (c)
 #define GET_WALL_DISPLAY(d)						\
-    ((WallDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((WallDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 #define WALL_DISPLAY(d)				\
     WallDisplay *wd = GET_WALL_DISPLAY(d);
 
 #define GET_WALL_SCREEN(s, wd)						\
-    ((WallScreen *) (s)->object.privates[(wd)->screenPrivateIndex].ptr)
+    ((WallScreen *) (s)->base.privates[(wd)->screenPrivateIndex].ptr)
 #define WALL_SCREEN(s)							\
     WallScreen *ws = GET_WALL_SCREEN(s, GET_WALL_DISPLAY(s->display))
 
@@ -1612,27 +1621,71 @@ wallDisplayOptionChanged (CompDisplay        *display,
 }
 
 static Bool
-wallSetScreenOptionForPlugin (CompScreen      *s,
-			      const char      *plugin,
-			      const char      *name,
-			      CompOptionValue *value)
+wallSetOptionForPlugin (CompObject      *o,
+			const char      *plugin,
+			const char      *name,
+			CompOptionValue *value)
 {
     Bool status;
 
-    WALL_SCREEN (s);
+    WALL_CORE (&core);
 
-    UNWRAP (ws, s, setScreenOptionForPlugin);
-    status = (*s->setScreenOptionForPlugin) (s, plugin, name, value);
-    WRAP (ws, s, setScreenOptionForPlugin, wallSetScreenOptionForPlugin);
+    UNWRAP (wc, &core, setOptionForPlugin);
+    status = (*core.setOptionForPlugin) (o, plugin, name, value);
+    WRAP (wc, &core, setOptionForPlugin, wallSetOptionForPlugin);
 
-    if (status)
+    if (status && o->type == COMP_OBJECT_TYPE_SCREEN)
     {
 	if (strcmp (plugin, "core") == 0)
 	    if (strcmp (name, "hsize") == 0 || strcmp (name, "vsize") == 0)
+	    {
+		CompScreen *s = (CompScreen *) o;
+		
 		wallCreateCairoContexts (s, FALSE);
+	    }
     }
 
     return status;
+}
+
+static Bool
+wallInitCore (CompPlugin *p,
+              CompCore   *c)
+{
+    WallCore *wc;
+
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+        return FALSE;
+
+    wc = malloc (sizeof (WallCore));
+    if (!wc)
+        return FALSE;
+
+    displayPrivateIndex = allocateDisplayPrivateIndex ();
+    if (displayPrivateIndex < 0)
+    {
+        free (wc);
+        return FALSE;
+    }
+
+    WRAP (wc, &core, setOptionForPlugin, wallSetOptionForPlugin);
+
+    c->base.privates[corePrivateIndex].ptr = wc;
+
+    return TRUE;
+}
+
+static void
+wallFiniCore (CompPlugin *p,
+              CompCore   *c)
+{
+    WALL_CORE (c);
+
+    UNWRAP (wc, &core, setOptionForPlugin);
+
+    freeDisplayPrivateIndex (displayPrivateIndex);
+
+    free (wc);
 }
 
 static Bool
@@ -1640,9 +1693,6 @@ wallInitDisplay (CompPlugin  *p,
 		 CompDisplay *d)
 {
     WallDisplay *wd;
-
-    if (!checkPluginABI ("core", CORE_ABIVERSION))
-	return FALSE;
 
     wd = malloc (sizeof (WallDisplay));
     if (!wd)
@@ -1690,7 +1740,7 @@ wallInitDisplay (CompPlugin  *p,
     wallSetArrowShadowColorNotify (d, wallDisplayOptionChanged);
 
     WRAP (wd, d, handleEvent, wallHandleEvent);
-    d->object.privates[displayPrivateIndex].ptr = wd;
+    d->base.privates[displayPrivateIndex].ptr = wd;
 
     return TRUE;
 }
@@ -1733,9 +1783,8 @@ wallInitScreen (CompPlugin *p,
     WRAP (ws, s, paintTransformedOutput, wallPaintTransformedOutput);
     WRAP (ws, s, preparePaintScreen, wallPreparePaintScreen);
     WRAP (ws, s, paintWindow, wallPaintWindow);
-    WRAP (ws, s, setScreenOptionForPlugin, wallSetScreenOptionForPlugin);
 
-    s->object.privates[wd->screenPrivateIndex].ptr = ws;
+    s->base.privates[wd->screenPrivateIndex].ptr = ws;
 
     wallCreateCairoContexts (s, TRUE);
 
@@ -1759,7 +1808,6 @@ wallFiniScreen (CompPlugin *p,
     UNWRAP (ws, s, paintTransformedOutput);
     UNWRAP (ws, s, preparePaintScreen);
     UNWRAP (ws, s, paintWindow);
-    UNWRAP (ws, s, setScreenOptionForPlugin);
 
     free(ws);
 }
@@ -1769,6 +1817,7 @@ wallInitObject (CompPlugin *p,
 		CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) wallInitCore,
 	(InitPluginObjectProc) wallInitDisplay,
 	(InitPluginObjectProc) wallInitScreen
     };
@@ -1781,6 +1830,7 @@ wallFiniObject (CompPlugin *p,
 		CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) wallFiniCore,
 	(FiniPluginObjectProc) wallFiniDisplay,
 	(FiniPluginObjectProc) wallFiniScreen
     };
@@ -1791,8 +1841,8 @@ wallFiniObject (CompPlugin *p,
 static Bool
 wallInit (CompPlugin *p)
 {
-    displayPrivateIndex = allocateDisplayPrivateIndex ();
-    if (displayPrivateIndex < 0)
+    corePrivateIndex = allocateCorePrivateIndex ();
+    if (corePrivateIndex < 0)
 	return FALSE;
 
     return TRUE;
@@ -1801,7 +1851,7 @@ wallInit (CompPlugin *p)
 static void
 wallFini (CompPlugin *p)
 {
-    freeDisplayPrivateIndex (displayPrivateIndex);
+    freeCorePrivateIndex (corePrivateIndex);
 }
 
 CompPluginVTable wallVTable = {
