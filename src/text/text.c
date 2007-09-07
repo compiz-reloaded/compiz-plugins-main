@@ -44,7 +44,7 @@ typedef struct _TextDisplay
 } TextDisplay;
 
 #define GET_TEXT_DISPLAY(d)				    \
-    ((TextDisplay *) (d)->object.privates[displayPrivateIndex].ptr)
+    ((TextDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 
 #define TEXT_DISPLAY(d)			 \
     TextDisplay *td = GET_TEXT_DISPLAY (d)
@@ -395,7 +395,7 @@ textInitDisplay (CompPlugin  *p,
 
     WRAP (td, d, fileToImage, textFileToImage);
 
-    d->object.privates[displayPrivateIndex].ptr = td;
+    d->base.privates[displayPrivateIndex].ptr = td;
 
     o = textGetAbiOption (d);
     o->value.i = TEXT_ABIVERSION;
@@ -419,6 +419,7 @@ textInitObject (CompPlugin *p,
 		CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) textInitDisplay
     };
 
@@ -430,6 +431,7 @@ textFiniObject (CompPlugin *p,
 		CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
+	(FiniPluginObjectProc) 0, /* FiniCore */
 	(FiniPluginObjectProc) textFiniDisplay
     };
 
