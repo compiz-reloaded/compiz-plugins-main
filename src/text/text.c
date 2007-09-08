@@ -1,6 +1,13 @@
 /*
- * text.c - adds text image support to beryl.
- * Copyright: (C) 2006 Patrick Niklaus
+ * Compiz text plugin
+ * Description: Adds text to pixmap support to Compiz.
+ *
+ * text.c
+ *
+ * Copyright: (C) 2006-2007 Patrick Niklaus, Danny Baumann, Dennis Kasprzyk
+ * Authors: Patrick Niklaus <marex@opencompsiting.org>
+ *	    Danny Baumann   <maniac@opencompositing.org>
+ *	    Dennis Kasprzyk <onestone@opencompositing.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
