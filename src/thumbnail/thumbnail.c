@@ -714,7 +714,7 @@ thumbPaintThumb (CompScreen          *s,
     int                   wy = t->y;
     float                 width  = t->width;
     float                 height = t->height;
-    WindowPaintAttrib     sAttrib = w->paint;
+    WindowPaintAttrib     sAttrib;
     unsigned int          mask = PAINT_WINDOW_TRANSFORMED_MASK |
 	                         PAINT_WINDOW_TRANSLUCENT_MASK;
 
@@ -722,6 +722,8 @@ thumbPaintThumb (CompScreen          *s,
 
     if (!w)
 	return;
+
+    sAttrib = w->paint;
 
     if (t->textPixmap)
 	height += t->tHeight + TEXT_DISTANCE;
