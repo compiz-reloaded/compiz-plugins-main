@@ -192,7 +192,7 @@ workaroundsDoFixes (CompWindow *w)
     CompDisplay  *d = w->screen->display;
     unsigned int newWmType;
 
-    w->wmType = newWmType = getWindowType (d, w->id);
+    newWmType = getWindowType (d, w->id);
 
     /* FIXME: Is this the best way to detect a notification type window? */
     if (workaroundsGetNotificationDaemonFix (d))
