@@ -209,7 +209,7 @@ workaroundsDoFixes (CompWindow *w)
     {
         if (w->wmType == CompWindowTypeNormalMask &&
             w->attrib.override_redirect && w->resName &&
-	    (strcmp (w->resName, "gecko") == 0))
+	    (strcasecmp (w->resName, "gecko") == 0))
         {
             newWmType = CompWindowTypeDropdownMenuMask;
         }
