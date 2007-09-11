@@ -1,5 +1,5 @@
 /**
- * Beryl Opacify 
+ * Compiz Opacify 
  *
  * Copyright (c) 2006 Kristian Lyngstøl <kristian@beryl-project.org>
  * Ported to Compiz and BCOP usage by Danny Baumann <maniac@beryl-project.org>
@@ -21,125 +21,135 @@
  *
  */
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <math.h>
-#include <X11/Xatom.h>
-#include <X11/extensions/Xrender.h>
-
 #include <compiz-core.h>
 #include "opacify_options.h"
 
 #define GET_OPACIFY_DISPLAY(d)                            \
-	((OpacifyDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
+    ((OpacifyDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
 #define OPACIFY_DISPLAY(d)                                \
-	OpacifyDisplay *od = GET_OPACIFY_DISPLAY (d)
+    OpacifyDisplay *od = GET_OPACIFY_DISPLAY (d)
 #define GET_OPACIFY_SCREEN(s, od)                         \
-	((OpacifyScreen *) (s)->base.privates[(od)->screenPrivateIndex].ptr)
+    ((OpacifyScreen *) (s)->base.privates[(od)->screenPrivateIndex].ptr)
 #define OPACIFY_SCREEN(s)                                 \
-	OpacifyScreen *os = GET_OPACIFY_SCREEN (s, GET_OPACIFY_DISPLAY (s->display))
+    OpacifyScreen *os = GET_OPACIFY_SCREEN (s, GET_OPACIFY_DISPLAY (s->display))
 #define GET_OPACIFY_WINDOW(w, os)                         \
-	((OpacifyWindow *) (w)->base.privates[(os)->windowPrivateIndex].ptr)
+    ((OpacifyWindow *) (w)->base.privates[(os)->windowPrivateIndex].ptr)
 #define OPACIFY_WINDOW(s)                                 \
-	OpacifyWindow *ow = GET_OPACIFY_WINDOW(w, GET_OPACIFY_SCREEN (w->screen, GET_OPACIFY_DISPLAY (w->screen->display)))
+    OpacifyWindow *ow = GET_OPACIFY_WINDOW (w,            \
+			GET_OPACIFY_SCREEN (w->screen,    \
+			GET_OPACIFY_DISPLAY (w->screen->display)))
 
 /* Size of the Window array storing passive windows. */
 #define MAX_WINDOWS 64
 
-static int displayPrivateIndex = 0;
+static int displayPrivateIndex;
 
 typedef struct _OpacifyDisplay
 {
-	int screenPrivateIndex;
-	HandleEventProc handleEvent;
-	Bool toggle;
-	int active_screen;
-	CompTimeoutHandle timeout_handle;
+    int screenPrivateIndex;
+
+    HandleEventProc handleEvent;
+
+    Bool toggle;
+    int  activeScreen;
+
+    CompTimeoutHandle timeoutHandle;
 } OpacifyDisplay;
 
 typedef struct _OpacifyScreen
 {
-	int windowPrivateIndex;
-	PaintWindowProc paintWindow;
+    int windowPrivateIndex;
 
-	CompWindow *new_active;
-	Window active;
-	Window passive[MAX_WINDOWS];
-	Region intersect;
-	unsigned short int passive_num;
-	Bool just_moved;
+    PaintWindowProc paintWindow;
+
+    CompWindow *newActive;
+
+    Window             active;
+    Window             passive[MAX_WINDOWS];
+    Region             intersect;
+    unsigned short int passiveNum;
+
+    Bool justMoved;
 } OpacifyScreen;
 
 typedef struct _OpacifyWindow
 {
-	Bool opacified;
-	int opacity;
+    Bool opacified;
+    int  opacity;
 } OpacifyWindow;
 
 /* Core opacify functions. These do the real work. ---------------------*/
 
 /* Sets the real opacity and damages the window if actual opacity and 
  * requested opacity differs. */
-static void set_opacity(CompWindow * w, int opacity)
+static void
+setOpacity (CompWindow *w,
+	    int        opacity)
 {
-	OPACIFY_WINDOW(w);
-	
-	if (!ow->opacified || (w->paint.opacity != opacity))
-		addWindowDamage(w);
+    OPACIFY_WINDOW (w);
 
-	ow->opacified = TRUE;
-	ow->opacity = opacity;
+    if (!ow->opacified || (w->paint.opacity != opacity))
+	addWindowDamage (w);
 
-	//setWindowOpacity(w, opacity, PL_TEMP_HELLO);
+    ow->opacified = TRUE;
+    ow->opacity = opacity;
 }
 
 /* Resets the Window to the original opacity if it still exists.
- */
-static void reset_opacity(CompScreen * s, Window id)
+*/
+static void
+resetOpacity (CompScreen *s,
+	      Window     id)
 {
-	CompWindow *w;
+    CompWindow *w;
 
-	w = findWindowAtScreen(s, id);
-	if (!w)
-		return;
+    w = findWindowAtScreen (s, id);
+    if (!w)
+	return;
 
-	OPACIFY_WINDOW(w);
-	ow->opacified = FALSE;
-	addWindowDamage(w);
-	//resetWindowOpacity(w, PL_TEMP_HELLO);
+    OPACIFY_WINDOW (w);
+
+    ow->opacified = FALSE;
+    addWindowDamage (w);
 }
 
 /* Resets the opacity of windows on the passive list.
- */
-static void clear_passive(CompScreen * s)
+*/
+static void
+clearPassive (CompScreen *s)
 {
-	OPACIFY_SCREEN(s);
-	int i;
+    int i;
 
-	for (i = 0; i < os->passive_num; i++)
-		reset_opacity(s, os->passive[i]);
-	os->passive_num = 0;
+    OPACIFY_SCREEN (s);
+
+    for (i = 0; i < os->passiveNum; i++)
+	resetOpacity (s, os->passive[i]);
+
+    os->passiveNum = 0;
 }
 
 /* Dim an (inactive) window. Place it on the passive list and
- * update passive_num. Then change the opacity.
+ * update passiveNum. Then change the opacity.
  */
-static void dim_window(CompScreen * s, CompWindow * w)
+static void
+dimWindow (CompWindow *w)
 {
-	OPACIFY_SCREEN(s);
-	if (os->passive_num >= MAX_WINDOWS - 1)
-	{
-		compLogMessage (s->display, "opacify", CompLogLevelWarn,
-						"Trying to store information "
-						"about too many windows, or you hit a bug.\nIf "
-						"you don't have around %d windows blocking the "
-						"currently targeted window, please report this.",
-						MAX_WINDOWS);
-		return;
-	}
-	os->passive[os->passive_num++] = w->id;
-	set_opacity(w, MIN(OPAQUE * opacifyGetPassiveOpacity(s) / 100, w->paint.opacity));
+    OPACIFY_SCREEN (w->screen);
+
+    if (os->passiveNum >= MAX_WINDOWS - 1)
+    {
+	compLogMessage (w->screen->display, "opacify", CompLogLevelWarn,
+			"Trying to store information "
+			"about too many windows, or you hit a bug.\nIf "
+			"you don't have around %d windows blocking the "
+			"currently targeted window, please report this.",
+			MAX_WINDOWS);
+	return;
+    }
+
+    os->passive[os->passiveNum++] = w->id;
+    setOpacity (w, MIN (OPAQUE * opacifyGetPassiveOpacity (w->screen) / 100,
+			w->paint.opacity));
 }
 
 /* Walk through all windows, skip until we've passed the active
@@ -149,178 +159,206 @@ static void dim_window(CompScreen * s, CompWindow * w)
  *
  * Returns number of changed windows.
  */
-static int passive_windows(CompScreen * s, Region a_region)
+static int
+passiveWindows (CompScreen *s,
+		Region     region)
 {
-	CompWindow *w;
+    CompWindow *w;
+    Bool       flag = FALSE;
+    int        i = 0;
 
-	OPACIFY_SCREEN(s);
-	Bool flag = FALSE;
-	int i = 0;
+    OPACIFY_SCREEN (s);
 
-	for (w = s->windows; w; w = w->next)
+    for (w = s->windows; w; w = w->next)
+    {
+	if (w->id == os->active)
 	{
-		if (w->id == os->active)
-		{
-			flag = TRUE;
-			continue;
-		}
-		if (!flag)
-			continue;
-		if (!matchEval(opacifyGetWindowMatch(s), w))
-			continue;
-		if (w->invisible || w->hidden || w->minimized)
-			continue;
-		XIntersectRegion(w->region, a_region, os->intersect);
-		if (!XEmptyRegion(os->intersect))
-		{
-			dim_window(s, w);
-			i++;
-		}
+	    flag = TRUE;
+	    continue;
 	}
-	return i;
+	if (!flag)
+	    continue;
+	if (!matchEval (opacifyGetWindowMatch (s), w))
+	    continue;
+	if (w->invisible || w->hidden || w->minimized)
+	    continue;
+
+	XIntersectRegion (w->region, region, os->intersect);
+	if (!XEmptyRegion (os->intersect))
+	{
+	    dimWindow (w);
+	    i++;
+	}
+    }
+
+    return i;
 }
 
 /* Check if we switched active window, reset the old passive windows
  * if we did. If we have an active window and switched: reset that too.
  * If we have a window (w is true), update the active id and
- * passive list. just_moved is to make sure we recalculate opacity after
+ * passive list. justMoved is to make sure we recalculate opacity after
  * moving. We can't reset before moving because if we're using a delay
  * and the window being moved is not the active but overlapping, it will
  * be reset, which would conflict with move's opacity change. 
- * FIXME: A more final solution should be to use IPCS to signal 
- * which window is being moved. 
  */
-static void opacify_handle_enter(CompScreen * s, CompWindow * w)
+static void
+opacifyHandleEnter (CompWindow *w)
 {
-	OPACIFY_SCREEN(s);
+    CompScreen *s = w->screen;
+
+    OPACIFY_SCREEN (s);
+
+    if (otherScreenGrabExist (s, 0))
+    {
+	if (!otherScreenGrabExist (s, "move", 0))
+	{
+	    os->justMoved = TRUE;
+	    return;
+	}
+
+	clearPassive (s);
+	resetOpacity (s, os->active);
+	os->active = 0;
+	return;
+    }
+
+    if (!w || os->active != w->id || os->justMoved)
+    {
+	os->justMoved = FALSE;
+	clearPassive (s);
+	resetOpacity (s, os->active);
+	os->active = 0;
+    }
+
+    if (!w)
+	return;
+
+    if (w->id != os->active && !w->shaded &&
+	matchEval (opacifyGetWindowMatch (s), w))
+    {
 	int num;
 
-	if (otherScreenGrabExist(s, 0))
-	{
-		if (!otherScreenGrabExist(s, "move", 0))
-		{
-			os->just_moved = True;
-			return;
-		}
-		clear_passive(s);
-		reset_opacity(s, os->active);
-		os->active = 0;
-		return;
-	}
-	if (!w || os->active != w->id || os->just_moved)
-	{
-		os->just_moved = False;
-		clear_passive(s);
-		reset_opacity(s, os->active);
-		os->active = 0;
-	}
-	if (!w)
-		return;
-	if (w->id != os->active && !w->shaded &&
-	    matchEval(opacifyGetWindowMatch(s), w))
-	{
-		os->active = w->id;
-		num = passive_windows(s, w->region);
-		if (num || opacifyGetOnlyIfBlock(s))
-			set_opacity(w, MAX(OPAQUE * opacifyGetActiveOpacity(s) / 100, w->paint.opacity));
-	}
+	os->active = w->id;
+	num = passiveWindows (s, w->region);
+
+	if (num || opacifyGetOnlyIfBlock (s))
+	    setOpacity (w, MAX (OPAQUE * opacifyGetActiveOpacity (s) / 100,
+				w->paint.opacity));
+    }
 }
 
 /* Check if we are on the same screen. We only want opacify active on
  * one screen, so if we are on a diffrent screen, we reset the old one.
  * Returns True if the screen has switched.
  */
-static Bool check_screen_switch(CompScreen *s)
+static Bool
+checkScreenSwitch (CompScreen *s)
 {
-	OPACIFY_DISPLAY(s->display);
-	if (od->active_screen == s->screenNum)
-		return False;
-	CompScreen * tmp;
-	for (tmp = s->display->screens; tmp; tmp = tmp->next)
-	{
-		OPACIFY_SCREEN(tmp);
-		clear_passive(tmp);
-		reset_opacity(tmp, os->active);
-		os->active = 0;
-	}
-	od->active_screen = s->screenNum;
-	return True;
+    CompScreen *tmp;
+
+    OPACIFY_DISPLAY (s->display);
+
+    if (od->activeScreen == s->screenNum)
+	return FALSE;
+
+    for (tmp = s->display->screens; tmp; tmp = tmp->next)
+    {
+	OPACIFY_SCREEN (tmp);
+	clearPassive (tmp);
+	resetOpacity (tmp, os->active);
+	os->active = 0;
+    }
+
+    od->activeScreen = s->screenNum;
+    return TRUE;
 }
 
 /* Decides what to do after a timeout occured. 
  * Either we reset the opacity because we just toggled,
  * or we handle the event.
  */
-static Bool handle_timeout(void *data)
+static Bool
+handleTimeout (void *data)
 {
-	CompScreen *s = (CompScreen *) data;
+    CompScreen *s = (CompScreen *) data;
 
-	OPACIFY_SCREEN(s);
-	OPACIFY_DISPLAY(s->display);
+    OPACIFY_SCREEN (s);
+    OPACIFY_DISPLAY (s->display);
 
-	od->timeout_handle = 0;
-	check_screen_switch(s);
-	if (!od->toggle)
-	{
-		clear_passive(s);
-		reset_opacity(s, os->active);
-		os->active = 0;
-	}
-	opacify_handle_enter(s, os->new_active);
+    od->timeoutHandle = 0;
+    checkScreenSwitch (s);
+    if (!od->toggle)
+    {
+	clearPassive (s);
+	resetOpacity (s, os->active);
+	os->active = 0;
+    }
 
-	return FALSE;
+    opacifyHandleEnter (os->newActive);
+
+    return FALSE;
 }
 
 /* Checks whether we should delay or not.
  * Returns true if immediate execution.
  */
-static inline Bool check_delay(CompScreen *s)
+static inline Bool
+checkDelay (CompScreen *s)
 {
-	CompDisplay * d = s->display;
-	OPACIFY_SCREEN(s);
+    CompDisplay *d = s->display;
 
-	if (opacifyGetFocusInstant(s) && os->new_active && 
-	    (os->new_active->id == d->activeWindow))
-		 return True;
-	if (!opacifyGetTimeout(d))
-	     return True;
-	if (!os->new_active || (os->new_active->id == s->root))
-		return False;
-	if (os->new_active->type & (CompWindowTypeDesktopMask | CompWindowTypeDockMask))
-		return False;
-	if (opacifyGetNoDelayChange(s) && os->passive_num)
-		return True;
-	return False;
+    OPACIFY_SCREEN (s);
 
+    if (opacifyGetFocusInstant (s) && os->newActive && 
+	(os->newActive->id == d->activeWindow))
+	return TRUE;
+    if (!opacifyGetTimeout (d))
+	return TRUE;
+    if (!os->newActive || (os->newActive->id == s->root))
+	return FALSE;
+    if (os->newActive->type & (CompWindowTypeDesktopMask |
+			       CompWindowTypeDockMask))
+    {
+	return FALSE;
+    }
+    if (opacifyGetNoDelayChange (s) && os->passiveNum)
+	return TRUE;
 
+    return FALSE;
 }
 
-static Bool opacifyPaintWindow (CompWindow *w, const WindowPaintAttrib *attrib,
-				const CompTransform *transform, Region region,
-				unsigned int mask)
+static Bool
+opacifyPaintWindow (CompWindow              *w,
+		    const WindowPaintAttrib *attrib,
+    		    const CompTransform     *transform,
+		    Region                  region,
+    		    unsigned int            mask)
 {
-	Bool status;
-	CompScreen *s = w->screen;
-	OPACIFY_SCREEN(s);
-	OPACIFY_WINDOW(w);
+    Bool       status;
+    CompScreen *s = w->screen;
 
-	if (ow->opacified)
-	{
-		WindowPaintAttrib wAttrib = *attrib;
-		wAttrib.opacity = ow->opacity;
+    OPACIFY_SCREEN (s);
+    OPACIFY_WINDOW (w);
 
-		UNWRAP(os, s, paintWindow);
-		status = (*s->paintWindow) (w, &wAttrib, transform, region, mask);
-		WRAP(os, s, paintWindow, opacifyPaintWindow);
-	}
-	else
-	{
-		UNWRAP(os, s, paintWindow);
-		status = (*s->paintWindow) (w, attrib, transform, region, mask);
-		WRAP(os, s, paintWindow, opacifyPaintWindow);
-	}
+    if (ow->opacified)
+    {
+	WindowPaintAttrib wAttrib = *attrib;
 
-	return status;
+	wAttrib.opacity = ow->opacity;
+
+	UNWRAP (os, s, paintWindow);
+	status = (*s->paintWindow) (w, &wAttrib, transform, region, mask);
+	WRAP (os, s, paintWindow, opacifyPaintWindow);
+    }
+    else
+    {
+	UNWRAP (os, s, paintWindow);
+	status = (*s->paintWindow) (w, attrib, transform, region, mask);
+	WRAP (os, s, paintWindow, opacifyPaintWindow);
+    }
+
+    return status;
 }
 
 /* Takes the inital event. 
@@ -332,182 +370,226 @@ static Bool opacifyPaintWindow (CompWindow *w, const WindowPaintAttrib *attrib,
  * FIXME: In the perfect world, toggle-resetting is done in the action
  * handler that does the actual toggling.
  */
-static void opacifyHandleEvent(CompDisplay * d, XEvent * event)
+static void
+opacifyHandleEvent (CompDisplay *d,
+		    XEvent      *event)
 {
-	CompScreen *s;
-	CompWindow *w = NULL;
+    CompScreen *s;
 
-	OPACIFY_DISPLAY(d);
+    OPACIFY_DISPLAY (d);
 
-	UNWRAP(od, d, handleEvent);
-	(*d->handleEvent) (d, event);
-	WRAP(od, d, handleEvent, opacifyHandleEvent);
+    UNWRAP (od, d, handleEvent);
+    (*d->handleEvent) (d, event);
+    WRAP (od, d, handleEvent, opacifyHandleEvent);
 
-	if (!od->toggle && !opacifyGetToggleReset(d))
+    if (!od->toggle && !opacifyGetToggleReset (d))
+	return;
+
+    switch (event->type) {
+    case EnterNotify:
+	s = findScreenAtDisplay (d, event->xcrossing.root);
+	if (s)
+	{
+	    Window id;
+
+    	    OPACIFY_SCREEN (s);
+
+    	    if (!od->toggle && !os->active)
 		return;
 
-	switch (event->type)
-	{
-	case EnterNotify:
-		s = findScreenAtDisplay(d, event->xcrossing.root);
-		if (s)
-		{
-			OPACIFY_SCREEN(s);
-			if (!od->toggle && !os->active)
-				return;
-			os->new_active = findTopLevelWindowAtScreen(s, event->xcrossing.window);
-			if (od->timeout_handle)
-				compRemoveTimeout(od->timeout_handle);
-			if (check_delay(s))
-				handle_timeout(s);
-			else
-				od->timeout_handle =
-						compAddTimeout(opacifyGetTimeout(d), handle_timeout, s);
-		}
-		break;
-	case ConfigureNotify:
-		s = findScreenAtDisplay(d, event->xconfigure.event);
-		if (s)
-		{
-			OPACIFY_SCREEN(s);
-			if (os->active != event->xconfigure.window)
-				break;
-			clear_passive(s);
-			if (os->active)
-				w = findWindowAtScreen(s, os->active);
-			if (w)
-				passive_windows(s, w->region);
-		}
-		break;
-	default:
-		break;
+	    id = event->xcrossing.window;
+	    os->newActive = findTopLevelWindowAtScreen (s, id);
+
+    	    if (od->timeoutHandle)
+		compRemoveTimeout (od->timeoutHandle);
+
+    	    if (checkDelay (s))
+		handleTimeout (s);
+	    else
+	    	od->timeoutHandle = compAddTimeout (opacifyGetTimeout (d),
+						    handleTimeout, s);
 	}
+     	break;
+    case ConfigureNotify:
+	s = findScreenAtDisplay (d, event->xconfigure.event);
+	if (s)
+	{
+	    OPACIFY_SCREEN (s);
+
+    	    if (os->active != event->xconfigure.window)
+		break;
+
+	    clearPassive (s);
+	    if (os->active)
+	    {
+		CompWindow *w;
+
+		w = findWindowAtScreen (s, os->active);
+		if (w)
+		    passiveWindows (s, w->region);
+	    }
+	}
+     	break;
+    default:
+	break;
+    }
 }
 
 
 /* Configuration, initialization, boring stuff. ----------------------- */
 
-static Bool opacifyInitWindow(CompPlugin * p, CompWindow * w)
+static Bool
+opacifyToggle (CompDisplay     *d,
+	       CompAction      *action,
+	       CompActionState state,
+	       CompOption      *option,
+    	       int             nOption)
 {
-	OPACIFY_SCREEN(w->screen);
-	OpacifyWindow *ow = (OpacifyWindow *) calloc(1, sizeof(OpacifyWindow));
+    OPACIFY_DISPLAY (d);
 
-	ow->opacified = FALSE;
-	
-	w->base.privates[os->windowPrivateIndex].ptr = ow;
+    od->toggle = !od->toggle;
 
-	return TRUE;
+    return TRUE;
 }
 
-static void opacifyFiniWindow(CompPlugin * p, CompWindow * w)
+static void
+opacifyDisplayOptionChanged (CompDisplay           *d,
+			     CompOption            *opt,
+			     OpacifyDisplayOptions num)
 {
-	OPACIFY_WINDOW(w);
+    OPACIFY_DISPLAY (d);
 
-	free(ow);
+    switch (num) {
+    case OpacifyDisplayOptionInitToggle:
+	od->toggle = opt->value.b;
+	break;
+    default:
+	break;
+    }
 }
 
-static void opacifyFiniScreen(CompPlugin * p, CompScreen * s)
+static Bool
+opacifyInitWindow (CompPlugin *p,
+		   CompWindow *w)
 {
-	OPACIFY_SCREEN(s);
+    OpacifyWindow *ow;
 
-	UNWRAP(os, s, paintWindow);
+    OPACIFY_SCREEN (w->screen);
 
-	XDestroyRegion(os->intersect);
-	free(os);
+    ow = malloc (sizeof (OpacifyWindow));
+    if (!ow)
+	return FALSE;
+
+    ow->opacified = FALSE;
+
+    w->base.privates[os->windowPrivateIndex].ptr = ow;
+
+    return TRUE;
 }
 
-static Bool opacifyInitScreen(CompPlugin * p, CompScreen * s)
+static void
+opacifyFiniWindow (CompPlugin *p,
+		   CompWindow *w)
 {
-	OPACIFY_DISPLAY(s->display);
-	OpacifyScreen *os = (OpacifyScreen *) calloc(1, sizeof(OpacifyScreen));
+    OPACIFY_WINDOW (w);
 
-	os->windowPrivateIndex = allocateWindowPrivateIndex(s);
-	if (os->windowPrivateIndex < 0)
-	{
-		free(os);
-		return FALSE;
-	}
-
-	WRAP(os, s, paintWindow, opacifyPaintWindow);
-
-	s->base.privates[od->screenPrivateIndex].ptr = os;
-	os->intersect = XCreateRegion();
-	os->just_moved = False;
-	
-	return TRUE;
+    free (ow);
 }
 
-static Bool opacify_toggle(CompDisplay * d, CompAction * ac,
-						   CompActionState state, CompOption * option,
-						   int nOption)
+static Bool
+opacifyInitScreen (CompPlugin *p,
+		   CompScreen *s)
 {
-	OPACIFY_DISPLAY(d);
-	od->toggle = !od->toggle;
-	return TRUE;
+    OpacifyScreen *os;
+
+    OPACIFY_DISPLAY (s->display);
+
+    os = calloc (1, sizeof (OpacifyScreen));
+    if (!os)
+	return FALSE;
+
+    os->windowPrivateIndex = allocateWindowPrivateIndex (s);
+    if (os->windowPrivateIndex < 0)
+    {
+	free (os);
+	return FALSE;
+    }
+
+    WRAP (os, s, paintWindow, opacifyPaintWindow);
+
+    s->base.privates[od->screenPrivateIndex].ptr = os;
+    os->intersect = XCreateRegion();
+    os->justMoved = FALSE;
+
+    return TRUE;
 }
 
-static void opacifyDisplayOptionChanged(CompDisplay *d, CompOption *opt, OpacifyDisplayOptions num)
+static void
+opacifyFiniScreen (CompPlugin *p,
+		   CompScreen *s)
 {
-	OPACIFY_DISPLAY(d);
-	
-	switch (num)
-	{
-		case OpacifyDisplayOptionInitToggle:
-			od->toggle = opt->value.b;
-			break;
-		default:
-			break;
-	}
+    OPACIFY_SCREEN (s);
+
+    UNWRAP (os, s, paintWindow);
+
+    XDestroyRegion (os->intersect);
+    free (os);
 }
 
-static Bool opacifyInitDisplay(CompPlugin * p, CompDisplay * d)
+static Bool
+opacifyInitDisplay (CompPlugin  *p,
+		    CompDisplay *d)
 {
-	OpacifyDisplay *od;
+    OpacifyDisplay *od;
 
-	if (!checkPluginABI ("core", CORE_ABIVERSION))
-	    return FALSE;
-    
-	od = (OpacifyDisplay *) malloc (sizeof (OpacifyDisplay));
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
 
-	if (!od)
-	    return FALSE;
+    od = malloc (sizeof (OpacifyDisplay));
+    if (!od)
+	return FALSE;
 
-	od->screenPrivateIndex = allocateScreenPrivateIndex(d);
-	if (od->screenPrivateIndex < 0)
-	{
-		free(od);
-		return FALSE;
-	}
-	d->base.privates[displayPrivateIndex].ptr = od;
-	od->active_screen = d->screens->screenNum;
-	od->toggle = TRUE;
+    od->screenPrivateIndex = allocateScreenPrivateIndex (d);
+    if (od->screenPrivateIndex < 0)
+    {
+	free (od);
+	return FALSE;
+    }
+    d->base.privates[displayPrivateIndex].ptr = od;
+    od->activeScreen = d->screens->screenNum;
+    od->toggle = TRUE;
 
-	opacifySetToggleKeyInitiate (d, opacify_toggle);	
-	opacifySetInitToggleNotify(d, opacifyDisplayOptionChanged);
+    opacifySetToggleKeyInitiate (d, opacifyToggle);	
+    opacifySetInitToggleNotify (d, opacifyDisplayOptionChanged);
 
-	WRAP(od, d, handleEvent, opacifyHandleEvent);
-	return TRUE;
+    WRAP (od, d, handleEvent, opacifyHandleEvent);
+    return TRUE;
 }
 
-static void opacifyFiniDisplay(CompPlugin * p, CompDisplay * d)
+static void
+opacifyFiniDisplay (CompPlugin  *p,
+		    CompDisplay *d)
 {
-	OPACIFY_DISPLAY(d);
-	UNWRAP(od, d, handleEvent);
-	if (od->timeout_handle)
-		compRemoveTimeout(od->timeout_handle);
-	freeScreenPrivateIndex(d, od->screenPrivateIndex);
-	free(od);
+    OPACIFY_DISPLAY (d);
+
+    UNWRAP (od, d, handleEvent);
+
+    if (od->timeoutHandle)
+	compRemoveTimeout(od->timeoutHandle);
+
+    freeScreenPrivateIndex (d, od->screenPrivateIndex);
+    free (od);
 }
 
 static CompBool
 opacifyInitObject (CompPlugin *p,
 		   CompObject *o)
 {
-	static InitPluginObjectProc dispTab[] = {
-		(InitPluginObjectProc) 0, /* InitCore */
-		(InitPluginObjectProc) opacifyInitDisplay,
-		(InitPluginObjectProc) opacifyInitScreen,
-		(InitPluginObjectProc) opacifyInitWindow
+    static InitPluginObjectProc dispTab[] = {
+	(InitPluginObjectProc) 0, /* InitCore */
+	(InitPluginObjectProc) opacifyInitDisplay,
+	(InitPluginObjectProc) opacifyInitScreen,
+	(InitPluginObjectProc) opacifyInitWindow
     };
 
     RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
@@ -518,40 +600,44 @@ opacifyFiniObject (CompPlugin *p,
 		   CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
-		(FiniPluginObjectProc) 0, /* FiniCore */
-		(FiniPluginObjectProc) opacifyFiniDisplay,
-		(FiniPluginObjectProc) opacifyFiniScreen,
-		(FiniPluginObjectProc) opacifyFiniWindow
+	(FiniPluginObjectProc) 0, /* FiniCore */
+	(FiniPluginObjectProc) opacifyFiniDisplay,
+	(FiniPluginObjectProc) opacifyFiniScreen,
+	(FiniPluginObjectProc) opacifyFiniWindow
     };
 
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
-static Bool opacifyInit(CompPlugin * p)
+static Bool
+opacifyInit (CompPlugin *p)
 {
-	displayPrivateIndex = allocateDisplayPrivateIndex();
-	if (displayPrivateIndex < 0)
-		return FALSE;
-	return TRUE;
+    displayPrivateIndex = allocateDisplayPrivateIndex ();
+    if (displayPrivateIndex < 0)
+	return FALSE;
+
+    return TRUE;
 }
 
-static void opacifyFini(CompPlugin * p)
+static void
+opacifyFini (CompPlugin *p)
 {
-	freeDisplayPrivateIndex(displayPrivateIndex);
+    freeDisplayPrivateIndex (displayPrivateIndex);
 }
 
 CompPluginVTable opacifyVTable = {
-	"opacify",
-	0,
-	opacifyInit,
-	opacifyFini,
-	opacifyInitObject,
-	opacifyFiniObject,
-	0,
-	0
+    "opacify",
+    0,
+    opacifyInit,
+    opacifyFini,
+    opacifyInitObject,
+    opacifyFiniObject,
+    0,
+    0
 };
 
-CompPluginVTable *getCompPluginInfo(void)
+CompPluginVTable*
+getCompPluginInfo (void)
 {
-	return &opacifyVTable;
+    return &opacifyVTable;
 }
