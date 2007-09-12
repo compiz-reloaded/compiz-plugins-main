@@ -46,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-09-05 21:41+0200\n"
-"PO-Revision-Date: 2007-09-05 21:35+0200\n"
+"POT-Creation-Date: 2007-09-11 23:29+0200\n"
+"PO-Revision-Date: 2007-09-11 23:28+0200\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -732,13 +732,13 @@ msgstr ""
 "La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica il "
 "numero di celle per la larghezza della finestra."
 
-msgid "The maximum number of waves for Magic Lamp."
-msgstr "Il massimo numero di onde per «Lampada magica»."
-
-msgid "The maxmimum amplitude (size of the waves) Magic Lamp will have."
+msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr ""
 "La massima ampiezza (dimensione delle onde) che avrà l'effetto «Lampada "
-"magica»"
+"magica»."
+
+msgid "The maximum number of waves for Magic Lamp."
+msgstr "Il massimo numero di onde per «Lampada magica»."
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
 msgstr ""
@@ -1425,13 +1425,13 @@ msgid "Zoom time"
 msgstr "Tempo dello zoom"
 
 # (ndt) opzione
-msgid "Allways fit to window on focus track"
+msgid "Always fit to window on focus track"
 msgstr "Adattare sempre la finestra all'inseguimento del focus"
 
 msgid ""
-"Allways keep the zoomed area in sync with where the mouse is, and vice "
-"versa. Use this if you don't intend to drraw a scaled pointer or hide the "
-"original pointer. The zoomed area will move as you move your mouse."
+"Always keep the zoomed area in sync with where the mouse is, and vice versa. "
+"Use this if you don't intend to draw a scaled pointer or hide the original "
+"pointer. The zoomed area will move as you move your mouse."
 msgstr ""
 "Mantiene sempre l'area ingrandita in sincronia con la posizione del mouse e "
 "viceversa. Usare questa opzione per non nascondere il puntatore originale o "
@@ -1443,7 +1443,7 @@ msgstr "Animazione"
 
 msgid ""
 "Attempt to keep the zoomed mouse visible by warping it when it is moved "
-"otuside the zoom area."
+"outside the zoom area."
 msgstr ""
 "Cerca di mantenere il mouse visibile facendolo rientrare quando si sposta al "
 "di fuori dell'area ingrandita."
@@ -2339,38 +2339,38 @@ msgstr "Attiva"
 
 # (ndt) suggerimento
 msgid "Execute Motion Blur if the screen is transformed."
-msgstr "Esegue «Movimento sfocato» se lo schermo subisce dei cambiamenti."
+msgstr "Esegue «Effetto movimento» se lo schermo subisce dei cambiamenti."
 
 msgid "Motion Blur Strength"
-msgstr "Intensità «Movimento sfocato»"
+msgstr "Intensità «Effetto movimento»"
 
 msgid "Motion Blur mode"
-msgstr "Modalità «Movimento sfocato»"
+msgstr "Modalità «Effetto movimento»"
 
 # (ndt) opzione
 msgid "Motion Blur on Transformed Screen"
-msgstr "Movimento sfocato al mutare dello schermo"
+msgstr "Effetto movimento al mutare dello schermo"
 
 msgid "Motion Blur render mode."
-msgstr "Modalità di render del «Movimento sfocato»."
+msgstr "Modalità di render dell'«Effetto movimento»."
 
 msgid "Motion Blur strength."
-msgstr "Intensità del «Movimento sfocato»."
+msgstr "Intensità dell'«Effetto movimento»."
 
 msgid "Motion blur"
-msgstr "Movimento sfocato"
+msgstr "Effetto movimento"
 
 msgid "Motion blur effect"
-msgstr "Effetto movimento sfocato"
+msgstr "Effetto movimento"
 
 msgid "Texture Copy"
 msgstr "Copia texture"
 
 msgid "Toggle Motion Blur"
-msgstr "Commuta «Movimento sfocato»"
+msgstr "Commuta «Effetto movimento»"
 
 msgid "Toggle motion Blur effect."
-msgstr "Commuta l'effetto «Movimento sfocato»."
+msgstr "Commuta l'effetto «Effetto movimento»."
 
 msgid "Visibility/Performance"
 msgstr "Visibilità/Prestazioni"
@@ -3355,7 +3355,7 @@ msgid "Shift Windows"
 msgstr "Finestre da scorrere"
 
 # (ndt) suggerimento
-msgid "Shift animaton speed"
+msgid "Shift animation speed"
 msgstr "Velocità dell'animazione di scorrimento"
 
 msgid "Shift speed"
@@ -4274,7 +4274,7 @@ msgstr ""
 msgid "Highlight Gradient"
 msgstr "Gradiente di evidenziazione"
 
-msgid "How should a multimonitor configuration be handeled"
+msgid "How should a multimonitor configuration be handled"
 msgstr "Come gestire una configurazione multi-monitor"
 
 msgid "Move Down With Window"
@@ -4549,7 +4549,7 @@ msgid "Make \"on all desktops\" windows \"sticky\""
 msgstr "Rendere le finestre adesive su tutte le scrivanie"
 
 msgid ""
-"Make \"on all desktops\" windows sticky. Sticky windows are visable on all "
+"Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
 msgstr ""
 "Rende le finestre adesive su tutte le scrivanie. Le finestre adesive sono "
