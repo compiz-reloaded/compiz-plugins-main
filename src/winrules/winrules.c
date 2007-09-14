@@ -486,21 +486,20 @@ winrulesHandleEvent (CompDisplay *d,
     WRAP (wd, d, handleEvent, winrulesHandleEvent);
 }
 
-static unsigned int
-winrulesGetAllowedActionsForWindow (CompWindow *w)
+static void
+winrulesGetAllowedActionsForWindow (CompWindow   *w,
+				    unsigned int *setActions,
+				    unsigned int *clearActions)
 {
-    unsigned int actions;
-
     WINRULES_SCREEN (w->screen);
     WINRULES_WINDOW (w);
 
     UNWRAP (ws, w->screen, getAllowedActionsForWindow);
-    actions = (*w->screen->getAllowedActionsForWindow) (w);
+    (*w->screen->getAllowedActionsForWindow) (w, setActions, clearActions);
     WRAP (ws, w->screen, getAllowedActionsForWindow,
           winrulesGetAllowedActionsForWindow);
 
-    return actions & ww->allowedActions;
-
+    *clearActions |= ~ww->allowedActions;
 }
 
 static Bool
