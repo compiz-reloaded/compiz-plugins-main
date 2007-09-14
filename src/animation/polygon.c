@@ -901,6 +901,13 @@ getPerspectiveCorrectionMat (CompWindow *w,
 	center.y = WIN_Y(w) + WIN_H(w) / 2;
     }
 
+    // FIXME:
+    // For multiple outputs, perspective correction (skewing)
+    // of polygon-based effects is currently wrong
+    // (left-most output image shows everthing from a cam. placed at left,
+    //  where it should be showing things from a camera at the center of all
+    //  outputs).
+
     GLfloat skewx = -((center.x - s->width / 2) * 1.15);
     GLfloat skewy = -((center.y - s->height / 2) * 1.15);
 
