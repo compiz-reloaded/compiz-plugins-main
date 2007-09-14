@@ -40,7 +40,8 @@ typedef struct _WorkaroundsDisplay {
 typedef struct _WorkaroundsScreen {
     int windowPrivateIndex;
 
-    WindowResizeNotifyProc  windowResizeNotify;
+    WindowResizeNotifyProc         windowResizeNotify;
+    GetAllowedActionsForWindowProc getAllowedActionsForWindow;
 } WorkaroundsScreen;
 
 typedef struct _WorkaroundsWindow {
@@ -48,6 +49,7 @@ typedef struct _WorkaroundsWindow {
 
     Bool adjustedWinType;
     Bool madeSticky;
+    Bool isFullscreen;
 } WorkaroundsWindow;
 
 #define GET_WORKAROUNDS_DISPLAY(d) \
@@ -139,11 +141,32 @@ workaroundsUpdateSticky (CompWindow *w)
 }
 
 static void
+workaroundsGetAllowedActionsForWindow (CompWindow   *w,
+				       unsigned int *setActions,
+				       unsigned int *clearActions)
+{
+    CompScreen *s = w->screen;
+
+    WORKAROUNDS_SCREEN (s);
+    WORKAROUNDS_WINDOW (w);
+
+    UNWRAP (ws, s, getAllowedActionsForWindow);
+    (*s->getAllowedActionsForWindow) (w, setActions, clearActions);
+    WRAP (ws, s, getAllowedActionsForWindow,
+	  workaroundsGetAllowedActionsForWindow);
+
+    if (ww->isFullscreen)
+	*setActions |= CompWindowActionFullscreenMask;
+}
+
+static void
 workaroundsFixupFullscreen (CompWindow *w)
 {
     Bool   isFullSize;
     int    output;
     BoxPtr box;
+
+    WORKAROUNDS_WINDOW (w);
 
     if (w->type & CompWindowTypeDesktopMask)
 	return;
@@ -168,6 +191,7 @@ workaroundsFixupFullscreen (CompWindow *w)
 	}
     }
 
+    ww->isFullscreen = isFullSize;
     if ((isFullSize && !(w->state & CompWindowStateFullscreenMask)) ||
 	(!isFullSize && (w->state & CompWindowStateFullscreenMask)))
     {
@@ -418,6 +442,8 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
     }
 
     WRAP (ws, s, windowResizeNotify, workaroundsWindowResizeNotify);
+    WRAP (ws, s, getAllowedActionsForWindow,
+	  workaroundsGetAllowedActionsForWindow);
 
     s->base.privates[wd->screenPrivateIndex].ptr = ws;
 
@@ -432,6 +458,7 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
     freeWindowPrivateIndex (s, ws->windowPrivateIndex);
 
     UNWRAP (ws, s, windowResizeNotify);
+    UNWRAP (ws, s, getAllowedActionsForWindow);
 
     free (ws);
 }
@@ -449,6 +476,7 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
 
     ww->madeSticky = FALSE;
     ww->adjustedWinType = FALSE;
+    ww->isFullscreen = FALSE;
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
