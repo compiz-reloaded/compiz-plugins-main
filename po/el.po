@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-09-11 11:55+0530\n"
-"PO-Revision-Date: 2007-09-11 00:05+0200\n"
+"POT-Creation-Date: 2007-09-15 11:28+0530\n"
+"PO-Revision-Date: 2007-09-14 00:05+0200\n"
 "Last-Translator: djdoo <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -688,9 +688,8 @@ msgstr ""
 "Το παράθυρο που εκρύγνειται θα χωριστεί σε κομμάτια σύμφωνα με ένα πλέγμα. "
 "Ορισμός των κελιών του πλέγματος ανάλογα με το πλάτος του παραθύρου."
 
-#, fuzzy
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
-msgstr "Μέγιστη έκταση (μέγεθος κυμάτων) που το Μαγικό Λυχνάρι Θα έχει."
+msgstr "H μέγιστη έκταση (μέγεθος κυμάτων) που το Μαγικό Λυχνάρι Θα έχει."
 
 msgid "The maximum number of waves for Magic Lamp."
 msgstr "Μέγιστος αριθμός κυμάτων για το Μαγικό Λυχνάρι."
@@ -983,13 +982,13 @@ msgid "Compiz crash handler plugin"
 msgstr "Πρόσθετο του Διαχειριστή Καταρρεύσεων του Compiz"
 
 msgid "Crash Dump Directory"
-msgstr ""
+msgstr "Φάκελος Απόρριψης Καταρρεύσεων"
 
 msgid "Crash handler"
 msgstr "Διαχειριστής Καταρρεύσεων"
 
 msgid "Directory to dump the crash logs to."
-msgstr ""
+msgstr "Φάκελος για απόρριψη των αρχείων καταγραφής καταρρεύσεων"
 
 msgid "Enable Crash Handler"
 msgstr "Ενεργοποίηση του Διαχειριστή Καταρρεύσεων"
@@ -1200,13 +1199,15 @@ msgid "Aspect Ratio"
 msgstr "Αναλογία Διαστάσεων"
 
 msgid "Button binding for drag &amp; drop of windows"
-msgstr ""
+msgstr "Συνδυασμός κουμπιών για τράβηγμα &amp; άφημα των παραθύρων"
 
 msgid "Button binding to exit expo"
-msgstr ""
+msgstr "Συνδυασμός κουμπιών για έξοδο απ το expo"
 
 msgid "Button binding to switch to next viewport in expo"
 msgstr ""
+"Συνδυασμός κουμπιών για αλλαγή στην επόμενη εικονική επιφάνεια εργασίας στο "
+"expo"
 
 msgid "Distance of the expo wall"
 msgstr "Απόσταση του τοίχου του expo"
@@ -1215,7 +1216,7 @@ msgid "Double click time"
 msgstr "Διάρκεια του διπλού κλικ"
 
 msgid "Drag&amp;drop"
-msgstr ""
+msgstr "Τράβηγμα&amp;άφημα"
 
 msgid "Duration of the zoomout animation"
 msgstr "Διάρκεια (σε ms) της γραφικής απεικόνισης του ζουμ out"
@@ -1229,9 +1230,8 @@ msgstr "Ενεργοποίηση συνδυασμού άκρων τοίχου τ
 msgid "Engage wall expo mode key binding"
 msgstr "Ενεργοποίηση συνδυασμού πλήκτρων τοίχου της μεθόδου expo"
 
-#, fuzzy
 msgid "Exit expo"
-msgstr "Expo"
+msgstr "Έξοδος απ το expo"
 
 msgid "Expo"
 msgstr "Expo"
@@ -1275,9 +1275,8 @@ msgstr "Mipmaps"
 msgid "Multi Output Mode"
 msgstr "Μέθοδος Πολλαπλών Oθονών"
 
-#, fuzzy
 msgid "Next viewport"
-msgstr "Τοποθέτηση στην Επιφάνεια Εργασίας"
+msgstr "Επόμενη εικονική επιφάνεια εργασίας"
 
 msgid "One big wall"
 msgstr "Ενας μεγάλος τοίχος"
@@ -1285,9 +1284,8 @@ msgstr "Ενας μεγάλος τοίχος"
 msgid "One wall per output"
 msgstr "Ενας τοίχος για κάθε οθόνη"
 
-#, fuzzy
 msgid "Previous viewport"
-msgstr "Μετακίνηση προς την προηγούμενη εικονική επιφάνεια εργασίας"
+msgstr "Προηγούμενη εικονική επιφάνεια εργασίας"
 
 msgid "Reflection"
 msgstr "Αντανάκλαση"
@@ -1329,19 +1327,17 @@ msgstr "Κορυφαίο"
 msgid "Zoom time"
 msgstr "Χρόνος Ζουμ"
 
-#, fuzzy
 msgid "Always fit to window on focus track"
-msgstr "Πάντοτε ταίριασμα στο παράθυρο στην πορεία εστίασης"
+msgstr "Πάντα ταίριαγμα στο παράθυρο κατα το καθάρισμα εστίασης"
 
-#, fuzzy
 msgid ""
 "Always keep the zoomed area in sync with where the mouse is, and vice versa. "
 "Use this if you don't intend to draw a scaled pointer or hide the original "
 "pointer. The zoomed area will move as you move your mouse."
 msgstr ""
-"Πάντα διατήρηση της ζουμαρισμένης περιοχής σε συγχρονισμό με το που "
-"βρίσκεται το ποντίκι, και αντίστροφα. Χρησιμοποιήστε το αν δεν έχετε σκοπό "
-"να δείτε ένα κλιμακομένο δείκτη ή να αποκρύψετε τον πραγματικό δείκτη. Η "
+"Πάντα διατήρηση της ζουμαρισμένης περιοχής σε συγχρονισμό με το που είναι το "
+"ποντίκι, και αντίστροφα. Χρησιμοποιήστε το αν δεν έχετε σκοπό να σχεδιάσετε "
+"ένα κλιμακούμενο δείκτη ή να αποκρύψετε τον πραγματικό δείκτη. Η "
 "ζουμαρισμένη περιοχή θα κινείται καθώς κινείτε το ποντίκι σας."
 
 msgid "Animation"
@@ -3049,13 +3045,13 @@ msgstr "Γωνία γύρισματος"
 msgid "Generate mipmaps"
 msgstr "Δημιουργία mipmaps"
 
-#, fuzzy
 msgid "Hide all non Desktop windows during switching"
-msgstr "Επίστρωση ενός εικονιδίου πάνω στα παράθυρα του δαχτυλιδιού"
+msgstr ""
+"Απόκρυψη όλων των μη βρισκόμενων στην επιφάνεια εργασίας παραθύρων κατα την "
+"αλλαγή"
 
-#, fuzzy
 msgid "Hide non Desktop windows"
-msgstr "Ξεθώριασμα στην Επιφάνεια Εργασίας"
+msgstr "Απόκρυψη όλων των μη βρισκόμενων στην επιφάνεια εργασίας παραθύρων"
 
 msgid "Initiate (All Workspaces)"
 msgstr "Εκκίνηση (Όλες οι Επιφάνειες Εργασίας)"
@@ -3123,11 +3119,10 @@ msgid "Switcher mode."
 msgstr "Μέθοδος επιλογέα."
 
 msgid "Terminate"
-msgstr ""
+msgstr "Τερματισμός"
 
-#, fuzzy
 msgid "Terminate switcher."
-msgstr "Εκκίνηση επιλογέα."
+msgstr "Τερματισμός επιλογέα."
 
 msgid "Windows that should be shown in the shift switcher"
 msgstr "Παράθυρα που πρέπει να εμφανίζονται στο επιλογέα μετατόπισης"
@@ -3975,9 +3970,8 @@ msgstr ""
 msgid "Highlight Gradient"
 msgstr "Τονισμος Διαβάθμισης"
 
-#, fuzzy
 msgid "How should a multimonitor configuration be handled"
-msgstr "Καθορισμός του χειρισμού πολλαπλών οθονών"
+msgstr "Πως θα πρέπει μια ρύθμιση πολλαπλών οθονών να χειριστεί"
 
 msgid "Move Down With Window"
 msgstr "Μετακίνηση Κάτω Με Παράθυρο"
@@ -4146,7 +4140,7 @@ msgid "Matches"
 msgstr "Ταιριάσματα"
 
 msgid "No ARGB visuals"
-msgstr ""
+msgstr "Μη ARGB οπτικά"
 
 msgid "No focus"
 msgstr "Μη εστίαση"
@@ -4211,9 +4205,8 @@ msgstr "Κανόνες Παραθύρων"
 msgid "Windows that should be resized by default"
 msgstr "Παράθυρα που πρέπει να αλλάξουν διαστάσεις απο προεπιλογή"
 
-#, fuzzy
 msgid "Windows that should be treated as not supporting transparency"
-msgstr "Παράθυρα που πρέπει να ξεθωριάζουν στην επιφάνεια εργασίας"
+msgstr "Παράθυρα που πρέπει να χειρίζονται ως μη υποστηρίζοντα διαφάνεια"
 
 msgid "Windows will not have focus"
 msgstr "Παράθυρα που δεν θα έχουν εστίαση"
@@ -4245,13 +4238,12 @@ msgstr "Παραδοσιακή Υποστήριξη Πλήρους Οθόνης"
 msgid "Make \"on all desktops\" windows \"sticky\""
 msgstr "Κάνε \"σε όλες τις επιφάνειες εργασίας\" τα παράθυρα \"καρφιτσωμένα\""
 
-#, fuzzy
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
 msgstr ""
 "Κάνε \"σε όλες τις επιφάνειες εργασίας\" τα παράθυρα καρφιτσωμένα. Τα "
-"καρφιτσωμένα παράθυρα είναι ορατά σε όλες τις επιφάνειες εργασίας."
+"καρφιτσωμένα παράθυρα είναι ορατά σε όλες τις εικονικές επιφάνειες εργασίας."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""
