@@ -612,8 +612,11 @@ expandBoxWithBox (Box *target, Box *source)
 }
 
 void
-expandBoxWithPoint (Box *target, short x, short y)
+expandBoxWithPoint (Box *target, float fx, float fy)
 {
+    short x = MAX (MIN (fx, MAXSHORT - 1), MINSHORT);
+    short y = MAX (MIN (fy, MAXSHORT - 1), MINSHORT);
+
     if (target->x1 == MAXSHORT)
     {
 	target->x1 = x;
@@ -638,10 +641,11 @@ expandBoxWithPoint (Box *target, short x, short y)
 static void
 expandBoxWithPoint2DTransform (CompScreen *s,
 			       Box *target,
-			       Point *point,
+			       float x,
+			       float y,
 			       float *transformMat)
 {
-    float coords[4] = {point->x, point->y, 0, 1};
+    float coords[4] = {x, y, 0, 1};
     float coordsTransformed[4];
     multiplyMatrixVector (coordsTransformed, transformMat, coords);
 
@@ -649,24 +653,32 @@ expandBoxWithPoint2DTransform (CompScreen *s,
 }
 
 static Bool
-expandBoxWithPoints3DTransform (CompScreen          *s,
+expandBoxWithPoints3DTransform (CompOutput          *output,
+				CompScreen          *s,
 				const CompTransform *transform,
 				Box                 *targetBox,
 				const float         *points,
 				int                 nPoints)
 {
-    ANIM_SCREEN (s);
-
     GLdouble dModel[16];
+    GLdouble dProjection[16];
     GLdouble x, y, z;
     int i;
     for (i = 0; i < 16; i++)
+    {
 	dModel[i] = transform->m[i];
+	dProjection[i] = s->projection[i];
+    }
+    GLint viewport[4] =
+	{output->region.extents.x1,
+	 output->region.extents.y1,
+	 output->width,
+	 output->height};
 
     while (nPoints--)
     {
 	if (!gluProject (points[0], points[1], points[2],
-			 dModel, as->dProjection, as->viewport,
+			 dModel, dProjection, viewport,
 			 &x, &y, &z))
 	    return FALSE;
 
@@ -689,18 +701,26 @@ modelUpdateBB (CompOutput *output,
     if (!model)
 	return;
 
+    float x, y;
     int i;
     if (animZoomToIcon(as, aw))
 	for (i = 0; i < model->numObjects; i++)
+	{
+	    x = model->objects[i].position.x;
+	    y = model->objects[i].position.y;
+
 	    expandBoxWithPoint2DTransform (w->screen,
 					   &aw->BB,
-					   &model->objects[i].position,
+					   x, y,
 					   aw->transform.m);
+	}
     else
 	for (i = 0; i < model->numObjects; i++)
 	{
-	    Point *p = &model->objects[i].position;
-	    expandBoxWithPoint (&aw->BB, p->x + 0.5, p->y + 0.5);
+	    x = model->objects[i].position.x + 0.5;
+	    y = model->objects[i].position.y + 0.5;
+
+	    expandBoxWithPoint (&aw->BB, x, y);
 	}
 }
 
@@ -762,7 +782,8 @@ compTransformUpdateBB (CompOutput *output,
 			  WIN_X(w), WIN_Y(w) + WIN_H(w), 0,
 			  WIN_X(w) + WIN_W(w), WIN_Y(w) + WIN_H(w), 0};
 
-    expandBoxWithPoints3DTransform (s,
+    expandBoxWithPoints3DTransform (output,
+				    s,
 				    &wTransform,
 				    &aw->BB,
 				    corners,
@@ -1423,21 +1444,21 @@ static void postAnimationCleanupCustom(CompWindow * w,
     ANIM_WINDOW(w);
     ANIM_SCREEN(w->screen);
 
-    // make sure window shadows (which are not drawn by polygon engine)
-    // are damaged
-    if (playingPolygonEffect(as, aw) &&
-	(aw->curWindowEvent == WindowEventOpen ||
-	 aw->curWindowEvent == WindowEventUnminimize ||
-	 aw->curWindowEvent == WindowEventUnshade ||
-	 aw->curWindowEvent == WindowEventFocus))
-	updateBBWindow (NULL, w);
-
-    // make sure the window gets fully damaged with
-    // effects that possibly have models that don't cover
-    // the whole window (like in magic lamp with menus)
-    if (aw->curAnimEffect == AnimEffectMagicLamp ||
+    if (// make sure window shadows (which are not drawn by polygon engine)
+	// are damaged
+	(playingPolygonEffect(as, aw) &&
+	 (aw->curWindowEvent == WindowEventOpen ||
+	  aw->curWindowEvent == WindowEventUnminimize ||
+	  aw->curWindowEvent == WindowEventUnshade ||
+	  aw->curWindowEvent == WindowEventFocus)) ||
+	// make sure the window gets fully damaged with
+	// effects that possibly have models that don't cover
+	// the whole window (like in magic lamp with menus)
+	aw->curAnimEffect == AnimEffectMagicLamp ||
 	aw->curAnimEffect == AnimEffectVacuum)
+    {
 	updateBBWindow (NULL, w);
+    }
 
     if (resetAnimation)
     {
@@ -1927,23 +1948,6 @@ restackInfoStillGood(CompScreen *s, RestackInfo *restackInfo)
     return (wStartGood && wEndGood && wOldAboveGood && wRestackedGood);
 }
 
-static
-void updateScreenProperties (CompScreen *s)
-{
-    ANIM_SCREEN(s);
-
-    if (!as->output) // if not yet initialized
-	return;
-    as->viewport[0] = as->output->region.extents.x1;
-    as->viewport[1] = s->height - as->output->region.extents.y2;
-    as->viewport[2] = as->output->width;
-    as->viewport[3] = as->output->height;
-
-    int i;
-    for (i = 0; i < 16; i++)
-	as->dProjection[i] = s->projection[i];
-}
-
 static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 {
     CompWindow *w;
@@ -2039,8 +2043,6 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 
     if (as->animInProgress)
     {
-	updateScreenProperties (s);
-
 	AnimWindow *aw;
 	Bool animStillInProgress = FALSE;
 

@@ -566,8 +566,6 @@ typedef struct _AnimScreen
     unsigned int nShadeRandomEffects;
 
     CompOutput *output;
-    GLint      viewport[4];
-    GLdouble   dProjection[16];
 
     OptionSets *eventOptionSets[NUM_EVENTS];
 } AnimScreen;
@@ -827,7 +825,7 @@ void
 expandBoxWithBox (Box *target, Box *source);
 
 void
-expandBoxWithPoint (Box *, short x, short y);
+expandBoxWithPoint (Box *target, float fx, float fy);
 
 void
 updateBBWindow (CompOutput *output,

@@ -886,6 +886,7 @@ getPerspectiveCorrectionMat (CompWindow *w,
 			     float *matf)
 {
     CompScreen *s = w->screen;
+    ANIM_SCREEN (s);
     Point center;
 
     if (p) // for CorrectPerspectivePolygon
@@ -901,15 +902,10 @@ getPerspectiveCorrectionMat (CompWindow *w,
 	center.y = WIN_Y(w) + WIN_H(w) / 2;
     }
 
-    // FIXME:
-    // For multiple outputs, perspective correction (skewing)
-    // of polygon-based effects is currently wrong
-    // (left-most output image shows everthing from a cam. placed at left,
-    //  where it should be showing things from a camera at the center of all
-    //  outputs).
-
-    GLfloat skewx = -((center.x - s->width / 2) * 1.15);
-    GLfloat skewy = -((center.y - s->height / 2) * 1.15);
+    GLfloat skewx = -(((center.x - as->output->region.extents.x1) -
+		       as->output->width / 2) * 1.15);
+    GLfloat skewy = -(((center.y - as->output->region.extents.y1) -
+		       as->output->height / 2) * 1.15);
 
     if (mat)
     {
@@ -937,7 +933,7 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 {
     ANIM_WINDOW(w);
 
-    if (						// only draw windows on current viewport
+    if (// only draw windows on current viewport
 	w->attrib.x > s->width || w->attrib.x + w->width < 0 ||
 	w->attrib.y > s->height || w->attrib.y + w->height < 0 ||
 	(aw->lastKnownCoords.x != NOT_INITIALIZED &&
@@ -1502,7 +1498,6 @@ polygonsUpdateBB (CompOutput *output,
 		  CompWindow * w)
 {
     CompScreen *s = w->screen;
-    ANIM_SCREEN (s);
     ANIM_WINDOW (w);
 
     PolygonSet *pset = aw->polygonSet;
@@ -1516,6 +1511,17 @@ polygonsUpdateBB (CompOutput *output,
     prepareTransform (s, output, &wTransform, &wTransform2);
 
     GLdouble dModel[16];
+    GLdouble dProjection[16];
+    int i;
+    for (i = 0; i < 16; i++)
+    {
+	dProjection[i] = s->projection[i];
+    }
+    GLint viewport[4] =
+	{output->region.extents.x1,
+	 output->region.extents.y1,
+	 output->width,
+	 output->height};
     GLdouble px, py, pz;
 
     PolygonObject *p = aw->polygonSet->polygons;
@@ -1531,7 +1537,6 @@ polygonsUpdateBB (CompOutput *output,
 	pset->correctPerspective == CorrectPerspectivePolygon)
 	modelViewTransform = &wTransform2;
 
-    int i;
     for (i = 0; i < aw->polygonSet->nPolygons; i++, p++)
     {
 	if (pset->correctPerspective == CorrectPerspectivePolygon)
@@ -1540,6 +1545,8 @@ polygonsUpdateBB (CompOutput *output,
 	    matmul4 (wTransform2.m, wTransform.m, skewMat);
 	}
 
+	// if modelViewTransform == wTransform2, then
+	// it changes for each polygon
 	int j;
 	for (j = 0; j < 16; j++)
 	    dModel[j] = modelViewTransform->m[j];
@@ -1564,7 +1571,7 @@ polygonsUpdateBB (CompOutput *output,
 	for (j = 0; j < N_POINTS; j++, pnt++)
 	{
 	    if (!gluProject (pnt->x, pnt->y, pnt->z,
-			     dModel, as->dProjection, as->viewport,
+			     dModel, dProjection, viewport,
 			     &px, &py, &pz))
 		return;
 

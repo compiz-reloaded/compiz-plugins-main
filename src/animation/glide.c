@@ -312,16 +312,7 @@ fxGlideUpdateBB (CompOutput *output,
     ANIM_WINDOW(w);
 
     if (fxGlideIsPolygonBased (as, aw))
-    {
-	// FIXME:
-	// For multiple-outputs, polygon-based glide animation is not
-	// yet completely bounded by its computed BB.
-	// Therefore damage the whole screen for now for multiple outputs.
-	if (w->screen->nOutputDev > 1)
-	    updateBBScreen (output, w);
-	else
-	    polygonsUpdateBB (output, w);
-    }
+	polygonsUpdateBB (output, w);
     else
 	compTransformUpdateBB (output, w);
 }
