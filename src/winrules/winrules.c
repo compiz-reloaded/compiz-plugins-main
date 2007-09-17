@@ -102,35 +102,19 @@ winrulesSetProtocols (CompDisplay  *display,
 		      unsigned int protocols,
 		      Window       id)
 {
-    Atom *protocol = NULL;
+    Atom protocol[4];
     int  count = 0;
 
     if (protocols & CompWindowProtocolDeleteMask)
-    {
-	protocol = realloc (protocol, (count + 1) * sizeof(Atom));
 	protocol[count++] = display->wmDeleteWindowAtom;
-    }
     if (protocols & CompWindowProtocolTakeFocusMask)
-    {
-	protocol = realloc (protocol, (count + 1) * sizeof(Atom));
 	protocol[count++] = display->wmTakeFocusAtom;
-    }
     if (protocols & CompWindowProtocolPingMask)
-    {
-	protocol = realloc (protocol, (count + 1) * sizeof(Atom));
 	protocol[count++] = display->wmPingAtom;
-    }
     if (protocols & CompWindowProtocolSyncRequestMask)
-    {
-	protocol = realloc (protocol, (count + 1) * sizeof(Atom));
-	protocol[count] = display->wmSyncRequestAtom;
-    }
-    XSetWMProtocols (display->display,
-		     id,
-		     protocol,
-		     count);
+	protocol[count++] = display->wmSyncRequestAtom;
 
-    XFree (protocol);
+    XSetWMProtocols (display->display, id, protocol, count);
 }
 
 /* FIXME? Directly set inputHint, not a problem for now */
