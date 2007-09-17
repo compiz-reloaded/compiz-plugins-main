@@ -232,11 +232,14 @@ workaroundsDoFixes (CompWindow *w)
     if ((w->wmType == newWmType) && workaroundsGetFirefoxMenuFix (d))
     {
         if (w->wmType == CompWindowTypeNormalMask &&
-            w->attrib.override_redirect && w->resName &&
-	    (strcasecmp (w->resName, "gecko") == 0))
-        {
-            newWmType = CompWindowTypeDropdownMenuMask;
-        }
+            w->attrib.override_redirect && w->resName)
+	{
+	    if ((strcasecmp (w->resName, "gecko") == 0) ||
+		(strcasecmp (w->resName, "popup") == 0))
+	    {
+		newWmType = CompWindowTypeDropdownMenuMask;
+	    }
+	}
     }
 
     /* FIXME: Basic hack to get Java windows working correctly. */
