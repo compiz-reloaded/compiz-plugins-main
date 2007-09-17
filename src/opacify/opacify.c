@@ -203,10 +203,9 @@ passiveWindows (CompScreen *s,
  * be reset, which would conflict with move's opacity change. 
  */
 static void
-opacifyHandleEnter (CompWindow *w)
+opacifyHandleEnter (CompScreen *s,
+		    CompWindow *w)
 {
-    CompScreen *s = w->screen;
-
     OPACIFY_SCREEN (s);
 
     if (otherScreenGrabExist (s, 0))
@@ -295,7 +294,7 @@ handleTimeout (void *data)
 	os->active = 0;
     }
 
-    opacifyHandleEnter (os->newActive);
+    opacifyHandleEnter (s, os->newActive);
 
     return FALSE;
 }
