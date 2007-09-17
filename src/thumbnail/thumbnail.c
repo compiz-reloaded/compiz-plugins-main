@@ -30,11 +30,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include <X11/Xatom.h>
-#include <X11/extensions/Xrender.h>
-
 #include <compiz-core.h>
 #include <compiz-text.h>
+
+#include <X11/Xatom.h>
 
 #include "thumbnail_tex.h"
 #include "thumbnail_options.h"
