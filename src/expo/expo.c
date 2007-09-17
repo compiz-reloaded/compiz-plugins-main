@@ -794,10 +794,11 @@ expoPaintWall (CompScreen              *s,
     {
 	float scaleFactor = expoGetScaleFactor (s->display);
 
-	matrixTranslate (&sTransform, 0.0, -s->vsize * sy, 0.0);
+	matrixTranslate (&sTransform, 0.0, -s->vsize * sy * aspectY, 0.0);
 	matrixScale (&sTransform, 1.0, -1.0, 1.0);
 	matrixTranslate (&sTransform, 0.0,
-			 - (1 - scaleFactor) / 2 * s->vsize * sy, 0.0);
+			 - (1 - scaleFactor) / 2 * s->vsize * sy * aspectY,
+			 0.0);
 	matrixScale (&sTransform, 1.0, scaleFactor, 1.0);
 	glCullFace (GL_FRONT);
     }
