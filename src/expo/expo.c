@@ -78,6 +78,7 @@ typedef struct _ExpoScreen
     PaintWindowProc            paintWindow;
     DrawWindowProc             drawWindow;
     DamageWindowRectProc       damageWindowRect;
+    EnableOutputClippingProc   enableOutputClipping;
 
     /*  Used for expo zoom animation */
     float expoCam;
@@ -686,6 +687,55 @@ expoPreparePaintScreen (CompScreen *s,
     UNWRAP (es, s, preparePaintScreen);
     (*s->preparePaintScreen) (s, ms);
     WRAP (es, s, preparePaintScreen, expoPreparePaintScreen);
+}
+
+static void
+expoEnableOutputClipping (CompScreen 	      *s,
+			  const CompTransform *transform,
+			  Region	      region,
+			  CompOutput 	      *output)
+{
+    EXPO_SCREEN(s);
+
+    if (es->expoCam > 0.0)
+    {
+	GLdouble h = s->height;
+
+	GLdouble p1[2] = { region->extents.x1, h - region->extents.y2 };
+	GLdouble p2[2] = { region->extents.x2, h - region->extents.y1 };
+
+	GLdouble halfW = output->width / 2.0;
+	GLdouble halfH = output->height / 2.0;
+
+	GLdouble cx = output->region.extents.x1 + halfW;
+	GLdouble cy = (h - output->region.extents.y2) + halfH;
+
+	GLdouble top[4]    = { 0.0, halfH / (cy - p1[1]), 0.0, 0.5 };
+	GLdouble bottom[4] = { 0.0, halfH / (cy - p2[1]), 0.0, 0.5 };
+	GLdouble left[4]   = { halfW / (cx - p1[0]), 0.0, 0.0, 0.5 };
+	GLdouble right[4]  = { halfW / (cx - p2[0]), 0.0, 0.0, 0.5 };
+
+	glPushMatrix ();
+	glLoadMatrixf (transform->m);
+
+	glClipPlane (GL_CLIP_PLANE0, top);
+	glClipPlane (GL_CLIP_PLANE1, bottom);
+	glClipPlane (GL_CLIP_PLANE2, left);
+	glClipPlane (GL_CLIP_PLANE3, right);
+
+	glEnable (GL_CLIP_PLANE0);
+	glEnable (GL_CLIP_PLANE1);
+	glEnable (GL_CLIP_PLANE2);
+	glEnable (GL_CLIP_PLANE3);
+
+	glPopMatrix ();
+    }
+    else
+    {
+	WRAP (es, s, enableOutputClipping, expoEnableOutputClipping);
+	(*s->enableOutputClipping) (s, transform, region, output);
+	UNWRAP (es, s, enableOutputClipping);
+    }
 }
 
 static void
@@ -1306,6 +1356,7 @@ expoInitScreen (CompPlugin *p,
     WRAP (es, s, drawWindow, expoDrawWindow);
     WRAP (es, s, damageWindowRect, expoDamageWindowRect);
     WRAP (es, s, paintWindow, expoPaintWindow);
+    WRAP (es, s, enableOutputClipping, expoEnableOutputClipping);
 
     s->base.privates[ed->screenPrivateIndex].ptr = es;
 
@@ -1332,6 +1383,7 @@ expoFiniScreen (CompPlugin *p,
     UNWRAP (es, s, drawWindow);
     UNWRAP (es, s, damageWindowRect);
     UNWRAP (es, s, paintWindow);
+    UNWRAP (es, s, enableOutputClipping);
 
     free (es);
 }
