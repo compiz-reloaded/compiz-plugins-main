@@ -26,6 +26,8 @@
 #include <stdlib.h>
 
 #include <compiz-core.h>
+
+#include <X11/Xarch.h>
 #include <jpeglib.h>
 #include "imgjpeg_options.h"
 
@@ -63,10 +65,17 @@ rgbToBGRA (const JSAMPLE *source,
 	for (w = 0; w < width; w++)
 	{
 	    int pos = h * width + w;
+#if __BYTE_ORDER == __BIG_ENDIAN
+	    dest[(pos * 4) + 3] = source[(pos * 3) + 2];    /* blue */
+	    dest[(pos * 4) + 2] = source[(pos * 3) + 1];    /* green */
+	    dest[(pos * 4) + 1] = source[(pos * 3) + 0];    /* red */
+	    dest[(pos * 4) + 0] = alpha;
+#else
 	    dest[(pos * 4) + 0] = source[(pos * 3) + 2];    /* blue */
 	    dest[(pos * 4) + 1] = source[(pos * 3) + 1];    /* green */
 	    dest[(pos * 4) + 2] = source[(pos * 3) + 0];    /* red */
 	    dest[(pos * 4) + 3] = alpha;
+#endif
 	}
 
     return TRUE;
@@ -93,9 +102,15 @@ rgbaToRGB (char    *source,
 	for (w = 0; w < width; w++)
 	{
 	    int pos = h * width + w;
+#if __BYTE_ORDER == __BIG_ENDIAN
+	    d[(pos * 3) + 0] = source[(pos * ps) + 3];	/* red */
+    	    d[(pos * 3) + 1] = source[(pos * ps) + 2];	/* green */
+    	    d[(pos * 3) + 2] = source[(pos * ps) + 1];	/* blue */
+#else
 	    d[(pos * 3) + 0] = source[(pos * ps) + 0];	/* red */
     	    d[(pos * 3) + 1] = source[(pos * ps) + 1];	/* green */
     	    d[(pos * 3) + 2] = source[(pos * ps) + 2];	/* blue */
+#endif
 	}
 
     return TRUE;
