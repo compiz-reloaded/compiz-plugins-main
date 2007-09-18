@@ -732,9 +732,9 @@ expoEnableOutputClipping (CompScreen 	      *s,
     }
     else
     {
-	WRAP (es, s, enableOutputClipping, expoEnableOutputClipping);
-	(*s->enableOutputClipping) (s, transform, region, output);
 	UNWRAP (es, s, enableOutputClipping);
+	(*s->enableOutputClipping) (s, transform, region, output);
+	WRAP (es, s, enableOutputClipping, expoEnableOutputClipping);
     }
 }
 
