@@ -244,9 +244,7 @@ vpswitchLeft (CompDisplay     *d,
 {
     GET_DATA;
 
-    if (s->x == 0)
-	vpswitchGoto (s, s->hsize - 1, s->y);
-    else
+    if (s->x > 0)
 	vpswitchGoto (s, s->x - 1, s->y);
 
     return TRUE;
@@ -261,9 +259,7 @@ vpswitchRight (CompDisplay     *d,
 {
     GET_DATA;
 
-    if (s->x == s->hsize - 1)
-	vpswitchGoto (s, 0, s->y);
-    else
+    if (s->x < s->hsize - 1)
 	vpswitchGoto (s, s->x + 1, s->y);
 
     return TRUE;
@@ -278,9 +274,7 @@ vpswitchUp (CompDisplay     *d,
 {
     GET_DATA;
 
-    if (s->y == 0)
-	vpswitchGoto (s, s->x, s->vsize - 1);
-    else
+    if (s->y > 0)
 	vpswitchGoto (s, s->x, s->y - 1);
 
     return TRUE;
@@ -295,9 +289,7 @@ vpswitchDown (CompDisplay     *d,
 {
     GET_DATA;
 
-    if (s->y == s->vsize - 1)
-	vpswitchGoto (s, s->x, 0);
-    else
+    if (s->y < s->vsize - 1)
 	vpswitchGoto (s, s->x, s->y + 1);
 
     return TRUE;
