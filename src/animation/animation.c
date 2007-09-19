@@ -4267,6 +4267,8 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     as->lastClientListStacking = NULL;
     as->nLastClientListStacking = 0;
 
+    as->output = &s->fullscreenOutput;
+
     WRAP(as, s, preparePaintScreen, animPreparePaintScreen);
     WRAP(as, s, donePaintScreen, animDonePaintScreen);
     WRAP(as, s, paintOutput, animPaintOutput);
