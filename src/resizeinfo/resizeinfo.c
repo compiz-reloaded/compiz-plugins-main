@@ -75,7 +75,7 @@ typedef struct _InfoScreen
     XRectangle resizeGeometry;
 } InfoScreen;
 
-#define RESIZE_POPUP_WIDTH 75
+#define RESIZE_POPUP_WIDTH 85
 #define RESIZE_POPUP_HEIGHT 50
 
 #define GET_INFO_DISPLAY(d)				    \
