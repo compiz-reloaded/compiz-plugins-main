@@ -1366,12 +1366,12 @@ wallPaintTransformedOutput (CompScreen              *s,
 			    CompOutput              *output,
 			    unsigned int            mask)
 {
-    CompTransform sTransform = *transform;
-
     WALL_SCREEN (s);
 
     if (ws->miniScreen)
     {
+	CompTransform sTransform = *transform;
+
 	/* move each screen to the correct output position */
 	matrixTranslate (&sTransform,
 			 -output->region.extents.x1 / output->width,
@@ -1405,18 +1405,18 @@ wallPaintTransformedOutput (CompScreen              *s,
     UNWRAP (ws, s, paintTransformedOutput);
 
     if (!ws->moving)
-	(*s->paintTransformedOutput) (s, sAttrib, &sTransform,
+	(*s->paintTransformedOutput) (s, sAttrib, transform,
 				      region, output, mask);
 
     mask &= ~PAINT_SCREEN_CLEAR_MASK;
 
     if (ws->moving)
     {
-	ScreenPaintAttrib sA = *sAttrib;
-	int               origx = s->x;
-	int               origy = s->y;
-	float             px, py;
-	int               tx, ty;
+	CompTransform sTransform = *transform;
+	int           origx = s->x;
+	int           origy = s->y;
+	float         px, py;
+	int           tx, ty;
 
 	clearTargetOutput (s->display, GL_COLOR_BUFFER_BIT);
 
@@ -1426,39 +1426,46 @@ wallPaintTransformedOutput (CompScreen              *s,
 	if (floor (py) != ceil (py))
 	{
 	    ty = ceil (py) - s->y;
-	    sA.yTranslate = fmod (py, 1) - 1;
+	    matrixTranslate (&sTransform, 0.0f, fmod (py, 1) - 1, 0.0f);
+
 	    if (floor (px) != ceil (px))
 	    {
 		tx = ceil (px) - s->x;
 		moveScreenViewport (s, -tx, -ty, FALSE);
-		sA.xTranslate = 1 - fmod (px,1);
-		(*s->paintTransformedOutput) (s, &sA, &sTransform,
+		matrixTranslate (&sTransform, 1 - fmod (px, 1), 0.0f, 0.0f);
+		(*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 					      &output->region, output, mask);
 		moveScreenViewport (s, tx, ty, FALSE);
+		matrixTranslate (&sTransform, fmod (px, 1) - 1, 0.0f, 0.0f);
 	    }
+
 	    tx = floor (px) - s->x;
 	    moveScreenViewport (s, -tx, -ty, FALSE);
-	    sA.xTranslate = -fmod (px,1);
-	    (*s->paintTransformedOutput) (s, &sA, &sTransform,
+	    matrixTranslate (&sTransform, -fmod (px, 1), 0.0f, 0.0f);
+	    (*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 					  &output->region, output, mask);
 	    moveScreenViewport (s, tx, ty, FALSE);
+	    
+	    matrixTranslate (&sTransform, fmod (px, 1), 0.0f, 0.0f);
+	    matrixTranslate (&sTransform, 0.0f, 1 - fmod (py, 1), 0.0f);
 	}
 
 	ty = floor (py) - s->y;
-	sA.yTranslate = fmod (py,1);
+	matrixTranslate (&sTransform, 0.0f, fmod (py, 1), 0.0f);
 	if (floor (px) != ceil (px))
 	{
 	    tx = ceil (px) - s->x;
 	    moveScreenViewport (s, -tx, -ty, FALSE);
-	    sA.xTranslate = 1 - fmod (px,1);
-	    (*s->paintTransformedOutput) (s, &sA, &sTransform,
+	    matrixTranslate (&sTransform, 1 - fmod (px, 1), 0.0f, 0.0f);
+	    (*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 					  &output->region, output, mask);
 	    moveScreenViewport (s, tx, ty, FALSE);
+	    matrixTranslate (&sTransform, fmod (px, 1) - 1, 0.0f, 0.0f);
 	}
 	tx = floor (px) - s->x;
 	moveScreenViewport (s, - tx, -ty, FALSE);
-	sA.xTranslate = -fmod (px,1);
-	(*s->paintTransformedOutput) (s, &sA, &sTransform,
+	matrixTranslate (&sTransform, -fmod (px, 1), 0.0f, 0.0f);
+	(*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 				      &output->region, output, mask);
 	moveScreenViewport (s, tx, ty, FALSE);
 
