@@ -375,7 +375,7 @@ scaleaddonCheckForWindowAt (CompScreen *s,
 			    int        x,
 			    int        y)
 {
-    int        x1, y1, x2, y2;
+    float      x1, y1, x2, y2;
     CompWindow *w;
 
     for (w = s->reverseWindows; w; w = w->prev)
@@ -384,10 +384,12 @@ scaleaddonCheckForWindowAt (CompScreen *s,
 
         if (sw->slot)
 	{
-	    x1 = sw->tx + WIN_X (w) - w->input.left * sw->scale;
-            y1 = sw->ty + WIN_Y (w) - w->input.top * sw->scale;
-            x2 = sw->tx + WIN_X (w) + (w->width + w->input.right) * sw->scale;
-            y2 = sw->ty + WIN_Y (w) + (w->height + w->input.bottom) * sw->scale;
+	    x1 = sw->tx + w->attrib.x - w->input.left * sw->scale;
+            y1 = sw->ty + w->attrib.y - w->input.top * sw->scale;
+            x2 = sw->tx + w->attrib.x +
+		 (w->width + w->input.right) * sw->scale;
+            y2 = sw->ty + w->attrib.y +
+		 (w->height + w->input.bottom) * sw->scale;
 
             if (x1 <= x && y1 <= y && x2 > x && y2 > y)
                 return w;
