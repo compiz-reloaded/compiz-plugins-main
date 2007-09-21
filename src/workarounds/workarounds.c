@@ -226,10 +226,11 @@ workaroundsDoFixes (CompWindow *w)
             strcmp (w->resName, "notification-daemon") == 0)
         {
             newWmType = CompWindowTypeNotificationMask;
+	    goto AppliedFix;
         }
     }
 
-    if ((w->wmType == newWmType) && workaroundsGetFirefoxMenuFix (d))
+    if (workaroundsGetFirefoxMenuFix (d))
     {
         if (w->wmType == CompWindowTypeNormalMask &&
             w->attrib.override_redirect && w->resName)
@@ -238,29 +239,33 @@ workaroundsDoFixes (CompWindow *w)
 		(strcasecmp (w->resName, "popup") == 0))
 	    {
 		newWmType = CompWindowTypeDropdownMenuMask;
+		goto AppliedFix;
 	    }
 	}
     }
 
     /* FIXME: Basic hack to get Java windows working correctly. */
-    if ((w->wmType == newWmType) && workaroundsGetJavaFix (d) && w->resName)
+    if (workaroundsGetJavaFix (d) && w->resName)
     {
         if ((strcmp (w->resName, "sun-awt-X11-XMenuWindow") == 0) ||
             (strcmp (w->resName, "sun-awt-X11-XWindowPeer") == 0))
         {
             newWmType = CompWindowTypeDropdownMenuMask;
+	    goto AppliedFix;
         }
         else if (strcmp (w->resName, "sun-awt-X11-XDialogPeer") == 0)
         {
             newWmType = CompWindowTypeDialogMask;
+	    goto AppliedFix;
         }
         else if (strcmp (w->resName, "sun-awt-X11-XFramePeer") == 0)
         {
             newWmType = CompWindowTypeNormalMask;
+	    goto AppliedFix;
         }
     }
 
-    if ((newWmType == w->wmType) && workaroundsGetQtFix (d))
+    if (workaroundsGetQtFix (d))
     {
         char *windowRole;
 
@@ -271,24 +276,27 @@ workaroundsDoFixes (CompWindow *w)
             if ((strcmp (windowRole, "toolTipTip") == 0) ||
                 (strcmp (windowRole, "qtooltip_label") == 0))
             {
+		free (windowRole);
                 newWmType = CompWindowTypeTooltipMask;
+		goto AppliedFix;
             }
-
-            free (windowRole);
+	    else
+	    {
+		free (windowRole);
+	    }
         }
 
         /* fix Qt transients - FIXME: is there a better way to detect them? */
-        if (w->wmType == newWmType)
-        {
-            if (!w->resName && w->attrib.override_redirect &&
-		(w->attrib.class == InputOutput) &&
-                (w->wmType == CompWindowTypeUnknownMask))
-            {
-                newWmType = CompWindowTypeDropdownMenuMask;
-            }
-        }
+	if (!w->resName && w->attrib.override_redirect &&
+	    (w->attrib.class == InputOutput) &&
+	    (w->wmType == CompWindowTypeUnknownMask))
+	{
+	    newWmType = CompWindowTypeDropdownMenuMask;
+	    goto AppliedFix;
+	}
     }
 
+AppliedFix:
     if (newWmType != w->wmType)
     {
 	WORKAROUNDS_WINDOW (w);
