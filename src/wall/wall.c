@@ -106,6 +106,8 @@ typedef struct _WallScreen
     int boxTimeout;
     int boxOutputDevice;
 
+    int timer;
+
     Window moveWindow;
 
     Bool              miniScreen;
@@ -479,6 +481,30 @@ wallReleaseMoveWindow (CompScreen *s)
     ws->moveWindow = 0;
 }
 
+static void
+wallComputeTranslation (CompScreen *s,
+			float      *x,
+			float      *y)
+{
+    float dx, dy, elapsed;
+
+    WALL_SCREEN (s);
+
+    elapsed = 1 - (ws->timer / (wallGetSlideDuration (s->display) * 1000));
+
+    if (elapsed < 0.0)
+	elapsed = 0.0;
+    if (elapsed > 1.0)
+	elapsed = 1.0;
+
+    /* Use temporary variables to you can pass in &ps->cur_x */
+    dx = (ws->gotoX - ws->curPosX) * elapsed + ws->curPosX;
+    dy = (ws->gotoY - ws->curPosY) * elapsed + ws->curPosY;
+
+    *x = dx;
+    *y = dy;
+}
+
 static Bool
 wallMoveViewport (CompScreen *s,
 		  int        x,
@@ -540,6 +566,8 @@ wallMoveViewport (CompScreen *s,
 	    ws->boxTimeout = 0;
 	    ws->moving = FALSE;
 	}
+
+	ws->timer = wallGetSlideDuration (s->display) * 1000;
     }
 
     damageScreen (s);
@@ -1307,20 +1335,12 @@ wallPreparePaintScreen (CompScreen *s,
     if (!ws->moving && ws->boxTimeout)
 	ws->boxTimeout -= msSinceLastPaint;
 
+    if (ws->timer)
+	ws->timer -= msSinceLastPaint;
+
     if (ws->moving)
     {
-	float dx, dy, mv;
-
-	mv = (float)msSinceLastPaint /
-	     (wallGetSlideDuration (s->display) * 1000.0f);
-
-	dx = ws->gotoX - ws->curPosX;
-	dy = ws->gotoY - ws->curPosY;
-
-	ws->curPosX = (dx > 0) ? MIN (ws->curPosX + mv, ws->gotoX) :
-	                         MAX (ws->curPosX - mv, ws->gotoX);
-	ws->curPosY = (dy > 0) ? MIN (ws->curPosY + mv, ws->gotoY) :
-	                         MAX(ws->curPosY - mv, ws->gotoY);
+	wallComputeTranslation (s, &ws->curPosX, &ws->curPosY);
 
 	if (ws->moveWindow)
 	{
@@ -1329,6 +1349,8 @@ wallPreparePaintScreen (CompScreen *s,
 	    w = findWindowAtScreen (s, ws->moveWindow);
 	    if (w)
     	    {
+		float dx, dy;
+
 		dx = ws->gotoX - ws->curPosX;
 		dy = ws->gotoY - ws->curPosY;
 
@@ -1346,6 +1368,7 @@ wallPreparePaintScreen (CompScreen *s,
     if (ws->moving && ws->curPosX == ws->gotoX && ws->curPosY == ws->gotoY)
     {
 	ws->moving = FALSE;
+	ws->timer  = 0;
 
 	if (ws->moveWindow)
 	    wallReleaseMoveWindow (s);
