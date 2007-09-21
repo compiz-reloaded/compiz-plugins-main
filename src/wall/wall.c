@@ -1479,44 +1479,42 @@ wallPaintTransformedOutput (CompScreen              *s,
 }
 
 static Bool
-wallPaintWindow(CompWindow              *w,
-		const WindowPaintAttrib *attrib,
-		const CompTransform     *transform,
-		Region                  region,
-		unsigned int            mask)
+wallPaintWindow (CompWindow              *w,
+		 const WindowPaintAttrib *attrib,
+		 const CompTransform     *transform,
+		 Region                  region,
+		 unsigned int            mask)
 {
-	Bool       status;
-	CompScreen *s = w->screen;
+    Bool       status;
+    CompScreen *s = w->screen;
 
-	WALL_SCREEN (s);
+    WALL_SCREEN (s);
 
+    if (ws->miniScreen)
+    {
+	WindowPaintAttrib pA = *attrib;
 
-	if (ws->miniScreen)
-	{
-	    WindowPaintAttrib pA = *attrib;
+	pA.opacity = attrib->opacity * ((float)ws->mSAttribs.opacity / OPAQUE);
+	pA.brightness = attrib->brightness *
+	                ((float)ws->mSAttribs.brightness / BRIGHT);
+	pA.saturation = attrib->saturation *
+			((float)ws->mSAttribs.saturation / COLOR);
 
-	    pA.opacity = attrib->opacity *
-		         ((float)ws->mSAttribs.opacity / OPAQUE);
-	    pA.brightness = attrib->brightness *
-		            ((float)ws->mSAttribs.brightness / BRIGHT);
-	    pA.saturation = attrib->saturation *
-			    ((float)ws->mSAttribs.saturation / COLOR);
+	if (!pA.opacity || !pA.brightness)
+	    mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
 
-	    if (!pA.opacity || !pA.brightness)
-		mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
+	UNWRAP (ws, s, paintWindow);
+	status = (*s->paintWindow) (w, &pA, transform, region, mask);
+    	WRAP (ws, s, paintWindow, wallPaintWindow);
+    }
+    else
+    {
+	UNWRAP (ws, s, paintWindow);
+	status = (*s->paintWindow) (w, attrib, transform, region, mask);
+	WRAP (ws, s, paintWindow, wallPaintWindow);
+    }
 
-	    UNWRAP (ws, s, paintWindow);
-	    status = (*s->paintWindow) (w, &pA, transform, region, mask);
-	    WRAP (ws, s, paintWindow, wallPaintWindow);
-	}
-	else
-	{
-	    UNWRAP (ws, s, paintWindow);
-	    status = (*s->paintWindow) (w, attrib, transform, region, mask);
-	    WRAP (ws, s, paintWindow, wallPaintWindow);
-	}
-
-	return status;
+    return status;
 }
 
 static void
