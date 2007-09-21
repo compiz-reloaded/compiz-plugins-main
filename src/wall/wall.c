@@ -1413,6 +1413,7 @@ wallPaintTransformedOutput (CompScreen              *s,
     if (ws->moving)
     {
 	CompTransform sTransform = *transform;
+	float         xTranslate, yTranslate;
 	int           origx = s->x;
 	int           origy = s->y;
 	float         px, py;
@@ -1426,53 +1427,67 @@ wallPaintTransformedOutput (CompScreen              *s,
 	if (floor (py) != ceil (py))
 	{
 	    ty = ceil (py) - s->y;
-	    matrixTranslate (&sTransform, 0.0f, fmod (py, 1) - 1, 0.0f);
+	    yTranslate = fmod (py, 1) - 1;
+
+	    matrixTranslate (&sTransform, 0.0f, yTranslate, 0.0f);
 
 	    if (floor (px) != ceil (px))
 	    {
 		tx = ceil (px) - s->x;
+		xTranslate = 1 - fmod (px, 1);
+
 		moveScreenViewport (s, -tx, -ty, FALSE);
-		matrixTranslate (&sTransform, 1 - fmod (px, 1), 0.0f, 0.0f);
+		matrixTranslate (&sTransform, xTranslate, 0.0f, 0.0f);
+
 		(*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 					      &output->region, output, mask);
+
+		matrixTranslate (&sTransform, -xTranslate, 0.0f, 0.0f);
 		moveScreenViewport (s, tx, ty, FALSE);
-		matrixTranslate (&sTransform, fmod (px, 1) - 1, 0.0f, 0.0f);
 	    }
 
 	    tx = floor (px) - s->x;
+	    xTranslate = -fmod (px, 1);
+
 	    moveScreenViewport (s, -tx, -ty, FALSE);
-	    matrixTranslate (&sTransform, -fmod (px, 1), 0.0f, 0.0f);
+	    matrixTranslate (&sTransform, xTranslate, 0.0f, 0.0f);
+
 	    (*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 					  &output->region, output, mask);
-	    moveScreenViewport (s, tx, ty, FALSE);
 	    
-	    matrixTranslate (&sTransform, fmod (px, 1), 0.0f, 0.0f);
-	    matrixTranslate (&sTransform, 0.0f, 1 - fmod (py, 1), 0.0f);
+	    moveScreenViewport (s, tx, ty, FALSE);
+	    matrixTranslate (&sTransform, -xTranslate, -yTranslate, 0.0f);
 	}
 
 	ty = floor (py) - s->y;
-	matrixTranslate (&sTransform, 0.0f, fmod (py, 1), 0.0f);
+	yTranslate = fmod (py, 1);
+
+	matrixTranslate (&sTransform, 0.0f, yTranslate, 0.0f);
+
 	if (floor (px) != ceil (px))
 	{
 	    tx = ceil (px) - s->x;
+	    xTranslate = 1 - fmod (px, 1);
+
 	    moveScreenViewport (s, -tx, -ty, FALSE);
-	    matrixTranslate (&sTransform, 1 - fmod (px, 1), 0.0f, 0.0f);
+	    matrixTranslate (&sTransform, xTranslate, 0.0f, 0.0f);
+
 	    (*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 					  &output->region, output, mask);
+
+	    matrixTranslate (&sTransform, -xTranslate, 0.0f, 0.0f);
 	    moveScreenViewport (s, tx, ty, FALSE);
-	    matrixTranslate (&sTransform, fmod (px, 1) - 1, 0.0f, 0.0f);
 	}
+
 	tx = floor (px) - s->x;
-	moveScreenViewport (s, - tx, -ty, FALSE);
-	matrixTranslate (&sTransform, -fmod (px, 1), 0.0f, 0.0f);
+	xTranslate = -fmod (px, 1);
+
+	moveScreenViewport (s, -tx, -ty, FALSE);
+	matrixTranslate (&sTransform, xTranslate, 0.0f, 0.0f);
 	(*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 				      &output->region, output, mask);
-	moveScreenViewport (s, tx, ty, FALSE);
 
-	while (s->x != origx)
-	    moveScreenViewport (s, -1, 0, FALSE);
-	while (s->y != origy)
-	    moveScreenViewport (s, 0, 1, FALSE);
+	moveScreenViewport (s, s->x - origx, s->y - origy, FALSE);
     }
 
     WRAP (ws, s, paintTransformedOutput, wallPaintTransformedOutput);
