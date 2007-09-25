@@ -46,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-09-11 23:29+0200\n"
-"PO-Revision-Date: 2007-09-11 23:28+0200\n"
+"POT-Creation-Date: 2007-09-25 11:20+0530\n"
+"PO-Revision-Date: 2007-09-25 00:09+0200\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -90,34 +90,17 @@ msgstr "Smussa l'angolo in alto a sinistra"
 msgid "Bevel top right corner"
 msgstr "Smussa l'angolo in alto a destra"
 
-msgid "Change the amount of space between the windows."
-msgstr "Modifica la quantità di spazio tra le finestre."
+msgid ""
+"Change the amount of space between the windows (in percent of the cube size)."
+msgstr ""
+"Modifica la quantità di spazio tra le finestre (in percentuale della "
+"dimensione del cubo)."
 
 msgid "Change the speed of the 3D animation"
 msgstr "Modifica la velocità dell'animazione 3D"
 
-msgid "Corner Bevelling"
-msgstr "Smussatura angoli"
-
-msgid "Create Mipmaps"
-msgstr "Crea mipmap"
-
-msgid "Disable Caps for Inside Cube"
-msgstr "Disattivare le immagini ai capi nella modalità «Dentro il cubo»"
-
-msgid "Disables the drawing of the cube caps when the inside cube mode is set."
-msgstr ""
-"Disattiva le immagini superiori e inferiori del cubo nella modalità «Dentro "
-"il cubo»."
-
-msgid "Draw Window Backsides"
-msgstr "Disegnare il retro delle finestre"
-
 msgid "Elevates windows while rotating the cube"
 msgstr "Eleva le finestre alla rotazione del cubo"
-
-msgid "Enables the drawing of the backside of windows."
-msgstr "Attiva la possibilità di disegnare il retro delle finestre."
 
 msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
@@ -126,18 +109,20 @@ msgstr ""
 "Inizializza la visualizzazione 3D solo se la rotazione è gestita dal mouse "
 "(per esempio, il cubo viene ruotato con il mouse)."
 
+msgid "Minimum Cube Size"
+msgstr "Dimensione minima cubo"
+
+msgid "Minimum cube size (in percent)."
+msgstr "Dimensione minima del cubo (in percentuale)."
+
 msgid "Misc. Options"
 msgstr "Altre opzioni"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Smussa gli angoli per coerenza con le decorazioni arrotondate"
 
-msgid ""
-"This will create mipmaps which improve overall texture appearence, and "
-"reduce jagged edges."
-msgstr ""
-"Verranno create mipmap che migliorano l'aspetto generale delle texture e "
-"ridurranno i bordi dentellati."
+msgid "Window Depth"
+msgstr "Profondità finestre"
 
 msgid "Window Match"
 msgstr "Finestre corrispondenti"
@@ -145,11 +130,8 @@ msgstr "Finestre corrispondenti"
 msgid "Window Space"
 msgstr "Spazio tra le finestre"
 
-msgid "Window Width"
-msgstr "Larghezza finestre"
-
-msgid "Window width"
-msgstr "Larghezza finestre"
+msgid "Window depth"
+msgstr "Profondità delle finestre"
 
 msgid "Windows that should be handled by 3D"
 msgstr "Finestre da gestire col 3D"
@@ -231,7 +213,7 @@ msgstr ""
 "alla larghezza della finestra. Valori negativi portano le pieghe in avanti."
 
 msgid "Angle of window at the end of the animation."
-msgstr "Angolo della finestra alla fine dell'animazone."
+msgstr "Angolo della finestra alla fine dell'animazione."
 
 msgid "Animation Selection"
 msgstr "Selezione animazione"
@@ -843,7 +825,7 @@ msgstr ""
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Dream effect."
 msgstr ""
-"Indica se la finestra deve essere ingrandinta verso la barra dei programmi "
+"Indica se la finestra deve essere ingrandita verso la barra dei programmi "
 "quando viene minimizzata con l'effetto «Sogno»."
 
 msgid ""
@@ -888,7 +870,7 @@ msgid ""
 msgstr ""
 "Spessore delle finestre in pixel. Impostando questo parametro a un valore "
 "maggiore di 0 disabiliterà le ombre, la sfocatura e i riflessi durante le "
-"animzazioni."
+"animazioni."
 
 # (ndt) in questo caso lasciato zoom
 # perché ingrandisce e rimpicciolisce la finestra
@@ -2187,7 +2169,7 @@ msgstr "Intervallo raggruppamento schede"
 
 # (ndt) suggerimento
 msgid "Tabbing speed"
-msgstr "Velocità di passaggio da un tab a un altro"
+msgstr "Velocità di passaggio da una scheda a un'altra"
 
 # (ndt) suggerimento
 msgid "Tabbing timestep"
@@ -3929,7 +3911,7 @@ msgid ""
 "levels between the focused and minimum."
 msgstr ""
 "Luminosità della finestra attualmente selezionata. Le finestre assumeranno "
-"un livello di luminosità tra quello della finestra salezionata e il minimo."
+"un livello di luminosità tra quello della finestra selezionata e il minimo."
 
 msgid ""
 "Brightness of the least focused window. Windows will get brightness levels "
@@ -4059,7 +4041,7 @@ msgid "Move down"
 msgstr "Muove in giù"
 
 msgid "Move to the left"
-msgstr "Muove verso sinstra"
+msgstr "Muove verso sinistra"
 
 msgid "Move to the next viewport"
 msgstr "Muove all'area di lavoro successiva"
@@ -4248,7 +4230,7 @@ msgid "Flip down"
 msgstr "Scorre in basso"
 
 msgid "Flip left"
-msgstr "Scorre a sinista"
+msgstr "Scorre a sinistra"
 
 msgid "Flip right"
 msgstr "Scorre a destra"
@@ -4577,3 +4559,34 @@ msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
+
+#~ msgid "Corner Bevelling"
+#~ msgstr "Smussatura angoli"
+
+#~ msgid "Create Mipmaps"
+#~ msgstr "Crea mipmap"
+
+#~ msgid "Disable Caps for Inside Cube"
+#~ msgstr "Disattivare le immagini ai capi nella modalità «Dentro il cubo»"
+
+#~ msgid ""
+#~ "Disables the drawing of the cube caps when the inside cube mode is set."
+#~ msgstr ""
+#~ "Disattiva le immagini superiori e inferiori del cubo nella modalità "
+#~ "«Dentro il cubo»."
+
+#~ msgid "Draw Window Backsides"
+#~ msgstr "Disegnare il retro delle finestre"
+
+#~ msgid "Enables the drawing of the backside of windows."
+#~ msgstr "Attiva la possibilità di disegnare il retro delle finestre."
+
+#~ msgid ""
+#~ "This will create mipmaps which improve overall texture appearence, and "
+#~ "reduce jagged edges."
+#~ msgstr ""
+#~ "Verranno create mipmap che migliorano l'aspetto generale delle texture e "
+#~ "ridurranno i bordi dentellati."
+
+#~ msgid "Window width"
+#~ msgstr "Larghezza finestre"
