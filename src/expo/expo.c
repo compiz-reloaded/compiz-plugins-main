@@ -232,6 +232,11 @@ expoTermExpo (CompDisplay     *d,
 	es->dndState  = DnDNone;
 	es->dndWindow = 0;
 
+	removeScreenAction (s, expoGetDndButton (d));
+	removeScreenAction (s, expoGetExitButton (d));
+	removeScreenAction (s, expoGetNextVpButton (d));
+	removeScreenAction (s, expoGetPrevVpButton (d));
+
 	damageScreen (s);
 	focusDefaultWindow (s->display);
     }
@@ -254,7 +259,7 @@ expoExpo (CompDisplay     *d,
 
     if (s)
     {
-    	EXPO_SCREEN (s);
+	EXPO_SCREEN (s);
 
 	if (otherScreenGrabExist (s, "expo", 0))
 	    return FALSE;
@@ -264,13 +269,21 @@ expoExpo (CompDisplay     *d,
 	    if (!es->grabIndex)
 		es->grabIndex = pushScreenGrab (s, None, "expo");
 
-	    es->expoMode = TRUE;
-	    es->anyClick = FALSE;
-    	    es->dndState  = DnDNone;
-    	    es->dndWindow = None;
+	    es->expoMode    = TRUE;
+	    es->anyClick    = FALSE;
+	    es->doubleClick = FALSE;
+	    es->clickTime   = 0;
+
+	    es->dndState  = DnDNone;
+	    es->dndWindow = None;
 
 	    es->selectedVX = es->origVX = s->x;
 	    es->selectedVY = es->origVY = s->y;
+
+	    addScreenAction (s, expoGetDndButton (d));
+	    addScreenAction (s, expoGetExitButton (d));
+	    addScreenAction (s, expoGetNextVpButton (d));
+	    addScreenAction (s, expoGetPrevVpButton (d));
 
 	    damageScreen (s);
 	}
