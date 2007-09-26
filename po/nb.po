@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the Compiz Fusion plugins package.
 # Ketil W. Aanensen <ketil.w.aanensen@gmail.com>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: fusion-plugins 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-09-23 17:45+0530\n"
-"PO-Revision-Date: 2007-09-21 00:00+0200\n"
+"POT-Creation-Date: 2007-09-26 12:48+0530\n"
+"PO-Revision-Date: 2007-09-25 00:00+0200\n"
 "Last-Translator: Ketil W. Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <ketil.w.aanensen@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -52,50 +51,37 @@ msgstr "Skråstill øverst, venstre hjørne"
 msgid "Bevel top right corner"
 msgstr "Skråstill øverst, høyre hjørne"
 
-msgid "Change the amount of space between the windows."
+#, fuzzy
+msgid ""
+"Change the amount of space between the windows (in percent of the cube size)."
 msgstr "Endre mellomrom mellom vinduene"
 
 msgid "Change the speed of the 3D animation"
 msgstr "Endre farten på 3D-animasjonen"
 
-msgid "Corner Bevelling"
-msgstr "Skråstilling av hjørner"
-
-msgid "Create Mipmaps"
-msgstr "Lag MIP-kart"
-
-msgid "Disable Caps for Inside Cube"
-msgstr "Slå av luer for Innsiden av kuben "
-
-msgid "Disables the drawing of the cube caps when the inside cube mode is set."
-msgstr "Slår av tegning av kubeluer når modus for innside av kuben er aktivert"
-
-msgid "Draw Window Backsides"
-msgstr "Tegn vinduenes baksider"
-
 msgid "Elevates windows while rotating the cube"
 msgstr "Hever vinduer mens kuben roterer"
-
-msgid "Enables the drawing of the backside of windows."
-msgstr "Aktiverer tegning av baksider på vinduene"
 
 msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
 "cube via the mouse)"
 msgstr "Initierer 3D-visning kun hvis rotasjon er styrt av mus."
 
+msgid "Minimum Cube Size"
+msgstr "Minimum kubestørrelse"
+
+msgid "Minimum cube size (in percent)."
+msgstr "Minimum kubestørrelse (i prosent)"
+
 msgid "Misc. Options"
 msgstr "Diverse valg"
 
 msgid "Roundoff corners for consistency with rounded decorations"
-msgstr "Avrund hjørner for overensstemmelse med avrundene dekorasjoner"
+msgstr "Rund av hjørner for overensstemmelse med avrundede dekorasjoner"
 
-msgid ""
-"This will create mipmaps which improve overall texture appearence, and "
-"reduce jagged edges."
-msgstr ""
-"Dette vil lage MIP-kart som forbedrer helhetlig teksturutseende, og "
-"reduserer hakkete kanter."
+#, fuzzy
+msgid "Window Depth"
+msgstr "Samsvar mellom vinduer"
 
 msgid "Window Match"
 msgstr "Samsvar mellom vinduer"
@@ -103,10 +89,8 @@ msgstr "Samsvar mellom vinduer"
 msgid "Window Space"
 msgstr "Avstand mellom vinduer"
 
-msgid "Window Width"
-msgstr "Vindusbredde"
-
-msgid "Window width"
+#, fuzzy
+msgid "Window depth"
 msgstr "Vindusbredde"
 
 msgid "Windows that should be handled by 3D"
@@ -127,7 +111,7 @@ msgstr "Skarphet for uttonede vinduer"
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
-"Gjør det litt enklere å konsenterer seg, ved å tone ut alle vinduer bortsett "
+"Gjør det litt enklere å konsentrere seg, ved å tone ut alle vinduer bortsett "
 "fra det aktive."
 
 msgid "Misc. options"
@@ -218,10 +202,10 @@ msgid "Automatic"
 msgstr "Automatisk"
 
 msgid "Away Angle"
-msgstr "Bortevinkel"
+msgstr "Vinkel ved bortglidning"
 
 msgid "Away Position"
-msgstr "Borteposisjon"
+msgstr "Posisjon ved bortglidning"
 
 msgid "Beam"
 msgstr "Strål"
@@ -251,7 +235,7 @@ msgid "Beam life."
 msgstr "Levetid for stråle."
 
 msgid "Beam slowdown."
-msgstr "Nedbremsing fo stråle."
+msgstr "Nedbremsing for stråle."
 
 msgid "Beam width."
 msgstr "Strålebredde."
@@ -334,7 +318,7 @@ msgid "Fire Particle Slowdown"
 msgstr "Brannpartikkelse nedbremsing"
 
 msgid "Fire Smoke"
-msgstr "Røyk for brann"
+msgstr "Røyk"
 
 msgid "Fire constant speed"
 msgstr "Konstanthastighet for brann"
@@ -358,7 +342,7 @@ msgid "Fire particle slowdown."
 msgstr "Nedbremsing for brannpartikkel."
 
 msgid "Fire smoke."
-msgstr "Røyk for brann."
+msgstr "Brannen ryker."
 
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Fast innhold i vinduer gjennom opprullinganimasjonen."
@@ -379,7 +363,7 @@ msgid "Fold Direction"
 msgstr "Bretteretning"
 
 msgid "Fold opening direction for pieces in Razr effect."
-msgstr "Begynnende bretteretning for deler i Razr-effekten."
+msgstr "Begynnende bretteretning for deler i \"Razr\"-effekten."
 
 msgid "Glide 1"
 msgstr "Glide 1"
@@ -388,7 +372,7 @@ msgid "Glide 2"
 msgstr "Glide 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr "Ha tilfeldige farger for branneffekten, også kjent som Mystisk Brann"
+msgstr "Ha tilfeldige farger for branneffekten, også kjent som mystisk brann"
 
 msgid "Hexagonal"
 msgstr "Sekskantet"
@@ -400,10 +384,10 @@ msgid "Horizontal Folds Amplitude"
 msgstr "Amplitude for horisontale bretter"
 
 msgid "How spring-like the Sidekick animation should be."
-msgstr "Hvor fjær-lik Sidespark-animasjonen skal være."
+msgstr "Hvor fjær-lik sidespark-animasjonen skal være."
 
 msgid "How spring-like the Zoom animation should be."
-msgstr "Hvor fjær-lik Skalering-animasjonen skal være."
+msgstr "Hvor fjær-lik forstørrelses/forminskings-animasjonen skal være."
 
 msgid "In"
 msgstr "Inn"
@@ -427,25 +411,25 @@ msgid "Magic Lamp"
 msgstr "Magisk lampe"
 
 msgid "Magic Lamp Grid Y Resolution"
-msgstr "Y-oppløsning for Magisk lampes rutenett"
+msgstr "Y-oppløsning for magisk lampes rutenett"
 
 msgid "Magic Lamp Max Wave Amplitude"
-msgstr "Max. bølgeamplitude for Magisk lampe"
+msgstr "Max. bølgeamplitude for magisk lampe"
 
 msgid "Magic Lamp Max Waves"
-msgstr "Max. bølger for Magisk lampe"
+msgstr "Max. bølger for magisk lampe"
 
 msgid "Magic Lamp Min Wave Amplitude"
-msgstr "Min. bølgeamplitude for Magisk lampe"
+msgstr "Min. bølgeamplitude for magisk lampe"
 
 msgid "Magic Lamp Open Start Width"
-msgstr "Startbredde for Åpne med Magisk lampe"
+msgstr "Startbredde for åpne med magisk lampe"
 
 msgid "Magic Lamp Open/Close Moving End"
-msgstr "Bevegende ende for Åpne/lukk med Magisk lampe"
+msgstr "Bevegende ende for åpne/lukk med magisk lampe"
 
 msgid "Make fire effect duration be dependent on window height."
-msgstr "Gjør varigheten på Brann-effekten avhengig av vindushøyde."
+msgstr "Gjør varigheten på brann-effekten avhengig av vindushøyde."
 
 msgid "Minimize Animation"
 msgstr "Minimer-animasjon"
@@ -454,7 +438,7 @@ msgid "Minimize Effect"
 msgstr "Minimer-effekt"
 
 msgid "Minimize/Unminimize Only"
-msgstr "Kun Minimer/avminimer"
+msgstr "Kun minimer/avminimer"
 
 msgid "Movement direction(s) for window pieces."
 msgstr "Bevegelsesretning(er) for vindusbiter."
@@ -474,7 +458,7 @@ msgstr "Antall brannpartikler."
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
-"Antall rotasjoner for Sidespark (pluss eller minus 10% for tilfeldighet)."
+"Antall rotasjoner for sidespark (pluss eller minus 10% for tilfeldighet)."
 
 msgid "Off"
 msgstr "Av"
@@ -483,10 +467,10 @@ msgid "On"
 msgstr "På"
 
 msgid "On open/close, move magic lamp ending point with the mouse pointer."
-msgstr "På åpne/lukk, beveg sluttpunktet for Magisk lampe med musepekeren."
+msgstr "På åpne/lukk, beveg sluttpunktet for magisk lampe med musepekeren."
 
 msgid "On open/close, move vacuum ending point with the mouse pointer."
-msgstr "På åpne/lukk, beveg sluttpunktet for Støvsuger med musepekeren."
+msgstr "På åpne/lukk, beveg sluttpunktet for støvsuger med musepekeren."
 
 msgid "Open Animation"
 msgstr "Åpne-animasjon"
@@ -510,7 +494,7 @@ msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
 msgstr ""
-"Utvalg av effekter til å velge fra hvis Tilfeldig-effekt er valgt. Klikk "
+"Utvalg av effekter til å velge fra hvis tilfeldig effekt er valgt. Klikk "
 "tilbakestill for å gjenopprette full liste."
 
 msgid "Random"
@@ -544,7 +528,7 @@ msgid "Roll Up"
 msgstr "Rull opp"
 
 msgid "Rollup Fixed Interior"
-msgstr "Fast innhold ved Rull opp"
+msgstr "Fast innhold ved rull opp"
 
 msgid "Rotation Angle"
 msgstr "Rotasjonsvinkel"
@@ -562,10 +546,10 @@ msgid "Sidekick"
 msgstr "Sidespark"
 
 msgid "Sidekick Number of Rotations"
-msgstr "Antall rotasjoner for Sidespark"
+msgstr "Antall rotasjoner for sidespark"
 
 msgid "Sidekick Springiness"
-msgstr "Fjæring for Sidespark"
+msgstr "Fjæring for sidespark"
 
 msgid "Skewer"
 msgstr "Skjevhet"
@@ -580,13 +564,13 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
 msgstr ""
-"Oppstartsbredde for Åpne-effekt, og endebredde for Lukk-effekt for Magisk "
+"Oppstartsbredde for åpneeffekt, og endebredde for lukkeeffekt for magisk "
 "lampe."
 
 msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
-"Oppstartsbredde for Åpne-effekt, og endebredde for Lukk-effekt for Støvsuger."
+"Oppstartsbredde for åpneeffekt, og endebredde for lukkeeffekt for støvsuger."
 
 msgid "Tessellation Type"
 msgstr "Tesseleringstype"
@@ -610,7 +594,7 @@ msgid ""
 "become."
 msgstr ""
 "Antall millisekunder mellom hver gjengivelse av den intense animasjonen (f."
-"eks, Brenn, Strål). Jo høyere antall, jo mer hakkete blir bevegelsene."
+"eks, brenn, strål). Jo høyere antall, jo mer hakkete blir bevegelsene."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
@@ -656,18 +640,18 @@ msgstr ""
 "antall celler i rutenettet langs vindusbredden."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
-msgstr "Maksimal amplitude (bølgestørrelse) for Magisk lampe."
+msgstr "Maksimal amplitude (bølgestørrelse) for magisk lampe."
 
 msgid "The maximum number of waves for Magic Lamp."
-msgstr "Maksimalt antall bølger for Magisk lampe."
+msgstr "Maksimalt antall bølger for magisk lampe."
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
-msgstr "Minimum amplitude (bølgestørrelse) for Magisk lampe."
+msgstr "Minimum amplitude (bølgestørrelse) for magisk lampe."
 
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
-"Antall horisontale bretter som forekommer i Horisontal brett-animasjonen."
+"Antall horisontale bretter som forekommer i animasjonen horisontal brett."
 
 msgid "The wave amplitude (size of the waves) relative to the window height."
 msgstr "Bølgeamplituden (bølgestørrelse), relativ til vindushøyden."
@@ -706,20 +690,20 @@ msgid "Vacuum"
 msgstr "Støvsuger"
 
 msgid "Vacuum Grid Y Resolution"
-msgstr "Y-oppløsning for Støvsugers rutenett"
+msgstr "Y-oppløsning for støvsugers rutenett"
 
 msgid "Vacuum Open Start Width"
-msgstr "Begynnende startbredde for Støvsuger"
+msgstr "Begynnende startbredde for støvsuger"
 
 msgid "Vacuum Open/Close Moving End"
-msgstr "Bevegende ende for Støvsuger Åpne/lukke"
+msgstr "Bevegende ende for støvsuger åpne/lukke"
 
 msgid ""
 "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number "
 "of points used to define the curves. The higher the number, the smoother the "
 "curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
-"Oppløsning for Magisk lampes rutenett-vertex. Dette er antallet punkter som "
+"Oppløsning for magisk lampes rutenett-vertex. Dette er antallet punkter som "
 "blir brukt til å definere kurvene. Jo høyere tall, jo mykere kurver, men det "
 "vil bli en reduksjon i ytelse (CPU-bruk økes)."
 
@@ -728,7 +712,7 @@ msgid ""
 "points used to define the curves. The higher the number, the smoother the "
 "curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
-"Oppløsning for Støvsugers rutenett-vertex. Dette er antallet punkter som "
+"Oppløsning for støvsugers rutenett-vertex. Dette er antallet punkter som "
 "blir brukt til å definere kurvene. Jo høyere tall, jo mykere kurver, men det "
 "vil bli en reduksjon i ytelse (CPU-bruk økes)."
 
@@ -744,39 +728,39 @@ msgstr "Bølgebredde"
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
 msgstr ""
-"Om vinduet skal fly til oppgavelinjen når det blir minimert med Fly-effekten."
+"Om vinduet skal fly til oppgavelinjen når det blir minimert med effekten fly."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
 "Om vinduet skal skaleres til oppgavelinjen når det blir minimert med "
-"Avrundede bretter-effekten."
+"effekten avrundede bretter."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Dream effect."
 msgstr ""
-"Om vinduet skal skaleres til oppgavelinjen når det blir minimert med Drøm-"
-"effekten."
+"Om vinduet skal skaleres til oppgavelinjen når det blir minimert med "
+"effekten drøm."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 1 effect."
 msgstr ""
-"Om vinduet skal skaleres til oppgavelinjen når det blir minimert med Glide 1-"
-"effekten."
+"Om vinduet skal skaleres til oppgavelinjen når det blir minimert med "
+"effekten glide 1."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 2 effect."
 msgstr ""
-"Om vinduet skal skaleres til oppgavelinjen når det blir minimert med Glide 2-"
-"effekten."
+"Om vinduet skal skaleres til oppgavelinjen når det blir minimert med "
+"effekten glide 2."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Horizontal "
 "Folds effect."
 msgstr ""
-"Om vinduet skal skaleres til oppgavelinjen når det blir minimert med Glide 2-"
-"effekten."
+"Om vinduet skal skaleres til oppgavelinjen når det blir minimert med "
+"effekten glide 2."
 
 msgid "Window Grid Height"
 msgstr "Høyde for rutenenett for vindu"
@@ -801,22 +785,23 @@ msgstr ""
 "skygge, utydeliggjør og speiling gjennom animasjonen."
 
 msgid "Zoom"
-msgstr "Skaler"
+msgstr "Forstørr/forminsk"
 
 msgid "Zoom Springiness"
-msgstr "Fjæring ved skalering"
+msgstr "Fjæring ved forstørring/forminsking"
 
 msgid "Zoom from Center"
-msgstr "Skaler fra midten"
+msgstr "Forstørr/forminsk fra midten"
 
 msgid "Zoom from center when playing the Sidekick animation."
-msgstr "Skaler fra midten når Sidespark-animasjonen avspilles."
+msgstr "Forstørr/forminsk fra midten når sidespark-animasjonen avspilles."
 
 msgid "Zoom from center when playing the Zoom animation."
-msgstr "Skaler fra midten når Skaler-animasjonen avspilles"
+msgstr ""
+"Forstørr/forminsk fra midten når forstørr/forminsk-animasjonen avspilles"
 
 msgid "Zoom to TaskBar on Minimize"
-msgstr "Skaler til oppgavelinje ved minimering"
+msgstr "Forminsk til oppgavelinje ved minimering"
 
 msgid "A simple benchmark plugin"
 msgstr "Et enkelt ytelsestest-tillegg"
@@ -876,7 +861,7 @@ msgid "Color filter"
 msgstr "Fargefilter"
 
 msgid "Exclude windows"
-msgstr "Eksluder vinduer"
+msgstr "Ekskluder vinduer"
 
 msgid "Filter colors for accessibility purposes"
 msgstr "Filtrer farger for tilgjengelighetshensyn"
@@ -894,15 +879,15 @@ msgid ""
 "List of plain text filter files that should be applied when filtering "
 "windows or screen."
 msgstr ""
-"List med filterfiler i ren tekst som skal ble brukes ved filtrering av  "
-"vinduer eller skjerm."
+"Liste med filterfiler i ren tekst som skal brukes ved filtrering av  vinduer "
+"eller skjerm."
 
 msgid ""
 "Select filter to use from filters list : either apply all filters or only "
 "one specific filter (triggering this action switches filters one by one and "
 "eventually comes back to the \"all filters\" mode)."
 msgstr ""
-"Velg filter å bruke fra fra filterlisten : enten bruk alle filtre, eller kun "
+"Velg filter å bruke fra fra filterlisten: enten bruk alle filtre, eller kun "
 "ett spesifikt filter (utløsing av denne handlingen bytter filter etter "
 "hverandre, og kommer til slutt tilbake til \"all filters\"-modus)."
 
@@ -1091,10 +1076,10 @@ msgid "Above"
 msgstr "Over"
 
 msgid "Auto zoom"
-msgstr "Autoskaler"
+msgstr "Autoforstørr/forminsk"
 
 msgid "Auto zoom only on Mouse Rotate"
-msgstr "Autoskaler kun ved muserotering"
+msgstr "Autoforstørr/forminsk kun ved muserotering"
 
 msgid "Color of the ground (far)."
 msgstr "Farge på bakken (langt unna)."
@@ -1142,13 +1127,13 @@ msgid "Reflection mode."
 msgstr "Refleksjonsmodus."
 
 msgid "Zoom out automatically only on mouse rotate."
-msgstr "Skaler ut automatisk kun ved muserotering."
+msgstr "Forminsk automatisk kun ved muserotering."
 
 msgid "Zoom out automatically to make the cube fit to the screen."
-msgstr "Skaler ut automatisk for å få kuben til å passe til skjermen."
+msgstr "Forminsk automatisk for å få kuben til å passe til skjermen."
 
 msgid "Animation used when switching to expo mode"
-msgstr "Animasjon som brukes ved bytte til Expo-modus"
+msgstr "Animasjon som brukes ved bytte til ekspo-modus"
 
 msgid "Aspect Ratio"
 msgstr "Størrelsesforhold"
@@ -1157,13 +1142,13 @@ msgid "Button binding for drag &amp; drop of windows"
 msgstr "Snarvei for dra-og-slipp av vinduer"
 
 msgid "Button binding to exit expo"
-msgstr "Snarvei for å avslutte Expo"
+msgstr "Snarvei for å avslutte ekspo"
 
 msgid "Button binding to switch to next viewport in expo"
 msgstr "Snarvei for å bytte til neste arbeidsområde"
 
 msgid "Distance of the expo wall"
-msgstr "Avstand til Expo-veggen"
+msgstr "Avstand til ekspo-veggen"
 
 msgid "Double click time"
 msgstr "Tid for dobbelklikk"
@@ -1172,52 +1157,52 @@ msgid "Drag&amp;drop"
 msgstr "Dra-og-slipp"
 
 msgid "Duration of the zoomout animation"
-msgstr "Varighet av skaler-ut-animasjonen"
+msgstr "Varighet for forminsk-animasjonen"
 
 msgid "Engage wall expo mode button binding"
-msgstr "Velg museknapp for Expo-modus"
+msgstr "Velg museknapp for ekspo-modus"
 
 msgid "Engage wall expo mode edge binding"
-msgstr "Velg kantsnarvei for Expo-modus"
+msgstr "Velg kantsnarvei for ekspo-modus"
 
 msgid "Engage wall expo mode key binding"
-msgstr "Velg hurtigtast for Expo-modus"
+msgstr "Velg hurtigtast for ekspo-modus"
 
 msgid "Exit expo"
-msgstr "Avslutt Expo"
+msgstr "Avslutt ekspo"
 
 msgid "Expo"
-msgstr "Expo"
+msgstr "Ekspo"
 
 msgid "Expo Animation"
-msgstr "Expo-animasjon"
+msgstr "Ekspo-animasjon"
 
 msgid "Expo Plugin"
-msgstr "Expo-tillegg"
+msgstr "Eksponer-illegg"
 
 msgid "Expo button"
-msgstr "Expo-knapp"
+msgstr "Ekspo-knapp"
 
 msgid "Expo edge"
-msgstr "Expo-kant"
+msgstr "Ekspo-kant"
 
 msgid "Expo key"
-msgstr "Expo-tast"
+msgstr "Ekspo-tast"
 
 msgid "Expo mode aspect ratio"
-msgstr "Størrelsesforhold for Expo-modus"
+msgstr "Størrelsesforhold for ekspo-modus"
 
 msgid "Fade + Zoom"
-msgstr "Ton inn/ut + skaler"
+msgstr "Ton inn/ut + forstørr/forminsk"
 
 msgid "Generate mipmaps in expo mode"
-msgstr "Lag MIP-kart i Expo-modus"
+msgstr "Lag MIP-kart i ekspo-modus"
 
 msgid "Hide panels/docks in expo"
-msgstr "Skjul paneler/docks i Expo"
+msgstr "Skjul paneler/dokker i ekspo"
 
 msgid "Hide panels/docks in expo."
-msgstr "Skjul paneler/docks i Expo"
+msgstr "Skjul paneler/dokker i ekspo"
 
 msgid "Immediate moves"
 msgstr "Umiddelbare forflytninger"
@@ -1247,27 +1232,27 @@ msgid "Reflection Scale"
 msgstr "Speilstørrelse"
 
 msgid "Scale factor of the expo wall reflection"
-msgstr "Skaleringsfaktor for Expo-veggens speiling"
+msgstr "Skaleringsfaktor for ekspo-veggens speiling"
 
 msgid ""
 "Selects how the expo wall is displayed if multiple output devices are used."
-msgstr "Velger hvordan Expo-veggen vises hvis flere skjermenheter brukes."
+msgstr "Velger hvordan ekspo-veggen vises hvis flere skjermenheter brukes."
 
 msgid ""
 "Selects if windows movements in expo mode should be immediate - this among "
 "other things disables wobbliness"
 msgstr ""
-"Velger om vindusbevegelser i Expo-modus skal være umiddelbare. Dette slår bl."
-"a. av ustødighet"
+"Velger om vindusbevegelser i ekspo-modus skal være umiddelbare. Dette slår "
+"bl.a. av ustødighet"
 
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Vis et speil av arbeidsområdene på bakken"
 
 msgid "Tilt view"
-msgstr "Skråstill utsikt"
+msgstr "Skråstill"
 
 msgid "Tilt window view in expo mode"
-msgstr "Skråstill vindusutsikt i Expo-modus"
+msgstr "Skråstill i ekspo-modus"
 
 msgid "Timeframe to execute a double click"
 msgstr "Tidsramme for å utføre et dobbelklikk"
@@ -1645,11 +1630,9 @@ msgstr "Gjengir tannhjul på innsiden av den gjennomsiktige kuben"
 msgid "Animation Options"
 msgstr "Animasjonsvalg"
 
-# fuzzy
 msgid "Autotab windows on creation"
 msgstr "Lag automatisk arkfaner på vinduer når de skapes"
 
-# fuzzy
 msgid "Autotab windows with themselves on window creation"
 msgstr "Vinduer får automatisk arkfaner med seg selv når de skapes"
 
@@ -1686,13 +1669,12 @@ msgstr "Lag MIP-kart for miniatyrer"
 msgid "Create mipmaps for thumbnails in the tab bar"
 msgstr "Lag MIP-kart for miniatyrer i fanelinjen"
 
-# fuzzy, extremely
 msgid ""
 "Distance (in pixels) between the tab bar and the dragged slot for applying "
 "the spring model. If the distance is larger than that value, the model isn't "
 "applied."
 msgstr ""
-"Avstand (i piksler) mellom fanelinjen og den plassdragningen for å bruke "
+"Avstand (i piksler) mellom fanelinjen og den dragningsplassen for å bruke "
 "fjærmodellen. Hvis avstanden er større enn denne verdien blir ikke modellen "
 "brukt."
 
@@ -2034,9 +2016,8 @@ msgstr "Fanelinjens stil"
 msgid "The type of the glow"
 msgstr "Type glød"
 
-# fuzzy
 msgid "The width of the tab bar outline"
-msgstr "Bredden på fanelinjens outline"
+msgstr "Bredden på fanelinjens omriss"
 
 msgid "Thumb Size"
 msgstr "Miniatyrstørrelse"
@@ -2188,7 +2169,6 @@ msgstr "Vinduer som skal ekskluderes fra å bli negative"
 msgid "Active Opacity"
 msgstr "Aktiv dekkevne"
 
-# fuzzy, "Opacify" translated to "Dekk"
 msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
 "already."
@@ -3403,15 +3383,12 @@ msgstr "Skriftstørrelse for vindustittelen."
 msgid "Animation Duration"
 msgstr "Animasjonsvarighet"
 
-# fuzzy
 msgid "Cascade"
 msgstr "Tett-i-tett"
 
-# fuzzy
 msgid "Cascade Delta"
 msgstr "Mellomrom for tett-i-tett"
 
-# fuzzy
 msgid "Cascade Windows"
 msgstr "Legg vinduer tett i tett"
 
@@ -3582,14 +3559,14 @@ msgid ""
 "Opacity of the currently focused window. Windows will get opacity levels "
 "between the focused and minimum."
 msgstr ""
-"Dekkevne for det fokuserte vinduet. Vinuder vil få dekkevnenivåer mellom det "
+"Dekkevne for det fokuserte vinduet. Vinduer vil få dekkevnenivåer mellom det "
 "fokuserte og det minimale."
 
 msgid ""
 "Opacity of the least focused window. Windows will get opacity levels between "
 "the focused and minimum."
 msgstr ""
-"Dekkevne for det minst fokuserte vinduet. Vinuder vil få dekkevnenivåer "
+"Dekkevne for det minst fokuserte vinduet. Vinduer vil få dekkevnenivåer "
 "mellom det fokuserte og det minimale."
 
 msgid "Saturation Level of Focused Windows"
@@ -3602,14 +3579,14 @@ msgid ""
 "Saturation of the currently focused window. Windows will get saturation "
 "levels between the focused and minimum."
 msgstr ""
-"Metning for det fokuserte vinduet. Vinuder vil få metningsnivåer mellom det "
+"Metning for det fokuserte vinduet. Vinduer vil få metningsnivåer mellom det "
 "fokuserte og det minimale."
 
 msgid ""
 "Saturation of the least focused window. Windows will get saturation levels "
 "between the focused and minimum."
 msgstr ""
-"Metning for det minst fokuserte vinduet. Vinuder vil få metningsnivåer "
+"Metning for det minst fokuserte vinduet. Vinduer vil få metningsnivåer "
 "mellom det fokuserte og det minimale."
 
 msgid ""
@@ -4057,7 +4034,7 @@ msgid "Non movable windows"
 msgstr "Ikke-bevegelige vinduer"
 
 msgid "Non resizable windows"
-msgstr "Vinuder som ikke kan endre størrelse"
+msgstr "Vinduer som ikke kan endre størrelse"
 
 msgid "Set window as non closable"
 msgstr "Sett vindu som ikke-lukkbart"
@@ -4102,17 +4079,16 @@ msgid "Window Rules"
 msgstr "Vindusregler"
 
 msgid "Windows that should be resized by default"
-msgstr "Vinuder som skal ha fått endret størrelse som standard"
+msgstr "Vinduer som skal ha fått endret størrelse som standard"
 
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "Vinduer som skal bli behandles som om de ikke støtter gjennomsiktighet"
 
 msgid "Windows will not have focus"
-msgstr "Vinuder som ikke vil få fokus"
+msgstr "Vinduer som ikke vil få fokus"
 
-# fuzzy
 msgid "\"On all desktops\" sticky match"
-msgstr "\"På alle arbeidsområder\" klistretreff"
+msgstr "Vinduer som klistres ved \"På alle arbeidsområder\""
 
 msgid "Firefox Menu Fix"
 msgstr "Korreksjon for Firefox-meny"
@@ -4136,7 +4112,7 @@ msgid "Legacy Fullscreen Support"
 msgstr "Støtte for gammel type fullskjerm"
 
 msgid "Make \"on all desktops\" windows \"sticky\""
-msgstr "La \"på alle skrivebord\"-vinduer bli \"klistrevinduer\""
+msgstr "La vinduer som merkes \"på alle skrivebord\" klistre"
 
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
@@ -4166,3 +4142,33 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 
 msgid "Workarounds"
 msgstr "Omveier"
+
+#~ msgid "Corner Bevelling"
+#~ msgstr "Skråstilling av hjørner"
+
+#~ msgid "Create Mipmaps"
+#~ msgstr "Lag MIP-kart"
+
+#~ msgid "Disable Caps for Inside Cube"
+#~ msgstr "Slå av luer for Innsiden av kuben "
+
+#~ msgid ""
+#~ "Disables the drawing of the cube caps when the inside cube mode is set."
+#~ msgstr ""
+#~ "Slår av tegning av kubeluer når modus for innside av kuben er aktivert"
+
+#~ msgid "Draw Window Backsides"
+#~ msgstr "Tegn vinduenes baksider"
+
+#~ msgid "Enables the drawing of the backside of windows."
+#~ msgstr "Aktiverer tegning av baksider på vinduene"
+
+#~ msgid ""
+#~ "This will create mipmaps which improve overall texture appearence, and "
+#~ "reduce jagged edges."
+#~ msgstr ""
+#~ "Dette vil lage MIP-kart som forbedrer helhetlig teksturutseende, og "
+#~ "reduserer hakkete kanter."
+
+#~ msgid "Window width"
+#~ msgstr "Vindusbredde"
