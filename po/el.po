@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-09-21 13:58+0530\n"
-"PO-Revision-Date: 2007-09-16 00:05+0200\n"
+"POT-Creation-Date: 2007-09-26 12:51+0530\n"
+"PO-Revision-Date: 2007-09-26 01:05+0200\n"
 "Last-Translator: djdoo <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -52,34 +52,17 @@ msgstr "Λόξεψη της πάνω αριστερής γωνίας"
 msgid "Bevel top right corner"
 msgstr "Λόξεψη της πάνω δεξιάς γωνίας"
 
-msgid "Change the amount of space between the windows."
-msgstr "Αλλαγή του ποσοστού του χώρου μεταξύ των παραθύρων."
+msgid ""
+"Change the amount of space between the windows (in percent of the cube size)."
+msgstr ""
+"Αλλαγή του ποσού του χώρου μεταξύ των παραθύρων (σε ποσοστό του μεγέθους του "
+"κύβου)."
 
 msgid "Change the speed of the 3D animation"
 msgstr "Αλλαγή της ταχύτητας της τρισδιάστατης γραφικής απεικόνισης"
 
-msgid "Corner Bevelling"
-msgstr "Λόξεμα Γωνίας"
-
-msgid "Create Mipmaps"
-msgstr "Δημιουργία Mipmaps"
-
-msgid "Disable Caps for Inside Cube"
-msgstr "Απενεργοποίηση Καπακιών του Εσωτερικού Κύβου"
-
-msgid "Disables the drawing of the cube caps when the inside cube mode is set."
-msgstr ""
-"Απενεργοποιεί την εμφάνιση των καπακιών του κύβου όταν έχει επιλεγεί ο τύπος "
-"εσωτερικού κύβου."
-
-msgid "Draw Window Backsides"
-msgstr "Σχεδίαση της Πίσω Πλευράς του Παραθύρου"
-
 msgid "Elevates windows while rotating the cube"
 msgstr "Ανυψώνει τα παράθυρα όταν γυρίζει ο κύβος"
-
-msgid "Enables the drawing of the backside of windows."
-msgstr "Ενεργοποιεί την εμφάνιση της πίσω μεριάς των παραθύρων."
 
 msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
@@ -88,18 +71,20 @@ msgstr ""
 "Εκκινεί την τρισδιάστατη απεικόνιση μόνο αν κινηθεί με το ποντίκι.  (Πχ. "
 "Γυρίζετε τον κύβο με το ποντίκι)"
 
+msgid "Minimum Cube Size"
+msgstr "Ελάχιστο Μέγεθος Κύβου"
+
+msgid "Minimum cube size (in percent)."
+msgstr "Ελάχιστο μέγεθος κύβου (σε ποσοστό επι της εκατό)"
+
 msgid "Misc. Options"
 msgstr "Διάφορες Επιλογές"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Στρογγύλεμμα των γωνιών για συνοχή με τις στρογγυλεμένες διακοσμήσεις"
 
-msgid ""
-"This will create mipmaps which improve overall texture appearence, and "
-"reduce jagged edges."
-msgstr ""
-"Δημιουργεί Mipmaps που βελτιώνουν την εμφάνιση των υφών γενικά, και "
-"περιορίζει τις κομμένες άκρες."
+msgid "Window Depth"
+msgstr "Βάθος Παραθύρου"
 
 msgid "Window Match"
 msgstr "Ταίριασμα Παραθύρου"
@@ -107,11 +92,8 @@ msgstr "Ταίριασμα Παραθύρου"
 msgid "Window Space"
 msgstr "Χώρος Παραθύρου"
 
-msgid "Window Width"
-msgstr "Πλάτος Παραθύρου"
-
-msgid "Window width"
-msgstr "Πλάτος Παραθύρου"
+msgid "Window depth"
+msgstr "Βάθος παραθύρου"
 
 msgid "Windows that should be handled by 3D"
 msgstr "Παράθυρα που πρέπει να διαχειριστούν ως τρισδιάστατα"
@@ -253,7 +235,7 @@ msgid "Beam Spacing"
 msgstr "Χώρος Ανάπτυξης της Ακτινοβολίας"
 
 msgid "Beam Up"
-msgstr "Διακτίνηση"
+msgstr "Διακτινισμός"
 
 msgid "Beam Width"
 msgstr "Πλάτος Ακτινοβολίας"
@@ -3611,9 +3593,9 @@ msgid ""
 "accordingly. This may cause problems if you dont leave them enough space."
 msgstr ""
 "Προσπάθεια για ένωση των παραθύρων όταν πλακιδιοποιούνται οριζόντια, κάθετα "
-"ή αριστερά ετσι ώστε όταν μορφοποιείται ένα παραθύρου τα "
-"περιφερειακάπαράθυρα μορφοποιούνται επίσης. Μπορεί να προκληθούν προβλήματα "
-"αν δεν υπάρχει αρκετός χώρος."
+"ή αριστερά ετσι ώστε όταν μορφοποιείται ένα παραθύρου τα περιφερειακά "
+"παράθυρα μορφοποιούνται επίσης. Μπορεί να προκληθούν προβλήματα αν δεν "
+"υπάρχει αρκετός χώρος."
 
 msgid "Windows which should be excluded from tiling"
 msgstr "Παράθυρα που πρέπει να αποκλειστούν απ το να γίνουν πλακίδια"
@@ -4268,6 +4250,37 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Μοντίφες"
+
+#~ msgid "Corner Bevelling"
+#~ msgstr "Λόξεμα Γωνίας"
+
+#~ msgid "Create Mipmaps"
+#~ msgstr "Δημιουργία Mipmaps"
+
+#~ msgid "Disable Caps for Inside Cube"
+#~ msgstr "Απενεργοποίηση Καπακιών του Εσωτερικού Κύβου"
+
+#~ msgid ""
+#~ "Disables the drawing of the cube caps when the inside cube mode is set."
+#~ msgstr ""
+#~ "Απενεργοποιεί την εμφάνιση των καπακιών του κύβου όταν έχει επιλεγεί ο "
+#~ "τύπος εσωτερικού κύβου."
+
+#~ msgid "Draw Window Backsides"
+#~ msgstr "Σχεδίαση της Πίσω Πλευράς του Παραθύρου"
+
+#~ msgid "Enables the drawing of the backside of windows."
+#~ msgstr "Ενεργοποιεί την εμφάνιση της πίσω μεριάς των παραθύρων."
+
+#~ msgid ""
+#~ "This will create mipmaps which improve overall texture appearence, and "
+#~ "reduce jagged edges."
+#~ msgstr ""
+#~ "Δημιουργεί Mipmaps που βελτιώνουν την εμφάνιση των υφών γενικά, και "
+#~ "περιορίζει τις κομμένες άκρες."
+
+#~ msgid "Window width"
+#~ msgstr "Πλάτος Παραθύρου"
 
 #~ msgid "Set window as widget"
 #~ msgstr "Θέσε παράθυρο ως συσκευή"
