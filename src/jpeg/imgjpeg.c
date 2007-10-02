@@ -24,6 +24,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <setjmp.h>
 
 #include <compiz-core.h>
 
@@ -32,6 +33,12 @@
 #include "imgjpeg_options.h"
 
 static int displayPrivateIndex;
+
+struct jpegErrorMgr
+{
+    struct  jpeg_error_mgr pub;	/* "public" fields */
+    jmp_buf setjmp_buffer;	/* for return to caller */
+};
 
 typedef struct _JPEGDisplay
 {
@@ -116,6 +123,21 @@ rgbaToRGB (char    *source,
     return TRUE;
 }
 
+static void
+jpegErrorExit (j_common_ptr cinfo)
+{
+    char                buffer[JMSG_LENGTH_MAX];
+    struct jpegErrorMgr *err = (struct jpegErrorMgr *) cinfo->err;
+
+    /* Format the message */
+    (*cinfo->err->format_message) (cinfo, buffer);
+
+    printf("%s\n", buffer);
+
+    /* Return control to the setjmp point */
+    longjmp (err->setjmp_buffer, 1);
+}
+
 static Bool
 readJPEGFileToImage (FILE *file,
 		     int  *width,
@@ -123,7 +145,7 @@ readJPEGFileToImage (FILE *file,
 		     void **data)
 {
     struct jpeg_decompress_struct cinfo;
-    struct jpeg_error_mgr         jerr;
+    struct jpegErrorMgr           jerr;
     JSAMPLE                       *buf;
     JSAMPROW                      *rows;
     int                           i;
@@ -132,11 +154,20 @@ readJPEGFileToImage (FILE *file,
     if (!file)
 	return FALSE;
 
-    cinfo.err = jpeg_std_error (&jerr);
+    cinfo.err = jpeg_std_error (&jerr.pub);
+    jerr.pub.error_exit = jpegErrorExit;
+
+    if (setjmp (jerr.setjmp_buffer))
+    {
+	/* this is called on decompression errors */
+	jpeg_destroy_decompress (&cinfo);
+	return FALSE;
+    }
 
     jpeg_create_decompress (&cinfo);
 
     jpeg_stdio_src (&cinfo, file);
+    
     jpeg_read_header (&cinfo, TRUE);
 
     cinfo.out_color_space = JCS_RGB;
@@ -210,7 +241,7 @@ writeJPEG (CompDisplay *d,
     cinfo.in_color_space   = JCS_RGB;
 
     jpeg_set_defaults (&cinfo);
-    jpeg_set_quality (&cinfo, imgjpegGetQuality(d), TRUE);
+    jpeg_set_quality (&cinfo, imgjpegGetQuality (d), TRUE);
     jpeg_start_compress (&cinfo, TRUE);
 
     while (cinfo.next_scanline < cinfo.image_height)
