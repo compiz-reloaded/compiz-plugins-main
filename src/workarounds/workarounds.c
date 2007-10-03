@@ -45,8 +45,6 @@ typedef struct _WorkaroundsScreen {
 } WorkaroundsScreen;
 
 typedef struct _WorkaroundsWindow {
-    CompTimeoutHandle updateHandle;
-
     Bool adjustedWinType;
     Bool madeSticky;
     Bool isFullscreen;
@@ -314,21 +312,6 @@ AppliedFix:
 	workaroundsFixupFullscreen (w);
 }
 
-static Bool
-workaroundsUpdateTimeout (void *closure)
-{
-    CompWindow *w = (CompWindow *) closure;
-
-    WORKAROUNDS_WINDOW (w);
-
-    workaroundsUpdateSticky (w);
-    workaroundsDoFixes (w);
-
-    ww->updateHandle = 0;
-
-    return FALSE;
-}
-
 static void
 workaroundsDisplayOptionChanged (CompDisplay               *d,
 				 CompOption                *opt,
@@ -349,6 +332,22 @@ workaroundsHandleEvent (CompDisplay *d,
     CompWindow *w;
 
     WORKAROUNDS_DISPLAY (d);
+
+    switch (event->type) {
+    case MapRequest:
+	w = findWindowAtDisplay (d, event->xmaprequest.window);
+	if (w)
+	{
+	    workaroundsUpdateSticky (w);
+	    workaroundsDoFixes (w);
+	}
+	break;
+    case MapNotify:
+	w = findWindowAtDisplay (d, event->xmap.window);
+	if (w && w->attrib.override_redirect)
+	    workaroundsDoFixes (w);
+	break;
+    }
 
     UNWRAP (wd, d, handleEvent);
     (*d->handleEvent) (d, event);
@@ -491,8 +490,6 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
-    ww->updateHandle = compAddTimeout (0, workaroundsUpdateTimeout, (void *) w);
-
     return TRUE;
 }
 
@@ -511,9 +508,6 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
     if (w->state & CompWindowStateStickyMask && ww->madeSticky)
 	setWindowState (w->screen->display,
 			w->state & ~CompWindowStateStickyMask, w->id);
-
-    if (ww->updateHandle)
-	compRemoveTimeout (ww->updateHandle);
 
     free (ww);
 }
