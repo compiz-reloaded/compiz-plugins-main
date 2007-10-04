@@ -166,26 +166,31 @@ workaroundsFixupFullscreen (CompWindow *w)
 
     WORKAROUNDS_WINDOW (w);
 
-    if (w->type & CompWindowTypeDesktopMask)
-	return;
-
-    /* get output region for window */
-    output = outputDeviceForWindow (w);
-    box = &w->screen->outputDev[output].region.extents;
-
-    /* does the size match the output rectangle? */
-    isFullSize = (w->serverX == box->x1) && (w->serverY == box->y1) &&
-	         (w->serverWidth == (box->x2 - box->x1)) &&
-		 (w->serverHeight == (box->y2 - box->y1));
-
-    /* if not, check if it matches the whole screen */
-    if (!isFullSize)
+    if (w->wmType & CompWindowTypeDesktopMask)
     {
-	if ((w->serverX == 0) && (w->serverY == 0) &&
-	    (w->serverWidth == w->screen->width) &&
-	    (w->serverHeight == w->screen->height))
+	/* desktop windows are implicitly fullscreen */
+	isFullSize = FALSE;
+    }
+    else
+    {
+    	/* get output region for window */
+	output = outputDeviceForWindow (w);
+	box = &w->screen->outputDev[output].region.extents;
+
+	/* does the size match the output rectangle? */
+	isFullSize = (w->serverX == box->x1) && (w->serverY == box->y1) &&
+	             (w->serverWidth == (box->x2 - box->x1)) &&
+		     (w->serverHeight == (box->y2 - box->y1));
+
+	/* if not, check if it matches the whole screen */
+	if (!isFullSize)
 	{
-	    isFullSize = TRUE;
+	    if ((w->serverX == 0) && (w->serverY == 0) &&
+		(w->serverWidth == w->screen->width) &&
+		(w->serverHeight == w->screen->height))
+	    {
+		isFullSize = TRUE;
+	    }
 	}
     }
 
@@ -363,7 +368,8 @@ workaroundsHandleEvent (CompDisplay *d,
         }
 	break;
     case PropertyNotify:
-	if (event->xproperty.atom == XA_WM_CLASS)
+	if ((event->xproperty.atom == XA_WM_CLASS) ||
+	    (event->xproperty.atom == d->winTypeAtom))
 	{
 	    w = findWindowAtDisplay (d, event->xproperty.window);
 	    if (w)
