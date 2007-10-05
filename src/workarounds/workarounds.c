@@ -47,6 +47,7 @@ typedef struct _WorkaroundsScreen {
 typedef struct _WorkaroundsWindow {
     Bool adjustedWinType;
     Bool madeSticky;
+    Bool madeFullscreen;
     Bool isFullscreen;
 } WorkaroundsWindow;
 
@@ -202,6 +203,7 @@ workaroundsFixupFullscreen (CompWindow *w)
 
 	if (isFullSize)
 	    state |= CompWindowStateFullscreenMask;
+	ww->madeFullscreen = isFullSize;
 
 	if (state != w->state)
 	{
@@ -339,6 +341,16 @@ workaroundsHandleEvent (CompDisplay *d,
     WORKAROUNDS_DISPLAY (d);
 
     switch (event->type) {
+    case ConfigureRequest:
+	w = findWindowAtDisplay (d, event->xconfigurerequest.window);
+	if (w)
+	{
+	    WORKAROUNDS_WINDOW (w);
+
+	    if (ww->madeFullscreen)
+		w->state &= ~CompWindowStateFullscreenMask;
+	}
+	break;
     case MapRequest:
 	w = findWindowAtDisplay (d, event->xmaprequest.window);
 	if (w)
@@ -359,6 +371,16 @@ workaroundsHandleEvent (CompDisplay *d,
     WRAP (wd, d, handleEvent, workaroundsHandleEvent);
 
     switch (event->type) {
+    case ConfigureRequest:
+	w = findWindowAtDisplay (d, event->xconfigurerequest.window);
+	if (w)
+	{
+	    WORKAROUNDS_WINDOW (w);
+
+	    if (ww->madeFullscreen)
+		w->state |= CompWindowStateFullscreenMask;
+	}
+	break;
     case ClientMessage:
 	if (event->xclient.message_type == d->winDesktopAtom)
         {
@@ -493,6 +515,7 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
     ww->madeSticky = FALSE;
     ww->adjustedWinType = FALSE;
     ww->isFullscreen = FALSE;
+    ww->madeFullscreen = FALSE;
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
