@@ -159,7 +159,7 @@ expoFinishWindowMovement (CompWindow *w)
 
     syncWindowPosition (w);
     (*s->windowUngrabNotify) (w);
-
+    
     moveScreenViewport (s, s->x - es->selectedVX,
     			s->y - es->selectedVY, TRUE);
 
@@ -204,6 +204,74 @@ expoFinishWindowMovement (CompWindow *w)
 }
 
 static Bool
+expoDnDInit (CompDisplay     *d,
+	     CompAction      *action,
+	     CompActionState state,
+	     CompOption      *option,
+	     int             nOption)
+{
+    CompScreen *s;
+    Window     xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s   = findScreenAtDisplay (d, xid);
+
+    if (s)
+    {
+    	EXPO_SCREEN (s);
+
+	if (es->expoMode)
+	{
+	    es->dndState = DnDStart;
+	    action->state |= CompActionStateTermButton;
+	    damageScreen(s);
+	}
+	else
+	    return FALSE;
+
+	return TRUE;
+    }
+
+    return FALSE;
+}
+
+static Bool
+expoDnDFini (CompDisplay     *d,
+	     CompAction      *action,
+	     CompActionState state,
+	     CompOption      *option,
+	     int             nOption)
+{
+    CompScreen *s;
+    Window     xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s   = findScreenAtDisplay (d, xid);
+
+    if (s)
+    {
+    	EXPO_SCREEN (s);
+
+	if (es->dndState == DnDDuring || es->dndState == DnDStart)
+	{
+	    if (es->dndWindow)
+		expoFinishWindowMovement (es->dndWindow);
+
+	    es->dndState = DnDNone;
+	    es->dndWindow = NULL;
+	    action->state &= ~CompActionStateTermButton;
+	    damageScreen(s);
+	}
+	else
+	    return FALSE;
+
+	return TRUE;
+    }
+
+    return FALSE;
+}
+
+static Bool
 expoTermExpo (CompDisplay     *d,
 	      CompAction      *action,
 	      CompActionState state,
@@ -221,8 +289,8 @@ expoTermExpo (CompDisplay     *d,
 
 	es->expoMode = FALSE;
 
-	if (es->dndWindow)
-	    syncWindowPosition (es->dndWindow);
+	if (es->dndState != DnDNone)
+	    expoDnDFini (d, action, state, option, nOption);
 
 	if (state & CompActionStateCancel)
 	    es->vpUpdateMode = VPUpdatePrevious;
@@ -291,74 +359,6 @@ expoExpo (CompDisplay     *d,
 	{
 	    expoTermExpo (d, action, state, option, nOption);
 	}
-
-	return TRUE;
-    }
-
-    return FALSE;
-}
-
-static Bool
-expoDnDInit (CompDisplay     *d,
-	     CompAction      *action,
-	     CompActionState state,
-	     CompOption      *option,
-	     int             nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
-
-    if (s)
-    {
-    	EXPO_SCREEN (s);
-
-	if (es->expoMode)
-	{
-	    es->dndState = DnDStart;
-	    action->state |= CompActionStateTermButton;
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
-
-	return TRUE;
-    }
-
-    return FALSE;
-}
-
-static Bool
-expoDnDFini (CompDisplay     *d,
-	     CompAction      *action,
-	     CompActionState state,
-	     CompOption      *option,
-	     int             nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
-
-    if (s)
-    {
-    	EXPO_SCREEN (s);
-
-	if (es->dndState == DnDDuring || es->dndState == DnDStart)
-	{
-	    if (es->dndWindow)
-		expoFinishWindowMovement (es->dndWindow);
-
-	    es->dndState = DnDNone;
-	    es->dndWindow = NULL;
-	    action->state &= ~CompActionStateTermButton;
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
 
 	return TRUE;
     }
