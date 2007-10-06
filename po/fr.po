@@ -2,22 +2,23 @@
 # Copyright (C) 2007 opencompositing.org
 # This file is distributed under the same license as the compiz-fusion package.
 # Guillaume Seguin <guillaume@segu.in>, 2007.
+# Tristan RABLAT <tristan.rablat@gmail.com>, 2007.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-08-01 11:35+0530\n"
+"POT-Creation-Date: 2007-10-06 21:45+0530\n"
 "PO-Revision-Date: 2007-06-30 19:58+0200\n"
-"Last-Translator: Guillaume Seguin <guillaume@segu.in>\n"
+"Last-Translator: Tristan RABLAT <tristan.rablat@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists@compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "3D Only On Mouse Rotate"
-msgstr "Activer 3D uniquement lors d'une rotation initiée avec la souris"
+msgstr "Activer la 3D uniquement lors d'une rotation initiée avec la souris"
 
 msgid "3D Windows"
 msgstr "Fenêtres 3D"
@@ -53,34 +54,16 @@ msgstr "Biseauter le coin supérieur gauche"
 msgid "Bevel top right corner"
 msgstr "Biseauter le coin supérieur droit"
 
-msgid "Change the amount of space between the windows."
+#, fuzzy
+msgid ""
+"Change the amount of space between the windows (in percent of the cube size)."
 msgstr "Modifier la distance entre les fenêtres"
 
 msgid "Change the speed of the 3D animation"
 msgstr "Modifier la vitesse de l'animation 3D"
 
-msgid "Corner Bevelling"
-msgstr ""
-
-msgid "Create Mipmaps"
-msgstr "Créer des Mipmaps"
-
-msgid "Disable Caps for Inside Cube"
-msgstr ""
-"Ne pas dessiner les faces supérieure et inférieure à l'intérieur du cube"
-
-msgid "Disables the drawing of the cube caps when the inside cube mode is set."
-msgstr ""
-"Ne pas dessiner les faces supérieure et inférieure à l'intérieur du cube"
-
-msgid "Draw Window Backsides"
-msgstr "Dessiner la face arrière des fenêtres"
-
 msgid "Elevates windows while rotating the cube"
 msgstr "Surélever les fenêtres lors de la rotation"
-
-msgid "Enables the drawing of the backside of windows."
-msgstr "Activer le dessin des faces arrières des fenêtres"
 
 msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
@@ -89,18 +72,21 @@ msgstr ""
 "Initialiser l'affichage 3D seulement si la rotation se fait à partir de la "
 "souris. (Ex. Vous faites pivoter le cube à l'aide de la souris"
 
+msgid "Minimum Cube Size"
+msgstr ""
+
+msgid "Minimum cube size (in percent)."
+msgstr ""
+
 msgid "Misc. Options"
 msgstr "Options Diverses"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Arrondir les coins pour aller avec les décorations arrondies"
 
-msgid ""
-"This will create mipmaps which improve overall texture appearence, and "
-"reduce jagged edges."
-msgstr ""
-"Ceci créera des mipmaps qui amélioreront l'apparence générale des textures, "
-"et qui réduieront les bords déchiquetés"
+#, fuzzy
+msgid "Window Depth"
+msgstr "Correspondance de fenêtre"
 
 msgid "Window Match"
 msgstr "Correspondance de fenêtre"
@@ -108,10 +94,8 @@ msgstr "Correspondance de fenêtre"
 msgid "Window Space"
 msgstr "Espacement des fenêtres"
 
-msgid "Window Width"
-msgstr "Épaisseur des fenêtres"
-
-msgid "Window width"
+#, fuzzy
+msgid "Window depth"
 msgstr "Épaisseur des fenêtres"
 
 msgid "Windows that should be handled by 3D"
@@ -164,6 +148,12 @@ msgstr "Types de fenêtres"
 
 msgid "Window types that should be Opacified."
 msgstr "Types de fenêtres qui devraient être opacifiées"
+
+msgid "Airplane"
+msgstr ""
+
+msgid "Airplane Flying Path Length"
+msgstr ""
 
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
@@ -371,12 +361,22 @@ msgstr ""
 msgid "Fixed window interior during the Rollup animation."
 msgstr ""
 
+msgid "Fly to TaskBar on Minimize"
+msgstr ""
+
 #, fuzzy
 msgid "Focus Animation"
 msgstr "Vitesse d'animation"
 
 msgid "Focus Effect"
 msgstr ""
+
+msgid "Fold"
+msgstr ""
+
+#, fuzzy
+msgid "Fold Direction"
+msgstr "Direction de la neige"
 
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr ""
@@ -408,11 +408,24 @@ msgstr ""
 msgid "How spring-like the Zoom animation should be."
 msgstr ""
 
+msgid "In"
+msgstr ""
+
+msgid "In-out"
+msgstr ""
+
 msgid "Leaf Spread"
 msgstr ""
 
 msgid "Left"
 msgstr "Gauche"
+
+#, fuzzy
+msgid "Left-right"
+msgstr "Gauche/Droite"
+
+msgid "Length of airplane's flying path."
+msgstr ""
 
 msgid "Magic Lamp"
 msgstr ""
@@ -447,6 +460,10 @@ msgstr ""
 
 msgid "Minimize/Unminimize Only"
 msgstr ""
+
+#, fuzzy
+msgid "Movement direction(s) for window pieces."
+msgstr "Animer les réflexions lorsqu'une fenêtre bouge"
 
 msgid "None"
 msgstr "Aucun"
@@ -492,6 +509,9 @@ msgstr ""
 msgid "Options"
 msgstr "Options"
 
+msgid "Out"
+msgstr ""
+
 msgid "Pool"
 msgstr ""
 
@@ -534,6 +554,12 @@ msgstr ""
 msgid "Rollup Fixed Interior"
 msgstr ""
 
+msgid "Rotation Angle"
+msgstr ""
+
+msgid "Rotation angle of animated window pieces (in degrees)."
+msgstr ""
+
 #, fuzzy
 msgid "Shade Animation"
 msgstr "Vitesse d'animation"
@@ -550,6 +576,13 @@ msgstr ""
 
 msgid "Sidekick Springiness"
 msgstr ""
+
+msgid "Skewer"
+msgstr ""
+
+#, fuzzy
+msgid "Skewer Direction"
+msgstr "Direction de la neige"
 
 #, fuzzy
 msgid "Spacing between beams."
@@ -571,6 +604,9 @@ msgstr "Type d'animation pour la mosaïque"
 msgid "Tessellation type for exploding window pieces."
 msgstr ""
 
+msgid "Tessellation type for window pieces."
+msgstr ""
+
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
@@ -580,6 +616,16 @@ msgid ""
 "The amount of time in milliseconds between each render of the intense "
 "animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
 "become."
+msgstr ""
+
+msgid ""
+"The animated window will be split into pieces along a grid. Specify the "
+"number of grid cells along the height of the window."
+msgstr ""
+
+msgid ""
+"The animated window will be split into pieces along a grid. Specify the "
+"number of grid cells along the width of the window."
 msgstr ""
 
 msgid "The animation effect shown when closing a window."
@@ -607,12 +653,12 @@ msgid ""
 "number of grid cells along the width of the window."
 msgstr ""
 
+msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
+msgstr ""
+
 #, fuzzy
 msgid "The maximum number of waves for Magic Lamp."
 msgstr "Nombre maximum de particules actives"
-
-msgid "The maxmimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
 msgstr ""
@@ -635,14 +681,24 @@ msgstr "Types de fenêtres qui devraient être opacifiées"
 msgid "Thickness"
 msgstr ""
 
-msgid "Thickness (in pixels) of exploding window pieces."
+msgid "Thickness of Animated Polygons"
 msgstr ""
 
 msgid "Thickness of Exploding Polygons"
 msgstr ""
 
+msgid "Thickness of animated window pieces (in pixels)."
+msgstr ""
+
+msgid "Thickness of exploding window pieces (in pixels)."
+msgstr ""
+
 msgid "Up"
 msgstr "Haut"
+
+#, fuzzy
+msgid "Up-down"
+msgstr "Haut/Bas"
 
 msgid "Use various animations as window effects"
 msgstr ""
@@ -682,6 +738,10 @@ msgid "Wave Width"
 msgstr "Épaisseur des fenêtres"
 
 msgid ""
+"Whether the window should fly to taskbar when minimized with Airplane effect."
+msgstr ""
+
+msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
@@ -710,6 +770,10 @@ msgstr "Épaisseur des fenêtres"
 #, fuzzy
 msgid "Window Grid Width"
 msgstr "Épaisseur des fenêtres"
+
+#, fuzzy
+msgid "Window folding direction."
+msgstr "Direction de la neige"
 
 #, fuzzy
 msgid "Window that should animate with this effect when focused."
@@ -795,14 +859,84 @@ msgstr "Position verticale de la fenêtre de benchmark"
 msgid "Y position"
 msgstr "Position verticale"
 
+#, fuzzy
+msgid "Color filter"
+msgstr "Opacité par couleur"
+
+#, fuzzy
+msgid "Exclude windows"
+msgstr "Fenêtres exclues"
+
+msgid "Filter colors for accessibility purposes"
+msgstr ""
+
+#, fuzzy
+msgid "Filter window decorations"
+msgstr "Réflexion pour les décorations"
+
+#, fuzzy
+msgid "Filtered windows"
+msgstr "Fenêtres en mosaïque"
+
+msgid "Filters files"
+msgstr ""
+
+msgid ""
+"List of plain text filter files that should be applied when filtering "
+"windows or screen."
+msgstr ""
+
+msgid ""
+"Select filter to use from filters list : either apply all filters or only "
+"one specific filter (triggering this action switches filters one by one and "
+"eventually comes back to the \"all filters\" mode)."
+msgstr ""
+
+msgid "Switch filter"
+msgstr ""
+
+msgid "Toggle filtering for currently focused window."
+msgstr ""
+
+#, fuzzy
+msgid "Toggle filtering for every window on the screen."
+msgstr "Redimensionner toutes les fenêtres du groupe"
+
+#, fuzzy
+msgid "Toggle screen filtering"
+msgstr "Interrupteur Mosaïque"
+
+#, fuzzy
+msgid "Toggle window filtering"
+msgstr "Afficher la fenêtre en plein écran"
+
+msgid ""
+"Window decorations (borders and titlebar) will be filtered as well as window "
+"contents if enabled."
+msgstr ""
+
+#, fuzzy
+msgid "Windows to be filtered by default."
+msgstr "Fenêtres devant être estompées du bureau"
+
+#, fuzzy
+msgid "Windows to exclude from filtering."
+msgstr "Fenêtres devant être exclues du mode mosaïque"
+
 msgid "Activate Crash Handler."
 msgstr "Activer le gestionnaire de crash."
 
 msgid "Compiz crash handler plugin"
 msgstr "Gestionnaire de crash de Compiz"
 
+msgid "Crash Dump Directory"
+msgstr ""
+
 msgid "Crash handler"
 msgstr "Gestionnaire de crash"
+
+msgid "Directory to dump the crash logs to."
+msgstr ""
 
 msgid "Enable Crash Handler"
 msgstr "Activer le gestionnaire de crash"
@@ -819,6 +953,126 @@ msgstr "Commande de lancement du gestionnaire de fenêtres."
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr ""
 "Commande de lancement du gestionnaire de fenêtres. NE PAS ENTRER COMPIZ!"
+
+msgid "Adjust bottom face image to rotation"
+msgstr ""
+
+msgid "Adjust bottom image"
+msgstr ""
+
+msgid "Adjust top face image to rotation"
+msgstr ""
+
+msgid "Adjust top image"
+msgstr ""
+
+msgid "Advance to next image for bottom face of the cube"
+msgstr ""
+
+msgid "Advance to next image for top face of the cube"
+msgstr ""
+
+msgid "Appearance"
+msgstr "Apparence"
+
+msgid "Behaviour"
+msgstr "Comportement"
+
+#, fuzzy
+msgid "Bottom image files"
+msgstr "Fichier image pour le logo."
+
+msgid "Clamp bottom face image to border"
+msgstr ""
+
+msgid ""
+"Clamp bottom face image to border. This is often the best if your image "
+"doesn't fit the size of the cube or if it's transparent. It can lead to some "
+"ugly dotted lines when enabled (especially with large enough images) though."
+msgstr ""
+
+msgid "Clamp top face image to border"
+msgstr ""
+
+msgid ""
+"Clamp top face image to border. This is often the best if your image doesn't "
+"fit the size of the cube or if it's transparent. It can lead to some ugly "
+"dotted lines when enabled (especially with large enough images) though."
+msgstr ""
+
+msgid "Color of bottom face of the cube"
+msgstr ""
+
+msgid "Color of top face of the cube"
+msgstr ""
+
+#, fuzzy
+msgid "Cube Bottom Color"
+msgstr "Couleur de la bordure de l'onglet"
+
+msgid "Cube Caps"
+msgstr ""
+
+#, fuzzy
+msgid "Cube Top Color"
+msgstr "Couleur de la bordure de l'onglet"
+
+msgid "Draw bottom face"
+msgstr ""
+
+msgid "Draw bottom face of the cube"
+msgstr ""
+
+msgid "Draw top face"
+msgstr ""
+
+msgid "Draw top face of the cube"
+msgstr ""
+
+msgid "Go back to previous image for bottom face of the cube"
+msgstr ""
+
+msgid "Go back to previous image for top face of the cube"
+msgstr ""
+
+msgid ""
+"List of PNG and SVG files that should be rendered on bottom face of cube"
+msgstr ""
+
+msgid "List of PNG and SVG files that should be rendered on top face of cube"
+msgstr ""
+
+msgid "Next bottom image"
+msgstr ""
+
+msgid "Next top image"
+msgstr ""
+
+#, fuzzy
+msgid "Prev bottom image"
+msgstr "Biseauter en bas à droite"
+
+msgid "Prev top image"
+msgstr ""
+
+msgid "Render images on top and bottom of the cube"
+msgstr ""
+
+msgid "Scale bottom image"
+msgstr ""
+
+msgid "Scale image to cover bottom face of cube"
+msgstr ""
+
+msgid "Scale image to cover top face of cube"
+msgstr ""
+
+msgid "Scale top image"
+msgstr ""
+
+#, fuzzy
+msgid "Top image files"
+msgstr "Fichier image pour le logo."
 
 msgid "Above"
 msgstr "Au-dessus"
@@ -885,23 +1139,41 @@ msgstr ""
 msgid "Animation used when switching to expo mode"
 msgstr ""
 
-msgid "Appearance"
-msgstr "Apparence"
-
 msgid "Aspect Ratio"
 msgstr ""
 
-msgid "Behaviour"
-msgstr "Comportement"
+msgid "Button binding for drag &amp; drop of windows"
+msgstr ""
+
+msgid "Button binding to exit expo"
+msgstr ""
+
+msgid "Button binding to switch to next viewport in expo"
+msgstr ""
 
 msgid "Distance of the expo wall"
+msgstr ""
+
+msgid "Double click time"
+msgstr ""
+
+msgid "Drag&amp;drop"
 msgstr ""
 
 #, fuzzy
 msgid "Duration of the zoomout animation"
 msgstr "Durée (en ms) de l'animation Mosaïque"
 
-msgid "Engage wall expo mode"
+msgid "Engage wall expo mode button binding"
+msgstr ""
+
+msgid "Engage wall expo mode edge binding"
+msgstr ""
+
+msgid "Engage wall expo mode key binding"
+msgstr ""
+
+msgid "Exit expo"
 msgstr ""
 
 msgid "Expo"
@@ -912,6 +1184,15 @@ msgid "Expo Animation"
 msgstr "Vitesse d'animation"
 
 msgid "Expo Plugin"
+msgstr ""
+
+msgid "Expo button"
+msgstr ""
+
+msgid "Expo edge"
+msgstr ""
+
+msgid "Expo key"
 msgstr ""
 
 msgid "Expo mode aspect ratio"
@@ -940,10 +1221,16 @@ msgstr "Créer des Mipmaps"
 msgid "Multi Output Mode"
 msgstr ""
 
+msgid "Next viewport"
+msgstr ""
+
 msgid "One big wall"
 msgstr ""
 
 msgid "One wall per output"
+msgstr ""
+
+msgid "Previous viewport"
 msgstr ""
 
 msgid "Reflection"
@@ -975,12 +1262,252 @@ msgstr "Mosaïque"
 msgid "Tilt window view in expo mode"
 msgstr ""
 
+msgid "Timeframe to execute a double click"
+msgstr ""
+
 msgid "Vortex"
 msgstr ""
 
 #, fuzzy
 msgid "Zoom time"
 msgstr "Zoom"
+
+msgid "Always fit to window on focus track"
+msgstr ""
+
+msgid ""
+"Always keep the zoomed area in sync with where the mouse is, and vice versa. "
+"Use this if you don't intend to draw a scaled pointer or hide the original "
+"pointer. The zoomed area will move as you move your mouse."
+msgstr ""
+
+#, fuzzy
+msgid "Animation"
+msgstr "Vitesse d'animation"
+
+msgid ""
+"Attempt to keep the zoomed mouse visible by warping it when it is moved "
+"outside the zoom area."
+msgstr ""
+
+msgid "Center the mouse"
+msgstr ""
+
+msgid "Enable focus tracking"
+msgstr ""
+
+msgid "Enable this to get a gradually larger mouse pointer as you zoom in"
+msgstr ""
+
+msgid ""
+"Enable this to target the focused window when jumping to a specific zoom "
+"level. Disable to target mouse."
+msgstr ""
+
+#, fuzzy
+msgid "Enhanced Zoom Desktop"
+msgstr "Fondre au bureau"
+
+msgid "Enhanced zoom functions for visually imparied and others"
+msgstr ""
+
+msgid "Filter Linear"
+msgstr ""
+
+msgid "Fit the window to the zoom level"
+msgstr ""
+
+msgid ""
+"Fit the zoomed area to the window when the zoomed area moves as a result of "
+"focus tracking."
+msgstr ""
+
+msgid ""
+"Fit the zoomed area to the window when the zoomed area moves as a result of "
+"focus tracking. Even when not initially zoomed in."
+msgstr ""
+
+msgid "Fit zoom level to window on focus change"
+msgstr ""
+
+msgid "Fit zoomed area to window"
+msgstr ""
+
+msgid "Focus Tracking"
+msgstr ""
+
+msgid "Follow Focus Delay"
+msgstr ""
+
+msgid "Hide original mouse pointer"
+msgstr ""
+
+msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
+msgstr ""
+
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
+#, fuzzy
+msgid "Mouse Behavior"
+msgstr "Comportement"
+
+msgid "Mouse Poll Interval"
+msgstr ""
+
+msgid "Mouse Restrain Margin"
+msgstr ""
+
+msgid "Mouse panning"
+msgstr ""
+
+msgid "Move the zoom area when focus changes."
+msgstr ""
+
+msgid ""
+"Move the zoomed area this much whenever you pan the zoomed area with keys."
+msgstr ""
+
+msgid ""
+"Only attempt to center newly focused windows if the mouse hasn't moved in "
+"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgstr ""
+
+msgid "Pan (move) the zoom area down"
+msgstr ""
+
+msgid "Pan (move) the zoom area left"
+msgstr ""
+
+msgid "Pan (move) the zoom area right"
+msgstr ""
+
+msgid "Pan (move) the zoom area up"
+msgstr ""
+
+msgid "Pan Factor"
+msgstr ""
+
+msgid "Pan Zoom Down"
+msgstr ""
+
+#, fuzzy
+msgid "Pan Zoom Left"
+msgstr "Biseauter en bas à gauche"
+
+#, fuzzy
+msgid "Pan Zoom Right"
+msgstr "Biseauter en bas à droite"
+
+msgid "Pan Zoom Up"
+msgstr ""
+
+msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
+msgstr ""
+
+msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
+msgstr ""
+
+msgid "Resize the window so it matches the current zoom level."
+msgstr ""
+
+msgid "Restrain the mouse to the zoom area"
+msgstr ""
+
+msgid "Scale the mouse pointer"
+msgstr ""
+
+msgid "Specific zoom factor 1"
+msgstr ""
+
+msgid "Specific zoom factor 2"
+msgstr ""
+
+msgid "Specific zoom factor 3"
+msgstr ""
+
+msgid "Speed"
+msgstr "Vitesse"
+
+msgid "Sync Mouse"
+msgstr ""
+
+msgid "Target Focused Window on Specific level"
+msgstr ""
+
+msgid "The size of the margin to add when attempting to restrain the mouse."
+msgstr ""
+
+msgid "Timestep"
+msgstr "sensibilité"
+
+msgid "Toggle zoom area lock"
+msgstr ""
+
+msgid "Toggles a lock on the zoom area so it doesn't change on various events"
+msgstr ""
+
+msgid "Use linear filter when zoomed in"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom In"
+msgstr "Zoom"
+
+msgid "Zoom Movement"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom Out"
+msgstr "Zoom"
+
+msgid "Zoom Specific Level 1"
+msgstr ""
+
+msgid "Zoom Specific Level 2"
+msgstr ""
+
+msgid "Zoom Specific Level 3"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom Speed"
+msgstr "Vitesse de la neige"
+
+#, fuzzy
+msgid "Zoom Timestep"
+msgstr "sensibilité"
+
+msgid "Zoom factor"
+msgstr ""
+
+msgid "Zoom in/out by this factor. Higher value means quicker zooming."
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 1"
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 2"
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 3"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 1"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 2"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 3"
+msgstr ""
+
+msgid ""
+"Zooms in/out so the focused window is zoomed to the maximum while still "
+"being fully visible."
+msgstr ""
 
 msgid "Activate Window"
 msgstr "Activer la fenêtre"
@@ -1016,7 +1543,7 @@ msgid "Toggle window redirect"
 msgstr "Active la redirection de fenêtres"
 
 msgid "Toggle window stickyness"
-msgstr "Affice la fenêtre sur tous les bureaux"
+msgstr "Affiche la fenêtre sur tous les bureaux"
 
 msgid "Easily access your desktop"
 msgstr "Accéder au bureau facilement"
@@ -1054,6 +1581,21 @@ msgstr "Luminosité du fond en dessinant"
 msgid "Clear"
 msgstr "Effacer"
 
+msgid "Clear (button)"
+msgstr ""
+
+#, fuzzy
+msgid "Clear (key)"
+msgstr "Effacer"
+
+#, fuzzy
+msgid "Initiate (button)"
+msgstr "Initialiser"
+
+#, fuzzy
+msgid "Initiate (key)"
+msgstr "Initialiser"
+
 msgid "Initiate fire drawing"
 msgstr "Initialiser le dessin en feu"
 
@@ -1073,18 +1615,6 @@ msgid "Cube Gears"
 msgstr ""
 
 msgid "Render gears inside of the transparent cube"
-msgstr ""
-
-msgid "Begin"
-msgstr ""
-
-msgid "Begin entering viewport"
-msgstr ""
-
-msgid "Goto Viewport"
-msgstr ""
-
-msgid "Goto viewport specified by numbers"
 msgstr ""
 
 msgid "Animation Options"
@@ -1387,9 +1917,6 @@ msgstr "Constante K du ressort des miniatures dans l'onglet"
 msgid "Spring friction for slot dragging"
 msgstr "Coefficient de frottement du ressort des miniatures dans l'onglet"
 
-msgid "Spring model on move"
-msgstr "Modèle de ressort au déplacement de miniatures"
-
 msgid "Tab Bar Show Delay"
 msgstr "Délai d'affichage de la barre d'onglets"
 
@@ -1525,11 +2052,6 @@ msgstr "Détacher du groupe lorsque la fenêtre maîtresse est fermée"
 msgid "Untab when closing top tab"
 msgstr "Détacher lorsque l'onglet supérieur est fermé"
 
-msgid "Use spring model for the tab bar when moving the window"
-msgstr ""
-"Utiliser le modèle de ressort de la barre d'onglets quand la fenêtre est "
-"déplacée"
-
 msgid "Use tab bar animations"
 msgstr "Utiliser les animations pour la barre d'onglets"
 
@@ -1540,10 +2062,12 @@ msgid "Windows that should be allowed to be grouped"
 msgstr "Fenêtres qui devraient pouvoir être groupées"
 
 msgid "With this plugin you can group and tab windows"
-msgstr "Avec ce greffon vous pouvez regrouper "
+msgstr ""
+"Avec ce greffon vous pouvez regrouper les fenêtres et les transformer en "
+"onglets"
 
 msgid "Y distance for spring model"
-msgstr "Distance Y pour le modèle de ressort"
+msgstr "Distance verticale pour le modèle de ressort"
 
 msgid "Compression Quality"
 msgstr ""
@@ -1746,10 +2270,6 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Animation"
-msgstr "Vitesse d'animation"
-
-#, fuzzy
 msgid "Animation speed"
 msgstr "Vitesse d'animation"
 
@@ -1874,8 +2394,19 @@ msgid "Number of pixels from the top edge where the window will come to rest"
 msgstr ""
 
 #, fuzzy
+msgid "Pad Bottom"
+msgstr "Haut vers bas"
+
+#, fuzzy
 msgid "Pad Left"
 msgstr "Gauche"
+
+#, fuzzy
+msgid "Pad Right"
+msgstr "Droite"
+
+msgid "Pad Top"
+msgstr ""
 
 msgid "Padding"
 msgstr ""
@@ -1981,12 +2512,6 @@ msgstr ""
 #, fuzzy
 msgid "Restore Position"
 msgstr "Restorer les fenêtres"
-
-msgid "Speed"
-msgstr "Vitesse"
-
-msgid "Timestep"
-msgstr "sensibilité"
 
 #, fuzzy
 msgid "Unfocus Window"
@@ -2459,6 +2984,10 @@ msgid "Cover offset"
 msgstr ""
 
 #, fuzzy
+msgid "Disabled"
+msgstr "Distance"
+
+#, fuzzy
 msgid "Fade in/out speed"
 msgstr "Durée du fondu"
 
@@ -2475,6 +3004,13 @@ msgstr ""
 #, fuzzy
 msgid "Generate mipmaps"
 msgstr "Créer des Mipmaps"
+
+msgid "Hide all non Desktop windows during switching"
+msgstr ""
+
+#, fuzzy
+msgid "Hide non Desktop windows"
+msgstr "Fondre au bureau"
 
 #, fuzzy
 msgid "Initiate (All Workspaces)"
@@ -2504,12 +3040,22 @@ msgstr "Vitesse de mouvement de la fenêtre"
 msgid "Mouse speed"
 msgstr ""
 
+msgid "On activated output"
+msgstr ""
+
+msgid "One big switcher"
+msgstr ""
+
 msgid "Overlay an icon on windows in the shift switcher"
 msgstr ""
 
 #, fuzzy
 msgid "Rotation angle of the flip animation"
 msgstr "Durée (en ms) de l'animation Mosaïque"
+
+msgid ""
+"Selects how the switcher is displayed if multiple output devices are used."
+msgstr ""
 
 msgid "Shift Switcher"
 msgstr ""
@@ -2522,7 +3068,7 @@ msgid "Shift Windows"
 msgstr "Fenêtres en mosaïque"
 
 #, fuzzy
-msgid "Shift animaton speed"
+msgid "Shift animation speed"
 msgstr "Vitesse d'animation"
 
 #, fuzzy
@@ -2537,6 +3083,12 @@ msgid "Switcher mode"
 msgstr ""
 
 msgid "Switcher mode."
+msgstr ""
+
+msgid "Terminate"
+msgstr ""
+
+msgid "Terminate switcher."
 msgstr ""
 
 #, fuzzy
@@ -2689,14 +3241,14 @@ msgstr "Les flocons tournent si coché."
 msgid "How deep into the screen snowflakes can be drawn before being removed"
 msgstr ""
 "A quelle profondeur d'écran les flocons peuvent être dessiné avant de "
-"disparaitre"
+"disparaître"
 
 msgid ""
 "How far outside the screen resolution snow flakes can be before being "
 "removed. Needed because of FOV."
 msgstr ""
 "A quelle distance hors de l'écran les flocons peuvent être dessiné avant de "
-"disparaitre. Nécessaire à cause du FOV."
+"disparaître. Nécessaire à cause du FOV."
 
 msgid "Key Bindings"
 msgstr "Raccourcis claviers"
@@ -2717,7 +3269,7 @@ msgid "Rotate Flakes"
 msgstr "Tourner les flocons"
 
 msgid "Screen Boxing"
-msgstr "Exterieur d'écran"
+msgstr "Extérieur d'écran"
 
 msgid "Screen Depth"
 msgstr "Profondeur de l'écran"
@@ -2774,7 +3326,7 @@ msgid "Top to Bottom"
 msgstr "Haut vers bas"
 
 msgid "Update Delay"
-msgstr "Invervalle de mise à jour"
+msgstr "Intervalle de mise à jour"
 
 msgid "A simple splash plugin"
 msgstr "Un simple écran d'accueil"
@@ -2968,7 +3520,7 @@ msgid ""
 "that the occupy whole screen and are in a grid."
 msgstr ""
 "Déplace et redimensionne toutes les fenêtre visibles autant "
-"horizontalementque verticalement de façon à ce que l'écran soit entierement "
+"horizontalementque verticalement de façon à ce que l'écran soit entièrement "
 "couvert et qu'elles soient placées sur une grille"
 
 msgid ""
@@ -3052,7 +3604,7 @@ msgid ""
 "accordingly. This may cause problems if you dont leave them enough space."
 msgstr ""
 "Essaye d'assembler les fenêtre entre elles lorsque le mode mosaïque "
-"horizontal, vertical ou gauche est activé de telle façon qu'n "
+"horizontal, vertical ou gauche est activé de telle façon qu'un "
 "redimensionnement d'une fenêtre redimensionne également les autres. Ceci "
 "peut créer des problèmes si vous ne laissez pas assez de place."
 
@@ -3153,7 +3705,7 @@ msgid "Window to Start Fading"
 msgstr "Fenêtre pour démarrer le fondu"
 
 msgid "Window types that should be handled by Trailfocus"
-msgstr "Types de fenêtre concernée par le Suivi de Focus"
+msgstr "Types de fenêtre concernés par le Suivi de Focus"
 
 msgid "Action name for initiate"
 msgstr ""
@@ -3161,12 +3713,24 @@ msgstr ""
 msgid "Action name for initiate/terminate"
 msgstr ""
 
-msgid "Change viewport on mouse events on the Desktop"
+msgid "Begin Viewport Switch"
+msgstr ""
+
+msgid "Begin entering viewport number"
+msgstr ""
+
+msgid "Desktop-based Viewport Switching"
+msgstr ""
+
+msgid "Go to specific viewport"
 msgstr ""
 
 #, fuzzy
 msgid "Initiate plugin action"
 msgstr "Initialiser le dessin en feu"
+
+msgid "Initiate viewport changes through several events"
+msgstr ""
 
 msgid "Initiate/Terminate the selected plugin action"
 msgstr ""
@@ -3211,16 +3775,88 @@ msgstr "Gauche vers droite"
 msgid "Move up"
 msgstr ""
 
+msgid "Number-Based Viewport Switching"
+msgstr ""
+
 msgid "Plugin for initiate action"
 msgstr ""
 
 msgid "Plugin for initiate/action action"
 msgstr ""
 
-msgid "Viewport Switching"
+msgid "Switch to Viewport 1"
 msgstr ""
 
-msgid "Viewport mouse switch"
+msgid "Switch to Viewport 10"
+msgstr ""
+
+msgid "Switch to Viewport 11"
+msgstr ""
+
+msgid "Switch to Viewport 12"
+msgstr ""
+
+msgid "Switch to Viewport 2"
+msgstr ""
+
+msgid "Switch to Viewport 3"
+msgstr ""
+
+msgid "Switch to Viewport 4"
+msgstr ""
+
+msgid "Switch to Viewport 5"
+msgstr ""
+
+msgid "Switch to Viewport 6"
+msgstr ""
+
+msgid "Switch to Viewport 7"
+msgstr ""
+
+msgid "Switch to Viewport 8"
+msgstr ""
+
+msgid "Switch to Viewport 9"
+msgstr ""
+
+msgid "Switch to viewport 1"
+msgstr ""
+
+msgid "Switch to viewport 10"
+msgstr ""
+
+msgid "Switch to viewport 11"
+msgstr ""
+
+msgid "Switch to viewport 12"
+msgstr ""
+
+msgid "Switch to viewport 2"
+msgstr ""
+
+msgid "Switch to viewport 3"
+msgstr ""
+
+msgid "Switch to viewport 4"
+msgstr ""
+
+msgid "Switch to viewport 5"
+msgstr ""
+
+msgid "Switch to viewport 6"
+msgstr ""
+
+msgid "Switch to viewport 7"
+msgstr ""
+
+msgid "Switch to viewport 8"
+msgstr ""
+
+msgid "Switch to viewport 9"
+msgstr ""
+
+msgid "Viewport Switcher"
 msgstr ""
 
 msgid "Allow Wrap-Around"
@@ -3271,6 +3907,9 @@ msgstr ""
 #, fuzzy
 msgid "Edge Radius"
 msgstr "Rayon de la bordure"
+
+msgid "Edge flipping"
+msgstr ""
 
 msgid "First color for the background gradient of the switcher window."
 msgstr ""
@@ -3324,7 +3963,7 @@ msgstr ""
 msgid "Highlight Gradient"
 msgstr "Gradient"
 
-msgid "How should a multimonitor configuration be handeled"
+msgid "How should a multimonitor configuration be handled"
 msgstr ""
 
 #, fuzzy
@@ -3373,6 +4012,12 @@ msgstr ""
 msgid "Move with window along the wall up"
 msgstr "Déplacer toutes les fenêtres du groupe"
 
+msgid "Move with window within wall"
+msgstr ""
+
+msgid "Move within wall"
+msgstr ""
+
 msgid "Multimonitor behavior"
 msgstr ""
 
@@ -3387,16 +4032,16 @@ msgstr ""
 msgid "Radius of the rounded edge"
 msgstr "Le rayon des bords de la barre d'onglets"
 
-msgid "Secound color for the background gradient of the switcher window."
+msgid "Second color for the background gradient of the switcher window."
 msgstr ""
 
-msgid "Secound color for the thumb gradient of the switcher window."
+msgid "Second color for the thumb gradient of the switcher window."
 msgstr ""
 
-msgid "Secound color for the thumb highlight gradient of the switcher window."
+msgid "Second color for the thumb highlight gradient of the switcher window."
 msgstr ""
 
-msgid "Secound color of the arrow of the switcher window."
+msgid "Second color of the arrow of the switcher window."
 msgstr ""
 
 #, fuzzy
@@ -3432,6 +4077,9 @@ msgid "Thumb Gradient"
 msgstr "Gradient"
 
 msgid "Viewport Switch Preview"
+msgstr ""
+
+msgid "Viewport Switching"
 msgstr ""
 
 #, fuzzy
@@ -3492,6 +4140,9 @@ msgstr ""
 msgid "Matches"
 msgstr ""
 
+msgid "No ARGB visuals"
+msgstr ""
+
 msgid "No focus"
 msgstr ""
 
@@ -3531,10 +4182,6 @@ msgid "Set window as non resizable"
 msgstr ""
 
 #, fuzzy
-msgid "Set window as widget"
-msgstr "Épaisseur des fenêtres"
-
-#, fuzzy
 msgid "Set windows rules"
 msgstr "Fenêtres en mosaïque"
 
@@ -3556,9 +4203,6 @@ msgstr "Afficher sur tous les bureaux"
 msgid "Sticky windows"
 msgstr "Fenêtres en mosaïque"
 
-msgid "Widget"
-msgstr ""
-
 msgid "Width"
 msgstr ""
 
@@ -3573,7 +4217,14 @@ msgstr "Types de fenêtres"
 msgid "Windows that should be resized by default"
 msgstr "Fenêtres qui doivent être prises en charge par la 3D"
 
+#, fuzzy
+msgid "Windows that should be treated as not supporting transparency"
+msgstr "Fenêtres devant être estompées du bureau"
+
 msgid "Windows will not have focus"
+msgstr ""
+
+msgid "\"On all desktops\" sticky match"
 msgstr ""
 
 msgid "Firefox Menu Fix"
@@ -3598,6 +4249,14 @@ msgstr "Activer la fenêtre"
 msgid "Legacy Fullscreen Support"
 msgstr ""
 
+msgid "Make \"on all desktops\" windows \"sticky\""
+msgstr ""
+
+msgid ""
+"Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
+"viewports."
+msgstr ""
+
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""
 
@@ -3611,5 +4270,43 @@ msgstr ""
 msgid "Qt Window Fix"
 msgstr "Épaisseur des fenêtres"
 
+#, fuzzy
+msgid "Window stickyness"
+msgstr "Affiche la fenêtre sur tous les bureaux"
+
+#, fuzzy
+msgid "Windows on all desktops that should be made sticky"
+msgstr "Fenêtres devant être estompées du bureau"
+
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Disable Caps for Inside Cube"
+#~ msgstr ""
+#~ "Ne pas dessiner les faces supérieure et inférieure à l'intérieur du cube"
+
+#~ msgid ""
+#~ "Disables the drawing of the cube caps when the inside cube mode is set."
+#~ msgstr ""
+#~ "Ne pas dessiner les faces supérieure et inférieure à l'intérieur du cube"
+
+#~ msgid "Enables the drawing of the backside of windows."
+#~ msgstr "Activer le dessin des faces arrières des fenêtres"
+
+#~ msgid ""
+#~ "This will create mipmaps which improve overall texture appearence, and "
+#~ "reduce jagged edges."
+#~ msgstr ""
+#~ "Ceci créera des mipmaps qui amélioreront l'apparence générale des "
+#~ "textures, et qui réduiront les bords déchiquetés"
+
+#~ msgid "Window width"
+#~ msgstr "Épaisseur des fenêtres"
+
+#~ msgid "Spring model on move"
+#~ msgstr "Modèle de ressort au déplacement de miniatures"
+
+#~ msgid "Use spring model for the tab bar when moving the window"
+#~ msgstr ""
+#~ "Utiliser le modèle de ressort de la barre d'onglets quand la fenêtre est "
+#~ "déplacée"
