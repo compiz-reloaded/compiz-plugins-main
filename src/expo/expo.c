@@ -101,6 +101,8 @@ typedef struct _ExpoScreen
     int origVY;
     int selectedVX;
     int selectedVY;
+    int paintingVX;
+    int paintingVY;
 
     VPUpdateMode vpUpdateMode;
 
@@ -716,9 +718,6 @@ expoPaintWall (CompScreen              *s,
     int           i, j;
     int           oldFilter = s->display->textureFilter;
 
-    int origVX = s->x;
-    int origVY = s->y;
-
     float sx = (float)s->width / output->width;
     float sy = (float)s->height / output->height;
     float biasZ;
@@ -784,8 +783,6 @@ expoPaintWall (CompScreen              *s,
 
     /* End of Zoom animation stuff */
 
-    moveScreenViewport (s, s->x, s->y, FALSE);
-
     if (expoGetRotate (s->display))
     {
 	if (expoGetExpoAnimation (s->display) == ExpoAnimationZoom)
@@ -850,6 +847,12 @@ expoPaintWall (CompScreen              *s,
 			     output->region.extents.x1 / output->width,
 			     -output->region.extents.y1 / output->height, 0.0);
 
+	    setWindowPaintOffset (s, (s->x - i) * s->width,
+				  (s->y - j) * s->height);
+
+	    es->paintingVX = i;
+	    es->paintingVY = j;
+
 	    paintTransformedOutput (s, sAttrib, &sTransform3, &s->region,
 				    output, mask);
 
@@ -878,12 +881,10 @@ expoPaintWall (CompScreen              *s,
 
 	    /* not sure this will work with different resolutions */
 	    matrixTranslate (&sTransform2, ((1.0 * sx) + gapX), 0.0f, 0.0);
-	    moveScreenViewport (s, -1, 0, FALSE);
 	}
 
 	/* not sure this will work with different resolutions */
 	matrixTranslate (&sTransform, 0, - ((1.0 * sy) + gapY), 0.0f);
-	moveScreenViewport (s, 0, -1, FALSE);
     }
 
     if (reflection)
@@ -929,7 +930,7 @@ expoPaintWall (CompScreen              *s,
 
     es->expoActive = FALSE;
 
-    moveScreenViewport (s, -origVX, -origVY, FALSE);
+    setWindowPaintOffset (s, 0, 0);
 
     s->filter[SCREEN_TRANS_FILTER] = oldFilter;
     s->display->textureFilter = oldFilter;
@@ -1011,7 +1012,8 @@ expoDrawWindow (CompWindow           *w,
 		    fA.opacity = 0;
 	    }
 
-	    if (s->x != es->selectedVX || s->y != es->selectedVY)
+	    if (es->paintingVX != es->selectedVX ||
+		es->paintingVY != es->selectedVY)
 	    {
 		fA.brightness = fragment->brightness * .75;
 	    }
@@ -1150,16 +1152,13 @@ expoDonePaintScreen (CompScreen * s)
 
     case DnDStart:
 	{
-	    int        origView  = s->x;
-	    int        origViewY = s->y;
 	    CompWindow *w;
-
-	    moveScreenViewport (s, s->x, s->y, FALSE);
 
 	    for (w = s->reverseWindows; w; w = w->prev)
 	    {
 		Bool inWindow;
 		int xOffset, yOffset;
+		int nx,ny;
 
 		if (w->destroyed)
 		    continue;
@@ -1177,16 +1176,19 @@ expoDonePaintScreen (CompScreen * s)
 		xOffset = s->hsize * s->width;
 		yOffset = s->vsize * s->height;
 
-		inWindow = ((es->newCursorX >= WIN_X (w)) &&
-			    (es->newCursorX <= WIN_X (w) + WIN_W (w))) ||
-		           ((es->newCursorX >= (WIN_X (w) + xOffset)) &&
-			    (es->newCursorX <= (WIN_X (w) + WIN_W (w) +
+		nx = es->newCursorX - (s->x * s->width);
+		ny = es->newCursorY - (s->y * s->height);
+		
+		inWindow = ((nx >= WIN_X (w)) &&
+			    (nx <= WIN_X (w) + WIN_W (w))) ||
+		           ((nx >= (WIN_X (w) + xOffset)) &&
+			    (nx <= (WIN_X (w) + WIN_W (w) +
 						xOffset)));
 
-		inWindow &= ((es->newCursorY >= WIN_Y (w)) &&
-			     (es->newCursorY <= WIN_Y (w) + WIN_H (w))) ||
-		            ((es->newCursorY >= (WIN_Y (w) + yOffset)) &&
-		    	     (es->newCursorY <= (WIN_Y (w) + WIN_H (w) +
+		inWindow &= ((ny >= WIN_Y (w)) &&
+			     (ny <= WIN_Y (w) + WIN_H (w))) ||
+		            ((ny >= (WIN_Y (w) + yOffset)) &&
+		    	     (ny <= (WIN_Y (w) + WIN_H (w) +
 						 yOffset)));
 
 		if (!inWindow)
@@ -1211,8 +1213,6 @@ expoDonePaintScreen (CompScreen * s)
 		/* no window was hovered */
 		es->dndState = DnDNone;
 	    }
-    
-	    moveScreenViewport (s, -origView, -origViewY, FALSE);
 
 	    es->prevCursorX = es->newCursorX;
 	    es->prevCursorY = es->newCursorY;
