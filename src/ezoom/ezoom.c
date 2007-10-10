@@ -1936,7 +1936,7 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "follow_focus_delay", "int", "<min>0</min>", 0, 0 },
     { "pan_factor", "float", "<min>0.001</min><default>0.1</default>", 0, 0 },
     { "focus_fit_window", "bool", "<default>false</default>", 0, 0 },
-    { "allways_focus_fit_window", "bool", "<default>false</default>", 0, 0 },
+    { "always_focus_fit_window", "bool", "<default>false</default>", 0, 0 },
     { "scale_mouse", "bool", "<default>false</default>", 0, 0 },
     { "hide_original_mouse", "bool", "<default>false</default>", 0, 0 },
     { "restrain_mouse", "bool", "<default>false</default>", 0, 0 },
