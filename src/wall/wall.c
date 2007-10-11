@@ -1351,9 +1351,6 @@ wallPreparePaintScreen (CompScreen *s,
 		dx = ws->gotoX - ws->curPosX;
 		dy = ws->gotoY - ws->curPosY;
 
-		moveWindow (w,
-			    ws->moveWindowX - w->attrib.x,
-			    ws->moveWindowY - w->attrib.y, TRUE, TRUE);
 		moveWindowToViewportPosition (w,
 					      ws->moveWindowX - s->width * dx,
 					      ws->moveWindowY - s->height * dy,
