@@ -551,7 +551,7 @@ wallMoveViewport (CompScreen *s,
 	moveScreenViewport (s, x, y, TRUE);
 
 	ws->moving = TRUE;
-	ws->boxOutputDevice = s->currentOutputDev;
+	ws->boxOutputDevice = outputDeviceForPoint (s, pointerX, pointerY);
     }
 
     if (ws->moving)
