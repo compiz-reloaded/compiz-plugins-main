@@ -168,6 +168,8 @@ float identity[16] = {
     0.0, 0.0, 0.0, 1.0
 };
 
+static int switcherPostWait = 0;
+
 
 // Remove when matmul4 in matrix.c made publicly accessible
 
@@ -1660,6 +1662,12 @@ initiateFocusAnimation(CompWindow *w)
     if (aw->curWindowEvent != WindowEventNone || otherPluginsActive(as))
 	return;
 
+    // Check the "switcher post-wait" counter that effectively prevents
+    // focus animation to be initiated when the zoom option value is low
+    // in Switcher.
+    if (switcherPostWait)
+	return;
+
     int duration = 200;
     AnimEffect chosenEffect =
 	getMatchingAnimSelection (w, WindowEventFocus, &duration);
@@ -1954,6 +1962,13 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 
     ANIM_SCREEN(s);
 
+    // Check and update "switcher post wait" counter
+    if (switcherPostWait > 0)
+    {
+	switcherPostWait++;
+	if (switcherPostWait > 4) // wait over
+	    switcherPostWait = 0;
+    }
     //if (as->focusEffect == AnimEffectFocusFade ||
     //as->focusEffect == AnimEffectDodge)
     {
@@ -3007,7 +3022,11 @@ static void animHandleCompizEvent(CompDisplay * d, const char *pluginName,
 		    as->pluginActive[i] =
 			getBoolOptionNamed(option, nOption, "active", FALSE);
 		    if (i == 0)
+		    {
 			as->switcherWinOpeningSuppressed = FALSE;
+			if (!as->pluginActive[i])
+			    switcherPostWait = 1;
+		    }
 		}
 	    }
 	    break;
