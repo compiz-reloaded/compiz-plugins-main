@@ -702,7 +702,7 @@ layoutThumbs (CompScreen *s)
 	RING_WINDOW (w);
 
 	if (!rw->slot)
-	    rw->slot = malloc (sizeof(RingSlot));
+	    rw->slot = malloc (sizeof (RingSlot));
 
 	if (!rw->slot)
 	    return FALSE;
