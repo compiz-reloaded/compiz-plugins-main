@@ -810,7 +810,7 @@ compareWindows (const void *elem1,
     */
 }
 
-static int 
+static int
 compareShiftWindowDistance (const void *elem1,
 			    const void *elem2)
 {
@@ -822,7 +822,8 @@ compareShiftWindowDistance (const void *elem1,
     else if (a1 < a2)
 	return 1;
     else
-	return 0;
+	return compareWindows (&((ShiftDrawSlot *) elem2)->w,
+			       &((ShiftDrawSlot *) elem1)->w);
 }
 
 static Bool
