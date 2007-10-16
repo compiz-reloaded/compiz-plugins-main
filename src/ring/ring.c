@@ -359,9 +359,9 @@ ringDrawWindowTitle (CompScreen *s)
     {\
 	float rad = k * (PI / 180.0f);\
 	glVertex2f (0.0f, 0.0f);\
-	glVertex2f (cos(rad) * border, sin(rad) * border);\
-	glVertex2f (cos((k-1) * (PI / 180.0f)) * border, \
-		    sin((k-1) * (PI / 180.0f)) * border);\
+	glVertex2f (cos (rad) * border, sin (rad) * border);\
+	glVertex2f (cos ((k - 1) * (PI / 180.0f)) * border, \
+		    sin ((k - 1) * (PI / 180.0f)) * border);\
     }
 
     /* Rounded corners */
@@ -526,37 +526,36 @@ ringPaintWindow (CompWindow		 *w,
 		if (!w->texture->pixmap)
 		    iconOverlay = OverlayIconBig;
 
-	    	switch (iconOverlay) 
-		{
-	    	    case OverlayIconNone:
-    		    case OverlayIconEmblem:
-			scale = (rw->slot) ? rw->slot->depthScale : 1.0f;
-			break;
-		    case OverlayIconBig:
-		    default:
-			/* only change opacity if not painting an
-			   icon for a minimized window */
-			if (w->texture->pixmap)
-			    sAttrib.opacity /= 3;
-			scale = MIN (((float) scaledWinWidth / icon->width),
-				     ((float) scaledWinHeight / icon->height));
-			break;
+	    	switch (iconOverlay) {
+    		case OverlayIconNone:
+		case OverlayIconEmblem:
+		    scale = (rw->slot) ? rw->slot->depthScale : 1.0f;
+		    break;
+		case OverlayIconBig:
+		default:
+		    /* only change opacity if not painting an
+		       icon for a minimized window */
+		    if (w->texture->pixmap)
+			sAttrib.opacity /= 3;
+		    scale = MIN (((float) scaledWinWidth / icon->width),
+				 ((float) scaledWinHeight / icon->height));
+		    break;
 		}
 
 		width  = icon->width  * scale;
 		height = icon->height * scale;
 
 	    	switch (iconOverlay) {
-		    case OverlayIconNone:
-	    	    case OverlayIconEmblem:
-    			x = w->attrib.x + scaledWinWidth - width;
-			y = w->attrib.y + scaledWinHeight - height;
-			break;
-		    case OverlayIconBig:
-		    default:
-			x = w->attrib.x + scaledWinWidth / 2 - width / 2;
-			y = w->attrib.y + scaledWinHeight / 2 - height / 2;
-			break;
+		case OverlayIconNone:
+		case OverlayIconEmblem:
+		    x = w->attrib.x + scaledWinWidth - width;
+		    y = w->attrib.y + scaledWinHeight - height;
+		    break;
+		case OverlayIconBig:
+		default:
+		    x = w->attrib.x + scaledWinWidth / 2 - width / 2;
+		    y = w->attrib.y + scaledWinHeight / 2 - height / 2;
+		    break;
 		}
 
 		x += rw->tx;
@@ -614,9 +613,8 @@ ringPaintWindow (CompWindow		 *w,
 		    glPushMatrix ();
 		    glLoadMatrixf (wTransform.m);
 
-		    (*w->screen->drawWindowTexture) (w,
-						     &icon->texture, &fragment,
-						     mask);
+		    (*w->screen->drawWindowTexture) (w, &icon->texture,
+						     &fragment, mask);
 
 		    glPopMatrix ();
 		}
@@ -634,9 +632,9 @@ ringPaintWindow (CompWindow		 *w,
 }
 
 static inline float 
-ringLinearInterpolation(float valX, 
-			float minX, float maxX, 
-			float minY, float maxY)
+ringLinearInterpolation (float valX, 
+			 float minX, float maxX, 
+			 float minY, float maxY)
 {
     double factor = (maxY - minY) / (maxX - minX);
     return (minY + (factor * (valX - minX)));
@@ -711,20 +709,20 @@ layoutThumbs (CompScreen *s)
 	   to order the windows clockwise */
 	angle = baseAngle - (index * (2 * PI / rs->nWindows));
 
-	rw->slot->x = centerX + (ringGetRingClockwise(s) ? -1 : 1) * 
-	                        ((float)ellipseA * sin(angle));
-	rw->slot->y = centerY + ((float)ellipseB * cos(angle));
+	rw->slot->x = centerX + (ringGetRingClockwise (s) ? -1 : 1) * 
+	                        ((float) ellipseA * sin (angle));
+	rw->slot->y = centerY + ((float) ellipseB * cos (angle));
 
 	ww = w->width  + w->input.left + w->input.right;
 	wh = w->height + w->input.top  + w->input.bottom;
 
 	if (ww > ringGetThumbWidth (s))
-	    xScale = (float)(ringGetThumbWidth (s)) / (float)ww;
+	    xScale = (float)(ringGetThumbWidth (s)) / (float) ww;
 	else
 	    xScale = 1.0f;
 
 	if (wh > ringGetThumbHeight (s))
-	    yScale = (float)(ringGetThumbHeight (s)) / (float)wh;
+	    yScale = (float)(ringGetThumbHeight (s)) / (float) wh;
 	else
 	    yScale = 1.0f;
 
@@ -736,17 +734,13 @@ layoutThumbs (CompScreen *s)
 	   are the y values for the interpolation */
 	rw->slot->depthScale = 
 	    ringLinearInterpolation (rw->slot->y, 
-				     centerY - ellipseB, 
-				     centerY + ellipseB, 
-				     ringGetMinScale (s),
-				     1.0f);
+				     centerY - ellipseB, centerY + ellipseB, 
+				     ringGetMinScale (s), 1.0f);
 
 	rw->slot->depthBrightness = 
 	    ringLinearInterpolation (rw->slot->y, 
-				     centerY - ellipseB, 
-				     centerY + ellipseB, 
-				     ringGetMinBrightness (s),
-				     1.0f);
+				     centerY - ellipseB, centerY + ellipseB, 
+				     ringGetMinBrightness (s), 1.0f);
 
 	rs->drawSlots[index].w    = w;
 	rs->drawSlots[index].slot = &rw->slot;
@@ -889,7 +883,9 @@ ringCountWindows (CompScreen *s)
     return count;
 }
 
-static int adjustRingRotation (CompScreen *s, float chunk)
+static int
+adjustRingRotation (CompScreen *s,
+		    float      chunk)
 {
     float dx, adjust, amount;
     int change;
@@ -899,7 +895,7 @@ static int adjustRingRotation (CompScreen *s, float chunk)
     dx = rs->rotAdjust;
 
     adjust = dx * 0.15f;
-    amount = fabs(dx) * 1.5f;
+    amount = fabs (dx) * 1.5f;
     if (amount < 0.2f)
 	amount = 0.2f;
     else if (amount > 2.0f)
@@ -1429,7 +1425,7 @@ ringWindowSelectAt (CompScreen *s, int x, int y)
     	o.name = "root";
 	o.value.i = s->root;
 
-	ringTerminate(s->display, NULL, 0, &o, 1);
+	ringTerminate (s->display, NULL, 0, &o, 1);
     }
 }
 
@@ -1566,23 +1562,24 @@ ringDamageWindowRect (CompWindow *w,
 		      Bool	  initial,
 		      BoxPtr     rect)
 {
-    Bool status = FALSE;
+    Bool       status = FALSE;
+    CompScreen *s = w->screen;
 
-    RING_SCREEN (w->screen);
+    RING_SCREEN (s);
 
     if (initial)
     {
 	if (rs->grabIndex && isRingWin (w))
 	{
-	    ringAddWindowToList (w->screen, w);
-	    if (ringUpdateWindowList (w->screen))
+	    ringAddWindowToList (s, w);
+	    if (ringUpdateWindowList (s))
 	    {
 		RING_WINDOW (w);
 
 		rw->adjust = TRUE;
 		rs->moreAdjust = TRUE;
 		rs->state = RingStateOut;
-		damageScreen (w->screen);
+		damageScreen (s);
 	    }
 	}
     }
@@ -1601,9 +1598,9 @@ ringDamageWindowRect (CompWindow *w,
 	}
     }
 
-    UNWRAP (rs, w->screen, damageWindowRect);
-    status |= (*w->screen->damageWindowRect) (w, initial, rect);
-    WRAP (rs, w->screen, damageWindowRect, ringDamageWindowRect);
+    UNWRAP (rs, s, damageWindowRect);
+    status |= (*s->damageWindowRect) (w, initial, rect);
+    WRAP (rs, s, damageWindowRect, ringDamageWindowRect);
 
     return status;
 }
