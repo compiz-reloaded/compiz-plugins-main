@@ -1792,6 +1792,9 @@ ringFiniWindow (CompPlugin *p,
 {
     RING_WINDOW (w);
 
+    if (rw->slot)
+	free (rw->slot);
+
     free (rw);
 }
 
