@@ -249,6 +249,18 @@ workaroundsDoFixes (CompWindow *w)
 	}
     }
 
+    if (workaroundsGetOooMenuFix (d))
+    {
+        if (w->wmType == CompWindowTypeNormalMask &&
+            w->attrib.override_redirect && w->resName)
+	{
+	    if (strcasecmp (w->resName, "VCLSalFrame") == 0)
+	    {
+		newWmType = CompWindowTypeDropdownMenuMask;
+		goto AppliedFix;
+	    }
+	}
+    }
     /* FIXME: Basic hack to get Java windows working correctly. */
     if (workaroundsGetJavaFix (d) && w->resName)
     {
