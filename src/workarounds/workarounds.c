@@ -226,7 +226,7 @@ workaroundsDoFixes (CompWindow *w)
     /* FIXME: Is this the best way to detect a notification type window? */
     if (workaroundsGetNotificationDaemonFix (d))
     {
-        if (w->wmType == CompWindowTypeNormalMask &&
+        if (newWmType == CompWindowTypeNormalMask &&
             w->attrib.override_redirect && w->resName &&
             strcmp (w->resName, "notification-daemon") == 0)
         {
@@ -237,7 +237,7 @@ workaroundsDoFixes (CompWindow *w)
 
     if (workaroundsGetFirefoxMenuFix (d))
     {
-        if (w->wmType == CompWindowTypeNormalMask &&
+        if (newWmType == CompWindowTypeNormalMask &&
             w->attrib.override_redirect && w->resName)
 	{
 	    if ((strcasecmp (w->resName, "gecko") == 0) ||
@@ -251,7 +251,7 @@ workaroundsDoFixes (CompWindow *w)
 
     if (workaroundsGetOooMenuFix (d))
     {
-        if (w->wmType == CompWindowTypeNormalMask &&
+        if (newWmType == CompWindowTypeNormalMask &&
             w->attrib.override_redirect && w->resName)
 	{
 	    if (strcasecmp (w->resName, "VCLSalFrame") == 0)
@@ -306,7 +306,7 @@ workaroundsDoFixes (CompWindow *w)
         /* fix Qt transients - FIXME: is there a better way to detect them? */
 	if (!w->resName && w->attrib.override_redirect &&
 	    (w->attrib.class == InputOutput) &&
-	    (w->wmType == CompWindowTypeUnknownMask))
+	    (newWmType == CompWindowTypeUnknownMask))
 	{
 	    newWmType = CompWindowTypeDropdownMenuMask;
 	    goto AppliedFix;
