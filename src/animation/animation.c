@@ -1461,7 +1461,21 @@ static void postAnimationCleanupCustom(CompWindow * w,
     {
 	updateBBWindow (NULL, w);
     }
+    // Clear winPassingThrough of each window
+    // that this one was passing through
+    // during focus effect
+    if (aw->curAnimEffect == AnimEffectFocusFade)
+    {
+	CompWindow *w2;
+	for (w2 = w->screen->windows; w2; w2 = w2->next)
+	{
+	    AnimWindow *aw2;
 
+	    aw2 = GET_ANIM_WINDOW(w2, as);
+	    if (aw2->winPassingThrough == w)
+		aw2->winPassingThrough = NULL;
+	}
+    }
     if (resetAnimation)
     {
 	aw->curWindowEvent = WindowEventNone;
@@ -1740,10 +1754,14 @@ initiateFocusAnimation(CompWindow *w)
 		XUnionRegion(fadeRegion, thisAndSubjectIntersection,
 			     fadeRegion);
 
-		if (chosenEffect == AnimEffectDodge &&
+		AnimWindow *adw = GET_ANIM_WINDOW(dw, as);
+		if (chosenEffect == AnimEffectFocusFade)
+		{
+		    adw->winPassingThrough = w;
+		}
+		else if (chosenEffect == AnimEffectDodge &&
 		    !XEmptyRegion(thisAndSubjectIntersection))
 		{
-		    AnimWindow *adw = GET_ANIM_WINDOW(dw, as);
 		    if ((adw->curAnimEffect == AnimEffectNone ||
 			 (adw->curAnimEffect == AnimEffectDodge)) &&
 			dw->id != w->id) // don't let the subject dodge itself
@@ -1768,13 +1786,13 @@ initiateFocusAnimation(CompWindow *w)
 		getHostedOnWin(as, w, wOldAbove);
 	    }
 
-	    float dodgeMaxStartProgress =
-		numDodgingWins *
-		animGetF(as, aw, ANIM_SCREEN_OPTION_DODGE_GAP_RATIO) *
-		duration / 1000.0f;
-
 	    if (chosenEffect == AnimEffectDodge)
 	    {
+		float dodgeMaxStartProgress =
+		    numDodgingWins *
+		    animGetF(as, aw, ANIM_SCREEN_OPTION_DODGE_GAP_RATIO) *
+		    duration / 1000.0f;
+
 		CompWindow *wDodgeChainLastVisited = NULL;
 
 		animActivateEvent(s, TRUE);
@@ -2020,6 +2038,10 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 	    if (aw->restackInfo)
 	    {
 		if (aw->curWindowEvent != WindowEventNone ||
+		    // Don't initiate focus anim for current dodgers
+		    aw->curAnimEffect != AnimEffectNone ||
+		    // Don't initiate focus anim for windows being passed thru
+		    aw->winPassingThrough ||
 		    otherPluginsActive(as) ||
 		    // Don't animate with stale restack info
 		    !restackInfoStillGood(s, aw->restackInfo))
