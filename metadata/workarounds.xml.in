@@ -38,6 +38,11 @@
                 <_long>Fix window type of various Qt windows.</_long>
                 <default>true</default>
             </option>
+	    <option type="bool" name="aiglx_fragment_fix">
+                <_short>AIGLX Fragment Parameter Fix</_short>
+                <_long>Fix broken glProgramEnvParameter4f implementation.</_long>
+                <default>true</default>
+            </option>
             <subgroup>
                 <_short>Window stickyness</_short>
                 <option type="bool" name="sticky_alldesktops">

@@ -37,12 +37,23 @@ typedef struct _WorkaroundsDisplay {
     Atom roleAtom;
 } WorkaroundsDisplay;
 
+typedef void (*GLProgramParameter4dvProc) (GLenum         target,
+					   GLuint         index,
+					   const GLdouble *data);
+
+
 typedef struct _WorkaroundsScreen {
     int windowPrivateIndex;
 
     WindowResizeNotifyProc         windowResizeNotify;
     GetAllowedActionsForWindowProc getAllowedActionsForWindow;
+    PaintScreenProc                paintScreen;
+
+    GLProgramParameter4fProc       origProgramEnvParameter4f;
+    GLProgramParameter4dvProc      programEnvParameter4dv;
 } WorkaroundsScreen;
+
+CompScreen *currentScreen = NULL;
 
 typedef struct _WorkaroundsWindow {
     Bool adjustedWinType;
@@ -70,6 +81,59 @@ typedef struct _WorkaroundsWindow {
     WorkaroundsWindow *ww = GET_WORKAROUNDS_WINDOW  (w, \
 		    GET_WORKAROUNDS_SCREEN  (w->screen, \
 		    GET_WORKAROUNDS_DISPLAY (w->screen->display)))
+
+static void
+workaroundsProgramEnvParameter4f (GLenum  target,
+				  GLuint  index,
+				  GLfloat x,
+				  GLfloat y,
+				  GLfloat z,
+				  GLfloat w)
+{
+    WorkaroundsScreen *ws;
+    GLdouble data[4];
+
+    if (!currentScreen)
+	return;
+
+    ws = GET_WORKAROUNDS_SCREEN (currentScreen, GET_WORKAROUNDS_DISPLAY (
+				 currentScreen->display));
+
+    data[0] = x;
+    data[1] = y;
+    data[2] = z;
+    data[3] = w;
+
+    (*ws->programEnvParameter4dv) (target, index, data);
+}
+
+static void
+workaroundsUpdateParameterFix (CompScreen *s)
+{
+    WORKAROUNDS_SCREEN (s);
+
+    if (!s->programEnvParameter4f || !ws->programEnvParameter4dv)
+	return;
+    if (workaroundsGetAiglxFragmentFix (s->display))
+	s->programEnvParameter4f = workaroundsProgramEnvParameter4f;
+    else
+	s->programEnvParameter4f = ws->origProgramEnvParameter4f;
+}
+
+static void
+workaroundsPaintScreen (CompScreen   *s,
+			CompOutput   *outputs,
+			int          numOutputs,
+			unsigned int mask)
+{
+    WORKAROUNDS_SCREEN (s);
+
+    currentScreen = s;
+
+    UNWRAP (ws, s, paintScreen);
+    (*s->paintScreen) (s, outputs, numOutputs, mask);
+    WRAP (ws, s, paintScreen, workaroundsPaintScreen);
+}
 
 static char *
 workaroundsGetWindowRoleAtom (CompWindow *w)
@@ -340,8 +404,11 @@ workaroundsDisplayOptionChanged (CompDisplay               *d,
     CompWindow *w;
 
     for (s = d->screens; s; s = s->next)
+    {
 	for (w = s->windows; w; w = w->next)
 	    workaroundsUpdateSticky (w);
+	workaroundsUpdateParameterFix (s);
+    }
 }
 
 static void
@@ -453,6 +520,8 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
     workaroundsSetStickyAlldesktopsNotify (d, workaroundsDisplayOptionChanged);
     workaroundsSetAlldesktopStickyMatchNotify (d,
 					       workaroundsDisplayOptionChanged);
+    workaroundsSetAiglxFragmentFixNotify (d, workaroundsDisplayOptionChanged);
+    
 
     d->base.privates[displayPrivateIndex].ptr = wd;
 
@@ -491,11 +560,19 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
 	return FALSE;
     }
 
+    ws->programEnvParameter4dv = (GLProgramParameter4dvProc)
+	    (*s->getProcAddress) ((GLubyte *) "glProgramEnvParameter4dvARB");
+    ws->origProgramEnvParameter4f = s->programEnvParameter4f;
+
     WRAP (ws, s, windowResizeNotify, workaroundsWindowResizeNotify);
     WRAP (ws, s, getAllowedActionsForWindow,
 	  workaroundsGetAllowedActionsForWindow);
 
+    WRAP (ws, s, paintScreen, workaroundsPaintScreen);
+
     s->base.privates[wd->screenPrivateIndex].ptr = ws;
+
+    workaroundsUpdateParameterFix (s);
 
     return TRUE;
 }
@@ -509,6 +586,8 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
 
     UNWRAP (ws, s, windowResizeNotify);
     UNWRAP (ws, s, getAllowedActionsForWindow);
+
+    UNWRAP (ws, s, paintScreen);
 
     free (ws);
 }
