@@ -1969,133 +1969,128 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 	if (switcherPostWait > 4) // wait over
 	    switcherPostWait = 0;
     }
-    //if (as->focusEffect == AnimEffectFocusFade ||
-    //as->focusEffect == AnimEffectDodge)
+
+    if (as->aWinWasRestackedJustNow)
     {
-	if (as->aWinWasRestackedJustNow)
+	/*
+	  Handle focusing windows with multiple utility/dialog windows
+	  (like gobby), as in this case where gobby was raised with its
+	  utility windows:
+
+	  was: C0001B 36000A5 1E0000C 1E0005B 1E00050 3205B63 600003 
+	  now: C0001B 36000A5 1E0000C 1E00050 3205B63 1E0005B 600003 
+
+	  was: C0001B 36000A5 1E0000C 1E00050 3205B63 1E0005B 600003 
+	  now: C0001B 36000A5 1E0000C 3205B63 1E00050 1E0005B 600003 
+
+	  was: C0001B 36000A5 1E0000C 3205B63 1E00050 1E0005B 600003 
+	  now: C0001B 36000A5 3205B63 1E0000C 1E00050 1E0005B 600003 
+	*/
+	CompWindow *wOldAbove = NULL;
+	for (w = s->windows; w; w = w->next)
 	{
-	    /*
-	      Handle focusing windows with multiple utility/dialog windows
-	      (like gobby), as in this case where gobby was raised with its
-	      utility windows:
-
-	      was: C0001B 36000A5 1E0000C 1E0005B 1E00050 3205B63 600003 
-	      now: C0001B 36000A5 1E0000C 1E00050 3205B63 1E0005B 600003 
-
-	      was: C0001B 36000A5 1E0000C 1E00050 3205B63 1E0005B 600003 
-	      now: C0001B 36000A5 1E0000C 3205B63 1E00050 1E0005B 600003 
-
-	      was: C0001B 36000A5 1E0000C 3205B63 1E00050 1E0005B 600003 
-	      now: C0001B 36000A5 3205B63 1E0000C 1E00050 1E0005B 600003 
-	    */
-	    CompWindow *wOldAbove = NULL;
-	    for (w = s->windows; w; w = w->next)
+	    ANIM_WINDOW(w);
+	    if (aw->restackInfo)
 	    {
-		ANIM_WINDOW(w);
-		if (aw->restackInfo)
+		if (aw->curWindowEvent != WindowEventNone ||
+		    otherPluginsActive(as) ||
+		    // Don't animate with stale restack info
+		    !restackInfoStillGood(s, aw->restackInfo))
 		{
-		    if (aw->curWindowEvent != WindowEventNone ||
-			otherPluginsActive(as) ||
-			// Don't animate with stale restack info
-			!restackInfoStillGood(s, aw->restackInfo))
-		    {
-			continue;
-		    }
-		    if (!wOldAbove)
-		    {
-			// Pick the old above of the bottommost one
-			wOldAbove = aw->restackInfo->wOldAbove;
-		    }
-		    else
-		    {
-			// Use as wOldAbove for every focus fading window
-			// (i.e. the utility/dialog windows of an app.)
-			aw->restackInfo->wOldAbove = wOldAbove;
-		    }
+		    continue;
 		}
-	    }
-	    // do in reverse order so that focus-fading chains are handled
-	    // properly
-	    for (w = s->reverseWindows; w; w = w->prev)
-	    {
-		ANIM_WINDOW(w);
-		if (aw->restackInfo)
+		if (!wOldAbove)
 		{
-		    if (aw->curWindowEvent != WindowEventNone ||
-			otherPluginsActive(as) ||
-			// Don't animate with stale restack info
-			!restackInfoStillGood(s, aw->restackInfo))
-		    {
-			free(aw->restackInfo);
-			aw->restackInfo = NULL;
-			continue;
-		    }
-
-		    // Find the first window at a higher stacking order than w
-		    CompWindow *nw;
-		    for (nw = w->next; nw; nw = nw->next)
-		    {
-			if (relevantForFadeFocus(nw))
-			    break;
-		    }
-
-		    // If w is being lowered, there has to be a window
-		    // at a higher stacking position than w (like a panel)
-		    // which this w's copy can be painted before.
-		    // Otherwise the animation will only show w fading in
-		    // rather than 2 copies of it cross-fading.
-		    if (!aw->restackInfo->raised && !nw)
-		    {
-			// Free unnecessary restackInfo
-			free(aw->restackInfo);
-			aw->restackInfo = NULL;
-			continue;
-		    }
-
-		    // Check if above window is focus-fading too.
-		    // (like a dialog of an app. window)
-		    // If so, focus-fade this together with the one above
-		    // (link to it)
-		    if (nw)
-		    {
-			AnimWindow *awNext = GET_ANIM_WINDOW(nw, as);
-			if (awNext && awNext->winThisIsPaintedBefore)
-			{
-			    awNext->moreToBePaintedPrev = w;
-			    aw->moreToBePaintedNext = nw;
-			    aw->restackInfo->wOldAbove =
-				awNext->winThisIsPaintedBefore;
-			}
-		    }
-		    initiateFocusAnimation(w);
+		    // Pick the old above of the bottommost one
+		    wOldAbove = aw->restackInfo->wOldAbove;
 		}
-	    }
-	    //if (as->focusEffect == AnimEffectDodge)
-	    {
-		for (w = s->reverseWindows; w; w = w->prev)
+		else
 		{
-		    ANIM_WINDOW(w);
-
-		    if (!aw->isDodgeSubject)
-			continue;
-		    Bool dodgersAreOnlySubjects = TRUE;
-		    CompWindow *dw;
-		    AnimWindow *adw;
-		    for (dw = aw->dodgeChainStart; dw; dw = adw->dodgeChainNext)
-		    {
-			adw = GET_ANIM_WINDOW(dw, as);
-			if (!adw)
-			    break;
-			if (!adw->isDodgeSubject)
-			    dodgersAreOnlySubjects = FALSE;
-		    }
-		    if (dodgersAreOnlySubjects)
-			aw->skipPostPrepareScreen = TRUE;
+		    // Use as wOldAbove for every focus fading window
+		    // (i.e. the utility/dialog windows of an app.)
+		    aw->restackInfo->wOldAbove = wOldAbove;
 		}
 	    }
 	}
-    }
+	// do in reverse order so that focus-fading chains are handled
+	// properly
+	for (w = s->reverseWindows; w; w = w->prev)
+	{
+	    ANIM_WINDOW(w);
+	    if (aw->restackInfo)
+	    {
+		if (aw->curWindowEvent != WindowEventNone ||
+		    otherPluginsActive(as) ||
+		    // Don't animate with stale restack info
+		    !restackInfoStillGood(s, aw->restackInfo))
+		{
+		    free(aw->restackInfo);
+		    aw->restackInfo = NULL;
+		    continue;
+		}
 
+		// Find the first window at a higher stacking order than w
+		CompWindow *nw;
+		for (nw = w->next; nw; nw = nw->next)
+		{
+		    if (relevantForFadeFocus(nw))
+			break;
+		}
+
+		// If w is being lowered, there has to be a window
+		// at a higher stacking position than w (like a panel)
+		// which this w's copy can be painted before.
+		// Otherwise the animation will only show w fading in
+		// rather than 2 copies of it cross-fading.
+		if (!aw->restackInfo->raised && !nw)
+		{
+		    // Free unnecessary restackInfo
+		    free(aw->restackInfo);
+		    aw->restackInfo = NULL;
+		    continue;
+		}
+
+		// Check if above window is focus-fading too.
+		// (like a dialog of an app. window)
+		// If so, focus-fade this together with the one above
+		// (link to it)
+		if (nw)
+		{
+		    AnimWindow *awNext = GET_ANIM_WINDOW(nw, as);
+		    if (awNext && awNext->winThisIsPaintedBefore)
+		    {
+			awNext->moreToBePaintedPrev = w;
+			aw->moreToBePaintedNext = nw;
+			aw->restackInfo->wOldAbove =
+			    awNext->winThisIsPaintedBefore;
+		    }
+		}
+		initiateFocusAnimation(w);
+	    }
+	}
+
+	for (w = s->reverseWindows; w; w = w->prev)
+	{
+	    ANIM_WINDOW(w);
+
+	    if (!aw->isDodgeSubject)
+		continue;
+	    Bool dodgersAreOnlySubjects = TRUE;
+	    CompWindow *dw;
+	    AnimWindow *adw;
+	    for (dw = aw->dodgeChainStart; dw; dw = adw->dodgeChainNext)
+	    {
+		adw = GET_ANIM_WINDOW(dw, as);
+		if (!adw)
+		    break;
+		if (!adw->isDodgeSubject)
+		    dodgersAreOnlySubjects = FALSE;
+	    }
+	    if (dodgersAreOnlySubjects)
+		aw->skipPostPrepareScreen = TRUE;
+	}
+    }
+	
     if (as->animInProgress)
     {
 	AnimWindow *aw;
@@ -2263,12 +2258,6 @@ animAddWindowGeometry(CompWindow * w,
     ANIM_WINDOW(w);
     ANIM_SCREEN(w->screen);
 
-    // if model is lost during animation (e.g. when plugin just reloaded)
-    /*if (aw->animRemainingTime > 0 && !aw->model)
-      {
-      aw->animRemainingTime = 0;
-      postAnimationCleanup(w, TRUE);
-      }*/
     // if window is being animated
     if (aw->animRemainingTime > 0 && aw->model &&
 	!(animEffectProperties[aw->curAnimEffect].letOthersDrawGeoms &&
@@ -2333,22 +2322,6 @@ animAddWindowGeometry(CompWindow * w,
 	if (aw->polygonSet &&
 	    animEffectProperties[aw->curAnimEffect].addCustomGeometryFunc)
 	{
-	    /*int nClip2 = nClip;
-	      BoxPtr pClip2 = pClip;
-
-	      // For each clip passed to this function
-	      for (; nClip2--; pClip2++)
-	      {
-	      x1 = pClip2->x1;
-	      y1 = pClip2->y1;
-	      x2 = pClip2->x2;
-	      y2 = pClip2->y2;
-
-	      printf("x1: %4d, y1: %4d, x2: %4d, y2: %4d", x1, y1, x2, y2);
-	      printf("\tm: %5.2f %5.2f %5.2f %5.2f %5.2f %5.2f\n",
-	      matrix[0].xx, matrix[0].xy, matrix[0].yx, matrix[0].yy,
-	      matrix[0].x0, matrix[0].y0);
-	      } */
 	    if (nMatrix == 0)
 		return;
 	    animEffectProperties[aw->curAnimEffect].
@@ -2413,12 +2386,7 @@ animAddWindowGeometry(CompWindow * w,
 	    y1 = pClip->y1;
 	    x2 = pClip->x2;
 	    y2 = pClip->y2;
-	    /*
-	      printf("x1: %4d, y1: %4d, x2: %4d, y2: %4d", x1, y1, x2, y2);
-	      printf("\tm: %5.2f %5.2f %5.2f %5.2f %5.2f %5.2f\n",
-	      matrix[0].xx, matrix[0].xy, matrix[0].yx, matrix[0].yy,
-	      matrix[0].x0, matrix[0].y0);
-	    */
+
 	    gridW = (float)width / (model->gridWidth - 1);
 
 	    if (aw->curWindowEvent == WindowEventShade ||
@@ -3428,17 +3396,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			}
 			else
 			{
-			    /*
-			      if (!animGetWindowIconGeometry(w, &aw->icon))
-			      {
-			      // minimize to bottom-center if there is no window list
-			      aw->icon.x = w->screen->width / 2;
-			      aw->icon.y = w->screen->height;
-			      aw->icon.width = 100;
-			      aw->icon.height = 20;
-			      }
-			    */
-
 			    aw->unmapCnt++;
 			    w->unmapRefCnt++;
 
