@@ -1457,7 +1457,9 @@ static void postAnimationCleanupCustom(CompWindow * w,
 	// effects that possibly have models that don't cover
 	// the whole window (like in magic lamp with menus)
 	aw->curAnimEffect == AnimEffectMagicLamp ||
-	aw->curAnimEffect == AnimEffectVacuum)
+	aw->curAnimEffect == AnimEffectVacuum ||
+	// make sure dodging windows get one last damage
+	aw->curAnimEffect == AnimEffectDodge)
     {
 	updateBBWindow (NULL, w);
     }
