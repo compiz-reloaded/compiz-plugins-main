@@ -533,6 +533,7 @@ typedef struct _AnimScreen
     DamageWindowRectProc damageWindowRect;
     AddWindowGeometryProc addWindowGeometry;
     DrawWindowTextureProc drawWindowTexture;
+    InitWindowWalkerProc initWindowWalker;
 
     WindowResizeNotifyProc windowResizeNotify;
     WindowMoveNotifyProc windowMoveNotify;
@@ -661,7 +662,7 @@ typedef struct _AnimWindow
     CompWindow *dodgeChainPrev;	// for dodging windows
     CompWindow *dodgeChainNext;	// for dodging windows
     Bool skipPostPrepareScreen;
-    Bool drawnOnHostSkip;
+    Bool walkerOverNewCopy;
 } AnimWindow;
 
 typedef struct _AnimEffectProperties
@@ -971,11 +972,6 @@ fxFadeUpdateWindowAttrib (AnimScreen *as,
 
 
 /* focusfade.c */
-
-void
-fxFocusFadeUpdateWindowAttrib2 (AnimScreen *as,
-				CompWindow * w,
-				WindowPaintAttrib *wAttrib);
 
 void
 fxFocusFadeUpdateWindowAttrib (AnimScreen *as,

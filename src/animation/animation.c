@@ -2820,74 +2820,17 @@ animPaintWindow(CompWindow * w,
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
-    // For Focus Fade && Focus Dodge
-    if (aw->winToBePaintedBeforeThis)
-    {
-	CompWindow *w2 = aw->winToBePaintedBeforeThis;
-	// ========= Paint w2 on host w =========
-
-	// Go to the bottommost window in this "focus chain"
-	// This chain is used to handle some cases: e.g when Find dialog
-	// of an app is open, both windows should be faded when the Find
-	// dialog is raised.
-	CompWindow *bottommost = w2;
-	CompWindow *wPrev = GET_ANIM_WINDOW(bottommost, as)->
-	    moreToBePaintedPrev;
-	while (wPrev)
-	{
-	    bottommost = wPrev;
-	    wPrev = GET_ANIM_WINDOW(wPrev, as)->moreToBePaintedPrev;
-	}
-
-	// Paint each window in the chain going to the topmost
-	for (w2 = bottommost; w2;
-	     w2 = GET_ANIM_WINDOW(w2, as)->moreToBePaintedNext)
-	{
-	    AnimWindow *aw2 = GET_ANIM_WINDOW(w2, as);
-	    if (!aw2)
-		continue;
-
-	    if (aw2->animTotalTime < 1e-4)
-	    {
-		aw2->drawnOnHostSkip = TRUE;
-	    }
-	    w2->indexCount = 0;
-	    WindowPaintAttrib wAttrib2 = w2->lastPaint;
-
-	    if (aw2->curAnimEffect == AnimEffectFocusFade)
-		fxFocusFadeUpdateWindowAttrib2(as, w2, &wAttrib2);
-	    else // if dodge
-		wAttrib2.opacity = aw2->storedOpacity;
-
-	    unsigned int mask2 = mask;
-	    mask2 |= PAINT_WINDOW_TRANSFORMED_MASK;
-
-	    aw2->nDrawGeometryCalls = 0;
-	    UNWRAP(as, w2->screen, paintWindow);
-	    status = (*w2->screen->paintWindow)
-		(w2, &wAttrib2, transform, region, mask2);
-	    WRAP(as, w2->screen, paintWindow, animPaintWindow);
-	}
-    }
-    if (aw->drawnOnHostSkip)
-    {
-	aw->drawnOnHostSkip = FALSE;
-	return FALSE;
-    }
     if (aw->animRemainingTime > 0)
     {
 	if (aw->curAnimEffect == AnimEffectDodge &&
 	    aw->isDodgeSubject &&
-	    aw->winThisIsPaintedBefore)
+	    aw->walkerOverNewCopy)
 	{
 	    // if aw is to be painted somewhere other than in its
-	    // original stacking order, it will only be painted with
-	    // the code above (but in animPaintWindow call for
-	    // the window aw->winThisIsPaintedBefore), so we don't
-	    // need to paint aw below
+	    // original stacking order, we don't
+	    // need to paint it now
 	    return FALSE;
 	}
-
 	if (aw->curWindowEvent == WindowEventFocus && otherPluginsActive(as))
 	    postAnimationCleanup(w, TRUE);
 
@@ -2910,9 +2853,6 @@ animPaintWindow(CompWindow * w,
 
 	WindowPaintAttrib wAttrib = *attrib;
 	CompTransform wTransform = *transform;
-
-	//if (mask & PAINT_WINDOW_SOLID_MASK)
-	//	return FALSE;
 
 	// TODO: should only happen for distorting effects
 	mask |= PAINT_WINDOW_TRANSFORMED_MASK;
@@ -2950,6 +2890,155 @@ animPaintWindow(CompWindow * w,
     }
 
     return status;
+}
+
+// Go to the bottommost window in this "focus chain"
+// This chain is used to handle some cases: e.g when Find dialog
+// of an app is open, both windows should be faded when the Find
+// dialog is raised.
+static CompWindow*
+getBottommostInFocusChain (CompWindow *w)
+{
+    if (!w)
+	return w;
+
+    ANIM_WINDOW (w);
+    ANIM_SCREEN (w->screen);
+
+    if (!aw->winToBePaintedBeforeThis)
+	return w;
+
+    CompWindow *bottommost = aw->winToBePaintedBeforeThis;
+    CompWindow *wPrev =
+	GET_ANIM_WINDOW(bottommost, as)->moreToBePaintedPrev;
+    while (wPrev)
+    {
+	bottommost = wPrev;
+	wPrev = GET_ANIM_WINDOW(wPrev, as)->moreToBePaintedPrev;
+    }
+    return bottommost;
+}
+
+static void
+resetNewCopyMarks (CompScreen *s)
+{
+    CompWindow *w;
+    for (w = s->windows; w; w = w->next)
+    {
+	ANIM_WINDOW(w);
+	aw->walkerOverNewCopy = FALSE;
+    }
+}
+
+static CompWindow*
+animWalkFirst (CompScreen *s)
+{
+    resetNewCopyMarks (s);
+
+    return getBottommostInFocusChain(s->windows);
+}
+
+static CompWindow*
+animWalkLast (CompScreen *s)
+{
+    resetNewCopyMarks (s);
+
+    return s->reverseWindows;
+}
+
+static Bool
+markNewCopy (CompWindow *w)
+{
+    ANIM_WINDOW (w);
+
+    // if window is in a focus chain
+    if (aw->winThisIsPaintedBefore ||
+	aw->moreToBePaintedPrev)
+    {
+	aw->walkerOverNewCopy = TRUE;
+	return TRUE;
+    }
+    return FALSE;
+}
+
+static CompWindow*
+animWalkNext (CompWindow *w)
+{
+    ANIM_WINDOW (w);
+
+    if (!aw->walkerOverNewCopy)
+    {
+	// Within a chain? (not the 1st or 2nd window)
+	if (aw->moreToBePaintedNext)
+	    return aw->moreToBePaintedNext;
+
+	// 2nd one in chain?
+	if (aw->winThisIsPaintedBefore)
+	    return aw->winThisIsPaintedBefore;
+    }
+    else
+	aw->walkerOverNewCopy = FALSE;
+
+    if (w->next && markNewCopy (w->next))
+	return w->next;
+
+    return getBottommostInFocusChain(w->next);
+}
+
+static CompWindow*
+animWalkPrev (CompWindow *w)
+{
+    ANIM_WINDOW (w);
+
+    // Focus chain start?
+    CompWindow *w2 = aw->winToBePaintedBeforeThis;
+    if (w2)
+	return w2;
+
+    if (!aw->walkerOverNewCopy)
+    {
+	// Within a focus chain? (not the last window)
+	CompWindow *wPrev = aw->moreToBePaintedPrev;
+	if (wPrev)
+	    return wPrev;
+
+	// Focus chain end?
+	if (aw->winThisIsPaintedBefore)
+	    // go to the chain beginning and get the
+	    // prev. in X stacking order
+	{
+	    if (aw->winThisIsPaintedBefore->prev)
+		markNewCopy (aw->winThisIsPaintedBefore->prev);
+
+	    return aw->winThisIsPaintedBefore->prev;
+	}
+    }
+    else
+	aw->walkerOverNewCopy = FALSE;
+
+    if (w->prev)
+	markNewCopy (w->prev);
+
+    return w->prev;
+}
+
+static void
+animInitWindowWalker (CompScreen *s,
+		      CompWalker *walker)
+{
+    ANIM_SCREEN (s);
+
+    UNWRAP (as, s, initWindowWalker);
+    (*s->initWindowWalker) (s, walker);
+    WRAP (as, s, initWindowWalker, animInitWindowWalker);
+
+    if (as->animInProgress)
+    {
+	walker->first = animWalkFirst;
+	walker->last  = animWalkLast;
+	walker->next  = animWalkNext;
+	walker->prev  = animWalkPrev;
+    }
 }
 
 static Bool animGetWindowIconGeometry(CompWindow * w, XRectangle * rect)
@@ -4299,6 +4388,7 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     WRAP(as, s, windowMoveNotify, animWindowMoveNotify);
     WRAP(as, s, windowGrabNotify, animWindowGrabNotify);
     WRAP(as, s, windowUngrabNotify, animWindowUngrabNotify);
+    WRAP(as, s, initWindowWalker, animInitWindowWalker);
 
     as->markAllWinCreatedCountdown = 5; // start countdown
 
@@ -4332,6 +4422,7 @@ static void animFiniScreen(CompPlugin * p, CompScreen * s)
     UNWRAP(as, s, windowMoveNotify);
     UNWRAP(as, s, windowGrabNotify);
     UNWRAP(as, s, windowUngrabNotify);
+    UNWRAP(as, s, initWindowWalker);
 
     compFiniScreenOptions (s, as->opt, ANIM_SCREEN_OPTION_NUM);
 

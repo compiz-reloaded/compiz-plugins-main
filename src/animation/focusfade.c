@@ -41,17 +41,24 @@
 // Compute the cross-fade opacity to make the effect look good with every
 // window opacity value.
 static GLushort
-fxFocusFadeComputeOpacity(CompWindow *w, float progress, float opacity, Bool front)
+fxFocusFadeComputeOpacity(CompWindow *w, float progress, float opacity)
 {
     ANIM_WINDOW(w);
 
     float multiplier;
 
-    // Reverse behavior if lowering (i.e. not raising)
-    if (aw->restackInfo && !aw->restackInfo->raised)
-	front = !front;
+    // for one side of the cross-fade
+    if (!aw->walkerOverNewCopy)
+        progress = 1 - progress;
 
-    if (w->alpha || (front && opacity >= 0.91f))
+    Bool newCopy = aw->walkerOverNewCopy;
+
+    // Reverse behavior if lowering (i.e. not raising)
+    Bool lowering = aw->restackInfo && !aw->restackInfo->raised;
+    if (lowering)
+        newCopy = !newCopy;
+
+    if (w->alpha || (newCopy && opacity >= 0.91f))
 	multiplier = decelerateProgress(progress);
     else if (opacity > 0.94f)
 	multiplier = decelerateProgressCustom(progress, 0.55, 1.32);
@@ -66,7 +73,7 @@ fxFocusFadeComputeOpacity(CompWindow *w, float progress, float opacity, Bool fro
     else if (opacity >= 0.54f && opacity < 0.79f)
 	multiplier = decelerateProgressCustom(progress, 0.61, 0.69);
     else
-	multiplier = progress;//decelerateProgressCustom(progress, 0.71, 0.73);
+	multiplier = progress;
 
     multiplier = 1 - multiplier;
     float finalOpacity = opacity * multiplier;
@@ -85,19 +92,7 @@ fxFocusFadeUpdateWindowAttrib(AnimScreen * as,
 
     float forwardProgress = defaultAnimProgress(aw);
     float opacity = aw->storedOpacity / (float)OPAQUE;
-    wAttrib->opacity =
-	fxFocusFadeComputeOpacity(w, forwardProgress, opacity, TRUE);
-}
 
-void
-fxFocusFadeUpdateWindowAttrib2(AnimScreen * as,
-			       CompWindow * w,
-			       WindowPaintAttrib * wAttrib)
-{
-    ANIM_WINDOW(w);
-    
-    float forwardProgress = defaultAnimProgress(aw);
-    float opacity = aw->storedOpacity / (float)OPAQUE;
     wAttrib->opacity =
-	fxFocusFadeComputeOpacity(w, 1 - forwardProgress, opacity, FALSE);
+	fxFocusFadeComputeOpacity(w, forwardProgress, opacity);
 }
