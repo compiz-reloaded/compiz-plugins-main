@@ -1974,6 +1974,46 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
     {
 	if (as->aWinWasRestackedJustNow)
 	{
+	    /*
+	      Handle focusing windows with multiple utility/dialog windows
+	      (like gobby), as in this case where gobby was raised with its
+	      utility windows:
+
+	      was: C0001B 36000A5 1E0000C 1E0005B 1E00050 3205B63 600003 
+	      now: C0001B 36000A5 1E0000C 1E00050 3205B63 1E0005B 600003 
+
+	      was: C0001B 36000A5 1E0000C 1E00050 3205B63 1E0005B 600003 
+	      now: C0001B 36000A5 1E0000C 3205B63 1E00050 1E0005B 600003 
+
+	      was: C0001B 36000A5 1E0000C 3205B63 1E00050 1E0005B 600003 
+	      now: C0001B 36000A5 3205B63 1E0000C 1E00050 1E0005B 600003 
+	    */
+	    CompWindow *wOldAbove = NULL;
+	    for (w = s->windows; w; w = w->next)
+	    {
+		ANIM_WINDOW(w);
+		if (aw->restackInfo)
+		{
+		    if (aw->curWindowEvent != WindowEventNone ||
+			otherPluginsActive(as) ||
+			// Don't animate with stale restack info
+			!restackInfoStillGood(s, aw->restackInfo))
+		    {
+			continue;
+		    }
+		    if (!wOldAbove)
+		    {
+			// Pick the old above of the bottommost one
+			wOldAbove = aw->restackInfo->wOldAbove;
+		    }
+		    else
+		    {
+			// Use as wOldAbove for every focus fading window
+			// (i.e. the utility/dialog windows of an app.)
+			aw->restackInfo->wOldAbove = wOldAbove;
+		    }
+		}
+	    }
 	    // do in reverse order so that focus-fading chains are handled
 	    // properly
 	    for (w = s->reverseWindows; w; w = w->prev)
