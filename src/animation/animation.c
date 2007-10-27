@@ -578,15 +578,13 @@ expandBoxWithPoint (Box *target, float fx, float fy)
 static void
 expandBoxWithPoint2DTransform (CompScreen *s,
 			       Box *target,
-			       float x,
-			       float y,
-			       float *transformMat)
+			       CompVector *coords,
+			       CompTransform *transformMat)
 {
-    float coords[4] = {x, y, 0, 1};
-    float coordsTransformed[4];
-    matrixMultVector (coordsTransformed, coords, transformMat);
-
-    expandBoxWithPoint (target, coordsTransformed[0], coordsTransformed[1]);
+    CompVector coordsTransformed;
+    
+    matrixMultiplyVector (&coordsTransformed, coords, transformMat);
+    expandBoxWithPoint (target, coordsTransformed.x, coordsTransformed.y);
 }
 
 static Bool
@@ -643,13 +641,17 @@ modelUpdateBB (CompOutput *output,
     if (animZoomToIcon(as, aw))
 	for (i = 0; i < model->numObjects; i++)
 	{
-	    x = model->objects[i].position.x;
-	    y = model->objects[i].position.y;
+	    CompVector coords;
+
+	    coords.x = model->objects[i].position.x;
+	    coords.y = model->objects[i].position.y;
+	    coords.z = 0;
+	    coords.w = 1;
 
 	    expandBoxWithPoint2DTransform (w->screen,
 					   &aw->BB,
-					   x, y,
-					   aw->transform.m);
+					   &coords,
+					   &aw->transform);
 	}
     else
 	for (i = 0; i < model->numObjects; i++)
@@ -694,7 +696,7 @@ prepareTransform (CompScreen *s,
     transformToScreenSpace (s, output,
 			    -DEFAULT_Z_CAMERA, &sTransform);
 
-    matrixMult4 (resultTransform->m, sTransform.m, transform->m);
+    matrixMultiply (resultTransform, &sTransform, transform);
 }
 
 void
