@@ -203,7 +203,7 @@ fxDodgeUpdateWindowTransform (CompScreen *s,
 	return;
 
     // Apply transform to wTransform
-    matmul4 (wTransform->m, wTransform->m, aw->transform.m);
+    matrixMult4 (wTransform->m, wTransform->m, aw->transform.m);
 }
 
 void

@@ -584,7 +584,7 @@ expandBoxWithPoint2DTransform (CompScreen *s,
 {
     float coords[4] = {x, y, 0, 1};
     float coordsTransformed[4];
-    multiplyMatrixVector (coordsTransformed, transformMat, coords);
+    matrixMultVector (coordsTransformed, transformMat, coords);
 
     expandBoxWithPoint (target, coordsTransformed[0], coordsTransformed[1]);
 }
@@ -694,7 +694,7 @@ prepareTransform (CompScreen *s,
     transformToScreenSpace (s, output,
 			    -DEFAULT_Z_CAMERA, &sTransform);
 
-    matmul4 (resultTransform->m, sTransform.m, transform->m);
+    matrixMult4 (resultTransform->m, sTransform.m, transform->m);
 }
 
 void

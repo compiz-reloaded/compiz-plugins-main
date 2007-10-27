@@ -1531,7 +1531,7 @@ polygonsUpdateBB (CompOutput *output,
     if (pset->correctPerspective == CorrectPerspectiveWindow)
     {
 	getPerspectiveCorrectionMat (w, NULL, NULL, skewMat);
-	matmul4 (wTransform2.m, wTransform.m, skewMat);
+	matrixMult4 (wTransform2.m, wTransform.m, skewMat);
     }
     if (pset->correctPerspective == CorrectPerspectiveWindow ||
 	pset->correctPerspective == CorrectPerspectivePolygon)
@@ -1542,7 +1542,7 @@ polygonsUpdateBB (CompOutput *output,
 	if (pset->correctPerspective == CorrectPerspectivePolygon)
 	{
 	    getPerspectiveCorrectionMat (w, p, NULL, skewMat);
-	    matmul4 (wTransform2.m, wTransform.m, skewMat);
+	    matrixMult4 (wTransform2.m, wTransform.m, skewMat);
 	}
 
 	// if modelViewTransform == wTransform2, then
