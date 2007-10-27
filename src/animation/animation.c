@@ -584,7 +584,7 @@ expandBoxWithPoint2DTransform (CompScreen *s,
 {
     float coords[4] = {x, y, 0, 1};
     float coordsTransformed[4];
-    matrixMultVector (coordsTransformed, transformMat, coords);
+    matrixMultVector (coordsTransformed, coords, transformMat);
 
     expandBoxWithPoint (target, coordsTransformed[0], coordsTransformed[1]);
 }
