@@ -835,9 +835,6 @@ prepareTransform (CompScreen *s,
 		  CompTransform *resultTransform,
 		  CompTransform *transform);
 
-inline void
-resetToIdentity (CompTransform *transform);
-
 /* airplane3d.c */
 
 void

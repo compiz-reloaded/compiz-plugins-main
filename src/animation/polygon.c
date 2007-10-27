@@ -1507,7 +1507,7 @@ polygonsUpdateBB (CompOutput *output,
     CompTransform wTransform;
     CompTransform wTransform2;
 
-    resetToIdentity (&wTransform2);
+    matrixGetIdentity (&wTransform2);
     prepareTransform (s, output, &wTransform, &wTransform2);
 
     GLdouble dModel[16];

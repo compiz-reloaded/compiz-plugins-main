@@ -186,7 +186,7 @@ fxDodgeAnimStep (CompScreen * s, CompWindow * w, float time)
 	}
     }
 
-    resetToIdentity (&aw->transform);
+    matrixGetIdentity (&aw->transform);
     applyDodgeTransform (w, &aw->transform);
 
     return TRUE;
