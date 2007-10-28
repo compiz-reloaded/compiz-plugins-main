@@ -88,8 +88,6 @@ typedef struct _ExpoScreen
     /* For expo grab */
     int grabIndex;
 
-    GLint viewport[4];
-
     /* Window being dragged in expo mode */
     DnDState   dndState;
     CompWindow *dndWindow;
@@ -596,14 +594,13 @@ invertTransformedVertex (CompScreen              *s,
     CompTransform sTransform = *transform;
     GLdouble p1[3], p2[3], v[3], alpha;
     GLdouble mvm[16], pm[16];
+    GLint    viewport[4];
     int      i;
-
-    EXPO_SCREEN (s);
 
     (*s->applyScreenTransform) (s, sAttrib, output, &sTransform);
     transformToScreenSpace (s, output, -sAttrib->zTranslate, &sTransform);
 
-    glGetIntegerv (GL_VIEWPORT, es->viewport);
+    glGetIntegerv (GL_VIEWPORT, viewport);
 
     for (i = 0; i < 16; i++)
     {
@@ -612,9 +609,9 @@ invertTransformedVertex (CompScreen              *s,
     }
 
     gluUnProject (vertex[0], s->height - vertex[1], 0, mvm, pm,
-		  es->viewport, &p1[0], &p1[1], &p1[2]);
+		  viewport, &p1[0], &p1[1], &p1[2]);
     gluUnProject (vertex[0], s->height - vertex[1], -1.0, mvm, pm,
-		  es->viewport, &p2[0], &p2[1], &p2[2]);
+		  viewport, &p2[0], &p2[1], &p2[2]);
 
     for (i = 0; i < 3; i++)
 	v[i] = p1[i] - p2[i];
