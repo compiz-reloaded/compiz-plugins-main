@@ -1367,7 +1367,7 @@ wallPreparePaintScreen (CompScreen *s,
 	if (ws->moveWindow)
 	    wallReleaseMoveWindow (s);
 	else
-	    focusDefaultWindow (s->display);
+	    focusDefaultWindow (s);
     }
 
     UNWRAP (ws, s, preparePaintScreen);
