@@ -306,7 +306,7 @@ expoTermExpo (CompDisplay     *d,
 	removeScreenAction (s, expoGetPrevVpButton (d));
 
 	damageScreen (s);
-	focusDefaultWindow (s->display);
+	focusDefaultWindow (s);
     }
 
     return TRUE;
@@ -1105,12 +1105,12 @@ expoDonePaintScreen (CompScreen * s)
     case VPUpdateMouseOver:
     	moveScreenViewport (s, s->x - es->selectedVX, 
 			    s->y - es->selectedVY, TRUE);
-	focusDefaultWindow (s->display);
+	focusDefaultWindow (s);
 	es->vpUpdateMode = VPUpdateNone;
 	break;
     case VPUpdatePrevious:
 	moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
-	focusDefaultWindow (s->display);
+	focusDefaultWindow (s);
 	es->vpUpdateMode = VPUpdateNone;
 	break;
     default:
