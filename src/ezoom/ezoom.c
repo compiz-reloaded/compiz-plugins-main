@@ -1733,6 +1733,7 @@ zoomFitWindowToZoom (CompDisplay     *d,
 			zs->zooms[out].currentZoom -
 			(int) ((w->input.top + w->input.bottom)));
     sendSyncRequest (w);
+    constrainNewWindowSize (w, xwc.width, xwc.height, &xwc.width, &xwc.height);
     configureXWindow (w, (unsigned int) CWWidth | CWHeight, &xwc);
     return TRUE;
 }
