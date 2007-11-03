@@ -1596,7 +1596,8 @@ zoomToWindow (CompDisplay     *d,
     if (!s)
 	return TRUE;
     CompWindow *w;
-    w = findWindowAtDisplay (d, d->activeWindow);
+    xid = getIntOptionNamed (option, nOption, "window", 0);
+    w = findWindowAtDisplay (d, xid);
     if (!w || w->screen->root != s->root)
 	return TRUE;
     int width = w->width + w->input.left + w->input.right;
@@ -1715,10 +1716,12 @@ zoomFitWindowToZoom (CompDisplay     *d,
 		     CompOption      *option,
 		     int	     nOption)
 {
+    Window xid;
     CompScreen *s;
     XWindowChanges xwc;
     CompWindow * w;
-    w = findWindowAtDisplay (d, d->activeWindow);
+    xid = getIntOptionNamed (option, nOption, "window", 0);
+    w = findWindowAtDisplay (d, xid);
     if (!w)
 	return TRUE;
     s = w->screen;
