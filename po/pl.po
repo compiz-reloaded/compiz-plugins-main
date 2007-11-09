@@ -5,14 +5,15 @@
 # Adam Kremienowski <akremen@gmail.com>, 2007
 # Jakub Chromiak <silvervoxer@gmail.com>, 2007
 # Mariusz Fik <fisiu82@gmail.com>, 2007
-#, fuzzy
+# Maciej Warnecki <maciekw5@gmail.com>, 2007.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-11-04 15:11+0530\n"
-"PO-Revision-Date: 2007-07-14 19:00+0200\n"
-"Last-Translator: Karol Sikora <elektrrrus@gmail.com>\n"
+"POT-Creation-Date: 2007-11-09 17:25+0530\n"
+"PO-Revision-Date: 2007-11-08 22:48+0100\n"
+"Last-Translator: Maciej Warnecki <maciekw5@gmail.com>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,10 +75,10 @@ msgstr ""
 "gdy obracasz kostkę myszą)"
 
 msgid "Minimum Cube Size"
-msgstr ""
+msgstr "Minimalny rozmiar kostki"
 
 msgid "Minimum cube size (in percent)."
-msgstr ""
+msgstr "Minimalny rozmiar kostki (w procentach)"
 
 msgid "Misc. Options"
 msgstr "Pozostałe opcje"
@@ -125,7 +126,7 @@ msgid "Misc. options"
 msgstr "Pozostałe opcje"
 
 msgid "Opacity"
-msgstr "Przezroczystość"
+msgstr "Nieprzezroczystość"
 
 msgid "Opacity of faded windows"
 msgstr "Przezroczystość zanikających okien"
@@ -149,25 +150,31 @@ msgid "Window types that should be Opacified."
 msgstr "Typy okien, które powinny być przezroczyste."
 
 msgid "Airplane"
-msgstr ""
+msgstr "Samolot"
 
 msgid "Airplane Flying Path Length"
-msgstr ""
+msgstr "Długość lotu samolotu"
 
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
+"Wszystkie efekty są wybierane losowo, ignorując wybrany efekt. Jeśli wybrane "
+"jest 'Brak' dla zdarzenia, to zdarzenie nie będzie animowane."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
 msgstr ""
+"Amplituda (wielkość fali podczas składania) Poziomych Składań związanych z "
+"szerokością okna. Negatywne wartości powodują składanie się na zewnątrz."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
+"Amplituda (wielkość fali podczas składania) zakrzywionego zginania związana "
+"z szerokością okna. Negatywne wartości powodują składanie na zewnątrz."
 
 #, fuzzy
 msgid "Angle of window at the end of the animation."
@@ -182,29 +189,29 @@ msgid "Animation Time Step"
 msgstr "Prędkość Animacji"
 
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "Interwał czasowy animacji dla Intensywnych Efektów"
 
 msgid "Animation duration in milliseconds for close effect."
-msgstr ""
+msgstr "Długość trwania animacji w milisekundach dla efektu zamykania."
 
 msgid "Animation duration in milliseconds for focus effect."
-msgstr ""
+msgstr "Długość trwania animacji w milisekundach dla efektu Skupienia."
 
 msgid "Animation duration in milliseconds for minimize effect."
-msgstr ""
+msgstr "Długość trwania animacji w milisekundach dla efektu minimalizacji."
 
 msgid "Animation duration in milliseconds for open effect."
-msgstr ""
+msgstr "Długość trwania animacji w milisekundach dla efektu otwarcia."
 
 msgid "Animation duration in milliseconds for shade effect."
-msgstr ""
+msgstr "Długość trwania animacji w milisekundach dla efektu zacienienia."
 
 #, fuzzy
 msgid "Animations"
 msgstr "Opcje animacji"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Automatyczny"
 
 msgid "Away Angle"
 msgstr ""
@@ -214,21 +221,21 @@ msgid "Away Position"
 msgstr "Pozycja w poziomie"
 
 msgid "Beam"
-msgstr ""
+msgstr "Promień"
 
 #, fuzzy
 msgid "Beam Color"
 msgstr "Kolor linii"
 
 msgid "Beam Life"
-msgstr ""
+msgstr "Długośc trwania (\"życia\") jednego promienia"
 
 #, fuzzy
 msgid "Beam Slowdown"
 msgstr "Spowolnienie szybkości cząsteczki ognia"
 
 msgid "Beam Spacing"
-msgstr ""
+msgstr "Odległość między promieniami"
 
 msgid "Beam Up"
 msgstr ""
@@ -272,10 +279,10 @@ msgid ""
 msgstr ""
 
 msgid "Curved Fold"
-msgstr ""
+msgstr "Zakrzywione Składanie"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "Amplituda Zakrzywionego Składania"
 
 msgid "Dodge"
 msgstr ""
@@ -294,7 +301,7 @@ msgid "Down"
 msgstr "W dół"
 
 msgid "Dream"
-msgstr ""
+msgstr "Sen"
 
 #, fuzzy
 msgid "Duration"
@@ -305,16 +312,16 @@ msgid "Effect Settings"
 msgstr "Ustawienia"
 
 msgid "Explode"
-msgstr ""
+msgstr "Eksplozja"
 
 msgid "Fade"
 msgstr "Zanikanie"
 
 msgid "Falling direction for Domino pieces."
-msgstr ""
+msgstr "Kierunek upadania klocków Domina."
 
 msgid "Fire"
-msgstr ""
+msgstr "Ogień"
 
 msgid "Fire Particle Color"
 msgstr "Kolor cząsteczki ognia"
@@ -329,10 +336,10 @@ msgid "Fire Particle Slowdown"
 msgstr "Spowolnienie szybkości cząsteczki ognia"
 
 msgid "Fire Smoke"
-msgstr ""
+msgstr "Dym z ognia"
 
 msgid "Fire constant speed"
-msgstr ""
+msgstr "stała prędkość ognia"
 
 #, fuzzy
 msgid "Fire direction"
@@ -355,30 +362,30 @@ msgid "Fire particle slowdown."
 msgstr "Spowolnienie szybkości cząsteczki ognia."
 
 msgid "Fire smoke."
-msgstr ""
+msgstr "Dym z ognia."
 
 msgid "Fixed window interior during the Rollup animation."
-msgstr ""
+msgstr "Naprawienie wnętrza okien podczas animacji zwijania do góry okna"
 
 msgid "Fly to TaskBar on Minimize"
-msgstr ""
+msgstr "Leć do paska zadań podczas minimalizacji"
 
 #, fuzzy
 msgid "Focus Animation"
 msgstr "Prędkość Animacji"
 
 msgid "Focus Effect"
-msgstr ""
+msgstr "Efekt Ostrości"
 
 msgid "Fold"
-msgstr ""
+msgstr "Zginanie"
 
 #, fuzzy
 msgid "Fold Direction"
 msgstr "Kierunek opadania śniegu"
 
 msgid "Fold opening direction for pieces in Razr effect."
-msgstr ""
+msgstr "Kierunek otwierania zagięcia dla części w efekcie Razr"
 
 #, fuzzy
 msgid "Glide 1"
@@ -414,7 +421,7 @@ msgid "In-out"
 msgstr ""
 
 msgid "Leaf Spread"
-msgstr ""
+msgstr "Efekt rozpościerania liści"
 
 msgid "Left"
 msgstr "W lewo"
@@ -424,25 +431,25 @@ msgid "Left-right"
 msgstr "W lewo i w prawo"
 
 msgid "Length of airplane's flying path."
-msgstr ""
+msgstr "Długośc drogi lotu samolotu"
 
 msgid "Magic Lamp"
-msgstr ""
+msgstr "Magiczna Lampa"
 
 msgid "Magic Lamp Grid Y Resolution"
-msgstr ""
+msgstr "Rozkład siatki Y Magicznej Lampy"
 
 msgid "Magic Lamp Max Wave Amplitude"
-msgstr ""
+msgstr "Maksymalna amplituda fali Magicznej Lampy"
 
 msgid "Magic Lamp Max Waves"
-msgstr ""
+msgstr "Maksymalna ilośc fal Magicznej Lampy"
 
 msgid "Magic Lamp Min Wave Amplitude"
-msgstr ""
+msgstr "Minimalna amplituda fali Magicznej Lampy"
 
 msgid "Magic Lamp Open Start Width"
-msgstr ""
+msgstr "Początkowa szerokość podczas otwarcia Magicznej Lampy"
 
 msgid "Magic Lamp Open/Close Moving End"
 msgstr ""
@@ -455,10 +462,10 @@ msgid "Minimize Animation"
 msgstr "Minimalizuj całą grupę"
 
 msgid "Minimize Effect"
-msgstr ""
+msgstr "Efekt minimalizacji"
 
 msgid "Minimize/Unminimize Only"
-msgstr ""
+msgstr "Tylko minimalizuj/maksymalizuj"
 
 #, fuzzy
 msgid "Movement direction(s) for window pieces."
@@ -482,12 +489,13 @@ msgstr "Ilość cząsteczek"
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
+"Liczba rotacji dla efektu Sidekick (plus minus 10% ze względu na losowość)"
 
 msgid "Off"
-msgstr ""
+msgstr "Wył."
 
 msgid "On"
-msgstr ""
+msgstr "Wł."
 
 msgid "On open/close, move magic lamp ending point with the mouse pointer."
 msgstr ""
