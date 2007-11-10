@@ -97,6 +97,7 @@ typedef struct _WallScreen
     PaintWindowProc              paintWindow;
 
     Bool moving; /* Used to track miniview movement */
+    Bool showPreview;
 
     float curPosX;
     float curPosY;
@@ -699,17 +700,59 @@ wallCheckAmount (CompScreen *s,
 }
 
 static Bool
-wallInitiate (CompScreen *s,
-	      int        dx,
-	      int        dy,
-	      Window     win)
+wallInitiate (CompScreen      *s,
+	      int             dx,
+	      int             dy,
+	      Window          win,
+	      CompAction      *action,
+	      CompActionState state)
 {
     int amountX, amountY;
+
+    WALL_SCREEN (s);
 
     wallCheckAmount (s, dx, dy, &amountX, &amountY);
     wallMoveViewport (s, amountX, amountY, win);
 
+    if (state & CompActionStateInitKey)
+	action->state |= CompActionStateTermKey;
+
+    if (state & CompActionStateInitButton)
+	action->state |= CompActionStateTermButton;
+
+    ws->showPreview = TRUE;
+
     return TRUE;
+}
+
+static Bool
+wallTerminate (CompDisplay     *d,
+	       CompAction      *action,
+	       CompActionState state,
+	       CompOption      *option,
+	       int             nOption)
+{
+    CompScreen *s;
+    Window     xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s = findScreenAtDisplay (d, xid);
+
+    for (s = d->screens; s; s = s->next)
+    {
+	WALL_SCREEN (s);
+
+	if (ws->showPreview)
+	{
+	    ws->showPreview = FALSE;
+	    damageScreen (s);
+	}
+    }
+
+    if (action)
+	action->state &= ~(CompActionStateTermKey | CompActionStateTermButton);
+
+    return FALSE;
 }
 
 static Bool
@@ -820,7 +863,7 @@ wallLeft (CompDisplay     *d,
 {
     GET_SCREEN;
 
-    return wallInitiate (s, -1, 0, None);
+    return wallInitiate (s, -1, 0, None, action, state);
 }
 
 static Bool
@@ -832,7 +875,7 @@ wallRight (CompDisplay     *d,
 {
     GET_SCREEN;
 
-    return wallInitiate (s, 1, 0, None);
+    return wallInitiate (s, 1, 0, None, action, state);
 }
 
 static Bool
@@ -844,7 +887,7 @@ wallUp (CompDisplay     *d,
 {
     GET_SCREEN;
 
-    return wallInitiate (s, 0, -1, None);
+    return wallInitiate (s, 0, -1, None, action, state);
 }
 
 static Bool
@@ -856,7 +899,7 @@ wallDown (CompDisplay     *d,
 {
     GET_SCREEN;
 
-    return wallInitiate (s, 0, 1, None);
+    return wallInitiate (s, 0, 1, None, action, state);
 }
 
 static Bool
@@ -917,7 +960,7 @@ wallLeftWithWindow (CompDisplay     *d,
     GET_SCREEN;
     Window win = getIntOptionNamed (option, nOption, "window", 0);
 
-    return wallInitiate (s, -1, 0, win);
+    return wallInitiate (s, -1, 0, win, action, state);
 }
 
 static Bool
@@ -930,7 +973,7 @@ wallRightWithWindow (CompDisplay     *d,
     GET_SCREEN;
     Window win = getIntOptionNamed (option, nOption, "window", 0);
 
-    return wallInitiate (s, 1, 0, win);
+    return wallInitiate (s, 1, 0, win, action, state);
 }
 
 static Bool
@@ -943,7 +986,7 @@ wallUpWithWindow (CompDisplay     *d,
     GET_SCREEN;
     Window win = getIntOptionNamed (option, nOption, "window", 0);
 
-    return wallInitiate (s, 0, -1, win);
+    return wallInitiate (s, 0, -1, win, action, state);
 }
 
 static Bool
@@ -956,7 +999,7 @@ wallDownWithWindow (CompDisplay     *d,
     GET_SCREEN;
     Window win = getIntOptionNamed (option, nOption, "window", 0);
 
-    return wallInitiate (s, 0, 1, win);
+    return wallInitiate (s, 0, 1, win, action, state);
 }
 
 static inline void
@@ -1329,7 +1372,7 @@ wallPreparePaintScreen (CompScreen *s,
 {
     WALL_SCREEN (s);
 
-    if (!ws->moving && ws->boxTimeout)
+    if (!ws->moving && !ws->showPreview && ws->boxTimeout)
 	ws->boxTimeout -= msSinceLastPaint;
 
     if (ws->timer)
@@ -1745,21 +1788,37 @@ wallInitDisplay (CompPlugin  *p,
     }
 
     wallSetLeftKeyInitiate (d, wallLeft);
+    wallSetLeftKeyTerminate (d, wallTerminate);
     wallSetRightKeyInitiate (d, wallRight);
+    wallSetRightKeyTerminate (d, wallTerminate);
     wallSetUpKeyInitiate (d, wallUp);
+    wallSetUpKeyTerminate (d, wallTerminate);
     wallSetDownKeyInitiate (d, wallDown);
+    wallSetDownKeyTerminate (d, wallTerminate);
     wallSetNextKeyInitiate (d, wallNext);
+    wallSetNextKeyTerminate (d, wallTerminate);
     wallSetPrevKeyInitiate (d, wallPrev);
+    wallSetPrevKeyTerminate (d, wallTerminate);
     wallSetLeftButtonInitiate (d, wallLeft);
+    wallSetLeftButtonTerminate (d, wallTerminate);
     wallSetRightButtonInitiate (d, wallRight);
+    wallSetRightButtonTerminate (d, wallTerminate);
     wallSetUpButtonInitiate (d, wallUp);
+    wallSetUpButtonTerminate (d, wallTerminate);
     wallSetDownButtonInitiate (d, wallDown);
+    wallSetDownButtonTerminate (d, wallTerminate);
     wallSetNextButtonInitiate (d, wallNext);
+    wallSetNextButtonTerminate (d, wallTerminate);
     wallSetPrevButtonInitiate (d, wallPrev);
+    wallSetPrevButtonTerminate (d, wallTerminate);
     wallSetLeftWindowKeyInitiate (d, wallLeftWithWindow);
+    wallSetLeftWindowKeyTerminate (d, wallTerminate);
     wallSetRightWindowKeyInitiate (d, wallRightWithWindow);
+    wallSetRightWindowKeyTerminate (d, wallTerminate);
     wallSetUpWindowKeyInitiate (d, wallUpWithWindow);
+    wallSetUpWindowKeyTerminate (d, wallTerminate);
     wallSetDownWindowKeyInitiate (d, wallDownWithWindow);
+    wallSetDownWindowKeyTerminate (d, wallTerminate);
     wallSetFlipLeftEdgeInitiate (d, wallFlipLeft);
     wallSetFlipRightEdgeInitiate (d, wallFlipRight);
     wallSetFlipUpEdgeInitiate (d, wallFlipUp);
@@ -1810,6 +1869,7 @@ wallInitScreen (CompPlugin *p,
 
     ws->boxTimeout = 0;
     ws->moving = FALSE;
+    ws->showPreview = FALSE;
 
     memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
     memset (&ws->thumbContext, 0, sizeof (WallCairoContext));
