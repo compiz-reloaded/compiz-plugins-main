@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-11-19 18:10+0530\n"
-"PO-Revision-Date: 2007-11-17 13:19+0100\n"
+"POT-Creation-Date: 2007-11-20 14:13+0530\n"
+"PO-Revision-Date: 2007-11-17 20:28+0100\n"
 "Last-Translator: Maciej Warnecki <maciekw5@gmail.com>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -953,13 +953,13 @@ msgid "Compiz crash handler plugin"
 msgstr "Wtyczka obsługi awarii"
 
 msgid "Crash Dump Directory"
-msgstr ""
+msgstr "Folder z logami"
 
 msgid "Crash handler"
 msgstr "Obsługa awarii"
 
 msgid "Directory to dump the crash logs to."
-msgstr ""
+msgstr "Folder gdzie należy zostawiać logi po błędzie Compiza"
 
 msgid "Enable Crash Handler"
 msgstr "Włącz wtyczkę obsługę awarii"
@@ -1052,17 +1052,19 @@ msgid "Draw top face of the cube"
 msgstr "Rysuj górną ścianę kostki"
 
 msgid "Go back to previous image for bottom face of the cube"
-msgstr ""
+msgstr "Idź do poprzedniego obrazka dla dolnej ściany kostki"
 
 msgid "Go back to previous image for top face of the cube"
-msgstr ""
+msgstr "Idź do poprzedniego obrazka dla górnej ściany kostki"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
 msgstr ""
+"Lista plików PNG i SVG które mają być renderowane na dolnej ścianie kostki"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
+"Lista plików PNG i SVG które mają być renderowane na górnej ścianie kostki"
 
 msgid "Next bottom image"
 msgstr "Następny dolny obrazek"
@@ -1078,7 +1080,7 @@ msgid "Prev top image"
 msgstr "Poprzedni górny obrazek"
 
 msgid "Render images on top and bottom of the cube"
-msgstr ""
+msgstr "Wyświetla obrazki na dolnej i górnej ściance kostki."
 
 msgid "Scale bottom image"
 msgstr "Skaluj dolny obrazek"
@@ -1157,7 +1159,7 @@ msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Oddala kostkę automatycznie aby dopasować ją do ekranu."
 
 msgid "Animation used when switching to expo mode"
-msgstr ""
+msgstr "Animacja podczas przełączania do trybu expo"
 
 msgid "Aspect Ratio"
 msgstr ""
@@ -1311,7 +1313,7 @@ msgid ""
 msgstr ""
 
 msgid "Center the mouse"
-msgstr ""
+msgstr "Wyśrodkuj mysz"
 
 msgid "Enable focus tracking"
 msgstr ""
@@ -1329,10 +1331,10 @@ msgid "Enhanced Zoom Desktop"
 msgstr "Przenikanie do pulpitu"
 
 msgid "Enhanced zoom functions for visually imparied and others"
-msgstr ""
+msgstr "Funkcje ulepszyonego przybliżenia dla niedowidzących i innych."
 
 msgid "Filter Linear"
-msgstr ""
+msgstr "Filtruj liniowo"
 
 msgid "Fit the window to the zoom level"
 msgstr ""
@@ -1375,10 +1377,10 @@ msgid "Mouse Behavior"
 msgstr "Zachowanie"
 
 msgid "Mouse Poll Interval"
-msgstr ""
+msgstr "Odstęp między sygnałami badającymi położenie wskażnika myszy"
 
 msgid "Mouse Restrain Margin"
-msgstr ""
+msgstr "Margines przytrzymywania myszy"
 
 msgid "Mouse panning"
 msgstr ""
@@ -1470,7 +1472,7 @@ msgid "Toggles a lock on the zoom area so it doesn't change on various events"
 msgstr ""
 
 msgid "Use linear filter when zoomed in"
-msgstr ""
+msgstr "Używaj filtrowania liniowego podczas przybliżania"
 
 #, fuzzy
 msgid "Zoom In"
@@ -1484,13 +1486,13 @@ msgid "Zoom Out"
 msgstr "Zbliżenie"
 
 msgid "Zoom Specific Level 1"
-msgstr ""
+msgstr "Konkretny poziom zbliżenia 1"
 
 msgid "Zoom Specific Level 2"
-msgstr ""
+msgstr "Konkretny poziom zbliżenia 2"
 
 msgid "Zoom Specific Level 3"
-msgstr ""
+msgstr "Konkretny poziom zbliżenia 3"
 
 #, fuzzy
 msgid "Zoom Speed"
@@ -1501,28 +1503,28 @@ msgid "Zoom Timestep"
 msgstr "Krok czasu"
 
 msgid "Zoom factor"
-msgstr ""
+msgstr "Współczynnik zbliżenia"
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
 
 msgid "Zoom level to go to when triggering hotkey 1"
-msgstr ""
+msgstr "Poziom przybliżenia dla przycisku 1"
 
 msgid "Zoom level to go to when triggering hotkey 2"
-msgstr ""
+msgstr "Poziom przybliżenia dla przycisku 2"
 
 msgid "Zoom level to go to when triggering hotkey 3"
-msgstr ""
+msgstr "Poziom przybliżenia dla przycisku 3 "
 
 msgid "Zoom to the specific zoom level 1"
-msgstr ""
+msgstr "Przybliż do konkretnego poziomu zbliżenia 1"
 
 msgid "Zoom to the specific zoom level 2"
-msgstr ""
+msgstr "Przybliż do konkretnego poziomu zbliżenia 2"
 
 msgid "Zoom to the specific zoom level 3"
-msgstr ""
+msgstr "Przybliż do konkretnego poziomu zbliżenia 3"
 
 msgid ""
 "Zooms in/out so the focused window is zoomed to the maximum while still "
@@ -1536,7 +1538,7 @@ msgid "Activate a given window"
 msgstr "Aktywuj wybrane okno"
 
 msgid "Extra WM Actions"
-msgstr "Dodatkowe akcje menedżera okien"
+msgstr "Dodatkowe opcje menedżera okien"
 
 msgid "Provides less commonly used WM actions"
 msgstr "Dostarcza rzadko używanych funkcji menedżera okien"
@@ -1609,7 +1611,7 @@ msgid "Clear"
 msgstr "Wyczyść"
 
 msgid "Clear (button)"
-msgstr ""
+msgstr "Wyczyść (przycisk)"
 
 #, fuzzy
 msgid "Clear (key)"
@@ -2124,13 +2126,13 @@ msgid "Compression Quality"
 msgstr ""
 
 msgid "JPEG"
-msgstr ""
+msgstr "JPEG"
 
 msgid "JPEG image format plugin"
-msgstr ""
+msgstr "Wtyczka dla obrazków w formacie JPEG"
 
 msgid "Quality of compression when saving JPEG images"
-msgstr ""
+msgstr "Jakość kompresji podczas zapisywania obrazków JPEG"
 
 msgid "Accumulation buffer"
 msgstr "Bufor akumulacji"
@@ -2175,16 +2177,16 @@ msgid "Visibility/Performance"
 msgstr "Jakość/Wydajność"
 
 msgid "Begin Gesture"
-msgstr ""
+msgstr "Rozpocznij gest"
 
 msgid "Begin Mouse Gesture"
-msgstr ""
+msgstr "Rozpocznij gest myszy"
 
 msgid "Mouse switch"
 msgstr ""
 
 msgid "Switch viewport in response to mouse gesture"
-msgstr ""
+msgstr "Zmieniaj wirtualny pulpit po wykonaniu gestu myszy"
 
 #, fuzzy
 msgid "Exclude Windows"
@@ -2195,7 +2197,7 @@ msgid "Neg Windows"
 msgstr "Rozmieść równomiernie"
 
 msgid "Negative"
-msgstr ""
+msgstr "Negatyw"
 
 #, fuzzy
 msgid "Toggle Screen Negative"
@@ -2218,7 +2220,7 @@ msgid "Used to set a window or screen negative"
 msgstr "Automatyczne zakładkowanie okien podczas ich tworzenia"
 
 msgid "Windows to be negative by default"
-msgstr ""
+msgstr "Okna mające mieć kolory w negatywie od razu (po otwarciu)"
 
 #, fuzzy
 msgid "Windows to exclude from negating"
@@ -2237,7 +2239,7 @@ msgid "Bypass delay when the new active window is the focused window."
 msgstr ""
 
 msgid "Delay until Opacification"
-msgstr ""
+msgstr "Opóźnienie przed rozpoczęciem zmiany nieprzezroczystości"
 
 msgid ""
 "Do not wait if the window we are hovering is the focused window. This allows "
@@ -2329,13 +2331,13 @@ msgid "Animation timestep"
 msgstr "Opcje animacji"
 
 msgid "Avoid Offscreen"
-msgstr ""
+msgstr "Unikaj wyjścia poza ekran"
 
 msgid "Avoids putting window borders offscreen"
-msgstr ""
+msgstr "Unikaj znajdowania się krawędzi okien poza ekranem"
 
 msgid "Move window to a certain viewport"
-msgstr ""
+msgstr "Przenieś okno do konkretnego pulpitu"
 
 #, fuzzy
 msgid "Move window to the bottom edge"
@@ -2354,14 +2356,14 @@ msgid "Move window to the center"
 msgstr "Przenoś wszystkie okna w grupie"
 
 msgid "Move window to the last position"
-msgstr ""
+msgstr "Przenieś okno do ostatniej pozycji"
 
 #, fuzzy
 msgid "Move window to the left edge"
 msgstr "Przenoś wszystkie okna w grupie"
 
 msgid "Move window to the pointer position"
-msgstr ""
+msgstr "Przenieś okno do pozycji wskaźnika"
 
 #, fuzzy
 msgid "Move window to the right edge"
@@ -2380,56 +2382,56 @@ msgid "Move window to the top right corner"
 msgstr "Ścina górny oraz lewy dolny narożnik"
 
 msgid "Move window to the viewport on the bottom"
-msgstr ""
+msgstr "Przenieś okno do wirtualnego pulpitu na dole"
 
 msgid "Move window to the viewport on the left"
-msgstr ""
+msgstr "Przenieś okno do wirtualnego pulpitu po lewej"
 
 msgid "Move window to the viewport on the right"
-msgstr ""
+msgstr "Przenieś okno do wirtualnego pulpitu po prawej"
 
 #, fuzzy
 msgid "Move window to the viewport on the top"
 msgstr "Przenoś wszystkie okna w grupie"
 
 msgid "Move window to viewport 1"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 10"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 11"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 12"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 2"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 3"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 4"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 5"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 6"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 7"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 8"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to viewport 9"
-msgstr ""
+msgstr "Przenieś okno do pulptu %d"
 
 msgid "Move window to x, y"
-msgstr ""
+msgstr "Przenieś okno do x, y"
 
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
@@ -3049,28 +3051,26 @@ msgid "Fade speed"
 msgstr "Czas przenikania"
 
 msgid "Flip"
-msgstr ""
+msgstr "Odwracanie"
 
 msgid "Flip angle"
-msgstr ""
+msgstr "Kąt odwracania"
 
-#, fuzzy
 msgid "Generate mipmaps"
-msgstr "Stwórz mipmapy"
+msgstr "Generuj mipmapy"
 
 msgid "Hide all non Desktop windows during switching"
 msgstr ""
 
-#, fuzzy
 msgid "Hide non Desktop windows"
-msgstr "Przenikanie do pulpitu"
+msgstr "Ukryj okna nie należące do Pulpitu"
 
 #, fuzzy
 msgid "Initiate (All Workspaces)"
 msgstr "Inicjacja ekranu powitalnego"
 
 msgid "Initiate switcher (All Workspaces)."
-msgstr ""
+msgstr "Inicjuj Zmieniacz (wszystkie pulpity)"
 
 #, fuzzy
 msgid "Initiate switcher."
@@ -3091,7 +3091,7 @@ msgid "Mouse movement speed"
 msgstr "Szybkosc ruchu okna"
 
 msgid "Mouse speed"
-msgstr ""
+msgstr "Prędkośc myszy"
 
 msgid "On activated output"
 msgstr ""
@@ -3102,9 +3102,8 @@ msgstr ""
 msgid "Overlay an icon on windows in the shift switcher"
 msgstr ""
 
-#, fuzzy
 msgid "Rotation angle of the flip animation"
-msgstr "Czas (w milisekundach) trwania animacji rozmieszczenia"
+msgstr "Kąt obrotu dla animacji odwracania"
 
 msgid ""
 "Selects how the switcher is displayed if multiple output devices are used."
@@ -3211,13 +3210,11 @@ msgstr ""
 msgid "Edge Resistance Distance"
 msgstr ""
 
-#, fuzzy
 msgid "Edge attraction"
-msgstr "Nasycenie"
+msgstr "Przyciąganie krawędzi"
 
-#, fuzzy
 msgid "Edge resistance"
-msgstr "Odległość"
+msgstr "Opór krawędzi"
 
 msgid "Edges"
 msgstr "Krawędzie"
@@ -3229,9 +3226,8 @@ msgstr ""
 msgid "Meta"
 msgstr "Metal"
 
-#, fuzzy
 msgid "Screen edges"
-msgstr "Głębokośc spadania"
+msgstr "Krawędzie ekranu"
 
 msgid "Shift"
 msgstr ""
@@ -3429,9 +3425,8 @@ msgstr "Włącz ekran powitalny"
 msgid "Render text to texture"
 msgstr "Renderuje tekst do tekstury."
 
-#, fuzzy
 msgid "Text"
-msgstr "Tekstury"
+msgstr "Tekst"
 
 #, fuzzy
 msgid "Enable Titles"
@@ -3768,11 +3763,9 @@ msgstr "Inicjuj zmianę pulpitów poprzez pewne konkretne zdarzenia"
 msgid "Initiate/Terminate the selected plugin action"
 msgstr "Inicjuj/Przerwij działanie wybranej wtyczki"
 
-#, fuzzy
 msgid "Move Down"
 msgstr "W dół"
 
-#, fuzzy
 msgid "Move Left"
 msgstr "W lewo"
 
@@ -3782,7 +3775,6 @@ msgstr ""
 msgid "Move Prev"
 msgstr ""
 
-#, fuzzy
 msgid "Move Right"
 msgstr "W prawo"
 
@@ -3801,7 +3793,6 @@ msgstr "Idź do następnego pulpitu"
 msgid "Move to the previous viewport"
 msgstr "Idź do poprzedniego pulpitu"
 
-#, fuzzy
 msgid "Move to the right"
 msgstr "Z lewej do prawej"
 
@@ -3898,13 +3889,11 @@ msgstr ""
 msgid "Allow wrap-around when moving the wall up/down/left/right"
 msgstr ""
 
-#, fuzzy
 msgid "Arrow Colors"
-msgstr "Kolory"
+msgstr "Kolory strzałek"
 
-#, fuzzy
 msgid "Background Gradient"
-msgstr "Plik tła"
+msgstr "Gradient tła"
 
 #, fuzzy
 msgid "Base Color"
@@ -3996,9 +3985,8 @@ msgstr "Podświetl gradient"
 msgid "How should a multimonitor configuration be handled"
 msgstr ""
 
-#, fuzzy
 msgid "Move Down With Window"
-msgstr "Usuń grupę okien"
+msgstr "Idź w dół z oknem"
 
 msgid "Move Left With Window"
 msgstr ""
@@ -4006,9 +3994,8 @@ msgstr ""
 msgid "Move Right With Window"
 msgstr ""
 
-#, fuzzy
 msgid "Move Up With Window"
-msgstr "Usuń grupę okien"
+msgstr "Idź w górę z oknem"
 
 msgid "Move along the wall down"
 msgstr ""
@@ -4116,7 +4103,7 @@ msgid "Backgrounds"
 msgstr "Tła"
 
 msgid "Draw the desktop wallpaper"
-msgstr ""
+msgstr "Rysuj tło pulpitu"
 
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
@@ -4128,7 +4115,7 @@ msgid "Tile or Stretch"
 msgstr ""
 
 msgid "Wallpaper"
-msgstr ""
+msgstr "Tło"
 
 msgid "Above others windows"
 msgstr ""
@@ -4137,10 +4124,10 @@ msgid "Below others windows"
 msgstr "Pod innymi oknami"
 
 msgid "Don't show application in pager"
-msgstr ""
+msgstr "Nie pokazuj aplikacji na pagerze"
 
 msgid "Don't show application in taskbar"
-msgstr ""
+msgstr "Nie pokazuj aplikacji na pasku zadań"
 
 msgid "Fixed Size Windows"
 msgstr "Z góry ustalony rozmiar okien"
@@ -4156,7 +4143,7 @@ msgid "Height"
 msgstr "Wysokość"
 
 msgid "Height values"
-msgstr ""
+msgstr "Wartości wysokości"
 
 msgid "Matches"
 msgstr ""
