@@ -246,11 +246,13 @@ expoDnDFini (CompDisplay     *d,
     Window     xid;
 
     xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
 
-    if (s)
+    for (s = d->screens; s; s = s->next)
     {
     	EXPO_SCREEN (s);
+
+	if (xid && (s->root != xid))
+	    continue;
 
 	if (es->dndState == DnDDuring || es->dndState == DnDStart)
 	{
@@ -260,12 +262,10 @@ expoDnDFini (CompDisplay     *d,
 	    es->dndState = DnDNone;
 	    es->dndWindow = NULL;
 	    action->state &= ~CompActionStateTermButton;
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
+	    damageScreen (s);
 
-	return TRUE;
+	    return TRUE;
+	}
     }
 
     return FALSE;
