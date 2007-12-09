@@ -767,6 +767,8 @@ fxAirplane3DLinearAnimStepPolygon (CompWindow * w,
 	animGetB (as, aw, ANIM_SCREEN_OPTION_AIRPLANE_FLY2TOM);
 
     AirplaneEffectParameters *aep = p->effectParameters;
+    if (!aep)
+	return;
 
     /*  Phase1: folding: flaps, folding center, folding wings.
      *  Phase2: rotate and fly.
@@ -919,6 +921,8 @@ void
 AirplaneExtraPolygonTransformFunc (PolygonObject * p)
 {
     AirplaneEffectParameters *aep = p->effectParameters;
+    if (!aep)
+	return;
 
     glRotatef (aep->flyRotation.x, 1, 0, 0);	//rotate on axis X
     glRotatef (-aep->flyRotation.y, 0, 1, 0);	// rotate on axis Y

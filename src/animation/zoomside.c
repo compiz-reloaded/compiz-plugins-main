@@ -332,5 +332,5 @@ fxZoomUpdateWindowTransform (CompScreen *s,
     ANIM_WINDOW(w);
 
     // Apply transform to wTransform
-    matrixMultiply (wTransform, wTransform, &aw->transform);
+    matmul4 (wTransform->m, wTransform->m, aw->transform.m);
 }

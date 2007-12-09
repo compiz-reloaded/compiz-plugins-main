@@ -883,7 +883,7 @@ static void
 getPerspectiveCorrectionMat (CompWindow *w,
 			     PolygonObject *p,
 			     GLfloat *mat,
-			     CompTransform *matf)
+			     float *matf)
 {
     CompScreen *s = w->screen;
     ANIM_SCREEN (s);
@@ -925,7 +925,7 @@ getPerspectiveCorrectionMat (CompWindow *w,
 	     0,1,0,0,
 	     skewx,skewy,1,0,
 	     0,0,0,1};
-	memcpy (matf->m, skewMat, 16 * sizeof (float));
+	memcpy (matf, skewMat, 16 * sizeof (float));
     }
 }
 
@@ -1507,7 +1507,7 @@ polygonsUpdateBB (CompOutput *output,
     CompTransform wTransform;
     CompTransform wTransform2;
 
-    matrixGetIdentity (&wTransform2);
+    resetToIdentity (&wTransform2);
     prepareTransform (s, output, &wTransform, &wTransform2);
 
     GLdouble dModel[16];
@@ -1527,11 +1527,11 @@ polygonsUpdateBB (CompOutput *output,
     PolygonObject *p = aw->polygonSet->polygons;
     CompTransform *modelViewTransform = &wTransform;
 
-    CompTransform skewMat;
+    float skewMat[16];
     if (pset->correctPerspective == CorrectPerspectiveWindow)
     {
-	getPerspectiveCorrectionMat (w, NULL, NULL, &skewMat);
-	matrixMultiply (&wTransform2, &wTransform, &skewMat);
+	getPerspectiveCorrectionMat (w, NULL, NULL, skewMat);
+	matmul4 (wTransform2.m, wTransform.m, skewMat);
     }
     if (pset->correctPerspective == CorrectPerspectiveWindow ||
 	pset->correctPerspective == CorrectPerspectivePolygon)
@@ -1541,8 +1541,8 @@ polygonsUpdateBB (CompOutput *output,
     {
 	if (pset->correctPerspective == CorrectPerspectivePolygon)
 	{
-	    getPerspectiveCorrectionMat (w, p, NULL, &skewMat);
-	    matrixMultiply (&wTransform2, &wTransform, &skewMat);
+	    getPerspectiveCorrectionMat (w, p, NULL, skewMat);
+	    matmul4 (wTransform2.m, wTransform.m, skewMat);
 	}
 
 	// if modelViewTransform == wTransform2, then

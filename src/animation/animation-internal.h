@@ -814,6 +814,16 @@ Bool
 getMousePointerXY(CompScreen * s, short *x, short *y);
 
 void
+multiplyMatrixVector (float *result,
+		      const float *mat,
+		      const float *v);
+
+void
+matmul4 (float *product,
+	 const float *a,
+	 const float *b);
+
+void
 expandBoxWithBox (Box *target, Box *source);
 
 void
@@ -836,6 +846,9 @@ prepareTransform (CompScreen *s,
 		  CompOutput *output,
 		  CompTransform *resultTransform,
 		  CompTransform *transform);
+
+inline void
+resetToIdentity (CompTransform *transform);
 
 /* airplane3d.c */
 
