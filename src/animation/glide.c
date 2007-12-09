@@ -222,7 +222,7 @@ fxGlideUpdateWindowTransform (CompScreen *s,
 	return;
 
     // apply the transform
-    matmul4 (wTransform->m, wTransform->m, aw->transform.m);
+    matrixMultiply (wTransform, wTransform, &aw->transform);
 }
 
 void fxGlideInit(CompScreen * s, CompWindow * w)
