@@ -629,6 +629,7 @@ typedef struct _AnimWindow
     Bool deceleratingMotion;	// For effects that have decel. motion
 
     int curAnimSelectionRow;
+    int prevAnimSelectionRow;	// For the case when one event interrupts another
 
     CompTransform transform;
 

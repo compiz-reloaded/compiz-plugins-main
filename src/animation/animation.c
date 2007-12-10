@@ -334,6 +334,7 @@ getMatchingAnimSelection (CompWindow *w,
 	if (!matchEval (&valMatch->list.value[i].match, w))
 	    continue;
 
+	aw->prevAnimSelectionRow = aw->curAnimSelectionRow;
 	aw->curAnimSelectionRow = i;
 
 	*duration = valDuration->list.value[i].i;
@@ -1543,6 +1544,24 @@ static void postAnimationCleanupCustom(CompWindow * w,
 void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
 {
     postAnimationCleanupCustom(w, resetAnimation, FALSE, TRUE);
+}
+
+static void
+postAnimationCleanupPrev (CompWindow * w,
+			  Bool resetAnimation,
+			  Bool closing,
+			  Bool clearMatchingRow)
+{
+    ANIM_WINDOW(w);
+
+    int curAnimSelectionRow = aw->curAnimSelectionRow;
+    // Use previous event's anim selection row
+    aw->curAnimSelectionRow = aw->prevAnimSelectionRow;
+
+    postAnimationCleanupCustom (w, resetAnimation, closing, clearMatchingRow);
+
+    // Restore current event's anim selection row
+    aw->curAnimSelectionRow = curAnimSelectionRow;
 }
 
 static void
@@ -3223,7 +3242,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    if (aw->curWindowEvent != WindowEventUnshade)
 			    {
-				postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+				postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 			    }
 			    else
 			    {
@@ -3299,7 +3318,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    if (aw->curWindowEvent != WindowEventUnminimize)
 			    {
-				postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+				postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 			    }
 			    else
 			    {
@@ -3420,7 +3439,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			}
 			else
 			{
-			    postAnimationCleanupCustom(w, TRUE, TRUE, FALSE);
+			    postAnimationCleanupPrev (w, TRUE, TRUE, FALSE);
 			}
 		    }
 
@@ -3738,7 +3757,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventMinimize)
 		    {
-			postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -3828,7 +3847,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventShade)
 		    {
-			postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -3915,7 +3934,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventClose)
 		    {
-			postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 		    }
 		    else
 		    {
