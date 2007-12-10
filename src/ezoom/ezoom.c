@@ -21,10 +21,12 @@
  * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  *
- * Authors:
+ * Author(s):
  *	- Original zoom plugin; David Reveman <davidr@novell.com>
  *	- Most features beyond basic zoom;
  *	  Kristian Lyngstol <kristian@bohemians.org>
+ *
+ * Description:
  *
  * This plugin offers basic zoom, and does not require input to be disabled
  * while zooming. Key features of the new version is a hopefully more generic
@@ -74,6 +76,9 @@
  * ... crazy. If you zoom in so your 1024-wide screen is showing 102 pixels,
  * you only have to move the mouse 1/10th of the distance you normally would
  * to move it across the visible area.
+ *
+ * Todo:
+ *  - Different multihead modes
  */
 
 #include <stdio.h>
