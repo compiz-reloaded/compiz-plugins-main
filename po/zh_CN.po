@@ -8,13 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-06-30 17:59+0530\n"
-"PO-Revision-Date: 2007-07-13 06:50+0800\n"
-"Last-Translator: Thruth <gubotruth@gmail.com>\n"
+"POT-Creation-Date: 2007-12-12 01:33+0530\n"
+"PO-Revision-Date: 2007-12-11 16:52+0100\n"
+"Last-Translator: Thruth Wang <gubotruth@gmail.com>\n"
 "Language-Team: Chinese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.0.2\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "仅鼠标转面时开启 3D 窗口"
@@ -43,7 +44,7 @@ msgstr "圆滑右顶角"
 msgid "Bevel bottom left corner"
 msgstr "圆滑左底角"
 
-msgid "Bevel top bottom right corner"
+msgid "Bevel bottom right corner"
 msgstr "圆滑右底角"
 
 msgid "Bevel top left corner"
@@ -52,32 +53,27 @@ msgstr "圆滑左顶角"
 msgid "Bevel top right corner"
 msgstr "圆滑右顶角"
 
-msgid "Change the amount of space between the windows."
+#, fuzzy
+msgid ""
+"Change the amount of space between the windows (in percent of the cube size)."
 msgstr "改变窗口间隔"
 
 msgid "Change the speed of the 3D animation"
 msgstr "改变 3D 动画速度"
 
-msgid "Create Mipmaps"
-msgstr "创建 Mipmap"
-
-msgid "Disable Caps for Inside Cube"
-msgstr "立方体禁用顶面底面"
-
-msgid "Disables the drawing of the cube caps when the inside cube mode is set."
-msgstr "开启内含立方体模式时，禁用顶面底面。"
-
-msgid "Draw Window Backsides"
-msgstr "绘制窗口背面"
-
 msgid "Elevates windows while rotating the cube"
 msgstr "立方体转面时浮起的窗口"
 
-msgid "Enables the drawing of the backside of windows."
-msgstr "启用对窗口背面的绘制"
-
-msgid "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the cube via the mouse)"
+msgid ""
+"Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
+"cube via the mouse)"
 msgstr "仅仅在用鼠标转动桌面的时候显示 3D 效果。(例，您通过鼠标进行转面操作)"
+
+msgid "Minimum Cube Size"
+msgstr "最小立方体大小"
+
+msgid "Minimum cube size (in percent)."
+msgstr ""
 
 msgid "Misc. Options"
 msgstr "杂项设置"
@@ -85,8 +81,8 @@ msgstr "杂项设置"
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "与圆形窗口装饰协调的圆角"
 
-msgid "This will create mipmaps which improve overall texture appearence, and reduce jagged edges."
-msgstr "创建 mipmap 将改善整体纹理显示,并降低边缘锯齿化几率"
+msgid "Window Depth"
+msgstr "窗口深度"
 
 msgid "Window Match"
 msgstr "窗口匹配"
@@ -94,16 +90,13 @@ msgstr "窗口匹配"
 msgid "Window Space"
 msgstr "窗口间隔"
 
-msgid "Window Width"
-msgstr "窗口宽度"
-
-msgid "Window width"
-msgstr "窗口宽度"
+msgid "Window depth"
+msgstr "窗口深度"
 
 msgid "Windows that should be handled by 3D"
 msgstr "使用 3D 的窗口"
 
-msgid "AddHelper"
+msgid "ADD Helper"
 msgstr "突出显示"
 
 msgid "Bindings"
@@ -115,7 +108,8 @@ msgstr "亮度"
 msgid "Brightness of faded windows"
 msgstr "淡出窗口的亮度"
 
-msgid "Make it slightly easier to concentrate by dimming all but the active window."
+msgid ""
+"Make it slightly easier to concentrate by dimming all but the active window."
 msgstr "突出显示当前窗口，暗淡活动窗口之外的一切内容。"
 
 msgid "Misc. options"
@@ -145,6 +139,659 @@ msgstr "窗口类型"
 msgid "Window types that should be Opacified."
 msgstr "不使用不透明的窗口类型。"
 
+msgid "Airplane"
+msgstr ""
+
+msgid "Airplane Flying Path Length"
+msgstr ""
+
+msgid ""
+"All effects are chosen randomly, ignoring the selected effect. If None is "
+"selected for an event, that event won't be animated."
+msgstr ""
+
+msgid ""
+"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
+"to the window width. Negative values fold outward."
+msgstr ""
+
+msgid ""
+"Amplitude (size of the waves in the fold) of the curved fold relative to "
+"window width. Negative values fold outward."
+msgstr ""
+
+#, fuzzy
+msgid "Angle of window at the end of the animation."
+msgstr "改变 3D 动画速度"
+
+msgid "Animation Selection"
+msgstr "动画选取"
+
+msgid "Animation Time Step"
+msgstr "动画时间步长"
+
+msgid "Animation Time Step For Intense Effects"
+msgstr ""
+
+msgid "Animation duration in milliseconds for close effect."
+msgstr ""
+
+msgid "Animation duration in milliseconds for focus effect."
+msgstr ""
+
+msgid "Animation duration in milliseconds for minimize effect."
+msgstr ""
+
+msgid "Animation duration in milliseconds for open effect."
+msgstr ""
+
+msgid "Animation duration in milliseconds for shade effect."
+msgstr ""
+
+msgid "Animations"
+msgstr "动画"
+
+msgid "Automatic"
+msgstr "自动"
+
+msgid "Away Angle"
+msgstr ""
+
+#, fuzzy
+msgid "Away Position"
+msgstr "X 坐标"
+
+msgid "Beam"
+msgstr ""
+
+#, fuzzy
+msgid "Beam Color"
+msgstr "线条颜色"
+
+msgid "Beam Life"
+msgstr ""
+
+#, fuzzy
+msgid "Beam Slowdown"
+msgstr "火焰颗粒减速"
+
+msgid "Beam Spacing"
+msgstr ""
+
+msgid "Beam Up"
+msgstr ""
+
+#, fuzzy
+msgid "Beam Width"
+msgstr "边框宽度"
+
+msgid "Beam color."
+msgstr ""
+
+msgid "Beam life."
+msgstr ""
+
+#, fuzzy
+msgid "Beam slowdown."
+msgstr "火焰颗粒减速。"
+
+#, fuzzy
+msgid "Beam width."
+msgstr "边框宽度"
+
+msgid "Burn"
+msgstr ""
+
+#, fuzzy
+msgid "Close Animation"
+msgstr "排列动画类型"
+
+msgid "Close Effect"
+msgstr ""
+
+msgid ""
+"Closeness of window to camera at the end of the animation (1.0: Close to "
+"camera, -2.0: Away from camera)."
+msgstr ""
+
+msgid ""
+"Comma separated list of option value assignments to override effect "
+"settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
+msgstr ""
+
+msgid "Curved Fold"
+msgstr ""
+
+msgid "Curved Fold Amplitude"
+msgstr ""
+
+msgid "Dodge"
+msgstr ""
+
+msgid "Dodge Gap Ratio"
+msgstr ""
+
+#, fuzzy
+msgid "Domino"
+msgstr "下"
+
+msgid "Domino Piece Falling Direction"
+msgstr ""
+
+msgid "Down"
+msgstr "下"
+
+msgid "Dream"
+msgstr ""
+
+#, fuzzy
+msgid "Duration"
+msgstr "饱和度"
+
+#, fuzzy
+msgid "Effect Settings"
+msgstr "设置"
+
+msgid "Explode"
+msgstr ""
+
+msgid "Fade"
+msgstr "淡入淡出"
+
+msgid "Falling direction for Domino pieces."
+msgstr ""
+
+msgid "Fire"
+msgstr ""
+
+msgid "Fire Particle Color"
+msgstr "火焰颗粒颜色"
+
+msgid "Fire Particle Life"
+msgstr "火焰颗粒周期"
+
+msgid "Fire Particle Size"
+msgstr "火焰颗粒大小"
+
+msgid "Fire Particle Slowdown"
+msgstr "火焰颗粒减速"
+
+msgid "Fire Smoke"
+msgstr ""
+
+msgid "Fire constant speed"
+msgstr ""
+
+#, fuzzy
+msgid "Fire direction"
+msgstr "飞雪方向"
+
+#, fuzzy
+msgid "Fire direction."
+msgstr "飞雪方向"
+
+msgid "Fire particle color."
+msgstr "火焰颗粒颜色。"
+
+msgid "Fire particle life."
+msgstr "火焰颗粒存留时间。"
+
+msgid "Fire particle size."
+msgstr "火焰颗粒大小。"
+
+msgid "Fire particle slowdown."
+msgstr "火焰颗粒减速。"
+
+msgid "Fire smoke."
+msgstr ""
+
+msgid "Fixed window interior during the Rollup animation."
+msgstr ""
+
+msgid "Fly to TaskBar on Minimize"
+msgstr ""
+
+#, fuzzy
+msgid "Focus Animation"
+msgstr "动画速度"
+
+msgid "Focus Effect"
+msgstr ""
+
+msgid "Fold"
+msgstr ""
+
+#, fuzzy
+msgid "Fold Direction"
+msgstr "飞雪方向"
+
+msgid "Fold opening direction for pieces in Razr effect."
+msgstr ""
+
+#, fuzzy
+msgid "Glide 1"
+msgstr "幻灯"
+
+#, fuzzy
+msgid "Glide 2"
+msgstr "幻灯"
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr "为火焰随机选取颜色，亦称神秘火焰。"
+
+msgid "Hexagonal"
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal Folds"
+msgstr "纵向排列"
+
+msgid "Horizontal Folds Amplitude"
+msgstr ""
+
+msgid "How spring-like the Sidekick animation should be."
+msgstr ""
+
+msgid "How spring-like the Zoom animation should be."
+msgstr ""
+
+msgid "In"
+msgstr ""
+
+msgid "In-out"
+msgstr ""
+
+msgid "Leaf Spread"
+msgstr ""
+
+msgid "Left"
+msgstr "左"
+
+#, fuzzy
+msgid "Left-right"
+msgstr "左/右"
+
+msgid "Length of airplane's flying path."
+msgstr ""
+
+msgid "Magic Lamp"
+msgstr ""
+
+msgid "Magic Lamp Grid Y Resolution"
+msgstr ""
+
+msgid "Magic Lamp Max Wave Amplitude"
+msgstr ""
+
+msgid "Magic Lamp Max Waves"
+msgstr ""
+
+msgid "Magic Lamp Min Wave Amplitude"
+msgstr ""
+
+msgid "Magic Lamp Open Start Width"
+msgstr ""
+
+msgid "Magic Lamp Open/Close Moving End"
+msgstr ""
+
+msgid "Make fire effect duration be dependent on window height."
+msgstr ""
+
+#, fuzzy
+msgid "Minimize Animation"
+msgstr "组合统一最小化"
+
+msgid "Minimize Effect"
+msgstr ""
+
+msgid "Minimize/Unminimize Only"
+msgstr ""
+
+#, fuzzy
+msgid "Movement direction(s) for window pieces."
+msgstr "窗口移动时出现映影。"
+
+msgid "None"
+msgstr "无"
+
+#, fuzzy
+msgid "Number Of Fire Particles"
+msgstr "颗粒数量"
+
+#, fuzzy
+msgid "Number of Horizontal Folds"
+msgstr "颗粒数量"
+
+#, fuzzy
+msgid "Number of fire particles."
+msgstr "颗粒数量"
+
+#, no-c-format
+msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "On open/close, move magic lamp ending point with the mouse pointer."
+msgstr ""
+
+msgid "On open/close, move vacuum ending point with the mouse pointer."
+msgstr ""
+
+#, fuzzy
+msgid "Open Animation"
+msgstr "排列动画类型"
+
+msgid "Open Effect"
+msgstr ""
+
+msgid "Open/Close Only"
+msgstr ""
+
+msgid "Options"
+msgstr "选项"
+
+msgid "Out"
+msgstr ""
+
+msgid "Pool"
+msgstr ""
+
+msgid ""
+"Pool of effects to be chosen from if Random effect is selected. Click reset "
+"to restore full list."
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "Random Animations For All Events"
+msgstr ""
+
+msgid "Random Effects"
+msgstr ""
+
+msgid "Randomly Colored Fire"
+msgstr "随机颜色火焰"
+
+msgid "Ratio of gaps between dodge start times to focus duration."
+msgstr ""
+
+msgid "Razr"
+msgstr ""
+
+msgid "Razr Fold Opening Direction"
+msgstr ""
+
+#, fuzzy
+msgid "Rectangular"
+msgstr "矩形光晕"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Roll Up"
+msgstr ""
+
+msgid "Rollup Fixed Interior"
+msgstr ""
+
+msgid "Rotation Angle"
+msgstr ""
+
+msgid "Rotation angle of animated window pieces (in degrees)."
+msgstr ""
+
+#, fuzzy
+msgid "Shade Animation"
+msgstr "动画速度"
+
+msgid "Shade Effect"
+msgstr ""
+
+#, fuzzy
+msgid "Sidekick"
+msgstr "幻灯"
+
+msgid "Sidekick Number of Rotations"
+msgstr ""
+
+msgid "Sidekick Springiness"
+msgstr ""
+
+msgid "Skewer"
+msgstr ""
+
+#, fuzzy
+msgid "Skewer Direction"
+msgstr "飞雪方向"
+
+#, fuzzy
+msgid "Spacing between beams."
+msgstr "缩略图间距"
+
+msgid ""
+"Starting width of open effect and ending width of close effect for Magic "
+"Lamp."
+msgstr ""
+
+msgid ""
+"Starting width of open effect and ending width of close effect for Vacuum."
+msgstr ""
+
+#, fuzzy
+msgid "Tessellation Type"
+msgstr "排列动画类型"
+
+msgid "Tessellation type for exploding window pieces."
+msgstr ""
+
+msgid "Tessellation type for window pieces."
+msgstr ""
+
+msgid ""
+"The amount of time in milliseconds between each render of the animation. The "
+"higher the number, the jerkier the movements become."
+msgstr ""
+
+msgid ""
+"The amount of time in milliseconds between each render of the intense "
+"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
+"become."
+msgstr ""
+
+msgid ""
+"The animated window will be split into pieces along a grid. Specify the "
+"number of grid cells along the height of the window."
+msgstr ""
+
+msgid ""
+"The animated window will be split into pieces along a grid. Specify the "
+"number of grid cells along the width of the window."
+msgstr ""
+
+msgid "The animation effect shown when closing a window."
+msgstr ""
+
+msgid "The animation effect shown when creating a window."
+msgstr ""
+
+msgid "The animation effect shown when focusing a window."
+msgstr ""
+
+msgid "The animation effect shown when minimizing a window."
+msgstr ""
+
+msgid "The animation effect shown when shading a window."
+msgstr ""
+
+msgid ""
+"The exploding window will be split into pieces along a grid. Specify the "
+"number of grid cells along the height of the window."
+msgstr ""
+
+msgid ""
+"The exploding window will be split into pieces along a grid. Specify the "
+"number of grid cells along the width of the window."
+msgstr ""
+
+msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
+msgstr ""
+
+#, fuzzy
+msgid "The maximum number of waves for Magic Lamp."
+msgstr "活动颗粒最大数量"
+
+msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
+msgstr ""
+
+msgid ""
+"The number of horizontal folds that occur in the Horizontal Fold animation."
+msgstr ""
+
+msgid "The wave amplitude (size of the waves) relative to the window height."
+msgstr ""
+
+#, fuzzy
+msgid "The width of the wave relative to the window height."
+msgstr "标签栏边框宽度"
+
+#, fuzzy
+msgid "The windows that will be animated."
+msgstr "不使用不透明的窗口类型。"
+
+msgid "Thickness"
+msgstr ""
+
+msgid "Thickness of Animated Polygons"
+msgstr ""
+
+msgid "Thickness of Exploding Polygons"
+msgstr ""
+
+msgid "Thickness of animated window pieces (in pixels)."
+msgstr ""
+
+msgid "Thickness of exploding window pieces (in pixels)."
+msgstr ""
+
+msgid "Up"
+msgstr "上"
+
+#, fuzzy
+msgid "Up-down"
+msgstr "上/下"
+
+msgid "Use various animations as window effects"
+msgstr ""
+
+msgid "Vacuum"
+msgstr ""
+
+msgid "Vacuum Grid Y Resolution"
+msgstr ""
+
+msgid "Vacuum Open Start Width"
+msgstr ""
+
+msgid "Vacuum Open/Close Moving End"
+msgstr ""
+
+msgid ""
+"Vertex grid resolution for Magic Lamp (Y dimension only). This is the number "
+"of points used to define the curves. The higher the number, the smoother the "
+"curves. However there will be a loss of performance (CPU usage increases)."
+msgstr ""
+
+msgid ""
+"Vertex grid resolution for Vacuum (Y dimension only). This is the number of "
+"points used to define the curves. The higher the number, the smoother the "
+"curves. However there will be a loss of performance (CPU usage increases)."
+msgstr ""
+
+msgid "Wave"
+msgstr ""
+
+msgid "Wave Amplitude"
+msgstr ""
+
+#, fuzzy
+msgid "Wave Width"
+msgstr "窗口宽度"
+
+msgid ""
+"Whether the window should fly to taskbar when minimized with Airplane effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Curved Fold "
+"effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Dream effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Glide 1 effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Glide 2 effect."
+msgstr ""
+
+msgid ""
+"Whether the window should zoom to taskbar when minimized with Horizontal "
+"Folds effect."
+msgstr ""
+
+#, fuzzy
+msgid "Window Grid Height"
+msgstr "窗口宽度"
+
+#, fuzzy
+msgid "Window Grid Width"
+msgstr "窗口宽度"
+
+#, fuzzy
+msgid "Window folding direction."
+msgstr "飞雪方向"
+
+#, fuzzy
+msgid "Window that should animate with this effect when focused."
+msgstr "允许加入组合的窗口"
+
+msgid "Window that should animate with this effect when shaded."
+msgstr ""
+
+msgid ""
+"Window thickness in pixels. Setting this to larger than 0 will disable "
+"shadow, blur, and reflection during the animation."
+msgstr ""
+
+msgid "Zoom"
+msgstr "缩放"
+
+msgid "Zoom Springiness"
+msgstr ""
+
+msgid "Zoom from Center"
+msgstr ""
+
+msgid "Zoom from center when playing the Sidekick animation."
+msgstr ""
+
+msgid "Zoom from center when playing the Zoom animation."
+msgstr ""
+
+msgid "Zoom to TaskBar on Minimize"
+msgstr ""
+
 msgid "A simple benchmark plugin"
 msgstr "一个简单的基准测试插件"
 
@@ -157,7 +804,8 @@ msgstr "克隆输出"
 msgid "Console output update time"
 msgstr "终端输出刷新时间"
 
-msgid "Disable beryl integrated FPS limiter"
+#, fuzzy
+msgid "Disable Compiz integrated FPS limiter"
 msgstr "禁用 beryl 内置 FPS 限制"
 
 msgid "Disable limiter"
@@ -199,14 +847,84 @@ msgstr "测试窗口的 Y 坐标"
 msgid "Y position"
 msgstr "Y 坐标"
 
+#, fuzzy
+msgid "Color filter"
+msgstr "颜色不透明度"
+
+#, fuzzy
+msgid "Exclude windows"
+msgstr "排除窗口"
+
+msgid "Filter colors for accessibility purposes"
+msgstr ""
+
+#, fuzzy
+msgid "Filter window decorations"
+msgstr "装饰映影"
+
+#, fuzzy
+msgid "Filtered windows"
+msgstr "窗口排列"
+
+msgid "Filters files"
+msgstr ""
+
+msgid ""
+"List of plain text filter files that should be applied when filtering "
+"windows or screen."
+msgstr ""
+
+msgid ""
+"Select filter to use from filters list : either apply all filters or only "
+"one specific filter (triggering this action switches filters one by one and "
+"eventually comes back to the \"all filters\" mode)."
+msgstr ""
+
+msgid "Switch filter"
+msgstr ""
+
+msgid "Toggle filtering for currently focused window."
+msgstr ""
+
+#, fuzzy
+msgid "Toggle filtering for every window on the screen."
+msgstr "组合窗口统一调整大小"
+
+#, fuzzy
+msgid "Toggle screen filtering"
+msgstr "开关窗口排列"
+
+#, fuzzy
+msgid "Toggle window filtering"
+msgstr "开关窗口全屏"
+
+msgid ""
+"Window decorations (borders and titlebar) will be filtered as well as window "
+"contents if enabled."
+msgstr ""
+
+#, fuzzy
+msgid "Windows to be filtered by default."
+msgstr "需要淡出到桌面的窗口"
+
+#, fuzzy
+msgid "Windows to exclude from filtering."
+msgstr "不参与排列的窗口"
+
 msgid "Activate Crash Handler."
 msgstr "激活崩溃处理。"
 
 msgid "Compiz crash handler plugin"
 msgstr "Compiz 崩溃处理插件"
 
+msgid "Crash Dump Directory"
+msgstr ""
+
 msgid "Crash handler"
 msgstr "崩溃处理"
+
+msgid "Directory to dump the crash logs to."
+msgstr ""
 
 msgid "Enable Crash Handler"
 msgstr "启用崩溃处理"
@@ -222,6 +940,126 @@ msgstr "窗口管理器命令行"
 
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "窗口管理器命令行。（切勿填入 COMPIZ !!）"
+
+msgid "Adjust bottom face image to rotation"
+msgstr ""
+
+msgid "Adjust bottom image"
+msgstr ""
+
+msgid "Adjust top face image to rotation"
+msgstr ""
+
+msgid "Adjust top image"
+msgstr ""
+
+msgid "Advance to next image for bottom face of the cube"
+msgstr ""
+
+msgid "Advance to next image for top face of the cube"
+msgstr ""
+
+msgid "Appearance"
+msgstr "外观"
+
+msgid "Behaviour"
+msgstr "行为"
+
+#, fuzzy
+msgid "Bottom image files"
+msgstr "Logo 图像文件。"
+
+msgid "Clamp bottom face image to border"
+msgstr ""
+
+msgid ""
+"Clamp bottom face image to border. This is often the best if your image "
+"doesn't fit the size of the cube or if it's transparent. It can lead to some "
+"ugly dotted lines when enabled (especially with large enough images) though."
+msgstr ""
+
+msgid "Clamp top face image to border"
+msgstr ""
+
+msgid ""
+"Clamp top face image to border. This is often the best if your image doesn't "
+"fit the size of the cube or if it's transparent. It can lead to some ugly "
+"dotted lines when enabled (especially with large enough images) though."
+msgstr ""
+
+msgid "Color of bottom face of the cube"
+msgstr ""
+
+msgid "Color of top face of the cube"
+msgstr ""
+
+#, fuzzy
+msgid "Cube Bottom Color"
+msgstr "标签边框颜色"
+
+msgid "Cube Caps"
+msgstr ""
+
+#, fuzzy
+msgid "Cube Top Color"
+msgstr "标签边框颜色"
+
+msgid "Draw bottom face"
+msgstr ""
+
+msgid "Draw bottom face of the cube"
+msgstr ""
+
+msgid "Draw top face"
+msgstr ""
+
+msgid "Draw top face of the cube"
+msgstr ""
+
+msgid "Go back to previous image for bottom face of the cube"
+msgstr ""
+
+msgid "Go back to previous image for top face of the cube"
+msgstr ""
+
+msgid ""
+"List of PNG and SVG files that should be rendered on bottom face of cube"
+msgstr ""
+
+msgid "List of PNG and SVG files that should be rendered on top face of cube"
+msgstr ""
+
+msgid "Next bottom image"
+msgstr ""
+
+msgid "Next top image"
+msgstr ""
+
+#, fuzzy
+msgid "Prev bottom image"
+msgstr "圆滑右底角"
+
+msgid "Prev top image"
+msgstr ""
+
+msgid "Render images on top and bottom of the cube"
+msgstr ""
+
+msgid "Scale bottom image"
+msgstr ""
+
+msgid "Scale image to cover bottom face of cube"
+msgstr ""
+
+msgid "Scale image to cover top face of cube"
+msgstr ""
+
+msgid "Scale top image"
+msgstr ""
+
+#, fuzzy
+msgid "Top image files"
+msgstr "Logo 图像文件。"
 
 msgid "Above"
 msgstr "之上"
@@ -280,8 +1118,382 @@ msgstr "映影模式。"
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "仅在鼠标转面时自动缩小。"
 
-msgid "Zoom out automatically to myke the cube fit to the screen."
+#, fuzzy
+msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "自动缩小立方体以适合屏幕。"
+
+msgid "Animation used when switching to expo mode"
+msgstr ""
+
+msgid "Aspect Ratio"
+msgstr ""
+
+msgid "Button binding for drag &amp; drop of windows"
+msgstr ""
+
+msgid "Button binding to exit expo"
+msgstr ""
+
+msgid "Button binding to switch to next viewport in expo"
+msgstr ""
+
+msgid "Distance of the expo wall"
+msgstr ""
+
+msgid "Double click time"
+msgstr ""
+
+msgid "Drag&amp;drop"
+msgstr ""
+
+#, fuzzy
+msgid "Duration of the zoomout animation"
+msgstr "排列动画时长(微秒)"
+
+msgid "Engage wall expo mode button binding"
+msgstr ""
+
+msgid "Engage wall expo mode edge binding"
+msgstr ""
+
+msgid "Engage wall expo mode key binding"
+msgstr ""
+
+msgid "Exit expo"
+msgstr ""
+
+msgid "Expo"
+msgstr ""
+
+#, fuzzy
+msgid "Expo Animation"
+msgstr "动画速度"
+
+msgid "Expo Plugin"
+msgstr ""
+
+msgid "Expo button"
+msgstr ""
+
+msgid "Expo edge"
+msgstr ""
+
+msgid "Expo key"
+msgstr ""
+
+msgid "Expo mode aspect ratio"
+msgstr ""
+
+#, fuzzy
+msgid "Fade + Zoom"
+msgstr "淡入淡出时间"
+
+msgid "Generate mipmaps in expo mode"
+msgstr ""
+
+msgid "Hide panels/docks in expo"
+msgstr ""
+
+msgid "Hide panels/docks in expo."
+msgstr ""
+
+msgid "Immediate moves"
+msgstr ""
+
+#, fuzzy
+msgid "Mipmaps"
+msgstr "创建 Mipmap"
+
+msgid "Multi Output Mode"
+msgstr ""
+
+msgid "Next viewport"
+msgstr ""
+
+msgid "One big wall"
+msgstr ""
+
+msgid "One wall per output"
+msgstr ""
+
+msgid "Previous viewport"
+msgstr ""
+
+msgid "Reflection"
+msgstr "映影"
+
+#, fuzzy
+msgid "Reflection Scale"
+msgstr "映影图像"
+
+msgid "Scale factor of the expo wall reflection"
+msgstr ""
+
+msgid ""
+"Selects how the expo wall is displayed if multiple output devices are used."
+msgstr ""
+
+msgid ""
+"Selects if windows movements in expo mode should be immediate - this among "
+"other things disables wobbliness"
+msgstr ""
+
+msgid "Show a reflection of the viewports on the ground"
+msgstr ""
+
+#, fuzzy
+msgid "Tilt view"
+msgstr "窗口排列"
+
+msgid "Tilt window view in expo mode"
+msgstr ""
+
+msgid "Timeframe to execute a double click"
+msgstr ""
+
+msgid "Vortex"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom time"
+msgstr "缩放"
+
+msgid "Always fit to window on focus track"
+msgstr ""
+
+msgid ""
+"Always keep the zoomed area in sync with where the mouse is, and vice versa. "
+"Use this if you don't intend to draw a scaled pointer or hide the original "
+"pointer. The zoomed area will move as you move your mouse."
+msgstr ""
+
+#, fuzzy
+msgid "Animation"
+msgstr "动画速度"
+
+msgid ""
+"Attempt to keep the zoomed mouse visible by warping it when it is moved "
+"outside the zoom area."
+msgstr ""
+
+msgid "Center the mouse"
+msgstr ""
+
+msgid "Enable focus tracking"
+msgstr ""
+
+msgid "Enable this to get a gradually larger mouse pointer as you zoom in"
+msgstr ""
+
+msgid ""
+"Enable this to target the focused window when jumping to a specific zoom "
+"level. Disable to target mouse."
+msgstr ""
+
+#, fuzzy
+msgid "Enhanced Zoom Desktop"
+msgstr "淡出到桌面"
+
+msgid "Enhanced zoom functions for visually imparied and others"
+msgstr ""
+
+msgid "Filter Linear"
+msgstr ""
+
+msgid "Fit the window to the zoom level"
+msgstr ""
+
+msgid ""
+"Fit the zoomed area to the window when the zoomed area moves as a result of "
+"focus tracking."
+msgstr ""
+
+msgid ""
+"Fit the zoomed area to the window when the zoomed area moves as a result of "
+"focus tracking. Even when not initially zoomed in."
+msgstr ""
+
+msgid "Fit zoom level to window on focus change"
+msgstr ""
+
+msgid "Fit zoomed area to window"
+msgstr ""
+
+msgid "Focus Tracking"
+msgstr ""
+
+msgid "Follow Focus Delay"
+msgstr ""
+
+msgid "Hide original mouse pointer"
+msgstr ""
+
+msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
+msgstr ""
+
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
+#, fuzzy
+msgid "Mouse Behavior"
+msgstr "行为"
+
+msgid "Mouse Poll Interval"
+msgstr ""
+
+msgid "Mouse Restrain Margin"
+msgstr ""
+
+msgid "Mouse panning"
+msgstr ""
+
+msgid "Move the zoom area when focus changes."
+msgstr ""
+
+msgid ""
+"Move the zoomed area this much whenever you pan the zoomed area with keys."
+msgstr ""
+
+msgid ""
+"Only attempt to center newly focused windows if the mouse hasn't moved in "
+"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgstr ""
+
+msgid "Pan (move) the zoom area down"
+msgstr ""
+
+msgid "Pan (move) the zoom area left"
+msgstr ""
+
+msgid "Pan (move) the zoom area right"
+msgstr ""
+
+msgid "Pan (move) the zoom area up"
+msgstr ""
+
+msgid "Pan Factor"
+msgstr ""
+
+msgid "Pan Zoom Down"
+msgstr ""
+
+#, fuzzy
+msgid "Pan Zoom Left"
+msgstr "圆滑左底角"
+
+#, fuzzy
+msgid "Pan Zoom Right"
+msgstr "圆滑右底角"
+
+msgid "Pan Zoom Up"
+msgstr ""
+
+msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
+msgstr ""
+
+msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
+msgstr ""
+
+msgid "Resize the window so it matches the current zoom level."
+msgstr ""
+
+msgid "Restrain the mouse to the zoom area"
+msgstr ""
+
+msgid "Scale the mouse pointer"
+msgstr ""
+
+msgid "Specific zoom factor 1"
+msgstr ""
+
+msgid "Specific zoom factor 2"
+msgstr ""
+
+msgid "Specific zoom factor 3"
+msgstr ""
+
+msgid "Speed"
+msgstr "速度"
+
+msgid "Sync Mouse"
+msgstr ""
+
+msgid "Target Focused Window on Specific level"
+msgstr ""
+
+msgid "The size of the margin to add when attempting to restrain the mouse."
+msgstr ""
+
+msgid "Timestep"
+msgstr "步长"
+
+msgid "Toggle zoom area lock"
+msgstr ""
+
+msgid "Toggles a lock on the zoom area so it doesn't change on various events"
+msgstr ""
+
+msgid "Use linear filter when zoomed in"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom In"
+msgstr "缩放"
+
+msgid "Zoom Movement"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom Out"
+msgstr "缩放"
+
+msgid "Zoom Specific Level 1"
+msgstr ""
+
+msgid "Zoom Specific Level 2"
+msgstr ""
+
+msgid "Zoom Specific Level 3"
+msgstr ""
+
+#, fuzzy
+msgid "Zoom Speed"
+msgstr "飞雪速度"
+
+#, fuzzy
+msgid "Zoom Timestep"
+msgstr "步长"
+
+msgid "Zoom factor"
+msgstr ""
+
+msgid "Zoom in/out by this factor. Higher value means quicker zooming."
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 1"
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 2"
+msgstr ""
+
+msgid "Zoom level to go to when triggering hotkey 3"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 1"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 2"
+msgstr ""
+
+msgid "Zoom to the specific zoom level 3"
+msgstr ""
+
+msgid ""
+"Zooms in/out so the focused window is zoomed to the maximum while still "
+"being fully visible."
+msgstr ""
 
 msgid "Activate Window"
 msgstr "激活窗口"
@@ -355,32 +1567,20 @@ msgstr "火焰神笔绘画时的背景亮度"
 msgid "Clear"
 msgstr "清除"
 
-msgid "Fire Particle Color"
-msgstr "火焰颗粒颜色"
+msgid "Clear (button)"
+msgstr ""
 
-msgid "Fire Particle Life"
-msgstr "火焰颗粒周期"
+#, fuzzy
+msgid "Clear (key)"
+msgstr "清除"
 
-msgid "Fire Particle Size"
-msgstr "火焰颗粒大小"
+#, fuzzy
+msgid "Initiate (button)"
+msgstr "启动"
 
-msgid "Fire Particle Slowdown"
-msgstr "火焰颗粒减速"
-
-msgid "Fire particle color."
-msgstr "火焰颗粒颜色。"
-
-msgid "Fire particle life."
-msgstr "火焰颗粒存留时间。"
-
-msgid "Fire particle size."
-msgstr "火焰颗粒大小。"
-
-msgid "Fire particle slowdown."
-msgstr "火焰颗粒减速。"
-
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr "为火焰随机选取颜色，亦称神秘火焰。"
+#, fuzzy
+msgid "Initiate (key)"
+msgstr "启动"
 
 msgid "Initiate fire drawing"
 msgstr "启动火焰绘制"
@@ -397,14 +1597,14 @@ msgstr "在屏幕上绘制火焰"
 msgid "Paint fire or other particles on the screen"
 msgstr "在屏幕上绘制火焰或其它颗粒"
 
-msgid "Randomly Colored Fire"
-msgstr "随机颜色火焰"
+msgid "Cube Gears"
+msgstr ""
+
+msgid "Render gears inside of the transparent cube"
+msgstr ""
 
 msgid "Animation Options"
 msgstr "动画选项"
-
-msgid "Appearance"
-msgstr "外观"
 
 msgid "Autotab windows on creation"
 msgstr "自动窗口标签创建"
@@ -445,7 +1645,10 @@ msgstr "为缩略图创建 mipmap"
 msgid "Create mipmaps for thumbnails in the tab bar"
 msgstr "在标签栏为缩略图创建 mipmap"
 
-msgid "Distance (in pixels) between the tab bar and the dragged slot for applying the spring model. If the distance is larger than that value, the model isn't applied."
+msgid ""
+"Distance (in pixels) between the tab bar and the dragged slot for applying "
+"the spring model. If the distance is larger than that value, the model isn't "
+"applied."
 msgstr "拖拽缝隙和标签栏的距离(像素)。如果距离大于这个值，则不使用弹性模型。"
 
 msgid "Duration (in s) of the animation that happens when changing tabs"
@@ -529,31 +1732,48 @@ msgstr "组合"
 msgid "Hover time for slot dragging"
 msgstr "缝隙拖动的悬停时间"
 
-msgid "If one window in the group is (un)maximized, all other group windows are (un)maximized as well."
-msgstr "如果组合中一个窗口被最大化/取消最大化，其它窗口也一起被最大化/取消最大化。"
+msgid ""
+"If one window in the group is (un)maximized, all other group windows are (un)"
+"maximized as well."
+msgstr ""
+"如果组合中一个窗口被最大化/取消最大化，其它窗口也一起被最大化/取消最大化。"
 
-msgid "If one window in the group is (un)minimized, all other group windows are (un)minimized as well."
-msgstr "如果组合中一个窗口被最小化/取消最小化，其它窗口也一起被最小化/取消最小化。"
+msgid ""
+"If one window in the group is (un)minimized, all other group windows are (un)"
+"minimized as well."
+msgstr ""
+"如果组合中一个窗口被最小化/取消最小化，其它窗口也一起被最小化/取消最小化。"
 
-msgid "If one window in the group is (un)shaded, all other group windows are (un)shaded as well."
+msgid ""
+"If one window in the group is (un)shaded, all other group windows are (un)"
+"shaded as well."
 msgstr "如果组合中一个窗口被卷起/展开，其它窗口也一起被卷起/展开。"
 
-msgid "If one window in the group is activated, all other group windows are raised as well."
+msgid ""
+"If one window in the group is activated, all other group windows are raised "
+"as well."
 msgstr "如果组合中一个窗口被激活，其它窗口也一起浮起。"
 
-msgid "If one window in the group is moved, all other group windows are moved as well."
+msgid ""
+"If one window in the group is moved, all other group windows are moved as "
+"well."
 msgstr "如果组合中一个窗口被移动，其它窗口也一起浮起。"
 
-msgid "If one window in the group is resized, all other group windows are resized as well."
+msgid ""
+"If one window in the group is resized, all other group windows are resized "
+"as well."
 msgstr "如果组合中一个窗口被调整大小，其它窗口也一起浮起。"
 
 msgid "If there is only 1 window left in the group, it will be ungrouped."
 msgstr "仅剩一窗口则取消自动组合。"
 
-msgid "If you don't like the current glow color, you can change it with this key."
+msgid ""
+"If you don't like the current glow color, you can change it with this key."
 msgstr "如果你不喜欢当前光晕颜色，按下这个键修改。"
 
-msgid "If you have selected some windows, this automatically groups them (Doesn't work with selection mode 'Normal')."
+msgid ""
+"If you have selected some windows, this automatically groups them (Doesn't "
+"work with selection mode 'Normal')."
 msgstr "自动组合你选取的众多窗口(与'正常'模式不兼容)。"
 
 msgid "Ignore Group"
@@ -577,7 +1797,8 @@ msgstr "金属"
 msgid "Minimize with group"
 msgstr "组合统一最小化"
 
-msgid "Mouse pointer movement speed limit (in pixels/second) for the spring model"
+msgid ""
+"Mouse pointer movement speed limit (in pixels/second) for the spring model"
 msgstr "鼠标指针速度极限(像素/秒)，用于弹性模型"
 
 msgid "Move every window in the group"
@@ -589,16 +1810,15 @@ msgstr ""
 msgid "Opacity of selected windows"
 msgstr "选定窗口的不透明级别"
 
-msgid "Options"
-msgstr "选项"
-
 msgid "Play animations on the tab bar e.g. on fade in."
 msgstr "在标签栏播放动画，如淡入"
 
 msgid "Precision"
 msgstr "精度"
 
-msgid "Precision of the selection (percentage of the visible window area which must be selected for the selection to be recognized)."
+msgid ""
+"Precision of the selection (percentage of the visible window area which must "
+"be selected for the selection to be recognized)."
 msgstr "精度（选择窗口时，选框必须超过可视窗口域的百分比才能确认窗口被选择）"
 
 msgid "Raise every window in the group"
@@ -658,9 +1878,6 @@ msgstr "缝隙拖拽的弹性常量"
 msgid "Spring friction for slot dragging"
 msgstr "缝隙拖拽的弹性系数"
 
-msgid "Spring model on move"
-msgstr "移动类型的弹性模型"
-
 msgid "Tab Bar Show Delay"
 msgstr "标签栏显示延迟"
 
@@ -706,7 +1923,9 @@ msgstr "关闭组合中所有窗口的键。"
 msgid "The key for grouping windows."
 msgstr "组合窗口的快捷键。"
 
-msgid "The key for ignoring the group. If this key is pressed, you can do actions for a single window in the group only."
+msgid ""
+"The key for ignoring the group. If this key is pressed, you can do actions "
+"for a single window in the group only."
 msgstr "忽略组合的键。按下此键，可以对组合中单个窗口操作不影响组合中其它窗口。"
 
 msgid "The key for removing the selected window from its group."
@@ -769,7 +1988,9 @@ msgstr "标签栏脉动动画时长"
 msgid "Time for tab bar reflex animation"
 msgstr "标签栏反射动画时长"
 
-msgid "Timespan (in s) after which a grouped window is activated if a window of another group is dragged over it"
+msgid ""
+"Timespan (in s) after which a grouped window is activated if a window of "
+"another group is dragged over it"
 msgstr "如果另一个组合的窗口拖某组合窗口之上，该组合窗口被激活的延迟时长(秒)"
 
 msgid "Ungroup Windows"
@@ -783,9 +2004,6 @@ msgstr "关闭顶标签窗口则取消组合，而不是改变标签取消组合
 
 msgid "Untab when closing top tab"
 msgstr "关闭顶标签后取消组合"
-
-msgid "Use spring model for the tab bar when moving the window"
-msgstr "移动窗口时对标签栏使用弹性模型"
 
 msgid "Use tab bar animations"
 msgstr "使用标签栏动画"
@@ -801,6 +2019,18 @@ msgstr "这个插件实现窗口组合管理和标签功能"
 
 msgid "Y distance for spring model"
 msgstr "弹性模型的距离 Y"
+
+msgid "Compression Quality"
+msgstr ""
+
+msgid "JPEG"
+msgstr ""
+
+msgid "JPEG image format plugin"
+msgstr ""
+
+msgid "Quality of compression when saving JPEG images"
+msgstr ""
 
 msgid "Accumulation buffer"
 msgstr "加速缓存"
@@ -844,6 +2074,420 @@ msgstr "开关动态模糊效果"
 msgid "Visibility/Performance"
 msgstr "可视性/性能"
 
+msgid "Begin Gesture"
+msgstr ""
+
+msgid "Begin Mouse Gesture"
+msgstr ""
+
+msgid "Mouse switch"
+msgstr ""
+
+msgid "Switch viewport in response to mouse gesture"
+msgstr ""
+
+#, fuzzy
+msgid "Exclude Windows"
+msgstr "排除窗口"
+
+#, fuzzy
+msgid "Neg Windows"
+msgstr "排列窗口"
+
+msgid "Negative"
+msgstr ""
+
+#, fuzzy
+msgid "Toggle Screen Negative"
+msgstr "开关全屏"
+
+#, fuzzy
+msgid "Toggle Window Negative"
+msgstr "开关窗口重导"
+
+#, fuzzy
+msgid "Toggle active window negative"
+msgstr "开关窗口重导"
+
+#, fuzzy
+msgid "Toggle screen negative"
+msgstr "开关全屏"
+
+#, fuzzy
+msgid "Used to set a window or screen negative"
+msgstr "自动窗口标签创建"
+
+msgid "Windows to be negative by default"
+msgstr ""
+
+#, fuzzy
+msgid "Windows to exclude from negating"
+msgstr "不参与排列的窗口"
+
+#, fuzzy
+msgid "Active Opacity"
+msgstr "不透明度"
+
+msgid ""
+"Bypass delay when Opacify is reducing the opacity on one or more windows "
+"already."
+msgstr ""
+
+msgid "Bypass delay when the new active window is the focused window."
+msgstr ""
+
+msgid "Delay until Opacification"
+msgstr ""
+
+msgid ""
+"Do not wait if the window we are hovering is the focused window. This allows "
+"us to instantly see the focused window. You probably want to disable this if "
+"you are not using 'Click to Focus'."
+msgstr ""
+
+msgid "Make windows easily visible by hovering the mouse over them"
+msgstr ""
+
+msgid "Only increase opacity if a window is blocking"
+msgstr ""
+
+msgid ""
+"Only increase the opacity on the targeted window if it has one or more "
+"windows blocking it from view."
+msgstr ""
+
+#, fuzzy
+msgid "Opacify"
+msgstr "不透明度"
+
+#, fuzzy
+msgid "Opacity Levels"
+msgstr "不透明度"
+
+#, fuzzy
+msgid "Passive Opacity"
+msgstr "不透明度"
+
+msgid "Reset opacity to original values when toggling"
+msgstr ""
+
+msgid ""
+"Reset the opacity of all windows modified by opacify when toggling Opacify "
+"with the defined key-combination."
+msgstr ""
+
+msgid ""
+"The delay (in ms) before Opacify changes opacity after the active window has "
+"changed."
+msgstr ""
+
+msgid ""
+"The maximum opacity percentage a window blocking the current targeted window "
+"can have. A blocking window will have either this opacity or the preset "
+"opacity, whichever is lower."
+msgstr ""
+
+msgid ""
+"The minimum opacity percentage to ensure a targeted window has. A target "
+"window will have either this opacity or the preset opacity, whichever is "
+"higher."
+msgstr ""
+
+msgid ""
+"This enables you to let Opacify instantly opacify new windows when you're "
+"already making one or more windows invisible. Makes for faster behavior "
+"while looking through layers of hidden windows."
+msgstr ""
+
+#, fuzzy
+msgid "Toggle Opacify"
+msgstr "开关置顶"
+
+msgid "Toggle Opacify on by default"
+msgstr ""
+
+msgid ""
+"Use this to enable/disable Opacify on the fly. Previously opacified windows "
+"will not be reset once you disable it like this."
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be opacified."
+msgstr "不使用不透明的窗口类型。"
+
+msgid ""
+"With this enabled, opacify will be on when you load Opacify, which is "
+"usually when you start Compiz."
+msgstr ""
+
+#, fuzzy
+msgid "Animation speed"
+msgstr "动画速度"
+
+#, fuzzy
+msgid "Animation timestep"
+msgstr "动画选项"
+
+msgid "Avoid Offscreen"
+msgstr ""
+
+msgid "Avoids putting window borders offscreen"
+msgstr ""
+
+msgid "Move window to a certain viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Move window to the bottom edge"
+msgstr "将每个窗口移入组合"
+
+#, fuzzy
+msgid "Move window to the bottom left corner"
+msgstr "圆滑左底角"
+
+#, fuzzy
+msgid "Move window to the bottom right corner"
+msgstr "圆滑右底角"
+
+#, fuzzy
+msgid "Move window to the center"
+msgstr "将每个窗口移入组合"
+
+msgid "Move window to the last position"
+msgstr ""
+
+#, fuzzy
+msgid "Move window to the left edge"
+msgstr "将每个窗口移入组合"
+
+msgid "Move window to the pointer position"
+msgstr ""
+
+#, fuzzy
+msgid "Move window to the right edge"
+msgstr "将每个窗口移入组合"
+
+#, fuzzy
+msgid "Move window to the top edge"
+msgstr "将每个窗口移入组合"
+
+#, fuzzy
+msgid "Move window to the top left corner"
+msgstr "圆滑左底角"
+
+#, fuzzy
+msgid "Move window to the top right corner"
+msgstr "圆滑右底角"
+
+msgid "Move window to the viewport on the bottom"
+msgstr ""
+
+msgid "Move window to the viewport on the left"
+msgstr ""
+
+msgid "Move window to the viewport on the right"
+msgstr ""
+
+#, fuzzy
+msgid "Move window to the viewport on the top"
+msgstr "将每个窗口移入组合"
+
+msgid "Move window to viewport 1"
+msgstr ""
+
+msgid "Move window to viewport 10"
+msgstr ""
+
+msgid "Move window to viewport 11"
+msgstr ""
+
+msgid "Move window to viewport 12"
+msgstr ""
+
+msgid "Move window to viewport 2"
+msgstr ""
+
+msgid "Move window to viewport 3"
+msgstr ""
+
+msgid "Move window to viewport 4"
+msgstr ""
+
+msgid "Move window to viewport 5"
+msgstr ""
+
+msgid "Move window to viewport 6"
+msgstr ""
+
+msgid "Move window to viewport 7"
+msgstr ""
+
+msgid "Move window to viewport 8"
+msgstr ""
+
+msgid "Move window to viewport 9"
+msgstr ""
+
+msgid "Move window to x, y"
+msgstr ""
+
+msgid ""
+"Number of pixels from the bottom edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the left edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the right edge where the window will come to rest"
+msgstr ""
+
+msgid "Number of pixels from the top edge where the window will come to rest"
+msgstr ""
+
+#, fuzzy
+msgid "Pad Bottom"
+msgstr "自顶至底"
+
+#, fuzzy
+msgid "Pad Left"
+msgstr "左"
+
+#, fuzzy
+msgid "Pad Right"
+msgstr "右"
+
+msgid "Pad Top"
+msgstr ""
+
+msgid "Padding"
+msgstr ""
+
+msgid "Put"
+msgstr ""
+
+#, fuzzy
+msgid "Put Bottom"
+msgstr "自顶至底"
+
+#, fuzzy
+msgid "Put Bottom Left"
+msgstr "圆滑左底角"
+
+#, fuzzy
+msgid "Put Bottom Right"
+msgstr "圆滑右底角"
+
+msgid "Put Center"
+msgstr ""
+
+msgid "Put Exact"
+msgstr ""
+
+#, fuzzy
+msgid "Put Left"
+msgstr "左"
+
+msgid "Put On Viewport"
+msgstr ""
+
+msgid "Put On Viewport 1"
+msgstr ""
+
+msgid "Put On Viewport 10"
+msgstr ""
+
+msgid "Put On Viewport 11"
+msgstr ""
+
+msgid "Put On Viewport 12"
+msgstr ""
+
+msgid "Put On Viewport 2"
+msgstr ""
+
+msgid "Put On Viewport 3"
+msgstr ""
+
+msgid "Put On Viewport 4"
+msgstr ""
+
+msgid "Put On Viewport 5"
+msgstr ""
+
+msgid "Put On Viewport 6"
+msgstr ""
+
+msgid "Put On Viewport 7"
+msgstr ""
+
+msgid "Put On Viewport 8"
+msgstr ""
+
+msgid "Put On Viewport 9"
+msgstr ""
+
+msgid "Put Pointer"
+msgstr ""
+
+#, fuzzy
+msgid "Put Right"
+msgstr "右"
+
+msgid "Put Top"
+msgstr ""
+
+#, fuzzy
+msgid "Put Top Left"
+msgstr "圆滑左顶角"
+
+#, fuzzy
+msgid "Put Top Right"
+msgstr "圆滑右顶角"
+
+msgid "Put pointer uses the center of the window"
+msgstr ""
+
+msgid "Put to adjacent viewport"
+msgstr ""
+
+msgid "Put to arbitrary viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Put window"
+msgstr "窗口排列"
+
+msgid "Put within viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Restore Position"
+msgstr "恢复窗口"
+
+#, fuzzy
+msgid "Unfocus Window"
+msgstr "取消窗口组合"
+
+msgid "Unfocus windows that are moved off the viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Viewport Bottom"
+msgstr "自顶至底"
+
+msgid "Viewport Left"
+msgstr ""
+
+msgid "Viewport Right"
+msgstr ""
+
+msgid "Viewport Top"
+msgstr ""
+
+#, fuzzy
+msgid "Window Center"
+msgstr "窗口标题字体"
+
 msgid "Alpha Dependence Threshold"
 msgstr "Alpha 独立性阈值"
 
@@ -865,9 +2509,6 @@ msgstr "窗口移动时出现映影。"
 msgid "Moving reflection"
 msgstr "移动映影"
 
-msgid "Reflection"
-msgstr "映影"
-
 msgid "Reflection Image"
 msgstr "映影图像"
 
@@ -886,7 +2527,376 @@ msgstr "窗口映影"
 msgid "Window match"
 msgstr "窗口匹配"
 
-msgid "Embeds a Guile scheme interpreter and provides bindings for meaningful Compiz integration."
+#, fuzzy
+msgid "Color 1 of the gradient background."
+msgstr "基底远景色"
+
+#, fuzzy
+msgid "Color 2 of the gradient background."
+msgstr "基底远景色"
+
+#, fuzzy
+msgid "Color 3 of the gradient background."
+msgstr "基底远景色"
+
+#, fuzzy
+msgid "Color of text on resize popup."
+msgstr "基底远景色"
+
+msgid "Display info on resize similar to metacity"
+msgstr ""
+
+#, fuzzy
+msgid "Fade time (in ms) for popup window"
+msgstr "淡入淡出时间(微妙)"
+
+#, fuzzy
+msgid "Gradient Color 1"
+msgstr "渐变"
+
+#, fuzzy
+msgid "Gradient Color 2"
+msgstr "渐变"
+
+#, fuzzy
+msgid "Gradient Color 3"
+msgstr "渐变"
+
+msgid "Resize Info"
+msgstr ""
+
+msgid ""
+"Show resize info for all windows as opposed to just windows with a resize "
+"increment of greater than 1."
+msgstr ""
+
+#, fuzzy
+msgid "Show resize info for all windows."
+msgstr "为窗口绘制映影。"
+
+msgid "Text color."
+msgstr ""
+
+#, fuzzy
+msgid "Above ring"
+msgstr "之上"
+
+#, fuzzy
+msgid "Allow Mouse Selection"
+msgstr "立方体倒映"
+
+msgid ""
+"Allow the selection of windows by just clicking on them while the switcher "
+"is active."
+msgstr ""
+
+msgid ""
+"Amount of opacity (in percent) for windows in the ring which are not selected"
+msgstr ""
+
+#, fuzzy
+msgid "Background Color"
+msgstr "背景文件"
+
+#, fuzzy
+msgid "Background color for the window title"
+msgstr "标签栏中窗口标题颜色"
+
+#, fuzzy
+msgid "Below ring"
+msgstr "环形光晕"
+
+msgid "Big"
+msgstr ""
+
+msgid "Bold Font"
+msgstr ""
+
+#, fuzzy
+msgid "Centered on screen"
+msgstr "在屏幕上绘制火焰"
+
+msgid ""
+"Changes the minimum brightness factor for windows in the ring. The farer "
+"away windows are, the less bright are they."
+msgstr ""
+
+msgid ""
+"Changes the minimum scale factor for windows in the ring. The farer away "
+"windows are, the smaller are they."
+msgstr ""
+
+#, fuzzy
+msgid "Darken Background"
+msgstr "背景文件"
+
+msgid "Darken background when showing the ring"
+msgstr ""
+
+#, fuzzy
+msgid "Emblem"
+msgstr "启用"
+
+#, fuzzy
+msgid "Font color for the window title"
+msgstr "标签栏中窗口标题颜色"
+
+#, fuzzy
+msgid "Font size for the window title"
+msgstr "组合窗口光晕大小"
+
+#, fuzzy
+msgid "Inactive Window Opacity"
+msgstr "窗口不透明度"
+
+msgid "Maximum horizontal size of a thumbnail in the ring"
+msgstr ""
+
+msgid "Maximum vertical size of a thumbnail in the ring"
+msgstr ""
+
+msgid "Minimum Brightness Factor"
+msgstr ""
+
+msgid "Minimum Scale Factor"
+msgstr ""
+
+#, fuzzy
+msgid "Next Window"
+msgstr "排列窗口"
+
+msgid "Next Window (All Workspaces)"
+msgstr ""
+
+msgid "Next Window (Group)"
+msgstr ""
+
+msgid "Overlay Icon"
+msgstr ""
+
+#, fuzzy
+msgid "Overlay an icon on windows in the ring"
+msgstr "关闭组合中所有窗口的键。"
+
+#, fuzzy
+msgid "Previous Window"
+msgstr "组合窗口"
+
+msgid "Previous Window (All Workspaces)"
+msgstr ""
+
+msgid "Previous Window (Group)"
+msgstr ""
+
+#, fuzzy
+msgid "Ring Height"
+msgstr "右"
+
+msgid "Ring Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Ring Width"
+msgstr "窗口宽度"
+
+#, fuzzy
+msgid "Ring Windows"
+msgstr "排列窗口"
+
+#, fuzzy
+msgid "Ring appearance"
+msgstr "外观"
+
+msgid "Ring height (in percent of the screen height)"
+msgstr ""
+
+#, fuzzy
+msgid "Ring speed"
+msgstr "标签速度"
+
+#, fuzzy
+msgid "Ring timestep"
+msgstr "标签步长"
+
+msgid "Ring width (in percent of the screen width)"
+msgstr ""
+
+msgid "Rotate Ring Clockwise on Next"
+msgstr ""
+
+msgid "Rotate ring clockwise for next window instead of counterclockwise"
+msgstr ""
+
+msgid "Selects if the window title should be displayed in bold font or not."
+msgstr ""
+
+msgid "Selects where to place the window title."
+msgstr ""
+
+msgid "Show Minimized"
+msgstr ""
+
+#, fuzzy
+msgid "Show Window Title"
+msgstr "窗口标题字体"
+
+#, fuzzy
+msgid "Show minimized windows"
+msgstr "飞雪漫窗"
+
+msgid ""
+"Show switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+
+msgid "Show switcher if not visible and select next window out of all windows."
+msgstr ""
+
+msgid "Show switcher if not visible and select next window."
+msgstr ""
+
+msgid ""
+"Show switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+
+msgid ""
+"Show switcher if not visible and select previous window out of all windows."
+msgstr ""
+
+msgid "Show switcher if not visible and select previous window."
+msgstr ""
+
+msgid "Show window title of currently selected window."
+msgstr ""
+
+msgid "Text Placement"
+msgstr ""
+
+msgid "Thumbnail Height"
+msgstr ""
+
+msgid "Thumbnail Width"
+msgstr ""
+
+#, fuzzy
+msgid "Window title display"
+msgstr "窗口标题字体"
+
+#, fuzzy
+msgid "Windows that should be shown in ring"
+msgstr "使用 3D 的窗口"
+
+#, fuzzy
+msgid "Background color of the window title"
+msgstr "标签栏中窗口标题颜色"
+
+#, fuzzy
+msgid "Close Windows In Scale"
+msgstr "纵向排列窗口"
+
+#, fuzzy
+msgid "Close windows while in scale mode"
+msgstr "立方体转面时浮起的窗口"
+
+msgid "Color used for highlighting the hovered window"
+msgstr ""
+
+#, fuzzy
+msgid "Draw Window Highlight"
+msgstr "绘制窗口背面"
+
+#, fuzzy
+msgid "Font color of the window title"
+msgstr "标签栏中窗口标题颜色"
+
+msgid "Font size for window title display"
+msgstr ""
+
+#, fuzzy
+msgid "Highlight Color"
+msgstr "标签高亮颜色"
+
+msgid "Highlights the hovered window with the given color"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+#, fuzzy
+msgid "Organic - EXPERIMENTAL"
+msgstr "窗口合并(实验性)"
+
+msgid "Scale Addons"
+msgstr ""
+
+msgid "Selects the mode to layout the windows in scale mode"
+msgstr ""
+
+msgid "Show window title in scale mode"
+msgstr ""
+
+#, fuzzy
+msgid "Size of the border around the window title"
+msgstr "组合窗口光晕大小"
+
+msgid "Some useful additions to the scale plugin"
+msgstr ""
+
+msgid "Title Border Size"
+msgstr ""
+
+msgid "Use bold font for window title display"
+msgstr ""
+
+#, fuzzy
+msgid "Window Highlight"
+msgstr "窗口宽度"
+
+#, fuzzy
+msgid "Window Layout Mode"
+msgstr "窗口部件大小"
+
+#, fuzzy
+msgid "Window Title"
+msgstr "窗口标题字体"
+
+#, fuzzy
+msgid "Zoom Windows In Scale"
+msgstr "窗口间隔"
+
+msgid "Zoom windows while in scale mode"
+msgstr ""
+
+msgid "Filter Case Insensitive"
+msgstr ""
+
+msgid "Filter Type Timeout"
+msgstr ""
+
+#, fuzzy
+msgid "Scale Window Title Filter"
+msgstr "窗口标题字体"
+
+msgid "Show Filter Text"
+msgstr ""
+
+#, fuzzy
+msgid "Show filter text."
+msgstr "首次启动显示"
+
+msgid "Time (in ms) after which the filter typing is automatically ended"
+msgstr ""
+
+msgid "Use case insensitive string matching when filtering."
+msgstr ""
+
+msgid "Window title filter facility for the scale plugin"
+msgstr ""
+
+msgid ""
+"Embeds a Guile scheme interpreter and provides bindings for meaningful "
+"Compiz integration."
 msgstr ""
 
 msgid "Scheme Interpreter"
@@ -898,17 +2908,149 @@ msgstr ""
 msgid "Toggle prompt visible."
 msgstr ""
 
+#, fuzzy
+msgid "Background intensity"
+msgstr "背景文件"
+
+#, fuzzy
+msgid "Background intensity."
+msgstr "背景亮度。"
+
+#, fuzzy
+msgid "Below"
+msgstr "光晕"
+
+msgid "Click duration"
+msgstr ""
+
+#, fuzzy
+msgid "Cover"
+msgstr "之上"
+
+#, fuzzy
+msgid "Cover movement offset."
+msgstr "窗口移动速度"
+
+msgid "Cover offset"
+msgstr ""
+
+#, fuzzy
+msgid "Disabled"
+msgstr "距离"
+
+#, fuzzy
+msgid "Fade in/out speed"
+msgstr "淡入淡出时长"
+
+#, fuzzy
+msgid "Fade speed"
+msgstr "淡入淡出时间"
+
+msgid "Flip"
+msgstr ""
+
+msgid "Flip angle"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps"
+msgstr "创建 Mipmap"
+
+msgid "Hide all non Desktop windows during switching"
+msgstr ""
+
+#, fuzzy
+msgid "Hide non Desktop windows"
+msgstr "淡出到桌面"
+
+#, fuzzy
+msgid "Initiate (All Workspaces)"
+msgstr "初始化闪屏"
+
+msgid "Initiate switcher (All Workspaces)."
+msgstr ""
+
+#, fuzzy
+msgid "Initiate switcher."
+msgstr "初始化闪屏"
+
+#, fuzzy
+msgid "Max window size"
+msgstr "绘制窗口背面"
+
+msgid "Maximum click duration in miliseconds."
+msgstr ""
+
+msgid "Maximum window size (in percent of the screen width)"
+msgstr ""
+
+#, fuzzy
+msgid "Mouse movement speed"
+msgstr "窗口移动速度"
+
+msgid "Mouse speed"
+msgstr ""
+
+msgid "On activated output"
+msgstr ""
+
+msgid "One big switcher"
+msgstr ""
+
+msgid "Overlay an icon on windows in the shift switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Rotation angle of the flip animation"
+msgstr "排列动画时长(微秒)"
+
+msgid ""
+"Selects how the switcher is displayed if multiple output devices are used."
+msgstr ""
+
+msgid "Shift Switcher"
+msgstr ""
+
+msgid "Shift Switcher Plugin"
+msgstr ""
+
+#, fuzzy
+msgid "Shift Windows"
+msgstr "排列窗口"
+
+#, fuzzy
+msgid "Shift animation speed"
+msgstr "动画速度"
+
+#, fuzzy
+msgid "Shift speed"
+msgstr "速度"
+
+#, fuzzy
+msgid "Shift timestep"
+msgstr "标签步长"
+
+msgid "Switcher mode"
+msgstr ""
+
+msgid "Switcher mode."
+msgstr ""
+
+msgid "Terminate"
+msgstr ""
+
+msgid "Terminate switcher."
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in the shift switcher"
+msgstr "允许加入组合的窗口"
+
 msgid "Access your desktop easily"
 msgstr "清空桌面的快捷方式"
 
 msgid "Direction of window movement"
 msgstr "窗口移动方向"
-
-msgid "Down"
-msgstr "下"
-
-msgid "Left"
-msgstr "左"
 
 msgid "Left/Right"
 msgstr "左/右"
@@ -916,23 +3058,11 @@ msgstr "左/右"
 msgid "Movement Direction"
 msgstr "移动方向"
 
-msgid "Right"
-msgstr "右"
-
 msgid "Show desktop"
 msgstr "回到桌面"
 
-msgid "Speed"
-msgstr "速度"
-
-msgid "Timestep"
-msgstr "步长"
-
 msgid "To Corners"
 msgstr "角"
-
-msgid "Up"
-msgstr "上"
 
 msgid "Up/Down"
 msgstr "上/下"
@@ -955,56 +3085,75 @@ msgstr "显示桌面时窗口不透明度"
 msgid "Window part size when showdesktop'd"
 msgstr "显示桌面时窗口部件大小"
 
-msgid "Window types that should be moved out of sight when entering showdesktop mode"
+msgid ""
+"Window types that should be moved out of sight when entering showdesktop mode"
 msgstr "进入显示桌面模式后应该消失的窗口类型"
 
-msgid "A simple splash plugin"
-msgstr "简单的闪屏插件"
+msgid "Alt"
+msgstr ""
 
-msgid "Background File"
-msgstr "背景文件"
+msgid "Avoid Snap Modifier"
+msgstr ""
 
-msgid "Background brightness."
-msgstr "背景亮度。"
+msgid "Choose 'Resistance', 'Attraction' or 'Full Mode'."
+msgstr ""
 
-msgid "Background image File."
-msgstr "背景图像文件。"
+msgid "Control"
+msgstr ""
 
-msgid "Background saturation."
-msgstr "背景饱和度。"
+msgid "Edge Attraction Distance"
+msgstr ""
 
-msgid "Display In/Out Time."
-msgstr "进入／退出显示时间。"
+msgid "Edge Resistance Distance"
+msgstr ""
 
-msgid "Display Time"
-msgstr "显示时长"
+#, fuzzy
+msgid "Edge attraction"
+msgstr "饱和度"
 
-msgid "Fade In/Out Time."
-msgstr "淡入淡出时长"
+#, fuzzy
+msgid "Edge resistance"
+msgstr "距离"
 
-msgid "Images"
-msgstr "图像"
+msgid "Edges"
+msgstr ""
 
-msgid "Initiate Splash"
-msgstr "初始化闪屏"
+msgid "Enables windows edges resistance"
+msgstr ""
 
-msgid "Logo File"
-msgstr "Logo 文件"
+#, fuzzy
+msgid "Meta"
+msgstr "金属"
 
-msgid "Logo image File."
-msgstr "Logo 图像文件。"
+#, fuzzy
+msgid "Screen edges"
+msgstr "屏幕深度"
 
-msgid "Show on first start"
-msgstr "首次启动显示"
+msgid "Shift"
+msgstr ""
 
-msgid "Show splash on first start."
-msgstr "首次启动显示闪屏。"
+msgid "Snap Type"
+msgstr ""
 
-msgid "Splash"
-msgstr "闪屏"
+msgid "Snap to 'Screen Edges', 'Windows Edges' or 'Both'."
+msgstr ""
 
-msgid "Start Splash."
-msgstr "启动闪屏."
+#, fuzzy
+msgid "Snapping Windows"
+msgstr "取消窗口组合"
+
+msgid "The distance until edge attraction takes place."
+msgstr ""
+
+msgid "The distance until edge resistance takes place."
+msgstr ""
+
+msgid "Use this bindings to avoid snapping."
+msgstr ""
+
+#, fuzzy
+msgid "Window edges"
+msgstr "窗口类型"
 
 msgid "Bottom to Top"
 msgstr "从底至顶"
@@ -1012,8 +3161,11 @@ msgstr "从底至顶"
 msgid "Debug"
 msgstr "调试"
 
-msgid "Delay (in ms) between screen updates. Decreasing this value may make snow fall more smoothly, but will also increase CPU usage."
-msgstr "屏幕刷新延迟(微秒)。减小这个值可以让飞雪动画更加平滑，但会增加 CPU 占用。"
+msgid ""
+"Delay (in ms) between screen updates. Decreasing this value may make snow "
+"fall more smoothly, but will also increase CPU usage."
+msgstr ""
+"屏幕刷新延迟(微秒)。减小这个值可以让飞雪动画更加平滑，但会增加 CPU 占用。"
 
 msgid "Enable Blending"
 msgstr "启用渲染"
@@ -1033,7 +3185,9 @@ msgstr "如果钩选则雪花旋转。"
 msgid "How deep into the screen snowflakes can be drawn before being removed"
 msgstr "雪花在被移除前能触及的屏幕深度"
 
-msgid "How far outside the screen resolution snow flakes can be before being removed. Needed because of FOV."
+msgid ""
+"How far outside the screen resolution snow flakes can be before being "
+"removed. Needed because of FOV."
 msgstr "雪花在被移除前能在屏幕分辨率之外能够存在的距离。FOV 需要。"
 
 msgid "Key Bindings"
@@ -1114,6 +3268,156 @@ msgstr "自顶至底"
 msgid "Update Delay"
 msgstr "更新延迟"
 
+msgid "A simple splash plugin"
+msgstr "简单的闪屏插件"
+
+msgid "Background File"
+msgstr "背景文件"
+
+msgid "Background brightness."
+msgstr "背景亮度。"
+
+msgid "Background image File."
+msgstr "背景图像文件。"
+
+msgid "Background saturation."
+msgstr "背景饱和度。"
+
+msgid "Display In/Out Time."
+msgstr "进入／退出显示时间。"
+
+msgid "Display Time"
+msgstr "显示时长"
+
+msgid "Fade In/Out Time."
+msgstr "淡入淡出时长"
+
+msgid "Images"
+msgstr "图像"
+
+msgid "Initiate Splash"
+msgstr "初始化闪屏"
+
+msgid "Logo File"
+msgstr "Logo 文件"
+
+msgid "Logo image File."
+msgstr "Logo 图像文件。"
+
+msgid "Show on first start"
+msgstr "首次启动显示"
+
+msgid "Show splash on first start."
+msgstr "首次启动显示闪屏。"
+
+msgid "Splash"
+msgstr "闪屏"
+
+msgid "Start Splash."
+msgstr "启动闪屏."
+
+msgid "Render text to texture"
+msgstr ""
+
+#, fuzzy
+msgid "Text"
+msgstr "纹理"
+
+#, fuzzy
+msgid "Enable Titles"
+msgstr "启用纹理"
+
+#, fuzzy
+msgid "Fade In/Out Duration"
+msgstr "淡入淡出时长"
+
+#, fuzzy
+msgid "Fade In/Out Duration in seconds."
+msgstr "淡入淡出时长"
+
+#, fuzzy
+msgid "Generate Mipmaps"
+msgstr "创建 Mipmap"
+
+msgid "Generate mipmaps when possible for higher quality scaling."
+msgstr ""
+
+msgid "Paint Thumbnails Always on Top."
+msgstr ""
+
+msgid "Paint Window Like Background"
+msgstr ""
+
+msgid "Paint Window Like Background instead of Glow."
+msgstr ""
+
+msgid "Set it if the Taskbar shows only Windows of Current Viewport."
+msgstr ""
+
+msgid "Should be the window title Bold."
+msgstr ""
+
+#, fuzzy
+msgid "Show Delay"
+msgstr "标签栏显示延迟"
+
+msgid "Show Window Title in Thumbnail."
+msgstr ""
+
+msgid "Size of Thumbnail Border."
+msgstr ""
+
+msgid "Taskbar"
+msgstr ""
+
+msgid "Taskbar Shows Only Windows of Current Viewport"
+msgstr ""
+
+msgid "Thumbnail Background and Border Glow Color."
+msgstr ""
+
+#, fuzzy
+msgid "Thumbnail Border Glow Color"
+msgstr "标签边框颜色"
+
+#, fuzzy
+msgid "Thumbnail Border Size"
+msgstr "缩略图大小"
+
+#, fuzzy
+msgid "Thumbnail Window Size"
+msgstr "缩略图大小"
+
+#, fuzzy
+msgid "Thumbnail window size."
+msgstr "窗口排列"
+
+msgid "Thumbnails Always on Top"
+msgstr ""
+
+msgid "Time (in ms) before Thumbnail is shown."
+msgstr ""
+
+#, fuzzy
+msgid "Window Previews"
+msgstr "窗口部件大小"
+
+#, fuzzy
+msgid "Window thumbnails at the taskbar"
+msgstr "任务栏中缩略图大小"
+
+#, fuzzy
+msgid "Window title"
+msgstr "窗口标题字体"
+
+#, fuzzy
+msgid "Window title Font Color."
+msgstr "窗口标题字体"
+
+#, fuzzy
+msgid "Window title Font Size."
+msgstr "窗口标题字体"
+
 msgid "Animation Duration"
 msgstr "动画时长"
 
@@ -1141,9 +3445,6 @@ msgstr "排列动画时长(微秒)"
 msgid "Excluded Windows"
 msgstr "排除窗口"
 
-msgid "Fade"
-msgstr "淡入淡出"
-
 msgid "Filled Outline"
 msgstr "填充框架"
 
@@ -1153,23 +3454,32 @@ msgstr "窗口合并(实验性)"
 msgid "Left Occupancy"
 msgstr "左占用"
 
-msgid "Move and resize all visible windows both vertically and horizontally, so that the occupy whole screen and are in a grid."
+msgid ""
+"Move and resize all visible windows both vertically and horizontally, so "
+"that the occupy whole screen and are in a grid."
 msgstr "纵横双向移动、调整所有可视窗口大小，使得它们充满屏幕并占据一个网格。"
 
-msgid "Move and resize all visible windows so that they have full height, same width and occupy whole screen."
+msgid ""
+"Move and resize all visible windows so that they have full height, same "
+"width and occupy whole screen."
 msgstr "移动、调整所有可视窗口大小，使得它们纵向最大化、等宽、充满屏幕。"
 
-msgid "Move and resize all visible windows so that they have full width, same height and occupy whole screen."
+msgid ""
+"Move and resize all visible windows so that they have full width, same "
+"height and occupy whole screen."
 msgstr "移动、调整所有可视窗口大小，使得它们横向最大化、等高、充满屏幕。"
 
-msgid "Move and resize all visible windows with the delta value set for cascading."
+msgid ""
+"Move and resize all visible windows with the delta value set for cascading."
 msgstr "根据层叠 delta 值移动、调整所有可视窗口大小。"
 
-msgid "None"
-msgstr "无"
-
-msgid "Occupancy percentage for window placed left. This number is percentage of screen width, which the active window will have it as width when tiled. Applies to Left tiling type."
-msgstr "窗口左方向占用比率。数值为屏幕宽度百分数，排列时活动窗口将使用其作为宽度。应用于左排列类型。"
+msgid ""
+"Occupancy percentage for window placed left. This number is percentage of "
+"screen width, which the active window will have it as width when tiled. "
+"Applies to Left tiling type."
+msgstr ""
+"窗口左方向占用比率。数值为屏幕宽度百分数，排列时活动窗口将使用其作为宽度。应"
+"用于左排列类型。"
 
 msgid "Restore Windows"
 msgstr "恢复窗口"
@@ -1216,20 +3526,21 @@ msgstr "开关窗口排列"
 msgid "Toggle between tile and restore"
 msgstr "开关窗口排列和恢复"
 
-msgid "Tries to join the windows together when horizontal, vertical or left tiling is enabled so that when you resize a window surrounding windows resize accordingly. This may cause problems if you dont leave them enough space."
-msgstr "当垂直／水平对齐或左对齐时，试图合并窗口。如果你改变一个窗口的大小相关窗口会做对应的变化。如果没有足够空间，这个功能可能导致一些问题。"
+msgid ""
+"Tries to join the windows together when horizontal, vertical or left tiling "
+"is enabled so that when you resize a window surrounding windows resize "
+"accordingly. This may cause problems if you dont leave them enough space."
+msgstr ""
+"当垂直／水平对齐或左对齐时，试图合并窗口。如果你改变一个窗口的大小相关窗口会"
+"做对应的变化。如果没有足够空间，这个功能可能导致一些问题。"
 
 msgid "Windows which should be excluded from tiling"
 msgstr "不参与排列的窗口"
 
-msgid "Zoom"
-msgstr "缩放"
-
-msgid "Adjust the opacity, saturation and brightness of windows based on when they last had focus."
+msgid ""
+"Adjust the opacity, saturation and brightness of windows based on when they "
+"last had focus."
 msgstr "根据窗口上次聚焦时间调整其不透明度、饱和度和亮度。"
-
-msgid "Behaviour"
-msgstr "行为"
 
 msgid "Brightness Level of Focused Windows"
 msgstr "聚焦窗口的亮度级别"
@@ -1237,17 +3548,27 @@ msgstr "聚焦窗口的亮度级别"
 msgid "Brightness Level of Unfocused Windows"
 msgstr "未聚焦窗口的亮度级别"
 
-msgid "Brightness of the currently focused window. Windows will get opacity levels between the focused and minimum."
+#, fuzzy
+msgid ""
+"Brightness of the currently focused window. Windows will get brightness "
+"levels between the focused and minimum."
 msgstr "当前活动窗口的亮度。窗口亮度等级将在聚焦窗口和最小值之间。"
 
-msgid "Brightness of the least focused window. Windows will get opacity levels between the focused and minimum."
+#, fuzzy
+msgid ""
+"Brightness of the least focused window. Windows will get brightness levels "
+"between the focused and minimum."
 msgstr "活动度最低窗口的亮度。窗口亮度等级将在聚焦窗口和最小值之间。"
 
 msgid "Number of Windows to Track"
 msgstr "保持窗口活动轨迹记录的窗口数目"
 
-msgid "Number of windows Trailfocus will keep track of. Windows that had focus this amount of windows ago or more will be considered completly unfocused."
-msgstr "焦点轨迹活动记录的窗口数。窗口数超过此值则不在记录中的窗口被认为是完全未活动的窗口。"
+msgid ""
+"Number of windows Trailfocus will keep track of. Windows that had focus this "
+"amount of windows ago or more will be considered completly unfocused."
+msgstr ""
+"焦点轨迹活动记录的窗口数。窗口数超过此值则不在记录中的窗口被认为是完全未活动"
+"的窗口。"
 
 msgid "Opacity Level of Focused Windows"
 msgstr "聚焦窗口的不透明度级别"
@@ -1255,10 +3576,14 @@ msgstr "聚焦窗口的不透明度级别"
 msgid "Opacity Level of Unfocused Windows"
 msgstr "位聚焦窗口的不透明度级别"
 
-msgid "Opacity of the currently focused window. Windows will get opacity levels between the focused and minimum."
+msgid ""
+"Opacity of the currently focused window. Windows will get opacity levels "
+"between the focused and minimum."
 msgstr "当前活动窗口的不透明度。窗口不透明度等级将在聚焦窗口和最小值之间。"
 
-msgid "Opacity of the least focused window. Windows will get opacity levels between the focused and minimum."
+msgid ""
+"Opacity of the least focused window. Windows will get opacity levels between "
+"the focused and minimum."
 msgstr "活动度最低窗口的不透明度。窗口不透明度等级将在聚焦窗口和最小值之间。"
 
 msgid "Saturation Level of Focused Windows"
@@ -1267,13 +3592,21 @@ msgstr "聚焦窗口的饱和度级别"
 msgid "Saturation Level of Unfocused Windows"
 msgstr "未聚焦窗口的饱和度级别"
 
-msgid "Saturation of the currently focused window. Windows will get opacity levels between the focused and minimum."
+#, fuzzy
+msgid ""
+"Saturation of the currently focused window. Windows will get saturation "
+"levels between the focused and minimum."
 msgstr "当前活动窗口的饱和度。窗口饱和度等级将在聚焦窗口和最小值之间。"
 
-msgid "Saturation of the least focused window. Windows will get opacity levels between the focused and minimum."
+#, fuzzy
+msgid ""
+"Saturation of the least focused window. Windows will get saturation levels "
+"between the focused and minimum."
 msgstr "活动度最低窗口的饱和度。窗口饱和度等级将在聚焦窗口和最小值之间。"
 
-msgid "This defines when Trailfocus will start fading windows. This lets you set up trailfocus to treat the N first Windows as fully focused."
+msgid ""
+"This defines when Trailfocus will start fading windows. This lets you set up "
+"trailfocus to treat the N first Windows as fully focused."
 msgstr "这项设置决定焦点轨迹在何时开始淡化窗口。你可以设置 N 为完全聚焦窗口。"
 
 msgid "Trailfocus"
@@ -1285,4 +3618,612 @@ msgstr "开始淡出的窗口"
 msgid "Window types that should be handled by Trailfocus"
 msgstr "使用焦点轨迹的窗口类型"
 
+msgid "Action name for initiate"
+msgstr ""
 
+msgid "Action name for initiate/terminate"
+msgstr ""
+
+msgid "Begin Viewport Switch"
+msgstr ""
+
+msgid "Begin entering viewport number"
+msgstr ""
+
+msgid "Desktop-based Viewport Switching"
+msgstr ""
+
+msgid "Go to specific viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Initiate plugin action"
+msgstr "启动火焰绘制"
+
+msgid "Initiate viewport changes through several events"
+msgstr ""
+
+msgid "Initiate/Terminate the selected plugin action"
+msgstr ""
+
+#, fuzzy
+msgid "Move Down"
+msgstr "下"
+
+#, fuzzy
+msgid "Move Left"
+msgstr "左"
+
+msgid "Move Next"
+msgstr ""
+
+msgid "Move Prev"
+msgstr ""
+
+#, fuzzy
+msgid "Move Right"
+msgstr "右"
+
+msgid "Move Up"
+msgstr ""
+
+msgid "Move down"
+msgstr ""
+
+msgid "Move to the left"
+msgstr ""
+
+msgid "Move to the next viewport"
+msgstr ""
+
+msgid "Move to the previous viewport"
+msgstr ""
+
+#, fuzzy
+msgid "Move to the right"
+msgstr "从左至右"
+
+msgid "Move up"
+msgstr ""
+
+msgid "Number-Based Viewport Switching"
+msgstr ""
+
+msgid "Plugin for initiate action"
+msgstr ""
+
+msgid "Plugin for initiate/action action"
+msgstr ""
+
+msgid "Switch to Viewport 1"
+msgstr ""
+
+msgid "Switch to Viewport 10"
+msgstr ""
+
+msgid "Switch to Viewport 11"
+msgstr ""
+
+msgid "Switch to Viewport 12"
+msgstr ""
+
+msgid "Switch to Viewport 2"
+msgstr ""
+
+msgid "Switch to Viewport 3"
+msgstr ""
+
+msgid "Switch to Viewport 4"
+msgstr ""
+
+msgid "Switch to Viewport 5"
+msgstr ""
+
+msgid "Switch to Viewport 6"
+msgstr ""
+
+msgid "Switch to Viewport 7"
+msgstr ""
+
+msgid "Switch to Viewport 8"
+msgstr ""
+
+msgid "Switch to Viewport 9"
+msgstr ""
+
+msgid "Switch to viewport 1"
+msgstr ""
+
+msgid "Switch to viewport 10"
+msgstr ""
+
+msgid "Switch to viewport 11"
+msgstr ""
+
+msgid "Switch to viewport 12"
+msgstr ""
+
+msgid "Switch to viewport 2"
+msgstr ""
+
+msgid "Switch to viewport 3"
+msgstr ""
+
+msgid "Switch to viewport 4"
+msgstr ""
+
+msgid "Switch to viewport 5"
+msgstr ""
+
+msgid "Switch to viewport 6"
+msgstr ""
+
+msgid "Switch to viewport 7"
+msgstr ""
+
+msgid "Switch to viewport 8"
+msgstr ""
+
+msgid "Switch to viewport 9"
+msgstr ""
+
+msgid "Viewport Switcher"
+msgstr ""
+
+msgid "Allow Wrap-Around"
+msgstr ""
+
+msgid "Allow wrap-around when moving the wall up/down/left/right"
+msgstr ""
+
+#, fuzzy
+msgid "Arrow Colors"
+msgstr "颜色"
+
+#, fuzzy
+msgid "Background Gradient"
+msgstr "背景文件"
+
+#, fuzzy
+msgid "Base Color"
+msgstr "标签栏基颜色"
+
+msgid "Desktop Wall"
+msgstr ""
+
+msgid "Desktop Wall Plugin"
+msgstr ""
+
+#, fuzzy
+msgid "Duration (in s) for wall sliding viewport switching animation"
+msgstr "排列动画时长(微秒)"
+
+msgid ""
+"Duration (in s) the switch target preview should remain visible after "
+"switching ends."
+msgstr ""
+
+msgid "Edge Flip DnD"
+msgstr ""
+
+msgid "Edge Flip Move"
+msgstr ""
+
+msgid "Edge Flip Pointer"
+msgstr ""
+
+msgid "Edge Flipping"
+msgstr ""
+
+#, fuzzy
+msgid "Edge Radius"
+msgstr "边框投影"
+
+msgid "Edge flipping"
+msgstr ""
+
+msgid "First color for the background gradient of the switcher window."
+msgstr ""
+
+msgid "First color for the thumb gradient of the switcher window."
+msgstr ""
+
+msgid "First color for the thumb highlight gradient of the switcher window."
+msgstr ""
+
+msgid "First color of the arrow of the switcher window."
+msgstr ""
+
+#, fuzzy
+msgid "Flip Down"
+msgstr "上/下"
+
+#, fuzzy
+msgid "Flip Left"
+msgstr "左"
+
+#, fuzzy
+msgid "Flip Right"
+msgstr "右"
+
+msgid "Flip Up"
+msgstr ""
+
+msgid "Flip down"
+msgstr ""
+
+msgid "Flip left"
+msgstr ""
+
+msgid "Flip right"
+msgstr ""
+
+msgid "Flip up"
+msgstr ""
+
+msgid "Flip viewport when dragging an object to a screen edge"
+msgstr ""
+
+msgid "Flip viewport when moving a window to a screen edge"
+msgstr ""
+
+msgid "Flip viewport when moving the pointer to a screen edge"
+msgstr ""
+
+#, fuzzy
+msgid "Highlight Gradient"
+msgstr "渐变"
+
+msgid "How should a multimonitor configuration be handled"
+msgstr ""
+
+#, fuzzy
+msgid "Move Down With Window"
+msgstr "移除组合窗口"
+
+msgid "Move Left With Window"
+msgstr ""
+
+msgid "Move Right With Window"
+msgstr ""
+
+#, fuzzy
+msgid "Move Up With Window"
+msgstr "移除组合窗口"
+
+msgid "Move along the wall down"
+msgstr ""
+
+msgid "Move along the wall to the left"
+msgstr ""
+
+msgid "Move along the wall to the next viewport"
+msgstr ""
+
+msgid "Move along the wall to the previous viewport"
+msgstr ""
+
+msgid "Move along the wall to the right"
+msgstr ""
+
+msgid "Move along the wall up"
+msgstr ""
+
+#, fuzzy
+msgid "Move with window along the wall down"
+msgstr "将每个窗口移入组合"
+
+msgid "Move with window along the wall to the left"
+msgstr ""
+
+msgid "Move with window along the wall to the right"
+msgstr ""
+
+#, fuzzy
+msgid "Move with window along the wall up"
+msgstr "将每个窗口移入组合"
+
+msgid "Move with window within wall"
+msgstr ""
+
+msgid "Move within wall"
+msgstr ""
+
+msgid "Multimonitor behavior"
+msgstr ""
+
+#, fuzzy
+msgid "Outline Color"
+msgstr "线条颜色"
+
+msgid "Outline color of the switcher window."
+msgstr ""
+
+#, fuzzy
+msgid "Radius of the rounded edge"
+msgstr "标题栏边缘辐射半径"
+
+msgid "Second color for the background gradient of the switcher window."
+msgstr ""
+
+msgid "Second color for the thumb gradient of the switcher window."
+msgstr ""
+
+msgid "Second color for the thumb highlight gradient of the switcher window."
+msgstr ""
+
+msgid "Second color of the arrow of the switcher window."
+msgstr ""
+
+#, fuzzy
+msgid "Shadow Color"
+msgstr "字体颜色"
+
+msgid "Show Live Viewport Previews"
+msgstr ""
+
+msgid "Show Viewport Switcher Preview"
+msgstr ""
+
+msgid "Show live viewport previews in switcher window"
+msgstr ""
+
+msgid "Show switcher window while switching viewports"
+msgstr ""
+
+msgid "Switch Target Preview Visibility Time"
+msgstr ""
+
+msgid "Switch all"
+msgstr ""
+
+msgid "Switch separately"
+msgstr ""
+
+msgid "Third color for the background gradient of the switcher window."
+msgstr ""
+
+#, fuzzy
+msgid "Thumb Gradient"
+msgstr "渐变"
+
+msgid "Viewport Switch Preview"
+msgstr ""
+
+msgid "Viewport Switching"
+msgstr ""
+
+#, fuzzy
+msgid "Wall Sliding Duration"
+msgstr "动画时长"
+
+#, fuzzy
+msgid "Backgrounds"
+msgstr "背景文件"
+
+msgid "Draw the desktop wallpaper"
+msgstr ""
+
+msgid "The background specifications (as explained in DOCUMENTATION) to use."
+msgstr ""
+
+msgid "Tile backgrounds as opposed to stretching"
+msgstr ""
+
+msgid "Tile or Stretch"
+msgstr ""
+
+msgid "Wallpaper"
+msgstr ""
+
+msgid "Above others windows"
+msgstr ""
+
+#, fuzzy
+msgid "Below others windows"
+msgstr "飞雪漫窗"
+
+msgid "Don't show application in pager"
+msgstr ""
+
+msgid "Don't show application in taskbar"
+msgstr ""
+
+#, fuzzy
+msgid "Fixed Size Windows"
+msgstr "排列窗口"
+
+#, fuzzy
+msgid "Fullscreen"
+msgstr "开关全屏"
+
+#, fuzzy
+msgid "Fullscreen windows"
+msgstr "窗口排列"
+
+#, fuzzy
+msgid "Height"
+msgstr "右"
+
+msgid "Height values"
+msgstr ""
+
+msgid "Matches"
+msgstr ""
+
+msgid "No ARGB visuals"
+msgstr ""
+
+msgid "No focus"
+msgstr ""
+
+#, fuzzy
+msgid "Non closable windows"
+msgstr "窗口排列"
+
+#, fuzzy
+msgid "Non maximizable windows"
+msgstr "窗口排列"
+
+#, fuzzy
+msgid "Non minimizable windows"
+msgstr "窗口排列"
+
+#, fuzzy
+msgid "Non movable windows"
+msgstr "窗口排列"
+
+#, fuzzy
+msgid "Non resizable windows"
+msgstr "窗口排列"
+
+msgid "Set window as non closable"
+msgstr ""
+
+msgid "Set window as non maximizable"
+msgstr ""
+
+msgid "Set window as non minimizable"
+msgstr ""
+
+msgid "Set window as non movable"
+msgstr ""
+
+msgid "Set window as non resizable"
+msgstr ""
+
+#, fuzzy
+msgid "Set windows rules"
+msgstr "窗口排列"
+
+#, fuzzy
+msgid "Sized Windows"
+msgstr "排列窗口"
+
+msgid "Skip pager"
+msgstr ""
+
+msgid "Skip taskbar"
+msgstr ""
+
+#, fuzzy
+msgid "Sticky"
+msgstr "开关置顶"
+
+#, fuzzy
+msgid "Sticky windows"
+msgstr "窗口排列"
+
+msgid "Width"
+msgstr ""
+
+msgid "Width values"
+msgstr ""
+
+#, fuzzy
+msgid "Window Rules"
+msgstr "窗口类型"
+
+#, fuzzy
+msgid "Windows that should be resized by default"
+msgstr "使用 3D 的窗口"
+
+#, fuzzy
+msgid "Windows that should be treated as not supporting transparency"
+msgstr "需要淡出到桌面的窗口"
+
+msgid "Windows will not have focus"
+msgstr ""
+
+msgid "\"On all desktops\" sticky match"
+msgstr ""
+
+msgid "AIGLX Fragment Parameter Fix"
+msgstr ""
+
+msgid "Firefox Menu Fix"
+msgstr ""
+
+msgid "Fix broken glProgramEnvParameter4f implementation."
+msgstr ""
+
+msgid "Fix window type of Firefox and Thunderbird menus."
+msgstr ""
+
+msgid "Fix window type of OpenOffice.org menus."
+msgstr ""
+
+msgid "Fix window type of notification daemon windows."
+msgstr ""
+
+msgid "Fix window type of various Java windows."
+msgstr ""
+
+msgid "Fix window type of various Qt windows."
+msgstr ""
+
+#, fuzzy
+msgid "Java Window Fix"
+msgstr "激活窗口"
+
+msgid "Legacy Fullscreen Support"
+msgstr ""
+
+msgid "Make \"on all desktops\" windows \"sticky\""
+msgstr ""
+
+msgid ""
+"Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
+"viewports."
+msgstr ""
+
+msgid "Make Wine and legacy applications fullscreen properly."
+msgstr ""
+
+msgid "Metacity-like workarounds."
+msgstr ""
+
+msgid "Notification Daemon Fix"
+msgstr ""
+
+msgid "OpenOffice.org Menu Fix"
+msgstr ""
+
+#, fuzzy
+msgid "Qt Window Fix"
+msgstr "窗口宽度"
+
+#, fuzzy
+msgid "Window stickyness"
+msgstr "开关窗口置顶"
+
+#, fuzzy
+msgid "Windows on all desktops that should be made sticky"
+msgstr "需要淡出到桌面的窗口"
+
+msgid "Workarounds"
+msgstr ""
+
+#~ msgid "Disable Caps for Inside Cube"
+#~ msgstr "立方体禁用顶面底面"
+
+#~ msgid ""
+#~ "Disables the drawing of the cube caps when the inside cube mode is set."
+#~ msgstr "开启内含立方体模式时，禁用顶面底面。"
+
+#~ msgid "Enables the drawing of the backside of windows."
+#~ msgstr "启用对窗口背面的绘制"
+
+#~ msgid ""
+#~ "This will create mipmaps which improve overall texture appearence, and "
+#~ "reduce jagged edges."
+#~ msgstr "创建 mipmap 将改善整体纹理显示,并降低边缘锯齿化几率"
+
+#~ msgid "Window width"
+#~ msgstr "窗口宽度"
+
+#~ msgid "Spring model on move"
+#~ msgstr "移动类型的弹性模型"
+
+#~ msgid "Use spring model for the tab bar when moving the window"
+#~ msgstr "移动窗口时对标签栏使用弹性模型"
