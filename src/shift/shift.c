@@ -1448,7 +1448,7 @@ shiftPaintOutput (CompScreen		  *s,
 
 	GLdouble clip[4] = { 0.0, -1.0, 0.0, 0.0};
 
-	clip[3] = ((oy1 + (oy2 - oy1)) / 2) + (maxThumbHeight / 2.0);
+	clip[3] = ((oy1 + (oy2 - oy1) / 2)) + (maxThumbHeight / 2.0);
 
 	if (shiftGetReflection (s))
 	{
@@ -1458,7 +1458,7 @@ shiftPaintOutput (CompScreen		  *s,
 
 	    int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
 
-	    matrixTranslate (&rTransform, 0.0, (oy2 - oy1) + maxThumbHeight,
+	    matrixTranslate (&rTransform, 0.0, oy1 + oy2 + maxThumbHeight,
 			     0.0);
 	    matrixScale (&rTransform, 1.0, -1.0, 1.0);
 
