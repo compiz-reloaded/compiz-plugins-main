@@ -801,16 +801,6 @@ compareWindows (const void *elem1,
 	w = w->next;
     }
     return -1;
-
-    /*
-    if (w1->mapNum && !w2->mapNum)
-	return -1;
-
-    if (w2->mapNum && !w1->mapNum)
-	return 1;
-
-    return w2->activeNum - w1->activeNum;
-    */
 }
 
 static int
@@ -1456,12 +1446,13 @@ shiftPaintOutput (CompScreen		  *s,
     if (ss->state != ShiftStateNone &&
 	(output->id == ss->usedOutput || output->id == ~0))
     {
-	int           i;
-	
 	CompWindow    *w;
 	CompTransform sTransform = *transform;
-	int oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
-	int oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+	int           i;
+	int           oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
+	int           oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+	int           maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
+	int           oldFilter = s->display->textureFilter;
 
 	if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
 	{
@@ -1469,10 +1460,6 @@ shiftPaintOutput (CompScreen		  *s,
 	    oy2 = s->height;
 	}
 	
-	int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
-
-	int oldFilter = s->display->textureFilter;
-
 	transformToScreenSpace (s, output, -DEFAULT_Z_CAMERA, &sTransform);
 
 	GLdouble clip[4] = { 0.0, -1.0, 0.0, 0.0};
@@ -1481,11 +1468,8 @@ shiftPaintOutput (CompScreen		  *s,
 
 	if (shiftGetReflection (s))
 	{
-	    CompTransform rTransform = sTransform;
-
+	    CompTransform  rTransform = sTransform;
 	    unsigned short color[4];
-
-	    int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
 
 	    matrixTranslate (&rTransform, 0.0, oy1 + oy2 + maxThumbHeight,
 			     0.0);
@@ -1628,8 +1612,6 @@ shiftPaintOutput (CompScreen		  *s,
 	}	
 	
 	glPopMatrix ();
-
-
     }
 
     return status;
