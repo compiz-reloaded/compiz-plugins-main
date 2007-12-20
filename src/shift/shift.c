@@ -819,10 +819,11 @@ compareShiftWindowDistance (const void *elem1,
 {
     float a1   = ((ShiftDrawSlot *) elem1)->distance;
     float a2   = ((ShiftDrawSlot *) elem2)->distance;
+    float ab   = fabs (a1 - a2); 
 
-    if (a1 > a2)
+    if (ab > 0.3 && a1 > a2)
 	return -1;
-    else if (a1 < a2)
+    else if (ab > 0.3 && a1 < a2)
 	return 1;
     else
 	return compareWindows (&((ShiftDrawSlot *) elem2)->w,
@@ -1153,8 +1154,10 @@ shiftAddWindowToList (CompScreen *s,
 static Bool
 shiftUpdateWindowList (CompScreen *s)
 {
-    int i;
     SHIFT_SCREEN (s);
+
+    int        i, idx;
+    CompWindow **wins;
 
     qsort (ss->windows, ss->nWindows, sizeof (CompWindow *), compareWindows);
 
@@ -1167,6 +1170,28 @@ shiftUpdateWindowList (CompScreen *s)
 	    break;
 
 	ss->mvTarget++;
+    }
+    if (ss->mvTarget == ss->nWindows)
+	ss->mvTarget = 0;
+
+    /* create spetial window order to create a good animation
+       A,B,C,D,E --> A,B,D,E,C to get B,D,E,C,(A),B,D,E,C as initial state */
+    if (shiftGetMode (s) == ModeCover)
+    {
+	wins = malloc(ss->nWindows * sizeof (CompWindow *));
+	if (!wins)
+	    return FALSE;
+	
+	memcpy(wins, ss->windows, ss->nWindows * sizeof (CompWindow *));
+	for (i = 0; i < ss->nWindows; i++)
+	{
+	    idx = ceil (i * 0.5);
+	    idx *= (i & 1) ? 1 : -1;
+	    if (idx < 0)
+		idx += ss->nWindows;
+	    ss->windows[idx] = wins[i];
+	}
+	free (wins);
     }
 
     return layoutThumbs (s);
