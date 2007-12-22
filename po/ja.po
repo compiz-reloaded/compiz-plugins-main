@@ -8,12 +8,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-12-12 01:32+0530\n"
-"PO-Revision-Date: 2007-12-11 14:02+0100\n"
+"POT-Creation-Date: 2007-12-22 16:21+0530\n"
+"PO-Revision-Date: 2007-12-19 15:31+0100\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -73,10 +73,10 @@ msgstr ""
 "いるとき)"
 
 msgid "Minimum Cube Size"
-msgstr "最小のキューブの大きさ"
+msgstr "キューブの最小の大きさ"
 
 msgid "Minimum cube size (in percent)."
-msgstr "最小のキューブの大きさ（％）"
+msgstr "キューブの最小の大きさ（％）"
 
 msgid "Misc. Options"
 msgstr "その他オプション"
@@ -113,7 +113,7 @@ msgstr "フェードしたウィンドウの明るさ"
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
-msgstr "アクティブウィンドウ以外を暗くして若干集中しやすくする"
+msgstr "アクティブ・ウィンドウ以外を暗くして若干集中しやすくする"
 
 msgid "Misc. options"
 msgstr "その他オプション"
@@ -140,7 +140,7 @@ msgid "Window Types"
 msgstr "ウィンドウの種類"
 
 msgid "Window types that should be Opacified."
-msgstr "半透明の対象にするウィンドウの種類"
+msgstr "透過の対象にするウィンドウの種類"
 
 msgid "Airplane"
 msgstr "飛行機"
@@ -246,8 +246,9 @@ msgstr "ビームの幅"
 msgid "Burn"
 msgstr "炎"
 
+# CCSM上での表示に影響するので短い表記にしました
 msgid "Close Animation"
-msgstr "閉じる時アニメーション"
+msgstr "閉じる時の効果"
 
 msgid "Close Effect"
 msgstr "閉じる時の効果"
@@ -263,7 +264,7 @@ msgid ""
 "Comma separated list of option value assignments to override effect "
 "settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
-"効果設定よりも優先して割り当てるオプション値のカンマ区切りリスト(例："
+"エフェクト設定よりも優先して割り当てるオプション値のカンマ区切りリスト(例："
 "fire_color=#0080ffff, fire_particles=700, fire_smoke=1)"
 
 msgid "Curved Fold"
@@ -355,7 +356,7 @@ msgid "Fly to TaskBar on Minimize"
 msgstr "最小化時にタスクバーへ飛行"
 
 msgid "Focus Animation"
-msgstr "フォーカス時アニメーション"
+msgstr "フォーカス時の効果"
 
 msgid "Focus Effect"
 msgstr "フォーカス時の効果"
@@ -436,7 +437,7 @@ msgid "Make fire effect duration be dependent on window height."
 msgstr "炎効果の持続時間をウィンドウの高さに委ねる"
 
 msgid "Minimize Animation"
-msgstr "最小化時アニメーション"
+msgstr "最小化時の効果"
 
 msgid "Minimize Effect"
 msgstr "最小化時の効果"
@@ -476,7 +477,7 @@ msgid "On open/close, move vacuum ending point with the mouse pointer."
 msgstr "開く/閉じる時に、バキュームの終点をマウスポインタに移動"
 
 msgid "Open Animation"
-msgstr "開く時アニメーション"
+msgstr "開く時の効果"
 
 msgid "Open Effect"
 msgstr "開く時の効果"
@@ -540,7 +541,7 @@ msgid "Rotation angle of animated window pieces (in degrees)."
 msgstr "ウィンドウ片の回転角度"
 
 msgid "Shade Animation"
-msgstr "シェード時アニメーション"
+msgstr "シェード時の効果"
 
 msgid "Shade Effect"
 msgstr "シェード時の効果"
@@ -795,6 +796,48 @@ msgstr "ズームアニメーション時に中心からズーム"
 msgid "Zoom to TaskBar on Minimize"
 msgstr "最小化時にタスクバーにズーム"
 
+msgid "Colors"
+msgstr "色"
+
+#, fuzzy
+msgid "Cube Atlantis"
+msgstr "キューブのふた"
+
+msgid "Dolphin size"
+msgstr ""
+
+msgid "Dolphin size."
+msgstr ""
+
+#, fuzzy
+msgid "Enable colors"
+msgstr "発光効果を有効化"
+
+msgid "Fish size"
+msgstr ""
+
+#, fuzzy
+msgid "Number of fish"
+msgstr "粒子数"
+
+#, fuzzy
+msgid "Number of fish inside the cube"
+msgstr "炎の数"
+
+#, fuzzy
+msgid "Render some fish inside of the transparent cube"
+msgstr "透明なキューブ内にギアを表示"
+
+msgid "Shark size"
+msgstr ""
+
+msgid "Whale size"
+msgstr ""
+
+#, fuzzy
+msgid "Whale size."
+msgstr "炎の大きさ"
+
 msgid "A simple benchmark plugin"
 msgstr "簡単なベンチマークプラグイン"
 
@@ -859,7 +902,7 @@ msgid "Filter colors for accessibility purposes"
 msgstr "アクセシビリティ目的の色フィルタ"
 
 msgid "Filter window decorations"
-msgstr "ウィンドウ装飾をフィルタ"
+msgstr "ウィンドウの装飾をフィルタ"
 
 msgid "Filtered windows"
 msgstr "フィルタ適用ウィンドウ"
@@ -871,17 +914,17 @@ msgid ""
 "List of plain text filter files that should be applied when filtering "
 "windows or screen."
 msgstr ""
-"ウィンドウや画面をフィルタする際に適用する平文テキストフィルタファイルのリス"
-"ト"
+"ウィンドウや画面をフィルタする際に適用する平文テキストのフィルタファイルのリ"
+"スト"
 
 msgid ""
 "Select filter to use from filters list : either apply all filters or only "
 "one specific filter (triggering this action switches filters one by one and "
 "eventually comes back to the \"all filters\" mode)."
 msgstr ""
-"フィルタリストからフィルタを選択 : すべてのフィルタないしは特定フィルタを1つ"
-"だけ適用（このアクションを呼び出すたびにフィルタが一つずつ切り替わり、結果的"
-"に\"すべてのフィルタ\"モードに戻ります）。"
+"フィルタリストからフィルタを選択 : すべてのフィルタ、または特定フィルタを1つ"
+"だけ適用（このアクションを呼び出すたびにフィルタが1つずつ切り替わり、結果的に"
+"\"すべてのフィルタ\"モードに戻ります）。"
 
 msgid "Switch filter"
 msgstr "フィルタの切り替え"
@@ -902,8 +945,8 @@ msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
 "contents if enabled."
 msgstr ""
-"有効にするとウィンドウの内容と同様にウィンドウの装飾（境界とタイトルバー）に"
-"もフィルタ適用"
+"有効にするとウィンドウの内容と同様にウィンドウの装飾（枠とタイトルバー）にも"
+"フィルタ適用"
 
 msgid "Windows to be filtered by default."
 msgstr "デフォルトでフィルタの適用対象にするウィンドウ"
@@ -933,7 +976,7 @@ msgid "Start Other Window Manager"
 msgstr "他のウィンドウマネージャを開始"
 
 msgid "Start other window manager on Crash."
-msgstr "クラッシュ時に他のウィンドウマネジャーを開始"
+msgstr "クラッシュ時に他のウィンドウマネージャを開始"
 
 msgid "Window Manager Command Line"
 msgstr "ウィンドウマネージャのコマンドライン"
@@ -1239,13 +1282,13 @@ msgid "Show a reflection of the viewports on the ground"
 msgstr "ビューポートの反射を地面に表示"
 
 msgid "Tilt view"
-msgstr "傾いた表示"
+msgstr "傾けた表示"
 
 msgid "Tilt window view in expo mode"
-msgstr "展開モードで傾いたウィンドウを表示"
+msgstr "展開モードでウィンドウを傾けて表示"
 
 msgid "Timeframe to execute a double click"
-msgstr "ダブルクリックを実行する時間枠"
+msgstr "ダブルクリック認識の時間枠"
 
 msgid "Vortex"
 msgstr "渦"
@@ -1254,7 +1297,7 @@ msgid "Zoom time"
 msgstr "ズーム時間"
 
 msgid "Always fit to window on focus track"
-msgstr "フォーカス追尾時は常にウィンドウに合わせる"
+msgstr "フォーカス追従時は常にウィンドウに合わせる"
 
 msgid ""
 "Always keep the zoomed area in sync with where the mouse is, and vice versa. "
@@ -1440,7 +1483,8 @@ msgstr "ズーム域ロックのオンオフ"
 
 msgid "Toggles a lock on the zoom area so it doesn't change on various events"
 msgstr ""
-"様々なイベント時にズーム域が変更されないようにするためのロックのオンオフ"
+"ズーム域を固定して、様々なイベントによりズーム域が変更されるのを防ぐロックの"
+"オンオフ"
 
 msgid "Use linear filter when zoomed in"
 msgstr "ズームインの際に線形フィルタを使用"
@@ -1510,7 +1554,7 @@ msgid "Extra WM Actions"
 msgstr "追加のWMアクション"
 
 msgid "Provides less commonly used WM actions"
-msgstr "あまり使われていないWMアクションを提供"
+msgstr "あまり使われていないウィンドウ・マネジメントのアクションを提供"
 
 msgid "Toggle Always-On-Top"
 msgstr "常に前面に表示のオンオフ"
@@ -1525,7 +1569,7 @@ msgid "Toggle Sticky"
 msgstr "貼り付け（スティッキー）のオンオフ"
 
 msgid "Toggle always on top for the active window"
-msgstr "アクティブウィンドウを常に前面に表示のオンオフ"
+msgstr "アクティブ・ウィンドウを常に前面に表示のオンオフ"
 
 msgid "Toggle window fullscreen"
 msgstr "ウィンドウの全画面表示のオンオフ"
@@ -1606,7 +1650,7 @@ msgid "Render gears inside of the transparent cube"
 msgstr "透明なキューブ内にギアを表示"
 
 msgid "Animation Options"
-msgstr "アニメーションオプション"
+msgstr "アニメーションのオプション"
 
 msgid "Autotab windows on creation"
 msgstr "開いたウィンドウの自動タブ化"
@@ -1638,9 +1682,6 @@ msgstr "タブのアニメーション時間の変更"
 msgid "Close Group"
 msgstr "グループを閉じる"
 
-msgid "Colors"
-msgstr "色"
-
 msgid "Create mipmaps for thumbnails"
 msgstr "サムネイルのミップマップを作成"
 
@@ -1671,10 +1712,10 @@ msgid "Duration (in s) of the text fading animation when showing/hiding it"
 msgstr "テキストを表示/隠すときのフェードアニメーションの持続時間(秒)"
 
 msgid "Enable Glow"
-msgstr "発光を有効化"
+msgstr "発光効果を有効化"
 
 msgid "Enable grouped window glowing"
-msgstr "グループ化したウィンドウの発光を有効化"
+msgstr "グループ化したウィンドウの発光効果を有効化"
 
 msgid "Fade time for tab bar animations"
 msgstr "タブバーアニメーションのフェード時間"
@@ -1695,7 +1736,7 @@ msgid "Font Size"
 msgstr "フォントの大きさ"
 
 msgid "General"
-msgstr "基本"
+msgstr "一般"
 
 msgid "Glass"
 msgstr "ガラス"
@@ -1734,7 +1775,7 @@ msgid "Grouping"
 msgstr "グループ化"
 
 msgid "Hover time for slot dragging"
-msgstr "スロットのドラッグのホバー時間"
+msgstr "スロット・ドラッグのホバー時間"
 
 msgid ""
 "If one window in the group is (un)maximized, all other group windows are (un)"
@@ -1827,7 +1868,7 @@ msgid "Opacity of selected windows"
 msgstr "選択したウィンドウの非透過率"
 
 msgid "Play animations on the tab bar e.g. on fade in."
-msgstr "タブバー上でアニメーション再生（例 フェードイン）"
+msgstr "タブバー上でのアニメーション効果（例 フェードイン）"
 
 msgid "Precision"
 msgstr "精度"
@@ -1909,7 +1950,7 @@ msgid "Tab Group"
 msgstr "グループをタブ化"
 
 msgid "Tab Highlight Color"
-msgstr "タブの強調色"
+msgstr "タブの強調表示色"
 
 msgid "Tab Style"
 msgstr "タブのスタイル"
@@ -1970,7 +2011,7 @@ msgid "The key for ungrouping the current group."
 msgstr "現在のグループ化を解除するキー"
 
 msgid "The radius for the tab bar edges"
-msgstr "タブバーの枠の半径"
+msgstr "タブバーの枠の丸み"
 
 msgid "The size of the grouped window glow"
 msgstr "グループウィンドウの発光の大きさ"
@@ -2012,7 +2053,7 @@ msgid ""
 "Timespan (in s) after which a grouped window is activated if a window of "
 "another group is dragged over it"
 msgstr ""
-"他のグループウィンドウをドラッグされた後に、グループ化されたウィンドウがアク"
+"他グループのウィンドウがドラッグされた後、グループ化されたウィンドウがアク"
 "ティブになるまでの時間(秒)"
 
 msgid "Ungroup Windows"
@@ -2126,7 +2167,7 @@ msgid "Toggle Window Negative"
 msgstr "ウィンドウのネガ表示のオンオフ"
 
 msgid "Toggle active window negative"
-msgstr "アクティブウィンドウのネガ表示のオンオフ"
+msgstr "アクティブ・ウィンドウのネガ表示のオンオフ"
 
 msgid "Toggle screen negative"
 msgstr "画面のネガ表示のオンオフ"
@@ -2150,7 +2191,7 @@ msgstr ""
 "半透明 がすでに１つ以上のウィンドウの非透過率を減少させているときは遅延を無視"
 
 msgid "Bypass delay when the new active window is the focused window."
-msgstr "新しいアクティブウィンドウがフォーカスされたときは遅延を無視"
+msgstr "新しいアクティブ・ウィンドウがフォーカスされたときは遅延を無視"
 
 msgid "Delay until Opacification"
 msgstr "半透明化の遅延時間"
@@ -2174,7 +2215,8 @@ msgid ""
 "Only increase the opacity on the targeted window if it has one or more "
 "windows blocking it from view."
 msgstr ""
-"対象ウィンドウが1つ以上のウィンドウに覆われている場合は非透過率の上昇のみ"
+"アクティブ・ウィンドウが1つ以上のウィンドウに覆われている場合は非透過率の上昇"
+"のみ"
 
 msgid "Opacify"
 msgstr "半透明"
@@ -2238,8 +2280,8 @@ msgid ""
 "Use this to enable/disable Opacify on the fly. Previously opacified windows "
 "will not be reset once you disable it like this."
 msgstr ""
-"これを使用して’半透明’の即時オンオフ。すでに半透明化されているウィンドウは、"
-"一度この方法で ’半透明’をオフにすると、リセットはされません。"
+"これを使用して’半透明’の即時オンオフ。すでに非透過率が変更されたウィンドウ"
+"は、この方法で ’半透明’をオフにしただけでは、リセットされません。"
 
 msgid "Windows that should be opacified."
 msgstr "’半透明’が対象にするウィンドウ"
@@ -2454,7 +2496,7 @@ msgid "Put Top Right"
 msgstr "右上に移動"
 
 msgid "Put pointer uses the center of the window"
-msgstr "’ポインタに配置’ 時にウィンドウの隅の代わりに中心を使用"
+msgstr "’ポインタに移動’ 時にウィンドウの隅の代わりに中心を使用"
 
 msgid "Put to adjacent viewport"
 msgstr "隣接ビューポートに移動"
@@ -2565,8 +2607,8 @@ msgid ""
 "Show resize info for all windows as opposed to just windows with a resize "
 "increment of greater than 1."
 msgstr ""
-"1 より大きいリサイズインクリメントのウィンドウだけでなく、すべてのウィンドウ"
-"のサイズ変更情報を表示"
+"リサイズの加算分が 1 より大きいウィンドウだけではなく、すべてのウィンドウのサ"
+"イズ変更情報を表示"
 
 msgid "Show resize info for all windows."
 msgstr "すべてのウィンドウのサイズ変更情報を表示"
@@ -2611,15 +2653,15 @@ msgid ""
 "Changes the minimum brightness factor for windows in the ring. The farer "
 "away windows are, the less bright are they."
 msgstr ""
-"リングのウィンドウの明るさの最低限度を変更、遠いウィンドウほど明るさが少なく"
-"なる"
+"リングのウィンドウの明るさの最小値を変更。遠いウィンドウほど明るさが少なくな"
+"ります。"
 
 msgid ""
 "Changes the minimum scale factor for windows in the ring. The farer away "
 "windows are, the smaller are they."
 msgstr ""
-"リングのウィンドウの大きさの最小限度を変更、遠いウィンドウほど大きさが小さく"
-"なる"
+"リングのウィンドウの大きさの最小値を変更。遠いウィンドウほど大きさが小さくな"
+"ります。"
 
 msgid "Darken Background"
 msgstr "背景を暗くする"
@@ -2634,7 +2676,7 @@ msgid "Font color for the window title"
 msgstr "ウィンドウタイトルのフォント色"
 
 msgid "Font size for the window title"
-msgstr "ウィンドウタイトルのフォントサイズ"
+msgstr "ウィンドウタイトルのフォントの大きさ"
 
 msgid "Inactive Window Opacity"
 msgstr "非アクティブ・ウィンドウの非透過率"
@@ -2646,10 +2688,10 @@ msgid "Maximum vertical size of a thumbnail in the ring"
 msgstr "リングのサムネイルの最大垂直サイズ"
 
 msgid "Minimum Brightness Factor"
-msgstr "最低限の明度"
+msgstr "明度の最小値"
 
 msgid "Minimum Scale Factor"
-msgstr "最低限の縮尺率"
+msgstr "縮尺率の最小値"
 
 msgid "Next Window"
 msgstr "次のウィンドウ"
@@ -2794,7 +2836,7 @@ msgid "Font size for window title display"
 msgstr "ウィンドウタイトル表示のフォントの大きさ"
 
 msgid "Highlight Color"
-msgstr "強調色"
+msgstr "強調表示色"
 
 msgid "Highlights the hovered window with the given color"
 msgstr "ホバーされているウィンドウを指定色で強調表示"
@@ -3356,19 +3398,19 @@ msgid "Animation Duration"
 msgstr "アニメーション持続時間"
 
 msgid "Cascade"
-msgstr "カスケード"
+msgstr "重ね整列"
 
 msgid "Cascade Delta"
-msgstr "カスケード差分"
+msgstr "重ね整列のずらし間隔"
 
 msgid "Cascade Windows"
-msgstr "ウィンドウをカスケード整列"
+msgstr "ウィンドウを重ね整列"
 
 msgid "Choose the tiling type you want when using toggle."
 msgstr "オンオフ切り替えを使用したときに適用する整列形式の選択"
 
 msgid "Distance between windows when using cascade"
-msgstr "カスケードを使用したときのウィンドウ間の間隔"
+msgstr "重ね整列を使用したときのウィンドウ間のずらし間隔"
 
 msgid "Drop From Top"
 msgstr "上から落とす"
@@ -3377,7 +3419,7 @@ msgid "Duration (in ms) of the tiling animation"
 msgstr "整列アニメーションの持続時間（ミリ秒）"
 
 msgid "Excluded Windows"
-msgstr "除外ウィンドウ"
+msgstr "適用除外ウィンドウ"
 
 msgid "Filled Outline"
 msgstr "塗りつぶされた輪郭"
@@ -3421,8 +3463,8 @@ msgid ""
 "Applies to Left tiling type."
 msgstr ""
 "左側に置かれるウィンドウの占有率です。この数値は画面幅に対する割合であり、整"
-"列された際のアクティブウィンドウの幅となります。”左”の整列形式の場合に適用さ"
-"れます。"
+"列された際のアクティブ・ウィンドウの幅となります。”左”の整列形式の場合に適用"
+"されます。"
 
 msgid "Restore Windows"
 msgstr "ウィンドウを元に戻す"
@@ -3474,9 +3516,9 @@ msgid ""
 "is enabled so that when you resize a window surrounding windows resize "
 "accordingly. This may cause problems if you dont leave them enough space."
 msgstr ""
-"水平や垂直、左の整列方式が有効の場合にウィンドウの結合を試み、ウィンドウに囲"
-"まれたウィンドウのサイズ変更の際にしかるべく変更します。十分なスペースがない"
-"場合には問題が生じる可能性があります。"
+"水平や垂直、左の整列方式が有効の場合にウィンドウ同士の結合を試み、1つのウィン"
+"ドウをサイズ変更すると、それを囲むウィンドウのサイズも一緒に変更されるように"
+"します。十分なスペースがない場合には問題が生じる可能性があります。"
 
 msgid "Windows which should be excluded from tiling"
 msgstr "整列の対象から除外するウィンドウ"
@@ -3497,8 +3539,8 @@ msgid ""
 "Brightness of the currently focused window. Windows will get brightness "
 "levels between the focused and minimum."
 msgstr ""
-"現在フォーカスのあるウィンドウの明るさ。ウィンドウは、この値と最小値との間の"
-"明度を得ます。"
+"現在フォーカスのあるウィンドウの明るさ。ウィンドウは、この値と追跡順番がもっ"
+"とも古いフォーカス・ウィンドウの値との間の明度を得ます。"
 
 msgid ""
 "Brightness of the least focused window. Windows will get brightness levels "
@@ -3528,8 +3570,8 @@ msgid ""
 "Opacity of the currently focused window. Windows will get opacity levels "
 "between the focused and minimum."
 msgstr ""
-"現在のフォーカス・ウィンドウの非透過率。ウィンドウは、この値ともっとも古い順"
-"番のフォーカス・ウィンドウの値との間の透過率を得ます。"
+"現在フォーカスのあるウィンドウの非透過率。ウィンドウは、この値と追跡順番が"
+"もっとも古いフォーカス・ウィンドウの値との間の透過率を得ます。"
 
 msgid ""
 "Opacity of the least focused window. Windows will get opacity levels between "
@@ -3548,8 +3590,8 @@ msgid ""
 "Saturation of the currently focused window. Windows will get saturation "
 "levels between the focused and minimum."
 msgstr ""
-"現在のフォーカス・ウィンドウの彩度。ウィンドウは、この値ともっとも古いフォー"
-"カス・ウィンドウの値との間の彩度を得ます。"
+"現在フォーカスのあるウィンドウの彩度。ウィンドウは、この値と追跡順番がもっと"
+"も古いフォーカス・ウィンドウの値との間の彩度を得ます。"
 
 msgid ""
 "Saturation of the least focused window. Windows will get saturation levels "
@@ -3752,13 +3794,13 @@ msgid ""
 msgstr "切り替え後も切り替え先プレビューを表示しておく継続時間(秒)"
 
 msgid "Edge Flip DnD"
-msgstr "エッジへのドラッグ&ドロップでめくる"
+msgstr "エッジへのドラッグ＆ドロップでめくる"
 
 msgid "Edge Flip Move"
 msgstr "エッジへの移動でめくる"
 
 msgid "Edge Flip Pointer"
-msgstr "エッジをポインタでめくる"
+msgstr "エッジへのポインタ移動でめくる"
 
 msgid "Edge Flipping"
 msgstr "エッジめくり"
@@ -3770,16 +3812,16 @@ msgid "Edge flipping"
 msgstr "エッジめくり"
 
 msgid "First color for the background gradient of the switcher window."
-msgstr "切り替えウィンドウの背景グラデーションの1番目の色"
+msgstr "スイッチャ・ウィンドウの背景グラデーションの1番目の色"
 
 msgid "First color for the thumb gradient of the switcher window."
-msgstr "切り替えウィンドウのサムネイルのグラデーションの1番目の色"
+msgstr "スイッチャ・ウィンドウのサムネイルのグラデーションの1番目の色"
 
 msgid "First color for the thumb highlight gradient of the switcher window."
-msgstr "切り替えウィンドウのサムネイルの強調表示グラデーションの1番目の色"
+msgstr "スイッチャ・ウィンドウのサムネイルの強調表示グラデーションの1番目の色"
 
 msgid "First color of the arrow of the switcher window."
-msgstr "切り替えウィンドウの矢印の1番目の色"
+msgstr "スイッチャ・ウィンドウの矢印の1番目の色"
 
 msgid "Flip Down"
 msgstr "下にめくる"
@@ -3875,22 +3917,23 @@ msgid "Outline Color"
 msgstr "輪郭の色"
 
 msgid "Outline color of the switcher window."
-msgstr "切り替えウィンドウの輪郭の色"
+msgstr "スイッチャ・ウィンドウの輪郭の色"
 
 msgid "Radius of the rounded edge"
 msgstr "枠の四隅の丸み"
 
 msgid "Second color for the background gradient of the switcher window."
-msgstr "切り替えウィンドウの背景グラデーションの2番目の色"
+msgstr "スイッチャ・ウィンドウの背景グラデーションの2番目の色"
 
 msgid "Second color for the thumb gradient of the switcher window."
-msgstr "切り替えウィンドウのサムネイルのグラデーションの2番目の色"
+msgstr "スイッチャ・ウィンドウのサムネイルのグラデーションの2番目の色"
 
 msgid "Second color for the thumb highlight gradient of the switcher window."
-msgstr "切り替えウィンドウのサムネイルのハイライトグラデーションの2番目の色"
+msgstr ""
+"スイッチャ・ウィンドウのサムネイルのハイライトグラデーションの2番目の色"
 
 msgid "Second color of the arrow of the switcher window."
-msgstr "切り替えウィンドウの矢印の2番目の背景色"
+msgstr "スイッチャ・ウィンドウの矢印の2番目の背景色"
 
 msgid "Shadow Color"
 msgstr "影の色"
@@ -3902,10 +3945,10 @@ msgid "Show Viewport Switcher Preview"
 msgstr "ビューポート切り替えプレビューを表示"
 
 msgid "Show live viewport previews in switcher window"
-msgstr "ビューポート実画面プレビューを切り替えウィンドウに表示"
+msgstr "ビューポート実画面プレビューをスイッチャ・ウィンドウに表示"
 
 msgid "Show switcher window while switching viewports"
-msgstr "ビューポートのスイッチ中に切り替えウィンドウを表示"
+msgstr "ビューポートの切り替え中にスイッチャ・ウィンドウを表示"
 
 msgid "Switch Target Preview Visibility Time"
 msgstr "切り替え先プレビューの表示時間"
@@ -3917,7 +3960,7 @@ msgid "Switch separately"
 msgstr "個別に切り替え"
 
 msgid "Third color for the background gradient of the switcher window."
-msgstr "切り替えウィンドウの背景グラデーションの3番目の色"
+msgstr "スイッチャ・ウィンドウの背景グラデーションの3番目の色"
 
 msgid "Thumb Gradient"
 msgstr "サムネイルのグラデーション"
@@ -3948,6 +3991,58 @@ msgstr "タイル か ストレッチ"
 
 msgid "Wallpaper"
 msgstr "壁紙"
+
+#, fuzzy
+msgid "Background Brightness"
+msgstr "背景の明度"
+
+#, fuzzy
+msgid "Background Saturation"
+msgstr "背景の彩度"
+
+#, fuzzy
+msgid "Background in Widget Mode"
+msgstr "背景画像ファイル"
+
+#, fuzzy
+msgid "Brightness of non-widget windows in widget modes."
+msgstr "フェードしたウィンドウの明るさ"
+
+msgid "End Widget Mode on Click"
+msgstr ""
+
+msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+#, fuzzy
+msgid "Saturation of non-widget windows in widget modes."
+msgstr "フェードしたウィンドウの彩度"
+
+#, fuzzy
+msgid "Show or hide widget windows"
+msgstr "最小化されているウィンドウも表示"
+
+msgid "Show widget windows on a separate layer"
+msgstr ""
+
+msgid "Time (in s) for fading into/out of the widget layer."
+msgstr ""
+
+#, fuzzy
+msgid "Toggle Widget Display"
+msgstr "ウィンドウのネガ表示のオンオフ"
+
+#, fuzzy
+msgid "Widget Layer"
+msgstr "ウィジェット"
+
+#, fuzzy
+msgid "Widget Windows"
+msgstr "リング・ウィンドウ"
+
+#, fuzzy
+msgid "Windows that always should be treated as widgets"
+msgstr "デフォルトで指定サイズに変更するウィンドウ"
 
 msgid "Above others windows"
 msgstr "他のウィンドウより上に"
@@ -4162,9 +4257,6 @@ msgstr "次善策"
 
 #~ msgid "Set window as widget"
 #~ msgstr "ウィンドウをウィジェットにしてください"
-
-#~ msgid "Widget"
-#~ msgstr "ウィジェット"
 
 #~ msgid "Appearence"
 #~ msgstr "見栄え"

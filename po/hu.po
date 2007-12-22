@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-12-12 01:32+0530\n"
-"PO-Revision-Date: 2007-12-09 15:08+0100\n"
-"Last-Translator: KAMI <kamihir@freemail.hu>\n"
+"POT-Creation-Date: 2007-12-22 16:21+0530\n"
+"PO-Revision-Date: 2007-12-18 14:02+0100\n"
+"Last-Translator: \n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,19 +82,19 @@ msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Sarkok lekerekítése a lekerekített elemekkel rendelkező díszítőkhöz"
 
 msgid "Window Depth"
-msgstr ""
+msgstr "Ablak mélység"
 
 msgid "Window Match"
-msgstr ""
+msgstr "Ablak összerendelés"
 
 msgid "Window Space"
-msgstr ""
+msgstr "Ablak helyköz"
 
 msgid "Window depth"
-msgstr ""
+msgstr "Ablak mélység"
 
 msgid "Windows that should be handled by 3D"
-msgstr ""
+msgstr "Térhatásúként kezelt ablakok"
 
 msgid "ADD Helper"
 msgstr "Halványító"
@@ -257,10 +257,10 @@ msgid ""
 msgstr ""
 
 msgid "Curved Fold"
-msgstr ""
+msgstr "Hajlított redők"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "Hajlított redők amplitudója"
 
 msgid "Dodge"
 msgstr "Félreugrás"
@@ -341,7 +341,7 @@ msgid "Fixed window interior during the Rollup animation."
 msgstr ""
 
 msgid "Fly to TaskBar on Minimize"
-msgstr ""
+msgstr "Repüljön a tálcára minimalizáláskor"
 
 msgid "Focus Animation"
 msgstr "Fókusz animáció"
@@ -590,11 +590,15 @@ msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
+"Az animált ablak rács mentén darabokra leszt bontva. Adja meg a rácscellák "
+"számát az ablak magasságának függvényében."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
+"Az animált ablak rács mentén darabokra leszt bontva. Adja meg a rácscellák "
+"számát az ablak szélességének függvényében."
 
 msgid "The animation effect shown when closing a window."
 msgstr "Az animációs effekt alkalmazása az ablak bezárása esetén."
@@ -615,11 +619,15 @@ msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
+"Az animált ablak rács mentén darabokra leszt bontva. Adja meg a rácscellák "
+"számát az ablak magasságának függvényében."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
+"Az animált ablak rács mentén darabokra leszt bontva. Adja meg a rácscellák "
+"számát az ablak szélességének függvényében."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr ""
@@ -659,10 +667,10 @@ msgid "Thickness of exploding window pieces (in pixels)."
 msgstr ""
 
 msgid "Up"
-msgstr ""
+msgstr "Felfelé"
 
 msgid "Up-down"
-msgstr ""
+msgstr "Fel és le"
 
 msgid "Use various animations as window effects"
 msgstr ""
@@ -703,28 +711,39 @@ msgstr "Hullám szélessége"
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
 msgstr ""
+"Minimalizálás során az ablak repüljön a tálcára a Repülőgép effekt esetén."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
+"Minimalizálás során az ablak nagyításának célja a tálca legyen a Hajlított "
+"redők effekt esetén."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Dream effect."
 msgstr ""
+"Minimalizálás során az ablak nagyításának célja a tálca legyen a Álom effekt "
+"esetén."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 1 effect."
 msgstr ""
+"Minimalizálás során az ablak nagyításának célja a tálca legyen a Siklás 1 "
+"effekt esetén."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 2 effect."
 msgstr ""
+"Minimalizálás során az ablak nagyításának célja a tálca legyen a Siklás 2 "
+"effekt esetén."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Horizontal "
 "Folds effect."
 msgstr ""
+"Minimalizálás során az ablak nagyításának célja a tálca legyen a Vízszintes "
+"redők effekt esetén."
 
 msgid "Window Grid Height"
 msgstr "Ablakrács magassága"
@@ -764,6 +783,47 @@ msgstr ""
 msgid "Zoom to TaskBar on Minimize"
 msgstr ""
 
+msgid "Colors"
+msgstr "Szín"
+
+#, fuzzy
+msgid "Cube Atlantis"
+msgstr "Kocka fedőlapok"
+
+msgid "Dolphin size"
+msgstr ""
+
+msgid "Dolphin size."
+msgstr ""
+
+#, fuzzy
+msgid "Enable colors"
+msgstr "Textúrák engedélyezése"
+
+msgid "Fish size"
+msgstr ""
+
+#, fuzzy
+msgid "Number of fish"
+msgstr "Lángnyelvek száma"
+
+#, fuzzy
+msgid "Number of fish inside the cube"
+msgstr "Lángnyelvek száma"
+
+#, fuzzy
+msgid "Render some fish inside of the transparent cube"
+msgstr "Fogaskerekeket jelenít meg az átlátszó kockában"
+
+msgid "Shark size"
+msgstr ""
+
+msgid "Whale size"
+msgstr ""
+
+msgid "Whale size."
+msgstr ""
+
 msgid "A simple benchmark plugin"
 msgstr "Egy egyszerű teljesítménymérő bővítmény"
 
@@ -780,7 +840,7 @@ msgid "Disable Compiz integrated FPS limiter"
 msgstr "Compiz letiltása"
 
 msgid "Disable limiter"
-msgstr ""
+msgstr "Korlátozó letiltása"
 
 msgid "Display FPS on screen"
 msgstr "Másodpercenkénti képkockaszám megjelenítése a képernyőn"
@@ -834,7 +894,7 @@ msgid "Filtered windows"
 msgstr "Kiszűrt ablakok"
 
 msgid "Filters files"
-msgstr ""
+msgstr "Fájlok szűrése"
 
 msgid ""
 "List of plain text filter files that should be applied when filtering "
@@ -848,7 +908,7 @@ msgid ""
 msgstr ""
 
 msgid "Switch filter"
-msgstr ""
+msgstr "Szűrő váltása"
 
 msgid "Toggle filtering for currently focused window."
 msgstr ""
@@ -857,10 +917,10 @@ msgid "Toggle filtering for every window on the screen."
 msgstr ""
 
 msgid "Toggle screen filtering"
-msgstr ""
+msgstr "Képernyőszűrő kapcsoló"
 
 msgid "Toggle window filtering"
-msgstr ""
+msgstr "Ablakszűrő kapcsoló"
 
 msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
@@ -949,77 +1009,80 @@ msgid ""
 msgstr ""
 
 msgid "Color of bottom face of the cube"
-msgstr ""
+msgstr "A kocka alsó lapjának színe"
 
 msgid "Color of top face of the cube"
-msgstr ""
+msgstr "A kocka felső lapjának színe"
 
 msgid "Cube Bottom Color"
-msgstr ""
+msgstr "Kocka alsó szín"
 
 msgid "Cube Caps"
-msgstr ""
+msgstr "Kocka fedőlapok"
 
 msgid "Cube Top Color"
-msgstr ""
+msgstr "Kocka felső szín"
 
 msgid "Draw bottom face"
-msgstr ""
+msgstr "Alsó lap megjelenítése"
 
 msgid "Draw bottom face of the cube"
-msgstr ""
+msgstr "Megjeleníti a kocka alsó lapját"
 
 msgid "Draw top face"
-msgstr ""
+msgstr "Felső lap megjelenítése"
 
 msgid "Draw top face of the cube"
-msgstr ""
+msgstr "Megjeleníti a kocka felső lapját"
 
 msgid "Go back to previous image for bottom face of the cube"
-msgstr ""
+msgstr "Megjeleníti a kocka alsó lapjának előző képét"
 
 msgid "Go back to previous image for top face of the cube"
-msgstr ""
+msgstr "Megjeleníti a kocka felső lapjának előző képét"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
 msgstr ""
+"Azon PNG és SVG képfájlok listája, amelyek megjelenhetnek a kocka alsó lapján"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
+"Azon PNG és SVG képfájlok listája, amelyek megjelenhetnek a kocka felső "
+"lapján"
 
 msgid "Next bottom image"
-msgstr ""
+msgstr "Következő alsó kép"
 
 msgid "Next top image"
-msgstr ""
+msgstr "Következő felső kép"
 
 msgid "Prev bottom image"
-msgstr ""
+msgstr "Előző alsó kép"
 
 msgid "Prev top image"
-msgstr ""
+msgstr "Előző felső kép"
 
 msgid "Render images on top and bottom of the cube"
-msgstr ""
+msgstr "Képek leképzése a kocka tetejére és aljára"
 
 msgid "Scale bottom image"
-msgstr ""
+msgstr "Alsó kép nyújtása"
 
 msgid "Scale image to cover bottom face of cube"
-msgstr ""
+msgstr "Alsó kép nyújtása úgy, hogy lefedje a kocka alsó lapját"
 
 msgid "Scale image to cover top face of cube"
-msgstr ""
+msgstr "Felső kép nyújtása úgy, hogy lefedje a kocka felső lapját"
 
 msgid "Scale top image"
-msgstr ""
+msgstr "Felső kép nyújtása"
 
 msgid "Top image files"
-msgstr ""
+msgstr "Felső képfájlok"
 
 msgid "Above"
-msgstr ""
+msgstr "Felülre"
 
 msgid "Auto zoom"
 msgstr "Automatikus nagyítás"
@@ -1028,13 +1091,13 @@ msgid "Auto zoom only on Mouse Rotate"
 msgstr "Kizárólag egérrel történő forgatás esetén legyen automatikus nagyítás"
 
 msgid "Color of the ground (far)."
-msgstr ""
+msgstr "Alapzat színe a távolban."
 
 msgid "Color of the ground (near)."
-msgstr ""
+msgstr "Alapzat színe a közelben."
 
 msgid "Compiz cube reflection"
-msgstr ""
+msgstr "Compiz kocka tükröződés"
 
 msgid "Cube Reflection"
 msgstr "Kocka tükröződés"
@@ -1284,10 +1347,10 @@ msgid ""
 msgstr ""
 
 msgid "Mouse Behavior"
-msgstr ""
+msgstr "Egér viselkedés"
 
 msgid "Mouse Poll Interval"
-msgstr ""
+msgstr "Egér lekérdezési időköz"
 
 msgid "Mouse Restrain Margin"
 msgstr ""
@@ -1362,7 +1425,7 @@ msgid "Speed"
 msgstr "Sebesség"
 
 msgid "Sync Mouse"
-msgstr ""
+msgstr "Egér szinkronizálása"
 
 msgid "Target Focused Window on Specific level"
 msgstr ""
@@ -1371,7 +1434,7 @@ msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
 
 msgid "Timestep"
-msgstr ""
+msgstr "Időköz"
 
 msgid "Toggle zoom area lock"
 msgstr ""
@@ -1413,22 +1476,22 @@ msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
 
 msgid "Zoom level to go to when triggering hotkey 1"
-msgstr ""
+msgstr "Nagyítás mértéke az első gyorsbillentyű hatására"
 
 msgid "Zoom level to go to when triggering hotkey 2"
-msgstr ""
+msgstr "Nagyítás mértéke az második gyorsbillentyű hatására"
 
 msgid "Zoom level to go to when triggering hotkey 3"
-msgstr ""
+msgstr "Nagyítás mértéke az harmadik gyorsbillentyű hatására"
 
 msgid "Zoom to the specific zoom level 1"
-msgstr ""
+msgstr "Nagyítás a megadott első nagyítási szint szerint"
 
 msgid "Zoom to the specific zoom level 2"
-msgstr ""
+msgstr "Nagyítás a megadott második nagyítási szint szerint"
 
 msgid "Zoom to the specific zoom level 3"
-msgstr ""
+msgstr "Nagyítás a megadott harmadik nagyítási szint szerint"
 
 msgid ""
 "Zooms in/out so the focused window is zoomed to the maximum while still "
@@ -1436,13 +1499,13 @@ msgid ""
 msgstr ""
 
 msgid "Activate Window"
-msgstr ""
+msgstr "Ablak aktíválása"
 
 msgid "Activate a given window"
-msgstr ""
+msgstr "Megadott ablak aktíválása"
 
 msgid "Extra WM Actions"
-msgstr ""
+msgstr "További ablakkezelő műveletek"
 
 msgid "Provides less commonly used WM actions"
 msgstr ""
@@ -1451,13 +1514,13 @@ msgid "Toggle Always-On-Top"
 msgstr ""
 
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Váltás teljesképernyősre"
 
 msgid "Toggle Redirect"
-msgstr ""
+msgstr "Átirányítás váltása"
 
 msgid "Toggle Sticky"
-msgstr ""
+msgstr "Ragósra váltás"
 
 msgid "Toggle always on top for the active window"
 msgstr ""
@@ -1475,13 +1538,13 @@ msgid "Easily access your desktop"
 msgstr ""
 
 msgid "Fade Time"
-msgstr ""
+msgstr "Elhalványítási idő"
 
 msgid "Fade time (in ms)"
 msgstr ""
 
 msgid "Fade to Desktop"
-msgstr ""
+msgstr "Asztal megjelenítése elháványítva"
 
 msgid "Windows that should be faded to desktop"
 msgstr ""
@@ -1505,7 +1568,7 @@ msgid "Background brightness during paint"
 msgstr ""
 
 msgid "Clear"
-msgstr ""
+msgstr "Törlés"
 
 msgid "Clear (button)"
 msgstr ""
@@ -1520,7 +1583,7 @@ msgid "Initiate (key)"
 msgstr ""
 
 msgid "Initiate fire drawing"
-msgstr ""
+msgstr "Tűzrajzolás indítása"
 
 msgid "Maximum number of active particles"
 msgstr ""
@@ -1572,9 +1635,6 @@ msgstr ""
 
 msgid "Close Group"
 msgstr "Csoport bezárása"
-
-msgid "Colors"
-msgstr "Szín"
 
 msgid "Create mipmaps for thumbnails"
 msgstr ""
@@ -1655,13 +1715,13 @@ msgid "Group Window Match"
 msgstr ""
 
 msgid "Group Windows"
-msgstr ""
+msgstr "Ablakok csoportosítása"
 
 msgid "Group and Tab Windows"
 msgstr ""
 
 msgid "Group the windows after selection"
-msgstr ""
+msgstr "Ablakok csoportosítása kijelölés után"
 
 msgid "Grouping"
 msgstr "Csoportosítás"
@@ -1749,12 +1809,14 @@ msgid "Play animations on the tab bar e.g. on fade in."
 msgstr ""
 
 msgid "Precision"
-msgstr ""
+msgstr "Pontosság"
 
 msgid ""
 "Precision of the selection (percentage of the visible window area which must "
 "be selected for the selection to be recognized)."
 msgstr ""
+"Kijelölés pontossága (a látható ablakterület százalékában megadva, amelyet "
+"ki kell jelölni ahhoz, hogy az ablak kiválasztásra kerüljön)."
 
 msgid "Raise every window in the group"
 msgstr ""
@@ -1835,19 +1897,19 @@ msgid "Tab bar visibility time after tab change"
 msgstr ""
 
 msgid "Tabbing"
-msgstr ""
+msgstr "Lapozás"
 
 msgid "Tabbing Speed"
-msgstr ""
+msgstr "Lapozási sebesség"
 
 msgid "Tabbing Timestep"
-msgstr ""
+msgstr "Lapozási időköz"
 
 msgid "Tabbing speed"
-msgstr ""
+msgstr "Lapozási sebesség"
 
 msgid "Tabbing timestep"
-msgstr ""
+msgstr "Lapozási időköz"
 
 msgid "The color of the window title in the tab bar"
 msgstr ""
@@ -1944,7 +2006,7 @@ msgid "Use tab bar animations"
 msgstr ""
 
 msgid "Window Title Font"
-msgstr ""
+msgstr "Ablak címsorának betűtípusa"
 
 msgid "Windows that should be allowed to be grouped"
 msgstr ""
@@ -1971,7 +2033,7 @@ msgid "Accumulation buffer"
 msgstr ""
 
 msgid "Activate"
-msgstr ""
+msgstr "Aktíválás"
 
 msgid "Execute Motion Blur if the screen is transformed."
 msgstr ""
@@ -2016,7 +2078,7 @@ msgid "Begin Mouse Gesture"
 msgstr "Egérmozdulat kezdete"
 
 msgid "Mouse switch"
-msgstr ""
+msgstr "Egérváltó"
 
 msgid "Switch viewport in response to mouse gesture"
 msgstr ""
@@ -2025,7 +2087,7 @@ msgid "Exclude Windows"
 msgstr "Kizárt ablakok"
 
 msgid "Neg Windows"
-msgstr ""
+msgstr "Inverz ablakok"
 
 msgid "Negative"
 msgstr "Inverz"
@@ -2245,51 +2307,57 @@ msgstr "Ablak pozicionálása"
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
 msgstr ""
+"Az alsó éltől való távolság képpontban, amelyen az ablakok nem léphetnek túl"
 
 msgid "Number of pixels from the left edge where the window will come to rest"
 msgstr ""
+"Az bal oldali éltől való távolság képpontban, amelyen az ablakok nem "
+"léphetnek túl"
 
 msgid "Number of pixels from the right edge where the window will come to rest"
 msgstr ""
+"Az jobb oldali éltől való távolság képpontban, amelyen az ablakok nem "
+"léphetnek túl"
 
 msgid "Number of pixels from the top edge where the window will come to rest"
 msgstr ""
+"Az felső éltől való távolság képpontban, amelyen az ablakok nem léphetnek túl"
 
 msgid "Pad Bottom"
-msgstr ""
+msgstr "Helykitöltő lent"
 
 msgid "Pad Left"
-msgstr ""
+msgstr "Helykitöltő balra"
 
 msgid "Pad Right"
-msgstr ""
+msgstr "Helykitöltő balra"
 
 msgid "Pad Top"
-msgstr ""
+msgstr "Helykitöltő fent"
 
 msgid "Padding"
-msgstr ""
+msgstr "Helykitöltés"
 
 msgid "Put"
-msgstr ""
+msgstr "Elhelyezés"
 
 msgid "Put Bottom"
-msgstr ""
+msgstr "Elhelyezés alulra"
 
 msgid "Put Bottom Left"
-msgstr ""
+msgstr "Elhelyezés balra alulra"
 
 msgid "Put Bottom Right"
-msgstr ""
+msgstr "Elhelyezés jobbra alulra"
 
 msgid "Put Center"
-msgstr ""
+msgstr "Elhelyezés középre"
 
 msgid "Put Exact"
-msgstr ""
+msgstr "Elhelyezés pontosan"
 
 msgid "Put Left"
-msgstr ""
+msgstr "Elhelyezés balra"
 
 msgid "Put On Viewport"
 msgstr "Elhelyezés a munkalapon"
@@ -2331,19 +2399,19 @@ msgid "Put On Viewport 9"
 msgstr "Elhelyezés a 9. munkalapon"
 
 msgid "Put Pointer"
-msgstr ""
+msgstr "Elhelyezés egérrel"
 
 msgid "Put Right"
-msgstr ""
+msgstr "Elhelyezés jobbra"
 
 msgid "Put Top"
-msgstr ""
+msgstr "Elhelyezés felülre"
 
 msgid "Put Top Left"
-msgstr ""
+msgstr "Elhelyezés balra felülre"
 
 msgid "Put Top Right"
-msgstr ""
+msgstr "Elhelyezés jobbra felülre"
 
 msgid "Put pointer uses the center of the window"
 msgstr ""
@@ -2355,13 +2423,13 @@ msgid "Put to arbitrary viewport"
 msgstr ""
 
 msgid "Put window"
-msgstr ""
+msgstr "Ablak elhelyezése"
 
 msgid "Put within viewport"
-msgstr ""
+msgstr "Elhelyezés a munkalapon belül"
 
 msgid "Restore Position"
-msgstr ""
+msgstr "Helyzet visszaállítása"
 
 msgid "Unfocus Window"
 msgstr ""
@@ -2370,19 +2438,19 @@ msgid "Unfocus windows that are moved off the viewport"
 msgstr ""
 
 msgid "Viewport Bottom"
-msgstr ""
+msgstr "Munkalap lent"
 
 msgid "Viewport Left"
-msgstr ""
+msgstr "Munkalap balra"
 
 msgid "Viewport Right"
-msgstr ""
+msgstr "Munkalap jobbra"
 
 msgid "Viewport Top"
-msgstr ""
+msgstr "Munkalap fent"
 
 msgid "Window Center"
-msgstr ""
+msgstr "Középre az ablakot"
 
 msgid "Alpha Dependence Threshold"
 msgstr ""
@@ -2391,46 +2459,46 @@ msgid "Alpha dependence threshold."
 msgstr ""
 
 msgid "Draw Reflection for decorations."
-msgstr ""
+msgstr "Dekoráció tükröződések megjelenítése."
 
 msgid "Draw Reflection for windows."
-msgstr ""
+msgstr "Ablak tükröződések megjelenítése."
 
 msgid "Draws reflections"
-msgstr ""
+msgstr "Tünröződések megjelenítése"
 
 msgid "Move the reflection on window move."
-msgstr ""
+msgstr "Tükröződések mozgatása az ablakokkal együtt."
 
 msgid "Moving reflection"
-msgstr ""
+msgstr "Mozgó tükröződések"
 
 msgid "Reflection Image"
-msgstr ""
+msgstr "Tükröződés képe"
 
 msgid "Reflection Image file"
-msgstr ""
+msgstr "Tükröződés képfájl"
 
 msgid "Reflection Window Match"
-msgstr ""
+msgstr "Tükröződő ablakok egyeztetése"
 
 msgid "Reflection for Decorations"
-msgstr ""
+msgstr "Dekorációk tükröződése"
 
 msgid "Reflection for Windows"
-msgstr ""
+msgstr "Ablakok tükröződése"
 
 msgid "Window match"
-msgstr ""
+msgstr "Ablakok egyeztetése"
 
 msgid "Color 1 of the gradient background."
-msgstr ""
+msgstr "A háttér színátmenetének első színe."
 
 msgid "Color 2 of the gradient background."
-msgstr ""
+msgstr "A háttér színátmenetének második színe."
 
 msgid "Color 3 of the gradient background."
-msgstr ""
+msgstr "A háttér színátmenetének harmadik színe."
 
 msgid "Color of text on resize popup."
 msgstr ""
@@ -2465,15 +2533,16 @@ msgid "Text color."
 msgstr "Szöveg színe."
 
 msgid "Above ring"
-msgstr ""
+msgstr "Gyűrű felett"
 
 msgid "Allow Mouse Selection"
-msgstr ""
+msgstr "Egérrel történő választás engedélyezése"
 
 msgid ""
 "Allow the selection of windows by just clicking on them while the switcher "
 "is active."
 msgstr ""
+"Egérrel történő ablakválasztás engedélyezése miközben az ablakváltó aktív."
 
 msgid ""
 "Amount of opacity (in percent) for windows in the ring which are not selected"
@@ -2486,13 +2555,13 @@ msgid "Background color for the window title"
 msgstr ""
 
 msgid "Below ring"
-msgstr ""
+msgstr "Gyűrű alatt"
 
 msgid "Big"
 msgstr "Nagy"
 
 msgid "Bold Font"
-msgstr ""
+msgstr "Félkövér betűstílus"
 
 msgid "Centered on screen"
 msgstr ""
@@ -2601,13 +2670,13 @@ msgid "Selects where to place the window title."
 msgstr ""
 
 msgid "Show Minimized"
-msgstr ""
+msgstr "Minimalizált ablakok megjelenítése"
 
 msgid "Show Window Title"
 msgstr "Ablak címsorának megjelenítése"
 
 msgid "Show minimized windows"
-msgstr ""
+msgstr "Minimalizált ablakok megjelenítése"
 
 msgid ""
 "Show switcher if not visible and select next window of the current "
@@ -2639,10 +2708,10 @@ msgid "Text Placement"
 msgstr "Szövegelhelyezés módja"
 
 msgid "Thumbnail Height"
-msgstr ""
+msgstr "Előnézet magassága"
 
 msgid "Thumbnail Width"
-msgstr ""
+msgstr "Előnézet szélessége"
 
 msgid "Window title display"
 msgstr "Ablak címsorának megjelenítése"
@@ -2758,10 +2827,10 @@ msgid "Toggle prompt visible."
 msgstr ""
 
 msgid "Background intensity"
-msgstr ""
+msgstr "Háttér intenzitása"
 
 msgid "Background intensity."
-msgstr ""
+msgstr "Háttér intenzitása."
 
 msgid "Below"
 msgstr ""
@@ -2785,7 +2854,7 @@ msgid "Fade in/out speed"
 msgstr ""
 
 msgid "Fade speed"
-msgstr ""
+msgstr "Elhalványulás sebessége"
 
 msgid "Flip"
 msgstr ""
@@ -3109,7 +3178,7 @@ msgid "Display In/Out Time."
 msgstr ""
 
 msgid "Display Time"
-msgstr ""
+msgstr "Mgjelenitési idő"
 
 msgid "Fade In/Out Time."
 msgstr ""
@@ -3184,10 +3253,10 @@ msgid "Size of Thumbnail Border."
 msgstr ""
 
 msgid "Taskbar"
-msgstr ""
+msgstr "Tálca"
 
 msgid "Taskbar Shows Only Windows of Current Viewport"
-msgstr ""
+msgstr "A tálca csak az aktuális munkalapon lévő ablakokat jeleníti meg"
 
 msgid "Thumbnail Background and Border Glow Color."
 msgstr ""
@@ -3250,10 +3319,10 @@ msgid "Duration (in ms) of the tiling animation"
 msgstr ""
 
 msgid "Excluded Windows"
-msgstr ""
+msgstr "Mellőzött ablakok"
 
 msgid "Filled Outline"
-msgstr ""
+msgstr "Kitöltött körvonal"
 
 msgid "Join Windows (EXPERIMENTAL)"
 msgstr "Ablakok összefűzése (KÍSÉRLETI STÁDIUMBAN)"
@@ -3287,16 +3356,16 @@ msgid ""
 msgstr ""
 
 msgid "Restore Windows"
-msgstr ""
+msgstr "Ablakok visszaállítása"
 
 msgid "Restore windows to their original position they had before tiling."
-msgstr ""
+msgstr "Visszaállítja az ablakokat az igazítás előtti, eredeti helyükre."
 
 msgid "Selects the animation used while tiling"
-msgstr ""
+msgstr "Válassza ki az igazítás során alkalmazott animációt"
 
 msgid "Slide"
-msgstr ""
+msgstr "Csúszás"
 
 msgid "Tile"
 msgstr "Csempe"
@@ -3323,13 +3392,13 @@ msgid "Tiling Animation Type"
 msgstr "Darabolás animációjának típusa"
 
 msgid "Tiling Method For Toggle"
-msgstr ""
+msgstr "Igazítás üzemmódja váltáskor"
 
 msgid "Toggle Tiling"
-msgstr ""
+msgstr "Igazítás váltás"
 
 msgid "Toggle between tile and restore"
-msgstr ""
+msgstr "Váltás az igazítás és a visszaállítás között"
 
 msgid ""
 "Tries to join the windows together when horizontal, vertical or left tiling "
@@ -3346,10 +3415,10 @@ msgid ""
 msgstr ""
 
 msgid "Brightness Level of Focused Windows"
-msgstr ""
+msgstr "Fókuszált ablak fényereje"
 
 msgid "Brightness Level of Unfocused Windows"
-msgstr ""
+msgstr "Nem fókuszált ablak fényereje"
 
 msgid ""
 "Brightness of the currently focused window. Windows will get brightness "
@@ -3370,10 +3439,10 @@ msgid ""
 msgstr ""
 
 msgid "Opacity Level of Focused Windows"
-msgstr ""
+msgstr "Fókuszált ablak átlátszatlansága"
 
 msgid "Opacity Level of Unfocused Windows"
-msgstr ""
+msgstr "Nem fókuszált ablak átlátszatlansága"
 
 msgid ""
 "Opacity of the currently focused window. Windows will get opacity levels "
@@ -3407,7 +3476,7 @@ msgid ""
 msgstr ""
 
 msgid "Trailfocus"
-msgstr ""
+msgstr "Követőfókusz"
 
 msgid "Window to Start Fading"
 msgstr ""
@@ -3416,31 +3485,31 @@ msgid "Window types that should be handled by Trailfocus"
 msgstr ""
 
 msgid "Action name for initiate"
-msgstr ""
+msgstr "Indítandó akció neve"
 
 msgid "Action name for initiate/terminate"
-msgstr ""
+msgstr "Az indítandó vagy leállítandó akció neve"
 
 msgid "Begin Viewport Switch"
-msgstr ""
+msgstr "Munkalapváltás indítása"
 
 msgid "Begin entering viewport number"
-msgstr ""
+msgstr "Adja meg a munkalap számát"
 
 msgid "Desktop-based Viewport Switching"
-msgstr ""
+msgstr "Munkaasztal-alapú munkalap váltás"
 
 msgid "Go to specific viewport"
-msgstr ""
+msgstr "Váltás a megadott munkalapra"
 
 msgid "Initiate plugin action"
-msgstr ""
+msgstr "Bővítmény akció indítása"
 
 msgid "Initiate viewport changes through several events"
-msgstr ""
+msgstr "Események hatására induljon a munkalapváltás"
 
 msgid "Initiate/Terminate the selected plugin action"
-msgstr ""
+msgstr "Kiválasztott bővítmény akció indítása vagy leállítása"
 
 msgid "Move Down"
 msgstr "Mozgás lefelé"
@@ -3712,13 +3781,13 @@ msgid "Multimonitor behavior"
 msgstr "Többmonitoros viselkedés"
 
 msgid "Outline Color"
-msgstr ""
+msgstr "Vonal színe"
 
 msgid "Outline color of the switcher window."
-msgstr ""
+msgstr "Ablakváltó vonalának színe"
 
 msgid "Radius of the rounded edge"
-msgstr ""
+msgstr "Lekerekített élek sugara"
 
 msgid "Second color for the background gradient of the switcher window."
 msgstr ""
@@ -3763,10 +3832,10 @@ msgid "Thumb Gradient"
 msgstr ""
 
 msgid "Viewport Switch Preview"
-msgstr ""
+msgstr "Munkalapváltó előnézet"
 
 msgid "Viewport Switching"
-msgstr ""
+msgstr "Munkalapváltás"
 
 msgid "Wall Sliding Duration"
 msgstr ""
@@ -3788,6 +3857,57 @@ msgstr "Mozaik vagy kitöltés"
 
 msgid "Wallpaper"
 msgstr "Háttérkép"
+
+#, fuzzy
+msgid "Background Brightness"
+msgstr "Háttér intenzitása"
+
+#, fuzzy
+msgid "Background Saturation"
+msgstr "Háttér-színátmenet"
+
+#, fuzzy
+msgid "Background in Widget Mode"
+msgstr "Háttér intenzitása"
+
+#, fuzzy
+msgid "Brightness of non-widget windows in widget modes."
+msgstr "Az elhalványított ablakok fényereje"
+
+msgid "End Widget Mode on Click"
+msgstr ""
+
+msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+#, fuzzy
+msgid "Saturation of non-widget windows in widget modes."
+msgstr "Elhalványított ablakok színtelítettsége"
+
+#, fuzzy
+msgid "Show or hide widget windows"
+msgstr "Minimalizált ablakok megjelenítése"
+
+msgid "Show widget windows on a separate layer"
+msgstr ""
+
+msgid "Time (in s) for fading into/out of the widget layer."
+msgstr ""
+
+#, fuzzy
+msgid "Toggle Widget Display"
+msgstr "Képernyő inverzbe váltása"
+
+msgid "Widget Layer"
+msgstr ""
+
+#, fuzzy
+msgid "Widget Windows"
+msgstr "Gyűrű ablak"
+
+#, fuzzy
+msgid "Windows that always should be treated as widgets"
+msgstr "Átméretezendő ablakok"
 
 msgid "Above others windows"
 msgstr "Más ablakok felett"
@@ -3865,13 +3985,13 @@ msgid "Skip pager"
 msgstr ""
 
 msgid "Skip taskbar"
-msgstr ""
+msgstr "Tálca kihagyása"
 
 msgid "Sticky"
-msgstr ""
+msgstr "Ragadós"
 
 msgid "Sticky windows"
-msgstr ""
+msgstr "Ragadós ablakok"
 
 msgid "Width"
 msgstr "Szélesség"
@@ -3883,7 +4003,7 @@ msgid "Window Rules"
 msgstr "Ablakszabályok"
 
 msgid "Windows that should be resized by default"
-msgstr ""
+msgstr "Átméretezendő ablakok"
 
 msgid "Windows that should be treated as not supporting transparency"
 msgstr ""
@@ -3895,7 +4015,7 @@ msgid "\"On all desktops\" sticky match"
 msgstr ""
 
 msgid "AIGLX Fragment Parameter Fix"
-msgstr ""
+msgstr "AIGLX helytelen paraméterhasználat javítás"
 
 msgid "Firefox Menu Fix"
 msgstr "Firefox menük javítása"
@@ -3939,7 +4059,7 @@ msgid "Metacity-like workarounds."
 msgstr "Metacity témához szánt hibajavítások"
 
 msgid "Notification Daemon Fix"
-msgstr ""
+msgstr "Értesítés démon javítása"
 
 msgid "OpenOffice.org Menu Fix"
 msgstr "OpenOffice.org menük javítása"
@@ -3948,10 +4068,10 @@ msgid "Qt Window Fix"
 msgstr "Qt ablakok javítása"
 
 msgid "Window stickyness"
-msgstr ""
+msgstr "Ragadós ablak"
 
 msgid "Windows on all desktops that should be made sticky"
-msgstr ""
+msgstr "Az ablakok legyenek ragadósak az összes munkasztalon"
 
 msgid "Workarounds"
 msgstr "Hibajavítások"
