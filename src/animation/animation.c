@@ -1927,6 +1927,24 @@ restackInfoStillGood(CompScreen *s, RestackInfo *restackInfo)
     return (wStartGood && wEndGood && wOldAboveGood && wRestackedGood);
 }
 
+// Reset stacking related info
+static void inline
+resetStackingInfo (CompScreen *s)
+{
+    CompWindow *w;
+    for (w = s->windows; w; w = w->next)
+    {
+	ANIM_WINDOW (w);
+
+	aw->configureNotified = FALSE;
+	if (aw->restackInfo)
+	{
+	    free (aw->restackInfo);
+	    aw->restackInfo = NULL;
+	}
+    }
+}
+
 static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 {
     CompWindow *w;
@@ -1938,7 +1956,14 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
     {
 	switcherPostWait++;
 	if (switcherPostWait > 4) // wait over
+	{
 	    switcherPostWait = 0;
+
+	    // Reset stacking related info since it will
+	    // cause problems because of the restacking
+	    // just done by Switcher.
+	    resetStackingInfo (s);
+	}
     }
 
     if (as->aWinWasRestackedJustNow)
