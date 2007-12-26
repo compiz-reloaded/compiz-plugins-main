@@ -693,18 +693,6 @@ polygonsStoreClips(CompScreen * s, CompWindow * w,
     if (!pset)
 	return;
 
-    // only draw windows on current viewport
-    if (w->attrib.x > s->width || w->attrib.x + w->width < 0 ||
-	w->attrib.y > s->height || w->attrib.y + w->height < 0 ||
-	(aw->lastKnownCoords.x != NOT_INITIALIZED &&
-	 (aw->lastKnownCoords.x != w->attrib.x ||
-	  aw->lastKnownCoords.y != w->attrib.y)))
-    {
-	return;
-	// since this is not the viewport the window was drawn
-	// just before animation started
-    }
-
     Bool dontStoreClips = TRUE;
 
     // If this clip doesn't match the corresponding stored clip,
@@ -933,12 +921,9 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 {
     ANIM_WINDOW(w);
 
-    if (// only draw windows on current viewport
-	w->attrib.x > s->width || w->attrib.x + w->width < 0 ||
-	w->attrib.y > s->height || w->attrib.y + w->height < 0 ||
-	(aw->lastKnownCoords.x != NOT_INITIALIZED &&
-	 (aw->lastKnownCoords.x != w->attrib.x ||
-	  aw->lastKnownCoords.y != w->attrib.y)))
+    // draw windows only on current viewport unless it's on all viewports
+    if ((s->windowOffsetX != 0 || s->windowOffsetY != 0) &&
+	!windowOnAllViewports (w))
     {
 	return;
 	// since this is not the viewport the window was drawn

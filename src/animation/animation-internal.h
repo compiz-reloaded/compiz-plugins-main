@@ -590,9 +590,6 @@ typedef struct _AnimWindow
     XRectangle icon;
     XRectangle origWindowRect;
 
-    XRectangle lastKnownCoords;	/* used to determine if paintWindow is drawing
-				   on the viewport that the animation started */
-
     float numZoomRotations;
     GLushort storedOpacity;
     float timestep;		// to be used in updateWindowAttribFunc

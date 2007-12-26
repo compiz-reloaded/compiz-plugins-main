@@ -1876,11 +1876,6 @@ initiateFocusAnimation(CompWindow *w)
 	    aw->animTotalTime = duration;
 	aw->animRemainingTime = aw->animTotalTime;
 
-	// Store coords in this viewport to omit 3d effect
-	// painting in other viewports
-	aw->lastKnownCoords.x = w->attrib.x;
-	aw->lastKnownCoords.y = w->attrib.y;
-
 	damagePendingOnScreen (s);
     }
 }
@@ -3317,11 +3312,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			animActivateEvent(w->screen, TRUE);
 			aw->curWindowEvent = WindowEventShade;
 
-			// Store coords in this viewport to omit 3d effect
-			// painting in other viewports
-			aw->lastKnownCoords.x = w->attrib.x;
-			aw->lastKnownCoords.y = w->attrib.y;
-
 			if (!animEnsureModel(w))
 			{
 			    postAnimationCleanup(w, TRUE);
@@ -3392,11 +3382,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 			animActivateEvent(w->screen, TRUE);
 			aw->curWindowEvent = WindowEventMinimize;
-
-			// Store coords in this viewport to omit 3d effect
-			// painting in other viewports
-			aw->lastKnownCoords.x = w->attrib.x;
-			aw->lastKnownCoords.y = w->attrib.y;
 
 			if (!animEnsureModel(w))
 			{
@@ -3495,11 +3480,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    }
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventClose;
-
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    aw->lastKnownCoords.x = w->attrib.x;
-		    aw->lastKnownCoords.y = w->attrib.y;
 
 		    if (!animEnsureModel(w))
 		    {
@@ -3838,11 +3818,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventUnminimize;
 
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    aw->lastKnownCoords.x = w->attrib.x;
-		    aw->lastKnownCoords.y = w->attrib.y;
-
 		    if (animEnsureModel(w))
 		    {
 			if (!animGetWindowIconGeometry(w, &aw->icon))
@@ -3927,11 +3902,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventUnshade;
-
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    aw->lastKnownCoords.x = w->attrib.x;
-		    aw->lastKnownCoords.y = w->attrib.y;
 
 		    if (animEnsureModel(w))
 			damagePendingOnScreen (w->screen);
@@ -4030,13 +4000,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    aw->icon.x -= aw->icon.width / 2;
 		    aw->icon.y -= aw->icon.height / 2;
 
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    if (aw->lastKnownCoords.x != NOT_INITIALIZED)
-		    {
-			aw->lastKnownCoords.x = w->attrib.x;
-			aw->lastKnownCoords.y = w->attrib.y;
-		    }
 		    if (animEnsureModel(w))
 			damagePendingOnScreen (w->screen);
 		    else
@@ -4456,8 +4419,6 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
     w->indexCount = 0;
 
     aw->polygonSet = NULL;
-    aw->lastKnownCoords.x = NOT_INITIALIZED;
-    aw->lastKnownCoords.y = NOT_INITIALIZED;
 
     aw->unmapCnt = 0;
     aw->destroyCnt = 0;
