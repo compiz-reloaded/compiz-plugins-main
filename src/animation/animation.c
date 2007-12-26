@@ -2887,8 +2887,16 @@ animPaintWindow(CompWindow * w,
 	WRAP(as, w->screen, paintWindow, animPaintWindow);
 
 	if (animEffectProperties[aw->curAnimEffect].postPaintWindowFunc)
+	{
+	    // Transform to make post-paint coincide with the window
+	    glPushMatrix ();
+	    glLoadMatrixf (wTransform.m);
+
 	    animEffectProperties[aw->curAnimEffect].
 		postPaintWindowFunc(w->screen, w);
+
+	    glPopMatrix ();
+	}
     }
     else
     {
