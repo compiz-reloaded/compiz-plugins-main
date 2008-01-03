@@ -122,6 +122,11 @@
 			<_long>Resize the window so it matches the current zoom level.  </_long>
 			<default>&lt;Super&gt;v</default>
 		    </option>
+		    <option type="key" name="fit_to_window">
+			<_short>Fit zoomed area to window</_short>
+			<_long>Zooms in/out so the focused window is zoomed to the maximum while still being fully visible.</_long>
+			<default>&lt;Super&gt;r</default>
+		    </option>
 		</subgroup>
 	    </group>
 	</display>
@@ -190,14 +195,6 @@
 			<min>0.001</min>
 			<max>1.0</max>
 			<precision>0.001</precision>
-		    </option>
-		</subgroup>
-		<subgroup>
-		    <_short>Fitting</_short>
-		     <option type="key" name="fit_to_window">
-			<_short>Fit zoomed area to window</_short>
-			<_long>Zooms in/out so the focused window is zoomed to the maximum while still being fully visible.</_long>
-			<default>&lt;Super&gt;r</default>
 		    </option>
 		</subgroup>
 	    </group>
