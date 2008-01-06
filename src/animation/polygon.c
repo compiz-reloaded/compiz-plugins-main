@@ -693,18 +693,6 @@ polygonsStoreClips(CompScreen * s, CompWindow * w,
     if (!pset)
 	return;
 
-    // only draw windows on current viewport
-    if (w->attrib.x > s->width || w->attrib.x + w->width < 0 ||
-	w->attrib.y > s->height || w->attrib.y + w->height < 0 ||
-	(aw->lastKnownCoords.x != NOT_INITIALIZED &&
-	 (aw->lastKnownCoords.x != w->attrib.x ||
-	  aw->lastKnownCoords.y != w->attrib.y)))
-    {
-	return;
-	// since this is not the viewport the window was drawn
-	// just before animation started
-    }
-
     Bool dontStoreClips = TRUE;
 
     // If this clip doesn't match the corresponding stored clip,
@@ -883,7 +871,7 @@ static void
 getPerspectiveCorrectionMat (CompWindow *w,
 			     PolygonObject *p,
 			     GLfloat *mat,
-			     float *matf)
+			     CompTransform *matf)
 {
     CompScreen *s = w->screen;
     ANIM_SCREEN (s);
@@ -925,7 +913,7 @@ getPerspectiveCorrectionMat (CompWindow *w,
 	     0,1,0,0,
 	     skewx,skewy,1,0,
 	     0,0,0,1};
-	memcpy (matf, skewMat, 16 * sizeof (float));
+	memcpy (matf->m, skewMat, 16 * sizeof (float));
     }
 }
 
@@ -933,12 +921,9 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 {
     ANIM_WINDOW(w);
 
-    if (// only draw windows on current viewport
-	w->attrib.x > s->width || w->attrib.x + w->width < 0 ||
-	w->attrib.y > s->height || w->attrib.y + w->height < 0 ||
-	(aw->lastKnownCoords.x != NOT_INITIALIZED &&
-	 (aw->lastKnownCoords.x != w->attrib.x ||
-	  aw->lastKnownCoords.y != w->attrib.y)))
+    // draw windows only on current viewport unless it's on all viewports
+    if ((s->windowOffsetX != 0 || s->windowOffsetY != 0) &&
+	!windowOnAllViewports (w))
     {
 	return;
 	// since this is not the viewport the window was drawn
@@ -1507,7 +1492,7 @@ polygonsUpdateBB (CompOutput *output,
     CompTransform wTransform;
     CompTransform wTransform2;
 
-    resetToIdentity (&wTransform2);
+    matrixGetIdentity (&wTransform2);
     prepareTransform (s, output, &wTransform, &wTransform2);
 
     GLdouble dModel[16];
@@ -1527,11 +1512,11 @@ polygonsUpdateBB (CompOutput *output,
     PolygonObject *p = aw->polygonSet->polygons;
     CompTransform *modelViewTransform = &wTransform;
 
-    float skewMat[16];
+    CompTransform skewMat;
     if (pset->correctPerspective == CorrectPerspectiveWindow)
     {
-	getPerspectiveCorrectionMat (w, NULL, NULL, skewMat);
-	matmul4 (wTransform2.m, wTransform.m, skewMat);
+	getPerspectiveCorrectionMat (w, NULL, NULL, &skewMat);
+	matrixMultiply (&wTransform2, &wTransform, &skewMat);
     }
     if (pset->correctPerspective == CorrectPerspectiveWindow ||
 	pset->correctPerspective == CorrectPerspectivePolygon)
@@ -1541,8 +1526,8 @@ polygonsUpdateBB (CompOutput *output,
     {
 	if (pset->correctPerspective == CorrectPerspectivePolygon)
 	{
-	    getPerspectiveCorrectionMat (w, p, NULL, skewMat);
-	    matmul4 (wTransform2.m, wTransform.m, skewMat);
+	    getPerspectiveCorrectionMat (w, p, NULL, &skewMat);
+	    matrixMultiply (&wTransform2, &wTransform, &skewMat);
 	}
 
 	// if modelViewTransform == wTransform2, then

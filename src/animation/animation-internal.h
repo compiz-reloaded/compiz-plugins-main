@@ -590,9 +590,6 @@ typedef struct _AnimWindow
     XRectangle icon;
     XRectangle origWindowRect;
 
-    XRectangle lastKnownCoords;	/* used to determine if paintWindow is drawing
-				   on the viewport that the animation started */
-
     float numZoomRotations;
     GLushort storedOpacity;
     float timestep;		// to be used in updateWindowAttribFunc
@@ -629,6 +626,7 @@ typedef struct _AnimWindow
     Bool deceleratingMotion;	// For effects that have decel. motion
 
     int curAnimSelectionRow;
+    int prevAnimSelectionRow;	// For the case when one event interrupts another
 
     CompTransform transform;
 
@@ -814,16 +812,6 @@ Bool
 getMousePointerXY(CompScreen * s, short *x, short *y);
 
 void
-multiplyMatrixVector (float *result,
-		      const float *mat,
-		      const float *v);
-
-void
-matmul4 (float *product,
-	 const float *a,
-	 const float *b);
-
-void
 expandBoxWithBox (Box *target, Box *source);
 
 void
@@ -846,9 +834,6 @@ prepareTransform (CompScreen *s,
 		  CompOutput *output,
 		  CompTransform *resultTransform,
 		  CompTransform *transform);
-
-inline void
-resetToIdentity (CompTransform *transform);
 
 /* airplane3d.c */
 

@@ -10,19 +10,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-09-29 18:32+0530\n"
-"PO-Revision-Date: 2007-09-20 00:00+0200\n"
-"Last-Translator: Fredrik Karlsson <mjukis@gmail.com>\n"
+"POT-Creation-Date: 2007-12-22 16:22+0530\n"
+"PO-Revision-Date: 2007-12-03 11:37+0100\n"
+"Last-Translator: Martin Karlsson <fist_of_heaven@hotmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.0.2\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "Endast 3D vid musrotation"
 
+# La till ett bindestreck
 msgid "3D Windows"
-msgstr "3D fönster"
+msgstr "3D-fönster"
 
 msgid "Animation Speed"
 msgstr "Animationshastighet"
@@ -834,6 +836,48 @@ msgstr "Zooma från mitten när zoomanimation körs"
 
 msgid "Zoom to TaskBar on Minimize"
 msgstr "Zooma till aktivitetsfältet vid minimering"
+
+msgid "Colors"
+msgstr "Färger"
+
+#, fuzzy
+msgid "Cube Atlantis"
+msgstr "Rita kubens över/undersida"
+
+msgid "Dolphin size"
+msgstr ""
+
+msgid "Dolphin size."
+msgstr ""
+
+#, fuzzy
+msgid "Enable colors"
+msgstr "Aktivera glöd"
+
+msgid "Fish size"
+msgstr ""
+
+#, fuzzy
+msgid "Number of fish"
+msgstr "Antal partiklar"
+
+#, fuzzy
+msgid "Number of fish inside the cube"
+msgstr "Antal eld-partiklar"
+
+#, fuzzy
+msgid "Render some fish inside of the transparent cube"
+msgstr "Renderera kugghjul inuti den genomskinliga kuben"
+
+msgid "Shark size"
+msgstr ""
+
+msgid "Whale size"
+msgstr ""
+
+#, fuzzy
+msgid "Whale size."
+msgstr "Storlek på eldpartiklar"
 
 #, fuzzy
 msgid "A simple benchmark plugin"
@@ -1711,9 +1755,6 @@ msgstr "Byt animationsvaraktighet på tabb"
 
 msgid "Close Group"
 msgstr "Stäng grupp"
-
-msgid "Colors"
-msgstr "Färger"
 
 msgid "Create mipmaps for thumbnails"
 msgstr "Skapa mipmaps för miniatyr"
@@ -4081,6 +4122,57 @@ msgstr "Sida vid sida eller sträck ut"
 msgid "Wallpaper"
 msgstr "Bakgrund"
 
+#, fuzzy
+msgid "Background Brightness"
+msgstr "Ljustyrka på bakgrund"
+
+#, fuzzy
+msgid "Background Saturation"
+msgstr "Färgmättnad för bakgrund"
+
+#, fuzzy
+msgid "Background in Widget Mode"
+msgstr "Bildfil för bakgrund"
+
+#, fuzzy
+msgid "Brightness of non-widget windows in widget modes."
+msgstr "Ljusstyrka av tonade fönster"
+
+msgid "End Widget Mode on Click"
+msgstr ""
+
+msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+#, fuzzy
+msgid "Saturation of non-widget windows in widget modes."
+msgstr "Mättnad på tonade fönster"
+
+#, fuzzy
+msgid "Show or hide widget windows"
+msgstr "Visa minimerade fönster"
+
+msgid "Show widget windows on a separate layer"
+msgstr ""
+
+msgid "Time (in s) for fading into/out of the widget layer."
+msgstr ""
+
+#, fuzzy
+msgid "Toggle Widget Display"
+msgstr "Växla fönsternegativ"
+
+msgid "Widget Layer"
+msgstr ""
+
+#, fuzzy
+msgid "Widget Windows"
+msgstr "Ringfönster"
+
+#, fuzzy
+msgid "Windows that always should be treated as widgets"
+msgstr "Fönster som ska storleksändras som standard"
+
 msgid "Above others windows"
 msgstr "Ovanför andra fönster"
 
@@ -4189,17 +4281,31 @@ msgstr "Fönster kommer inte ha fokus"
 msgid "\"On all desktops\" sticky match"
 msgstr "Klistrad träff \"på alla skrivbord\""
 
+msgid "AIGLX Fragment Parameter Fix"
+msgstr "Korrigering för \"AIGLX Fragment Parameter\""
+
 msgid "Firefox Menu Fix"
 msgstr "Korrigering av Firefoxmeny"
 
+# Hade gärna sett att man använda "Rätta till" istället för korrigera :) Men fortsätter på det inslagna spåret!
+msgid "Fix broken glProgramEnvParameter4f implementation."
+msgstr "Korrigera trasig implementation av \"glProgramEnvParameter4f\"."
+
+# Typo
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr "Korrigera fönsteryp för menyer i Firefox och Thunderbird."
+msgstr "Korrigera fönstertyp för menyer i Firefox och Thunderbird."
+
+# Ändrade till OpenOffice.org
+#, fuzzy
+msgid "Fix window type of OpenOffice.org menus."
+msgstr "Korrigera fönstertyp för menyer i OpenOffice.org."
 
 msgid "Fix window type of notification daemon windows."
 msgstr "Korrigera fönstertyp för fönster tillhörande notifikation-daemon"
 
+# Fixade en typo
 msgid "Fix window type of various Java windows."
-msgstr "Korrigera fönsteryper för diverse Java-fönster."
+msgstr "Korrigera fönstertyper för diverse Java-fönster."
 
 msgid "Fix window type of various Qt windows."
 msgstr "Korrigera fönstertyp för diverse Qt-fönster."
@@ -4230,6 +4336,10 @@ msgstr "Metacity-liknande problemlösningar."
 
 msgid "Notification Daemon Fix"
 msgstr "Korrigering av notifikations-daemon"
+
+#, fuzzy
+msgid "OpenOffice.org Menu Fix"
+msgstr "Korrigering av Firefoxmeny"
 
 msgid "Qt Window Fix"
 msgstr "Korrigering av Qt-fönster"

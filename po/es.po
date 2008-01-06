@@ -4,18 +4,18 @@
 # This file is distributed under the same license as the compiz-fusion package.
 # adrisnappy (Adrián Graña) <adri.snappy@gmail.com>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-10-06 21:37+0530\n"
-"PO-Revision-Date: 2007-07-10 09:39+0100\n"
-"Last-Translator: adrisnappy (Adrián Graña) <adri.snappy@gmail.com>\n"
+"POT-Creation-Date: 2007-12-22 16:21+0530\n"
+"PO-Revision-Date: 2007-12-21 16:17+0100\n"
+"Last-Translator: Leonard Camacho <leonard.camacho@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.0.2\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "3D sólo con rotación con el ratón"
@@ -57,7 +57,8 @@ msgstr "Biselar la esquina superior derecha"
 #, fuzzy
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
-msgstr "Cambiar la cantidad de espacio entre las ventanas."
+msgstr ""
+"Cambiar el espacio entre las ventanas (en porcentaje del tamaño del cubo)."
 
 msgid "Change the speed of the 3D animation"
 msgstr "Cambiar la velocidad de la animación 3D"
@@ -69,14 +70,14 @@ msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
 "cube via the mouse)"
 msgstr ""
-"Inicia la visualizacion 3D solamente si la rotación se dirige con elratón. "
+"Inicia la visualizacion 3D solamente si la rotación se dirige con el ratón. "
 "(Por ejemplo: Usted gira el cubo con el ratón.)"
 
 msgid "Minimum Cube Size"
-msgstr ""
+msgstr "Tamaño Minimo del Cubo"
 
 msgid "Minimum cube size (in percent)."
-msgstr ""
+msgstr "Tamaño Minimo del Cubo (porcentual)"
 
 msgid "Misc. Options"
 msgstr "Opciones varias"
@@ -87,7 +88,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Window Depth"
-msgstr "Coincidir ventanas"
+msgstr "Profundidad de la ventana"
 
 msgid "Window Match"
 msgstr "Coincidir ventanas"
@@ -104,7 +105,7 @@ msgstr "Ventanas que deberían ser procesadas por 3D"
 
 #, fuzzy
 msgid "ADD Helper"
-msgstr "Ayuda a la concetración"
+msgstr "Agregar Ayuda"
 
 msgid "Bindings"
 msgstr ""
@@ -118,7 +119,7 @@ msgstr "Brillo de las ventanas translúcidas"
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
-"Hacer que sea más fácil concentrarse oscureciendo todas las ventanasexcepto "
+"Hacer que sea más fácil concentrarse oscureciendo todas las ventanas excepto "
 "la activa."
 
 msgid "Misc. options"
@@ -141,39 +142,50 @@ msgstr "Habilitar o deshabilitar la ayuda a la concentración"
 
 msgid "Use this to enable/disable AddHelper on the fly."
 msgstr ""
-"Utilice esto para habilitar o deshabilitar la ayuda a la "
-"concentraciónrápidamente"
+"Utilice esto para habilitar o deshabilitar la ayuda a la concentración "
+"rápidamente"
 
 msgid "Window Types"
 msgstr "Tipos de ventana"
 
 msgid "Window types that should be Opacified."
-msgstr "Typos de ventanas de deberían ser transparentes"
+msgstr "Tipos de ventanas de deberían ser transparentes"
 
 msgid "Airplane"
-msgstr ""
+msgstr "Aeroplano"
 
+#, fuzzy
 msgid "Airplane Flying Path Length"
-msgstr ""
+msgstr "Longitud de la trayectoria de vuelo del aeroplano."
 
+#, fuzzy
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
+"Todos los efectos se eligen aleatoriamente, ignorando el efecto "
+"seleccionado. Si se ha elegido \"Ninguno\" para un evento, dicho evento no "
+"será animado."
 
+#, fuzzy
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
 msgstr ""
+"Amplitud de los Pliegues Horizontales relativos a la anchura de la ventana. "
+"Para valores negativos se pliega hacia fuera."
 
+#, fuzzy
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
+"Amplitud de los pliegues curvos relativos al ancho de la ventana. Valores "
+"negativos pliegan hacia fuera."
 
 #, fuzzy
 msgid "Angle of window at the end of the animation."
-msgstr "Cambiar la velocidad de la animación 3D"
+msgstr "Ángulo de la ventana al final de la animación"
 
 #, fuzzy
 msgid "Animation Selection"
@@ -184,139 +196,157 @@ msgid "Animation Time Step"
 msgstr "Velocidad de la animación"
 
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "Velocidad de la animación para efectos intensos"
 
+#, fuzzy
 msgid "Animation duration in milliseconds for close effect."
-msgstr ""
+msgstr "Duración de la animación en milisegundos para el efecto de cerrar"
 
+# ¿Como se llama la acción de "focus" en español? Seleccionar ventana?
+#, fuzzy
 msgid "Animation duration in milliseconds for focus effect."
-msgstr ""
+msgstr "Duración de la animación en milisegundos, para el efecto de foco"
 
+#, fuzzy
 msgid "Animation duration in milliseconds for minimize effect."
-msgstr ""
+msgstr "Duración de la animación en milisegundos para el efecto de minimizar."
 
+#, fuzzy
 msgid "Animation duration in milliseconds for open effect."
-msgstr ""
+msgstr "Duración de la animación en milisegundos para el efecto de abrir."
 
+#, fuzzy
 msgid "Animation duration in milliseconds for shade effect."
-msgstr ""
+msgstr "Duración de la animación en milisegundos para el efecto de sombrear."
 
 #, fuzzy
 msgid "Animations"
 msgstr "Opciones de la animación"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Automático"
 
+#, fuzzy
 msgid "Away Angle"
-msgstr ""
+msgstr "Ángulo lejano"
 
 #, fuzzy
 msgid "Away Position"
 msgstr "Posición sobre el eje X"
 
+#, fuzzy
 msgid "Beam"
-msgstr ""
+msgstr "Haz"
 
+# Beam sería línea o haz?
 #, fuzzy
 msgid "Beam Color"
-msgstr "Color de la línea"
+msgstr "Color del haz."
 
+#, fuzzy
 msgid "Beam Life"
-msgstr ""
+msgstr "Vida del haz."
 
 #, fuzzy
 msgid "Beam Slowdown"
 msgstr "Desaceleración de las partículas de fuego"
 
+#, fuzzy
 msgid "Beam Spacing"
-msgstr ""
+msgstr "Espaciado del haz"
 
 msgid "Beam Up"
 msgstr ""
 
 #, fuzzy
 msgid "Beam Width"
-msgstr "Ancho del borde"
+msgstr "Ancho del haz"
 
 msgid "Beam color."
-msgstr ""
+msgstr "Color del haz"
 
 msgid "Beam life."
-msgstr ""
+msgstr "Tiempo de vida del haz"
 
 #, fuzzy
 msgid "Beam slowdown."
-msgstr "Desaceleración de las partículas de fuego."
+msgstr "Desaceleración del haz"
 
 #, fuzzy
 msgid "Beam width."
-msgstr "Ancho del borde"
+msgstr "Ancho del haz"
 
 msgid "Burn"
-msgstr ""
+msgstr "Quemar"
 
 #, fuzzy
 msgid "Close Animation"
-msgstr "Tipo de animación del mosaico"
+msgstr "Cerrar animación"
 
 msgid "Close Effect"
-msgstr ""
+msgstr "Efecto para Cerrar"
 
 msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
 "camera, -2.0: Away from camera)."
 msgstr ""
+"Cercania de la ventana a la camara al final de la animacion (1.0 Cerca de la "
+"camara, -2.0 lejos de la camara)"
 
 msgid ""
 "Comma separated list of option value assignments to override effect "
 "settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
+"Lista separada por comas de opciones de asignación de valores para "
+"sobrescribir la configuración de efectos, ej.:fire_color=#0080ffff, "
+"fire_particles=700, fire_smoke=1"
 
 msgid "Curved Fold"
-msgstr ""
+msgstr "Doblado con curvas"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "Amplitud del doblado con curvas"
 
 msgid "Dodge"
-msgstr ""
-
-msgid "Dodge Gap Ratio"
-msgstr ""
+msgstr "Esquivar"
 
 #, fuzzy
+msgid "Dodge Gap Ratio"
+msgstr "Relación del espacio para esquivar."
+
 msgid "Domino"
-msgstr "Abajo"
+msgstr "Dominó"
 
 msgid "Domino Piece Falling Direction"
-msgstr ""
+msgstr "Dirección de caída de las piezas de Dominó"
 
 msgid "Down"
 msgstr "Abajo"
 
-msgid "Dream"
-msgstr ""
-
 #, fuzzy
+msgid "Dream"
+msgstr "Sueños"
+
 msgid "Duration"
-msgstr "Saturación"
+msgstr "Duración"
 
 #, fuzzy
 msgid "Effect Settings"
-msgstr "Configuraciones"
+msgstr "Configuración de los efectos"
 
 msgid "Explode"
-msgstr ""
+msgstr "Explotar"
 
+#, fuzzy
 msgid "Fade"
-msgstr ""
+msgstr "Atenuar"
 
+#, fuzzy
 msgid "Falling direction for Domino pieces."
-msgstr ""
+msgstr "Dirección de caída de las piezas de dominó"
 
 msgid "Fire"
-msgstr ""
+msgstr "Fuego"
 
 msgid "Fire Particle Color"
 msgstr "Color de las partículas de fuego"
@@ -331,18 +361,16 @@ msgid "Fire Particle Slowdown"
 msgstr "Desaceleración de las partículas de fuego"
 
 msgid "Fire Smoke"
-msgstr ""
+msgstr "Humo del fuego"
 
 msgid "Fire constant speed"
-msgstr ""
+msgstr "Velocidad constante del fuego"
 
-#, fuzzy
 msgid "Fire direction"
-msgstr "Dirección de la nieve"
+msgstr "Dirección del fuego"
 
-#, fuzzy
 msgid "Fire direction."
-msgstr "Dirección de la nieve"
+msgstr "Dirección del fuego."
 
 msgid "Fire particle color."
 msgstr "Color de las partículas de fuego"
@@ -351,99 +379,105 @@ msgid "Fire particle life."
 msgstr "Tiempo de vida de las partículas de fuego"
 
 msgid "Fire particle size."
-msgstr "Tamaño de las partículas de fuego"
+msgstr "Tamaño de las partículas de fuego."
 
 msgid "Fire particle slowdown."
 msgstr "Desaceleración de las partículas de fuego."
 
 msgid "Fire smoke."
-msgstr ""
+msgstr "Humo del fuego."
 
 msgid "Fixed window interior during the Rollup animation."
-msgstr ""
+msgstr "Interior de la ventana fijo durante la animación de enrollado"
 
 msgid "Fly to TaskBar on Minimize"
-msgstr ""
+msgstr "Volar hasta la Barra de Tareas al minimizar"
 
 #, fuzzy
 msgid "Focus Animation"
-msgstr "Velocidad de la animación"
+msgstr "Animación Foco"
 
 msgid "Focus Effect"
-msgstr ""
+msgstr "Efecto de Foco"
 
 msgid "Fold"
-msgstr ""
+msgstr "Plegar"
 
 #, fuzzy
 msgid "Fold Direction"
-msgstr "Dirección de la nieve"
+msgstr "Dirección del pliegue"
 
+#, fuzzy
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr ""
+"Dirección de apertura del pliegue para las piezas en el efecto Cuchilla."
 
 #, fuzzy
 msgid "Glide 1"
-msgstr "Deslizar"
+msgstr "Planear 1"
 
 #, fuzzy
 msgid "Glide 2"
-msgstr "Deslizar"
+msgstr "Planear 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
 "Utilizar colores aleatorios para el effecto fuego, también conocido como "
-"\"Fuego Místico.\""
+"\"Fuego Místico\"."
 
 msgid "Hexagonal"
-msgstr ""
+msgstr "Hexagonal"
 
-#, fuzzy
 msgid "Horizontal Folds"
-msgstr "Mosaico horizontal"
+msgstr "Pliegues horizontales"
 
 msgid "Horizontal Folds Amplitude"
-msgstr ""
+msgstr "Amplitud de los pliegues horizontales"
 
+#, fuzzy
 msgid "How spring-like the Sidekick animation should be."
-msgstr ""
+msgstr "Cuánto se debería parecer a un muelle la animación Sidekick."
 
+#, fuzzy
 msgid "How spring-like the Zoom animation should be."
-msgstr ""
+msgstr "Cúanto se debería parecer a un muelle la animación Zoom."
 
+#, fuzzy
 msgid "In"
-msgstr ""
+msgstr "Dentro"
 
+#, fuzzy
 msgid "In-out"
-msgstr ""
+msgstr "Dentro-Fuera"
 
+#, fuzzy
 msgid "Leaf Spread"
-msgstr ""
+msgstr "Caída de las hojas."
 
 msgid "Left"
 msgstr "Izquierda"
 
-#, fuzzy
 msgid "Left-right"
-msgstr "Izquierda/Derecha"
+msgstr "Izquierda-Derecha"
 
 msgid "Length of airplane's flying path."
-msgstr ""
+msgstr "Longitud de la trayectoria de vuelo del aeroplano."
 
 msgid "Magic Lamp"
-msgstr ""
+msgstr "Lámpara mágica"
 
+#, fuzzy
 msgid "Magic Lamp Grid Y Resolution"
-msgstr ""
+msgstr "Resolución eje-Y de la regilla de la Lámpara Mágica"
 
 msgid "Magic Lamp Max Wave Amplitude"
-msgstr ""
+msgstr "Amplitud máxima de la onda de la Lámpara Mágica"
 
 msgid "Magic Lamp Max Waves"
-msgstr ""
+msgstr "Maximo numero de ondas de Lámpara Mágica"
 
 msgid "Magic Lamp Min Wave Amplitude"
-msgstr ""
+msgstr "Amplitud minima de la onda de la Lámpara Mágica"
 
 msgid "Magic Lamp Open Start Width"
 msgstr ""
@@ -453,31 +487,32 @@ msgstr ""
 
 msgid "Make fire effect duration be dependent on window height."
 msgstr ""
+"Hacer la duracion del efecto de fuego dependiente de la altura de la ventana"
 
 #, fuzzy
 msgid "Minimize Animation"
-msgstr "Minimizar con el grupo"
+msgstr "Animación al minimizar"
 
 msgid "Minimize Effect"
-msgstr ""
+msgstr "Efecto al minimizar"
 
 msgid "Minimize/Unminimize Only"
-msgstr ""
+msgstr "Sólo Minimizar/restaurar"
 
 #, fuzzy
 msgid "Movement direction(s) for window pieces."
-msgstr "Mover los reflejos cuando la ventana es movida."
+msgstr "Dirección del movimiento para las partes de la ventana."
 
 msgid "None"
 msgstr "Ninguno/a"
 
 #, fuzzy
 msgid "Number Of Fire Particles"
-msgstr "Número de partículas"
+msgstr "Número de partículas de fuego"
 
 #, fuzzy
 msgid "Number of Horizontal Folds"
-msgstr "Número de partículas"
+msgstr "Número de pliegues horizontales"
 
 #, fuzzy
 msgid "Number of fire particles."
@@ -487,11 +522,13 @@ msgstr "Número de partículas"
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
 
+#, fuzzy
 msgid "Off"
-msgstr ""
+msgstr "Apagado"
 
+#, fuzzy
 msgid "On"
-msgstr ""
+msgstr "Encendido"
 
 msgid "On open/close, move magic lamp ending point with the mouse pointer."
 msgstr ""
@@ -524,13 +561,13 @@ msgid ""
 msgstr ""
 
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio"
 
 msgid "Random Animations For All Events"
-msgstr ""
+msgstr "Animaciones aleatorias para todos los eventos"
 
 msgid "Random Effects"
-msgstr ""
+msgstr "Efectos aleatorios"
 
 msgid "Randomly Colored Fire"
 msgstr "Fuego de colores aleatorios"
@@ -632,16 +669,16 @@ msgid ""
 msgstr ""
 
 msgid "The animation effect shown when closing a window."
-msgstr ""
+msgstr "Efecto de animacion cuando se cierra una ventana"
 
 msgid "The animation effect shown when creating a window."
-msgstr ""
+msgstr "Efecto de animacion cuando se crea una ventana"
 
 msgid "The animation effect shown when focusing a window."
 msgstr ""
 
 msgid "The animation effect shown when minimizing a window."
-msgstr ""
+msgstr "Efecto de animacion cuando se minimiza una ventana"
 
 msgid "The animation effect shown when shading a window."
 msgstr ""
@@ -704,7 +741,7 @@ msgid "Up-down"
 msgstr "Arriba/Abajo"
 
 msgid "Use various animations as window effects"
-msgstr ""
+msgstr "Usar varias animaciones como efectos de ventana"
 
 msgid "Vacuum"
 msgstr ""
@@ -807,6 +844,46 @@ msgstr ""
 
 msgid "Zoom to TaskBar on Minimize"
 msgstr ""
+
+msgid "Colors"
+msgstr "Colores"
+
+msgid "Cube Atlantis"
+msgstr ""
+
+msgid "Dolphin size"
+msgstr ""
+
+msgid "Dolphin size."
+msgstr ""
+
+#, fuzzy
+msgid "Enable colors"
+msgstr "Habilitar el resplandor en las ventanas"
+
+msgid "Fish size"
+msgstr ""
+
+#, fuzzy
+msgid "Number of fish"
+msgstr "Número de partículas"
+
+#, fuzzy
+msgid "Number of fish inside the cube"
+msgstr "Número de partículas"
+
+msgid "Render some fish inside of the transparent cube"
+msgstr ""
+
+msgid "Shark size"
+msgstr ""
+
+msgid "Whale size"
+msgstr ""
+
+#, fuzzy
+msgid "Whale size."
+msgstr "Tamaño de las partículas de fuego."
 
 msgid "A simple benchmark plugin"
 msgstr "Plugin simple de pruebas de performance"
@@ -1652,9 +1729,6 @@ msgstr "Cambiar la duración de la animación de las fichas"
 
 msgid "Close Group"
 msgstr "Cerrar grupo"
-
-msgid "Colors"
-msgstr "Colores"
 
 msgid "Create mipmaps for thumbnails"
 msgstr "Crear mipmaps para las vistas previas"
@@ -4006,37 +4080,37 @@ msgid "Move with window within wall"
 msgstr ""
 
 msgid "Move within wall"
-msgstr ""
+msgstr "Mover dentro de la ventana"
 
 msgid "Multimonitor behavior"
-msgstr ""
+msgstr "Comportamiento multimonitor"
 
 #, fuzzy
 msgid "Outline Color"
-msgstr "Color de la línea"
+msgstr "Color de la línea externa"
 
 msgid "Outline color of the switcher window."
-msgstr ""
+msgstr "Color de la linea externa de la ventana del conmutador"
 
 #, fuzzy
 msgid "Radius of the rounded edge"
 msgstr "El radio de los ejes de la barra de fichas"
 
 msgid "Second color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Segundo color para el fondo de gradiente de la ventana de conmutador"
 
 msgid "Second color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "Segundo color para el pulgar de gradiente de la ventana de conmutador"
 
 msgid "Second color for the thumb highlight gradient of the switcher window."
 msgstr ""
 
 msgid "Second color of the arrow of the switcher window."
-msgstr ""
+msgstr "Segundo color de la flecha de la ventana del conmutador"
 
 #, fuzzy
 msgid "Shadow Color"
-msgstr "Color de la fuente"
+msgstr "Color de la sombra"
 
 msgid "Show Live Viewport Previews"
 msgstr ""
@@ -4054,154 +4128,206 @@ msgid "Switch Target Preview Visibility Time"
 msgstr ""
 
 msgid "Switch all"
-msgstr ""
+msgstr "Cambiar todos"
 
 msgid "Switch separately"
-msgstr ""
+msgstr "Cambiar por separado"
 
 msgid "Third color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Tercer color para el fondo de gradiente de la ventana de conmutador"
 
 #, fuzzy
 msgid "Thumb Gradient"
 msgstr "Gradiente"
 
 msgid "Viewport Switch Preview"
-msgstr ""
+msgstr "Cambiar preliminar viewport"
 
 msgid "Viewport Switching"
-msgstr ""
+msgstr "Cambiando Viewport"
 
 #, fuzzy
 msgid "Wall Sliding Duration"
-msgstr "Duración de la animación"
+msgstr "Duración del deslizamiendo de la pared"
 
 #, fuzzy
 msgid "Backgrounds"
-msgstr "Brillo del fondo"
+msgstr "Fondo"
 
 msgid "Draw the desktop wallpaper"
-msgstr ""
+msgstr "Dibuje el papel tapiz del escritorio"
 
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
+"Las especificaciones del fondo (como se explica en la DOCUMENTACION) a usar."
 
 msgid "Tile backgrounds as opposed to stretching"
-msgstr ""
+msgstr "Fondo en mosaico en lugar de expandido"
 
 msgid "Tile or Stretch"
-msgstr ""
+msgstr "Mosaico o Expandido"
 
 msgid "Wallpaper"
+msgstr "Fondo de Pantalla"
+
+#, fuzzy
+msgid "Background Brightness"
+msgstr "Brillo del fondo"
+
+#, fuzzy
+msgid "Background Saturation"
+msgstr "Brillo del fondo"
+
+#, fuzzy
+msgid "Background in Widget Mode"
+msgstr "Brillo del fondo"
+
+#, fuzzy
+msgid "Brightness of non-widget windows in widget modes."
+msgstr "Brillo de las ventanas translúcidas"
+
+msgid "End Widget Mode on Click"
 msgstr ""
 
-msgid "Above others windows"
+msgid "End widget mode when a non-widget window is clicked."
 msgstr ""
+
+#, fuzzy
+msgid "Saturation of non-widget windows in widget modes."
+msgstr "Saturación de las ventanas translúcidas"
+
+#, fuzzy
+msgid "Show or hide widget windows"
+msgstr "Nieve sobre las ventanas"
+
+msgid "Show widget windows on a separate layer"
+msgstr ""
+
+msgid "Time (in s) for fading into/out of the widget layer."
+msgstr ""
+
+#, fuzzy
+msgid "Toggle Widget Display"
+msgstr "Habilitar o deshabilitar la Redirección la de ventanas"
+
+msgid "Widget Layer"
+msgstr ""
+
+#, fuzzy
+msgid "Widget Windows"
+msgstr "Ventanas en mosaico"
+
+#, fuzzy
+msgid "Windows that always should be treated as widgets"
+msgstr "Ventanas que deberían ser procesadas por 3D"
+
+msgid "Above others windows"
+msgstr "Por encima de otras ventanas"
 
 #, fuzzy
 msgid "Below others windows"
-msgstr "Nieve sobre las ventanas"
+msgstr "Por debajo de otras ventanas"
 
 msgid "Don't show application in pager"
-msgstr ""
+msgstr "No mostrar la aplicación en el paginador"
 
 msgid "Don't show application in taskbar"
-msgstr ""
+msgstr "No mostrar la aplicación en la barra de tareas"
 
 #, fuzzy
 msgid "Fixed Size Windows"
-msgstr "Ventanas en mosaico"
+msgstr "Dimención de ventanas fijada"
 
 #, fuzzy
 msgid "Fullscreen"
-msgstr "Habilitar o deshabilitar \"Pantalla Completa\""
+msgstr "Pantalla Completa"
 
 #, fuzzy
 msgid "Fullscreen windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas en pantalla completa"
 
 #, fuzzy
 msgid "Height"
-msgstr "Derecha"
+msgstr "Altura"
 
 msgid "Height values"
-msgstr ""
+msgstr "Valores de altura"
 
 msgid "Matches"
-msgstr ""
+msgstr "Iguales"
 
 msgid "No ARGB visuals"
-msgstr ""
+msgstr "Sin visuales ARGB"
 
 msgid "No focus"
-msgstr ""
+msgstr "Sin centrar"
 
 #, fuzzy
 msgid "Non closable windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas incerrables"
 
 #, fuzzy
 msgid "Non maximizable windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas no maximizables"
 
 #, fuzzy
 msgid "Non minimizable windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas no minimizables"
 
 #, fuzzy
 msgid "Non movable windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas inmovibles"
 
 #, fuzzy
 msgid "Non resizable windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas no dimensionables"
 
 msgid "Set window as non closable"
-msgstr ""
+msgstr "Fijar ventana como incerrable"
 
 msgid "Set window as non maximizable"
-msgstr ""
+msgstr "Fijar ventana como no maximizable"
 
 msgid "Set window as non minimizable"
-msgstr ""
+msgstr "Fijar ventana como no minimizable"
 
 msgid "Set window as non movable"
-msgstr ""
+msgstr "Fijar ventana como inmovible"
 
 msgid "Set window as non resizable"
-msgstr ""
+msgstr "Fijar ventana como no dimensionable"
 
 #, fuzzy
 msgid "Set windows rules"
-msgstr "Ventanas en mosaico"
+msgstr "Fijar reglas de ventanas"
 
 #, fuzzy
 msgid "Sized Windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas dimensionadas"
 
 msgid "Skip pager"
-msgstr ""
+msgstr "Omitir Paginador"
 
 msgid "Skip taskbar"
-msgstr ""
+msgstr "Saltar Barra de Tareas"
 
 #, fuzzy
 msgid "Sticky"
-msgstr "Habilitar o deshabilitar estar en todos las caras del cubo"
+msgstr "Pegajoso"
 
 #, fuzzy
 msgid "Sticky windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas pegajosas"
 
 msgid "Width"
-msgstr ""
+msgstr "Ancho OR anchura"
 
 msgid "Width values"
-msgstr ""
+msgstr "Valores de anchura"
 
 #, fuzzy
 msgid "Window Rules"
-msgstr "Tipos de ventana"
+msgstr "Reglas de ventana"
 
 #, fuzzy
 msgid "Windows that should be resized by default"
@@ -4212,49 +4338,63 @@ msgid "Windows that should be treated as not supporting transparency"
 msgstr "Ventanas que deberían ser fundidas con el escritorio"
 
 msgid "Windows will not have focus"
-msgstr ""
+msgstr "La ventana no esta centrada"
 
 msgid "\"On all desktops\" sticky match"
-msgstr ""
+msgstr "Modo pegajoso \"En todos los escritorios\""
+
+msgid "AIGLX Fragment Parameter Fix"
+msgstr "Fijado el Parametro fragmentado AIGLX"
 
 msgid "Firefox Menu Fix"
-msgstr ""
+msgstr "Fijado Menú Firefox"
+
+msgid "Fix broken glProgramEnvParameter4f implementation."
+msgstr "Fijar implementacion quebrada glProgramEnvParameter4f"
 
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr ""
+msgstr "Fijar tipo de ventana de los menús de Firefox y Thunderbird"
+
+msgid "Fix window type of OpenOffice.org menus."
+msgstr "Fijar tipo de ventana de los menús OpenOffice.org"
 
 msgid "Fix window type of notification daemon windows."
-msgstr ""
+msgstr "Fijar tipo de ventana de la ventana del demonio de notificacion"
 
 msgid "Fix window type of various Java windows."
-msgstr ""
+msgstr "Fijar el tipo de ventana de varias ventanas Java"
 
 msgid "Fix window type of various Qt windows."
-msgstr ""
+msgstr "Fijar tipo de ventana de varias ventanas Qt"
 
 #, fuzzy
 msgid "Java Window Fix"
-msgstr "Habilitar ventana"
+msgstr "Fijar Ventana Java "
 
 msgid "Legacy Fullscreen Support"
-msgstr ""
+msgstr "Soportar legacy pantalla completa"
 
 msgid "Make \"on all desktops\" windows \"sticky\""
-msgstr ""
+msgstr "Activa \"en todos los escritorios\" ventanas \"pegajosas\""
 
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
 msgstr ""
+"Realiza \"en todos los escritorios\" ventanas pegajosas. ventanas pegajosas "
+"son visibles en todos las partes."
 
 msgid "Make Wine and legacy applications fullscreen properly."
-msgstr ""
+msgstr "Has que wine y legacy corran pantalla completa correctamente."
 
 msgid "Metacity-like workarounds."
-msgstr ""
+msgstr "Metacity como Solucion"
 
 msgid "Notification Daemon Fix"
 msgstr ""
+
+msgid "OpenOffice.org Menu Fix"
+msgstr "Menú OpenOffice.org Fijado"
 
 #, fuzzy
 msgid "Qt Window Fix"

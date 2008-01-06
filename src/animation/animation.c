@@ -161,70 +161,7 @@ static AnimEffect shadeEffects[] = {
     AnimEffectRollUp
 };
 
-float identity[16] = {
-    1.0, 0.0, 0.0, 0.0,
-    0.0, 1.0, 0.0, 0.0,
-    0.0, 0.0, 1.0, 0.0,
-    0.0, 0.0, 0.0, 1.0
-};
-
 static int switcherPostWait = 0;
-
-
-// Remove when matmul4 in matrix.c made publicly accessible
-
-#define A(row, col) a[(col << 2) + row]
-#define B(row, col) b[(col << 2) + row]
-#define P(row, col) product[(col << 2) + row]
-
-/**
- * Perform a full 4x4 matrix multiplication.
- *
- * \param a matrix.
- * \param b matrix.
- * \param product will receive the product of \p a and \p b.
- *
- * \warning Is assumed that \p product != \p b. \p product == \p a is allowed.
- *
- * \note KW: 4*16 = 64 multiplications
- *
- * \author This \c matmul was contributed by Thomas Malik
- */
-void
-matmul4 (float       *product,
-	 const float *a,
-	 const float *b)
-{
-    int i;
-
-    for (i = 0; i < 4; i++)
-    {
-	const float ai0 = A(i,0), ai1 = A(i,1), ai2 = A(i,2), ai3 = A(i,3);
-
-	P(i,0) = ai0 * B(0,0) + ai1 * B(1,0) + ai2 * B(2,0) + ai3 * B(3,0);
-	P(i,1) = ai0 * B(0,1) + ai1 * B(1,1) + ai2 * B(2,1) + ai3 * B(3,1);
-	P(i,2) = ai0 * B(0,2) + ai1 * B(1,2) + ai2 * B(2,2) + ai3 * B(3,2);
-	P(i,3) = ai0 * B(0,3) + ai1 * B(1,3) + ai2 * B(2,3) + ai3 * B(3,3);
-    }
-}
-
-#undef A
-#undef B
-#undef P
-
-
-// Perform multiplication of 4x4 matrix by a vector
-void
-multiplyMatrixVector (float *result,
-		      const float *mat,
-		      const float *v)
-{
-#define M(row, col) mat[(col << 2) + row]
-    int i;
-    for (i = 0; i < 4; i++)
-	result[i] = M(i,0) * v[0] + M(i,1) * v[1] + M(i,2) * v[2] + M(i,3) * v[3];
-#undef M
-}
 
 // iterate over given list
 // check if given effect name matches any implemented effect
@@ -397,6 +334,7 @@ getMatchingAnimSelection (CompWindow *w,
 	if (!matchEval (&valMatch->list.value[i].match, w))
 	    continue;
 
+	aw->prevAnimSelectionRow = aw->curAnimSelectionRow;
 	aw->curAnimSelectionRow = i;
 
 	*duration = valDuration->list.value[i].i;
@@ -561,7 +499,7 @@ Bool defaultAnimStep(CompScreen * s, CompWindow * w, float time)
     // avoid sub-zero values
     aw->animRemainingTime = MAX(aw->animRemainingTime, 0);
 
-    resetToIdentity (&aw->transform);
+    matrixGetIdentity (&aw->transform);
     if (animZoomToIcon(as, aw))
     {
 	applyZoomTransform (w, &aw->transform);
@@ -643,15 +581,13 @@ expandBoxWithPoint (Box *target, float fx, float fy)
 static void
 expandBoxWithPoint2DTransform (CompScreen *s,
 			       Box *target,
-			       float x,
-			       float y,
-			       float *transformMat)
+			       CompVector *coords,
+			       CompTransform *transformMat)
 {
-    float coords[4] = {x, y, 0, 1};
-    float coordsTransformed[4];
-    multiplyMatrixVector (coordsTransformed, transformMat, coords);
-
-    expandBoxWithPoint (target, coordsTransformed[0], coordsTransformed[1]);
+    CompVector coordsTransformed;
+    
+    matrixMultiplyVector (&coordsTransformed, coords, transformMat);
+    expandBoxWithPoint (target, coordsTransformed.x, coordsTransformed.y);
 }
 
 static Bool
@@ -708,13 +644,17 @@ modelUpdateBB (CompOutput *output,
     if (animZoomToIcon(as, aw))
 	for (i = 0; i < model->numObjects; i++)
 	{
-	    x = model->objects[i].position.x;
-	    y = model->objects[i].position.y;
+	    CompVector coords;
+
+	    coords.x = model->objects[i].position.x;
+	    coords.y = model->objects[i].position.y;
+	    coords.z = 0;
+	    coords.w = 1;
 
 	    expandBoxWithPoint2DTransform (w->screen,
 					   &aw->BB,
-					   x, y,
-					   aw->transform.m);
+					   &coords,
+					   &aw->transform);
 	}
     else
 	for (i = 0; i < model->numObjects; i++)
@@ -747,12 +687,6 @@ updateBBScreen (CompOutput *output,
     expandBoxWithBox (&aw->BB, &screenBox);
 }
 
-inline void
-resetToIdentity (CompTransform *transform)
-{
-    memcpy (transform->m, identity, 16 * sizeof(float));
-}
-
 void
 prepareTransform (CompScreen *s,
 		  CompOutput *output,
@@ -761,12 +695,11 @@ prepareTransform (CompScreen *s,
 {
     CompTransform sTransform;
 
-    resetToIdentity (&sTransform);
-
+    matrixGetIdentity (&sTransform);
     transformToScreenSpace (s, output,
 			    -DEFAULT_Z_CAMERA, &sTransform);
 
-    matmul4 (resultTransform->m, sTransform.m, transform->m);
+    matrixMultiply (resultTransform, &sTransform, transform);
 }
 
 void
@@ -1614,6 +1547,24 @@ void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
 }
 
 static void
+postAnimationCleanupPrev (CompWindow * w,
+			  Bool resetAnimation,
+			  Bool closing,
+			  Bool clearMatchingRow)
+{
+    ANIM_WINDOW(w);
+
+    int curAnimSelectionRow = aw->curAnimSelectionRow;
+    // Use previous event's anim selection row
+    aw->curAnimSelectionRow = aw->prevAnimSelectionRow;
+
+    postAnimationCleanupCustom (w, resetAnimation, closing, clearMatchingRow);
+
+    // Restore current event's anim selection row
+    aw->curAnimSelectionRow = curAnimSelectionRow;
+}
+
+static void
 animActivateEvent (CompScreen *s,
 		   Bool       activating)
 {
@@ -1925,11 +1876,6 @@ initiateFocusAnimation(CompWindow *w)
 	    aw->animTotalTime = duration;
 	aw->animRemainingTime = aw->animTotalTime;
 
-	// Store coords in this viewport to omit 3d effect
-	// painting in other viewports
-	aw->lastKnownCoords.x = w->attrib.x;
-	aw->lastKnownCoords.y = w->attrib.y;
-
 	damagePendingOnScreen (s);
     }
 }
@@ -1976,6 +1922,24 @@ restackInfoStillGood(CompScreen *s, RestackInfo *restackInfo)
     return (wStartGood && wEndGood && wOldAboveGood && wRestackedGood);
 }
 
+// Reset stacking related info
+static void inline
+resetStackingInfo (CompScreen *s)
+{
+    CompWindow *w;
+    for (w = s->windows; w; w = w->next)
+    {
+	ANIM_WINDOW (w);
+
+	aw->configureNotified = FALSE;
+	if (aw->restackInfo)
+	{
+	    free (aw->restackInfo);
+	    aw->restackInfo = NULL;
+	}
+    }
+}
+
 static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 {
     CompWindow *w;
@@ -1987,7 +1951,14 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
     {
 	switcherPostWait++;
 	if (switcherPostWait > 4) // wait over
+	{
 	    switcherPostWait = 0;
+
+	    // Reset stacking related info since it will
+	    // cause problems because of the restacking
+	    // just done by Switcher.
+	    resetStackingInfo (s);
+	}
     }
 
     if (as->aWinWasRestackedJustNow)
@@ -2911,8 +2882,16 @@ animPaintWindow(CompWindow * w,
 	WRAP(as, w->screen, paintWindow, animPaintWindow);
 
 	if (animEffectProperties[aw->curAnimEffect].postPaintWindowFunc)
+	{
+	    // Transform to make post-paint coincide with the window
+	    glPushMatrix ();
+	    glLoadMatrixf (wTransform.m);
+
 	    animEffectProperties[aw->curAnimEffect].
 		postPaintWindowFunc(w->screen, w);
+
+	    glPopMatrix ();
+	}
     }
     else
     {
@@ -3291,7 +3270,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    if (aw->curWindowEvent != WindowEventUnshade)
 			    {
-				postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+				postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 			    }
 			    else
 			    {
@@ -3333,11 +3312,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			animActivateEvent(w->screen, TRUE);
 			aw->curWindowEvent = WindowEventShade;
 
-			// Store coords in this viewport to omit 3d effect
-			// painting in other viewports
-			aw->lastKnownCoords.x = w->attrib.x;
-			aw->lastKnownCoords.y = w->attrib.y;
-
 			if (!animEnsureModel(w))
 			{
 			    postAnimationCleanup(w, TRUE);
@@ -3367,7 +3341,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    if (aw->curWindowEvent != WindowEventUnminimize)
 			    {
-				postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+				postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 			    }
 			    else
 			    {
@@ -3408,11 +3382,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 			animActivateEvent(w->screen, TRUE);
 			aw->curWindowEvent = WindowEventMinimize;
-
-			// Store coords in this viewport to omit 3d effect
-			// painting in other viewports
-			aw->lastKnownCoords.x = w->attrib.x;
-			aw->lastKnownCoords.y = w->attrib.y;
 
 			if (!animEnsureModel(w))
 			{
@@ -3488,7 +3457,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			}
 			else
 			{
-			    postAnimationCleanupCustom(w, TRUE, TRUE, FALSE);
+			    postAnimationCleanupPrev (w, TRUE, TRUE, FALSE);
 			}
 		    }
 
@@ -3511,11 +3480,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    }
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventClose;
-
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    aw->lastKnownCoords.x = w->attrib.x;
-		    aw->lastKnownCoords.y = w->attrib.y;
 
 		    if (!animEnsureModel(w))
 		    {
@@ -3806,7 +3770,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventMinimize)
 		    {
-			postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -3854,11 +3818,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventUnminimize;
 
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    aw->lastKnownCoords.x = w->attrib.x;
-		    aw->lastKnownCoords.y = w->attrib.y;
-
 		    if (animEnsureModel(w))
 		    {
 			if (!animGetWindowIconGeometry(w, &aw->icon))
@@ -3896,7 +3855,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventShade)
 		    {
-			postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -3944,11 +3903,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    animActivateEvent(w->screen, TRUE);
 		    aw->curWindowEvent = WindowEventUnshade;
 
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    aw->lastKnownCoords.x = w->attrib.x;
-		    aw->lastKnownCoords.y = w->attrib.y;
-
 		    if (animEnsureModel(w))
 			damagePendingOnScreen (w->screen);
 		    else
@@ -3983,7 +3937,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventClose)
 		    {
-			postAnimationCleanupCustom(w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -4046,13 +4000,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    aw->icon.x -= aw->icon.width / 2;
 		    aw->icon.y -= aw->icon.height / 2;
 
-		    // Store coords in this viewport to omit 3d effect
-		    // painting in other viewports
-		    if (aw->lastKnownCoords.x != NOT_INITIALIZED)
-		    {
-			aw->lastKnownCoords.x = w->attrib.x;
-			aw->lastKnownCoords.y = w->attrib.y;
-		    }
 		    if (animEnsureModel(w))
 			damagePendingOnScreen (w->screen);
 		    else
@@ -4472,8 +4419,6 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
     w->indexCount = 0;
 
     aw->polygonSet = NULL;
-    aw->lastKnownCoords.x = NOT_INITIALIZED;
-    aw->lastKnownCoords.y = NOT_INITIALIZED;
 
     aw->unmapCnt = 0;
     aw->destroyCnt = 0;

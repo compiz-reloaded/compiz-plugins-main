@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Compiz Fusion Plugins 0.5.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-09-09 21:42+0530\n"
+"POT-Creation-Date: 2007-12-22 16:21+0530\n"
 "PO-Revision-Date: 2007-09-09 02:42+0100\n"
 "Last-Translator: Gustau L. Castells (Karasu) <gustaucastells@gmail.com>\n"
 "Language-Team: Catalan <gustaucastells@gmail.com>\n"
@@ -53,37 +53,27 @@ msgstr "Arrodoneix el cantó de dalt a l'esquerra"
 msgid "Bevel top right corner"
 msgstr "Arrodoneix el cantó de dalt a la dreta"
 
-msgid "Change the amount of space between the windows."
+#, fuzzy
+msgid ""
+"Change the amount of space between the windows (in percent of the cube size)."
 msgstr "Canvia la quantitat d'espai entre les finestres."
 
 msgid "Change the speed of the 3D animation"
 msgstr "Canvia la velocitat de l'animació 3D"
 
-msgid "Corner Bevelling"
-msgstr "Arrodoniment de cantons"
-
-msgid "Create Mipmaps"
-msgstr "Crear mipmaps"
-
-msgid "Disable Caps for Inside Cube"
-msgstr "Desactivar les tapes per dins del cub"
-
-msgid "Disables the drawing of the cube caps when the inside cube mode is set."
-msgstr "No dibuixa les tapes del cub quan el mode dins del cub està activat."
-
-msgid "Draw Window Backsides"
-msgstr "Dibuixa les cares del darrera"
-
 msgid "Elevates windows while rotating the cube"
 msgstr "Eleva les finestres quan girem el cub"
-
-msgid "Enables the drawing of the backside of windows."
-msgstr "Dibuixa les cares del darrera de les finestres"
 
 msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
 "cube via the mouse)"
 msgstr "Mostra en 3D només si el gir està dirigit pel mouse."
+
+msgid "Minimum Cube Size"
+msgstr ""
+
+msgid "Minimum cube size (in percent)."
+msgstr ""
 
 msgid "Misc. Options"
 msgstr "Altres opcions"
@@ -93,12 +83,9 @@ msgstr ""
 "Arrodoneix els cantons per mantenir la consistència amb les decoracions "
 "arrodonides"
 
-msgid ""
-"This will create mipmaps which improve overall texture appearence, and "
-"reduce jagged edges."
-msgstr ""
-"Això crearà mipmaps que millorarà l'aparença general de la textura, i "
-"reduirà els cantons escapçats."
+#, fuzzy
+msgid "Window Depth"
+msgstr "Amplada de finestra"
 
 msgid "Window Match"
 msgstr ""
@@ -106,10 +93,8 @@ msgstr ""
 msgid "Window Space"
 msgstr "Espai de finestra"
 
-msgid "Window Width"
-msgstr "Amplada de finestra"
-
-msgid "Window width"
+#, fuzzy
+msgid "Window depth"
 msgstr "Amplada de finestra"
 
 msgid "Windows that should be handled by 3D"
@@ -806,6 +791,47 @@ msgstr ""
 
 msgid "Zoom to TaskBar on Minimize"
 msgstr "Fes zoom a la barra d'eines al minimitzar"
+
+msgid "Colors"
+msgstr "Colors"
+
+#, fuzzy
+msgid "Cube Atlantis"
+msgstr "Tapes del cub"
+
+msgid "Dolphin size"
+msgstr ""
+
+msgid "Dolphin size."
+msgstr ""
+
+#, fuzzy
+msgid "Enable colors"
+msgstr "Activa lluentor"
+
+msgid "Fish size"
+msgstr ""
+
+#, fuzzy
+msgid "Number of fish"
+msgstr "Nombre de partícules"
+
+#, fuzzy
+msgid "Number of fish inside the cube"
+msgstr "Nombre de partícules de foc."
+
+msgid "Render some fish inside of the transparent cube"
+msgstr ""
+
+msgid "Shark size"
+msgstr ""
+
+msgid "Whale size"
+msgstr ""
+
+#, fuzzy
+msgid "Whale size."
+msgstr "Mida de les partícules del foc."
 
 msgid "A simple benchmark plugin"
 msgstr "Un connector simple de test de referència"
@@ -1633,9 +1659,6 @@ msgstr "Canvia la durada de l'animació de pestanya"
 
 msgid "Close Group"
 msgstr "Tanca el grup"
-
-msgid "Colors"
-msgstr "Colors"
 
 msgid "Create mipmaps for thumbnails"
 msgstr "Crea mipmaps per les miniatures"
@@ -3893,6 +3916,57 @@ msgstr ""
 msgid "Wallpaper"
 msgstr "Paper de fons"
 
+#, fuzzy
+msgid "Background Brightness"
+msgstr "Brillantor del fons"
+
+#, fuzzy
+msgid "Background Saturation"
+msgstr "Saturació del fons"
+
+#, fuzzy
+msgid "Background in Widget Mode"
+msgstr "Fitxer d'imatge de fons"
+
+#, fuzzy
+msgid "Brightness of non-widget windows in widget modes."
+msgstr "Brillantor de les finestres quan s'esvaeixen"
+
+msgid "End Widget Mode on Click"
+msgstr ""
+
+msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+#, fuzzy
+msgid "Saturation of non-widget windows in widget modes."
+msgstr "Saturació de les finestres quan s'esvaeixen"
+
+#, fuzzy
+msgid "Show or hide widget windows"
+msgstr "Mostra finestres minimitzades"
+
+msgid "Show widget windows on a separate layer"
+msgstr ""
+
+msgid "Time (in s) for fading into/out of the widget layer."
+msgstr ""
+
+#, fuzzy
+msgid "Toggle Widget Display"
+msgstr "Activa/desactiva finestra en negatiu"
+
+msgid "Widget Layer"
+msgstr ""
+
+#, fuzzy
+msgid "Widget Windows"
+msgstr "Finestres en anell"
+
+#, fuzzy
+msgid "Windows that always should be treated as widgets"
+msgstr "Finestres que s'haurien de dimensionar per defecte"
+
 msgid "Above others windows"
 msgstr "Finestres per damunt les altres"
 
@@ -3999,10 +4073,20 @@ msgstr ""
 msgid "\"On all desktops\" sticky match"
 msgstr ""
 
+msgid "AIGLX Fragment Parameter Fix"
+msgstr ""
+
 msgid "Firefox Menu Fix"
 msgstr "Ajusta el menú del firefox"
 
+msgid "Fix broken glProgramEnvParameter4f implementation."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
+msgstr "Ajusta el tipus de finestra pels menus del Firefox i el Thunderbirds"
+
+#, fuzzy
+msgid "Fix window type of OpenOffice.org menus."
 msgstr "Ajusta el tipus de finestra pels menus del Firefox i el Thunderbirds"
 
 msgid "Fix window type of notification daemon windows."
@@ -4041,6 +4125,10 @@ msgstr ""
 msgid "Notification Daemon Fix"
 msgstr "Ajusta el dimoni de notificació"
 
+#, fuzzy
+msgid "OpenOffice.org Menu Fix"
+msgstr "Ajusta el menú del firefox"
+
 msgid "Qt Window Fix"
 msgstr "Ajusta les finestres QT"
 
@@ -4052,3 +4140,33 @@ msgstr "Finestres en tots els escriptoris que han de ser apegaloses"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Corner Bevelling"
+#~ msgstr "Arrodoniment de cantons"
+
+#~ msgid "Create Mipmaps"
+#~ msgstr "Crear mipmaps"
+
+#~ msgid "Disable Caps for Inside Cube"
+#~ msgstr "Desactivar les tapes per dins del cub"
+
+#~ msgid ""
+#~ "Disables the drawing of the cube caps when the inside cube mode is set."
+#~ msgstr ""
+#~ "No dibuixa les tapes del cub quan el mode dins del cub està activat."
+
+#~ msgid "Draw Window Backsides"
+#~ msgstr "Dibuixa les cares del darrera"
+
+#~ msgid "Enables the drawing of the backside of windows."
+#~ msgstr "Dibuixa les cares del darrera de les finestres"
+
+#~ msgid ""
+#~ "This will create mipmaps which improve overall texture appearence, and "
+#~ "reduce jagged edges."
+#~ msgstr ""
+#~ "Això crearà mipmaps que millorarà l'aparença general de la textura, i "
+#~ "reduirà els cantons escapçats."
+
+#~ msgid "Window width"
+#~ msgstr "Amplada de finestra"

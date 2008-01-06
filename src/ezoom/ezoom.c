@@ -21,10 +21,12 @@
  * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  *
- * Authors:
+ * Author(s):
  *	- Original zoom plugin; David Reveman <davidr@novell.com>
  *	- Most features beyond basic zoom;
  *	  Kristian Lyngstol <kristian@bohemians.org>
+ *
+ * Description:
  *
  * This plugin offers basic zoom, and does not require input to be disabled
  * while zooming. Key features of the new version is a hopefully more generic
@@ -74,6 +76,9 @@
  * ... crazy. If you zoom in so your 1024-wide screen is showing 102 pixels,
  * you only have to move the mouse 1/10th of the distance you normally would
  * to move it across the visible area.
+ *
+ * Todo:
+ *  - Different multihead modes
  */
 
 #include <stdio.h>
@@ -1596,7 +1601,8 @@ zoomToWindow (CompDisplay     *d,
     if (!s)
 	return TRUE;
     CompWindow *w;
-    w = findWindowAtDisplay (d, d->activeWindow);
+    xid = getIntOptionNamed (option, nOption, "window", 0);
+    w = findWindowAtDisplay (d, xid);
     if (!w || w->screen->root != s->root)
 	return TRUE;
     int width = w->width + w->input.left + w->input.right;
@@ -1715,10 +1721,12 @@ zoomFitWindowToZoom (CompDisplay     *d,
 		     CompOption      *option,
 		     int	     nOption)
 {
+    Window xid;
     CompScreen *s;
     XWindowChanges xwc;
     CompWindow * w;
-    w = findWindowAtDisplay (d, d->activeWindow);
+    xid = getIntOptionNamed (option, nOption, "window", 0);
+    w = findWindowAtDisplay (d, xid);
     if (!w)
 	return TRUE;
     s = w->screen;
@@ -1733,6 +1741,7 @@ zoomFitWindowToZoom (CompDisplay     *d,
 			zs->zooms[out].currentZoom -
 			(int) ((w->input.top + w->input.bottom)));
     sendSyncRequest (w);
+    constrainNewWindowSize (w, xwc.width, xwc.height, &xwc.width, &xwc.height);
     configureXWindow (w, (unsigned int) CWWidth | CWHeight, &xwc);
     return TRUE;
 }

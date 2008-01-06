@@ -61,15 +61,15 @@ typedef struct _VpSwitchDisplay
 #define GET_DATA \
     CompScreen *s;\
     CompWindow *w;\
-    Window xid; \
-    xid = getIntOptionNamed(option, nOption, "root", 0); \
-    s = findScreenAtDisplay(d, xid); \
+    Window     xid; \
+    xid = getIntOptionNamed (option, nOption, "root", 0); \
+    s = findScreenAtDisplay (d, xid); \
     if (!s) \
 	return FALSE; \
-    if (otherScreenGrabExist(s, "rotate", "wall", "plane", 0)) \
+    if (otherScreenGrabExist (s, "rotate", "wall", "plane", 0)) \
 	return FALSE; \
-    xid = getIntOptionNamed(option, nOption, "window", 0); \
-    w = findWindowAtDisplay(d, xid); \
+    xid = getIntOptionNamed (option, nOption, "window", 0); \
+    w = findWindowAtDisplay (d, xid); \
     if ((!w || (w->type & CompWindowTypeDesktopMask) == 0) && \
 	(s->desktopWindowCount || xid != s->root)) \
 	return FALSE;

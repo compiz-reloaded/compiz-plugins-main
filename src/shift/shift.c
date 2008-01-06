@@ -50,6 +50,7 @@ typedef enum {
     ShiftStateNone = 0,
     ShiftStateOut,
     ShiftStateSwitching,
+    ShiftStateFinish,
     ShiftStateIn
 } ShiftState;
 
@@ -157,6 +158,8 @@ typedef struct _ShiftScreen {
     float lastTitle;
 
     Bool  paintingAbove;
+
+    Bool  canceled;
 } ShiftScreen;
 
 typedef struct _ShiftWindow {
@@ -798,16 +801,6 @@ compareWindows (const void *elem1,
 	w = w->next;
     }
     return -1;
-
-    /*
-    if (w1->mapNum && !w2->mapNum)
-	return -1;
-
-    if (w2->mapNum && !w1->mapNum)
-	return 1;
-
-    return w2->activeNum - w1->activeNum;
-    */
 }
 
 static int
@@ -816,10 +809,11 @@ compareShiftWindowDistance (const void *elem1,
 {
     float a1   = ((ShiftDrawSlot *) elem1)->distance;
     float a2   = ((ShiftDrawSlot *) elem2)->distance;
+    float ab   = fabs (a1 - a2); 
 
-    if (a1 > a2)
+    if (ab > 0.3 && a1 > a2)
 	return -1;
-    else if (a1 < a2)
+    else if (ab > 0.3 && a1 < a2)
 	return 1;
     else
 	return compareWindows (&((ShiftDrawSlot *) elem2)->w,
@@ -1150,8 +1144,10 @@ shiftAddWindowToList (CompScreen *s,
 static Bool
 shiftUpdateWindowList (CompScreen *s)
 {
-    int i;
     SHIFT_SCREEN (s);
+
+    int        i, idx;
+    CompWindow **wins;
 
     qsort (ss->windows, ss->nWindows, sizeof (CompWindow *), compareWindows);
 
@@ -1164,6 +1160,28 @@ shiftUpdateWindowList (CompScreen *s)
 	    break;
 
 	ss->mvTarget++;
+    }
+    if (ss->mvTarget == ss->nWindows)
+	ss->mvTarget = 0;
+
+    /* create spetial window order to create a good animation
+       A,B,C,D,E --> A,B,D,E,C to get B,D,E,C,(A),B,D,E,C as initial state */
+    if (shiftGetMode (s) == ModeCover)
+    {
+	wins = malloc(ss->nWindows * sizeof (CompWindow *));
+	if (!wins)
+	    return FALSE;
+	
+	memcpy(wins, ss->windows, ss->nWindows * sizeof (CompWindow *));
+	for (i = 0; i < ss->nWindows; i++)
+	{
+	    idx = ceil (i * 0.5);
+	    idx *= (i & 1) ? 1 : -1;
+	    if (idx < 0)
+		idx += ss->nWindows;
+	    ss->windows[idx] = wins[i];
+	}
+	free (wins);
     }
 
     return layoutThumbs (s);
@@ -1318,7 +1336,8 @@ adjustShiftWindowAttribs (CompWindow *w, float chunk)
     if ((sw->active && ss->state != ShiftStateIn &&
 	ss->state != ShiftStateNone) ||
 	(shiftGetHideAll(w->screen) && !(w->type & CompWindowTypeDesktopMask) &&
-	(ss->state == ShiftStateOut || ss->state == ShiftStateSwitching)))
+	(ss->state == ShiftStateOut || ss->state == ShiftStateSwitching ||
+	 ss->state == ShiftStateFinish)))
 	opacity = 0.0;
     else
 	opacity = 1.0;
@@ -1427,12 +1446,13 @@ shiftPaintOutput (CompScreen		  *s,
     if (ss->state != ShiftStateNone &&
 	(output->id == ss->usedOutput || output->id == ~0))
     {
-	int           i;
-	
 	CompWindow    *w;
 	CompTransform sTransform = *transform;
-	int oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
-	int oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+	int           i;
+	int           oy1 = s->outputDev[ss->usedOutput].region.extents.y1;
+	int           oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
+	int           maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
+	int           oldFilter = s->display->textureFilter;
 
 	if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
 	{
@@ -1440,25 +1460,18 @@ shiftPaintOutput (CompScreen		  *s,
 	    oy2 = s->height;
 	}
 	
-	int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
-
-	int oldFilter = s->display->textureFilter;
-
 	transformToScreenSpace (s, output, -DEFAULT_Z_CAMERA, &sTransform);
 
 	GLdouble clip[4] = { 0.0, -1.0, 0.0, 0.0};
 
-	clip[3] = ((oy1 + (oy2 - oy1)) / 2) + (maxThumbHeight / 2.0);
+	clip[3] = ((oy1 + (oy2 - oy1) / 2)) + (maxThumbHeight / 2.0);
 
 	if (shiftGetReflection (s))
 	{
-	    CompTransform rTransform = sTransform;
-
+	    CompTransform  rTransform = sTransform;
 	    unsigned short color[4];
 
-	    int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
-
-	    matrixTranslate (&rTransform, 0.0, (oy2 - oy1) + maxThumbHeight,
+	    matrixTranslate (&rTransform, 0.0, oy1 + oy2 + maxThumbHeight,
 			     0.0);
 	    matrixScale (&rTransform, 1.0, -1.0, 1.0);
 
@@ -1599,8 +1612,6 @@ shiftPaintOutput (CompScreen		  *s,
 	}	
 	
 	glPopMatrix ();
-
-
     }
 
     return status;
@@ -1691,46 +1702,6 @@ shiftPreparePaintScreen (CompScreen *s,
     WRAP (ss, s, preparePaintScreen, shiftPreparePaintScreen);
 }
 
-static void
-shiftDonePaintScreen (CompScreen *s)
-{
-    SHIFT_SCREEN (s);
-    CompWindow *w;
-
-    if (ss->state != ShiftStateNone)
-    {
-	if (ss->moreAdjust)
-	{
-	    damageScreen (s);
-	}
-	else
-	{
-	    if (ss->moveAdjust)
-	    {
-		damageScreen (s);
-	    }
-
-	    if (ss->state == ShiftStateIn)
-	    {
-		ss->state = ShiftStateNone;
-		shiftActivateEvent(s, FALSE);
-		for (w = s->windows; w; w = w->next)
-		{
-		    SHIFT_WINDOW (w);
-		    sw->active = FALSE;
-		}
-		damageScreen (s);
-	    }
-	    else if (ss->state == ShiftStateOut)
-		ss->state = ShiftStateSwitching;
-	}
-    }
-
-    UNWRAP (ss, s, donePaintScreen);
-    (*s->donePaintScreen) (s);
-    WRAP (ss, s, donePaintScreen, shiftDonePaintScreen);
-}
-
 static Bool
 canStackRelativeTo (CompWindow *w)
 {
@@ -1746,6 +1717,75 @@ canStackRelativeTo (CompWindow *w)
     return TRUE;
 }
 
+static void
+shiftDonePaintScreen (CompScreen *s)
+{
+    SHIFT_SCREEN (s);
+    CompWindow *w;
+
+    if (ss->state != ShiftStateNone)
+    {
+	if (ss->moreAdjust)
+	{
+	    damageScreen (s);
+	}
+	else
+	{
+	    if (ss->state == ShiftStateIn)
+	    {
+		ss->state = ShiftStateNone;
+		shiftActivateEvent(s, FALSE);
+		for (w = s->windows; w; w = w->next)
+		{
+		    SHIFT_WINDOW (w);
+		    sw->active = FALSE;
+		}
+		damageScreen (s);
+	    }
+	    else if (ss->state == ShiftStateOut)
+		ss->state = ShiftStateSwitching;
+
+	    if (ss->moveAdjust)
+	    {
+		damageScreen (s);
+	    }
+	    else if (ss->state == ShiftStateFinish)
+	    {
+		CompWindow *w;
+
+		CompWindow *pw = NULL;
+		int i;
+		
+		ss->state = ShiftStateIn;
+		ss->moreAdjust = TRUE;
+		damageScreen (s);
+
+		if (!ss->canceled && ss->mvTarget != 0)
+		for (i = 0; i < ss->nSlots; i++)
+		{
+		    w = ss->drawSlots[i].w;
+		    if (ss->drawSlots[i].slot->primary && canStackRelativeTo (w))
+		    {
+			if (pw)
+			    restackWindowAbove (w,pw);
+			pw = w;
+		    }
+		}
+
+		if (!ss->canceled && ss->selectedWindow)
+		{
+		    w = findWindowAtScreen (s, ss->selectedWindow);
+		    if (w)
+			sendWindowActivationRequest (s, w->id);
+		}
+	    }
+	}
+    }
+
+    UNWRAP (ss, s, donePaintScreen);
+    (*s->donePaintScreen) (s);
+    WRAP (ss, s, donePaintScreen, shiftDonePaintScreen);
+}
 
 static void
 shiftTerm (CompScreen *s, Bool cancel)
@@ -1760,33 +1800,20 @@ shiftTerm (CompScreen *s, Bool cancel)
 
     if (ss->state != ShiftStateNone)
     {
-	CompWindow *w;
 
-	CompWindow *pw = NULL;
-	int i;
-	
-	for (i = 0; i < ss->nSlots; i++)
+	if (cancel && ss->mvTarget != 0)
 	{
-	    w = ss->drawSlots[i].w;
-	    if (ss->drawSlots[i].slot->primary && canStackRelativeTo (w))
-	    {
-		if (pw)
-		    restackWindowAbove (w,pw);
-		pw = w;
-	    }
+	    if (ss->nWindows - ss->mvTarget > ss->mvTarget)
+		ss->mvAdjust = -ss->mvTarget;
+	    else
+		ss->mvAdjust = ss->nWindows - ss->mvTarget;
+	    ss->moveAdjust = TRUE;
 	}
 
 	ss->moreAdjust = TRUE;
-	ss->state = ShiftStateIn;
+	ss->state = ShiftStateFinish;
+	ss->canceled = cancel;
 	damageScreen (s);
-
-	if (!cancel && ss->selectedWindow)
-	{
-	    w = findWindowAtScreen (s, ss->selectedWindow);
-	    if (w)
-		sendWindowActivationRequest (s, w->id);
-	}
-	
     }
 }
 
@@ -1969,7 +1996,8 @@ shiftInitiate (CompDisplay     *d,
 
 	ss->type = ShiftTypeNormal;
 	
-	if ((ss->state == ShiftStateNone) || (ss->state == ShiftStateIn))
+	if ((ss->state == ShiftStateNone) || (ss->state == ShiftStateIn) ||
+	    (ss->state == ShiftStateFinish))
 	    ret = shiftInitiateScreen (s, action, state, option, nOption);
 	else
 	    ret = shiftTerminate (d, action, state, option, nOption);
@@ -2004,7 +2032,8 @@ shiftInitiateAll (CompDisplay     *d,
 
 	ss->type = ShiftTypeAll;
 	
-	if ((ss->state == ShiftStateNone) || (ss->state == ShiftStateIn))
+	if ((ss->state == ShiftStateNone) || (ss->state == ShiftStateIn) ||
+	    (ss->state == ShiftStateFinish))
 	    ret = shiftInitiateScreen (s, action, state, option, nOption);
 	else
 	    ret = shiftTerminate (d, action, state, option, nOption);

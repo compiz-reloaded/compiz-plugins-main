@@ -198,7 +198,7 @@ putPreparePaintScreen (CompScreen *s,
 	    {
 		/* unfocus moved window if enabled */
 		if (putGetUnfocusWindow (s))
-		    focusDefaultWindow (s->display);
+		    focusDefaultWindow (s);
 		break;
     	    }
 	}

@@ -88,8 +88,6 @@ typedef struct _ExpoScreen
     /* For expo grab */
     int grabIndex;
 
-    GLint viewport[4];
-
     /* Window being dragged in expo mode */
     DnDState   dndState;
     CompWindow *dndWindow;
@@ -248,11 +246,13 @@ expoDnDFini (CompDisplay     *d,
     Window     xid;
 
     xid = getIntOptionNamed (option, nOption, "root", 0);
-    s   = findScreenAtDisplay (d, xid);
 
-    if (s)
+    for (s = d->screens; s; s = s->next)
     {
     	EXPO_SCREEN (s);
+
+	if (xid && (s->root != xid))
+	    continue;
 
 	if (es->dndState == DnDDuring || es->dndState == DnDStart)
 	{
@@ -262,12 +262,10 @@ expoDnDFini (CompDisplay     *d,
 	    es->dndState = DnDNone;
 	    es->dndWindow = NULL;
 	    action->state &= ~CompActionStateTermButton;
-	    damageScreen(s);
-	}
-	else
-	    return FALSE;
+	    damageScreen (s);
 
-	return TRUE;
+	    return TRUE;
+	}
     }
 
     return FALSE;
@@ -308,7 +306,7 @@ expoTermExpo (CompDisplay     *d,
 	removeScreenAction (s, expoGetPrevVpButton (d));
 
 	damageScreen (s);
-	focusDefaultWindow (s->display);
+	focusDefaultWindow (s);
     }
 
     return TRUE;
@@ -596,14 +594,13 @@ invertTransformedVertex (CompScreen              *s,
     CompTransform sTransform = *transform;
     GLdouble p1[3], p2[3], v[3], alpha;
     GLdouble mvm[16], pm[16];
+    GLint    viewport[4];
     int      i;
-
-    EXPO_SCREEN (s);
 
     (*s->applyScreenTransform) (s, sAttrib, output, &sTransform);
     transformToScreenSpace (s, output, -sAttrib->zTranslate, &sTransform);
 
-    glGetIntegerv (GL_VIEWPORT, es->viewport);
+    glGetIntegerv (GL_VIEWPORT, viewport);
 
     for (i = 0; i < 16; i++)
     {
@@ -612,9 +609,9 @@ invertTransformedVertex (CompScreen              *s,
     }
 
     gluUnProject (vertex[0], s->height - vertex[1], 0, mvm, pm,
-		  es->viewport, &p1[0], &p1[1], &p1[2]);
+		  viewport, &p1[0], &p1[1], &p1[2]);
     gluUnProject (vertex[0], s->height - vertex[1], -1.0, mvm, pm,
-		  es->viewport, &p2[0], &p2[1], &p2[2]);
+		  viewport, &p2[0], &p2[1], &p2[2]);
 
     for (i = 0; i < 3; i++)
 	v[i] = p1[i] - p2[i];
@@ -1108,12 +1105,12 @@ expoDonePaintScreen (CompScreen * s)
     case VPUpdateMouseOver:
     	moveScreenViewport (s, s->x - es->selectedVX, 
 			    s->y - es->selectedVY, TRUE);
-	focusDefaultWindow (s->display);
+	focusDefaultWindow (s);
 	es->vpUpdateMode = VPUpdateNone;
 	break;
     case VPUpdatePrevious:
 	moveScreenViewport (s, s->x - es->origVX, s->y - es->origVY, TRUE);
-	focusDefaultWindow (s->display);
+	focusDefaultWindow (s);
 	es->vpUpdateMode = VPUpdateNone;
 	break;
     default:

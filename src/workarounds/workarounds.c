@@ -29,18 +29,23 @@
 
 static int displayPrivateIndex;
 
+typedef struct _WorkaroundsManagedFsWindow {
+	Window id;
+	struct _WorkaroundsManagedFsWindow *next;
+} WorkaroundsManagedFsWindow;
+
 typedef struct _WorkaroundsDisplay {
     int screenPrivateIndex;
 
     HandleEventProc handleEvent;
 
-    Atom roleAtom;
+    Atom                       roleAtom;
+    WorkaroundsManagedFsWindow *mfwList;
 } WorkaroundsDisplay;
 
 typedef void (*GLProgramParameter4dvProc) (GLenum         target,
 					   GLuint         index,
 					   const GLdouble *data);
-
 
 typedef struct _WorkaroundsScreen {
     int windowPrivateIndex;
@@ -230,6 +235,7 @@ workaroundsFixupFullscreen (CompWindow *w)
     BoxPtr box;
 
     WORKAROUNDS_WINDOW (w);
+    WORKAROUNDS_DISPLAY (w->screen->display);
 
     if (w->wmType & CompWindowTypeDesktopMask)
     {
@@ -260,8 +266,7 @@ workaroundsFixupFullscreen (CompWindow *w)
     }
 
     ww->isFullscreen = isFullSize;
-    if ((isFullSize && !(w->state & CompWindowStateFullscreenMask)) ||
-	(!isFullSize && (w->state & CompWindowStateFullscreenMask)))
+    if (isFullSize && !(w->state & CompWindowStateFullscreenMask))
     {
 	unsigned int state = w->state & ~CompWindowStateFullscreenMask;
 
@@ -275,8 +280,58 @@ workaroundsFixupFullscreen (CompWindow *w)
 	    recalcWindowType (w);
 	    recalcWindowActions (w);
 	    updateWindowAttributes (w, CompStackingUpdateModeNormal);
+
+	    /*keep track of windows that we interact with*/
+
+	    if (wd->mfwList == NULL) 
+	    {
+		wd->mfwList = malloc (sizeof (WorkaroundsManagedFsWindow));
+		if (wd->mfwList)
+		{
+		    wd->mfwList->id   = w->id;
+		    wd->mfwList->next = NULL;
+		}
+	    }
+	    else 
+            {
+                WorkaroundsManagedFsWindow *mfw;
+
+		for (mfw = wd->mfwList; mfw->next; mfw = mfw->next);
+		mfw->next = malloc (sizeof (WorkaroundsManagedFsWindow));
+		mfw = mfw->next;
+		mfw->id = w->id;
+		mfw->next = NULL;
+	    }
 	}
     }
+    else if (!isFullSize && wd->mfwList &&
+	     (w->state & CompWindowStateFullscreenMask))
+    {
+	/* did we set the flag? */
+	WorkaroundsManagedFsWindow *mfw;
+
+	for (mfw = wd->mfwList; mfw->next; mfw = mfw->next) 
+	{
+	    if (mfw->id == w->id) 
+	    {
+		unsigned int state = w->state & ~CompWindowStateFullscreenMask;
+
+		if (isFullSize)
+		    state |= CompWindowStateFullscreenMask;
+
+		ww->madeFullscreen = isFullSize;
+
+		if (state != w->state)
+		{
+		    changeWindowState (w, state);
+		    recalcWindowType (w);
+		    recalcWindowActions (w);
+		    updateWindowAttributes (w, CompStackingUpdateModeNormal);
+		}
+		break;
+	    }
+    	}
+   }
 }
 
 static void
@@ -443,6 +498,36 @@ workaroundsHandleEvent (CompDisplay *d,
 	if (w && w->attrib.override_redirect)
 	    workaroundsDoFixes (w);
 	break;
+    case DestroyNotify:
+	w = findWindowAtDisplay (d, event->xdestroywindow.window);
+	if (w)
+	{
+	    WorkaroundsManagedFsWindow *mfw, *mfwPrev;
+	    WORKAROUNDS_DISPLAY (d);
+
+	    if (!wd->mfwList)
+		break;
+
+	    if (wd->mfwList->id == w->id)
+	    {
+		mfw = wd->mfwList;
+		wd->mfwList = wd->mfwList->next;
+		free (mfw);
+		break;
+	    }
+
+	    mfwPrev = wd->mfwList;
+	    for (mfw = wd->mfwList; mfw->next; mfw = mfw->next) 
+	    {
+		if (mfw->id == w->id) 
+		{
+		    mfwPrev->next = mfw->next;
+		    free (mfw);				
+		}
+		mfwPrev = mfw;
+	    }
+	}
+	break;
     }
 
     UNWRAP (wd, d, handleEvent);
@@ -516,6 +601,7 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
     }
 
     wd->roleAtom = XInternAtom (d->display, "WM_WINDOW_ROLE", 0);
+    wd->mfwList  = NULL;
 
     workaroundsSetStickyAlldesktopsNotify (d, workaroundsDisplayOptionChanged);
     workaroundsSetAlldesktopStickyMatchNotify (d,
