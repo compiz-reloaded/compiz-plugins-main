@@ -328,8 +328,13 @@ workaroundsFixupFullscreen (CompWindow *w)
 		    recalcWindowActions (w);
 		    updateWindowAttributes (w, CompStackingUpdateModeNormal);
 		}
+
+		mfwPrev->next = mfw->next;
+		free (mfw);
+
 		break;
 	    }
+	    mfwPrev = mfw;
     	}
    }
 }
