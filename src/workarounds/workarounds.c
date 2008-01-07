@@ -88,6 +88,63 @@ typedef struct _WorkaroundsWindow {
 		    GET_WORKAROUNDS_DISPLAY (w->screen->display)))
 
 static void
+workaroundsAddToFullscreenList (CompWindow *w)
+{
+    WorkaroundsManagedFsWindow *mfw, *nmfw;
+
+    WORKAROUNDS_DISPLAY (w->screen->display);
+
+    nmfw = malloc (sizeof (WorkaroundsManagedFsWindow));
+    if (!nmfw)
+	return;
+
+    nmfw->id   = w->id;
+    nmfw->next = NULL;
+
+    if (!wd->mfwList)
+	wd->mfwList = nmfw;
+    else
+    {
+	for (mfw = wd->mfwList; mfw->next; mfw = mfw->next)
+	    if (mfw->id == w->id)
+	    {
+		free (nmfw);
+		return;
+	    }
+
+	mfw->next = nmfw;
+    }
+}
+
+static void
+workaroundsRemoveFromFullscreenList (CompWindow *w)
+{
+    WorkaroundsManagedFsWindow *mfw;
+
+    WORKAROUNDS_DISPLAY (w->screen->display);
+
+    if (!wd->mfwList)
+	return;
+
+    if (wd->mfwList->id == w->id)
+    {
+	mfw = wd->mfwList;
+	wd->mfwList = wd->mfwList->next;
+	free (mfw);
+	return;
+    }
+
+    for (mfw = wd->mfwList; mfw->next; mfw = mfw->next) 
+    {
+	if (mfw->next->id == w->id) 
+	{
+	    mfw->next = mfw->next->next;
+	    free (mfw->next);				
+	}
+    }
+}
+
+static void
 workaroundsProgramEnvParameter4f (GLenum  target,
 				  GLuint  index,
 				  GLfloat x,
@@ -281,27 +338,8 @@ workaroundsFixupFullscreen (CompWindow *w)
 	    recalcWindowActions (w);
 	    updateWindowAttributes (w, CompStackingUpdateModeNormal);
 
-	    /*keep track of windows that we interact with*/
-
-	    if (wd->mfwList == NULL) 
-	    {
-		wd->mfwList = malloc (sizeof (WorkaroundsManagedFsWindow));
-		if (wd->mfwList)
-		{
-		    wd->mfwList->id   = w->id;
-		    wd->mfwList->next = NULL;
-		}
-	    }
-	    else 
-            {
-                WorkaroundsManagedFsWindow *mfw;
-
-		for (mfw = wd->mfwList; mfw->next; mfw = mfw->next);
-		mfw->next = malloc (sizeof (WorkaroundsManagedFsWindow));
-		mfw = mfw->next;
-		mfw->id = w->id;
-		mfw->next = NULL;
-	    }
+	    /* keep track of windows that we interact with */
+	    workaroundsAddToFullscreenList (w);
 	}
     }
     else if (!isFullSize && wd->mfwList &&
@@ -329,12 +367,9 @@ workaroundsFixupFullscreen (CompWindow *w)
 		    updateWindowAttributes (w, CompStackingUpdateModeNormal);
 		}
 
-		mfwPrev->next = mfw->next;
-		free (mfw);
-
+		workaroundsRemoveFromFullscreenList (w);
 		break;
 	    }
-	    mfwPrev = mfw;
     	}
    }
 }
@@ -506,32 +541,7 @@ workaroundsHandleEvent (CompDisplay *d,
     case DestroyNotify:
 	w = findWindowAtDisplay (d, event->xdestroywindow.window);
 	if (w)
-	{
-	    WorkaroundsManagedFsWindow *mfw, *mfwPrev;
-	    WORKAROUNDS_DISPLAY (d);
-
-	    if (!wd->mfwList)
-		break;
-
-	    if (wd->mfwList->id == w->id)
-	    {
-		mfw = wd->mfwList;
-		wd->mfwList = wd->mfwList->next;
-		free (mfw);
-		break;
-	    }
-
-	    mfwPrev = wd->mfwList;
-	    for (mfw = wd->mfwList; mfw->next; mfw = mfw->next) 
-	    {
-		if (mfw->id == w->id) 
-		{
-		    mfwPrev->next = mfw->next;
-		    free (mfw);				
-		}
-		mfwPrev = mfw;
-	    }
-	}
+	    workaroundsRemoveFromFullscreenList (w);
 	break;
     }
 
@@ -598,7 +608,7 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
     if (!wd)
         return FALSE;
 
-    wd->screenPrivateIndex = allocateScreenPrivateIndex( d );
+    wd->screenPrivateIndex = allocateScreenPrivateIndex (d);
     if (wd->screenPrivateIndex < 0)
     {
         free (wd);
