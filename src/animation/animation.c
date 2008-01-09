@@ -1527,12 +1527,13 @@ static void postAnimationCleanupCustom(CompWindow * w,
 	aw->restackInfo = NULL;
     }
 
-    //if (aw->unmapCnt || aw->destroyCnt)
-    //    releaseWindow (w);
-    while (aw->unmapCnt)
+    if (!aw->finishing)
     {
-	unmapWindow(w);
-	aw->unmapCnt--;
+	while (aw->unmapCnt)
+	{
+	    unmapWindow(w);
+	    aw->unmapCnt--;
+	}
     }
     while (aw->destroyCnt)
     {
@@ -4456,12 +4457,10 @@ static void animFiniWindow(CompPlugin * p, CompWindow * w)
     if (aw->wmName)
 	free (aw->wmName);
 
+    aw->finishing = TRUE;
     postAnimationCleanup(w, FALSE);
 
     animFreeModel(aw);
-
-    while (aw->unmapCnt--)
-	unmapWindow(w);
 
     free(aw);
 }
