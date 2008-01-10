@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-12-22 16:22+0530\n"
+"POT-Creation-Date: 2008-01-10 16:22+0530\n"
 "PO-Revision-Date: 2007-12-01 16:48+0100\n"
 "Last-Translator: Maciej Warnecki <maciekw5@gmail.com>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
@@ -956,6 +956,84 @@ msgid "Y position"
 msgstr "Pozycja w pionie"
 
 #, fuzzy
+msgid "Brightness Decrease"
+msgstr "Jasnosć"
+
+#, fuzzy
+msgid "Brightness Increase"
+msgstr "Jasnosć"
+
+#, fuzzy
+msgid "Brightness Step"
+msgstr "Jasnosć"
+
+#, fuzzy
+msgid "Brightness and Saturation"
+msgstr "Jasność zanikających okien"
+
+msgid "Brightness and Saturation adjustments"
+msgstr ""
+
+#, fuzzy
+msgid "Brightness settings"
+msgstr "Jasność wybranych okien"
+
+#, fuzzy
+msgid "Brightness values for windows"
+msgstr "Jasność zanikających okien"
+
+#, fuzzy
+msgid "Brightness window values"
+msgstr "Jasność zanikających okien"
+
+#, fuzzy
+msgid "Brightness windows"
+msgstr "Jasność zanikających okien"
+
+msgid "General"
+msgstr "Ogólne"
+
+#, fuzzy
+msgid "Saturation Decrease"
+msgstr "Nasycenie"
+
+#, fuzzy
+msgid "Saturation Increase"
+msgstr "Nasycenie"
+
+#, fuzzy
+msgid "Saturation Step"
+msgstr "Nasycenie"
+
+#, fuzzy
+msgid "Saturation settings"
+msgstr "Nasycenie wybranych okien"
+
+#, fuzzy
+msgid "Saturation values for windows"
+msgstr "Nasycenie zanikających okien"
+
+#, fuzzy
+msgid "Saturation window values"
+msgstr "Nasycenie zanikających okien"
+
+#, fuzzy
+msgid "Saturation windows"
+msgstr "Nasycenie zanikających okien"
+
+#, fuzzy
+msgid "Window specific"
+msgstr "Przezroczystość okna"
+
+#, fuzzy
+msgid "Windows that should have a different brightness by default"
+msgstr "Okna, które powinny mieć domyślnie zmieniony rozmiar"
+
+#, fuzzy
+msgid "Windows that should have a different saturation by default"
+msgstr "Okna, które powinny mieć domyślnie zmieniony rozmiar"
+
+#, fuzzy
 msgid "Color filter"
 msgstr "Przezroczystość kolorów"
 
@@ -1418,7 +1496,8 @@ msgstr ""
 msgid "Enhanced Zoom Desktop"
 msgstr "Przenikanie do pulpitu"
 
-msgid "Enhanced zoom functions for visually imparied and others"
+#, fuzzy
+msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr "Funkcje ulepszyonego przybliżenia dla niedowidzących i innych."
 
 msgid "Filter Linear"
@@ -1443,6 +1522,10 @@ msgstr ""
 msgid "Fit zoomed area to window"
 msgstr ""
 
+#, fuzzy
+msgid "Fitting"
+msgstr "Ustawienia"
+
 msgid "Focus Tracking"
 msgstr ""
 
@@ -1461,7 +1544,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Mouse Behavior"
+msgid "Mouse Behaviour"
 msgstr "Zachowanie myszy"
 
 # Corrected a typo
@@ -1520,6 +1603,10 @@ msgstr ""
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr ""
 
+#, fuzzy
+msgid "Panning"
+msgstr "Przesuwanie za pomocą myszy"
+
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr ""
 
@@ -1531,6 +1618,9 @@ msgstr ""
 
 msgid "Scale the mouse pointer"
 msgstr "Skaluj kursor myszy"
+
+msgid "Specific Zoom"
+msgstr ""
 
 msgid "Specific zoom factor 1"
 msgstr ""
@@ -1566,11 +1656,17 @@ msgid "Use linear filter when zoomed in"
 msgstr "Używaj filtrowania liniowego podczas przybliżania"
 
 #, fuzzy
+msgid "Zoom Area Movement"
+msgstr "Przybliżaj od środka"
+
+#, fuzzy
 msgid "Zoom In"
 msgstr "Zbliżenie"
 
-msgid "Zoom Movement"
-msgstr ""
+# Zmieniono ze "zbliżenie" na "oddalenie"
+#, fuzzy
+msgid "Zoom In/Out"
+msgstr "Oddalenie"
 
 # Zmieniono ze "zbliżenie" na "oddalenie"
 #, fuzzy
@@ -1836,9 +1932,6 @@ msgstr "Kolor czcionki"
 
 msgid "Font Size"
 msgstr "Wielkość czcionki"
-
-msgid "General"
-msgstr "Ogólne"
 
 msgid "Glass"
 msgstr "Szkło"
@@ -2269,6 +2362,43 @@ msgstr "Zmień efekt rozmywania."
 msgid "Visibility/Performance"
 msgstr "Jakość/Wydajność"
 
+#, fuzzy
+msgid "Action"
+msgstr "Prędkość Animacji"
+
+msgid "Action that is to be invoked."
+msgstr ""
+
+msgid "Assign mousegestures to any existing action"
+msgstr ""
+
+#, fuzzy
+msgid "Gesture"
+msgstr "Rozpocznij gest"
+
+msgid "Gesture assignment"
+msgstr ""
+
+#, fuzzy
+msgid "Gestures"
+msgstr "Tekstury"
+
+msgid "Mouse gesture to assign an action to."
+msgstr ""
+
+#, fuzzy
+msgid "Mousegestures"
+msgstr "Rozpocznij gest myszy"
+
+msgid "Plugin"
+msgstr ""
+
+msgid "Plugin the action belongs to."
+msgstr ""
+
+msgid "Start gesture"
+msgstr ""
+
 msgid "Begin Gesture"
 msgstr "Rozpocznij gest"
 
@@ -2318,6 +2448,43 @@ msgstr "Okna mające mieć kolory w negatywie od razu (po otwarciu)"
 #, fuzzy
 msgid "Windows to exclude from negating"
 msgstr "Okna które nie powinny zostać poddane rozmieszczeniu"
+
+msgid "Debug"
+msgstr "Opcje"
+
+msgid "Display errors and other messages using libnotify."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Error Notifications"
+msgstr ""
+
+#, fuzzy
+msgid "Fatal"
+msgstr "Metal"
+
+#, fuzzy
+msgid "Hide Timeout"
+msgstr "Czas przenikania"
+
+msgid "Info"
+msgstr ""
+
+msgid "Maximum Log Level"
+msgstr ""
+
+msgid "The maximum log level to display"
+msgstr ""
+
+msgid ""
+"Timeout (in seconds) before hiding the notification, set to -1 for system "
+"default and 0 for indefinite"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
 
 #, fuzzy
 msgid "Active Opacity"
@@ -3069,6 +3236,70 @@ msgstr "Zmień widoczność znaku zachęty"
 msgid "Toggle prompt visible."
 msgstr "Zmień widoczność znaku zachęty"
 
+#, fuzzy
+msgid "Directory"
+msgstr "Folder z logami"
+
+#, fuzzy
+msgid "Initiate screencasting"
+msgstr "Rozpocznij rysowanie ognia"
+
+msgid "Put screenshot images in this directory"
+msgstr ""
+
+#, fuzzy
+msgid "ScreenCast plugin"
+msgstr "Wyjście obrazu"
+
+#, fuzzy
+msgid "ScreenCasting"
+msgstr "Rozmiar wirtualnego ekranu"
+
+#, fuzzy
+msgid "Animation duration"
+msgstr "Czas trwania animacji"
+
+#, fuzzy
+msgid "Duration of the animation in milliseconds."
+msgstr "Czas (w milisekundach) trwania animacji rozmieszczenia"
+
+msgid "Increase the scale factor making the window bigger."
+msgstr ""
+
+#, fuzzy
+msgid "Make the window bigger"
+msgstr "Maksymalny rozmiar okna"
+
+#, fuzzy
+msgid "Make the window smaller"
+msgstr "Maksymalny rozmiar okna"
+
+msgid "Reduces the scale factor making the window smaller."
+msgstr ""
+
+msgid "Scale a window down to half size."
+msgstr ""
+
+msgid "Scale interval"
+msgstr ""
+
+msgid "Shelf"
+msgstr ""
+
+msgid ""
+"The number to divide the scale factor by or multiply it with when "
+"(respectively) increasing and decreasing the scale level manually. Higher "
+"number means finer changes."
+msgstr ""
+
+msgid "Trigger scale down"
+msgstr ""
+
+msgid ""
+"Visually scales a window down to allow easy monitoring without true/"
+"traditional resizing."
+msgstr ""
+
 msgid "Background intensity"
 msgstr "Intensywnośc tła"
 
@@ -3306,9 +3537,6 @@ msgstr "Typy okien"
 
 msgid "Bottom to Top"
 msgstr "Z dołu do góry"
-
-msgid "Debug"
-msgstr "Opcje"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "

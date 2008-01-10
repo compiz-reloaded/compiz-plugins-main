@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins-new\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-12-22 16:22+0530\n"
-"PO-Revision-Date: 2007-11-03 18:23+0200\n"
-"Last-Translator: Serdar Soytetir <tulliana@gmail.com>\n"
-"Language-Team:  <tr@li.org>\n"
+"POT-Creation-Date: 2008-01-10 16:22+0530\n"
+"PO-Revision-Date: 2007-12-31 01:40+0100\n"
+"Last-Translator: Gürkan Gür <seqizz@gmail.com>\n"
+"Language-Team: <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 1.0.2\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "Sadece Fare ile Döndürüldüğünde 3D"
@@ -156,6 +156,8 @@ msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
+"Bütün efektler rasgele ayarlanacak, eğer efektini kapattığınız bir bölüm "
+"varsa, orada efekt uygulanmayacak."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
@@ -346,7 +348,7 @@ msgid "Fire smoke."
 msgstr "Ateş dumanı."
 
 msgid "Fixed window interior during the Rollup animation."
-msgstr ""
+msgstr "Toparlamada Pencerenin İç Yüzünü Onar."
 
 msgid "Fly to TaskBar on Minimize"
 msgstr "Küçültme sırasında Görev Çubuğuna Uç"
@@ -526,10 +528,10 @@ msgid "Right"
 msgstr "Sağ"
 
 msgid "Roll Up"
-msgstr ""
+msgstr "Toparlama"
 
 msgid "Rollup Fixed Interior"
-msgstr ""
+msgstr "Toparlamada Pencereyi Onar"
 
 msgid "Rotation Angle"
 msgstr "Döndürme Açısı"
@@ -865,6 +867,84 @@ msgstr "Karşılaştırma penceresinin dikey konumu"
 
 msgid "Y position"
 msgstr "Y-Konumu"
+
+#, fuzzy
+msgid "Brightness Decrease"
+msgstr "Parlaklık"
+
+#, fuzzy
+msgid "Brightness Increase"
+msgstr "Parlaklık"
+
+#, fuzzy
+msgid "Brightness Step"
+msgstr "Parlaklık"
+
+#, fuzzy
+msgid "Brightness and Saturation"
+msgstr "Soldurulmuş pencerelerin parlaklığı"
+
+msgid "Brightness and Saturation adjustments"
+msgstr ""
+
+#, fuzzy
+msgid "Brightness settings"
+msgstr "Parlaklık"
+
+#, fuzzy
+msgid "Brightness values for windows"
+msgstr "Soldurulmuş pencerelerin parlaklığı"
+
+#, fuzzy
+msgid "Brightness window values"
+msgstr "Soldurulmuş pencerelerin parlaklığı"
+
+#, fuzzy
+msgid "Brightness windows"
+msgstr "Soldurulmuş pencerelerin parlaklığı"
+
+msgid "General"
+msgstr "Genel"
+
+#, fuzzy
+msgid "Saturation Decrease"
+msgstr "Doygunluk"
+
+#, fuzzy
+msgid "Saturation Increase"
+msgstr "Doygunluk"
+
+#, fuzzy
+msgid "Saturation Step"
+msgstr "Doygunluk"
+
+#, fuzzy
+msgid "Saturation settings"
+msgstr "Doygunluk"
+
+#, fuzzy
+msgid "Saturation values for windows"
+msgstr "Soldurulmuş pencerelerin doygunluğu"
+
+#, fuzzy
+msgid "Saturation window values"
+msgstr "Soldurulmuş pencerelerin doygunluğu"
+
+#, fuzzy
+msgid "Saturation windows"
+msgstr "Soldurulmuş pencerelerin doygunluğu"
+
+#, fuzzy
+msgid "Window specific"
+msgstr "Pencere Matlığı"
+
+#, fuzzy
+msgid "Windows that should have a different brightness by default"
+msgstr "Öntanımlı olarak yeniden boyutlandırılması gereken pencereler"
+
+#, fuzzy
+msgid "Windows that should have a different saturation by default"
+msgstr "Öntanımlı olarak yeniden boyutlandırılması gereken pencereler"
 
 msgid "Color filter"
 msgstr "Renk Filtreleyicisi"
@@ -1291,7 +1371,7 @@ msgstr ""
 msgid "Enhanced Zoom Desktop"
 msgstr "Gelişmiş Masaüstü Büyütücü"
 
-msgid "Enhanced zoom functions for visually imparied and others"
+msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr ""
 
 msgid "Filter Linear"
@@ -1316,6 +1396,10 @@ msgstr ""
 msgid "Fit zoomed area to window"
 msgstr ""
 
+#, fuzzy
+msgid "Fitting"
+msgstr "Ayarlar"
+
 msgid "Focus Tracking"
 msgstr "Odaklama İzlemesi"
 
@@ -1333,7 +1417,8 @@ msgid ""
 "choppy behavior."
 msgstr ""
 
-msgid "Mouse Behavior"
+#, fuzzy
+msgid "Mouse Behaviour"
 msgstr "Fare Davranışı"
 
 msgid "Mouse Poll Interval"
@@ -1387,6 +1472,10 @@ msgstr ""
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr ""
 
+#, fuzzy
+msgid "Panning"
+msgstr "Doldurma"
+
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr ""
 
@@ -1398,6 +1487,10 @@ msgstr ""
 
 msgid "Scale the mouse pointer"
 msgstr ""
+
+#, fuzzy
+msgid "Specific Zoom"
+msgstr "Belirli bir büyütme basamağı 1"
 
 msgid "Specific zoom factor 1"
 msgstr "Belirli bir büyütme basamağı 1"
@@ -1432,11 +1525,16 @@ msgstr ""
 msgid "Use linear filter when zoomed in"
 msgstr ""
 
+#, fuzzy
+msgid "Zoom Area Movement"
+msgstr "Büyürme Taşıması"
+
 msgid "Zoom In"
 msgstr "Büyüt"
 
-msgid "Zoom Movement"
-msgstr "Büyürme Taşıması"
+#, fuzzy
+msgid "Zoom In/Out"
+msgstr "Küçült"
 
 msgid "Zoom Out"
 msgstr "Küçült"
@@ -1684,9 +1782,6 @@ msgstr "Yazıtipi Rengi"
 
 msgid "Font Size"
 msgstr "Yazıtipi Boyutu"
-
-msgid "General"
-msgstr "Genel"
 
 msgid "Glass"
 msgstr "Cam"
@@ -2075,6 +2170,43 @@ msgstr ""
 msgid "Visibility/Performance"
 msgstr "Görünebilirlik / Performans"
 
+#, fuzzy
+msgid "Action"
+msgstr "Canlandırma"
+
+msgid "Action that is to be invoked."
+msgstr ""
+
+msgid "Assign mousegestures to any existing action"
+msgstr ""
+
+#, fuzzy
+msgid "Gesture"
+msgstr "Dokular"
+
+msgid "Gesture assignment"
+msgstr ""
+
+#, fuzzy
+msgid "Gestures"
+msgstr "Dokular"
+
+msgid "Mouse gesture to assign an action to."
+msgstr ""
+
+msgid "Mousegestures"
+msgstr ""
+
+#, fuzzy
+msgid "Plugin"
+msgstr "Sergi Eklentisi"
+
+msgid "Plugin the action belongs to."
+msgstr ""
+
+msgid "Start gesture"
+msgstr ""
+
 msgid "Begin Gesture"
 msgstr ""
 
@@ -2116,6 +2248,45 @@ msgstr "Öntanımlı olarak negatifleştirilecek pencereler"
 
 msgid "Windows to exclude from negating"
 msgstr "Negatifleştirme dışında tutulacak pencereler"
+
+msgid "Debug"
+msgstr "Hata Ayıklama"
+
+msgid "Display errors and other messages using libnotify."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Error Notifications"
+msgstr ""
+
+#, fuzzy
+msgid "Fatal"
+msgstr "Metal"
+
+#, fuzzy
+msgid "Hide Timeout"
+msgstr "Belirme Süresi"
+
+# FIXME: Herein und Heraus sind noch nicht optimal
+#, fuzzy
+msgid "Info"
+msgstr "İç"
+
+msgid "Maximum Log Level"
+msgstr ""
+
+msgid "The maximum log level to display"
+msgstr ""
+
+msgid ""
+"Timeout (in seconds) before hiding the notification, set to -1 for system "
+"default and 0 for indefinite"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
 
 msgid "Active Opacity"
 msgstr "Etkin Matlık"
@@ -2826,6 +2997,72 @@ msgstr ""
 msgid "Toggle prompt visible."
 msgstr ""
 
+#, fuzzy
+msgid "Directory"
+msgstr "Çökme Dökümü Dizini"
+
+#, fuzzy
+msgid "Initiate screencasting"
+msgstr "Alev çizimini başlat"
+
+msgid "Put screenshot images in this directory"
+msgstr ""
+
+#, fuzzy
+msgid "ScreenCast plugin"
+msgstr "Ekran Çıktısı"
+
+# FIXME -- We need a better translation for 'Boxing'
+#, fuzzy
+msgid "ScreenCasting"
+msgstr "Ekran Kutulaması"
+
+#, fuzzy
+msgid "Animation duration"
+msgstr "Canlandırma Süresi"
+
+#, fuzzy
+msgid "Duration of the animation in milliseconds."
+msgstr "Açma efekti için milisaniye olarak canlandırma süresi."
+
+msgid "Increase the scale factor making the window bigger."
+msgstr ""
+
+#, fuzzy
+msgid "Make the window bigger"
+msgstr "En büyük pencere boyutu"
+
+#, fuzzy
+msgid "Make the window smaller"
+msgstr "En büyük pencere boyutu"
+
+msgid "Reduces the scale factor making the window smaller."
+msgstr ""
+
+msgid "Scale a window down to half size."
+msgstr ""
+
+msgid "Scale interval"
+msgstr ""
+
+#, fuzzy
+msgid "Shelf"
+msgstr "Shift"
+
+msgid ""
+"The number to divide the scale factor by or multiply it with when "
+"(respectively) increasing and decreasing the scale level manually. Higher "
+"number means finer changes."
+msgstr ""
+
+msgid "Trigger scale down"
+msgstr ""
+
+msgid ""
+"Visually scales a window down to allow easy monitoring without true/"
+"traditional resizing."
+msgstr ""
+
 msgid "Background intensity"
 msgstr ""
 
@@ -3049,9 +3286,6 @@ msgstr "Pencere kenarları"
 
 msgid "Bottom to Top"
 msgstr "Aşağıdan Yukarıya"
-
-msgid "Debug"
-msgstr "Hata Ayıklama"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
@@ -4014,7 +4248,7 @@ msgid "Windows that should be resized by default"
 msgstr "Öntanımlı olarak yeniden boyutlandırılması gereken pencereler"
 
 msgid "Windows that should be treated as not supporting transparency"
-msgstr ""
+msgstr "Saydam sayılmayan pencereler"
 
 msgid "Windows will not have focus"
 msgstr "Pencere odaklaması olmayacak"
@@ -4029,22 +4263,22 @@ msgid "Firefox Menu Fix"
 msgstr "Firefox Menü Hatasının Çözümü"
 
 msgid "Fix broken glProgramEnvParameter4f implementation."
-msgstr ""
+msgstr "Bozuk glProgramEnvParameter4f uygulamalarını onar."
 
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr ""
+msgstr "Firefox ve Thunderbird menü pencerelerini onar."
 
 msgid "Fix window type of OpenOffice.org menus."
-msgstr ""
+msgstr "OpenOffice.org menü pencerelerini onar."
 
 msgid "Fix window type of notification daemon windows."
-msgstr ""
+msgstr "Bilgilendirme pencerelerini onar."
 
 msgid "Fix window type of various Java windows."
-msgstr ""
+msgstr "Çeşitli Java pencerelerini onar"
 
 msgid "Fix window type of various Qt windows."
-msgstr ""
+msgstr "Çeşitli Qt pencerelerini onar."
 
 msgid "Java Window Fix"
 msgstr "Java Pencere Hatasının Çözümü"

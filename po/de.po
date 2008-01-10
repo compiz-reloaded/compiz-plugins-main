@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-12-22 16:21+0530\n"
-"PO-Revision-Date: 2007-12-15 12:43+0100\n"
-"Last-Translator: simon danner  <danner.simon@googlemail.com>\n"
+"POT-Creation-Date: 2008-01-10 16:21+0530\n"
+"PO-Revision-Date: 2008-01-09 09:42+0100\n"
+"Last-Translator: Valentin <valentin.steinwandter@rolmail.net>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,10 +72,10 @@ msgstr ""
 "heißt manuell durchgeführt wird)"
 
 msgid "Minimum Cube Size"
-msgstr ""
+msgstr "Minimale Größe des Würfels"
 
 msgid "Minimum cube size (in percent)."
-msgstr ""
+msgstr "Minimale Größe des Würfels (in Prozent)."
 
 msgid "Misc. Options"
 msgstr "Sonstige Optionen"
@@ -369,7 +369,7 @@ msgid "Focus Effect"
 msgstr "Effekt für das Fokussieren von Fenstern"
 
 msgid "Fold"
-msgstr ""
+msgstr "Falten"
 
 msgid "Fold Direction"
 msgstr "Falt-Richtung"
@@ -386,7 +386,7 @@ msgstr "Gleiten 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
-"Zufällige Farbene für die Feuerparktikel, auch bekannt als Mystisches Feuer"
+"Zufällige Farben für die Feuerpartikel, auch bekannt als Mystisches Feuer."
 
 msgid "Hexagonal"
 msgstr "Sechseckig"
@@ -444,7 +444,7 @@ msgid "Magic Lamp Open/Close Moving End"
 msgstr ""
 
 msgid "Make fire effect duration be dependent on window height."
-msgstr ""
+msgstr "Dauer des Feuereffekts von der Fensterhöhe abhängig machen."
 
 msgid "Minimize Animation"
 msgstr "Animation 'Minimieren'"
@@ -514,7 +514,7 @@ msgid "Random"
 msgstr "Zufällig"
 
 msgid "Random Animations For All Events"
-msgstr ""
+msgstr "Zufällige Animationen für alle Ereignisse"
 
 msgid "Random Effects"
 msgstr "Zufällige Effekte"
@@ -545,7 +545,7 @@ msgid "Rollup Fixed Interior"
 msgstr "Von unten aufrollen"
 
 msgid "Rotation Angle"
-msgstr ""
+msgstr "Rotationswinkel"
 
 # FIXME: besser Bruchstücke statt Teile?
 msgid "Rotation angle of animated window pieces (in degrees)."
@@ -621,7 +621,8 @@ msgid ""
 "number of grid cells along the width of the window."
 msgstr ""
 "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
+"Gitters erzeugt. Geben sie die Breite der einzelnen Gitterzeilen in Pixeln "
+"an."
 
 msgid "The animation effect shown when closing a window."
 msgstr "Beim Schließen eines Fensters verwendete Animation"
@@ -895,6 +896,84 @@ msgstr "Y-Position des Fensters"
 msgid "Y position"
 msgstr "Y-Position"
 
+#, fuzzy
+msgid "Brightness Decrease"
+msgstr "Helligkeit"
+
+#, fuzzy
+msgid "Brightness Increase"
+msgstr "Helligkeit"
+
+#, fuzzy
+msgid "Brightness Step"
+msgstr "Helligkeit"
+
+#, fuzzy
+msgid "Brightness and Saturation"
+msgstr "Helligkeit von verblassten Fenstern"
+
+msgid "Brightness and Saturation adjustments"
+msgstr ""
+
+#, fuzzy
+msgid "Brightness settings"
+msgstr "Helligkeit selektierter Fenster"
+
+#, fuzzy
+msgid "Brightness values for windows"
+msgstr "Helligkeit von verblassten Fenstern"
+
+#, fuzzy
+msgid "Brightness window values"
+msgstr "Helligkeit von verblassten Fenstern"
+
+#, fuzzy
+msgid "Brightness windows"
+msgstr "Helligkeit von verblassten Fenstern"
+
+msgid "General"
+msgstr "Allgemein"
+
+#, fuzzy
+msgid "Saturation Decrease"
+msgstr "Sättigung"
+
+#, fuzzy
+msgid "Saturation Increase"
+msgstr "Sättigung"
+
+#, fuzzy
+msgid "Saturation Step"
+msgstr "Sättigung"
+
+#, fuzzy
+msgid "Saturation settings"
+msgstr "Sättigung der selektierten Fenster"
+
+#, fuzzy
+msgid "Saturation values for windows"
+msgstr "Sättigung von verblassten Fenstern"
+
+#, fuzzy
+msgid "Saturation window values"
+msgstr "Sättigung von verblassten Fenstern"
+
+#, fuzzy
+msgid "Saturation windows"
+msgstr "Sättigung von verblassten Fenstern"
+
+#, fuzzy
+msgid "Window specific"
+msgstr "Sichtbarkeit der Fenster"
+
+#, fuzzy
+msgid "Windows that should have a different brightness by default"
+msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden soll"
+
+#, fuzzy
+msgid "Windows that should have a different saturation by default"
+msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden soll"
+
 msgid "Color filter"
 msgstr "Farbfilter"
 
@@ -985,13 +1064,15 @@ msgstr ""
 
 #, fuzzy
 msgid "Adjust bottom image"
-msgstr "Unten rechts abrunden"
+msgstr "Unteres Bild anpassen"
 
+#, fuzzy
 msgid "Adjust top face image to rotation"
-msgstr ""
+msgstr "Oberes Bild an Drehung anpassen"
 
+#, fuzzy
 msgid "Adjust top image"
-msgstr ""
+msgstr "Oberes Bild anpassen"
 
 msgid "Advance to next image for bottom face of the cube"
 msgstr ""
@@ -1028,10 +1109,10 @@ msgid ""
 msgstr ""
 
 msgid "Color of bottom face of the cube"
-msgstr ""
+msgstr "Farbe der unteren Würfelfläche"
 
 msgid "Color of top face of the cube"
-msgstr ""
+msgstr "Farbe der oberen Würfelfläche"
 
 #, fuzzy
 msgid "Cube Bottom Color"
@@ -1206,6 +1287,7 @@ msgstr ""
 msgid "Expo"
 msgstr ""
 
+#, fuzzy
 msgid "Expo Animation"
 msgstr "Verwendete Animation"
 
@@ -1251,7 +1333,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Next viewport"
-msgstr "Zu Arbeitsfläche bewegen"
+msgstr "Nächste Arbeitsfläche"
 
 msgid "One big wall"
 msgstr ""
@@ -1261,7 +1343,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Previous viewport"
-msgstr "Zur vorherigen Arbeitsfläche wechseln"
+msgstr "Vorherige Arbeitsfläche"
 
 msgid "Reflection"
 msgstr "Reflektionen"
@@ -1291,8 +1373,9 @@ msgstr "Ansicht kippen"
 msgid "Tilt window view in expo mode"
 msgstr "Expo-Ansicht ankippen"
 
+#, fuzzy
 msgid "Timeframe to execute a double click"
-msgstr ""
+msgstr "Zeitfenster für einen Doppelklick"
 
 msgid "Vortex"
 msgstr ""
@@ -1337,7 +1420,7 @@ msgstr ""
 msgid "Enhanced Zoom Desktop"
 msgstr "Desktop Einblenden"
 
-msgid "Enhanced zoom functions for visually imparied and others"
+msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr ""
 
 #, fuzzy
@@ -1366,14 +1449,19 @@ msgid "Fit zoomed area to window"
 msgstr "Gefilterte Fenster"
 
 #, fuzzy
+msgid "Fitting"
+msgstr "Einstellungen"
+
+#, fuzzy
 msgid "Focus Tracking"
 msgstr "Fokusanimation"
 
 msgid "Follow Focus Delay"
 msgstr ""
 
+#, fuzzy
 msgid "Hide original mouse pointer"
-msgstr ""
+msgstr "Original-Mauszeiger verstecken"
 
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
@@ -1384,8 +1472,8 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Mouse Behavior"
-msgstr "Verhalten"
+msgid "Mouse Behaviour"
+msgstr "Verhalten der Maus"
 
 msgid "Mouse Poll Interval"
 msgstr ""
@@ -1440,6 +1528,9 @@ msgstr ""
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr ""
 
+msgid "Panning"
+msgstr ""
+
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr ""
 
@@ -1450,6 +1541,9 @@ msgid "Restrain the mouse to the zoom area"
 msgstr ""
 
 msgid "Scale the mouse pointer"
+msgstr ""
+
+msgid "Specific Zoom"
 msgstr ""
 
 msgid "Specific zoom factor 1"
@@ -1486,12 +1580,16 @@ msgid "Use linear filter when zoomed in"
 msgstr ""
 
 #, fuzzy
+msgid "Zoom Area Movement"
+msgstr "Aus der Mitte zoomen"
+
+#, fuzzy
 msgid "Zoom In"
 msgstr "Zoom"
 
 #, fuzzy
-msgid "Zoom Movement"
-msgstr "Aus der Mitte zoomen"
+msgid "Zoom In/Out"
+msgstr "Zoomdauer"
 
 #, fuzzy
 msgid "Zoom Out"
@@ -1615,30 +1713,29 @@ msgid "Toggle window fake ARGB."
 msgstr "Aktiviere pseudo-ARGB für das momentan aktive Fenster."
 
 msgid "Background brightness"
-msgstr "Hintergundhelligkeit"
+msgstr "Hintergrundhelligkeit"
 
 msgid "Background brightness during paint"
-msgstr "Hintergundhelligkeit wärend des Zeichnens"
+msgstr "Hintergrundhelligkeit während des Zeichnens"
 
 # FIXME
 msgid "Clear"
 msgstr "Reinigen"
 
 msgid "Clear (button)"
-msgstr ""
+msgstr "Reinigen (Maus)"
 
 # FIXME
-#, fuzzy
 msgid "Clear (key)"
-msgstr "Reinigen"
+msgstr "Reinigen (Tastatur)"
 
 #, fuzzy
 msgid "Initiate (button)"
-msgstr "Plugin-Aktion initiieren"
+msgstr "Auslösen (Maus)"
 
 #, fuzzy
 msgid "Initiate (key)"
-msgstr "Auslösen"
+msgstr "Auslösen (Tastatur)"
 
 msgid "Initiate fire drawing"
 msgstr "Zeichnen mit Feuer aktivieren"
@@ -1752,9 +1849,6 @@ msgstr "Textfarbe"
 
 msgid "Font Size"
 msgstr "Textgröße"
-
-msgid "General"
-msgstr "Allgemein"
 
 msgid "Glass"
 msgstr "Glas"
@@ -2181,6 +2275,43 @@ msgstr "Aktiviere Bewegungsunschärfe-Effekt."
 msgid "Visibility/Performance"
 msgstr "Sichtbarkeit/Leistung"
 
+#, fuzzy
+msgid "Action"
+msgstr "Animation"
+
+msgid "Action that is to be invoked."
+msgstr ""
+
+msgid "Assign mousegestures to any existing action"
+msgstr ""
+
+#, fuzzy
+msgid "Gesture"
+msgstr "Texturen"
+
+msgid "Gesture assignment"
+msgstr ""
+
+#, fuzzy
+msgid "Gestures"
+msgstr "Texturen"
+
+msgid "Mouse gesture to assign an action to."
+msgstr ""
+
+msgid "Mousegestures"
+msgstr ""
+
+#, fuzzy
+msgid "Plugin"
+msgstr "Expo-Plugin"
+
+msgid "Plugin the action belongs to."
+msgstr ""
+
+msgid "Start gesture"
+msgstr ""
+
 msgid "Begin Gesture"
 msgstr ""
 
@@ -2222,6 +2353,45 @@ msgstr "Fenster, die standardmäßig negiert werden sollen."
 
 msgid "Windows to exclude from negating"
 msgstr "Fenster, die niemals negiert werden sollen"
+
+msgid "Debug"
+msgstr "Fehlersuche"
+
+msgid "Display errors and other messages using libnotify."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Error Notifications"
+msgstr ""
+
+#, fuzzy
+msgid "Fatal"
+msgstr "Metall"
+
+#, fuzzy
+msgid "Hide Timeout"
+msgstr "Ein-/Ausblendzeit"
+
+# FIXME: Herein und Heraus sind noch nicht optimal
+#, fuzzy
+msgid "Info"
+msgstr "Herein"
+
+msgid "Maximum Log Level"
+msgstr ""
+
+msgid "The maximum log level to display"
+msgstr ""
+
+msgid ""
+"Timeout (in seconds) before hiding the notification, set to -1 for system "
+"default and 0 for indefinite"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
 
 msgid "Active Opacity"
 msgstr "Sichtbarkeit für aktives Fenster"
@@ -2993,6 +3163,72 @@ msgid "Toggle prompt visible."
 msgstr "Zeige Eingabefenster für Echtzeit-Scheme-Skripting."
 
 #, fuzzy
+msgid "Directory"
+msgstr "Falt-Richtung"
+
+#, fuzzy
+msgid "Initiate screencasting"
+msgstr "Zeichnen mit Feuer aktivieren"
+
+msgid "Put screenshot images in this directory"
+msgstr ""
+
+#, fuzzy
+msgid "ScreenCast plugin"
+msgstr "Bildschirmausgabe"
+
+# FIXME -- We need a better translation for 'Boxing'
+#, fuzzy
+msgid "ScreenCasting"
+msgstr "Bildschirm Boxen"
+
+#, fuzzy
+msgid "Animation duration"
+msgstr "Animationsdauer"
+
+#, fuzzy
+msgid "Duration of the animation in milliseconds."
+msgstr "Dauer der Auszoom-Animation"
+
+msgid "Increase the scale factor making the window bigger."
+msgstr ""
+
+#, fuzzy
+msgid "Make the window bigger"
+msgstr "Größe des Vorschaubildes"
+
+#, fuzzy
+msgid "Make the window smaller"
+msgstr "Größe des Vorschaubildes"
+
+msgid "Reduces the scale factor making the window smaller."
+msgstr ""
+
+msgid "Scale a window down to half size."
+msgstr ""
+
+msgid "Scale interval"
+msgstr ""
+
+#, fuzzy
+msgid "Shelf"
+msgstr "Umschalten"
+
+msgid ""
+"The number to divide the scale factor by or multiply it with when "
+"(respectively) increasing and decreasing the scale level manually. Higher "
+"number means finer changes."
+msgstr ""
+
+msgid "Trigger scale down"
+msgstr ""
+
+msgid ""
+"Visually scales a window down to allow easy monitoring without true/"
+"traditional resizing."
+msgstr ""
+
+#, fuzzy
 msgid "Background intensity"
 msgstr "Hintergrundbild"
 
@@ -3249,9 +3485,6 @@ msgstr "Fensterkanten"
 
 msgid "Bottom to Top"
 msgstr "Von unten nach oben"
-
-msgid "Debug"
-msgstr "Fehlersuche"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
@@ -4134,7 +4367,7 @@ msgstr "Hintergrundbild"
 
 #, fuzzy
 msgid "Background Brightness"
-msgstr "Hintergundhelligkeit"
+msgstr "Hintergrundhelligkeit"
 
 #, fuzzy
 msgid "Background Saturation"

@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-12-22 16:22+0530\n"
-"PO-Revision-Date: 2007-12-18 07:37+0100\n"
-"Last-Translator: Denis Rakhmangulov <danfocus@gmail.com>\n"
+"POT-Creation-Date: 2008-01-10 16:22+0530\n"
+"PO-Revision-Date: 2008-01-08 08:45+0100\n"
+"Last-Translator: Vladimir <Dzirt_@mail.ru>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -85,7 +85,7 @@ msgid "Misc. Options"
 msgstr "Разные опции"
 
 msgid "Roundoff corners for consistency with rounded decorations"
-msgstr ""
+msgstr "Скруглять углы для соответствия округлому оформлению"
 
 #, fuzzy
 msgid "Window Depth"
@@ -123,17 +123,19 @@ msgstr "Яркость"
 msgid "Brightness of faded windows"
 msgstr "<b>Восстановление минимизированных окон</b>"
 
+#, fuzzy
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
+"Сделать немного легче сосредоточиться, затемнив всё, кроме активного окна."
 
+# ВАРИАНТ: Др. опции
 #, fuzzy
 msgid "Misc. options"
 msgstr "несовместимые ключи"
 
-#, fuzzy
 msgid "Opacity"
-msgstr "Прозрачность"
+msgstr "Непрозрачность"
 
 #, fuzzy
 msgid "Opacity of faded windows"
@@ -162,7 +164,7 @@ msgid "Window types that should be Opacified."
 msgstr ""
 
 msgid "Airplane"
-msgstr ""
+msgstr "\"Самолёт\""
 
 msgid "Airplane Flying Path Length"
 msgstr ""
@@ -171,45 +173,57 @@ msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
+"Все эффекты выбираются произвольно, игнорируя выбранный эффект. Если ничего "
+"(None) не выбрано для события, это событие не будет анимировано."
 
+#, fuzzy
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
 msgstr ""
+"Амплитуда (размер волн в изгибе) в Горизонтальном Изгибе по отношению к "
+"ширине окна. Отрицательные значения изгибают наружу."
 
+#, fuzzy
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
+"Амплитуда (размер волн в изгибе) в Кривом Изгибе по отношению к ширине окна. "
+"Отрицательные значения изгибают наружу."
 
 msgid "Angle of window at the end of the animation."
-msgstr ""
+msgstr "Угол окна по окончанию анимации."
 
-#, fuzzy
 msgid "Animation Selection"
-msgstr "Неправильный выбор.\n"
+msgstr "Выбор анимации"
+
+msgid "Animation Time Step"
+msgstr "Скорость анимации"
 
 #, fuzzy
-msgid "Animation Time Step"
-msgstr "Шаг 1 из 2: Подключение принтера"
-
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "Скорость анимации для интенсивных эффектов"
 
+#, fuzzy
 msgid "Animation duration in milliseconds for close effect."
-msgstr ""
+msgstr "Длительность анимации в мсек. для закрывающего эффекта."
 
+#, fuzzy
 msgid "Animation duration in milliseconds for focus effect."
-msgstr ""
+msgstr "Длительность анимации в мсек. для фокусирующего эффекта."
 
+#, fuzzy
 msgid "Animation duration in milliseconds for minimize effect."
-msgstr ""
+msgstr "Длительность анимации в мсек. для минимизирующего эффекта."
 
+#, fuzzy
 msgid "Animation duration in milliseconds for open effect."
-msgstr ""
+msgstr "Длительность анимации в мсек. для открывающего эффекта."
 
+#, fuzzy
 msgid "Animation duration in milliseconds for shade effect."
-msgstr ""
+msgstr "Длительность анимации в мсек. для затеняющего эффекта."
 
 #, fuzzy
 msgid "Animations"
@@ -228,49 +242,42 @@ msgid "Away Position"
 msgstr "позиция курсора"
 
 msgid "Beam"
-msgstr ""
+msgstr "\"Лазер\""
 
-#, fuzzy
 msgid "Beam Color"
-msgstr "Текущий цвет"
+msgstr "Цвет \"лазера\""
 
-#, fuzzy
 msgid "Beam Life"
-msgstr "В реальной жизни: "
+msgstr "Время \"жизни\" лазера"
 
 msgid "Beam Slowdown"
-msgstr ""
+msgstr "Время угасания лазера"
 
-#, fuzzy
 msgid "Beam Spacing"
-msgstr "Шаг табуляции: "
+msgstr "Разброс лазера"
 
-#, fuzzy
 msgid "Beam Up"
-msgstr "Прокрутка вверх"
+msgstr "Высота лазера"
 
-#, fuzzy
 msgid "Beam Width"
-msgstr "По ширине страницы"
+msgstr "Ширина лазера"
 
-#, fuzzy
 msgid "Beam color."
-msgstr "Текущий цвет"
+msgstr "Цвет лазера"
 
 #, fuzzy
 msgid "Beam life."
-msgstr "В реальной жизни: "
+msgstr "Время жизни"
 
 msgid "Beam slowdown."
-msgstr ""
+msgstr "Замедление луча."
 
 #, fuzzy
 msgid "Beam width."
-msgstr "По ширине страницы"
+msgstr "Ширина луча."
 
-#, fuzzy
 msgid "Burn"
-msgstr "Скорость записи по умолчанию"
+msgstr "\"Горение\""
 
 #, fuzzy
 msgid "Close Animation"
@@ -306,40 +313,35 @@ msgid "Dodge Gap Ratio"
 msgstr "Коэффициент цифрового трансфокатора"
 
 msgid "Domino"
-msgstr ""
+msgstr "Эффект \"домино\""
 
 msgid "Domino Piece Falling Direction"
-msgstr ""
+msgstr "Направление падения домино"
 
-#, fuzzy
 msgid "Down"
 msgstr "Вниз"
 
-#, fuzzy
 msgid "Dream"
-msgstr "Сон"
+msgstr "Эффект \"мечта\""
 
 #, fuzzy
 msgid "Duration"
 msgstr "Длительность"
 
-#, fuzzy
 msgid "Effect Settings"
 msgstr "Параметры эффекта"
 
 msgid "Explode"
-msgstr ""
+msgstr "Эффект \"взрыв\""
 
-#, fuzzy
 msgid "Fade"
-msgstr "Скорость затенения"
+msgstr "Скорость угасания"
 
 msgid "Falling direction for Domino pieces."
-msgstr ""
+msgstr "Направление падения элементов домино."
 
-#, fuzzy
 msgid "Fire"
-msgstr "Пламя"
+msgstr "Эффект \"пламя\""
 
 #, fuzzy
 msgid "Fire Particle Color"
@@ -394,10 +396,10 @@ msgid "Fire smoke."
 msgstr "Пожарная машина"
 
 msgid "Fixed window interior during the Rollup animation."
-msgstr ""
+msgstr "Фиксированное содержание окна во время анимации свёртывания."
 
 msgid "Fly to TaskBar on Minimize"
-msgstr ""
+msgstr "Полёт к строке задач при минимизировании"
 
 #, fuzzy
 msgid "Focus Animation"
@@ -426,17 +428,19 @@ msgstr ""
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
+"Применять случайные цвета для эффекта пламени, также известного как "
+"Мистический Огонь."
 
 msgid "Hexagonal"
-msgstr ""
+msgstr "Шестиугольник"
 
 #, fuzzy
 msgid "Horizontal Folds"
-msgstr "Горизонтально"
+msgstr "Свёртывается горизонтально"
 
 #, fuzzy
 msgid "Horizontal Folds Amplitude"
-msgstr "Свернуть _весь код"
+msgstr "Амплитуда горизонтального свёртывания"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr ""
@@ -465,14 +469,14 @@ msgid "Left-right"
 msgstr "слева направо"
 
 msgid "Length of airplane's flying path."
-msgstr ""
+msgstr "Длина пути полёта самолёта."
 
 #, fuzzy
 msgid "Magic Lamp"
-msgstr "Отсутствует выражение режима magic."
+msgstr "Магическая лампа"
 
 msgid "Magic Lamp Grid Y Resolution"
-msgstr ""
+msgstr "Разрешение оси Y Магической лампы"
 
 msgid "Magic Lamp Max Wave Amplitude"
 msgstr ""
@@ -984,6 +988,85 @@ msgid "Y position"
 msgstr "Позиция по вертикали"
 
 #, fuzzy
+msgid "Brightness Decrease"
+msgstr "Яркость"
+
+#, fuzzy
+msgid "Brightness Increase"
+msgstr "Яркость"
+
+#, fuzzy
+msgid "Brightness Step"
+msgstr "Яркость"
+
+#, fuzzy
+msgid "Brightness and Saturation"
+msgstr "<b>Восстановление минимизированных окон</b>"
+
+msgid "Brightness and Saturation adjustments"
+msgstr ""
+
+#, fuzzy
+msgid "Brightness settings"
+msgstr "Вызов выбранных окон по истечении интервала времени"
+
+#, fuzzy
+msgid "Brightness values for windows"
+msgstr "<b>Восстановление минимизированных окон</b>"
+
+#, fuzzy
+msgid "Brightness window values"
+msgstr "<b>Восстановление минимизированных окон</b>"
+
+#, fuzzy
+msgid "Brightness windows"
+msgstr "<b>Восстановление минимизированных окон</b>"
+
+#, fuzzy
+msgid "General"
+msgstr "Общие"
+
+#, fuzzy
+msgid "Saturation Decrease"
+msgstr "Насыщенность"
+
+#, fuzzy
+msgid "Saturation Increase"
+msgstr "Насыщенность"
+
+#, fuzzy
+msgid "Saturation Step"
+msgstr "Насыщенность"
+
+#, fuzzy
+msgid "Saturation settings"
+msgstr "Вызов выбранных окон по истечении интервала времени"
+
+#, fuzzy
+msgid "Saturation values for windows"
+msgstr "<b>Восстановление минимизированных окон</b>"
+
+#, fuzzy
+msgid "Saturation window values"
+msgstr "<b>Восстановление минимизированных окон</b>"
+
+#, fuzzy
+msgid "Saturation windows"
+msgstr "<b>Восстановление минимизированных окон</b>"
+
+#, fuzzy
+msgid "Window specific"
+msgstr "Уменьшить прозрачность окна"
+
+#, fuzzy
+msgid "Windows that should have a different brightness by default"
+msgstr "Окна, прозрачные по умолчанию"
+
+#, fuzzy
+msgid "Windows that should have a different saturation by default"
+msgstr "Окна, прозрачные по умолчанию"
+
+#, fuzzy
 msgid "Color filter"
 msgstr "Остановить фильтрацию"
 
@@ -1493,7 +1576,7 @@ msgstr ""
 msgid "Enhanced Zoom Desktop"
 msgstr "Изменение масштаба и сдвига куба рабочего стола"
 
-msgid "Enhanced zoom functions for visually imparied and others"
+msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr ""
 
 #, fuzzy
@@ -1522,6 +1605,10 @@ msgid "Fit zoomed area to window"
 msgstr "Перенести строки, чтобы попасть в область отображения?"
 
 #, fuzzy
+msgid "Fitting"
+msgstr "Настройки"
+
+#, fuzzy
 msgid "Focus Tracking"
 msgstr "<b>Отслеживание состояния</b>"
 
@@ -1542,7 +1629,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Mouse Behavior"
+msgid "Mouse Behaviour"
 msgstr "Общие"
 
 #, fuzzy
@@ -1604,6 +1691,10 @@ msgstr "Изменение масштаба и сдвига куба рабоч�
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr ""
 
+#, fuzzy
+msgid "Panning"
+msgstr "Дополнение"
+
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr ""
 
@@ -1616,6 +1707,10 @@ msgstr ""
 #, fuzzy
 msgid "Scale the mouse pointer"
 msgstr "Отражение при курсоре на краю"
+
+#, fuzzy
+msgid "Specific Zoom"
+msgstr "Значение \"%s\" не является допустимым масштабом\n"
 
 #, fuzzy
 msgid "Specific zoom factor 1"
@@ -1657,12 +1752,16 @@ msgid "Use linear filter when zoomed in"
 msgstr ""
 
 #, fuzzy
+msgid "Zoom Area Movement"
+msgstr "<b>Клавиша перемещения</b>"
+
+#, fuzzy
 msgid "Zoom In"
 msgstr "Увеличить"
 
 #, fuzzy
-msgid "Zoom Movement"
-msgstr "<b>Клавиша перемещения</b>"
+msgid "Zoom In/Out"
+msgstr "Уменьшить"
 
 #, fuzzy
 msgid "Zoom Out"
@@ -1952,10 +2051,6 @@ msgstr "Цвет шрифта по умолчанию"
 #, fuzzy
 msgid "Font Size"
 msgstr "Размер шрифта"
-
-#, fuzzy
-msgid "General"
-msgstr "Общие"
 
 #, fuzzy
 msgid "Glass"
@@ -2404,6 +2499,44 @@ msgid "Visibility/Performance"
 msgstr "Единица _видимости:"
 
 #, fuzzy
+msgid "Action"
+msgstr "Анимация"
+
+msgid "Action that is to be invoked."
+msgstr ""
+
+msgid "Assign mousegestures to any existing action"
+msgstr ""
+
+#, fuzzy
+msgid "Gesture"
+msgstr "Текст в начале"
+
+msgid "Gesture assignment"
+msgstr ""
+
+#, fuzzy
+msgid "Gestures"
+msgstr "Текстуры высокого разрешения"
+
+msgid "Mouse gesture to assign an action to."
+msgstr ""
+
+#, fuzzy
+msgid "Mousegestures"
+msgstr "_Визуальное отображение жестов"
+
+#, fuzzy
+msgid "Plugin"
+msgstr "Звуковой модуль"
+
+msgid "Plugin the action belongs to."
+msgstr ""
+
+msgid "Start gesture"
+msgstr ""
+
+#, fuzzy
 msgid "Begin Gesture"
 msgstr "Текст в начале"
 
@@ -2454,6 +2587,45 @@ msgid "Windows to be negative by default"
 msgstr "Окна, прозрачные по умолчанию"
 
 msgid "Windows to exclude from negating"
+msgstr ""
+
+#, fuzzy
+msgid "Debug"
+msgstr "Отладка"
+
+msgid "Display errors and other messages using libnotify."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Error Notifications"
+msgstr ""
+
+#, fuzzy
+msgid "Fatal"
+msgstr "Метал"
+
+#, fuzzy
+msgid "Hide Timeout"
+msgstr "Время (мс)"
+
+#, fuzzy
+msgid "Info"
+msgstr "Увеличить"
+
+msgid "Maximum Log Level"
+msgstr ""
+
+msgid "The maximum log level to display"
+msgstr ""
+
+msgid ""
+"Timeout (in seconds) before hiding the notification, set to -1 for system "
+"default and 0 for indefinite"
+msgstr ""
+
+msgid "Warning"
 msgstr ""
 
 #, fuzzy
@@ -3342,6 +3514,71 @@ msgid "Toggle prompt visible."
 msgstr "&Линейка меню"
 
 #, fuzzy
+msgid "Directory"
+msgstr "Неверный каталог пользователей"
+
+#, fuzzy
+msgid "Initiate screencasting"
+msgstr "рисунок формата Corel Draw"
+
+msgid "Put screenshot images in this directory"
+msgstr ""
+
+#, fuzzy
+msgid "ScreenCast plugin"
+msgstr "стандартный вывод"
+
+#, fuzzy
+msgid "ScreenCasting"
+msgstr "Заблокировать экран"
+
+#, fuzzy
+msgid "Animation duration"
+msgstr "Продолжительность вызова"
+
+#, fuzzy
+msgid "Duration of the animation in milliseconds."
+msgstr "Анимированное изображение рыбки"
+
+msgid "Increase the scale factor making the window bigger."
+msgstr ""
+
+#, fuzzy
+msgid "Make the window bigger"
+msgstr "Размер окна текстового диалога"
+
+#, fuzzy
+msgid "Make the window smaller"
+msgstr "Размер окна текстового диалога"
+
+msgid "Reduces the scale factor making the window smaller."
+msgstr ""
+
+msgid "Scale a window down to half size."
+msgstr ""
+
+msgid "Scale interval"
+msgstr ""
+
+#, fuzzy
+msgid "Shelf"
+msgstr "Shift"
+
+msgid ""
+"The number to divide the scale factor by or multiply it with when "
+"(respectively) increasing and decreasing the scale level manually. Higher "
+"number means finer changes."
+msgstr ""
+
+msgid "Trigger scale down"
+msgstr ""
+
+msgid ""
+"Visually scales a window down to allow easy monitoring without true/"
+"traditional resizing."
+msgstr ""
+
+#, fuzzy
 msgid "Background intensity"
 msgstr "Интенсивность эффекта:"
 
@@ -3624,10 +3861,6 @@ msgstr "Окно разговора"
 #, fuzzy
 msgid "Bottom to Top"
 msgstr "снизу вверх"
-
-#, fuzzy
-msgid "Debug"
-msgstr "Отладка"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "

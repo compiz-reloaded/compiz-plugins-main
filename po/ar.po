@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-12-22 16:21+0530\n"
+"POT-Creation-Date: 2008-01-10 16:21+0530\n"
 "PO-Revision-Date: 2007-10-10 00:12+0200\n"
 "Last-Translator: Banxoo <banxoo+compiz@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -883,6 +883,84 @@ msgstr ""
 msgid "Y position"
 msgstr ""
 
+#, fuzzy
+msgid "Brightness Decrease"
+msgstr "النصوع"
+
+#, fuzzy
+msgid "Brightness Increase"
+msgstr "النصوع"
+
+#, fuzzy
+msgid "Brightness Step"
+msgstr "النصوع"
+
+#, fuzzy
+msgid "Brightness and Saturation"
+msgstr "نصوع النوافذ المتلاشية"
+
+msgid "Brightness and Saturation adjustments"
+msgstr ""
+
+#, fuzzy
+msgid "Brightness settings"
+msgstr "النصوع"
+
+#, fuzzy
+msgid "Brightness values for windows"
+msgstr "نصوع النوافذ المتلاشية"
+
+#, fuzzy
+msgid "Brightness window values"
+msgstr "نصوع النوافذ المتلاشية"
+
+#, fuzzy
+msgid "Brightness windows"
+msgstr "نصوع النوافذ المتلاشية"
+
+msgid "General"
+msgstr ""
+
+#, fuzzy
+msgid "Saturation Decrease"
+msgstr "قوة الألوان"
+
+#, fuzzy
+msgid "Saturation Increase"
+msgstr "قوة الألوان"
+
+#, fuzzy
+msgid "Saturation Step"
+msgstr "قوة الألوان"
+
+#, fuzzy
+msgid "Saturation settings"
+msgstr "قوة الألوان"
+
+#, fuzzy
+msgid "Saturation values for windows"
+msgstr "قوة الألوان في النوافذ المتلاشية"
+
+#, fuzzy
+msgid "Saturation window values"
+msgstr "قوة الألوان في النوافذ المتلاشية"
+
+#, fuzzy
+msgid "Saturation windows"
+msgstr "قوة الألوان في النوافذ المتلاشية"
+
+#, fuzzy
+msgid "Window specific"
+msgstr "مسافة النافذة"
+
+#, fuzzy
+msgid "Windows that should have a different brightness by default"
+msgstr "النوافذ التي يجب أن تعالج بثلاثة أبعاد"
+
+#, fuzzy
+msgid "Windows that should have a different saturation by default"
+msgstr "النوافذ التي يجب أن تعالج بثلاثة أبعاد"
+
 msgid "Color filter"
 msgstr ""
 
@@ -1306,7 +1384,7 @@ msgstr ""
 msgid "Enhanced Zoom Desktop"
 msgstr ""
 
-msgid "Enhanced zoom functions for visually imparied and others"
+msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr ""
 
 msgid "Filter Linear"
@@ -1331,6 +1409,9 @@ msgstr ""
 msgid "Fit zoomed area to window"
 msgstr ""
 
+msgid "Fitting"
+msgstr ""
+
 msgid "Focus Tracking"
 msgstr ""
 
@@ -1348,7 +1429,7 @@ msgid ""
 "choppy behavior."
 msgstr ""
 
-msgid "Mouse Behavior"
+msgid "Mouse Behaviour"
 msgstr ""
 
 msgid "Mouse Poll Interval"
@@ -1402,6 +1483,9 @@ msgstr ""
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr ""
 
+msgid "Panning"
+msgstr ""
+
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr ""
 
@@ -1412,6 +1496,9 @@ msgid "Restrain the mouse to the zoom area"
 msgstr ""
 
 msgid "Scale the mouse pointer"
+msgstr ""
+
+msgid "Specific Zoom"
 msgstr ""
 
 msgid "Specific zoom factor 1"
@@ -1447,10 +1534,14 @@ msgstr ""
 msgid "Use linear filter when zoomed in"
 msgstr ""
 
+#, fuzzy
+msgid "Zoom Area Movement"
+msgstr "تكبير من الوسط"
+
 msgid "Zoom In"
 msgstr ""
 
-msgid "Zoom Movement"
+msgid "Zoom In/Out"
 msgstr ""
 
 msgid "Zoom Out"
@@ -1687,9 +1778,6 @@ msgid "Font Color"
 msgstr ""
 
 msgid "Font Size"
-msgstr ""
-
-msgid "General"
 msgstr ""
 
 msgid "Glass"
@@ -2071,6 +2159,40 @@ msgstr ""
 msgid "Visibility/Performance"
 msgstr ""
 
+#, fuzzy
+msgid "Action"
+msgstr "التحريك"
+
+msgid "Action that is to be invoked."
+msgstr ""
+
+msgid "Assign mousegestures to any existing action"
+msgstr ""
+
+msgid "Gesture"
+msgstr ""
+
+msgid "Gesture assignment"
+msgstr ""
+
+msgid "Gestures"
+msgstr ""
+
+msgid "Mouse gesture to assign an action to."
+msgstr ""
+
+msgid "Mousegestures"
+msgstr ""
+
+msgid "Plugin"
+msgstr ""
+
+msgid "Plugin the action belongs to."
+msgstr ""
+
+msgid "Start gesture"
+msgstr ""
+
 msgid "Begin Gesture"
 msgstr ""
 
@@ -2111,6 +2233,42 @@ msgid "Windows to be negative by default"
 msgstr ""
 
 msgid "Windows to exclude from negating"
+msgstr ""
+
+msgid "Debug"
+msgstr ""
+
+msgid "Display errors and other messages using libnotify."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Error Notifications"
+msgstr ""
+
+msgid "Fatal"
+msgstr ""
+
+msgid "Hide Timeout"
+msgstr ""
+
+#, fuzzy
+msgid "Info"
+msgstr "داخل"
+
+msgid "Maximum Log Level"
+msgstr ""
+
+msgid "The maximum log level to display"
+msgstr ""
+
+msgid ""
+"Timeout (in seconds) before hiding the notification, set to -1 for system "
+"default and 0 for indefinite"
+msgstr ""
+
+msgid "Warning"
 msgstr ""
 
 msgid "Active Opacity"
@@ -2817,6 +2975,65 @@ msgstr ""
 msgid "Toggle prompt visible."
 msgstr ""
 
+#, fuzzy
+msgid "Directory"
+msgstr "إتجاه الطَوي"
+
+msgid "Initiate screencasting"
+msgstr ""
+
+msgid "Put screenshot images in this directory"
+msgstr ""
+
+msgid "ScreenCast plugin"
+msgstr ""
+
+msgid "ScreenCasting"
+msgstr ""
+
+#, fuzzy
+msgid "Animation duration"
+msgstr "إختيار التحريك"
+
+#, fuzzy
+msgid "Duration of the animation in milliseconds."
+msgstr "مدة التحريك لتأثير الفتح بالجزﺀ من الألف من الثانية"
+
+msgid "Increase the scale factor making the window bigger."
+msgstr ""
+
+msgid "Make the window bigger"
+msgstr ""
+
+msgid "Make the window smaller"
+msgstr ""
+
+msgid "Reduces the scale factor making the window smaller."
+msgstr ""
+
+msgid "Scale a window down to half size."
+msgstr ""
+
+msgid "Scale interval"
+msgstr ""
+
+msgid "Shelf"
+msgstr ""
+
+msgid ""
+"The number to divide the scale factor by or multiply it with when "
+"(respectively) increasing and decreasing the scale level manually. Higher "
+"number means finer changes."
+msgstr ""
+
+msgid "Trigger scale down"
+msgstr ""
+
+msgid ""
+"Visually scales a window down to allow easy monitoring without true/"
+"traditional resizing."
+msgstr ""
+
 msgid "Background intensity"
 msgstr ""
 
@@ -3039,9 +3256,6 @@ msgid "Window edges"
 msgstr ""
 
 msgid "Bottom to Top"
-msgstr ""
-
-msgid "Debug"
 msgstr ""
 
 msgid ""

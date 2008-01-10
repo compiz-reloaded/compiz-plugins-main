@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2007-12-22 16:22+0530\n"
+"POT-Creation-Date: 2008-01-10 16:23+0530\n"
 "PO-Revision-Date: 2007-12-11 16:52+0100\n"
 "Last-Translator: Thruth Wang <gubotruth@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -888,6 +888,84 @@ msgid "Y position"
 msgstr "Y 坐标"
 
 #, fuzzy
+msgid "Brightness Decrease"
+msgstr "亮度"
+
+#, fuzzy
+msgid "Brightness Increase"
+msgstr "亮度"
+
+#, fuzzy
+msgid "Brightness Step"
+msgstr "亮度"
+
+#, fuzzy
+msgid "Brightness and Saturation"
+msgstr "淡出窗口的亮度"
+
+msgid "Brightness and Saturation adjustments"
+msgstr ""
+
+#, fuzzy
+msgid "Brightness settings"
+msgstr "选定窗口的亮度级别"
+
+#, fuzzy
+msgid "Brightness values for windows"
+msgstr "淡出窗口的亮度"
+
+#, fuzzy
+msgid "Brightness window values"
+msgstr "淡出窗口的亮度"
+
+#, fuzzy
+msgid "Brightness windows"
+msgstr "淡出窗口的亮度"
+
+msgid "General"
+msgstr "一般"
+
+#, fuzzy
+msgid "Saturation Decrease"
+msgstr "饱和度"
+
+#, fuzzy
+msgid "Saturation Increase"
+msgstr "饱和度"
+
+#, fuzzy
+msgid "Saturation Step"
+msgstr "饱和度"
+
+#, fuzzy
+msgid "Saturation settings"
+msgstr "选定窗口的饱和度"
+
+#, fuzzy
+msgid "Saturation values for windows"
+msgstr "淡出窗口的饱和度"
+
+#, fuzzy
+msgid "Saturation window values"
+msgstr "淡出窗口的饱和度"
+
+#, fuzzy
+msgid "Saturation windows"
+msgstr "淡出窗口的饱和度"
+
+#, fuzzy
+msgid "Window specific"
+msgstr "窗口不透明度"
+
+#, fuzzy
+msgid "Windows that should have a different brightness by default"
+msgstr "使用 3D 的窗口"
+
+#, fuzzy
+msgid "Windows that should have a different saturation by default"
+msgstr "使用 3D 的窗口"
+
+#, fuzzy
 msgid "Color filter"
 msgstr "颜色不透明度"
 
@@ -1334,7 +1412,7 @@ msgstr ""
 msgid "Enhanced Zoom Desktop"
 msgstr "淡出到桌面"
 
-msgid "Enhanced zoom functions for visually imparied and others"
+msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr ""
 
 msgid "Filter Linear"
@@ -1359,6 +1437,10 @@ msgstr ""
 msgid "Fit zoomed area to window"
 msgstr ""
 
+#, fuzzy
+msgid "Fitting"
+msgstr "设置"
+
 msgid "Focus Tracking"
 msgstr ""
 
@@ -1377,7 +1459,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Mouse Behavior"
+msgid "Mouse Behaviour"
 msgstr "行为"
 
 msgid "Mouse Poll Interval"
@@ -1433,6 +1515,9 @@ msgstr ""
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr ""
 
+msgid "Panning"
+msgstr ""
+
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr ""
 
@@ -1443,6 +1528,9 @@ msgid "Restrain the mouse to the zoom area"
 msgstr ""
 
 msgid "Scale the mouse pointer"
+msgstr ""
+
+msgid "Specific Zoom"
 msgstr ""
 
 msgid "Specific zoom factor 1"
@@ -1478,12 +1566,16 @@ msgstr ""
 msgid "Use linear filter when zoomed in"
 msgstr ""
 
+msgid "Zoom Area Movement"
+msgstr ""
+
 #, fuzzy
 msgid "Zoom In"
 msgstr "缩放"
 
-msgid "Zoom Movement"
-msgstr ""
+#, fuzzy
+msgid "Zoom In/Out"
+msgstr "缩放"
 
 #, fuzzy
 msgid "Zoom Out"
@@ -1726,9 +1818,6 @@ msgstr "字体颜色"
 
 msgid "Font Size"
 msgstr "字体大小"
-
-msgid "General"
-msgstr "一般"
 
 msgid "Glass"
 msgstr "毛玻璃"
@@ -2111,6 +2200,42 @@ msgstr "开关动态模糊效果"
 msgid "Visibility/Performance"
 msgstr "可视性/性能"
 
+#, fuzzy
+msgid "Action"
+msgstr "动画速度"
+
+msgid "Action that is to be invoked."
+msgstr ""
+
+msgid "Assign mousegestures to any existing action"
+msgstr ""
+
+#, fuzzy
+msgid "Gesture"
+msgstr "纹理"
+
+msgid "Gesture assignment"
+msgstr ""
+
+#, fuzzy
+msgid "Gestures"
+msgstr "纹理"
+
+msgid "Mouse gesture to assign an action to."
+msgstr ""
+
+msgid "Mousegestures"
+msgstr ""
+
+msgid "Plugin"
+msgstr ""
+
+msgid "Plugin the action belongs to."
+msgstr ""
+
+msgid "Start gesture"
+msgstr ""
+
 msgid "Begin Gesture"
 msgstr ""
 
@@ -2160,6 +2285,43 @@ msgstr ""
 #, fuzzy
 msgid "Windows to exclude from negating"
 msgstr "不参与排列的窗口"
+
+msgid "Debug"
+msgstr "调试"
+
+msgid "Display errors and other messages using libnotify."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Error Notifications"
+msgstr ""
+
+#, fuzzy
+msgid "Fatal"
+msgstr "金属"
+
+#, fuzzy
+msgid "Hide Timeout"
+msgstr "淡入淡出时间"
+
+msgid "Info"
+msgstr ""
+
+msgid "Maximum Log Level"
+msgstr ""
+
+msgid "The maximum log level to display"
+msgstr ""
+
+msgid ""
+"Timeout (in seconds) before hiding the notification, set to -1 for system "
+"default and 0 for indefinite"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
 
 #, fuzzy
 msgid "Active Opacity"
@@ -2946,6 +3108,70 @@ msgid "Toggle prompt visible."
 msgstr ""
 
 #, fuzzy
+msgid "Directory"
+msgstr "飞雪方向"
+
+#, fuzzy
+msgid "Initiate screencasting"
+msgstr "启动火焰绘制"
+
+msgid "Put screenshot images in this directory"
+msgstr ""
+
+#, fuzzy
+msgid "ScreenCast plugin"
+msgstr "屏幕输出"
+
+#, fuzzy
+msgid "ScreenCasting"
+msgstr "屏幕广度"
+
+#, fuzzy
+msgid "Animation duration"
+msgstr "动画时长"
+
+#, fuzzy
+msgid "Duration of the animation in milliseconds."
+msgstr "排列动画时长(微秒)"
+
+msgid "Increase the scale factor making the window bigger."
+msgstr ""
+
+#, fuzzy
+msgid "Make the window bigger"
+msgstr "绘制窗口背面"
+
+#, fuzzy
+msgid "Make the window smaller"
+msgstr "绘制窗口背面"
+
+msgid "Reduces the scale factor making the window smaller."
+msgstr ""
+
+msgid "Scale a window down to half size."
+msgstr ""
+
+msgid "Scale interval"
+msgstr ""
+
+msgid "Shelf"
+msgstr ""
+
+msgid ""
+"The number to divide the scale factor by or multiply it with when "
+"(respectively) increasing and decreasing the scale level manually. Higher "
+"number means finer changes."
+msgstr ""
+
+msgid "Trigger scale down"
+msgstr ""
+
+msgid ""
+"Visually scales a window down to allow easy monitoring without true/"
+"traditional resizing."
+msgstr ""
+
+#, fuzzy
 msgid "Background intensity"
 msgstr "背景文件"
 
@@ -3194,9 +3420,6 @@ msgstr "窗口类型"
 
 msgid "Bottom to Top"
 msgstr "从底至顶"
-
-msgid "Debug"
-msgstr "调试"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
