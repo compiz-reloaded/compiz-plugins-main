@@ -613,7 +613,6 @@ typedef struct _AnimWindow
 
     int unmapCnt;
     int destroyCnt;
-    Bool finishing;		// Whether the window is being finished or not
 
     int nClipsPassed;	        /* # of clips passed to animAddWindowGeometry so far
 				   in this draw step */

@@ -1371,10 +1371,11 @@ static void cleanUpParentChildChainItem(AnimScreen *as, AnimWindow *aw)
     aw->skipPostPrepareScreen = FALSE;
 }
 
-static void postAnimationCleanupCustom(CompWindow * w,
-       				       Bool resetAnimation,
-       				       Bool closing,
-       				       Bool clearMatchingRow)
+static void postAnimationCleanupCustom (CompWindow * w,
+					Bool resetAnimation,
+					Bool closing,
+					Bool finishing,
+					Bool clearMatchingRow)
 {
     ANIM_WINDOW(w);
     ANIM_SCREEN(w->screen);
@@ -1527,7 +1528,7 @@ static void postAnimationCleanupCustom(CompWindow * w,
 	aw->restackInfo = NULL;
     }
 
-    if (!aw->finishing)
+    if (!finishing)
     {
 	while (aw->unmapCnt)
 	{
@@ -1544,7 +1545,7 @@ static void postAnimationCleanupCustom(CompWindow * w,
 
 void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
 {
-    postAnimationCleanupCustom(w, resetAnimation, FALSE, TRUE);
+    postAnimationCleanupCustom (w, resetAnimation, FALSE, FALSE, TRUE);
 }
 
 static void
@@ -1559,7 +1560,8 @@ postAnimationCleanupPrev (CompWindow * w,
     // Use previous event's anim selection row
     aw->curAnimSelectionRow = aw->prevAnimSelectionRow;
 
-    postAnimationCleanupCustom (w, resetAnimation, closing, clearMatchingRow);
+    postAnimationCleanupCustom (w, resetAnimation, closing, FALSE,
+				clearMatchingRow);
 
     // Restore current event's anim selection row
     aw->curAnimSelectionRow = curAnimSelectionRow;
@@ -4457,8 +4459,7 @@ static void animFiniWindow(CompPlugin * p, CompWindow * w)
     if (aw->wmName)
 	free (aw->wmName);
 
-    aw->finishing = TRUE;
-    postAnimationCleanup(w, FALSE);
+    postAnimationCleanupCustom (w, FALSE, FALSE, TRUE, TRUE);
 
     animFreeModel(aw);
 
