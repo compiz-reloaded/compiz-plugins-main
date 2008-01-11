@@ -56,15 +56,13 @@ void initParticles(int numParticles, ParticleSystem * ps)
     ps->coords_cache_count = 0;
     ps->dcolors_cache_count = 0;
 
+    Particle *part = ps->particles;
     int i;
-
-    for (i = 0; i < numParticles; i++)
-    {
-	ps->particles[i].life = 0.0f;
-    }
+    for (i = 0; i < numParticles; i++, part++)
+	part->life = 0.0f;
 }
 
-void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps)
+void drawParticles (CompScreen * s, CompWindow * w, ParticleSystem * ps)
 {
     glPushMatrix();
     if (w)
@@ -77,9 +75,6 @@ void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps)
 	glEnable(GL_TEXTURE_2D);
     }
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
-    int i;
-    Particle *part;
 
     /* Check that the cache is big enough */
     if (ps->numParticles > ps->vertex_cache_count)
@@ -122,11 +117,20 @@ void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps)
     GLfloat *coords = ps->coords_cache;
     GLfloat *colors = ps->colors_cache;
 
+    int cornersSize = sizeof (GLfloat) * 8;
+    int colorSize = sizeof (GLfloat) * 4;
+
+    GLfloat cornerCoords[8] = {0.0, 0.0,
+			       0.0, 1.0,
+			       1.0, 1.0,
+			       1.0, 0.0};
+
     int numActive = 0;
 
-    for (i = 0; i < ps->numParticles; i++)
+    Particle *part = ps->particles;
+    int i;
+    for (i = 0; i < ps->numParticles; i++, part++)
     {
-	part = &ps->particles[i];
 	if (part->life > 0.0f)
 	{
 	    numActive += 4;
@@ -155,17 +159,7 @@ void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps)
 
 	    vertices += 12;
 
-	    coords[0] = 0.0;
-	    coords[1] = 0.0;
-
-	    coords[2] = 0.0;
-	    coords[3] = 1.0;
-
-	    coords[4] = 1.0;
-	    coords[5] = 1.0;
-
-	    coords[6] = 1.0;
-	    coords[7] = 0.0;
+	    memcpy (coords, cornerCoords, cornersSize);
 
 	    coords += 8;
 
@@ -173,40 +167,21 @@ void drawParticles(CompScreen * s, CompWindow * w, ParticleSystem * ps)
 	    colors[1] = part->g;
 	    colors[2] = part->b;
 	    colors[3] = part->life * part->a;
-	    colors[4] = part->r;
-	    colors[5] = part->g;
-	    colors[6] = part->b;
-	    colors[7] = part->life * part->a;
-	    colors[8] = part->r;
-	    colors[9] = part->g;
-	    colors[10] = part->b;
-	    colors[11] = part->life * part->a;
-	    colors[12] = part->r;
-	    colors[13] = part->g;
-	    colors[14] = part->b;
-	    colors[15] = part->life * part->a;
+	    memcpy (colors + 4, colors, colorSize);
+	    memcpy (colors + 8, colors, colorSize);
+	    memcpy (colors + 12, colors, colorSize);
 
 	    colors += 16;
 
 	    if (ps->darken > 0)
 	    {
-
 		dcolors[0] = part->r;
 		dcolors[1] = part->g;
 		dcolors[2] = part->b;
 		dcolors[3] = part->life * part->a * ps->darken;
-		dcolors[4] = part->r;
-		dcolors[5] = part->g;
-		dcolors[6] = part->b;
-		dcolors[7] = part->life * part->a * ps->darken;
-		dcolors[8] = part->r;
-		dcolors[9] = part->g;
-		dcolors[10] = part->b;
-		dcolors[11] = part->life * part->a * ps->darken;
-		dcolors[12] = part->r;
-		dcolors[13] = part->g;
-		dcolors[14] = part->b;
-		dcolors[15] = part->life * part->a * ps->darken;
+		memcpy (dcolors + 4, dcolors, colorSize);
+		memcpy (dcolors + 8, dcolors, colorSize);
+		memcpy (dcolors + 12, dcolors, colorSize);
 
 		dcolors += 16;
 	    }
@@ -246,16 +221,14 @@ void drawParticleSystems(CompScreen * s, CompWindow * w)
 {
     ANIM_WINDOW(w);
 
-    if (aw->numPs)
+    if (aw->numPs && !WINDOW_INVISIBLE(w))
     {
 	int i = 0;
 
 	for (i = 0; i < aw->numPs; i++)
 	{
-	    if (aw->ps[i].active && !WINDOW_INVISIBLE(w))
-	    {
+	    if (aw->ps[i].active)
 		drawParticles(s, w, &aw->ps[i]);
-	    }
 	}
     }
 }
@@ -269,9 +242,10 @@ void updateParticles(ParticleSystem * ps, float time)
 
     ps->active = FALSE;
 
-    for (i = 0; i < ps->numParticles; i++)
+    part = ps->particles;
+
+    for (i = 0; i < ps->numParticles; i++, part++)
     {
-	part = &ps->particles[i];
 	if (part->life > 0.0f)
 	{
 	    // move particle
@@ -319,11 +293,10 @@ particlesUpdateBB (CompOutput *output,
 	ParticleSystem * ps = &aw->ps[i];
 	if (ps->active)
 	{
+	    Particle *part = ps->particles;
 	    int j;
-	    for (j = 0; j < ps->numParticles; j++)
+	    for (j = 0; j < ps->numParticles; j++, part++)
 	    {
-		Particle *part = &ps->particles[j];
-
 		float w = part->width / 2;
 		float h = part->height / 2;
 

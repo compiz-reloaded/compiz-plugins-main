@@ -114,30 +114,43 @@ fxBurnGenNewFire(CompScreen * s,
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    float max_new =
-	ps->numParticles * (time / 50) *
-	(1.05 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE));
-    int i;
-    Particle *part;
+    Bool mysticalFire = animGetB(as, aw, ANIM_SCREEN_OPTION_FIRE_MYSTICAL);
+    float fireLife = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE);
+    float fireLifeNeg = 1 - fireLife;
+    float fadeExtra = 0.2f * (1.01 - fireLife);
+    float max_new = ps->numParticles * (time / 50) * (1.05 - fireLife);
+
+    // set color ABAB ANIM_SCREEN_OPTION_FIRE_COLOR
+    unsigned short *c =
+	animGetC(as, aw, ANIM_SCREEN_OPTION_FIRE_COLOR);
+    float colr1 = (float)c[0] / 0xffff;
+    float colg1 = (float)c[1] / 0xffff;
+    float colb1 = (float)c[2] / 0xffff;
+    float colr2 = 1 / 1.7 * (float)c[0] / 0xffff;
+    float colg2 = 1 / 1.7 * (float)c[1] / 0xffff;
+    float colb2 = 1 / 1.7 * (float)c[2] / 0xffff;
+    float cola = (float)c[3] / 0xffff;
     float rVal;
 
-    for (i = 0; i < ps->numParticles && max_new > 0; i++)
+    float partw = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE);
+    float parth = partw * 1.5;
+
+    Particle *part = ps->particles;
+    int i;
+    for (i = 0; i < ps->numParticles && max_new > 0; i++, part++)
     {
-	part = &ps->particles[i];
 	if (part->life <= 0.0f)
 	{
 	    // give gt new life
 	    rVal = (float)(random() & 0xff) / 255.0;
 	    part->life = 1.0f;
-	    part->fade = (rVal * (1 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE))) + 
-		(0.2f * (1.01 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE)));	// Random Fade Value
+	    part->fade = rVal * fireLifeNeg + fadeExtra; // Random Fade Value
 
 	    // set size
-	    part->width = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE);
-	    part->height = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE) * 1.5;
+	    part->width = partw;
+	    part->height = parth;
 	    rVal = (float)(random() & 0xff) / 255.0;
-	    part->w_mod = size * rVal;
-	    part->h_mod = size * rVal;
+	    part->w_mod = part->h_mod = size * rVal;
 
 	    // choose random position
 	    rVal = (float)(random() & 0xff) / 255.0;
@@ -155,12 +168,8 @@ fxBurnGenNewFire(CompScreen * s,
 	    rVal = (float)(random() & 0xff) / 255.0;
 	    part->yi = ((rVal * 20.0) - 15.0f);
 	    part->zi = 0.0f;
-	    rVal = (float)(random() & 0xff) / 255.0;
 
-	    // set color ABAB ANIM_SCREEN_OPTION_FIRE_COLOR
-	    unsigned short *c =
-		animGetC(as, aw, ANIM_SCREEN_OPTION_FIRE_COLOR);
-	    if (animGetB(as, aw, ANIM_SCREEN_OPTION_FIRE_MYSTICAL))
+	    if (mysticalFire)
 	    {
 		// Random colors! (aka Mystical Fire)
 		rVal = (float)(random() & 0xff) / 255.0;
@@ -172,15 +181,13 @@ fxBurnGenNewFire(CompScreen * s,
 	    }
 	    else
 	    {
-		part->r = (float)c[0] / 0xffff -
-		    (rVal / 1.7 * (float)c[0] / 0xffff);
-		part->g = (float)c[1] / 0xffff -
-		    (rVal / 1.7 * (float)c[1] / 0xffff);
-		part->b = (float)c[2] / 0xffff -
-		    (rVal / 1.7 * (float)c[2] / 0xffff);
+		rVal = (float)(random() & 0xff) / 255.0;
+		part->r = colr1 - rVal * colr2;
+		part->g = colg1 - rVal * colg2;
+		part->b = colb1 - rVal * colb2;
 	    }
 	    // set transparancy
-	    part->a = (float)c[3] / 0xffff;
+	    part->a = cola;
 
 	    // set gravity
 	    part->xg = (part->x < part->xo) ? 1.0 : -1.0;
@@ -215,25 +222,29 @@ fxBurnGenNewSmoke(CompScreen * s,
     float max_new =
 	ps->numParticles * (time / 50) *
 	(1.05 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE));
-    int i;
-    Particle *part;
     float rVal;
 
-    for (i = 0; i < ps->numParticles && max_new > 0; i++)
+    float fireLife = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE);
+    float fireLifeNeg = 1 - fireLife;
+    float fadeExtra = 0.2f * (1.01 - fireLife);
+
+    float partSize = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE) * size * 5;
+    float sizeNeg = -size;
+
+    Particle *part = ps->particles;
+    int i;
+    for (i = 0; i < ps->numParticles && max_new > 0; i++, part++)
     {
-	part = &ps->particles[i];
 	if (part->life <= 0.0f)
 	{
 	    // give gt new life
 	    rVal = (float)(random() & 0xff) / 255.0;
 	    part->life = 1.0f;
-	    part->fade = (rVal * (1 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE))) + 
-		(0.2f * (1.01 - animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_LIFE)));	// Random Fade Value
+	    part->fade = rVal * fireLifeNeg + fadeExtra; // Random Fade Value
 
 	    // set size
-	    part->width = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE) * size * 5;
-	    part->height = animGetF(as, aw, ANIM_SCREEN_OPTION_FIRE_SIZE) * size * 5;
-	    rVal = (float)(random() & 0xff) / 255.0;
+	    part->width = partSize;
+	    part->height = partSize;
 	    part->w_mod = -0.8;
 	    part->h_mod = -0.8;
 
@@ -263,8 +274,8 @@ fxBurnGenNewSmoke(CompScreen * s,
 	    part->a = 0.5 + (rVal / 2.0);
 
 	    // set gravity
-	    part->xg = (part->x < part->xo) ? size : -size;
-	    part->yg = -size;
+	    part->xg = (part->x < part->xo) ? size : sizeNeg;
+	    part->yg = sizeNeg;
 	    part->zg = 0.0f;
 
 	    ps->active = TRUE;
@@ -272,7 +283,7 @@ fxBurnGenNewSmoke(CompScreen * s,
 	}
 	else
 	{
-	    part->xg = (part->x < part->xo) ? size : -size;
+	    part->xg = (part->x < part->xo) ? size : sizeNeg;
 	}
     }
 
@@ -421,22 +432,30 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
     }
 
     int i;
+    int nParticles;
     Particle *part;
 
-    for (i = 0;
-	 i < aw->ps[0].numParticles && aw->animRemainingTime > 0
-	     && smoke; i++)
+    if (aw->animRemainingTime > 0 && smoke)
     {
-	part = &aw->ps[0].particles[i];
-	part->xg = (part->x < part->xo) ? WIN_W(w) / 40.0 : -WIN_W(w) / 40.0;
+	float partxg = WIN_W(w) / 40.0;
+	float partxgNeg = -partxg;
+
+	nParticles = aw->ps[0].numParticles;
+	part = aw->ps[0].particles;
+
+	for (i = 0; i < nParticles; i++, part++)
+	    part->xg = (part->x < part->xo) ? partxg : partxgNeg;
     }
     aw->ps[0].x = WIN_X(w);
     aw->ps[0].y = WIN_Y(w);
 
-    for (i = 0; i < aw->ps[1].numParticles && aw->animRemainingTime > 0; i++)
+    if (aw->animRemainingTime > 0)
     {
-	part = &aw->ps[1].particles[i];
-	part->xg = (part->x < part->xo) ? 1.0 : -1.0;
+	nParticles = aw->ps[1].numParticles;
+	part = aw->ps[1].particles;
+
+	for (i = 0; i < nParticles; i++, part++)
+	    part->xg = (part->x < part->xo) ? 1.0 : -1.0;
     }
     aw->ps[1].x = WIN_X(w);
     aw->ps[1].y = WIN_Y(w);
