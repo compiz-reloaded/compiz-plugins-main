@@ -120,6 +120,7 @@ static void
 workaroundsRemoveFromFullscreenList (CompWindow *w)
 {
     WorkaroundsManagedFsWindow *mfw;
+    WorkaroundsManagedFsWindow *temp;
 
     WORKAROUNDS_DISPLAY (w->screen->display);
 
@@ -138,8 +139,9 @@ workaroundsRemoveFromFullscreenList (CompWindow *w)
     {
 	if (mfw->next->id == w->id) 
 	{
+	    temp = mfw->next;
 	    mfw->next = mfw->next->next;
-	    free (mfw->next);				
+	    free (temp);				
 	}
     }
 }
