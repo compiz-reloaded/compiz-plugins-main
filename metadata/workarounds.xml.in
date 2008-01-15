@@ -43,6 +43,11 @@
                 <_long>Fix broken glProgramEnvParameter4f implementation.</_long>
                 <default>true</default>
             </option>
+            <option type="bool" name="fglrx_xgl_fix">
+                <_short>Fix screen updates in XGL with fglrx.</_short>
+                <_long>Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx.</_long>
+                <default>false</default>
+            </option>
             <subgroup>
                 <_short>Window stickyness</_short>
                 <option type="bool" name="sticky_alldesktops">

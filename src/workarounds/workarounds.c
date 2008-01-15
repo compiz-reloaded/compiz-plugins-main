@@ -56,6 +56,8 @@ typedef struct _WorkaroundsScreen {
 
     GLProgramParameter4fProc       origProgramEnvParameter4f;
     GLProgramParameter4dvProc      programEnvParameter4dv;
+
+    GLXCopySubBufferProc           origCopySubBuffer;
 } WorkaroundsScreen;
 
 CompScreen *currentScreen = NULL;
@@ -500,11 +502,18 @@ workaroundsDisplayOptionChanged (CompDisplay               *d,
     CompScreen *s;
     CompWindow *w;
 
+    WorkaroundsScreen *ws;
+
     for (s = d->screens; s; s = s->next)
     {
+	ws = GET_WORKAROUNDS_SCREEN (s, GET_WORKAROUNDS_DISPLAY (d));
 	for (w = s->windows; w; w = w->next)
 	    workaroundsUpdateSticky (w);
 	workaroundsUpdateParameterFix (s);
+	if (workaroundsGetFglrxXglFix (d))
+	    s->copySubBuffer = NULL;
+	else
+	    s->copySubBuffer = ws->origCopySubBuffer;
     }
 }
 
@@ -624,6 +633,7 @@ workaroundsInitDisplay (CompPlugin *plugin, CompDisplay *d)
     workaroundsSetAlldesktopStickyMatchNotify (d,
 					       workaroundsDisplayOptionChanged);
     workaroundsSetAiglxFragmentFixNotify (d, workaroundsDisplayOptionChanged);
+    workaroundsSetFglrxXglFixNotify (d, workaroundsDisplayOptionChanged);
     
 
     d->base.privates[displayPrivateIndex].ptr = wd;
@@ -667,6 +677,8 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
 	    (*s->getProcAddress) ((GLubyte *) "glProgramEnvParameter4dvARB");
     ws->origProgramEnvParameter4f = s->programEnvParameter4f;
 
+    ws->origCopySubBuffer = s->copySubBuffer;
+
     WRAP (ws, s, windowResizeNotify, workaroundsWindowResizeNotify);
     WRAP (ws, s, getAllowedActionsForWindow,
 	  workaroundsGetAllowedActionsForWindow);
@@ -676,6 +688,9 @@ workaroundsInitScreen (CompPlugin *plugin, CompScreen *s)
     s->base.privates[wd->screenPrivateIndex].ptr = ws;
 
     workaroundsUpdateParameterFix (s);
+
+    if (workaroundsGetFglrxXglFix (s->display))
+	s->copySubBuffer = NULL;
 
     return TRUE;
 }
@@ -691,6 +706,8 @@ workaroundsFiniScreen (CompPlugin *plugin, CompScreen *s)
     UNWRAP (ws, s, getAllowedActionsForWindow);
 
     UNWRAP (ws, s, paintScreen);
+
+    s->copySubBuffer = ws->origCopySubBuffer;
 
     free (ws);
 }
