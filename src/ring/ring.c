@@ -204,9 +204,6 @@ isRingWin (CompWindow *w)
     if (w->state & CompWindowStateSkipTaskbarMask)
 	return FALSE;
 
-    if (w->state & CompWindowStateShadedMask)
-	return FALSE;
-
     if (!matchEval (rs->currentMatch, w))
 	return FALSE;
 
@@ -520,8 +517,8 @@ ringPaintWindow (CompWindow		 *w,
 		int    scaledWinWidth, scaledWinHeight;
 		RingOverlayIconEnum iconOverlay = ringGetOverlayIcon (s);
 
-		scaledWinWidth  = w->width  * rw->scale;
-		scaledWinHeight = w->height * rw->scale;
+		scaledWinWidth  = w->attrib.width  * rw->scale;
+		scaledWinHeight = w->attrib.height * rw->scale;
 
 		if (!w->texture->pixmap)
 		    iconOverlay = OverlayIconBig;
@@ -713,8 +710,8 @@ layoutThumbs (CompScreen *s)
 	                        ((float) ellipseA * sin (angle));
 	rw->slot->y = centerY + ((float) ellipseB * cos (angle));
 
-	ww = w->width  + w->input.left + w->input.right;
-	wh = w->height + w->input.top  + w->input.bottom;
+	ww = w->attrib.width  + w->input.left + w->input.right;
+	wh = w->attrib.height + w->input.top  + w->input.bottom;
 
 	if (ww > ringGetThumbWidth (s))
 	    xScale = (float)(ringGetThumbWidth (s)) / (float) ww;
@@ -1408,9 +1405,9 @@ ringWindowSelectAt (CompScreen *s, int x, int y)
 	    RING_WINDOW (w);
 
     	    if ((x >= (rw->tx + w->attrib.x)) &&
-		(x <= (rw->tx + w->attrib.x + (w->width * rw->scale))) &&
+		(x <= (rw->tx + w->attrib.x + (w->attrib.width * rw->scale))) &&
 		(y >= (rw->ty + w->attrib.y)) &&
-		(y <= (rw->ty + w->attrib.y + (w->height * rw->scale))))
+		(y <= (rw->ty + w->attrib.y + (w->attrib.height * rw->scale))))
 	    {
 		/* we have found one, select it */
 		rs->selectedWindow = w->id;
