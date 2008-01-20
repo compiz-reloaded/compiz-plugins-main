@@ -260,9 +260,6 @@ isShiftWin (CompWindow *w)
     if (w->state & CompWindowStateSkipTaskbarMask)
 	return FALSE;
 
-    if (w->state & CompWindowStateShadedMask)
-	return FALSE;
-
     if (!matchEval (ss->currentMatch, w))
 	return FALSE;
 
@@ -584,8 +581,8 @@ shiftPaintWindow (CompWindow		 *w,
 	    matrixTranslate (&wTransform, sx, sy, sz);
 
 	    matrixTranslate (&wTransform,
-			     w->attrib.x + (w->width  * sscale / 2),
-			     w->attrib.y + (w->height  * sscale / 2.0),
+			     w->attrib.x + (w->attrib.width  * sscale / 2),
+			     w->attrib.y + (w->attrib.height  * sscale / 2.0),
 			     0.0f);
 
 	    matrixScale (&wTransform, ss->output->width, -ss->output->height,
@@ -598,7 +595,7 @@ shiftPaintWindow (CompWindow		 *w,
 
 	    matrixScale (&wTransform, sscale, sscale, 1.0f);
 	    matrixTranslate (&wTransform, -w->attrib.x - (w->width / 2),
-			     -w->attrib.y - (w->height / 2), 0.0f);
+			     -w->attrib.y - (w->attrib.height / 2), 0.0f);
 
 	    glPushMatrix ();
 	    glLoadMatrixf (wTransform.m);
@@ -641,8 +638,8 @@ shiftPaintWindow (CompWindow		 *w,
 		else
 		    sscale = ss->anim * ss->anim * slot->scale;
 
-		scaledWinWidth  = w->width  * sscale;
-		scaledWinHeight = w->height * sscale;
+		scaledWinWidth  = w->attrib.width  * sscale;
+		scaledWinHeight = w->attrib.height * sscale;
 
 		if (!w->texture->pixmap)
 		    iconOverlay = OverlayIconBig;
@@ -723,7 +720,7 @@ shiftPaintWindow (CompWindow		 *w,
 		    matrixTranslate (&wTransform, w->attrib.x +
 				     (w->width  * sscale / 2),
 				     w->attrib.y +
-				     (w->height  * sscale / 2.0), 0.0f);
+				     (w->attrib.height  * sscale / 2.0), 0.0f);
 	
 		    matrixScale (&wTransform, ss->output->width,
                 		 -ss->output->height, 1.0f);
@@ -734,8 +731,8 @@ shiftPaintWindow (CompWindow		 *w,
                 		 -1.0f / ss->output->height, 1.0f);
 
 		    matrixTranslate (&wTransform, x -
-				     (w->width  * sscale / 2), y -
-				     (w->height  * sscale / 2.0), 0.0f);
+				     (w->attrib.width * sscale / 2), y -
+				     (w->attrib.height * sscale / 2.0), 0.0f);
 		    matrixScale (&wTransform, scale, scale, 1.0f);
 
 		    glPushMatrix ();
@@ -860,8 +857,8 @@ layoutThumbsCover (CompScreen *s)
 	w = ss->windows[index];
 	SHIFT_WINDOW (w);
 
-	ww = w->width  + w->input.left + w->input.right;
-	wh = w->height + w->input.top  + w->input.bottom;
+	ww = w->attrib.width  + w->input.left + w->input.right;
+	wh = w->attrib.height + w->input.top  + w->input.bottom;
 
 	if (ww > maxThumbWidth)
 	    xScale = (float)(maxThumbWidth) / (float)ww;
@@ -907,7 +904,7 @@ layoutThumbsCover (CompScreen *s)
 		sw->slots[i].scale   = MIN (xScale, yScale);
 		
 		sw->slots[i].y = centerY + (maxThumbHeight / 2.0) -
-				 (((w->height / 2.0) + w->input.bottom) *
+				 (((w->attrib.height / 2.0) + w->input.bottom) *
 				 sw->slots[i].scale);
 
 		if (fabs(distance) < 1.0)
@@ -1009,8 +1006,8 @@ layoutThumbsFlip (CompScreen *s)
 	w = ss->windows[index];
 	SHIFT_WINDOW (w);
 
-	ww = w->width  + w->input.left + w->input.right;
-	wh = w->height + w->input.top  + w->input.bottom;
+	ww = w->attrib.width  + w->input.left + w->input.right;
+	wh = w->attrib.height + w->input.top  + w->input.bottom;
 
 	if (ww > maxThumbWidth)
 	    xScale = (float)(maxThumbWidth) / (float)ww;
@@ -1056,7 +1053,7 @@ layoutThumbsFlip (CompScreen *s)
 		sw->slots[i].scale   = MIN (xScale, yScale);
 		
 		sw->slots[i].y = centerY + (maxThumbHeight / 2.0) -
-				 (((w->height / 2.0) + w->input.bottom) *
+				 (((w->attrib.height / 2.0) + w->input.bottom) *
 				 sw->slots[i].scale);
 
 		sw->slots[i].x  = sin(angle) * distance * (maxThumbWidth / 2);
