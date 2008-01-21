@@ -298,6 +298,9 @@ workaroundsFixupFullscreen (CompWindow *w)
     WORKAROUNDS_WINDOW (w);
     WORKAROUNDS_DISPLAY (w->screen->display);
 
+    if (!workaroundsGetLegacyFullscreen (w->screen->display))
+	return;
+
     if (w->wmType & CompWindowTypeDesktopMask)
     {
 	/* desktop windows are implicitly fullscreen */
@@ -489,9 +492,6 @@ AppliedFix:
 
 	(*d->matchPropertyChanged) (d, w);
     }
-
-    if (workaroundsGetLegacyFullscreen (w->screen->display))
-	workaroundsFixupFullscreen (w);
 }
 
 static void
@@ -542,12 +542,16 @@ workaroundsHandleEvent (CompDisplay *d,
 	{
 	    workaroundsUpdateSticky (w);
 	    workaroundsDoFixes (w);
+	    workaroundsFixupFullscreen (w);
 	}
 	break;
     case MapNotify:
 	w = findWindowAtDisplay (d, event->xmap.window);
 	if (w && w->attrib.override_redirect)
+	{
 	    workaroundsDoFixes (w);
+	    workaroundsFixupFullscreen (w);
+	}
 	break;
     case DestroyNotify:
 	w = findWindowAtDisplay (d, event->xdestroywindow.window);
@@ -599,7 +603,7 @@ workaroundsWindowResizeNotify (CompWindow *w, int dx, int dy,
 {
     WORKAROUNDS_SCREEN (w->screen);
 
-    if (workaroundsGetLegacyFullscreen (w->screen->display))
+    if (w->attrib.map_state == IsViewable)
 	workaroundsFixupFullscreen (w);
 
     UNWRAP (ws, w->screen, windowResizeNotify);
