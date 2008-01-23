@@ -3240,6 +3240,20 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	if (w)
 	{
 	    ANIM_WINDOW(w);
+
+	    // don't animate windows that don't have a pixmap or certain properties,
+	    // like the fullscreen darkening layer of gksudo
+	    // or the darkening layer of x-session-manager
+	    if (!w->texture->pixmap ||
+		!(w->resName || windowHasUserTime (w)) ||
+		(aw->wmName && strcasecmp (aw->wmName, "x-session-manager") == 0))
+		break;
+
+	    int duration;
+	    if (AnimEffectNone ==
+		getMatchingAnimSelection (w, WindowEventClose, &duration))
+		break;
+
 	    aw->destroyCnt++;
 	    w->destroyRefCnt++;
 	    addWindowDamage(w);
