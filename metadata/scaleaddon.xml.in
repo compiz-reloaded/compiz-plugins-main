@@ -44,10 +44,24 @@
 				<_short>Appearance</_short>
 				<subgroup>
 					<_short>Window Title</_short>
-					<option name="window_title" type="bool">
-						<_short>Show Window Title</_short>
-						<_long>Show window title in scale mode</_long>
-						<default>true</default>
+					<option name="window_title" type="int">
+						<_short>Window Title Display</_short>
+						<_long>Window title display in scale mode</_long>
+						<min>0</min>
+						<max>2</max>
+						<default>1</default>
+						<desc>
+							<value>0</value>
+							<_name>No display</_name>
+						</desc>
+						<desc>
+							<value>1</value>
+							<_name>Hovered window only</_name>
+						</desc>
+						<desc>
+							<value>2</value>
+							<_name>All windows</_name>
+						</desc>
 					</option>
 					<option name="title_bold" type="bool">
 						<_short>Bold Font</_short>

@@ -62,18 +62,21 @@ typedef struct _ScaleAddonScreen {
 
     ScaleLayoutSlotsAndAssignWindowsProc layoutSlotsAndAssignWindows;
     ScalePaintDecorationProc		 scalePaintDecoration;
+    DonePaintScreenProc                  donePaintScreen;
 
-    Pixmap      textPixmap;
-    CompTexture textTexture;
-
-    int textWidth;
-    int textHeight;
+    int lastState;
 
     float scale;
 } ScaleAddonScreen;
 
 typedef struct _ScaleAddonWindow {
     ScaleSlot origSlot;
+
+    Pixmap      textPixmap;
+    CompTexture textTexture;
+
+    int textWidth;
+    int textHeight;
 
     Bool rescaled;
 
@@ -102,40 +105,51 @@ typedef struct _ScaleAddonWindow {
 
 
 static void
-scaleaddonFreeWindowTitle (CompScreen *s)
+scaleaddonFreeWindowTitle (CompWindow *w)
 {
-    ADDON_SCREEN (s);
+    CompScreen *s = w->screen;
 
-    if (!as->textPixmap)
+    ADDON_WINDOW (w);
+
+    if (!aw->textPixmap)
 	return;
 
-    releasePixmapFromTexture (s, &as->textTexture);
-    initTexture (s, &as->textTexture);
-    XFreePixmap (s->display->display, as->textPixmap);
-    as->textPixmap = None;
+    releasePixmapFromTexture (s, &aw->textTexture);
+    initTexture (s, &aw->textTexture);
+    XFreePixmap (s->display->display, aw->textPixmap);
+    aw->textPixmap = None;
 }
 
 static void
 scaleaddonRenderWindowTitle (CompWindow *w)
 {
-    CompTextAttrib tA;
-    float          scale;
-    int            stride;
-    void*          data;
-    CompScreen     *s = w->screen;
+    CompTextAttrib            tA;
+    float                     scale;
+    int                       stride;
+    void                      *data;
+    CompScreen                *s = w->screen;
+    ScaleaddonWindowTitleEnum winTitleMode;
 
-    ADDON_SCREEN (s);
     ADDON_DISPLAY (s->display);
     SCALE_SCREEN (s);
     SCALE_WINDOW (w);
+    ADDON_WINDOW (w);
+    SCALE_DISPLAY (s->display);
 
-    scaleaddonFreeWindowTitle (s);
+    scaleaddonFreeWindowTitle (w);
 
     if (!ad->textAvailable)
 	return;
 
-    if (!scaleaddonGetWindowTitle (s))
+    winTitleMode = scaleaddonGetWindowTitle (s);
+    if (winTitleMode == WindowTitleNoDisplay)
 	return;
+
+    if (winTitleMode == WindowTitleHoveredWindowOnly &&
+	sd->hoveredWindow != w->id)
+    {
+	return;
+    }
 
     scale = sw->slot ? sw->slot->scale : sw->scale;
     tA.maxWidth = (w->attrib.width * scale) - (2 * scaleaddonGetBorderSize (s));
@@ -160,26 +174,26 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     tA.data = (void*)w->id;
 
     if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *)&tA,
-				    &as->textWidth, &as->textHeight,
+				    &aw->textWidth, &aw->textHeight,
 				    &stride, &data))
     {
-	as->textPixmap = (Pixmap)data;
-	if (!bindPixmapToTexture (s, &as->textTexture, as->textPixmap,
-	     			  as->textWidth, as->textHeight, 32))
+	aw->textPixmap = (Pixmap)data;
+	if (!bindPixmapToTexture (s, &aw->textTexture, aw->textPixmap,
+	     			  aw->textWidth, aw->textHeight, 32))
 	{
 	    compLogMessage (s->display, "scaleaddon", CompLogLevelError,
 			    "Bind pixmap to texture failed.\n");
-	    XFreePixmap (s->display->display, as->textPixmap);
-	    as->textPixmap = None;
-	    as->textWidth = 0;
-	    as->textHeight = 0;
+	    XFreePixmap (s->display->display, aw->textPixmap);
+	    aw->textPixmap = None;
+	    aw->textWidth = 0;
+	    aw->textHeight = 0;
 	}
     }
     else
     {
-	as->textPixmap = None;
-	as->textWidth = 0;
-	as->textHeight = 0;
+	aw->textPixmap = None;
+	aw->textWidth = 0;
+	aw->textHeight = 0;
     }
 }
 
@@ -192,11 +206,11 @@ scaleaddonDrawWindowTitle (CompWindow *w)
     CompScreen *s = w->screen;
     CompMatrix *m;
 
-    ADDON_SCREEN (s);
     SCALE_WINDOW (w);
+    ADDON_WINDOW (w);
 
-    width = as->textWidth;
-    height = as->textHeight;
+    width = aw->textWidth;
+    height = aw->textHeight;
     border = scaleaddonGetBorderSize (s);
 
     x = sw->tx + w->attrib.x + ((WIN_W (w) * sw->scale) / 2) - (width / 2);
@@ -269,9 +283,9 @@ scaleaddonDrawWindowTitle (CompWindow *w)
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glColor4f (1.0, 1.0, 1.0, 1.0);
 
-    enableTexture (s, &as->textTexture, COMP_TEXTURE_FILTER_GOOD);
+    enableTexture (s, &aw->textTexture, COMP_TEXTURE_FILTER_GOOD);
 
-    m = &as->textTexture.matrix;
+    m = &aw->textTexture.matrix;
 
     glBegin (GL_QUADS);
 
@@ -286,7 +300,7 @@ scaleaddonDrawWindowTitle (CompWindow *w)
 
     glEnd ();
 
-    disableTexture (s, &as->textTexture);
+    disableTexture (s, &aw->textTexture);
     glColor4usv (defaultColor);
 
     if (!wasBlend)
@@ -359,12 +373,13 @@ scaleaddonCheckHoveredWindow (CompScreen *s)
 	    scaleaddonRenderWindowTitle (w);
 	    addWindowDamage (w);
 	}
-	else
-	    scaleaddonFreeWindowTitle (s);
 
 	lw = findWindowAtDisplay (d, ad->lastHoveredWindow);
 	if (lw)
+	{
+	    scaleaddonRenderWindowTitle (lw);
 	    addWindowDamage (lw);
+	}
 
 	ad->lastHoveredWindow = sd->hoveredWindow;
     }
@@ -545,9 +560,7 @@ scaleaddonHandleEvent (CompDisplay *d,
     {
     case PropertyNotify:
 	{
-	    SCALE_DISPLAY (d);
-	    if (event->xproperty.window == sd->hoveredWindow &&
-		event->xproperty.atom == XA_WM_NAME)
+	    if (event->xproperty.atom == XA_WM_NAME)
 	    {
 		CompWindow *w;
 
@@ -594,22 +607,52 @@ scaleaddonScalePaintDecoration (CompWindow              *w,
     ADDON_SCREEN (s);
     SCALE_SCREEN (s);
     SCALE_DISPLAY (s->display);
+    ADDON_WINDOW (w);
 
     UNWRAP (as, ss, scalePaintDecoration);
     (*ss->scalePaintDecoration) (w, attrib, transform, region, mask);
     WRAP (as, ss, scalePaintDecoration, scaleaddonScalePaintDecoration);
 
-    scaleaddonCheckHoveredWindow (w->screen);
+    scaleaddonCheckHoveredWindow (s);
 
-    if ((w->id == sd->hoveredWindow) &&
-	((ss->state == SCALE_STATE_WAIT) || (ss->state == SCALE_STATE_OUT)))
+    if ((ss->state == SCALE_STATE_WAIT) || (ss->state == SCALE_STATE_OUT))
     {
-	if (scaleaddonGetWindowHighlight (s))
+	if ((w->id == sd->hoveredWindow) && scaleaddonGetWindowHighlight (s))
 	    scaleaddonDrawWindowHighlight (w);
 
-	if (as->textPixmap)
+	if (aw->textPixmap)
 	    scaleaddonDrawWindowTitle (w);
     }
+}
+
+static void
+scaleaddonDonePaintScreen (CompScreen *s)
+{
+    ADDON_SCREEN (s);
+    SCALE_SCREEN (s);
+
+    if (ss->state == SCALE_STATE_WAIT &&
+	as->lastState != SCALE_STATE_WAIT)
+    {
+	CompWindow *w;
+
+	for (w = s->windows; w; w = w->next)
+	    scaleaddonRenderWindowTitle (w);
+    }
+    else if (ss->state == SCALE_STATE_NONE &&
+	     as->lastState != SCALE_STATE_NONE)
+    {
+	CompWindow *w;
+
+	for (w = s->windows; w; w = w->next)
+	    scaleaddonFreeWindowTitle (w);
+    }
+
+    as->lastState = ss->state;
+
+    UNWRAP (as, s, donePaintScreen);
+    (*s->donePaintScreen) (s);
+    WRAP (as, s, donePaintScreen, scaleaddonDonePaintScreen);
 }
 
 static void
@@ -619,7 +662,7 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 			     CompOption  *option,
 			     int         nOption)
 {
-    ADDON_DISPLAY(d);
+    ADDON_DISPLAY (d);
 
     UNWRAP (ad, d, handleCompizEvent);
     (*d->handleCompizEvent) (d, pluginName, eventName, option, nOption);
@@ -638,12 +681,15 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 
 	if (s)
 	{
+
 	    if (activated)
 	    {
 		addScreenAction (s, scaleaddonGetCloseKey (d));
 		addScreenAction (s, scaleaddonGetZoomKey (d));
 		addScreenAction (s, scaleaddonGetCloseButton (d));
 		addScreenAction (s, scaleaddonGetZoomButton (d));
+
+		ad->lastHoveredWindow = None;
 	    }
 	    else
 	    {
@@ -1091,16 +1137,22 @@ scaleaddonScreenOptionChanged (CompScreen              *s,
 {
     switch (num)
     {
+	case ScaleaddonScreenOptionWindowTitle:
 	case ScaleaddonScreenOptionTitleBold:
 	case ScaleaddonScreenOptionTitleSize:
 	case ScaleaddonScreenOptionBorderSize:
 	case ScaleaddonScreenOptionFontColor:
 	case ScaleaddonScreenOptionBackColor:
 	    {
-		ADDON_DISPLAY (s->display);
+		CompWindow *w;
 
-		scaleaddonFreeWindowTitle (s);
-		ad->lastHoveredWindow = None;
+		for (w = s->windows; w; w = w->next)
+		{
+		    ADDON_WINDOW (w);
+
+		    if (aw->textPixmap)
+			scaleaddonRenderWindowTitle (w);
+		}
 	    }
 	    break;
 	default:
@@ -1190,13 +1242,12 @@ scaleaddonInitScreen (CompPlugin *p,
 
     as->scale = 1.0f;
 
-    as->textPixmap = None;
-    initTexture (s, &as->textTexture);
-
+    WRAP (as, s, donePaintScreen, scaleaddonDonePaintScreen);
     WRAP (as, ss, scalePaintDecoration, scaleaddonScalePaintDecoration);
     WRAP (as, ss, layoutSlotsAndAssignWindows,
 	  scaleaddonLayoutSlotsAndAssignWindows);
 
+    scaleaddonSetWindowTitleNotify (s, scaleaddonScreenOptionChanged);
     scaleaddonSetTitleBoldNotify (s, scaleaddonScreenOptionChanged);
     scaleaddonSetTitleSizeNotify (s, scaleaddonScreenOptionChanged);
     scaleaddonSetBorderSizeNotify (s, scaleaddonScreenOptionChanged);
@@ -1215,10 +1266,9 @@ scaleaddonFiniScreen (CompPlugin *p,
     ADDON_SCREEN (s);
     SCALE_SCREEN (s);
 
+    UNWRAP (as, s, donePaintScreen);
     UNWRAP (as, ss, scalePaintDecoration);
     UNWRAP (as, ss, layoutSlotsAndAssignWindows);
-
-    scaleaddonFreeWindowTitle (s);
 
     freeWindowPrivateIndex (s, as->windowPrivateIndex);
     free (as);
@@ -1240,6 +1290,11 @@ scaleaddonInitWindow (CompPlugin *p,
 
     w->base.privates[as->windowPrivateIndex].ptr = aw;
 
+    aw->textPixmap = None;
+    initTexture (w->screen, &aw->textTexture);
+    aw->textWidth  = 0;
+    aw->textHeight = 0;
+
     return TRUE;
 }
 
@@ -1248,6 +1303,8 @@ scaleaddonFiniWindow (CompPlugin *p,
 		      CompWindow *w)
 {
     ADDON_WINDOW (w);
+
+    scaleaddonFreeWindowTitle (w);
 
     free (aw);
 }
