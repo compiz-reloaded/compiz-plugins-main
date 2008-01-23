@@ -3353,6 +3353,10 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		{
 		    // MINIMIZE event!
 
+		    // Always reset stacking related info when a window is
+		    // minimized.
+		    resetStackingInfo (w->screen);
+
 		    aw->newState = IconicState;
 
 		    chosenEffect =
@@ -3425,6 +3429,9 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    else				// X -> Withdrawn
 	    {
 		ANIM_WINDOW(w);
+
+		// Always reset stacking related info when a window is closed.
+		resetStackingInfo (w->screen);
 
 		if (ignoreForAnimation (w, TRUE))
 		    break;
@@ -3785,6 +3792,10 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    {
 		// UNMINIMIZE event!
 
+		// Always reset stacking related info when a window is
+		// unminimized.
+		resetStackingInfo (w->screen);
+
 		Bool startingNew = TRUE;
 
 		if (aw->curWindowEvent != WindowEventNone)
@@ -3933,6 +3944,9 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	}
 	else if (!w->invisible)
 	{
+	    // Always reset stacking related info when a window is opened.
+	    resetStackingInfo (w->screen);
+
 	    aw->created = TRUE;
 
 	    int duration = 200;
