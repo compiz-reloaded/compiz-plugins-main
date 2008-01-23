@@ -3202,6 +3202,19 @@ animGetWindowName (CompWindow *w)
     return retval;
 }
 
+// Don't animate windows that don't have a pixmap or certain properties,
+// like the fullscreen darkening layer of gksudo
+// or the darkening layer of x-session-manager
+static inline Bool
+ignoreForAnimation (CompWindow *w, Bool checkPixmap)
+{
+    ANIM_WINDOW(w);
+
+    return ((checkPixmap && !w->texture->pixmap) ||
+	    !(w->resName || windowHasUserTime (w)) ||
+	    (aw->wmName && strcasecmp (aw->wmName, "x-session-manager") == 0));
+}
+
 static void animHandleEvent(CompDisplay * d, XEvent * event)
 {
     CompWindow *w;
@@ -3241,12 +3254,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	{
 	    ANIM_WINDOW(w);
 
-	    // don't animate windows that don't have a pixmap or certain properties,
-	    // like the fullscreen darkening layer of gksudo
-	    // or the darkening layer of x-session-manager
-	    if (!w->texture->pixmap ||
-		!(w->resName || windowHasUserTime (w)) ||
-		(aw->wmName && strcasecmp (aw->wmName, "x-session-manager") == 0))
+	    if (ignoreForAnimation (w, TRUE))
 		break;
 
 	    int duration;
@@ -3418,11 +3426,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    {
 		ANIM_WINDOW(w);
 
-		// don't animate windows that don't have certain properties
-		// like the fullscreen darkening layer of gksudo
-		// or the darkening layer of x-session-manager
-		if (!(w->resName || windowHasUserTime (w)) ||
-		    (aw->wmName && strcasecmp (aw->wmName, "x-session-manager") == 0))
+		if (ignoreForAnimation (w, TRUE))
 		    break;
 
 		int duration = 200;
@@ -3932,17 +3936,14 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    aw->created = TRUE;
 
 	    int duration = 200;
-	    AnimEffect chosenEffect =
-		getMatchingAnimSelection (w, WindowEventOpen, &duration);
+	    AnimEffect chosenEffect;
 
 	    // OPEN event!
 
-	    if (chosenEffect &&
-		// don't animate windows that don't have certain properties
-		// like the fullscreen darkening layer of gksudo
-		(w->resName || windowHasUserTime (w)) &&
-		// don't animate darkening layer of x-session-manager
-		!(aw->wmName && strcasecmp (aw->wmName, "x-session-manager") == 0) &&
+	    if (!ignoreForAnimation (w, FALSE) &&
+		AnimEffectNone !=
+		(chosenEffect =
+		 getMatchingAnimSelection (w, WindowEventOpen, &duration)) &&
 		// suppress switcher window
 		// (1st window that opens after switcher becomes active)
 		(!as->pluginActive[0] || as->switcherWinOpeningSuppressed) &&
