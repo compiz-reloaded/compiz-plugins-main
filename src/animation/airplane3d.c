@@ -957,19 +957,16 @@ AirplaneExtraPolygonTransformFunc (PolygonObject * p)
 		  -aep->rotAxisOffsetB.z);
 }
 
-Bool
+void
 fxAirplane3DAnimStep (CompScreen * s,
 		      CompWindow * w,
 		      float time)
 {
     ANIM_WINDOW (w);
 
-    if (!polygonsAnimStep (s, w, time))
-	return FALSE;
+    polygonsAnimStep (s, w, time);
 
     // Make sure the airplane always flies towards mouse pointer
     if (aw->curWindowEvent == WindowEventClose)
 	getMousePointerXY(s, &aw->icon.x, &aw->icon.y);
-
-    return TRUE;
 }

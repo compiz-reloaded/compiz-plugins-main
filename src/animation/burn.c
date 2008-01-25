@@ -289,10 +289,9 @@ fxBurnGenNewSmoke(CompScreen * s,
 
 }
 
-Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
+void
+fxBurnModelStep (CompScreen *s, CompWindow *w, float time)
 {
-    int steps;
-
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
@@ -302,12 +301,6 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 		      as->opt[ANIM_SCREEN_OPTION_TIME_STEP_INTENSE].value.i);
     float old = 1 - (aw->animRemainingTime) / (aw->animTotalTime - timestep);
     float stepSize;
-
-    aw->remainderSteps += time / timestep;
-    steps = floor(aw->remainderSteps);
-    aw->remainderSteps -= steps;
-    if (!steps && aw->animRemainingTime < aw->animTotalTime)
-	return FALSE;
 
     aw->animRemainingTime -= timestep;
     if (aw->animRemainingTime <= 0)
@@ -428,7 +421,9 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
 	    free(aw->ps);
 	    aw->ps = NULL;
 	}
-	return FALSE;		// FIXME - is this correct behaviour?
+	// Abort animation
+	aw->animRemainingTime = 0;
+	return;
     }
 
     int i;
@@ -459,7 +454,5 @@ Bool fxBurnModelStep(CompScreen * s, CompWindow * w, float time)
     }
     aw->ps[1].x = WIN_X(w);
     aw->ps[1].y = WIN_Y(w);
-
-    return TRUE;
 }
 

@@ -474,7 +474,8 @@ float decelerateProgress(float progress)
     return decelerateProgressCustom(progress, 0.5, 0.75);
 }
 
-Bool defaultAnimStep(CompScreen * s, CompWindow * w, float time)
+void
+defaultAnimStep (CompScreen *s, CompWindow *w, float time)
 {
     int steps;
 
@@ -502,7 +503,6 @@ Bool defaultAnimStep(CompScreen * s, CompWindow * w, float time)
     {
 	applyZoomTransform (w, &aw->transform);
     }
-    return TRUE;
 }
 
 void

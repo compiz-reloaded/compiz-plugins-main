@@ -114,10 +114,10 @@ fxCurvedFoldModelStepObject(CompWindow * w,
     }
 }
 
-Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
+void
+fxCurvedFoldModelStep (CompScreen *s, CompWindow *w, float time)
 {
-    if (!defaultAnimStep(s, w, time))
-	return FALSE;
+    defaultAnimStep (s, w, time);
 
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -146,8 +146,6 @@ Bool fxCurvedFoldModelStep(CompScreen * s, CompWindow * w, float time)
 	     &model->objects[i],
 	     forwardProgress,
 	     curveMaxAmp);
-
-    return TRUE;
 }
 
 void

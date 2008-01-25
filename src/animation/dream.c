@@ -74,10 +74,10 @@ fxDreamModelStepObject(CompWindow * w,
 
 }
 
-Bool fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
+void
+fxDreamModelStep (CompScreen *s, CompWindow *w, float time)
 {
-    if (!defaultAnimStep(s, w, time))
-	return FALSE;
+    defaultAnimStep (s, w, time);
 
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -100,8 +100,6 @@ Bool fxDreamModelStep(CompScreen * s, CompWindow * w, float time)
 	fxDreamModelStepObject(w,
 			       model,
 			       &model->objects[i], forwardProgress);
-
-    return TRUE;
 }
 
 void

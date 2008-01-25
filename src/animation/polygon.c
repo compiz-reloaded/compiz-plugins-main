@@ -1450,10 +1450,10 @@ polygonsDeceleratingAnimStepPolygon(CompWindow * w,
     p->rotAngle = moveProgress * p->finalRotAng + p->rotAngleStart;
 }
 
-Bool polygonsAnimStep(CompScreen * s, CompWindow * w, float time)
+void
+polygonsAnimStep (CompScreen *s, CompWindow *w, float time)
 {
-    if (!defaultAnimStep(s, w, time))
-	return FALSE;
+    defaultAnimStep (s, w, time);
 
     ANIM_WINDOW(w);
 
@@ -1475,7 +1475,6 @@ Bool polygonsAnimStep(CompScreen * s, CompWindow * w, float time)
     else
 	compLogMessage (s->display, "animation", CompLogLevelDebug,
 			"%s: pset null at line %d\n",__FILE__,  __LINE__);
-    return TRUE;
 }
 
 void

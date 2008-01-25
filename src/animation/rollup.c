@@ -116,10 +116,10 @@ fxRollUpModelStepObject(CompWindow * w,
     }
 }
 
-Bool fxRollUpModelStep(CompScreen * s, CompWindow * w, float time)
+void
+fxRollUpModelStep (CompScreen *s, CompWindow *w, float time)
 {
-    if (!defaultAnimStep(s, w, time))
-	return FALSE;
+    defaultAnimStep (s, w, time);
 
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -137,8 +137,6 @@ Bool fxRollUpModelStep(CompScreen * s, CompWindow * w, float time)
 	     forwardProgress,
 	     animGetB(as, aw,
 		      ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR));
-
-    return TRUE;
 }
 
 void fxRollUpAnimInit(CompScreen * s, CompWindow * w)

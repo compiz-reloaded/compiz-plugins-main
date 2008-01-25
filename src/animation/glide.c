@@ -169,21 +169,19 @@ applyGlideTransform (CompWindow *w, CompTransform *transform)
     matrixTranslate (transform, -rotAxisOffset.x, -rotAxisOffset.y, 0);
 }
 
-Bool fxGlideAnimStep(CompScreen * s, CompWindow * w, float time)
+void
+fxGlideAnimStep (CompScreen *s, CompWindow *w, float time)
 {
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
     if (fxGlideIsPolygonBased(as, aw))
-	return polygonsAnimStep(s, w, time);
+	polygonsAnimStep (s, w, time);
     else
     {
-	if (!defaultAnimStep(s, w, time))
-	    return FALSE;
+	defaultAnimStep (s, w, time);
 
 	applyGlideTransform (w, &aw->transform);
-
-	return TRUE;
     }
 }
 

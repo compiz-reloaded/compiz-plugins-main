@@ -179,12 +179,10 @@ fxBeamUpGenNewBeam(CompScreen * s,
 
 }
 
-Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
+void
+fxBeamUpModelStep (CompScreen *s, CompWindow *w, float time)
 {
-    int steps;
-
-    if (!defaultAnimStep(s, w, time))
-	return FALSE;
+    defaultAnimStep (s, w, time);
 
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -197,17 +195,7 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
     Bool creating = (aw->curWindowEvent == WindowEventOpen ||
 		     aw->curWindowEvent == WindowEventUnminimize ||
 		     aw->curWindowEvent == WindowEventUnshade);
-    aw->remainderSteps += time / timestep;
-    steps = floor(aw->remainderSteps);
-    aw->remainderSteps -= steps;
-    if (!steps && aw->animRemainingTime < aw->animTotalTime)
-    {
-	// Might be interrupted in the middle.
-	// Therefore, if creating, schedule whole window to be damaged.
-	if (creating)
-	    updateBBWindow (NULL, w);
-	return FALSE;
-    }
+
     aw->animRemainingTime -= timestep;
     if (aw->animRemainingTime <= 0)
 	aw->animRemainingTime = 0;	// avoid sub-zero values
@@ -257,7 +245,9 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
 	    free(aw->ps);
 	    aw->ps = NULL;
 	}
-	return TRUE;		// FIXME - is this correct behaviour?
+	// Abort animation
+	aw->animRemainingTime = 0;
+	return;
     }
 
     aw->ps[0].x = WIN_X(w);
@@ -273,8 +263,6 @@ Bool fxBeamUpModelStep(CompScreen * s, CompWindow * w, float time)
     }
     aw->ps[1].x = WIN_X(w);
     aw->ps[1].y = WIN_Y(w);
-
-    return TRUE;
 }
 
 void

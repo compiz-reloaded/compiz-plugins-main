@@ -285,10 +285,10 @@ fxMagicLampModelStepObject(CompWindow * w,
     }
 }
 
-Bool fxMagicLampModelStep(CompScreen * s, CompWindow * w, float time)
+void
+fxMagicLampModelStep (CompScreen *s, CompWindow *w, float time)
 {
-    if (!defaultAnimStep(s, w, time))
-	return FALSE;
+    defaultAnimStep (s, w, time);
 
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -311,6 +311,4 @@ Bool fxMagicLampModelStep(CompScreen * s, CompWindow * w, float time)
     for (i = 0; i < model->numObjects; i++)
 	fxMagicLampModelStepObject(w, model, &model->objects[i],
 				   forwardProgress);
-
-    return TRUE;
 }

@@ -65,10 +65,10 @@ fxWaveModelStepObject(CompWindow * w,
 	       wavePosition) * M_PI / waveHalfWidth) + 1) / 2;
 }
 
-Bool fxWaveModelStep(CompScreen * s, CompWindow * w, float time)
+void
+fxWaveModelStep (CompScreen *s, CompWindow *w, float time)
 {
-    if (!defaultAnimStep(s, w, time))
-	return FALSE;
+    defaultAnimStep (s, w, time);
 
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
@@ -88,6 +88,4 @@ Bool fxWaveModelStep(CompScreen * s, CompWindow * w, float time)
 			      WIN_H(w) * model->scale.y *
 			      animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_WIDTH) /
 			      2);
-
-    return TRUE;
 }

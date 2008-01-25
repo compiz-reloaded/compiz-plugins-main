@@ -144,11 +144,10 @@ applyDodgeTransform (CompWindow * w, CompTransform *transform)
 	matrixTranslate (transform, 0.0f, amount, 0.0f);
 }
 
-Bool
-fxDodgeAnimStep (CompScreen * s, CompWindow * w, float time)
+void
+fxDodgeAnimStep (CompScreen *s, CompWindow *w, float time)
 {
-    if (!defaultAnimStep(s, w, time))
-	return FALSE;
+    defaultAnimStep (s, w, time);
 
     ANIM_WINDOW(w);
 
@@ -188,8 +187,6 @@ fxDodgeAnimStep (CompScreen * s, CompWindow * w, float time)
 
     matrixGetIdentity (&aw->transform);
     applyDodgeTransform (w, &aw->transform);
-
-    return TRUE;
 }
 
 void

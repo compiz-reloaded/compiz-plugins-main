@@ -670,7 +670,7 @@ typedef struct _AnimEffectProperties
 				    WindowPaintAttrib *);
     void (*prePaintWindowFunc) (CompScreen *, CompWindow *);
     void (*postPaintWindowFunc) (CompScreen *, CompWindow *);
-    Bool (*animStepFunc) (CompScreen *, CompWindow *, float time);
+    void (*animStepFunc) (CompScreen *, CompWindow *, float time);
     void (*initFunc) (CompScreen *, CompWindow *);
     void (*initGridFunc) (AnimScreen *, AnimWindow *, int *, int *);
     void (*addCustomGeometryFunc) (CompScreen *, CompWindow *, int, Box *,
@@ -774,16 +774,17 @@ decelerateProgress (float progress);
 void
 applyTransformToObject (Object *obj, GLfloat *mat);
 
-Bool polygonsAnimStep (CompScreen * s,
-		       CompWindow * w,
-		       float time);
+void
+polygonsAnimStep (CompScreen *s,
+		  CompWindow *w,
+		  float time);
 
 AnimDirection 
 getAnimationDirection (CompWindow * w,
 		       CompOptionValue *value,
 		       Bool openDir);
 
-Bool
+void
 defaultAnimStep (CompScreen * s,
 		 CompWindow * w,
 		 float time);
@@ -841,7 +842,7 @@ void
 fxAirplane3DInit (CompScreen *s,
 		  CompWindow *w);
 
-Bool
+void
 fxAirplane3DAnimStep (CompScreen * s,
 		      CompWindow * w,
 		      float time);
@@ -866,7 +867,7 @@ fxBeamupUpdateWindowAttrib (AnimScreen *as,
 			    CompWindow * w,
 			    WindowPaintAttrib *wAttrib);
 
-Bool
+void
 fxBeamUpModelStep (CompScreen *s,
 		   CompWindow *w,
 		   float time);
@@ -877,7 +878,7 @@ void fxBeamUpInit (CompScreen *s,
 
 /* burn.c */
 
-Bool
+void
 fxBurnModelStep (CompScreen *s,
 		 CompWindow *w,
 		 float time);
@@ -888,7 +889,7 @@ void fxBurnInit (CompScreen *s,
 
 /* curvedfold.c */
 
-Bool
+void
 fxCurvedFoldModelStep (CompScreen *s,
 		       CompWindow *w,
 		       float time);
@@ -909,7 +910,7 @@ fxDodgeUpdateWindowTransform (CompScreen *s,
 			      CompWindow *w,
 			      CompTransform *wTransform);
 
-Bool
+void
 fxDodgeAnimStep (CompScreen *s,
 		 CompWindow *w,
 		 float time);
@@ -931,7 +932,7 @@ void
 fxDreamAnimInit (CompScreen * s,
 		 CompWindow * w);
 
-Bool
+void
 fxDreamModelStep (CompScreen * s,
 		  CompWindow * w,
 		  float time);
@@ -986,7 +987,7 @@ fxGlideUpdateWindowAttrib (AnimScreen *as,
 			   CompWindow * w,
 			   WindowPaintAttrib *wAttrib);
 
-Bool
+void
 fxGlideAnimStep (CompScreen *s,
 		 CompWindow *w,
 		 float time);
@@ -1017,7 +1018,7 @@ fxGlideUpdateBB (CompOutput *output,
 
 /* horizontalfold.c */
 
-Bool
+void
 fxHorizontalFoldsModelStep (CompScreen *s,
 			    CompWindow *w,
 			    float time);
@@ -1054,7 +1055,7 @@ void
 fxMagicLampInit (CompScreen * s,
 		 CompWindow * w);
 
-Bool
+void
 fxMagicLampModelStep (CompScreen * s,
 		      CompWindow * w,
 		      float time);
@@ -1177,7 +1178,7 @@ polygonsUpdateBB (CompOutput *output,
 
 /* rollup.c */
  
-Bool
+void
 fxRollUpModelStep (CompScreen *s,
 		   CompWindow *w,
 		   float time);
@@ -1201,7 +1202,7 @@ fxSkewerAnimStepPolygon (CompWindow * w,
 
 /* wave.c */
  
-Bool
+void
 fxWaveModelStep (CompScreen * s,
 		 CompWindow * w,
 		 float time);
@@ -1233,11 +1234,6 @@ fxSidekickInit (CompScreen *s,
 void
 fxZoomInit (CompScreen * s,
 	    CompWindow * w);
-
-Bool
-fxZoomAnimStep (CompScreen * s,
-		CompWindow * w,
-		float time);
 
 void
 applyZoomTransform (CompWindow * w,
