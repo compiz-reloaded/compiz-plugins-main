@@ -490,8 +490,6 @@ Bool defaultAnimStep(CompScreen * s, CompWindow * w, float time)
     steps = floor(aw->remainderSteps);
     aw->remainderSteps -= steps;
 
-    if (!steps && aw->animRemainingTime < aw->animTotalTime)
-	return FALSE;
     steps = MAX(1, steps);
 
     aw->animRemainingTime -= timestep * steps;
