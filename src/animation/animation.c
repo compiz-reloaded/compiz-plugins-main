@@ -1510,6 +1510,7 @@ static void postAnimationCleanupCustom (CompWindow * w,
     }
     aw->animInitialized = FALSE;
     aw->remainderSteps = 0;
+    aw->animRemainingTime = 0;
 
     // Reset dodge parameters
     aw->dodgeMaxAmount = 0;
@@ -2132,7 +2133,6 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 					    "animation", CompLogLevelError,
 					    "Not enough memory");
 			    // Abort this window's animation
-			    aw->animRemainingTime = 0;
 			    postAnimationCleanup(w, TRUE);
 			    continue;
 			}
@@ -2163,7 +2163,6 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		    if (!animEnsureModel (w))
 		    {
 			// Abort this window's animation
-			aw->animRemainingTime = 0;
 			postAnimationCleanup(w, TRUE);
 			continue;
 		    }
@@ -2832,6 +2831,19 @@ animPaintWindow(CompWindow * w,
 
     if (aw->animRemainingTime > 0)
     {
+	if (!as->animInProgress)
+	{
+	    // This window shouldn't really be undergoing animation,
+	    // because it won't make progress with false as->animInProgress.
+	    postAnimationCleanup(w, TRUE);
+
+	    UNWRAP(as, w->screen, paintWindow);
+	    status = (*w->screen->paintWindow) (w, attrib, transform, region,
+						mask);
+	    WRAP(as, w->screen, paintWindow, animPaintWindow);
+
+	    return status;
+	}
 	if (aw->curAnimEffect == AnimEffectDodge &&
 	    aw->isDodgeSubject &&
 	    aw->walkerOverNewCopy)
