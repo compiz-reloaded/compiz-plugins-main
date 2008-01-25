@@ -2133,7 +2133,10 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 			    compLogMessage (w->screen->display, 
 					    "animation", CompLogLevelError,
 					    "Not enough memory");
-			    return;
+			    // Abort this window's animation
+			    aw->animRemainingTime = 0;
+			    postAnimationCleanup(w, TRUE);
+			    continue;
 			}
 			aw->polygonSet->allFadeDuration = -1.0f;
 		    }
@@ -2153,15 +2156,18 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		    animEffectProperties[aw->curAnimEffect].initFunc(s, w);
 		}
 
-		if (aw->model)
+		if (aw->model &&
+		    (aw->model->winWidth != WIN_W(w) ||
+		     aw->model->winHeight != WIN_H(w)))
 		{
-		    if (aw->model->winWidth != WIN_W(w) ||
-			aw->model->winHeight != WIN_H(w))
+		    // model needs update
+		    // re-create model
+		    if (!animEnsureModel (w))
 		    {
-			// model needs update
-			// re-create model
-			if (!animEnsureModel (w))
-			    continue;	// skip this window
+			// Abort this window's animation
+			aw->animRemainingTime = 0;
+			postAnimationCleanup(w, TRUE);
+			continue;
 		    }
 		}
 
