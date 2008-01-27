@@ -917,6 +917,46 @@ getPerspectiveCorrectionMat (CompWindow *w,
     }
 }
 
+static void
+prepareDrawingForAttrib (CompScreen *s,
+			 FragmentAttrib *attrib)
+{
+    if (s->canDoSaturated && attrib->saturation != COLOR)
+    {
+	GLfloat constant[4];
+
+	if (s->canDoSlightlySaturated && attrib->saturation > 0)
+	{
+	    constant[3] = attrib->opacity / 65535.0f;
+	    constant[0] = constant[1] = constant[2] = constant[3] *
+		attrib->brightness / 65535.0f;
+
+	    glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, constant);
+	}
+	else
+	{
+	    constant[3] = attrib->opacity / 65535.0f;
+	    constant[0] = constant[1] = constant[2] = constant[3] *
+		attrib->brightness / 65535.0f;
+
+	    constant[0] = 0.5f + 0.5f * RED_SATURATION_WEIGHT   * constant[0];
+	    constant[1] = 0.5f + 0.5f * GREEN_SATURATION_WEIGHT * constant[1];
+	    constant[2] = 0.5f + 0.5f * BLUE_SATURATION_WEIGHT  * constant[2];
+
+	    glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, constant);
+	}
+    }
+    else
+    {
+	attrib->brightness *= 0.76;
+
+	GLushort color = (attrib->opacity * attrib->brightness) >> 16;
+
+	screenTexEnvMode (s, GL_MODULATE);
+	glColor4us (color, color, color, attrib->opacity);
+    }
+}
+
 void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 {
     ANIM_WINDOW(w);
@@ -988,11 +1028,7 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
     }
     glPushMatrix();
 
-    // Store old blend values
-    GLint blendSrcWas, blendDstWas;
-
-    glGetIntegerv(GL_BLEND_SRC, &blendSrcWas);
-    glGetIntegerv(GL_BLEND_DST, &blendDstWas);
+    // Store old blend
     GLboolean blendWas = glIsEnabled(GL_BLEND);
 
     glPushAttrib(GL_STENCIL_BUFFER_BIT);
@@ -1021,7 +1057,6 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
     glGetFloatv(GL_CURRENT_COLOR, oldColor);
 
-
     // Determine where we are called from in paint.c's drawWindowTexture
     // to find out how we should change the opacity
     GLint prevActiveTexture = GL_TEXTURE0_ARB;
@@ -1043,26 +1078,16 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 	    prevActiveTexture = GL_TEXTURE1_ARB;
     }
 
-    float brightness = aw->curPaintAttrib.brightness / 65535.0;
     float opacity = aw->curPaintAttrib.opacity / 65535.0;
 
     float newOpacity = opacity;
     float fadePassedBy;
 
     if (!blendWas)				// if translucency is not already turned on in paint.c
-    {
 	glEnable(GL_BLEND);
-    }
+
     if (saturationFull)
-    {
 	screenTexEnvMode(w->screen, GL_MODULATE);
-    }
-    else if (prevActiveTexture == GL_TEXTURE2_ARB)
-    {
-	w->screen->activeTexture(prevActiveTexture + 1);
-	enableTexture(w->screen, aw->curTexture, aw->curTextureFilter);
-    }
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // if fade-out duration is not specified per polygon
     if (pset->allFadeDuration > -1.0f)
@@ -1206,54 +1231,9 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 			(forwardProgress / pset->backAndSidesFadeDur);
 		}
 
-		if (saturationFull)
-		    glColor4f(brightness, brightness, brightness,
-			      newOpacityPolygon2);
-		else if (prevActiveTexture == GL_TEXTURE1_ARB)
-		{
-		    // From paint.c
-
-		    GLfloat constant2[4] =
-			{ 0.5f +
-			  0.5f * RED_SATURATION_WEIGHT * brightness,
-			  0.5f + 0.5f * GREEN_SATURATION_WEIGHT * brightness,
-			  0.5f + 0.5f * BLUE_SATURATION_WEIGHT * brightness,
-			  newOpacityPolygon2
-			};
-
-		    glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR,
-			       constant2);
-		}
-		else			//if (prevActiveTexture >= GL_TEXTURE2_ARB)
-		{
-		    GLfloat constant2[4] = { brightness,
-					     brightness,
-					     brightness,
-					     newOpacityPolygon2
-		    };
-
-		    // From paint.c
-
-		    glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR,
-			       constant2);
-
-		    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,
-			      GL_COMBINE);
-
-		    glTexEnvf(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
-		    glTexEnvf(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_PREVIOUS);
-		    glTexEnvf(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_CONSTANT);
-		    glTexEnvf(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
-		    glTexEnvf(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
-
-		    glTexEnvf(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
-		    glTexEnvf(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
-		    glTexEnvf(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_CONSTANT);
-		    glTexEnvf(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA,
-			      GL_SRC_ALPHA);
-		    glTexEnvf(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA,
-			      GL_SRC_ALPHA);
-		}
+		FragmentAttrib attrib = aw->curPaintAttrib;
+		attrib.opacity = newOpacityPolygon2 * OPAQUE;
+		prepareDrawingForAttrib (s, &attrib);
 
 		//glEnableClientState(GL_NORMAL_ARRAY);
 		//glEnable(GL_NORMALIZE);
@@ -1296,41 +1276,15 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 		    glDrawElements(GL_QUAD_STRIP, 2 * (p->nSides + 1),
 				   GL_UNSIGNED_SHORT, p->sideIndices);
 
+		// if opacity was changed just above
 		if (fadeBackAndSides)
-		    // if opacity was changed just above
 		{
 		    // Go back to normal opacity for front face
-
-		    if (saturationFull)
-			glColor4f(brightness, brightness, brightness,
-				  newOpacityPolygon);
-		    else if (prevActiveTexture == GL_TEXTURE1_ARB)
-		    {
-			GLfloat constant[4] =
-			    { 0.5f +
-			      0.5f * RED_SATURATION_WEIGHT * brightness,
-			      0.5f + 0.5f * GREEN_SATURATION_WEIGHT *
-			      brightness,
-			      0.5f + 0.5f * BLUE_SATURATION_WEIGHT * brightness,
-			      newOpacityPolygon
-			    };
-
-			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR,
-				   constant);
-		    }
-		    else
-		    {
-			GLfloat constant[4] = { brightness,
-						brightness,
-						brightness,
-						newOpacityPolygon
-			};
-			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR,
-				   constant);
-		    }
+		    attrib = aw->curPaintAttrib;
+		    attrib.opacity = newOpacityPolygon * OPAQUE;
+		    prepareDrawingForAttrib (s, &attrib);
 		}
 		// Draw front face
-
 		glNormal3f(p->normals[0], p->normals[1], p->normals[2]);
 		glDrawArrays(GL_POLYGON, 0, p->nSides);
 
@@ -1353,20 +1307,13 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 	glPopAttrib();
 	glPopAttrib();
     }
-
     // Restore texture stuff
     if (saturationFull)
 	screenTexEnvMode(w->screen, GL_REPLACE);
-    else if (prevActiveTexture == GL_TEXTURE2_ARB)
-    {
-	disableTexture(w->screen, aw->curTexture);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-	w->screen->activeTexture(prevActiveTexture);
-    }
-    // Restore blend values
+
+    // Restore blend
     if (!blendWas)
 	glDisable(GL_BLEND);
-    glBlendFunc(blendSrcWas, blendDstWas);
 
     glPopMatrix();
 

@@ -2856,8 +2856,17 @@ animPaintWindow(CompWindow * w,
 	if (aw->curWindowEvent == WindowEventFocus && otherPluginsActive(as))
 	    postAnimationCleanup(w, TRUE);
 
+	WindowPaintAttrib wAttrib = *attrib;
+	CompTransform wTransform = *transform;
+
 	if (playingPolygonEffect(as, aw))
 	{
+	    // Use slightly smaller brightness to force core
+	    // to handle <max saturation case with <max brightness.
+	    // Otherwise polygon effects show fully unsaturated colors
+	    // in that case.
+	    wAttrib.brightness = MAX (0, wAttrib.brightness - 1);
+
 	    if (mask & PAINT_WINDOW_TRANSFORMED_MASK)
 	    {
 		aw->curTextureFilter = w->screen->filter[WINDOW_TRANS_FILTER];
@@ -2872,9 +2881,6 @@ animPaintWindow(CompWindow * w,
 	    }
 	}
 	w->indexCount = 0;
-
-	WindowPaintAttrib wAttrib = *attrib;
-	CompTransform wTransform = *transform;
 
 	// TODO: should only happen for distorting effects
 	mask |= PAINT_WINDOW_TRANSFORMED_MASK;
