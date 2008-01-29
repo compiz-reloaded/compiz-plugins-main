@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2008-01-08 08:45+0100\n"
-"Last-Translator: Vladimir <Dzirt_@mail.ru>\n"
+"POT-Creation-Date: 2008-01-29 17:15+0530\n"
+"PO-Revision-Date: 2008-01-15 05:51+0100\n"
+"Last-Translator: Denis Rakhmangulov <danfocus@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -65,6 +65,13 @@ msgstr "Изменить расстояние между окнами (в про
 msgid "Change the speed of the 3D animation"
 msgstr "Изменить скорость 3D-анимации"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Развертывание активного окна"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Подъем окон при вращении куба"
 
@@ -86,6 +93,14 @@ msgstr "Разные опции"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Скруглять углы для соответствия округлому оформлению"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Заголовок окна"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Центр выделения"
 
 #, fuzzy
 msgid "Window Depth"
@@ -129,11 +144,6 @@ msgid ""
 msgstr ""
 "Сделать немного легче сосредоточиться, затемнив всё, кроме активного окна."
 
-# ВАРИАНТ: Др. опции
-#, fuzzy
-msgid "Misc. options"
-msgstr "несовместимые ключи"
-
 msgid "Opacity"
 msgstr "Непрозрачность"
 
@@ -164,7 +174,7 @@ msgid "Window types that should be Opacified."
 msgstr ""
 
 msgid "Airplane"
-msgstr "\"Самолёт\""
+msgstr "Самолёт"
 
 msgid "Airplane Flying Path Length"
 msgstr ""
@@ -242,13 +252,13 @@ msgid "Away Position"
 msgstr "позиция курсора"
 
 msgid "Beam"
-msgstr "\"Лазер\""
+msgstr "Лазер"
 
 msgid "Beam Color"
-msgstr "Цвет \"лазера\""
+msgstr "Цвет лазера"
 
 msgid "Beam Life"
-msgstr "Время \"жизни\" лазера"
+msgstr "Время жизни лазера"
 
 msgid "Beam Slowdown"
 msgstr "Время угасания лазера"
@@ -277,7 +287,7 @@ msgid "Beam width."
 msgstr "Ширина луча."
 
 msgid "Burn"
-msgstr "\"Горение\""
+msgstr "Горение"
 
 #, fuzzy
 msgid "Close Animation"
@@ -313,7 +323,7 @@ msgid "Dodge Gap Ratio"
 msgstr "Коэффициент цифрового трансфокатора"
 
 msgid "Domino"
-msgstr "Эффект \"домино\""
+msgstr "Эффект домино"
 
 msgid "Domino Piece Falling Direction"
 msgstr "Направление падения домино"
@@ -322,7 +332,7 @@ msgid "Down"
 msgstr "Вниз"
 
 msgid "Dream"
-msgstr "Эффект \"мечта\""
+msgstr "Эффект мечта"
 
 #, fuzzy
 msgid "Duration"
@@ -332,7 +342,7 @@ msgid "Effect Settings"
 msgstr "Параметры эффекта"
 
 msgid "Explode"
-msgstr "Эффект \"взрыв\""
+msgstr "Эффект взрыв"
 
 msgid "Fade"
 msgstr "Скорость угасания"
@@ -341,7 +351,7 @@ msgid "Falling direction for Domino pieces."
 msgstr "Направление падения элементов домино."
 
 msgid "Fire"
-msgstr "Эффект \"пламя\""
+msgstr "Эффект пламя"
 
 #, fuzzy
 msgid "Fire Particle Color"
@@ -939,9 +949,8 @@ msgstr ""
 msgid "Disable limiter"
 msgstr "отключить ключ"
 
-#, fuzzy
 msgid "Display FPS on screen"
-msgstr "Недопустимый экран %d дисплея «%s»\n"
+msgstr "Отображать FPS на экране"
 
 #, fuzzy
 msgid "Enable"
@@ -1402,9 +1411,8 @@ msgstr ""
 msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 
-#, fuzzy
 msgid "Distance of the expo wall"
-msgstr "Расстояние «%s» неизвестно"
+msgstr "Расстояние до стены экспозиции"
 
 #, fuzzy
 msgid "Double click time"
@@ -1454,9 +1462,8 @@ msgstr "Толщина углов"
 msgid "Expo key"
 msgstr "               ключом %s с ID %s\n"
 
-#, fuzzy
 msgid "Expo mode aspect ratio"
-msgstr "Коэффициент пропорциональности «%s» неизвестен"
+msgstr "Формат изображения режима экспозиции"
 
 #, fuzzy
 msgid "Fade + Zoom"
@@ -3328,10 +3335,6 @@ msgstr "Отображение свернутых окон"
 msgid "Show Window Title"
 msgstr "&Заголовок xterm"
 
-#, fuzzy
-msgid "Show minimized windows"
-msgstr "Отображение свернутых окон"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3366,6 +3369,9 @@ msgstr "Отображение переключателя (если он нев�
 msgid "Show window title of currently selected window."
 msgstr ""
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 #, fuzzy
 msgid "Text Placement"
 msgstr "Расположение бесед"
@@ -3384,6 +3390,10 @@ msgstr "Показать главное окно"
 
 msgid "Windows that should be shown in ring"
 msgstr ""
+
+#, fuzzy
+msgid "All windows"
+msgstr "Сеть Windows"
 
 #, fuzzy
 msgid "Background color of the window title"
@@ -3418,6 +3428,14 @@ msgid "Highlights the hovered window with the given color"
 msgstr ""
 
 #, fuzzy
+msgid "Hovered window only"
+msgstr "Переместить окно на рабочее место 1"
+
+#, fuzzy
+msgid "No display"
+msgstr "Показать главное окно"
+
+#, fuzzy
 msgid "Normal"
 msgstr "Нормальный"
 
@@ -3430,9 +3448,6 @@ msgid "Scale Addons"
 msgstr "Масштаб"
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
-
-msgid "Show window title in scale mode"
 msgstr ""
 
 msgid "Size of the border around the window title"
@@ -3459,6 +3474,14 @@ msgstr "Режим активации окна"
 #, fuzzy
 msgid "Window Title"
 msgstr "Заголовок окна"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Показать главное окно"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Показать главное окно"
 
 #, fuzzy
 msgid "Zoom Windows In Scale"
@@ -3554,7 +3577,12 @@ msgstr "Размер окна текстового диалога"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3572,6 +3600,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Перевести окно в полноэкранный режим"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4826,15 +4858,18 @@ msgstr "Фон и эмблемы"
 msgid "Draw the desktop wallpaper"
 msgstr "Отрисовывать фон рабочего стола"
 
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr ""
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Разрешить _регистрацию"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr ""
-
-#, fuzzy
-msgid "Tile or Stretch"
-msgstr "Ширина шрифта"
 
 msgid "Wallpaper"
 msgstr "Обои рабочего стола"
@@ -5036,6 +5071,12 @@ msgstr "выйти из этого меню"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr ""
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr ""
 
@@ -5096,3 +5137,16 @@ msgstr ""
 #, fuzzy
 msgid "Workarounds"
 msgstr "Обходные пути"
+
+# ВАРИАНТ: Др. опции
+#, fuzzy
+#~ msgid "Misc. options"
+#~ msgstr "несовместимые ключи"
+
+#, fuzzy
+#~ msgid "Show minimized windows"
+#~ msgstr "Отображение свернутых окон"
+
+#, fuzzy
+#~ msgid "Tile or Stretch"
+#~ msgstr "Ширина шрифта"

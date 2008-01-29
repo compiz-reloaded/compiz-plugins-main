@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fusion-plugins 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2007-12-19 00:00+0200\n"
-"Last-Translator: Ketil W. Aanensen <ketil.w.aanensen@gmail.com>\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
+"PO-Revision-Date: 2008-01-24 21:22+0100\n"
+"Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <ketil.w.aanensen@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.0.2\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "3D bare ved muserotasjon"
@@ -58,6 +59,13 @@ msgstr "Endre mengden mellomrom mellom vinduene (i prosent av kubestørrelse)."
 msgid "Change the speed of the 3D animation"
 msgstr "Endre farten på 3D-animasjonen"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Skru av/på Negativt aktivt vindu"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Hever vinduer mens kuben roterer"
 
@@ -77,6 +85,14 @@ msgstr "Diverse valg"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Rund av hjørner for overensstemmelse med avrundede dekorasjoner"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Vindustittel"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Sentrer vindu"
 
 msgid "Window Depth"
 msgstr "Vindusdybde"
@@ -110,9 +126,6 @@ msgid ""
 msgstr ""
 "Gjør det litt enklere å konsentrere seg, ved å tone ut alle vinduer bortsett "
 "fra det aktive."
-
-msgid "Misc. options"
-msgstr "Diverse valg"
 
 msgid "Opacity"
 msgstr "Dekkevne"
@@ -2302,37 +2315,35 @@ msgid "Debug"
 msgstr "Feilsøk"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "Vis feil og andre beskjeder ved hjelp av libnotify"
 
 msgid "Error"
 msgstr "Feil"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Feilmeldinger"
 
 msgid "Fatal"
 msgstr "Fatal"
 
-#, fuzzy
 msgid "Hide Timeout"
-msgstr "Uttoningstid"
+msgstr "Ventetid før skjul"
 
 msgid "Info"
 msgstr "Info"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "Maksimalt loggnivå"
 
 msgid "The maximum log level to display"
 msgstr "Maksimum loggnivå å vise"
 
-#, fuzzy
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
-"Pause i sekunder før notisen gjemmes. Set til -1 for systemets standard, og "
-"0 for uendelig"
+"Pause i sekunder før beskjeden skjules. Sett til -1 for systemets standard, "
+"og 0 for uendelig"
 
 msgid "Warning"
 msgstr "Advarsel"
@@ -2920,9 +2931,6 @@ msgstr "Vis minimerte"
 msgid "Show Window Title"
 msgstr "Vis vindustittel"
 
-msgid "Show minimized windows"
-msgstr "Vis minimerte vinduer"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -2953,6 +2961,9 @@ msgstr "Vis skifter hvis ikke synlig og velg neste vindu."
 msgid "Show window title of currently selected window."
 msgstr "Vis vindustittel av valgte vindu."
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr "Viser vinduer som er minimert, rullet opp eller i vis-skrivebord-modus"
+
 msgid "Text Placement"
 msgstr "Tekstplassering"
 
@@ -2967,6 +2978,9 @@ msgstr "Vindustittelvisning"
 
 msgid "Windows that should be shown in ring"
 msgstr "Vinduer som skal vises i ringen"
+
+msgid "All windows"
+msgstr "Alle vinduer"
 
 msgid "Background color of the window title"
 msgstr "Bakgrunnsfarge på vindustittelen"
@@ -2995,6 +3009,12 @@ msgstr "Farge for fremheving"
 msgid "Highlights the hovered window with the given color"
 msgstr "Fremhever det svevende vinduet med den gitte fargen"
 
+msgid "Hovered window only"
+msgstr "Kun svevende vindu"
+
+msgid "No display"
+msgstr "Ingen visning"
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -3006,9 +3026,6 @@ msgstr "Skaler-tillegg"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "Velger modus for utforming av vinduer i Skaler-modus"
-
-msgid "Show window title in scale mode"
-msgstr "Vis vindustittel i Skaler-modus"
 
 msgid "Size of the border around the window title"
 msgstr "Størrelse på kanten rundt vindustittelen"
@@ -3030,6 +3047,12 @@ msgstr "Modus for vindusutforming"
 
 msgid "Window Title"
 msgstr "Vindustittel"
+
+msgid "Window Title Display"
+msgstr "Vindustittelvisning"
+
+msgid "Window title display in scale mode"
+msgstr "Vindustittelvisning i Skaler-modus"
 
 msgid "Zoom Windows In Scale"
 msgstr "Forstørr vinduer i Skaler"
@@ -3110,8 +3133,15 @@ msgstr "Gjør vinduet mindre"
 msgid "Reduces the scale factor making the window smaller."
 msgstr "Reduserer skaleringsfaktoren for å gjøre vinduet mindre."
 
-msgid "Scale a window down to half size."
-msgstr "Skaler et vindu ned til halv størrelse."
+msgid "Scale a window down to a portion of it's size."
+msgstr "Skaler et vindu ned til en del av størrelsen."
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
+msgstr ""
+"Skaler et vindu ned til en del av skjermstørrelsen, henholdsvis halvparten, "
+"en tredjedel eller en sjettedel av skjermen."
 
 msgid "Scale interval"
 msgstr "Skaleringsintervall"
@@ -3129,6 +3159,9 @@ msgstr ""
 "finere endringer."
 
 msgid "Trigger scale down"
+msgstr "Utløs nedskalering"
+
+msgid "Trigger scale down to screen"
 msgstr "Utløs nedskalering"
 
 msgid ""
@@ -4199,15 +4232,20 @@ msgstr "Bakgrunner"
 msgid "Draw the desktop wallpaper"
 msgstr "Tegn bakgrunnsbilde"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Slår på alfa-blanding av snøfnugg."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Slå på blanding"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 "Spesifikasjoner for bakgrunner som skal brukes (forklart i DOKUMENTASJON)."
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Flislegg bakgrunner, i motsetning til strekking"
-
-msgid "Tile or Stretch"
-msgstr "Flislegg eller strekk"
 
 msgid "Wallpaper"
 msgstr "Bakgrunnsbilde"
@@ -4371,6 +4409,12 @@ msgstr "Korreksjon for Firefox-meny"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "Korreksjon for ødelagt implementering av glProgramEnvParameter4f"
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr "Fiks for ødelagt GLX_MESA_copy_sub_buffer på XGL i fglrx"
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr "Fiks skjermoppdateringer i XGL med fglrx."
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "Korriger vindustype for Firefox- og Thunderbird-menyer."
 
@@ -4427,38 +4471,32 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 msgid "Workarounds"
 msgstr "Omveier"
 
-#~ msgid "Timeout in seconds before hiding the notification"
-#~ msgstr "Pause i sekunder før notisen gjemmes"
+#~ msgid "Misc. options"
+#~ msgstr "Diverse valg"
 
-#~ msgid "Uses libnotify to display errors"
-#~ msgstr "Bruk libnotify for å vise feil"
+#~ msgid "Show minimized windows"
+#~ msgstr "Vis minimerte vinduer"
 
-#~ msgid "Corner Bevelling"
-#~ msgstr "Skråstilling av hjørner"
+#~ msgid "Show window title in scale mode"
+#~ msgstr "Vis vindustittel i Skaler-modus"
 
-#~ msgid "Create Mipmaps"
-#~ msgstr "Lag MIP-kart"
+#~ msgid "Scale a window down to half size."
+#~ msgstr "Skaler et vindu ned til halv størrelse."
 
-#~ msgid "Disable Caps for Inside Cube"
-#~ msgstr "Slå av luer for Innsiden av kuben "
-
-#~ msgid ""
-#~ "Disables the drawing of the cube caps when the inside cube mode is set."
-#~ msgstr ""
-#~ "Slår av tegning av kubeluer når modus for innside av kuben er aktivert"
-
-#~ msgid "Draw Window Backsides"
-#~ msgstr "Tegn vinduenes baksider"
-
-#~ msgid "Enables the drawing of the backside of windows."
-#~ msgstr "Aktiverer tegning av baksider på vinduene"
+#~ msgid "Tile or Stretch"
+#~ msgstr "Flislegg eller strekk"
 
 #~ msgid ""
+#~ "Timeout in seconds before hiding the notificationUses libnotify to "
+#~ "display errorsCorner BevellingCreate MipmapsDisable Caps for Inside "
+#~ "CubeDisables the drawing of the cube caps when the inside cube mode is "
+#~ "set.Draw Window BacksidesEnables the drawing of the backside of windows."
 #~ "This will create mipmaps which improve overall texture appearence, and "
-#~ "reduce jagged edges."
+#~ "reduce jagged edges.Window width"
 #~ msgstr ""
-#~ "Dette vil lage MIP-kart som forbedrer helhetlig teksturutseende, og "
-#~ "reduserer hakkete kanter."
-
-#~ msgid "Window width"
-#~ msgstr "Vindusbredde"
+#~ "Pause i sekunder før notisen gjemmesBruk libnotify for å vise "
+#~ "feilSkråstilling av hjørnerLag MIP-kartSlå av luer for Innsiden av kuben "
+#~ "Slår av tegning av kubeluer når modus for innside av kuben er "
+#~ "aktivertTegn vinduenes baksiderAktiverer tegning av baksider på "
+#~ "vindueneDette vil lage MIP-kart som forbedrer helhetlig teksturutseende, "
+#~ "og reduserer hakkete kanter.Vindusbredde"

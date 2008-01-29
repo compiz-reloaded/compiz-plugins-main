@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:21+0530\n"
-"PO-Revision-Date: 2008-01-03 22:13+0100\n"
-"Last-Translator: iretka ka tuxkseniej <jamego1293@andaluciajunta.es>\n"
+"POT-Creation-Date: 2008-01-29 17:13+0530\n"
+"PO-Revision-Date: 2008-01-28 01:16+0100\n"
+"Last-Translator: Luciano Bordón <lucianobordon@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +54,6 @@ msgstr "Biselar la esquina superior izquierda"
 msgid "Bevel top right corner"
 msgstr "Biselar la esquina superior derecha"
 
-#, fuzzy
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr ""
@@ -62,6 +61,13 @@ msgstr ""
 
 msgid "Change the speed of the 3D animation"
 msgstr "Cambiar la velocidad de la animación 3D"
+
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Habilitar o deshabilitar la Redirección la de ventanas"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "Elevar las ventanas al rotar el cubo"
@@ -85,6 +91,14 @@ msgstr "Opciones varias"
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr ""
 "Redondear esquinas para mayor consistencia con decoraciones redondeadas."
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Fuente de los títulos de las ventanas"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Centrar Ventana"
 
 #, fuzzy
 msgid "Window Depth"
@@ -122,9 +136,6 @@ msgstr ""
 "Hacer que sea más fácil concentrarse oscureciendo todas las ventanas excepto "
 "la activa."
 
-msgid "Misc. options"
-msgstr "Opciones varias"
-
 msgid "Opacity"
 msgstr "Transparencia"
 
@@ -158,7 +169,6 @@ msgstr "Aeroplano"
 msgid "Airplane Flying Path Length"
 msgstr "Longitud de la trayectoria de vuelo del aeroplano."
 
-#, fuzzy
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -198,7 +208,6 @@ msgstr "Velocidad de la animación"
 msgid "Animation Time Step For Intense Effects"
 msgstr "Velocidad de la animación para efectos intensos"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for close effect."
 msgstr "Duración de la animación en milisegundos para el efecto de cerrar"
 
@@ -207,15 +216,12 @@ msgstr "Duración de la animación en milisegundos para el efecto de cerrar"
 msgid "Animation duration in milliseconds for focus effect."
 msgstr "Duración de la animación en milisegundos, para el efecto de foco"
 
-#, fuzzy
 msgid "Animation duration in milliseconds for minimize effect."
 msgstr "Duración de la animación en milisegundos para el efecto de minimizar."
 
-#, fuzzy
 msgid "Animation duration in milliseconds for open effect."
 msgstr "Duración de la animación en milisegundos para el efecto de abrir."
 
-#, fuzzy
 msgid "Animation duration in milliseconds for shade effect."
 msgstr "Duración de la animación en milisegundos para el efecto de sombrear."
 
@@ -1642,17 +1648,17 @@ msgid "Zoom Out"
 msgstr "Zoom"
 
 msgid "Zoom Specific Level 1"
-msgstr ""
+msgstr "Zoom especifico 1"
 
 msgid "Zoom Specific Level 2"
-msgstr ""
+msgstr "Zoom especifico 2"
 
 msgid "Zoom Specific Level 3"
-msgstr ""
+msgstr "Zoom especifico 3"
 
 #, fuzzy
 msgid "Zoom Speed"
-msgstr "Velocidad de la nieve"
+msgstr "Velocidad del Zoom"
 
 msgid "Zoom Timestep"
 msgstr ""
@@ -2250,10 +2256,10 @@ msgid "JPEG"
 msgstr ""
 
 msgid "JPEG image format plugin"
-msgstr ""
+msgstr "Complemento de Imagen en formato JPEG"
 
 msgid "Quality of compression when saving JPEG images"
-msgstr ""
+msgstr "Calidad de compresion cuando guardas Imagenes en JPEG"
 
 msgid "Accumulation buffer"
 msgstr "Buffer de acumulación"
@@ -2286,7 +2292,7 @@ msgid "Motion blur effect"
 msgstr "Efecto de desenfoque de movimiento"
 
 msgid "Texture Copy"
-msgstr "Copia de texturas"
+msgstr "Copiar texturas"
 
 msgid "Toggle Motion Blur"
 msgstr "Habilitar/deshabilitar el desenfoque de movimiento"
@@ -2295,7 +2301,7 @@ msgid "Toggle motion Blur effect."
 msgstr "Habilitar/deshabilitar el desenfoque de movimiento."
 
 msgid "Visibility/Performance"
-msgstr "Visibilidad/Performance"
+msgstr "Visibilidad/Rendimiento"
 
 #, fuzzy
 msgid "Action"
@@ -2325,7 +2331,7 @@ msgid "Mousegestures"
 msgstr ""
 
 msgid "Plugin"
-msgstr ""
+msgstr "Plugin"
 
 msgid "Plugin the action belongs to."
 msgstr ""
@@ -2354,7 +2360,7 @@ msgid "Neg Windows"
 msgstr "Ventanas en mosaico"
 
 msgid "Negative"
-msgstr ""
+msgstr "Negativo"
 
 #, fuzzy
 msgid "Toggle Screen Negative"
@@ -2384,16 +2390,16 @@ msgid "Windows to exclude from negating"
 msgstr "Ventanas que deben excluirse del mosaico"
 
 msgid "Debug"
-msgstr ""
+msgstr "Depurar"
 
 msgid "Display errors and other messages using libnotify."
 msgstr ""
 
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Notificacion de error"
 
 #, fuzzy
 msgid "Fatal"
@@ -2403,23 +2409,24 @@ msgstr "Metal"
 msgid "Hide Timeout"
 msgstr "Tiempo de fundición"
 
-#, fuzzy
 msgid "Info"
-msgstr "Dentro"
+msgstr "Informacion"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "Nivel maximo de registro"
 
 msgid "The maximum log level to display"
-msgstr ""
+msgstr "Nivel maximo de registro en pantalla"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
+"Timeout(En segundos) Antes de ocultar la notificaion,,Set es -1 para sistema "
+"por defecto y 0 para indefinido"
 
 msgid "Warning"
-msgstr ""
+msgstr "Peligro"
 
 #, fuzzy
 msgid "Active Opacity"
@@ -2453,17 +2460,15 @@ msgid ""
 "windows blocking it from view."
 msgstr ""
 
-#, fuzzy
 msgid "Opacify"
-msgstr "Transparencia"
+msgstr "Opacidad"
 
-#, fuzzy
 msgid "Opacity Levels"
-msgstr "Transparencia"
+msgstr "Niveles de opacidad"
 
 #, fuzzy
 msgid "Passive Opacity"
-msgstr "Transparencia"
+msgstr "Opacidad Pasiva"
 
 msgid "Reset opacity to original values when toggling"
 msgstr ""
@@ -2478,11 +2483,15 @@ msgid ""
 "changed."
 msgstr ""
 
+# no acabado
+#, fuzzy
 msgid ""
 "The maximum opacity percentage a window blocking the current targeted window "
 "can have. A blocking window will have either this opacity or the preset "
 "opacity, whichever is lower."
 msgstr ""
+"El maximo porcentaje de opacidad de una ventana bloqueando la actual ventana "
+"seleccionada"
 
 msgid ""
 "The minimum opacity percentage to ensure a targeted window has. A target "
@@ -2590,43 +2599,43 @@ msgid "Move window to the viewport on the top"
 msgstr "Mover cada ventana en el grupo"
 
 msgid "Move window to viewport 1"
-msgstr ""
+msgstr "Mover ventana hacia el visor 1"
 
 msgid "Move window to viewport 10"
-msgstr ""
+msgstr "Mover ventana hacia el visor 10"
 
 msgid "Move window to viewport 11"
-msgstr ""
+msgstr "Mover ventana hacia el visor 11"
 
 msgid "Move window to viewport 12"
-msgstr ""
+msgstr "Mover ventana hacia el visor 12"
 
 msgid "Move window to viewport 2"
-msgstr ""
+msgstr "Mover ventana hacia el visor 2"
 
 msgid "Move window to viewport 3"
-msgstr ""
+msgstr "Mover ventana hacia el visor 3"
 
 msgid "Move window to viewport 4"
-msgstr ""
+msgstr "Mover ventana hacia el visor 4"
 
 msgid "Move window to viewport 5"
-msgstr ""
+msgstr "Mover ventana hacia el visor 5"
 
 msgid "Move window to viewport 6"
-msgstr ""
+msgstr "Mover ventana hacia el visor 6"
 
 msgid "Move window to viewport 7"
-msgstr ""
+msgstr "Mover ventana hacia el visor 7"
 
 msgid "Move window to viewport 8"
-msgstr ""
+msgstr "Mover ventana hacia el visor 8"
 
 msgid "Move window to viewport 9"
-msgstr ""
+msgstr "Mover ventana hacia el visor 9"
 
 msgid "Move window to x, y"
-msgstr ""
+msgstr "Mover ventana hacia X o Y"
 
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
@@ -2657,7 +2666,7 @@ msgid "Pad Top"
 msgstr ""
 
 msgid "Padding"
-msgstr ""
+msgstr "Relleno"
 
 msgid "Put"
 msgstr ""
@@ -2685,53 +2694,53 @@ msgid "Put Left"
 msgstr "Izquierda"
 
 msgid "Put On Viewport"
-msgstr ""
+msgstr "Poner en visor"
 
 msgid "Put On Viewport 1"
-msgstr ""
+msgstr "Poner en visor 1"
 
 msgid "Put On Viewport 10"
-msgstr ""
+msgstr "Poner en visor 10"
 
 msgid "Put On Viewport 11"
-msgstr ""
+msgstr "Poner en visor 11"
 
 msgid "Put On Viewport 12"
-msgstr ""
+msgstr "Poner en visor 12"
 
 msgid "Put On Viewport 2"
-msgstr ""
+msgstr "Poner en visor 2"
 
 msgid "Put On Viewport 3"
-msgstr ""
+msgstr "Poner en visor 3"
 
 msgid "Put On Viewport 4"
-msgstr ""
+msgstr "Poner en visor 4"
 
 msgid "Put On Viewport 5"
-msgstr ""
+msgstr "Poner en visor 5"
 
 msgid "Put On Viewport 6"
-msgstr ""
+msgstr "Poner en visor 6"
 
 msgid "Put On Viewport 7"
-msgstr ""
+msgstr "Poner en visor 7"
 
 msgid "Put On Viewport 8"
-msgstr ""
+msgstr "Poner en visor 8"
 
 msgid "Put On Viewport 9"
-msgstr ""
+msgstr "Poner en visor 9"
 
 msgid "Put Pointer"
-msgstr ""
+msgstr "Poner en puntero"
 
 #, fuzzy
 msgid "Put Right"
-msgstr "Derecha"
+msgstr "Poner en la Derecha"
 
 msgid "Put Top"
-msgstr ""
+msgstr "Poner encima"
 
 #, fuzzy
 msgid "Put Top Left"
@@ -2742,13 +2751,14 @@ msgid "Put Top Right"
 msgstr "Biselar la esquina superior derecha"
 
 msgid "Put pointer uses the center of the window"
-msgstr ""
+msgstr "Poner el puntero en el centro de la ventana"
 
 msgid "Put to adjacent viewport"
-msgstr ""
+msgstr "Poner en el visor adyacente"
 
+# arbitrario==(aleatorio)????
 msgid "Put to arbitrary viewport"
-msgstr ""
+msgstr "Poner en un visor arbitrario(aleatorio)"
 
 #, fuzzy
 msgid "Put window"
@@ -2757,13 +2767,11 @@ msgstr "Ventanas en mosaico"
 msgid "Put within viewport"
 msgstr ""
 
-#, fuzzy
 msgid "Restore Position"
-msgstr "Restablecer ventanas"
+msgstr "Restablecer Posicion"
 
-#, fuzzy
 msgid "Unfocus Window"
-msgstr "Desagrupar ventanas"
+msgstr "Desenfocar ventanas"
 
 msgid "Unfocus windows that are moved off the viewport"
 msgstr ""
@@ -2773,17 +2781,16 @@ msgid "Viewport Bottom"
 msgstr "De arriba a abajo"
 
 msgid "Viewport Left"
-msgstr ""
+msgstr "Visor Izquierdo"
 
 msgid "Viewport Right"
-msgstr ""
+msgstr "Visor Derecho"
 
 msgid "Viewport Top"
-msgstr ""
+msgstr "Visor Superior"
 
-#, fuzzy
 msgid "Window Center"
-msgstr "Fuente de los títulos de las ventanas"
+msgstr "Centrar Ventana"
 
 msgid "Alpha Dependence Threshold"
 msgstr "Umbral de dependencia alfa"
@@ -2804,22 +2811,22 @@ msgid "Move the reflection on window move."
 msgstr "Mover los reflejos cuando la ventana es movida."
 
 msgid "Moving reflection"
-msgstr "Reflejos con movimiento"
+msgstr "Reflexión con movimiento"
 
 msgid "Reflection Image"
-msgstr "Imagen de los reflejos"
+msgstr "Imagen de la Reflexión"
 
 msgid "Reflection Image file"
-msgstr "Archivo de la imagen de los reflejos"
+msgstr "Reflexión del archivo de imagen"
 
 msgid "Reflection Window Match"
-msgstr ""
+msgstr "Exactitud de la reflexion de la ventana "
 
 msgid "Reflection for Decorations"
-msgstr "Reflejos en las decoraciones"
+msgstr "Reflexión en las decoraciones"
 
 msgid "Reflection for Windows"
-msgstr "Reflejos en las ventanas"
+msgstr "Reflexión en las ventanas"
 
 msgid "Window match"
 msgstr ""
@@ -3035,10 +3042,6 @@ msgstr ""
 msgid "Show Window Title"
 msgstr "Fuente de los títulos de las ventanas"
 
-#, fuzzy
-msgid "Show minimized windows"
-msgstr "Nieve sobre las ventanas"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3065,6 +3068,9 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr ""
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr ""
 
@@ -3081,6 +3087,10 @@ msgstr "Fuente de los títulos de las ventanas"
 #, fuzzy
 msgid "Windows that should be shown in ring"
 msgstr "Ventanas que deberían ser procesadas por 3D"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Ventanas en mosaico"
 
 #, fuzzy
 msgid "Background color of the window title"
@@ -3115,6 +3125,14 @@ msgstr "Color de resalte de las fichas"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Mover ventana hacia X o Y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Fuente de los títulos de las ventanas"
+
 msgid "Normal"
 msgstr ""
 
@@ -3126,9 +3144,6 @@ msgid "Scale Addons"
 msgstr ""
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
-
-msgid "Show window title in scale mode"
 msgstr ""
 
 #, fuzzy
@@ -3154,6 +3169,14 @@ msgstr "Coincidir ventanas"
 
 #, fuzzy
 msgid "Window Title"
+msgstr "Fuente de los títulos de las ventanas"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Fuente de los títulos de las ventanas"
+
+#, fuzzy
+msgid "Window title display in scale mode"
 msgstr "Fuente de los títulos de las ventanas"
 
 #, fuzzy
@@ -3242,7 +3265,12 @@ msgstr "Dibujar la parte trasera de las ventanas"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3259,6 +3287,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Habilitar o deshabilitar \"Pantalla completa\" para ventanas"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4385,15 +4417,19 @@ msgstr "Fondo"
 msgid "Draw the desktop wallpaper"
 msgstr "Dibuje el papel tapiz del escritorio"
 
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr ""
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Habilitar el resplandor en las ventanas grupadas"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 "Las especificaciones del fondo (como se explica en la DOCUMENTACION) a usar."
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Fondo en mosaico en lugar de expandido"
-
-msgid "Tile or Stretch"
-msgstr "Mosaico o Expandido"
 
 msgid "Wallpaper"
 msgstr "Fondo de Pantalla"
@@ -4580,6 +4616,12 @@ msgstr "Fijado Menú Firefox"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "Fijar implementacion quebrada glProgramEnvParameter4f"
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "Fijar tipo de ventana de los menús de Firefox y Thunderbird"
 
@@ -4638,6 +4680,16 @@ msgstr "Ventanas que deberían ser fundidas con el escritorio"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Misc. options"
+#~ msgstr "Opciones varias"
+
+#, fuzzy
+#~ msgid "Show minimized windows"
+#~ msgstr "Nieve sobre las ventanas"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "Mosaico o Expandido"
 
 #~ msgid "Disable Caps for Inside Cube"
 #~ msgstr ""

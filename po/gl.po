@@ -4,13 +4,13 @@
 # This file is distributed under the same license as the compiz-fusion package.
 #
 # Fran Diéguez (GLUG) <fran.dieguez@glug.es>, 2007.
-# Fran Diéguez  <fran dot dieguez at glug dot es>, 2007.
+# Fran Diéguez  <fran dot dieguez at glug dot es>, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2007-12-30 14:09+0100\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
+"PO-Revision-Date: 2008-01-11 16:42+0100\n"
 "Last-Translator: Fran Diéguez  <fran dot dieguez at glug dot es>\n"
 "Language-Team: Galician <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -64,6 +64,13 @@ msgstr ""
 msgid "Change the speed of the 3D animation"
 msgstr "Trocar a velocidade da animación 3D"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Alternar mostrar a fiestra activa como negativo"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Elevar as fiestras durante a rotación do cubo"
 
@@ -87,6 +94,14 @@ msgid "Roundoff corners for consistency with rounded decorations"
 msgstr ""
 "Reondear os cantos para manter a consistencia con decoracións con efectos "
 "arredondados."
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Título da fiestra"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Centro da fiestra"
 
 msgid "Window Depth"
 msgstr "Profundidade da fiestra"
@@ -121,9 +136,6 @@ msgid ""
 msgstr ""
 "Facilita a concentración ao diminuír a luminosidade das fiestras á volta da "
 "fiestra activa."
-
-msgid "Misc. options"
-msgstr "Opcións diversas"
 
 msgid "Opacity"
 msgstr "Opacidade"
@@ -841,17 +853,17 @@ msgid "Cube Atlantis"
 msgstr "Caras do cubo"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Tamaño delfín"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Tamañaño Delfín."
 
 #, fuzzy
 msgid "Enable colors"
 msgstr "Activar Aura"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Tamaño peixe"
 
 #, fuzzy
 msgid "Number of fish"
@@ -866,10 +878,10 @@ msgid "Render some fish inside of the transparent cube"
 msgstr "Mostra engranaxes dentro do cubo transparente"
 
 msgid "Shark size"
-msgstr ""
+msgstr "Tamaño quenlla"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Tamaño Valea"
 
 #, fuzzy
 msgid "Whale size."
@@ -946,7 +958,7 @@ msgid "Brightness and Saturation"
 msgstr "Brillo das fiestras desvanecidas"
 
 msgid "Brightness and Saturation adjustments"
-msgstr ""
+msgstr "Axustes de brillo e saturación"
 
 #, fuzzy
 msgid "Brightness settings"
@@ -2315,24 +2327,24 @@ msgid "Action"
 msgstr "Animación"
 
 msgid "Action that is to be invoked."
-msgstr ""
+msgstr "Acción que ten que invocada"
 
 msgid "Assign mousegestures to any existing action"
-msgstr ""
+msgstr "Asigna xestos de rato a calqueira acción existe"
 
 #, fuzzy
 msgid "Gesture"
 msgstr "Comezar xestos"
 
 msgid "Gesture assignment"
-msgstr ""
+msgstr "Asiganción de Xextos"
 
 #, fuzzy
 msgid "Gestures"
 msgstr "Texturas"
 
 msgid "Mouse gesture to assign an action to."
-msgstr ""
+msgstr "Xestos do rato para asignar unha acción"
 
 #, fuzzy
 msgid "Mousegestures"
@@ -2343,10 +2355,10 @@ msgid "Plugin"
 msgstr "Plugin Expo"
 
 msgid "Plugin the action belongs to."
-msgstr ""
+msgstr "Plugin ó que pertence a acción."
 
 msgid "Start gesture"
-msgstr ""
+msgstr "Comezar xesto"
 
 msgid "Begin Gesture"
 msgstr "Comezar xestos"
@@ -2394,13 +2406,13 @@ msgid "Debug"
 msgstr "Depuración"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "Mostrar erros e outras mensaxes empregando libnotify"
 
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Notificacións de Erro"
 
 #, fuzzy
 msgid "Fatal"
@@ -2415,18 +2427,20 @@ msgid "Info"
 msgstr "Aproximar"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "Nivel de log máximo"
 
 msgid "The maximum log level to display"
-msgstr ""
+msgstr "Nivel de log máximo a mostrar"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
+"Retardo (en segundos) despois de agochar a notificción, poñer a -1 para o "
+"valor por defecto e 0 para infinito"
 
 msgid "Warning"
-msgstr ""
+msgstr "Advertencia"
 
 msgid "Active Opacity"
 msgstr "Opacidade Activa"
@@ -3024,9 +3038,6 @@ msgstr "Mostrar Fiestras Minimizadas"
 msgid "Show Window Title"
 msgstr "Mostrar Título Fiestras"
 
-msgid "Show minimized windows"
-msgstr "Mostrar fiestras minimizadas"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3061,6 +3072,9 @@ msgstr "Mostrar anel se non estivera visíbel e seleccionar a fiestra anterior."
 msgid "Show window title of currently selected window."
 msgstr "Mostrar título da fiestra actualmente seleccionada."
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "Colocación Texto"
 
@@ -3075,6 +3089,10 @@ msgstr "Mostrar título da fiestra"
 
 msgid "Windows that should be shown in ring"
 msgstr "Fiestras que deben ser mostradas no anel"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Crear mosaico das fiestras"
 
 msgid "Background color of the window title"
 msgstr "Cor de fondo do título da fiestra"
@@ -3104,6 +3122,14 @@ msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidencía a fiestra sobre a cal paira o cursor do rato coa cor escollida"
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Mover fiestra cara x,y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Mostrar título da fiestra"
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -3115,9 +3141,6 @@ msgstr "Adicións ao Scale"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "Selecciona o mode para mostar as fiestras no modo Scale"
-
-msgid "Show window title in scale mode"
-msgstr "Mostrar título da fiestra no modo Scale"
 
 msgid "Size of the border around the window title"
 msgstr "Tamaño da marxe á volta do título da fiestra"
@@ -3139,6 +3162,14 @@ msgstr "Modo Exibición Fiestras"
 
 msgid "Window Title"
 msgstr "Título fiestra"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Mostrar título da fiestra"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Mostrar título da fiestra no modo Scale"
 
 msgid "Zoom Windows In Scale"
 msgstr "Magnificar Fiestras En Scale"
@@ -3188,70 +3219,77 @@ msgstr "Alternar Visibilidade da Prompt"
 msgid "Toggle prompt visible."
 msgstr "Alternar visibilidade da prompt."
 
-#, fuzzy
 msgid "Directory"
-msgstr "Cartafol onde gardar os rexistos de erros."
+msgstr "Directorio"
 
-#, fuzzy
 msgid "Initiate screencasting"
-msgstr "Iniciar a creación de partículas"
+msgstr "Iniciar captura de pantalla"
 
 msgid "Put screenshot images in this directory"
-msgstr ""
+msgstr "Poñer as imaxes das capturas neste directorio"
 
-#, fuzzy
 msgid "ScreenCast plugin"
-msgstr "Mensaxes na pantalla"
+msgstr "Plugin de Captura de pantalla"
 
-#, fuzzy
 msgid "ScreenCasting"
-msgstr "Caixa da pantalla"
+msgstr "Captura de pantalla"
 
-#, fuzzy
 msgid "Animation duration"
-msgstr "Duración da Animación"
+msgstr "Duración da animación"
 
-#, fuzzy
 msgid "Duration of the animation in milliseconds."
-msgstr "Duración da animación de zoom para fora"
+msgstr "Duración da animación en milisegundos"
 
 msgid "Increase the scale factor making the window bigger."
-msgstr ""
+msgstr "Incrementar o factor de escala facendo a fiestra máis grande"
 
-#, fuzzy
 msgid "Make the window bigger"
-msgstr "Tamaño máximo da fiestra"
+msgstr "Facer a fiestra máis grande"
 
-#, fuzzy
 msgid "Make the window smaller"
-msgstr "Tamaño máximo da fiestra"
+msgstr "Facer a fiestra máis pequena"
 
 msgid "Reduces the scale factor making the window smaller."
-msgstr ""
+msgstr "Reducir o factor de escala facendo a fiestra máis pequena"
 
-msgid "Scale a window down to half size."
+#, fuzzy
+msgid "Scale a window down to a portion of it's size."
+msgstr "Reducir o tamaño da fiestra á metade"
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
-msgstr ""
+msgstr "Intervalo de escala"
 
 #, fuzzy
 msgid "Shelf"
-msgstr "Shift"
+msgstr "Propio"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
 "(respectively) increasing and decreasing the scale level manually. Higher "
 "number means finer changes."
 msgstr ""
+"O número para dividir ou multiplicar o factor de escala cando sexa "
+"incrementado ou decrementado manualmente. Números máis grandes significan "
+"cambios máis liviáns."
 
 msgid "Trigger scale down"
-msgstr ""
+msgstr "Activar reducción"
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Activar reducción"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
+"Reducir a escala da fiestra visualmente para permitir controlar sen o "
+"reescalado verdadeiro/tradicional"
 
 msgid "Background intensity"
 msgstr "Intensidade do fondo"
@@ -4343,68 +4381,64 @@ msgstr "Fondos"
 msgid "Draw the desktop wallpaper"
 msgstr "Debuxar o fondo do escritorio"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Activa mistura alfa dos flocos de neve."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Activar Mistura"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr "As especificacións do fondo (como explicado en DOCUMENTATíON) a usar."
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Crear mosaico do fondo ao invés de esticar"
 
-msgid "Tile or Stretch"
-msgstr "Crear Mosaico ou Esticar"
-
 msgid "Wallpaper"
 msgstr "Fondo do escritorio"
 
-#, fuzzy
 msgid "Background Brightness"
 msgstr "Brillo do fondo"
 
-#, fuzzy
 msgid "Background Saturation"
-msgstr "Saturación da imaxe de fondo."
+msgstr "Saturación do fondo"
 
-#, fuzzy
 msgid "Background in Widget Mode"
-msgstr "Ficheiro coa Imaxe de Fondo."
+msgstr "Fondo no modo Widget"
 
-#, fuzzy
 msgid "Brightness of non-widget windows in widget modes."
-msgstr "Brillo das fiestras desvanecidas"
+msgstr "Brillo das fiestras non widget en modos widget."
 
 msgid "End Widget Mode on Click"
-msgstr ""
+msgstr "Finalizar Modo Widget con Click"
 
 msgid "End widget mode when a non-widget window is clicked."
-msgstr ""
+msgstr "Finalizar modo widget cando é clicada unha fiestra que non é widget"
 
-#, fuzzy
 msgid "Saturation of non-widget windows in widget modes."
-msgstr "Contrastes das fiestras desvanecidas"
+msgstr "Saturación das fiestras non-widget nos modos widget."
 
-#, fuzzy
 msgid "Show or hide widget windows"
-msgstr "Mostrar fiestras minimizadas"
+msgstr "Mostrar/Agochar fiestras widget"
 
 msgid "Show widget windows on a separate layer"
-msgstr ""
+msgstr "Mostar fiestras widget nunha capa separada"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
+msgstr "Tempo (en s) de desvanecemento da capa de widgets."
 
-#, fuzzy
 msgid "Toggle Widget Display"
-msgstr "Alternar fiestra Negativo"
+msgstr "Trocar Mostrar Widget"
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "Capa Widget"
 
-#, fuzzy
 msgid "Widget Windows"
-msgstr "Fiestras Anel"
+msgstr "Fiestra Widget"
 
-#, fuzzy
 msgid "Windows that always should be treated as widgets"
-msgstr "Fiestras que deben ser redimensionadas por omisión"
+msgstr "Fiestras que deben ser tratadas coma widget sempre"
 
 msgid "Above others windows"
 msgstr "Por cima de outras fiestras"
@@ -4520,6 +4554,12 @@ msgstr "Corrección para o Menú do Firefox"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "Arranxo para a implementación fallida glProgramEnvParameter4f"
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr ""
 "Correxir tipos de fiestra para os menús dos programas Firefox e Thunderbird."
@@ -4579,3 +4619,12 @@ msgstr "Fiestras \"en tódolos escritorios\" que deben ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correccións"
+
+#~ msgid "Misc. options"
+#~ msgstr "Opcións diversas"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Mostrar fiestras minimizadas"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "Crear Mosaico ou Esticar"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:23+0530\n"
+"POT-Creation-Date: 2008-01-29 17:15+0530\n"
 "PO-Revision-Date: 2007-12-11 16:52+0100\n"
 "Last-Translator: Thruth Wang <gubotruth@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -61,6 +61,13 @@ msgstr "改变窗口间隔"
 msgid "Change the speed of the 3D animation"
 msgstr "改变 3D 动画速度"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "开关窗口重导"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "立方体转面时浮起的窗口"
 
@@ -80,6 +87,14 @@ msgstr "杂项设置"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "与圆形窗口装饰协调的圆角"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "窗口标题字体"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "窗口标题字体"
 
 msgid "Window Depth"
 msgstr "窗口深度"
@@ -111,9 +126,6 @@ msgstr "淡出窗口的亮度"
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr "突出显示当前窗口，暗淡活动窗口之外的一切内容。"
-
-msgid "Misc. options"
-msgstr "杂项设置"
 
 msgid "Opacity"
 msgstr "不透明度"
@@ -2939,10 +2951,6 @@ msgstr ""
 msgid "Show Window Title"
 msgstr "窗口标题字体"
 
-#, fuzzy
-msgid "Show minimized windows"
-msgstr "飞雪漫窗"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -2969,6 +2977,9 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr ""
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr ""
 
@@ -2985,6 +2996,10 @@ msgstr "窗口标题字体"
 #, fuzzy
 msgid "Windows that should be shown in ring"
 msgstr "使用 3D 的窗口"
+
+#, fuzzy
+msgid "All windows"
+msgstr "窗口排列"
 
 #, fuzzy
 msgid "Background color of the window title"
@@ -3019,6 +3034,14 @@ msgstr "标签高亮颜色"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "窗口排列"
+
+#, fuzzy
+msgid "No display"
+msgstr "窗口标题字体"
+
 msgid "Normal"
 msgstr ""
 
@@ -3030,9 +3053,6 @@ msgid "Scale Addons"
 msgstr ""
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
-
-msgid "Show window title in scale mode"
 msgstr ""
 
 #, fuzzy
@@ -3058,6 +3078,14 @@ msgstr "窗口部件大小"
 
 #, fuzzy
 msgid "Window Title"
+msgstr "窗口标题字体"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "窗口标题字体"
+
+#, fuzzy
+msgid "Window title display in scale mode"
 msgstr "窗口标题字体"
 
 #, fuzzy
@@ -3148,7 +3176,12 @@ msgstr "绘制窗口背面"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3165,6 +3198,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "开关窗口全屏"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4264,13 +4301,18 @@ msgstr "背景文件"
 msgid "Draw the desktop wallpaper"
 msgstr ""
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "启用雪花 alpha 混合"
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "启用渲染"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 
 msgid "Tile backgrounds as opposed to stretching"
-msgstr ""
-
-msgid "Tile or Stretch"
 msgstr ""
 
 msgid "Wallpaper"
@@ -4458,6 +4500,12 @@ msgstr ""
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr ""
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr ""
 
@@ -4514,6 +4562,13 @@ msgstr "需要淡出到桌面的窗口"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Misc. options"
+#~ msgstr "杂项设置"
+
+#, fuzzy
+#~ msgid "Show minimized windows"
+#~ msgstr "飞雪漫窗"
 
 #~ msgid "Disable Caps for Inside Cube"
 #~ msgstr "立方体禁用顶面底面"

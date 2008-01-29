@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins-new\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
+"POT-Creation-Date: 2008-01-29 17:15+0530\n"
 "PO-Revision-Date: 2007-12-31 01:40+0100\n"
 "Last-Translator: Gürkan Gür <seqizz@gmail.com>\n"
 "Language-Team: <tr@li.org>\n"
@@ -63,6 +63,13 @@ msgstr ""
 msgid "Change the speed of the 3D animation"
 msgstr "3D canlandırma hızını değiştir"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Etkin pencerenin negatifleştirmesini Aç / Kapat"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Küp döndürülürken pencereleri yükseltir"
 
@@ -84,6 +91,13 @@ msgid "Roundoff corners for consistency with rounded decorations"
 msgstr ""
 "Köşeleri yuvarlanmış dekorasyonlar ile tutarlı olması için pencere "
 "köşelerini yuvarla"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Pencere başlığı"
+
+msgid "Window Color (Inactive)"
+msgstr ""
 
 msgid "Window Depth"
 msgstr "Pencere Derinliği"
@@ -118,9 +132,6 @@ msgid ""
 msgstr ""
 "Etkin pencere dışında diğerlerini karartarak etkin pencereye odaklanmayı "
 "kolaylaştırır."
-
-msgid "Misc. options"
-msgstr "Diğer seçenekler"
 
 msgid "Opacity"
 msgstr "Matlık"
@@ -2846,9 +2857,6 @@ msgstr "Küçültülmüşleri Göster"
 msgid "Show Window Title"
 msgstr "Pencere Başlığını Göster"
 
-msgid "Show minimized windows"
-msgstr "Küçültülmüş pencereleri göster"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -2875,6 +2883,9 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr ""
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "Metin Konumlandırma"
 
@@ -2889,6 +2900,10 @@ msgstr ""
 
 msgid "Windows that should be shown in ring"
 msgstr ""
+
+#, fuzzy
+msgid "All windows"
+msgstr "Pencereleri döşe"
 
 msgid "Background color of the window title"
 msgstr ""
@@ -2917,6 +2932,13 @@ msgstr "Vurgulama Rengi"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Pencereyi belirli bir konuma taşı x, y"
+
+msgid "No display"
+msgstr ""
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -2927,9 +2949,6 @@ msgid "Scale Addons"
 msgstr ""
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
-
-msgid "Show window title in scale mode"
 msgstr ""
 
 msgid "Size of the border around the window title"
@@ -2952,6 +2971,13 @@ msgstr "Pencere Yerleşim Kipi"
 
 msgid "Window Title"
 msgstr "Pencere Başlığı"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Pencere Başlığı"
+
+msgid "Window title display in scale mode"
+msgstr ""
 
 msgid "Zoom Windows In Scale"
 msgstr ""
@@ -3039,7 +3065,12 @@ msgstr "En büyük pencere boyutu"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3057,6 +3088,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Pencereyi tam ekran yap / yapma"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4086,14 +4121,18 @@ msgstr "Arkaplanlar"
 msgid "Draw the desktop wallpaper"
 msgstr "Arkaplan duvar kağıdını oluştur"
 
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr ""
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Harmanlamayı Etkinleştir"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr ""
-
-msgid "Tile or Stretch"
-msgstr "Döşe ya da Uzat"
 
 msgid "Wallpaper"
 msgstr "Duvar Kağıdı"
@@ -4265,6 +4304,12 @@ msgstr "Firefox Menü Hatasının Çözümü"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "Bozuk glProgramEnvParameter4f uygulamalarını onar."
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "Firefox ve Thunderbird menü pencerelerini onar."
 
@@ -4321,3 +4366,12 @@ msgstr "Tüm masaüstlerindeki pencereler yapışkan olmalı"
 
 msgid "Workarounds"
 msgstr "Hızlı Çözümler"
+
+#~ msgid "Misc. options"
+#~ msgstr "Diğer seçenekler"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Küçültülmüş pencereleri göster"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "Döşe ya da Uzat"

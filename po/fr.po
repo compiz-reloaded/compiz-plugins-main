@@ -1,17 +1,19 @@
+# translation of fr-compiz-fusion-plugins.po to
+# translation of compiz-fusion-plugins.po to
 # compiz-fusion-plugins translation template.
 # Copyright (C) 2007 opencompositing.org
 # This file is distributed under the same license as the compiz-fusion package.
 #
 # Guillaume Seguin <guillaume@segu.in>, 2007.
-# Tristan RABLAT <tristan.rablat@gmail.com>, 2007.
+# Tristan RABLAT <tristan.rablat@gmail.com>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: fr-i18n\n"
+"Project-Id-Version: fr-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2007-11-07 19:06+0100\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
+"PO-Revision-Date: 2008-01-20 22:33+0100\n"
 "Last-Translator: Tristan RABLAT <tristan.rablat@gmail.com>\n"
-"Language-Team:  <fr@li.org>\n"
+"Language-Team: <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,6 +63,13 @@ msgstr ""
 msgid "Change the speed of the 3D animation"
 msgstr "Modifier la vitesse de l'animation 3D"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Basculer la fenêtre active en négatif"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Surélever les fenêtres lors de la rotation"
 
@@ -82,6 +91,14 @@ msgstr "Options Diverses"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Arrondir les coins pour aller avec les décorations arrondies"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Titre de la fenêtre"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Centre de la fenêtre"
 
 msgid "Window Depth"
 msgstr "Épaisseur de fenêtre"
@@ -115,9 +132,6 @@ msgid ""
 msgstr ""
 "Rendre la concentration plus aisée en obscurcissant tout sauf la fenêtre "
 "active."
-
-msgid "Misc. options"
-msgstr "Divers"
 
 msgid "Opacity"
 msgstr "Opacité"
@@ -825,17 +839,17 @@ msgid "Cube Atlantis"
 msgstr "Dessus/Dessous du Cube"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Taille des dauphins"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Taille des dauphins."
 
 #, fuzzy
 msgid "Enable colors"
 msgstr "Activer la lueur"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Taille des poissons"
 
 #, fuzzy
 msgid "Number of fish"
@@ -850,10 +864,10 @@ msgid "Render some fish inside of the transparent cube"
 msgstr "Afficher des rouages à l'intérieur du cube transparent"
 
 msgid "Shark size"
-msgstr ""
+msgstr "Taille des requins"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Taille des baleines"
 
 #, fuzzy
 msgid "Whale size."
@@ -930,7 +944,7 @@ msgid "Brightness and Saturation"
 msgstr "Luminosité des fenêtres ombrées"
 
 msgid "Brightness and Saturation adjustments"
-msgstr ""
+msgstr "Ajustements de la luminosité et de la saturation"
 
 #, fuzzy
 msgid "Brightness settings"
@@ -2296,24 +2310,24 @@ msgid "Action"
 msgstr "Animation"
 
 msgid "Action that is to be invoked."
-msgstr ""
+msgstr "Action devant être invoquée."
 
 msgid "Assign mousegestures to any existing action"
-msgstr ""
+msgstr "Assigner des mouvements de souris à toute action existante"
 
 #, fuzzy
 msgid "Gesture"
 msgstr "Démarrer le Changement à la Souris"
 
 msgid "Gesture assignment"
-msgstr ""
+msgstr "Assignation de mouvement"
 
 #, fuzzy
 msgid "Gestures"
 msgstr "Textures"
 
 msgid "Mouse gesture to assign an action to."
-msgstr ""
+msgstr "Mouvement de souris à assigner à une action."
 
 #, fuzzy
 msgid "Mousegestures"
@@ -2324,10 +2338,10 @@ msgid "Plugin"
 msgstr "Extension Exposé"
 
 msgid "Plugin the action belongs to."
-msgstr ""
+msgstr "Extension qui fournit l'action."
 
 msgid "Start gesture"
-msgstr ""
+msgstr "Démarrer Mouvement"
 
 msgid "Begin Gesture"
 msgstr "Démarrer le Changement à la Souris"
@@ -2375,13 +2389,13 @@ msgid "Debug"
 msgstr "Déboggage"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "Afficher les erreurs et autres messages en utilisant libnotify."
 
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Notifications d'erreurs"
 
 #, fuzzy
 msgid "Fatal"
@@ -2396,18 +2410,20 @@ msgid "Info"
 msgstr "Entrée"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "Niveau de Log Maximum"
 
 msgid "The maximum log level to display"
-msgstr ""
+msgstr "Le niveau maximum de log à afficher"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
+"Délai (en secondes) avant de cacher la notification, réglez à -1 pour la "
+"valeur par défaut, et 0 pour indéfini"
 
 msgid "Warning"
-msgstr ""
+msgstr "Avertissement"
 
 msgid "Active Opacity"
 msgstr "Opacité Active"
@@ -3005,9 +3021,6 @@ msgstr "Afficher les Fenêtres Minimisées"
 msgid "Show Window Title"
 msgstr "Afficher le titre de la fenêtre"
 
-msgid "Show minimized windows"
-msgstr "Afficher les fenêtres minimisées"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3046,6 +3059,9 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr "Montrer le titre de la fenêtre sélectionnée."
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "Positionnement du texte"
 
@@ -3060,6 +3076,10 @@ msgstr "Affichage du titre de la fenêtre"
 
 msgid "Windows that should be shown in ring"
 msgstr "Fenêtres devant êtres affichées dans l'Anneau"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Fenêtres en mosaïque"
 
 msgid "Background color of the window title"
 msgstr "Couleur d'arrière-plan du titre de la fenêtre"
@@ -3088,6 +3108,14 @@ msgstr "Couleur de surbrillance"
 msgid "Highlights the hovered window with the given color"
 msgstr "Mettre en surbrillance la fenêtre survolée avec la couleur donnée"
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Déplacer la fenêtre en x, y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Affichage du titre de la fenêtre"
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -3099,9 +3127,6 @@ msgstr "Échelle (outils de mise à l'échelle)"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "Mode de superposition des fenêtres en mode Échelle"
-
-msgid "Show window title in scale mode"
-msgstr "Montrer le titre de la fenêtre en mode Échelle"
 
 msgid "Size of the border around the window title"
 msgstr "Taille de la bordure autour du titre de la fenêtre"
@@ -3123,6 +3148,14 @@ msgstr "Mode de superposition des fenêtres"
 
 msgid "Window Title"
 msgstr "Titre de fenêtre"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Affichage du titre de la fenêtre"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Montrer le titre de la fenêtre en mode Échelle"
 
 msgid "Zoom Windows In Scale"
 msgstr "Zoomer les fenêtres en mode Échelle"
@@ -3177,7 +3210,7 @@ msgid "Initiate screencasting"
 msgstr "Initialiser le dessin en feu"
 
 msgid "Put screenshot images in this directory"
-msgstr ""
+msgstr "Mettre les captures d'écran dans ce répertoire"
 
 #, fuzzy
 msgid "ScreenCast plugin"
@@ -3196,7 +3229,7 @@ msgid "Duration of the animation in milliseconds."
 msgstr "Durée de l'animation dézoomer"
 
 msgid "Increase the scale factor making the window bigger."
-msgstr ""
+msgstr "Augmente le facteur de grossissement"
 
 #, fuzzy
 msgid "Make the window bigger"
@@ -3207,13 +3240,19 @@ msgid "Make the window smaller"
 msgstr "Taille de fenêtre maximum"
 
 msgid "Reduces the scale factor making the window smaller."
-msgstr ""
+msgstr "Diminue le facteur de réduction"
 
-msgid "Scale a window down to half size."
+#, fuzzy
+msgid "Scale a window down to a portion of it's size."
+msgstr "Échelonner une fenêtre à la moitié de sa taille"
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
-msgstr ""
+msgstr "Intervalle de mise à l'échelle"
 
 #, fuzzy
 msgid "Shelf"
@@ -3224,14 +3263,23 @@ msgid ""
 "(respectively) increasing and decreasing the scale level manually. Higher "
 "number means finer changes."
 msgstr ""
+"Nombre par lequel diviser ou multiplier le facteur d'échelle en augmentant "
+"ou diminuant (respectivement) le niveau d'échelle manuellement. Plus la "
+"valeur est grande, plus les changements sont fins."
 
 msgid "Trigger scale down"
-msgstr ""
+msgstr "Basculer Mise à l'échelle"
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Basculer Mise à l'échelle"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
+"Modifie visuellement la taille de la fenêtre (zoom) au lieu de "
+"redimensionner les composants (widgets) de la fenêtre."
 
 msgid "Background intensity"
 msgstr "Luminosité de l'arrière-plan"
@@ -4325,6 +4373,14 @@ msgstr "Arrière-plan"
 msgid "Draw the desktop wallpaper"
 msgstr "Dessiner l'arrière-plan du bureau"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Activer le mélange alpha des flocons."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Activer le mélange"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 "Les spécifications d'arrière-plan à utiliser (comme indiqué dans la "
@@ -4332,9 +4388,6 @@ msgstr ""
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Carreler l'arrière plan au lieu de l'étirer"
-
-msgid "Tile or Stretch"
-msgstr "Carreler ou étirer"
 
 msgid "Wallpaper"
 msgstr "Fond d'écran"
@@ -4356,10 +4409,10 @@ msgid "Brightness of non-widget windows in widget modes."
 msgstr "Luminosité des fenêtres ombrées"
 
 msgid "End Widget Mode on Click"
-msgstr ""
+msgstr "Terminer le mode widget au clic"
 
 msgid "End widget mode when a non-widget window is clicked."
-msgstr ""
+msgstr "Terminer le mode widget quand une fenêtre non-widget est cliquée."
 
 #, fuzzy
 msgid "Saturation of non-widget windows in widget modes."
@@ -4370,17 +4423,17 @@ msgid "Show or hide widget windows"
 msgstr "Afficher les fenêtres minimisées"
 
 msgid "Show widget windows on a separate layer"
-msgstr ""
+msgstr "Afficher les fenêtres widget sur une couche séparée"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
+msgstr "Durée (en s) avant le fondu d'entrée/sortie de la couche widget."
 
 #, fuzzy
 msgid "Toggle Widget Display"
 msgstr "Basculer la fenêtre en Négatif"
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "Couche Widget"
 
 #, fuzzy
 msgid "Widget Windows"
@@ -4504,6 +4557,12 @@ msgstr "Correction des Firefox et Thunderbird"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "Corriger l'implémentation cassée de glProgramEnvParameter4f."
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "Corriger les fenêtres des menus de Firefox et Thunderbird"
 
@@ -4560,3 +4619,12 @@ msgstr "Fenêtres sur tous les bureaux devant être rendues "
 
 msgid "Workarounds"
 msgstr "Solutions"
+
+#~ msgid "Misc. options"
+#~ msgstr "Divers"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Afficher les fenêtres minimisées"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "Carreler ou étirer"

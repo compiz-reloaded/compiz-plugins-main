@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:21+0530\n"
-"PO-Revision-Date: 2008-01-09 09:42+0100\n"
-"Last-Translator: Valentin <valentin.steinwandter@rolmail.net>\n"
+"POT-Creation-Date: 2008-01-29 17:13+0530\n"
+"PO-Revision-Date: 2008-01-18 18:08+0100\n"
+"Last-Translator: Leon <leonbrussels@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,6 +61,13 @@ msgstr "Verändert den Abstand zwischen den Fenstern."
 msgid "Change the speed of the 3D animation"
 msgstr "Verändert die Geschwindigkeit der 3D-Animation."
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Schaltet die Negierung des Fensterinhaltes des aktiven Fensters um."
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Hebt die Fenster während des Rotierens des Würfels an"
 
@@ -84,6 +91,14 @@ msgid "Roundoff corners for consistency with rounded decorations"
 msgstr ""
 "Runde die Ecken ab, um konsistent mit abgerundeten Fensterrahmen zu bleiben"
 
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Fenstertitel"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Fenstertitel"
+
 # FIXED -- 'betroffene' ginge auch
 #, fuzzy
 msgid "Window Depth"
@@ -96,9 +111,8 @@ msgstr "Betroffene Fenster"
 msgid "Window Space"
 msgstr "Fensterabstand"
 
-#, fuzzy
 msgid "Window depth"
-msgstr "Fensterbreite"
+msgstr "Fenstertiefe"
 
 msgid "Windows that should be handled by 3D"
 msgstr "Fenster, die vom 3D-Modus betroffen sein sollen"
@@ -120,9 +134,6 @@ msgid ""
 msgstr ""
 "Macht es durch das Abdunkeln von nickt aktiven Fenstern etwas einfacher, "
 "sich zu konzentrieren."
-
-msgid "Misc. options"
-msgstr "Sonstige Optionen"
 
 msgid "Opacity"
 msgstr "Sichtbarkeit"
@@ -260,10 +271,14 @@ msgstr "Animation 'Schließen'"
 msgid "Close Effect"
 msgstr "Effekt für das Schließen von Fenstern"
 
+# Sehr direkte Übersetzung
+#, fuzzy
 msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
 "camera, -2.0: Away from camera)."
 msgstr ""
+"Nähe des Fensters zur Kamera am Ende der Animation(1.0: Nahe der Kamera, -"
+"2.0: Weiter weg der Kamera))"
 
 msgid ""
 "Comma separated list of option value assignments to override effect "
@@ -283,9 +298,10 @@ msgstr "Bogen-Amplitude"
 msgid "Dodge"
 msgstr "Ausweichen"
 
-# ich weiss leider nicht genau, was das bewirkt - der Effekt wird einfach nur 'intensiver'
+# Das macht,d ass die Fenster nacheinander anfangen auszuweichen, Also Zeitversetzt
+#, fuzzy
 msgid "Dodge Gap Ratio"
-msgstr ""
+msgstr "Zeitversetzung zwischen den Fenstern"
 
 msgid "Domino"
 msgstr "Domino"
@@ -466,7 +482,7 @@ msgstr "Anzahl der Feuerpartikel"
 
 #, fuzzy
 msgid "Number of Horizontal Folds"
-msgstr "Anzahl der Partikel"
+msgstr "Anzahl der horizontalen Faltungen"
 
 msgid "Number of fire particles."
 msgstr "Anzahl der Feuerpartikel"
@@ -481,11 +497,13 @@ msgstr "Aus"
 msgid "On"
 msgstr "An"
 
+#, fuzzy
 msgid "On open/close, move magic lamp ending point with the mouse pointer."
-msgstr ""
+msgstr "Endpunkt der Wunderlampe folgt dem Mauszeiger"
 
+#, fuzzy
 msgid "On open/close, move vacuum ending point with the mouse pointer."
-msgstr ""
+msgstr "Endpunkt des Vakuums folgt dem Mauszeiger"
 
 msgid "Open Animation"
 msgstr "Animation 'Öffnen'"
@@ -502,13 +520,15 @@ msgstr "Optionen"
 msgid "Out"
 msgstr "Heraus"
 
+#, fuzzy
 msgid "Pool"
-msgstr ""
+msgstr "Effektsammlung"
 
+#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
-msgstr ""
+msgstr "Effektsammlung, aus der zufällig gewählt wird"
 
 msgid "Random"
 msgstr "Zufällig"
@@ -559,10 +579,11 @@ msgstr "Effekt für das Aufrollen von Fenstern"
 
 #, fuzzy
 msgid "Sidekick"
-msgstr "Gleiten"
+msgstr "Trudeln"
 
+#, fuzzy
 msgid "Sidekick Number of Rotations"
-msgstr ""
+msgstr "Trudeln Anzahl der Drehungen"
 
 msgid "Sidekick Springiness"
 msgstr ""
@@ -578,14 +599,20 @@ msgstr "Schnee-Richtung"
 msgid "Spacing between beams."
 msgstr "Der Abstand zwischen den Vorschaubildern."
 
+#, fuzzy
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
 msgstr ""
+"Anfangsbreite des 'Öffen' Effekts und Endbreite des 'Schließen' Effekts der "
+"Wunderlampe"
 
+#, fuzzy
 msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
+"Anfangsbreite des 'Öffen' Effekts und Endbreite des 'Schließen' Effekts des "
+"Vakuums"
 
 msgid "Tessellation Type"
 msgstr "Tesselations-Typ"
@@ -600,6 +627,8 @@ msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
+"Zeit in Millisekunden zwischen den einzelnen Berechungen der Animation. Je "
+"höher dieser Wert, desto abgehackter sind die Animationen."
 
 msgid ""
 "The amount of time in milliseconds between each render of the intense "
@@ -639,38 +668,43 @@ msgstr "Beim Minimieren eines Fensters verwendete Animation"
 msgid "The animation effect shown when shading a window."
 msgstr "Beim Aufrollen eines Fensters verwendete Animation"
 
-#, fuzzy
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
 "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
+"Gitters erzeugt. Geben sie die Anzahl der Gitterzellen an, in die das "
+"Fenster vertikal zerlegt werden soll."
 
-#, fuzzy
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
 "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
+"Gitters erzeugt. Geben sie die Anzahl der einzelnen Gitterzeilen an, in die "
+"das Fenster vertikal zerlegt werden soll."
 
 #, fuzzy
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
-msgstr "Maximale Anzahl der Wellenbewegungen für den Wunderlampen-Effekt."
+msgstr "Maximaler Auschlag der Wellenbewegungen für den Wunderlampen-Effekt."
 
 msgid "The maximum number of waves for Magic Lamp."
 msgstr "Maximale Anzahl der Wellenbewegungen für den Wunderlampen-Effekt."
 
+#, fuzzy
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
+msgstr "Minimaler Ausschlag der Wellenbewegungen für den Wunderlampen-Effekt."
 
+#, fuzzy
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
+"Anzahl der horizontalen Faltungen bei der 'Horizontal Falten' Animation"
 
+# Ich kenne den Kontext nicht genau, deshalb bin ich mir mit der Übersetzung nicht zu sicher
+#, fuzzy
 msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
+msgstr "Auschlag der Wellen relativ zur Fenstergröße"
 
 msgid "The width of the wave relative to the window height."
 msgstr "Breite der Welle in Relation zur Fensterbreite"
@@ -700,19 +734,21 @@ msgid "Up-down"
 msgstr "Hoch/Runter"
 
 msgid "Use various animations as window effects"
-msgstr ""
+msgstr "Verschiedene Animationen als Fenstereffekte verwenden"
 
 msgid "Vacuum"
-msgstr ""
+msgstr "Vakuum"
 
+#, fuzzy
 msgid "Vacuum Grid Y Resolution"
-msgstr ""
+msgstr "Vakuum Gitternetz Y Auflösung"
 
 msgid "Vacuum Open Start Width"
 msgstr ""
 
+#, fuzzy
 msgid "Vacuum Open/Close Moving End"
-msgstr ""
+msgstr "Vakuum Ende bewegt sich beim Öffnen/Schließen"
 
 msgid ""
 "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number "
@@ -2995,9 +3031,6 @@ msgstr "Zeige minimierte Fenster an"
 msgid "Show Window Title"
 msgstr "Fenstertitel anzeigen"
 
-msgid "Show minimized windows"
-msgstr "Wenn ausgewählt, werden auch minimierte Fenster angezeigt."
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3036,6 +3069,9 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr "Zeige Fenstertitel für ausgewähltes Fenster an."
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "Text-Platzierung"
 
@@ -3050,6 +3086,10 @@ msgstr "Fenstertitelanzeige"
 
 msgid "Windows that should be shown in ring"
 msgstr "Fenster, die im Ring angezeigt werden sollen"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Fenster anordnen"
 
 msgid "Background color of the window title"
 msgstr "Hintergrundfarbe für Fenstertitel"
@@ -3078,6 +3118,14 @@ msgstr "Hervorhebungsfarbe"
 msgid "Highlights the hovered window with the given color"
 msgstr "Hebt das aktuelle Fenster in der gewählten Farbe hervor."
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Gefilterte Fenster"
+
+#, fuzzy
+msgid "No display"
+msgstr "Fenstertitelanzeige"
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -3091,9 +3139,6 @@ msgid "Selects the mode to layout the windows in scale mode"
 msgstr ""
 "Wählt den Modus für die Anordnung der Fenster im 'Fenster skalieren'-Modus "
 "aus."
-
-msgid "Show window title in scale mode"
-msgstr "Zeige Fenstertitel an."
 
 msgid "Size of the border around the window title"
 msgstr "Größe des Rahmens um den Fenstertitel"
@@ -3115,6 +3160,14 @@ msgstr "Modus für Fensteranordnung"
 
 msgid "Window Title"
 msgstr "Fenstertitel"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Fenstertitelanzeige"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Zeige Fenstertitel an."
 
 msgid "Zoom Windows In Scale"
 msgstr "Fenster zoomen"
@@ -3204,7 +3257,12 @@ msgstr "Größe des Vorschaubildes"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3222,6 +3280,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Aktiviere Vollbild-Modus für das momentane aktive Fenster"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4352,15 +4414,19 @@ msgstr "Hintergrundbild"
 msgid "Draw the desktop wallpaper"
 msgstr ""
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Aktiviere Transparenz-Blendung für Schneeflocken."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Aktiviere Blending"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr ""
-
-#, fuzzy
-msgid "Tile or Stretch"
-msgstr "Kacheln oder Strecken"
 
 msgid "Wallpaper"
 msgstr "Hintergrundbild"
@@ -4533,6 +4599,12 @@ msgstr "Workaround für Firefox Menü"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr ""
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr ""
 
@@ -4588,6 +4660,16 @@ msgstr "Fenster, die ausgeblendet werden sollen"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Misc. options"
+#~ msgstr "Sonstige Optionen"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Wenn ausgewählt, werden auch minimierte Fenster angezeigt."
+
+#, fuzzy
+#~ msgid "Tile or Stretch"
+#~ msgstr "Kacheln oder Strecken"
 
 #~ msgid "Corner Bevelling"
 #~ msgstr "Ecken-Abrundung"

@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2007-11-20 19:26+0200\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
+"PO-Revision-Date: 2008-01-15 15:56+0100\n"
 "Last-Translator: Nicolau Gonçalves <excentriko@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 1.0.2\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "3D Apenas com rotação através do rato"
@@ -59,6 +60,13 @@ msgstr ""
 msgid "Change the speed of the 3D animation"
 msgstr "Alterar a velocidade da animação 3D"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Alternar mostrar a janela activa como negativo"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Elevar as janelas durante a rotação do cubo"
 
@@ -83,6 +91,14 @@ msgstr ""
 "Arredondar os cantos para manter a consistência com decorações com efeitos "
 "arredondados."
 
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Título da janela"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Centro da Janela"
+
 msgid "Window Depth"
 msgstr "Profundidade Janela"
 
@@ -98,8 +114,9 @@ msgstr "Profundidade da janela"
 msgid "Windows that should be handled by 3D"
 msgstr "Janelas que devem ser mostradas em 3D"
 
+#, fuzzy
 msgid "ADD Helper"
-msgstr "vAdicionar ficheiro(s)"
+msgstr "Ajudante ADD"
 
 msgid "Bindings"
 msgstr "Atalhos"
@@ -115,9 +132,6 @@ msgid ""
 msgstr ""
 "Facilita a concentração ao diminuir a luminosidade das janelas à volta da "
 "janela activa."
-
-msgid "Misc. options"
-msgstr "Opções diversas"
 
 msgid "Opacity"
 msgstr "Opacidade"
@@ -401,7 +415,7 @@ msgid "In"
 msgstr "Aproximar"
 
 msgid "In-out"
-msgstr "In-out"
+msgstr "Dentro-Fora"
 
 msgid "Leaf Spread"
 msgstr "Espalhamento das Folhas"
@@ -705,8 +719,7 @@ msgid "Up-down"
 msgstr "Cima-Baixo"
 
 msgid "Use various animations as window effects"
-msgstr ""
-"Usar várias animações como efeitos das janela (fechar, abrir, minimizar...)"
+msgstr "Usar várias animações como efeitos das janela"
 
 msgid "Vacuum"
 msgstr "Vácuo"
@@ -832,44 +845,38 @@ msgstr "Zoom para a Barra de Tarefas quando Minimizar"
 msgid "Colors"
 msgstr "Cores"
 
-#, fuzzy
 msgid "Cube Atlantis"
-msgstr "Coberturas Cubo"
+msgstr "Cubo Atlantis"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Tamanho do golfinho"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Tamanho do golfinho."
 
-#, fuzzy
 msgid "Enable colors"
-msgstr "Activar Aura"
+msgstr "Activar cores"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Tamanho dos peixes"
 
-#, fuzzy
 msgid "Number of fish"
-msgstr "Número de partículas"
+msgstr "Número de peixes"
 
-#, fuzzy
 msgid "Number of fish inside the cube"
-msgstr "Número de partículas de fogo."
+msgstr "Número de peixes dentro do cubo"
 
-#, fuzzy
 msgid "Render some fish inside of the transparent cube"
-msgstr "Mostra engrenagens dentro do cubo transparente"
+msgstr "Mostrar peixes dentro do cubo transparente"
 
 msgid "Shark size"
-msgstr ""
+msgstr "Tamanho do tubarão"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Tamanho da baleia"
 
-#, fuzzy
 msgid "Whale size."
-msgstr "Tamanho das partículas."
+msgstr "Tamanho da baleia."
 
 msgid "A simple benchmark plugin"
 msgstr "Plugin de benchmark"
@@ -914,94 +921,76 @@ msgid "Update time"
 msgstr "Tempo de refrescamento"
 
 msgid "X Position of benchmark window"
-msgstr "Posição no eixo horizontal (X) da janela de benchmark"
+msgstr "Posição X da janela de benchmark"
 
 msgid "X position"
-msgstr "Posição no eixo horizontal (X)"
+msgstr "Posição X"
 
 msgid "Y Position of benchmark window"
-msgstr "Posição no eixo vertical (Y) da janela de benchmark"
+msgstr "Posição Y da janela de benchmark"
 
 msgid "Y position"
-msgstr "Posição no eixo vertical (Y)"
+msgstr "Posição Y"
 
-#, fuzzy
 msgid "Brightness Decrease"
-msgstr "Brilho"
+msgstr "Diminuir Brilho"
 
-#, fuzzy
 msgid "Brightness Increase"
-msgstr "Brilho"
+msgstr "Aumentar Brilho"
 
-#, fuzzy
 msgid "Brightness Step"
-msgstr "Brilho"
+msgstr "Incremento no Brilho"
 
-#, fuzzy
 msgid "Brightness and Saturation"
-msgstr "Brilho das janelas desvanecidas"
+msgstr "Brilho e Constraste"
 
 msgid "Brightness and Saturation adjustments"
-msgstr ""
+msgstr "Ajustes de Brilho e Constraste"
 
-#, fuzzy
 msgid "Brightness settings"
-msgstr "Brilho das janelas selecionadas"
+msgstr "Definições de Brilho"
 
-#, fuzzy
 msgid "Brightness values for windows"
-msgstr "Brilho das janelas desvanecidas"
+msgstr "Valores de Brilho para janelas"
 
-#, fuzzy
 msgid "Brightness window values"
-msgstr "Brilho das janelas desvanecidas"
+msgstr "Valores de brilho da janela"
 
-#, fuzzy
 msgid "Brightness windows"
-msgstr "Brilho das janelas desvanecidas"
+msgstr "Janelas com Brilho"
 
 msgid "General"
 msgstr "Geral"
 
-#, fuzzy
 msgid "Saturation Decrease"
-msgstr "Contraste"
+msgstr "Diminuir Contraste"
 
-#, fuzzy
 msgid "Saturation Increase"
-msgstr "Contraste"
+msgstr "Aumentar Contraste"
 
-#, fuzzy
 msgid "Saturation Step"
-msgstr "Contraste"
+msgstr "Incremento de Contraste"
 
-#, fuzzy
 msgid "Saturation settings"
-msgstr "Contraste das janelas seleccionadas"
+msgstr "Definições de Contraste"
 
-#, fuzzy
 msgid "Saturation values for windows"
-msgstr "Contraste das janelas desvanecidas"
+msgstr "Valores de Contraste para janelas"
 
-#, fuzzy
 msgid "Saturation window values"
-msgstr "Contraste das janelas desvanecidas"
+msgstr "Valores de contraste da janela"
 
-#, fuzzy
 msgid "Saturation windows"
-msgstr "Contraste das janelas desvanecidas"
+msgstr "Janelas com Contraste"
 
-#, fuzzy
 msgid "Window specific"
-msgstr "Opacidade das Janelas"
+msgstr "Janela específica"
 
-#, fuzzy
 msgid "Windows that should have a different brightness by default"
-msgstr "Janelas que devem ser redimensionadas por omissão"
+msgstr "Janelas que devem ser ter um brilho diferente por omissão"
 
-#, fuzzy
 msgid "Windows that should have a different saturation by default"
-msgstr "Janelas que devem ser redimensionadas por omissão"
+msgstr "Janelas que devem ser ter um contraste diferente por omissão"
 
 msgid "Color filter"
 msgstr "Filtro de Cor"
@@ -1010,7 +999,7 @@ msgid "Exclude windows"
 msgstr "Excluir janelas"
 
 msgid "Filter colors for accessibility purposes"
-msgstr "Filtrar cores com o propósito de melhorar acessibilidade."
+msgstr "Filtrar cores com o propósito de melhorar acessibilidade"
 
 msgid "Filter window decorations"
 msgstr "Filtrar decorações das janelas"
@@ -1060,19 +1049,19 @@ msgstr ""
 "como o conteúdo da janela se activar esta opção."
 
 msgid "Windows to be filtered by default."
-msgstr "Janelas que devem ser filtradas por omissão"
+msgstr "Janelas que devem ser filtradas por omissão."
 
 msgid "Windows to exclude from filtering."
-msgstr "Tipos de janelas a excluir da filtragem"
+msgstr "Tipos de janelas a excluir da filtragem."
 
 msgid "Activate Crash Handler."
 msgstr "Activar a gestão de crashes."
 
 msgid "Compiz crash handler plugin"
-msgstr "Plugin de gestão de crashes do compiz."
+msgstr "Plugin de gestão de crashes do compiz"
 
 msgid "Crash Dump Directory"
-msgstr "Pasta onde guardar os registos de crashes."
+msgstr "Directório onde guardar os Registos de Crashes"
 
 msgid "Crash handler"
 msgstr "Gestão de crashes"
@@ -1110,10 +1099,10 @@ msgid "Adjust top image"
 msgstr "Ajustar imagem da face superior"
 
 msgid "Advance to next image for bottom face of the cube"
-msgstr "Avançar para a próxima imagem na face de baixo do cubo."
+msgstr "Avançar para a próxima imagem na face de baixo do cubo"
 
 msgid "Advance to next image for top face of the cube"
-msgstr "Avançar para a próxima imagem na face de cima do cubo."
+msgstr "Avançar para a próxima imagem na face de cima do cubo"
 
 msgid "Appearance"
 msgstr "Aparência"
@@ -1178,10 +1167,10 @@ msgid "Draw top face of the cube"
 msgstr "Desenhar face superior do cubo"
 
 msgid "Go back to previous image for bottom face of the cube"
-msgstr "Retroceder para a imagem anterior na face de baixo do cubo."
+msgstr "Retroceder para a imagem anterior na face de baixo do cubo"
 
 msgid "Go back to previous image for top face of the cube"
-msgstr "Retroceder para a imagem anterior na face de cima do cubo."
+msgstr "Retroceder para a imagem anterior na face de cima do cubo"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1234,10 +1223,10 @@ msgid "Auto zoom only on Mouse Rotate"
 msgstr "Zoom automático apenas com rotação através do rato"
 
 msgid "Color of the ground (far)."
-msgstr "Cor do chão (longe)"
+msgstr "Cor do chão (longe)."
 
 msgid "Color of the ground (near)."
-msgstr "Cor do chão (perto)"
+msgstr "Cor do chão (perto)."
 
 msgid "Compiz cube reflection"
 msgstr "Criar uma reflexão do cubo"
@@ -1354,7 +1343,7 @@ msgid "Hide panels/docks in expo"
 msgstr "Esconder painéis/docas em expo"
 
 msgid "Hide panels/docks in expo."
-msgstr "Esconder painéis/docas quando em modo expo"
+msgstr "Esconder painéis/docas quando em modo expo."
 
 msgid "Immediate moves"
 msgstr "Movimentos imediatos"
@@ -1460,10 +1449,9 @@ msgstr ""
 msgid "Enhanced Zoom Desktop"
 msgstr "Zoom Melhorado"
 
-#, fuzzy
 msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr ""
-"Zoom melhorado é aconselhado para pessoas com defeciências visuais e outras."
+"Zoom optimizado para pessoas com deficiências visuais e outros utilizadores"
 
 msgid "Filter Linear"
 msgstr "Filtro Linear"
@@ -1494,7 +1482,7 @@ msgstr "Adequar área de zoom para a janela"
 
 #, fuzzy
 msgid "Fitting"
-msgstr "Definições"
+msgstr "Encaixe"
 
 msgid "Focus Tracking"
 msgstr "Seguimento do Foco"
@@ -1517,7 +1505,6 @@ msgstr ""
 "Quantas vezes verificar a posição do rato, em milisegundos. Diminua este "
 "valor para reduzir comportamento \"aos saltos\"."
 
-#, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Comportamento do Rato"
 
@@ -1563,16 +1550,16 @@ msgid "Pan Factor"
 msgstr "Factor de seguimento"
 
 msgid "Pan Zoom Down"
-msgstr "Percorrer (mover) a área magnificada para baixo"
+msgstr "Percorrer a área magnificada para baixo"
 
 msgid "Pan Zoom Left"
-msgstr "Percorrer (mover) a área magnificada para a esquerda"
+msgstr "Percorrer a área magnificada para a esquerda"
 
 msgid "Pan Zoom Right"
-msgstr "Percorrer (mover) a área magnificada para a direita"
+msgstr "Percorrer a área magnificada para a direita"
 
 msgid "Pan Zoom Up"
-msgstr "Percorrer (mover) a área magnificada para cima"
+msgstr "Percorrer a área magnificada para cima"
 
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr ""
@@ -1581,7 +1568,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Panning"
-msgstr "Deslocamento"
+msgstr "Seguimento"
 
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr ""
@@ -1591,7 +1578,7 @@ msgstr ""
 msgid "Resize the window so it matches the current zoom level."
 msgstr ""
 "Redimensiona a janela de modo a que coincida com o nível de magnificação "
-"actual"
+"actual."
 
 msgid "Restrain the mouse to the zoom area"
 msgstr "Restringe o cursor do rato à área magnificada"
@@ -1599,9 +1586,8 @@ msgstr "Restringe o cursor do rato à área magnificada"
 msgid "Scale the mouse pointer"
 msgstr "Escalar o ponteiro do rato"
 
-#, fuzzy
 msgid "Specific Zoom"
-msgstr "Factor de magnificação específico 1"
+msgstr "Zoom Específico"
 
 msgid "Specific zoom factor 1"
 msgstr "Factor de magnificação específico 1"
@@ -1635,21 +1621,19 @@ msgstr "Alternar bloqueamento da área de zoom"
 msgid "Toggles a lock on the zoom area so it doesn't change on various events"
 msgstr ""
 "Activa/desactiva o bloqueamento na área magnificada de modo a que não mude "
-"nos vários eventos."
+"nos vários eventos"
 
 msgid "Use linear filter when zoomed in"
-msgstr "Usar filtro linear quando magnificar."
+msgstr "Usar filtro linear quando magnificar"
 
-#, fuzzy
 msgid "Zoom Area Movement"
-msgstr "Movimento do zoom"
+msgstr "Movimento Zoom Área"
 
 msgid "Zoom In"
 msgstr "Aumentar o zoom"
 
-#, fuzzy
 msgid "Zoom In/Out"
-msgstr "Diminuir o zoom"
+msgstr "Zoom Dentro/Fora"
 
 msgid "Zoom Out"
 msgstr "Diminuir o zoom"
@@ -1712,7 +1696,7 @@ msgid "Extra WM Actions"
 msgstr "Acções extra do gestor de janelas"
 
 msgid "Provides less commonly used WM actions"
-msgstr "Permite realizar acções menos comuns do gestor de janelas."
+msgstr "Permite realizar acções menos comuns do gestor de janelas"
 
 msgid "Toggle Always-On-Top"
 msgstr "Alternar estado Sempre no topo"
@@ -1792,7 +1776,7 @@ msgid "Initiate fire drawing"
 msgstr "Iniciar a criação de partículas"
 
 msgid "Maximum number of active particles"
-msgstr "Número máximo de partículas activas."
+msgstr "Número máximo de partículas activas"
 
 msgid "Number of particles"
 msgstr "Número de partículas"
@@ -1986,7 +1970,7 @@ msgstr "Se apenas restar uma janela no grupo, esta será desagrupada."
 
 msgid ""
 "If you don't like the current glow color, you can change it with this key."
-msgstr "Se não gostar da cor actual da aura, pode alterá-la com esta tecla"
+msgstr "Se não gostar da cor actual da aura, pode alterá-la com esta tecla."
 
 msgid ""
 "If you have selected some windows, this automatically groups them (Doesn't "
@@ -2157,7 +2141,7 @@ msgid "The key for removing the selected window from its group."
 msgstr "Tecla para remover a janela seleccionada do grupo."
 
 msgid "The key for selecting the current window."
-msgstr "Tecla para seleccionar a janela actual"
+msgstr "Tecla para seleccionar a janela actual."
 
 msgid "The key for starting selecting windows."
 msgstr "Tecla para começar a seleccionar janelas."
@@ -2250,7 +2234,7 @@ msgid "With this plugin you can group and tab windows"
 msgstr "Com este plugin pode agrupar e criar tabs para janelas"
 
 msgid "Y distance for spring model"
-msgstr "Distância (Y) para o efeito de mola"
+msgstr "Distância Y para o efeito de mola"
 
 msgid "Compression Quality"
 msgstr "Qualidade de Compressão"
@@ -2274,10 +2258,10 @@ msgid "Execute Motion Blur if the screen is transformed."
 msgstr "Executar Distorção durante Movimento se o ecrã é transformado."
 
 msgid "Motion Blur Strength"
-msgstr "Força da Distorção durante movimento."
+msgstr "Força da Distorção durante Movimento"
 
 msgid "Motion Blur mode"
-msgstr "Modo da Distorção durante movimento."
+msgstr "Modo Distorção durante Movimento"
 
 msgid "Motion Blur on Transformed Screen"
 msgstr "Distorção durante movimento em ecrãs transformados"
@@ -2298,7 +2282,7 @@ msgid "Texture Copy"
 msgstr "Cópia de Texturas"
 
 msgid "Toggle Motion Blur"
-msgstr "Alternar estado de Distorção durante Movimento."
+msgstr "Alternar estado de Distorção durante Movimento"
 
 msgid "Toggle motion Blur effect."
 msgstr "Alternar efeito de Distorção durante Movimento."
@@ -2306,43 +2290,38 @@ msgstr "Alternar efeito de Distorção durante Movimento."
 msgid "Visibility/Performance"
 msgstr "Visibilidade/Performance"
 
-#, fuzzy
 msgid "Action"
-msgstr "Animação"
+msgstr "Acção"
 
 msgid "Action that is to be invoked."
-msgstr ""
+msgstr "Acção que será executada."
 
 msgid "Assign mousegestures to any existing action"
-msgstr ""
+msgstr "Atribuir mousegestures para uma acção"
 
-#, fuzzy
 msgid "Gesture"
-msgstr "Começar Gesto"
+msgstr "Gesto"
 
 msgid "Gesture assignment"
-msgstr ""
+msgstr "Atribuição de gestos"
 
-#, fuzzy
 msgid "Gestures"
-msgstr "Texturas"
+msgstr "Gestos"
 
 msgid "Mouse gesture to assign an action to."
-msgstr ""
+msgstr "Gesto do rato ao qual atribuir uma acção."
 
-#, fuzzy
 msgid "Mousegestures"
-msgstr "Começar Gesto Rato"
+msgstr "Mousegestures"
 
-#, fuzzy
 msgid "Plugin"
-msgstr "Plugin Expo"
+msgstr "Plugin"
 
 msgid "Plugin the action belongs to."
-msgstr ""
+msgstr "Plugin ao qual a acção pertence."
 
 msgid "Start gesture"
-msgstr ""
+msgstr "Iniciar gesto"
 
 msgid "Begin Gesture"
 msgstr "Começar Gesto"
@@ -2390,39 +2369,39 @@ msgid "Debug"
 msgstr "Depuração"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "Mostrar erros e outras mensagens através de libnotify."
 
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Notificações Erro"
 
-#, fuzzy
 msgid "Fatal"
-msgstr "Metal"
+msgstr "Fatal"
 
-#, fuzzy
 msgid "Hide Timeout"
-msgstr "Tempo de desvanecimento"
+msgstr "Tempo de Espera para Esconder"
 
-#, fuzzy
 msgid "Info"
-msgstr "Aproximar"
+msgstr "Info"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "Nível de Registo Máximo"
 
+#, fuzzy
 msgid "The maximum log level to display"
-msgstr ""
+msgstr "Valor máximo do nível de registo"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
+"Tempo de espera (em s) antes de esconder a notificação, coloque -1 para a "
+"definição por omissão e 0 para indefinido"
 
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 msgid "Active Opacity"
 msgstr "Opacidade Activa"
@@ -2478,7 +2457,7 @@ msgid ""
 "Reset the opacity of all windows modified by opacify when toggling Opacify "
 "with the defined key-combination."
 msgstr ""
-"Retonar opacidade de todas as janelas modificadas (por este plugin) aos "
+"Retonar opacidade de todas as janelas modificadas por este plugin aos "
 "valores originais quando alternar o estado do plugin Opacificar com a "
 "combinação de teclas definida."
 
@@ -2511,10 +2490,10 @@ msgid ""
 "already making one or more windows invisible. Makes for faster behavior "
 "while looking through layers of hidden windows."
 msgstr ""
-"Isto permite-lhe deixar Opacificar opacificar instantaneamente novas janelas "
-"quando já está a tornar uma ou mais janelas invisíveis. Permite um "
-"comportamento mais rápido quando se olha por várias camadas de janelas "
-"escondidas."
+"Isto permite-lhe deixar opacificar instantaneamente usando o plugin "
+"Opacificar novas janelas quando já está a tornar uma ou mais janelas "
+"invisíveis. Permite um comportamento mais rápido quando se olha por várias "
+"camadas de janelas escondidas."
 
 msgid "Toggle Opacify"
 msgstr "Alternar Opacificar"
@@ -2526,9 +2505,9 @@ msgid ""
 "Use this to enable/disable Opacify on the fly. Previously opacified windows "
 "will not be reset once you disable it like this."
 msgstr ""
-"Use isto para (des)activar Opacificar instantaneamente. Janelas opacificadas "
-"previamente não voltarão aos estados iniciais assim que desactivar o plugin "
-"assim."
+"Use isto para activar/desactivar Opacificar instantaneamente. Janelas "
+"opacificadas previamente não voltarão aos estados iniciais assim que "
+"desactivar o plugin assim."
 
 msgid "Windows that should be opacified."
 msgstr "Janelas que devem ser opacificadas."
@@ -3017,9 +2996,6 @@ msgstr "Mostrar Janelas Minimizadas"
 msgid "Show Window Title"
 msgstr "Mostrar Título Janelas"
 
-msgid "Show minimized windows"
-msgstr "Mostrar janelas minimizadas"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3046,13 +3022,16 @@ msgid ""
 "Show switcher if not visible and select previous window out of all windows."
 msgstr ""
 "Mostrar anel, se não estiver visível, e selecionar janela anterior de todas "
-"as janelas"
+"as janelas."
 
 msgid "Show switcher if not visible and select previous window."
 msgstr "Mostrar anel se não estiver visível e seleccionar a janela anterior."
 
 msgid "Show window title of currently selected window."
 msgstr "Mostrar título da janela actualmente seleccionada."
+
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
 
 msgid "Text Placement"
 msgstr "Colocação Texto"
@@ -3068,6 +3047,10 @@ msgstr "Mostrar título da janela"
 
 msgid "Windows that should be shown in ring"
 msgstr "Janelas que devem ser mostradas no anel"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Criar mosaico das janelas"
 
 msgid "Background color of the window title"
 msgstr "Cor de fundo do título da janela"
@@ -3097,6 +3080,14 @@ msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidencia a janela sobre a qual paira o cursor do rato com a cor escolhida"
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Mover janela para x,y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Mostrar título da janela"
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -3108,9 +3099,6 @@ msgstr "Adições ao Scale"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "Selecciona o mode para mostar as janelas no modo Scale"
-
-msgid "Show window title in scale mode"
-msgstr "Mostrar título da janela no modo Scale"
 
 msgid "Size of the border around the window title"
 msgstr "Tamanho da margem à volta do título da janela"
@@ -3133,6 +3121,14 @@ msgstr "Modo Exibição Janelas"
 msgid "Window Title"
 msgstr "Título Janela"
 
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Mostrar título da janela"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Mostrar título da janela no modo Scale"
+
 msgid "Zoom Windows In Scale"
 msgstr "Magnificar Janelas Em Scale"
 
@@ -3152,7 +3148,7 @@ msgid "Show Filter Text"
 msgstr "Mostra Texto Filtro"
 
 msgid "Show filter text."
-msgstr "Mostrar texto de filtro"
+msgstr "Mostrar texto de filtro."
 
 msgid "Time (in ms) after which the filter typing is automatically ended"
 msgstr "Tempo (em ms) após o qual termina o filtro de janelas"
@@ -3181,76 +3177,82 @@ msgstr "Alternar Visibilidade da Prompt"
 msgid "Toggle prompt visible."
 msgstr "Alternar visibilidade da prompt."
 
-#, fuzzy
 msgid "Directory"
-msgstr "Pasta onde guardar os registos de crashes."
+msgstr "Directório"
 
-#, fuzzy
 msgid "Initiate screencasting"
-msgstr "Iniciar a criação de partículas"
+msgstr "Iniciar screencasting"
 
 msgid "Put screenshot images in this directory"
-msgstr ""
+msgstr "Colocar capturas de ecrã neste directório"
 
-#, fuzzy
 msgid "ScreenCast plugin"
-msgstr "Mensagens no ecrã"
+msgstr "Plugin ScreenCast"
 
-#, fuzzy
 msgid "ScreenCasting"
-msgstr "Caixa do Ecrã"
+msgstr "ScreenCasting"
 
-#, fuzzy
 msgid "Animation duration"
 msgstr "Duração da Animação"
 
-#, fuzzy
 msgid "Duration of the animation in milliseconds."
-msgstr "Duração da animação de zoom para fora"
+msgstr "Duração da animação em milisegundos."
 
 msgid "Increase the scale factor making the window bigger."
-msgstr ""
+msgstr "Aumenta o factor de escala tornando a janela maior."
 
-#, fuzzy
 msgid "Make the window bigger"
-msgstr "Tamanho máximo da janela"
+msgstr "Tornar a janela maior"
 
-#, fuzzy
 msgid "Make the window smaller"
-msgstr "Tamanho máximo da janela"
+msgstr "Tornar a janela menor"
 
 msgid "Reduces the scale factor making the window smaller."
-msgstr ""
+msgstr "Diminui o factor de escala tornando a janela menor."
 
-msgid "Scale a window down to half size."
+#, fuzzy
+msgid "Scale a window down to a portion of it's size."
+msgstr "Escala a janela para metade do tamanho."
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
-msgstr ""
+msgstr "Intervalo no escalamento"
 
-#, fuzzy
 msgid "Shelf"
-msgstr "Shift"
+msgstr "Prateleira"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
 "(respectively) increasing and decreasing the scale level manually. Higher "
 "number means finer changes."
 msgstr ""
+"O número pelo qual dividir/multiplicar o factor de escala quando aumentar/"
+"diminuir respectivamente o nível de escalamento manualmente. Números altos "
+"significam alterações mais pequenas."
 
 msgid "Trigger scale down"
-msgstr ""
+msgstr "Activar escalamento para baixo"
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Activar escalamento para baixo"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
+"Escala uma janela visualmente para permitir uma monitorização fácil sem "
+"fazer o redimensionamento usual."
 
 msgid "Background intensity"
 msgstr "Intensidade do fundo"
 
 msgid "Background intensity."
-msgstr "Intensidade do fundo"
+msgstr "Intensidade do fundo."
 
 msgid "Below"
 msgstr "Por Baixo"
@@ -3297,10 +3299,10 @@ msgid "Initiate (All Workspaces)"
 msgstr "Iniciar (Todos os Ambientes de Trabalho)"
 
 msgid "Initiate switcher (All Workspaces)."
-msgstr "Iniciar Alternador (Todos os Ambientes de Trabalho)"
+msgstr "Iniciar Alternador (Todos os Ambientes de Trabalho)."
 
 msgid "Initiate switcher."
-msgstr "Iniciar Alternador de Aplicativos"
+msgstr "Iniciar alternador de aplicativos."
 
 msgid "Max window size"
 msgstr "Tamanho máximo da janela"
@@ -3399,7 +3401,7 @@ msgid "Window movement speed"
 msgstr "Velocidade do movimento da janela"
 
 msgid "Window movement timestep"
-msgstr "Espaço de tempo do movimento da janela."
+msgstr "Espaço de tempo do movimento da janela"
 
 msgid "Window opacity when showdesktop'd"
 msgstr "Opacidade das janelas quando se mostra o ambiente de trabalho"
@@ -3611,7 +3613,7 @@ msgid "Display In/Out Time."
 msgstr "Duração do (Des)Aparecimento do Ecrã de Logótipo."
 
 msgid "Display Time"
-msgstr "Duração do Ecrã de Logótipo."
+msgstr "Duração do Ecrã de Logótipo"
 
 msgid "Fade In/Out Time."
 msgstr "Tempo de Desvanecimento."
@@ -3675,7 +3677,7 @@ msgstr ""
 "Seleccione se a Barra de tarefas mostra apenas Janelas do Viewport Actual."
 
 msgid "Should be the window title Bold."
-msgstr "Deverá o título da janela ser mostra a negrito"
+msgstr "Deverá o título da janela ser mostrada a negrito."
 
 msgid "Show Delay"
 msgstr "Atraso Aparecimento"
@@ -3693,13 +3695,13 @@ msgid "Taskbar Shows Only Windows of Current Viewport"
 msgstr "Barra de tarefas Mostra Apenas Janelas do Viewport Actual"
 
 msgid "Thumbnail Background and Border Glow Color."
-msgstr "Fundo da Miniatura e Cor da Aura da Borda"
+msgstr "Fundo da Miniatura e Cor da Aura da Borda."
 
 msgid "Thumbnail Border Glow Color"
 msgstr "Cor Aura Margem Miniatura"
 
 msgid "Thumbnail Border Size"
-msgstr "Tamanho Borda Miniatura."
+msgstr "Tamanho Borda Miniatura"
 
 msgid "Thumbnail Window Size"
 msgstr "Tamanho da miniatura"
@@ -3810,8 +3812,8 @@ msgstr "Restaurar janelas"
 
 msgid "Restore windows to their original position they had before tiling."
 msgstr ""
-"Restaurar janelas às suas posições originais (posições antes de entrar em "
-"modo mosaico)."
+"Restaurar janelas às suas posições que as janelas tinham originalmente antes "
+"de entrar em modo mosaico."
 
 msgid "Selects the animation used while tiling"
 msgstr "Seleccionar a animação a usar quando se entra em modo mosaico"
@@ -3956,13 +3958,13 @@ msgid "Window to Start Fading"
 msgstr "Janela a Desvanecer"
 
 msgid "Window types that should be handled by Trailfocus"
-msgstr "Tipos de janelas que deverão ser consideradas pelo Seguimento de foco."
+msgstr "Tipos de janelas que deverão ser consideradas pelo Seguimento de foco"
 
 msgid "Action name for initiate"
 msgstr "Nome da acção para iniciar"
 
 msgid "Action name for initiate/terminate"
-msgstr "Nome da acção para iniciar/terminar."
+msgstr "Nome da acção para iniciar/terminar"
 
 msgid "Begin Viewport Switch"
 msgstr "Iniciar Troca Viewport"
@@ -4126,7 +4128,7 @@ msgid "Desktop Wall"
 msgstr "Muro das Áreas de Trabalho"
 
 msgid "Desktop Wall Plugin"
-msgstr "Plugin Muro das Áreas de Trabalho "
+msgstr "Plugin Muro das Áreas de Trabalho"
 
 msgid "Duration (in s) for wall sliding viewport switching animation"
 msgstr ""
@@ -4293,9 +4295,7 @@ msgid "Show Viewport Switcher Preview"
 msgstr "Mostrar a antevisão da Mudança de Viewport"
 
 msgid "Show live viewport previews in switcher window"
-msgstr ""
-"Mostrar antevisões ao vivo (sempre actualizadas) dos viewports numa janela "
-"do switcher"
+msgstr "Mostrar antevisões em tempo real dos viewports numa janela do switcher"
 
 msgid "Show switcher window while switching viewports"
 msgstr "Mostrar janela do switcher durante mudança de viewport"
@@ -4330,68 +4330,64 @@ msgstr "Fundos"
 msgid "Draw the desktop wallpaper"
 msgstr "Desenhar o fundo da área de trabalho"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Activa mistura alfa dos flocos de neve."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Activar Mistura"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr "As especificações do fundo (como explicado em DOCUMENTATION) a usar."
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Criar mosaico do fundo ao invés de esticar"
 
-msgid "Tile or Stretch"
-msgstr "Criar Mosaico ou Esticar"
-
 msgid "Wallpaper"
 msgstr "Fundo do ambiente de trabalho"
 
-#, fuzzy
 msgid "Background Brightness"
 msgstr "Brilho do fundo"
 
-#, fuzzy
 msgid "Background Saturation"
-msgstr "Saturação da imagem de fundo."
+msgstr "Contraste do fundo"
 
-#, fuzzy
 msgid "Background in Widget Mode"
-msgstr "Ficheiro com a Imagem de Fundo."
+msgstr "Fundo em Modo Widget"
 
-#, fuzzy
 msgid "Brightness of non-widget windows in widget modes."
-msgstr "Brilho das janelas desvanecidas"
+msgstr "Brilho das janelas não-widget em Modo Widget."
 
 msgid "End Widget Mode on Click"
-msgstr ""
+msgstr "Terminar Modo Widget com Click"
 
 msgid "End widget mode when a non-widget window is clicked."
-msgstr ""
+msgstr "Terminar modo widget quando uma janela não-widget é clicada."
 
-#, fuzzy
 msgid "Saturation of non-widget windows in widget modes."
-msgstr "Contraste das janelas desvanecidas"
+msgstr "Contraste das janelas não-widget em Modo Widget."
 
-#, fuzzy
 msgid "Show or hide widget windows"
-msgstr "Mostrar janelas minimizadas"
+msgstr "Mostra ou esconde janelas widget"
 
 msgid "Show widget windows on a separate layer"
-msgstr ""
+msgstr "Mostrar janelas widget numa camada separada"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
+msgstr "Tempo (em s) para desvanecer de/para a camada de widgets."
 
-#, fuzzy
 msgid "Toggle Widget Display"
-msgstr "Alternar Janela Negativo"
+msgstr "Alternar Visualização Widgets"
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "Camada de Widgets"
 
-#, fuzzy
 msgid "Widget Windows"
-msgstr "Janelas Anel"
+msgstr "Janelas Widget"
 
-#, fuzzy
 msgid "Windows that always should be treated as widgets"
-msgstr "Janelas que devem ser redimensionadas por omissão"
+msgstr "Janelas que devem ser consideradas como widgets"
 
 msgid "Above others windows"
 msgstr "Por cima de outras janelas"
@@ -4400,10 +4396,10 @@ msgid "Below others windows"
 msgstr "Por baixo de outras janelas"
 
 msgid "Don't show application in pager"
-msgstr "Não mostrar aplicação no pager."
+msgstr "Não mostrar aplicação no pager"
 
 msgid "Don't show application in taskbar"
-msgstr "Não mostrar aplicação na barra de tarefas."
+msgstr "Não mostrar aplicação na barra de tarefas"
 
 msgid "Fixed Size Windows"
 msgstr "Janelas de Tamanho Fixo"
@@ -4505,7 +4501,13 @@ msgid "Firefox Menu Fix"
 msgstr "Correcção para o Menu do Firefox"
 
 msgid "Fix broken glProgramEnvParameter4f implementation."
-msgstr "Corrigir implementação incorrecta de glProgramEnvParameter4f"
+msgstr "Corrigir implementação incorrecta de glProgramEnvParameter4f."
+
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
 
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr ""
@@ -4547,14 +4549,14 @@ msgstr ""
 
 msgid "Metacity-like workarounds."
 msgstr ""
-"Correcções para alguns programas funcionarem como no gestor de janelas do "
-"gnome (metacity)"
+"Correcções para alguns programas funcionarem como no metacity - gestor de "
+"janelas do GNOME."
 
 msgid "Notification Daemon Fix"
 msgstr "Correcção para o daemon de notificações"
 
 msgid "OpenOffice.org Menu Fix"
-msgstr "Correcção Menus OpenOffice.org "
+msgstr "Correcção Menus OpenOffice.org"
 
 msgid "Qt Window Fix"
 msgstr "Corrigir Janelas Qt"
@@ -4569,35 +4571,25 @@ msgstr ""
 msgid "Workarounds"
 msgstr "Correcções"
 
-#~ msgid "Corner Bevelling"
-#~ msgstr "Criar Bevels nos Cantos"
+#~ msgid "Misc. options"
+#~ msgstr "Opções diversas"
 
-#~ msgid "Create Mipmaps"
-#~ msgstr "Criar Mipmaps"
+#~ msgid "Show minimized windows"
+#~ msgstr "Mostrar janelas minimizadas"
 
-#~ msgid "Disable Caps for Inside Cube"
-#~ msgstr ""
-#~ "Desactivar as faces superior e inferior do cubo quando estiver a "
-#~ "visualizar o cubo por dentro"
+#~ msgid "Tile or Stretch"
+#~ msgstr "Criar Mosaico ou Esticar"
 
 #~ msgid ""
-#~ "Disables the drawing of the cube caps when the inside cube mode is set."
+#~ "Corner BevellingCreate MipmapsDisable Caps for Inside CubeDisables the "
+#~ "drawing of the cube caps when the inside cube mode is set.Draw Window "
+#~ "BacksidesEnables the drawing of the backside of windows.This will create "
+#~ "mipmaps which improve overall texture appearence, and reduce jagged edges."
+#~ "Window width"
 #~ msgstr ""
-#~ "Não mostra as faces superior e inferior do cubo quando estiver a "
-#~ "visualizar o cubo por dentro."
-
-#~ msgid "Draw Window Backsides"
-#~ msgstr "Desenhar a parte de trás das janelas"
-
-#~ msgid "Enables the drawing of the backside of windows."
-#~ msgstr "Mostrar a parte de trás das janelas."
-
-#~ msgid ""
-#~ "This will create mipmaps which improve overall texture appearence, and "
-#~ "reduce jagged edges."
-#~ msgstr ""
-#~ "Esta opção cria mipmap que melhoram a aparência geral das texturas, e "
-#~ "reduzem as arestas distorcidas."
-
-#~ msgid "Window width"
-#~ msgstr "Largura das janelas"
+#~ "Criar Bevels nos CantosCriar MipmapsDesactivar as faces superior e "
+#~ "inferior do cubo quando estiver a visualizar o cubo por dentroNão mostra "
+#~ "as faces superior e inferior do cubo quando estiver a visualizar o cubo "
+#~ "por dentro.Desenhar a parte de trás das janelasMostrar a parte de trás "
+#~ "das janelas.Esta opção cria mipmap que melhoram a aparência geral das "
+#~ "texturas, e reduzem as arestas distorcidas.Largura das janelas"

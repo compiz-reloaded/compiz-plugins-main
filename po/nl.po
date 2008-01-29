@@ -1,23 +1,30 @@
+# translation of i18n.po to Dutch
 # compiz-fusion-plugins nl translation.
 # Copyright (C) 2008 compiz-fusion.org
 # This file is distributed under the same license as the PACKAGE package.
-# Alexander Cornillie <dworffish@hotmail.com>, 2008.
 #
+# Alexander Cornillie <dworffish@hotmail.com>, 2008.
+# Elve <elve@savage-elve.net>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: compiz-fusion-plugins\n"
+"Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2007-12-24 09:57+0100\n"
-"Last-Translator: Alexander Cornillie <dworffish@hotmail.com>\n"
-"Language-Team: Alexander Cornillie <dworffish@hotmail.com>\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
+"PO-Revision-Date: 2008-01-22 20:04+0100\n"
+"Last-Translator: Elve <elve@savage-elve.net>\n"
+"Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
+# Translators for nl:
+# mahler
+# Elve (elve@savage-elve.net)
+# Rick
 msgid "3D Only On Mouse Rotate"
-msgstr "3D pas na muisrotatie"
+msgstr "3D alleen bĳ muisrotatie"
 
 msgid "3D Windows"
 msgstr "3D vensters"
@@ -26,64 +33,61 @@ msgid "Animation Speed"
 msgstr "Animatie snelheid"
 
 # Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel Bottom Left"
-msgstr "[Bevel?] linksonder"
+msgstr "Afschuining linksonder"
 
 # Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel Bottom Right"
-msgstr "[Bevel?] rechtsonder"
+msgstr "Afschuining rechtsonder"
 
 # Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel Corners"
-msgstr "[Bevel?] hoeken"
+msgstr "Afschuining hoeken"
 
 # Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel Top Left"
-msgstr "[Bevel?] linksboven"
+msgstr "Afschuining linksboven"
 
 # Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel Top Right"
-msgstr "[Bevel?] rechtsboven"
+msgstr "Afschuining rechtsboven"
 
-# Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel bottom left corner"
-msgstr "[Bevel?] linker onderhoek || [Bevel?] hoek linksonder"
+msgstr "Afschuining hoek linksonder"
 
-# Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel bottom right corner"
-msgstr "[Bevel?] rechter onderhoek || [Bevel?] hoek rechtsonder"
+msgstr "Afschuining hoek rechtsonder"
 
-# Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel top left corner"
-msgstr "[Bevel?] linker bovenhoek || [Bevel?] hoek linksboven"
+msgstr "Afschuining hoek linksboven"
 
-# Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
-#, fuzzy
 msgid "Bevel top right corner"
-msgstr "[Bevel?] rechter bovenhoek || [Bevel?] hoek rechtsboven"
+msgstr "Afschuining hoek rechtsboven"
 
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
-msgstr "Pas de ruimte tussen de vensters aan"
+msgstr ""
+"Pas de ruimte tussen de vensters aan (in procenten van de kubus grootte)."
 
 msgid "Change the speed of the 3D animation"
-msgstr "Pas snelheid 3D animatie aan"
+msgstr "Pas snelheid van de 3D animatie aan"
+
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Schakel actief venster inversie (negatief)"
 
 msgid "Elevates windows while rotating the cube"
-msgstr ""
+msgstr "Verhef vensters tĳdens het draaien van de kubus"
 
 msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
 "cube via the mouse)"
 msgstr ""
+"Initiëert de 3D display alleen als de rotatie wordt gedaan met de muis "
+"(Bijv. Je roteert de kubus met de muis)"
 
 # "kubus" met kleine letter, aangezien dit niet verwijst naar de Cube-plugin, maar naar de kubus zelf.
 msgid "Minimum Cube Size"
@@ -93,120 +97,134 @@ msgid "Minimum cube size (in percent)."
 msgstr "Minimale kubus grootte (in procenten)."
 
 msgid "Misc. Options"
-msgstr ""
+msgstr "Diverse optie's"
 
 msgid "Roundoff corners for consistency with rounded decorations"
-msgstr ""
+msgstr "Afgeronde hoeken voor consistentie met afgeronde decoratie's"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Venster titel"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Venster middenpunt"
 
 # "diepte" met of zonder hoofdletter? In het Engels zijn twee varianten, met en zonder. In beide situaties hoort volgens mij in het Nederlands géén hoofdletter.
-#, fuzzy
 msgid "Window Depth"
-msgstr "Venster diepte || Venster Diepte"
+msgstr "Venster diepte"
 
 msgid "Window Match"
-msgstr ""
+msgstr "Venster match"
 
 msgid "Window Space"
-msgstr ""
+msgstr "Venster ruimte"
 
 msgid "Window depth"
 msgstr "Venster diepte"
 
 msgid "Windows that should be handled by 3D"
-msgstr ""
+msgstr "Vensters die behandeld moeten worden door 3D"
 
 msgid "ADD Helper"
-msgstr ""
+msgstr "ADD helper"
 
 # Welke? En waarom?
-#, fuzzy
+# een programmeer term
 msgid "Bindings"
-msgstr "Bindingen || Koppelingen || Banden"
+msgstr "Bindingen"
 
 msgid "Brightness"
-msgstr ""
+msgstr "Helderheid"
 
 msgid "Brightness of faded windows"
-msgstr ""
+msgstr "Helderheid van opgerolde vensters"
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
-
-msgid "Misc. options"
-msgstr ""
+"Maak het iets makkelijker om te concentreren door alle vensters, behalve het "
+"actieve venster, te dimmen."
 
 msgid "Opacity"
-msgstr ""
+msgstr "Ondoorzichtigheid"
 
 msgid "Opacity of faded windows"
-msgstr ""
+msgstr "Ondoorzichtigheid van opgerolde vensters"
 
 msgid "Saturation"
-msgstr ""
+msgstr "Verzadiging"
 
 msgid "Saturation of faded windows"
-msgstr ""
+msgstr "Kleurverzadiging van opgerolde vensters"
 
 msgid "Toggle AddHelper"
-msgstr ""
+msgstr "Schakel AddHelper"
 
 msgid "Use this to enable/disable AddHelper on the fly."
-msgstr ""
+msgstr "Gebruik dit om tussendoor AddHelper in of uit te schakelen."
 
 msgid "Window Types"
-msgstr "Venster types"
+msgstr "Venster typen"
 
 msgid "Window types that should be Opacified."
-msgstr ""
+msgstr "Venster typen die geopacificeerd moeten worden."
 
 msgid "Airplane"
 msgstr "Vliegtuig"
 
 msgid "Airplane Flying Path Length"
-msgstr ""
+msgstr "Vliegtuig vlieg pad lengte"
 
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
+"Alle effecten worden willekeurig gekozen waarbij het geselecteerde effect "
+"wordt genegeerd. Als er geen effect is gekozen voor een gebeurtenis wordt er "
+"geen animatie toegepast."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
 msgstr ""
+"Amplitude (grootte van de golven tijdens het vouwen) van de Horizontale "
+"Vouwen relatief tot de venster breedte . Negatieve waarden vouwen naar "
+"buiten."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
+"Amplitude (grootte van de golven tijdens het vouwen) van het gebogen vouwen "
+"relatief tot de venster breedte. Negatieve waarden vouwen naar buiten."
 
 msgid "Angle of window at the end of the animation."
-msgstr ""
+msgstr "Hoek van venster aan het eind van de animatie."
 
 msgid "Animation Selection"
-msgstr ""
+msgstr "Animatie selectie"
 
 msgid "Animation Time Step"
-msgstr ""
+msgstr "Animatie Tijd Stap"
 
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "Animatie tijd stap voor intense effecten"
 
 msgid "Animation duration in milliseconds for close effect."
-msgstr "Duur animatie (in milliseconden) voor sluit effect"
+msgstr "Duur animatie (in milliseconden) voor sluit effect."
 
 msgid "Animation duration in milliseconds for focus effect."
-msgstr "Duur animatie (in milliseconden) voor focus effect"
+msgstr "Duur animatie (in milliseconden) voor focus effect."
 
 msgid "Animation duration in milliseconds for minimize effect."
-msgstr "Duur animatie (in milliseconden) voor minimaliseer effect"
+msgstr "Duur animatie (in milliseconden) voor minimaliseer effect."
 
 msgid "Animation duration in milliseconds for open effect."
-msgstr "Duur animatie (in milliseconden) voor open effect"
+msgstr "Duur animatie (in milliseconden) voor open effect."
 
 msgid "Animation duration in milliseconds for shade effect."
-msgstr "Duur animatie (in milliseconden) voor verberg effect"
+msgstr "Duur animatie (in milliseconden) voor oprol effect."
 
 msgid "Animations"
 msgstr "Animaties"
@@ -215,46 +233,46 @@ msgid "Automatic"
 msgstr "Automatisch"
 
 msgid "Away Angle"
-msgstr ""
+msgstr "Afwezig hoek"
 
 msgid "Away Position"
-msgstr ""
+msgstr "Afwezig positie"
 
 msgid "Beam"
-msgstr ""
+msgstr "Straal"
 
 msgid "Beam Color"
-msgstr ""
+msgstr "Straal kleur"
 
 msgid "Beam Life"
-msgstr ""
+msgstr "Straal levensduur"
 
 msgid "Beam Slowdown"
-msgstr ""
+msgstr "Straal vertraging"
 
 msgid "Beam Spacing"
-msgstr ""
+msgstr "Straal ruimte"
 
 msgid "Beam Up"
-msgstr ""
+msgstr "Straal omhoog"
 
 msgid "Beam Width"
-msgstr ""
+msgstr "Straal breedte"
 
 msgid "Beam color."
-msgstr ""
+msgstr "Straal kleur."
 
 msgid "Beam life."
-msgstr ""
+msgstr "Straal levensduur."
 
 msgid "Beam slowdown."
-msgstr ""
+msgstr "Straal vertraging."
 
 msgid "Beam width."
-msgstr ""
+msgstr "Straal breedte."
 
 msgid "Burn"
-msgstr ""
+msgstr "Branden"
 
 msgid "Close Animation"
 msgstr "Animatie bij sluiten"
@@ -266,23 +284,27 @@ msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
 "camera, -2.0: Away from camera)."
 msgstr ""
+"Nabijheid van venster tot camera aan het eind van de animatie (1.0: Dichtbij "
+"camera, -2.0: Ver van camera)."
 
 msgid ""
 "Comma separated list of option value assignments to override effect "
 "settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
+"Komma gescheiden lijst van optie waarden om effect instellingen te "
+"overschrĳven, bĳv. fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 
 msgid "Curved Fold"
-msgstr ""
+msgstr "Gebogen vouwen"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "Gebogen vouwen amplitude"
 
 msgid "Dodge"
-msgstr "Ontwijken"
+msgstr "Dodge"
 
 msgid "Dodge Gap Ratio"
-msgstr ""
+msgstr "Dodge open ruimte verhouding"
 
 msgid "Domino"
 msgstr "Domino"
@@ -291,7 +313,7 @@ msgid "Domino Piece Falling Direction"
 msgstr "Valrichting dominostuk"
 
 msgid "Down"
-msgstr ""
+msgstr "Omlaag"
 
 msgid "Dream"
 msgstr "Droom"
@@ -309,7 +331,7 @@ msgid "Fade"
 msgstr "Vervagen"
 
 msgid "Falling direction for Domino pieces."
-msgstr ""
+msgstr "Valrichting voor dominostukken."
 
 msgid "Fire"
 msgstr "Vuur"
@@ -318,7 +340,7 @@ msgid "Fire Particle Color"
 msgstr "Kleur vuurdeeltje"
 
 msgid "Fire Particle Life"
-msgstr ""
+msgstr "Vuur particle levensduur"
 
 msgid "Fire Particle Size"
 msgstr "Grootte vuurdeeltje"
@@ -330,7 +352,7 @@ msgid "Fire Smoke"
 msgstr "Rook"
 
 msgid "Fire constant speed"
-msgstr ""
+msgstr "Vuur constante snelheid"
 
 msgid "Fire direction"
 msgstr "Richting vuur"
@@ -339,25 +361,25 @@ msgid "Fire direction."
 msgstr "Richting vuur."
 
 msgid "Fire particle color."
-msgstr ""
+msgstr "Vuur partikel kleur."
 
 msgid "Fire particle life."
-msgstr ""
+msgstr "Vuur partikel levensduur."
 
 msgid "Fire particle size."
-msgstr ""
+msgstr "Vuur partikel grootte."
 
 msgid "Fire particle slowdown."
-msgstr ""
+msgstr "Vuur partikel vertraging."
 
 msgid "Fire smoke."
 msgstr "Vuur rook."
 
 msgid "Fixed window interior during the Rollup animation."
-msgstr ""
+msgstr "Binnenkant venster vastgezet gedurende oprol animatie."
 
 msgid "Fly to TaskBar on Minimize"
-msgstr ""
+msgstr "Vlieg naar taakbalk bĳ minimaliseren"
 
 msgid "Focus Animation"
 msgstr "Animatie bij focus"
@@ -372,7 +394,7 @@ msgid "Fold Direction"
 msgstr "Richting vouwen"
 
 msgid "Fold opening direction for pieces in Razr effect."
-msgstr ""
+msgstr "Richting van openen van vouw voor stukken in Razr effect."
 
 msgid "Glide 1"
 msgstr ""
@@ -382,21 +404,23 @@ msgstr ""
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
+"Gebruik diverse kleuren voor het vuur effect, ook wel bekend als Mystiek "
+"Vuur."
 
 msgid "Hexagonal"
 msgstr "Zeshoekig"
 
 msgid "Horizontal Folds"
-msgstr ""
+msgstr "Horizontaal vouwen"
 
 msgid "Horizontal Folds Amplitude"
-msgstr ""
+msgstr "Horizontaal vouwen amplitude"
 
 msgid "How spring-like the Sidekick animation should be."
-msgstr ""
+msgstr "Hoe verend de Sidekick animatie moet zĳn."
 
 msgid "How spring-like the Zoom animation should be."
-msgstr ""
+msgstr "Hoe verend de Zoom animatie zĳn moet."
 
 msgid "In"
 msgstr "In"
@@ -405,40 +429,40 @@ msgid "In-out"
 msgstr "In-uit"
 
 msgid "Leaf Spread"
-msgstr ""
+msgstr "Blad spreiding"
 
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 msgid "Left-right"
-msgstr ""
+msgstr "Links-rechts"
 
 msgid "Length of airplane's flying path."
-msgstr ""
+msgstr "Lengte van vliegtuig vliegpad."
 
 msgid "Magic Lamp"
 msgstr "Magische lamp"
 
 msgid "Magic Lamp Grid Y Resolution"
-msgstr ""
+msgstr "Magische Lamp Raster Y Resolutie"
 
 msgid "Magic Lamp Max Wave Amplitude"
-msgstr ""
+msgstr "Magische Lamp Maximale Golf Amplitude"
 
 msgid "Magic Lamp Max Waves"
-msgstr ""
+msgstr "Magische Lamp Maximale Golven"
 
 msgid "Magic Lamp Min Wave Amplitude"
-msgstr ""
+msgstr "Magische Lamp Minimale Golf Amplitude"
 
 msgid "Magic Lamp Open Start Width"
-msgstr ""
+msgstr "Magische Lamp Open Start breedte"
 
 msgid "Magic Lamp Open/Close Moving End"
-msgstr ""
+msgstr "Magische Lamp Open/Sluit bewegend einde"
 
 msgid "Make fire effect duration be dependent on window height."
-msgstr ""
+msgstr "Maak duur van Vuur effect afhankelijk van venster hoogte."
 
 msgid "Minimize Animation"
 msgstr "Animatie bij minimaliseren"
@@ -450,7 +474,7 @@ msgid "Minimize/Unminimize Only"
 msgstr "Minimaliseer/Maximaliseer enkel"
 
 msgid "Movement direction(s) for window pieces."
-msgstr ""
+msgstr "Bewegings richting(en) voor venster stukken."
 
 msgid "None"
 msgstr "Geen"
@@ -459,7 +483,7 @@ msgid "Number Of Fire Particles"
 msgstr "Aantal vuurdeeltjes"
 
 msgid "Number of Horizontal Folds"
-msgstr ""
+msgstr "Aantal horizontale vouwen"
 
 msgid "Number of fire particles."
 msgstr "Aantal vuurdeeltjes."
@@ -467,95 +491,99 @@ msgstr "Aantal vuurdeeltjes."
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
+"Aantal rotatie's voor Sidekick (plus of minus 10% voor willekeurigheid)."
 
 msgid "Off"
-msgstr "Af"
+msgstr "Uit"
 
 msgid "On"
 msgstr "Aan"
 
 msgid "On open/close, move magic lamp ending point with the mouse pointer."
 msgstr ""
+"Bĳ openen/sluiten, magische lamp eind punt verplaatsen met muis aanwĳzer."
 
 msgid "On open/close, move vacuum ending point with the mouse pointer."
-msgstr ""
+msgstr "Bĳ openen/sluiten, vacuum eind punt verplaatsen met de muisaanwĳzer."
 
 msgid "Open Animation"
 msgstr "Animatie bij openen"
 
 msgid "Open Effect"
-msgstr ""
+msgstr "Open effect"
 
 msgid "Open/Close Only"
-msgstr ""
+msgstr "Open/Sluit alleen"
 
 msgid "Options"
-msgstr ""
+msgstr "Optie's"
 
 msgid "Out"
-msgstr ""
+msgstr "Uit"
 
 msgid "Pool"
-msgstr ""
+msgstr "Pool"
 
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
 msgstr ""
+"Pool van effecten om uit te kiezen als Willekeurig effect is geselecteerd. "
+"Klik reset om de volledige lĳst te herstellen."
 
 msgid "Random"
-msgstr ""
+msgstr "Willekeurig"
 
 msgid "Random Animations For All Events"
-msgstr ""
+msgstr "Willekeurige effecten voor alle gebeurtenissen"
 
 msgid "Random Effects"
-msgstr ""
+msgstr "Willekeurige effecten"
 
 msgid "Randomly Colored Fire"
-msgstr ""
+msgstr "Wisselende kleuren Vuur"
 
 msgid "Ratio of gaps between dodge start times to focus duration."
-msgstr ""
+msgstr "Verhouding van openingen tussen dodge start tĳden naar duur focus."
 
 msgid "Razr"
-msgstr ""
+msgstr "Razr"
 
 msgid "Razr Fold Opening Direction"
-msgstr ""
+msgstr "Razr richting van vouw opening"
 
 msgid "Rectangular"
 msgstr "Rechthoekig"
 
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 msgid "Roll Up"
-msgstr ""
+msgstr "Oprollen"
 
 msgid "Rollup Fixed Interior"
-msgstr ""
+msgstr "Oprollen met gefixeerde binnenkant"
 
 msgid "Rotation Angle"
-msgstr ""
+msgstr "Rotatie hoek"
 
 msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr ""
+msgstr "Rotatie hoek van geanimeerde venster stukken."
 
 msgid "Shade Animation"
-msgstr "Animatie bij verbergen"
+msgstr "Animatie bij oprollen"
 
 msgid "Shade Effect"
-msgstr "Verbergen effect"
+msgstr "Oprollen effect"
 
 msgid "Sidekick"
-msgstr ""
+msgstr "Sidekick"
 
 msgid "Sidekick Number of Rotations"
-msgstr ""
+msgstr "Sidekick aantal rotaties"
 
 msgid "Sidekick Springiness"
-msgstr ""
+msgstr "Sidekick mate van vering"
 
 msgid "Skewer"
 msgstr ""
@@ -564,16 +592,19 @@ msgid "Skewer Direction"
 msgstr ""
 
 msgid "Spacing between beams."
-msgstr ""
+msgstr "Ruimte tussen stralen."
 
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
 msgstr ""
+"Begin breedte van open effect en eind breedte van sluit effect voor Magische "
+"Lamp."
 
 msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
+"Beginbreedte van open effect en eind breedte van sluit effect voor Vacuum."
 
 msgid "Tessellation Type"
 msgstr ""
@@ -588,3652 +619,3936 @@ msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
+"De tijd in milliseconden tussen elke rendering van de animatie. Hoe hoger de "
+"waarde, hoe schokkeriger de beweging wordt."
 
 msgid ""
 "The amount of time in milliseconds between each render of the intense "
 "animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
 "become."
 msgstr ""
+"De tijd in milliseconden tussen elke rendering van de intense animatie's "
+"(bijv. Branden, Straal). Hoe hoger de waarde hoe schokkeriger de animatie."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
+"De geanimeerde vensters zullen worden opgesplitst lang een raster. "
+"Specificeer het aantal rastervakken langs de hoogte van het venster."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
+"De geanimeerde vensters zullen worden opgesplitst lang een raster. "
+"Specificeer het aantal rastervakken langs de breedte van het venster."
 
 msgid "The animation effect shown when closing a window."
-msgstr "Getoonde animatie bij het sluiten van een venster"
+msgstr "Getoonde animatie bij het sluiten van een venster."
 
 msgid "The animation effect shown when creating a window."
-msgstr "Getoonde animatie bij het openen van een venster"
+msgstr "Getoonde animatie bij het openen van een venster."
 
 msgid "The animation effect shown when focusing a window."
-msgstr "Getoonde animatie bij het focussen van een venster"
+msgstr "Getoonde animatie bij het focussen van een venster."
 
 msgid "The animation effect shown when minimizing a window."
-msgstr "Getoonde animatie bij het minimaliseren van een venster"
+msgstr "Getoonde animatie bij het minimaliseren van een venster."
 
 msgid "The animation effect shown when shading a window."
-msgstr "Getoonde animatie bij het verbergen van een venster"
+msgstr "Getoonde animatie bij het verbergen van een venster."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
+"Het exploderende venster zal worden opgesplitst in stukken langs een raster. "
+"Specificeer het aantal raster vakken langs de hoogte van het venster."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
+"Het exploderende venster zal worden opgesplitst in stukken langs een raster. "
+"Specificeer het aantal raster vakken langs de breedte van het venster."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr ""
+"De maximum amplitude (grootte van de golven) die de Magische Lamp hebben zal."
 
 msgid "The maximum number of waves for Magic Lamp."
-msgstr ""
+msgstr "Het maximum aantal golven voor de Magische Lamp."
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
 msgstr ""
+"De minimum amplitude (grootte van de golven) die de Magische Lamp zal hebben."
 
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
+"Het aantal horizontale vouwen die ontstaan gedurende Horizontaal Vouwen."
 
 msgid "The wave amplitude (size of the waves) relative to the window height."
 msgstr ""
+"De golf amplitude (grootte van de golven) relatief tot de venster hoogte."
 
 msgid "The width of the wave relative to the window height."
-msgstr ""
+msgstr "De breedte van de golf relatief tot de venster hoogte."
 
 msgid "The windows that will be animated."
-msgstr ""
+msgstr "De vensters die zullen worden geanimeerd."
 
 msgid "Thickness"
-msgstr ""
+msgstr "Dikte"
 
 msgid "Thickness of Animated Polygons"
-msgstr ""
+msgstr "Dikte van geanimeerde polygonen"
 
 msgid "Thickness of Exploding Polygons"
-msgstr ""
+msgstr "Dikte van exploderende polygonen"
 
 msgid "Thickness of animated window pieces (in pixels)."
-msgstr ""
+msgstr "Dikte van geanimeerde venster delen (in pixels)."
 
 msgid "Thickness of exploding window pieces (in pixels)."
-msgstr ""
+msgstr "Dikte van exploderende venster stukken (in pixels)."
 
 msgid "Up"
-msgstr ""
+msgstr "Omhoog"
 
 msgid "Up-down"
-msgstr ""
+msgstr "Op en neer"
 
 msgid "Use various animations as window effects"
-msgstr ""
+msgstr "Gebruik diverse animatie's als venster effect"
 
 msgid "Vacuum"
-msgstr ""
+msgstr "Vacuüm"
 
 msgid "Vacuum Grid Y Resolution"
-msgstr ""
+msgstr "Vacuüm raster Y resolution"
 
 msgid "Vacuum Open Start Width"
-msgstr ""
+msgstr "Vacuüm open start breedte"
 
 msgid "Vacuum Open/Close Moving End"
-msgstr ""
+msgstr "Vacuüm open/sluiten bewegingseinde"
 
 msgid ""
 "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number "
 "of points used to define the curves. The higher the number, the smoother the "
 "curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
+"Vertex raster resolution voor Magische Lamp (alleen Y dimensie). Dit is het "
+"aantal punten wat gebruikt wordt om de curves te definiëren. Hoe hoger het "
+"aantal, hoe vloeiender de curve, maar er zal een verlies aan prestatie zĳn."
 
 msgid ""
 "Vertex grid resolution for Vacuum (Y dimension only). This is the number of "
 "points used to define the curves. The higher the number, the smoother the "
 "curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
+"Vertex raster resolution voor Vacuüm (alleen Y dimensie). Dit is het aantal "
+"punten wat wordt gebruikt om de curves te definiëren. Hoe hoger het aantal, "
+"hoe vloeiender de curves, maar er zal een verlies aan prestatie zĳn."
 
 msgid "Wave"
-msgstr ""
+msgstr "Golf"
 
 msgid "Wave Amplitude"
-msgstr ""
+msgstr "Golf amplitude"
 
 msgid "Wave Width"
-msgstr ""
+msgstr "Golf breedte"
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
 msgstr ""
+"Of het venster naar de taakbalk moet vliegen indien geminimaliseerd met "
+"Vliegtuig effect."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
+"Of het venster naar de taalbalk zou moeten vliegen indien geminimaliseerd "
+"met het Gebogen Vouwen effect."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Dream effect."
 msgstr ""
+"Of het venster naar de taakbalk zou moeten zoomen indien geminimaliseerd met "
+"het Droom effect."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 1 effect."
 msgstr ""
+"Of het venster naar de taalbalk zou moeten zoomen indien geminimaliseerd met "
+"het Glide1effect."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 2 effect."
 msgstr ""
+"Of het venster naar de taakbalk zou moeten zoomen indien geminimaliseerd met "
+"het Glide 2 effect."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Horizontal "
 "Folds effect."
 msgstr ""
+"Of het venster naar detaakbalk zou moeten zoomen indien geminimaliseerd met "
+"Horizontaal Vouwen effect."
 
 msgid "Window Grid Height"
-msgstr ""
+msgstr "Venster raster hoogte"
 
 msgid "Window Grid Width"
-msgstr ""
+msgstr "Venster raster breedte"
 
 msgid "Window folding direction."
-msgstr ""
+msgstr "Venster vouw richting."
 
 msgid "Window that should animate with this effect when focused."
-msgstr ""
+msgstr "Venster dat moet worden geanimeerd met dit effect als het focus krĳgt."
 
 msgid "Window that should animate with this effect when shaded."
-msgstr ""
+msgstr "Venster dat moet worden geanimeerd met dit effect tĳdens het oprollen."
 
 msgid ""
 "Window thickness in pixels. Setting this to larger than 0 will disable "
 "shadow, blur, and reflection during the animation."
 msgstr ""
+"Venster dikte in pixels. Door deze instellingen hoger in te stellen dan 0 "
+"wordt schaduw, vervaging en reflectie uitgeschakeld gedurende animatie."
 
 msgid "Zoom"
-msgstr ""
+msgstr "Inzoomen"
 
 msgid "Zoom Springiness"
-msgstr ""
+msgstr "Zoom verendheid"
 
 msgid "Zoom from Center"
-msgstr ""
+msgstr "Inzoomen vanuit middenpunt"
 
 msgid "Zoom from center when playing the Sidekick animation."
 msgstr ""
+"Inzoomen vanuit het middelpunt als de Sidekick animatie wordt afgespeeld."
 
 msgid "Zoom from center when playing the Zoom animation."
-msgstr ""
+msgstr "Inzoomen vanuit middelpunt als de Zoom animatie wordt afgespeeld."
 
 msgid "Zoom to TaskBar on Minimize"
-msgstr ""
+msgstr "Naar taakbalk zoomen bĳ minimaliseren"
 
 msgid "Colors"
-msgstr ""
+msgstr "Kleuren"
 
 msgid "Cube Atlantis"
-msgstr ""
+msgstr "Kubus Atlantis"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Dolfĳn grootte"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Dolfĳn grootte."
 
 msgid "Enable colors"
-msgstr ""
+msgstr "Kleuren inschakelen"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Vis grootte"
 
-#, fuzzy
 msgid "Number of fish"
-msgstr "Aantal vuurdeeltjes."
+msgstr "Aantal vissen"
 
-#, fuzzy
 msgid "Number of fish inside the cube"
-msgstr "Aantal vuurdeeltjes."
+msgstr "Aantal vissen binnenin de kubus"
 
 msgid "Render some fish inside of the transparent cube"
-msgstr ""
+msgstr "Teken een paar vissen binnenin de transparante kubus"
 
 msgid "Shark size"
-msgstr ""
+msgstr "Haai grootte"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Walvisgrootte"
 
 msgid "Whale size."
-msgstr ""
+msgstr "Walvis grootte."
 
 msgid "A simple benchmark plugin"
-msgstr ""
+msgstr "Een simpele benchmark plugin"
 
 msgid "Benchmark"
-msgstr ""
+msgstr "Benchmark"
 
 msgid "Console Output"
-msgstr ""
+msgstr "Console uitvoer"
 
 msgid "Console output update time"
-msgstr ""
+msgstr "Console uitvoer verversingssnelheid"
 
 msgid "Disable Compiz integrated FPS limiter"
-msgstr ""
+msgstr "Uitschakelen van Compiz-geïntegreerde FPS-bergrenzer"
 
 msgid "Disable limiter"
-msgstr ""
+msgstr "Schakel begrenzer uit"
 
 msgid "Display FPS on screen"
-msgstr ""
+msgstr "Toon FPS op scherm"
 
 msgid "Enable"
-msgstr ""
+msgstr "Inschakelen"
 
 msgid "Initiate"
-msgstr ""
+msgstr "Initiëer"
 
 msgid "Main"
-msgstr ""
+msgstr "Algemeen"
 
 msgid "Print FPS to console"
-msgstr ""
+msgstr "Toon FPS op console"
 
 msgid "Screen Output"
-msgstr ""
+msgstr "Scherm uitvoer"
 
 msgid "Start benchmark"
-msgstr ""
+msgstr "Start benchmark"
 
 msgid "Update time"
-msgstr ""
+msgstr "Verversingstijd"
 
 msgid "X Position of benchmark window"
-msgstr ""
+msgstr "X positie van benchmark venster"
 
 msgid "X position"
-msgstr ""
+msgstr "X positie"
 
 msgid "Y Position of benchmark window"
-msgstr ""
+msgstr "Y positie van benchmark venster"
 
 msgid "Y position"
-msgstr ""
+msgstr "Y positie"
 
 msgid "Brightness Decrease"
-msgstr ""
+msgstr "Helderheid verminderen"
 
 msgid "Brightness Increase"
-msgstr ""
+msgstr "Helderheid verhogen"
 
 msgid "Brightness Step"
-msgstr ""
+msgstr "Helderheid stap"
 
 msgid "Brightness and Saturation"
-msgstr ""
+msgstr "Helderheid en verzadiging"
 
 msgid "Brightness and Saturation adjustments"
-msgstr ""
+msgstr "Aanpassingen helderheid en verzadiging"
 
 msgid "Brightness settings"
-msgstr ""
+msgstr "Helderheid instellingen"
 
 msgid "Brightness values for windows"
-msgstr ""
+msgstr "Helderheid waarden voor vensters"
 
 msgid "Brightness window values"
-msgstr ""
+msgstr "Helderheid venster waarden"
 
 msgid "Brightness windows"
-msgstr ""
+msgstr "Helderheid vensters"
 
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 msgid "Saturation Decrease"
-msgstr ""
+msgstr "Verzadiging verlagen"
 
 msgid "Saturation Increase"
-msgstr ""
+msgstr "Verzadiging verhogen"
 
-#, fuzzy
 msgid "Saturation Step"
-msgstr "Duur"
+msgstr "Verzadiging stap"
 
 msgid "Saturation settings"
-msgstr ""
+msgstr "Verzadiging instellingen"
 
 msgid "Saturation values for windows"
-msgstr ""
+msgstr "Verzadiging waarden voor vensters"
 
 msgid "Saturation window values"
-msgstr ""
+msgstr "Verzadiging venster waarden"
 
 msgid "Saturation windows"
-msgstr ""
+msgstr "Verzadiging vensters"
 
-#, fuzzy
 msgid "Window specific"
-msgstr "Venster types"
+msgstr "Venster specifiek"
 
 msgid "Windows that should have a different brightness by default"
-msgstr ""
+msgstr "Vensters die standaard afwĳkende helderheid moeten hebben"
 
 msgid "Windows that should have a different saturation by default"
-msgstr ""
+msgstr "Vensters die standaard afwĳkende verzadiging moeten hebben"
 
 msgid "Color filter"
-msgstr ""
+msgstr "Kleur filter"
 
 msgid "Exclude windows"
-msgstr ""
+msgstr "Vensters uitsluiten"
 
 msgid "Filter colors for accessibility purposes"
-msgstr ""
+msgstr "Filter kleuren ten behoeve van toegankelĳkheid"
 
 msgid "Filter window decorations"
-msgstr ""
+msgstr "Filter venster decoratie's"
 
 msgid "Filtered windows"
-msgstr ""
+msgstr "Gefilterde vensters"
 
 msgid "Filters files"
-msgstr ""
+msgstr "Filters bestanden"
 
 msgid ""
 "List of plain text filter files that should be applied when filtering "
 "windows or screen."
 msgstr ""
+"Lĳst van platte tekst filter bestanden die toegepast moeten worden als "
+"vensters of scherm gefilterd wordt."
 
 msgid ""
 "Select filter to use from filters list : either apply all filters or only "
 "one specific filter (triggering this action switches filters one by one and "
 "eventually comes back to the \"all filters\" mode)."
 msgstr ""
+"Selecteer filter om te gebruiken uit lĳst met filters:óf pas alle filters "
+"toe, óf alleen één specifiek filter (Het activeren van deze actie schakelt "
+"filters één voor een en komt uiteindelĳk terug bĳ de \"alle filters\" modus)."
 
 msgid "Switch filter"
-msgstr ""
+msgstr "Schakel filter"
 
 msgid "Toggle filtering for currently focused window."
-msgstr ""
+msgstr "Wissel filtering voor venster met huidige focus."
 
 msgid "Toggle filtering for every window on the screen."
-msgstr ""
+msgstr "Wissel filtering voor elk venster op het scherm."
 
 msgid "Toggle screen filtering"
-msgstr ""
+msgstr "Scherm filtering aan/uit"
 
 msgid "Toggle window filtering"
-msgstr ""
+msgstr "Venster filtering aan/uit"
 
 msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
 "contents if enabled."
 msgstr ""
+"Venster decoratie's (randen en titelbalk) zullen worden gefilterd evenals de "
+"venster inhoud indien ingeschakeld."
 
 msgid "Windows to be filtered by default."
-msgstr ""
+msgstr "Vensters die standaard worden gefilterd."
 
 msgid "Windows to exclude from filtering."
-msgstr ""
+msgstr "Vensters die worden uitgesloten van filtering."
 
 msgid "Activate Crash Handler."
-msgstr ""
+msgstr "Activeer crash handler."
 
 msgid "Compiz crash handler plugin"
-msgstr ""
+msgstr "Compiz crash handler plugin"
 
 msgid "Crash Dump Directory"
-msgstr ""
+msgstr "Crash dump directory"
 
 msgid "Crash handler"
-msgstr ""
+msgstr "Crash handler"
 
 msgid "Directory to dump the crash logs to."
-msgstr ""
+msgstr "Directory waar de crash logs gedumpt moeten worden."
 
 msgid "Enable Crash Handler"
-msgstr ""
+msgstr "Inschakelen crash handler"
 
 msgid "Start Other Window Manager"
-msgstr ""
+msgstr "Start een andere vensterbeheerder"
 
 msgid "Start other window manager on Crash."
-msgstr ""
+msgstr "Start een andere vensterbeheerder bij een crash."
 
 msgid "Window Manager Command Line"
-msgstr ""
+msgstr "Vensterbeheerder commando regel"
 
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
-msgstr ""
+msgstr "Venster beheerder commando regel. HIER NIET COMPIZ INVULLEN!!!"
 
 msgid "Adjust bottom face image to rotation"
-msgstr ""
+msgstr "Onderzĳde afbeelding bĳstellen op rotatie"
 
 msgid "Adjust bottom image"
-msgstr ""
+msgstr "Afbeelding onderzĳde bĳstellen"
 
 msgid "Adjust top face image to rotation"
-msgstr ""
+msgstr "Top zijde afbeelding bijstellen op rotatie"
 
 msgid "Adjust top image"
-msgstr ""
+msgstr "Afbeelding bovenzĳde bĳstellen"
 
 msgid "Advance to next image for bottom face of the cube"
-msgstr ""
+msgstr "Doorgaan naar volgende afbeelding voor onderzĳde van de kubus"
 
 msgid "Advance to next image for top face of the cube"
-msgstr ""
+msgstr "Doorgaan naar volgende afbeelding voor bovenzĳde van de kubus"
 
 msgid "Appearance"
-msgstr ""
+msgstr "Verschijning"
 
 msgid "Behaviour"
-msgstr ""
+msgstr "Gedrag"
 
 msgid "Bottom image files"
-msgstr ""
+msgstr "Onderkant afbeelding bestanden"
 
 msgid "Clamp bottom face image to border"
-msgstr ""
+msgstr "Klem afbeelding onderzĳde aan rand"
 
 msgid ""
 "Clamp bottom face image to border. This is often the best if your image "
 "doesn't fit the size of the cube or if it's transparent. It can lead to some "
 "ugly dotted lines when enabled (especially with large enough images) though."
 msgstr ""
+"Klem onderzĳde afbeelding aan rand. Dit is vaak het beste als je afbeelding "
+"niet past inde afmetingen van de kubus of als deze transparant is. Het kan "
+"helaas wel leiden tot lelĳke stippellĳnen indien ingeschakeld (speciaal als "
+"de afbeelding groot genoeg is)."
 
 msgid "Clamp top face image to border"
-msgstr ""
+msgstr "Klem afbeelding bovenzĳde aan rand"
 
 msgid ""
 "Clamp top face image to border. This is often the best if your image doesn't "
 "fit the size of the cube or if it's transparent. It can lead to some ugly "
 "dotted lines when enabled (especially with large enough images) though."
 msgstr ""
+"Klem afbeelding bovenzĳde aan rand.Dit is vaak het beste als je afbeelding "
+"niet goed past in de aafmetingen van de kubus of als deze transparant is. "
+"Maar het kan ook leiden tot lelĳke stippellĳnen indien ingeschakeld "
+"(speciaal met afbeeldingen die groot genoeg zĳn)."
 
 msgid "Color of bottom face of the cube"
-msgstr ""
+msgstr "Kleur van de onderzĳde van de kubus"
 
 msgid "Color of top face of the cube"
-msgstr ""
+msgstr "Kleur van de bovenzĳde van de kubus"
 
 msgid "Cube Bottom Color"
-msgstr ""
+msgstr "Kleur onderkant kubus"
 
 msgid "Cube Caps"
-msgstr ""
+msgstr "Kleur deksels"
 
 msgid "Cube Top Color"
-msgstr ""
+msgstr "Kubus bovenkant kleur"
 
 msgid "Draw bottom face"
-msgstr ""
+msgstr "Teken onderzĳde"
 
 msgid "Draw bottom face of the cube"
-msgstr ""
+msgstr "Teken onderzĳde van de kubus"
 
 msgid "Draw top face"
-msgstr ""
+msgstr "Teken bovenzĳde"
 
 msgid "Draw top face of the cube"
-msgstr ""
+msgstr "Teken bovenzĳde van de kubus"
 
 msgid "Go back to previous image for bottom face of the cube"
-msgstr ""
+msgstr "Ga terug naar vorige afbeelding voor onderzĳde van de kubus"
 
 msgid "Go back to previous image for top face of the cube"
-msgstr ""
+msgstr "Ga terug naar vorige afbeelding voor bovenzĳde kubus"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
 msgstr ""
+"Lĳst van PNG en SVG bestanden die afgebeeld moeten worden op de onderzĳde "
+"van de kubus"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
+"Lijst van PNG en SVG bestanden die afgebeeld moeten worden op de bovenzijde "
+"van de kubus"
 
 msgid "Next bottom image"
-msgstr ""
+msgstr "Volgende afbeelding onderzĳde"
 
 msgid "Next top image"
-msgstr ""
+msgstr "Volgende afbeelding bovenzĳde"
 
 msgid "Prev bottom image"
-msgstr ""
+msgstr "Vorige afbeelding onderzĳde"
 
 msgid "Prev top image"
-msgstr ""
+msgstr "Vorige afbeelding onderzĳde"
 
 msgid "Render images on top and bottom of the cube"
-msgstr ""
+msgstr "Teken afbeeldingen op boven- en onderzĳde"
 
 msgid "Scale bottom image"
-msgstr ""
+msgstr "Schaal afbeelding onderzĳde"
 
 msgid "Scale image to cover bottom face of cube"
-msgstr ""
+msgstr "Schaal afbeelding voor afdekken van onderzĳde kubus"
 
 msgid "Scale image to cover top face of cube"
-msgstr ""
+msgstr "Schaal afbeelding voor afdekken van bovenzĳde van kubus"
 
 msgid "Scale top image"
-msgstr ""
+msgstr "Schaal afbeelding bovenzĳde"
 
 msgid "Top image files"
-msgstr ""
+msgstr "Afbeelding bovenzĳde bestanden"
 
 msgid "Above"
-msgstr ""
+msgstr "Boven"
 
 msgid "Auto zoom"
-msgstr ""
+msgstr "Auto zoom"
 
 msgid "Auto zoom only on Mouse Rotate"
-msgstr ""
+msgstr "Auto zoom alleen bĳ roteren met muis"
 
 msgid "Color of the ground (far)."
-msgstr ""
+msgstr "Kleur van de grond (ver)."
 
 msgid "Color of the ground (near)."
-msgstr ""
+msgstr "Kleur van de grond (dichtĳ)."
 
 msgid "Compiz cube reflection"
-msgstr ""
+msgstr "Compiz kubus reflectie "
 
 msgid "Cube Reflection"
-msgstr ""
+msgstr "Kubus reflectie"
 
 msgid "Distance"
-msgstr ""
+msgstr "Afstand"
 
 msgid "Ground color(far)"
-msgstr ""
+msgstr "Grond kleur (ver)"
 
 msgid "Ground color(near)"
-msgstr ""
+msgstr "Grond kleur (dichtbĳ)"
 
 msgid "Intensity"
-msgstr ""
+msgstr "Intensiteit"
 
 msgid "Jumpy"
-msgstr ""
+msgstr "Springerig"
 
 msgid "Jumpy reflection"
-msgstr ""
+msgstr "Springerige reflectie"
 
 msgid "Reflection ground size"
-msgstr ""
+msgstr "Reflectie grond grootte"
 
 msgid "Reflection ground size."
-msgstr ""
+msgstr "Reflectie grond grootte."
 
 msgid "Reflection intensity"
-msgstr ""
+msgstr "Reflectie intensiteit"
 
 msgid "Reflection mode"
-msgstr ""
+msgstr "Reflectie modus"
 
 msgid "Reflection mode."
-msgstr ""
+msgstr "Reflectie modus."
 
 msgid "Zoom out automatically only on mouse rotate."
-msgstr ""
+msgstr "Automatisch uitzoomen alleen bĳ muis rotatie."
 
 msgid "Zoom out automatically to make the cube fit to the screen."
-msgstr ""
+msgstr "Automatisch uitzoomen om de kubus in het beeld te laten passen."
 
 msgid "Animation used when switching to expo mode"
-msgstr ""
+msgstr "Animatie die wordt gebruikt wanneer geschakeld wordt naar expo mode"
 
 msgid "Aspect Ratio"
 msgstr ""
 
 msgid "Button binding for drag &amp; drop of windows"
-msgstr ""
+msgstr "Knop bindingen voor verslepen van vensters"
 
 msgid "Button binding to exit expo"
-msgstr ""
+msgstr "Knop binding om expo te verlaten"
 
 msgid "Button binding to switch to next viewport in expo"
-msgstr ""
+msgstr "Knop binding om te schakelen naar volgende viewport in expo"
 
 msgid "Distance of the expo wall"
-msgstr ""
+msgstr "Afstand van expo muur"
 
 msgid "Double click time"
-msgstr ""
+msgstr "Dubbel klik tĳd"
 
 msgid "Drag&amp;drop"
-msgstr ""
+msgstr "Verslepen en neerzetten"
 
 msgid "Duration of the zoomout animation"
-msgstr ""
+msgstr "Duur van de uitzoom animatie"
 
 msgid "Engage wall expo mode button binding"
-msgstr ""
+msgstr "Inschakelen muur expo modus knop binding"
 
 msgid "Engage wall expo mode edge binding"
-msgstr ""
+msgstr "Inschakelen muur expo modus kant binding"
 
 msgid "Engage wall expo mode key binding"
-msgstr ""
+msgstr "Inschakelen muur expo toets binding"
 
 msgid "Exit expo"
-msgstr ""
+msgstr "Expo verlaten"
 
 msgid "Expo"
-msgstr ""
+msgstr "Expo"
 
 msgid "Expo Animation"
-msgstr ""
+msgstr "Expo animatie"
 
 msgid "Expo Plugin"
-msgstr ""
+msgstr "Expo plugin"
 
 msgid "Expo button"
-msgstr ""
+msgstr "Expo knop"
 
 msgid "Expo edge"
-msgstr ""
+msgstr "Expo kant"
 
 msgid "Expo key"
-msgstr ""
+msgstr "Expo toets"
 
 msgid "Expo mode aspect ratio"
-msgstr ""
+msgstr "Expo modus aspect ratio"
 
 msgid "Fade + Zoom"
-msgstr ""
+msgstr "Uitvagen + Inzoomen"
 
 msgid "Generate mipmaps in expo mode"
-msgstr ""
+msgstr "Genereer mipmaps in expo modus"
 
 msgid "Hide panels/docks in expo"
-msgstr ""
+msgstr "Panelen en docks verbergen in expo"
 
 msgid "Hide panels/docks in expo."
-msgstr ""
+msgstr "Panelen en docks verbergen in expo."
 
 msgid "Immediate moves"
-msgstr ""
+msgstr "Onmiddelĳke bewegingen"
 
 msgid "Mipmaps"
-msgstr ""
+msgstr "Mipmaps"
 
 msgid "Multi Output Mode"
-msgstr ""
+msgstr "Meerdere uitvoer modus"
 
 msgid "Next viewport"
-msgstr ""
+msgstr "Volgende viewport"
 
 msgid "One big wall"
-msgstr ""
+msgstr "Eén grote muur"
 
 msgid "One wall per output"
-msgstr ""
+msgstr "Een muur per uitvoer"
 
 msgid "Previous viewport"
-msgstr ""
+msgstr "Vorige viewport"
 
 msgid "Reflection"
-msgstr ""
+msgstr "Reflectie"
 
 msgid "Reflection Scale"
-msgstr ""
+msgstr "Reflectie schaal"
 
 msgid "Scale factor of the expo wall reflection"
-msgstr ""
+msgstr "Schaal factor van de expo muur reflectie"
 
 msgid ""
 "Selects how the expo wall is displayed if multiple output devices are used."
 msgstr ""
+"Selecteerd hoe de expo wordt getoond als meerdere uitvoer apparaten gebruikt "
+"worden."
 
 msgid ""
 "Selects if windows movements in expo mode should be immediate - this among "
 "other things disables wobbliness"
 msgstr ""
+"Selecteert of venster bewegingen in expo modus onmiddelĳk uitgevoerd moeten "
+"worden - dit schakelt onder andere wobbliness uit"
 
 msgid "Show a reflection of the viewports on the ground"
-msgstr ""
+msgstr "Toon reflectie van de viewports op de grond"
 
 msgid "Tilt view"
-msgstr ""
+msgstr "Kantel weergave"
 
 msgid "Tilt window view in expo mode"
-msgstr ""
+msgstr "Kantel venster weergave in expo"
 
 msgid "Timeframe to execute a double click"
-msgstr ""
+msgstr "Tĳdvak om een dubbelklik uit te voeren"
 
 msgid "Vortex"
 msgstr ""
 
 msgid "Zoom time"
-msgstr ""
+msgstr "Zoom tĳd"
 
 msgid "Always fit to window on focus track"
-msgstr ""
+msgstr "Altĳd inpassen in venster bĳ focus track"
 
 msgid ""
 "Always keep the zoomed area in sync with where the mouse is, and vice versa. "
 "Use this if you don't intend to draw a scaled pointer or hide the original "
 "pointer. The zoomed area will move as you move your mouse."
 msgstr ""
+"Altĳd het ingezoomde gebied synchroniseren met waar de muis is, en vice "
+"versa. Gebruik dit als het niet je bedoeling is om een geschaalde aanwĳzer "
+"te gebruiken of om de originele aanwĳzer te verbergen. Het ingezoomde gebied "
+"zal bewegen als je de muis beweegt."
 
 msgid "Animation"
-msgstr ""
+msgstr "Animatie"
 
 msgid ""
 "Attempt to keep the zoomed mouse visible by warping it when it is moved "
 "outside the zoom area."
 msgstr ""
+"Probeer om de ingezoomde muis zichtbaar te houden door hem te warpen wanneer "
+"hĳ buiten het gezoomde gebied bewogen wordt."
 
 msgid "Center the mouse"
-msgstr ""
+msgstr "Centreer de muis"
 
 msgid "Enable focus tracking"
-msgstr ""
+msgstr "Focus tracking inschakelen"
 
 msgid "Enable this to get a gradually larger mouse pointer as you zoom in"
 msgstr ""
+"Schakel dit in om de muis aanwĳzer gradueel te vergroten als je inzoomt"
 
 msgid ""
 "Enable this to target the focused window when jumping to a specific zoom "
 "level. Disable to target mouse."
 msgstr ""
+"Schakel dit in om het venster met focus als doel te nemen bĳ de overgang "
+"naar een specifiek zoom niveau.Uitschakelen om de muis als doel te nemen."
 
 msgid "Enhanced Zoom Desktop"
-msgstr ""
+msgstr "Verbeterde bureablad zoom"
 
 msgid "Enhanced zoom functions for the visually impaired and other users"
-msgstr ""
+msgstr "Verbeterde zoom functie's voor visueel beperkten en andere gebruikers"
 
 msgid "Filter Linear"
-msgstr ""
+msgstr "Filter lineair"
 
 msgid "Fit the window to the zoom level"
-msgstr ""
+msgstr "Pas het venster in in het zoom niveau"
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking."
 msgstr ""
+"Pas het ingezoomde gebied in het venster als het ingezoomde gebied beweegt "
+"als gevolg van focus tracking."
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking. Even when not initially zoomed in."
 msgstr ""
+"Pas het ingezoomde gebied in het venster als het ingezoomde gebied beweegt "
+"als gevolg van focus tracking. Zelfs als er niet eerst al ingezoomd was."
 
 msgid "Fit zoom level to window on focus change"
-msgstr ""
+msgstr "Pas zoom niveau in venster bĳ focus verandering"
 
 msgid "Fit zoomed area to window"
-msgstr ""
+msgstr "Pas ingezoomd gebied in venster"
 
 msgid "Fitting"
-msgstr ""
+msgstr "Passen"
 
 msgid "Focus Tracking"
 msgstr ""
 
 msgid "Follow Focus Delay"
-msgstr ""
+msgstr "Volg focus vertraging"
 
 msgid "Hide original mouse pointer"
-msgstr ""
+msgstr "Verberg originele muis aanwĳzer"
 
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
+"Verbergt de originele muis aanwĳzer tĳdens inzoomen en schalen van de muis"
 
 msgid ""
 "How often to poll the mouse position, in miliseconds. Reduce this to reduce "
 "choppy behavior."
 msgstr ""
+"Hoe vaak de muis positie opvragen, in miliseconden. Verminder dit om "
+"schokkerige beweging te verminderen."
 
 msgid "Mouse Behaviour"
-msgstr ""
+msgstr "Muis gedrag"
 
 msgid "Mouse Poll Interval"
-msgstr ""
+msgstr "Muis opvraag interval"
 
 msgid "Mouse Restrain Margin"
-msgstr ""
+msgstr "Muis inperking marge"
 
 msgid "Mouse panning"
 msgstr ""
 
 msgid "Move the zoom area when focus changes."
-msgstr ""
+msgstr "Verplaats het zoom gebied als de focus veranderd."
 
 msgid ""
 "Move the zoomed area this much whenever you pan the zoomed area with keys."
 msgstr ""
+"Verplaats het ingezoomde gebied zoveel als je het ingezoomde gebied "
+"verschuift met de toetsen."
 
 msgid ""
 "Only attempt to center newly focused windows if the mouse hasn't moved in "
 "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgstr ""
+"Alleen proberen nieuw gefocuste vensters te centreren als de muis niet heeft "
+"bewogen in dit aantal seconden. Gebruik dit om springerigheid te voorkomen "
+"bĳ gebruik van sloppy focus."
 
 msgid "Pan (move) the zoom area down"
-msgstr ""
+msgstr "Verschuif (beweeg) het zoomgebied naar beneden"
 
 msgid "Pan (move) the zoom area left"
-msgstr ""
+msgstr "Verschuif (beweeg) het zoomgebied naar links"
 
 msgid "Pan (move) the zoom area right"
-msgstr ""
+msgstr "Verschuif (beweeg) het zoomgebied naar rechts"
 
 msgid "Pan (move) the zoom area up"
-msgstr ""
+msgstr "Verschuif (beweeg) het zoomgebied omhoog"
 
 msgid "Pan Factor"
-msgstr ""
+msgstr "Verschuif factor"
 
 msgid "Pan Zoom Down"
-msgstr ""
+msgstr "Verschuif zoom omlaag"
 
 msgid "Pan Zoom Left"
-msgstr ""
+msgstr "Verschuif zoom links"
 
 msgid "Pan Zoom Right"
-msgstr ""
+msgstr "Verschuif zoom rechts"
 
 msgid "Pan Zoom Up"
-msgstr ""
+msgstr "Verschuif zoom omhoog"
 
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr ""
+"Verschuif het zoomgebied als de muis cursor buiten het zichtbare gebied "
+"beweegt."
 
 msgid "Panning"
-msgstr ""
+msgstr "Verschuiven"
 
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
-msgstr ""
+msgstr "Plaatst de muis in het midden van het scherm (Ongeacht zoom niveau)"
 
 msgid "Resize the window so it matches the current zoom level."
 msgstr ""
+"Past de grootte aan van het venster zodat het past bĳ het huidige zoom "
+"niveau."
 
 msgid "Restrain the mouse to the zoom area"
-msgstr ""
+msgstr "Beperk de muis tot het zoom gebied"
 
 msgid "Scale the mouse pointer"
-msgstr ""
+msgstr "Schaal de muis aanwĳzer"
 
 msgid "Specific Zoom"
-msgstr ""
+msgstr "Specifieke zoom"
 
 msgid "Specific zoom factor 1"
-msgstr ""
+msgstr "Specifieke zoom factor 1"
 
 msgid "Specific zoom factor 2"
-msgstr ""
+msgstr "Specifieke zoom factor 2"
 
 msgid "Specific zoom factor 3"
-msgstr ""
+msgstr "Specifieke zoom factor 3"
 
 msgid "Speed"
-msgstr ""
+msgstr "Snelheid"
 
 msgid "Sync Mouse"
-msgstr ""
+msgstr "Synchroniseer muis"
 
 msgid "Target Focused Window on Specific level"
-msgstr ""
+msgstr "Zet venster met focus als doel op specifiek niveau"
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
+"De grootte van de marge om toe te voegen als geprobeerd wordt de muis te "
+"beperken."
 
 msgid "Timestep"
-msgstr ""
+msgstr "Tijdstap"
 
 msgid "Toggle zoom area lock"
-msgstr ""
+msgstr "Wissel zoomgebied slot"
 
 msgid "Toggles a lock on the zoom area so it doesn't change on various events"
 msgstr ""
+"Schakelt een slot op het zoomgebied zodat het niet veranderd bĳ diverse "
+"gebeurtenissen"
 
 msgid "Use linear filter when zoomed in"
-msgstr ""
+msgstr "Gebruik lineair filter zodra ingezoomd"
 
 msgid "Zoom Area Movement"
-msgstr ""
+msgstr "Zoom gebied beweging"
 
 msgid "Zoom In"
-msgstr ""
+msgstr "Inzoomen"
 
 msgid "Zoom In/Out"
-msgstr ""
+msgstr "In/Uit zoomen"
 
 msgid "Zoom Out"
-msgstr ""
+msgstr "Uitzoomen"
 
 msgid "Zoom Specific Level 1"
-msgstr ""
+msgstr "Zoom specifiek niveau 1"
 
 msgid "Zoom Specific Level 2"
-msgstr ""
+msgstr "Zoom specifiek niveau 2"
 
 msgid "Zoom Specific Level 3"
-msgstr ""
+msgstr "Zoom specifiek niveau 3"
 
 msgid "Zoom Speed"
-msgstr ""
+msgstr "Zoom snelheid"
 
 msgid "Zoom Timestep"
-msgstr ""
+msgstr "Zoom tijdstap"
 
 msgid "Zoom factor"
-msgstr ""
+msgstr "Zoom factor"
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
-msgstr ""
+msgstr "Zoom in/uit met deze factor. Hogere waarde betekent sneller zoomen."
 
 msgid "Zoom level to go to when triggering hotkey 1"
-msgstr ""
+msgstr "Zoom niveau om naar toe te gaan wanneer sneltoets 1 wordt geactiveerd"
 
 msgid "Zoom level to go to when triggering hotkey 2"
-msgstr ""
+msgstr "Zoom niveau om naar toe te gaan wanneer sneltoets 2 wordt geactiveerd"
 
 msgid "Zoom level to go to when triggering hotkey 3"
-msgstr ""
+msgstr "Zoom niveau om naar toe te gaan wanneer sneltoets 3 wordt geactiveerd"
 
 msgid "Zoom to the specific zoom level 1"
-msgstr ""
+msgstr "Zoom naar het specifieke zoom niveau 1"
 
 msgid "Zoom to the specific zoom level 2"
-msgstr ""
+msgstr "Zoom naar het specifieke zoom niveau 2"
 
 msgid "Zoom to the specific zoom level 3"
-msgstr ""
+msgstr "Zoom naar het specifieke zoom niveau 3"
 
 msgid ""
 "Zooms in/out so the focused window is zoomed to the maximum while still "
 "being fully visible."
-msgstr ""
+msgstr "Zoomed in/uit zodat het venster met focus volledig zichtbaar is."
 
 msgid "Activate Window"
-msgstr ""
+msgstr "Activeer venster"
 
 msgid "Activate a given window"
-msgstr ""
+msgstr "Activeer een gegeven venster"
 
 msgid "Extra WM Actions"
-msgstr ""
+msgstr "Extra WM actie's"
 
 msgid "Provides less commonly used WM actions"
-msgstr ""
+msgstr "Voorziet in minder vaak gebruikte WM actie's"
 
 msgid "Toggle Always-On-Top"
-msgstr ""
+msgstr "Wissel Altĳd-Boven-Op"
 
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Wissel volledig scherm"
 
 msgid "Toggle Redirect"
-msgstr ""
+msgstr "Wissel omleiding"
 
 msgid "Toggle Sticky"
-msgstr ""
+msgstr "Wissel sticky"
 
 msgid "Toggle always on top for the active window"
-msgstr ""
+msgstr "Wissel altĳd bovenop voor het geactiveerde venster"
 
 msgid "Toggle window fullscreen"
-msgstr ""
+msgstr "Wissel venster volledig scherm"
 
 msgid "Toggle window redirect"
-msgstr ""
+msgstr "Wissel venster omleiding"
 
 msgid "Toggle window stickyness"
-msgstr ""
+msgstr "Wissel venster sticky"
 
 msgid "Easily access your desktop"
-msgstr ""
+msgstr "Eenvoudige toegang tot bureaublad"
 
 msgid "Fade Time"
-msgstr ""
+msgstr "Vervaag tijd"
 
 msgid "Fade time (in ms)"
-msgstr ""
+msgstr "Vervaag tĳd (in ms)"
 
 msgid "Fade to Desktop"
-msgstr ""
+msgstr "Fading naar bureaublad"
 
 msgid "Windows that should be faded to desktop"
-msgstr ""
+msgstr "Vensters die moeten uitvagen naar het bureaublad"
 
 msgid "Alter window opacity based on color."
-msgstr ""
+msgstr "Verander venster ondoorzichtigheid gebaseerd op kleur."
 
 msgid "Color Opacity"
-msgstr ""
+msgstr "Kleur ondoorzichtigheid"
 
 msgid "Toggle Window Fake ARGB"
-msgstr ""
+msgstr "Wissel venster nep ARGB"
 
 msgid "Toggle window fake ARGB."
-msgstr ""
+msgstr "Wissel venster nep ARGB."
 
 msgid "Background brightness"
-msgstr ""
+msgstr "Achtergrond helderheid"
 
 msgid "Background brightness during paint"
-msgstr ""
+msgstr "Achtergrond helderheid gedurende tekenen"
 
 msgid "Clear"
-msgstr ""
+msgstr "Wissen"
 
 msgid "Clear (button)"
-msgstr ""
+msgstr "Wissen (knop)"
 
 msgid "Clear (key)"
-msgstr ""
+msgstr "Wissen (toets)"
 
 msgid "Initiate (button)"
-msgstr ""
+msgstr "Initiëer (knop)"
 
 msgid "Initiate (key)"
-msgstr ""
+msgstr "Initiëer (toets)"
 
 msgid "Initiate fire drawing"
-msgstr ""
+msgstr "Initiëer tekenen vuur"
 
 msgid "Maximum number of active particles"
-msgstr ""
+msgstr "Maximum aantal van actieve particles"
 
 msgid "Number of particles"
-msgstr ""
+msgstr "Aantal particles"
 
 msgid "Paint fire on the screen"
-msgstr ""
+msgstr "Teken vuur op het scherm"
 
 msgid "Paint fire or other particles on the screen"
-msgstr ""
+msgstr "Teken vuur of andere particles op het scherm"
 
 msgid "Cube Gears"
-msgstr ""
+msgstr "Kubus Tandwielen"
 
 msgid "Render gears inside of the transparent cube"
-msgstr ""
+msgstr "Tekent tandwielen binnen in de transparante kubus"
 
 msgid "Animation Options"
-msgstr ""
+msgstr "Animatie optie's"
 
 msgid "Autotab windows on creation"
-msgstr ""
+msgstr "Automatisch tabblad aanzetten bĳ creatie"
 
 msgid "Autotab windows with themselves on window creation"
-msgstr ""
+msgstr "Maak automatisch tab voor zichzelf als een venster gecreëerd wordt"
 
 msgid "Border Radius"
-msgstr ""
+msgstr "Rand radius"
 
 msgid "Border Width"
-msgstr ""
+msgstr "Rand dikte"
 
 msgid "Border color of the tab bar"
-msgstr ""
+msgstr "Rand kleur van de tab balk"
 
 msgid "Brightness of selected windows"
-msgstr ""
+msgstr "Helderheid van geselecteerde vensters"
 
 msgid "Change Tab Left"
-msgstr ""
+msgstr "Verander tabblad links"
 
 msgid "Change Tab Right"
-msgstr ""
+msgstr "Verander tabblad rechts"
 
 msgid "Change tab animation duration"
-msgstr ""
+msgstr "Verander duur van tab animatie"
 
 msgid "Close Group"
-msgstr ""
+msgstr "Sluit groep"
 
 msgid "Create mipmaps for thumbnails"
-msgstr ""
+msgstr "Creëer mipmaps voor thumbnails"
 
 msgid "Create mipmaps for thumbnails in the tab bar"
-msgstr ""
+msgstr "Creëer mipmaps voor thumbnails in de tab balk"
 
 msgid ""
 "Distance (in pixels) between the tab bar and the dragged slot for applying "
 "the spring model. If the distance is larger than that value, the model isn't "
 "applied."
 msgstr ""
+"Afstand (in pixels) tussen de tab balk en de versleepte slot voor het "
+"toepassen van een veer model. Als de afstand groter is dan deze waarde, dan "
+"wordt het model niet toegepast."
 
 msgid "Duration (in s) of the animation that happens when changing tabs"
 msgstr ""
+"Duur (in s) van de animatie die plaatsvind als gewisseld wordt van tabs"
 
 msgid "Duration (in s) of the tab bar fading animation when showing/hiding it"
 msgstr ""
+"Duur (in s) van de tabbalk vervagings animatie wanneer deze getoond/"
+"verborgen wordt"
 
 msgid "Duration (in s) of the tab bar pulse animation"
-msgstr ""
+msgstr "Duur (in s) van de tab balk pulse animatie"
 
 msgid "Duration (in s) of the tab bar reflex animation"
-msgstr ""
+msgstr "Duur (in s) van de tab balk reflex animatie"
 
 msgid "Duration (in s) of the text fading animation when showing/hiding it"
 msgstr ""
+"Duur (in s) van de tekst vervaging animatie wanneer deze getoond/verborgen "
+"wordt"
 
 msgid "Enable Glow"
-msgstr ""
+msgstr "Gloeien inschakelen"
 
 msgid "Enable grouped window glowing"
-msgstr ""
+msgstr "Inschakelen van gegroepeerde venster gloeien"
 
 msgid "Fade time for tab bar animations"
-msgstr ""
+msgstr "Vervaag tĳd voor tab balk animatie's"
 
 msgid "Fade time for text animations"
-msgstr ""
+msgstr "Vervaag tĳd voor tekst animatie's"
 
 msgid "Fill color of the selection rectangle"
-msgstr ""
+msgstr "Vul kleur voor de selectie rechthoek"
 
 msgid "Fill color of the tab bar"
-msgstr ""
+msgstr "Vulkleur voor de tab balk"
 
 msgid "Font Color"
-msgstr ""
+msgstr "Letterkleur"
 
 msgid "Font Size"
-msgstr ""
+msgstr "Letter grootte"
 
 msgid "Glass"
-msgstr ""
+msgstr "Glas"
 
 msgid "Glow"
-msgstr ""
+msgstr "Gloeien"
 
 msgid "Glow Color Change"
-msgstr ""
+msgstr "Gloei kleur verandering"
 
 msgid "Glow Size"
-msgstr ""
+msgstr "Gloei grootte"
 
 msgid "Glow Type"
-msgstr ""
+msgstr "Gloei type"
 
 msgid "Glow ring"
-msgstr ""
+msgstr "Gloeien ring"
 
 msgid "Gradient"
-msgstr ""
+msgstr "Gradatie"
 
 msgid "Group Window Match"
-msgstr ""
+msgstr "Groepeer venster match"
 
 msgid "Group Windows"
-msgstr ""
+msgstr "Groepeer vensters"
 
 msgid "Group and Tab Windows"
-msgstr ""
+msgstr "Groep en tabblad vensters"
 
 msgid "Group the windows after selection"
-msgstr ""
+msgstr "Groepeer vensters na selectie"
 
 msgid "Grouping"
-msgstr ""
+msgstr "Groepering"
 
 msgid "Hover time for slot dragging"
-msgstr ""
+msgstr "Zweeftijd voor slot verslepen"
 
 msgid ""
 "If one window in the group is (un)maximized, all other group windows are (un)"
 "maximized as well."
 msgstr ""
+"Als één venster in een groep is ge(de)maximaliseerd worden ook de andere "
+"vensters ge(de)maximaliseerd."
 
 msgid ""
 "If one window in the group is (un)minimized, all other group windows are (un)"
 "minimized as well."
 msgstr ""
+"Als één venster in de groep wordt ge(de)minimaliseerd worden ook alle andere "
+"vensters in de groep ge(de)minimaliseerd."
 
 msgid ""
 "If one window in the group is (un)shaded, all other group windows are (un)"
 "shaded as well."
 msgstr ""
+"Als één venster in een groep wordt op/afgerold worden ook alle andere "
+"vensters in de groep op/afgerold."
 
 msgid ""
 "If one window in the group is activated, all other group windows are raised "
 "as well."
 msgstr ""
+"Als één venster in een groep wordt geactiveerd worden alle andere vensters "
+"in de groep ook naar boven gehaald."
 
 msgid ""
 "If one window in the group is moved, all other group windows are moved as "
 "well."
 msgstr ""
+"Als één venster in een groep wordt verplaatst worden alle andere vensters in "
+"de groep ook verplaatst."
 
 msgid ""
 "If one window in the group is resized, all other group windows are resized "
 "as well."
 msgstr ""
+"Als van één venster in de groep de grootte wordt gewĳzigd wordt van alle "
+"andere vensters in de groep ook de grootte gewĳzigd."
 
 msgid "If there is only 1 window left in the group, it will be ungrouped."
 msgstr ""
+"Als er nog maar één venster over is in een groep zal ook deze uit de groep "
+"verwĳderd worden."
 
 msgid ""
 "If you don't like the current glow color, you can change it with this key."
 msgstr ""
+"Als de huidige gloei kleur je niet bevalt kun je die veranderen met deze "
+"toets."
 
 msgid ""
 "If you have selected some windows, this automatically groups them (Doesn't "
 "work with selection mode 'Normal')."
 msgstr ""
+"Als je een paar vensters geselecteerd hebt worden ze hiermee automatisch "
+"gegroepeerd (Werkt niet in selectie modus 'Normaal')."
 
 msgid "Ignore Group"
-msgstr ""
+msgstr "Negeer groep"
 
 msgid "Key bindings"
-msgstr ""
+msgstr "Toetsbindingen"
 
 msgid "Line Color"
-msgstr ""
+msgstr "Lijn kleur"
 
 msgid "Line color of the selection rectangle"
-msgstr ""
+msgstr "Lĳn kleur van de selectie rechthoek"
 
 msgid "Maximize/unmaximize with group"
-msgstr ""
+msgstr "Maximaliseren/demaximaliseren met groep"
 
 msgid "Metal"
-msgstr ""
+msgstr "Metaal"
 
 msgid "Minimize with group"
-msgstr ""
+msgstr "Minimaliseer met groep"
 
 msgid ""
 "Mouse pointer movement speed limit (in pixels/second) for the spring model"
 msgstr ""
+"Muis aanwĳzer bewegingssnelheid limiet (in pixels/seconde) voor het veer "
+"model"
 
 msgid "Move every window in the group"
-msgstr ""
+msgstr "Verplaats elk venster in de groep"
 
 msgid "Murrina"
 msgstr ""
 
 msgid "Opacity of selected windows"
-msgstr ""
+msgstr "Doorzichtigheid van geselecteerde vensters"
 
 msgid "Play animations on the tab bar e.g. on fade in."
-msgstr ""
+msgstr "Speel animatie's op de tab balk zoals fade-in."
 
 msgid "Precision"
-msgstr ""
+msgstr "Precisie"
 
 msgid ""
 "Precision of the selection (percentage of the visible window area which must "
 "be selected for the selection to be recognized)."
 msgstr ""
+"Precisie van de selectie (percentage van zichtbare venstergebied wat moet "
+"worden geselecteerd om de selectie te herkennen)."
 
 msgid "Raise every window in the group"
-msgstr ""
+msgstr "Verhef elk venster in een groep"
 
 msgid "Rectangular glow"
-msgstr ""
+msgstr "Rechthoekig gloeien"
 
 msgid "Remove Group Window"
-msgstr ""
+msgstr "Verwĳder groep venster"
 
 msgid "Remove window from group after dropping it outside a tab bar"
-msgstr ""
+msgstr "Verwĳder venster van groep na verslepen buiten de tab balk"
 
 msgid "Resize every window in the group"
-msgstr ""
+msgstr "Vergroot/verklein elk venster in de groep"
 
 msgid "Saturation of selected windows"
-msgstr ""
+msgstr "Verzadiging van geselecteerde vensters"
 
 msgid "Select"
-msgstr ""
+msgstr "Selecteer"
 
 msgid "Select Single Window"
-msgstr ""
+msgstr "Selecteer enkel venster"
 
 msgid "Selection"
-msgstr ""
+msgstr "Selectie"
 
 msgid "Selection Color"
-msgstr ""
+msgstr "Selectie kleur"
 
 msgid "Shade with group"
-msgstr ""
+msgstr "Oprollen met groep"
 
 msgid "Simple"
-msgstr ""
+msgstr "Simpel"
 
 msgid "Slot Drag Spring K"
-msgstr ""
+msgstr "Slot verslepen veerwaarde K"
 
 msgid "Slot Dragging"
-msgstr ""
+msgstr "Slot verslepen"
 
 msgid "Slot drag friction"
-msgstr ""
+msgstr "Slot verslepen wrijving"
 
 msgid "Space"
-msgstr ""
+msgstr "Ruimte"
 
 msgid "Speed limit for spring model"
-msgstr ""
+msgstr "Snelheids limiet voor veer model"
 
 msgid "Spring Konstant used for slot dragging"
-msgstr ""
+msgstr "Veer Konstante gebruikt voor slot verslepen"
 
 msgid "Spring friction for slot dragging"
-msgstr ""
+msgstr "Veer wrĳving voor slot verslepen"
 
 msgid "Tab Bar Show Delay"
-msgstr ""
+msgstr "Tab balk tonen vertraging"
 
 msgid "Tab Base Color"
-msgstr ""
+msgstr "Tabblad basis kleur"
 
 msgid "Tab Border Color"
-msgstr ""
+msgstr "Tabblad rand kleur"
 
 msgid "Tab Group"
-msgstr ""
+msgstr "Tab groep"
 
 msgid "Tab Highlight Color"
-msgstr ""
+msgstr "Tabblad highlight kleur"
 
 msgid "Tab Style"
-msgstr ""
+msgstr "Tabblad stijl"
 
 msgid "Tab bar visibility time after tab change"
-msgstr ""
+msgstr "Tabbladenbalk zichtbaarheidstijd na tabblad verandering"
 
 msgid "Tabbing"
-msgstr ""
+msgstr "Tabbladen"
 
 msgid "Tabbing Speed"
-msgstr ""
+msgstr "Tabblad snelheid"
 
 msgid "Tabbing Timestep"
-msgstr ""
+msgstr "Tabblad tijdstap"
 
 msgid "Tabbing speed"
-msgstr ""
+msgstr "Tab snelheid"
 
 msgid "Tabbing timestep"
-msgstr ""
+msgstr "Tab tĳdstap"
 
 msgid "The color of the window title in the tab bar"
-msgstr ""
+msgstr "De kleur van de venster titel in de tab balk"
 
 msgid "The key for closing all windows in the group."
-msgstr ""
+msgstr "De toets om alle vensters in de groep te sluiten."
 
 msgid "The key for grouping windows."
-msgstr ""
+msgstr "De toets om vensters te groeperen."
 
 msgid ""
 "The key for ignoring the group. If this key is pressed, you can do actions "
 "for a single window in the group only."
 msgstr ""
+"De toets voor het negeren van de groep. Als deze toets wordt ingedrukt kun "
+"je actie's uitvoeren op een enkel venster in een groep."
 
 msgid "The key for removing the selected window from its group."
-msgstr ""
+msgstr "De toets voor het verwĳderen van een venster uit een groep."
 
 msgid "The key for selecting the current window."
-msgstr ""
+msgstr "De toets om het huidige venster te selecteren."
 
 msgid "The key for starting selecting windows."
-msgstr ""
+msgstr "De toets om venster selectie te starten."
 
 msgid "The key for switching to the tab left of the current one."
-msgstr ""
+msgstr "De toets om te wisselen naar de tab links van de huidige."
 
 msgid "The key for switching to the tab right of the current one."
-msgstr ""
+msgstr "De toets om te wisselen naar de tab rechts van de huidige."
 
 msgid "The key for toggling the tab mode for the current group."
-msgstr ""
+msgstr "De toets voor het wisselen van de tab modus van de huidige groep."
 
 msgid "The key for ungrouping the current group."
-msgstr ""
+msgstr "De toets voor het degroeperen van de huidige groep."
 
 msgid "The radius for the tab bar edges"
-msgstr ""
+msgstr "De radius voor de tab balk randen"
 
 msgid "The size of the grouped window glow"
-msgstr ""
+msgstr "De grootte van het gegroepeerde venster gloeien"
 
 msgid "The size of the window thumbs in the task bar"
-msgstr ""
+msgstr "De grootte van de venster thumbnails in de taakbalk"
 
 msgid "The size of the window title font in the tab bar"
-msgstr ""
+msgstr "De grootte van het venstertitel lettertype in de tab balk"
 
 msgid "The space between the thumbs"
-msgstr ""
+msgstr "De ruimte tussen de thumbnails"
 
 msgid "The style of the tab bar"
-msgstr ""
+msgstr "De stĳl van de tabbalk"
 
 msgid "The type of the glow"
-msgstr ""
+msgstr "Het type gloeien"
 
 msgid "The width of the tab bar outline"
-msgstr ""
+msgstr "De breedte van de tab balk omtrek"
 
 msgid "Thumb Size"
-msgstr ""
+msgstr "Thumbnail grootte"
 
 msgid "Time (in s) before the tab bar is shown after hovering the title bar"
 msgstr ""
+"Tĳd (in s) voordat de tab balk getoond wordt nadat de muis over de titelbalk "
+"zweefde"
 
 msgid "Time (in s) the tab bar is visibly after a tab change"
-msgstr ""
+msgstr "Tĳd (in s) dat de tab balk zichtbaar is na een tab verandering"
 
 msgid "Time for tab bar pulse animation"
-msgstr ""
+msgstr "Tĳd voor de tab balk pulse animatie"
 
 msgid "Time for tab bar reflex animation"
-msgstr ""
+msgstr "Tĳd voor de tab balk reflex animatie"
 
 msgid ""
 "Timespan (in s) after which a grouped window is activated if a window of "
 "another group is dragged over it"
 msgstr ""
+"Tĳd spanne (in s) waarna een gegroepeerd venster wordt gegroepeerd nadat een "
+"venster van een andere groep er overhen wordt gesleept"
 
 msgid "Ungroup Windows"
-msgstr ""
+msgstr "Degroepeer vensters"
 
 msgid "Ungroup the windows if only one window is left"
-msgstr ""
+msgstr "Degroepeer de vensters als nog maar één venster over is"
 
 msgid "Untab the group when closing the top tab window instead of changing tab"
 msgstr ""
+"De groep uit een tab halen als de bovenste tab word gesloten in plaats van "
+"veranderen van tab"
 
 msgid "Untab when closing top tab"
-msgstr ""
+msgstr "de-tab na het sluiten van de top tab"
 
 msgid "Use tab bar animations"
-msgstr ""
+msgstr "Gebruik tab balk animatie's"
 
 msgid "Window Title Font"
-msgstr ""
+msgstr "Venster titel lettertype"
 
 msgid "Windows that should be allowed to be grouped"
-msgstr ""
+msgstr "Venster die worden toegestaan om gegroepeerd te worden"
 
 msgid "With this plugin you can group and tab windows"
-msgstr ""
+msgstr "Met deze plugin kun je venstersgroeperen en in tabs vatten"
 
 msgid "Y distance for spring model"
-msgstr ""
+msgstr "Y afstand voor veermodel"
 
 msgid "Compression Quality"
-msgstr ""
+msgstr "Compressie kwaliteit"
 
 msgid "JPEG"
-msgstr ""
+msgstr "JPEG"
 
 msgid "JPEG image format plugin"
-msgstr ""
+msgstr "Plugin voor JPEG afbeeldingsformaat"
 
 msgid "Quality of compression when saving JPEG images"
-msgstr ""
+msgstr "Kwaliteit van de compressie als JPEG afbeeldingen worden opgeslagen"
 
 msgid "Accumulation buffer"
-msgstr ""
+msgstr "Accumulatie buffer"
 
 msgid "Activate"
-msgstr ""
+msgstr "Activeer"
 
 msgid "Execute Motion Blur if the screen is transformed."
-msgstr ""
+msgstr "Voer bewegingsvervaging uit als het scherm wordt getransformeerd."
 
 msgid "Motion Blur Strength"
-msgstr ""
+msgstr "Bewegingsvervaging sterkte"
 
 msgid "Motion Blur mode"
-msgstr ""
+msgstr "Bewegingsvervaging modus"
 
 msgid "Motion Blur on Transformed Screen"
-msgstr ""
+msgstr "Bewegingsvervaging op getransformeerd scherm"
 
 msgid "Motion Blur render mode."
-msgstr ""
+msgstr "Bewegingsvervaging render modus."
 
 msgid "Motion Blur strength."
-msgstr ""
+msgstr "Bewegingsvervaging sterkte."
 
 msgid "Motion blur"
-msgstr ""
+msgstr "Bewegingsvervaging"
 
 msgid "Motion blur effect"
-msgstr ""
+msgstr "Bewegingsvervaging effect"
 
 msgid "Texture Copy"
-msgstr ""
+msgstr "Tekstuur kopie"
 
 msgid "Toggle Motion Blur"
-msgstr ""
+msgstr "Schakel bewegingsvervaging"
 
 msgid "Toggle motion Blur effect."
-msgstr ""
+msgstr "Schakel het vervaging bij beweging effect."
 
 msgid "Visibility/Performance"
-msgstr ""
+msgstr "Zichtbaarheid/Performance"
 
-#, fuzzy
 msgid "Action"
-msgstr "Animaties"
+msgstr "Actie"
 
 msgid "Action that is to be invoked."
-msgstr ""
+msgstr "Actie die moet worden uitgevoerd."
 
 msgid "Assign mousegestures to any existing action"
-msgstr ""
+msgstr "Wĳs muis bewegingen toe aan een bestaande actie"
 
 msgid "Gesture"
-msgstr ""
+msgstr "Muis beweging"
 
 msgid "Gesture assignment"
-msgstr ""
+msgstr "Toewĳzing beweging"
 
 msgid "Gestures"
-msgstr ""
+msgstr "Bewegingen"
 
 msgid "Mouse gesture to assign an action to."
-msgstr ""
+msgstr "Muis beweging om een actie aan toe te wĳzen."
 
 msgid "Mousegestures"
-msgstr ""
+msgstr "Muis bewegingen"
 
 msgid "Plugin"
-msgstr ""
+msgstr "Plugin"
 
 msgid "Plugin the action belongs to."
-msgstr ""
+msgstr "Plugin waar de actie toe behoort."
 
 msgid "Start gesture"
-msgstr ""
+msgstr "Begin muis beweging"
 
 msgid "Begin Gesture"
-msgstr ""
+msgstr "Begin beweging"
 
 msgid "Begin Mouse Gesture"
-msgstr ""
+msgstr "Begin muis beweging"
 
 msgid "Mouse switch"
-msgstr ""
+msgstr "Muis schakelaar"
 
 msgid "Switch viewport in response to mouse gesture"
-msgstr ""
+msgstr "Wissel viewport als reactie op een muisbeweging"
 
 msgid "Exclude Windows"
-msgstr ""
+msgstr "Vensters uitsluiting"
 
 msgid "Neg Windows"
-msgstr ""
+msgstr "Negatief venster"
 
 msgid "Negative"
-msgstr ""
+msgstr "Negatief"
 
 msgid "Toggle Screen Negative"
-msgstr ""
+msgstr "Schakel scherm negatief"
 
 msgid "Toggle Window Negative"
-msgstr ""
+msgstr "Schakel venster negatief"
 
 msgid "Toggle active window negative"
-msgstr ""
+msgstr "Schakel actief venster inversie (negatief)"
 
 msgid "Toggle screen negative"
-msgstr ""
+msgstr "Schakel scherm inversie (negatief)"
 
 msgid "Used to set a window or screen negative"
-msgstr ""
+msgstr "Wordt gebruikt om een scherm negatief te maken"
 
 msgid "Windows to be negative by default"
-msgstr ""
+msgstr "Vensters die standaard geïnverteerd moeten worden"
 
 msgid "Windows to exclude from negating"
-msgstr ""
+msgstr "Vensters die uitgesloten moeten worden van inverteren"
 
 msgid "Debug"
-msgstr ""
+msgstr "Debug"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "Toon fouten en andere berichten met gebruik van libnotify."
 
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Fout notificatie's"
 
 msgid "Fatal"
-msgstr ""
+msgstr "Fataal"
 
 msgid "Hide Timeout"
-msgstr ""
+msgstr "Verberg time out"
 
-#, fuzzy
 msgid "Info"
-msgstr "In"
+msgstr "Info"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "Maximum log niveau"
 
 msgid "The maximum log level to display"
-msgstr ""
+msgstr "Het maximum log niveau om te tonen"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
+"Time out (in seconden) voordat de notificatie verborgen wordt, stel in op 1 "
+"voor standaard van systeem en nul voor onbeperkt"
 
 msgid "Warning"
-msgstr ""
+msgstr "Waarschuwing"
 
 msgid "Active Opacity"
-msgstr ""
+msgstr "Actieve Ondoorzichtigheid"
 
 msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
 "already."
 msgstr ""
+"Bypass delay als opacificeer al de ondoorzichtigheid aan het verlagen is op "
+"een of meer vensters."
 
 msgid "Bypass delay when the new active window is the focused window."
-msgstr ""
+msgstr "Bypass delay als het nieuwe actieve venster het venster met focus is."
 
 msgid "Delay until Opacification"
-msgstr ""
+msgstr "Delay voor Opacificatie"
 
 msgid ""
 "Do not wait if the window we are hovering is the focused window. This allows "
 "us to instantly see the focused window. You probably want to disable this if "
 "you are not using 'Click to Focus'."
 msgstr ""
+"Wacht niet tot het venster waarover heen gezweefd wordt de focus heeft. Dit "
+"maakt het mogelĳk om het venster met focus onmiddelĳk te zien. Je wilt dit "
+"mogelĳk uitschakelen als je geen gebruik maakt van 'Klik voor focus'."
 
 msgid "Make windows easily visible by hovering the mouse over them"
 msgstr ""
+"Maak vensters makkelijk zichtbaar door er met de muis overheen te zweven"
 
 msgid "Only increase opacity if a window is blocking"
-msgstr ""
+msgstr "Verhoog ondoorzichtigheid alleen als een venster blokkeert"
 
 msgid ""
 "Only increase the opacity on the targeted window if it has one or more "
 "windows blocking it from view."
 msgstr ""
+"Maak vensters minder doorzichtig als een ander venster het zicht erop "
+"belemmerd."
 
 msgid "Opacify"
-msgstr ""
+msgstr "Opacificeer"
 
 msgid "Opacity Levels"
-msgstr ""
+msgstr "Ondoorzichtigheids niveau's"
 
 msgid "Passive Opacity"
-msgstr ""
+msgstr "Passieve Doorzichtigheid"
 
 msgid "Reset opacity to original values when toggling"
-msgstr ""
+msgstr "Reset ondoorzichtigheid naar originele waarden bij schakelen"
 
 msgid ""
 "Reset the opacity of all windows modified by opacify when toggling Opacify "
 "with the defined key-combination."
 msgstr ""
+"Reset de ondoorzichtigheid van alle vensters die zijn veranderd door "
+"Opacificeer als Opacificeer wordt geschakeld met de gedefiniëerde toets-"
+"combinatie."
 
 msgid ""
 "The delay (in ms) before Opacify changes opacity after the active window has "
 "changed."
 msgstr ""
+"De vertraging (in ms) voordat Opacificeer de ondoorzichtigheid veranderd "
+"nadat het actieve venster is veranderd."
 
 msgid ""
 "The maximum opacity percentage a window blocking the current targeted window "
 "can have. A blocking window will have either this opacity or the preset "
 "opacity, whichever is lower."
 msgstr ""
+"De maximale opaciteit die een venster, dat het huidige venster overlapt, kan "
+"hebben. Een overlappend venster heeft deze ondoorzichtigheid, of die "
+"vooringestelde opaciteit, welke van de twee minder is."
 
 msgid ""
 "The minimum opacity percentage to ensure a targeted window has. A target "
 "window will have either this opacity or the preset opacity, whichever is "
 "higher."
 msgstr ""
+"Het minimale percentage opaciteit een doel venster zal behouden. Een "
+"doelvenster heeft óf deze ondoorzichtigheid, óf de vooringestelde opaciteit "
+"welke van de twee hoger is."
 
 msgid ""
 "This enables you to let Opacify instantly opacify new windows when you're "
 "already making one or more windows invisible. Makes for faster behavior "
 "while looking through layers of hidden windows."
 msgstr ""
+"Dit maakt het mogelijk om opacificeer direct vensters doorzichtig te laten "
+"maken als je al andere vensters aan het doorzichtig maken bent. Zorgt voor "
+"sneller gedrag als je door lagen van verborgen vensters kijkt."
 
 msgid "Toggle Opacify"
-msgstr ""
+msgstr "Schakel opacificatie in/uit"
 
 msgid "Toggle Opacify on by default"
-msgstr ""
+msgstr "Schakel opacificeer standaard in"
 
 msgid ""
 "Use this to enable/disable Opacify on the fly. Previously opacified windows "
 "will not be reset once you disable it like this."
 msgstr ""
+"Gebruik dit voor het tussendoor in- en uitschakelen van Opacificeer. Eerder "
+"geopacificeerde vensters zullen geen reset krijgen als je het op deze manier "
+"uitschakelt."
 
 msgid "Windows that should be opacified."
-msgstr ""
+msgstr "Vensters die moeten worden geopacificeerd."
 
 msgid ""
 "With this enabled, opacify will be on when you load Opacify, which is "
 "usually when you start Compiz."
 msgstr ""
+"Met dit ingeschakeld is opacificeer standaard ingeschakeld als Opacificeer "
+"geladen word, gewoonlĳk is dat als Compiz gestart wordt."
 
 msgid "Animation speed"
-msgstr ""
+msgstr "Animatie snelheid"
 
 msgid "Animation timestep"
-msgstr ""
+msgstr "Animatie tĳdstap"
 
 msgid "Avoid Offscreen"
-msgstr ""
+msgstr "Vermijd offscreen"
 
 msgid "Avoids putting window borders offscreen"
-msgstr ""
+msgstr "Voorkomt dat venster randen buiten beeld worden geplaatst"
 
 msgid "Move window to a certain viewport"
-msgstr ""
+msgstr "Verplaats venster naar een bepaalde viewport"
 
 msgid "Move window to the bottom edge"
-msgstr ""
+msgstr "Verplaats venster naar de onderste rand"
 
 msgid "Move window to the bottom left corner"
-msgstr ""
+msgstr "Verplaats venster naar de linker onder hoek"
 
 msgid "Move window to the bottom right corner"
-msgstr ""
+msgstr "Verplaats venster naar de rechter onderhoek"
 
 msgid "Move window to the center"
-msgstr ""
+msgstr "Verplaats venster naar het middelpunt"
 
 msgid "Move window to the last position"
-msgstr ""
+msgstr "Verplaats venster naar de laatste positie"
 
 msgid "Move window to the left edge"
-msgstr ""
+msgstr "Verplaats venster naar de linker rand"
 
 msgid "Move window to the pointer position"
-msgstr ""
+msgstr "Verplaats venster naar de aanwĳzer positie"
 
 msgid "Move window to the right edge"
-msgstr ""
+msgstr "Verplaats venster naar de rechter rand"
 
 msgid "Move window to the top edge"
-msgstr ""
+msgstr "Verplaats venster naar de boven rand"
 
 msgid "Move window to the top left corner"
-msgstr ""
+msgstr "Verplaats venster naar de linker bovenhoek"
 
 msgid "Move window to the top right corner"
-msgstr ""
+msgstr "Verplaats venster naar de rechterbovenhoek"
 
 msgid "Move window to the viewport on the bottom"
-msgstr ""
+msgstr "Verplaats venster naar de viewport onderaan"
 
 msgid "Move window to the viewport on the left"
-msgstr ""
+msgstr "Verplaats venster naar de viewport links"
 
 msgid "Move window to the viewport on the right"
-msgstr ""
+msgstr "Verplaats venster naar de viewport rechts"
 
 msgid "Move window to the viewport on the top"
-msgstr ""
+msgstr "Verplaats venster naar de viewport bovenaan"
 
 msgid "Move window to viewport 1"
-msgstr ""
+msgstr "Verplaats venster naar viewport 1"
 
 msgid "Move window to viewport 10"
-msgstr ""
+msgstr "Verplaats venster naar viewport 10"
 
 msgid "Move window to viewport 11"
-msgstr ""
+msgstr "Verplaats venster naar viewport 11"
 
 msgid "Move window to viewport 12"
-msgstr ""
+msgstr "Verplaats venster naar viewport 12"
 
 msgid "Move window to viewport 2"
-msgstr ""
+msgstr "Verplaats venster naar viewport 2"
 
 msgid "Move window to viewport 3"
-msgstr ""
+msgstr "Verplaats venster naar viewport 3"
 
 msgid "Move window to viewport 4"
-msgstr ""
+msgstr "Verplaats venster naar viewport 4"
 
 msgid "Move window to viewport 5"
-msgstr ""
+msgstr "Verplaats venster naar viewport 5"
 
 msgid "Move window to viewport 6"
-msgstr ""
+msgstr "Verplaats venster naar viewport 6"
 
 msgid "Move window to viewport 7"
-msgstr ""
+msgstr "Verplaats venster naar viewport 7"
 
 msgid "Move window to viewport 8"
-msgstr ""
+msgstr "Verplaats venster naar viewport 8"
 
 msgid "Move window to viewport 9"
-msgstr ""
+msgstr "Verplaats venster naar viewport 9"
 
 msgid "Move window to x, y"
-msgstr ""
+msgstr "Verplaats venster naar x,y"
 
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
-msgstr ""
+msgstr "Aantal pixels van de onder rand waar het venster zal komen te rusten"
 
 msgid "Number of pixels from the left edge where the window will come to rest"
 msgstr ""
+"Aantal pixels vanaf de linker rand waar het venster zal komen te rusten"
 
 msgid "Number of pixels from the right edge where the window will come to rest"
 msgstr ""
+"Aantal pixels vanaf de rechter rand waar het venster zal komen te rusten"
 
 msgid "Number of pixels from the top edge where the window will come to rest"
-msgstr ""
+msgstr "Aantal pixels vanaf de boven rand waar het venster zal komen te rusten"
 
 msgid "Pad Bottom"
-msgstr ""
+msgstr "Uitvullen onder"
 
 msgid "Pad Left"
-msgstr ""
+msgstr "Uitvullen Links"
 
 msgid "Pad Right"
-msgstr ""
+msgstr "Uitvullen rechts"
 
 msgid "Pad Top"
-msgstr ""
+msgstr "Uitvullen boven"
 
 msgid "Padding"
-msgstr ""
+msgstr "Uitvulling"
 
 msgid "Put"
-msgstr ""
+msgstr "Plaats"
 
 msgid "Put Bottom"
-msgstr ""
+msgstr "Plaats onder"
 
 msgid "Put Bottom Left"
-msgstr ""
+msgstr "Plaats rechtsonder "
 
 msgid "Put Bottom Right"
-msgstr ""
+msgstr "Plaats rechts onder"
 
 msgid "Put Center"
-msgstr ""
+msgstr "Plaats middenpunt"
 
 msgid "Put Exact"
-msgstr ""
+msgstr "Plaats exact"
 
 msgid "Put Left"
-msgstr ""
+msgstr "Plaats links"
 
 msgid "Put On Viewport"
-msgstr ""
+msgstr "Plaats op viewport"
 
 msgid "Put On Viewport 1"
-msgstr ""
+msgstr "Plaats op viewport 1"
 
 msgid "Put On Viewport 10"
-msgstr ""
+msgstr "Plaats op viewport 10"
 
 msgid "Put On Viewport 11"
-msgstr ""
+msgstr "Plaats op viewport 11"
 
 msgid "Put On Viewport 12"
-msgstr ""
+msgstr "Plaats op viewport 12"
 
 msgid "Put On Viewport 2"
-msgstr ""
+msgstr "Plaats op viewport 2"
 
 msgid "Put On Viewport 3"
-msgstr ""
+msgstr "Plaats op viewport 3"
 
 msgid "Put On Viewport 4"
-msgstr ""
+msgstr "Plaats op viewport 4"
 
 msgid "Put On Viewport 5"
-msgstr ""
+msgstr "Plaats op viewport 5"
 
 msgid "Put On Viewport 6"
-msgstr ""
+msgstr "Plaats op viewport 6"
 
 msgid "Put On Viewport 7"
-msgstr ""
+msgstr "Plaats op viewport 7"
 
 msgid "Put On Viewport 8"
-msgstr ""
+msgstr "Plaats op viewport 8"
 
 msgid "Put On Viewport 9"
-msgstr ""
+msgstr "Plaats op viewport 9"
 
 msgid "Put Pointer"
-msgstr ""
+msgstr "Plaats aanwijzer"
 
 msgid "Put Right"
-msgstr ""
+msgstr "Plaats rechts"
 
 msgid "Put Top"
-msgstr ""
+msgstr "Plaats top"
 
 msgid "Put Top Left"
-msgstr ""
+msgstr "Plaats boven links"
 
 msgid "Put Top Right"
-msgstr ""
+msgstr "Plaats boven rechts"
 
 msgid "Put pointer uses the center of the window"
-msgstr ""
+msgstr "Plaats aanwĳzer gebruikt het middelpunt van het venster"
 
 msgid "Put to adjacent viewport"
-msgstr ""
+msgstr "Plaats op tegenoverliggende viewport"
 
 msgid "Put to arbitrary viewport"
-msgstr ""
+msgstr "Plaats op willekeurige viewport"
 
 msgid "Put window"
-msgstr ""
+msgstr "Plaats venster"
 
 msgid "Put within viewport"
-msgstr ""
+msgstr "Plaats in viewport"
 
 msgid "Restore Position"
-msgstr ""
+msgstr "Herstel positie"
 
 msgid "Unfocus Window"
-msgstr ""
+msgstr "Defocus venster"
 
 msgid "Unfocus windows that are moved off the viewport"
-msgstr ""
+msgstr "Neem focus weg van vensters die van een viewport af verplaatst worden"
 
 msgid "Viewport Bottom"
-msgstr ""
+msgstr "Viewport onderkant"
 
 msgid "Viewport Left"
-msgstr ""
+msgstr "Viewport links"
 
 msgid "Viewport Right"
-msgstr ""
+msgstr "Viewport rechts"
 
 msgid "Viewport Top"
-msgstr ""
+msgstr "Viewport bovenkant"
 
 msgid "Window Center"
-msgstr ""
+msgstr "Venster middenpunt"
 
 msgid "Alpha Dependence Threshold"
-msgstr ""
+msgstr "Alpha afhankelĳke drempel"
 
 msgid "Alpha dependence threshold."
-msgstr ""
+msgstr "Alpha afhankelĳke drempel."
 
 msgid "Draw Reflection for decorations."
-msgstr ""
+msgstr "Teken reflectie voor decoratie's."
 
 msgid "Draw Reflection for windows."
-msgstr ""
+msgstr "Teken reflectie voor vensters."
 
 msgid "Draws reflections"
-msgstr ""
+msgstr "Tekent reflectie's"
 
 msgid "Move the reflection on window move."
-msgstr ""
+msgstr "Verplaats de reflectie bĳ verplaatsen venster."
 
 msgid "Moving reflection"
-msgstr ""
+msgstr "Verplaatste reflectie"
 
 msgid "Reflection Image"
-msgstr ""
+msgstr "Reflectie afbeelding"
 
 msgid "Reflection Image file"
-msgstr ""
+msgstr "Reflectie afbeeldings bestand"
 
 msgid "Reflection Window Match"
-msgstr ""
+msgstr "Reflectie venster match"
 
 msgid "Reflection for Decorations"
-msgstr ""
+msgstr "Reflectie voor decoratie's"
 
 msgid "Reflection for Windows"
-msgstr ""
+msgstr "Reflectie voor vensters"
 
 msgid "Window match"
-msgstr ""
+msgstr "Venster match"
 
 msgid "Color 1 of the gradient background."
-msgstr ""
+msgstr "Kleur 1 van de gradatie achtergrond."
 
 msgid "Color 2 of the gradient background."
-msgstr ""
+msgstr "Kleur 2 van de gradatie achtergrond."
 
 msgid "Color 3 of the gradient background."
-msgstr ""
+msgstr "Kleur 3 van de gradatie achtergrond."
 
 msgid "Color of text on resize popup."
-msgstr ""
+msgstr "Kleur van de tekst bĳ grootte wĳzigen popup."
 
 msgid "Display info on resize similar to metacity"
-msgstr ""
+msgstr "Toon info bĳ grootte wĳzigen vergelĳkbaar met metacity"
 
 msgid "Fade time (in ms) for popup window"
-msgstr ""
+msgstr "Vervaag tĳd (in ms) voor popup venster"
 
 msgid "Gradient Color 1"
-msgstr ""
+msgstr "Gradatie kleur 1"
 
 msgid "Gradient Color 2"
-msgstr ""
+msgstr "Gradatie kleur 2"
 
 msgid "Gradient Color 3"
-msgstr ""
+msgstr "Gradatie kleur 3"
 
 msgid "Resize Info"
-msgstr ""
+msgstr "Info bĳ grootte wĳzigen"
 
 msgid ""
 "Show resize info for all windows as opposed to just windows with a resize "
 "increment of greater than 1."
 msgstr ""
+"Toon grootte aanpassen info voor alle vensters in tegenstelling tot alleen "
+"de vensters met een grootte aanpassing van meer dan 1."
 
 msgid "Show resize info for all windows."
-msgstr ""
+msgstr "Toon grootte aanpassing info voor alle vensters."
 
 msgid "Text color."
-msgstr ""
+msgstr "Tekst kleur."
 
 msgid "Above ring"
-msgstr ""
+msgstr "Boven ring"
 
 msgid "Allow Mouse Selection"
-msgstr ""
+msgstr "Sta muis selectie toe"
 
 msgid ""
 "Allow the selection of windows by just clicking on them while the switcher "
 "is active."
 msgstr ""
+"Maak het mogelĳk om vensters te selecteren door gewoon er op te klikken "
+"terwĳl de wisselaar actief is."
 
 msgid ""
 "Amount of opacity (in percent) for windows in the ring which are not selected"
 msgstr ""
+"Mate van opacificeer (in procent) voor vensters in de ring welke niet "
+"geselecteerd zĳn"
 
 msgid "Background Color"
-msgstr ""
+msgstr "Achtergrond kleur"
 
 msgid "Background color for the window title"
-msgstr ""
+msgstr "Achtergrond kleur voor de venster titel"
 
 msgid "Below ring"
-msgstr ""
+msgstr "Onder ring"
 
 msgid "Big"
-msgstr ""
+msgstr "Groot"
 
 msgid "Bold Font"
-msgstr ""
+msgstr "Vet lettertype"
 
 msgid "Centered on screen"
-msgstr ""
+msgstr "Gecentreerd op het scherm"
 
 msgid ""
 "Changes the minimum brightness factor for windows in the ring. The farer "
 "away windows are, the less bright are they."
 msgstr ""
+"Veranderd de minimum helderheids factor voor vensters in de ring. Hoe verder "
+"weg ze zĳn, hoe minder helder ze zĳn."
 
 msgid ""
 "Changes the minimum scale factor for windows in the ring. The farer away "
 "windows are, the smaller are they."
 msgstr ""
+"Veranderd de minimum schaal factor voor vensters in de ring. Hoe verder weg "
+"de vensters zĳn, hoe kleiner ze zĳn."
 
 msgid "Darken Background"
-msgstr ""
+msgstr "Donkere achtergrond"
 
 msgid "Darken background when showing the ring"
-msgstr ""
+msgstr "Maak de achtergrond donker als de ring getoond wordt"
 
 msgid "Emblem"
-msgstr ""
+msgstr "Embleem"
 
 msgid "Font color for the window title"
-msgstr ""
+msgstr "Font kleur voor de venster titel"
 
 msgid "Font size for the window title"
-msgstr ""
+msgstr "Font grootte voor de venster titel"
 
 msgid "Inactive Window Opacity"
-msgstr ""
+msgstr "Inactief venster ondoorzichtigheid"
 
 msgid "Maximum horizontal size of a thumbnail in the ring"
-msgstr ""
+msgstr "Maximum horizontale grootte van een thumbnail in de ring"
 
 msgid "Maximum vertical size of a thumbnail in the ring"
-msgstr ""
+msgstr "Maximum verticaal grootte van een thumbnail in de ring"
 
 msgid "Minimum Brightness Factor"
-msgstr ""
+msgstr "Minimum helderheids factor"
 
 msgid "Minimum Scale Factor"
-msgstr ""
+msgstr "Minimum schaal factor"
 
 msgid "Next Window"
-msgstr ""
+msgstr "Volgende venster"
 
 msgid "Next Window (All Workspaces)"
-msgstr ""
+msgstr "Volgende venster (Alle werkruitmen)"
 
 msgid "Next Window (Group)"
-msgstr ""
+msgstr "Volgende venster (groep)"
 
 msgid "Overlay Icon"
-msgstr ""
+msgstr "Overlay icoon"
 
 msgid "Overlay an icon on windows in the ring"
-msgstr ""
+msgstr "Een overlay icoon op vensters in de ring"
 
 msgid "Previous Window"
-msgstr ""
+msgstr "Vorige venster"
 
 msgid "Previous Window (All Workspaces)"
-msgstr ""
+msgstr "Vorige venster (Alle werkruimten)"
 
 msgid "Previous Window (Group)"
-msgstr ""
+msgstr "Vorige venster (groep)"
 
 msgid "Ring Height"
-msgstr ""
+msgstr "Ring hoogte"
 
 msgid "Ring Switcher"
-msgstr ""
+msgstr "Ring wisselaar"
 
 msgid "Ring Width"
-msgstr ""
+msgstr "Ring breedte"
 
 msgid "Ring Windows"
-msgstr ""
+msgstr "Ring vensters"
 
 msgid "Ring appearance"
-msgstr ""
+msgstr "Ring weergave"
 
 msgid "Ring height (in percent of the screen height)"
-msgstr ""
+msgstr "Ring hoogte (in procent van scherm hoogte)"
 
 msgid "Ring speed"
-msgstr ""
+msgstr "Ring snelheid"
 
 msgid "Ring timestep"
-msgstr ""
+msgstr "Ring tĳdstap"
 
 msgid "Ring width (in percent of the screen width)"
-msgstr ""
+msgstr "Ring breedte (in procent van descherm breedte)"
 
 msgid "Rotate Ring Clockwise on Next"
-msgstr ""
+msgstr "Roteer ring met de klok mee bĳ volgende"
 
 msgid "Rotate ring clockwise for next window instead of counterclockwise"
 msgstr ""
+"Roteer ring met de klok mee voor volgende venster in plaats van tegen de "
+"klok in"
 
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr ""
+"Selecteert of venster titel moet getoond worden in vet lettertype of niet."
 
 msgid "Selects where to place the window title."
-msgstr ""
+msgstr "Selecteert waar de venster titel geplaatst moet worden."
 
 msgid "Show Minimized"
-msgstr ""
+msgstr "Toon geminimaliseerd"
 
 msgid "Show Window Title"
-msgstr ""
-
-msgid "Show minimized windows"
-msgstr ""
+msgstr "Toon venster titel"
 
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
 msgstr ""
+"Toon wisselaar indien niet zichtbaar en toon volgende venster van de huidige "
+"applicatie."
 
 msgid "Show switcher if not visible and select next window out of all windows."
 msgstr ""
+"Toon wisselaar indien niet zichtbaar en selecteer volgende venster uit alle "
+"vensters."
 
 msgid "Show switcher if not visible and select next window."
-msgstr ""
+msgstr "Toon wisselaar indien niet zichtbaar en selecteer vogende venster."
 
 msgid ""
 "Show switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
+"Toon wisselaar indien niet zichtbaar en selecteer vorige venster van de "
+"huidige applicatie."
 
 msgid ""
 "Show switcher if not visible and select previous window out of all windows."
 msgstr ""
+"Toon wisselaar indien niet zichtbaar en selecteer vorige venster uit alle "
+"vensters."
 
 msgid "Show switcher if not visible and select previous window."
-msgstr ""
+msgstr "Toon venster indien niet zichtbaar en selecteer vorige venster."
 
 msgid "Show window title of currently selected window."
+msgstr "Toon venster titel van huidig geselecteerde venster."
+
+msgid "Show windows that are minimized, shaded or in show desktop mode."
 msgstr ""
 
 msgid "Text Placement"
-msgstr ""
+msgstr "Tekst plaatsing"
 
 msgid "Thumbnail Height"
-msgstr ""
+msgstr "Thumbnail hoogte"
 
 msgid "Thumbnail Width"
-msgstr ""
+msgstr "Thumbnail breedte"
 
 msgid "Window title display"
-msgstr ""
+msgstr "Venster titel tonen"
 
 msgid "Windows that should be shown in ring"
-msgstr ""
+msgstr "Vensters die getoond moeten worden in de ring"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Tegelen vensters"
 
 msgid "Background color of the window title"
-msgstr ""
+msgstr "Achtergrond kleur van de venster titel"
 
 msgid "Close Windows In Scale"
-msgstr ""
+msgstr "Sluit venster in Schalen"
 
 msgid "Close windows while in scale mode"
-msgstr ""
+msgstr "Sluit venster in Schaal modus"
 
 msgid "Color used for highlighting the hovered window"
 msgstr ""
+"Kleur gebruikt om het venster op te laten lichten waaroverheen gezweefd wordt"
 
 msgid "Draw Window Highlight"
-msgstr ""
+msgstr "Teken venster oplichten"
 
 msgid "Font color of the window title"
-msgstr ""
+msgstr "Font kleur van de venster titel"
 
 msgid "Font size for window title display"
-msgstr ""
+msgstr "Font grootte om de venster titel te tonen"
 
 msgid "Highlight Color"
-msgstr ""
+msgstr "Oplicht kleur"
 
 msgid "Highlights the hovered window with the given color"
 msgstr ""
+"Laat het venster waar over heen gezweefd wordt oplichten met de gegeven kleur"
+
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Verplaats venster naar x,y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Venster titel tonen"
 
 msgid "Normal"
-msgstr ""
+msgstr "Normaal"
 
 msgid "Organic - EXPERIMENTAL"
-msgstr ""
+msgstr "Organisch - EXPERIMENTEEL"
 
 msgid "Scale Addons"
-msgstr ""
+msgstr "Schaal addons"
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
-
-msgid "Show window title in scale mode"
-msgstr ""
+msgstr "Selecteert de modus om de vensters uit te leggen in schaal modus"
 
 msgid "Size of the border around the window title"
-msgstr ""
+msgstr "Grootte van de rand rondom de venster titel"
 
 msgid "Some useful additions to the scale plugin"
-msgstr ""
+msgstr "Een paar zinvolle toevoegingen voor de schaal plugin"
 
 msgid "Title Border Size"
-msgstr ""
+msgstr "Titel rand grootte"
 
 msgid "Use bold font for window title display"
-msgstr ""
+msgstr "Gebruik vet lettertype voor tonen venster titel"
 
 msgid "Window Highlight"
-msgstr ""
+msgstr "Venster oplichten"
 
 msgid "Window Layout Mode"
-msgstr ""
+msgstr "Venster uitleg modus"
 
 msgid "Window Title"
-msgstr ""
+msgstr "Venster titel"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Venster titel tonen"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Toon venster titel in schaal modus"
 
 msgid "Zoom Windows In Scale"
-msgstr ""
+msgstr "Zoom vensters in Schaal"
 
 msgid "Zoom windows while in scale mode"
-msgstr ""
+msgstr "Toon vensters terwĳl in Schaal modus"
 
 msgid "Filter Case Insensitive"
-msgstr ""
+msgstr "Filter Hoofdletter ongevoelig"
 
 msgid "Filter Type Timeout"
-msgstr ""
+msgstr "Filter type timeout"
 
 msgid "Scale Window Title Filter"
-msgstr ""
+msgstr "Schaal venster titel filter"
 
 msgid "Show Filter Text"
-msgstr ""
+msgstr "Toon filter tekst"
 
 msgid "Show filter text."
-msgstr ""
+msgstr "Toon filter tekst."
 
 msgid "Time (in ms) after which the filter typing is automatically ended"
-msgstr ""
+msgstr "Tĳd (in ms) waarna het filter typing automatisch wordt beëindigt"
 
 msgid "Use case insensitive string matching when filtering."
-msgstr ""
+msgstr "Gebruik hoofdletter ongevoelige string matching als wordt gefilterd."
 
 msgid "Window title filter facility for the scale plugin"
-msgstr ""
+msgstr "Venster titel filter faciliteit voor de schaal plugin"
 
 msgid ""
 "Embeds a Guile scheme interpreter and provides bindings for meaningful "
 "Compiz integration."
 msgstr ""
+"Hiermee wordt een Guile schema interpreter ingebed en wordt voorzien in "
+"binding voor zinvolle Compiz integratie."
 
 msgid "Scheme Interpreter"
-msgstr ""
+msgstr "Schema interpreter"
 
 msgid "Toggle Prompt Visible"
-msgstr ""
+msgstr "Schakel prompt zichtbaar"
 
 msgid "Toggle prompt visible."
-msgstr ""
+msgstr "Schakel prompt zichtbaar."
 
-#, fuzzy
 msgid "Directory"
-msgstr "Richting vouwen"
+msgstr "Directory"
 
 msgid "Initiate screencasting"
-msgstr ""
+msgstr "Initiëer screencasting"
 
 msgid "Put screenshot images in this directory"
-msgstr ""
+msgstr "Stop schermafdruk afbeeldingen in deze folder"
 
 msgid "ScreenCast plugin"
-msgstr ""
+msgstr "Screencast plugin"
 
 msgid "ScreenCasting"
-msgstr ""
+msgstr "ScreenCasting"
 
-#, fuzzy
 msgid "Animation duration"
-msgstr "Animatie snelheid"
+msgstr "Duur van animatie"
 
-#, fuzzy
 msgid "Duration of the animation in milliseconds."
-msgstr "Duur animatie (in milliseconden) voor open effect"
+msgstr "Duur animatie (in milliseconden)."
 
 msgid "Increase the scale factor making the window bigger."
-msgstr ""
+msgstr "Vergroot de schaal factor."
 
 msgid "Make the window bigger"
-msgstr ""
+msgstr "Maak het venster groter"
 
 msgid "Make the window smaller"
-msgstr ""
+msgstr "Maak het venster kleiner"
 
 msgid "Reduces the scale factor making the window smaller."
-msgstr ""
+msgstr "Verkleint de schaal factor en maakt het venster kleiner."
 
-msgid "Scale a window down to half size."
+#, fuzzy
+msgid "Scale a window down to a portion of it's size."
+msgstr "Schaal een venster naar de halve grootte."
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
-msgstr ""
+msgstr "Schaal interval"
 
 msgid "Shelf"
-msgstr ""
+msgstr "BoekenPlank"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
 "(respectively) increasing and decreasing the scale level manually. Higher "
 "number means finer changes."
 msgstr ""
+"Het getal om de schaal factor mee te delen of te vermenigvuldigen wanneer "
+"het schaal niveau met de hand resp. vergroot of verkleind wordt. Grotere "
+"getallen betekent een fĳnere afstelling."
 
 msgid "Trigger scale down"
-msgstr ""
+msgstr "Kleiner schalen activeren"
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Kleiner schalen activeren"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
+"Schaalt een venster visueel kleiner om monitoring makkelĳker zonder echte/"
+"traditionele grootte aanpassing."
 
 msgid "Background intensity"
-msgstr ""
+msgstr "Achtergrond intensiteit"
 
 msgid "Background intensity."
-msgstr ""
+msgstr "Achtergrond intensiteit."
 
 msgid "Below"
-msgstr ""
+msgstr "Onder"
 
 msgid "Click duration"
-msgstr ""
+msgstr "Klik duur"
 
 msgid "Cover"
-msgstr ""
+msgstr "Afdekken"
 
 msgid "Cover movement offset."
-msgstr ""
+msgstr "Offset beweging afdekken."
 
 msgid "Cover offset"
-msgstr ""
+msgstr "Offset afdekking"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Uitgeschakeld"
 
 msgid "Fade in/out speed"
-msgstr ""
+msgstr "Invagen/uitvagen snelheid"
 
 msgid "Fade speed"
-msgstr ""
+msgstr "Vervaag snelheid"
 
 msgid "Flip"
-msgstr ""
+msgstr "Omkeren"
 
 msgid "Flip angle"
-msgstr ""
+msgstr "Omkeren hoek"
 
 msgid "Generate mipmaps"
-msgstr ""
+msgstr "Mipmaps genereren"
 
 msgid "Hide all non Desktop windows during switching"
-msgstr ""
+msgstr "Verberg alle niet-bureaublad vensters gedurende wisselen"
 
 msgid "Hide non Desktop windows"
-msgstr ""
+msgstr "Verberg alle niet-bureaublad vensters"
 
 msgid "Initiate (All Workspaces)"
-msgstr ""
+msgstr "Initiëer (Alle werkruimten)"
 
 msgid "Initiate switcher (All Workspaces)."
-msgstr ""
+msgstr "Initiëer wisselaar (Alle werkruimten)."
 
 msgid "Initiate switcher."
-msgstr ""
+msgstr "Initiëer wisselaar."
 
 msgid "Max window size"
-msgstr ""
+msgstr "Maximale venster grootte"
 
 msgid "Maximum click duration in miliseconds."
-msgstr ""
+msgstr "Maximum klik duur in milliseconden."
 
 msgid "Maximum window size (in percent of the screen width)"
-msgstr ""
+msgstr "Maximale venster grootte (in procenten van de scherm breedte)"
 
 msgid "Mouse movement speed"
-msgstr ""
+msgstr "Muis beweging snelheid"
 
 msgid "Mouse speed"
-msgstr ""
+msgstr "Muis snelheid"
 
 msgid "On activated output"
-msgstr ""
+msgstr "Bĳ geactiveerde output"
 
 msgid "One big switcher"
-msgstr ""
+msgstr "Een grote wisselaar"
 
 msgid "Overlay an icon on windows in the shift switcher"
-msgstr ""
+msgstr "Een icoon overlay op vensters in de schuif wisselaar"
 
 msgid "Rotation angle of the flip animation"
-msgstr ""
+msgstr "Rotatie hoek voor de omkeer animatie"
 
 msgid ""
 "Selects how the switcher is displayed if multiple output devices are used."
 msgstr ""
+"Selecteert hoe de wisselaar wordt getoond als meerdere uitvoer apparaten "
+"worden gebruikt."
 
 msgid "Shift Switcher"
-msgstr ""
+msgstr "Schuif wisselaar"
 
 msgid "Shift Switcher Plugin"
-msgstr ""
+msgstr "Schuif wisselaar plugin"
 
 msgid "Shift Windows"
-msgstr ""
+msgstr "Schuif vensters"
 
 msgid "Shift animation speed"
-msgstr ""
+msgstr "Schuif animatie snelheid"
 
 msgid "Shift speed"
-msgstr ""
+msgstr "Schuif snelheid"
 
 msgid "Shift timestep"
-msgstr ""
+msgstr "Schuif tĳdstap"
 
 msgid "Switcher mode"
-msgstr ""
+msgstr "Wisselaar modus"
 
 msgid "Switcher mode."
-msgstr ""
+msgstr "Wisselaar modus."
 
 msgid "Terminate"
-msgstr ""
+msgstr "Afbreken"
 
 msgid "Terminate switcher."
-msgstr ""
+msgstr "Wisselaar afbreken."
 
 msgid "Windows that should be shown in the shift switcher"
-msgstr ""
+msgstr "Vensters die moeten worden getoond in de schuif wisselaar"
 
 msgid "Access your desktop easily"
-msgstr ""
+msgstr "Makkelijke toegang naar bureaublad"
 
 msgid "Direction of window movement"
-msgstr ""
+msgstr "Richting van venster beweging"
 
 msgid "Left/Right"
-msgstr ""
+msgstr "Links/Rechts"
 
 msgid "Movement Direction"
-msgstr ""
+msgstr "Bewegings richting"
 
 msgid "Show desktop"
-msgstr ""
+msgstr "Toon bureaublad"
 
 msgid "To Corners"
-msgstr ""
+msgstr "Naar de hoeken"
 
 msgid "Up/Down"
-msgstr ""
+msgstr "Op/Neer"
 
 msgid "Window Opacity"
-msgstr ""
+msgstr "Venster ondoorzichtigheid"
 
 msgid "Window Part Size"
-msgstr ""
+msgstr "Venster deeltje grootte"
 
 msgid "Window movement speed"
-msgstr ""
+msgstr "Venster beweging snelheid"
 
 msgid "Window movement timestep"
-msgstr ""
+msgstr "Venster beweging tĳdstap"
 
 msgid "Window opacity when showdesktop'd"
-msgstr ""
+msgstr "Venster doorzichtigheid in Toon Bureaublad modus"
 
 msgid "Window part size when showdesktop'd"
-msgstr ""
+msgstr "Venster deel grootte in Toon Bureaublad modus"
 
 msgid ""
 "Window types that should be moved out of sight when entering showdesktop mode"
 msgstr ""
+"Venster typen die uit het zicht verplaatst moeten worden als Toon Bureaublad "
+"modus wordt in gegaan"
 
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Avoid Snap Modifier"
-msgstr ""
+msgstr "Vermĳd vastklik modifier"
 
 msgid "Choose 'Resistance', 'Attraction' or 'Full Mode'."
-msgstr ""
+msgstr "Kies 'Weerstand', 'Aantrekking' of 'Volledig'."
 
 msgid "Control"
-msgstr ""
+msgstr "Control"
 
 msgid "Edge Attraction Distance"
-msgstr ""
+msgstr "Rand aantrekking afstand"
 
 msgid "Edge Resistance Distance"
-msgstr ""
+msgstr "Hoek weerstand afstand"
 
 msgid "Edge attraction"
-msgstr ""
+msgstr "Rand aantrekking"
 
 msgid "Edge resistance"
-msgstr ""
+msgstr "Weerstand bij rand"
 
 msgid "Edges"
-msgstr ""
+msgstr "Randen"
 
 msgid "Enables windows edges resistance"
-msgstr ""
+msgstr "Inschakelen van weerstand voor vensterrand"
 
 msgid "Meta"
-msgstr ""
+msgstr "Meta"
 
 msgid "Screen edges"
-msgstr ""
+msgstr "Schermranden"
 
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Snap Type"
-msgstr ""
+msgstr "Klik type"
 
 msgid "Snap to 'Screen Edges', 'Windows Edges' or 'Both'."
-msgstr ""
+msgstr "Klik aan 'Scherm randen', 'Venster randen' of 'Beiden'."
 
 msgid "Snapping Windows"
-msgstr ""
+msgstr "Klikkende vensters"
 
 msgid "The distance until edge attraction takes place."
-msgstr ""
+msgstr "De afstand waarop rand aantrekking plaats vind."
 
 msgid "The distance until edge resistance takes place."
-msgstr ""
+msgstr "De afstand waarop rand weerstand plaatsvind."
 
 msgid "Use this bindings to avoid snapping."
-msgstr ""
+msgstr "Gebruik deze bindingen om vastklikken te voorkomen."
 
 msgid "Window edges"
-msgstr ""
+msgstr "Venster randen"
 
 msgid "Bottom to Top"
-msgstr ""
+msgstr "Onderkant naar boven"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
 "fall more smoothly, but will also increase CPU usage."
 msgstr ""
+"Vertraging (in ms) tussen scherm vernieuwingen. Het verkleinen van deze "
+"waarde maakt het vallen van sneeuw misschien vloeiender maar verhoogt ook de "
+"CPU belasting."
 
 msgid "Enable Blending"
-msgstr ""
+msgstr "Blending inschakelen"
 
 msgid "Enable Textures"
-msgstr ""
+msgstr "Inschakelen texturen"
 
 msgid "Enables alpha blending of snowflakes."
-msgstr ""
+msgstr "Schakelt alpha blending in voor sneeuwvlokken."
 
 msgid "Enables textures snowflakes. If not selected, color cradients are used."
 msgstr ""
+"Gebruikt teksturen voor sneeuwvlokken. Indien niet geselecteerd worden kleur "
+"gradatie's gebruikt."
 
 msgid "Flakes rotate if checked."
-msgstr ""
+msgstr "Vlokken roteren als dit is aangevinkt."
 
 msgid "How deep into the screen snowflakes can be drawn before being removed"
 msgstr ""
+"Hoe diep in het scherm sneeuwvlokken getekend kunnen worden voordat ze "
+"verwĳderd worden"
 
 msgid ""
 "How far outside the screen resolution snow flakes can be before being "
 "removed. Needed because of FOV."
 msgstr ""
+"Hoe ver buiten de scherm resolutie sneeuwvlokken kunnen komen voordat ze "
+"worden verwĳderd. Dit is nodig voor FOV."
 
 msgid "Key Bindings"
-msgstr ""
+msgstr "Toets bindingen"
 
 msgid "Left to Right"
-msgstr ""
+msgstr "Links naar rechts"
 
 msgid "Number Of Snowflakes"
-msgstr ""
+msgstr "Aantal sneeuwvlokken"
 
 msgid "Number of snowflakes"
-msgstr ""
+msgstr "Aantal sneeuwvlokken"
 
 msgid "Right to Left"
-msgstr ""
+msgstr "Rechts naar links"
 
 msgid "Rotate Flakes"
-msgstr ""
+msgstr "Sneeuwvlokken draaien"
 
 msgid "Screen Boxing"
-msgstr ""
+msgstr "Schermomsluiting"
 
 msgid "Screen Depth"
-msgstr ""
+msgstr "Scherm diepte"
 
 msgid "Select snow flake movement direction"
-msgstr ""
+msgstr "Selecteer sneeuw vlok bewegings richting"
 
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 msgid "Size Of Snowflakes"
-msgstr ""
+msgstr "Grootte van sneeuwvlokken"
 
 msgid "Size of snowflakes"
-msgstr ""
+msgstr "Grootte sneeuwvlokken"
 
 msgid "Snow"
-msgstr ""
+msgstr "Sneeuw"
 
 msgid "Snow Direction"
-msgstr ""
+msgstr "Sneeuw richting"
 
 msgid "Snow Over Windows"
-msgstr ""
+msgstr "Sneeuw over vensters"
 
 msgid "Snow Speed"
-msgstr ""
+msgstr "Sneeuw vensters"
 
 msgid "Snow Textures"
-msgstr ""
+msgstr "Sneeuw texturen"
 
 msgid "Snow Toggle"
-msgstr ""
+msgstr "Sneeuw schakelen"
 
 msgid "Snow for Compiz"
-msgstr ""
+msgstr "Sneeuw voor Compiz"
 
 msgid "Snow is drawn above windows"
-msgstr ""
+msgstr "Sneeuw wordt getekend boven vensters"
 
 msgid "Snow textures"
-msgstr ""
+msgstr "Sneeuw texturen"
 
 msgid "Snow toggle key"
-msgstr ""
+msgstr "Sneeuw schakel toets"
 
 msgid "Speed of falling snow"
-msgstr ""
+msgstr "Snelheid van vallende sneeuw"
 
 msgid "Textures"
-msgstr ""
+msgstr "Texturen"
 
 msgid "Top to Bottom"
-msgstr ""
+msgstr "Boven naar beneden"
 
 msgid "Update Delay"
-msgstr ""
+msgstr "Update vertraging"
 
 msgid "A simple splash plugin"
-msgstr ""
+msgstr "Een simpele splash plugin"
 
 msgid "Background File"
-msgstr ""
+msgstr "Achtergrond bestand"
 
 msgid "Background brightness."
-msgstr ""
+msgstr "Achtergrond helderheid."
 
 msgid "Background image File."
-msgstr ""
+msgstr "Achtergrond afbeeldings bestand."
 
 msgid "Background saturation."
-msgstr ""
+msgstr "Achtergrond verzadiging."
 
 msgid "Display In/Out Time."
-msgstr ""
+msgstr "Display in/uit tĳd."
 
 msgid "Display Time"
-msgstr ""
+msgstr "Display tijd"
 
 msgid "Fade In/Out Time."
-msgstr ""
+msgstr "Fade in/uit tijd."
 
 msgid "Images"
-msgstr ""
+msgstr "Afbeeldingen"
 
 msgid "Initiate Splash"
-msgstr ""
+msgstr "Initiëer Splash"
 
 msgid "Logo File"
-msgstr ""
+msgstr "Logo bestand"
 
 msgid "Logo image File."
-msgstr ""
+msgstr "Logo afbeeldingsbestand."
 
 msgid "Show on first start"
-msgstr ""
+msgstr "Toon bĳ eerste start"
 
 msgid "Show splash on first start."
-msgstr ""
+msgstr "Toon splash bĳ eerste start."
 
 msgid "Splash"
-msgstr ""
+msgstr "Splash"
 
 msgid "Start Splash."
-msgstr ""
+msgstr "Start Splash."
 
 msgid "Render text to texture"
-msgstr ""
+msgstr "Render tekst naar een tekstuur"
 
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 msgid "Enable Titles"
-msgstr ""
+msgstr "Inschakelen titels"
 
 msgid "Fade In/Out Duration"
-msgstr ""
+msgstr "Duur van fade In/Out"
 
 msgid "Fade In/Out Duration in seconds."
-msgstr ""
+msgstr "Duur van Fade In/Out in seconden."
 
 msgid "Generate Mipmaps"
-msgstr ""
+msgstr "Mipmaps genereren"
 
 msgid "Generate mipmaps when possible for higher quality scaling."
-msgstr ""
+msgstr "Mipmaps genereren indien mogelijk voor hogere kwaliteit schalen."
 
 msgid "Paint Thumbnails Always on Top."
-msgstr ""
+msgstr "Thumbnails altijd boven alle venster weergeven."
 
 msgid "Paint Window Like Background"
-msgstr ""
+msgstr "Teken venster zoals achtergrond"
 
 msgid "Paint Window Like Background instead of Glow."
-msgstr ""
+msgstr "Teken venster zoals achtergrond ipv. gloeien."
 
 msgid "Set it if the Taskbar shows only Windows of Current Viewport."
-msgstr ""
+msgstr "Instellen als taakbalk alleen vensters toont van huidige viewport."
 
 msgid "Should be the window title Bold."
-msgstr ""
+msgstr "De venstertitel in vet lettertype."
 
 msgid "Show Delay"
-msgstr ""
+msgstr "Toon delay"
 
 msgid "Show Window Title in Thumbnail."
-msgstr ""
+msgstr "Toon venster titel in thumbnail."
 
 msgid "Size of Thumbnail Border."
-msgstr ""
+msgstr "Grootte van thumbnail rand."
 
 msgid "Taskbar"
-msgstr ""
+msgstr "Taakbalk"
 
 msgid "Taskbar Shows Only Windows of Current Viewport"
-msgstr ""
+msgstr "Taakbalk toont allen vensters in huidige viewport"
 
 msgid "Thumbnail Background and Border Glow Color."
-msgstr ""
+msgstr "Thumbnail achtergrond en rand gloei kleur."
 
 msgid "Thumbnail Border Glow Color"
-msgstr ""
+msgstr "Thumbnail rand gloeikleur"
 
 msgid "Thumbnail Border Size"
-msgstr ""
+msgstr "Thumbnail rand grootte"
 
 msgid "Thumbnail Window Size"
-msgstr ""
+msgstr "Thumbnail venster grootte"
 
 msgid "Thumbnail window size."
-msgstr ""
+msgstr "Thumbnail venster grootte."
 
 msgid "Thumbnails Always on Top"
-msgstr ""
+msgstr "Thumbnails altijd bovenop"
 
 msgid "Time (in ms) before Thumbnail is shown."
-msgstr ""
+msgstr "Tĳd (in ms) voordat de thumbnail wordt getoond."
 
 msgid "Window Previews"
-msgstr ""
+msgstr "Venster previews"
 
 msgid "Window thumbnails at the taskbar"
-msgstr ""
+msgstr "Venster thumbnails op de taakbalk"
 
 msgid "Window title"
-msgstr ""
+msgstr "Venster titel"
 
 msgid "Window title Font Color."
-msgstr ""
+msgstr "Venster titel lettertype kleur."
 
 msgid "Window title Font Size."
-msgstr ""
+msgstr "Venster titel lettertype grootte."
 
 msgid "Animation Duration"
-msgstr ""
+msgstr "Duur van animatie"
 
 msgid "Cascade"
-msgstr ""
+msgstr "Cascade"
 
 msgid "Cascade Delta"
-msgstr ""
+msgstr "Cascade Delta"
 
 msgid "Cascade Windows"
-msgstr ""
+msgstr "Cascade vensters"
 
 msgid "Choose the tiling type you want when using toggle."
-msgstr ""
+msgstr "Kies de tegelmethode die je wilt als je de schakel knop gebruikt."
 
 msgid "Distance between windows when using cascade"
-msgstr ""
+msgstr "Afstand tussen venster bĳ gebruik van cascade"
 
 msgid "Drop From Top"
-msgstr ""
+msgstr "Laat van top vallen"
 
 msgid "Duration (in ms) of the tiling animation"
-msgstr ""
+msgstr "Duur (in ms) van de tegel animatie"
 
 msgid "Excluded Windows"
-msgstr ""
+msgstr "Uitgezonderde vensters"
 
 msgid "Filled Outline"
-msgstr ""
+msgstr "Gevulde omtrek"
 
 msgid "Join Windows (EXPERIMENTAL)"
-msgstr ""
+msgstr "Vensters samenvoegen (EXPERIMENTEEL)"
 
 msgid "Left Occupancy"
-msgstr ""
+msgstr "Linker ruimte percentage"
 
 msgid ""
 "Move and resize all visible windows both vertically and horizontally, so "
 "that the occupy whole screen and are in a grid."
 msgstr ""
+"Verplaats en wijzig grootte van alle zichtbare vensters zowel verticaal als "
+"horizontaal zodat ze het hele scherm in beslag nemen in een raster."
 
 msgid ""
 "Move and resize all visible windows so that they have full height, same "
 "width and occupy whole screen."
 msgstr ""
+"Verplaats en afmeting wijzigen zodat alle vensters een volledige hoogte "
+"hebben, dezelfde breedte en het hele scherm bezetten."
 
 msgid ""
 "Move and resize all visible windows so that they have full width, same "
 "height and occupy whole screen."
 msgstr ""
+"Verplaats en wijzig grootte van alle zichtbare vensters zodat ze een "
+"volledige breedte, dezelfde hoogte hebben en het scherm volledig vullen."
 
 msgid ""
 "Move and resize all visible windows with the delta value set for cascading."
 msgstr ""
+"Verplaats en wijzig grootte van alle zichtbare vensters waarbij de delta "
+"waarde wordt gezet voor een cascade."
 
 msgid ""
 "Occupancy percentage for window placed left. This number is percentage of "
 "screen width, which the active window will have it as width when tiled. "
 "Applies to Left tiling type."
 msgstr ""
+"Ruimte percentage voor venster wat links geplaatst wordt. Deze waarde is een "
+"percentage van de schermbreedte , die het actieve venster zal verkrijgen als "
+"breedte tijdens tegelen. is van toepassing op Links Tegelen."
 
 msgid "Restore Windows"
-msgstr ""
+msgstr "Herstel vensters"
 
 msgid "Restore windows to their original position they had before tiling."
 msgstr ""
+"Herstel de vensters naar hun originele positie zoals ze die hadden voor het "
+"tegelen."
 
 msgid "Selects the animation used while tiling"
-msgstr ""
+msgstr "Selecteert de gebruikte animatie tĳdens tegelen"
 
 msgid "Slide"
-msgstr ""
+msgstr "Dia"
 
 msgid "Tile"
-msgstr ""
+msgstr "Tegelen"
 
 msgid "Tile Horizontally"
-msgstr ""
+msgstr "Tegelen horizontaal"
 
 msgid "Tile Vertically"
-msgstr ""
+msgstr "Tegelen verticaal"
 
 msgid "Tile Windows"
-msgstr ""
+msgstr "Tegelen van vensters"
 
 msgid "Tile Windows Horizontally"
-msgstr ""
+msgstr "Horizontaal tegelen van vensters"
 
 msgid "Tile Windows Vertically"
-msgstr ""
+msgstr "Verticaal tegelen van vensters"
 
 msgid "Tile windows"
-msgstr ""
+msgstr "Tegelen vensters"
 
 msgid "Tiling Animation Type"
-msgstr ""
+msgstr "Tegel animatie methode"
 
 msgid "Tiling Method For Toggle"
-msgstr ""
+msgstr "Tegel methode voor schakelen"
 
 msgid "Toggle Tiling"
-msgstr ""
+msgstr "Schakel tegelen"
 
 msgid "Toggle between tile and restore"
-msgstr ""
+msgstr "Schakel tussen tegelen en herstellen"
 
 msgid ""
 "Tries to join the windows together when horizontal, vertical or left tiling "
 "is enabled so that when you resize a window surrounding windows resize "
 "accordingly. This may cause problems if you dont leave them enough space."
 msgstr ""
+"Probeert om vensters samen te voegen als horizontaal, verticaal of links "
+"tegelen is ingeschakeld zodat wanneer je de grootte van een venster aanpast "
+"de omringende vensters overeenkomstig aangepast worden. Dit kan problemen "
+"opleveren als je ze niet genoeg ruimte laat."
 
 msgid "Windows which should be excluded from tiling"
-msgstr ""
+msgstr "Vensters die moeten worden uitgesloten van tegelen"
 
 msgid ""
 "Adjust the opacity, saturation and brightness of windows based on when they "
 "last had focus."
 msgstr ""
+"Pas de ondoorzichtigheid, verzadiging en helderheid van vensters aan "
+"gebaseerd op wanneer ze voor het laatst focus hadden."
 
 msgid "Brightness Level of Focused Windows"
-msgstr ""
+msgstr "Helderheidsnivo van vensters met focus"
 
 msgid "Brightness Level of Unfocused Windows"
-msgstr ""
+msgstr "Helderheidsnivo van vensters zonder focus"
 
 msgid ""
 "Brightness of the currently focused window. Windows will get brightness "
 "levels between the focused and minimum."
 msgstr ""
+"Helderheid van het venster met de huidige focus. Venster krĳgen een "
+"helderheidsniveau tussen die van venster met focus en minimum."
 
 msgid ""
 "Brightness of the least focused window. Windows will get brightness levels "
 "between the focused and minimum."
 msgstr ""
+"Helderheid van het venster met de minste focus. Vensters krĳgen een "
+"helderheidsniveau tussen dat van een venster met focus en het minimum."
 
 msgid "Number of Windows to Track"
-msgstr ""
+msgstr "Aantal vensters om bij te houden"
 
 msgid ""
 "Number of windows Trailfocus will keep track of. Windows that had focus this "
 "amount of windows ago or more will be considered completly unfocused."
 msgstr ""
+"Aantal venster die VolgFocus bĳ houdt. Vensters die focus hadden dit aantal "
+"vensters geleden worden beschouwd als volledig zonder focus."
 
 msgid "Opacity Level of Focused Windows"
-msgstr ""
+msgstr "Ondoorzichtigheidsnivo van vensters met focus"
 
 msgid "Opacity Level of Unfocused Windows"
-msgstr ""
+msgstr "Ondoorzichtigheidsnivo van vensters zonder focus"
 
 msgid ""
 "Opacity of the currently focused window. Windows will get opacity levels "
 "between the focused and minimum."
 msgstr ""
+"Ondoorzichtigheid van het venster met de huidige focus. Vensters krĳgen een "
+"ondoorzichtigheidsniveau tussen dat van een venster met focus en minimum."
 
 msgid ""
 "Opacity of the least focused window. Windows will get opacity levels between "
 "the focused and minimum."
 msgstr ""
+"Ondoorzichtigheid van het venster met de minste focus. Vensters krĳgen een "
+"ondoorzichtigheidsniveau tussen dat van een venster met focus en minimum."
 
 msgid "Saturation Level of Focused Windows"
-msgstr ""
+msgstr "Verzadigingsnivo van venster met focus"
 
 msgid "Saturation Level of Unfocused Windows"
-msgstr ""
+msgstr "Verzadigingsnivo van vensters zonder focus"
 
 msgid ""
 "Saturation of the currently focused window. Windows will get saturation "
 "levels between the focused and minimum."
 msgstr ""
+"Verzadiging van het venster met de huidige focus. Vensters krĳgen een "
+"verzadigingsniveau tussen dat van een venster met focus en minimum."
 
 msgid ""
 "Saturation of the least focused window. Windows will get saturation levels "
 "between the focused and minimum."
 msgstr ""
+"Verzadiging van het venster met de minste focus. Vensters krĳgen een "
+"verzadigingsniveau tussen dat van een venster met focus en minimum."
 
 msgid ""
 "This defines when Trailfocus will start fading windows. This lets you set up "
 "trailfocus to treat the N first Windows as fully focused."
 msgstr ""
+"Dit definieert wanneer VolgSpoor begint met het uitvagen van vensters. Dit "
+"stelt VolgSpoor zodanig in dat de N eerste vensters worden behandeld alsof "
+"ze 100% focus hebben."
 
 msgid "Trailfocus"
-msgstr ""
+msgstr "Focusspoor"
 
 msgid "Window to Start Fading"
-msgstr ""
+msgstr "Venster om te beginnen met uitvagen"
 
 msgid "Window types that should be handled by Trailfocus"
-msgstr ""
+msgstr "Venster typen die moeten behandeld worden door VolgFocus"
 
 msgid "Action name for initiate"
-msgstr ""
+msgstr "Actie naam voor initiëer"
 
 msgid "Action name for initiate/terminate"
-msgstr ""
+msgstr "Actie naam voor initiëer/afbreken"
 
 msgid "Begin Viewport Switch"
-msgstr ""
+msgstr "Begin met viewport wissel"
 
 msgid "Begin entering viewport number"
-msgstr ""
+msgstr "Begin met invoeren viewport nummer"
 
 msgid "Desktop-based Viewport Switching"
-msgstr ""
+msgstr "Bureaublad-gebaseerde viewport wisseling"
 
 msgid "Go to specific viewport"
-msgstr ""
+msgstr "Ga naar specifieke viewport"
 
 msgid "Initiate plugin action"
-msgstr ""
+msgstr "Initiëer plugin actie"
 
 msgid "Initiate viewport changes through several events"
-msgstr ""
+msgstr "Initiëer viewport veranderingen door verschillende gebeurtenissen"
 
 msgid "Initiate/Terminate the selected plugin action"
-msgstr ""
+msgstr "Initiëren/Afbreken van de geselecteerde plugin actie"
 
 msgid "Move Down"
-msgstr ""
+msgstr "Verplaats omlaag"
 
 msgid "Move Left"
-msgstr ""
+msgstr "Verplaats naar links"
 
 msgid "Move Next"
-msgstr ""
+msgstr "Verplaats naar volgende"
 
 msgid "Move Prev"
-msgstr ""
+msgstr "Verplaats naar vorige"
 
 msgid "Move Right"
-msgstr ""
+msgstr "Verplaats naar rechts"
 
 msgid "Move Up"
-msgstr ""
+msgstr "Verplaats omhoog"
 
 msgid "Move down"
-msgstr ""
+msgstr "Verplaats omlaag"
 
 msgid "Move to the left"
-msgstr ""
+msgstr "Verplaats naar links"
 
 msgid "Move to the next viewport"
-msgstr ""
+msgstr "Verplaats naar volgende viewport"
 
 msgid "Move to the previous viewport"
-msgstr ""
+msgstr "Verplaats naar vorige viewport"
 
 msgid "Move to the right"
-msgstr ""
+msgstr "Verplaats naar rechts"
 
 msgid "Move up"
-msgstr ""
+msgstr "Verplaats omhoog"
 
 msgid "Number-Based Viewport Switching"
-msgstr ""
+msgstr "Nummer gebaseerde viewport wisseling"
 
 msgid "Plugin for initiate action"
-msgstr ""
+msgstr "Plugin voor initiëer actie"
 
 msgid "Plugin for initiate/action action"
-msgstr ""
+msgstr "Plugin voor initiëer/actie "
 
 msgid "Switch to Viewport 1"
-msgstr ""
+msgstr "Wissel naar viewport 1"
 
 msgid "Switch to Viewport 10"
-msgstr ""
+msgstr "Wissel naar viewport 10"
 
 msgid "Switch to Viewport 11"
-msgstr ""
+msgstr "Wissel naar viewport 11"
 
 msgid "Switch to Viewport 12"
-msgstr ""
+msgstr "Wissel naar viewport 12"
 
 msgid "Switch to Viewport 2"
-msgstr ""
+msgstr "Wissel naar viewport 2"
 
 msgid "Switch to Viewport 3"
-msgstr ""
+msgstr "Wissel naar viewport 3"
 
 msgid "Switch to Viewport 4"
-msgstr ""
+msgstr "Wissel naar viewport 4"
 
 msgid "Switch to Viewport 5"
-msgstr ""
+msgstr "Wissel naar viewport 5"
 
 msgid "Switch to Viewport 6"
-msgstr ""
+msgstr "Wissel naar viewport 6"
 
 msgid "Switch to Viewport 7"
-msgstr ""
+msgstr "Wissel naar viewport 7"
 
 msgid "Switch to Viewport 8"
-msgstr ""
+msgstr "Wissel naar viewport 8"
 
 msgid "Switch to Viewport 9"
-msgstr ""
+msgstr "Wissel naar viewport 9"
 
 msgid "Switch to viewport 1"
-msgstr ""
+msgstr "Wissel naar viewport 1"
 
 msgid "Switch to viewport 10"
-msgstr ""
+msgstr "Wissel naar viewport 10"
 
 msgid "Switch to viewport 11"
-msgstr ""
+msgstr "Wissel naar viewport 11"
 
 msgid "Switch to viewport 12"
-msgstr ""
+msgstr "Wissel naar viewport 12"
 
 msgid "Switch to viewport 2"
-msgstr ""
+msgstr "Wissel naar viewport 2"
 
 msgid "Switch to viewport 3"
-msgstr ""
+msgstr "Wissel naar viewport 3"
 
 msgid "Switch to viewport 4"
-msgstr ""
+msgstr "Wissel naar viewport 4"
 
 msgid "Switch to viewport 5"
-msgstr ""
+msgstr "Wissel naar viewport 5"
 
 msgid "Switch to viewport 6"
-msgstr ""
+msgstr "Wissel naar viewport 6"
 
 msgid "Switch to viewport 7"
-msgstr ""
+msgstr "Wissel naar viewport 7"
 
 msgid "Switch to viewport 8"
-msgstr ""
+msgstr "Wissel naar viewport 8"
 
 msgid "Switch to viewport 9"
-msgstr ""
+msgstr "Wissel naar viewport 9"
 
 msgid "Viewport Switcher"
-msgstr ""
+msgstr "Viewport wisselaar"
 
 msgid "Allow Wrap-Around"
-msgstr ""
+msgstr "Omwikkelen toestaan"
 
 msgid "Allow wrap-around when moving the wall up/down/left/right"
 msgstr ""
+"Omwikkelen toestaan wanneer de muur beweegt naar boven/beneden/links/rechts"
 
 msgid "Arrow Colors"
-msgstr ""
+msgstr "Pĳl kleuren"
 
 msgid "Background Gradient"
-msgstr ""
+msgstr "Achtergrond gradatie"
 
 msgid "Base Color"
-msgstr ""
+msgstr "Basis kleur"
 
 msgid "Desktop Wall"
-msgstr ""
+msgstr "Bureaublad Muur"
 
 msgid "Desktop Wall Plugin"
-msgstr ""
+msgstr "Bureaublad Muur Plugin"
 
 msgid "Duration (in s) for wall sliding viewport switching animation"
-msgstr ""
+msgstr "Duur (in s) voor muur schuif viewport wisseling animatie"
 
 msgid ""
 "Duration (in s) the switch target preview should remain visible after "
 "switching ends."
 msgstr ""
+"Duur (in s) de wissel dat de doelpreview zichtbaar moet blĳven nadat het "
+"wisselen wordt beëindigt."
 
 msgid "Edge Flip DnD"
-msgstr ""
+msgstr "Rand kantel verslepen"
 
 msgid "Edge Flip Move"
-msgstr ""
+msgstr "Rand kantel verplaatsen"
 
 msgid "Edge Flip Pointer"
-msgstr ""
+msgstr "Rand kantel aanwijzer"
 
 msgid "Edge Flipping"
-msgstr ""
+msgstr "Rand kantelen"
 
 msgid "Edge Radius"
-msgstr ""
+msgstr "Rand radius"
 
 msgid "Edge flipping"
-msgstr ""
+msgstr "Rand kantelen"
 
 msgid "First color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Eerste kleur voor de achtergrond gradatie van het wisselvenster."
 
 msgid "First color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "Eerste kleur voor de thumbnail gradatie van het wissel venster."
 
 msgid "First color for the thumb highlight gradient of the switcher window."
-msgstr ""
+msgstr "Eerste kleur van de thumbnail gradatie van het wisselvenster."
 
 msgid "First color of the arrow of the switcher window."
-msgstr ""
+msgstr "Eerste kleur van de pĳl van het wissel venster."
 
 msgid "Flip Down"
-msgstr ""
+msgstr "Kantel omlaag"
 
 msgid "Flip Left"
-msgstr ""
+msgstr "Kantel naar links"
 
 msgid "Flip Right"
-msgstr ""
+msgstr "Kantel naar rechts"
 
 msgid "Flip Up"
-msgstr ""
+msgstr "Kantel omhoog"
 
 msgid "Flip down"
-msgstr ""
+msgstr "Kantel omlaag"
 
 msgid "Flip left"
-msgstr ""
+msgstr "Kantel naar links"
 
 msgid "Flip right"
-msgstr ""
+msgstr "Kantel naar rechts"
 
 msgid "Flip up"
-msgstr ""
+msgstr "Kantel omhoog"
 
 msgid "Flip viewport when dragging an object to a screen edge"
 msgstr ""
+"Kantel viewport als een object naar de scherm rand wordt versleept wordt"
 
 msgid "Flip viewport when moving a window to a screen edge"
-msgstr ""
+msgstr "Kantel viewport als een venster naar de schermrand wordt verplaatst"
 
 msgid "Flip viewport when moving the pointer to a screen edge"
 msgstr ""
+"Kantel viewport als de muisaanwĳzer naar de schermrand wordt verplaatst"
 
 msgid "Highlight Gradient"
-msgstr ""
+msgstr "Oplicht gradatie"
 
 msgid "How should a multimonitor configuration be handled"
-msgstr ""
+msgstr "Hoe moet worden omgegaan met een multi-monitor configuratie"
 
 msgid "Move Down With Window"
-msgstr ""
+msgstr "Verplaats omlaag met venster"
 
 msgid "Move Left With Window"
-msgstr ""
+msgstr "Verplaats naar links met venster"
 
 msgid "Move Right With Window"
-msgstr ""
+msgstr "Verplaats naar rechts met venster"
 
 msgid "Move Up With Window"
-msgstr ""
+msgstr "Verplaats omhoog met venster"
 
 msgid "Move along the wall down"
-msgstr ""
+msgstr "Verplaats langs de muur omlaag"
 
 msgid "Move along the wall to the left"
-msgstr ""
+msgstr "Verplaats langs de muur naar links"
 
 msgid "Move along the wall to the next viewport"
-msgstr ""
+msgstr "Verplaats langs de muur naar de volgende viewport"
 
 msgid "Move along the wall to the previous viewport"
-msgstr ""
+msgstr "Verplaats langs de muur naar de vorige viewport"
 
 msgid "Move along the wall to the right"
-msgstr ""
+msgstr "Verplaats langs de muur naar rechts"
 
 msgid "Move along the wall up"
-msgstr ""
+msgstr "Verplaats langs de muur omhoog"
 
 msgid "Move with window along the wall down"
-msgstr ""
+msgstr "Verplaats met venster langs de muur omlaag"
 
 msgid "Move with window along the wall to the left"
-msgstr ""
+msgstr "Verplaats met venster langs de muur naar links"
 
 msgid "Move with window along the wall to the right"
-msgstr ""
+msgstr "Verplaats met venster langs de muur naar rechts"
 
 msgid "Move with window along the wall up"
-msgstr ""
+msgstr "Verplaats met venster langs de muur omhoog"
 
 msgid "Move with window within wall"
-msgstr ""
+msgstr "Verplaats met venster binnen de muur"
 
 msgid "Move within wall"
-msgstr ""
+msgstr "Verplaats binnen de muur"
 
 msgid "Multimonitor behavior"
-msgstr ""
+msgstr "Multi-monitor gedrag"
 
 msgid "Outline Color"
-msgstr ""
+msgstr "Omtrek kleur"
 
 msgid "Outline color of the switcher window."
-msgstr ""
+msgstr "Omtrek kleur van het wissel venster."
 
 msgid "Radius of the rounded edge"
-msgstr ""
+msgstr "Radius van de afgeronde hoek"
 
 msgid "Second color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Tweede klekur voor de achtergrond gradatie van het wisselvenster."
 
 msgid "Second color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "Tweede kleur voor de thumbnail gradatie van het wissel venster."
 
 msgid "Second color for the thumb highlight gradient of the switcher window."
-msgstr ""
+msgstr "Tweede kleur voor de thumbnail oplicht gradatie van het wisselvenster."
 
 msgid "Second color of the arrow of the switcher window."
-msgstr ""
+msgstr "Tweede kleur van de pĳl van het wisselvenster."
 
 msgid "Shadow Color"
-msgstr ""
+msgstr "Schaduw kleur"
 
 msgid "Show Live Viewport Previews"
-msgstr ""
+msgstr "Toon live viewport previews"
 
 msgid "Show Viewport Switcher Preview"
-msgstr ""
+msgstr "Toon viewport wisselaar preview"
 
 msgid "Show live viewport previews in switcher window"
-msgstr ""
+msgstr "Toon live viewport previews in wissel venster"
 
 msgid "Show switcher window while switching viewports"
-msgstr ""
+msgstr "Toon wissel venster tĳdens het wisselen van viewports"
 
 msgid "Switch Target Preview Visibility Time"
-msgstr ""
+msgstr "Switch doel preview zichtbaarheidstijd"
 
 msgid "Switch all"
-msgstr ""
+msgstr "Wissel allen"
 
 msgid "Switch separately"
-msgstr ""
+msgstr "Wissel apart"
 
 msgid "Third color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Derde kleur van de achtergrond gradatie van het wissel venster."
 
 msgid "Thumb Gradient"
-msgstr ""
+msgstr "Thumbnail gradatie"
 
 msgid "Viewport Switch Preview"
-msgstr ""
+msgstr "Viewport wissel preview"
 
 msgid "Viewport Switching"
-msgstr ""
+msgstr "Viewport wisselen"
 
 msgid "Wall Sliding Duration"
-msgstr ""
+msgstr "Duur van muur schuiven"
 
 msgid "Backgrounds"
-msgstr ""
+msgstr "Achtergronden"
 
 msgid "Draw the desktop wallpaper"
-msgstr ""
+msgstr "Teken de bureaublad achtergrond"
+
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Schakelt alpha blending in voor sneeuwvlokken."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Blending inschakelen"
 
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
+"De achtergrond specificatie's (zoals uitgelegd in DOCUMENTATIE) om te "
+"gebruiken."
 
 msgid "Tile backgrounds as opposed to stretching"
-msgstr ""
-
-msgid "Tile or Stretch"
-msgstr ""
+msgstr "Tegel achtergrond in tegenstelling tot oprekken"
 
 msgid "Wallpaper"
-msgstr ""
+msgstr "Achtergrond"
 
 msgid "Background Brightness"
-msgstr ""
+msgstr "Achtergrond helderheid"
 
 msgid "Background Saturation"
-msgstr ""
+msgstr "Achtergrond verzadiging"
 
 msgid "Background in Widget Mode"
-msgstr ""
+msgstr "Achtergrond in Widget modus"
 
 msgid "Brightness of non-widget windows in widget modes."
-msgstr ""
+msgstr "Helderheid van non-widget vensters in Widget modi."
 
 msgid "End Widget Mode on Click"
-msgstr ""
+msgstr "Beëindig Widget modus bĳ klikken"
 
 msgid "End widget mode when a non-widget window is clicked."
-msgstr ""
+msgstr "Beëindig Widget modus als een niet-widget venster wordt aangeklikt."
 
 msgid "Saturation of non-widget windows in widget modes."
-msgstr ""
+msgstr "Verzadiging van niet-widget vensters in Widget modi."
 
 msgid "Show or hide widget windows"
-msgstr ""
+msgstr "Toon of verberg widget vensters"
 
 msgid "Show widget windows on a separate layer"
-msgstr ""
+msgstr "Toon widget vensters op een aparte laag"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
+msgstr "Tĳd (in s) voor in-/uitvagen van de widget laag."
 
 msgid "Toggle Widget Display"
-msgstr ""
+msgstr "Wissel widget display"
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "Widget laag"
 
-#, fuzzy
 msgid "Widget Windows"
-msgstr "3D vensters"
+msgstr "Widget vensters"
 
 msgid "Windows that always should be treated as widgets"
-msgstr ""
+msgstr "Vensters die altĳd moeten worden behandeld als widgets"
 
 msgid "Above others windows"
-msgstr ""
+msgstr "Boven andere vensters"
 
 msgid "Below others windows"
-msgstr ""
+msgstr "Onder andere vensters"
 
 msgid "Don't show application in pager"
-msgstr ""
+msgstr "Toon programma niet in pager"
 
 msgid "Don't show application in taskbar"
-msgstr ""
+msgstr "Toon programma niet in de taakbalk"
 
 msgid "Fixed Size Windows"
-msgstr ""
+msgstr "Vastgezette grootte van vensters"
 
 msgid "Fullscreen"
-msgstr ""
+msgstr "Volledig scherm"
 
 msgid "Fullscreen windows"
-msgstr ""
+msgstr "Volledig scherm vensters"
 
 msgid "Height"
-msgstr ""
+msgstr "Hoogte"
 
 msgid "Height values"
-msgstr ""
+msgstr "Hoogte waarden"
 
 msgid "Matches"
 msgstr ""
 
 msgid "No ARGB visuals"
-msgstr ""
+msgstr "Geen ARGB visuals"
 
 msgid "No focus"
-msgstr ""
+msgstr "Geen focus"
 
 msgid "Non closable windows"
-msgstr ""
+msgstr "Niet afsluitbare vensters"
 
 msgid "Non maximizable windows"
-msgstr ""
+msgstr "Niet maximaliseerbare vensters"
 
 msgid "Non minimizable windows"
-msgstr ""
+msgstr "Niet minimaliseerbare  vensters"
 
 msgid "Non movable windows"
-msgstr ""
+msgstr "Niet verplaatsbare vensters"
 
 msgid "Non resizable windows"
-msgstr ""
+msgstr "Niet vergroot-/verkleinbare vensters"
 
 msgid "Set window as non closable"
-msgstr ""
+msgstr "Stel venster in als niet afsluitbaar"
 
 msgid "Set window as non maximizable"
-msgstr ""
+msgstr "Stel venster in als niet maximaliseerbaar"
 
 msgid "Set window as non minimizable"
-msgstr ""
+msgstr "Stel venster in als niet minimaliseerbaar"
 
 msgid "Set window as non movable"
-msgstr ""
+msgstr "Stel venster in als niet verplaatsbaar"
 
 msgid "Set window as non resizable"
-msgstr ""
+msgstr "Stel venster in als niet vergroot-/verkleinbaar"
 
 msgid "Set windows rules"
-msgstr ""
+msgstr "Stel vensterregels in"
 
 msgid "Sized Windows"
 msgstr ""
 
 msgid "Skip pager"
-msgstr ""
+msgstr "Sla pager over"
 
 msgid "Skip taskbar"
-msgstr ""
+msgstr "Sla taakbalk over"
 
 msgid "Sticky"
-msgstr ""
+msgstr "Sticky"
 
 msgid "Sticky windows"
-msgstr ""
+msgstr "Sticky vensters"
 
 msgid "Width"
-msgstr ""
+msgstr "Breedte"
 
 msgid "Width values"
-msgstr ""
+msgstr "Breedte waarden"
 
 msgid "Window Rules"
-msgstr ""
+msgstr "Breedte regels"
 
 msgid "Windows that should be resized by default"
-msgstr ""
+msgstr "Venster die standaard vergroot /verkleind moeten worden"
 
 msgid "Windows that should be treated as not supporting transparency"
 msgstr ""
+"Vensters die behandeld moeten worden alsof ze geen transparantie ondersteunen"
 
 msgid "Windows will not have focus"
-msgstr ""
+msgstr "Vensters die geen focus zullen krĳgen"
 
 msgid "\"On all desktops\" sticky match"
-msgstr ""
+msgstr "\"Op alle bureaubladen\" sticky match"
 
 msgid "AIGLX Fragment Parameter Fix"
-msgstr ""
+msgstr "fix voor AIGLX fragment parameter "
 
 msgid "Firefox Menu Fix"
-msgstr ""
+msgstr "Fix voor Firefox menu"
 
 msgid "Fix broken glProgramEnvParameter4f implementation."
+msgstr "Fix voor gebroken glProgramEnvParameter4f implementatie."
+
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
 msgstr ""
 
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr ""
+msgstr "Fix voor venster type van Firefox en Thunderbird menu's."
 
 msgid "Fix window type of OpenOffice.org menus."
-msgstr ""
+msgstr "Fix voor venster type van OpenOffice menu's."
 
 msgid "Fix window type of notification daemon windows."
-msgstr ""
+msgstr "Fix voor venster type van notificatie daemon vensters."
 
 msgid "Fix window type of various Java windows."
-msgstr ""
+msgstr "Fix venster type van diverse Java vensters."
 
 msgid "Fix window type of various Qt windows."
-msgstr ""
+msgstr "Fix voor venster type van diverse Qt vensters."
 
 msgid "Java Window Fix"
-msgstr ""
+msgstr "Java venster fix"
 
 msgid "Legacy Fullscreen Support"
-msgstr ""
+msgstr "Legacy volledig scherm ondersteuning"
 
 msgid "Make \"on all desktops\" windows \"sticky\""
-msgstr ""
+msgstr "Maak \"op alle bureaubladen\" vensters \"sticky\""
 
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
 msgstr ""
+"Maak \"op alle bureaubladen\" vensters sticky.Sticky vensters zĳn zichtbaar "
+"op alle viewports."
 
 msgid "Make Wine and legacy applications fullscreen properly."
-msgstr ""
+msgstr "Maak Wine en legacy vensters op de juiste manier volledig scherm."
 
 msgid "Metacity-like workarounds."
-msgstr ""
+msgstr "Metacity-achtige workarounds."
 
 msgid "Notification Daemon Fix"
-msgstr ""
+msgstr "Fix voor notificatie daemon"
 
 msgid "OpenOffice.org Menu Fix"
-msgstr ""
+msgstr "Fix voor OpenOffice menu"
 
 msgid "Qt Window Fix"
-msgstr ""
+msgstr "Fix voor Qt venster"
 
 msgid "Window stickyness"
-msgstr ""
+msgstr "Stickyness van venster"
 
 msgid "Windows on all desktops that should be made sticky"
-msgstr ""
+msgstr "Vensters op alle bureaubladen die sticky gemaakt moeten worden"
 
 msgid "Workarounds"
-msgstr ""
+msgstr "Workarounds"
+
+#~ msgid "Misc. options"
+#~ msgstr "Diverse optie's"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Toon geminimaliseerde vensters"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "Tegelen of uitrekken"

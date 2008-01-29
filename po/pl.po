@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2007-12-01 16:48+0100\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
+"PO-Revision-Date: 2008-01-24 16:05+0100\n"
 "Last-Translator: Maciej Warnecki <maciekw5@gmail.com>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,6 +63,13 @@ msgstr "Zmiana odstępu między oknami(w procentach rozmiaru kostki)."
 msgid "Change the speed of the 3D animation"
 msgstr "Zmiana prędkości animacji 3D"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Przełącza przekierowywanie okna"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Podnosi okna podczas obracania kostki"
 
@@ -84,6 +91,14 @@ msgstr "Pozostałe opcje"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Zaokrągla narożniki okna dla zgodności z zaokrąglonymi dekoracjami"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Tytuł okna"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Czcionka tytułu okna"
 
 #, fuzzy
 msgid "Window Depth"
@@ -120,9 +135,6 @@ msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
 "Ułatwia koncentrację przez przygaszenie wszystkich okien poza aktywnym."
-
-msgid "Misc. options"
-msgstr "Pozostałe opcje"
 
 msgid "Opacity"
 msgstr "Nieprzezroczystość"
@@ -866,17 +878,17 @@ msgid "Cube Atlantis"
 msgstr "Obrazki na ściankach kostki"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Rozmiar delfinów"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Ustawia rozmiar delfinów."
 
 #, fuzzy
 msgid "Enable colors"
 msgstr "Włącz poświatę"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Rozmiar ryb"
 
 #, fuzzy
 msgid "Number of fish"
@@ -887,13 +899,13 @@ msgid "Number of fish inside the cube"
 msgstr "Ilość cząsteczek"
 
 msgid "Render some fish inside of the transparent cube"
-msgstr ""
+msgstr "Wyświetla rybki wewnątrz przezroczystej kostki."
 
 msgid "Shark size"
-msgstr ""
+msgstr "Rozmiar rekinów"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Rozmiar wielorybów"
 
 #, fuzzy
 msgid "Whale size."
@@ -972,7 +984,7 @@ msgid "Brightness and Saturation"
 msgstr "Jasność zanikających okien"
 
 msgid "Brightness and Saturation adjustments"
-msgstr ""
+msgstr "Regulacje jasności i nasycenia"
 
 #, fuzzy
 msgid "Brightness settings"
@@ -1093,6 +1105,8 @@ msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
 "contents if enabled."
 msgstr ""
+"Dekoracje okien (jego krawędzie i pasek tytułu) będą filtrowane razem z "
+"zawartością okan jeśli ta opcja jest włączona."
 
 #, fuzzy
 msgid "Windows to be filtered by default."
@@ -1328,16 +1342,17 @@ msgid "Animation used when switching to expo mode"
 msgstr "Animacja podczas przełączania do trybu expo"
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "Stosunek widoku"
 
 msgid "Button binding for drag &amp; drop of windows"
-msgstr ""
+msgstr "Przyporządkowanie klawisza do przeciągania i upuszczania okien"
 
 msgid "Button binding to exit expo"
 msgstr "Przyporządkowanie przycisku do wyjścia z Expo"
 
 msgid "Button binding to switch to next viewport in expo"
 msgstr ""
+"Przyporządkowanie klaiwsza do następnego wirtualnego pulpitu w trybie expo"
 
 msgid "Distance of the expo wall"
 msgstr "Dystans od ściany Expo"
@@ -1365,23 +1380,23 @@ msgid "Exit expo"
 msgstr "Wyjdź z Expo"
 
 msgid "Expo"
-msgstr ""
+msgstr "Expo"
 
 #, fuzzy
 msgid "Expo Animation"
 msgstr "Prędkość Animacji"
 
 msgid "Expo Plugin"
-msgstr ""
+msgstr "Wtyczka Expo"
 
 msgid "Expo button"
-msgstr ""
+msgstr "Przycisk Expo"
 
 msgid "Expo edge"
-msgstr ""
+msgstr "Granica ekranu Expo"
 
 msgid "Expo key"
-msgstr ""
+msgstr "Klawisz Expo"
 
 msgid "Expo mode aspect ratio"
 msgstr ""
@@ -1391,13 +1406,13 @@ msgid "Fade + Zoom"
 msgstr "Czas przenikania"
 
 msgid "Generate mipmaps in expo mode"
-msgstr ""
+msgstr "Generuj mipmapy w trybie expo"
 
 msgid "Hide panels/docks in expo"
-msgstr ""
+msgstr "Ukryj panele/paski w trybie expo"
 
 msgid "Hide panels/docks in expo."
-msgstr ""
+msgstr "Ukryj panele/paski w trybie expo."
 
 msgid "Immediate moves"
 msgstr "Natychmiastowe ruchy"
@@ -1407,7 +1422,7 @@ msgid "Mipmaps"
 msgstr "Stwórz mipmapy"
 
 msgid "Multi Output Mode"
-msgstr ""
+msgstr "Tryb wielu urządzeń wyjścia"
 
 msgid "Next viewport"
 msgstr "Następny pulpit"
@@ -1429,7 +1444,7 @@ msgid "Reflection Scale"
 msgstr "Obraz odbicia"
 
 msgid "Scale factor of the expo wall reflection"
-msgstr ""
+msgstr "Współczynnik skalowania odbicia ściany"
 
 msgid ""
 "Selects how the expo wall is displayed if multiple output devices are used."
@@ -1441,20 +1456,20 @@ msgid ""
 msgstr ""
 
 msgid "Show a reflection of the viewports on the ground"
-msgstr ""
+msgstr "Pokazuje odbicie wirtualnych pulpitów na ziemi."
 
 #, fuzzy
 msgid "Tilt view"
 msgstr "Rozmieszczanie okien"
 
 msgid "Tilt window view in expo mode"
-msgstr ""
+msgstr "Przechyl widok pulpitów w trybie expo"
 
 msgid "Timeframe to execute a double click"
 msgstr ""
 
 msgid "Vortex"
-msgstr ""
+msgstr "Wir"
 
 #, fuzzy
 msgid "Zoom time"
@@ -1623,13 +1638,13 @@ msgid "Specific Zoom"
 msgstr ""
 
 msgid "Specific zoom factor 1"
-msgstr ""
+msgstr "Specyficzny współczynnik przybliżenia 1"
 
 msgid "Specific zoom factor 2"
-msgstr ""
+msgstr "Specyficzny współczynnik przybliżenia 2"
 
 msgid "Specific zoom factor 3"
-msgstr ""
+msgstr "Specyficzny współczynnik przybliżenia 3"
 
 msgid "Speed"
 msgstr "Szybkość"
@@ -2397,7 +2412,7 @@ msgid "Plugin the action belongs to."
 msgstr ""
 
 msgid "Start gesture"
-msgstr ""
+msgstr "Rozpocznij gest myszy"
 
 msgid "Begin Gesture"
 msgstr "Rozpocznij gest"
@@ -2453,13 +2468,13 @@ msgid "Debug"
 msgstr "Opcje"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "Wyświetlaj błędy i inne powiadomienia używając libnotify."
 
 msgid "Error"
-msgstr ""
+msgstr "Błąd"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Informowanie o błędach"
 
 #, fuzzy
 msgid "Fatal"
@@ -2473,18 +2488,20 @@ msgid "Info"
 msgstr ""
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "Maksymalny poziom logu"
 
 msgid "The maximum log level to display"
-msgstr ""
+msgstr "Maksymalny poziom logu do wyświetlania"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
+"Czas przed zamknięciem powiadomienia (w sekundach), ustaw -1 dla wartości "
+"domyślnej, 0 dla czasu nieograniczonego."
 
 msgid "Warning"
-msgstr ""
+msgstr "Ostrzeżenie"
 
 #, fuzzy
 msgid "Active Opacity"
@@ -2494,9 +2511,11 @@ msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
 "already."
 msgstr ""
+"Pomiń opóźnienie jeśli Powodowanie Nieprzezroczystości już zmniejsza "
+"nieprzezroczystość jednego lub więcej okien."
 
 msgid "Bypass delay when the new active window is the focused window."
-msgstr ""
+msgstr "Pomiń opóźnienie jeśli nowe aktywne okno jest skupionym oknem."
 
 msgid "Delay until Opacification"
 msgstr "Opóźnienie przed rozpoczęciem zmiany nieprzezroczystości"
@@ -2509,14 +2528,17 @@ msgstr ""
 
 msgid "Make windows easily visible by hovering the mouse over them"
 msgstr ""
+"Powoduj, że okna będą łatwo widzialne poprzez najechanie na nie kursorem"
 
 msgid "Only increase opacity if a window is blocking"
-msgstr ""
+msgstr "Tylko zwiększaj nieprzezroczystość jesli okno blokuje"
 
 msgid ""
 "Only increase the opacity on the targeted window if it has one or more "
 "windows blocking it from view."
 msgstr ""
+"Tylko zwiększaj nieprzezroczystośc jeśli docelowe okno ma jedno lub więcej "
+"okien blokujących je przed widokiem."
 
 #, fuzzy
 msgid "Opacify"
@@ -2532,16 +2554,22 @@ msgstr "Przezroczystość"
 
 msgid "Reset opacity to original values when toggling"
 msgstr ""
+"Przywróć nieprzezroczystość do domyślnych wartości podczas przełączania"
 
 msgid ""
 "Reset the opacity of all windows modified by opacify when toggling Opacify "
 "with the defined key-combination."
 msgstr ""
+"Przywróć nieprzezroczystośc wszystkich okien zmodyfikowanych przez "
+"Powodowanie Nieprzezroczystości podczas przełączania Powodowania "
+"Nieprzezroczystości ustaloną kombinacją klawiszy."
 
 msgid ""
 "The delay (in ms) before Opacify changes opacity after the active window has "
 "changed."
 msgstr ""
+"Opóźnienie (w milisekudnach), zanim Powodowanie Nieprzezroczystości zmienia "
+"nieprzezroczystość, po tym jak aktywne okno się zmieniło."
 
 msgid ""
 "The maximum opacity percentage a window blocking the current targeted window "
@@ -3079,9 +3107,6 @@ msgstr "Pokazuj zminimalizowane okna"
 msgid "Show Window Title"
 msgstr "Pokazuj tytuł okna"
 
-msgid "Show minimized windows"
-msgstr "Pokazuj zminimalizowane okna"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3108,6 +3133,9 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr ""
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr ""
 
@@ -3122,6 +3150,10 @@ msgstr "Pokazuj tytuł okna"
 
 msgid "Windows that should be shown in ring"
 msgstr "Okna które mają być pokazane na pierścienu"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Rozmieszcza równomiernie okna na pulpicie"
 
 msgid "Background color of the window title"
 msgstr "Kolor tła dla tytułu okna"
@@ -3150,6 +3182,14 @@ msgstr "Kolor podświetlenia"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Przenieś okno do x, y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Pokazuj tytuł okna"
+
 msgid "Normal"
 msgstr ""
 
@@ -3161,9 +3201,6 @@ msgid "Scale Addons"
 msgstr ""
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
-
-msgid "Show window title in scale mode"
 msgstr ""
 
 #, fuzzy
@@ -3187,6 +3224,14 @@ msgstr "Tryb rozmieszczenia okien"
 
 msgid "Window Title"
 msgstr "Tytuł okna"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Pokazuj tytuł okna"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Pokazuj tytuł okna"
 
 #, fuzzy
 msgid "Zoom Windows In Scale"
@@ -3277,7 +3322,12 @@ msgstr "Maksymalny rozmiar okna"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3294,6 +3344,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Przełącza okno na pełny ekran"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4382,13 +4436,18 @@ msgstr "Tła"
 msgid "Draw the desktop wallpaper"
 msgstr "Rysuj tło pulpitu"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Włacza przezroczystość kanału alpha dla płatków śniegu"
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Włącz przezroczystość"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 
 msgid "Tile backgrounds as opposed to stretching"
-msgstr ""
-
-msgid "Tile or Stretch"
 msgstr ""
 
 msgid "Wallpaper"
@@ -4562,6 +4621,12 @@ msgstr ""
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr ""
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr ""
 
@@ -4614,6 +4679,12 @@ msgstr "Okna na wszystkich pulpitach które powinny być lepkie"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Misc. options"
+#~ msgstr "Pozostałe opcje"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Pokazuj zminimalizowane okna"
 
 #~ msgid "Disable Caps for Inside Cube"
 #~ msgstr "Wyłącz rysowanie przykrywki dla widoku ze środka kostki"

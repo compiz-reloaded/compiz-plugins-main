@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2008-01-08 22:33+0900\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
+"PO-Revision-Date: 2008-01-11 00:27+0100\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <jiro.kawada@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -62,6 +62,13 @@ msgstr "ウィンドウ間の間隙の大きさを変更(キューブサイズ�
 msgid "Change the speed of the 3D animation"
 msgstr "立体アニメーションの速度を変更"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "アクティブ・ウィンドウのネガ表示のオンオフ"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "キューブ回転時にウィンドウを上昇"
 
@@ -83,6 +90,14 @@ msgstr "その他オプション"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "角の丸い装飾と調和させるために立体の角を丸める"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "ウィンドウタイトル"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "ウィンドウの中心"
 
 msgid "Window Depth"
 msgstr "ウィンドウの厚み"
@@ -114,9 +129,6 @@ msgstr "フェードしたウィンドウの明るさ"
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr "アクティブ・ウィンドウ以外を暗くして若干集中しやすくする"
-
-msgid "Misc. options"
-msgstr "その他オプション"
 
 msgid "Opacity"
 msgstr "不透明度"
@@ -498,8 +510,7 @@ msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
 msgstr ""
-"ランダム効果選択の場合の選択候補群です。フルリストに戻すにはリセットをクリッ"
-"ク。"
+"ランダム効果選択の場合の選択候補群。フルリストに戻すにはリセットをクリック。"
 
 msgid "Random"
 msgstr "ランダム"
@@ -1358,7 +1369,7 @@ msgid ""
 "Use this if you don't intend to draw a scaled pointer or hide the original "
 "pointer. The zoomed area will move as you move your mouse."
 msgstr ""
-"ズーム域をマウスの場所と常に同期させたりします。拡大されたポインタを描画した"
+"ズーム域をマウスの場所と常に同期、その逆も同様。拡大されたポインタを描画した"
 "くない場合、または元ポインタを隠したくない場合に使用してください。ズーム域は"
 "マウスの移動に合わせて移動します。"
 
@@ -1369,8 +1380,8 @@ msgid ""
 "Attempt to keep the zoomed mouse visible by warping it when it is moved "
 "outside the zoom area."
 msgstr ""
-"拡大されたマウスを常に見えるようにするため、ズーム域外へ移動したときはワープ"
-"させます。"
+"拡大されたマウスがズーム域外へ移動したときはワープさせて、常に見えるようにす"
+"る。"
 
 msgid "Center the mouse"
 msgstr "マウスを中央に"
@@ -1405,14 +1416,14 @@ msgid ""
 "focus tracking."
 msgstr ""
 "フォーカス追従によりズーム域が移動する際に、ズーム域をそのウィンドウの大きさ"
-"に合わせます。"
+"に合わせる。"
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking. Even when not initially zoomed in."
 msgstr ""
 "フォーカス追従によりズーム域が移動する際に、ズームインしていない状態からも含"
-"めて、ズーム域をそのウィンドウの大きさに合わせます。"
+"めて、ズーム域をそのウィンドウの大きさに合わせる。"
 
 msgid "Fit zoom level to window on focus change"
 msgstr "フォーカス変更時にズーム率をウィンドウに合わせる"
@@ -1439,8 +1450,8 @@ msgid ""
 "How often to poll the mouse position, in miliseconds. Reduce this to reduce "
 "choppy behavior."
 msgstr ""
-"ミリ秒単位でのマウス位置読み取り間隔です。ぎくしゃくした動きを抑制するにはこ"
-"の値を減らしてください。"
+"ミリ秒単位でのマウス位置読み取り間隔。ぎくしゃくした動きを抑制するにはこの値"
+"を減らしてください。"
 
 msgid "Mouse Behaviour"
 msgstr "マウス動作"
@@ -1710,7 +1721,7 @@ msgid "Paint fire or other particles on the screen"
 msgstr "画面に炎や粒子を描画"
 
 msgid "Cube Gears"
-msgstr "キューブギア"
+msgstr "キューブ・ギア"
 
 msgid "Render gears inside of the transparent cube"
 msgstr "透明なキューブ内にギアを表示"
@@ -2281,37 +2292,35 @@ msgid "Debug"
 msgstr "デバグ"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "libnotify を使用して、エラーやその他のメッセージを表示"
 
 msgid "Error"
 msgstr "エラー"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "エラー通知"
 
 msgid "Fatal"
 msgstr "致命的"
 
-#, fuzzy
 msgid "Hide Timeout"
-msgstr "フェード時間"
+msgstr "非表示タイムアウト"
 
 msgid "Info"
 msgstr "情報"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "最高ログ出力レベル"
 
 msgid "The maximum log level to display"
 msgstr "表示対象のログ出力最高レベル"
 
-#, fuzzy
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
-"通知表示を隠し始めるまでのタイムアウト。-1 に設定するとシステムのデフォルト"
-"に、0 に設定すると無期限に。 "
+"通知表示を隠し始めるまでのタイムアウト（ミリ秒）。-1 に設定するとシステムのデ"
+"フォルトに、0 に設定すると無期限に。 "
 
 msgid "Warning"
 msgstr "警告"
@@ -2898,9 +2907,6 @@ msgstr "最小化を表示"
 msgid "Show Window Title"
 msgstr "ウィンドウタイトルを表示"
 
-msgid "Show minimized windows"
-msgstr "最小化されているウィンドウも表示"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -2935,6 +2941,9 @@ msgstr "スイッチャが非表示の場合は表示して、前のウィンド
 msgid "Show window title of currently selected window."
 msgstr "現在選択しているウィンドウのウィンドウタイトルを表示"
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "テキスト配置"
 
@@ -2949,6 +2958,10 @@ msgstr "ウィンドウタイトル表示"
 
 msgid "Windows that should be shown in ring"
 msgstr "リングに表示する対象ウィンドウ"
+
+#, fuzzy
+msgid "All windows"
+msgstr "ウィンドウの整列"
 
 msgid "Background color of the window title"
 msgstr "ウィンドウタイトルの背景色"
@@ -2977,6 +2990,14 @@ msgstr "強調表示色"
 msgid "Highlights the hovered window with the given color"
 msgstr "ホバーされているウィンドウを指定色で強調表示"
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "ウィンドウを座標X、Yへ移動"
+
+#, fuzzy
+msgid "No display"
+msgstr "ウィンドウタイトル表示"
+
 msgid "Normal"
 msgstr "通常"
 
@@ -2988,9 +3009,6 @@ msgstr "スケールのアドオン"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "スケールモードでのウィンドウの配列方式の選択"
-
-msgid "Show window title in scale mode"
-msgstr "スケールモードでウィンドウタイトルを表示"
 
 msgid "Size of the border around the window title"
 msgstr "ウィンドウタイトル周りの枠の大きさ"
@@ -3012,6 +3030,14 @@ msgstr "ウィンドウの配列方式"
 
 msgid "Window Title"
 msgstr "ウィンドウタイトル"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "ウィンドウタイトル表示"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "スケールモードでウィンドウタイトルを表示"
 
 msgid "Zoom Windows In Scale"
 msgstr "スケールのウィンドウをズーム"
@@ -3092,8 +3118,14 @@ msgstr "ウィンドウを小さくする"
 msgid "Reduces the scale factor making the window smaller."
 msgstr "ウィンドウを小さくするために拡縮率を下げる"
 
-msgid "Scale a window down to half size."
+#, fuzzy
+msgid "Scale a window down to a portion of it's size."
 msgstr "ウィンドウを半分の大きさに縮尺"
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
+msgstr ""
 
 msgid "Scale interval"
 msgstr "拡縮間隔"
@@ -3110,6 +3142,10 @@ msgstr ""
 "ンドウの大きさの変化がより細かくなります。"
 
 msgid "Trigger scale down"
+msgstr "縮尺のオンオフ"
+
+#, fuzzy
+msgid "Trigger scale down to screen"
 msgstr "縮尺のオンオフ"
 
 msgid ""
@@ -4175,14 +4211,19 @@ msgstr "背景"
 msgid "Draw the desktop wallpaper"
 msgstr "デスクトップの壁紙を描画"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "雪片のアルファ合成を有効"
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "合成を有効"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr "使用する背景の指定"
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "ストレッチ時のタイルの背景"
-
-msgid "Tile or Stretch"
-msgstr "タイル か ストレッチ"
 
 msgid "Wallpaper"
 msgstr "壁紙"
@@ -4345,6 +4386,12 @@ msgstr "FireFoxのメニュー修正"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "壊れた glProgramEnvParameter4f 実装の修正"
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "FirefoxとThunderbirdのメニューのウィンドウタイプの修正"
 
@@ -4402,60 +4449,31 @@ msgstr ""
 msgid "Workarounds"
 msgstr "次善策"
 
-#~ msgid "Timeout in seconds before hiding the notification"
-#~ msgstr "通知表示を隠し始めるまでのタイムアウト（秒）"
+#~ msgid "Misc. options"
+#~ msgstr "その他オプション"
 
-#~ msgid "Uses libnotify to display errors"
-#~ msgstr "libnotify を使用してエラーを表示"
+#~ msgid "Show minimized windows"
+#~ msgstr "最小化されているウィンドウも表示"
 
-#~ msgid "Corner Bevelling"
-#~ msgstr "コーナーの角度"
-
-#~ msgid "Create Mipmaps"
-#~ msgstr "Mipmapの作成"
-
-#~ msgid "Disable Caps for Inside Cube"
-#~ msgstr "キューブ内での上側を利用不可能にする"
+#~ msgid "Tile or Stretch"
+#~ msgstr "タイル か ストレッチ"
 
 #~ msgid ""
-#~ "Disables the drawing of the cube caps when the inside cube mode is set."
-#~ msgstr "キューブの内部モードでは、キューブの上側の描画を利用不可能にする"
-
-#~ msgid "Draw Window Backsides"
-#~ msgstr "ウィンドウの裏側を描画する"
-
-#~ msgid "Enables the drawing of the backside of windows."
-#~ msgstr "ウィンドウの裏側描画を可能にする"
-
-#~ msgid ""
+#~ "Timeout in seconds before hiding the notificationUses libnotify to "
+#~ "display errorsCorner BevellingCreate MipmapsDisable Caps for Inside "
+#~ "CubeDisables the drawing of the cube caps when the inside cube mode is "
+#~ "set.Draw Window BacksidesEnables the drawing of the backside of windows."
 #~ "This will create mipmaps which improve overall texture appearence, and "
-#~ "reduce jagged edges."
+#~ "reduce jagged edges.Window widthBeginGoto viewport specified by "
+#~ "numbersSpring model on moveUse spring model for the tab bar when moving "
+#~ "the windowSet window as widgetAppearenceBackground Base ColorBackground "
+#~ "Highlight Color"
 #~ msgstr ""
-#~ "テクスチャの見栄えを良くし、ギザギザなエッジを少なくするmipmapを作成する"
-
-#~ msgid "Window width"
-#~ msgstr "ウィンドウ幅"
-
-#~ msgid "Begin"
-#~ msgstr "開始"
-
-#~ msgid "Goto viewport specified by numbers"
-#~ msgstr "数値で指定されたビューポートに移動"
-
-#~ msgid "Spring model on move"
-#~ msgstr "移動時のスプリングモデル"
-
-#~ msgid "Use spring model for the tab bar when moving the window"
-#~ msgstr "ウィンドウの移動時にタブバーをスプリングモードにする"
-
-#~ msgid "Set window as widget"
-#~ msgstr "ウィンドウをウィジェットにしてください"
-
-#~ msgid "Appearence"
-#~ msgstr "見栄え"
-
-#~ msgid "Background Base Color"
-#~ msgstr "背景の基本色"
-
-#~ msgid "Background Highlight Color"
-#~ msgstr "背景の明るい部分の色"
+#~ "通知表示を隠し始めるまでのタイムアウト（秒）libnotify を使用してエラーを表"
+#~ "示コーナーの角度Mipmapの作成キューブ内での上側を利用不可能にするキューブの"
+#~ "内部モードでは、キューブの上側の描画を利用不可能にするウィンドウの裏側を描"
+#~ "画するウィンドウの裏側描画を可能にするテクスチャの見栄えを良くし、ギザギザ"
+#~ "なエッジを少なくするmipmapを作成するウィンドウ幅開始数値で指定されたビュー"
+#~ "ポートに移動移動時のスプリングモデルウィンドウの移動時にタブバーをスプリン"
+#~ "グモードにするウィンドウをウィジェットにしてください見栄え背景の基本色背景"
+#~ "の明るい部分の色"

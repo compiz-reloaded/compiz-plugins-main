@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
 "PO-Revision-Date: 2008-01-06 08:09+0100\n"
 "Last-Translator: Jeong Seungwon <jeongseungwon@hanmail.net>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
@@ -59,6 +59,13 @@ msgstr "창 사이의 간격 조절 (큐브 크기에 비례)"
 msgid "Change the speed of the 3D animation"
 msgstr "3D 애니메이션 속도"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "현재 선택된창을 음화함"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "큐브를 회전시킬 때 창을 올림"
 
@@ -80,6 +87,14 @@ msgstr "기타 옵션"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "둥근 창 장식과의 일관성을 유지하기 위해 모서리를 둥글게 만듬"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "창 제목"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "창 중앙"
 
 msgid "Window Depth"
 msgstr "창 깊이"
@@ -111,9 +126,6 @@ msgstr "흐린 창의 밝기"
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr "활성창을 제외한 모든 창을 흐릿하게하여 쉽게 집중할 수 있게 도와줍니다."
-
-msgid "Misc. options"
-msgstr "기타 옵션"
 
 msgid "Opacity"
 msgstr "투명도"
@@ -2898,9 +2910,6 @@ msgstr "최소화된 창도 보여줌"
 msgid "Show Window Title"
 msgstr "창 제목을 표시"
 
-msgid "Show minimized windows"
-msgstr "최소화된 창도 보여줌"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -2933,6 +2942,9 @@ msgstr "전환기가 보이지 않는다면 전환기를 보여주고, 이전 �
 msgid "Show window title of currently selected window."
 msgstr "현재 선택되어진 창의 창 제목을 표시함"
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "글자 배치"
 
@@ -2947,6 +2959,10 @@ msgstr "창 제목 표시"
 
 msgid "Windows that should be shown in ring"
 msgstr "원 안에 포함될 창들"
+
+#, fuzzy
+msgid "All windows"
+msgstr "윈도우 타일"
 
 msgid "Background color of the window title"
 msgstr "창 제목의 배경 색"
@@ -2975,6 +2991,14 @@ msgstr "강조 색"
 msgid "Highlights the hovered window with the given color"
 msgstr "선택할려는 창을 주어진 색으로 강조함"
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "창을 x, y로 이동"
+
+#, fuzzy
+msgid "No display"
+msgstr "창 제목 표시"
+
 msgid "Normal"
 msgstr "보통"
 
@@ -2986,9 +3010,6 @@ msgstr "스케일 부가 기능"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "스케일 상태에서 창을 배치하는 방식"
-
-msgid "Show window title in scale mode"
-msgstr "스케일 상태에서 창 제목을 보여줌"
 
 msgid "Size of the border around the window title"
 msgstr "창 제목 주위의 가장자리 크기"
@@ -3010,6 +3031,14 @@ msgstr "창 배치 방식"
 
 msgid "Window Title"
 msgstr "창 제목"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "창 제목 표시"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "스케일 상태에서 창 제목을 보여줌"
 
 msgid "Zoom Windows In Scale"
 msgstr "스케일 상태에서 창을 확대함"
@@ -3096,7 +3125,12 @@ msgstr "최대 창 크기"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3114,6 +3148,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "전체 화면"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4170,14 +4208,19 @@ msgstr "배경"
 msgid "Draw the desktop wallpaper"
 msgstr "데스크탑 배경 화면 그리기"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "눈송이에 대한 알파 블렌딩 활성화."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "블렌딩 활성화"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr "사용할 배경 명세 (문서로 설명되어 있음)."
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "늘이기와 대조되는 바둑판식 배경"
-
-msgid "Tile or Stretch"
-msgstr "바둑판식이나 늘이기"
 
 msgid "Wallpaper"
 msgstr "배경 화면"
@@ -4347,6 +4390,12 @@ msgstr "Firefox 메뉴 고침"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "잘못된 glProgramEnvParameter4f 구현 고침."
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "Firefox와 Thunderbird의 메뉴 창 분류 고침."
 
@@ -4401,6 +4450,15 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 msgid "Workarounds"
 msgstr "문제 회피"
+
+#~ msgid "Misc. options"
+#~ msgstr "기타 옵션"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "최소화된 창도 보여줌"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "바둑판식이나 늘이기"
 
 #~ msgid "Create Mipmaps"
 #~ msgstr "Mipmap 생성"

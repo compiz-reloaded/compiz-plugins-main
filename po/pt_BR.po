@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
+"POT-Creation-Date: 2008-01-29 17:14+0530\n"
 "PO-Revision-Date: 2007-12-15 23:42+0100\n"
 "Last-Translator: Rodolfo Jose Ferreira <rodolfopacas@gmail.com>\n"
 "Language-Team: Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
@@ -62,6 +62,13 @@ msgstr ""
 msgid "Change the speed of the 3D animation"
 msgstr "Alterar a velocidade da animação 3D"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Alternar mostrar a janela ativa em negativo"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Elevar as janelas durante a rotação do cubo"
 
@@ -85,6 +92,14 @@ msgid "Roundoff corners for consistency with rounded decorations"
 msgstr ""
 "Arredondar os cantos para manter a consistência com decorações com efeitos "
 "arredondados."
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Título da janela"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Centro da Janela"
 
 msgid "Window Depth"
 msgstr "Profundidade da janela"
@@ -118,9 +133,6 @@ msgid ""
 msgstr ""
 "Facilita a concentração ao diminuir a luminosidade das janelas à volta da "
 "janela ativa."
-
-msgid "Misc. options"
-msgstr "Opções diversas"
 
 msgid "Opacity"
 msgstr "Opacidade"
@@ -3015,9 +3027,6 @@ msgstr "Mostrar janelas minimizadas"
 msgid "Show Window Title"
 msgstr "Mostrar título das janelas"
 
-msgid "Show minimized windows"
-msgstr "Mostrar janelas minimizadas"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3051,6 +3060,9 @@ msgstr "Mostrar anel se não estiver visível e selecionar a janela anterior."
 msgid "Show window title of currently selected window."
 msgstr "Mostrar título da janela atual."
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "Colocação Texto"
 
@@ -3065,6 +3077,10 @@ msgstr "Mostrar título da janela"
 
 msgid "Windows that should be shown in ring"
 msgstr "Janelas que devem ser exibidas no anel"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Criar mosaico das janelas"
 
 msgid "Background color of the window title"
 msgstr "Cor de fundo do título da janela"
@@ -3095,6 +3111,14 @@ msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidencia a janela sobre a qual paira o cursor do mouse com a cor escolhida"
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Mover janela para x, y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Mostrar título da janela"
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -3106,9 +3130,6 @@ msgstr "Adições ao plugin de Dimensionamento"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "Seleciona o mode para exibir as janelas no modo de Dimensionamento"
-
-msgid "Show window title in scale mode"
-msgstr "Mostrar título da janela no modo de Dimensionamento"
 
 msgid "Size of the border around the window title"
 msgstr "Tamanho da margem a volta do título da janela"
@@ -3130,6 +3151,14 @@ msgstr "Modo de Exibição de Janelas"
 
 msgid "Window Title"
 msgstr "Título da Janela"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Mostrar título da janela"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Mostrar título da janela no modo de Dimensionamento"
 
 msgid "Zoom Windows In Scale"
 msgstr "Ampliar janelas dimensionadas"
@@ -3220,7 +3249,12 @@ msgstr "Tamanho máximo da janela"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3238,6 +3272,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Alternar o modo de tela cheia para a janela"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4331,15 +4369,20 @@ msgstr "Fundos"
 msgid "Draw the desktop wallpaper"
 msgstr "Desenhar o papel de parede da área de trabalho"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Activa mistura alfa dos flocos de neve."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Activar Mistura"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 "As especificações do fundo (como explicado em DOCUMENTATION) para usar."
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Criar mosaico do fundo ao invés de esticar"
-
-msgid "Tile or Stretch"
-msgstr "Criar Mosaico ou Esticar"
 
 msgid "Wallpaper"
 msgstr "Papel de parede"
@@ -4509,6 +4552,12 @@ msgstr "Correção para o Menu do Firefox"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr ""
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr ""
 "Corrigir tipos de janela para os menus dos programas Firefox e Thunderbird."
@@ -4571,6 +4620,15 @@ msgstr "Janelas \"em todos as áreas de trabalho\" que devem ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correções de bug"
+
+#~ msgid "Misc. options"
+#~ msgstr "Opções diversas"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Mostrar janelas minimizadas"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "Criar Mosaico ou Esticar"
 
 #~ msgid "Corner Bevelling"
 #~ msgstr "Criar Bevels nos Cantos"

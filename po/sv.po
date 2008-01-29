@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:22+0530\n"
-"PO-Revision-Date: 2007-12-03 11:37+0100\n"
-"Last-Translator: Martin Karlsson <fist_of_heaven@hotmail.com>\n"
+"POT-Creation-Date: 2008-01-29 17:15+0530\n"
+"PO-Revision-Date: 2008-01-25 14:38+0100\n"
+"Last-Translator: Eric Brandt <eric@e-tech.se>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,6 +63,13 @@ msgstr "Ändra avståndet mellan fönster (procentuellt av storlek på kub)."
 msgid "Change the speed of the 3D animation"
 msgstr "Ändra hastigheten på 3D-animeringen"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Växla aktivt fönsternegativ"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Höjer upp fönstren när kuben roterar"
 
@@ -84,6 +91,14 @@ msgstr "Diverse inställningar"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Runda av kanter för kompatibilitet med rundade dekorationer"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Fönstertitel"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Fönster mitten"
 
 #, fuzzy
 msgid "Window Depth"
@@ -120,9 +135,6 @@ msgid ""
 msgstr ""
 "Gör det lite enklare att koncentera sig genom att göra alla utöver det "
 "aktiva fönstret suddigt/oskarpt"
-
-msgid "Misc. options"
-msgstr "Diverse inställningar"
 
 msgid "Opacity"
 msgstr "Opacitet"
@@ -225,9 +237,10 @@ msgstr "Strålens färg"
 msgid "Beam Life"
 msgstr "Strålens livslängd"
 
+# nedsaktning -> hastighetsminskning
 #, fuzzy
 msgid "Beam Slowdown"
-msgstr "Strålens nedsaktning"
+msgstr "Strålens hastighetsminskning"
 
 #, fuzzy
 msgid "Beam Spacing"
@@ -845,17 +858,17 @@ msgid "Cube Atlantis"
 msgstr "Rita kubens över/undersida"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Delfinstorlek"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Delfinstorlek."
 
 #, fuzzy
 msgid "Enable colors"
 msgstr "Aktivera glöd"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Fiskstorlek"
 
 #, fuzzy
 msgid "Number of fish"
@@ -870,10 +883,10 @@ msgid "Render some fish inside of the transparent cube"
 msgstr "Renderera kugghjul inuti den genomskinliga kuben"
 
 msgid "Shark size"
-msgstr ""
+msgstr "Hajstorlek"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Valstorlek"
 
 #, fuzzy
 msgid "Whale size."
@@ -953,7 +966,7 @@ msgid "Brightness and Saturation"
 msgstr "Ljusstyrka av tonade fönster"
 
 msgid "Brightness and Saturation adjustments"
-msgstr ""
+msgstr "Ljusstyrke och mättnadsjusteringar"
 
 #, fuzzy
 msgid "Brightness settings"
@@ -1595,7 +1608,7 @@ msgstr "Panorera det zoomade området när musen lämnar det synliga området."
 
 #, fuzzy
 msgid "Panning"
-msgstr "Fyllning"
+msgstr "Panorering"
 
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr "Flyttar musen till mitten av skärmen (oavsett zoomnivå)"
@@ -2408,17 +2421,17 @@ msgid "Debug"
 msgstr "Debug"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "Använd libnotify för att visa fel och andra meddelanden."
 
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 msgid "Error Notifications"
 msgstr ""
 
 #, fuzzy
 msgid "Fatal"
-msgstr "Metall"
+msgstr "Allvarligt"
 
 #, fuzzy
 msgid "Hide Timeout"
@@ -3040,9 +3053,6 @@ msgstr "Visa minimerad"
 msgid "Show Window Title"
 msgstr "Visa fönstertitel"
 
-msgid "Show minimized windows"
-msgstr "Visa minimerade fönster"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3076,6 +3086,9 @@ msgstr "Visa bytare om den inte är synlig och välj föregående fönster."
 msgid "Show window title of currently selected window."
 msgstr "Visa fönstertitel på det nuvarande valda fönstret."
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "Textplacering"
 
@@ -3090,6 +3103,10 @@ msgstr "Fönstertitelvisning"
 
 msgid "Windows that should be shown in ring"
 msgstr "Fönster som ska visas i ringen"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Kakla fönster"
 
 msgid "Background color of the window title"
 msgstr "Bakgrundsfärg för fönstertitel"
@@ -3118,6 +3135,14 @@ msgstr "Framhävningsfärg"
 msgid "Highlights the hovered window with the given color"
 msgstr "Framhäver fönstret som musen är över med den angivna färgen."
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Flytta fönster till x, y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Fönstertitelvisning"
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -3129,9 +3154,6 @@ msgstr "Skala tillägg"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "Väljer läget för fönsterlayouten i skalningsläge"
-
-msgid "Show window title in scale mode"
-msgstr "Visa fönstertitel i skalningsläge"
 
 msgid "Size of the border around the window title"
 msgstr "Storleken på kanten runt fönstertitel"
@@ -3153,6 +3175,14 @@ msgstr "Fönsterlayoutläge"
 
 msgid "Window Title"
 msgstr "Fönstertitel"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Fönstertitelvisning"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Visa fönstertitel i skalningsläge"
 
 msgid "Zoom Windows In Scale"
 msgstr "Zooma fönster i skalning"
@@ -3241,11 +3271,17 @@ msgstr "Max fönsterstorlek"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+#, fuzzy
+msgid "Scale a window down to a portion of it's size."
+msgstr "Skala ner ett fönster till halv storlek."
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
-msgstr ""
+msgstr "Skalningsintervall"
 
 #, fuzzy
 msgid "Shelf"
@@ -3257,13 +3293,21 @@ msgid ""
 "number means finer changes."
 msgstr ""
 
+#, fuzzy
 msgid "Trigger scale down"
-msgstr ""
+msgstr "Aktivera nerskalning"
 
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Aktivera nerskalning"
+
+#, fuzzy
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
+"Skalar ner ett fönster visuellt för att tillåta enkel betraktning utan "
+"verklig förminskning."
 
 msgid "Background intensity"
 msgstr "Bakgrundsintensitet"
@@ -3726,9 +3770,10 @@ msgstr "Miniatyrer är alltid överst"
 msgid "Time (in ms) before Thumbnail is shown."
 msgstr "Tid (i ms) innan miniatyr visas"
 
+# Förhandstitt på fönster -> Förhandsvisning av fönster
 #, fuzzy
 msgid "Window Previews"
-msgstr "Förhandstitt på fönster"
+msgstr "Förhandsvisning av fönster"
 
 msgid "Window thumbnails at the taskbar"
 msgstr "Miniatyrfönster på aktivitetsfältet"
@@ -4340,6 +4385,14 @@ msgstr "Bakgrunder"
 msgid "Draw the desktop wallpaper"
 msgstr "Rita bakgrundsbilden"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Aktiverar alfa-blanding av snöflingor"
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Aktivera blandning"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 "Specificationer för bakgrunden som ska användas (förklarat i DOKUMENTATIONEN)"
@@ -4347,9 +4400,6 @@ msgstr ""
 #, fuzzy
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Sätt bakgrunderna sida vid sida istället för att sträcka ut"
-
-msgid "Tile or Stretch"
-msgstr "Sida vid sida eller sträck ut"
 
 msgid "Wallpaper"
 msgstr "Bakgrund"
@@ -4523,6 +4573,12 @@ msgstr "Korrigering av Firefoxmeny"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "Korrigera trasig implementation av \"glProgramEnvParameter4f\"."
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 # Typo
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "Korrigera fönstertyp för menyer i Firefox och Thunderbird."
@@ -4584,6 +4640,15 @@ msgstr "Fönster på alla arbetsytor som ska klistras"
 
 msgid "Workarounds"
 msgstr "Problemlösningar"
+
+#~ msgid "Misc. options"
+#~ msgstr "Diverse inställningar"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Visa minimerade fönster"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "Sida vid sida eller sträck ut"
 
 #~ msgid "Corner Bevelling"
 #~ msgstr "Kantavrundning"

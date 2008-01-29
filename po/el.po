@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-10 16:21+0530\n"
+"POT-Creation-Date: 2008-01-29 17:13+0530\n"
 "PO-Revision-Date: 2008-01-09 16:36+0100\n"
 "Last-Translator: Jim Dusis <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -61,6 +61,13 @@ msgstr ""
 msgid "Change the speed of the 3D animation"
 msgstr "Αλλαγή της ταχύτητας της τρισδιάστατης γραφικής απεικόνισης"
 
+msgid "Color of an inactive window's depth"
+msgstr ""
+
+#, fuzzy
+msgid "Color of the active window's depth"
+msgstr "Εκκίνηση ενεργού αρνητικού παραθύρου"
+
 msgid "Elevates windows while rotating the cube"
 msgstr "Ανυψώνει τα παράθυρα όταν γυρίζει ο κύβος"
 
@@ -82,6 +89,14 @@ msgstr "Διάφορες Επιλογές"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "Στρογγύλεμμα των γωνιών για συνοχή με τις στρογγυλεμένες διακοσμήσεις"
+
+#, fuzzy
+msgid "Window Color (Active)"
+msgstr "Τίτλος Παραθύρου"
+
+#, fuzzy
+msgid "Window Color (Inactive)"
+msgstr "Κέντρο Παραθύρου"
 
 msgid "Window Depth"
 msgstr "Βάθος Παραθύρου"
@@ -114,9 +129,6 @@ msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
 "Βοηθάει τη συγκέντρωση στο ενεργό παράθυρο σκοτεινιάζοντας όλα τα υπόλοιπα"
-
-msgid "Misc. options"
-msgstr "Διάφορες επιλογές"
 
 msgid "Opacity"
 msgstr "Αδιαφάνεια"
@@ -3033,9 +3045,6 @@ msgstr "Εμφάνιση Ελαχιστοποιημένου"
 msgid "Show Window Title"
 msgstr "Εμφάνιση Τίτλου Παραθύρου"
 
-msgid "Show minimized windows"
-msgstr "Εμφάνιση ελαχιστοποιημένων παραθύρων"
-
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
@@ -3071,6 +3080,9 @@ msgstr ""
 msgid "Show window title of currently selected window."
 msgstr "Εμφάνιση τίτλου παραθύρου για το τρέχων επιλεγμένο παράθυρο."
 
+msgid "Show windows that are minimized, shaded or in show desktop mode."
+msgstr ""
+
 msgid "Text Placement"
 msgstr "Τοποθέτηση Κειμένου"
 
@@ -3085,6 +3097,10 @@ msgstr "Εμφάνιση τίτλου παραθύρου"
 
 msgid "Windows that should be shown in ring"
 msgstr "Παράθυρα που πρέπει να εμφανίζονται στο δαχτυλίδι"
+
+#, fuzzy
+msgid "All windows"
+msgstr "Μετατροπή παραθύρων σε πλακίδια"
 
 msgid "Background color of the window title"
 msgstr "Χρώμα φόντου του τίτλου παραθύρου"
@@ -3113,6 +3129,14 @@ msgstr "Χρώμα Τονισμού"
 msgid "Highlights the hovered window with the given color"
 msgstr "Τονίζει το παράθυρο που το ποντίκι μένει επάνω του με το δωθέν χρώμα."
 
+#, fuzzy
+msgid "Hovered window only"
+msgstr "Μετακίνηση παραθύρου σε x, y"
+
+#, fuzzy
+msgid "No display"
+msgstr "Εμφάνιση τίτλου παραθύρου"
+
 msgid "Normal"
 msgstr "Κανονικό"
 
@@ -3124,9 +3148,6 @@ msgstr "Κλιμάκωση Addons"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "Επιλογή της μεθόδου διάταξης των παραθύρων στην μέθοδο κλιμάκωσης"
-
-msgid "Show window title in scale mode"
-msgstr "Εμφάνιση του τίτλου παραθύρου στην μέθοδο κλιμάκωσης"
 
 msgid "Size of the border around the window title"
 msgstr "Μέγεθος του ορίου γύρω απ τον τίτλο παραθύρου"
@@ -3149,6 +3170,14 @@ msgstr "Μέθοδος Διάταξης Παραθύρου"
 
 msgid "Window Title"
 msgstr "Τίτλος Παραθύρου"
+
+#, fuzzy
+msgid "Window Title Display"
+msgstr "Εμφάνιση τίτλου παραθύρου"
+
+#, fuzzy
+msgid "Window title display in scale mode"
+msgstr "Εμφάνιση του τίτλου παραθύρου στην μέθοδο κλιμάκωσης"
 
 msgid "Zoom Windows In Scale"
 msgstr "Ζουμ Παραθύρων Στην Κλιμάκωση"
@@ -3237,7 +3266,12 @@ msgstr "Μέγιστο μέγεθος παραθύρου"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-msgid "Scale a window down to half size."
+msgid "Scale a window down to a portion of it's size."
+msgstr ""
+
+msgid ""
+"Scale a window down to a ration of the screen size. Respectively half, a "
+"third or a sixth of the screen."
 msgstr ""
 
 msgid "Scale interval"
@@ -3255,6 +3289,10 @@ msgstr ""
 
 msgid "Trigger scale down"
 msgstr ""
+
+#, fuzzy
+msgid "Trigger scale down to screen"
+msgstr "Εκκίνηση του παράθυρου σε πλήρη οθόνη"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -4350,14 +4388,19 @@ msgstr "Φόντο"
 msgid "Draw the desktop wallpaper"
 msgstr "Σχεδίαση του φόντου της επιφάνειας εργασίας"
 
+#, fuzzy
+msgid "Enable true alpha blending for transparent wallpapers"
+msgstr "Ενεργοποίηση άλφα μίξης των νιφάδων."
+
+#, fuzzy
+msgid "Enable true blending"
+msgstr "Ενεργοποίηση Μείξης"
+
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr "Οι προυποθέσεις φόντου (όπως εξηγούνται στην ΤΕΚΜΗΡΙΩΣΗ) για χρήση."
 
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Μετατροπή φόντων σε πλακίδια σε αντίθεση με το τέντωμα"
-
-msgid "Tile or Stretch"
-msgstr "Μετατροπή σε Πλακίδια ή Τέντωμα"
 
 msgid "Wallpaper"
 msgstr "Ταπετσαρία"
@@ -4528,6 +4571,12 @@ msgstr "Διόρθωση Μενού του Firefox"
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "Διόρθωση της χαλασμένης εφαρμογής  glProgramEnvParameter4f "
 
+msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
+msgstr ""
+
+msgid "Fix screen updates in XGL with fglrx."
+msgstr ""
+
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "Διόρθωση του είδους παραθύρου μενού του Firefox και του Thunderbird."
 
@@ -4584,6 +4633,15 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Μοντίφες"
+
+#~ msgid "Misc. options"
+#~ msgstr "Διάφορες επιλογές"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "Εμφάνιση ελαχιστοποιημένων παραθύρων"
+
+#~ msgid "Tile or Stretch"
+#~ msgstr "Μετατροπή σε Πλακίδια ή Τέντωμα"
 
 #~ msgid "Corner Bevelling"
 #~ msgstr "Λόξεμα Γωνίας"
