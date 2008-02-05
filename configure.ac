@@ -183,8 +183,12 @@ fi
 
 AC_OUTPUT([
 compiz-text.pc
+compiz-mousepoll.pc
 data/Makefile
 data/filters/Makefile
+images/Makefile
+images/Oxygen/Makefile
+images/Gnome/Makefile
 Makefile
 metadata/Makefile
 include/Makefile
@@ -208,5 +212,7 @@ src/winrules/Makefile
 src/workarounds/Makefile
 src/vpswitch/Makefile
 src/shift/Makefile
+src/mousepoll/Makefile
+src/mag/Makefile
 po/Makefile.in
 ])

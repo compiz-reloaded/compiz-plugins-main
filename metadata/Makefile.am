@@ -18,7 +18,9 @@ xml_in_files = 	         \
 	workarounds.xml.in \
 	scaleaddon.xml.in   \
 	vpswitch.xml.in \
-	shift.xml.in
+	shift.xml.in \
+	mousepoll.xml.in \
+	mag.xml.in
 
 
 xml_files    = $(xml_in_files:.xml.in=.xml)

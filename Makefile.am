@@ -1,5 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-SUBDIRS = metadata src po include data
+SUBDIRS = metadata src po include data images
 
 EXTRA_DIST =            \
     VERSION             \
@@ -23,4 +23,4 @@ textdata = compiz-text.pc
 endif
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = $(textdata)
+pkgconfig_DATA = $(textdata) compiz-mousepoll.pc
