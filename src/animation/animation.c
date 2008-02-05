@@ -630,6 +630,9 @@ static void
 modelUpdateBB (CompOutput *output,
 	       CompWindow * w)
 {
+    float x, y;
+    int i;
+
     ANIM_WINDOW (w);
     ANIM_SCREEN (w->screen);
 
@@ -637,8 +640,6 @@ modelUpdateBB (CompOutput *output,
     if (!model)
 	return;
 
-    float x, y;
-    int i;
     if (animZoomToIcon(as, aw))
 	for (i = 0; i < model->numObjects; i++)
 	{
@@ -1193,10 +1194,10 @@ modelInitObjects(Model * model, int x, int y, int width, int height)
     }
     else
     {
+	int objIndex = 0;
+
 	// number of grid cells in y direction
 	nGridCellsY = model->gridHeight - 1;
-
-	int i = 0;
 
 	for (gridY = 0; gridY < model->gridHeight; gridY++)
 	{
@@ -1205,13 +1206,13 @@ modelInitObjects(Model * model, int x, int y, int width, int height)
 		     y0) * model->scale.y + y0;
 	    for (gridX = 0; gridX < model->gridWidth; gridX++)
 	    {
-		objectInit(&model->objects[i],
+		objectInit(&model->objects[objIndex],
 			   x + ((gridX * width / nGridCellsX) - x0) * 
 			   model->scale.x + x0,
 			   objectY,
 			   (float)gridX / nGridCellsX,
 			   (float)gridY / nGridCellsY);
-		i++;
+		objIndex++;
 	    }
 	}
     }
@@ -1627,6 +1628,7 @@ initiateFocusAnimation(CompWindow *w)
     CompScreen *s = w->screen;
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
+    int duration = 200;
 
     if (aw->curWindowEvent != WindowEventNone || otherPluginsActive(as))
 	return;
@@ -1637,7 +1639,6 @@ initiateFocusAnimation(CompWindow *w)
     if (switcherPostWait)
 	return;
 
-    int duration = 200;
     AnimEffect chosenEffect =
 	getMatchingAnimSelection (w, WindowEventFocus, &duration);
 
@@ -1743,6 +1744,7 @@ initiateFocusAnimation(CompWindow *w)
 
 	    if (chosenEffect == AnimEffectDodge)
 	    {
+		float maxTransformTotalProgress = 0;
 		float dodgeMaxStartProgress =
 		    numDodgingWins *
 		    animGetF(as, aw, ANIM_SCREEN_OPTION_DODGE_GAP_RATIO) *
@@ -1754,7 +1756,6 @@ initiateFocusAnimation(CompWindow *w)
 
 		aw->isDodgeSubject = TRUE;
 		aw->dodgeChainStart = NULL;
-		float maxTransformTotalProgress = 0;
 
 		for (dw = wStart; dw && dw != wEnd->next; dw = dw->next)
 		{
@@ -2428,7 +2429,6 @@ animAddWindowGeometry(CompWindow * w,
 	    }
 	    // Assign quad vertices to indices
 	    int jx, jy;
-
 	    for (jy = 0; jy < nVertY - 1; jy++)
 	    {
 		for (jx = 0; jx < nVertX - 1; jx++)
@@ -2460,14 +2460,14 @@ animAddWindowGeometry(CompWindow * w,
 	    // For each vertex
 	    for (jy = 0, y = y1; jy < nVertY; jy++)
 	    {
+		float topiyFloat;
+		Bool applyOffsets = TRUE;
+
 		if (y > y2)
 		    y = y2;
 
 		// Do calculations for y here to avoid repeating
 		// them unnecessarily in the x loop
-
-		float topiyFloat;
-		Bool applyOffsets = TRUE;
 
 		if (aw->curWindowEvent == WindowEventShade
 		    || aw->curWindowEvent == WindowEventUnshade)
@@ -3224,11 +3224,11 @@ animGetWindowName (CompWindow *w)
     return retval;
 }
 
-// Don't animate windows that don't have a pixmap or certain properties,
+// Returns true for windows that don't have a pixmap or certain properties,
 // like the fullscreen darkening layer of gksudo
 // or the darkening layer of x-session-manager
 static inline Bool
-ignoreForAnimation (CompWindow *w, Bool checkPixmap)
+shouldIgnoreForAnim (CompWindow *w, Bool checkPixmap)
 {
     ANIM_WINDOW(w);
 
@@ -3275,11 +3275,11 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	if (w)
 	{
 	    ANIM_WINDOW(w);
+	    int duration;
 
-	    if (ignoreForAnimation (w, TRUE))
+	    if (shouldIgnoreForAnim (w, TRUE))
 		break;
 
-	    int duration;
 	    if (AnimEffectNone ==
 		getMatchingAnimSelection (w, WindowEventClose, &duration))
 		break;
@@ -3298,7 +3298,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    if (w->pendingUnmaps && onCurrentDesktop(w))	// Normal -> Iconic
 	    {
 		ANIM_WINDOW(w);
-
 		int duration = 200;
 		AnimEffect chosenEffect =
 		    getMatchingAnimSelection (w, WindowEventShade, &duration);
@@ -3451,14 +3450,14 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    else				// X -> Withdrawn
 	    {
 		ANIM_WINDOW(w);
+		int duration = 200;
 
 		// Always reset stacking related info when a window is closed.
 		resetStackingInfo (w->screen);
 
-		if (ignoreForAnimation (w, TRUE))
+		if (shouldIgnoreForAnim (w, TRUE))
 		    break;
 
-		int duration = 200;
 		AnimEffect chosenEffect =
 		    getMatchingAnimSelection (w, WindowEventClose, &duration);
 
@@ -3470,7 +3469,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		if (chosenEffect)
 		{
 		    int tmpSteps = 0;
-
 		    Bool startingNew = TRUE;
 
 		    if (aw->animRemainingTime > 0 &&
@@ -3602,7 +3600,6 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    break;
 
 	ANIM_SCREEN(s);
-	int i;
 	int n = s->nClientList;
 	Bool winOpenedClosed = FALSE;
 
@@ -3636,6 +3633,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    int changeStart = -1;
 	    int changeEnd = -1;
 
+	    int i;
 	    for (i = 0; i < n; i++)
 	    {
 		CompWindow *wi =
@@ -3799,7 +3797,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
     if (initial)				// Unminimize or Open
     {
 	ANIM_WINDOW(w);
-
 	int duration = 200;
 	AnimEffect chosenEffect;
 
@@ -3812,13 +3809,14 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		chosenEffect &&
 		!as->pluginActive[3]) // fadedesktop
 	    {
+		Bool startingNew = TRUE;
+		Bool playEffect = TRUE;
+
 		// UNMINIMIZE event!
 
 		// Always reset stacking related info when a window is
 		// unminimized.
 		resetStackingInfo (w->screen);
-
-		Bool startingNew = TRUE;
 
 		if (aw->curWindowEvent != WindowEventNone)
 		{
@@ -3843,8 +3841,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			    aw->animOverrideProgressDir = 0;
 		    }
 		}
-
-		Bool playEffect = TRUE;
 
 		if (startingNew)
 		{
@@ -3904,6 +3900,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	    if (chosenEffect)
 	    {
 		Bool startingNew = TRUE;
+		Bool playEffect = TRUE;
 
 		if (aw->curWindowEvent != WindowEventNone)
 		{
@@ -3928,8 +3925,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			    aw->animOverrideProgressDir = 0;
 		    }
 		}
-
-		Bool playEffect = TRUE;
 
 		if (startingNew)
 		{
@@ -3966,17 +3961,17 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 	}
 	else if (!w->invisible)
 	{
+	    AnimEffect chosenEffect;
+	    int duration = 200;
+
 	    // Always reset stacking related info when a window is opened.
 	    resetStackingInfo (w->screen);
 
 	    aw->created = TRUE;
 
-	    int duration = 200;
-	    AnimEffect chosenEffect;
-
 	    // OPEN event!
 
-	    if (!ignoreForAnimation (w, FALSE) &&
+	    if (!shouldIgnoreForAnim (w, FALSE) &&
 		AnimEffectNone !=
 		(chosenEffect =
 		 getMatchingAnimSelection (w, WindowEventOpen, &duration)) &&
@@ -3986,6 +3981,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		getMousePointerXY(w->screen, &aw->icon.x, &aw->icon.y))
 	    {
 		Bool startingNew = TRUE;
+		Bool playEffect = TRUE;
 
 		if (aw->curWindowEvent != WindowEventNone)
 		{
@@ -4010,8 +4006,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 			    aw->animOverrideProgressDir = 0;
 		    }
 		}
-
-		Bool playEffect = TRUE;
 
 		if (startingNew)
 		{
