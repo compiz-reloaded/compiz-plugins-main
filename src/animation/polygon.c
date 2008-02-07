@@ -1485,9 +1485,25 @@ polygonsUpdateBB (CompOutput *output,
 	Point3d center = p->centerPos;
 	float radius = p->boundSphereRadius + 2;
 
+	// Take rotation axis offset into consideration and
+	// properly enclose polygon in the bounding cube
+	// whatever the rotation angle is:
+
+	// Add rotation axis offset to center (rotated) polygon correctly
+	// within bounding cube
+	center.x += p->rotAxisOffset.x;
+	center.y += p->rotAxisOffset.y;
+	center.z += p->rotAxisOffset.z / s->width;
+
+	// Add rotation axis offset to radius to enlarge the bounding cube
+	radius += MAX (MAX (fabs(p->rotAxisOffset.x),
+			    fabs(p->rotAxisOffset.y)),
+		       fabs(p->rotAxisOffset.z));
+
 	float zradius = radius / s->width;
+
 #define N_POINTS 8
-	// Corners of almost-bounding rect. prism
+	// Corners of bounding cube
 	Point3d cubeCorners[N_POINTS] =
 	    {{center.x - radius, center.y - radius, center.z + zradius},
 	     {center.x - radius, center.y + radius, center.z + zradius},

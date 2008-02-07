@@ -1428,7 +1428,6 @@ static void postAnimationCleanupCustom (CompWindow * w,
     if (aw->BB.x1 != MAXSHORT)
     {
 	// damage BB
-	memcpy (&aw->lastBB, &aw->BB, sizeof(Box));
 	damageBoundingBox (w);
     }
     aw->BB.x1 = aw->BB.y1 = MAXSHORT;
