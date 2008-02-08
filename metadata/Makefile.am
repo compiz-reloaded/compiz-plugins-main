@@ -1,6 +1,7 @@
 xmldir       = $(metadatadir)
 xml_in_files = 	         \
 	animation.xml.in	 \
+	bs.xml.in \
 	colorfilter.xml.in \
 	expo.xml.in	 \
 	ezoom.xml.in	 \
