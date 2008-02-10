@@ -2001,7 +2001,8 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		{
 		    // Use as wOldAbove for every focus fading window
 		    // (i.e. the utility/dialog windows of an app.)
-		    aw->restackInfo->wOldAbove = wOldAbove;
+		    if (wOldAbove != w)
+			aw->restackInfo->wOldAbove = wOldAbove;
 		}
 	    }
 	}
