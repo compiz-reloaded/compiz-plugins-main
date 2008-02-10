@@ -370,7 +370,7 @@ putInitiate (CompDisplay     *d,
 		/* no head given, so use the current head if this wasn't
 		   a double tap */
 		if (pd->lastType != type || pd->lastWindow != w->id)
-		    head = s->currentOutputDev;
+		    head = outputDeviceForWindow (w);
 	    }
 	    else
 	    {
