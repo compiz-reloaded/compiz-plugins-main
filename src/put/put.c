@@ -193,6 +193,7 @@ putPreparePaintScreen (CompScreen *s,
 			moveWindow (w, pw->targetX - w->attrib.x,
 				    pw->targetY - w->attrib.y, TRUE, TRUE);
 			syncWindowPosition (w);
+			updateWindowAttributes (w, CompStackingUpdateModeNone);
 			pw->tx = pw->ty = 0;
 		    }
 		}
