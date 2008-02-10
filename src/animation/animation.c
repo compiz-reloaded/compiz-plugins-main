@@ -1690,12 +1690,17 @@ initiateFocusAnimation(CompWindow *w)
 	    rect.height = WIN_H(w);
 	    XUnionRectWithRegion(&rect, &emptyRegion, subjectWinRegion);
 
-	    // Dodge candidate window
-	    CompWindow *dw;
+	    CompWindow *dw; // Dodge or Focus fade candidate window
 	    for (dw = wStart; dw && dw != wEnd->next; dw = dw->next)
 	    {
 		if (!isWinVisible(dw) ||
 		    dw->wmType & CompWindowTypeDockMask)
+		    continue;
+
+		AnimWindow *adw = GET_ANIM_WINDOW(dw, as);
+
+		// Skip windows that have been restacked
+		if (dw != wEnd && adw->restackInfo)
 		    continue;
 
 		// Compute intersection of this with subject
@@ -1709,7 +1714,6 @@ initiateFocusAnimation(CompWindow *w)
 		XUnionRegion(fadeRegion, thisAndSubjectIntersection,
 			     fadeRegion);
 
-		AnimWindow *adw = GET_ANIM_WINDOW(dw, as);
 		if (chosenEffect == AnimEffectFocusFade)
 		{
 		    adw->winPassingThrough = w;
