@@ -73,6 +73,9 @@ typedef struct _PutDisplay
 
     HandleEventProc handleEvent; /* handle event function pointer */
 
+    Window  lastWindow;
+    PutType lastType;
+
     Atom compizPutWindowAtom;    /* client event atom             */
 } PutDisplay;
 
@@ -333,6 +336,7 @@ putInitiate (CompDisplay     *d,
 	    PutType    type;
 	    XRectangle workArea;
 
+	    PUT_DISPLAY (d);
 	    PUT_WINDOW (w);
 
 	    px = getIntOptionNamed (option, nOption, "x", 0);
@@ -354,31 +358,49 @@ putInitiate (CompDisplay     *d,
 
 	    /* get the Xinerama head from the options list */
 	    head = getIntOptionNamed(option, nOption, "head", -1);
-
 	    /* no head in options list so we use the current head */
 	    if (head == -1)
-		head = s->currentOutputDev;
+	    {
+		/* no head given, so use the current head if this wasn't
+		   a double tap */
+		if (pd->lastType != type || pd->lastWindow != w->id)
+		    head = s->currentOutputDev;
+	    }
+	    else
+	    {
+		/* make sure the head number is not out of bounds */
+		head = MIN (head, s->nOutputDev - 1);
+	    }
 
-	    /* make sure the head number is not out of bounds */
-	    head = MIN (head, s->nOutputDev - 1);
+	    if (head == -1)
+	    {
+		/* user double-tapped the key, so use the screen work area */
+		workArea = s->workArea;
+		/* set the type to unknown to have a toggle-type behaviour
+		   between 'use head's work area' and 'use screen work area' */
+		pd->lastType = PutUnknown;
+	    }
+	    else
+	    {
+		/* single tap or head provided via options list,
+		   use the head's work area */
+		getWorkareaForOutput (s, head, &workArea);
+		pd->lastType = type;
+	    }
 
-    	    /* some error has occured so we bail out */
-	    if (head < 0)
-		return FALSE;
-
-	    /* working area of the screen */
-	    getWorkareaForOutput (s, head, &workArea);
 	    width  = workArea.width;
-    	    height = workArea.height;
+	    height = workArea.height;
 	    hx     = workArea.x;
 	    hy     = workArea.y;
+
+	    pd->lastWindow = w->id;
 
     	    /* the windows location */
 	    x = w->attrib.x;
 	    y = w->attrib.y;
 
-	    /* handle the put types
-	     *
+	    /*
+	     * handle the put types
 	     */
 	    switch (type)
 	    {
@@ -1277,6 +1299,9 @@ putInitDisplay (CompPlugin  *p,
     /* custom atom for client events */
     pd->compizPutWindowAtom = XInternAtom(d->display,
 					  "_COMPIZ_PUT_WINDOW", 0);
+
+    pd->lastWindow = None;
+    pd->lastType   = PutUnknown;
 
     putSetPutViewportInitiate (d, putToViewport);
     putSetPutViewport1KeyInitiate (d, putToViewport);
