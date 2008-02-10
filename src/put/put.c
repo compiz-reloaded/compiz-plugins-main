@@ -174,6 +174,8 @@ putPreparePaintScreen (CompScreen *s,
 
 	while (steps--)
 	{
+	    Window endAnimationWindow = None;
+
 	    ps->moreAdjust = 0;
 	    for (w = s->windows; w; w = w->next)
 	    {
@@ -194,6 +196,7 @@ putPreparePaintScreen (CompScreen *s,
 				    pw->targetY - w->attrib.y, TRUE, TRUE);
 			syncWindowPosition (w);
 			updateWindowAttributes (w, CompStackingUpdateModeNone);
+			endAnimationWindow = w->id;
 			pw->tx = pw->ty = 0;
 		    }
 		}
@@ -203,6 +206,8 @@ putPreparePaintScreen (CompScreen *s,
 		/* unfocus moved window if enabled */
 		if (putGetUnfocusWindow (s))
 		    focusDefaultWindow (s);
+		else if (endAnimationWindow)
+		    sendWindowActivationRequest (s, endAnimationWindow);
 		break;
     	    }
 	}
