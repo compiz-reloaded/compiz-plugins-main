@@ -1942,6 +1942,28 @@ resetStackingInfo (CompScreen *s)
     }
 }
 
+// Returns TRUE if linking wCur to wNext would not result
+// in a circular chain being formed.
+static Bool
+wontCreateCircularChain (CompWindow *wCur, CompWindow *wNext)
+{
+    ANIM_SCREEN (wCur->screen);
+    AnimWindow *awNext = NULL;
+
+    while (wNext)
+    {
+	if (wNext == wCur) // would form circular chain
+	    return FALSE;
+
+	awNext = GET_ANIM_WINDOW (wNext, as);
+	if (!awNext)
+	    return FALSE;
+
+	wNext = awNext->moreToBePaintedNext;
+    }
+    return TRUE; 
+}
+
 static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 {
     CompWindow *w;
@@ -2055,7 +2077,8 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		if (nw)
 		{
 		    AnimWindow *awNext = GET_ANIM_WINDOW(nw, as);
-		    if (awNext && awNext->winThisIsPaintedBefore)
+		    if (awNext && awNext->winThisIsPaintedBefore &&
+			wontCreateCircularChain (w, nw))
 		    {
 			awNext->moreToBePaintedPrev = w;
 			aw->moreToBePaintedNext = nw;
