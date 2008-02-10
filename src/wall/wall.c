@@ -733,10 +733,6 @@ wallTerminate (CompDisplay     *d,
 	       int             nOption)
 {
     CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-    s = findScreenAtDisplay (d, xid);
 
     for (s = d->screens; s; s = s->next)
     {
