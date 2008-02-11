@@ -657,6 +657,67 @@ putInitiateCommon (CompDisplay     *d,
     return FALSE;
 }
 
+static PutType
+putTypeFromString (char *type)
+{
+    if (strcmp (type, "exact") == 0)
+	return PutExact;
+    else if (strcmp (type, "pointer") == 0)
+	return PutPointer;
+    else if (strcmp (type, "viewport") == 0)
+	return PutViewport;
+    else if (strcmp (type, "viewportleft") == 0)
+	return PutViewportLeft;
+    else if (strcmp (type, "viewportright") == 0)
+	return PutViewportRight;
+    else if (strcmp (type, "viewportup") == 0)
+	return PutViewportUp;
+    else if (strcmp (type, "viewportdown") == 0)
+	return PutViewportDown;
+    else if (strcmp (type, "restore") == 0)
+	return PutRestore;
+    else if (strcmp (type, "bottomleft") == 0)
+	return PutBottomLeft;
+    else if (strcmp (type, "left") == 0)
+	return PutLeft;
+    else if (strcmp (type, "topleft") == 0)
+	return PutTopLeft;
+    else if (strcmp (type, "top") == 0)
+	return PutTop;
+    else if (strcmp (type, "topright") == 0)
+	return PutTopRight;
+    else if (strcmp (type, "right") == 0)
+	return PutRight;
+    else if (strcmp (type, "bottomright") == 0)
+	return PutBottomRight;
+    else if (strcmp (type, "bottom") == 0)
+	return PutBottom;
+    else if (strcmp (type, "center") == 0)
+	return PutCenter;
+    else
+	return PutUnknown;
+}
+
+static Bool
+putInitiate (CompDisplay     *d,
+	     CompAction      *action,
+	     CompActionState state,
+	     CompOption      *option,
+	     int             nOption)
+{
+    PutType type = PutUnknown;
+    char    *typeString;
+
+    typeString = getStringOptionNamed (option, nOption, "type", NULL);
+    if (typeString)
+    	type = putTypeFromString (typeString);
+
+    if (type == PutViewport)
+	return putToViewport (d, action, state, option, nOption);
+    else
+	return putInitiateCommon (d, action, state, option, nOption, type);
+}
+
 static Bool
 putToViewport (CompDisplay     *d,
 	       CompAction      *action,
@@ -668,7 +729,7 @@ putToViewport (CompDisplay     *d,
     CompOption o[4];
 
     /* get the face option */
-    face = getIntOptionNamed(option, nOption, "face", -1);
+    face = getIntOptionNamed (option, nOption, "face", -1);
 
     /* if it's not supplied, lets figure it out */
     if (face < 0)
@@ -689,6 +750,9 @@ putToViewport (CompDisplay     *d,
 	    i++;
 	}
     }
+
+    if (face < 0)
+	return FALSE;
 
     /* setup the options for putInitiate */
     o[0].type    = CompOptionTypeInt;
@@ -774,17 +838,6 @@ putPointer (CompDisplay     *d,
 {
     return putInitiateCommon (d, action, state,
 			      option, nOption, PutPointer);
-}
-
-static Bool
-putExact (CompDisplay     *d,
- 	  CompAction      *action,
-	  CompActionState state,
-	  CompOption      *option,
-	  int             nOption)
-{
-    return putInitiateCommon (d, action, state,
-			      option, nOption, PutExact);
 }
 
 static Bool
@@ -1000,7 +1053,7 @@ putInitDisplay (CompPlugin  *p,
     putSetPutPointerKeyInitiate (d, putPointer);
     putSetPutRestoreButtonInitiate (d, restore);
     putSetPutPointerButtonInitiate (d, putPointer);
-    putSetPutExactInitiate (d, putExact);
+    putSetPutPutInitiate (d, putInitiate);
     putSetPutCenterKeyInitiate (d, putCenter);
     putSetPutLeftKeyInitiate (d, putLeft);
     putSetPutRightKeyInitiate (d, putRight);
