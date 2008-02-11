@@ -541,8 +541,8 @@ putInitiateCommon (CompDisplay     *d,
 		break;
 	    case PutRelative:
 		/* move window by offset */
-		dx = x;
-		dy = y;
+		dx = px;
+		dy = py;
 		break;
 	    case PutPointer:
 		{
