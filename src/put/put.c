@@ -660,39 +660,39 @@ putInitiateCommon (CompDisplay     *d,
 static PutType
 putTypeFromString (char *type)
 {
-    if (strcmp (type, "exact") == 0)
+    if (strcasecmp (type, "exact") == 0)
 	return PutExact;
-    else if (strcmp (type, "pointer") == 0)
+    else if (strcasecmp (type, "pointer") == 0)
 	return PutPointer;
-    else if (strcmp (type, "viewport") == 0)
+    else if (strcasecmp (type, "viewport") == 0)
 	return PutViewport;
-    else if (strcmp (type, "viewportleft") == 0)
+    else if (strcasecmp (type, "viewportleft") == 0)
 	return PutViewportLeft;
-    else if (strcmp (type, "viewportright") == 0)
+    else if (strcasecmp (type, "viewportright") == 0)
 	return PutViewportRight;
-    else if (strcmp (type, "viewportup") == 0)
+    else if (strcasecmp (type, "viewportup") == 0)
 	return PutViewportUp;
-    else if (strcmp (type, "viewportdown") == 0)
+    else if (strcasecmp (type, "viewportdown") == 0)
 	return PutViewportDown;
-    else if (strcmp (type, "restore") == 0)
+    else if (strcasecmp (type, "restore") == 0)
 	return PutRestore;
-    else if (strcmp (type, "bottomleft") == 0)
+    else if (strcasecmp (type, "bottomleft") == 0)
 	return PutBottomLeft;
-    else if (strcmp (type, "left") == 0)
+    else if (strcasecmp (type, "left") == 0)
 	return PutLeft;
-    else if (strcmp (type, "topleft") == 0)
+    else if (strcasecmp (type, "topleft") == 0)
 	return PutTopLeft;
-    else if (strcmp (type, "top") == 0)
+    else if (strcasecmp (type, "top") == 0)
 	return PutTop;
-    else if (strcmp (type, "topright") == 0)
+    else if (strcasecmp (type, "topright") == 0)
 	return PutTopRight;
-    else if (strcmp (type, "right") == 0)
+    else if (strcasecmp (type, "right") == 0)
 	return PutRight;
-    else if (strcmp (type, "bottomright") == 0)
+    else if (strcasecmp (type, "bottomright") == 0)
 	return PutBottomRight;
-    else if (strcmp (type, "bottom") == 0)
+    else if (strcasecmp (type, "bottom") == 0)
 	return PutBottom;
-    else if (strcmp (type, "center") == 0)
+    else if (strcasecmp (type, "center") == 0)
 	return PutCenter;
     else
 	return PutUnknown;
