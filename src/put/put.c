@@ -64,7 +64,8 @@ typedef enum
     PutAbsolute = 14,
     PutPointer = 15,
     PutViewportUp = 16,
-    PutViewportDown = 17
+    PutViewportDown = 17,
+    PutRelative = 18
 } PutType;
 
 typedef struct _PutDisplay
@@ -538,6 +539,11 @@ putInitiateCommon (CompDisplay     *d,
 		else
 		    dy = py - y + w->input.top;
 		break;
+	    case PutRelative:
+		/* move window by offset */
+		dx = x;
+		dy = y;
+		break;
 	    case PutPointer:
 		{
 		    /* move the window to the pointers position
@@ -662,6 +668,8 @@ putTypeFromString (char *type)
 {
     if (strcasecmp (type, "absolute") == 0)
 	return PutAbsolute;
+    else if (strcasecmp (type, "relative") == 0)
+	return PutRelative;
     else if (strcasecmp (type, "pointer") == 0)
 	return PutPointer;
     else if (strcasecmp (type, "viewport") == 0)
