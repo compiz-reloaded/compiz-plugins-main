@@ -417,8 +417,8 @@ putInitiateCommon (CompDisplay     *d,
 	    pd->lastWindow = w->id;
 
     	    /* the windows location */
-	    x = w->attrib.x;
-	    y = w->attrib.y;
+	    x = w->attrib.x + pw->tx;
+	    y = w->attrib.y + pw->ty;
 
 	    /*
 	     * handle the put types
@@ -574,7 +574,6 @@ putInitiateCommon (CompDisplay     *d,
     		    if (XQueryPointer (d->display, w->id, &root, &child,
 				       &rx, &ry, &winX, &winY, &pMask)) 
 		    {
-
 		        if (putGetWindowCenter (s))
 			{
 			        /* window center */
@@ -626,29 +625,41 @@ putInitiateCommon (CompDisplay     *d,
 	    {
 		if (putGetAvoidOffscreen (s))
 		{
-		    /* avoids window borders offscreen */
-		    if ((-(x - hx) + w->input.left + putGetPadLeft (s)) > dx)
+		    /* avoids window borders offscreen, but allow full
+		       viewport movements */
+		    int inDx, dxBefore;
+		    int inDy, dyBefore;
+
+		    inDx = dxBefore = dx % s->width;
+		    inDy = dyBefore = dy % s->height;
+
+		    if ((-(x - hx) + w->input.left + putGetPadLeft (s)) > inDx)
 		    {
-			dx = -(x - hx) + w->input.left + putGetPadLeft (s);
+			inDx = -(x - hx) + w->input.left + putGetPadLeft (s);
 		    }
-	    	    else if ((width - w->width - (x - hx) -
-			      w->input.right - putGetPadRight (s)) < dx)
+		    else if ((width - w->width - (x - hx) -
+			      w->input.right - putGetPadRight (s)) < inDx)
 		    {
-			dx = width - w->width - (x - hx) -
-			     w->input.right - putGetPadRight (s);
+			inDx = width - w->width - (x - hx) -
+			       w->input.right - putGetPadRight (s);
 		    }
 
-	    	    if ((-(y - hy) + w->input.top + putGetPadTop (s)) > dy)
+		    if ((-(y - hy) + w->input.top + putGetPadTop (s)) > inDy)
 		    {
-			dy = -(y - hy) + w->input.top + putGetPadTop (s);
+			inDy = -(y - hy) + w->input.top + putGetPadTop (s);
 		    }
-	    	    else if ((height - w->height - (y - hy) - w->input.bottom -
-			      putGetPadBottom (s)) < dy)
+		    else if ((height - w->height - (y - hy) - w->input.bottom -
+			      putGetPadBottom (s)) < inDy)
 		    {
-			dy = height - w->height - (y - hy) -
-			     w->input.bottom - putGetPadBottom (s);
+			inDy = height - w->height - (y - hy) -
+			       w->input.bottom - putGetPadBottom (s);
 		    }
+
+		    /* apply the change */
+		    dx += inDx - dxBefore;
+		    dy += inDy - dyBefore;
 		}
+
 		/* save the windows position in the saveMask
 		 * this is used when unmaximizing the window
 		 */
