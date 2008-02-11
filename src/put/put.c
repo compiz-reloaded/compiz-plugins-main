@@ -61,7 +61,7 @@ typedef enum
     PutViewport = 11,
     PutViewportLeft = 12,
     PutViewportRight = 13,
-    PutExact = 14,
+    PutAbsolute = 14,
     PutPointer = 15,
     PutViewportUp = 16,
     PutViewportDown = 17
@@ -522,7 +522,7 @@ putInitiateCommon (CompDisplay     *d,
 		dx = 0;
 		dy = s->height;
 		break;
-	    case PutExact:
+	    case PutAbsolute:
 		/* move the window to an exact position */
 		if (px < 0)
 		    /* account for a specified negative position,
@@ -660,8 +660,8 @@ putInitiateCommon (CompDisplay     *d,
 static PutType
 putTypeFromString (char *type)
 {
-    if (strcasecmp (type, "exact") == 0)
-	return PutExact;
+    if (strcasecmp (type, "absolute") == 0)
+	return PutAbsolute;
     else if (strcasecmp (type, "pointer") == 0)
 	return PutPointer;
     else if (strcasecmp (type, "viewport") == 0)
