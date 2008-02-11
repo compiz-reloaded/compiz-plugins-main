@@ -370,7 +370,22 @@ putInitiateCommon (CompDisplay     *d,
 		/* no head given, so use the current head if this wasn't
 		   a double tap */
 		if (pd->lastType != type || pd->lastWindow != w->id)
-		    head = outputDeviceForWindow (w);
+		{
+		    if (pw->adjust)
+		    {
+			/* outputDeviceForWindow uses the server geometry,
+			   so specialcase a running animation, which didn't
+			   apply the server geometry yet */
+			head = outputDeviceForGeometry (s,
+							w->attrib.x + pw->tx,
+							w->attrib.y + pw->ty,
+							w->attrib.width,
+							w->attrib.height,
+							w->attrib.border_width);
+		    }
+		    else
+			head = outputDeviceForWindow (w);
+		}
 	    }
 	    else
 	    {
