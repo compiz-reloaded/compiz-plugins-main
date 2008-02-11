@@ -275,7 +275,9 @@ magOptionsChanged (CompScreen	   *s,
     default:
 	ms->mode = ModeSimple;
     }
-
+    
+    if (ms->zoom != 1.0)
+	damageScreen (s);
 }
 
 static void
