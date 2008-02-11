@@ -707,26 +707,6 @@ putTypeFromString (char *type)
 }
 
 static Bool
-putInitiate (CompDisplay     *d,
-	     CompAction      *action,
-	     CompActionState state,
-	     CompOption      *option,
-	     int             nOption)
-{
-    PutType type = PutUnknown;
-    char    *typeString;
-
-    typeString = getStringOptionNamed (option, nOption, "type", NULL);
-    if (typeString)
-    	type = putTypeFromString (typeString);
-
-    if (type == PutViewport)
-	return putToViewport (d, action, state, option, nOption);
-    else
-	return putInitiateCommon (d, action, state, option, nOption, type);
-}
-
-static Bool
 putToViewport (CompDisplay     *d,
 	       CompAction      *action,
 	       CompActionState state,
@@ -780,6 +760,26 @@ putToViewport (CompDisplay     *d,
     o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
 
     return putInitiateCommon (d, NULL, 0, o, 4, PutViewport);
+}
+
+static Bool
+putInitiate (CompDisplay     *d,
+	     CompAction      *action,
+	     CompActionState state,
+	     CompOption      *option,
+	     int             nOption)
+{
+    PutType type = PutUnknown;
+    char    *typeString;
+
+    typeString = getStringOptionNamed (option, nOption, "type", NULL);
+    if (typeString)
+    	type = putTypeFromString (typeString);
+
+    if (type == PutViewport)
+	return putToViewport (d, action, state, option, nOption);
+    else
+	return putInitiateCommon (d, action, state, option, nOption, type);
 }
 
 static Bool
