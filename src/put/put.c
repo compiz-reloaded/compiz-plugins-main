@@ -304,11 +304,12 @@ putPaintWindow (CompWindow              *w,
  * initiate action callback
  */
 static Bool
-putInitiate (CompDisplay     *d,
-	     CompAction      *action,
-	     CompActionState state,
-	     CompOption      *option,
-	     int             nOption)
+putInitiateCommon (CompDisplay     *d,
+		   CompAction      *action,
+		   CompActionState state,
+		   CompOption      *option,
+		   int             nOption,
+		   PutType         type)
 {
     CompWindow *w;
     Window     xid;
@@ -339,7 +340,6 @@ putInitiate (CompDisplay     *d,
 	{
 	    int        px, py, x, y, dx, dy;
 	    int        head, width, height, hx, hy;
-	    PutType    type;
 	    XRectangle workArea;
 
 	    PUT_DISPLAY (d);
@@ -347,7 +347,6 @@ putInitiate (CompDisplay     *d,
 
 	    px = getIntOptionNamed (option, nOption, "x", 0);
 	    py = getIntOptionNamed (option, nOption, "y", 0);
-	    type = getIntOptionNamed (option, nOption, "type", PutCenter);
 
 	    /* we don't want to do anything with override redirect windows */
 	    if (w->attrib.override_redirect)
@@ -666,7 +665,7 @@ putToViewport (CompDisplay     *d,
 	       int             nOption)
 {
     int        face;
-    CompOption o[5];
+    CompOption o[4];
 
     /* get the face option */
     face = getIntOptionNamed(option, nOption, "face", -1);
@@ -705,16 +704,10 @@ putToViewport (CompDisplay     *d,
     o[2].value.i = face;
 
     o[3].type    = CompOptionTypeInt;
-    o[3].name    = "type";
-    o[3].value.i = PutViewport;
+    o[3].name    = "window";
+    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
 
-    o[4].type    = CompOptionTypeInt;
-    o[4].name    = "window";
-    o[4].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 5);
-
-    return FALSE;
+    return putInitiateCommon (d, NULL, 0, o, 4, PutViewport);
 }
 
 static Bool
@@ -724,28 +717,8 @@ putViewportLeft (CompDisplay     *d,
 		 CompOption      *option,
 		 int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutViewportLeft;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutViewportLeft);
 }
 
 static Bool
@@ -755,28 +728,8 @@ putViewportRight (CompDisplay     *d,
 		  CompOption      *option,
 		  int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutViewportRight;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutViewportRight);
 }
 
 static Bool
@@ -786,28 +739,8 @@ putViewportUp (CompDisplay     *d,
 	       CompOption      *option,
 	       int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutViewportUp;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutViewportUp);
 }
 
 static Bool
@@ -817,28 +750,8 @@ putViewportDown (CompDisplay     *d,
 		 CompOption      *option,
 		 int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutViewportDown;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutViewportDown);
 }
 
 static Bool
@@ -848,28 +761,8 @@ restore (CompDisplay     *d,
 	 CompOption      *option,
 	 int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutRestore;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutRestore);
 }
 
 static Bool
@@ -879,28 +772,8 @@ putPointer (CompDisplay     *d,
 	    CompOption      *option,
 	    int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutPointer;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutPointer);
 }
 
 static Bool
@@ -910,28 +783,8 @@ putExact (CompDisplay     *d,
 	  CompOption      *option,
 	  int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutExact;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutExact);
 }
 
 static Bool
@@ -941,28 +794,8 @@ putCenter (CompDisplay     *d,
 	   CompOption      *option,
 	   int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutCenter;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutCenter);
 }
 
 static Bool
@@ -972,28 +805,8 @@ putLeft (CompDisplay     *d,
 	 CompOption      *option,
 	 int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutLeft;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutLeft);
 }
 
 static Bool
@@ -1003,28 +816,8 @@ putTopLeft (CompDisplay     *d,
 	    CompOption      *option,
 	    int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutTopLeft;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutTopLeft);
 }
 
 static Bool
@@ -1034,28 +827,8 @@ putTop (CompDisplay     *d,
 	CompOption      *option,
 	int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutTop;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutTop);
 }
 
 static Bool
@@ -1065,28 +838,8 @@ putTopRight (CompDisplay     *d,
 	     CompOption      *option,
 	     int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutTopRight;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutTopRight);
 }
 
 static Bool
@@ -1096,28 +849,8 @@ putRight (CompDisplay     *d,
 	  CompOption      *option,
 	  int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutRight;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutRight);
 }
 
 static Bool
@@ -1127,28 +860,8 @@ putBottomRight (CompDisplay     *d,
 		CompOption      *option,
 		int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutBottomRight;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutBottomRight);
 }
 
 static Bool
@@ -1158,28 +871,8 @@ putBottom (CompDisplay     *d,
 	   CompOption      *option,
 	   int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutBottom;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate(d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutBottom);
 }
 
 static Bool
@@ -1189,28 +882,8 @@ putBottomLeft (CompDisplay     *d,
 	       CompOption      *option,
 	       int             nOption)
 {
-    /* setup the options for putInitiate */
-    CompOption o[4];
-
-    o[0].type    = CompOptionTypeInt;
-    o[0].name    = "x";
-    o[0].value.i = getIntOptionNamed (option, nOption, "x", 0);
-
-    o[1].type    = CompOptionTypeInt;
-    o[1].name    = "y";
-    o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
-
-    o[2].type    = CompOptionTypeInt;
-    o[2].name    = "type";
-    o[2].value.i = PutBottomLeft;
-
-    o[3].type    = CompOptionTypeInt;
-    o[3].name    = "window";
-    o[3].value.i = getIntOptionNamed (option, nOption, "window", 0);
-
-    putInitiate (d, NULL, 0, o, 4);
-
-    return FALSE;
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutBottomLeft);
 }
 
 static void
@@ -1243,7 +916,7 @@ putHandleEvent (CompDisplay *d,
 		 * l[3] = put type, int value from enum
 		 * l[4] = Xinerama head number
 		 */
-		CompOption opt[6];
+		CompOption opt[5];
 
 		opt[0].type    = CompOptionTypeInt;
 		opt[0].name    = "window";
@@ -1262,14 +935,11 @@ putHandleEvent (CompDisplay *d,
 		opt[3].value.i = event->xclient.data.l[2];
 
 		opt[4].type    = CompOptionTypeInt;
-		opt[4].name    = "type";
-		opt[4].value.i = event->xclient.data.l[3];
+		opt[4].name    = "head";
+		opt[4].value.i = event->xclient.data.l[4];
 
-		opt[5].type    = CompOptionTypeInt;
-		opt[5].name    = "head";
-		opt[5].value.i = event->xclient.data.l[4];
-
-		putInitiate (w->screen->display, NULL, 0, opt, 6);
+		putInitiateCommon (w->screen->display, NULL, 0, opt, 5,
+				   event->xclient.data.l[3]);
 	    }
 	}
 	break;
