@@ -1194,8 +1194,8 @@ expoDonePaintScreen (CompScreen * s)
 		es->dndState  = DnDDuring;
 		es->dndWindow = w;
 
-		(*s->windowGrabNotify) (w, es->newCursorX, es->newCursorY,
-					0, CompWindowGrabMoveMask |
+		(*s->windowGrabNotify) (w, nx, ny, 0,
+					CompWindowGrabMoveMask |
 					CompWindowGrabButtonMask);
 		break;
 	    }
