@@ -99,7 +99,11 @@ vpswitchInitPlugin (CompDisplay    *d,
     tOption = (*plugin->vTable->getObjectOptions) (plugin, object, &nTOption);
     while (nTOption--)
     {
-	if (tOption->type == CompOptionTypeButton)
+	if (tOption->type == CompOptionTypeAction ||
+	    tOption->type == CompOptionTypeKey ||
+	    tOption->type == CompOptionTypeButton ||
+	    tOption->type == CompOptionTypeEdge ||
+	    tOption->type == CompOptionTypeBell)
 	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0)
 	    {
 		rv = (tOption->value.action.initiate)
@@ -139,7 +143,11 @@ vpswitchTermPlugin (CompDisplay     *d,
     tOption = (*plugin->vTable->getObjectOptions) (plugin, object, &nTOption);
     while (nTOption--)
     {
-	if (tOption->type == CompOptionTypeAction)
+	if (tOption->type == CompOptionTypeAction ||
+	    tOption->type == CompOptionTypeKey ||
+	    tOption->type == CompOptionTypeButton ||
+	    tOption->type == CompOptionTypeEdge ||
+	    tOption->type == CompOptionTypeBell)
 	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0)
 	    {
 		rv = (tOption->value.action.terminate)
