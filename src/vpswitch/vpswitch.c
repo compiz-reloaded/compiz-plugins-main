@@ -104,7 +104,8 @@ vpswitchInitPlugin (CompDisplay    *d,
 	    tOption->type == CompOptionTypeButton ||
 	    tOption->type == CompOptionTypeEdge ||
 	    tOption->type == CompOptionTypeBell)
-	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0)
+	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0 &&
+	        tOption->value.action.initiate)
 	    {
 		rv = (tOption->value.action.initiate)
 		     (d, &tOption->value.action, state, option, nOption);
@@ -148,7 +149,8 @@ vpswitchTermPlugin (CompDisplay     *d,
 	    tOption->type == CompOptionTypeButton ||
 	    tOption->type == CompOptionTypeEdge ||
 	    tOption->type == CompOptionTypeBell)
-	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0)
+	    if (strcmp (tOption->name, vpswitchGetInitAction (d)) == 0 &&
+	        tOption->value.action.terminate)
 	    {
 		rv = (tOption->value.action.terminate)
 		     (d, &tOption->value.action, state, option, nOption);
