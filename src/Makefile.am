@@ -21,4 +21,5 @@ SUBDIRS = \
     vpswitch     \
     shift        \
     mousepoll    \
-    mag
+    mag          \
+    session

@@ -215,5 +215,6 @@ src/vpswitch/Makefile
 src/shift/Makefile
 src/mousepoll/Makefile
 src/mag/Makefile
+src/session/Makefile
 po/Makefile.in
 ])
