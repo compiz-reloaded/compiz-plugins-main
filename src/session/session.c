@@ -239,12 +239,9 @@ static char*
 sessionGetClientId (CompWindow *w)
 {
     Window        clientLeader;
-    char          *clientId;
-    XTextProperty text;
 
     SESSION_DISPLAY (w->screen->display);
 
-    clientId     = NULL;
     clientLeader = w->clientLeader;
 
     /* window is its own client leader so it's a leader for something else */
@@ -270,21 +267,11 @@ sessionGetClientId (CompWindow *w)
 	}
     }
 
-    text.nitems = 0;
     if (!clientLeader)
 	clientLeader = w->id;
 
-    if (XGetTextProperty (w->screen->display->display, clientLeader,
-			  &text, sd->clientIdAtom))
-    {
-	if (text.value)
-	{
-	    clientId = strndup ((char *)text.value, text.nitems);
-	    XFree (text.value);
-	}
-    }
-
-    return clientId;
+    return sessionGetTextProperty (w->screen->display, clientLeader,
+				   sd->clientIdAtom);
 }
 
 static int
