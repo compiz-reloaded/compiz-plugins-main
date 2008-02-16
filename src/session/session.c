@@ -42,6 +42,9 @@ typedef struct _SessionWindowList
 
     char *clientId;
     char *title;
+    char *resName;
+    char *resClass;
+    char *role;
 
     XRectangle   geometry;
     Bool         geometryValid;
@@ -91,6 +94,15 @@ sessionFreeWindowListItem (SessionWindowList *item)
 
     if (item->title)
 	free (item->title);
+
+    if (item->resName)
+	free (item->resName);
+
+    if (item->resClass)
+	free (item->resClass);
+
+    if (item->role)
+	free (item->role);
 
     free (item);
 }
@@ -321,6 +333,23 @@ sessionGetIntForProp (xmlNodePtr node,
 }
 
 static char *
+sessionGetStringForProp (xmlNodePtr node,
+			 char       *prop)
+{
+    xmlChar *text;
+    char    *retval = NULL;
+
+    text = xmlGetProp (node, BAD_CAST prop);
+    if (text)
+    {
+	retval = strdup ((char*) text);
+	xmlFree (text);
+    }
+
+    return retval;
+}
+
+static char *
 sessionGetWindowClientId (CompWindow *w)
 {
     /* filter out embedded windows (notification icons) */
@@ -516,8 +545,6 @@ static void
 readState (xmlNodePtr root)
 {
     xmlNodePtr cur, attrib;
-    xmlChar    *newClientId;
-    xmlChar    *newTitle;
 
     for (cur = root->xmlChildrenNode; cur; cur = cur->next)
     {
@@ -530,22 +557,15 @@ readState (xmlNodePtr root)
 
 	if (xmlStrcmp (cur->name, BAD_CAST "window") == 0)
 	{
-	    newClientId = xmlGetProp (cur, BAD_CAST "id");
-	    if (newClientId)
-	    {
-		item->clientId = strdup ((char*) newClientId);
-		xmlFree (newClientId);
-	    }
-
-	    newTitle = xmlGetProp (cur, BAD_CAST "title");
-	    if (newTitle)
-	    {
-		item->title = strdup ((char*) newTitle);
-		xmlFree (newTitle);
-	    }
+	    item->clientId = sessionGetStringForProp (cur, "id");
+	    item->title = sessionGetStringForProp (cur, "title");
+	    item->resName = sessionGetStringForProp (cur, "name");
+	    item->resClass = sessionGetStringForProp (cur, "class");
+	    item->role = sessionGetStringForProp (cur, "role");
 	}
 
-	if (!item->clientId && !item->title)
+	if (!item->clientId && !item->title &&
+	    (!item->resName || !item->resClass))
 	{
 	    free (item);
 	    continue;
