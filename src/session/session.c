@@ -321,12 +321,14 @@ sessionWriteWindow (CompWindow *w,
 		    char       *title,
 		    FILE       *outfile)
 {
-    fprintf (outfile, 
-	     "  <window id=\"%s\" title=\"%s\" class=\"%s\" name=\"%s\">\n",
-	     clientId,
-	     title ? title : "",
-	     w->resClass ? w->resClass : "",
-	     w->resName ? w->resName : "");
+    fprintf (outfile, "  <window id=\"%s\"", clientId);
+    if (title)
+	fprintf (outfile, " title=\"%s\"", title);
+    if (w->resClass)
+	fprintf (outfile, " class=\"%s\"", w->resClass);
+    if (w->resName)
+	fprintf (outfile, " name=\"%s\"", w->resName);
+    fprintf (outfile, ">\n");
 
     /* save geometry */
     fprintf (outfile,
