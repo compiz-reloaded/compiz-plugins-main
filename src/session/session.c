@@ -486,23 +486,47 @@ sessionReadWindow (CompWindow *w,
 {
     XWindowChanges     xwc;
     unsigned int       xwcm = 0;
-    char               *title;
+    char               *title, *role;
     SessionWindowList  *cur;
 
     SESSION_CORE (&core);
 
     title = sessionGetWindowTitle (w);
+    role  = sessionGetWindowRole (w);
 
     for (cur = sc->windowList; cur; cur = cur->next)
     {
 	if (cur->clientId && strcmp (clientId, cur->clientId) == 0)
-	    break;
+	{
+	    /* client ID matched, try to match role as well if possible
+	       (see ICCCM 5.1) */
+	    if (!cur->role || !role)
+		break;
+	    else if (strcmp (cur->role, role) == 0)
+		break;
+	}
 	else if (title && cur->title && strcmp (title, cur->title) == 0)
+	{
+	    /* no client id, but at least the title matched */
 	    break;
+	}
+	else if (w->resName && w->resClass              &&
+		 cur->resName && cur->resClass          &&
+		 strcmp (w->resName, cur->resName) == 0 &&
+		 strcmp (w->resClass, cur->resClass) == 0)
+	{
+	    /* last resort - match by class and name */
+	    if (!cur->role || !role)
+		break;
+	    else if (strcmp (cur->role, role) == 0)
+		break;
+	}
     }
 
     if (title)
 	free (title);
+    if (role)
+	free (role);
 
     if (cur)
     {
