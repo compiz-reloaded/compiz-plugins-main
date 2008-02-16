@@ -321,8 +321,6 @@ sessionWriteWindow (CompWindow *w,
 		    char       *name,
 		    FILE       *outfile)
 {
-    int x, y, width, height;
-
     fprintf (outfile, 
 	     "  <window id=\"%s\" title=\"%s\" class=\"%s\" name=\"%s\">\n",
 	     clientId,
@@ -331,25 +329,12 @@ sessionWriteWindow (CompWindow *w,
 	     w->resName ? w->resName : "");
 
     /* save geometry */
-    x = w->attrib.x - w->input.left;
-    y = w->attrib.y - w->input.top;
-    width = w->attrib.width;
-    height = w->attrib.height;
-
-    if (w->state & CompWindowStateMaximizedVertMask)
-    {
-	y = w->saveWc.y;
-	height = w->saveWc.height;
-    }
-    if (w->state & CompWindowStateMaximizedHorzMask)
-    {
-	x = w->saveWc.x;
-	width = w->saveWc.width;
-    }
-
     fprintf (outfile,
 	     "    <geometry x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\"/>\n",
-	     x, y, width, height);
+	     (w->saveMask & CWX) ? w->saveWc.x : w->serverX,
+	     (w->saveMask & CWY) ? w->saveWc.y : w->serverY,
+	     (w->saveMask & CWWidth) ? w->saveWc.width : w->serverWidth,
+	     (w->saveMask & CWHeight) ? w->saveWc.height : w->serverHeight);
 
     /* save various window states */
     if (w->state & CompWindowStateShadedMask)

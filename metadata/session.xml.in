@@ -3,6 +3,11 @@
 	<_short>Session Management</_short>
 	<_long>Talk to session manager and save/load window state</_long>
 	<category>Utility</category>
+	<deps>
+	    <relation type="after">
+		<plugin>decoration</plugin>
+	    </relation>
+	</deps>
     </plugin>
 </compiz>
 
