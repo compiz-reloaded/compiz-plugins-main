@@ -63,6 +63,7 @@ typedef struct _SessionDisplay
     Atom visibleNameAtom;
     Atom clientIdAtom;
     Atom embedInfoAtom;
+    Atom roleAtom;
 } SessionDisplay;
 
 #define GET_SESSION_CORE(c)				     \
@@ -235,6 +236,33 @@ sessionGetIsEmbedded (CompDisplay *d,
     return (nitems > 1);
 }
 
+static char *
+sessionGetWindowRole (CompWindow *w)
+{
+    Atom          type;
+    unsigned long nItems;
+    unsigned long bytesAfter;
+    int           format, result;
+    char          *str = NULL, *retval = NULL;
+
+    SESSION_DISPLAY (w->screen->display);
+
+    result = XGetWindowProperty (w->screen->display->display,
+				 w->id, sd->roleAtom, 0, 65536,
+				 FALSE, XA_STRING, &type, &format, &nItems,
+				 &bytesAfter, (unsigned char **) &str);
+
+    if (result != Success)
+        return NULL;
+
+    if (type == XA_STRING)
+	retval = strdup (str);
+
+    XFree (str);
+
+    return retval;
+}
+
 static char*
 sessionGetClientId (CompWindow *w)
 {
@@ -308,6 +336,8 @@ sessionWriteWindow (CompWindow *w,
 		    char       *title,
 		    FILE       *outfile)
 {
+    char *string;
+
     fprintf (outfile, "  <window id=\"%s\"", clientId);
     if (title)
 	fprintf (outfile, " title=\"%s\"", title);
@@ -315,6 +345,12 @@ sessionWriteWindow (CompWindow *w,
 	fprintf (outfile, " class=\"%s\"", w->resClass);
     if (w->resName)
 	fprintf (outfile, " name=\"%s\"", w->resName);
+    string = sessionGetWindowRole (w);
+    if (string)
+    {
+	fprintf (outfile, " role=\"%s\"", string);
+	free (string);
+    }
     fprintf (outfile, ">\n");
 
     /* save geometry */
@@ -744,6 +780,7 @@ sessionInitDisplay (CompPlugin  *p,
     sd->visibleNameAtom = XInternAtom (d->display, "_NET_WM_VISIBLE_NAME", 0);
     sd->clientIdAtom = XInternAtom (d->display, "SM_CLIENT_ID", 0);
     sd->embedInfoAtom = XInternAtom (d->display, "_XEMBED_INFO", 0);
+    sd->roleAtom = XInternAtom (d->display, "WM_WINDOW_ROLE", 0);
 
     for (i = 0; i < programArgc; i++)
     {
