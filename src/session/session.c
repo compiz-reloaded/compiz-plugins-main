@@ -192,20 +192,20 @@ sessionGetTextProperty (CompDisplay *d,
 }
 
 static char*
-sessionGetWindowTitle (CompDisplay *d,
-		       Window      id)
+sessionGetWindowTitle (CompWindow *w)
 {
-    char *name;
+    CompDisplay *d = w->screen->display;
+    char        *name;
 
     SESSION_DISPLAY (d);
 
-    name = sessionGetUtf8Property (d, id, sd->visibleNameAtom);
+    name = sessionGetUtf8Property (d, w->id, sd->visibleNameAtom);
 
     if (!name)
-	name = sessionGetUtf8Property(d, id, d->wmNameAtom);
+	name = sessionGetUtf8Property(d, w->id, d->wmNameAtom);
 
     if (!name)
-	name = sessionGetTextProperty (d, id, XA_WM_NAME);
+	name = sessionGetTextProperty (d, w->id, XA_WM_NAME);
 
     return name;
 }
@@ -339,8 +339,12 @@ sessionWriteWindow (CompWindow *w,
     char *string;
 
     fprintf (outfile, "  <window id=\"%s\"", clientId);
-    if (title)
-	fprintf (outfile, " title=\"%s\"", title);
+    string = sessionGetWindowTitle (w);
+    if (string)
+    {
+	fprintf (outfile, " title=\"%s\"", string);
+	free (string);
+    }
     if (w->resClass)
 	fprintf (outfile, " class=\"%s\"", w->resClass);
     if (w->resName)
@@ -438,11 +442,7 @@ saveState (const char  *clientId,
 	    if (!windowClientId)
 		continue;
 
-	    title = sessionGetWindowTitle (d, w->id);
 	    sessionWriteWindow (w, windowClientId, title, outfile);
-
-	    if (title)
-		free (title);
 	    free (windowClientId);
 	}
     }
@@ -453,22 +453,27 @@ saveState (const char  *clientId,
 
 static void
 sessionReadWindow (CompWindow *w,
-		   char       *clientId,
-		   char       *title)
+		   char       *clientId)
 {
     XWindowChanges     xwc;
     unsigned int       xwcm = 0;
-    SessionWindowList *cur;
+    char               *title;
+    SessionWindowList  *cur;
 
     SESSION_CORE (&core);
+
+    title = sessionGetWindowTitle (w);
 
     for (cur = sc->windowList; cur; cur = cur->next)
     {
 	if (cur->clientId && strcmp (clientId, cur->clientId) == 0)
 	    break;
-	else if (cur->title && strcmp (title, cur->title) == 0)
+	else if (title && cur->title && strcmp (title, cur->title) == 0)
 	    break;
     }
+
+    if (title)
+	free (title);
 
     if (cur)
     {
@@ -634,13 +639,7 @@ sessionWindowAdd (CompScreen *s,
     clientId = sessionGetWindowClientId (w);
     if (clientId)
     {
-	char *title;
-
-       	title = sessionGetWindowTitle (s->display, w->id);
-	sessionReadWindow (w, clientId, title);
-
-	if (title)
-	    free (title);
+	sessionReadWindow (w, clientId);
 	free (clientId);
     }
 }
