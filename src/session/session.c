@@ -41,7 +41,7 @@ typedef struct _SessionWindowList
     struct _SessionWindowList *next;
 
     char *clientId;
-    char *name;
+    char *title;
 
     XRectangle   geometry;
     Bool         geometryValid;
@@ -88,8 +88,8 @@ sessionFreeWindowListItem (SessionWindowList *item)
     if (item->clientId)
 	free (item->clientId);
 
-    if (item->name)
-	free (item->name);
+    if (item->title)
+	free (item->title);
 
     free (item);
 }
@@ -191,8 +191,8 @@ sessionGetTextProperty (CompDisplay *d,
 }
 
 static char*
-sessionGetWindowName (CompDisplay *d,
-		      Window      id)
+sessionGetWindowTitle (CompDisplay *d,
+		       Window      id)
 {
     char *name;
 
@@ -318,13 +318,13 @@ sessionGetWindowClientId (CompWindow *w)
 static void
 sessionWriteWindow (CompWindow *w,
 		    char       *clientId,
-		    char       *name,
+		    char       *title,
 		    FILE       *outfile)
 {
     fprintf (outfile, 
 	     "  <window id=\"%s\" title=\"%s\" class=\"%s\" name=\"%s\">\n",
 	     clientId,
-	     name ? name : "",
+	     title ? title : "",
 	     w->resClass ? w->resClass : "",
 	     w->resName ? w->resName : "");
 
@@ -407,17 +407,17 @@ saveState (const char  *clientId,
 
 	for (w = s->windows; w; w = w->next)
 	{
-	    char *windowClientId, *name;
+	    char *windowClientId, *title;
 
 	    windowClientId = sessionGetWindowClientId (w);
 	    if (!windowClientId)
 		continue;
 
-	    name = sessionGetWindowName (d, w->id);
-	    sessionWriteWindow (w, windowClientId, name, outfile);
+	    title = sessionGetWindowTitle (d, w->id);
+	    sessionWriteWindow (w, windowClientId, title, outfile);
 
-	    if (name)
-		free (name);
+	    if (title)
+		free (title);
 	    free (windowClientId);
 	}
     }
@@ -429,7 +429,7 @@ saveState (const char  *clientId,
 static void
 sessionReadWindow (CompWindow *w,
 		   char       *clientId,
-		   char       *name)
+		   char       *title)
 {
     XWindowChanges     xwc;
     unsigned int       xwcm = 0;
@@ -441,7 +441,7 @@ sessionReadWindow (CompWindow *w,
     {
 	if (cur->clientId && strcmp (clientId, cur->clientId) == 0)
 	    break;
-	else if (cur->name && strcmp (name, cur->name) == 0)
+	else if (cur->title && strcmp (title, cur->title) == 0)
 	    break;
     }
 
@@ -487,7 +487,7 @@ readState (xmlNodePtr root)
 {
     xmlNodePtr cur, attrib;
     xmlChar    *newClientId;
-    xmlChar    *newName;
+    xmlChar    *newTitle;
 
     for (cur = root->xmlChildrenNode; cur; cur = cur->next)
     {
@@ -507,15 +507,15 @@ readState (xmlNodePtr root)
 		xmlFree (newClientId);
 	    }
 
-	    newName = xmlGetProp (cur, BAD_CAST "title");
-	    if (newName)
+	    newTitle = xmlGetProp (cur, BAD_CAST "title");
+	    if (newTitle)
 	    {
-		item->name = strdup ((char*) newName);
-		xmlFree (newName);
+		item->title = strdup ((char*) newTitle);
+		xmlFree (newTitle);
 	    }
 	}
 
-	if (!item->clientId && !item->name)
+	if (!item->clientId && !item->title)
 	{
 	    free (item);
 	    continue;
@@ -609,13 +609,13 @@ sessionWindowAdd (CompScreen *s,
     clientId = sessionGetWindowClientId (w);
     if (clientId)
     {
-	char *name;
+	char *title;
 
-       	name = sessionGetWindowName (s->display, w->id);
-	sessionReadWindow (w, clientId, name);
+       	title = sessionGetWindowTitle (s->display, w->id);
+	sessionReadWindow (w, clientId, title);
 
-	if (name)
-	    free (name);
+	if (title)
+	    free (title);
 	free (clientId);
     }
 }
