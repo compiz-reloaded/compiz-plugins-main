@@ -21,7 +21,8 @@ xml_in_files = 	         \
 	vpswitch.xml.in \
 	shift.xml.in \
 	mousepoll.xml.in \
-	mag.xml.in
+	mag.xml.in \
+	session.xml.in
 
 
 xml_files    = $(xml_in_files:.xml.in=.xml)
