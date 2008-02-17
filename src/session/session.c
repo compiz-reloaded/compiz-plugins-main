@@ -67,6 +67,8 @@ typedef struct _SessionDisplay
     Atom clientIdAtom;
     Atom embedInfoAtom;
     Atom roleAtom;
+
+    HandleEventProc handleEvent;
 } SessionDisplay;
 
 #define GET_SESSION_CORE(c)				     \
@@ -366,6 +368,7 @@ sessionWriteWindow (CompWindow *w,
 		    FILE       *outfile)
 {
     char *string;
+    int  x, y;
 
     fprintf (outfile, "  <window id=\"%s\"", clientId);
     string = sessionGetWindowTitle (w);
@@ -386,11 +389,18 @@ sessionWriteWindow (CompWindow *w,
     }
     fprintf (outfile, ">\n");
 
-    /* save geometry */
+    /* save geometry, relative to viewport 0, 0 */
+    x = ((w->saveMask & CWX) ? w->saveWc.x : w->serverX) - w->input.left;
+    y = ((w->saveMask & CWY) ? w->saveWc.y : w->serverY) - w->input.top;
+    if (!windowOnAllViewports (w))
+    {
+	x += w->screen->x * w->screen->width;
+	y += w->screen->y * w->screen->height;
+    }
+
     fprintf (outfile,
 	     "    <geometry x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\"/>\n",
-	     (w->saveMask & CWX) ? w->saveWc.x : w->serverX,
-	     (w->saveMask & CWY) ? w->saveWc.y : w->serverY,
+	     x, y,
 	     (w->saveMask & CWWidth) ? w->saveWc.width : w->serverWidth,
 	     (w->saveMask & CWHeight) ? w->saveWc.height : w->serverHeight);
 
@@ -481,15 +491,23 @@ saveState (const char  *clientId,
 }
 
 static void
-sessionReadWindow (CompWindow *w,
-		   char       *clientId)
+sessionReadWindow (CompWindow *w)
 {
     XWindowChanges     xwc;
     unsigned int       xwcm = 0;
-    char               *title, *role;
+    char               *title, *role, *clientId;
     SessionWindowList  *cur;
 
     SESSION_CORE (&core);
+
+    /* optimization: don't mess around with getting X properties
+       if there is nothing to match */
+    if (!sc->windowList)
+	return;
+
+    clientId = sessionGetWindowClientId (w);
+    if (!clientId)
+	return;
 
     title = sessionGetWindowTitle (w);
     role  = sessionGetWindowRole (w);
@@ -523,6 +541,7 @@ sessionReadWindow (CompWindow *w,
 	}
     }
 
+    free (clientId);
     if (title)
 	free (title);
     if (role)
@@ -540,10 +559,8 @@ sessionReadWindow (CompWindow *w,
 	    xwc.width = cur->geometry.width;
 	    xwc.height = cur->geometry.height;
 
-	    /* normally it's better to use configureXWindow, but we have to
-	       use moveResizeWindow here so that the place plugin doesn't
-	       re-place it */
-	    moveResizeWindow (w, &xwc, xwcm, 0);
+	    configureXWindow (w, xwcm, &xwc);
+	    w->placed = TRUE;
 	}
 
 	if (cur->minimized)
@@ -678,14 +695,30 @@ static void
 sessionWindowAdd (CompScreen *s,
 		  CompWindow *w)
 {
-    char *clientId;
+    if (!w->attrib.override_redirect && w->attrib.map_state == IsViewable)
+    	sessionReadWindow (w);
+}
 
-    clientId = sessionGetWindowClientId (w);
-    if (clientId)
-    {
-	sessionReadWindow (w, clientId);
-	free (clientId);
+static void
+sessionHandleEvent (CompDisplay *d,
+		    XEvent      *event)
+{
+    SESSION_DISPLAY (d);
+
+    switch (event->type) {
+    case MapRequest:
+	{
+	    CompWindow *w;
+	    w = findWindowAtDisplay (d, event->xmaprequest.window);
+	    if (w)
+		sessionReadWindow (w);
+	}
+	break;
     }
+
+    UNWRAP (sd, d, handleEvent);
+    (*d->handleEvent) (d, event);
+    WRAP (sd, d, handleEvent, sessionHandleEvent);
 }
 
 static void
@@ -848,6 +881,8 @@ sessionInitDisplay (CompPlugin  *p,
 	free (previousId);
     }
 
+    WRAP (sd, d, handleEvent, sessionHandleEvent);
+
     return TRUE;
 }
 
@@ -856,6 +891,8 @@ sessionFiniDisplay (CompPlugin  *p,
 		    CompDisplay *d)
 {
     SESSION_DISPLAY (d);
+
+    UNWRAP (sd, d, handleEvent);
 
     free (sd);
 }
