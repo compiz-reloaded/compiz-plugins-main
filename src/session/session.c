@@ -63,6 +63,8 @@ typedef struct _SessionCore
 
 typedef struct _SessionDisplay
 {
+    int screenPrivateIndex;
+
     Atom visibleNameAtom;
     Atom clientIdAtom;
     Atom embedInfoAtom;
@@ -70,6 +72,16 @@ typedef struct _SessionDisplay
 
     HandleEventProc handleEvent;
 } SessionDisplay;
+
+typedef struct _SessionScreen
+{
+    int windowPrivateIndex;
+} SessionScreen;
+
+typedef struct _SessionWindow
+{
+    CompTimeoutHandle timeoutHandle;
+} SessionWindow;
 
 #define GET_SESSION_CORE(c)				     \
     ((SessionCore *) (c)->base.privates[corePrivateIndex].ptr)
@@ -82,6 +94,20 @@ typedef struct _SessionDisplay
 
 #define SESSION_DISPLAY(d)                  \
     SessionDisplay *sd = GET_SESSION_DISPLAY (d)
+
+#define GET_SESSION_SCREEN(s, sd)                                 \
+    ((SessionScreen *) (s)->base.privates[(sd)->screenPrivateIndex].ptr)
+
+#define SESSION_SCREEN(s)                  \
+    SessionScreen *ss = GET_SESSION_SCREEN (s, GET_SESSION_DISPLAY (s->display))
+
+#define GET_SESSION_WINDOW(w, ss)                                 \
+    ((SessionWindow *) (w)->base.privates[ss->windowPrivateIndex].ptr)
+
+#define SESSION_WINDOW(w)                  \
+    SessionWindow *sw = GET_SESSION_WINDOW (w, \
+			GET_SESSION_SCREEN (w->screen, \
+			GET_SESSION_DISPLAY (w->screen->display)))
 
 static int corePrivateIndex;
 static int displayPrivateIndex;
@@ -759,6 +785,19 @@ sessionObjectAdd (CompObject *parent,
     DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), (parent, object));
 }
 
+static Bool
+sessionWindowAddTimeout (void *closure)
+{
+    CompWindow *w = (CompWindow *) closure;
+
+    SESSION_WINDOW (w);
+
+    sessionWindowAdd (w->screen, w);
+    sw->timeoutHandle = 0;
+
+    return FALSE;
+}
+
 static int
 sessionInit (CompPlugin *p)
 {
@@ -807,7 +846,10 @@ sessionInitCore (CompPlugin *p,
 
     sc->windowList = NULL;
 
-    WRAP (sc, c, objectAdd, sessionObjectAdd);
+    /* FIXME: don't use WindowAdd for now as it's not called for windows
+       that are present before Compiz start - TODO: find out why and remove
+       the timeout hack */
+    /* WRAP (sc, c, objectAdd, sessionObjectAdd); */
     WRAP (sc, c, sessionSaveYourself, sessionSessionSaveYourself);
 
     c->base.privates[corePrivateIndex].ptr = sc;
@@ -825,7 +867,8 @@ sessionFiniCore (CompPlugin *p,
 
     freeDisplayPrivateIndex (displayPrivateIndex);
 
-    UNWRAP (sc, c, objectAdd);
+    /* FIXME: see above */
+    /* UNWRAP (sc, c, objectAdd); */
     UNWRAP (sc, c, sessionSaveYourself);
 
     run = sc->windowList;
@@ -850,6 +893,13 @@ sessionInitDisplay (CompPlugin  *p,
     sd = malloc (sizeof (SessionDisplay));
     if (!sd)
 	return FALSE;
+
+    sd->screenPrivateIndex = allocateScreenPrivateIndex (d);
+    if (sd->screenPrivateIndex < 0)
+    {
+	free (sd);
+	return FALSE;
+    }
 
     d->base.privates[displayPrivateIndex].ptr = sd;
 
@@ -894,7 +944,76 @@ sessionFiniDisplay (CompPlugin  *p,
 
     UNWRAP (sd, d, handleEvent);
 
+    freeScreenPrivateIndex (d, sd->screenPrivateIndex);
     free (sd);
+}
+
+static CompBool
+sessionInitScreen (CompPlugin *p,
+		   CompScreen *s)
+{
+    SessionScreen *ss;
+
+    SESSION_DISPLAY (s->display);
+
+    ss = malloc (sizeof (SessionScreen));
+    if (!ss)
+	return FALSE;
+
+    ss->windowPrivateIndex = allocateWindowPrivateIndex (s);
+    if (ss->windowPrivateIndex < 0)
+    {
+	free (ss);
+	return FALSE;
+    }
+
+    s->base.privates[sd->screenPrivateIndex].ptr = ss;
+
+    return TRUE;
+}
+
+static void
+sessionFiniScreen (CompPlugin *p,
+		   CompScreen *s)
+{
+    SESSION_SCREEN (s);
+
+    freeWindowPrivateIndex (s, ss->windowPrivateIndex);
+    free (ss);
+}
+
+static CompBool
+sessionInitWindow (CompPlugin *p,
+		   CompWindow *w)
+{
+    SessionWindow *sw;
+
+    SESSION_SCREEN (w->screen);
+
+    sw = malloc (sizeof (SessionWindow));
+    if (!sw)
+	return FALSE;
+
+    if (!w->attrib.override_redirect && w->attrib.map_state == IsViewable)
+	sw->timeoutHandle = compAddTimeout (0, sessionWindowAddTimeout, w);
+    else
+	sw->timeoutHandle = 0;
+
+    w->base.privates[ss->windowPrivateIndex].ptr = sw;
+    
+    return TRUE;
+}
+
+static void
+sessionFiniWindow (CompPlugin *p,
+		   CompWindow *w)
+{
+    SESSION_WINDOW (w);
+
+    if (sw->timeoutHandle)
+	compRemoveTimeout (sw->timeoutHandle);
+
+    free (sw);
 }
 
 static CompBool
@@ -903,7 +1022,9 @@ sessionInitObject (CompPlugin *p,
 {
     static InitPluginObjectProc dispTab[] = {
     	(InitPluginObjectProc) sessionInitCore,
-	(InitPluginObjectProc) sessionInitDisplay
+	(InitPluginObjectProc) sessionInitDisplay,
+	(InitPluginObjectProc) sessionInitScreen,
+	(InitPluginObjectProc) sessionInitWindow
     };
 
     RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
@@ -915,7 +1036,9 @@ sessionFiniObject (CompPlugin *p,
 {
     static FiniPluginObjectProc dispTab[] = {
 	(FiniPluginObjectProc) sessionFiniCore,
-	(FiniPluginObjectProc) sessionFiniDisplay
+	(FiniPluginObjectProc) sessionFiniDisplay,
+	(FiniPluginObjectProc) sessionFiniScreen,
+	(FiniPluginObjectProc) sessionFiniWindow
     };
 
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
