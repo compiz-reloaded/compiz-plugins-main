@@ -75,13 +75,8 @@ typedef struct _SessionDisplay
 
 typedef struct _SessionScreen
 {
-    int windowPrivateIndex;
+    CompTimeoutHandle windowAddTimeout;
 } SessionScreen;
-
-typedef struct _SessionWindow
-{
-    CompTimeoutHandle timeoutHandle;
-} SessionWindow;
 
 #define GET_SESSION_CORE(c)				     \
     ((SessionCore *) (c)->base.privates[corePrivateIndex].ptr)
@@ -100,14 +95,6 @@ typedef struct _SessionWindow
 
 #define SESSION_SCREEN(s)                  \
     SessionScreen *ss = GET_SESSION_SCREEN (s, GET_SESSION_DISPLAY (s->display))
-
-#define GET_SESSION_WINDOW(w, ss)                                 \
-    ((SessionWindow *) (w)->base.privates[ss->windowPrivateIndex].ptr)
-
-#define SESSION_WINDOW(w)                  \
-    SessionWindow *sw = GET_SESSION_WINDOW (w, \
-			GET_SESSION_SCREEN (w->screen, \
-			GET_SESSION_DISPLAY (w->screen->display)))
 
 static int corePrivateIndex;
 static int displayPrivateIndex;
@@ -788,12 +775,15 @@ sessionObjectAdd (CompObject *parent,
 static Bool
 sessionWindowAddTimeout (void *closure)
 {
-    CompWindow *w = (CompWindow *) closure;
+    CompScreen *s = (CompScreen *) closure;
+    CompWindow *w;
 
-    SESSION_WINDOW (w);
+    SESSION_SCREEN (s);
 
-    sessionWindowAdd (w->screen, w);
-    sw->timeoutHandle = 0;
+    for (w = s->windows; w; w = w->next)
+	sessionWindowAdd (s, w);
+
+    ss->windowAddTimeout = 0;
 
     return FALSE;
 }
@@ -960,12 +950,7 @@ sessionInitScreen (CompPlugin *p,
     if (!ss)
 	return FALSE;
 
-    ss->windowPrivateIndex = allocateWindowPrivateIndex (s);
-    if (ss->windowPrivateIndex < 0)
-    {
-	free (ss);
-	return FALSE;
-    }
+    ss->windowAddTimeout = compAddTimeout (0, sessionWindowAddTimeout, s);
 
     s->base.privates[sd->screenPrivateIndex].ptr = ss;
 
@@ -978,42 +963,10 @@ sessionFiniScreen (CompPlugin *p,
 {
     SESSION_SCREEN (s);
 
-    freeWindowPrivateIndex (s, ss->windowPrivateIndex);
+    if (ss->windowAddTimeout)
+	compRemoveTimeout (ss->windowAddTimeout);
+
     free (ss);
-}
-
-static CompBool
-sessionInitWindow (CompPlugin *p,
-		   CompWindow *w)
-{
-    SessionWindow *sw;
-
-    SESSION_SCREEN (w->screen);
-
-    sw = malloc (sizeof (SessionWindow));
-    if (!sw)
-	return FALSE;
-
-    if (!w->attrib.override_redirect && w->attrib.map_state == IsViewable)
-	sw->timeoutHandle = compAddTimeout (0, sessionWindowAddTimeout, w);
-    else
-	sw->timeoutHandle = 0;
-
-    w->base.privates[ss->windowPrivateIndex].ptr = sw;
-    
-    return TRUE;
-}
-
-static void
-sessionFiniWindow (CompPlugin *p,
-		   CompWindow *w)
-{
-    SESSION_WINDOW (w);
-
-    if (sw->timeoutHandle)
-	compRemoveTimeout (sw->timeoutHandle);
-
-    free (sw);
 }
 
 static CompBool
@@ -1023,8 +976,7 @@ sessionInitObject (CompPlugin *p,
     static InitPluginObjectProc dispTab[] = {
     	(InitPluginObjectProc) sessionInitCore,
 	(InitPluginObjectProc) sessionInitDisplay,
-	(InitPluginObjectProc) sessionInitScreen,
-	(InitPluginObjectProc) sessionInitWindow
+	(InitPluginObjectProc) sessionInitScreen
     };
 
     RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
@@ -1037,8 +989,7 @@ sessionFiniObject (CompPlugin *p,
     static FiniPluginObjectProc dispTab[] = {
 	(FiniPluginObjectProc) sessionFiniCore,
 	(FiniPluginObjectProc) sessionFiniDisplay,
-	(FiniPluginObjectProc) sessionFiniScreen,
-	(FiniPluginObjectProc) sessionFiniWindow
+	(FiniPluginObjectProc) sessionFiniScreen
     };
 
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
