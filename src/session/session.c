@@ -416,8 +416,8 @@ sessionWriteWindow (CompWindow *w,
     fprintf (outfile, ">\n");
 
     /* save geometry, relative to viewport 0, 0 */
-    x = ((w->saveMask & CWX) ? w->saveWc.x : w->serverX) - w->input.left;
-    y = ((w->saveMask & CWY) ? w->saveWc.y : w->serverY) - w->input.top;
+    x = (w->saveMask & CWX) ? w->saveWc.x : w->serverX;
+    y = (w->saveMask & CWY) ? w->saveWc.y : w->serverY;
     if (!windowOnAllViewports (w))
     {
 	x += w->screen->x * w->screen->width;
