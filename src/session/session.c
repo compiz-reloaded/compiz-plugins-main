@@ -479,6 +479,14 @@ saveState (const char  *clientId,
 	{
 	    char *windowClientId, *title;
 
+	    /* skip invisible windows that we didn't unmap */
+	    if (w->attrib.map_state != IsViewable &&
+		!(w->minimized || w->shaded ||
+		  w->inShowDesktopMode || w->hidden))
+	    {
+		continue;
+	    }
+
 	    windowClientId = sessionGetWindowClientId (w);
 	    if (!windowClientId)
 		continue;
