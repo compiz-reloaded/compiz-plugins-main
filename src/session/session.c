@@ -741,12 +741,19 @@ sessionSessionSaveYourself (CompCore   *c,
 {
     CompObject *object;
 
+    SESSION_CORE (c);
+
     object = compObjectFind (&c->base, COMP_OBJECT_TYPE_DISPLAY, NULL);
     if (object)
     {
 	CompDisplay *d = (CompDisplay *) object;
 	saveState (clientId, d);
     }
+
+    UNWRAP (sc, c, sessionSaveYourself);
+    (*c->sessionSaveYourself) (c, clientId, saveType,
+			       interactStyle, shutdown, fast);
+    WRAP (sc, c, sessionSaveYourself, sessionSessionSaveYourself);
 }
 
 static void
