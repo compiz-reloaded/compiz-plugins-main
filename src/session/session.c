@@ -68,7 +68,7 @@ typedef struct _SessionCore
 
 typedef struct _SessionDisplay
 {
-    int screenPrivateIndex;
+    CompTimeoutHandle windowAddTimeout;
 
     Atom visibleNameAtom;
     Atom clientIdAtom;
@@ -81,11 +81,6 @@ typedef struct _SessionDisplay
     CompOption opt[SESSION_DISPLAY_OPTION_NUM];
 } SessionDisplay;
 
-typedef struct _SessionScreen
-{
-    CompTimeoutHandle windowAddTimeout;
-} SessionScreen;
-
 #define GET_SESSION_CORE(c)				     \
     ((SessionCore *) (c)->base.privates[corePrivateIndex].ptr)
 
@@ -97,12 +92,6 @@ typedef struct _SessionScreen
 
 #define SESSION_DISPLAY(d)                  \
     SessionDisplay *sd = GET_SESSION_DISPLAY (d)
-
-#define GET_SESSION_SCREEN(s, sd)                                 \
-    ((SessionScreen *) (s)->base.privates[(sd)->screenPrivateIndex].ptr)
-
-#define SESSION_SCREEN(s)                  \
-    SessionScreen *ss = GET_SESSION_SCREEN (s, GET_SESSION_DISPLAY (s->display))
 
 #define NUM_OPTIONS(x) (sizeof ((x)->opt) / sizeof (CompOption))
 
@@ -501,6 +490,14 @@ saveState (CompDisplay *d,
 	    if (!isSessionWindow (w))
 		continue;
 
+	    /* skip invisible windows that we didn't unmap */
+	    if (w->attrib.map_state != IsViewable &&
+		!(w->minimized || w->shaded ||
+		  w->inShowDesktopMode || w->hidden))
+	    {
+		continue;
+	    }
+
 	    sessionWriteWindow (w, outfile);
 	}
     }
@@ -781,12 +778,19 @@ sessionSessionSaveYourself (CompCore   *c,
 {
     CompObject *object;
 
+    SESSION_CORE (c);
+
     object = compObjectFind (&c->base, COMP_OBJECT_TYPE_DISPLAY, NULL);
     if (object)
     {
 	CompDisplay *d = (CompDisplay *) object;
 	saveState (d, clientId);
     }
+
+    UNWRAP (sc, c, sessionSaveYourself);
+    (*c->sessionSaveYourself) (c, clientId, saveType,
+			       interactStyle, shutdown, fast);
+    WRAP (sc, c, sessionSaveYourself, sessionSessionSaveYourself);
 }
 
 static void
@@ -812,15 +816,17 @@ sessionObjectAdd (CompObject *parent,
 static Bool
 sessionWindowAddTimeout (void *closure)
 {
-    CompScreen *s = (CompScreen *) closure;
-    CompWindow *w;
+    CompDisplay *d = (CompDisplay *) closure;
+    CompScreen  *s;
+    CompWindow  *w;
 
-    SESSION_SCREEN (s);
+    SESSION_DISPLAY (d);
 
-    for (w = s->windows; w; w = w->next)
-	sessionWindowAdd (s, w);
+    for (s = d->screens; s; s = s->next)
+	for (w = s->windows; w; w = w->next)
+	    sessionWindowAdd (s, w);
 
-    ss->windowAddTimeout = 0;
+    sd->windowAddTimeout = 0;
 
     return FALSE;
 }
@@ -995,13 +1001,6 @@ sessionInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    sd->screenPrivateIndex = allocateScreenPrivateIndex (d);
-    if (sd->screenPrivateIndex < 0)
-    {
-	free (sd);
-	return FALSE;
-    }
-
     d->base.privates[displayPrivateIndex].ptr = sd;
 
     sd->visibleNameAtom = XInternAtom (d->display, "_NET_WM_VISIBLE_NAME", 0);
@@ -1033,7 +1032,11 @@ sessionInitDisplay (CompPlugin  *p,
 	free (previousId);
     }
 
+    sd->windowAddTimeout = compAddTimeout (0, sessionWindowAddTimeout, d);
+
     WRAP (sd, d, handleEvent, sessionHandleEvent);
+
+    d->base.privates[displayPrivateIndex].ptr = sd;
 
     return TRUE;
 }
@@ -1046,41 +1049,12 @@ sessionFiniDisplay (CompPlugin  *p,
 
     UNWRAP (sd, d, handleEvent);
 
-    freeScreenPrivateIndex (d, sd->screenPrivateIndex);
+    if (sd->windowAddTimeout)
+	compRemoveTimeout (sd->windowAddTimeout);
+
     compFiniDisplayOptions (d, sd->opt, SESSION_DISPLAY_OPTION_NUM);
 
     free (sd);
-}
-
-static CompBool
-sessionInitScreen (CompPlugin *p,
-		   CompScreen *s)
-{
-    SessionScreen *ss;
-
-    SESSION_DISPLAY (s->display);
-
-    ss = malloc (sizeof (SessionScreen));
-    if (!ss)
-	return FALSE;
-
-    ss->windowAddTimeout = compAddTimeout (0, sessionWindowAddTimeout, s);
-
-    s->base.privates[sd->screenPrivateIndex].ptr = ss;
-
-    return TRUE;
-}
-
-static void
-sessionFiniScreen (CompPlugin *p,
-		   CompScreen *s)
-{
-    SESSION_SCREEN (s);
-
-    if (ss->windowAddTimeout)
-	compRemoveTimeout (ss->windowAddTimeout);
-
-    free (ss);
 }
 
 static CompBool
@@ -1088,9 +1062,8 @@ sessionInitObject (CompPlugin *p,
 		   CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
-    	(InitPluginObjectProc) sessionInitCore,
-	(InitPluginObjectProc) sessionInitDisplay,
-	(InitPluginObjectProc) sessionInitScreen
+	(InitPluginObjectProc) sessionInitCore,
+	(InitPluginObjectProc) sessionInitDisplay
     };
 
     RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
@@ -1102,8 +1075,7 @@ sessionFiniObject (CompPlugin *p,
 {
     static FiniPluginObjectProc dispTab[] = {
 	(FiniPluginObjectProc) sessionFiniCore,
-	(FiniPluginObjectProc) sessionFiniDisplay,
-	(FiniPluginObjectProc) sessionFiniScreen
+	(FiniPluginObjectProc) sessionFiniDisplay
     };
 
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
