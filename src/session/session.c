@@ -273,10 +273,6 @@ sessionGetClientLeaderProperty (CompWindow *w,
 
     clientLeader = w->clientLeader;
 
-    /* window is its own client leader so it's a leader for something else */
-    if (clientLeader == w->id)
-	return NULL;
-
     /* try to find clientLeader on transient parents */
     if (!clientLeader)
     {
