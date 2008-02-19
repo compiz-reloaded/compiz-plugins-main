@@ -515,12 +515,31 @@ saveState (const char  *clientId,
     fclose (outfile);
 }
 
+static Bool
+sessionMatchWindowClass (CompWindow        *w,
+			 SessionWindowList *info)
+{
+    if (!w->resName || !info->resName)
+	return FALSE;
+
+    if (!w->resClass || !info->resClass)
+	return FALSE;
+
+    if (strcmp (w->resName, info->resName) != 0)
+	return FALSE;
+
+    if (strcmp (w->resClass, info->resClass) != 0)
+	return FALSE;
+
+    return TRUE;
+}
+
 static void
 sessionReadWindow (CompWindow *w)
 {
     XWindowChanges     xwc;
     unsigned int       xwcm = 0;
-    char               *title, *role, *clientId;
+    char               *title, *role, *clientId, *command;
     SessionWindowList  *cur;
 
     SESSION_CORE (&core);
@@ -532,38 +551,35 @@ sessionReadWindow (CompWindow *w)
 	return;
 
     clientId = sessionGetWindowClientId (w);
-    if (!clientId)
-	return;
-
-    title   = sessionGetWindowTitle (w);
-    role    = sessionGetWindowAtomText (w, sd->roleAtom);
+    title    = sessionGetWindowTitle (w);
+    role     = sessionGetWindowAtomText (w, sd->roleAtom);
+    command  = sessionGetWindowAtomText (w, sd->commandAtom);
 
     for (cur = sc->windowList; cur; cur = cur->next)
     {
-	if (cur->clientId && strcmp (clientId, cur->clientId) == 0)
+	if (clientId && cur->clientId && strcmp (clientId, cur->clientId) == 0)
 	{
-	    /* client ID matched, try to match role as well if possible
-	       (see ICCCM 5.1) */
-	    if (!cur->role || !role)
-		break;
-	    else if (strcmp (cur->role, role) == 0)
-		break;
+	    /* try to match role as well if possible (see ICCCM 5.1) */
+	    if (role && cur->role)
+	    {
+		if (strcmp (role, cur->role) == 0)
+		    break;
+	    }
+	    else
+	    {
+		if (sessionMatchWindowClass (w, cur))
+		    break;
+	    }
+	}
+	else if (cur->command && command && sessionMatchWindowClass (w, cur))
+	{
+	    /* match by class and name as second try */
+	    break;
 	}
 	else if (title && cur->title && strcmp (title, cur->title) == 0)
 	{
-	    /* no client id, but at least the title matched */
+	    /* last resort: match by window title */
 	    break;
-	}
-	else if (w->resName && w->resClass              &&
-		 cur->resName && cur->resClass          &&
-		 strcmp (w->resName, cur->resName) == 0 &&
-		 strcmp (w->resClass, cur->resClass) == 0)
-	{
-	    /* last resort - match by class and name */
-	    if (!cur->role || !role)
-		break;
-	    else if (strcmp (cur->role, role) == 0)
-		break;
 	}
     }
 
