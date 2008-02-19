@@ -282,13 +282,13 @@ sessionGetClientLeaderProperty (CompWindow *w,
     {
 	CompWindow *window = w;
 
-	while (window->transientFor)
+	while (window && window->transientFor)
 	{
 	    if (window->transientFor == window->id)
 		break;
 
 	    window = findWindowAtScreen (w->screen, window->transientFor);
-	    if (window->clientLeader)
+	    if (window && window->clientLeader)
 	    {
 		clientLeader = window->clientLeader;
 		break;
