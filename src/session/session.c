@@ -45,6 +45,7 @@ typedef struct _SessionWindowList
     char *resName;
     char *resClass;
     char *role;
+    char *command;
 
     XRectangle   geometry;
     Bool         geometryValid;
@@ -63,15 +64,21 @@ typedef struct _SessionCore
 
 typedef struct _SessionDisplay
 {
-    CompTimeoutHandle windowAddTimeout;
+    int screenPrivateIndex;
 
     Atom visibleNameAtom;
     Atom clientIdAtom;
     Atom embedInfoAtom;
     Atom roleAtom;
+    Atom commandAtom;
 
     HandleEventProc handleEvent;
 } SessionDisplay;
+
+typedef struct _SessionScreen
+{
+    CompTimeoutHandle windowAddTimeout;
+} SessionScreen;
 
 #define GET_SESSION_CORE(c)				     \
     ((SessionCore *) (c)->base.privates[corePrivateIndex].ptr)
@@ -84,6 +91,12 @@ typedef struct _SessionDisplay
 
 #define SESSION_DISPLAY(d)                  \
     SessionDisplay *sd = GET_SESSION_DISPLAY (d)
+
+#define GET_SESSION_SCREEN(s, sd)                                 \
+    ((SessionScreen *) (s)->base.privates[(sd)->screenPrivateIndex].ptr)
+
+#define SESSION_SCREEN(s)                  \
+    SessionScreen *ss = GET_SESSION_SCREEN (s, GET_SESSION_DISPLAY (s->display))
 
 static int corePrivateIndex;
 static int displayPrivateIndex;
@@ -107,6 +120,9 @@ sessionFreeWindowListItem (SessionWindowList *item)
 
     if (item->role)
 	free (item->role);
+
+    if (item->command)
+	free (item->command);
 
     free (item);
 }
@@ -253,7 +269,8 @@ sessionGetIsEmbedded (CompDisplay *d,
 }
 
 static char *
-sessionGetWindowRole (CompWindow *w)
+sessionGetWindowAtomText (CompWindow *w,
+			  Atom       atom)
 {
     Atom          type;
     unsigned long nItems;
@@ -261,10 +278,8 @@ sessionGetWindowRole (CompWindow *w)
     int           format, result;
     char          *str = NULL, *retval = NULL;
 
-    SESSION_DISPLAY (w->screen->display);
-
     result = XGetWindowProperty (w->screen->display->display,
-				 w->id, sd->roleAtom, 0, 65536,
+				 w->id, atom, 0, 65536,
 				 FALSE, XA_STRING, &type, &format, &nItems,
 				 &bytesAfter, (unsigned char **) &str);
 
@@ -372,6 +387,8 @@ sessionWriteWindow (CompWindow *w,
     char *string;
     int  x, y;
 
+    SESSION_DISPLAY (w->screen->display);
+
     fprintf (outfile, "  <window id=\"%s\"", clientId);
     string = sessionGetWindowTitle (w);
     if (string)
@@ -383,10 +400,16 @@ sessionWriteWindow (CompWindow *w,
 	fprintf (outfile, " class=\"%s\"", w->resClass);
     if (w->resName)
 	fprintf (outfile, " name=\"%s\"", w->resName);
-    string = sessionGetWindowRole (w);
+    string = sessionGetWindowAtomText (w, sd->roleAtom);
     if (string)
     {
 	fprintf (outfile, " role=\"%s\"", string);
+	free (string);
+    }
+    string = sessionGetWindowAtomText (w, sd->commandAtom);
+    if (string)
+    {
+	fprintf (outfile, " command=\"%s\"", string);
 	free (string);
     }
     fprintf (outfile, ">\n");
@@ -479,14 +502,6 @@ saveState (const char  *clientId,
 	{
 	    char *windowClientId, *title;
 
-	    /* skip invisible windows that we didn't unmap */
-	    if (w->attrib.map_state != IsViewable &&
-		!(w->minimized || w->shaded ||
-		  w->inShowDesktopMode || w->hidden))
-	    {
-		continue;
-	    }
-
 	    windowClientId = sessionGetWindowClientId (w);
 	    if (!windowClientId)
 		continue;
@@ -509,6 +524,7 @@ sessionReadWindow (CompWindow *w)
     SessionWindowList  *cur;
 
     SESSION_CORE (&core);
+    SESSION_DISPLAY (w->screen->display);
 
     /* optimization: don't mess around with getting X properties
        if there is nothing to match */
@@ -519,8 +535,8 @@ sessionReadWindow (CompWindow *w)
     if (!clientId)
 	return;
 
-    title = sessionGetWindowTitle (w);
-    role  = sessionGetWindowRole (w);
+    title   = sessionGetWindowTitle (w);
+    role    = sessionGetWindowAtomText (w, sd->roleAtom);
 
     for (cur = sc->windowList; cur; cur = cur->next)
     {
@@ -613,6 +629,7 @@ readState (xmlNodePtr root)
 	    item->resName = sessionGetStringForProp (cur, "name");
 	    item->resClass = sessionGetStringForProp (cur, "class");
 	    item->role = sessionGetStringForProp (cur, "role");
+	    item->command = sessionGetStringForProp (cur, "command");
 	}
 
 	if (!item->clientId && !item->title &&
@@ -741,19 +758,12 @@ sessionSessionSaveYourself (CompCore   *c,
 {
     CompObject *object;
 
-    SESSION_CORE (c);
-
     object = compObjectFind (&c->base, COMP_OBJECT_TYPE_DISPLAY, NULL);
     if (object)
     {
 	CompDisplay *d = (CompDisplay *) object;
 	saveState (clientId, d);
     }
-
-    UNWRAP (sc, c, sessionSaveYourself);
-    (*c->sessionSaveYourself) (c, clientId, saveType,
-			       interactStyle, shutdown, fast);
-    WRAP (sc, c, sessionSaveYourself, sessionSessionSaveYourself);
 }
 
 static void
@@ -779,17 +789,15 @@ sessionObjectAdd (CompObject *parent,
 static Bool
 sessionWindowAddTimeout (void *closure)
 {
-    CompDisplay *d = (CompDisplay *) closure;
-    CompScreen  *s;
-    CompWindow  *w;
+    CompScreen *s = (CompScreen *) closure;
+    CompWindow *w;
 
-    SESSION_DISPLAY (d);
+    SESSION_SCREEN (s);
 
-    for (s = d->screens; s; s = s->next)
-	for (w = s->windows; w; w = w->next)
-	    sessionWindowAdd (s, w);
+    for (w = s->windows; w; w = w->next)
+	sessionWindowAdd (s, w);
 
-    sd->windowAddTimeout = 0;
+    ss->windowAddTimeout = 0;
 
     return FALSE;
 }
@@ -890,10 +898,20 @@ sessionInitDisplay (CompPlugin  *p,
     if (!sd)
 	return FALSE;
 
+    sd->screenPrivateIndex = allocateScreenPrivateIndex (d);
+    if (sd->screenPrivateIndex < 0)
+    {
+	free (sd);
+	return FALSE;
+    }
+
+    d->base.privates[displayPrivateIndex].ptr = sd;
+
     sd->visibleNameAtom = XInternAtom (d->display, "_NET_WM_VISIBLE_NAME", 0);
     sd->clientIdAtom = XInternAtom (d->display, "SM_CLIENT_ID", 0);
     sd->embedInfoAtom = XInternAtom (d->display, "_XEMBED_INFO", 0);
     sd->roleAtom = XInternAtom (d->display, "WM_WINDOW_ROLE", 0);
+    sd->commandAtom = XInternAtom (d->display, "WM_COMMAND", 0);
 
     for (i = 0; i < programArgc; i++)
     {
@@ -918,11 +936,7 @@ sessionInitDisplay (CompPlugin  *p,
 	free (previousId);
     }
 
-    sd->windowAddTimeout = compAddTimeout (0, sessionWindowAddTimeout, d);
-
     WRAP (sd, d, handleEvent, sessionHandleEvent);
-
-    d->base.privates[displayPrivateIndex].ptr = sd;
 
     return TRUE;
 }
@@ -935,10 +949,39 @@ sessionFiniDisplay (CompPlugin  *p,
 
     UNWRAP (sd, d, handleEvent);
 
-    if (sd->windowAddTimeout)
-	compRemoveTimeout (sd->windowAddTimeout);
-
+    freeScreenPrivateIndex (d, sd->screenPrivateIndex);
     free (sd);
+}
+
+static CompBool
+sessionInitScreen (CompPlugin *p,
+		   CompScreen *s)
+{
+    SessionScreen *ss;
+
+    SESSION_DISPLAY (s->display);
+
+    ss = malloc (sizeof (SessionScreen));
+    if (!ss)
+	return FALSE;
+
+    ss->windowAddTimeout = compAddTimeout (0, sessionWindowAddTimeout, s);
+
+    s->base.privates[sd->screenPrivateIndex].ptr = ss;
+
+    return TRUE;
+}
+
+static void
+sessionFiniScreen (CompPlugin *p,
+		   CompScreen *s)
+{
+    SESSION_SCREEN (s);
+
+    if (ss->windowAddTimeout)
+	compRemoveTimeout (ss->windowAddTimeout);
+
+    free (ss);
 }
 
 static CompBool
@@ -946,8 +989,9 @@ sessionInitObject (CompPlugin *p,
 		   CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
-	(InitPluginObjectProc) sessionInitCore,
-	(InitPluginObjectProc) sessionInitDisplay
+    	(InitPluginObjectProc) sessionInitCore,
+	(InitPluginObjectProc) sessionInitDisplay,
+	(InitPluginObjectProc) sessionInitScreen
     };
 
     RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
@@ -959,7 +1003,8 @@ sessionFiniObject (CompPlugin *p,
 {
     static FiniPluginObjectProc dispTab[] = {
 	(FiniPluginObjectProc) sessionFiniCore,
-	(FiniPluginObjectProc) sessionFiniDisplay
+	(FiniPluginObjectProc) sessionFiniDisplay,
+	(FiniPluginObjectProc) sessionFiniScreen
     };
 
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
