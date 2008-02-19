@@ -340,52 +340,64 @@ sessionGetStringForProp (xmlNodePtr node,
     return retval;
 }
 
-static char *
-sessionGetWindowClientId (CompWindow *w)
+static Bool
+isSessionWindow (CompWindow *w)
 {
-    SESSION_DISPLAY (w->screen->display);
+    if (w->attrib.override_redirect)
+	return FALSE;
 
     /* filter out embedded windows (notification icons) */
     if (sessionGetIsEmbedded (w->screen->display, w->id))
-	return NULL;
+	return FALSE;
 
-    return sessionGetClientLeaderProperty (w, sd->clientIdAtom);
+    return TRUE;
 }
 
 static void
 sessionWriteWindow (CompWindow *w,
-		    char       *clientId,
-		    char       *title,
 		    FILE       *outfile)
 {
-    char *string;
+    char *string, *clientId, *command;
     int  x, y;
 
     SESSION_DISPLAY (w->screen->display);
 
-    fprintf (outfile, "  <window id=\"%s\"", clientId);
+    clientId = sessionGetClientLeaderProperty (w, sd->clientIdAtom);
+    command  = sessionGetClientLeaderProperty (w, sd->commandAtom);
+
+    if (!clientId && !command)
+	return;
+
+    fprintf (outfile, "  <window ");
+    if (clientId)
+    {
+	fprintf (outfile, "id=\"%s\"", clientId);
+	free (clientId);
+    }
+
     string = sessionGetWindowTitle (w);
     if (string)
     {
 	fprintf (outfile, " title=\"%s\"", string);
 	free (string);
     }
+
     if (w->resClass)
 	fprintf (outfile, " class=\"%s\"", w->resClass);
     if (w->resName)
 	fprintf (outfile, " name=\"%s\"", w->resName);
+
     string = sessionGetTextProperty (w->screen->display, w->id, sd->roleAtom);
     if (string)
     {
 	fprintf (outfile, " role=\"%s\"", string);
 	free (string);
     }
-    string = sessionGetTextProperty (w->screen->display,
-				     w->id, sd->commandAtom);
-    if (string)
+
+    if (command)
     {
-	fprintf (outfile, " command=\"%s\"", string);
-	free (string);
+	fprintf (outfile, " command=\"%s\"", command);
+	free (command);
     }
     fprintf (outfile, ">\n");
 
@@ -433,8 +445,8 @@ sessionWriteWindow (CompWindow *w,
 }
 
 static void
-saveState (const char  *clientId,
-	   CompDisplay *d)
+saveState (CompDisplay *d,
+	   const char  *clientId)
 {
     char           filename[1024];
     FILE          *outfile;
@@ -475,14 +487,10 @@ saveState (const char  *clientId,
 
 	for (w = s->windows; w; w = w->next)
 	{
-	    char *windowClientId, *title;
-
-	    windowClientId = sessionGetWindowClientId (w);
-	    if (!windowClientId)
+	    if (!isSessionWindow (w))
 		continue;
 
-	    sessionWriteWindow (w, windowClientId, title, outfile);
-	    free (windowClientId);
+	    sessionWriteWindow (w, outfile);
 	}
     }
 
@@ -526,10 +534,13 @@ sessionReadWindow (CompWindow *w)
     if (!sc->windowList)
 	return;
 
-    clientId = sessionGetWindowClientId (w);
+    if (!isSessionWindow (w))
+	return;
+
+    clientId = sessionGetClientLeaderProperty (w, sd->clientIdAtom);
+    command  = sessionGetClientLeaderProperty (w, sd->commandAtom);
     title    = sessionGetWindowTitle (w);
     role     = sessionGetTextProperty (d, w->id, sd->roleAtom);
-    command  = sessionGetTextProperty (d, w->id, sd->commandAtom);
 
     for (cur = sc->windowList; cur; cur = cur->next)
     {
@@ -559,7 +570,10 @@ sessionReadWindow (CompWindow *w)
 	}
     }
 
-    free (clientId);
+    if (clientId)
+	free (clientId);
+    if (command)
+	free (command);
     if (title)
 	free (title);
     if (role)
@@ -754,7 +768,7 @@ sessionSessionSaveYourself (CompCore   *c,
     if (object)
     {
 	CompDisplay *d = (CompDisplay *) object;
-	saveState (clientId, d);
+	saveState (d, clientId);
     }
 }
 
