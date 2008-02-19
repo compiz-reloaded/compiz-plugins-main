@@ -36,6 +36,9 @@
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 
+#define SESSION_DISPLAY_OPTION_SAVE_LEGACY 0
+#define SESSION_DISPLAY_OPTION_NUM         1
+
 typedef struct _SessionWindowList
 {
     struct _SessionWindowList *next;
@@ -73,6 +76,8 @@ typedef struct _SessionDisplay
     Atom commandAtom;
 
     HandleEventProc handleEvent;
+
+    CompOption opt[SESSION_DISPLAY_OPTION_NUM];
 } SessionDisplay;
 
 typedef struct _SessionScreen
@@ -97,6 +102,8 @@ typedef struct _SessionScreen
 
 #define SESSION_SCREEN(s)                  \
     SessionScreen *ss = GET_SESSION_SCREEN (s, GET_SESSION_DISPLAY (s->display))
+
+#define NUM_OPTIONS(x) (sizeof ((x)->opt) / sizeof (CompOption))
 
 static int corePrivateIndex;
 static int displayPrivateIndex;
@@ -363,6 +370,9 @@ sessionWriteWindow (CompWindow *w,
     SESSION_DISPLAY (w->screen->display);
 
     clientId = sessionGetClientLeaderProperty (w, sd->clientIdAtom);
+    if (!clientId && !sd->opt[SESSION_DISPLAY_OPTION_SAVE_LEGACY].value.b)
+	return;
+
     command  = sessionGetClientLeaderProperty (w, sd->commandAtom);
 
     if (!clientId && !command)
@@ -538,6 +548,9 @@ sessionReadWindow (CompWindow *w)
 	return;
 
     clientId = sessionGetClientLeaderProperty (w, sd->clientIdAtom);
+    if (!clientId && !sd->opt[SESSION_DISPLAY_OPTION_SAVE_LEGACY].value.b)
+	return;
+
     command  = sessionGetClientLeaderProperty (w, sd->commandAtom);
     title    = sessionGetWindowTitle (w);
     role     = sessionGetTextProperty (d, w->id, sd->roleAtom);
@@ -558,15 +571,18 @@ sessionReadWindow (CompWindow *w)
 		    break;
 	    }
 	}
-	else if (cur->command && command && sessionMatchWindowClass (w, cur))
+	else if (sd->opt[SESSION_DISPLAY_OPTION_SAVE_LEGACY].value.b)
 	{
-	    /* match by class and name as second try */
-	    break;
-	}
-	else if (title && cur->title && strcmp (title, cur->title) == 0)
-	{
-	    /* last resort: match by window title */
-	    break;
+	    if (cur->command && command && sessionMatchWindowClass (w, cur))
+	    {
+		/* match by command, class and name as second try */
+		break;
+	    }
+	    else if (title && cur->title && strcmp (title, cur->title) == 0)
+	    {
+		/* last resort: match by window title */
+		break;
+	    }
 	}
     }
 
@@ -808,11 +824,74 @@ sessionWindowAddTimeout (void *closure)
     return FALSE;
 }
 
+static CompOption *
+sessionGetDisplayOptions (CompPlugin  *p,
+			  CompDisplay *d,
+			  int         *count)
+{
+    SESSION_DISPLAY (d);
+
+    *count = NUM_OPTIONS (sd);
+    return sd->opt;
+}
+
+static Bool
+sessionSetDisplayOption (CompPlugin      *p,
+			 CompDisplay     *d,
+			 const char      *name,
+			 CompOptionValue *value)
+{
+    CompOption *o;
+
+    SESSION_DISPLAY (d);
+
+    o = compFindOption (sd->opt, NUM_OPTIONS (sd), name, NULL);
+    if (!o)
+	return FALSE;
+
+    return compSetOption (o, value);
+}
+
+static CompOption *
+sessionGetObjectOptions (CompPlugin *plugin,
+			 CompObject *object,
+			 int	    *count)
+{
+    static GetPluginObjectOptionsProc dispTab[] = {
+	(GetPluginObjectOptionsProc) 0, /* GetCoreOptions */
+	(GetPluginObjectOptionsProc) sessionGetDisplayOptions
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab),
+		     (void *) (*count = 0), (plugin, object, count));
+}
+
+static CompBool
+sessionSetObjectOption (CompPlugin      *plugin,
+			CompObject      *object,
+			const char      *name,
+			CompOptionValue *value)
+{
+    static SetPluginObjectOptionProc dispTab[] = {
+	(SetPluginObjectOptionProc) 0, /* SetCoreOption */
+	(SetPluginObjectOptionProc) sessionSetDisplayOption
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), FALSE,
+		     (plugin, object, name, value));
+}
+
+static const CompMetadataOptionInfo sessionDisplayOptionInfo[] = {
+    { "save_legacy", "bool", 0, 0, 0 }
+};
+
 static int
 sessionInit (CompPlugin *p)
 {
     if (!compInitPluginMetadataFromInfo (&sessionMetadata, p->vTable->name,
-					 0, 0, 0, 0))
+					 sessionDisplayOptionInfo,
+					 SESSION_DISPLAY_OPTION_NUM,
+					 0, 0))
 	return FALSE;
 
     corePrivateIndex = allocateCorePrivateIndex ();
@@ -904,6 +983,17 @@ sessionInitDisplay (CompPlugin  *p,
     if (!sd)
 	return FALSE;
 
+    if (!compInitDisplayOptionsFromMetadata (d,
+					     &sessionMetadata,
+					     sessionDisplayOptionInfo,
+					     sd->opt,
+					     SESSION_DISPLAY_OPTION_NUM))
+    {
+	compFiniDisplayOptions (d, sd->opt, SESSION_DISPLAY_OPTION_NUM);
+	free (sd);
+	return FALSE;
+    }
+
     sd->screenPrivateIndex = allocateScreenPrivateIndex (d);
     if (sd->screenPrivateIndex < 0)
     {
@@ -956,6 +1046,8 @@ sessionFiniDisplay (CompPlugin  *p,
     UNWRAP (sd, d, handleEvent);
 
     freeScreenPrivateIndex (d, sd->screenPrivateIndex);
+    compFiniDisplayOptions (d, sd->opt, SESSION_DISPLAY_OPTION_NUM);
+
     free (sd);
 }
 
@@ -1030,8 +1122,8 @@ static CompPluginVTable sessionVTable =
     sessionFini,
     sessionInitObject,
     sessionFiniObject,
-    0,
-    0
+    sessionGetObjectOptions,
+    sessionSetObjectOption
 };
 
 CompPluginVTable *
