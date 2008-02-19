@@ -11,8 +11,8 @@
 	<display>
 	    <option name="save_legacy" type="bool">
 		<_short>Save Legacy Apps</_short>
-		<_long>Also try to save and restore legacy apps that don't support the X session management protocol.</_long>
-		<default>true</default>
+		<_long>Also try to save and restore legacy apps that don't support the X session management protocol. This setting only should be used in KDE, as only KDE's session manager also saves those applications.</_long>
+		<default>false</default>
 	    </option>
 	</display>
     </plugin>
