@@ -1425,7 +1425,7 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	}
     }
 
-    if (aw->BB.x1 != MAXSHORT)
+    if (!finishing && aw->BB.x1 != MAXSHORT)
     {
 	// damage BB
 	damageBoundingBox (w);
