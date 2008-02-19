@@ -92,6 +92,25 @@ typedef struct _InfoScreen
 
 /* Set up an InfoLayer to build a cairo->opengl texture pipeline */
 static void
+freeInfoLayer (CompScreen *s,
+	       InfoLayer  *il)
+{
+    if (il->cr)
+	cairo_destroy (il->cr);
+    il->cr = NULL;
+
+    if (il->surface)
+	cairo_surface_destroy (il->surface);
+    il->surface = NULL;
+
+    finiTexture (s, &il->texture);
+
+    if (il->pixmap)
+	XFreePixmap (s->display->display, il->pixmap);
+    il->pixmap = None;
+}
+
+static void
 setupCairoLayer (CompScreen *s,
 		 InfoLayer  *il)
 {
@@ -100,7 +119,11 @@ setupCairoLayer (CompScreen *s,
     int               w, h;
 	
     screen = ScreenOfDisplay (s->display->display, s->screenNum);
-	
+
+    memset (il, 0, sizeof (InfoLayer));
+
+    initTexture (s, &il->texture);
+
     w = RESIZE_POPUP_WIDTH;
     h = RESIZE_POPUP_HEIGHT;
 	
@@ -112,7 +135,7 @@ setupCairoLayer (CompScreen *s,
     {
 	compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
 			"Bind Pixmap to Texture failure");
-	XFreePixmap (s->display->display, il->pixmap);
+	freeInfoLayer (s, il);
 	return;
     }
 	
@@ -120,15 +143,20 @@ setupCairoLayer (CompScreen *s,
 	cairo_xlib_surface_create_with_xrender_format (s->display->display,
 						       il->pixmap, screen,
 						       format, w, h);
+    if (cairo_surface_status (il->surface) != CAIRO_STATUS_SUCCESS)
+    {
+	compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
+			"Could not create cairo layer surface,");
+	freeInfoLayer (s, il);
+	return;
+    }
+
     il->cr = cairo_create (il->surface);
     if (cairo_status (il->cr) != CAIRO_STATUS_SUCCESS)
     {
 	compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
 			"Could not create cairo context");
-	cairo_destroy (il->cr);
-	cairo_surface_destroy (il->surface);
-	XFreePixmap (s->display->display, il->pixmap);
-	il->cr = NULL;
+	freeInfoLayer (s, il);
 	return;
     }
 }
@@ -602,9 +630,6 @@ infoInitScreen (CompPlugin *p,
     is->resizeGeometry.width  = 0;
     is->resizeGeometry.height = 0;
 
-    initTexture (s, &is->backgroundLayer.texture);
-    initTexture (s, &is->textLayer.texture);
-    
     WRAP (is, s, windowGrabNotify, infoWindowGrabNotify);
     WRAP (is, s, windowUngrabNotify, infoWindowUngrabNotify);
     WRAP (is, s, preparePaintScreen, infoPreparePaintScreen);
@@ -621,21 +646,6 @@ infoInitScreen (CompPlugin *p,
     setupCairoLayer (s, &is->textLayer);
 
     return TRUE;
-}
-
-static void
-freeInfoLayer (CompScreen *s,
-	       InfoLayer  *is)
-{
-    if (is->cr)
-	cairo_destroy (is->cr);
-    if (is->surface)
-	cairo_surface_destroy (is->surface);
-
-    finiTexture (s, &is->texture);
-
-    if (is->pixmap)
-	XFreePixmap (s->display->display, is->pixmap);
 }
 
 static void
