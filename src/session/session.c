@@ -268,38 +268,11 @@ sessionGetIsEmbedded (CompDisplay *d,
     return (nitems > 1);
 }
 
-static char *
-sessionGetWindowAtomText (CompWindow *w,
-			  Atom       atom)
-{
-    Atom          type;
-    unsigned long nItems;
-    unsigned long bytesAfter;
-    int           format, result;
-    char          *str = NULL, *retval = NULL;
-
-    result = XGetWindowProperty (w->screen->display->display,
-				 w->id, atom, 0, 65536,
-				 FALSE, XA_STRING, &type, &format, &nItems,
-				 &bytesAfter, (unsigned char **) &str);
-
-    if (result != Success)
-        return NULL;
-
-    if (type == XA_STRING)
-	retval = strdup (str);
-
-    XFree (str);
-
-    return retval;
-}
-
 static char*
-sessionGetClientId (CompWindow *w)
+sessionGetClientLeaderProperty (CompWindow *w,
+				Atom       atom)
 {
     Window        clientLeader;
-
-    SESSION_DISPLAY (w->screen->display);
 
     clientLeader = w->clientLeader;
 
@@ -329,8 +302,7 @@ sessionGetClientId (CompWindow *w)
     if (!clientLeader)
 	clientLeader = w->id;
 
-    return sessionGetTextProperty (w->screen->display, clientLeader,
-				   sd->clientIdAtom);
+    return sessionGetTextProperty (w->screen->display, clientLeader, atom);
 }
 
 static int
@@ -371,11 +343,13 @@ sessionGetStringForProp (xmlNodePtr node,
 static char *
 sessionGetWindowClientId (CompWindow *w)
 {
+    SESSION_DISPLAY (w->screen->display);
+
     /* filter out embedded windows (notification icons) */
     if (sessionGetIsEmbedded (w->screen->display, w->id))
 	return NULL;
 
-    return sessionGetClientId (w);
+    return sessionGetClientLeaderProperty (w, sd->clientIdAtom);
 }
 
 static void
@@ -400,13 +374,14 @@ sessionWriteWindow (CompWindow *w,
 	fprintf (outfile, " class=\"%s\"", w->resClass);
     if (w->resName)
 	fprintf (outfile, " name=\"%s\"", w->resName);
-    string = sessionGetWindowAtomText (w, sd->roleAtom);
+    string = sessionGetTextProperty (w->screen->display, w->id, sd->roleAtom);
     if (string)
     {
 	fprintf (outfile, " role=\"%s\"", string);
 	free (string);
     }
-    string = sessionGetWindowAtomText (w, sd->commandAtom);
+    string = sessionGetTextProperty (w->screen->display,
+				     w->id, sd->commandAtom);
     if (string)
     {
 	fprintf (outfile, " command=\"%s\"", string);
@@ -537,13 +512,14 @@ sessionMatchWindowClass (CompWindow        *w,
 static void
 sessionReadWindow (CompWindow *w)
 {
+    CompDisplay        *d = w->screen->display;
     XWindowChanges     xwc;
     unsigned int       xwcm = 0;
     char               *title, *role, *clientId, *command;
     SessionWindowList  *cur;
 
     SESSION_CORE (&core);
-    SESSION_DISPLAY (w->screen->display);
+    SESSION_DISPLAY (d);
 
     /* optimization: don't mess around with getting X properties
        if there is nothing to match */
@@ -552,8 +528,8 @@ sessionReadWindow (CompWindow *w)
 
     clientId = sessionGetWindowClientId (w);
     title    = sessionGetWindowTitle (w);
-    role     = sessionGetWindowAtomText (w, sd->roleAtom);
-    command  = sessionGetWindowAtomText (w, sd->commandAtom);
+    role     = sessionGetTextProperty (d, w->id, sd->roleAtom);
+    command  = sessionGetTextProperty (d, w->id, sd->commandAtom);
 
     for (cur = sc->windowList; cur; cur = cur->next)
     {
