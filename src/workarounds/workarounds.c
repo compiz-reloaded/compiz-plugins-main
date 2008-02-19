@@ -143,7 +143,8 @@ workaroundsRemoveFromFullscreenList (CompWindow *w)
 	{
 	    temp = mfw->next;
 	    mfw->next = mfw->next->next;
-	    free (temp);				
+	    free (temp);
+	    break;
 	}
     }
 }
