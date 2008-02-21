@@ -474,6 +474,7 @@ saveState (CompDisplay *d,
     if (!outfile)
 	return;
 
+    fprintf (outfile, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
     fprintf (outfile, "<compiz_session id=\"%s\">\n", clientId);
 
     /* write out all windows on this display */
