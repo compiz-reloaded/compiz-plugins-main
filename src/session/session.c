@@ -777,11 +777,14 @@ sessionSessionSaveYourself (CompCore   *c,
 
     SESSION_CORE (c);
 
-    object = compObjectFind (&c->base, COMP_OBJECT_TYPE_DISPLAY, NULL);
-    if (object)
+    if (shutdown)
     {
-	CompDisplay *d = (CompDisplay *) object;
-	saveState (d, clientId);
+	object = compObjectFind (&c->base, COMP_OBJECT_TYPE_DISPLAY, NULL);
+	if (object)
+	{
+	    CompDisplay *d = (CompDisplay *) object;
+	    saveState (d, clientId);
+	}
     }
 
     UNWRAP (sc, c, sessionSaveYourself);
