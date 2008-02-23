@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-29 17:15+0530\n"
-"PO-Revision-Date: 2008-01-25 14:38+0100\n"
-"Last-Translator: Eric Brandt <eric@e-tech.se>\n"
+"POT-Creation-Date: 2008-02-23 23:11+0530\n"
+"PO-Revision-Date: 2008-02-17 11:02+0100\n"
+"Last-Translator: Sebastian Parborg <zedDB@hotmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,12 +63,13 @@ msgstr "Ändra avståndet mellan fönster (procentuellt av storlek på kub)."
 msgid "Change the speed of the 3D animation"
 msgstr "Ändra hastigheten på 3D-animeringen"
 
+#, fuzzy
 msgid "Color of an inactive window's depth"
-msgstr ""
+msgstr "Färg av ett inaktivt fönsters djup"
 
 #, fuzzy
 msgid "Color of the active window's depth"
-msgstr "Växla aktivt fönsternegativ"
+msgstr "Färg av ett aktivt fönsters djup"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "Höjer upp fönstren när kuben roterar"
@@ -90,17 +91,14 @@ msgid "Misc. Options"
 msgstr "Diverse inställningar"
 
 msgid "Roundoff corners for consistency with rounded decorations"
-msgstr "Runda av kanter för kompatibilitet med rundade dekorationer"
+msgstr "Runda av kanter för kompatibilitet med rundade ramar"
 
-#, fuzzy
 msgid "Window Color (Active)"
-msgstr "Fönstertitel"
+msgstr "Fönsterfärg (Aktiv)"
 
-#, fuzzy
 msgid "Window Color (Inactive)"
-msgstr "Fönster mitten"
+msgstr "Fönsterfärg (Inaktiv)"
 
-#, fuzzy
 msgid "Window Depth"
 msgstr "Fönsterdjup"
 
@@ -110,7 +108,6 @@ msgstr "Fönstermatchning"
 msgid "Window Space"
 msgstr "Fönster-mellanrum"
 
-#, fuzzy
 msgid "Window depth"
 msgstr "Fönsterdjup"
 
@@ -129,12 +126,11 @@ msgstr "Ljusstyrka"
 msgid "Brightness of faded windows"
 msgstr "Ljusstyrka av tonade fönster"
 
-#, fuzzy
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
-"Gör det lite enklare att koncentera sig genom att göra alla utöver det "
-"aktiva fönstret suddigt/oskarpt"
+"Gör det lite enklare att koncentera sig genom att tona ner alla utöver det "
+"aktiva fönstret."
 
 msgid "Opacity"
 msgstr "Opacitet"
@@ -220,11 +216,9 @@ msgstr "Animationer"
 msgid "Automatic"
 msgstr "Automatisk"
 
-#, fuzzy
 msgid "Away Angle"
 msgstr "Bortflygningsvinkel"
 
-#, fuzzy
 msgid "Away Position"
 msgstr "Bortflygningspositon"
 
@@ -238,11 +232,9 @@ msgid "Beam Life"
 msgstr "Strålens livslängd"
 
 # nedsaktning -> hastighetsminskning
-#, fuzzy
 msgid "Beam Slowdown"
 msgstr "Strålens hastighetsminskning"
 
-#, fuzzy
 msgid "Beam Spacing"
 msgstr "Strålmellanrum"
 
@@ -258,9 +250,8 @@ msgstr "Strålens färg"
 msgid "Beam life."
 msgstr "Strålens livslängd"
 
-#, fuzzy
 msgid "Beam slowdown."
-msgstr "Strålens nedsaktning"
+msgstr "Strålens hastighetsminskning"
 
 msgid "Beam width."
 msgstr "Strålbredd"
@@ -292,15 +283,13 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Kurvad ihopvikning"
 
-#, fuzzy
 msgid "Curved Fold Amplitude"
 msgstr "Styrka på kurvad ihopvikning"
 
-#, fuzzy
+# Något bättre ord?
 msgid "Dodge"
 msgstr "Undvik"
 
-#, fuzzy
 msgid "Dodge Gap Ratio"
 msgstr "Ratio på undvikningmellanrums"
 
@@ -343,11 +332,9 @@ msgstr "Livslängd på eldpartiklar"
 msgid "Fire Particle Size"
 msgstr "Storlek på eldpartiklar"
 
-#, fuzzy
 msgid "Fire Particle Slowdown"
-msgstr "Nedsaktning av eldpartiklar"
+msgstr "Hastighetsminskning av eldpartiklar"
 
-#, fuzzy
 msgid "Fire Smoke"
 msgstr "Eldrök"
 
@@ -369,15 +356,12 @@ msgstr "Livslängd på eldpartiklar"
 msgid "Fire particle size."
 msgstr "Storlek på eldpartiklar"
 
-#, fuzzy
 msgid "Fire particle slowdown."
-msgstr "Nedsaktning av eldpartiklar"
+msgstr "Hastighetsminskning av eldpartiklar"
 
-#, fuzzy
 msgid "Fire smoke."
 msgstr "Eldrök"
 
-#, fuzzy
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Fast innandöme på fönster under upprullningsanimation"
 
@@ -396,7 +380,6 @@ msgstr "Vik"
 msgid "Fold Direction"
 msgstr "Vikriktning"
 
-#, fuzzy
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Vikriktning vid öppning för delar i Razreffekt"
 
@@ -418,13 +401,11 @@ msgstr "Horisontella vikningar"
 msgid "Horizontal Folds Amplitude"
 msgstr "Styrka på de horisontella vikningarna"
 
-#, fuzzy
 msgid "How spring-like the Sidekick animation should be."
-msgstr "Hur fjäderlik sidosparkanimationen ska vara."
+msgstr "Hur återfjädrande sidosparkanimationen ska vara."
 
-#, fuzzy
 msgid "How spring-like the Zoom animation should be."
-msgstr "Hur fjäderlik zoomanimationen ska vara."
+msgstr "Hur återfjädrande zoomanimationen ska vara."
 
 msgid "In"
 msgstr "In"
@@ -432,7 +413,6 @@ msgstr "In"
 msgid "In-out"
 msgstr "In-ut"
 
-#, fuzzy
 msgid "Leaf Spread"
 msgstr "Lövspridning"
 
@@ -448,7 +428,6 @@ msgstr "Längden på flygplanets flyglängd."
 msgid "Magic Lamp"
 msgstr "Magisk lampa"
 
-#, fuzzy
 msgid "Magic Lamp Grid Y Resolution"
 msgstr "Magisk lampa Y-rutnäts-upplösning"
 
@@ -464,9 +443,9 @@ msgstr "Min vågstyrka för magisk lampa"
 msgid "Magic Lamp Open Start Width"
 msgstr "Bredd vid start av magisk lampa"
 
-#, fuzzy
+# Den engelska översättningen är lite vag här också...
 msgid "Magic Lamp Open/Close Moving End"
-msgstr "Magisk lampas rörelseslut vid öppning/stängning"
+msgstr "Magisk lampa slutpunkt vid öppning/stängning"
 
 msgid "Make fire effect duration be dependent on window height."
 msgstr "Få eldeffektens varaktighet att bero på hur högt fönstret är."
@@ -495,7 +474,7 @@ msgstr "Antal horisontella vikningar"
 msgid "Number of fire particles."
 msgstr "Antal eld-partiklar"
 
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
 "Antal rotationer för sidospark (plus eller minus 10% för slumpmässighet)."
@@ -569,7 +548,6 @@ msgstr "Höger"
 msgid "Roll Up"
 msgstr "Rulla upp"
 
-#, fuzzy
 msgid "Rollup Fixed Interior"
 msgstr "Rulla upp med fast innandöme"
 
@@ -591,11 +569,10 @@ msgstr "Sidospark"
 msgid "Sidekick Number of Rotations"
 msgstr "Antal sidosparkrotationer"
 
-#, fuzzy
 msgid "Sidekick Springiness"
-msgstr "Fjäderaktighet på sidospark"
+msgstr "Återfjädring på sidospark"
 
-#, fuzzy
+# Direktöversättning...
 msgid "Skewer"
 msgstr "Spett"
 
@@ -732,16 +709,14 @@ msgstr "Använd olika slags animationer som fönstereffekter"
 msgid "Vacuum"
 msgstr "Vakuum"
 
-#, fuzzy
 msgid "Vacuum Grid Y Resolution"
 msgstr "Vakuum Y-rutnätsupplösning"
 
 msgid "Vacuum Open Start Width"
 msgstr "Vakuum bredd vid start"
 
-#, fuzzy
 msgid "Vacuum Open/Close Moving End"
-msgstr "Vakuum öppna/stäng rörelseslut"
+msgstr "Vakuum öppna/stäng slutpunkt"
 
 msgid ""
 "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number "
@@ -834,9 +809,8 @@ msgstr ""
 msgid "Zoom"
 msgstr "Zoom"
 
-#, fuzzy
 msgid "Zoom Springiness"
-msgstr "Fjäderlikhet på zoom"
+msgstr "Återfjädring på zoom"
 
 msgid "Zoom from Center"
 msgstr "Zooma från mitten"
@@ -853,9 +827,8 @@ msgstr "Zooma till aktivitetsfältet vid minimering"
 msgid "Colors"
 msgstr "Färger"
 
-#, fuzzy
 msgid "Cube Atlantis"
-msgstr "Rita kubens över/undersida"
+msgstr "Kub Atlantis"
 
 msgid "Dolphin size"
 msgstr "Delfinstorlek"
@@ -863,24 +836,20 @@ msgstr "Delfinstorlek"
 msgid "Dolphin size."
 msgstr "Delfinstorlek."
 
-#, fuzzy
 msgid "Enable colors"
-msgstr "Aktivera glöd"
+msgstr "Aktivera färger"
 
 msgid "Fish size"
 msgstr "Fiskstorlek"
 
-#, fuzzy
 msgid "Number of fish"
-msgstr "Antal partiklar"
+msgstr "Antal fiskar"
 
-#, fuzzy
 msgid "Number of fish inside the cube"
-msgstr "Antal eld-partiklar"
+msgstr "Antal fiskar inuti kuben"
 
-#, fuzzy
 msgid "Render some fish inside of the transparent cube"
-msgstr "Renderera kugghjul inuti den genomskinliga kuben"
+msgstr "Renderera fiskar inuti den genomskinliga kuben"
 
 msgid "Shark size"
 msgstr "Hajstorlek"
@@ -888,13 +857,11 @@ msgstr "Hajstorlek"
 msgid "Whale size"
 msgstr "Valstorlek"
 
-#, fuzzy
 msgid "Whale size."
-msgstr "Storlek på eldpartiklar"
+msgstr "Storlek på valar"
 
-#, fuzzy
 msgid "A simple benchmark plugin"
-msgstr "En enkel insticksmodul för test av prestanda"
+msgstr "En simpel insticksmodul för test av prestanda"
 
 msgid "Benchmark"
 msgstr "Prestandatest"
@@ -902,7 +869,6 @@ msgstr "Prestandatest"
 msgid "Console Output"
 msgstr "Konsoll-utmatning"
 
-#, fuzzy
 msgid "Console output update time"
 msgstr "Uppdateringstid på konsollutmatning"
 
@@ -921,9 +887,9 @@ msgstr "Aktivera"
 msgid "Initiate"
 msgstr "Initiera"
 
-#, fuzzy
+# Det som brukar stå på första fliken
 msgid "Main"
-msgstr "Huvud"
+msgstr "Allmänt"
 
 msgid "Print FPS to console"
 msgstr "Skriv ut FPS till konsoll"
@@ -949,83 +915,67 @@ msgstr "Y-position på prestandatest-fönster"
 msgid "Y position"
 msgstr "Y-position"
 
-#, fuzzy
 msgid "Brightness Decrease"
-msgstr "Ljusstyrka"
+msgstr "Minska ljusstyrka"
 
-#, fuzzy
 msgid "Brightness Increase"
-msgstr "Ljusstyrka"
+msgstr "Öka ljusstyrka"
 
-#, fuzzy
 msgid "Brightness Step"
-msgstr "Ljusstyrka"
+msgstr "Ljusstyrke steg"
 
-#, fuzzy
 msgid "Brightness and Saturation"
-msgstr "Ljusstyrka av tonade fönster"
+msgstr "Ljusstyrka och färgmättnad"
 
 msgid "Brightness and Saturation adjustments"
-msgstr "Ljusstyrke och mättnadsjusteringar"
+msgstr "Justering av ljusstyrka och färgmättnad"
 
-#, fuzzy
 msgid "Brightness settings"
-msgstr "Ljusstyrka på valda fönster"
+msgstr "Ljusstyrkeinställningar"
 
-#, fuzzy
 msgid "Brightness values for windows"
-msgstr "Ljusstyrka av tonade fönster"
+msgstr "Ljusstyrkevärden för fönster"
 
-#, fuzzy
 msgid "Brightness window values"
-msgstr "Ljusstyrka av tonade fönster"
+msgstr "Fönsters ljusstyrkevärden"
 
 #, fuzzy
 msgid "Brightness windows"
-msgstr "Ljusstyrka av tonade fönster"
+msgstr "Ljusstyrka fönster"
 
 msgid "General"
 msgstr "Allmänt"
 
-#, fuzzy
 msgid "Saturation Decrease"
-msgstr "Mättnad"
+msgstr "Minska färgmättnad"
 
-#, fuzzy
 msgid "Saturation Increase"
-msgstr "Mättnad"
+msgstr "Öka färgmättnad"
 
-#, fuzzy
 msgid "Saturation Step"
-msgstr "Mättnad"
+msgstr "Färgmättnads steg"
 
-#, fuzzy
 msgid "Saturation settings"
-msgstr "Färgmättnad på valda fönster"
+msgstr "Färgmättnads inställningar"
 
-#, fuzzy
 msgid "Saturation values for windows"
-msgstr "Mättnad på tonade fönster"
+msgstr "Färgmättnadsvärden för fönster"
 
-#, fuzzy
 msgid "Saturation window values"
-msgstr "Mättnad på tonade fönster"
+msgstr "Fönsters färgmättnadsvärden"
 
 #, fuzzy
 msgid "Saturation windows"
-msgstr "Mättnad på tonade fönster"
+msgstr "Färgmättnad fönster"
 
-#, fuzzy
 msgid "Window specific"
-msgstr "Fönsteropacitet"
+msgstr "Fönster specifikt"
 
-#, fuzzy
 msgid "Windows that should have a different brightness by default"
-msgstr "Fönster som ska storleksändras som standard"
+msgstr "Fönster som ska ha en annan standardljusstyrka"
 
-#, fuzzy
 msgid "Windows that should have a different saturation by default"
-msgstr "Fönster som ska storleksändras som standard"
+msgstr "Fönster som ska ha en annan standardfärgmättnad"
 
 msgid "Color filter"
 msgstr "Färgfilter"
@@ -1037,7 +987,7 @@ msgid "Filter colors for accessibility purposes"
 msgstr "Filtrera färger för accessibilitets-skäl"
 
 msgid "Filter window decorations"
-msgstr "Filtrera fönsterdekorationer"
+msgstr "Filtrera fönsterramar"
 
 msgid "Filtered windows"
 msgstr "Filtrerade fönster"
@@ -1061,7 +1011,6 @@ msgstr ""
 "specifikt filter (användning av detta byter filter ett och ett, och kommer "
 "till slut tillbaka till \"alla filter\"-läget."
 
-#, fuzzy
 msgid "Switch filter"
 msgstr "Bytningsfilter"
 
@@ -1081,8 +1030,8 @@ msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
 "contents if enabled."
 msgstr ""
-"Fönsterdekorationer (kanter och titellist) kommer att filtreras och även "
-"dess innehåll om aktiverad"
+"Fönsterramar (kanter och titellist) kommer att filtreras och även dess "
+"innehåll om aktiverad"
 
 msgid "Windows to be filtered by default."
 msgstr "Fönster som ska filtreras"
@@ -1114,7 +1063,6 @@ msgstr "Starta annan fönsterhanterare"
 msgid "Start other window manager on Crash."
 msgstr "Starta en annan fönsterhanterare vid krash"
 
-#, fuzzy
 msgid "Window Manager Command Line"
 msgstr "Kommandorad för fönsterhanterare"
 
@@ -1145,11 +1093,9 @@ msgstr "Utseende"
 msgid "Behaviour"
 msgstr "Beteende"
 
-#, fuzzy
 msgid "Bottom image files"
-msgstr "Undersidans bildfiler"
+msgstr "Bildfiler för undersida"
 
-#, fuzzy
 msgid "Clamp bottom face image to border"
 msgstr "Spänn fast undersidans bild till kanten"
 
@@ -1159,8 +1105,8 @@ msgid ""
 "ugly dotted lines when enabled (especially with large enough images) though."
 msgstr ""
 "Spänn fast undersidans bild till kanten. Detta är oftast det bästa om din "
-"bild inte passar storleken på kuben eller om den är genomskinlig. Det kan "
-"leda till fula prickade linjer (speciellt med tillräckligt stora bilder)."
+"bild inte passar storleken på kuben eller om den är genomskinlig. Det här "
+"kan leda till fula prickade linjer (speciellt med tillräckligt stora bilder)."
 
 msgid "Clamp top face image to border"
 msgstr "Spänn fast översidans bild till kanten"
@@ -1172,7 +1118,8 @@ msgid ""
 msgstr ""
 "Spänn fast översidans bild till kanten. Detta är oftast det bästa om din "
 "bild inte passar till storleken på kuben eller om den är genomskinlig. Det "
-"kan leda till fula prickade linjer (speciellt med tillräckligt stora bilder)."
+"här kan leda till fula prickade linjer (speciellt med tillräckligt stora "
+"bilder)."
 
 msgid "Color of bottom face of the cube"
 msgstr "Färgen på bottenytan av kuben"
@@ -1183,9 +1130,8 @@ msgstr "Färgen på toppytan av kuben"
 msgid "Cube Bottom Color"
 msgstr "Färgen på kubens undersidan"
 
-#, fuzzy
 msgid "Cube Caps"
-msgstr "Rita kubens över/undersida"
+msgstr "Kublock"
 
 msgid "Cube Top Color"
 msgstr "Färgen på kubens översida"
@@ -1254,13 +1200,11 @@ msgstr "Automatisk zoom"
 msgid "Auto zoom only on Mouse Rotate"
 msgstr "Zooma endast automatiskt vid musrotation"
 
-#, fuzzy
 msgid "Color of the ground (far)."
-msgstr "Färgen på marken (bortre delen)"
+msgstr "Färgen på marken (långt bort)"
 
-#, fuzzy
 msgid "Color of the ground (near)."
-msgstr "Färgen på marken (närmre delen)"
+msgstr "Färgen på marken (nära)"
 
 msgid "Compiz cube reflection"
 msgstr "Compiz kubreflektion"
@@ -1271,13 +1215,11 @@ msgstr "Kubreflektion"
 msgid "Distance"
 msgstr "Avstånd"
 
-#, fuzzy
 msgid "Ground color(far)"
-msgstr "Markfärg (bortre delen)"
+msgstr "Markfärg (långt bort)"
 
-#, fuzzy
 msgid "Ground color(near)"
-msgstr "Markfärg (närmre delen)"
+msgstr "Markfärg (nära)"
 
 msgid "Intensity"
 msgstr "Intensitet"
@@ -1312,7 +1254,6 @@ msgstr "Zooma ut automatiskt för att få kuben att passa skärmen."
 msgid "Animation used when switching to expo mode"
 msgstr "Animationen som används när man växlar till expoläge"
 
-#, fuzzy
 msgid "Aspect Ratio"
 msgstr "Bildformat"
 
@@ -1337,17 +1278,14 @@ msgstr "Dra&amp;släpp"
 msgid "Duration of the zoomout animation"
 msgstr "Varaktighet för utzoomnings-animationen"
 
-#, fuzzy
 msgid "Engage wall expo mode button binding"
-msgstr "Starta väggexpolägets knappbindning"
+msgstr "Knappbindning för att starta väggexpoläget"
 
-#, fuzzy
 msgid "Engage wall expo mode edge binding"
-msgstr "Starta väggexpolägets kantbindning"
+msgstr "Kantbindning för att starta väggexpoläget"
 
-#, fuzzy
 msgid "Engage wall expo mode key binding"
-msgstr "Starta väggexpolägets tangentbindning"
+msgstr "Tangentbindning för att starta väggexpoläget"
 
 msgid "Exit expo"
 msgstr "Avsluta expo"
@@ -1385,7 +1323,6 @@ msgstr "Göm paneler/dockor i expo"
 msgid "Hide panels/docks in expo."
 msgstr "Göm paneler/dockor i expo."
 
-#, fuzzy
 msgid "Immediate moves"
 msgstr "Omedelbara förflyttningar"
 
@@ -1445,7 +1382,42 @@ msgstr "Vortex"
 msgid "Zoom time"
 msgstr "Zoomtid"
 
-#, fuzzy
+msgid "Activate Window"
+msgstr "Aktivera fönster"
+
+msgid "Activate a given window"
+msgstr "Aktivera ett angivet fönster"
+
+msgid "Extra WM Actions"
+msgstr "Extra FH-funktioner"
+
+msgid "Provides less commonly used WM actions"
+msgstr "Tillhandahåller mindre vanliga FH-funktioner"
+
+msgid "Toggle Always-On-Top"
+msgstr "Växla alltid överst"
+
+msgid "Toggle Fullscreen"
+msgstr "Växla helskärm"
+
+msgid "Toggle Redirect"
+msgstr "Växla omdirigering"
+
+msgid "Toggle Sticky"
+msgstr "Växla klistrad"
+
+msgid "Toggle always on top for the active window"
+msgstr "Växla alltid överst för det aktiva fönstret"
+
+msgid "Toggle window fullscreen"
+msgstr "Växla fullskärm av fönster"
+
+msgid "Toggle window redirect"
+msgstr "Växla omdirigering av fönster"
+
+msgid "Toggle window stickyness"
+msgstr "Växla klistrat fönster"
+
 msgid "Always fit to window on focus track"
 msgstr "Passa alltid in i fönster under fokusspårning"
 
@@ -1461,13 +1433,12 @@ msgstr ""
 msgid "Animation"
 msgstr "Animation"
 
-#, fuzzy
 msgid ""
 "Attempt to keep the zoomed mouse visible by warping it when it is moved "
 "outside the zoom area."
 msgstr ""
 "Försök att hålla den zoomade musen synlig genom att dra tillbaka den när den "
-"lämnar den inzoomade området."
+"lämnar det inzoomade området."
 
 msgid "Center the mouse"
 msgstr "Centrera musen"
@@ -1488,13 +1459,11 @@ msgstr ""
 msgid "Enhanced Zoom Desktop"
 msgstr "Förbättrad skrivbordszoom"
 
-#, fuzzy
 msgid "Enhanced zoom functions for the visually impaired and other users"
-msgstr "Förbättrad skrivbordszoom för de med dålig syn och andra"
+msgstr "Förbättrad skrivbordszoom för de med dålig syn och andra användare"
 
-#, fuzzy
 msgid "Filter Linear"
-msgstr "Linjärt filter"
+msgstr "Linjärtfilter"
 
 msgid "Fit the window to the zoom level"
 msgstr "Anpassa fönstret till zoomnivån "
@@ -1506,13 +1475,12 @@ msgstr ""
 "Anpassa det zoomade området till fönster när den rör sig med anledning av "
 "fokusspårning."
 
-#, fuzzy
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking. Even when not initially zoomed in."
 msgstr ""
-"Passa in det zoomade området till fönster när det zoomade området rör sig "
-"med anledning av fokusspårning. Även när det initiellt inte är inzoomat."
+"Passa in det zoomade området till fönstret när det zoomade området rör sig "
+"med anledning av fokusspårning. Även när det från början inte är inzoomat."
 
 msgid "Fit zoom level to window on focus change"
 msgstr "Anpassa zoomnivå till fönster vid fokusändring"
@@ -1520,14 +1488,12 @@ msgstr "Anpassa zoomnivå till fönster vid fokusändring"
 msgid "Fit zoomed area to window"
 msgstr "Anpassa zoomat område till fönster"
 
-#, fuzzy
 msgid "Fitting"
-msgstr "Inställningar"
+msgstr "Inpassning"
 
 msgid "Focus Tracking"
 msgstr "Fokusspårning"
 
-#, fuzzy
 msgid "Follow Focus Delay"
 msgstr "Fördröjning på fokusföljning"
 
@@ -1544,15 +1510,12 @@ msgstr ""
 "Hur ofta man ska fråga efter muspostionen, i millisekunder. Minska detta för "
 "att minska hackigt beteende"
 
-#, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Musbeteende"
 
-#, fuzzy
 msgid "Mouse Poll Interval"
-msgstr "Musundersökningsinstervall"
+msgstr "Mussökningsinstervall"
 
-#, fuzzy
 msgid "Mouse Restrain Margin"
 msgstr "Musrestriktionsmarginal"
 
@@ -1606,7 +1569,6 @@ msgstr "Panorera upp"
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
 msgstr "Panorera det zoomade området när musen lämnar det synliga området."
 
-#, fuzzy
 msgid "Panning"
 msgstr "Panorering"
 
@@ -1622,9 +1584,8 @@ msgstr "Hindra musen att lämna zoomområdet"
 msgid "Scale the mouse pointer"
 msgstr "Skala muspekaren"
 
-#, fuzzy
 msgid "Specific Zoom"
-msgstr "Specifik zoomfaktor 1"
+msgstr "Specifik zoom"
 
 msgid "Specific zoom factor 1"
 msgstr "Specifik zoomfaktor 1"
@@ -1641,11 +1602,9 @@ msgstr "Hastighet"
 msgid "Sync Mouse"
 msgstr "Synkronisera musen"
 
-#, fuzzy
 msgid "Target Focused Window on Specific level"
 msgstr "Välj ett fokuserat fönster på en specifik nivå"
 
-#, fuzzy
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Välj storleksmarginal att lägga till vid försök att hålla kvar musen."
 
@@ -1662,16 +1621,14 @@ msgstr ""
 msgid "Use linear filter when zoomed in"
 msgstr "Använd linjärfilter vid inzoomning"
 
-#, fuzzy
 msgid "Zoom Area Movement"
 msgstr "Zoomrörelse"
 
 msgid "Zoom In"
 msgstr "Zooma in"
 
-#, fuzzy
 msgid "Zoom In/Out"
-msgstr "Zooma ut"
+msgstr "Zooma in/ut"
 
 msgid "Zoom Out"
 msgstr "Zooma ut"
@@ -1722,43 +1679,6 @@ msgstr ""
 "Zoomar in/ut så att det fokuserade fönstret är maximalt zoomat medan det "
 "fortfarande är fullt synligt"
 
-msgid "Activate Window"
-msgstr "Aktivera fönster"
-
-msgid "Activate a given window"
-msgstr "Aktivera ett angivet fönster"
-
-#, fuzzy
-msgid "Extra WM Actions"
-msgstr "Extra FH-funktioner"
-
-msgid "Provides less commonly used WM actions"
-msgstr "Tillhandahåller mindre vanliga FH-funktioner"
-
-msgid "Toggle Always-On-Top"
-msgstr "Växla alltid överst"
-
-msgid "Toggle Fullscreen"
-msgstr "Växla helskärm"
-
-msgid "Toggle Redirect"
-msgstr "Växla omdirigering"
-
-msgid "Toggle Sticky"
-msgstr "Växla klistrad"
-
-msgid "Toggle always on top for the active window"
-msgstr "Växla alltid överst för det aktiva fönstret"
-
-msgid "Toggle window fullscreen"
-msgstr "Växla fullskärm av fönster"
-
-msgid "Toggle window redirect"
-msgstr "Växla omdirigering av fönster"
-
-msgid "Toggle window stickyness"
-msgstr "Växla klistrat fönster"
-
 msgid "Easily access your desktop"
 msgstr "Kom enkelt åt ditt skrivbord"
 
@@ -1780,11 +1700,9 @@ msgstr "Ändra opacitet på fönster baserat på dess färg"
 msgid "Color Opacity"
 msgstr "Färg opacitet"
 
-#, fuzzy
 msgid "Toggle Window Fake ARGB"
 msgstr "Växla falskt fönster ARGB"
 
-#, fuzzy
 msgid "Toggle window fake ARGB."
 msgstr "Växla falskt fönster ARGB"
 
@@ -1809,7 +1727,6 @@ msgstr "Initiera (knapp)"
 msgid "Initiate (key)"
 msgstr "Initiera (nyckel)"
 
-#, fuzzy
 msgid "Initiate fire drawing"
 msgstr "Initiera eldritande"
 
@@ -1852,11 +1769,9 @@ msgstr "Kantfärg på tabbfält"
 msgid "Brightness of selected windows"
 msgstr "Ljusstyrka på valda fönster"
 
-#, fuzzy
 msgid "Change Tab Left"
 msgstr "Byt tabb vänster"
 
-#, fuzzy
 msgid "Change Tab Right"
 msgstr "Byt tabb höger"
 
@@ -1869,11 +1784,9 @@ msgstr "Stäng grupp"
 msgid "Create mipmaps for thumbnails"
 msgstr "Skapa mipmaps för miniatyr"
 
-#, fuzzy
 msgid "Create mipmaps for thumbnails in the tab bar"
 msgstr "Skapa mipmappar för miniatyr i tabbfältet"
 
-#, fuzzy
 msgid ""
 "Distance (in pixels) between the tab bar and the dragged slot for applying "
 "the spring model. If the distance is larger than that value, the model isn't "
@@ -1883,7 +1796,6 @@ msgstr ""
 "av fjädermodellen. Om avståndet är större än det värdet blir modellen inte "
 "applicerad."
 
-#, fuzzy
 msgid "Duration (in s) of the animation that happens when changing tabs"
 msgstr "Varaktighet (i s) för den animation som sker när tabb ändras"
 
@@ -1959,7 +1871,6 @@ msgstr "Gruppera fönster efter val"
 msgid "Grouping"
 msgstr "Gruppering"
 
-#, fuzzy
 msgid "Hover time for slot dragging"
 msgstr "Sveptid för fickdragning"
 
@@ -2051,9 +1962,8 @@ msgstr "Murrina"
 msgid "Opacity of selected windows"
 msgstr "Opacitet på valda fönster"
 
-#, fuzzy
 msgid "Play animations on the tab bar e.g. on fade in."
-msgstr "Spela animationer på tabbfältet t.ex när tonas in"
+msgstr "Spela animationer på tabbfältet t.ex vid in toning"
 
 msgid "Precision"
 msgstr "Precision"
@@ -2102,15 +2012,12 @@ msgstr "Skugga med gruppen"
 msgid "Simple"
 msgstr "Simpel"
 
-#, fuzzy
 msgid "Slot Drag Spring K"
 msgstr "Fickdragning fjäderK"
 
-#, fuzzy
 msgid "Slot Dragging"
 msgstr "Fickdragning"
 
-#, fuzzy
 msgid "Slot drag friction"
 msgstr "Fickdragningens friktion"
 
@@ -2132,9 +2039,8 @@ msgstr "Dröjsmål för Tabbfältet"
 msgid "Tab Base Color"
 msgstr "Basfärg på tabb"
 
-#, fuzzy
 msgid "Tab Border Color"
-msgstr "Ramfärg på tabb"
+msgstr "Kantfärg på tabb"
 
 msgid "Tab Group"
 msgstr "Tabbgrupp"
@@ -2227,9 +2133,9 @@ msgstr "Bredden på tabbfältets kontur"
 msgid "Thumb Size"
 msgstr "Storlek på miniatyr"
 
-#, fuzzy
 msgid "Time (in s) before the tab bar is shown after hovering the title bar"
-msgstr "Tiden (i s) innan tabbfältet visas efter att ha hållt över titellist"
+msgstr ""
+"Tiden (i s) innan tabbfältet visas efter att ha hållt över fönstertiteln"
 
 msgid "Time (in s) the tab bar is visibly after a tab change"
 msgstr "Tiden (i s) som tabbfältet är synligt ett tabb-byte"
@@ -2240,7 +2146,6 @@ msgstr "Tiden för tabbfältets pulsanimation"
 msgid "Time for tab bar reflex animation"
 msgstr "Tiden för tabbfältets reflexanimation"
 
-#, fuzzy
 msgid ""
 "Timespan (in s) after which a grouped window is activated if a window of "
 "another group is dragged over it"
@@ -2254,13 +2159,11 @@ msgstr "Avgruppera fönster"
 msgid "Ungroup the windows if only one window is left"
 msgstr "Avgruppera fönster endas om ett fönster är kvar"
 
-#, fuzzy
 msgid "Untab the group when closing the top tab window instead of changing tab"
 msgstr ""
 "Avtabba gruppen när man stänger det översta tabbfönstret istället för att "
 "byta tab"
 
-#, fuzzy
 msgid "Untab when closing top tab"
 msgstr "Avtabba när man stänger den översta tabben"
 
@@ -2274,7 +2177,7 @@ msgid "Windows that should be allowed to be grouped"
 msgstr "Fönster som ska tillåtas att vara grupperade"
 
 msgid "With this plugin you can group and tab windows"
-msgstr "Med denna instickningsmodul kan du gruppera och tabba fönster"
+msgstr "Med denna insticksmodul kan du gruppera och tabba fönster"
 
 msgid "Y distance for spring model"
 msgstr "Y-avstånd för fjädermodellen"
@@ -2285,14 +2188,174 @@ msgstr "Kompressionskvalitet"
 msgid "JPEG"
 msgstr "JPEG"
 
-#, fuzzy
 msgid "JPEG image format plugin"
-msgstr "Insticksmodul för bildformat JPEG"
+msgstr "Insticksmodul för JPEG-bildformat"
 
 msgid "Quality of compression when saving JPEG images"
 msgstr "Kvaliteten på kompression när man sparar JPEG-bilder"
 
 #, fuzzy
+msgid "Background/Window brightness."
+msgstr "Ljusstyrka på bakgrund"
+
+#, fuzzy
+msgid "Background/Window saturation."
+msgstr "Färgmättnad för bakgrund"
+
+#, fuzzy
+msgid "Fade In/Out Time"
+msgstr "Tona in/ut tid"
+
+msgid "Fade In/Out Time."
+msgstr "Tona in/ut tid"
+
+msgid "Login"
+msgstr ""
+
+#, fuzzy
+msgid "Login Window Match"
+msgstr "Fönstermatchning"
+
+#, fuzzy
+msgid "Login Window match"
+msgstr "Fönstermatchning"
+
+msgid "Login/Logout"
+msgstr ""
+
+msgid "Login/Logout effect"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+#, fuzzy
+msgid "Logout Window Match"
+msgstr "Grupp fönstermatchning"
+
+#, fuzzy
+msgid "Logout Window match"
+msgstr "Fönstermatchning"
+
+#, fuzzy
+msgid "Window opacity."
+msgstr "Fönsteropacitet"
+
+#, fuzzy
+msgid "Border color"
+msgstr "Kantfärg på tabb"
+
+#, fuzzy
+msgid "Border width"
+msgstr "Bredd på kant"
+
+#, fuzzy
+msgid "Border widtht."
+msgstr "Bredd på kant"
+
+msgid "Box height."
+msgstr ""
+
+#, fuzzy
+msgid "Box width."
+msgstr "Strålbredd"
+
+#, fuzzy
+msgid "Clip mask"
+msgstr "Mipmaps"
+
+msgid "Clip mask."
+msgstr ""
+
+#, fuzzy
+msgid "Fisheye"
+msgstr "Fiskstorlek"
+
+msgid "Height"
+msgstr "Höjd"
+
+msgid "Image overlay"
+msgstr ""
+
+#, fuzzy
+msgid "Keep fully on screen"
+msgstr "Visa FPS på skärmen"
+
+#, fuzzy
+msgid "Keep fully on screen."
+msgstr "Visa FPS på skärmen"
+
+msgid "Magnifier"
+msgstr ""
+
+msgid "Magnifier box"
+msgstr ""
+
+msgid "Magnifier image"
+msgstr ""
+
+msgid "Magnifier image."
+msgstr ""
+
+# Något bättre ord?
+#, fuzzy
+msgid "Mode"
+msgstr "Undvik"
+
+# Något bättre ord?
+#, fuzzy
+msgid "Mode."
+msgstr "Undvik"
+
+#, fuzzy
+msgid "Radius"
+msgstr "Kantradie"
+
+#, fuzzy
+msgid "Radius of the magnification area."
+msgstr "Radie på den rundade kantens"
+
+msgid "Width"
+msgstr "Bredd"
+
+msgid "X offset of the cursor"
+msgstr ""
+
+msgid "X offset of the cursor."
+msgstr ""
+
+msgid "Y offset of the cursor"
+msgstr ""
+
+msgid "Y offset of the cursor."
+msgstr ""
+
+msgid "Zoom factor for keyboard initiated magnifier."
+msgstr ""
+
+msgid "Ignore sticky windows in the calculations"
+msgstr ""
+
+msgid "Maximumize"
+msgstr ""
+
+#, fuzzy
+msgid "Maximumizes windows (resize them to fit the available screenspace)."
+msgstr "Maximal fönsterstorlek (procentuellt av skärmens storlek"
+
+msgid ""
+"Treat sticky windows as non-existant when calculating space to use for the "
+"maximumize window."
+msgstr ""
+
+msgid ""
+"Trigger a resize of the window currently focused so it fits as much of the "
+"available screenspae as possible."
+msgstr ""
+
+msgid "Trigger maximumize"
+msgstr ""
+
 msgid "Accumulation buffer"
 msgstr "Samlingsbuffert"
 
@@ -2337,40 +2400,54 @@ msgstr "Sikt/Prestanda"
 
 #, fuzzy
 msgid "Action"
-msgstr "Animation"
+msgstr "Handling"
 
+#, fuzzy
 msgid "Action that is to be invoked."
-msgstr ""
+msgstr "Handling som ska bli åkallad"
 
+#, fuzzy
 msgid "Assign mousegestures to any existing action"
-msgstr ""
+msgstr "Tilldela musgester till någon existerande handling"
 
 #, fuzzy
 msgid "Gesture"
-msgstr "Börja gest"
+msgstr "Gest"
 
+#, fuzzy
 msgid "Gesture assignment"
-msgstr ""
+msgstr "Gesttilldelning"
 
 #, fuzzy
 msgid "Gestures"
-msgstr "Texturer"
+msgstr "Gester"
 
+#, fuzzy
 msgid "Mouse gesture to assign an action to."
-msgstr ""
+msgstr "Musgest att tilldela en handling till."
 
 #, fuzzy
 msgid "Mousegestures"
-msgstr "Börja musgest"
+msgstr "Musgester"
 
-#, fuzzy
 msgid "Plugin"
-msgstr "Insticksmodul Expo"
+msgstr "Insticksmodul"
 
 msgid "Plugin the action belongs to."
+msgstr "Insticksmodulen handlingen tillhör."
+
+#, fuzzy
+msgid "Start gesture"
+msgstr "Starta gest"
+
+msgid "Misc"
 msgstr ""
 
-msgid "Start gesture"
+#, fuzzy
+msgid "Mouse position polling"
+msgstr "Muspanorering"
+
+msgid "Updates the mouse pointer position from the xserver"
 msgstr ""
 
 #, fuzzy
@@ -2427,33 +2504,32 @@ msgid "Error"
 msgstr "Fel"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Felmeddelanden"
 
-#, fuzzy
 msgid "Fatal"
 msgstr "Allvarligt"
 
-#, fuzzy
 msgid "Hide Timeout"
-msgstr "Toningstid"
+msgstr "Göm-fördröjning"
 
-#, fuzzy
 msgid "Info"
-msgstr "In"
+msgstr "Info"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "Maximal lognivå"
 
 msgid "The maximum log level to display"
-msgstr ""
+msgstr "Den maximala lognivån som visas"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
+"Tiden (i sekunder) innan notisen gömms, sätt till -1 för systemets "
+"standardvärden och 0 för obestämd tid"
 
 msgid "Warning"
-msgstr ""
+msgstr "Varning"
 
 msgid "Active Opacity"
 msgstr "Aktiv opacitet"
@@ -2472,7 +2548,6 @@ msgstr ""
 msgid "Delay until Opacification"
 msgstr "Fördröj till opacifiering"
 
-#, fuzzy
 msgid ""
 "Do not wait if the window we are hovering is the focused window. This allows "
 "us to instantly see the focused window. You probably want to disable this if "
@@ -2539,7 +2614,6 @@ msgstr ""
 "valt fönster kommer antingen ha denna opacitet eller den förinställda "
 "opaciteten, beroende på vad som är störst."
 
-#, fuzzy
 msgid ""
 "This enables you to let Opacify instantly opacify new windows when you're "
 "already making one or more windows invisible. Makes for faster behavior "
@@ -2552,7 +2626,6 @@ msgstr ""
 msgid "Toggle Opacify"
 msgstr "Växla opacifiera"
 
-#, fuzzy
 msgid "Toggle Opacify on by default"
 msgstr "Växla opacifiera på som standard"
 
@@ -2580,12 +2653,14 @@ msgstr "Animeringshastighet"
 msgid "Animation timestep"
 msgstr "Animationstidssteg"
 
-#, fuzzy
 msgid "Avoid Offscreen"
 msgstr "Undvik utanför skärmen"
 
 msgid "Avoids putting window borders offscreen"
 msgstr "Undviker att man lägger fönsterramar utanför skärmen"
+
+msgid "Move window arbitrarily by passing x, y and type."
+msgstr ""
 
 msgid "Move window to a certain viewport"
 msgstr "Flytta fönster till en viss arbetsyta"
@@ -2671,10 +2746,6 @@ msgstr "Flytta fönster till arbetsyta 8"
 msgid "Move window to viewport 9"
 msgstr "Flytta fönster till arbetsyta 9"
 
-msgid "Move window to x, y"
-msgstr "Flytta fönster till x, y"
-
-#, fuzzy
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
 msgstr "Antal pixlar från den nedre kanten som fönster kommer bli satt i dvala"
@@ -2690,7 +2761,6 @@ msgstr ""
 msgid "Number of pixels from the top edge where the window will come to rest"
 msgstr "Antal pixlar från den övre kanten som fönster kommer bli satta i dvala"
 
-#, fuzzy
 msgid "Pad Bottom"
 msgstr "Fyll botten"
 
@@ -2720,9 +2790,6 @@ msgstr "Placera underst, till höger"
 
 msgid "Put Center"
 msgstr "Placera mitt"
-
-msgid "Put Exact"
-msgstr "Placera exakt"
 
 msgid "Put Left"
 msgstr "Placera vänster"
@@ -2820,16 +2887,14 @@ msgstr "Övre arbetsyta"
 msgid "Window Center"
 msgstr "Fönster mitten"
 
-#, fuzzy
 msgid "Alpha Dependence Threshold"
 msgstr "Alfa-beroende tröskel"
 
-#, fuzzy
 msgid "Alpha dependence threshold."
 msgstr "Alfa-beroende tröskel"
 
 msgid "Draw Reflection for decorations."
-msgstr "Rita reflektion för dekorationer"
+msgstr "Rita reflektion för ramar"
 
 msgid "Draw Reflection for windows."
 msgstr "Rita reflektion för fönster"
@@ -2853,7 +2918,7 @@ msgid "Reflection Window Match"
 msgstr "Reflektionens fönstermatchning"
 
 msgid "Reflection for Decorations"
-msgstr "Reflektionen för dekorationer"
+msgstr "Reflektionen för ramar"
 
 msgid "Reflection for Windows"
 msgstr "Reflektionen för fönster"
@@ -2888,7 +2953,6 @@ msgstr "Gradientfärg 2"
 msgid "Gradient Color 3"
 msgstr "Gradientfärg 3"
 
-#, fuzzy
 msgid "Resize Info"
 msgstr "Info vid storleksändring"
 
@@ -2911,7 +2975,6 @@ msgstr "Övre ring"
 msgid "Allow Mouse Selection"
 msgstr "Tillåt musval"
 
-#, fuzzy
 msgid ""
 "Allow the selection of windows by just clicking on them while the switcher "
 "is active."
@@ -3087,7 +3150,7 @@ msgid "Show window title of currently selected window."
 msgstr "Visa fönstertitel på det nuvarande valda fönstret."
 
 msgid "Show windows that are minimized, shaded or in show desktop mode."
-msgstr ""
+msgstr "Visa fönster som är minimerade, skuggade eller i visa skrivbord läge"
 
 msgid "Text Placement"
 msgstr "Textplacering"
@@ -3104,9 +3167,8 @@ msgstr "Fönstertitelvisning"
 msgid "Windows that should be shown in ring"
 msgstr "Fönster som ska visas i ringen"
 
-#, fuzzy
 msgid "All windows"
-msgstr "Kakla fönster"
+msgstr "Alla fönster"
 
 msgid "Background color of the window title"
 msgstr "Bakgrundsfärg för fönstertitel"
@@ -3135,13 +3197,11 @@ msgstr "Framhävningsfärg"
 msgid "Highlights the hovered window with the given color"
 msgstr "Framhäver fönstret som musen är över med den angivna färgen."
 
-#, fuzzy
 msgid "Hovered window only"
-msgstr "Flytta fönster till x, y"
+msgstr "Endast fönster man har muspekaren över"
 
-#, fuzzy
 msgid "No display"
-msgstr "Fönstertitelvisning"
+msgstr "Ingen visning"
 
 msgid "Normal"
 msgstr "Normal"
@@ -3176,11 +3236,9 @@ msgstr "Fönsterlayoutläge"
 msgid "Window Title"
 msgstr "Fönstertitel"
 
-#, fuzzy
 msgid "Window Title Display"
 msgstr "Fönstertitelvisning"
 
-#, fuzzy
 msgid "Window title display in scale mode"
 msgstr "Visa fönstertitel i skalningsläge"
 
@@ -3230,78 +3288,93 @@ msgstr "Växla prompt synlig"
 msgid "Toggle prompt visible."
 msgstr "Växla prompt synlig."
 
-#, fuzzy
 msgid "Directory"
-msgstr "Mapp för krash-logg"
+msgstr "Katalog"
 
-#, fuzzy
 msgid "Initiate screencasting"
-msgstr "Initiera eldritande"
+msgstr "Initiera \"screencasting\""
 
 msgid "Put screenshot images in this directory"
+msgstr "Lägg skärmdumparna i denna katalog"
+
+msgid "ScreenCast plugin"
+msgstr "ScreenCast-insticksmodul"
+
+msgid "ScreenCasting"
+msgstr "ScreenCasting"
+
+msgid ""
+"Also try to save and restore legacy apps that don't support the X session "
+"management protocol. This setting only should be used in KDE, as only KDE's "
+"session manager also saves those applications."
 msgstr ""
 
-#, fuzzy
-msgid "ScreenCast plugin"
-msgstr "Skärmutmatning"
+msgid "Save Legacy Apps"
+msgstr ""
 
-#, fuzzy
-msgid "ScreenCasting"
-msgstr "Skärm-inboxning"
+msgid "Session Management"
+msgstr ""
 
-#, fuzzy
+msgid "Talk to session manager and save/load window state"
+msgstr ""
+
 msgid "Animation duration"
 msgstr "Varaktighet på animation"
 
-#, fuzzy
 msgid "Duration of the animation in milliseconds."
-msgstr "Varaktighet för utzoomnings-animationen"
+msgstr "Varaktighet för animationen i millisekunder"
 
 msgid "Increase the scale factor making the window bigger."
-msgstr ""
+msgstr "Ökar skalningsfaktorn, detta gör fönstret större."
 
-#, fuzzy
 msgid "Make the window bigger"
-msgstr "Max fönsterstorlek"
+msgstr "Gör fönstret större"
 
-#, fuzzy
 msgid "Make the window smaller"
-msgstr "Max fönsterstorlek"
+msgstr "Gör fönstret mindre"
 
 msgid "Reduces the scale factor making the window smaller."
-msgstr ""
+msgstr "Minskar skalningsfaktorn, detta gör fönstret mindre."
 
 #, fuzzy
+msgid "Reset the window to original size"
+msgstr "Sätt fönster som ej skalbart"
+
+msgid "Resets the currently focused window to original size"
+msgstr ""
+
 msgid "Scale a window down to a portion of it's size."
-msgstr "Skala ner ett fönster till halv storlek."
+msgstr "Skala ner ett fönster till hälften av dess tidgare storlek."
 
 msgid ""
 "Scale a window down to a ration of the screen size. Respectively half, a "
 "third or a sixth of the screen."
 msgstr ""
+"Skala ner ett fönster till en del av skärmstorleken.Respektive hälften, en "
+"tredjedel eller en sjättedel av skärmen."
 
 msgid "Scale interval"
 msgstr "Skalningsintervall"
 
-#, fuzzy
+# Titeln på engelska är inte så förklarande heller
 msgid "Shelf"
-msgstr "Shift"
+msgstr "Hylla"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
 "(respectively) increasing and decreasing the scale level manually. Higher "
 "number means finer changes."
 msgstr ""
+"Numret man ska dividera skalningsfaktorn eller multiplicerar med när man "
+"antingen ökar eller minskar skalningsnivån manuellt. Högre nummer betyder "
+"bättre finjusteringar"
 
-#, fuzzy
 msgid "Trigger scale down"
 msgstr "Aktivera nerskalning"
 
-#, fuzzy
 msgid "Trigger scale down to screen"
-msgstr "Aktivera nerskalning"
+msgstr "Aktivera nerskalning till skärm"
 
-#, fuzzy
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
@@ -3324,12 +3397,11 @@ msgstr "Klickvaraktighet"
 msgid "Cover"
 msgstr "Täck"
 
-#, fuzzy
 msgid "Cover movement offset."
-msgstr "Täck rörelsekompensation"
+msgstr "Vilken sida som det fokuserade fönstret kommer vara på."
 
 msgid "Cover offset"
-msgstr "Täckkompensation"
+msgstr "Täcksida"
 
 msgid "Disabled"
 msgstr "Inaktiverad"
@@ -3472,15 +3544,112 @@ msgid ""
 msgstr ""
 "Fönstertyper som förflyttas ut ur synfältet under \"visa skrivbord\" läge"
 
+msgid "Additive blending"
+msgstr ""
+
+#, fuzzy
+msgid "Additive blending of particles"
+msgstr "Antal partiklar"
+
+#, fuzzy
+msgid "Darken backgound"
+msgstr "Förmörka bakgrunden"
+
+#, fuzzy
+msgid "Darken background under particles"
+msgstr "Förmörka bakgrunden"
+
+msgid "Emiters"
+msgstr ""
+
+#, fuzzy
+msgid "Have random colors for the particles"
+msgstr "Ha slumpmässiga färger till eldeffekten, också känd som Mystisk Eld"
+
+#, fuzzy
+msgid "Increases the visibility of the mouse pointer"
+msgstr "Skala muspekaren"
+
+#, fuzzy
+msgid "Number Of Particles"
+msgstr "Antal partiklar"
+
+#, fuzzy
+msgid "Number of particle emiters."
+msgstr "Antal partiklar"
+
+#, fuzzy
+msgid "Number of particles."
+msgstr "Antal partiklar"
+
+#, fuzzy
+msgid "Particle Color"
+msgstr "Färg på eldpartiklar"
+
+#, fuzzy
+msgid "Particle Life"
+msgstr "Livslängd på eldpartiklar"
+
+#, fuzzy
+msgid "Particle Options"
+msgstr "Diverse inställningar"
+
+#, fuzzy
+msgid "Particle Size"
+msgstr "Storlek på eldpartiklar"
+
+#, fuzzy
+msgid "Particle Slowdown"
+msgstr "Hastighetsminskning av eldpartiklar"
+
+#, fuzzy
+msgid "Particle color."
+msgstr "Färg på eldpartiklar"
+
+#, fuzzy
+msgid "Particle life."
+msgstr "Livslängd på eldpartiklar"
+
+#, fuzzy
+msgid "Particle size."
+msgstr "Storlek på eldpartiklar"
+
+#, fuzzy
+msgid "Particle slowdown."
+msgstr "Hastighetsminskning av eldpartiklar"
+
+#, fuzzy
+msgid "Randomly Colored Particles"
+msgstr "Slumpmässigt färgad eld"
+
+#, fuzzy
+msgid "Ring radius"
+msgstr "Kantradie"
+
+#, fuzzy
+msgid "Rotation speed"
+msgstr "Animeringshastighet"
+
+#, fuzzy
+msgid "Rotation speed."
+msgstr "Animeringshastighet"
+
+#, fuzzy
+msgid "Show mouse"
+msgstr "Synkronisera musen"
+
+#, fuzzy
+msgid "Toggle the mouse pointer trail."
+msgstr "Skala muspekaren"
+
 msgid "Alt"
 msgstr "Alt"
 
-#, fuzzy
 msgid "Avoid Snap Modifier"
-msgstr "Undvik fästningsmodifieraren"
+msgstr "Undvik fästmodifieraren"
 
 msgid "Choose 'Resistance', 'Attraction' or 'Full Mode'."
-msgstr "Välj 'Resistans', 'Attrahering' eller 'Hel-läge"
+msgstr "Välj 'Resistans', 'Attrahering' eller 'Hel-läge'."
 
 msgid "Control"
 msgstr "Kontroll"
@@ -3552,7 +3721,8 @@ msgstr "Aktivera texturer"
 msgid "Enables alpha blending of snowflakes."
 msgstr "Aktiverar alfa-blanding av snöflingor"
 
-msgid "Enables textures snowflakes. If not selected, color cradients are used."
+#, fuzzy
+msgid "Enables textured snowflakes. If not selected, color gradients are used."
 msgstr ""
 "Aktiverar textur i snöflingor. Om ej valt kommer färggradienter att användas"
 
@@ -3587,7 +3757,6 @@ msgstr "Höger till vänster"
 msgid "Rotate Flakes"
 msgstr "Rotera snöflingor"
 
-#, fuzzy
 msgid "Screen Boxing"
 msgstr "Skärm-inboxning"
 
@@ -3668,9 +3837,6 @@ msgstr "Visa in/ut tid"
 
 msgid "Display Time"
 msgstr "Visa tid"
-
-msgid "Fade In/Out Time."
-msgstr "Tona in/ut tid"
 
 msgid "Images"
 msgstr "Bilder"
@@ -3771,7 +3937,6 @@ msgid "Time (in ms) before Thumbnail is shown."
 msgstr "Tid (i ms) innan miniatyr visas"
 
 # Förhandstitt på fönster -> Förhandsvisning av fönster
-#, fuzzy
 msgid "Window Previews"
 msgstr "Förhandsvisning av fönster"
 
@@ -3799,7 +3964,6 @@ msgstr "Delta-kaskad"
 msgid "Cascade Windows"
 msgstr "Kaskadfönster"
 
-#, fuzzy
 msgid "Choose the tiling type you want when using toggle."
 msgstr "Välj kaklingstyp du vill ha när du växlar."
 
@@ -3809,7 +3973,6 @@ msgstr "Avstånd mellan fönster vid användning av kaskad"
 msgid "Drop From Top"
 msgstr "Släpp från topp"
 
-#, fuzzy
 msgid "Duration (in ms) of the tiling animation"
 msgstr "Varaktighet (i ms) för kaklingsanimationen"
 
@@ -3822,7 +3985,6 @@ msgstr "Fylld kontur"
 msgid "Join Windows (EXPERIMENTAL)"
 msgstr "Slå ihop fönster (EXPERIMENTELL)"
 
-#, fuzzy
 msgid "Left Occupancy"
 msgstr "Vänster ockupering"
 
@@ -3853,7 +4015,6 @@ msgstr ""
 "Flytta och storleksförändra alla synliga fönster med deltavärdet för "
 "kaskadering"
 
-#, fuzzy
 msgid ""
 "Occupancy percentage for window placed left. This number is percentage of "
 "screen width, which the active window will have it as width when tiled. "
@@ -3866,18 +4027,15 @@ msgstr ""
 msgid "Restore Windows"
 msgstr "Återställ fönster"
 
-#, fuzzy
 msgid "Restore windows to their original position they had before tiling."
 msgstr "Återställ fönster till dess orginalposition som de hade innan kakling."
 
-#, fuzzy
 msgid "Selects the animation used while tiling"
 msgstr "Väljer animationen använd under kakling"
 
 msgid "Slide"
 msgstr "Glid"
 
-#, fuzzy
 msgid "Tile"
 msgstr "Kakla"
 
@@ -4164,7 +4322,6 @@ msgstr "Byt till arbetsyta 9"
 msgid "Viewport Switcher"
 msgstr "Arbetsytväxlare"
 
-#, fuzzy
 msgid "Allow Wrap-Around"
 msgstr "Tillåt insvepning"
 
@@ -4190,7 +4347,6 @@ msgid "Duration (in s) for wall sliding viewport switching animation"
 msgstr ""
 "Varaktighet (i s) för byte av arbetsyta med glidande väggbyte-animation"
 
-#, fuzzy
 msgid ""
 "Duration (in s) the switch target preview should remain visible after "
 "switching ends."
@@ -4345,7 +4501,6 @@ msgstr "Skuggfärg"
 msgid "Show Live Viewport Previews"
 msgstr "Visa förhandsvisningar av arbetsyta i realtid"
 
-#, fuzzy
 msgid "Show Viewport Switcher Preview"
 msgstr "Visa förhandsvisning av arbetsytväxlare"
 
@@ -4385,75 +4540,65 @@ msgstr "Bakgrunder"
 msgid "Draw the desktop wallpaper"
 msgstr "Rita bakgrundsbilden"
 
-#, fuzzy
 msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Aktiverar alfa-blanding av snöflingor"
+msgstr "Aktivera äkta alfa-blandning för genomskinliga bakgrunder"
 
-#, fuzzy
 msgid "Enable true blending"
-msgstr "Aktivera blandning"
+msgstr "Aktivera äkta blandning"
 
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
 "Specificationer för bakgrunden som ska användas (förklarat i DOKUMENTATIONEN)"
 
-#, fuzzy
 msgid "Tile backgrounds as opposed to stretching"
 msgstr "Sätt bakgrunderna sida vid sida istället för att sträcka ut"
 
 msgid "Wallpaper"
 msgstr "Bakgrund"
 
-#, fuzzy
 msgid "Background Brightness"
-msgstr "Ljustyrka på bakgrund"
+msgstr "Ljusstyrka på bakgrund"
 
-#, fuzzy
 msgid "Background Saturation"
-msgstr "Färgmättnad för bakgrund"
+msgstr "Färgmättnad på bakgrund"
 
-#, fuzzy
+# Widget på svenska?
 msgid "Background in Widget Mode"
-msgstr "Bildfil för bakgrund"
+msgstr "Bakgrund i Widget-läge"
 
-#, fuzzy
 msgid "Brightness of non-widget windows in widget modes."
-msgstr "Ljusstyrka av tonade fönster"
+msgstr "Ljusstyrka på fönster i widget-läget som inte är av typen widget."
 
 msgid "End Widget Mode on Click"
-msgstr ""
+msgstr "Avsluta widget-läget via klick"
 
 msgid "End widget mode when a non-widget window is clicked."
 msgstr ""
+"Avsluta widget-läget när ett fönster som inte är av typen widget klickas"
 
-#, fuzzy
 msgid "Saturation of non-widget windows in widget modes."
-msgstr "Mättnad på tonade fönster"
+msgstr "Färgmättnad på fönster i widget-läget som inte är av typen widget."
 
-#, fuzzy
 msgid "Show or hide widget windows"
-msgstr "Visa minimerade fönster"
+msgstr "Visa eller göm widget-fönster"
 
 msgid "Show widget windows on a separate layer"
-msgstr ""
+msgstr "Visa widget-fönster på ett separat lager"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
+msgstr "Tiden (i s) för in/ut toning av widget-lagret."
 
-#, fuzzy
 msgid "Toggle Widget Display"
-msgstr "Växla fönsternegativ"
+msgstr "Växla widget visning"
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "Widget-lager"
 
-#, fuzzy
 msgid "Widget Windows"
-msgstr "Ringfönster"
+msgstr "Widget-fönster"
 
-#, fuzzy
 msgid "Windows that always should be treated as widgets"
-msgstr "Fönster som ska storleksändras som standard"
+msgstr "Fönster som alltid ska bli behandlade som widgets"
 
 msgid "Above others windows"
 msgstr "Ovanför andra fönster"
@@ -4461,7 +4606,6 @@ msgstr "Ovanför andra fönster"
 msgid "Below others windows"
 msgstr "Under andra fönster"
 
-#, fuzzy
 msgid "Don't show application in pager"
 msgstr "Visa inte program i sidindelning"
 
@@ -4476,9 +4620,6 @@ msgstr "Helskärm"
 
 msgid "Fullscreen windows"
 msgstr "Helskärmsfönster"
-
-msgid "Height"
-msgstr "Höjd"
 
 msgid "Height values"
 msgstr "Höjdvärden"
@@ -4525,7 +4666,9 @@ msgstr "Sätt fönster som ej skalbart"
 msgid "Set windows rules"
 msgstr "Sätt fönsterregler"
 
-#, fuzzy
+msgid "Size rules"
+msgstr ""
+
 msgid "Sized Windows"
 msgstr "Fönster med storlek"
 
@@ -4540,9 +4683,6 @@ msgstr "Klistrad"
 
 msgid "Sticky windows"
 msgstr "Klistrade fönster"
-
-msgid "Width"
-msgstr "Bredd"
 
 msgid "Width values"
 msgstr "Breddvärden"
@@ -4559,7 +4699,6 @@ msgstr "Fönster som ska behandlas som om att de inte stödjer genomskinlighet"
 msgid "Windows will not have focus"
 msgstr "Fönster kommer inte ha fokus"
 
-#, fuzzy
 msgid "\"On all desktops\" sticky match"
 msgstr "Klistrad träff \"på alla skrivbord\""
 
@@ -4575,16 +4714,17 @@ msgstr "Korrigera trasig implementation av \"glProgramEnvParameter4f\"."
 
 msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
 msgstr ""
+"Korrigering för trasig implementation av \"GLX_MESA_copy_sub_buffer\" i XGL "
+"med fglrx"
 
 msgid "Fix screen updates in XGL with fglrx."
-msgstr ""
+msgstr "Korrigera skärmupdateringar i XGL med fglrx"
 
 # Typo
 msgid "Fix window type of Firefox and Thunderbird menus."
 msgstr "Korrigera fönstertyp för menyer i Firefox och Thunderbird."
 
 # Ändrade till OpenOffice.org
-#, fuzzy
 msgid "Fix window type of OpenOffice.org menus."
 msgstr "Korrigera fönstertyp för menyer i OpenOffice.org."
 
@@ -4601,7 +4741,6 @@ msgstr "Korrigera fönstertyp för diverse Qt-fönster."
 msgid "Java Window Fix"
 msgstr "Korrigering av Java-fönster"
 
-#, fuzzy
 msgid "Legacy Fullscreen Support"
 msgstr "Stöd för äldre typ av helskärm"
 
@@ -4615,9 +4754,9 @@ msgstr ""
 "Gör \"på alla skrivbord\"-fönster klistrade. Klistrade fönster är synliga på "
 "alla skrivbordsytor"
 
-#, fuzzy
+# "korrekt" är nog mer lämpligt än "ordentligt"
 msgid "Make Wine and legacy applications fullscreen properly."
-msgstr "Få wine och äldre program att använda helskärm ordentligt."
+msgstr "Få wine och äldre program att använda helskärm korrekt."
 
 msgid "Metacity-like workarounds."
 msgstr "Metacity-liknande problemlösningar."
@@ -4625,9 +4764,8 @@ msgstr "Metacity-liknande problemlösningar."
 msgid "Notification Daemon Fix"
 msgstr "Korrigering av notifikations-daemon"
 
-#, fuzzy
 msgid "OpenOffice.org Menu Fix"
-msgstr "Korrigering av Firefoxmeny"
+msgstr "Korrigering av OpenOffice.org menyn"
 
 msgid "Qt Window Fix"
 msgstr "Korrigering av Qt-fönster"
@@ -4640,6 +4778,12 @@ msgstr "Fönster på alla arbetsytor som ska klistras"
 
 msgid "Workarounds"
 msgstr "Problemlösningar"
+
+#~ msgid "Move window to x, y"
+#~ msgstr "Flytta fönster till x, y"
+
+#~ msgid "Put Exact"
+#~ msgstr "Placera exakt"
 
 #~ msgid "Misc. options"
 #~ msgstr "Diverse inställningar"

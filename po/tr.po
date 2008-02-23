@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins-new\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-29 17:15+0530\n"
+"POT-Creation-Date: 2008-02-23 23:11+0530\n"
 "PO-Revision-Date: 2007-12-31 01:40+0100\n"
 "Last-Translator: Gürkan Gür <seqizz@gmail.com>\n"
 "Language-Team: <tr@li.org>\n"
@@ -1347,6 +1347,47 @@ msgstr "Burgaç"
 msgid "Zoom time"
 msgstr "Büyütme süresi"
 
+msgid "Activate Window"
+msgstr "Pencereyi Etkinleştir"
+
+msgid "Activate a given window"
+msgstr "Verilen bir pencereyi etkinleştir"
+
+# FIXME
+msgid "Extra WM Actions"
+msgstr "Daha fazla WM Hareketi"
+
+msgid "Provides less commonly used WM actions"
+msgstr "Az kullanılan Pencere Yönetimi eylemlerini sağlar"
+
+msgid "Toggle Always-On-Top"
+msgstr "Herzaman-En-Üstte Aç/Kapat"
+
+msgid "Toggle Fullscreen"
+msgstr "Tam Ekran Yap / Yapma"
+
+# FIXME
+msgid "Toggle Redirect"
+msgstr "Yönlendirmeyi Aç / Kapat"
+
+# FIXME
+msgid "Toggle Sticky"
+msgstr "Yapışkanlığı Aç / Kapat"
+
+msgid "Toggle always on top for the active window"
+msgstr ""
+
+msgid "Toggle window fullscreen"
+msgstr "Pencereyi tam ekran yap / yapma"
+
+# FIXME
+msgid "Toggle window redirect"
+msgstr "Pencere yönlendirmesini aç / kapat"
+
+# FIXME
+msgid "Toggle window stickyness"
+msgstr "Pencere yapışkanlığını aç/ kapat"
+
 msgid "Always fit to window on focus track"
 msgstr ""
 
@@ -1593,47 +1634,6 @@ msgid ""
 "Zooms in/out so the focused window is zoomed to the maximum while still "
 "being fully visible."
 msgstr ""
-
-msgid "Activate Window"
-msgstr "Pencereyi Etkinleştir"
-
-msgid "Activate a given window"
-msgstr "Verilen bir pencereyi etkinleştir"
-
-# FIXME
-msgid "Extra WM Actions"
-msgstr "Daha fazla WM Hareketi"
-
-msgid "Provides less commonly used WM actions"
-msgstr "Az kullanılan Pencere Yönetimi eylemlerini sağlar"
-
-msgid "Toggle Always-On-Top"
-msgstr "Herzaman-En-Üstte Aç/Kapat"
-
-msgid "Toggle Fullscreen"
-msgstr "Tam Ekran Yap / Yapma"
-
-# FIXME
-msgid "Toggle Redirect"
-msgstr "Yönlendirmeyi Aç / Kapat"
-
-# FIXME
-msgid "Toggle Sticky"
-msgstr "Yapışkanlığı Aç / Kapat"
-
-msgid "Toggle always on top for the active window"
-msgstr ""
-
-msgid "Toggle window fullscreen"
-msgstr "Pencereyi tam ekran yap / yapma"
-
-# FIXME
-msgid "Toggle window redirect"
-msgstr "Pencere yönlendirmesini aç / kapat"
-
-# FIXME
-msgid "Toggle window stickyness"
-msgstr "Pencere yapışkanlığını aç/ kapat"
 
 msgid "Easily access your desktop"
 msgstr "Masaüstünüze kolayca erişin"
@@ -2137,6 +2137,164 @@ msgstr "JPEG resim biçemi eklentisi"
 msgid "Quality of compression when saving JPEG images"
 msgstr ""
 
+#, fuzzy
+msgid "Background/Window brightness."
+msgstr "Arkaplan parlaklığı."
+
+#, fuzzy
+msgid "Background/Window saturation."
+msgstr "Arkaplan doygunluğu."
+
+#, fuzzy
+msgid "Fade In/Out Time"
+msgstr "Büyütme/Küçültme Süresi."
+
+msgid "Fade In/Out Time."
+msgstr "Büyütme/Küçültme Süresi."
+
+msgid "Login"
+msgstr ""
+
+# FIXED -- 'betroffene' ginge auch
+#, fuzzy
+msgid "Login Window Match"
+msgstr "Pencere Eşlemesi"
+
+#, fuzzy
+msgid "Login Window match"
+msgstr "Pencere eşlemesi"
+
+msgid "Login/Logout"
+msgstr ""
+
+msgid "Login/Logout effect"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+# FIXED -- 'betroffene' ginge auch
+#, fuzzy
+msgid "Logout Window Match"
+msgstr "Pencere Eşlemesi"
+
+#, fuzzy
+msgid "Logout Window match"
+msgstr "Pencere eşlemesi"
+
+#, fuzzy
+msgid "Window opacity."
+msgstr "Pencere Matlığı"
+
+#, fuzzy
+msgid "Border color"
+msgstr "Sekme Kenarlık Rengi"
+
+#, fuzzy
+msgid "Border width"
+msgstr "Kenarlık Genişliği"
+
+#, fuzzy
+msgid "Border widtht."
+msgstr "Kenarlık Genişliği"
+
+msgid "Box height."
+msgstr ""
+
+#, fuzzy
+msgid "Box width."
+msgstr "Işıma genişliği."
+
+msgid "Clip mask"
+msgstr ""
+
+msgid "Clip mask."
+msgstr ""
+
+msgid "Fisheye"
+msgstr ""
+
+msgid "Height"
+msgstr "Yükseklik"
+
+msgid "Image overlay"
+msgstr ""
+
+#, fuzzy
+msgid "Keep fully on screen"
+msgstr "FPS'yi Ekranda Göster"
+
+#, fuzzy
+msgid "Keep fully on screen."
+msgstr "FPS'yi Ekranda Göster"
+
+msgid "Magnifier"
+msgstr ""
+
+msgid "Magnifier box"
+msgstr ""
+
+msgid "Magnifier image"
+msgstr ""
+
+msgid "Magnifier image."
+msgstr ""
+
+#, fuzzy
+msgid "Mode"
+msgstr "Yana Kaçma"
+
+#, fuzzy
+msgid "Mode."
+msgstr "Yana Kaçma"
+
+#, fuzzy
+msgid "Radius"
+msgstr "Yarıçap Kenarlığı"
+
+msgid "Radius of the magnification area."
+msgstr ""
+
+msgid "Width"
+msgstr "Genişlik"
+
+msgid "X offset of the cursor"
+msgstr ""
+
+msgid "X offset of the cursor."
+msgstr ""
+
+msgid "Y offset of the cursor"
+msgstr ""
+
+msgid "Y offset of the cursor."
+msgstr ""
+
+msgid "Zoom factor for keyboard initiated magnifier."
+msgstr ""
+
+msgid "Ignore sticky windows in the calculations"
+msgstr ""
+
+msgid "Maximumize"
+msgstr ""
+
+msgid "Maximumizes windows (resize them to fit the available screenspace)."
+msgstr ""
+
+msgid ""
+"Treat sticky windows as non-existant when calculating space to use for the "
+"maximumize window."
+msgstr ""
+
+msgid ""
+"Trigger a resize of the window currently focused so it fits as much of the "
+"available screenspae as possible."
+msgstr ""
+
+msgid "Trigger maximumize"
+msgstr ""
+
 # FIXME -- No idea what this is
 msgid "Accumulation buffer"
 msgstr ""
@@ -2216,6 +2374,15 @@ msgid "Plugin the action belongs to."
 msgstr ""
 
 msgid "Start gesture"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Mouse position polling"
+msgstr ""
+
+msgid "Updates the mouse pointer position from the xserver"
 msgstr ""
 
 msgid "Begin Gesture"
@@ -2404,6 +2571,9 @@ msgstr ""
 msgid "Avoids putting window borders offscreen"
 msgstr ""
 
+msgid "Move window arbitrarily by passing x, y and type."
+msgstr ""
+
 msgid "Move window to a certain viewport"
 msgstr "Pencereyi belirli bir masaüstüne taşı"
 
@@ -2488,9 +2658,6 @@ msgstr "Pencereyi 8. masaüstüne taşı"
 msgid "Move window to viewport 9"
 msgstr "Pencereyi 9. masaüstüne taşı"
 
-msgid "Move window to x, y"
-msgstr "Pencereyi belirli bir konuma taşı x, y"
-
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
 msgstr ""
@@ -2533,9 +2700,6 @@ msgstr "Aşağı Sağa Yerleştir"
 
 msgid "Put Center"
 msgstr "Ortaya Yerleştir"
-
-msgid "Put Exact"
-msgstr "Belirli Bir Yere Yerleştir"
 
 msgid "Put Left"
 msgstr "Sola Yerleştir"
@@ -3043,6 +3207,21 @@ msgstr "Ekran Çıktısı"
 msgid "ScreenCasting"
 msgstr "Ekran Kutulaması"
 
+msgid ""
+"Also try to save and restore legacy apps that don't support the X session "
+"management protocol. This setting only should be used in KDE, as only KDE's "
+"session manager also saves those applications."
+msgstr ""
+
+msgid "Save Legacy Apps"
+msgstr ""
+
+msgid "Session Management"
+msgstr ""
+
+msgid "Talk to session manager and save/load window state"
+msgstr ""
+
 #, fuzzy
 msgid "Animation duration"
 msgstr "Canlandırma Süresi"
@@ -3063,6 +3242,13 @@ msgid "Make the window smaller"
 msgstr "En büyük pencere boyutu"
 
 msgid "Reduces the scale factor making the window smaller."
+msgstr ""
+
+#, fuzzy
+msgid "Reset the window to original size"
+msgstr "Pencereyi yeniden boyutlandırılamaz olarak ayarla"
+
+msgid "Resets the currently focused window to original size"
 msgstr ""
 
 msgid "Scale a window down to a portion of it's size."
@@ -3259,6 +3445,101 @@ msgid ""
 "Window types that should be moved out of sight when entering showdesktop mode"
 msgstr ""
 
+msgid "Additive blending"
+msgstr ""
+
+#, fuzzy
+msgid "Additive blending of particles"
+msgstr "Parçacık sayısı"
+
+#, fuzzy
+msgid "Darken backgound"
+msgstr "Arkaplanı Koyulaştır"
+
+#, fuzzy
+msgid "Darken background under particles"
+msgstr "Arkaplanı Koyulaştır"
+
+msgid "Emiters"
+msgstr ""
+
+msgid "Have random colors for the particles"
+msgstr ""
+
+msgid "Increases the visibility of the mouse pointer"
+msgstr ""
+
+#, fuzzy
+msgid "Number Of Particles"
+msgstr "Parçacık sayısı"
+
+#, fuzzy
+msgid "Number of particle emiters."
+msgstr "Parçacık sayısı"
+
+#, fuzzy
+msgid "Number of particles."
+msgstr "Parçacık sayısı"
+
+#, fuzzy
+msgid "Particle Color"
+msgstr "Ateş Rengi"
+
+#, fuzzy
+msgid "Particle Life"
+msgstr "Ateş Parçacığı Ömrü"
+
+#, fuzzy
+msgid "Particle Options"
+msgstr "Diğer Seçenekler"
+
+#, fuzzy
+msgid "Particle Size"
+msgstr "Ateş Parçacığı Boyutu"
+
+#, fuzzy
+msgid "Particle Slowdown"
+msgstr "Alev Parçacığı Yavaşlaması"
+
+#, fuzzy
+msgid "Particle color."
+msgstr "Ateş rengi."
+
+#, fuzzy
+msgid "Particle life."
+msgstr "Ateş parçacığı ömrü."
+
+#, fuzzy
+msgid "Particle size."
+msgstr "Ateş parçacığı boyutu."
+
+#, fuzzy
+msgid "Particle slowdown."
+msgstr "Alev parçacığı yavaşlaması."
+
+#, fuzzy
+msgid "Randomly Colored Particles"
+msgstr "Rastgele Renklendirilmiş Alev"
+
+#, fuzzy
+msgid "Ring radius"
+msgstr "Çember Pencereleri"
+
+#, fuzzy
+msgid "Rotation speed"
+msgstr "Canlandırma hızı"
+
+#, fuzzy
+msgid "Rotation speed."
+msgstr "Canlandırma hızı"
+
+#, fuzzy
+msgid "Show mouse"
+msgstr "Gecikmeyi Göster"
+
+msgid "Toggle the mouse pointer trail."
+msgstr ""
+
 msgid "Alt"
 msgstr "Alt"
 
@@ -3336,7 +3617,7 @@ msgstr "Dokuları Etkinleştir"
 msgid "Enables alpha blending of snowflakes."
 msgstr ""
 
-msgid "Enables textures snowflakes. If not selected, color cradients are used."
+msgid "Enables textured snowflakes. If not selected, color gradients are used."
 msgstr ""
 
 msgid "Flakes rotate if checked."
@@ -3449,9 +3730,6 @@ msgstr "İç/Dış Zamanını Göster."
 
 msgid "Display Time"
 msgstr "Gösterme Süresi"
-
-msgid "Fade In/Out Time."
-msgstr "Büyütme/Küçültme Süresi."
 
 msgid "Images"
 msgstr "Resimler"
@@ -4210,9 +4488,6 @@ msgstr "Tam Ekran"
 msgid "Fullscreen windows"
 msgstr "Tam ekran pencereler"
 
-msgid "Height"
-msgstr "Yükseklik"
-
 msgid "Height values"
 msgstr "Yükseklik değerleri"
 
@@ -4258,6 +4533,9 @@ msgstr "Pencereyi yeniden boyutlandırılamaz olarak ayarla"
 msgid "Set windows rules"
 msgstr "Pencere kurallarını ayarla"
 
+msgid "Size rules"
+msgstr ""
+
 msgid "Sized Windows"
 msgstr "Boyutlandırılmış Pencereler"
 
@@ -4273,9 +4551,6 @@ msgstr "Yapışkan"
 
 msgid "Sticky windows"
 msgstr "Pencereleri yapışkanlaştır"
-
-msgid "Width"
-msgstr "Genişlik"
 
 msgid "Width values"
 msgstr "Genişlik değerleri"
@@ -4366,6 +4641,12 @@ msgstr "Tüm masaüstlerindeki pencereler yapışkan olmalı"
 
 msgid "Workarounds"
 msgstr "Hızlı Çözümler"
+
+#~ msgid "Move window to x, y"
+#~ msgstr "Pencereyi belirli bir konuma taşı x, y"
+
+#~ msgid "Put Exact"
+#~ msgstr "Belirli Bir Yere Yerleştir"
 
 #~ msgid "Misc. options"
 #~ msgstr "Diğer seçenekler"

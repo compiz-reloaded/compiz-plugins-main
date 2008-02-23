@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-29 17:14+0530\n"
-"PO-Revision-Date: 2008-01-11 00:27+0100\n"
+"POT-Creation-Date: 2008-02-23 23:10+0530\n"
+"PO-Revision-Date: 2008-02-16 09:49+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
-"Language-Team: Japanese <jiro.kawada@gmail.com>\n"
+"Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,11 +63,10 @@ msgid "Change the speed of the 3D animation"
 msgstr "立体アニメーションの速度を変更"
 
 msgid "Color of an inactive window's depth"
-msgstr ""
+msgstr "非アクティブ・ウィンドウの厚みの色"
 
-#, fuzzy
 msgid "Color of the active window's depth"
-msgstr "アクティブ・ウィンドウのネガ表示のオンオフ"
+msgstr "アクティブ・ウィンドウの厚みの色"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "キューブ回転時にウィンドウを上昇"
@@ -91,13 +90,11 @@ msgstr "その他オプション"
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "角の丸い装飾と調和させるために立体の角を丸める"
 
-#, fuzzy
 msgid "Window Color (Active)"
-msgstr "ウィンドウタイトル"
+msgstr "ウィンドウ色（アクティブ）"
 
-#, fuzzy
 msgid "Window Color (Inactive)"
-msgstr "ウィンドウの中心"
+msgstr "ウィンドウ色（非アクティブ）"
 
 msgid "Window Depth"
 msgstr "ウィンドウの厚み"
@@ -1361,6 +1358,42 @@ msgstr "渦"
 msgid "Zoom time"
 msgstr "ズーム時間"
 
+msgid "Activate Window"
+msgstr "ウィンドウのアクティブ化"
+
+msgid "Activate a given window"
+msgstr "該当ウィンドウのアクティブ化"
+
+msgid "Extra WM Actions"
+msgstr "追加のWMアクション"
+
+msgid "Provides less commonly used WM actions"
+msgstr "あまり使われていないウィンドウ・マネジメントのアクションを提供"
+
+msgid "Toggle Always-On-Top"
+msgstr "常に前面に表示のオンオフ"
+
+msgid "Toggle Fullscreen"
+msgstr "全画面表示のオンオフ"
+
+msgid "Toggle Redirect"
+msgstr "リダイレクトのオンオフ"
+
+msgid "Toggle Sticky"
+msgstr "貼り付け（スティッキー）のオンオフ"
+
+msgid "Toggle always on top for the active window"
+msgstr "アクティブ・ウィンドウを常に前面に表示のオンオフ"
+
+msgid "Toggle window fullscreen"
+msgstr "ウィンドウの全画面表示のオンオフ"
+
+msgid "Toggle window redirect"
+msgstr "ウィンドウのリダイレクトのオンオフ"
+
+msgid "Toggle window stickyness"
+msgstr "ウィンドウの貼り付け（スティッキー）のオンオフ"
+
 msgid "Always fit to window on focus track"
 msgstr "フォーカス追従時は常にウィンドウに合わせる"
 
@@ -1620,42 +1653,6 @@ msgid ""
 msgstr ""
 "フォーカス・ウィンドウをズームインやアウトして、その全体が見える範囲内で最大"
 "限にズーム"
-
-msgid "Activate Window"
-msgstr "ウィンドウのアクティブ化"
-
-msgid "Activate a given window"
-msgstr "該当ウィンドウのアクティブ化"
-
-msgid "Extra WM Actions"
-msgstr "追加のWMアクション"
-
-msgid "Provides less commonly used WM actions"
-msgstr "あまり使われていないウィンドウ・マネジメントのアクションを提供"
-
-msgid "Toggle Always-On-Top"
-msgstr "常に前面に表示のオンオフ"
-
-msgid "Toggle Fullscreen"
-msgstr "全画面表示のオンオフ"
-
-msgid "Toggle Redirect"
-msgstr "リダイレクトのオンオフ"
-
-msgid "Toggle Sticky"
-msgstr "貼り付け（スティッキー）のオンオフ"
-
-msgid "Toggle always on top for the active window"
-msgstr "アクティブ・ウィンドウを常に前面に表示のオンオフ"
-
-msgid "Toggle window fullscreen"
-msgstr "ウィンドウの全画面表示のオンオフ"
-
-msgid "Toggle window redirect"
-msgstr "ウィンドウのリダイレクトのオンオフ"
-
-msgid "Toggle window stickyness"
-msgstr "ウィンドウの貼り付け（スティッキー）のオンオフ"
 
 msgid "Easily access your desktop"
 msgstr "デスクトップに簡単アクセス"
@@ -2171,6 +2168,166 @@ msgstr "JPEGサポート プラグイン"
 msgid "Quality of compression when saving JPEG images"
 msgstr "JPEG 画像を保存するときの圧縮率"
 
+#, fuzzy
+msgid "Background/Window brightness."
+msgstr "背景の明るさ"
+
+#, fuzzy
+msgid "Background/Window saturation."
+msgstr "背景の彩度"
+
+#, fuzzy
+msgid "Fade In/Out Time"
+msgstr "フェードイン/アウトの時間"
+
+msgid "Fade In/Out Time."
+msgstr "フェードイン/アウトの時間"
+
+msgid "Login"
+msgstr ""
+
+#, fuzzy
+msgid "Login Window Match"
+msgstr "対象ウィンドウ"
+
+#, fuzzy
+msgid "Login Window match"
+msgstr "適用ウィンドウ"
+
+msgid "Login/Logout"
+msgstr ""
+
+msgid "Login/Logout effect"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+#, fuzzy
+msgid "Logout Window Match"
+msgstr "適用グループウィンドウ"
+
+#, fuzzy
+msgid "Logout Window match"
+msgstr "適用ウィンドウ"
+
+#, fuzzy
+msgid "Window opacity."
+msgstr "ウィンドウの不透明度"
+
+#, fuzzy
+msgid "Border color"
+msgstr "タブの枠色"
+
+#, fuzzy
+msgid "Border width"
+msgstr "枠の幅"
+
+#, fuzzy
+msgid "Border widtht."
+msgstr "枠の幅"
+
+msgid "Box height."
+msgstr ""
+
+#, fuzzy
+msgid "Box width."
+msgstr "ビームの幅"
+
+#, fuzzy
+msgid "Clip mask"
+msgstr "ミップマップ"
+
+msgid "Clip mask."
+msgstr ""
+
+#, fuzzy
+msgid "Fisheye"
+msgstr "魚の大きさ"
+
+msgid "Height"
+msgstr "高さ"
+
+msgid "Image overlay"
+msgstr ""
+
+#, fuzzy
+msgid "Keep fully on screen"
+msgstr "画面にFPSを表示"
+
+#, fuzzy
+msgid "Keep fully on screen."
+msgstr "画面にFPSを表示"
+
+msgid "Magnifier"
+msgstr ""
+
+msgid "Magnifier box"
+msgstr ""
+
+msgid "Magnifier image"
+msgstr ""
+
+msgid "Magnifier image."
+msgstr ""
+
+#, fuzzy
+msgid "Mode"
+msgstr "回避"
+
+#, fuzzy
+msgid "Mode."
+msgstr "回避"
+
+#, fuzzy
+msgid "Radius"
+msgstr "四隅の丸み"
+
+#, fuzzy
+msgid "Radius of the magnification area."
+msgstr "枠の四隅の丸み"
+
+msgid "Width"
+msgstr "幅"
+
+msgid "X offset of the cursor"
+msgstr ""
+
+msgid "X offset of the cursor."
+msgstr ""
+
+msgid "Y offset of the cursor"
+msgstr ""
+
+msgid "Y offset of the cursor."
+msgstr ""
+
+msgid "Zoom factor for keyboard initiated magnifier."
+msgstr ""
+
+msgid "Ignore sticky windows in the calculations"
+msgstr ""
+
+msgid "Maximumize"
+msgstr ""
+
+#, fuzzy
+msgid "Maximumizes windows (resize them to fit the available screenspace)."
+msgstr "最大ウィンドウサイズ（画面幅に対する割合％）"
+
+msgid ""
+"Treat sticky windows as non-existant when calculating space to use for the "
+"maximumize window."
+msgstr ""
+
+msgid ""
+"Trigger a resize of the window currently focused so it fits as much of the "
+"available screenspae as possible."
+msgstr ""
+
+msgid "Trigger maximumize"
+msgstr ""
+
 msgid "Accumulation buffer"
 msgstr "蓄積バッファ"
 
@@ -2245,6 +2402,16 @@ msgstr "当該アクションが帰属しているプラグイン"
 
 msgid "Start gesture"
 msgstr "ジェスチャー開始"
+
+msgid "Misc"
+msgstr ""
+
+#, fuzzy
+msgid "Mouse position polling"
+msgstr "マウスによる移動"
+
+msgid "Updates the mouse pointer position from the xserver"
+msgstr ""
 
 msgid "Begin Gesture"
 msgstr "ジェスチャーを開始"
@@ -2450,6 +2617,9 @@ msgstr "画面の外を避ける"
 msgid "Avoids putting window borders offscreen"
 msgstr "ウィンドウの境界線が画面の外に置かれるのを避ける"
 
+msgid "Move window arbitrarily by passing x, y and type."
+msgstr "x, y やタイプの情報を渡すことによりウィンドウを任意に移動"
+
 msgid "Move window to a certain viewport"
 msgstr "ウィンドウを特定のビューポートに移動"
 
@@ -2534,9 +2704,6 @@ msgstr "ウィンドウをビューポート 8 に移動"
 msgid "Move window to viewport 9"
 msgstr "ウィンドウをビューポート 9 に移動"
 
-msgid "Move window to x, y"
-msgstr "ウィンドウを座標X、Yへ移動"
-
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
 msgstr "ウィンドウが収まる下端からのピクセル数"
@@ -2579,9 +2746,6 @@ msgstr "右下に移動"
 
 msgid "Put Center"
 msgstr "中央に移動"
-
-msgid "Put Exact"
-msgstr "正確な移動"
 
 msgid "Put Left"
 msgstr "左に移動"
@@ -2943,6 +3107,7 @@ msgstr "現在選択しているウィンドウのウィンドウタイトルを
 
 msgid "Show windows that are minimized, shaded or in show desktop mode."
 msgstr ""
+"最小化やシェードされた、または”デスクトップの表示”モードのウィンドウを表示"
 
 msgid "Text Placement"
 msgstr "テキスト配置"
@@ -2959,9 +3124,8 @@ msgstr "ウィンドウタイトル表示"
 msgid "Windows that should be shown in ring"
 msgstr "リングに表示する対象ウィンドウ"
 
-#, fuzzy
 msgid "All windows"
-msgstr "ウィンドウの整列"
+msgstr "すべてのウィンドウ"
 
 msgid "Background color of the window title"
 msgstr "ウィンドウタイトルの背景色"
@@ -2990,13 +3154,11 @@ msgstr "強調表示色"
 msgid "Highlights the hovered window with the given color"
 msgstr "ホバーされているウィンドウを指定色で強調表示"
 
-#, fuzzy
 msgid "Hovered window only"
-msgstr "ウィンドウを座標X、Yへ移動"
+msgstr "カーソル下のウィンドウのみ"
 
-#, fuzzy
 msgid "No display"
-msgstr "ウィンドウタイトル表示"
+msgstr "非表示"
 
 msgid "Normal"
 msgstr "通常"
@@ -3031,13 +3193,11 @@ msgstr "ウィンドウの配列方式"
 msgid "Window Title"
 msgstr "ウィンドウタイトル"
 
-#, fuzzy
 msgid "Window Title Display"
 msgstr "ウィンドウタイトル表示"
 
-#, fuzzy
 msgid "Window title display in scale mode"
-msgstr "スケールモードでウィンドウタイトルを表示"
+msgstr "スケールモードでのウィンドウタイトルの表示"
 
 msgid "Zoom Windows In Scale"
 msgstr "スケールのウィンドウをズーム"
@@ -3100,6 +3260,21 @@ msgstr "スクリーンキャスト・プラグイン"
 msgid "ScreenCasting"
 msgstr "スクリーンキャスティング"
 
+msgid ""
+"Also try to save and restore legacy apps that don't support the X session "
+"management protocol. This setting only should be used in KDE, as only KDE's "
+"session manager also saves those applications."
+msgstr ""
+
+msgid "Save Legacy Apps"
+msgstr ""
+
+msgid "Session Management"
+msgstr ""
+
+msgid "Talk to session manager and save/load window state"
+msgstr ""
+
 msgid "Animation duration"
 msgstr "アニメーション持続時間"
 
@@ -3118,20 +3293,25 @@ msgstr "ウィンドウを小さくする"
 msgid "Reduces the scale factor making the window smaller."
 msgstr "ウィンドウを小さくするために拡縮率を下げる"
 
-#, fuzzy
+msgid "Reset the window to original size"
+msgstr "ウィンドウを元の大きさに戻す"
+
+msgid "Resets the currently focused window to original size"
+msgstr "現在のフォーカス・ウィンドウを元の大きさに戻す"
+
 msgid "Scale a window down to a portion of it's size."
-msgstr "ウィンドウを半分の大きさに縮尺"
+msgstr "ウィンドウをその大きさに対しての部分的割合に縮尺"
 
 msgid ""
 "Scale a window down to a ration of the screen size. Respectively half, a "
 "third or a sixth of the screen."
-msgstr ""
+msgstr "ウィンドウを画面の大きさの2分の1、3分の1、6分の1の割合に段階的に縮尺"
 
 msgid "Scale interval"
 msgstr "拡縮間隔"
 
 msgid "Shelf"
-msgstr "シェルフ"
+msgstr "棚置き"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
@@ -3144,9 +3324,8 @@ msgstr ""
 msgid "Trigger scale down"
 msgstr "縮尺のオンオフ"
 
-#, fuzzy
 msgid "Trigger scale down to screen"
-msgstr "縮尺のオンオフ"
+msgstr "画面の大きさに対する縮尺の開始"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
@@ -3316,6 +3495,104 @@ msgid ""
 "Window types that should be moved out of sight when entering showdesktop mode"
 msgstr "デスクトップの表示モードに入った際に視界から除くウィンドウの種類"
 
+msgid "Additive blending"
+msgstr ""
+
+#, fuzzy
+msgid "Additive blending of particles"
+msgstr "粒子数"
+
+#, fuzzy
+msgid "Darken backgound"
+msgstr "背景を暗くする"
+
+#, fuzzy
+msgid "Darken background under particles"
+msgstr "背景を暗くする"
+
+msgid "Emiters"
+msgstr ""
+
+#, fuzzy
+msgid "Have random colors for the particles"
+msgstr "炎効果にランダム色の色付け、いわゆる神秘的な炎"
+
+#, fuzzy
+msgid "Increases the visibility of the mouse pointer"
+msgstr "マウスポインタを拡大"
+
+#, fuzzy
+msgid "Number Of Particles"
+msgstr "粒子数"
+
+#, fuzzy
+msgid "Number of particle emiters."
+msgstr "粒子数"
+
+#, fuzzy
+msgid "Number of particles."
+msgstr "粒子数"
+
+#, fuzzy
+msgid "Particle Color"
+msgstr "炎の色"
+
+#, fuzzy
+msgid "Particle Life"
+msgstr "炎の寿命"
+
+#, fuzzy
+msgid "Particle Options"
+msgstr "その他オプション"
+
+#, fuzzy
+msgid "Particle Size"
+msgstr "炎の大きさ"
+
+#, fuzzy
+msgid "Particle Slowdown"
+msgstr "炎のスローダウン"
+
+#, fuzzy
+msgid "Particle color."
+msgstr "炎の色"
+
+#, fuzzy
+msgid "Particle life."
+msgstr "炎の寿命"
+
+#, fuzzy
+msgid "Particle size."
+msgstr "炎の大きさ"
+
+#, fuzzy
+msgid "Particle slowdown."
+msgstr "炎のスローダウン"
+
+#, fuzzy
+msgid "Randomly Colored Particles"
+msgstr "ランダム色の炎"
+
+#, fuzzy
+msgid "Ring radius"
+msgstr "四隅の丸み"
+
+#, fuzzy
+msgid "Rotation speed"
+msgstr "アニメーションの速度"
+
+#, fuzzy
+msgid "Rotation speed."
+msgstr "アニメーションの速度"
+
+#, fuzzy
+msgid "Show mouse"
+msgstr "マウスに追従"
+
+#, fuzzy
+msgid "Toggle the mouse pointer trail."
+msgstr "マウスポインタを拡大"
+
 msgid "Alt"
 msgstr "Alt"
 
@@ -3395,8 +3672,8 @@ msgstr "テクスチャを有効"
 msgid "Enables alpha blending of snowflakes."
 msgstr "雪片のアルファ合成を有効"
 
-msgid "Enables textures snowflakes. If not selected, color cradients are used."
-msgstr "雪片のテクスチャを有効化、非選択の場合は色のグラデーションを使用"
+msgid "Enables textured snowflakes. If not selected, color gradients are used."
+msgstr "テクスチャ化された雪片を有効化、非選択の場合は色のグラデーションを使用"
 
 msgid "Flakes rotate if checked."
 msgstr "有効にした場合は雪片を回転"
@@ -3509,9 +3786,6 @@ msgstr "表示継続時間"
 
 msgid "Display Time"
 msgstr "表示時間"
-
-msgid "Fade In/Out Time."
-msgstr "フェードイン/アウトの時間"
 
 msgid "Images"
 msgstr "画像"
@@ -4211,13 +4485,11 @@ msgstr "背景"
 msgid "Draw the desktop wallpaper"
 msgstr "デスクトップの壁紙を描画"
 
-#, fuzzy
 msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "雪片のアルファ合成を有効"
+msgstr "透過な壁紙のための擬似ではない本当のアルファ合成を有効化"
 
-#, fuzzy
 msgid "Enable true blending"
-msgstr "合成を有効"
+msgstr "真アルファ合成を有効化"
 
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr "使用する背景の指定"
@@ -4293,14 +4565,11 @@ msgstr "全画面表示"
 msgid "Fullscreen windows"
 msgstr "全画面表示ウィンドウ"
 
-msgid "Height"
-msgstr "高さ"
-
 msgid "Height values"
 msgstr "高さの値"
 
 msgid "Matches"
-msgstr "照合"
+msgstr "マッチ"
 
 msgid "No ARGB visuals"
 msgstr "ARGB ビジュアル不可"
@@ -4341,6 +4610,9 @@ msgstr "サイズ変更不可に設定するウィンドウ"
 msgid "Set windows rules"
 msgstr "ウィンドウにルールを設定"
 
+msgid "Size rules"
+msgstr "サイズのルール"
+
 msgid "Sized Windows"
 msgstr "対象ウィンドウ"
 
@@ -4355,9 +4627,6 @@ msgstr "貼り付け（スティッキー）"
 
 msgid "Sticky windows"
 msgstr "貼り付け（スティッキー）するウィンドウ"
-
-msgid "Width"
-msgstr "幅"
 
 msgid "Width values"
 msgstr "幅の値"
@@ -4381,19 +4650,19 @@ msgid "AIGLX Fragment Parameter Fix"
 msgstr "AIGLX フラグメント・パラメータの修正"
 
 msgid "Firefox Menu Fix"
-msgstr "FireFoxのメニュー修正"
+msgstr "FireFox のメニュー修正"
 
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr "壊れた glProgramEnvParameter4f 実装の修正"
 
 msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
-msgstr ""
+msgstr "fglrx ドライバ使用時の XGL 上の壊れた GLX_MESA_copy_sub_buffer の修正"
 
 msgid "Fix screen updates in XGL with fglrx."
-msgstr ""
+msgstr "fglrx 使用時の XGL での画面更新の修正"
 
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr "FirefoxとThunderbirdのメニューのウィンドウタイプの修正"
+msgstr "Firefox と Thunderbird のメニューのウィンドウタイプの修正"
 
 msgid "Fix window type of OpenOffice.org menus."
 msgstr "OpenOffice.org メニューのウィンドウタイプの修正"
@@ -4424,19 +4693,19 @@ msgstr ""
 "貼り付けウィンドウをすべてのビューポートで見られるようにする"
 
 msgid "Make Wine and legacy applications fullscreen properly."
-msgstr "Wineとレガシーアプリケーションを全画面表示で起動するときの設定"
+msgstr "Wine とレガシーアプリケーションを全画面表示で起動するときの設定"
 
 msgid "Metacity-like workarounds."
-msgstr "Metacityのような次善策"
+msgstr "Metacity のような次善策"
 
 msgid "Notification Daemon Fix"
-msgstr "通知デーモン修正"
+msgstr "通知デーモンの修正"
 
 msgid "OpenOffice.org Menu Fix"
 msgstr "OpenOffice.org メニューの修正"
 
 msgid "Qt Window Fix"
-msgstr "Qtウィンドウの修正"
+msgstr "Qt ウィンドウの修正"
 
 msgid "Window stickyness"
 msgstr "ウィンドウの貼り付け（スティッキー）属性"
@@ -4449,31 +4718,29 @@ msgstr ""
 msgid "Workarounds"
 msgstr "次善策"
 
-#~ msgid "Misc. options"
-#~ msgstr "その他オプション"
+#~ msgid "Move window to x, y"
+#~ msgstr "ウィンドウを座標X、Yへ移動"
 
-#~ msgid "Show minimized windows"
-#~ msgstr "最小化されているウィンドウも表示"
-
-#~ msgid "Tile or Stretch"
-#~ msgstr "タイル か ストレッチ"
+#~ msgid "Put Exact"
+#~ msgstr "正確な移動"
 
 #~ msgid ""
-#~ "Timeout in seconds before hiding the notificationUses libnotify to "
-#~ "display errorsCorner BevellingCreate MipmapsDisable Caps for Inside "
-#~ "CubeDisables the drawing of the cube caps when the inside cube mode is "
-#~ "set.Draw Window BacksidesEnables the drawing of the backside of windows."
-#~ "This will create mipmaps which improve overall texture appearence, and "
-#~ "reduce jagged edges.Window widthBeginGoto viewport specified by "
-#~ "numbersSpring model on moveUse spring model for the tab bar when moving "
-#~ "the windowSet window as widgetAppearenceBackground Base ColorBackground "
-#~ "Highlight Color"
+#~ "Misc. optionsShow minimized windowsTile or StretchTimeout in seconds "
+#~ "before hiding the notificationUses libnotify to display errorsCorner "
+#~ "BevellingCreate MipmapsDisable Caps for Inside CubeDisables the drawing "
+#~ "of the cube caps when the inside cube mode is set.Draw Window "
+#~ "BacksidesEnables the drawing of the backside of windows.This will create "
+#~ "mipmaps which improve overall texture appearence, and reduce jagged edges."
+#~ "Window widthBeginGoto viewport specified by numbersSpring model on "
+#~ "moveUse spring model for the tab bar when moving the windowSet window as "
+#~ "widgetAppearenceBackground Base ColorBackground Highlight Color"
 #~ msgstr ""
-#~ "通知表示を隠し始めるまでのタイムアウト（秒）libnotify を使用してエラーを表"
-#~ "示コーナーの角度Mipmapの作成キューブ内での上側を利用不可能にするキューブの"
-#~ "内部モードでは、キューブの上側の描画を利用不可能にするウィンドウの裏側を描"
-#~ "画するウィンドウの裏側描画を可能にするテクスチャの見栄えを良くし、ギザギザ"
-#~ "なエッジを少なくするmipmapを作成するウィンドウ幅開始数値で指定されたビュー"
+#~ "その他オプション最小化されているウィンドウも表示タイル か ストレッチ通知表"
+#~ "示を隠し始めるまでのタイムアウト（秒）libnotify を使用してエラーを表示コー"
+#~ "ナーの角度Mipmapの作成キューブ内での上側を利用不可能にするキューブの内部"
+#~ "モードでは、キューブの上側の描画を利用不可能にするウィンドウの裏側を描画す"
+#~ "るウィンドウの裏側描画を可能にするテクスチャの見栄えを良くし、ギザギザな"
+#~ "エッジを少なくするmipmapを作成するウィンドウ幅開始数値で指定されたビュー"
 #~ "ポートに移動移動時のスプリングモデルウィンドウの移動時にタブバーをスプリン"
 #~ "グモードにするウィンドウをウィジェットにしてください見栄え背景の基本色背景"
 #~ "の明るい部分の色"

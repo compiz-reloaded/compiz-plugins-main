@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-01-29 17:13+0530\n"
-"PO-Revision-Date: 2008-01-18 18:08+0100\n"
-"Last-Translator: Leon <leonbrussels@gmail.com>\n"
+"POT-Creation-Date: 2008-02-23 23:09+0530\n"
+"PO-Revision-Date: 2008-02-20 09:57+0100\n"
+"Last-Translator: Danny Baumann <dannybaumann@web.de>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,14 +56,18 @@ msgstr "Ecke oben rechts abrunden"
 #, fuzzy
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
-msgstr "Verändert den Abstand zwischen den Fenstern."
+msgstr ""
+"Verändert den Abstand zwischen den Fenstern. (prozentual auf Würfelgröße "
+"bezogen)"
 
 msgid "Change the speed of the 3D animation"
 msgstr "Verändert die Geschwindigkeit der 3D-Animation."
 
+# ist mit 'window's depth' hier der schatten gemeint? oder geht es um tiefenwirkung innerhalb des fensters?
 msgid "Color of an inactive window's depth"
 msgstr ""
 
+# siehe eins vorher
 #, fuzzy
 msgid "Color of the active window's depth"
 msgstr "Schaltet die Negierung des Fensterinhaltes des aktiven Fensters um."
@@ -91,18 +95,16 @@ msgid "Roundoff corners for consistency with rounded decorations"
 msgstr ""
 "Runde die Ecken ab, um konsistent mit abgerundeten Fensterrahmen zu bleiben"
 
-#, fuzzy
 msgid "Window Color (Active)"
-msgstr "Fenstertitel"
+msgstr "Farbe des aktiven Fensters"
 
 #, fuzzy
 msgid "Window Color (Inactive)"
-msgstr "Fenstertitel"
+msgstr "Farbe des inaktiven Fensters"
 
 # FIXED -- 'betroffene' ginge auch
-#, fuzzy
 msgid "Window Depth"
-msgstr "Betroffene Fenster"
+msgstr "Fenstertiefe"
 
 # FIXED -- 'betroffene' ginge auch
 msgid "Window Match"
@@ -132,8 +134,8 @@ msgstr "Helligkeit von verblassten Fenstern"
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
-"Macht es durch das Abdunkeln von nickt aktiven Fenstern etwas einfacher, "
-"sich zu konzentrieren."
+"Macht es durch das Abdunkeln von inaktiven Fenstern etwas einfacher, sich zu "
+"konzentrieren."
 
 msgid "Opacity"
 msgstr "Sichtbarkeit"
@@ -173,17 +175,21 @@ msgstr ""
 "ignoriert. Wenn 'Keine' als Animation für ein bestimmtes Ereignis ausgewählt "
 "wurde, wird dieses Ereignis nicht animiert."
 
+#, fuzzy
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
 msgstr ""
+"Maximale Auslenkung der horizontalen Wellen, relativ zur Fensterbreite. "
+"Negative Werte führen zur entgegengesetzten Richtung."
 
+#, fuzzy
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
 "Amplitude (Umfang des Bogens beim Zusammenfalten) des gebogenen "
-"Zusammenfaltens im Verhältnis zur Breite des Fesnters. Negative Werte "
+"Zusammenfaltens im Verhältnis zur Breite des Fensters. Negative Werte "
 "bewirken eine Biegung nach außen."
 
 msgid "Angle of window at the end of the animation."
@@ -417,7 +423,7 @@ msgid "How spring-like the Sidekick animation should be."
 msgstr ""
 
 msgid "How spring-like the Zoom animation should be."
-msgstr ""
+msgstr "Wie federnd die Zoom-Animation sein soll."
 
 # FIXME: Herein und Heraus sind noch nicht optimal
 msgid "In"
@@ -442,16 +448,16 @@ msgid "Magic Lamp"
 msgstr "Wunderlampe"
 
 msgid "Magic Lamp Grid Y Resolution"
-msgstr ""
+msgstr "Wunderlampe - vertikale Rasterauflösung"
 
 msgid "Magic Lamp Max Wave Amplitude"
-msgstr ""
+msgstr "Wunderlampe - maximale Wellenauslenkung"
 
 msgid "Magic Lamp Max Waves"
-msgstr ""
+msgstr "Wunderlampe - maximale Wellenanzahl"
 
 msgid "Magic Lamp Min Wave Amplitude"
-msgstr ""
+msgstr "Wunderlampe - minimale Wellenauslenkung"
 
 msgid "Magic Lamp Open Start Width"
 msgstr ""
@@ -1419,6 +1425,48 @@ msgstr ""
 msgid "Zoom time"
 msgstr "Zoomdauer"
 
+msgid "Activate Window"
+msgstr "Aktiviere Fenster"
+
+msgid "Activate a given window"
+msgstr "Aktiviere ein bestimmtes Fenster"
+
+# FIXME
+msgid "Extra WM Actions"
+msgstr "Zusätzliche Fenstermanager-Aktionen"
+
+msgid "Provides less commonly used WM actions"
+msgstr "Stellt weniger weit verbreitete Fenstermanager-Aktionen bereit"
+
+msgid "Toggle Always-On-Top"
+msgstr "'Immer im Vordergrund' umschalten"
+
+msgid "Toggle Fullscreen"
+msgstr "Vollbildmodus umschalten"
+
+# FIXME
+msgid "Toggle Redirect"
+msgstr "Redirect umschalten"
+
+# FIXME
+msgid "Toggle Sticky"
+msgstr "Klebrigkeit umschalten"
+
+msgid "Toggle always on top for the active window"
+msgstr ""
+"Aktiviere 'Immer im Vordergrund'-Modus für das momentan aktivie Fenster"
+
+msgid "Toggle window fullscreen"
+msgstr "Aktiviere Vollbild-Modus für das momentane aktive Fenster"
+
+# FIXME
+msgid "Toggle window redirect"
+msgstr "Aktiviere Redirection für das momentan aktive Fenster"
+
+# FIXME
+msgid "Toggle window stickyness"
+msgstr "Aktiviere Klebrigkeit für das momentan aktive Fenster"
+
 msgid "Always fit to window on focus track"
 msgstr ""
 
@@ -1677,48 +1725,6 @@ msgid ""
 "Zooms in/out so the focused window is zoomed to the maximum while still "
 "being fully visible."
 msgstr ""
-
-msgid "Activate Window"
-msgstr "Aktiviere Fenster"
-
-msgid "Activate a given window"
-msgstr "Aktiviere ein bestimmtes Fenster"
-
-# FIXME
-msgid "Extra WM Actions"
-msgstr "Zusätzliche Fenstermanager-Aktionen"
-
-msgid "Provides less commonly used WM actions"
-msgstr "Stellt weniger weit verbreitete Fenstermanager-Aktionen bereit"
-
-msgid "Toggle Always-On-Top"
-msgstr "'Immer im Vordergrund' umschalten"
-
-msgid "Toggle Fullscreen"
-msgstr "Vollbildmodus umschalten"
-
-# FIXME
-msgid "Toggle Redirect"
-msgstr "Redirect umschalten"
-
-# FIXME
-msgid "Toggle Sticky"
-msgstr "Sticky umschalten"
-
-msgid "Toggle always on top for the active window"
-msgstr ""
-"Aktiviere 'Immer im Vordergrund'-Modus für das momentan aktivie Fenster"
-
-msgid "Toggle window fullscreen"
-msgstr "Aktiviere Vollbild-Modus für das momentane aktive Fenster"
-
-# FIXME
-msgid "Toggle window redirect"
-msgstr "Aktiviere Redirection für das momentan aktive Fenster"
-
-# FIXME
-msgid "Toggle window stickyness"
-msgstr "Aktiviere Stickyness für das momentan aktive Fenster"
 
 msgid "Easily access your desktop"
 msgstr "Einfacher Zugriff auf den Desktop"
@@ -2265,6 +2271,166 @@ msgstr "Plugin für das Laden von Bildern im JPEG-Format"
 msgid "Quality of compression when saving JPEG images"
 msgstr "Qualität der Kompression beim Speichern von JPEG-Bildern"
 
+#, fuzzy
+msgid "Background/Window brightness."
+msgstr "Hintergundhelligkeit"
+
+#, fuzzy
+msgid "Background/Window saturation."
+msgstr "Hintergundsättigung"
+
+#, fuzzy
+msgid "Fade In/Out Time"
+msgstr "Ein-/Ausblendzeit"
+
+msgid "Fade In/Out Time."
+msgstr "Ein-/Ausblendzeit"
+
+msgid "Login"
+msgstr ""
+
+# FIXED -- 'betroffene' ginge auch
+#, fuzzy
+msgid "Login Window Match"
+msgstr "Betroffene Fenster"
+
+#, fuzzy
+msgid "Login Window match"
+msgstr "Betroffene Fenster"
+
+msgid "Login/Logout"
+msgstr ""
+
+msgid "Login/Logout effect"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+#, fuzzy
+msgid "Logout Window Match"
+msgstr "Gruppierbare Fenster"
+
+#, fuzzy
+msgid "Logout Window match"
+msgstr "Betroffene Fenster"
+
+#, fuzzy
+msgid "Window opacity."
+msgstr "Sichtbarkeit der Fenster"
+
+#, fuzzy
+msgid "Border color"
+msgstr "Rahmenfarbe der Tab-Leiste"
+
+#, fuzzy
+msgid "Border width"
+msgstr "Rahmenbreite"
+
+#, fuzzy
+msgid "Border widtht."
+msgstr "Rahmenbreite"
+
+msgid "Box height."
+msgstr ""
+
+#, fuzzy
+msgid "Box width."
+msgstr "Breite der Teleportation."
+
+#, fuzzy
+msgid "Clip mask"
+msgstr "Mipmaps benutzen"
+
+msgid "Clip mask."
+msgstr ""
+
+msgid "Fisheye"
+msgstr ""
+
+msgid "Height"
+msgstr "Höhe"
+
+msgid "Image overlay"
+msgstr ""
+
+#, fuzzy
+msgid "Keep fully on screen"
+msgstr "FPS-Anzeige auf dem Bildschirm deaktivieren"
+
+#, fuzzy
+msgid "Keep fully on screen."
+msgstr "FPS-Anzeige auf dem Bildschirm deaktivieren"
+
+msgid "Magnifier"
+msgstr ""
+
+msgid "Magnifier box"
+msgstr ""
+
+msgid "Magnifier image"
+msgstr ""
+
+msgid "Magnifier image."
+msgstr ""
+
+#, fuzzy
+msgid "Mode"
+msgstr "Ausweichen"
+
+#, fuzzy
+msgid "Mode."
+msgstr "Ausweichen"
+
+#, fuzzy
+msgid "Radius"
+msgstr "Rahmenradius"
+
+#, fuzzy
+msgid "Radius of the magnification area."
+msgstr "Radius der abgerundeten Ecken"
+
+msgid "Width"
+msgstr "Breite"
+
+msgid "X offset of the cursor"
+msgstr ""
+
+msgid "X offset of the cursor."
+msgstr ""
+
+msgid "Y offset of the cursor"
+msgstr ""
+
+msgid "Y offset of the cursor."
+msgstr ""
+
+msgid "Zoom factor for keyboard initiated magnifier."
+msgstr ""
+
+msgid "Ignore sticky windows in the calculations"
+msgstr ""
+
+msgid "Maximumize"
+msgstr ""
+
+#, fuzzy
+msgid "Maximumizes windows (resize them to fit the available screenspace)."
+msgstr "Breite des Ringes in Prozent der Bildschirmbreite"
+
+msgid ""
+"Treat sticky windows as non-existant when calculating space to use for the "
+"maximumize window."
+msgstr ""
+
+msgid ""
+"Trigger a resize of the window currently focused so it fits as much of the "
+"available screenspae as possible."
+msgstr ""
+
+msgid "Trigger maximumize"
+msgstr ""
+
 # FIXME -- No idea what this is
 msgid "Accumulation buffer"
 msgstr "Verwendung des OpenGL 'Accumulation Buffer'"
@@ -2346,6 +2512,15 @@ msgid "Plugin the action belongs to."
 msgstr ""
 
 msgid "Start gesture"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Mouse position polling"
+msgstr ""
+
+msgid "Updates the mouse pointer position from the xserver"
 msgstr ""
 
 msgid "Begin Gesture"
@@ -2511,9 +2686,8 @@ msgid ""
 msgstr ""
 
 # FIXME
-#, fuzzy
 msgid "Toggle Opacify"
-msgstr "Sticky umschalten"
+msgstr "Trübheit umschalten"
 
 msgid "Toggle Opacify on by default"
 msgstr ""
@@ -2542,6 +2716,9 @@ msgid "Avoid Offscreen"
 msgstr ""
 
 msgid "Avoids putting window borders offscreen"
+msgstr ""
+
+msgid "Move window arbitrarily by passing x, y and type."
 msgstr ""
 
 msgid "Move window to a certain viewport"
@@ -2632,9 +2809,6 @@ msgstr "Fenster auf Arbeitsfläche 8 verschieben"
 msgid "Move window to viewport 9"
 msgstr "Fenster auf Arbeitsfläche 9 verschieben"
 
-msgid "Move window to x, y"
-msgstr ""
-
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
 msgstr ""
@@ -2682,9 +2856,6 @@ msgid "Put Bottom Right"
 msgstr "Unten rechts abrunden"
 
 msgid "Put Center"
-msgstr ""
-
-msgid "Put Exact"
 msgstr ""
 
 #, fuzzy
@@ -3087,9 +3258,8 @@ msgstr "Fenstertitelanzeige"
 msgid "Windows that should be shown in ring"
 msgstr "Fenster, die im Ring angezeigt werden sollen"
 
-#, fuzzy
 msgid "All windows"
-msgstr "Fenster anordnen"
+msgstr "Sämtliche Fenster"
 
 msgid "Background color of the window title"
 msgstr "Hintergrundfarbe für Fenstertitel"
@@ -3167,7 +3337,7 @@ msgstr "Fenstertitelanzeige"
 
 #, fuzzy
 msgid "Window title display in scale mode"
-msgstr "Zeige Fenstertitel an."
+msgstr "Fenstertitelanzeige im Skaliermodus"
 
 msgid "Zoom Windows In Scale"
 msgstr "Fenster zoomen"
@@ -3176,7 +3346,7 @@ msgid "Zoom windows while in scale mode"
 msgstr "Fenster in 'Fenster skalieren'-Modus auf Originalgröße zoomen"
 
 msgid "Filter Case Insensitive"
-msgstr ""
+msgstr "ohne Beachtung der Groß-/Kleinschreibung filtern"
 
 msgid "Filter Type Timeout"
 msgstr "Timeout für Filtereingabe"
@@ -3235,6 +3405,21 @@ msgstr "Bildschirmausgabe"
 msgid "ScreenCasting"
 msgstr "Bildschirm Boxen"
 
+msgid ""
+"Also try to save and restore legacy apps that don't support the X session "
+"management protocol. This setting only should be used in KDE, as only KDE's "
+"session manager also saves those applications."
+msgstr ""
+
+msgid "Save Legacy Apps"
+msgstr ""
+
+msgid "Session Management"
+msgstr ""
+
+msgid "Talk to session manager and save/load window state"
+msgstr ""
+
 #, fuzzy
 msgid "Animation duration"
 msgstr "Animationsdauer"
@@ -3257,6 +3442,13 @@ msgstr "Größe des Vorschaubildes"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
+#, fuzzy
+msgid "Reset the window to original size"
+msgstr "Fenster, die nicht skaliert werden können sollen"
+
+msgid "Resets the currently focused window to original size"
+msgstr ""
+
 msgid "Scale a window down to a portion of it's size."
 msgstr ""
 
@@ -3266,7 +3458,7 @@ msgid ""
 msgstr ""
 
 msgid "Scale interval"
-msgstr ""
+msgstr "Skalierungsinterval"
 
 #, fuzzy
 msgid "Shelf"
@@ -3302,11 +3494,10 @@ msgid "Below"
 msgstr "Unter"
 
 msgid "Click duration"
-msgstr ""
+msgstr "Klickdauer"
 
-#, fuzzy
 msgid "Cover"
-msgstr "Über"
+msgstr "Hülle"
 
 #, fuzzy
 msgid "Cover movement offset."
@@ -3316,38 +3507,32 @@ msgstr "Bewegungsgeschwindigkeit der Fenster"
 msgid "Cover offset"
 msgstr "Effekt für das Schließen von Fenstern"
 
-#, fuzzy
 msgid "Disabled"
-msgstr "Entfernung"
+msgstr "Abgeschaltet"
 
-#, fuzzy
 msgid "Fade in/out speed"
-msgstr "Ein-/Ausblendzeit"
+msgstr "Ein-/Ausblendgeschwindigkeit"
 
-#, fuzzy
 msgid "Fade speed"
-msgstr "Ein-/Ausblendzeit"
+msgstr "Überblendgeschwindigkeit"
 
-#, fuzzy
 msgid "Flip"
-msgstr "Nach oben umschalten"
+msgstr "Umdrehen"
 
 #, fuzzy
 msgid "Flip angle"
-msgstr "Nach links umschalten"
+msgstr "Drehwinkel"
 
-#, fuzzy
 msgid "Generate mipmaps"
-msgstr "Mipmaps benutzen"
+msgstr "Mipmaps erzeugen"
 
-#, fuzzy
 msgid "Hide all non Desktop windows during switching"
-msgstr "Fenstersymbol über Fenster im Ring anzeigen"
+msgstr ""
+"Alle Fenster außerhalb dieser Arbeitsfläche während des Wechsels ausblenden"
 
 # FIXME
-#, fuzzy
 msgid "Hide non Desktop windows"
-msgstr "Desktop Einblenden"
+msgstr "Alle Fenster außerhalb dieser Arbeitsfläche ausblenden"
 
 #, fuzzy
 msgid "Initiate (All Workspaces)"
@@ -3398,7 +3583,7 @@ msgstr "Dauer (in Millisekunden) für die Anordnungsanimation"
 
 msgid ""
 "Selects how the switcher is displayed if multiple output devices are used."
-msgstr ""
+msgstr "Funktionsweise bei mehreren Ausgabegeräten"
 
 #, fuzzy
 msgid "Shift Switcher"
@@ -3482,6 +3667,103 @@ msgstr ""
 "Fenstertypen, die aus dem Blickfeld bewegt werden sollen, wenn der Desktop "
 "gezeigt wird"
 
+msgid "Additive blending"
+msgstr ""
+
+#, fuzzy
+msgid "Additive blending of particles"
+msgstr "Anzahl der Partikel"
+
+#, fuzzy
+msgid "Darken backgound"
+msgstr "Hintergrund abdunkeln"
+
+#, fuzzy
+msgid "Darken background under particles"
+msgstr "Hintergrund abdunkeln"
+
+msgid "Emiters"
+msgstr ""
+
+#, fuzzy
+msgid "Have random colors for the particles"
+msgstr ""
+"Zufällige Farben für die Feuerpartikel, auch bekannt als Mystisches Feuer."
+
+msgid "Increases the visibility of the mouse pointer"
+msgstr ""
+
+#, fuzzy
+msgid "Number Of Particles"
+msgstr "Anzahl der Partikel"
+
+#, fuzzy
+msgid "Number of particle emiters."
+msgstr "Anzahl der Partikel"
+
+#, fuzzy
+msgid "Number of particles."
+msgstr "Anzahl der Partikel"
+
+#, fuzzy
+msgid "Particle Color"
+msgstr "Farbe der Feuerpartikel"
+
+#, fuzzy
+msgid "Particle Life"
+msgstr "Lebenszeit der Feuerparktikel"
+
+#, fuzzy
+msgid "Particle Options"
+msgstr "Sonstige Optionen"
+
+#, fuzzy
+msgid "Particle Size"
+msgstr "Größe der Feuerpartikel"
+
+#, fuzzy
+msgid "Particle Slowdown"
+msgstr "Verlangsamung der Feuerpartikel"
+
+#, fuzzy
+msgid "Particle color."
+msgstr "Farbe der Feuerparktikel."
+
+#, fuzzy
+msgid "Particle life."
+msgstr "Lebenszeit der Feuerparktikel."
+
+#, fuzzy
+msgid "Particle size."
+msgstr "Größe der Feuerpartikel."
+
+#, fuzzy
+msgid "Particle slowdown."
+msgstr "Verlangsamung der Feuerpartikel."
+
+#, fuzzy
+msgid "Randomly Colored Particles"
+msgstr "Zufällige Feuerfarbe"
+
+#, fuzzy
+msgid "Ring radius"
+msgstr "Rahmenradius"
+
+#, fuzzy
+msgid "Rotation speed"
+msgstr "Animationsgeschwindigkeit"
+
+#, fuzzy
+msgid "Rotation speed."
+msgstr "Animationsgeschwindigkeit"
+
+#, fuzzy
+msgid "Show mouse"
+msgstr "Anzeigeverzögerung"
+
+msgid "Toggle the mouse pointer trail."
+msgstr ""
+
 msgid "Alt"
 msgstr "Alt"
 
@@ -3563,7 +3845,8 @@ msgstr "Aktiviere Texturen"
 msgid "Enables alpha blending of snowflakes."
 msgstr "Aktiviere Transparenz-Blendung für Schneeflocken."
 
-msgid "Enables textures snowflakes. If not selected, color cradients are used."
+#, fuzzy
+msgid "Enables textured snowflakes. If not selected, color gradients are used."
 msgstr ""
 "Aktiviere texturierte Schneeflocken. Wenn nicht aktiviert, werden "
 "Farbverläufe benutzt."
@@ -3682,9 +3965,6 @@ msgstr "Anzeigezeit"
 
 msgid "Display Time"
 msgstr "Anzeigezeit"
-
-msgid "Fade In/Out Time."
-msgstr "Ein-/Ausblendzeit"
 
 msgid "Images"
 msgstr "Bilder"
@@ -4504,9 +4784,6 @@ msgstr "Vollbild"
 msgid "Fullscreen windows"
 msgstr "Fenster, die immer im Vollbildmodus dargestellt werden sollen"
 
-msgid "Height"
-msgstr "Höhe"
-
 msgid "Height values"
 msgstr "Werte für Fensterhöhe"
 
@@ -4552,6 +4829,9 @@ msgstr "Fenster, die nicht skaliert werden können sollen"
 msgid "Set windows rules"
 msgstr "Regeln für bestimmte Fenster festlegen"
 
+msgid "Size rules"
+msgstr ""
+
 msgid "Sized Windows"
 msgstr "Fenster"
 
@@ -4563,13 +4843,10 @@ msgstr "Nicht in der Taskleiste"
 
 # FIXME
 msgid "Sticky"
-msgstr "Sticky umschalten"
+msgstr "Klebrig"
 
 msgid "Sticky windows"
-msgstr "Fenster, denen das Attribut 'Sticky' zugewiesen werden soll"
-
-msgid "Width"
-msgstr "Breite"
+msgstr "Klebrige Fenster"
 
 msgid "Width values"
 msgstr "Werte für Fensterbreite"
@@ -4627,12 +4904,14 @@ msgid "Legacy Fullscreen Support"
 msgstr ""
 
 msgid "Make \"on all desktops\" windows \"sticky\""
-msgstr ""
+msgstr "Mache die Fenster auf allen Arbeitsoberflächen 'klebrig'"
 
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
 msgstr ""
+"Mache die Fenster auf allen Arbeitsoberflächen 'klebrig'. Klebrige Fenster "
+"sind auf allen Darstellungsfeldern sichtbar."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""
@@ -4650,16 +4929,16 @@ msgid "Qt Window Fix"
 msgstr "Workaround für Qt-Fenster"
 
 # FIXME
-#, fuzzy
 msgid "Window stickyness"
-msgstr "Aktiviere Stickyness für das momentan aktive Fenster"
+msgstr "Aktiviere 'Klebrigkeit' für das momentan aktive Fenster"
 
 #, fuzzy
 msgid "Windows on all desktops that should be made sticky"
-msgstr "Fenster, die ausgeblendet werden sollen"
+msgstr ""
+"Fenster aller Arbeitsoberflächen, welche 'klebrig' gemacht werden sollen"
 
 msgid "Workarounds"
-msgstr ""
+msgstr "Abhilfen"
 
 #~ msgid "Misc. options"
 #~ msgstr "Sonstige Optionen"
