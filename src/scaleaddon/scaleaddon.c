@@ -141,6 +141,9 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     if (!ad->textAvailable)
 	return;
 
+    if (!sw->slot)
+	return;
+
     winTitleMode = scaleaddonGetWindowTitle (s);
     if (winTitleMode == WindowTitleNoDisplay)
 	return;
