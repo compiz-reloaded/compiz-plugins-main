@@ -43,10 +43,18 @@ void fxSidekickInit(CompScreen * s, CompWindow * w)
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    // determine number of rotations randomly in [0.75, 1.25] range
+    // determine number of rotations randomly in [0.9, 1.1] range
     aw->numZoomRotations =
 	animGetF(as, aw, ANIM_SCREEN_OPTION_SIDEKICK_NUM_ROTATIONS) *
 	(1.0f + 0.2f * rand() / RAND_MAX - 0.1f);
+
+    float winCenterX = WIN_X(w) + WIN_W(w) / 2.0;
+    float iconCenterX = aw->icon.x + aw->icon.width / 2.0;
+
+    // if window is to the right of icon, rotate clockwise instead
+    // to make rotation look more pleasant
+    if (winCenterX > iconCenterX)
+	aw->numZoomRotations *= -1;
 
     fxZoomInit(s, w);
 }
