@@ -276,7 +276,11 @@ getMatchingAnimSelection (CompWindow *w,
     CompOptionValue *valMatch;
     CompOptionValue *valEffect;
     CompOptionValue *valDuration;
+    CompOptionValue *valCustomOptions;
     AnimEffect *effects;
+
+#define NAME_LENGTH 10
+    char eventName[NAME_LENGTH] = "";
 
     switch (event)
     {
@@ -285,12 +289,16 @@ getMatchingAnimSelection (CompWindow *w,
 	valMatch = &as->opt[ANIM_SCREEN_OPTION_OPEN_MATCHES].value;
 	valEffect = &as->opt[ANIM_SCREEN_OPTION_OPEN_EFFECTS].value;
 	valDuration = &as->opt[ANIM_SCREEN_OPTION_OPEN_DURATIONS].value;
+	valCustomOptions = &as->opt[ANIM_SCREEN_OPTION_OPEN_OPTIONS].value;
+	strncpy (eventName, "Open", NAME_LENGTH);
 	break;
     case WindowEventClose:
 	effects = closeEffects;
 	valMatch = &as->opt[ANIM_SCREEN_OPTION_CLOSE_MATCHES].value;
 	valEffect = &as->opt[ANIM_SCREEN_OPTION_CLOSE_EFFECTS].value;
 	valDuration = &as->opt[ANIM_SCREEN_OPTION_CLOSE_DURATIONS].value;
+	valCustomOptions = &as->opt[ANIM_SCREEN_OPTION_CLOSE_OPTIONS].value;
+	strncpy (eventName, "Close", NAME_LENGTH);
 	break;
     case WindowEventMinimize:
     case WindowEventUnminimize:
@@ -298,12 +306,16 @@ getMatchingAnimSelection (CompWindow *w,
 	valMatch = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_MATCHES].value;
 	valEffect = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_EFFECTS].value;
 	valDuration = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_DURATIONS].value;
+	valCustomOptions = &as->opt[ANIM_SCREEN_OPTION_MINIMIZE_OPTIONS].value;
+	strncpy (eventName, "Minimize", NAME_LENGTH);
 	break;
     case WindowEventFocus:
 	effects = focusEffects;
 	valMatch = &as->opt[ANIM_SCREEN_OPTION_FOCUS_MATCHES].value;
 	valEffect = &as->opt[ANIM_SCREEN_OPTION_FOCUS_EFFECTS].value;
 	valDuration = &as->opt[ANIM_SCREEN_OPTION_FOCUS_DURATIONS].value;
+	valCustomOptions = &as->opt[ANIM_SCREEN_OPTION_FOCUS_OPTIONS].value;
+	strncpy (eventName, "Focus", NAME_LENGTH);
 	break;
     case WindowEventShade:
     case WindowEventUnshade:
@@ -311,6 +323,8 @@ getMatchingAnimSelection (CompWindow *w,
 	valMatch = &as->opt[ANIM_SCREEN_OPTION_SHADE_MATCHES].value;
 	valEffect = &as->opt[ANIM_SCREEN_OPTION_SHADE_EFFECTS].value;
 	valDuration = &as->opt[ANIM_SCREEN_OPTION_SHADE_DURATIONS].value;
+	valCustomOptions = &as->opt[ANIM_SCREEN_OPTION_SHADE_OPTIONS].value;
+	strncpy (eventName, "Shade", NAME_LENGTH);
 	break;
     case WindowEventNone:
     default:
@@ -319,11 +333,13 @@ getMatchingAnimSelection (CompWindow *w,
 
     int nRows = valMatch->list.nValue;
     if (nRows != valEffect->list.nValue ||
-	nRows != valDuration->list.nValue)
+	nRows != valDuration->list.nValue ||
+	nRows != valCustomOptions->list.nValue)
     {
 	compLogMessage
 	    (w->screen->display, "animation", CompLogLevelError,
-	     "Number of animation selection effects, durations, matches, and options are not the same.");
+	     "Animation settings mismatch in \"Animation Selection\" "
+	     "list for %s event.", eventName);
 	return AnimEffectNone;
     }
 
@@ -341,6 +357,8 @@ getMatchingAnimSelection (CompWindow *w,
 
 	return effects[valEffect->list.value[i].i];
     }
+#undef NAME_LENGTH
+
     return AnimEffectNone;
 }
 
