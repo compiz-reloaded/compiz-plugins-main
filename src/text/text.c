@@ -325,8 +325,11 @@ textFileToImage (CompDisplay *d,
 	cairo_surface_destroy (surface);
 	cairo_destroy (cr);
 	XFreePixmap (dpy, pixmap);
+	pixmap = None;
 
-	pixmap = XCreatePixmap (dpy, textAttrib->screen->root, w, h, 32);
+	if (w > 0 && h > 0)
+	    pixmap = XCreatePixmap (dpy, textAttrib->screen->root, w, h, 32);
+
 	if (!pixmap)
 	{
 	    compLogMessage (d, "text", CompLogLevelError,
