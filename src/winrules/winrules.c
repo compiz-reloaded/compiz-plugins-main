@@ -117,6 +117,18 @@ winrulesSetProtocols (CompDisplay  *display,
     XSetWMProtocols (display->display, id, protocol, count);
 }
 
+static Bool
+isWinrulesWindow (CompWindow *w)
+{
+    if (w->attrib.override_redirect)
+	return FALSE;
+
+    if (!(w->type & WINRULES_TARGET_WINDOWS))
+	return FALSE;
+
+    return TRUE;
+}
+
 /* FIXME? Directly set inputHint, not a problem for now */
 static void
 winrulesSetNoFocus (CompWindow *w,
@@ -126,6 +138,9 @@ winrulesSetNoFocus (CompWindow *w,
 
     WINRULES_SCREEN (w->screen);
     WINRULES_WINDOW (w);
+
+    if (!isWinrulesWindow (w))
+	return;
 
     if (matchEval (&ws->opt[optNum].value.match, w))
     {
@@ -156,6 +171,9 @@ winrulesSetNoAlpha (CompWindow *w,
     WINRULES_SCREEN (w->screen);
     WINRULES_WINDOW (w);
 
+    if (!isWinrulesWindow (w))
+	return;
+
     if (matchEval (&ws->opt[optNum].value.match, w))
     {
 	ww->hasAlpha = w->alpha;
@@ -177,6 +195,9 @@ winrulesUpdateState (CompWindow *w,
     WINRULES_SCREEN (w->screen);
     WINRULES_WINDOW (w);
 
+    if (!isWinrulesWindow (w))
+	return;
+
     if (matchEval (&ws->opt[optNum].value.match, w))
     {
 	newState |= mask;
@@ -191,6 +212,7 @@ winrulesUpdateState (CompWindow *w,
 
     if (newState != w->state)
     {
+	printf("changing window state (%x -> %x) for %d\n", w->state, newState, w->id);
 	changeWindowState (w, newState);
 
 	recalcWindowType (w);
@@ -213,6 +235,9 @@ winrulesSetAllowedActions (CompWindow *w,
     WINRULES_SCREEN (w->screen);
     WINRULES_WINDOW (w);
 
+    if (!isWinrulesWindow (w))
+	return;
+
     if (matchEval (&ws->opt[optNum].value.match, w))
 	ww->allowedActions &= ~action;
     else if (!(ww->allowedActions & action))
@@ -230,6 +255,9 @@ winrulesMatchSizeValue (CompWindow *w,
 			int	   *height)
 {
     int i, min;
+
+    if (!isWinrulesWindow (w))
+	return FALSE;
 
     if (w->type & CompWindowTypeDesktopMask)
 	return FALSE;
@@ -376,12 +404,8 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	    CompWindow *w;
 
 	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-		
 		winrulesSetNoAlpha (w, WINRULES_SCREEN_OPTION_NOARGB_MATCH);
-	    }
+
 	    return TRUE;
 	}
 	break;
@@ -391,12 +415,8 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	    CompWindow *w;
 
 	    for (w = screen->windows; w; w = w->next)
-	    {
-		if (!w->type & WINRULES_TARGET_WINDOWS)
-		    continue;
-		
 		winrulesSetNoFocus (w, WINRULES_SCREEN_OPTION_NOFOCUS_MATCH);
-	    }
+
 	    return TRUE;
 	}
 	break;
@@ -422,12 +442,7 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	CompWindow *w;
 
 	for (w = screen->windows; w; w = w->next)
-	{
-	    if (!w->type & WINRULES_TARGET_WINDOWS)
-		continue;
-
 	    winrulesUpdateState (w, index, updateStateMask);
-	}
 
 	return TRUE;
     }
@@ -437,12 +452,7 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	CompWindow *w;
 
 	for (w = screen->windows; w; w = w->next)
-	{
-	    if (!w->type & WINRULES_TARGET_WINDOWS)
-		continue;
-
 	    winrulesSetAllowedActions (w, index, updateActionsMask);
-	}
 
 	return TRUE;
     }
@@ -461,7 +471,7 @@ winrulesHandleEvent (CompDisplay *d,
     if (event->type == MapRequest)
     {
 	w = findWindowAtDisplay (d, event->xmap.window);
-	if (w && w->type & WINRULES_TARGET_WINDOWS)
+	if (w)
 	    winrulesSetNoFocus (w, WINRULES_SCREEN_OPTION_NOFOCUS_MATCH);
     }
 
@@ -491,9 +501,6 @@ winrulesApplyRules (void *closure)
 {
     CompWindow *w = (CompWindow *) closure;
     int        width, height;
-
-    if (!(w->type & WINRULES_TARGET_WINDOWS))
-	return FALSE;
 
     winrulesUpdateState (w,
 			 WINRULES_SCREEN_OPTION_SKIPTASKBAR_MATCH,
