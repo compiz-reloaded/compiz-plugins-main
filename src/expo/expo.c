@@ -99,8 +99,9 @@ typedef struct _ExpoScreen
     int origVY;
     int selectedVX;
     int selectedVY;
-    int paintingVX;
-    int paintingVY;
+
+    float vpBrightness;
+    float vpSaturation;
 
     VPUpdateMode vpUpdateMode;
 
@@ -723,8 +724,9 @@ expoPaintWall (CompScreen              *s,
     float camX, camY, camZ;
 
     /* amount of gap between viewports */
-    const float gapY = 0.01f * es->expoCam; 
-    const float gapX = 0.01f * s->height / s->width * es->expoCam;
+    const float gapY = expoGetVpDistance (s->display) * 0.1f * es->expoCam;
+    const float gapX = expoGetVpDistance (s->display) * 0.1f * s->height /
+		       s->width * es->expoCam;
 
     /* Zoom animation stuff */
     /* camera position for the selected viewport */
@@ -847,8 +849,16 @@ expoPaintWall (CompScreen              *s,
 	    setWindowPaintOffset (s, (s->x - i) * s->width,
 				  (s->y - j) * s->height);
 
-	    es->paintingVX = i;
-	    es->paintingVY = j;
+	    if (i == es->selectedVX && j == es->selectedVY)
+	    {
+		es->vpBrightness = 1.0;
+		es->vpSaturation = 1.0;
+	    }
+	    else
+	    {
+		es->vpBrightness = expoGetVpBrightness (s->display) / 100.0;
+		es->vpSaturation = expoGetVpSaturation (s->display) / 100.0;
+	    }
 
 	    paintTransformedOutput (s, sAttrib, &sTransform3, &s->region,
 				    output, mask);
@@ -1009,11 +1019,8 @@ expoDrawWindow (CompWindow           *w,
 		    fA.opacity = 0;
 	    }
 
-	    if (es->paintingVX != es->selectedVX ||
-		es->paintingVY != es->selectedVY)
-	    {
-		fA.brightness = fragment->brightness * .75;
-	    }
+	    fA.brightness = fragment->brightness * es->vpBrightness;
+	    fA.saturation = fragment->saturation * es->vpSaturation;
 	}
 	else
 	{

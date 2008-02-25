@@ -146,6 +146,33 @@
 					<_long>Hide panels/docks in expo.</_long>
 					<default>true</default>
 				</option>
+				<option name="vp_distance" type="float">
+					<_short>Viewport distance</_short>
+					<_long>Distance between viewports</_long>
+					<default>0.10</default>
+					<min>0.0</min>
+					<max>1.0</max>
+					<precision>0.01</precision>
+				</option>
+				<subgroup>
+					<short>Inactive viewports</short>
+					<option name="vp_brightness" type="float">
+						<_short>Brightness</_short>
+						<_long>Inactive viewport brightness.</_long>
+						<default>75.0</default>
+						<min>0.0</min>
+						<max>100.0</max>
+						<precision>0.1</precision>
+					</option>
+					<option name="vp_saturation" type="float">
+						<_short>Saturation</_short>
+						<_long>Inactive viewport saturation.</_long>
+						<default>100.0</default>
+						<min>0.0</min>
+						<max>100.0</max>
+						<precision>0.1</precision>
+					</option>
+				</subgroup>
 				<subgroup>
 					<short>Reflection</short>
 					<option name="reflection" type="bool">
