@@ -100,6 +100,9 @@ typedef struct _ExpoScreen
     int selectedVX;
     int selectedVY;
 
+    float *vpActivity;
+    float vpActivitySize;
+
     float vpBrightness;
     float vpSaturation;
 
@@ -696,6 +699,41 @@ expoPreparePaintScreen (CompScreen *s,
     else
 	es->expoCam = MAX (0.0, es->expoCam - val);
 
+    if (es->expoCam)
+    {
+	int i, j, vp;
+
+	if (es->vpActivitySize < s->hsize * s->vsize)
+	{
+	    es->vpActivity     = malloc (s->hsize * s->vsize *
+					 sizeof (float));
+	    if (!es->vpActivity)
+		es->vpActivitySize = 0;
+	    else
+		es->vpActivitySize = s->hsize * s->vsize;
+		
+	    for (i = 0; i < es->vpActivitySize; i++)
+		es->vpActivity [i] = 1.0;
+	}
+	
+	for (i = 0; i < s->hsize; i++)
+	    for (j = 0; j < s->vsize; j++)
+	    {
+		vp = (j * s->hsize) + i;
+
+		if (i == es->selectedVX && j == es->selectedVY)
+		    es->vpActivity[vp] = MIN (1.0, es->vpActivity[vp] + val);
+		else
+		    es->vpActivity[vp] = MAX (0.0, es->vpActivity[vp] - val);
+	    }
+    }
+    else if (es->vpActivitySize)
+    {
+	free (es->vpActivity);
+	es->vpActivity     = NULL;
+	es->vpActivitySize = 0;
+    }
+
     UNWRAP (es, s, preparePaintScreen);
     (*s->preparePaintScreen) (s, ms);
     WRAP (es, s, preparePaintScreen, expoPreparePaintScreen);
@@ -713,13 +751,13 @@ expoPaintWall (CompScreen              *s,
     EXPO_SCREEN (s);
 
     CompTransform sTransformW, sTransform = *transform;
-    int           i, j;
+    int           i, j, vp;
     int           oldFilter = s->display->textureFilter;
 
     float sx = (float)s->width / output->width;
     float sy = (float)s->height / output->height;
     float biasZ;
-    float oScale, rotation = 0.0f, progress;
+    float oScale, rotation = 0.0f, progress, vpp;
     float aspectX = 1.0f, aspectY = 1.0f;
     float camX, camY, camZ;
 
@@ -849,15 +887,21 @@ expoPaintWall (CompScreen              *s,
 	    setWindowPaintOffset (s, (s->x - i) * s->width,
 				  (s->y - j) * s->height);
 
-	    if (i == es->selectedVX && j == es->selectedVY)
+	    vp = (j * s->hsize) + i;
+
+	    if (vp < es->vpActivitySize)
 	    {
-		es->vpBrightness = 1.0;
-		es->vpSaturation = 1.0;
+		vpp = sigmoidProgress (es->vpActivity[vp]);
+
+		es->vpBrightness = vpp + ((1.0 - vpp) *
+				   expoGetVpBrightness (s->display) / 100.0);
+		es->vpSaturation = vpp + ((1.0 - vpp) *
+				   expoGetVpSaturation (s->display) / 100.0);
 	    }
 	    else
 	    {
-		es->vpBrightness = expoGetVpBrightness (s->display) / 100.0;
-		es->vpSaturation = expoGetVpSaturation (s->display) / 100.0;
+		es->vpBrightness = 1.0;
+		es->vpSaturation = 1.0;
 	    }
 
 	    paintTransformedOutput (s, sAttrib, &sTransform3, &s->region,
@@ -1108,6 +1152,8 @@ expoDonePaintScreen (CompScreen * s)
 {
     EXPO_SCREEN (s);
 
+    int i;
+
     switch (es->vpUpdateMode) {
     case VPUpdateMouseOver:
     	moveScreenViewport (s, s->x - es->selectedVX, 
@@ -1126,6 +1172,11 @@ expoDonePaintScreen (CompScreen * s)
 
     if ((es->expoCam > 0.0f && es->expoCam < 1.0f) || es->dndState != DnDNone)
 	damageScreen (s);
+
+    if (es->expoCam == 1.0f)
+	for (i = 0; i < es->vpActivitySize; i++)
+	    if (es->vpActivity[i] != 0.0 || es->vpActivity[i] != 1.0)
+		damageScreen (s);
 
     if (es->grabIndex && es->expoCam <= 0.0f && !es->expoMode)
     {
@@ -1314,6 +1365,9 @@ expoInitScreen (CompPlugin *p,
 
     es->clickTime   = 0;
     es->doubleClick = FALSE;
+
+    es->vpActivity     = NULL;
+    es->vpActivitySize = 0;
 
     WRAP (es, s, paintOutput, expoPaintOutput);
     WRAP (es, s, paintScreen, expoPaintScreen);
