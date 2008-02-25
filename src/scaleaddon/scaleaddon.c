@@ -634,8 +634,8 @@ scaleaddonDonePaintScreen (CompScreen *s)
     ADDON_SCREEN (s);
     SCALE_SCREEN (s);
 
-    if (ss->state == SCALE_STATE_WAIT &&
-	as->lastState != SCALE_STATE_WAIT)
+    if (ss->state != SCALE_STATE_NONE &&
+	as->lastState == SCALE_STATE_NONE)
     {
 	CompWindow *w;
 
