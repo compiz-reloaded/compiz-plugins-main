@@ -105,53 +105,12 @@
 			</group>
 			<group>
 				<_short>Appearance</_short>
-				<option name="reflection" type="bool">
-					<_short>Reflection</_short>
-					<_long>Show a reflection of the viewports on the ground</_long>
-					<default>true</default>
-				</option>
-				<option name="ground_color1" type="color">
-					<_short>Ground color(near)</_short>
-					<_long>Color of the ground (near).</_long>
-					<default>
-						<red>0xb333</red>
-						<green>0xb333</green>
-						<blue>0xb333</blue>
-						<alpha>0xcccc</alpha>
-					</default>
-				</option>
-				<option name="ground_color2" type="color">
-					<_short>Ground color(far)</_short>
-					<_long>Color of the ground (far).</_long>
-					<default>
-						<red>0xb333</red>
-						<green>0xb333</green>
-						<blue>0xb333</blue>
-						<alpha>0x0000</alpha>
-					</default>
-				</option>
-				<option name="ground_size" type="float">
-					<_short>Reflection ground size</_short>
-					<_long>Reflection ground size.</_long>
-					<default>0.5</default>
-					<min>0.0</min>
-					<max>1.0</max>
-					<precision>0.01</precision>
-				</option>
 				<option name="distance" type="float">
 					<_short>Distance</_short>
 					<_long>Distance of the expo wall</_long>
 					<default>0.0</default>
 					<min>0.0</min>
 					<max>1.0</max>
-					<precision>0.01</precision>
-				</option>
-				<option name="scale_factor" type="float">
-					<_short>Reflection Scale</_short>
-					<_long>Scale factor of the expo wall reflection</_long>
-					<default>0.75</default>
-					<min>0.0</min>
-					<max>2.0</max>
 					<precision>0.01</precision>
 				</option>
 				<option name="aspect_ratio" type="float">
@@ -187,6 +146,50 @@
 					<_long>Hide panels/docks in expo.</_long>
 					<default>true</default>
 				</option>
+				<subgroup>
+					<short>Reflection</short>
+					<option name="reflection" type="bool">
+						<_short>Reflection</_short>
+						<_long>Show a reflection of the viewports on the ground</_long>
+						<default>true</default>
+					</option>
+					<option name="ground_color1" type="color">
+						<_short>Ground color(near)</_short>
+						<_long>Color of the ground (near).</_long>
+						<default>
+							<red>0xb333</red>
+							<green>0xb333</green>
+							<blue>0xb333</blue>
+							<alpha>0xcccc</alpha>
+						</default>
+					</option>
+					<option name="ground_color2" type="color">
+						<_short>Ground color(far)</_short>
+						<_long>Color of the ground (far).</_long>
+						<default>
+							<red>0xb333</red>
+							<green>0xb333</green>
+							<blue>0xb333</blue>
+							<alpha>0x0000</alpha>
+						</default>
+					</option>
+					<option name="ground_size" type="float">
+						<_short>Reflection ground size</_short>
+						<_long>Reflection ground size.</_long>
+						<default>0.5</default>
+						<min>0.0</min>
+						<max>1.0</max>
+						<precision>0.01</precision>
+					</option>
+					<option name="scale_factor" type="float">
+						<_short>Reflection Scale</_short>
+						<_long>Scale factor of the expo wall reflection</_long>
+						<default>0.75</default>
+						<min>0.0</min>
+						<max>2.0</max>
+						<precision>0.01</precision>
+					</option>
+				</subgroup>
 			</group>
 		</display>
 	</plugin>
