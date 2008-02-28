@@ -3193,7 +3193,6 @@ static void animHandleCompizEvent(CompDisplay * d, const char *pluginName,
 			getBoolOptionNamed(option, nOption, "active", FALSE);
 		    if (i == 0)
 		    {
-			as->switcherWinOpeningSuppressed = FALSE;
 			if (!as->pluginActive[i])
 			    switcherPostWait = 1;
 		    }
@@ -4020,9 +4019,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		AnimEffectNone !=
 		(chosenEffect =
 		 getMatchingAnimSelection (w, WindowEventOpen, &duration)) &&
-		// suppress switcher window
-		// (1st window that opens after switcher becomes active)
-		(!as->pluginActive[0] || as->switcherWinOpeningSuppressed) &&
 		getMousePointerXY(w->screen, &aw->icon.x, &aw->icon.y))
 	    {
 		Bool startingNew = TRUE;
@@ -4098,11 +4094,6 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    else
 			postAnimationCleanup(w, TRUE);
 		}
-	    }
-	    else if (as->pluginActive[0] && !as->switcherWinOpeningSuppressed)
-	    {
-		// done suppressing open animation
-		as->switcherWinOpeningSuppressed = TRUE;
 	    }
 	}
 

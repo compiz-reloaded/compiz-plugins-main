@@ -546,9 +546,6 @@ typedef struct _AnimScreen
 
     Bool pluginActive[NUM_WATCHED_PLUGINS];
 
-    Bool switcherWinOpeningSuppressed; /* whether switcher window opening
-					  animation is suppressed yet */
-
     Window *lastClientListStacking; // to store last known stacking order
     int nLastClientListStacking;
     int markAllWinCreatedCountdown;
