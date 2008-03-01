@@ -54,7 +54,8 @@ typedef struct _ScaleAddonDisplay {
 
     Bool textAvailable;
 
-    Window lastHoveredWindow;
+    Window highlightedWindow;
+    Window lastHighlightedWindow;
 } ScaleAddonDisplay;
 
 typedef struct _ScaleAddonScreen {
@@ -62,6 +63,7 @@ typedef struct _ScaleAddonScreen {
 
     ScaleLayoutSlotsAndAssignWindowsProc layoutSlotsAndAssignWindows;
     ScalePaintDecorationProc		 scalePaintDecoration;
+    ScaleSelectWindowProc                selectWindow;
     DonePaintScreenProc                  donePaintScreen;
 
     int lastState;
@@ -134,7 +136,6 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     SCALE_SCREEN (s);
     SCALE_WINDOW (w);
     ADDON_WINDOW (w);
-    SCALE_DISPLAY (s->display);
 
     scaleaddonFreeWindowTitle (w);
 
@@ -148,8 +149,8 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     if (winTitleMode == WindowTitleNoDisplay)
 	return;
 
-    if (winTitleMode == WindowTitleHoveredWindowOnly &&
-	sd->hoveredWindow != w->id)
+    if (winTitleMode == WindowTitleHighlightedWindowOnly &&
+	ad->highlightedWindow != w->id)
     {
 	return;
     }
@@ -359,32 +360,31 @@ scaleaddonDrawWindowHighlight (CompWindow *w)
 }
 
 static void
-scaleaddonCheckHoveredWindow (CompScreen *s)
+scaleaddonCheckWindowHighlight (CompScreen *s)
 {
     CompDisplay *d = s->display;
 
     ADDON_DISPLAY (d);
-    SCALE_DISPLAY (d);
 
-    if (sd->hoveredWindow != ad->lastHoveredWindow)
+    if (ad->highlightedWindow != ad->lastHighlightedWindow)
     {
-	CompWindow *w, *lw;
+	CompWindow *w;
 
-	w = findWindowAtDisplay (d, sd->hoveredWindow);
+	w = findWindowAtDisplay (d, ad->highlightedWindow);
 	if (w)
 	{
 	    scaleaddonRenderWindowTitle (w);
 	    addWindowDamage (w);
 	}
 
-	lw = findWindowAtDisplay (d, ad->lastHoveredWindow);
-	if (lw)
+	w = findWindowAtDisplay (d, ad->lastHighlightedWindow);
+	if (w)
 	{
-	    scaleaddonRenderWindowTitle (lw);
-	    addWindowDamage (lw);
+	    scaleaddonRenderWindowTitle (w);
+	    addWindowDamage (w);
 	}
 
-	ad->lastHoveredWindow = sd->hoveredWindow;
+	ad->lastHighlightedWindow = ad->highlightedWindow;
     }
 }
 
@@ -589,7 +589,12 @@ scaleaddonHandleEvent (CompDisplay *d,
 	    {
 		SCALE_SCREEN (s);
 		if (ss->grabIndex)
-		    scaleaddonCheckHoveredWindow (s);
+		{
+		    SCALE_DISPLAY (d);
+
+		    ad->highlightedWindow = sd->hoveredWindow;
+		    scaleaddonCheckWindowHighlight (s);
+		}
 	    }
 	}
 	break;
@@ -609,23 +614,42 @@ scaleaddonScalePaintDecoration (CompWindow              *w,
 
     ADDON_SCREEN (s);
     SCALE_SCREEN (s);
-    SCALE_DISPLAY (s->display);
     ADDON_WINDOW (w);
 
     UNWRAP (as, ss, scalePaintDecoration);
     (*ss->scalePaintDecoration) (w, attrib, transform, region, mask);
     WRAP (as, ss, scalePaintDecoration, scaleaddonScalePaintDecoration);
 
-    scaleaddonCheckHoveredWindow (s);
-
     if ((ss->state == SCALE_STATE_WAIT) || (ss->state == SCALE_STATE_OUT))
     {
-	if ((w->id == sd->hoveredWindow) && scaleaddonGetWindowHighlight (s))
-	    scaleaddonDrawWindowHighlight (w);
+	if (scaleaddonGetWindowHighlight (s))
+	{
+	    ADDON_DISPLAY (s->display);
+
+	    if (w->id == ad->highlightedWindow)
+		scaleaddonDrawWindowHighlight (w);
+	}
 
 	if (aw->textPixmap)
 	    scaleaddonDrawWindowTitle (w);
     }
+}
+
+static void
+scaleaddonSelectWindow (CompWindow *w)
+{
+    CompScreen *s = w->screen;
+
+    ADDON_DISPLAY (s->display);
+    ADDON_SCREEN (s);
+    SCALE_SCREEN (s);
+
+    ad->highlightedWindow = w->id;
+    scaleaddonCheckWindowHighlight (s);
+
+    UNWRAP (as, ss, selectWindow);
+    (*ss->selectWindow) (w);
+    WRAP (as, ss, selectWindow, scaleaddonSelectWindow);
 }
 
 static void
@@ -679,12 +703,11 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 	CompScreen *s;
 	
 	xid = getIntOptionNamed (option, nOption, "root", 0);
-	activated = getIntOptionNamed (option, nOption, "activated", FALSE);
+	activated = getBoolOptionNamed (option, nOption, "active", FALSE);
 	s = findScreenAtDisplay (d, xid);
 
 	if (s)
 	{
-
 	    if (activated)
 	    {
 		addScreenAction (s, scaleaddonGetCloseKey (d));
@@ -692,7 +715,13 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 		addScreenAction (s, scaleaddonGetCloseButton (d));
 		addScreenAction (s, scaleaddonGetZoomButton (d));
 
-		ad->lastHoveredWindow = None;
+		/* TODO: or better
+		   ad->highlightedWindow     = sd->selectedWindow;
+		   here? do we want to show up the highlight without
+		   mouse move initially? */
+		ad->highlightedWindow     = None;
+		ad->lastHighlightedWindow = None;
+		scaleaddonCheckWindowHighlight (s);
 	    }
 	    else
 	    {
@@ -1199,7 +1228,8 @@ scaleaddonInitDisplay (CompPlugin  *p,
 
     d->base.privates[displayPrivateIndex].ptr = ad;
 
-    ad->lastHoveredWindow = None;
+    ad->highlightedWindow     = None;
+    ad->lastHighlightedWindow = None;
 
     scaleaddonSetCloseKeyInitiate (d, scaleaddonCloseWindow);
     scaleaddonSetZoomKeyInitiate (d, scaleaddonZoomWindow);
@@ -1247,6 +1277,7 @@ scaleaddonInitScreen (CompPlugin *p,
 
     WRAP (as, s, donePaintScreen, scaleaddonDonePaintScreen);
     WRAP (as, ss, scalePaintDecoration, scaleaddonScalePaintDecoration);
+    WRAP (as, ss, selectWindow, scaleaddonSelectWindow);
     WRAP (as, ss, layoutSlotsAndAssignWindows,
 	  scaleaddonLayoutSlotsAndAssignWindows);
 
@@ -1271,6 +1302,7 @@ scaleaddonFiniScreen (CompPlugin *p,
 
     UNWRAP (as, s, donePaintScreen);
     UNWRAP (as, ss, scalePaintDecoration);
+    UNWRAP (as, ss, selectWindow);
     UNWRAP (as, ss, layoutSlotsAndAssignWindows);
 
     freeWindowPrivateIndex (s, as->windowPrivateIndex);
