@@ -580,36 +580,14 @@ static void
 wallHandleEvent (CompDisplay *d,
 		 XEvent      *event)
 {
+    Window activeWindow = d->activeWindow;
+
     WALL_DISPLAY (d);
 
     switch (event->type)
     {
     case ClientMessage:
-	if (event->xclient.message_type == d->winActiveAtom)
-	{
-	    CompWindow *w;
-
-	    w = findWindowAtDisplay (d, event->xclient.window);
-	    if (w)
-    	    {
-		int dx, dy;
-
-		/* window must be placed */
-		if (!w->placed)
-		    break;
-
-		if (otherScreenGrabExist (w->screen, "switcher", "scale", 0))
-		    break;
-
-		defaultViewportForWindow (w, &dx, &dy);
-		dx -= w->screen->x;
-		dy -= w->screen->y;
-	
-		if (dx || dy)
-		    wallMoveViewport (w->screen, -dx, -dy, None);
-	    }
-	}
-	else if (event->xclient.message_type == d->desktopViewportAtom)
+	if (event->xclient.message_type == d->desktopViewportAtom)
 	{
 	    int        dx, dy;
 	    CompScreen *s;
@@ -635,6 +613,27 @@ wallHandleEvent (CompDisplay *d,
     UNWRAP (wd, d, handleEvent);
     (*d->handleEvent) (d, event);
     WRAP (wd, d, handleEvent, wallHandleEvent);
+
+    if (activeWindow != d->activeWindow)
+    {
+	CompWindow *w;
+
+	w = findWindowAtDisplay (d, d->activeWindow);
+	if (w && w->placed)
+	{
+	    if (!otherScreenGrabExist (w->screen, "switcher", "scale", 0))
+	    {
+		int dx, dy;
+
+		defaultViewportForWindow (w, &dx, &dy);
+		dx -= w->screen->x;
+		dy -= w->screen->y;
+	
+		if (dx || dy)
+		    wallMoveViewport (w->screen, -dx, -dy, None);
+	    }
+	}
+    }
 }
 
 static Bool
