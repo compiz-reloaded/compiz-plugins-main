@@ -212,7 +212,6 @@ winrulesUpdateState (CompWindow *w,
 
     if (newState != w->state)
     {
-	printf("changing window state (%x -> %x) for %d\n", w->state, newState, w->id);
 	changeWindowState (w, newState);
 
 	recalcWindowType (w);
