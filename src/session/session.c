@@ -1031,6 +1031,8 @@ sessionInitDisplay (CompPlugin  *p,
 	}
 	else if (strcmp (programArgv[i], "--sm-client-id") == 0)
 	{
+	    if (previousId)
+		free (previousId);
 	    previousId = strdup (programArgv[i + 1]);
 	}
     }
