@@ -445,7 +445,7 @@ saveState (CompDisplay *d,
 	   const char  *clientId)
 {
     char          *filename;
-    FILE          *outfile;
+    FILE          *outfile = NULL;
     struct passwd *p = getpwuid (geteuid ());
     CompScreen    *s;
 
@@ -464,18 +464,10 @@ saveState (CompDisplay *d,
 	{
 	    strcat (filename, "/");
 	    strcat (filename, clientId);
+	    outfile = fopen (filename, "w");
 	}
-	else
-	{
-	    return;
-	}
-    }
-    else
-    {
-	return;
     }
 
-    outfile = fopen (filename, "w");
     free (filename);
     if (!outfile)
 	return;
