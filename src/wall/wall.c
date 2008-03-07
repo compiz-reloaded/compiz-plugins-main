@@ -621,7 +621,7 @@ wallHandleEvent (CompDisplay *d,
 	w = findWindowAtDisplay (d, d->activeWindow);
 	if (w && w->placed)
 	{
-	    if (!otherScreenGrabExist (w->screen, "switcher", "scale", 0))
+	    if (!otherScreenGrabExist (w->screen, "switcher", 0))
 	    {
 		int dx, dy;
 
