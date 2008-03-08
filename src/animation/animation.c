@@ -1721,7 +1721,11 @@ initiateFocusAnimation(CompWindow *w)
 		if (dw != wEnd && adw->restackInfo)
 		    continue;
 
-		// Compute intersection of this with subject
+		// Skip subject window for focus fade
+		if (w == dw && chosenEffect == AnimEffectFocusFade)
+		    continue;
+
+		// Compute intersection of this (dw) with subject
 		rect.x = WIN_X(dw);
 		rect.y = WIN_Y(dw);
 		rect.width = WIN_W(dw);
