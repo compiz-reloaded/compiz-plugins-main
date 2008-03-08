@@ -213,8 +213,6 @@ typedef struct _Object
 {
     Point gridPosition;		// position on window in [0,1] range
     Point position;		// position on screen
-    Point3d posRel3d;		/* position relative to model center
-				   (for 3d looking effects) */
 
     // Texture x, y coordinates will be offset by given amounts
     // for quads that fall after and before this object in x and y directions.
