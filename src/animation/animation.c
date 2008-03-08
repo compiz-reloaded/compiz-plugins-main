@@ -1754,8 +1754,10 @@ initiateFocusAnimation(CompWindow *w)
 	    }
 
 	    if (XEmptyRegion(fadeRegion))
+	    {
+		postAnimationCleanup(w, TRUE);
 		return; // empty -> won't be drawn
-
+	    }
 	    if ((chosenEffect == AnimEffectFocusFade ||
 		 chosenEffect == AnimEffectDodge) && wOldAbove)
 	    {
