@@ -177,7 +177,7 @@ void defaultAnimInit(CompScreen * s, CompWindow * w)
     // store window opacity
     aw->storedOpacity = w->paint.opacity;
 
-    aw->timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
+    aw->timestep = (s->slowAnimations ? 2 : // For smooth slow-mo (refer to display.c)
 		    as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 }
 
@@ -500,7 +500,7 @@ defaultAnimStep (CompScreen *s, CompWindow *w, float time)
     ANIM_WINDOW(w);
     ANIM_SCREEN(s);
 
-    float timestep = (s->slowAnimations ? 2 :	// For smooth slow-mo (refer to display.c)
+    float timestep = (s->slowAnimations ? 2 : // For smooth slow-mo (refer to display.c)
 		      as->opt[ANIM_SCREEN_OPTION_TIME_STEP].value.i);
 
     aw->timestep = timestep;
@@ -1737,17 +1737,15 @@ initiateFocusAnimation(CompWindow *w)
 		    adw->winPassingThrough = w;
 		}
 		else if (chosenEffect == AnimEffectDodge &&
-		    !XEmptyRegion(thisAndSubjectIntersection))
+			 !XEmptyRegion(thisAndSubjectIntersection) &&
+			 (adw->curAnimEffect == AnimEffectNone ||
+			  (adw->curAnimEffect == AnimEffectDodge)) &&
+			 dw->id != w->id) // don't let the subject dodge itself
 		{
-		    if ((adw->curAnimEffect == AnimEffectNone ||
-			 (adw->curAnimEffect == AnimEffectDodge)) &&
-			dw->id != w->id) // don't let the subject dodge itself
-		    {
-			// Mark this window for dodge
+		    // Mark this window for dodge
 
-			numDodgingWins++;
-			adw->dodgeOrder = numDodgingWins;
-		    }
+		    numDodgingWins++;
+		    adw->dodgeOrder = numDodgingWins;
 		}
 	    }
 
@@ -3309,7 +3307,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	{
 	    ANIM_SCREEN(w->screen);
 
-	    if (w->pendingUnmaps && onCurrentDesktop(w))	// Normal -> Iconic
+	    if (w->pendingUnmaps && onCurrentDesktop(w)) // Normal -> Iconic
 	    {
 		ANIM_WINDOW(w);
 		int duration = 200;
