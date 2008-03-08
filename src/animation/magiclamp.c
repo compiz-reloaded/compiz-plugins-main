@@ -63,6 +63,7 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
 	(aw->icon.y + aw->icon.height / 2);
     int maxWaves;
     float waveAmpMin, waveAmpMax;
+    float distance;
 
     if (aw->curAnimEffect == AnimEffectMagicLamp)
     {
@@ -81,57 +82,59 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
     if (waveAmpMax < waveAmpMin)
 	waveAmpMax = waveAmpMin;
 
-    if (maxWaves > 0)
+    if (maxWaves == 0)
     {
-	float distance;
-
-	if (aw->minimizeToTop)
-	    distance = WIN_Y(w) + WIN_H(w) - aw->icon.y;
-	else
-	    distance = aw->icon.y - WIN_Y(w);
-
-	// Initialize waves
-	model->magicLampWaveCount =
-	    1 + (float)maxWaves *distance / screenHeight;
-
-	if (!(model->magicLampWaves))
-	    model->magicLampWaves =
-		calloc(model->magicLampWaveCount, sizeof(WaveParam));
-
-	int ampDirection = (RAND_FLOAT() < 0.5 ? 1 : -1);
-	int i;
-	float minHalfWidth = 0.22f;
-	float maxHalfWidth = 0.38f;
-
-	for (i = 0; i < model->magicLampWaveCount; i++)
-	{
-	    model->magicLampWaves[i].amp =
-		ampDirection * (waveAmpMax - waveAmpMin) *
-		rand() / RAND_MAX + ampDirection * waveAmpMin;
-	    model->magicLampWaves[i].halfWidth =
-		RAND_FLOAT() * (maxHalfWidth -
-				minHalfWidth) + minHalfWidth;
-
-	    // avoid offset at top and bottom part by added waves
-	    float availPos = 1 - 2 * model->magicLampWaves[i].halfWidth;
-	    float posInAvailSegment = 0;
-
-	    if (i > 0)
-		posInAvailSegment =
-		    (availPos /
-		     model->magicLampWaveCount) * rand() / RAND_MAX;
-
-	    model->magicLampWaves[i].pos =
-		(posInAvailSegment +
-		 i * availPos / model->magicLampWaveCount +
-		 model->magicLampWaves[i].halfWidth);
-
-	    // switch wave direction
-	    ampDirection *= -1;
-	}
-    }
-    else
 	model->magicLampWaveCount = 0;
+	return;
+    }
+
+    // Initialize waves
+
+    if (aw->minimizeToTop)
+	distance = WIN_Y(w) + WIN_H(w) - aw->icon.y;
+    else
+	distance = aw->icon.y - WIN_Y(w);
+
+    model->magicLampWaveCount =
+	1 + (float)maxWaves *distance / screenHeight;
+
+    if (!(model->magicLampWaves))
+	model->magicLampWaves =
+	    calloc(model->magicLampWaveCount, sizeof(WaveParam));
+
+    // Compute wave parameters
+
+    int ampDirection = (RAND_FLOAT() < 0.5 ? 1 : -1);
+    int i;
+    float minHalfWidth = 0.22f;
+    float maxHalfWidth = 0.38f;
+
+    for (i = 0; i < model->magicLampWaveCount; i++)
+    {
+	model->magicLampWaves[i].amp =
+	    ampDirection * (waveAmpMax - waveAmpMin) *
+	    rand() / RAND_MAX + ampDirection * waveAmpMin;
+	model->magicLampWaves[i].halfWidth =
+	    RAND_FLOAT() * (maxHalfWidth -
+			    minHalfWidth) + minHalfWidth;
+
+	// avoid offset at top and bottom part by added waves
+	float availPos = 1 - 2 * model->magicLampWaves[i].halfWidth;
+	float posInAvailSegment = 0;
+
+	if (i > 0)
+	    posInAvailSegment =
+		(availPos /
+		 model->magicLampWaveCount) * rand() / RAND_MAX;
+
+	model->magicLampWaves[i].pos =
+	    (posInAvailSegment +
+	     i * availPos / model->magicLampWaveCount +
+	     model->magicLampWaves[i].halfWidth);
+
+	// switch wave direction
+	ampDirection *= -1;
+    }
 }
 
 static void
@@ -203,34 +206,13 @@ fxMagicLampModelStepObject(CompWindow * w,
 	    (1 - object->gridPosition.y) * origy +
 	    object->gridPosition.y * icony;
 
+    // Compute current y position
     if (forwardProgress < preShapePhaseEnd)
     {
-	float preShapeProgress = forwardProgress / preShapePhaseEnd;
 	float stretchProgress =	forwardProgress / stretchPhaseEnd;
 	object->position.y =
 	    (1 - stretchProgress) * origy +
 	    stretchProgress * stretchedPos;
-
-	float fx = (iconCloseEndY - object->position.y) / 
-	    (iconCloseEndY - winFarEndY);
-	float fy = (sigmoid(fx) - sigmoid(0)) / (sigmoid(1) - sigmoid(0));
-	float targetx = fy * (origx - iconx) + iconx;
-
-	int i;
-	for (i = 0; i < model->magicLampWaveCount; i++)
-	{
-	    float cosfx =
-		(fx - model->magicLampWaves[i].pos) /
-		model->magicLampWaves[i].halfWidth;
-	    if (cosfx < -1 || cosfx > 1)
-		continue;
-	    targetx +=
-		model->magicLampWaves[i].amp * model->scale.x *
-		(cos(cosfx * M_PI) + 1) / 2;
-	}
-	preShapeProgress = 1 - decelerateProgress(1 - preShapeProgress);
-	object->position.x =
-	    (1 - preShapeProgress) * origx + preShapeProgress * targetx;
     }
     else
     {
@@ -253,27 +235,43 @@ fxMagicLampModelStepObject(CompWindow * w,
 		postStretchProgress *
 		(stretchedPos + (iconCloseEndY - winFarEndY));
 	}
-	float fx =
-	    (iconCloseEndY - object->position.y) / (iconCloseEndY -
-						    winFarEndY);
-	float fy = (sigmoid(fx) - sigmoid(0)) / (sigmoid(1) - sigmoid(0));
-
-	int i;
-
-	object->position.x = fy * (origx - iconx) + iconx;
-	for (i = 0; i < model->magicLampWaveCount; i++)
-	{
-	    float cosfx =
-		(fx -
-		 model->magicLampWaves[i].pos) /
-		model->magicLampWaves[i].halfWidth;
-	    if (cosfx < -1 || cosfx > 1)
-		continue;
-	    object->position.x +=
-		model->magicLampWaves[i].amp * model->scale.x *
-		(cos(cosfx * M_PI) + 1) / 2;
-	}
     }
+
+    // Compute "target shape" x position
+    float fx = ((iconCloseEndY - object->position.y) / 
+		(iconCloseEndY - winFarEndY));
+    float fy = ((sigmoid(fx) - sigmoid(0)) /
+		(sigmoid(1) - sigmoid(0)));
+    float targetx = fy * (origx - iconx) + iconx;
+
+    // Apply waves
+    int i;
+    for (i = 0; i < model->magicLampWaveCount; i++)
+    {
+	float cosfx =
+	    (fx - model->magicLampWaves[i].pos) /
+	    model->magicLampWaves[i].halfWidth;
+	if (cosfx < -1 || cosfx > 1)
+	    continue;
+	targetx +=
+	    model->magicLampWaves[i].amp * model->scale.x *
+	    (cos(cosfx * M_PI) + 1) / 2;
+    }
+
+    // Compute current x position
+    if (forwardProgress < preShapePhaseEnd)
+    {
+	float preShapeProgress = forwardProgress / preShapePhaseEnd;
+
+	// Slow down "shaping" toward the end
+	preShapeProgress = 1 - decelerateProgress(1 - preShapeProgress);
+
+	object->position.x =
+	    (1 - preShapeProgress) * origx + preShapeProgress * targetx;
+    }
+    else	    
+	object->position.x = targetx;
+
     if (aw->minimizeToTop)
     {
 	if (object->position.y < iconFarEndY)
