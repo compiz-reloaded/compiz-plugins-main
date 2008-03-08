@@ -207,6 +207,10 @@ fxMagicLampModelStepObject(CompWindow * w,
     {
 	float preShapeProgress = forwardProgress / preShapePhaseEnd;
 	float stretchProgress =	forwardProgress / stretchPhaseEnd;
+	object->position.y =
+	    (1 - stretchProgress) * origy +
+	    stretchProgress * stretchedPos;
+
 	float fx = (iconCloseEndY - object->position.y) / 
 	    (iconCloseEndY - winFarEndY);
 	float fy = (sigmoid(fx) - sigmoid(0)) / (sigmoid(1) - sigmoid(0));
@@ -227,9 +231,6 @@ fxMagicLampModelStepObject(CompWindow * w,
 	preShapeProgress = 1 - decelerateProgress(1 - preShapeProgress);
 	object->position.x =
 	    (1 - preShapeProgress) * origx + preShapeProgress * targetx;
-	object->position.y =
-	    (1 - stretchProgress) * origy +
-	    stretchProgress * stretchedPos;
     }
     else
     {
