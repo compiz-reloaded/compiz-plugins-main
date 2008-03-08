@@ -3230,55 +3230,25 @@ updateLastClientListStacking(CompScreen *s)
 	   sizeof (Window) * n);
 }
 
-static Bool
-windowHasUserTime(CompWindow *w)
-{
-    Time t;
-    return getWindowUserTime (w, &t);
-}
-
-static char *
-animGetWindowName (CompWindow *w)
-{
-    CompDisplay *d = w->screen->display;
-    Atom type;
-    unsigned long nItems;
-    unsigned long bytesAfter;
-    unsigned char *str = NULL;
-    int format, result;
-    char *retval;
-
-    ANIM_DISPLAY (d);
-
-    result = XGetWindowProperty (d->display, w->id, ad->wmNameAtom,
-                                 0, LONG_MAX, FALSE, XA_STRING,
-                                 &type, &format, &nItems, &bytesAfter,
-                                 (unsigned char **) &str);
-    if (result != Success)
-        return NULL;
-
-    if (type != XA_STRING)
-    {
-        XFree (str);
-        return NULL;
-    }
-    retval = strdup ((char *) str);
-    XFree (str);
-
-    return retval;
-}
-
 // Returns true for windows that don't have a pixmap or certain properties,
-// like the fullscreen darkening layer of gksudo
-// or the darkening layer of x-session-manager
+// like the dimming layer of gksudo and x-session-manager
 static inline Bool
 shouldIgnoreForAnim (CompWindow *w, Bool checkPixmap)
 {
-    ANIM_WINDOW(w);
+    ANIM_DISPLAY (w->screen->display);
 
-    return ((checkPixmap && !w->texture->pixmap) ||
-	    !(w->resName || windowHasUserTime (w)) ||
-	    (aw->wmName && strcasecmp (aw->wmName, "x-session-manager") == 0));
+    if (checkPixmap && !w->texture->pixmap)
+	return TRUE;
+
+    /* ignore screen-dimming layer of gksu */
+    Time t;
+    Bool matchedIgnoredWin = !(w->resName || getWindowUserTime (w, &t));
+
+    /* ignore screen-dimming layer of logout window (x-session-manager) */
+    if (!matchedIgnoredWin)
+	matchedIgnoredWin = matchEval (&ad->logoutWindowMatch, w);
+
+    return matchedIgnoredWin;
 }
 
 static void animHandleEvent(CompDisplay * d, XEvent * event)
@@ -4315,9 +4285,12 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
 	return FALSE;
     }
 
-    ad->wmNameAtom = XInternAtom (d->display, "WM_NAME", 0);
     ad->winIconGeometryAtom =
 	XInternAtom(d->display, "_NET_WM_ICON_GEOMETRY", 0);
+
+    matchInit (&ad->logoutWindowMatch);
+    if (matchAddExp (&ad->logoutWindowMatch, 0, "title=x-session-manager"))
+	matchUpdate (d, &ad->logoutWindowMatch);
 
     WRAP(ad, d, handleEvent, animHandleEvent);
     WRAP(ad, d, handleCompizEvent, animHandleCompizEvent);
@@ -4332,6 +4305,8 @@ static void animFiniDisplay(CompPlugin * p, CompDisplay * d)
     ANIM_DISPLAY(d);
 
     freeScreenPrivateIndex(d, ad->screenPrivateIndex);
+
+    matchFini (&ad->logoutWindowMatch);
 
     UNWRAP(ad, d, handleCompizEvent);
     UNWRAP(ad, d, handleEvent);
@@ -4526,8 +4501,6 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
 	aw->nowShaded = FALSE;
     }
 
-    aw->wmName = animGetWindowName(w);
-
     w->base.privates[as->windowPrivateIndex].ptr = aw;
 
     return TRUE;
@@ -4536,9 +4509,6 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
 static void animFiniWindow(CompPlugin * p, CompWindow * w)
 {
     ANIM_WINDOW(w);
-
-    if (aw->wmName)
-	free (aw->wmName);
 
     postAnimationCleanupCustom (w, FALSE, FALSE, TRUE, TRUE);
 

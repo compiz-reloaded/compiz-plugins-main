@@ -6,8 +6,12 @@
     <feature>windowanimations</feature>
     <category>Effects</category>
     <deps>
+      <requirement>
+	<plugin>regex</plugin>
+      </requirement>
       <relation type="after">
 	<plugin>decoration</plugin>
+	<plugin>regex</plugin>
       </relation>
       <relation type="before">
 	<plugin>fade</plugin>
