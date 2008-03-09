@@ -1189,6 +1189,9 @@ ringTerminate (CompDisplay     *d,
 	}
     }
 
+    action->state &= ~(CompActionStateTermKey | CompActionStateTermButton |
+		       CompActionStateTermEdge);
+
     return FALSE;
 }
 
@@ -1249,12 +1252,6 @@ ringInitiate (CompScreen      *s,
 	damageScreen (s);
     }
 
-    if (state & CompActionStateInitButton)
-	action->state |= CompActionStateTermButton;
-
-    if (state & CompActionStateInitKey)
-	action->state |= CompActionStateTermKey;
-
     return TRUE;
 }
 
@@ -1302,11 +1299,10 @@ ringDoSwitch (CompDisplay     *d,
 	    if (state & CompActionStateInitKey)
 		action->state |= CompActionStateTermKey;
 
-	    if (state & CompActionStateInitButton)
-		action->state |= CompActionStateTermButton;
-
 	    if (state & CompActionStateInitEdge)
 		action->state |= CompActionStateTermEdge;
+	    else if (state & CompActionStateInitButton)
+		action->state |= CompActionStateTermButton;
 	}
 
 	if (ret)
