@@ -448,33 +448,31 @@ static void
 saveState (CompDisplay *d,
 	   const char  *clientId)
 {
-    char           filename[1024];
-    FILE          *outfile;
+    char          *filename;
+    FILE          *outfile = NULL;
     struct passwd *p = getpwuid (geteuid ());
     CompScreen    *s;
 
-    //setup filename and create directories as needed
-    strncpy (filename, p->pw_dir, 1024);
-    strncat (filename, "/.compiz", 1024);
+    /* setup filename and create directories as needed */
+    filename = malloc (sizeof (char) *
+		       (strlen (p->pw_dir) + strlen (clientId) + 18));
+    if (!filename)
+	return;
+
+    strcpy (filename, p->pw_dir);
+    strcat (filename, "/.compiz");
     if (mkdir (filename, 0700) == 0 || errno == EEXIST)
     {
-	strncat (filename, "/session", 1024);
+	strcat (filename, "/session");
 	if (mkdir (filename, 0700) == 0 || errno == EEXIST)
 	{
-	    strncat (filename, "/", 1024);
-	    strncat (filename, clientId, 1024);
+	    strcat (filename, "/");
+	    strcat (filename, clientId);
+	    outfile = fopen (filename, "w");
 	}
-	else
-	{
-	    return;
-	}
-    }
-    else
-    {
-	return;
     }
 
-    outfile = fopen (filename, "w");
+    free (filename);
     if (!outfile)
 	return;
 
@@ -717,16 +715,19 @@ loadState (CompDisplay *d,
 {
     xmlDocPtr          doc;
     xmlNodePtr         root;
-    char               filename[1024];
+    char               *filename;
     struct passwd *p = getpwuid (geteuid ());
 
-    //setup filename and create directories as needed
-    strncpy (filename, p->pw_dir, 1024);
-    strncat (filename, "/.compiz/", 1024);
-    strncat (filename, "session/", 1024);
-    strncat (filename, previousId, 1024);
+    /* setup filename */
+    filename = malloc (sizeof (char) *
+		       (strlen (p->pw_dir) + strlen (previousId) + 18));
+    if (!filename)
+	return;
 
+    sprintf (filename, "%s/.compiz/session/%s", p->pw_dir, previousId);
     doc = xmlParseFile (filename);
+    free (filename);
+
     if (!doc)
 	return;
 
