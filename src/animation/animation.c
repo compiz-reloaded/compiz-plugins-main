@@ -2397,8 +2397,13 @@ animAddWindowGeometry(CompWindow * w,
 		}
 		w->vCount = 4;
 		w->indexCount = 4;
+
 		w->texUnits = 1;
-		memset(w->vertices, 0, sizeof(GLfloat) * 4);
+		w->texCoordSize = 4;
+		w->vertexStride = 3 + w->texUnits * w->texCoordSize;
+
+		// Clear dummy quad coordinates/indices
+		memset(w->vertices, 0, sizeof(GLfloat) * w->vertexStride * 4);
 		memset(w->indices, 0, sizeof(GLushort) * 4);
 	    }
 	    return;				// We're done here.
@@ -2422,7 +2427,8 @@ animAddWindowGeometry(CompWindow * w,
 	    w->indexCount = 0;
 	    w->texCoordSize = 4;
 	}
-	vSize = 2 + w->texUnits * w->texCoordSize;
+	w->vertexStride = 3 + w->texUnits * w->texCoordSize;
+	vSize = w->vertexStride;
 
 	nVertices = w->vCount;
 	nIndices = w->indexCount;
@@ -2600,164 +2606,108 @@ animAddWindowGeometry(CompWindow * w,
 		    deformedX = (1 - iny) * hor1x + iny * hor2x;
 		    deformedY = (1 - iny) * hor1y + iny * hor2y;
 
+		    // Texture coordinates (s, t, r, q)
+
 		    if (useTextureQ)
 		    {
 			if (jx == 1)
-			    rowCellWidth = deformedX - v[-2];
+			    rowCellWidth = deformedX - v[-3];
 
-			if (jy > 0 && jx == 1)	// do only once per row for all rows except row 0
+			// do only once per row for all rows except row 0
+			if (jy > 0 && jx == 1)
 			{
 			    rowTexCoordQ = (rowCellWidth / prevRowCellWidth);
 
-			    v[-3] = rowTexCoordQ;	// update first column
-			    v[-6] *= rowTexCoordQ;	// (since we didn't know rowTexCoordQ before)
-			    v[-5] *= rowTexCoordQ;
+			    for (it = 0; it < nMatrix; it++, v += 4)
+			    {
+				// update first column
+				// (since we didn't know rowTexCoordQ before)
+				v[-vSize]     *= rowTexCoordQ; // multiply s & t by q
+				v[-vSize + 1] *= rowTexCoordQ;
+				v[-vSize + 3] = rowTexCoordQ;  // copy q
+			    }
+			    v -= nMatrix * 4;
 			}
 		    }
-		    if (rect)
+
+		    // Loop for each texture element
+		    // (4 texture coordinates for each one)
+		    for (it = 0; it < nMatrix; it++, v += 4)
 		    {
-			for (it = 0; it < nMatrix; it++)
+			float offsetY = 0;
+			if (applyOffsets && y < y2)
+			    offsetY = objToTopLeft->offsetTexCoordForQuadAfter.y;
+
+			if (rect)
 			{
-			    float offsetY = 0;
+			    v[0] = COMP_TEX_COORD_X (&matrix[it], x); // s
+			    v[1] = COMP_TEX_COORD_Y (&matrix[it], y + offsetY); // t
+			}
+			else
+			{
+			    v[0] = COMP_TEX_COORD_XY (&matrix[it], x, y + offsetY); // s
+			    v[1] = COMP_TEX_COORD_YX (&matrix[it], x, y + offsetY); // t
+			}
+			v[2] = 0; // r
 
-			    if (applyOffsets && y < y2)
-				offsetY = objToTopLeft->offsetTexCoordForQuadAfter.y;
+			if (0 < jy && jy < nVertY - 1)
+			{
+			    // copy s, t, r to duplicate row
+			    memcpy(v + nVertX * vSize, v,
+				   3 * sizeof(GLfloat));
+			    v[3 + nVertX * vSize] = 1; // q
+			}
 
-			    *v++ = COMP_TEX_COORD_X(&matrix[it], x);
-			    *v++ = COMP_TEX_COORD_Y(&matrix[it], y + offsetY);
-			    *v++ = 0;
-			    if (useTextureQ)
+			if (applyOffsets && 
+			    objToTopLeft->offsetTexCoordForQuadBefore.y != 0)
+			{
+			    // After copying to next row, update texture y coord
+			    // by following object's offset
+			    offsetY = objToTopLeft->offsetTexCoordForQuadBefore.y;
+			    if (rect)
 			    {
-				*v++ = rowTexCoordQ;	// Q texture coordinate
-
-				if (0 < jy && jy < nVertY - 1)
-				{
-				    // copy first 3 texture coords to duplicate row
-				    memcpy(v - 4 + nVertX * vSize, 
-					   v - 4, 3 * sizeof(GLfloat));
-				    *(v - 1 + nVertX * vSize) = 1;	// Q texture coordinate
-				}
-				if (applyOffsets &&	/*0 < jy && */
-				    objToTopLeft->
-				    offsetTexCoordForQuadBefore.y != 0)
-				{
-				    // After copying to next row, update texture y coord
-				    // by following object's offset
-				    offsetY = objToTopLeft-> offsetTexCoordForQuadBefore.y;
-				    v[-3] = COMP_TEX_COORD_Y(&matrix[it], y + offsetY);
-				}
-				if (jx > 0)	// since column 0 is updated when jx == 1
-				{
-				    v[-4] *= rowTexCoordQ;
-				    v[-3] *= rowTexCoordQ;
-				}
+				v[1] = COMP_TEX_COORD_Y (&matrix[it], y + offsetY);
 			    }
 			    else
 			    {
-				*v++ = 1;
-
-				if (0 < jy && jy < nVertY - 1)
-				{
-				    // copy first 3 texture coords to duplicate row
-				    memcpy(v - 4 + nVertX * vSize, 
-					   v - 4, 3 * sizeof(GLfloat));
-
-				    *(v - 1 + nVertX * vSize) = 1;	// Q texture coordinate
-				}
-				if (applyOffsets && 
-				    objToTopLeft->offsetTexCoordForQuadBefore.y != 0)
-				{
-				    // After copying to next row, update texture y coord
-				    // by following object's offset
-				    offsetY = objToTopLeft->offsetTexCoordForQuadBefore.y;
-				    v[-3] = COMP_TEX_COORD_Y(&matrix[it], y + offsetY);
-				}
+				v[0] = COMP_TEX_COORD_XY (&matrix[it],
+							  x, y + offsetY);
+				v[1] = COMP_TEX_COORD_YX (&matrix[it],
+							  x, y + offsetY);
 			    }
 			}
-		    }
-		    else
-		    {
-			for (it = 0; it < nMatrix; it++)
+			if (useTextureQ)
 			{
-			    float offsetY = 0;
+			    v[3] = rowTexCoordQ; // q
 
-			    if (applyOffsets && y < y2)
+			    if (jx > 0)	// since column 0 is updated when jx == 1
 			    {
-				// FIXME:
-				// the correct value below doesn't work for some reason
-				offsetY = 0;
-				//		objToTopLeft->
-				//		offsetTexCoordForQuadAfter.y;
-			    }
-
-			    *v++ = COMP_TEX_COORD_XY(&matrix[it], x, y + offsetY);
-			    *v++ = COMP_TEX_COORD_YX(&matrix[it], x, y + offsetY);
-			    *v++ = 0;
-			    if (useTextureQ)
-			    {
-				*v++ = rowTexCoordQ;	// Q texture coordinate
-
-				if (0 < jy && jy < nVertY - 1)
-				{
-				    // copy first 3 texture coords to duplicate row
-				    memcpy(v - 4 + nVertX * vSize, 
-					   v - 4, 3 * sizeof(GLfloat));
-				    *(v - 1 + nVertX * vSize) = 1;	// Q texture coordinate
-				}
-				if (applyOffsets && 
-				    objToTopLeft->offsetTexCoordForQuadBefore.y != 0)
-				{
-				    // After copying to next row, update texture y coord
-				    // by following object's offset
-				    offsetY = objToTopLeft->offsetTexCoordForQuadBefore.y;
-				    v[-4] = COMP_TEX_COORD_XY(&matrix[it], x,
-							      y + offsetY);
-				    v[-3] = COMP_TEX_COORD_YX(&matrix[it], x,
-							      y + offsetY);
-				}
-				if (jx > 0)	// column t should be updated when jx is t+1
-				{
-				    v[-4] *= rowTexCoordQ;
-				    v[-3] *= rowTexCoordQ;
-				}
-			    }
-			    else
-			    {
-				*v++ = 1;
-
-				if (0 < jy && jy < nVertY - 1)
-				{
-				    // copy first 3 texture coords to duplicate row
-				    memcpy(v - 4 + nVertX * vSize, 
-					   v - 4, 3 * sizeof(GLfloat));
-				    *(v - 1 + nVertX * vSize) = 1;	// Q texture coordinate
-				}
-				if (applyOffsets && 
-				    objToTopLeft->offsetTexCoordForQuadBefore.y != 0)
-				{
-				    // After copying to next row, update texture y coord
-				    // by following object's offset
-				    offsetY =
-					objToTopLeft->
-					offsetTexCoordForQuadBefore.y;
-				    v[-4] = COMP_TEX_COORD_XY(&matrix[it], x,
-							      y + offsetY);
-				    v[-3] = COMP_TEX_COORD_YX(&matrix[it], x,
-							      y + offsetY);
-				}
+				// multiply s & t by q
+				v[0] *= rowTexCoordQ;
+				v[1] *= rowTexCoordQ;
 			    }
 			}
+			else
+			{
+			    v[3] = 1; // q
+			}
 		    }
-		    *v++ = deformedX;
-		    *v++ = deformedY;
 
+		    // Vertex coordinates (x, y, z)
+		    v[0] = deformedX;
+		    v[1] = deformedY;
+		    v[2] = 0; // z
+
+		    // Copy vertex coordinates to duplicate row
 		    if (0 < jy && jy < nVertY - 1)
-			memcpy(v - 2 + nVertX * vSize, v - 2, 2 * sizeof(GLfloat));
+			memcpy(v + nVertX * vSize, v, 3 * sizeof(GLfloat));
 
 		    nVertices++;
 
 		    // increment x properly (so that coordinates fall on grid intersections)
 		    x = rightix * gridW + wx;
+
+		    v += 3; // move on to next vertex
 		}
 		if (useTextureQ)
 		    prevRowCellWidth = rowCellWidth;
@@ -2831,12 +2781,12 @@ animDrawWindowGeometry(CompWindow * w)
     }
     int texUnit = w->texUnits;
     int currentTexUnit = 0;
-    int stride = 2 + texUnit * w->texCoordSize;
-    GLfloat *vertices = w->vertices + (stride - 2);
+    int stride = 3 + texUnit * w->texCoordSize;
+    GLfloat *vertices = w->vertices + (stride - 3);
 
     stride *= sizeof(GLfloat);
 
-    glVertexPointer(2, GL_FLOAT, stride, vertices);
+    glVertexPointer(3, GL_FLOAT, stride, vertices);
 
     while (texUnit--)
     {
