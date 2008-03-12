@@ -63,8 +63,6 @@ typedef struct _SessionCore
 {
     SessionWindowList *windowList;
 
-    char *clientId;
-
     SessionEventProc sessionEvent;
     ObjectAddProc    objectAdd;
 } SessionCore;
