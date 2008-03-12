@@ -64,9 +64,7 @@ typedef struct _SessionCore
     SessionWindowList *windowList;
 
     char *clientId;
-    char *prevClientId;
 
-    SessionInitProc  sessionInit;
     SessionEventProc sessionEvent;
     ObjectAddProc    objectAdd;
 } SessionCore;
@@ -772,24 +770,6 @@ sessionHandleEvent (CompDisplay *d,
 }
 
 static void
-sessionSessionInit (CompCore *c,
-		    const char *previousClientId,
-		    const char *clientId)
-{
-    SESSION_CORE (c);
-
-    if (previousClientId)
-	sc->prevClientId = strdup (previousClientId);
-
-    if (clientId)
-	sc->clientId = strdup (clientId);
-
-    UNWRAP (sc, c, sessionInit);
-    (*c->sessionInit) (c, previousClientId, clientId);
-    WRAP (sc, c, sessionInit, sessionSessionInit);
-}
-
-static void
 sessionSessionEvent (CompCore         *c,
 		     CompSessionEvent event,
 		     CompOption       *arguments,
@@ -801,6 +781,7 @@ sessionSessionEvent (CompCore         *c,
     {
 	Bool shutdown, fast, saveSession;
 	int  saveType, interactStyle;
+	char *clientId;
 
 	shutdown = getBoolOptionNamed (arguments, nArguments,
 				       "shutdown", FALSE);
@@ -817,7 +798,9 @@ sessionSessionEvent (CompCore         *c,
 	              (saveType != SmSaveLocal)             ||
 		      (interactStyle != SmInteractStyleNone);
 
-	if (saveSession && sc->clientId)
+	clientId = getSessionClientId (CompSessionClientId);
+
+	if (saveSession && clientId)
 	{
 	    CompObject *object;
 
@@ -825,9 +808,12 @@ sessionSessionEvent (CompCore         *c,
 	    if (object)
 	    {
 		CompDisplay *d = (CompDisplay *) object;
-		saveState (d, sc->clientId);
+		saveState (d, clientId);
 	    }
 	}
+
+	if (clientId)
+	    free (clientId);
     }
 
     UNWRAP (sc, c, sessionEvent);
@@ -935,7 +921,7 @@ static const CompMetadataOptionInfo sessionDisplayOptionInfo[] = {
 };
 
 static int
-sessionInitPlugin (CompPlugin *p)
+sessionInit (CompPlugin *p)
 {
     if (!compInitPluginMetadataFromInfo (&sessionMetadata, p->vTable->name,
 					 sessionDisplayOptionInfo,
@@ -956,7 +942,7 @@ sessionInitPlugin (CompPlugin *p)
 }
 
 static void
-sessionFiniPlugin (CompPlugin *p)
+sessionFini (CompPlugin *p)
 {
     freeCorePrivateIndex (corePrivateIndex);
     compFiniMetadata (&sessionMetadata);
@@ -983,14 +969,11 @@ sessionInitCore (CompPlugin *p,
     }
 
     sc->windowList   = NULL;
-    sc->clientId     = NULL;
-    sc->prevClientId = NULL;
 
     /* FIXME: don't use WindowAdd for now as it's not called for windows
        that are present before Compiz start - TODO: find out why and remove
        the timeout hack */
     /* WRAP (sc, c, objectAdd, sessionObjectAdd); */
-    WRAP (sc, c, sessionInit, sessionSessionInit);
     WRAP (sc, c, sessionEvent, sessionSessionEvent);
 
     c->base.privates[corePrivateIndex].ptr = sc;
@@ -1010,14 +993,7 @@ sessionFiniCore (CompPlugin *p,
 
     /* FIXME: see above */
     /* UNWRAP (sc, c, objectAdd); */
-    UNWRAP (sc, c, sessionInit);
     UNWRAP (sc, c, sessionEvent);
-
-    if (sc->clientId)
-	free (sc->clientId);
-
-    if (sc->prevClientId)
-	free (sc->prevClientId);
 
     run = sc->windowList;
     while (run)
@@ -1035,8 +1011,7 @@ sessionInitDisplay (CompPlugin  *p,
 		    CompDisplay *d)
 {
     SessionDisplay *sd;
-
-    SESSION_CORE (&core);
+    char           *prevClientId;
 
     sd = malloc (sizeof (SessionDisplay));
     if (!sd)
@@ -1061,8 +1036,12 @@ sessionInitDisplay (CompPlugin  *p,
     sd->roleAtom = XInternAtom (d->display, "WM_WINDOW_ROLE", 0);
     sd->commandAtom = XInternAtom (d->display, "WM_COMMAND", 0);
 
-    if (sc->prevClientId)
-	loadState (d, sc->prevClientId);
+    prevClientId = getSessionClientId (CompSessionPrevClientId);
+    if (prevClientId)
+    {
+	loadState (d, prevClientId);
+	free (prevClientId);
+    }
 
     sd->windowAddTimeout = compAddTimeout (0, sessionWindowAddTimeout, d);
 
@@ -1123,8 +1102,8 @@ static CompPluginVTable sessionVTable =
 {
     "session",
     sessionGetMetadata,
-    sessionInitPlugin,
-    sessionFiniPlugin,
+    sessionInit,
+    sessionFini,
     sessionInitObject,
     sessionFiniObject,
     sessionGetObjectOptions,
