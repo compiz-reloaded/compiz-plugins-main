@@ -406,7 +406,7 @@ typedef struct _AnimDisplay
     HandleEventProc handleEvent;
     HandleCompizEventProc handleCompizEvent;
     int activeWindow;
-    CompMatch neverAnimateMatch;
+    CompMatch logoutWindowMatch;
 } AnimDisplay;
 
 typedef struct _PluginEventInfo

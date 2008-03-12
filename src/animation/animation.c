@@ -3241,8 +3241,18 @@ shouldIgnoreForAnim (CompWindow *w, Bool checkPixmap)
 {
     ANIM_DISPLAY (w->screen->display);
 
-    return ((checkPixmap && !w->texture->pixmap) ||
-	    matchEval (&ad->neverAnimateMatch, w));
+    if (checkPixmap && !w->texture->pixmap)
+	return TRUE;
+
+    /* ignore screen-dimming layer of gksu */
+    Time t;
+    Bool matchedIgnoredWin = !(w->resName || getWindowUserTime (w, &t));
+
+    /* ignore screen-dimming layer of logout window (x-session-manager) */
+    if (!matchedIgnoredWin)
+	matchedIgnoredWin = matchEval (&ad->logoutWindowMatch, w);
+
+    return matchedIgnoredWin;
 }
 
 static void animHandleEvent(CompDisplay * d, XEvent * event)
@@ -4282,12 +4292,9 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
     ad->winIconGeometryAtom =
 	XInternAtom(d->display, "_NET_WM_ICON_GEOMETRY", 0);
 
-    // Never animate screen-dimming layer of logout window and gksu.
-    matchInit (&ad->neverAnimateMatch);
-    matchAddExp (&ad->neverAnimateMatch, 0, "title=gksu");
-    matchAddExp (&ad->neverAnimateMatch, 0, "title=x-session-manager");
-    matchAddExp (&ad->neverAnimateMatch, 0, "title=gnome-session");
-    matchUpdate (d, &ad->neverAnimateMatch);
+    matchInit (&ad->logoutWindowMatch);
+    if (matchAddExp (&ad->logoutWindowMatch, 0, "title=x-session-manager"))
+	matchUpdate (d, &ad->logoutWindowMatch);
 
     WRAP(ad, d, handleEvent, animHandleEvent);
     WRAP(ad, d, handleCompizEvent, animHandleCompizEvent);
@@ -4303,7 +4310,7 @@ static void animFiniDisplay(CompPlugin * p, CompDisplay * d)
 
     freeScreenPrivateIndex(d, ad->screenPrivateIndex);
 
-    matchFini (&ad->neverAnimateMatch);
+    matchFini (&ad->logoutWindowMatch);
 
     UNWRAP(ad, d, handleCompizEvent);
     UNWRAP(ad, d, handleEvent);
