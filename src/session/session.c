@@ -25,7 +25,6 @@
 
 #define _GNU_SOURCE
 #include <X11/Xatom.h>
-#include <X11/SM/SM.h>
 
 #include <compiz-core.h>
 
@@ -799,25 +798,12 @@ sessionSessionEvent (CompCore         *c,
 
     if (event == CompSessionEventSaveYourself)
     {
-	Bool shutdown, fast, saveSession;
-	int  saveType, interactStyle;
+	Bool shutdown;
 
 	shutdown = getBoolOptionNamed (arguments, nArguments,
 				       "shutdown", FALSE);
-	saveType = getIntOptionNamed (arguments, nArguments,
-				      "save_type", SmSaveLocal);
-	interactStyle = getIntOptionNamed (arguments, nArguments,
-					   "interact_style",
-					   SmInteractStyleNone);
-	fast = getBoolOptionNamed (arguments, nArguments, "fast", FALSE);
 
-	/* ignore saveYourself after registering for the first time
-	   (SM specification 7.2) */
-	saveSession = shutdown || fast                      ||
-	              (saveType != SmSaveLocal)             ||
-		      (interactStyle != SmInteractStyleNone);
-
-	if (saveSession && sc->clientId)
+	if (shutdown && sc->clientId)
 	{
 	    CompObject *object;
 
