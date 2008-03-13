@@ -73,10 +73,24 @@
 					<max>5.0</max>
 					<precision>0.1</precision>
 				</option>
-				<option name="rotate" type="bool">
-					<_short>Tilt view</_short>
-					<_long>Tilt window view in expo mode</_long>
-					<default>false</default>
+				<option name="deform" type="int">
+					<_short>Deformation</_short>
+					<_long>Deformation of the window view in expo mode</_long>
+					<default>0</default>
+					<min>0</min>
+					<max>2</max>
+					<desc>
+						<value>0</value>
+						<_name>None</_name>
+					</desc>
+					<desc>
+						<value>1</value>
+						<_name>Tilt</_name>
+					</desc>
+					<desc>
+						<value>2</value>
+						<_name>Curve</_name>
+					</desc>
 				</option>
 				<option name="expo_immediate_move" type="bool">
 					<_short>Immediate moves</_short>
@@ -150,6 +164,14 @@
 					<_short>Viewport distance</_short>
 					<_long>Distance between viewports</_long>
 					<default>0.10</default>
+					<min>0.0</min>
+					<max>1.0</max>
+					<precision>0.01</precision>
+				</option>
+				<option name="curve" type="float">
+					<_short>Curve strength</_short>
+					<_long>Strength of the deformation in curve mode</_long>
+					<default>0.50</default>
 					<min>0.0</min>
 					<max>1.0</max>
 					<precision>0.01</precision>

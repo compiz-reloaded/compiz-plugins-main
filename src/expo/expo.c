@@ -78,6 +78,8 @@ typedef struct _ExpoScreen
     PaintTransformedOutputProc paintTransformedOutput;
     PaintWindowProc            paintWindow;
     DrawWindowProc             drawWindow;
+    DrawWindowTextureProc      drawWindowTexture;
+    AddWindowGeometryProc      addWindowGeometry;
     DamageWindowRectProc       damageWindowRect;
 
     /*  Used for expo zoom animation */
@@ -100,6 +102,8 @@ typedef struct _ExpoScreen
     int origVY;
     int selectedVX;
     int selectedVY;
+    int paintingVX;
+    int paintingVY;
 
     float *vpActivity;
     float vpActivitySize;
@@ -113,7 +117,13 @@ typedef struct _ExpoScreen
 
     unsigned int clickTime;
     Bool         doubleClick;
-    
+
+    Region tmpRegion;
+
+    float curveAngle;
+    float curveDistance;
+    float curveRadius;
+
 } ExpoScreen;
 
 typedef struct _xyz_tuple
@@ -136,6 +146,8 @@ Point3d;
 #define sigmoid(x) (1.0f / (1.0f + exp (-5.5f * 2 * ((x) - 0.5))))
 #define sigmoidProgress(x) ((sigmoid (x) - sigmoid (0)) / \
 			    (sigmoid (1) - sigmoid (0)))
+
+#define interpolate(a,b,val) (((val) * a) + ((1 - (val)) * (b)))
 
 static void
 expoMoveFocusViewport (CompScreen *s,
@@ -602,6 +614,8 @@ invertTransformedVertex (CompScreen              *s,
     GLint    viewport[4];
     int      i;
 
+    EXPO_SCREEN (s);
+
     (*s->applyScreenTransform) (s, sAttrib, output, &sTransform);
     transformToScreenSpace (s, output, -sAttrib->zTranslate, &sTransform);
 
@@ -623,6 +637,67 @@ invertTransformedVertex (CompScreen              *s,
 
     alpha = -p1[2] / v[2];
 
+
+    if (expoGetDeform (s->display) == DeformCurve)
+    {
+	/* If would be nice if someone would find a faster solution */
+	const float gapX  = expoGetVpDistance (s->display) * 0.1f * s->height /
+		            s->width * es->expoCam;
+	const float angle = es->curveAngle * DEG2RAD * (1.0 / (1.0 + gapX));
+	const float p     = sigmoidProgress (es->expoCam);
+
+	int   i = 10;
+	float a1, a2, *aM, x1, x2, *xM, d1, d2, *dM;
+
+	a1 = -p1[2] / v[2];
+	a2 = (es->curveDistance - es->curveRadius - p1[2]) / v[2];
+
+	x1 = p1[0] + (a1 * v[0]);
+	x2 = p1[0] + (a2 * v[0]);
+
+	d1 = (es->curveDistance - (cos (angle / 2.0 - (x1 /
+		(float)s->width * angle)) * es->curveRadius)) * p;
+	d2 = (es->curveDistance - (cos (angle / 2.0 - (x2 /
+		(float)s->width * angle)) * es->curveRadius)) * p;
+
+	d1 = (d1 - p1[2]) / v[2];
+	d2 = (d2 - p1[2]) / v[2];
+
+	d1 = fabs (a1 - d1);
+	d2 = fabs (a2 - d2);
+
+	while (fabs(x1 - x2) > 1.0 && i--)
+	{
+	    if (d1 < d2)
+	    {
+		aM = &a2;
+		dM = &d2;
+		xM = &x2;
+	    }
+	    else
+	    {
+		aM = &a1;
+		dM = &d1;
+		xM = &x1;
+	    }
+
+	    *aM = (a1 + a2) / 2.0;
+	    *xM = p1[0] + ((*aM) * v[0]);
+
+	    *dM = (es->curveDistance - (cos (angle / 2.0 - (*xM /
+		   (float)s->width * angle)) * es->curveRadius)) * p;
+	    *dM = (*dM - p1[2]) / v[2];
+
+	    *dM = fabs (*aM - *dM);
+	}
+
+	if (d1 < d2)
+	    alpha = a1;
+	else
+	    alpha = a2;
+    }
+
+    
     vertex[0] = ceil (p1[0] + (alpha * v[0]));
     vertex[1] = ceil (p1[1] + (alpha * v[1]));
 }
@@ -774,28 +849,45 @@ expoPaintWall (CompScreen              *s,
     /* camera position during expo mode */
     Point3d expoCamPos = { 0, 0, 0 };
 
-    vpCamPos.x = ((s->x * sx) + 0.5 +
-		 (output->region.extents.x1 / output->width)) -
-		 (s->hsize * 0.5 * sx) + gapX * (s->x);
+    if (expoGetDeform (s->display) == DeformCurve)
+    {
+	vpCamPos.x = -sx * (0.5 - (( (float)output->region.extents.x1 +
+		     (output->width / 2.0)) / (float)s->width));
+    }
+    else
+    {
+	vpCamPos.x = ((s->x * sx) + 0.5 +
+		     (output->region.extents.x1 / output->width)) -
+		     (s->hsize * 0.5 * sx) + gapX * (s->x);
+    }
     vpCamPos.y = -((s->y * sy) + 0.5 +
 		 ( output->region.extents.y1 / output->height)) +
 		 (s->vsize * 0.5 * sy) - gapY * (s->y);
     vpCamPos.z = 0;
 
-    if (expoGetRotate (s->display) || expoGetReflection (s->display))
+    if (expoGetDeform (s->display) == DeformTilt ||
+	expoGetReflection (s->display))
 	biasZ = MAX (s->hsize * sx, s->vsize * sy) *
 		(0.15 + expoGetDistance (s->display));
     else
 	biasZ = MAX (s->hsize * sx, s->vsize * sy) *
 		expoGetDistance (s->display);
 
-    expoCamPos.x = gapX * (s->hsize - 1) * 0.5;
+    progress = sigmoidProgress (es->expoCam);
+
+    if (expoGetDeform (s->display) == DeformCurve)
+    {
+	expoCamPos.x = 0.0;
+    }
+    else
+    {
+	expoCamPos.x = gapX * (s->hsize - 1) * 0.5;
+    }
+    
     expoCamPos.y = -gapY * (s->vsize - 1) * 0.5;
     expoCamPos.z = -DEFAULT_Z_CAMERA + DEFAULT_Z_CAMERA *
 		   (MAX (s->hsize + (s->hsize - 1) * gapX,
 			 s->vsize + (s->vsize - 1) * gapY) + biasZ);
-
-    progress = sigmoidProgress (es->expoCam);
 
     /* interpolate between vpCamPos and expoCamPos */
     camX = vpCamPos.x * (1 - progress) + expoCamPos.x * progress;
@@ -821,7 +913,7 @@ expoPaintWall (CompScreen              *s,
 
     /* End of Zoom animation stuff */
 
-    if (expoGetRotate (s->display))
+    if (expoGetDeform (s->display) == DeformTilt)
     {
 	if (expoGetExpoAnimation (s->display) == ExpoAnimationZoom)
 	    rotation = 10.0 * sigmoidProgress (es->expoCam);
@@ -861,10 +953,34 @@ expoPaintWall (CompScreen              *s,
     /* translate expo to center */
     matrixTranslate (&sTransform, s->hsize * sx * -0.5,
 		     s->vsize * sy * 0.5, 0.0f);
+
+    if (expoGetDeform (s->display) == DeformCurve)
+    {
+	matrixTranslate (&sTransform, (s->hsize - 1) * sx * 0.5,
+    		     0, 0.0f);
+    }
+
     sTransformW = sTransform;
 
     /* revert prepareXCoords region shift. Now all screens display the same */
     matrixTranslate (&sTransform, 0.5f, -0.5f, DEFAULT_Z_CAMERA);
+
+    if (s->hsize > 2)
+    {
+	/* we can't have 90 degree for the left/right most viewport */
+    	es->curveAngle = interpolate (359 / ((s->hsize - 1) * 2), 1,
+				      expoGetCurve (s->display));
+    }
+    else
+    {
+	es->curveAngle = interpolate (180 / s->hsize, 1,
+				      expoGetCurve (s->display));
+    }
+
+    es->curveDistance = ((0.5f * sx) + (gapX / 2.0)) /
+			tanf (DEG2RAD * es->curveAngle / 2.0);
+    es->curveRadius   = ((0.5f * sx) + (gapX / 2.0)) /
+			sinf (DEG2RAD * es->curveAngle / 2.0);
 
     es->expoActive = TRUE;
 
@@ -905,6 +1021,22 @@ expoPaintWall (CompScreen              *s,
 		es->vpSaturation = 1.0;
 	    }
 
+	    es->paintingVX = i;
+	    es->paintingVY = j;
+
+	    if (expoGetDeform (s->display) == DeformCurve)
+	    {
+		matrixTranslate (&sTransform3, -vpCamPos.x, 0.0f,
+				 es->curveDistance - DEFAULT_Z_CAMERA);
+
+		matrixRotate (&sTransform3,es->curveAngle * (-i +
+			      interpolate ((((float)s->hsize / 2.0) - 0.5),
+					   s->x, progress)) , 0.0f, 1.0f, 0.0);
+
+		matrixTranslate (&sTransform3, vpCamPos.x, 0.0f,
+				 DEFAULT_Z_CAMERA - es->curveDistance);
+	    }
+
 	    paintTransformedOutput (s, sAttrib, &sTransform3, &s->region,
 				    output, mask);
 
@@ -932,7 +1064,8 @@ expoPaintWall (CompScreen              *s,
 	    }
 
 	    /* not sure this will work with different resolutions */
-	    matrixTranslate (&sTransform2, ((1.0 * sx) + gapX), 0.0f, 0.0);
+	    if (expoGetDeform (s->display) != DeformCurve)
+		matrixTranslate (&sTransform2, ((1.0 * sx) + gapX), 0.0f, 0.0);
 	}
 
 	/* not sure this will work with different resolutions */
@@ -941,21 +1074,47 @@ expoPaintWall (CompScreen              *s,
 
     if (reflection)
     {
-	glPushMatrix();
-	glLoadMatrixf (sTransformW.m);
 	glEnable (GL_BLEND);
-
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBegin (GL_QUADS);
-	glColor4f (0.0, 0.0, 0.0, 1.0);
-	glVertex2f (0.0, 0.0);
-	glColor4f (0.0, 0.0, 0.0, 0.5);
-	glVertex2f (0.0, -s->vsize * (1.0 * sy + gapY));
-	glVertex2f (s->hsize * sx * (1.0 + gapX),
-		    -s->vsize * sy * (1.0 + gapY));
-	glColor4f (0.0, 0.0, 0.0, 1.0);
-	glVertex2f (s->hsize * sx * (1.0 + gapX), 0.0);
-	glEnd ();
+
+	glPushMatrix();
+
+	if (expoGetDeform (s->display) != DeformCurve)
+	{
+	    glLoadMatrixf (sTransformW.m);
+
+	    glBegin (GL_QUADS);
+	    glColor4f (0.0, 0.0, 0.0, 1.0);
+	    glVertex2f (0.0, 0.0);
+	    glColor4f (0.0, 0.0, 0.0, 0.5);
+	    glVertex2f (0.0, -s->vsize * (1.0 * sy + gapY));
+	    glVertex2f (s->hsize * sx * (1.0 + gapX),
+			-s->vsize * sy * (1.0 + gapY));
+	    glColor4f (0.0, 0.0, 0.0, 1.0);
+	    glVertex2f (s->hsize * sx * (1.0 + gapX), 0.0);
+	    glEnd ();
+	}
+	else
+	{
+	    glCullFace (GL_BACK);
+	    glLoadIdentity ();
+	    glTranslatef (0.0, 0.0, -DEFAULT_Z_CAMERA);
+
+	    glBegin (GL_QUADS);
+	    glColor4f (0.0, 0.0, 0.0, 1.0 * es->expoCam);
+	    glVertex2f (-0.5, -0.5);
+	    glVertex2f (0.5, -0.5);
+	    glColor4f (0.0, 0.0, 0.0, 0.5 * es->expoCam);
+	    glVertex2f (0.5, 0.0);
+	    glVertex2f (-0.5, 0.0);
+	    glColor4f (0.0, 0.0, 0.0, 0.5 * es->expoCam);
+	    glVertex2f (-0.5, 0.0);
+	    glVertex2f (0.5, 0.0);
+	    glColor4f (0.0, 0.0, 0.0, 0.0);
+	    glVertex2f (0.5, 0.5);
+	    glVertex2f (-0.5, 0.5);
+	    glEnd ();
+	}
 	glCullFace (GL_BACK);
 
 	glLoadIdentity ();
@@ -1088,6 +1247,103 @@ expoDrawWindow (CompWindow           *w,
     }
 
     return status;
+}
+
+#define EXPO_GRID_SIZE 100
+
+static void
+expoAddWindowGeometry (CompWindow *w,
+		       CompMatrix *matrix,
+		       int	  nMatrix,
+		       Region     region,
+		       Region     clip)
+{
+    CompScreen *s = w->screen;
+
+    EXPO_SCREEN (s);
+
+    if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve)
+    {
+	int x1, x2;
+	REGION reg;
+
+	reg.numRects = 1;
+	reg.rects = &reg.extents;
+
+	reg.extents.y1 = region->extents.y1;
+	reg.extents.y2 = region->extents.y2;
+	
+	x1 = (region->extents.x1 / EXPO_GRID_SIZE) * EXPO_GRID_SIZE;
+	x1 = region->extents.x1;
+	x2 = MIN (x1 + EXPO_GRID_SIZE, region->extents.x2);
+	
+	UNWRAP (es, s, addWindowGeometry);
+	while (x1 < region->extents.x2)
+	{
+	    reg.extents.x1 = x1;
+	    reg.extents.x2 = x2;
+
+	    XIntersectRegion (region, &reg, es->tmpRegion);
+
+	    if (!XEmptyRegion (es->tmpRegion))
+	    {
+		(*w->screen->addWindowGeometry) (w, matrix, nMatrix,
+						 es->tmpRegion, clip);
+	    }
+
+	    x1 = x2;
+	    x2 = MIN (x2 + EXPO_GRID_SIZE, region->extents.x2);
+	}
+	WRAP (es, s, addWindowGeometry, expoAddWindowGeometry);
+    }
+    else
+    {
+	UNWRAP (es, s, addWindowGeometry);
+	(*w->screen->addWindowGeometry) (w, matrix, nMatrix, region, clip);
+	WRAP (es, s, addWindowGeometry, expoAddWindowGeometry);
+    }
+}
+
+static void
+expoDrawWindowTexture (CompWindow	    *w,
+		       CompTexture	    *texture,
+		       const FragmentAttrib *attrib,
+		       unsigned int	    mask)
+{
+    CompScreen *s = w->screen;
+
+    EXPO_SCREEN (s);
+
+    if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve)
+    {
+	int     i = 0;
+	GLfloat *v = w->vertices + (w->vertexStride - 3);
+
+	int     offX = 0, offY = 0;
+	const float gapX = expoGetVpDistance (s->display) * 0.1f * s->height /
+		           s->width * es->expoCam;
+	const float angle = es->curveAngle * DEG2RAD * (1.0 / (1.0 + gapX));
+	
+	if (!windowOnAllViewports (w))
+	{
+	    getWindowMovementForOffset (w, s->windowOffsetX,
+                                        s->windowOffsetY, &offX, &offY);
+	}
+
+	while (i < w->vCount)
+	{
+	    v[2] = es->curveDistance - (cos (angle / 2.0 - ((v[0] + offX) /
+		   (float)s->width * angle)) * es->curveRadius);
+	    v[2] *= sigmoidProgress (es->expoCam);
+
+	    v += w->vertexStride;
+	    i++;
+	}
+    }
+
+    UNWRAP (es, s, drawWindowTexture);
+    (*s->drawWindowTexture) (w, texture, attrib, mask);
+    WRAP (es, s, drawWindowTexture, expoDrawWindowTexture);
 }
 
 static Bool
@@ -1352,6 +1608,10 @@ expoInitScreen (CompPlugin *p,
     if (!es)
 	return FALSE;
 
+    es->tmpRegion = XCreateRegion ();
+    if (!es->tmpRegion)
+	return FALSE;
+
     es->anyClick  = FALSE;
     es->vpUpdateMode = VPUpdateNone;
 
@@ -1380,6 +1640,8 @@ expoInitScreen (CompPlugin *p,
     WRAP (es, s, drawWindow, expoDrawWindow);
     WRAP (es, s, damageWindowRect, expoDamageWindowRect);
     WRAP (es, s, paintWindow, expoPaintWindow);
+    WRAP (es, s, addWindowGeometry, expoAddWindowGeometry);
+    WRAP (es, s, drawWindowTexture, expoDrawWindowTexture);
 
     s->base.privates[ed->screenPrivateIndex].ptr = es;
 
@@ -1398,6 +1660,8 @@ expoFiniScreen (CompPlugin *p,
 	es->grabIndex = 0;
     }
 
+    XDestroyRegion (es->tmpRegion);
+
     UNWRAP (es, s, paintOutput);
     UNWRAP (es, s, paintScreen);
     UNWRAP (es, s, donePaintScreen);
@@ -1406,6 +1670,8 @@ expoFiniScreen (CompPlugin *p,
     UNWRAP (es, s, drawWindow);
     UNWRAP (es, s, damageWindowRect);
     UNWRAP (es, s, paintWindow);
+    UNWRAP (es, s, addWindowGeometry);
+    UNWRAP (es, s, drawWindowTexture);
 
     free (es);
 }
