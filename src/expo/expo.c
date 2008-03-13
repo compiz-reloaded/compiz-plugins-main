@@ -638,7 +638,7 @@ invertTransformedVertex (CompScreen              *s,
     alpha = -p1[2] / v[2];
 
 
-    if (expoGetDeform (s->display) == DeformCurve)
+    if (expoGetDeform (s->display) == DeformCurve && s->desktopWindowCount)
     {
 	/* If would be nice if someone would find a faster solution */
 	const float gapX  = expoGetVpDistance (s->display) * 0.1f * s->height /
@@ -1262,7 +1262,8 @@ expoAddWindowGeometry (CompWindow *w,
 
     EXPO_SCREEN (s);
 
-    if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve)
+    if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve &&
+        s->desktopWindowCount)
     {
 	int x1, x2;
 	REGION reg;
@@ -1314,7 +1315,8 @@ expoDrawWindowTexture (CompWindow	    *w,
 
     EXPO_SCREEN (s);
 
-    if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve)
+    if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve &&
+        s->desktopWindowCount)
     {
 	int     i = 0;
 	GLfloat *v = w->vertices + (w->vertexStride - 3);
