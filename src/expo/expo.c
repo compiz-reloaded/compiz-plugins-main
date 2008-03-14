@@ -78,7 +78,6 @@ typedef struct _ExpoScreen
     PaintTransformedOutputProc paintTransformedOutput;
     PaintWindowProc            paintWindow;
     DrawWindowProc             drawWindow;
-    DrawWindowTextureProc      drawWindowTexture;
     AddWindowGeometryProc      addWindowGeometry;
     DamageWindowRectProc       damageWindowRect;
 
@@ -1265,9 +1264,14 @@ expoAddWindowGeometry (CompWindow *w,
     if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve &&
         s->desktopWindowCount)
     {
-	int x1, x2;
-	REGION reg;
-
+	int         x1, x2, i, oldVCount = w->vCount;
+	REGION      reg;
+	GLfloat     *v;
+	int         offX = 0, offY = 0;
+	const float gapX = expoGetVpDistance (s->display) * 0.1f * s->height /
+		           s->width * es->expoCam;
+	const float angle = es->curveAngle * DEG2RAD * (1.0 / (1.0 + gapX));
+			
 	reg.numRects = 1;
 	reg.rects = &reg.extents;
 
@@ -1296,6 +1300,24 @@ expoAddWindowGeometry (CompWindow *w,
 	    x2 = MIN (x2 + EXPO_GRID_SIZE, region->extents.x2);
 	}
 	WRAP (es, s, addWindowGeometry, expoAddWindowGeometry);
+	
+	v  = w->vertices + (w->vertexStride - 3);
+	v += w->vertexStride * oldVCount;
+
+	if (!windowOnAllViewports (w))
+	{
+	    getWindowMovementForOffset (w, s->windowOffsetX,
+                                        s->windowOffsetY, &offX, &offY);
+	}
+
+	for (i = oldVCount; i < w->vCount; i++)
+	{
+	    v[2] = es->curveDistance - (cos (angle / 2.0 - ((v[0] + offX) /
+		   (float)s->width * angle)) * es->curveRadius);
+	    v[2] *= sigmoidProgress (es->expoCam);
+
+	    v += w->vertexStride;
+	}
     }
     else
     {
@@ -1303,49 +1325,6 @@ expoAddWindowGeometry (CompWindow *w,
 	(*w->screen->addWindowGeometry) (w, matrix, nMatrix, region, clip);
 	WRAP (es, s, addWindowGeometry, expoAddWindowGeometry);
     }
-}
-
-static void
-expoDrawWindowTexture (CompWindow	    *w,
-		       CompTexture	    *texture,
-		       const FragmentAttrib *attrib,
-		       unsigned int	    mask)
-{
-    CompScreen *s = w->screen;
-
-    EXPO_SCREEN (s);
-
-    if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve &&
-        s->desktopWindowCount)
-    {
-	int     i = 0;
-	GLfloat *v = w->vertices + (w->vertexStride - 3);
-
-	int     offX = 0, offY = 0;
-	const float gapX = expoGetVpDistance (s->display) * 0.1f * s->height /
-		           s->width * es->expoCam;
-	const float angle = es->curveAngle * DEG2RAD * (1.0 / (1.0 + gapX));
-	
-	if (!windowOnAllViewports (w))
-	{
-	    getWindowMovementForOffset (w, s->windowOffsetX,
-                                        s->windowOffsetY, &offX, &offY);
-	}
-
-	while (i < w->vCount)
-	{
-	    v[2] = es->curveDistance - (cos (angle / 2.0 - ((v[0] + offX) /
-		   (float)s->width * angle)) * es->curveRadius);
-	    v[2] *= sigmoidProgress (es->expoCam);
-
-	    v += w->vertexStride;
-	    i++;
-	}
-    }
-
-    UNWRAP (es, s, drawWindowTexture);
-    (*s->drawWindowTexture) (w, texture, attrib, mask);
-    WRAP (es, s, drawWindowTexture, expoDrawWindowTexture);
 }
 
 static Bool
@@ -1643,7 +1622,6 @@ expoInitScreen (CompPlugin *p,
     WRAP (es, s, damageWindowRect, expoDamageWindowRect);
     WRAP (es, s, paintWindow, expoPaintWindow);
     WRAP (es, s, addWindowGeometry, expoAddWindowGeometry);
-    WRAP (es, s, drawWindowTexture, expoDrawWindowTexture);
 
     s->base.privates[ed->screenPrivateIndex].ptr = es;
 
@@ -1673,7 +1651,6 @@ expoFiniScreen (CompPlugin *p,
     UNWRAP (es, s, damageWindowRect);
     UNWRAP (es, s, paintWindow);
     UNWRAP (es, s, addWindowGeometry);
-    UNWRAP (es, s, drawWindowTexture);
 
     free (es);
 }
