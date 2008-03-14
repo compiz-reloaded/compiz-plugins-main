@@ -1312,9 +1312,13 @@ expoAddWindowGeometry (CompWindow *w,
 
 	for (i = oldVCount; i < w->vCount; i++)
 	{
-	    v[2] = es->curveDistance - (cos (angle / 2.0 - ((v[0] + offX) /
-		   (float)s->width * angle)) * es->curveRadius);
-	    v[2] *= sigmoidProgress (es->expoCam);
+	    if (v[0] + offX >= -EXPO_GRID_SIZE && 
+		v[0] + offX < s->width + EXPO_GRID_SIZE)
+	    {
+		v[2] = es->curveDistance - (cos (angle / 2.0 - ((v[0] + offX) /
+		       (float)s->width * angle)) * es->curveRadius);
+		v[2] *= sigmoidProgress (es->expoCam);
+	    }
 
 	    v += w->vertexStride;
 	}
