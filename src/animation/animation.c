@@ -2385,25 +2385,27 @@ animAddWindowGeometry(CompWindow * w,
 	    if (w->vCount == 0)	// if there is no vertex
 	    {
 		// put a dummy quad in vertices and indices
+
+		w->texUnits = 1;
+		w->texCoordSize = 4;
+		vSize = 3 + w->texUnits * w->texCoordSize;
+
 		if (4 > w->indexSize)
 		{
 		    if (!moreWindowIndices(w, 4))
 			return;
 		}
-		if (4 > w->vertexSize)
+		if (4 * vSize > w->vertexSize)
 		{
-		    if (!moreWindowVertices(w, 4))
+		    if (!moreWindowVertices(w, 4 * vSize))
 			return;
 		}
 		w->vCount = 4;
 		w->indexCount = 4;
-
-		w->texUnits = 1;
-		w->texCoordSize = 4;
-		w->vertexStride = 3 + w->texUnits * w->texCoordSize;
+		w->vertexStride = vSize;
 
 		// Clear dummy quad coordinates/indices
-		memset(w->vertices, 0, sizeof(GLfloat) * w->vertexStride * 4);
+		memset(w->vertices, 0, sizeof(GLfloat) * 4 * vSize);
 		memset(w->indices, 0, sizeof(GLushort) * 4);
 	    }
 	    return;				// We're done here.
