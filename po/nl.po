@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:11+0530\n"
+"POT-Creation-Date: 2008-03-15 20:11+0530\n"
 "PO-Revision-Date: 2008-01-31 15:42+0100\n"
 "Last-Translator: Elve <elve@savage-elve.net>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -1282,6 +1282,26 @@ msgstr "Knop binding om expo te verlaten"
 msgid "Button binding to switch to next viewport in expo"
 msgstr "Knop binding om te schakelen naar volgende viewport in expo"
 
+#, fuzzy
+msgid "Curve"
+msgstr "Gebogen vouwen"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Bewegingsvervaging sterkte."
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Duur"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Afstand van expo muur"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Wissel naar viewport 1"
+
 msgid "Distance of the expo wall"
 msgstr "Afstand van expo muur"
 
@@ -1342,6 +1362,12 @@ msgstr "Panelen en docks verbergen in expo."
 msgid "Immediate moves"
 msgstr "Onmiddelĳke bewegingen"
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 msgid "Mipmaps"
 msgstr "Mipmaps"
 
@@ -1385,14 +1411,19 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Toon reflectie van de viewports op de grond"
 
-msgid "Tilt view"
-msgstr "Kantel weergave"
+msgid "Strength of the deformation in curve mode"
+msgstr ""
 
-msgid "Tilt window view in expo mode"
-msgstr "Kantel venster weergave in expo"
+#, fuzzy
+msgid "Tilt"
+msgstr "Tegelen"
 
 msgid "Timeframe to execute a double click"
 msgstr "Tĳdvak om een dubbelklik uit te voeren"
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Viewport wisselaar"
 
 msgid "Vortex"
 msgstr ""
@@ -2444,6 +2475,9 @@ msgstr "Actie die moet worden uitgevoerd."
 msgid "Assign mousegestures to any existing action"
 msgstr "Wĳs muis bewegingen toe aan een bestaande actie"
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 msgid "Gesture"
 msgstr "Muis beweging"
 
@@ -2452,6 +2486,11 @@ msgstr "Toewĳzing beweging"
 
 msgid "Gestures"
 msgstr "Bewegingen"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr "Muis beweging om een actie aan toe te wĳzen."
@@ -3230,12 +3269,13 @@ msgstr "Font grootte om de venster titel te tonen"
 msgid "Highlight Color"
 msgstr "Oplicht kleur"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Alleen vensters waarover gezweefd wordt"
+
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Laat het venster waar over heen gezweefd wordt oplichten met de gegeven kleur"
-
-msgid "Hovered window only"
-msgstr "Alleen vensters waarover gezweefd wordt"
 
 msgid "No display"
 msgstr "Geen display"
@@ -4817,6 +4857,12 @@ msgstr "Vensters op alle bureaubladen die sticky gemaakt moeten worden"
 
 msgid "Workarounds"
 msgstr "Workarounds"
+
+#~ msgid "Tilt view"
+#~ msgstr "Kantel weergave"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Kantel venster weergave in expo"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Verplaats venster naar x,y"

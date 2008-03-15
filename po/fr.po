@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:10+0530\n"
-"PO-Revision-Date: 2008-02-06 23:10+0100\n"
-"Last-Translator: Tristan RABLAT <tristan.rablat@gmail.com>\n"
+"POT-Creation-Date: 2008-03-15 20:10+0530\n"
+"PO-Revision-Date: 2008-03-14 20:59+0100\n"
+"Last-Translator: altadeos <altadeos@hotmail.com>\n"
 "Language-Team: <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -493,7 +493,7 @@ msgstr ""
 "pointeur."
 
 msgid "Open Animation"
-msgstr "Animaton d'ouverture"
+msgstr "Animation d'ouverture"
 
 msgid "Open Effect"
 msgstr "Effet d'ouverture"
@@ -1277,6 +1277,26 @@ msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 "Combinaison de touches pour aller vers le bureau suivant en mode Exposé"
 
+#, fuzzy
+msgid "Curve"
+msgstr "Pli Courbé"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Force du Flou Cinétique"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Durée"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Distance à l'Exposé"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Aller au bureau 1"
+
 msgid "Distance of the expo wall"
 msgstr "Distance à l'Exposé"
 
@@ -1337,6 +1357,12 @@ msgstr "Cacher les paneaux/docks en mode Exposé."
 msgid "Immediate moves"
 msgstr "Mouvements immédiats"
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 msgid "Mipmaps"
 msgstr "Mipmaps"
 
@@ -1380,14 +1406,19 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Montre une réflexion des bureaux sur le sol"
 
-msgid "Tilt view"
-msgstr "Incliner la vue"
+msgid "Strength of the deformation in curve mode"
+msgstr ""
 
-msgid "Tilt window view in expo mode"
-msgstr "Incliner la vue de la fenêtre en mode Exposé"
+#, fuzzy
+msgid "Tilt"
+msgstr "Mosaïque"
 
 msgid "Timeframe to execute a double click"
 msgstr "Plage de temps pour éxécuter un double clic"
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Changeur de Bureau"
 
 msgid "Vortex"
 msgstr "Vortex"
@@ -2442,6 +2473,9 @@ msgstr "Action devant être invoquée."
 msgid "Assign mousegestures to any existing action"
 msgstr "Assigner des mouvements de souris à toute action existante"
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 msgid "Gesture"
 msgstr "Mouvement"
 
@@ -2450,6 +2484,11 @@ msgstr "Assignation de mouvement"
 
 msgid "Gestures"
 msgstr "Mouvements"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr "Mouvement de souris à assigner à une action."
@@ -3233,11 +3272,12 @@ msgstr "Taille de police du titre de fenêtre"
 msgid "Highlight Color"
 msgstr "Couleur de surbrillance"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Seulement la fenêtre survolée"
+
 msgid "Highlights the hovered window with the given color"
 msgstr "Mettre en surbrillance la fenêtre survolée avec la couleur donnée"
-
-msgid "Hovered window only"
-msgstr "Seulement la fenêtre survolée"
 
 msgid "No display"
 msgstr "Pas d'affichage"
@@ -4840,6 +4880,12 @@ msgstr "Fenêtres sur tous les bureaux devant être rendues "
 
 msgid "Workarounds"
 msgstr "Solutions"
+
+#~ msgid "Tilt view"
+#~ msgstr "Incliner la vue"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Incliner la vue de la fenêtre en mode Exposé"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Déplacer la fenêtre en x, y"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:10+0530\n"
+"POT-Creation-Date: 2008-03-15 20:11+0530\n"
 "PO-Revision-Date: 2008-02-02 16:19+0100\n"
 "Last-Translator: Fran Diéguez  <fran.dieguez@glug.es>\n"
 "Language-Team: Galician <en@li.org>\n"
@@ -1310,6 +1310,26 @@ msgstr "Botón de atallo para saír de expo"
 msgid "Button binding to switch to next viewport in expo"
 msgstr "Botóns de atallo para trocar cara o próximo escritorio en modo expo"
 
+#, fuzzy
+msgid "Curve"
+msgstr "Dobras Curvadas"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Forza da Distorsión durante Movemento."
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Duración"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Distancia do muro expo"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Trocar cara o escritorio 1"
+
 msgid "Distance of the expo wall"
 msgstr "Distancia do muro expo"
 
@@ -1370,6 +1390,12 @@ msgstr "Esconder painéis/docas cando en modo expo"
 msgid "Immediate moves"
 msgstr "Movementos imediatos"
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 msgid "Mipmaps"
 msgstr "Mipmaps"
 
@@ -1413,14 +1439,19 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Mostra unha reflexo dos escritorios no \"chán\""
 
-msgid "Tilt view"
-msgstr "Inclinar vista"
+msgid "Strength of the deformation in curve mode"
+msgstr ""
 
-msgid "Tilt window view in expo mode"
-msgstr "Entorta a vista de fiestras en modo expo"
+#, fuzzy
+msgid "Tilt"
+msgstr "Mosaico"
 
 msgid "Timeframe to execute a double click"
 msgstr "Espazo de tempo para executar duplo prema"
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Trocador de escritorio"
 
 msgid "Vortex"
 msgstr "Vórtex"
@@ -2488,6 +2519,9 @@ msgstr "Acción que ten que invocada"
 msgid "Assign mousegestures to any existing action"
 msgstr "Asigna xestos de rato a calqueira acción existe"
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 #, fuzzy
 msgid "Gesture"
 msgstr "Comezar xestos"
@@ -2498,6 +2532,11 @@ msgstr "Asiganción de Xextos"
 #, fuzzy
 msgid "Gestures"
 msgstr "Texturas"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr "Xestos do rato para asignar unha acción"
@@ -3283,13 +3322,13 @@ msgstr "Tamaño da fonte do título da fiestra"
 msgid "Highlight Color"
 msgstr "Cor Realce"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Mover fiestra cara x,y"
+
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidencía a fiestra sobre a cal paira o cursor do rato coa cor escollida"
-
-#, fuzzy
-msgid "Hovered window only"
-msgstr "Mover fiestra cara x,y"
 
 #, fuzzy
 msgid "No display"
@@ -4903,6 +4942,12 @@ msgstr "Fiestras \"en tódolos escritorios\" que deben ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correccións"
+
+#~ msgid "Tilt view"
+#~ msgstr "Inclinar vista"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Entorta a vista de fiestras en modo expo"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Mover fiestra cara x,y"

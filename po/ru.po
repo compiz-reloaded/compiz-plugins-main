@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:11+0530\n"
+"POT-Creation-Date: 2008-03-15 20:12+0530\n"
 "PO-Revision-Date: 2008-01-15 05:51+0100\n"
 "Last-Translator: Denis Rakhmangulov <danfocus@gmail.com>\n"
 "Language-Team: \n"
@@ -1411,6 +1411,26 @@ msgstr ""
 msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 
+#, fuzzy
+msgid "Curve"
+msgstr "Ускорение свертывания"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Прочность нового пароля"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Длительность"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Расстояние до стены экспозиции"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Вращение до кадрового окна"
+
 msgid "Distance of the expo wall"
 msgstr "Расстояние до стены экспозиции"
 
@@ -1482,6 +1502,12 @@ msgstr ""
 msgid "Immediate moves"
 msgstr "Осталось ходов:"
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 msgid "Mipmaps"
 msgstr ""
 
@@ -1527,16 +1553,20 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr ""
 
-#, fuzzy
-msgid "Tilt view"
-msgstr "Отображение документа"
-
-msgid "Tilt window view in expo mode"
+msgid "Strength of the deformation in curve mode"
 msgstr ""
+
+#, fuzzy
+msgid "Tilt"
+msgstr "Заполнять"
 
 #, fuzzy
 msgid "Timeframe to execute a double click"
 msgstr "_Двойной щелчок активирует элементы"
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Переключатель окон"
 
 msgid "Vortex"
 msgstr ""
@@ -2671,6 +2701,9 @@ msgstr ""
 msgid "Assign mousegestures to any existing action"
 msgstr ""
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 #, fuzzy
 msgid "Gesture"
 msgstr "Текст в начале"
@@ -2681,6 +2714,11 @@ msgstr ""
 #, fuzzy
 msgid "Gestures"
 msgstr "Текстуры высокого разрешения"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr ""
@@ -3585,12 +3623,12 @@ msgstr ""
 msgid "Highlight Color"
 msgstr "Цвет подсветки"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Переместить окно на рабочее место 1"
+
 msgid "Highlights the hovered window with the given color"
 msgstr ""
-
-#, fuzzy
-msgid "Hovered window only"
-msgstr "Переместить окно на рабочее место 1"
 
 #, fuzzy
 msgid "No display"
@@ -5413,6 +5451,10 @@ msgstr ""
 #, fuzzy
 msgid "Workarounds"
 msgstr "Обходные пути"
+
+#, fuzzy
+#~ msgid "Tilt view"
+#~ msgstr "Отображение документа"
 
 #, fuzzy
 #~ msgid "Move window to x, y"

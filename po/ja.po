@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:10+0530\n"
-"PO-Revision-Date: 2008-02-16 09:49+0900\n"
+"POT-Creation-Date: 2008-03-15 20:11+0530\n"
+"PO-Revision-Date: 2008-03-07 20:09+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -1242,6 +1242,25 @@ msgstr "展開 の終了に割り当てるボタン"
 msgid "Button binding to switch to next viewport in expo"
 msgstr "展開 での次のビューポートへの切り替えに割り当てるボタン"
 
+#, fuzzy
+msgid "Curve"
+msgstr "折り曲げ"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "モーションブラーの強さ"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "持続時間"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "展開される壁までの距離"
+
+msgid "Distance between viewports"
+msgstr "ビューポート同士の間隔"
+
 msgid "Distance of the expo wall"
 msgstr "展開される壁までの距離"
 
@@ -1302,6 +1321,12 @@ msgstr "展開時にパネル/ドックを隠す"
 msgid "Immediate moves"
 msgstr "即時移動"
 
+msgid "Inactive viewport brightness."
+msgstr "非アクティブなビューポートの明度"
+
+msgid "Inactive viewport saturation."
+msgstr "非アクティブなビューポートの彩度"
+
 msgid "Mipmaps"
 msgstr "ミップマップ"
 
@@ -1343,14 +1368,18 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "ビューポートの反射を地面に表示"
 
-msgid "Tilt view"
-msgstr "傾けた表示"
+msgid "Strength of the deformation in curve mode"
+msgstr ""
 
-msgid "Tilt window view in expo mode"
-msgstr "展開モードでウィンドウを傾けて表示"
+#, fuzzy
+msgid "Tilt"
+msgstr "タイル"
 
 msgid "Timeframe to execute a double click"
 msgstr "ダブルクリック認識の時間枠"
+
+msgid "Viewport distance"
+msgstr "ビューポートの間隔"
 
 msgid "Vortex"
 msgstr "渦"
@@ -1985,7 +2014,7 @@ msgid "Shade with group"
 msgstr "グループでシェード"
 
 msgid "Simple"
-msgstr "簡素"
+msgstr "シンプル"
 
 msgid "Slot Drag Spring K"
 msgstr "スロット・ドラッグのバネ係数"
@@ -2168,165 +2197,148 @@ msgstr "JPEGサポート プラグイン"
 msgid "Quality of compression when saving JPEG images"
 msgstr "JPEG 画像を保存するときの圧縮率"
 
-#, fuzzy
 msgid "Background/Window brightness."
-msgstr "背景の明るさ"
+msgstr "背景/ウィンドウの明度"
 
-#, fuzzy
 msgid "Background/Window saturation."
-msgstr "背景の彩度"
+msgstr "背景/ウィンドウの彩度"
 
-#, fuzzy
 msgid "Fade In/Out Time"
-msgstr "フェードイン/アウトの時間"
+msgstr "フェードイン/アウト持続時間"
 
 msgid "Fade In/Out Time."
 msgstr "フェードイン/アウトの時間"
 
 msgid "Login"
-msgstr ""
+msgstr "ログイン"
 
-#, fuzzy
 msgid "Login Window Match"
-msgstr "対象ウィンドウ"
+msgstr "効果対象ウィンドウ"
 
-#, fuzzy
 msgid "Login Window match"
-msgstr "適用ウィンドウ"
+msgstr "ログイン・ウィンドウのマッチ条件"
 
 msgid "Login/Logout"
-msgstr ""
+msgstr "ログイン/ログアウト"
 
 msgid "Login/Logout effect"
-msgstr ""
+msgstr "ログイン/ログアウト時の効果"
 
 msgid "Logout"
-msgstr ""
+msgstr "ログアウト"
 
-#, fuzzy
 msgid "Logout Window Match"
-msgstr "適用グループウィンドウ"
+msgstr "効果対象ウィンドウ"
 
-#, fuzzy
 msgid "Logout Window match"
-msgstr "適用ウィンドウ"
+msgstr "ログアウト・ウィンドウのマッチ条件"
 
-#, fuzzy
 msgid "Window opacity."
 msgstr "ウィンドウの不透明度"
 
-#, fuzzy
 msgid "Border color"
-msgstr "タブの枠色"
+msgstr "外枠の色"
 
-#, fuzzy
 msgid "Border width"
-msgstr "枠の幅"
+msgstr "外枠の幅"
 
-#, fuzzy
 msgid "Border widtht."
-msgstr "枠の幅"
+msgstr "外枠の幅"
 
 msgid "Box height."
-msgstr ""
+msgstr "ボックスの高さ"
 
-#, fuzzy
 msgid "Box width."
-msgstr "ビームの幅"
+msgstr "ボックスの幅"
 
-#, fuzzy
 msgid "Clip mask"
-msgstr "ミップマップ"
+msgstr "切り抜きマスク"
 
 msgid "Clip mask."
-msgstr ""
+msgstr "切り抜きマスク"
 
-#, fuzzy
 msgid "Fisheye"
-msgstr "魚の大きさ"
+msgstr "魚眼"
 
 msgid "Height"
 msgstr "高さ"
 
 msgid "Image overlay"
-msgstr ""
+msgstr "画像被せ"
 
-#, fuzzy
 msgid "Keep fully on screen"
-msgstr "画面にFPSを表示"
+msgstr "常に全体を画面上に"
 
-#, fuzzy
 msgid "Keep fully on screen."
-msgstr "画面にFPSを表示"
+msgstr "ボックスの外枠が画面外に出ないように"
 
 msgid "Magnifier"
-msgstr ""
+msgstr "拡大鏡"
 
 msgid "Magnifier box"
-msgstr ""
+msgstr "拡大鏡ボックス"
 
 msgid "Magnifier image"
-msgstr ""
+msgstr "拡大鏡画像"
 
 msgid "Magnifier image."
-msgstr ""
+msgstr "拡大鏡の画像"
 
-#, fuzzy
 msgid "Mode"
-msgstr "回避"
+msgstr "形式"
 
-#, fuzzy
 msgid "Mode."
-msgstr "回避"
+msgstr "形式"
 
-#, fuzzy
 msgid "Radius"
-msgstr "四隅の丸み"
+msgstr "半径"
 
-#, fuzzy
 msgid "Radius of the magnification area."
-msgstr "枠の四隅の丸み"
+msgstr "拡大域の半径"
 
 msgid "Width"
 msgstr "幅"
 
 msgid "X offset of the cursor"
-msgstr ""
+msgstr "カーソル X 軸オフセット"
 
 msgid "X offset of the cursor."
-msgstr ""
+msgstr "マウスカーソルの X 軸方向のオフセット"
 
 msgid "Y offset of the cursor"
-msgstr ""
+msgstr "カーソル Y 軸オフセット"
 
 msgid "Y offset of the cursor."
-msgstr ""
+msgstr "マウスカーソルの Y 軸方向のオフセット"
 
 msgid "Zoom factor for keyboard initiated magnifier."
-msgstr ""
+msgstr "拡大鏡がキーボードにより開始されたときのズーム係数"
 
 msgid "Ignore sticky windows in the calculations"
-msgstr ""
+msgstr "計算時にスティッキー・ウィンドウを無視"
 
 msgid "Maximumize"
-msgstr ""
+msgstr "最許容大化"
 
-#, fuzzy
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
-msgstr "最大ウィンドウサイズ（画面幅に対する割合％）"
+msgstr "ウィンドウの最許容大化（画面の空きスペースに合うようにサイズ変更）"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
 msgstr ""
+"ウィンドウの最許容大化に使用するスペースの計算時に、スティッキー・ウィンドウ"
+"を存在しないものとして扱う"
 
 msgid ""
 "Trigger a resize of the window currently focused so it fits as much of the "
 "available screenspae as possible."
 msgstr ""
+"現在フォーカスのあるウィンドウを利用可能な画面スペースに最大限合わせるサイズ"
+"変更のオンオフ"
 
 msgid "Trigger maximumize"
-msgstr ""
+msgstr "最許容大化のオンオフ"
 
 msgid "Accumulation buffer"
 msgstr "蓄積バッファ"
@@ -2379,6 +2391,9 @@ msgstr "呼び出すアクション"
 msgid "Assign mousegestures to any existing action"
 msgstr "既存のあらゆるアクションにマウスジェスチャーを割り当て"
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 msgid "Gesture"
 msgstr "ジェスチャー"
 
@@ -2387,6 +2402,11 @@ msgstr "ジェスチャー割り当て"
 
 msgid "Gestures"
 msgstr "ジェスチャー"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr "アクションに割り当てるマウスジェスチャー"
@@ -2404,14 +2424,13 @@ msgid "Start gesture"
 msgstr "ジェスチャー開始"
 
 msgid "Misc"
-msgstr ""
+msgstr "その他"
 
-#, fuzzy
 msgid "Mouse position polling"
-msgstr "マウスによる移動"
+msgstr "マウス位置問い合わせ"
 
 msgid "Updates the mouse pointer position from the xserver"
-msgstr ""
+msgstr "マウスポインタ位置を X サーバから更新"
 
 msgid "Begin Gesture"
 msgstr "ジェスチャーを開始"
@@ -3151,11 +3170,11 @@ msgstr "ウィンドウタイトル表示のフォントの大きさ"
 msgid "Highlight Color"
 msgstr "強調表示色"
 
+msgid "Highlighted window only"
+msgstr "強調表示されたウィンドウのみ"
+
 msgid "Highlights the hovered window with the given color"
 msgstr "ホバーされているウィンドウを指定色で強調表示"
-
-msgid "Hovered window only"
-msgstr "カーソル下のウィンドウのみ"
 
 msgid "No display"
 msgstr "非表示"
@@ -3265,15 +3284,18 @@ msgid ""
 "management protocol. This setting only should be used in KDE, as only KDE's "
 "session manager also saves those applications."
 msgstr ""
+"X のセッションマネジメント・プロトコルをサポートしていないレガシー・アプリの"
+"保存や復元も試みます。これは KDE でのみ使用されるべき設定です。KDE のセッショ"
+"ン・マネージャだけがそうしたアプリケーションの保存も行うからです。"
 
 msgid "Save Legacy Apps"
-msgstr ""
+msgstr "レガシー・アプリの保存"
 
 msgid "Session Management"
-msgstr ""
+msgstr "セッション・マネジメント"
 
 msgid "Talk to session manager and save/load window state"
-msgstr ""
+msgstr "セッション・マネージャと対話してウィンドウの状態を保存/読み込み"
 
 msgid "Animation duration"
 msgstr "アニメーション持続時間"
@@ -3496,102 +3518,79 @@ msgid ""
 msgstr "デスクトップの表示モードに入った際に視界から除くウィンドウの種類"
 
 msgid "Additive blending"
-msgstr ""
+msgstr "加色合成"
 
-#, fuzzy
 msgid "Additive blending of particles"
-msgstr "粒子数"
+msgstr "粒子の加色合成"
 
-#, fuzzy
 msgid "Darken backgound"
-msgstr "背景を暗くする"
+msgstr "背景の暗さ"
 
-#, fuzzy
 msgid "Darken background under particles"
-msgstr "背景を暗くする"
+msgstr "粒子の下の背景を暗くする"
 
 msgid "Emiters"
-msgstr ""
+msgstr "放出体"
 
-#, fuzzy
 msgid "Have random colors for the particles"
-msgstr "炎効果にランダム色の色付け、いわゆる神秘的な炎"
+msgstr "粒子をランダムな色で色付け"
 
-#, fuzzy
 msgid "Increases the visibility of the mouse pointer"
-msgstr "マウスポインタを拡大"
+msgstr "マウスポインタの視認性の向上"
 
-#, fuzzy
 msgid "Number Of Particles"
-msgstr "粒子数"
+msgstr "粒子の数"
 
-#, fuzzy
 msgid "Number of particle emiters."
-msgstr "粒子数"
+msgstr "粒子放出体の数"
 
-#, fuzzy
 msgid "Number of particles."
-msgstr "粒子数"
+msgstr "粒子の数"
 
-#, fuzzy
 msgid "Particle Color"
-msgstr "炎の色"
+msgstr "粒子の色"
 
-#, fuzzy
 msgid "Particle Life"
-msgstr "炎の寿命"
+msgstr "粒子の寿命"
 
-#, fuzzy
 msgid "Particle Options"
-msgstr "その他オプション"
+msgstr "粒子のオプション"
 
-#, fuzzy
 msgid "Particle Size"
-msgstr "炎の大きさ"
+msgstr "粒子の大きさ"
 
-#, fuzzy
 msgid "Particle Slowdown"
-msgstr "炎のスローダウン"
+msgstr "粒子の減速"
 
-#, fuzzy
 msgid "Particle color."
-msgstr "炎の色"
+msgstr "粒子の色"
 
-#, fuzzy
 msgid "Particle life."
-msgstr "炎の寿命"
+msgstr "粒子の寿命"
 
-#, fuzzy
 msgid "Particle size."
-msgstr "炎の大きさ"
+msgstr "粒子の大きさ"
 
-#, fuzzy
 msgid "Particle slowdown."
-msgstr "炎のスローダウン"
+msgstr "粒子の減速"
 
-#, fuzzy
 msgid "Randomly Colored Particles"
-msgstr "ランダム色の炎"
+msgstr "ランダム色の粒子"
 
-#, fuzzy
 msgid "Ring radius"
-msgstr "四隅の丸み"
+msgstr "リングの半径"
 
-#, fuzzy
 msgid "Rotation speed"
-msgstr "アニメーションの速度"
+msgstr "回転速度"
 
-#, fuzzy
 msgid "Rotation speed."
-msgstr "アニメーションの速度"
+msgstr "回転速度"
 
-#, fuzzy
 msgid "Show mouse"
-msgstr "マウスに追従"
+msgstr "マウス呈示"
 
-#, fuzzy
 msgid "Toggle the mouse pointer trail."
-msgstr "マウスポインタを拡大"
+msgstr "マウスポインタのたなびきのオンオフ"
 
 msgid "Alt"
 msgstr "Alt"
@@ -4717,6 +4716,12 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "次善策"
+
+#~ msgid "Tilt view"
+#~ msgstr "傾けた表示"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "展開モードでウィンドウを傾けて表示"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "ウィンドウを座標X、Yへ移動"

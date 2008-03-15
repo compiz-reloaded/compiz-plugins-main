@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:09+0530\n"
+"POT-Creation-Date: 2008-03-15 20:10+0530\n"
 "PO-Revision-Date: 2008-02-23 00:18+0100\n"
 "Last-Translator: Felipe Montero <hanamishi@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -1325,6 +1325,24 @@ msgstr ""
 msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 
+#, fuzzy
+msgid "Curve"
+msgstr "Doblado con curvas"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Intensidad del desenfoque de movimiento."
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Duración"
+
+msgid "Deformation of the expo wall"
+msgstr ""
+
+msgid "Distance between viewports"
+msgstr ""
+
 msgid "Distance of the expo wall"
 msgstr ""
 
@@ -1388,6 +1406,12 @@ msgstr ""
 msgid "Immediate moves"
 msgstr ""
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 #, fuzzy
 msgid "Mipmaps"
 msgstr "Crear mipmaps"
@@ -1429,15 +1453,19 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr ""
 
-#, fuzzy
-msgid "Tilt view"
-msgstr "Mosaico"
-
-msgid "Tilt window view in expo mode"
+msgid "Strength of the deformation in curve mode"
 msgstr ""
+
+#, fuzzy
+msgid "Tilt"
+msgstr "Mosaico"
 
 msgid "Timeframe to execute a double click"
 msgstr ""
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Visor Derecho"
 
 msgid "Vortex"
 msgstr ""
@@ -2477,6 +2505,9 @@ msgstr ""
 msgid "Assign mousegestures to any existing action"
 msgstr ""
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 #, fuzzy
 msgid "Gesture"
 msgstr "Texturas"
@@ -2487,6 +2518,11 @@ msgstr ""
 #, fuzzy
 msgid "Gestures"
 msgstr "Texturas"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr ""
@@ -3292,12 +3328,12 @@ msgstr ""
 msgid "Highlight Color"
 msgstr "Color de resalte de las fichas"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Mover ventana hacia X o Y"
+
 msgid "Highlights the hovered window with the given color"
 msgstr ""
-
-#, fuzzy
-msgid "Hovered window only"
-msgstr "Mover ventana hacia X o Y"
 
 #, fuzzy
 msgid "No display"
@@ -4961,6 +4997,10 @@ msgstr "Ventanas que deberían ser fundidas con el escritorio"
 
 msgid "Workarounds"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Tilt view"
+#~ msgstr "Mosaico"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Mover ventana hacia X o Y"

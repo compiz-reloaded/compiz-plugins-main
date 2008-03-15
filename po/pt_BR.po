@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:11+0530\n"
+"POT-Creation-Date: 2008-03-15 20:12+0530\n"
 "PO-Revision-Date: 2007-12-15 23:42+0100\n"
 "Last-Translator: Rodolfo Jose Ferreira <rodolfopacas@gmail.com>\n"
 "Language-Team: Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
@@ -1314,6 +1314,26 @@ msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 "Tecla de atalho para mudar para a próxima janela de visualização no modo expo"
 
+#, fuzzy
+msgid "Curve"
+msgstr "Dobras Curvadas"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Força da Distorção de Movimento."
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Duração"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Distância do muro expo"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Mudar para a janela de visualização 1"
+
 msgid "Distance of the expo wall"
 msgstr "Distância do muro expo"
 
@@ -1374,6 +1394,12 @@ msgstr "Esconder painéis quando em modo expo"
 msgid "Immediate moves"
 msgstr "Movimentos imediatos"
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 msgid "Mipmaps"
 msgstr "Mipmaps"
 
@@ -1417,14 +1443,19 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Mostra uma reflexão das janelas de visualização no chão"
 
-msgid "Tilt view"
-msgstr "Inclinar vista"
+msgid "Strength of the deformation in curve mode"
+msgstr ""
 
-msgid "Tilt window view in expo mode"
-msgstr "Inclina a vista de janelas em modo expo"
+#, fuzzy
+msgid "Tilt"
+msgstr "Mosaico"
 
 msgid "Timeframe to execute a double click"
 msgstr "Espaço de tempo para executar duplo clique"
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Alternador de janelas de visualização"
 
 msgid "Vortex"
 msgstr "Vórtex"
@@ -2480,6 +2511,9 @@ msgstr ""
 msgid "Assign mousegestures to any existing action"
 msgstr ""
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 #, fuzzy
 msgid "Gesture"
 msgstr "Começar Gesto"
@@ -2490,6 +2524,11 @@ msgstr ""
 #, fuzzy
 msgid "Gestures"
 msgstr "Texturas"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr ""
@@ -3273,13 +3312,13 @@ msgstr "Tamanho da fonte do título da janela"
 msgid "Highlight Color"
 msgstr "Cor de realce"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Mover janela para x, y"
+
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidencia a janela sobre a qual paira o cursor do mouse com a cor escolhida"
-
-#, fuzzy
-msgid "Hovered window only"
-msgstr "Mover janela para x, y"
 
 #, fuzzy
 msgid "No display"
@@ -4903,6 +4942,12 @@ msgstr "Janelas \"em todos as áreas de trabalho\" que devem ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correções de bug"
+
+#~ msgid "Tilt view"
+#~ msgstr "Inclinar vista"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Inclina a vista de janelas em modo expo"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Mover janela para x, y"

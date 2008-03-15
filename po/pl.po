@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:11+0530\n"
-"PO-Revision-Date: 2008-02-16 16:10+0100\n"
+"POT-Creation-Date: 2008-03-15 20:11+0530\n"
+"PO-Revision-Date: 2008-02-28 11:13+0100\n"
 "Last-Translator: lukasz deren <lukaszderen@gmail.com>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -64,11 +64,11 @@ msgid "Change the speed of the 3D animation"
 msgstr "Zmiana prędkości animacji 3D"
 
 msgid "Color of an inactive window's depth"
-msgstr ""
+msgstr "Kolor głębi nieaktywnego okna"
 
 #, fuzzy
 msgid "Color of the active window's depth"
-msgstr "Przełącza przekierowywanie okna"
+msgstr "Przełącza głębi aktywnego okna"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "Podnosi okna podczas obracania kostki"
@@ -189,13 +189,11 @@ msgstr ""
 msgid "Angle of window at the end of the animation."
 msgstr "Zmiana prędkości animacji 3D"
 
-#, fuzzy
 msgid "Animation Selection"
-msgstr "Opcje animacji"
+msgstr "Wybór animacji"
 
-#, fuzzy
 msgid "Animation Time Step"
-msgstr "Prędkość Animacji"
+msgstr "Krok Animacji"
 
 msgid "Animation Time Step For Intense Effects"
 msgstr "Interwał czasowy animacji dla Intensywnych Efektów"
@@ -223,11 +221,11 @@ msgid "Automatic"
 msgstr "Automatyczny"
 
 msgid "Away Angle"
-msgstr ""
+msgstr "Kąt oddalenia"
 
 #, fuzzy
 msgid "Away Position"
-msgstr "Pozycja w poziomie"
+msgstr "Pozycja oddalenia"
 
 msgid "Beam"
 msgstr "Promień"
@@ -247,7 +245,7 @@ msgid "Beam Spacing"
 msgstr "Odległość między promieniami"
 
 msgid "Beam Up"
-msgstr ""
+msgstr "Promień aktywny"
 
 #, fuzzy
 msgid "Beam Width"
@@ -531,12 +529,14 @@ msgid "Out"
 msgstr "Wyjście"
 
 msgid "Pool"
-msgstr ""
+msgstr "Pula"
 
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
 msgstr ""
+"Pula efektów do wybierania z, jeśli efekt losowy jest wybrany. Kliknij reset "
+"żeby przywrócić pełną listę."
 
 msgid "Random"
 msgstr "Losowe"
@@ -1065,7 +1065,7 @@ msgid "Switch filter"
 msgstr "Zmień filtr"
 
 msgid "Toggle filtering for currently focused window."
-msgstr ""
+msgstr "Zmień filtrowanie dla aktualnie podświetlonego okna."
 
 #, fuzzy
 msgid "Toggle filtering for every window on the screen."
@@ -1328,6 +1328,26 @@ msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 "Przyporządkowanie klaiwsza do następnego wirtualnego pulpitu w trybie expo"
 
+#, fuzzy
+msgid "Curve"
+msgstr "Zakrzywione Składanie"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Stopień rozmywania."
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Czas trwania"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Dystans od ściany Expo"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Zmień na pulpit wirtualny %d"
+
 msgid "Distance of the expo wall"
 msgstr "Dystans od ściany Expo"
 
@@ -1342,13 +1362,13 @@ msgid "Duration of the zoomout animation"
 msgstr "Czas (w milisekundach) trwania animacji rozmieszczenia"
 
 msgid "Engage wall expo mode button binding"
-msgstr ""
+msgstr "Aktywuj przypisanie przycisków dla ścian trybu expo"
 
 msgid "Engage wall expo mode edge binding"
-msgstr ""
+msgstr "Aktywuj przypisanie krawędzi dla ścian trybu expo"
 
 msgid "Engage wall expo mode key binding"
-msgstr ""
+msgstr "Aktywuj przypisanie klawiszy dla ścian trybu expo"
 
 msgid "Exit expo"
 msgstr "Wyjdź z Expo"
@@ -1372,7 +1392,7 @@ msgid "Expo key"
 msgstr "Klawisz Expo"
 
 msgid "Expo mode aspect ratio"
-msgstr ""
+msgstr "Korekcja perspektywy trybu expo"
 
 #, fuzzy
 msgid "Fade + Zoom"
@@ -1389,6 +1409,12 @@ msgstr "Ukryj panele/paski w trybie expo."
 
 msgid "Immediate moves"
 msgstr "Natychmiastowe ruchy"
+
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
 
 msgid "Mipmaps"
 msgstr "Mipmapy"
@@ -1421,24 +1447,32 @@ msgstr "Współczynnik skalowania odbicia ściany"
 msgid ""
 "Selects how the expo wall is displayed if multiple output devices are used."
 msgstr ""
+"Wybierz jak ściany expo są wyświetlane jeśli używasz wiele urządzeń "
+"wyświetlających"
 
 msgid ""
 "Selects if windows movements in expo mode should be immediate - this among "
 "other things disables wobbliness"
 msgstr ""
+"Wybierz czy ruchy okien w trybie expo powinny być natychmiastowe - to oprócz "
+"innych rzeczy wyłącza trzęsienie się"
 
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Pokazuje odbicie wirtualnych pulpitów na ziemi."
 
+msgid "Strength of the deformation in curve mode"
+msgstr ""
+
 #, fuzzy
-msgid "Tilt view"
+msgid "Tilt"
 msgstr "Rozmieszczanie okien"
 
-msgid "Tilt window view in expo mode"
-msgstr "Przechyl widok pulpitów w trybie expo"
-
 msgid "Timeframe to execute a double click"
-msgstr ""
+msgstr "Opóźnienie do wykonania podwójnego kliknięcia"
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Prawy pulpit"
 
 msgid "Vortex"
 msgstr "Wir"
@@ -1487,13 +1521,17 @@ msgid "Toggle window stickyness"
 msgstr "Przełącza lepkość okna"
 
 msgid "Always fit to window on focus track"
-msgstr ""
+msgstr "Zawsze dopasuj do okna na ścieżce podświetlenia"
 
 msgid ""
 "Always keep the zoomed area in sync with where the mouse is, and vice versa. "
 "Use this if you don't intend to draw a scaled pointer or hide the original "
 "pointer. The zoomed area will move as you move your mouse."
 msgstr ""
+"Zawsze pilnuj aby powiększony region byl zsynchronizowany z myszą i na "
+"odwrót. Używaj tylko jeśli nie zamierzasz rysować skalowanego albo ukrywać "
+"oryginalnego wskaźnika myszy. Powiększony region będzie się poruszał jak "
+"mysz."
 
 #, fuzzy
 msgid "Animation"
@@ -1503,20 +1541,25 @@ msgid ""
 "Attempt to keep the zoomed mouse visible by warping it when it is moved "
 "outside the zoom area."
 msgstr ""
+"Spróbuj zachować powiekszony wskaźnik widoczny poprzed przemieszczenie kiedy "
+"jest poruszony poza obszar powiększenia."
 
 msgid "Center the mouse"
 msgstr "Wyśrodkuj mysz"
 
 msgid "Enable focus tracking"
-msgstr ""
+msgstr "Włącz śledzenie fokusu"
 
 msgid "Enable this to get a gradually larger mouse pointer as you zoom in"
 msgstr ""
+"Aktywuj to aby mieć powiekszający się wskaźnik myszy podczas powiększania"
 
 msgid ""
 "Enable this to target the focused window when jumping to a specific zoom "
 "level. Disable to target mouse."
 msgstr ""
+"Aktywuj to aby wybierać podświetlone okno kiedy skaczesz do poszczególnego "
+"poziomu powiększenia. Wyłącz aby wybierać myszą."
 
 #, fuzzy
 msgid "Enhanced Zoom Desktop"
@@ -1530,44 +1573,50 @@ msgid "Filter Linear"
 msgstr "Filtruj liniowo"
 
 msgid "Fit the window to the zoom level"
-msgstr ""
+msgstr "Dopasuj okno do powiększenia."
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking."
 msgstr ""
+"Dopasuj powiększony region do okna kiedy rusza sie on jako rezultat "
+"śledzenia podświetlenia okna."
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking. Even when not initially zoomed in."
 msgstr ""
+"Dopasuj powiększony region do okna kiedy rusza sie on jako rezultat "
+"śledzenia podświetlenia okna. Nawet jeśli nie było początkowo powiększone."
 
 msgid "Fit zoom level to window on focus change"
-msgstr ""
+msgstr "Dopasuj powiększenie do okna podczas zmiany aktywnego okna"
 
 msgid "Fit zoomed area to window"
-msgstr ""
+msgstr "Dopasuj powiększenie do okna"
 
 #, fuzzy
 msgid "Fitting"
-msgstr "Ustawienia"
+msgstr "Dopasowanie"
 
 msgid "Focus Tracking"
-msgstr ""
+msgstr "Śledzenie aktywnych okien"
 
 msgid "Follow Focus Delay"
-msgstr ""
+msgstr "Opóźnienie śledzenia aktywnych okien"
 
 msgid "Hide original mouse pointer"
-msgstr ""
+msgstr "Ukryj oryginalny wskaźnik myszy"
 
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
-msgstr ""
+msgstr "Ukrywa oryginalny wskaźnik myszy kiedy powiekszony"
 
 msgid ""
 "How often to poll the mouse position, in miliseconds. Reduce this to reduce "
 "choppy behavior."
 msgstr ""
+"Jak często odczytywać pozycję myszy, w milisekundach. Zmniejsz aby "
+"zredukować krztuszenie sie."
 
 #, fuzzy
 msgid "Mouse Behaviour"
@@ -1596,24 +1645,27 @@ msgid ""
 "Only attempt to center newly focused windows if the mouse hasn't moved in "
 "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgstr ""
+"Tylko probuj wyśrodkować aktywne okna jeśli wskaźnik myszy się nie ruszyl w "
+"tym przedziale sekund. Użyj tego aby zapobiec skakaniu przy używaniu "
+"niechlujnego podświetlania"
 
 msgid "Pan (move) the zoom area down"
-msgstr ""
+msgstr "Przesuń region powiększenia w dół"
 
 msgid "Pan (move) the zoom area left"
-msgstr ""
+msgstr "Przesuń region powiekszenia w lewo"
 
 msgid "Pan (move) the zoom area right"
-msgstr ""
+msgstr "Przesuń region powiększenia w prawo"
 
 msgid "Pan (move) the zoom area up"
-msgstr ""
+msgstr "Przesuń region powiększenia w górę"
 
 msgid "Pan Factor"
-msgstr ""
+msgstr "Współczynnik przesunięcia"
 
 msgid "Pan Zoom Down"
-msgstr ""
+msgstr "Przesuń region powiększenia w dół"
 
 #, fuzzy
 msgid "Pan Zoom Left"
@@ -1624,10 +1676,10 @@ msgid "Pan Zoom Right"
 msgstr "Zetnij prawy dolny narożnik"
 
 msgid "Pan Zoom Up"
-msgstr ""
+msgstr "Przesuń region powiększenia w górę"
 
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
-msgstr ""
+msgstr "Przesuń region powiększenia gdy kursor wykroczy poza widzialny obszar."
 
 #, fuzzy
 msgid "Panning"
@@ -1635,12 +1687,13 @@ msgstr "Przesuwanie za pomocą myszy"
 
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
 msgstr ""
+"Ustawia kursor na środku ekranu (Nie ważne jaki jest poziom powiększenia)"
 
 msgid "Resize the window so it matches the current zoom level."
-msgstr ""
+msgstr "Zmienia rozmiar okna tak żeby dopasowało się do poziomu powiększenia"
 
 msgid "Restrain the mouse to the zoom area"
-msgstr ""
+msgstr "Ogranicz ruch myszy do powiększonego obszaru"
 
 msgid "Scale the mouse pointer"
 msgstr "Skaluj kursor myszy"
@@ -2520,6 +2573,9 @@ msgstr ""
 msgid "Assign mousegestures to any existing action"
 msgstr ""
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 #, fuzzy
 msgid "Gesture"
 msgstr "Gest"
@@ -2531,6 +2587,11 @@ msgstr "Przypisz gesty"
 #, fuzzy
 msgid "Gestures"
 msgstr "Gesty"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr ""
@@ -3324,12 +3385,12 @@ msgstr "Rozmiar czcionki dla tytułu okna"
 msgid "Highlight Color"
 msgstr "Kolor podświetlenia"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Przenieś okno do x, y"
+
 msgid "Highlights the hovered window with the given color"
 msgstr ""
-
-#, fuzzy
-msgid "Hovered window only"
-msgstr "Przenieś okno do x, y"
 
 #, fuzzy
 msgid "No display"
@@ -4947,6 +5008,13 @@ msgstr "Okna na wszystkich pulpitach które powinny być lepkie"
 
 msgid "Workarounds"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Tilt view"
+#~ msgstr "Rozmieszczanie okien"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Przechyl widok pulpitów w trybie expo"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Przenieś okno do x, y"

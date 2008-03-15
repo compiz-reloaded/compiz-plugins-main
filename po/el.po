@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:09+0530\n"
-"PO-Revision-Date: 2008-02-18 11:19+0100\n"
-"Last-Translator: Jim Dusis <jimdusis@yahoo.gr>\n"
+"POT-Creation-Date: 2008-03-15 20:10+0530\n"
+"PO-Revision-Date: 2008-02-29 16:23+0100\n"
+"Last-Translator: Koufakis Emmanouel <koufakis@csd.uoc.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1296,6 +1296,26 @@ msgstr ""
 "Συνδυασμός κουμπιών για αλλαγή στην επόμενη εικονική επιφάνεια εργασίας στο "
 "expo"
 
+#, fuzzy
+msgid "Curve"
+msgstr "Καμπυλωτή Πτυχή"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Ισχύς Θολώματος Κίνησης."
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Διάρκεια"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Απόσταση του τοίχου του expo"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Αλλαγή στην εικονική επιφάνεια εργασίας 1"
+
 msgid "Distance of the expo wall"
 msgstr "Απόσταση του τοίχου του expo"
 
@@ -1356,6 +1376,12 @@ msgstr "Απόκρυψη πάνελ/docks στο expo."
 msgid "Immediate moves"
 msgstr "Άμεσες κινήσεις"
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 msgid "Mipmaps"
 msgstr "Mipmaps"
 
@@ -1399,14 +1425,19 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Απεικόνιση αντανάκλασης των επιφανειών εργασίας στο έδαφος"
 
-msgid "Tilt view"
-msgstr "Απεικόνιση Κλίσης"
+msgid "Strength of the deformation in curve mode"
+msgstr ""
 
-msgid "Tilt window view in expo mode"
-msgstr "Απεικόνιση κλίσης παραθύρου στο expo mode"
+#, fuzzy
+msgid "Tilt"
+msgstr "Πλακίδιο"
 
 msgid "Timeframe to execute a double click"
 msgstr "Χρονοδιάγραμμα για εκτέλεση διπλού κλικ"
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Επιλογέας Εικονικής Επιφάνειας Εργασίας"
 
 msgid "Vortex"
 msgstr "Κορυφαίο"
@@ -1448,7 +1479,7 @@ msgid "Toggle window redirect"
 msgstr "Εκκίνηση επαναδιεύθυνσης παραθύρου"
 
 msgid "Toggle window stickyness"
-msgstr "Εκκίνηση της καρφιτσώματος παραθύρου"
+msgstr "Εκκίνηση του καρφιτσώματος παραθύρου"
 
 msgid "Always fit to window on focus track"
 msgstr "Πάντα ταίριαγμα στο παράθυρο κατα το καθάρισμα εστίασης"
@@ -1798,10 +1829,10 @@ msgid "Animation Options"
 msgstr "Επιλογές Γραφικής Κίνησης"
 
 msgid "Autotab windows on creation"
-msgstr "Θέσε αυτόματα ετικέτες στα παράθυρα κατα τη δημιουργία τους"
+msgstr "Θέσε αυτόματα τα παράθυρα σε καρτέλες κατα τη δημιουργία τους"
 
 msgid "Autotab windows with themselves on window creation"
-msgstr "Θέσε αυτόματα ετικέτες στα παράθυρα με τα ίδια κατα τη δημιουργία τους"
+msgstr "Θέσε αυτόματα καρτέλες στα παράθυρα με τα ίδια κατα τη δημιουργία τους"
 
 msgid "Border Radius"
 msgstr "Οριοθέτηση Ακτίνας"
@@ -1810,19 +1841,19 @@ msgid "Border Width"
 msgstr "Οριοθέτηση Πλάτους"
 
 msgid "Border color of the tab bar"
-msgstr "Οριοθέτηση χρώματος της μπάρας ετικετών"
+msgstr "Οριοθέτηση χρώματος της μπάρας καρτελών"
 
 msgid "Brightness of selected windows"
 msgstr "Φωτεινότητα των επιλεγμένων παραθύρων"
 
 msgid "Change Tab Left"
-msgstr "Αλλαγή Ετικέτας Αριστερά"
+msgstr "Αλλαγή Καρτέλας Αριστερά"
 
 msgid "Change Tab Right"
-msgstr "Αλλαγή Ετικέτας Δεξιά"
+msgstr "Αλλαγή Καρτέλας Δεξιά"
 
 msgid "Change tab animation duration"
-msgstr "Αλλαγή της διάρκειας γραφικής κίνησης της ετικέτας"
+msgstr "Αλλαγή της διάρκειας γραφικής κίνησης της καρτέλας"
 
 msgid "Close Group"
 msgstr "Κλείσιμο Ομάδας"
@@ -1831,32 +1862,32 @@ msgid "Create mipmaps for thumbnails"
 msgstr "Δημιουργία mipmaps για μικρογραφίες"
 
 msgid "Create mipmaps for thumbnails in the tab bar"
-msgstr "Δημιουργία mipmaps για μικρογραφίες στη μπάρα ετικετών"
+msgstr "Δημιουργία mipmaps για μικρογραφίες στη μπάρα καρτελών"
 
 msgid ""
 "Distance (in pixels) between the tab bar and the dragged slot for applying "
 "the spring model. If the distance is larger than that value, the model isn't "
 "applied."
 msgstr ""
-"Απόσταση (σε pixels) μεταξύ της μπάρας ετικετών και της τραβόμενης θυρίδας "
+"Απόσταση (σε pixels) μεταξύ της μπάρας καρτελών και της τραβόμενης θυρίδας "
 "για εφαρμογή του μοντέλου ελατηρίου. Αν η απόσταση είναι μεγαλύτερη απο την "
 "τιμή, το μοντέλο ελατηρίου δεν εφαρμόζεται."
 
 msgid "Duration (in s) of the animation that happens when changing tabs"
 msgstr ""
-"Διάρκεια (σε s) της γραφικής απεικόνισης που γίνεται σε αλλαγή ετικετών"
+"Διάρκεια (σε s) της γραφικής απεικόνισης που γίνεται κατά την αλλαγή καρτελών"
 
 msgid "Duration (in s) of the tab bar fading animation when showing/hiding it"
 msgstr ""
-"Διάρκεια (σε s) της γραφικής απεικόνισης ξεθωριάσματος της μπάρας ετικετών "
+"Διάρκεια (σε s) της γραφικής απεικόνισης ξεθωριάσματος της μπάρας καρτελών "
 "όταν εμφανίζεται/εξαφανίζεται"
 
 msgid "Duration (in s) of the tab bar pulse animation"
-msgstr "Διάρκεια (σε s) της γραφικής απεικόνισης παλμού της μπάρας ετικετών"
+msgstr "Διάρκεια (σε s) της γραφικής απεικόνισης παλμού της μπάρας καρτελών"
 
 msgid "Duration (in s) of the tab bar reflex animation"
 msgstr ""
-"Διάρκεια (σε s) της γραφικής απεικόνισης αντανάκλασης της μπάρας ετικετών"
+"Διάρκεια (σε s) της γραφικής απεικόνισης αντανάκλασης της μπάρας καρτελών"
 
 msgid "Duration (in s) of the text fading animation when showing/hiding it"
 msgstr ""
@@ -1870,7 +1901,7 @@ msgid "Enable grouped window glowing"
 msgstr "Ενεργοποίηση λάμψης ομαδοποιημένου παραθύρου"
 
 msgid "Fade time for tab bar animations"
-msgstr "Χρόνος ξεθωριάσματος για τις γραφικές απεικονήσεις της μπάρας ετικετών"
+msgstr "Χρόνος ξεθωριάσματος για τις γραφικές απεικονίσεις της μπάρας καρτελών"
 
 msgid "Fade time for text animations"
 msgstr "Χρόνος ξεθωριάσματος για τις γραφικές απεικονήσεις κειμένου"
@@ -1879,7 +1910,7 @@ msgid "Fill color of the selection rectangle"
 msgstr "Χρώμα γεμίσματος του επιλεγμένου ορθογωνίου"
 
 msgid "Fill color of the tab bar"
-msgstr "Χρώμα γεμίσματος της μπάρας ετικετών"
+msgstr "Χρώμα γεμίσματος της μπάρας καρτελών"
 
 msgid "Font Color"
 msgstr "Χρώμα Γραμματοσειράς"
@@ -1915,7 +1946,7 @@ msgid "Group Windows"
 msgstr "Ομαδοποίηση Παραθύρων"
 
 msgid "Group and Tab Windows"
-msgstr "Ομαδοποίηση κ Τοποθέτηση Ετικετών στα Παράθυρα"
+msgstr "Ομαδοποίηση κ Τοποθέτηση Καρτελών στα Παράθυρα"
 
 msgid "Group the windows after selection"
 msgstr "Ομαδοποίηση Παραθύρων μετα την επιλογή τους"
@@ -2022,8 +2053,8 @@ msgstr "Αδιαφάνεια των επιλεγμένων παραθύρων"
 
 msgid "Play animations on the tab bar e.g. on fade in."
 msgstr ""
-"Αναπαραγωγή γραφικών απεικονίσεων στην μπάρα ετικετών κτλ στο ξεθώριασμα "
-"προς τα μέσα."
+"Αναπαραγωγή γραφικών απεικονίσεων στην μπάρα καρτελών π.χ κατά την σταδιακή "
+"εμφάνιση."
 
 msgid "Precision"
 msgstr "Ακρίβεια"
@@ -2256,153 +2287,134 @@ msgstr "Πρόσθετο φορμά εικόνας JPEG"
 msgid "Quality of compression when saving JPEG images"
 msgstr "Ποιότητα συμπίεσης όταν αποθηκεύονται εικόνες JPEG"
 
-#, fuzzy
 msgid "Background/Window brightness."
-msgstr "Φωτεινότητα φόντου."
+msgstr "Φωτεινότητα Φόντου/Παραθύρου."
 
-#, fuzzy
 msgid "Background/Window saturation."
-msgstr "Κορεσμός Φόντου."
+msgstr "Κορεσμός Φόντου/Παραθύρου. "
 
-#, fuzzy
 msgid "Fade In/Out Time"
-msgstr "Χρόνος Ξεθωριάσματος Μέσα/Έξω."
+msgstr "Χρόνος Σταδιακής Εμφάνισης/Εξαφάνισης"
 
 msgid "Fade In/Out Time."
-msgstr "Χρόνος Ξεθωριάσματος Μέσα/Έξω."
+msgstr "Σταδιακή Εμφάνιση/Εξαφάνιση"
 
-#, fuzzy
 msgid "Login"
-msgstr "Εκκίνηση"
+msgstr "Σύνδεση"
 
-#, fuzzy
 msgid "Login Window Match"
-msgstr "Ταίριασμα Παραθύρου"
+msgstr "Ταιριάσμα Παραθύρου Σύνδεσης"
 
-#, fuzzy
 msgid "Login Window match"
-msgstr "Ταίριασμα Παραθύρου"
+msgstr "Ταιριάσμα Παραθύρου Σύνδεσης"
 
 msgid "Login/Logout"
-msgstr ""
+msgstr "Σύνδεση/Αποσύνδεση"
 
 msgid "Login/Logout effect"
-msgstr ""
+msgstr "Εφέ Σύνδεσης/Αποσύνδεσης"
 
 msgid "Logout"
-msgstr ""
+msgstr "Αποσύνδεση"
 
-#, fuzzy
 msgid "Logout Window Match"
-msgstr "Ταίριασμα Ομαδοποιημένων Παραθύρων"
+msgstr "Ταιριάσμα Παραθύρου Αποσύνδεσης"
 
-#, fuzzy
 msgid "Logout Window match"
-msgstr "Ταίριασμα Παραθύρου"
+msgstr "Ταιριάσμα Παραθύρου Αποσύνδεσης "
 
-#, fuzzy
 msgid "Window opacity."
-msgstr "Αδιαφάνεια Παραθύρου"
+msgstr "Αδιαφάνεια παραθύρου."
 
-#, fuzzy
 msgid "Border color"
-msgstr "Χρώμα Ορίου Ετικετών"
+msgstr "Χρώμα ορίου"
 
-#, fuzzy
 msgid "Border width"
-msgstr "Οριοθέτηση Πλάτους"
+msgstr "Πλάτος ορίου"
 
-#, fuzzy
 msgid "Border widtht."
-msgstr "Οριοθέτηση Πλάτους"
+msgstr "Πλάτος ορίου."
 
 msgid "Box height."
-msgstr ""
+msgstr "Ύψος κουτιού."
 
-#, fuzzy
 msgid "Box width."
-msgstr "Πλάτος ακτινοβολίας."
+msgstr "Πλάτος κουτιού."
 
-#, fuzzy
 msgid "Clip mask"
-msgstr "Mipmaps"
+msgstr ""
 
 msgid "Clip mask."
 msgstr ""
 
-#, fuzzy
 msgid "Fisheye"
-msgstr "Μέγεθος ψαριών"
+msgstr "Μάτι ψαριού"
 
 msgid "Height"
 msgstr "Ύψος"
 
 msgid "Image overlay"
-msgstr ""
+msgstr "Επίστρωση εικόνας"
 
-#, fuzzy
 msgid "Keep fully on screen"
-msgstr "Εμφάνιση FPS στην οθόνη"
+msgstr "Διατήρηση εντελώς στην οθόνη"
 
-#, fuzzy
 msgid "Keep fully on screen."
-msgstr "Εμφάνιση FPS στην οθόνη"
+msgstr "Διατήρηση εντελώς στην οθόνη."
 
 msgid "Magnifier"
-msgstr ""
+msgstr "Μεγενθυντικός Φακός"
 
 msgid "Magnifier box"
-msgstr ""
+msgstr "Κουτί μεγενθυντικού φακού"
 
 msgid "Magnifier image"
-msgstr ""
+msgstr "Εικόνα μεγενθυντικού φακού"
 
 msgid "Magnifier image."
-msgstr ""
+msgstr "Εικόνα μεγενθυντικού φακού."
 
-#, fuzzy
 msgid "Mode"
-msgstr "Ελιγμός"
+msgstr "Κατάσταση"
 
-#, fuzzy
 msgid "Mode."
-msgstr "Ελιγμός"
+msgstr "Κατάσταση."
 
-#, fuzzy
 msgid "Radius"
-msgstr "Ακτίνα Ορίου"
+msgstr "Ακτίνα"
 
-#, fuzzy
 msgid "Radius of the magnification area."
-msgstr "Ακτίνα της στρογγυλεμένης άκρης"
+msgstr "Ακτίνα της περιοχής που μεγενθύνεται."
 
 msgid "Width"
-msgstr "Πλάτο"
+msgstr "Πλάτος"
 
 msgid "X offset of the cursor"
-msgstr ""
+msgstr "Αρχή στον Χ άξονα για τον κέρσορα"
 
 msgid "X offset of the cursor."
-msgstr ""
+msgstr "Αρχή στον Χ άξονα για τον κέρσορα."
 
 msgid "Y offset of the cursor"
-msgstr ""
+msgstr "Αρχή στον Υ άξονα για τον κέρσορα"
 
 msgid "Y offset of the cursor."
-msgstr ""
+msgstr "Αρχή στον Υ άξονα για τον κέρσορα."
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
+"Παράγοντας ζουμ για τον μεγενθυντικό φακο που εκκινείται από το πληκτρολόγιο."
 
 msgid "Ignore sticky windows in the calculations"
-msgstr ""
+msgstr "Αγνόηση καρφιτσωμένων παραθύρων στους υπολογισμούς"
 
 msgid "Maximumize"
-msgstr ""
+msgstr "Μεγιστοποίηση"
 
-#, fuzzy
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
-msgstr "Μέγιστο μέγεθος παραθύρου (σε ποσοστό του πλάτους της οθόνης)"
+msgstr ""
+"Μέγιστοποιεί παράθυρα (μορφοποιώντας τα να ταιριάζουν στο διαθέσιμο χώρο της "
+"οθόνης)"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2468,6 +2480,9 @@ msgstr "Ενέργεια που θα επικληθεί"
 msgid "Assign mousegestures to any existing action"
 msgstr "Προσδιορισμός νευμάτων ποντικιού για μια υπάρχουσα ενέργεια"
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 msgid "Gesture"
 msgstr "Νεύμα"
 
@@ -2476,6 +2491,11 @@ msgstr "Προσδιορισμός νεύματος"
 
 msgid "Gestures"
 msgstr "Νεύματα"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr "Νεύμα ποντικιού για προσδιορισμό μιας ενέργειας σ' αυτό"
@@ -2993,7 +3013,7 @@ msgid "Display info on resize similar to metacity"
 msgstr "Εμφάνιση πληροφοριών στην μορφοποίηση παρόμοια του metacity"
 
 msgid "Fade time (in ms) for popup window"
-msgstr "Χρόνος ξεθωριάσματος (σε ms) για το παράθυρο popup"
+msgstr "Χρόνος ξεθωριάσματος (σε ms) για το αναδυόμενο παράθυρο"
 
 msgid "Gradient Color 1"
 msgstr "Χρώμα 1 Διαβάθμισης"
@@ -3255,11 +3275,12 @@ msgstr "Χρώμα γραμματοσειράς εμφάνισης του τίτ
 msgid "Highlight Color"
 msgstr "Χρώμα Τονισμού"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Το αιωρηθέν παράθυρο μόνο"
+
 msgid "Highlights the hovered window with the given color"
 msgstr "Τονίζει το παράθυρο που το ποντίκι μένει επάνω του με το δωθέν χρώμα."
-
-msgid "Hovered window only"
-msgstr "Το αιωρηθέν παράθυρο μόνο"
 
 msgid "No display"
 msgstr "Μη εμφάνιση"
@@ -3463,7 +3484,7 @@ msgid "Disabled"
 msgstr "Απενεργοποιημένο"
 
 msgid "Fade in/out speed"
-msgstr "Ταχύτητα Ξεθωριάσματος μέσα/έξω"
+msgstr "Ταχύτητα σταδιακής εμφάνισης/εξαφάνισης"
 
 msgid "Fade speed"
 msgstr "Ταχύτητα Ξεθωριάσματος"
@@ -3931,10 +3952,10 @@ msgid "Enable Titles"
 msgstr "Ενεργοποίηση Τίτλων"
 
 msgid "Fade In/Out Duration"
-msgstr "Διάρκεια Ξεθωριάσματος Μέσα/Έξω"
+msgstr "Διάρκεια σταδιακής εμφάνισης/εξαφάνισης"
 
 msgid "Fade In/Out Duration in seconds."
-msgstr "Διάρκεια Ξεθωριάσματος Μέσα/Έξω σε δευτερόλεπτα."
+msgstr "Διάρκεια σταδιακής εμφάνισης/εξαφάνισης σε δευτερόλεπτα."
 
 msgid "Generate Mipmaps"
 msgstr "Δημιουργία Mipmaps"
@@ -4865,6 +4886,12 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Μοντίφες"
+
+#~ msgid "Tilt view"
+#~ msgstr "Απεικόνιση Κλίσης"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Απεικόνιση κλίσης παραθύρου στο expo mode"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Μετακίνηση παραθύρου σε x, y"

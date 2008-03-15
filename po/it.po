@@ -46,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:10+0530\n"
-"PO-Revision-Date: 2008-02-02 15:28+0100\n"
+"POT-Creation-Date: 2008-03-15 20:11+0530\n"
+"PO-Revision-Date: 2008-03-14 23:01+0100\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -101,14 +101,12 @@ msgid "Change the speed of the 3D animation"
 msgstr "Modifica la velocità dell'animazione 3D"
 
 # (ndt) non mi convince per niente
-#, fuzzy
 msgid "Color of an inactive window's depth"
-msgstr "Profondità colore della finestra non attiva"
+msgstr "Colore profondità finestra non attiva"
 
 # (ndt) non mi convince per niente
-#, fuzzy
 msgid "Color of the active window's depth"
-msgstr "Profondità del colore della finestra attiva"
+msgstr "Colore profondità finestra attiva"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "Eleva le finestre alla rotazione del cubo"
@@ -1006,13 +1004,13 @@ msgid "Y position"
 msgstr "Posizione Y"
 
 msgid "Brightness Decrease"
-msgstr "Luminosità diminuisci"
+msgstr "Diminuzione luminosità"
 
 msgid "Brightness Increase"
-msgstr "Luminosità aumenta"
+msgstr "Aumento luminosità"
 
 msgid "Brightness Step"
-msgstr "Luminosità gradino"
+msgstr "Passo luminosità"
 
 msgid "Brightness and Saturation"
 msgstr "Luminosità e saturazione"
@@ -1020,7 +1018,6 @@ msgstr "Luminosità e saturazione"
 msgid "Brightness and Saturation adjustments"
 msgstr "Regolazioni luminosità e saturazione"
 
-# (ndt) suggerimento
 msgid "Brightness settings"
 msgstr "Impostazioni luminosità"
 
@@ -1037,35 +1034,34 @@ msgid "General"
 msgstr "Generale"
 
 msgid "Saturation Decrease"
-msgstr "Saturazione diminuisci"
+msgstr "Diminuzione saturazione"
 
 msgid "Saturation Increase"
-msgstr "Saturazione aumenta"
+msgstr "Aumento saturazione"
 
 msgid "Saturation Step"
-msgstr "Saturazione scalino"
+msgstr "Passo saturazione"
 
-# (ndt) suggerimento
 msgid "Saturation settings"
-msgstr "Settaggio saturazione"
+msgstr "Impostazioni saturazione"
 
 msgid "Saturation values for windows"
-msgstr "Valori di saturazione delle finestre"
+msgstr "Valori saturazione per le finestre"
 
 msgid "Saturation window values"
-msgstr "Valore di saturazione delle finestre"
+msgstr "Valori saturazione finestre"
 
 msgid "Saturation windows"
-msgstr "Saturazione delle finestre"
+msgstr "Saturazione finestre"
 
 msgid "Window specific"
-msgstr "Finestra-specifico"
+msgstr "Specifico alla finestra"
 
 msgid "Windows that should have a different brightness by default"
-msgstr "Finestre con luminosità diversa di definizione"
+msgstr "Finestre con luminosità diversa in modo predefinito"
 
 msgid "Windows that should have a different saturation by default"
-msgstr "Finestre con saturazione diversa di definizione"
+msgstr "Finestre con saturazione diversa in modo predefinito"
 
 # (NdT) nome del plug-in
 msgid "Color filter"
@@ -1085,14 +1081,14 @@ msgid "Filtered windows"
 msgstr "Finestre filtrate"
 
 msgid "Filters files"
-msgstr "File di filtri"
+msgstr "Filtri"
 
 msgid ""
 "List of plain text filter files that should be applied when filtering "
 "windows or screen."
 msgstr ""
-"Elenco di file di testo da applicare durante il filtraggio delle finestre o "
-"dello schermo."
+"Elenco di file di testo di filtro da applicare nel filtrare le finestre o lo "
+"schermo."
 
 msgid ""
 "Select filter to use from filters list : either apply all filters or only "
@@ -1387,6 +1383,21 @@ msgstr ""
 "Associazione pulsante per passare all'area di lavoro successiva nella "
 "modalità Expo"
 
+msgid "Curve"
+msgstr "Curva"
+
+msgid "Curve strength"
+msgstr "Forza della curva"
+
+msgid "Deformation"
+msgstr "Deformazione"
+
+msgid "Deformation of the expo wall"
+msgstr "Deformazione del muro «Expo»"
+
+msgid "Distance between viewports"
+msgstr "Distanza tra le aree di lavoro"
+
 msgid "Distance of the expo wall"
 msgstr "Distanza del muro «Expo»"
 
@@ -1451,6 +1462,12 @@ msgstr "Nasconde pannelli/dock nella modalità «Expo»."
 msgid "Immediate moves"
 msgstr "Movimenti immediati"
 
+msgid "Inactive viewport brightness."
+msgstr "Luminosità area di lavoro inattiva."
+
+msgid "Inactive viewport saturation."
+msgstr "Saturazione area di lavoro inattiva."
+
 msgid "Mipmaps"
 msgstr "Mipmap"
 
@@ -1496,16 +1513,17 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Mostra il riflesso delle aree di lavoro sulla base"
 
-# (ndt) opzione
-msgid "Tilt view"
-msgstr "Vista inclinata"
+msgid "Strength of the deformation in curve mode"
+msgstr "Forza della deformazione nella modalità «Curva»"
 
-# (ndt) suggerimento
-msgid "Tilt window view in expo mode"
-msgstr "Mostra le finestre inclinate"
+msgid "Tilt"
+msgstr "Inclina"
 
 msgid "Timeframe to execute a double click"
 msgstr "Arco di tempo per eseguire un doppio clic"
+
+msgid "Viewport distance"
+msgstr "Distanza area di lavoro"
 
 # (NdT) è diverso dal Vortice usato per Sidekick,
 # ma l'effetto è simile...
@@ -2431,172 +2449,154 @@ msgstr "Plug-in per il formato di immagine JPEG"
 msgid "Quality of compression when saving JPEG images"
 msgstr "Qualità della compressione nel salvare immagini JPEG"
 
-#, fuzzy
 msgid "Background/Window brightness."
-msgstr "Luminosità dello sfondo."
+msgstr "Luminosità dello sfondo/finestra."
 
-#, fuzzy
 msgid "Background/Window saturation."
-msgstr "Saturazione dello sfondo."
+msgstr "Saturazione dello sfondo/finestra."
 
-#, fuzzy
 msgid "Fade In/Out Time"
-msgstr "Durata della dissolvenza."
+msgstr "Durata dissolvenza"
 
 msgid "Fade In/Out Time."
 msgstr "Durata della dissolvenza."
 
 msgid "Login"
-msgstr ""
+msgstr "Accesso"
 
-#, fuzzy
 msgid "Login Window Match"
-msgstr "Finestre corrispondenti"
+msgstr "Corrispondenza finestra di accesso"
 
-#, fuzzy
 msgid "Login Window match"
-msgstr "Tipi di finestre"
+msgstr "Corrispondenza finestra di accesso"
 
 msgid "Login/Logout"
-msgstr ""
+msgstr "Accesso/Uscita"
 
 msgid "Login/Logout effect"
-msgstr ""
+msgstr "Effetto all'accesso/uscita"
 
 msgid "Logout"
-msgstr ""
+msgstr "Uscita"
 
-#, fuzzy
 msgid "Logout Window Match"
-msgstr "Corrispondenza finestre"
+msgstr "Corrispondenza finestra uscita"
 
-#, fuzzy
 msgid "Logout Window match"
-msgstr "Tipi di finestre"
+msgstr "Corrispondenza finestra uscita"
 
-#, fuzzy
 msgid "Window opacity."
-msgstr "Opacità finestra"
+msgstr "Opacità finestra."
 
-#, fuzzy
 msgid "Border color"
-msgstr "Colore del bordo delle schede"
+msgstr "Colore bordo"
 
-#, fuzzy
 msgid "Border width"
 msgstr "Larghezza bordo"
 
-#, fuzzy
 msgid "Border widtht."
-msgstr "Larghezza bordo"
+msgstr "Larghezza del bordo."
 
 msgid "Box height."
-msgstr ""
+msgstr "Altezza del riquadro."
 
-# (NdT) suggerimento
-#, fuzzy
 msgid "Box width."
-msgstr "Larghezza fascio di luce."
+msgstr "Larghezza del riquadro."
 
-#, fuzzy
 msgid "Clip mask"
-msgstr "Mipmap"
+msgstr "Taglia maschera"
 
 msgid "Clip mask."
-msgstr ""
+msgstr "Taglia la maschera."
 
-#, fuzzy
 msgid "Fisheye"
-msgstr "Dimensione pesce"
+msgstr "Grandangolo"
 
 msgid "Height"
 msgstr "Altezza"
 
 msgid "Image overlay"
-msgstr ""
+msgstr "Sovrapposizione immagine"
 
-# (NdT) suggerimento
-#, fuzzy
 msgid "Keep fully on screen"
-msgstr "Mostra il numero di FPS sullo schermo"
+msgstr "Mantenere interamente sullo schermo"
 
-# (NdT) suggerimento
-#, fuzzy
 msgid "Keep fully on screen."
-msgstr "Mostra il numero di FPS sullo schermo"
+msgstr "Mantiene interamente sullo schermo."
 
+# (ndt) un ingranditpore che insegue il mouse
+# una lente di ingrandimento praticamente
 msgid "Magnifier"
-msgstr ""
+msgstr "Lente di ingrandimento"
 
 msgid "Magnifier box"
-msgstr ""
+msgstr "Riquadro lente d'ingrandimento"
 
 msgid "Magnifier image"
-msgstr ""
+msgstr "Immagine lente d'ingrandimento"
 
 msgid "Magnifier image."
-msgstr ""
+msgstr "Immagine dell'ingranditore."
 
-#, fuzzy
 msgid "Mode"
-msgstr "Balzo"
+msgstr "Modalità"
 
-#, fuzzy
 msgid "Mode."
-msgstr "Balzo"
+msgstr "Modalità."
 
-#, fuzzy
 msgid "Radius"
-msgstr "Raggio del bordo"
+msgstr "Raggio"
 
 # (ndt) suggerimento
-#, fuzzy
 msgid "Radius of the magnification area."
-msgstr "Raggio degli angoli arrotondati"
+msgstr "Raggio dell'area di ingrandimento."
 
 msgid "Width"
 msgstr "Larghezza"
 
 msgid "X offset of the cursor"
-msgstr ""
+msgstr "Offset X del cursore"
 
 msgid "X offset of the cursor."
-msgstr ""
+msgstr "L'offset X del cursore."
 
 msgid "Y offset of the cursor"
-msgstr ""
+msgstr "Offset Y del cursore"
 
 msgid "Y offset of the cursor."
-msgstr ""
+msgstr "L'offset Y del cursore."
 
 msgid "Zoom factor for keyboard initiated magnifier."
-msgstr ""
+msgstr "Fattore di zoom per la lente d'ingrandimento avviata da tastiera."
 
 msgid "Ignore sticky windows in the calculations"
-msgstr ""
+msgstr "Ignorare finestre adesive nei calcoli"
 
+# (ndt) questo effetto non massimizza la finestra
+# ma la allarga per occupare tutto lo spazio disponibile
 msgid "Maximumize"
-msgstr ""
+msgstr "Allarga"
 
-# (ndt) suggerimento
-#, fuzzy
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr ""
-"Dimensione massima della finestra (percentuale rispetto alla larghezza dello "
-"schermo)"
+"Allarga le finestre (le ridimensiona per occupare lo spazio disponibile)."
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
 msgstr ""
+"Considera le finestre adesive come non esistenti nel calcolo dello spazio da "
+"usare per massimizzare le finestre."
 
 msgid ""
 "Trigger a resize of the window currently focused so it fits as much of the "
 "available screenspae as possible."
 msgstr ""
+"Inizializza un ridimensionamento della finestra col focus in modo che occupi "
+"lo spazio su schermo disponibile."
 
 msgid "Trigger maximumize"
-msgstr ""
+msgstr "Avvia l'allargamento"
 
 msgid "Accumulation buffer"
 msgstr "Buffer d'accumulo"
@@ -2619,7 +2619,7 @@ msgid "Motion Blur on Transformed Screen"
 msgstr "Effetto movimento al mutare dello schermo"
 
 msgid "Motion Blur render mode."
-msgstr "Modalità di render dell'«Effetto movimento»."
+msgstr "Modalità di resa dell'«Effetto movimento»."
 
 msgid "Motion Blur strength."
 msgstr "Intensità dell'«Effetto movimento»."
@@ -2651,6 +2651,9 @@ msgstr "Azione da invocare."
 msgid "Assign mousegestures to any existing action"
 msgstr "Associa gesti del mouse a ogni azione esistente"
 
+msgid "Detect Diagonal Movements"
+msgstr "Rileva movimenti diagonali"
+
 msgid "Gesture"
 msgstr "Gesto"
 
@@ -2659,6 +2662,13 @@ msgstr "Associazione gesto"
 
 msgid "Gestures"
 msgstr "Gesti"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
+"Se questa opzione è selezionata, i movimenti diagonali vengono rilevati e si "
+"potrebbe verificare una minore precisione di rilevamento."
 
 msgid "Mouse gesture to assign an action to."
 msgstr "Gesto a cui associare un'azione."
@@ -2670,26 +2680,19 @@ msgid "Plugin"
 msgstr "Plug-in"
 
 msgid "Plugin the action belongs to."
-msgstr "Plug-in a cui è associata un azione"
+msgstr "Plug-in a cui è associata un'azione."
 
 msgid "Start gesture"
 msgstr "Inizia gesto"
 
 msgid "Misc"
-msgstr ""
+msgstr "Varie"
 
-# (ndt) finché non mi viene altro di meglio...
-# questa opzione fa sì che spostando il puntatore del mouse
-# ci si sposti sul desktop mantenendo l'ingrandimento...
-# una sorta di lente di ingrandimento.
-# In inglese vuol proprio dire fare una panoramica, effettivamente
-# sarebbe una zoomata-panoramica...
-#, fuzzy
 msgid "Mouse position polling"
-msgstr "Panoramica col mouse"
+msgstr "Recupero posizione del mouse"
 
 msgid "Updates the mouse pointer position from the xserver"
-msgstr ""
+msgstr "Aggiorna la posizione del puntatore del mouse dallo xserver"
 
 msgid "Begin Gesture"
 msgstr "Comincia gesto"
@@ -2722,7 +2725,7 @@ msgid "Toggle active window negative"
 msgstr "Commuta il negativo sulla finestra attiva"
 
 msgid "Toggle screen negative"
-msgstr "Commuta il negativo dello schermo"
+msgstr "Commuta il negativo sullo schermo"
 
 msgid "Used to set a window or screen negative"
 msgstr "Usato per impostare una finestra o tutto lo schermo in negativo"
@@ -2739,7 +2742,7 @@ msgid "Debug"
 msgstr "Debug"
 
 msgid "Display errors and other messages using libnotify."
-msgstr "Mostra errori e altri messaggi utilizzando libnotify"
+msgstr "Mostra errori e altri messaggi utilizzando libnotify."
 
 msgid "Error"
 msgstr "Errore"
@@ -2760,7 +2763,7 @@ msgid "Maximum Log Level"
 msgstr "Massimo livello del registro"
 
 msgid "The maximum log level to display"
-msgstr "Il livello massimo del registro da visualizzare"
+msgstr "Il massimo livello del registro da visualizzare"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
@@ -2780,7 +2783,7 @@ msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
 "already."
 msgstr ""
-"Eliminare ritardo quando «Opacizza» sta già riducendo l'opacità di una o più "
+"Ignorare ritardo quando «Opacizza» sta già riducendo l'opacità di una o più "
 "finestre"
 
 # (ndt) opzione
@@ -2814,7 +2817,7 @@ msgid ""
 "windows blocking it from view."
 msgstr ""
 "Incrementa l'opacità della finestra selezionata solo se una o più finestre "
-"ne impediscono la visuale."
+"ne ostruiscono la vista."
 
 msgid "Opacify"
 msgstr "Opacizza"
@@ -2912,7 +2915,7 @@ msgstr ""
 "schermo"
 
 msgid "Move window arbitrarily by passing x, y and type."
-msgstr ""
+msgstr "Muove la finestra arbitrariamente passando x, y e il tipo."
 
 msgid "Move window to a certain viewport"
 msgstr "Muove la finestra su un'area di lavoro specifica"
@@ -3490,14 +3493,13 @@ msgstr ""
 msgid "Highlight Color"
 msgstr "Colore evidenziazione"
 
+msgid "Highlighted window only"
+msgstr "Solo finestre evidenziate"
+
 # (ndt) suggerimento
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidenzia la finestra su cui ci si sofferma col mouse con un dato colore"
-
-#, fuzzy
-msgid "Hovered window only"
-msgstr "Solo finestre sollevate"
 
 msgid "No display"
 msgstr "Nessuna visualizzazione"
@@ -3625,15 +3627,20 @@ msgid ""
 "management protocol. This setting only should be used in KDE, as only KDE's "
 "session manager also saves those applications."
 msgstr ""
+"Cerca di salvare e ripristinare le applicazioni datate che non supportano il "
+"protocollo di gestione della sessione X. Questa impostazione dovrebbe essere "
+"usata solamente in KDE, dato che solo il gestore di sessione di KDE salva "
+"queste applicazioni."
 
 msgid "Save Legacy Apps"
-msgstr ""
+msgstr "Salvare applicazioni datate"
 
 msgid "Session Management"
-msgstr ""
+msgstr "Gestione sessione"
 
 msgid "Talk to session manager and save/load window state"
 msgstr ""
+"Interagisce col gestore di sessione e salva/carica lo stato della finestra"
 
 msgid "Animation duration"
 msgstr "Durata animazione"
@@ -3653,24 +3660,23 @@ msgstr "Rimpicciolisci finestra"
 msgid "Reduces the scale factor making the window smaller."
 msgstr "Riduce il fattore di scala facendo la finestra più piccola."
 
-#, fuzzy
 msgid "Reset the window to original size"
-msgstr "Imposta finestra come non ridimensionabile"
+msgstr "Reimposta finestra alla dimensione originale"
 
 msgid "Resets the currently focused window to original size"
-msgstr ""
+msgstr "Reimposta la finestra col focus alla dimensione originale"
 
 msgid "Scale a window down to a portion of it's size."
 msgstr ""
-"Riduci la dimensione della finestra in scala proporzionalmente alle sue "
+"Riduce la dimensione di una finestra in scala proporzionalmente alle sue "
 "dimensioni."
 
 msgid ""
 "Scale a window down to a ration of the screen size. Respectively half, a "
 "third or a sixth of the screen."
 msgstr ""
-"Riduci la dimensione in scala con le proporzioni dello schermo. "
-"Rispettivamente metà, un terzo o un sesto."
+"Riduce la dimensione di una finestra in scala proporzionalmente allo "
+"schermo. Rispettivamente metà, un terzo o un sesto dello schermo."
 
 msgid "Scale interval"
 msgstr "Intervallo di scala"
@@ -3684,7 +3690,7 @@ msgid ""
 "number means finer changes."
 msgstr ""
 "Fattore di incremento o decremento di scala per l'aggiustamento manuale. "
-"Numeri più grandi indicano aggiustamenti più fini."
+"Numeri più grandi indicano modifiche più accurate."
 
 msgid "Trigger scale down"
 msgstr "Attiva riduzione in scala"
@@ -3696,8 +3702,8 @@ msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
-"Riduce la finestra in scala visivamente per permettere monitoraggio senza "
-"ridimensionamento vero/tradizionale."
+"Riduce visivamente la finestra in scala per permettere il monitoraggio senza "
+"un ridimensionamento tradizionale."
 
 msgid "Background intensity"
 msgstr "Intensità sfondo"
@@ -3890,110 +3896,86 @@ msgid ""
 "Window types that should be moved out of sight when entering showdesktop mode"
 msgstr "Tipi di finestre da nascondere nella modalità «Mostra scrivania»"
 
+# (ndt) trovare una traduzione per blending
 msgid "Additive blending"
-msgstr ""
+msgstr "Blending additivo"
 
-#, fuzzy
 msgid "Additive blending of particles"
-msgstr "Numero di fiamme"
+msgstr "Blending additivo delle particelle"
 
 # (ndt) opzione
-#, fuzzy
 msgid "Darken backgound"
 msgstr "Oscurare lo sfondo"
 
 # (ndt) opzione
-#, fuzzy
 msgid "Darken background under particles"
-msgstr "Oscurare lo sfondo"
+msgstr "Oscura lo sfondo sotto le particelle"
 
 msgid "Emiters"
-msgstr ""
+msgstr "Emettitori"
 
-#, fuzzy
 msgid "Have random colors for the particles"
-msgstr ""
-"Colora le fiamme in modo casuale, l'effetto viene anche chiamato «Fuoco "
-"mistico»."
+msgstr "Colori casuali per le particelle"
 
 # (ndt) opzione
-#, fuzzy
 msgid "Increases the visibility of the mouse pointer"
-msgstr "Scalare il puntatore del mouse"
+msgstr "Aumenta la visibilità del puntatore del mouse"
 
-#, fuzzy
 msgid "Number Of Particles"
-msgstr "Numero di fiamme"
+msgstr "Numero di particelle"
 
-#, fuzzy
 msgid "Number of particle emiters."
-msgstr "Numero di fiamme"
+msgstr "Numero di emettitori di particelle."
 
-#, fuzzy
 msgid "Number of particles."
-msgstr "Numero di fiamme"
+msgstr "Numero di particelle."
 
-#, fuzzy
 msgid "Particle Color"
-msgstr "Colore fiamme"
+msgstr "Colore particella"
 
-#, fuzzy
 msgid "Particle Life"
-msgstr "Durata fiamme"
+msgstr "Durata particella"
 
-#, fuzzy
 msgid "Particle Options"
-msgstr "Altre opzioni"
+msgstr "Opzioni particella"
 
-#, fuzzy
 msgid "Particle Size"
-msgstr "Dimensione fiamme"
+msgstr "Dimensione particella"
 
-#, fuzzy
 msgid "Particle Slowdown"
-msgstr "Velocità fiamme"
+msgstr "Rallentamento particella"
 
-#, fuzzy
 msgid "Particle color."
-msgstr "Colore delle fiamme."
+msgstr "Colore della particella."
 
-#, fuzzy
 msgid "Particle life."
-msgstr "Durata delle fiamme."
+msgstr "Durata della particella."
 
-#, fuzzy
 msgid "Particle size."
-msgstr "Dimensione delle fiamme."
+msgstr "Dimensione della particella."
 
-#, fuzzy
 msgid "Particle slowdown."
-msgstr "Velocità di evoluzione delle fiamme."
+msgstr "Rallentamento della particella."
 
-#, fuzzy
 msgid "Randomly Colored Particles"
-msgstr "Fuoco mistico"
+msgstr "Colori casuali delle particelle"
 
-#, fuzzy
 msgid "Ring radius"
-msgstr "Raggio del bordo"
+msgstr "Raggio anello"
 
-#, fuzzy
 msgid "Rotation speed"
-msgstr "Velocità animazione"
+msgstr "Velocità rotazione"
 
-#, fuzzy
 msgid "Rotation speed."
-msgstr "Velocità animazione"
+msgstr "Velocità della rotazione."
 
-# (ndt) opzione
-#, fuzzy
+# (ndt) nome
 msgid "Show mouse"
-msgstr "Sincronizzare il mouse"
+msgstr "Mostra il mouse"
 
 # (ndt) opzione
-#, fuzzy
 msgid "Toggle the mouse pointer trail."
-msgstr "Scalare il puntatore del mouse"
+msgstr "Commuta la traccia del puntatore del mouse."
 
 msgid "Alt"
 msgstr "Alt"
@@ -4072,16 +4054,17 @@ msgstr ""
 "questo valore può rendere la nevicata più uniforme, ma si incrementa l'uso "
 "del processore."
 
+#, fuzzy
 msgid "Enable Blending"
 msgstr "Attivare blending"
 
 msgid "Enable Textures"
 msgstr "Attivare texture"
 
-msgid "Enables alpha blending of snowflakes."
-msgstr "Attiva le trasparenze sui fiocchi di neve."
-
 #, fuzzy
+msgid "Enables alpha blending of snowflakes."
+msgstr "Attiva blending alfa sui fiocchi di neve."
+
 msgid "Enables textured snowflakes. If not selected, color gradients are used."
 msgstr ""
 "Attiva texture per i fiocchi di neve. Se questa opzione non è selezionata, "
@@ -4100,16 +4083,16 @@ msgid ""
 "removed. Needed because of FOV."
 msgstr ""
 "Quanto lontano dai bordi dello schermo si possono trovare i fiocchi di neve "
-"prima che vengano rimossi. Necessario a causa del FOV"
+"prima che vengano rimossi. Necessario a causa del FOV."
 
 msgid "Key Bindings"
-msgstr "Scorciatoie da tastiera"
+msgstr "Associazioni tasti"
 
 msgid "Left to Right"
 msgstr "Da sinistra a destra"
 
 msgid "Number Of Snowflakes"
-msgstr "Numero dei fiocchi di neve"
+msgstr "Numero fiocchi di neve"
 
 msgid "Number of snowflakes"
 msgstr "Numero dei fiocchi di neve"
@@ -4205,10 +4188,10 @@ msgid "Images"
 msgstr "Immagini"
 
 msgid "Initiate Splash"
-msgstr "Inizializza lo Splash"
+msgstr "Inizializza «Splash»"
 
 msgid "Logo File"
-msgstr "Logo"
+msgstr "File logo"
 
 msgid "Logo image File."
 msgstr "File dell'immagine del logo."
@@ -4228,7 +4211,7 @@ msgid "Start Splash."
 msgstr "Avvia «Splash»."
 
 msgid "Render text to texture"
-msgstr "Esegue il render del testo in texture"
+msgstr "Rende il testo in texture"
 
 msgid "Text"
 msgstr "Testo"
@@ -4243,7 +4226,7 @@ msgstr "Durata dissolvenza"
 
 # (ndt) sugerimento
 msgid "Fade In/Out Duration in seconds."
-msgstr "Durata della dissolvenza nel mostrare l'anteprima."
+msgstr "Durata della dissolvenza in secondi."
 
 # (ndt) opzione
 msgid "Generate Mipmaps"
@@ -4349,7 +4332,8 @@ msgid "Cascade Windows"
 msgstr "Finestre a cascata"
 
 msgid "Choose the tiling type you want when using toggle."
-msgstr "Scegli il tipo di accostamento quando si usa il tasto di commutazione."
+msgstr ""
+"Scegliere il tipo di accostamento quando si usa il tasto di commutazione."
 
 msgid "Distance between windows when using cascade"
 msgstr "Distanza fra le finestre quando si usa l'ordinamento a cascata"
@@ -4961,11 +4945,13 @@ msgstr "Sfondi"
 msgid "Draw the desktop wallpaper"
 msgstr "Disegna lo sfondo della scrivania"
 
+#, fuzzy
 msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Attiva sfumatura reale alfa per sfondi trasparenti."
+msgstr "Attivare blending alfa reale per sfondi trasparenti"
 
+#, fuzzy
 msgid "Enable true blending"
-msgstr "Attivare sfumatura reale"
+msgstr "Attivare blending reale"
 
 msgid "The background specifications (as explained in DOCUMENTATION) to use."
 msgstr ""
@@ -4984,7 +4970,7 @@ msgid "Background Saturation"
 msgstr "Saturazione dello sfondo"
 
 msgid "Background in Widget Mode"
-msgstr "Sfondo da utilizzare in modalità widget."
+msgstr "Sfondo in modalità widget"
 
 msgid "Brightness of non-widget windows in widget modes."
 msgstr "Luminosità delle finestre non-widget in modalità widget."
@@ -4997,18 +4983,17 @@ msgstr ""
 "Termina modalità widget quando viene fatto clic su una finestra non-widget."
 
 msgid "Saturation of non-widget windows in widget modes."
-msgstr "Saturazione delle finestre non-widget in modalità widget"
+msgstr "Saturazione delle finestre non-widget in modalità widget."
 
 # (ndt) suggerimento
 msgid "Show or hide widget windows"
-msgstr "Mostra o nascondi finestre widget"
+msgstr "Mostra o nasconde finestre widget"
 
 msgid "Show widget windows on a separate layer"
 msgstr "Mostra finestre widget su un altro livello"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
-"Tempo (in secondi) per la dissolvenza interna/esterna del livello widget."
+msgstr "Tempo (in secondi) per la dissolvenza del livello widget."
 
 msgid "Toggle Widget Display"
 msgstr "Commuta visualizzazione widget"
@@ -5089,7 +5074,7 @@ msgid "Set windows rules"
 msgstr "Imposta regole per le finestre"
 
 msgid "Size rules"
-msgstr ""
+msgstr "Regole di dimensione"
 
 msgid "Sized Windows"
 msgstr "Finestre dimensionate"
@@ -5197,6 +5182,14 @@ msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
+
+# (ndt) opzione
+#~ msgid "Tilt view"
+#~ msgstr "Vista inclinata"
+
+# (ndt) suggerimento
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Mostra le finestre inclinate"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Muove finestra verso x, y"

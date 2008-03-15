@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:11+0530\n"
-"PO-Revision-Date: 2008-02-17 11:02+0100\n"
+"POT-Creation-Date: 2008-03-15 20:12+0530\n"
+"PO-Revision-Date: 2008-03-03 20:48+0100\n"
 "Last-Translator: Sebastian Parborg <zedDB@hotmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -1266,6 +1266,26 @@ msgstr "Knapp för att avsluta expo"
 msgid "Button binding to switch to next viewport in expo"
 msgstr "Tangentbindning för att byta till nästa skrivbordsyta i expo"
 
+#, fuzzy
+msgid "Curve"
+msgstr "Kurvad ihopvikning"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Styrka för rörelseoskärpa."
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Varaktighet"
+
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Avstånd till expo-vägg"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Byt till arbetsyta 1"
+
 msgid "Distance of the expo wall"
 msgstr "Avstånd till expo-vägg"
 
@@ -1326,6 +1346,12 @@ msgstr "Göm paneler/dockor i expo."
 msgid "Immediate moves"
 msgstr "Omedelbara förflyttningar"
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 msgid "Mipmaps"
 msgstr "Mipmaps"
 
@@ -1367,14 +1393,19 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Visa en reflektion av skrivbordsytorna på marken"
 
-msgid "Tilt view"
-msgstr "Luta vyn"
+msgid "Strength of the deformation in curve mode"
+msgstr ""
 
-msgid "Tilt window view in expo mode"
-msgstr "Luta fönstervyn i expoläge"
+#, fuzzy
+msgid "Tilt"
+msgstr "Kakla"
 
 msgid "Timeframe to execute a double click"
 msgstr "Tidsgräns för dubbelklick "
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Arbetsytväxlare"
 
 msgid "Vortex"
 msgstr "Vortex"
@@ -2194,15 +2225,12 @@ msgstr "Insticksmodul för JPEG-bildformat"
 msgid "Quality of compression when saving JPEG images"
 msgstr "Kvaliteten på kompression när man sparar JPEG-bilder"
 
-#, fuzzy
 msgid "Background/Window brightness."
-msgstr "Ljusstyrka på bakgrund"
+msgstr "Ljusstyrka på bakgrund/fönster"
 
-#, fuzzy
 msgid "Background/Window saturation."
-msgstr "Färgmättnad för bakgrund"
+msgstr "Färgmättnad för bakgrund/fönster"
 
-#, fuzzy
 msgid "Fade In/Out Time"
 msgstr "Tona in/ut tid"
 
@@ -2210,55 +2238,46 @@ msgid "Fade In/Out Time."
 msgstr "Tona in/ut tid"
 
 msgid "Login"
-msgstr ""
+msgstr "Logga in"
 
-#, fuzzy
 msgid "Login Window Match"
-msgstr "Fönstermatchning"
+msgstr "Login in fönstermatchning"
 
-#, fuzzy
 msgid "Login Window match"
-msgstr "Fönstermatchning"
+msgstr "Login in fönstermatchning"
 
 msgid "Login/Logout"
-msgstr ""
+msgstr "Logga in/ut"
 
 msgid "Login/Logout effect"
-msgstr ""
+msgstr "Logga in/ut effekt"
 
 msgid "Logout"
-msgstr ""
+msgstr "Logga ut"
 
-#, fuzzy
 msgid "Logout Window Match"
-msgstr "Grupp fönstermatchning"
+msgstr "Logga ut fönstermatchning"
 
-#, fuzzy
 msgid "Logout Window match"
-msgstr "Fönstermatchning"
+msgstr "Logga ut fönstermatchning"
 
-#, fuzzy
 msgid "Window opacity."
 msgstr "Fönsteropacitet"
 
-#, fuzzy
 msgid "Border color"
-msgstr "Kantfärg på tabb"
+msgstr "Kantfärg"
 
-#, fuzzy
 msgid "Border width"
 msgstr "Bredd på kant"
 
-#, fuzzy
 msgid "Border widtht."
 msgstr "Bredd på kant"
 
 msgid "Box height."
-msgstr ""
+msgstr "Boxhöjd"
 
-#, fuzzy
 msgid "Box width."
-msgstr "Strålbredd"
+msgstr "Boxbredd"
 
 #, fuzzy
 msgid "Clip mask"
@@ -2267,81 +2286,91 @@ msgstr "Mipmaps"
 msgid "Clip mask."
 msgstr ""
 
-#, fuzzy
 msgid "Fisheye"
-msgstr "Fiskstorlek"
+msgstr "Fisköga"
 
 msgid "Height"
 msgstr "Höjd"
 
+#, fuzzy
 msgid "Image overlay"
-msgstr ""
+msgstr "Bildöverdrag"
 
 #, fuzzy
 msgid "Keep fully on screen"
-msgstr "Visa FPS på skärmen"
+msgstr "Håll helt på skärmen"
 
 #, fuzzy
 msgid "Keep fully on screen."
-msgstr "Visa FPS på skärmen"
+msgstr "Håll helt på skärmen"
 
 msgid "Magnifier"
-msgstr ""
+msgstr "Förstoringsglas"
 
+#, fuzzy
 msgid "Magnifier box"
-msgstr ""
+msgstr "Box för förstoringsglas"
 
+#, fuzzy
 msgid "Magnifier image"
-msgstr ""
+msgstr "Förstoringsglas bild"
 
+#, fuzzy
 msgid "Magnifier image."
-msgstr ""
+msgstr "Förstoringsglas bild"
 
 # Något bättre ord?
 #, fuzzy
 msgid "Mode"
-msgstr "Undvik"
+msgstr "Läge"
 
 # Något bättre ord?
 #, fuzzy
 msgid "Mode."
-msgstr "Undvik"
+msgstr "Läge"
 
-#, fuzzy
 msgid "Radius"
-msgstr "Kantradie"
+msgstr "Radie"
 
-#, fuzzy
 msgid "Radius of the magnification area."
-msgstr "Radie på den rundade kantens"
+msgstr "Radie på det förstorade området."
 
 msgid "Width"
 msgstr "Bredd"
 
+#, fuzzy
 msgid "X offset of the cursor"
-msgstr ""
+msgstr "X-kompensation för muspekaren"
 
+#, fuzzy
 msgid "X offset of the cursor."
-msgstr ""
+msgstr "X-kompensation för muspekaren"
 
+#, fuzzy
 msgid "Y offset of the cursor"
-msgstr ""
+msgstr "Y-kompensation för muspekaren"
 
+#, fuzzy
 msgid "Y offset of the cursor."
-msgstr ""
+msgstr "Y-kompensation för muspekaren"
 
+#, fuzzy
 msgid "Zoom factor for keyboard initiated magnifier."
-msgstr ""
+msgstr "Zoom-faktorn för tangentbords initierad förstoringsglas "
 
+#, fuzzy
 msgid "Ignore sticky windows in the calculations"
-msgstr ""
+msgstr "Ignorera klibbigafönster i uträkningarna"
 
+#, fuzzy
 msgid "Maximumize"
-msgstr ""
+msgstr "Maximera"
 
 #, fuzzy
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
-msgstr "Maximal fönsterstorlek (procentuellt av skärmens storlek"
+msgstr ""
+"Maximerar fönster (ändrar storlek så att de passar in i det tillgängliga "
+"skärmutrymmet) "
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2410,6 +2439,9 @@ msgstr "Handling som ska bli åkallad"
 msgid "Assign mousegestures to any existing action"
 msgstr "Tilldela musgester till någon existerande handling"
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 #, fuzzy
 msgid "Gesture"
 msgstr "Gest"
@@ -2421,6 +2453,11 @@ msgstr "Gesttilldelning"
 #, fuzzy
 msgid "Gestures"
 msgstr "Gester"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 #, fuzzy
 msgid "Mouse gesture to assign an action to."
@@ -3194,11 +3231,12 @@ msgstr "Typsnittsstorlek för fönstertitelvisning"
 msgid "Highlight Color"
 msgstr "Framhävningsfärg"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Endast fönster man har muspekaren över"
+
 msgid "Highlights the hovered window with the given color"
 msgstr "Framhäver fönstret som musen är över med den angivna färgen."
-
-msgid "Hovered window only"
-msgstr "Endast fönster man har muspekaren över"
 
 msgid "No display"
 msgstr "Ingen visning"
@@ -4778,6 +4816,12 @@ msgstr "Fönster på alla arbetsytor som ska klistras"
 
 msgid "Workarounds"
 msgstr "Problemlösningar"
+
+#~ msgid "Tilt view"
+#~ msgstr "Luta vyn"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Luta fönstervyn i expoläge"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Flytta fönster till x, y"

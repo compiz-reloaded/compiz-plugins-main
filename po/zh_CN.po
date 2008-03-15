@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:11+0530\n"
-"PO-Revision-Date: 2008-02-22 04:46+0100\n"
-"Last-Translator: Gao Dexiang <biaji.cn@gmail.com>\n"
+"POT-Creation-Date: 2008-03-15 20:12+0530\n"
+"PO-Revision-Date: 2008-03-09 17:41+0100\n"
+"Last-Translator: Wang Nan <pi3orama@gmail.com>\n"
 "Language-Team: Chinese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgid "Change the speed of the 3D animation"
 msgstr "改变 3D 动画速度"
 
 msgid "Color of an inactive window's depth"
-msgstr ""
+msgstr "控制非活动窗口的厚度"
 
 #, fuzzy
 msgid "Color of the active window's depth"
@@ -80,7 +80,7 @@ msgid "Minimum Cube Size"
 msgstr "最小立方体大小"
 
 msgid "Minimum cube size (in percent)."
-msgstr ""
+msgstr "最小立方体大小(百分比)"
 
 msgid "Misc. Options"
 msgstr "杂项设置"
@@ -88,16 +88,14 @@ msgstr "杂项设置"
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr "与圆形窗口装饰协调的圆角"
 
-#, fuzzy
 msgid "Window Color (Active)"
-msgstr "窗口标题字体"
+msgstr "窗口颜色(活动)"
 
-#, fuzzy
 msgid "Window Color (Inactive)"
-msgstr "窗口标题字体"
+msgstr "窗口颜色(不活动)"
 
 msgid "Window Depth"
-msgstr "窗口深度"
+msgstr "窗口厚度"
 
 msgid "Window Match"
 msgstr "窗口匹配"
@@ -106,7 +104,7 @@ msgid "Window Space"
 msgstr "窗口间隔"
 
 msgid "Window depth"
-msgstr "窗口深度"
+msgstr "窗口厚度"
 
 msgid "Windows that should be handled by 3D"
 msgstr "使用 3D 的窗口"
@@ -115,7 +113,7 @@ msgid "ADD Helper"
 msgstr "突出显示"
 
 msgid "Bindings"
-msgstr "按键组合"
+msgstr "按键绑定"
 
 msgid "Brightness"
 msgstr "亮度"
@@ -125,7 +123,7 @@ msgstr "淡出窗口的亮度"
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
-msgstr "突出显示当前窗口，暗淡活动窗口之外的一切内容。"
+msgstr "突出显示当前窗口，淡化活动窗口之外的一切内容。"
 
 msgid "Opacity"
 msgstr "不透明度"
@@ -161,21 +159,23 @@ msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
-"除了选择的特效外，所有特效将随机选用。如果没选择触发事件，则无动画效果。"
+"对所有窗口事件随机选取效果. 在\"动画选取\"中选择的效果将被忽略. 如果某个事件"
+"没有选择效果, 则这个事件将没有动画."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
 msgstr ""
+"垂直折叠的振幅(在折叠中的波浪形状的大小)与窗口宽度之比. 为负则波浪形状向外折"
+"叠."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
-msgstr ""
+msgstr "振幅(在折叠中的波浪形状的大小)与窗口宽度之比. 为负则波浪形状向外折叠."
 
-#, fuzzy
 msgid "Angle of window at the end of the animation."
-msgstr "改变 3D 动画速度"
+msgstr "动画结束时窗口的角度"
 
 msgid "Animation Selection"
 msgstr "动画选取"
@@ -184,22 +184,22 @@ msgid "Animation Time Step"
 msgstr "动画时间步长"
 
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "激烈的动画采用的时间步长"
 
 msgid "Animation duration in milliseconds for close effect."
-msgstr "以毫秒为单位的关闭效果的动画持续时间"
+msgstr "窗口关闭效果动画的持续时间, 以毫秒为单位"
 
 msgid "Animation duration in milliseconds for focus effect."
-msgstr "以毫秒为单位的获得焦点效果的动画持续时间"
+msgstr "获得焦点效果动画的持续时间, 以毫秒为单位"
 
 msgid "Animation duration in milliseconds for minimize effect."
-msgstr "以毫秒为单位的最小化效果的动画持续时间"
+msgstr "最小化效果动画的持续时间, 以毫秒为单位"
 
 msgid "Animation duration in milliseconds for open effect."
-msgstr "以毫秒为单位的打开效果的动画持续时间"
+msgstr "窗口显现效果动画的持续时间, 以毫秒为单位"
 
 msgid "Animation duration in milliseconds for shade effect."
-msgstr "以毫秒为单位的淡出效果的动画持续时间"
+msgstr "窗口折叠效果动画的持续时间, 以毫秒为单位"
 
 msgid "Animations"
 msgstr "动画"
@@ -208,49 +208,43 @@ msgid "Automatic"
 msgstr "自动"
 
 msgid "Away Angle"
-msgstr ""
+msgstr "结束时角度"
 
-#, fuzzy
 msgid "Away Position"
-msgstr "X 坐标"
+msgstr "结束时位置"
 
 msgid "Beam"
 msgstr "光线特效"
 
-#, fuzzy
 msgid "Beam Color"
 msgstr "线条颜色"
 
 msgid "Beam Life"
-msgstr ""
+msgstr "线条持续时间"
 
-#, fuzzy
 msgid "Beam Slowdown"
-msgstr "火焰颗粒减速"
+msgstr "线条减速"
 
 msgid "Beam Spacing"
-msgstr ""
+msgstr "线条间隔"
 
 msgid "Beam Up"
-msgstr ""
+msgstr "光线"
 
-#, fuzzy
 msgid "Beam Width"
-msgstr "边框宽度"
+msgstr "线条宽度"
 
 msgid "Beam color."
-msgstr ""
+msgstr "光线的颜色"
 
 msgid "Beam life."
-msgstr ""
+msgstr "光线的持续时间"
 
-#, fuzzy
 msgid "Beam slowdown."
-msgstr "火焰颗粒减速。"
+msgstr "光线减速"
 
-#, fuzzy
 msgid "Beam width."
-msgstr "边框宽度"
+msgstr "光线宽度"
 
 msgid "Burn"
 msgstr "燃烧特效"
@@ -264,18 +258,20 @@ msgstr "关闭效果"
 msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
 "camera, -2.0: Away from camera)."
-msgstr ""
+msgstr "在动画结束时, 窗口和视点的接近程度 (1.0: 接近视点, -2.0: 远离视点)."
 
 msgid ""
 "Comma separated list of option value assignments to override effect "
 "settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
+"逗号分隔的选项值. 这些值会覆盖效果设置. 例如: fire_color=#0080ffff, "
+"fire_particles=700, fire_smoke=1"
 
 msgid "Curved Fold"
-msgstr ""
+msgstr "弯曲折叠"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "弯曲折叠系数"
 
 msgid "Dodge"
 msgstr "闪避效果"
@@ -961,7 +957,7 @@ msgid "Filtered windows"
 msgstr "窗口排列"
 
 msgid "Filters files"
-msgstr ""
+msgstr "过滤文件"
 
 msgid ""
 "List of plain text filter files that should be applied when filtering "
@@ -1063,51 +1059,57 @@ msgid "Bottom image files"
 msgstr "Logo 图像文件。"
 
 msgid "Clamp bottom face image to border"
-msgstr ""
+msgstr "用边框卡住底部图像"
 
 msgid ""
 "Clamp bottom face image to border. This is often the best if your image "
 "doesn't fit the size of the cube or if it's transparent. It can lead to some "
 "ugly dotted lines when enabled (especially with large enough images) though."
 msgstr ""
+"用边框卡住底部图像. 如果您的图像和立方体的尺寸不同, 或者是透明的话, 通常情况"
+"下最好选中这个选项. 但是开启后可能会产生一些不太美观的点划线, 尤其是当图像足"
+"够大的时候."
 
 msgid "Clamp top face image to border"
-msgstr ""
+msgstr "用边框卡住底部图像"
 
 msgid ""
 "Clamp top face image to border. This is often the best if your image doesn't "
 "fit the size of the cube or if it's transparent. It can lead to some ugly "
 "dotted lines when enabled (especially with large enough images) though."
 msgstr ""
+"用边框卡住顶部图像. 如果您的图像和立方体的尺寸不同, 或者是透明的话, 通常情况"
+"下最好选中这个选项. 但是开启后可能会产生一些不太美观的点划线, 尤其是当图像足"
+"够大的时候."
 
 msgid "Color of bottom face of the cube"
-msgstr ""
+msgstr "立方体底面颜色"
 
 msgid "Color of top face of the cube"
-msgstr ""
+msgstr "立方体顶面颜色"
 
 #, fuzzy
 msgid "Cube Bottom Color"
 msgstr "标签边框颜色"
 
 msgid "Cube Caps"
-msgstr ""
+msgstr "立方体上下面效果"
 
 #, fuzzy
 msgid "Cube Top Color"
 msgstr "标签边框颜色"
 
 msgid "Draw bottom face"
-msgstr ""
+msgstr "绘制底面"
 
 msgid "Draw bottom face of the cube"
-msgstr ""
+msgstr "绘制立方体的底面"
 
 msgid "Draw top face"
-msgstr ""
+msgstr "绘制顶面"
 
 msgid "Draw top face of the cube"
-msgstr ""
+msgstr "绘制立方体的顶面"
 
 msgid "Go back to previous image for bottom face of the cube"
 msgstr ""
@@ -1230,6 +1232,24 @@ msgstr ""
 msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 
+#, fuzzy
+msgid "Curve"
+msgstr "弯曲折叠"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "动态模糊强度。"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "持续时间"
+
+msgid "Deformation of the expo wall"
+msgstr ""
+
+msgid "Distance between viewports"
+msgstr ""
+
 msgid "Distance of the expo wall"
 msgstr ""
 
@@ -1293,6 +1313,12 @@ msgstr ""
 msgid "Immediate moves"
 msgstr ""
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 #, fuzzy
 msgid "Mipmaps"
 msgstr "创建 Mipmap"
@@ -1334,15 +1360,19 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr ""
 
-#, fuzzy
-msgid "Tilt view"
-msgstr "窗口排列"
-
-msgid "Tilt window view in expo mode"
+msgid "Strength of the deformation in curve mode"
 msgstr ""
+
+#, fuzzy
+msgid "Tilt"
+msgstr "窗口排列"
 
 msgid "Timeframe to execute a double click"
 msgstr ""
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "自顶至底"
 
 msgid "Vortex"
 msgstr ""
@@ -1705,10 +1735,10 @@ msgid "Paint fire or other particles on the screen"
 msgstr "在屏幕上绘制火焰或其它颗粒"
 
 msgid "Cube Gears"
-msgstr ""
+msgstr "立方体齿轮"
 
 msgid "Render gears inside of the transparent cube"
-msgstr ""
+msgstr "在透明的桌面立方体内部绘制齿轮"
 
 msgid "Animation Options"
 msgstr "动画选项"
@@ -2345,6 +2375,9 @@ msgstr ""
 msgid "Assign mousegestures to any existing action"
 msgstr ""
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 #, fuzzy
 msgid "Gesture"
 msgstr "纹理"
@@ -2355,6 +2388,11 @@ msgstr ""
 #, fuzzy
 msgid "Gestures"
 msgstr "纹理"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr ""
@@ -3160,12 +3198,12 @@ msgstr ""
 msgid "Highlight Color"
 msgstr "标签高亮颜色"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "窗口排列"
+
 msgid "Highlights the hovered window with the given color"
 msgstr ""
-
-#, fuzzy
-msgid "Hovered window only"
-msgstr "窗口排列"
 
 #, fuzzy
 msgid "No display"
@@ -4666,51 +4704,48 @@ msgstr "不可最小化的窗口"
 msgid "Non movable windows"
 msgstr "窗口排列"
 
-#, fuzzy
 msgid "Non resizable windows"
-msgstr "窗口排列"
+msgstr "不可改变大小的窗口"
 
 msgid "Set window as non closable"
-msgstr ""
+msgstr "将窗口设定为不可关闭"
 
 msgid "Set window as non maximizable"
-msgstr ""
+msgstr "将窗口设定为不可最大化"
 
 msgid "Set window as non minimizable"
-msgstr "设置窗口无法最小化"
+msgstr "将窗口设定为不可最小化"
 
 msgid "Set window as non movable"
-msgstr "设置窗口无法移动"
+msgstr "将窗口设定为无法移动"
 
 msgid "Set window as non resizable"
-msgstr "设置窗口无法改变大小"
+msgstr "将窗口设定为无法改变大小"
 
 msgid "Set windows rules"
 msgstr "设置窗口规则"
 
 msgid "Size rules"
-msgstr ""
+msgstr "尺寸规则"
 
 #, fuzzy
 msgid "Sized Windows"
 msgstr "改变了大小的窗口"
 
 msgid "Skip pager"
-msgstr ""
+msgstr "忽略分页器"
 
 msgid "Skip taskbar"
-msgstr ""
+msgstr "忽略任务栏"
 
-#, fuzzy
 msgid "Sticky"
-msgstr "开关置顶"
+msgstr "粘着"
 
-#, fuzzy
 msgid "Sticky windows"
-msgstr "窗口排列"
+msgstr "粘性窗口"
 
 msgid "Width values"
-msgstr ""
+msgstr "宽度值"
 
 msgid "Window Rules"
 msgstr "窗口规则"
@@ -4725,37 +4760,38 @@ msgid "Windows will not have focus"
 msgstr "不会获得焦点的窗口"
 
 msgid "\"On all desktops\" sticky match"
-msgstr ""
+msgstr "粘性化\"在所有桌面\"窗口匹配"
 
 msgid "AIGLX Fragment Parameter Fix"
-msgstr ""
+msgstr "AIGLX 碎片参数修正"
 
 msgid "Firefox Menu Fix"
-msgstr ""
+msgstr "修正 Firefox 菜单"
 
 msgid "Fix broken glProgramEnvParameter4f implementation."
-msgstr ""
+msgstr "修正有问题的 glProgramEnvParameter4f 实现"
 
 msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
-msgstr ""
+msgstr "修正 fglrx 的 XGL 中的 GLX_MESA_copy_sub_buffer 问题."
 
 msgid "Fix screen updates in XGL with fglrx."
-msgstr ""
+msgstr "修正 fglrx 的 XGL 中的屏幕刷新问题."
 
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr ""
+msgstr "修正 Firefox 和 Thunderbird 菜单的窗口类型"
 
 msgid "Fix window type of OpenOffice.org menus."
-msgstr ""
+msgstr "修正 OpenOffice.org 菜单"
 
+#, fuzzy
 msgid "Fix window type of notification daemon windows."
-msgstr ""
+msgstr "修正通知守护进程窗口的窗口类型"
 
 msgid "Fix window type of various Java windows."
-msgstr ""
+msgstr "修正一些 Java 窗口的窗口类型"
 
 msgid "Fix window type of various Qt windows."
-msgstr ""
+msgstr "修正一些 Qt 窗口的窗口类型"
 
 msgid "Java Window Fix"
 msgstr "java窗口修正"
@@ -4769,34 +4805,36 @@ msgstr "粘着“总在可见工作区”窗口"
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
-msgstr ""
+msgstr "将\"在所有桌面上\"的窗口修正为\"粘着\". 粘着的窗口可以在所有视点上看到"
 
+#, fuzzy
 msgid "Make Wine and legacy applications fullscreen properly."
-msgstr ""
+msgstr "使 Wine 和其他传统应用程序支持全屏"
 
 msgid "Metacity-like workarounds."
-msgstr ""
+msgstr "类似于 Metacity 的修正"
 
 msgid "Notification Daemon Fix"
-msgstr ""
+msgstr "通知守护进程修正"
 
 msgid "OpenOffice.org Menu Fix"
-msgstr ""
+msgstr "OpenOffice.org 菜单修正"
 
-#, fuzzy
 msgid "Qt Window Fix"
-msgstr "窗口宽度"
+msgstr "Qt 窗口修正"
 
-#, fuzzy
 msgid "Window stickyness"
-msgstr "开关窗口置顶"
+msgstr "窗口粘着"
 
-#, fuzzy
 msgid "Windows on all desktops that should be made sticky"
-msgstr "需要淡出到桌面的窗口"
+msgstr "将在所有桌面上的窗口粘性化"
 
 msgid "Workarounds"
-msgstr ""
+msgstr "修正"
+
+#, fuzzy
+#~ msgid "Tilt view"
+#~ msgstr "窗口排列"
 
 #~ msgid "Misc. options"
 #~ msgstr "杂项设置"

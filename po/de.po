@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-02-23 23:09+0530\n"
+"POT-Creation-Date: 2008-03-15 20:10+0530\n"
 "PO-Revision-Date: 2008-02-20 09:57+0100\n"
 "Last-Translator: Danny Baumann <dannybaumann@web.de>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
@@ -1301,6 +1301,28 @@ msgstr ""
 msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 
+# 'einklappen' auch möglich
+#, fuzzy
+msgid "Curve"
+msgstr "Gebogen Zusammenfalten"
+
+#, fuzzy
+msgid "Curve strength"
+msgstr "Stärke der Bewegungsunschärfe."
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Dauer"
+
+# FIXME - is wall really == Wand here? -- Maybe we could use Ebene, Tafel or Brett here?
+#, fuzzy
+msgid "Deformation of the expo wall"
+msgstr "Entfernung zur Expo-Wand"
+
+#, fuzzy
+msgid "Distance between viewports"
+msgstr "Zu Arbeitsfläche 1 wechseln"
+
 # FIXME - is wall really == Wand here? -- Maybe we could use Ebene, Tafel or Brett here?
 msgid "Distance of the expo wall"
 msgstr "Entfernung zur Expo-Wand"
@@ -1367,6 +1389,12 @@ msgstr ""
 msgid "Immediate moves"
 msgstr ""
 
+msgid "Inactive viewport brightness."
+msgstr ""
+
+msgid "Inactive viewport saturation."
+msgstr ""
+
 msgid "Mipmaps"
 msgstr "Mipmaps benutzen"
 
@@ -1409,15 +1437,20 @@ msgstr ""
 msgid "Show a reflection of the viewports on the ground"
 msgstr "Reflektion der Arbeitsflächen auf dem Boden anzeigen"
 
-msgid "Tilt view"
-msgstr "Ansicht kippen"
+msgid "Strength of the deformation in curve mode"
+msgstr ""
 
-msgid "Tilt window view in expo mode"
-msgstr "Expo-Ansicht ankippen"
+#, fuzzy
+msgid "Tilt"
+msgstr "Kacheln"
 
 #, fuzzy
 msgid "Timeframe to execute a double click"
 msgstr "Zeitfenster für einen Doppelklick"
+
+#, fuzzy
+msgid "Viewport distance"
+msgstr "Arbeitsflächenumschalter"
 
 msgid "Vortex"
 msgstr ""
@@ -2487,6 +2520,9 @@ msgstr ""
 msgid "Assign mousegestures to any existing action"
 msgstr ""
 
+msgid "Detect Diagonal Movements"
+msgstr ""
+
 #, fuzzy
 msgid "Gesture"
 msgstr "Texturen"
@@ -2497,6 +2533,11 @@ msgstr ""
 #, fuzzy
 msgid "Gestures"
 msgstr "Texturen"
+
+msgid ""
+"If this option is selected, diagonal movements are detected, which may lead "
+"to a decreased detection accuracy."
+msgstr ""
 
 msgid "Mouse gesture to assign an action to."
 msgstr ""
@@ -3285,12 +3326,12 @@ msgstr "Größe des Fenstertitels"
 msgid "Highlight Color"
 msgstr "Hervorhebungsfarbe"
 
+#, fuzzy
+msgid "Highlighted window only"
+msgstr "Gefilterte Fenster"
+
 msgid "Highlights the hovered window with the given color"
 msgstr "Hebt das aktuelle Fenster in der gewählten Farbe hervor."
-
-#, fuzzy
-msgid "Hovered window only"
-msgstr "Gefilterte Fenster"
 
 #, fuzzy
 msgid "No display"
@@ -4939,6 +4980,12 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Abhilfen"
+
+#~ msgid "Tilt view"
+#~ msgstr "Ansicht kippen"
+
+#~ msgid "Tilt window view in expo mode"
+#~ msgstr "Expo-Ansicht ankippen"
 
 #~ msgid "Misc. options"
 #~ msgstr "Sonstige Optionen"
