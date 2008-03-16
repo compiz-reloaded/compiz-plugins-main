@@ -95,6 +95,7 @@ typedef struct _WallScreen
     PreparePaintScreenProc       preparePaintScreen;
     PaintTransformedOutputProc   paintTransformedOutput;
     PaintWindowProc              paintWindow;
+    ActivateWindowProc           activateWindow;
 
     Bool moving; /* Used to track miniview movement */
     Bool showPreview;
@@ -580,8 +581,6 @@ static void
 wallHandleEvent (CompDisplay *d,
 		 XEvent      *event)
 {
-    Window activeWindow = d->activeWindow;
-
     WALL_DISPLAY (d);
 
     switch (event->type)
@@ -613,27 +612,30 @@ wallHandleEvent (CompDisplay *d,
     UNWRAP (wd, d, handleEvent);
     (*d->handleEvent) (d, event);
     WRAP (wd, d, handleEvent, wallHandleEvent);
+}
 
-    if (activeWindow != d->activeWindow)
+static void
+wallActivateWindow (CompWindow *w)
+{
+    CompScreen *s = w->screen;
+
+    WALL_SCREEN (s);
+
+    if (w->placed && !otherScreenGrabExist (s, "wall", "switcher", 0))
     {
-	CompWindow *w;
+	int dx, dy;
 
-	w = findWindowAtDisplay (d, d->activeWindow);
-	if (w && w->placed)
-	{
-	    if (!otherScreenGrabExist (w->screen, "switcher", 0))
-	    {
-		int dx, dy;
-
-		defaultViewportForWindow (w, &dx, &dy);
-		dx -= w->screen->x;
-		dy -= w->screen->y;
+	defaultViewportForWindow (w, &dx, &dy);
+	dx -= s->x;
+	dy -= s->y;
 	
-		if (dx || dy)
-		    wallMoveViewport (w->screen, -dx, -dy, None);
-	    }
-	}
+	if (dx || dy)
+	    wallMoveViewport (s, -dx, -dy, None);
     }
+
+    UNWRAP (ws, s, activateWindow);
+    (*s->activateWindow) (w);
+    WRAP (ws, s, activateWindow, wallActivateWindow);
 }
 
 static Bool
@@ -1877,6 +1879,7 @@ wallInitScreen (CompPlugin *p,
     WRAP (ws, s, paintTransformedOutput, wallPaintTransformedOutput);
     WRAP (ws, s, preparePaintScreen, wallPreparePaintScreen);
     WRAP (ws, s, paintWindow, wallPaintWindow);
+    WRAP (ws, s, activateWindow, wallActivateWindow);
 
     s->base.privates[wd->screenPrivateIndex].ptr = ws;
 
@@ -1902,6 +1905,7 @@ wallFiniScreen (CompPlugin *p,
     UNWRAP (ws, s, paintTransformedOutput);
     UNWRAP (ws, s, preparePaintScreen);
     UNWRAP (ws, s, paintWindow);
+    UNWRAP (ws, s, activateWindow);
 
     free(ws);
 }
