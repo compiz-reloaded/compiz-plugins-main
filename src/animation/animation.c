@@ -4059,8 +4059,6 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 			 WIN_W(w), WIN_H(w));
     }
 
-    aw->state = w->state;
-
     UNWRAP(as, w->screen, windowResizeNotify);
     (*w->screen->windowResizeNotify) (w, dx, dy, dwidth, dheight);
     WRAP(as, w->screen, windowResizeNotify, animWindowResizeNotify);
@@ -4416,7 +4414,6 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
 	return FALSE;
 
     aw->model = 0;
-    aw->state = w->state;
     aw->animRemainingTime = 0;
     aw->animInitialized = FALSE;
     aw->curAnimEffect = AnimEffectNone;
@@ -4439,7 +4436,13 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
     aw->BB.x1 = aw->BB.y1 = MAXSHORT;
     aw->BB.x2 = aw->BB.y2 = MINSHORT;
 
-    if (w->shaded)
+    aw->nowShaded = FALSE;
+
+    if (w->minimized)
+    {
+	aw->state = aw->newState = IconicState;
+    }
+    else if (w->shaded)
     {
 	aw->state = aw->newState = NormalState;
 	aw->nowShaded = TRUE;
@@ -4447,7 +4450,6 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
     else
     {
 	aw->state = aw->newState = animGetWindowState(w);
-	aw->nowShaded = FALSE;
     }
 
     w->base.privates[as->windowPrivateIndex].ptr = aw;
