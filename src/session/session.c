@@ -594,23 +594,12 @@ sessionReadWindow (CompWindow *w)
 	/* found a window */
 	if (cur->geometryValid)
 	{
-	    xwcm = CWX | CWY;
+	    xwcm = CWX | CWY | CWWidth | CWHeight;
 
 	    xwc.x = cur->geometry.x;
 	    xwc.y = cur->geometry.y;
-	    if (cur->geometry.width != w->serverWidth)
-	    {
-		xwc.width = cur->geometry.width;
-		xwcm |= CWWidth;
-	    }
-	    if (cur->geometry.height != w->serverHeight)
-	    {
-		xwc.height = cur->geometry.height;
-		xwcm |= CWHeight;
-	    }
-
-	    if (w->mapNum && (xwcm & (CWWidth | CWHeight)))
-		sendSyncRequest (w);
+	    xwc.width = cur->geometry.width;
+	    xwc.height = cur->geometry.height;
 
 	    configureXWindow (w, xwcm, &xwc);
 	    w->placed = TRUE;
@@ -625,8 +614,6 @@ sessionReadWindow (CompWindow *w)
 	if (cur->state)
 	{
 	    changeWindowState (w, w->state | cur->state);
-	    recalcWindowType (w);
-	    recalcWindowActions (w);
 	    updateWindowAttributes (w, CompStackingUpdateModeNone);
 	}
 
