@@ -1725,6 +1725,8 @@ zoomFitWindowToZoom (CompDisplay     *d,
     CompScreen *s;
     XWindowChanges xwc;
     CompWindow * w;
+    unsigned int mask = CWWidth | CWHeight;
+
     xid = getIntOptionNamed (option, nOption, "window", 0);
     w = findWindowAtDisplay (d, xid);
     if (!w)
@@ -1740,9 +1742,19 @@ zoomFitWindowToZoom (CompDisplay     *d,
     xwc.height = (int) (s->outputDev[out].height *
 			zs->zooms[out].currentZoom -
 			(int) ((w->input.top + w->input.bottom)));
-    sendSyncRequest (w);
+
     constrainNewWindowSize (w, xwc.width, xwc.height, &xwc.width, &xwc.height);
-    configureXWindow (w, (unsigned int) CWWidth | CWHeight, &xwc);
+
+    if (xwc.width == w->serverWidth)
+	mask &= ~CWWidth;
+
+    if (xwc.height == w->serverHeight)
+	mask &= ~CWHeight;
+
+    if (w->mapNum && (mask & (CWWidth | CWHeight)))
+	sendSyncRequest (w);
+
+    configureXWindow (w, mask, &xwc);
     return TRUE;
 }
 
