@@ -214,9 +214,6 @@ winrulesUpdateState (CompWindow *w,
     {
 	changeWindowState (w, newState);
 
-	recalcWindowType (w);
-	recalcWindowActions (w);
-
 	if (mask & (CompWindowStateFullscreenMask |
 		    CompWindowStateAboveMask      |
 		    CompWindowStateBelowMask       ))
@@ -305,11 +302,10 @@ winrulesUpdateWindowSize (CompWindow *w,
     if (height != w->serverHeight)
 	xwcm |= CWHeight;
 
+    xwc.x = w->serverX;
+    xwc.y = w->serverY;
     xwc.width = width;
     xwc.height = height;
-
-    if (w->mapNum && xwcm)
-	sendSyncRequest (w);
 
     configureXWindow (w, xwcm, &xwc);
 }
