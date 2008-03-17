@@ -594,12 +594,23 @@ sessionReadWindow (CompWindow *w)
 	/* found a window */
 	if (cur->geometryValid)
 	{
-	    xwcm = CWX | CWY | CWWidth | CWHeight;
+	    xwcm = CWX | CWY;
 
 	    xwc.x = cur->geometry.x;
 	    xwc.y = cur->geometry.y;
-	    xwc.width = cur->geometry.width;
-	    xwc.height = cur->geometry.height;
+	    if (cur->geometry.width != w->serverWidth)
+	    {
+		xwc.width = cur->geometry.width;
+		xwcm |= CWWidth;
+	    }
+	    if (cur->geometry.height != w->serverHeight)
+	    {
+		xwc.height = cur->geometry.height;
+		xwcm |= CWHeight;
+	    }
+
+	    if (w->mapNum && (xwcm & (CWWidth | CWHeight)))
+		sendSyncRequest (w);
 
 	    configureXWindow (w, xwcm, &xwc);
 	    w->placed = TRUE;
