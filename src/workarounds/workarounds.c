@@ -342,8 +342,6 @@ workaroundsFixupFullscreen (CompWindow *w)
 	if (state != w->state)
 	{
 	    changeWindowState (w, state);
-	    recalcWindowType (w);
-	    recalcWindowActions (w);
 	    updateWindowAttributes (w, CompStackingUpdateModeNormal);
 
 	    /* keep track of windows that we interact with */
@@ -370,8 +368,6 @@ workaroundsFixupFullscreen (CompWindow *w)
 		if (state != w->state)
 		{
 		    changeWindowState (w, state);
-		    recalcWindowType (w);
-		    recalcWindowActions (w);
 		    updateWindowAttributes (w, CompStackingUpdateModeNormal);
 		}
 
