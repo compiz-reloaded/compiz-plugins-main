@@ -2637,16 +2637,22 @@ animAddWindowGeometry(CompWindow * w,
 		    for (it = 0; it < nMatrix; it++, v += 4)
 		    {
 			float offsetY = 0;
-			if (applyOffsets && y < y2)
-			    offsetY = objToTopLeft->offsetTexCoordForQuadAfter.y;
 
 			if (rect)
 			{
+			    if (applyOffsets && y < y2)
+				offsetY = objToTopLeft->offsetTexCoordForQuadAfter.y;
 			    v[0] = COMP_TEX_COORD_X (&matrix[it], x); // s
 			    v[1] = COMP_TEX_COORD_Y (&matrix[it], y + offsetY); // t
 			}
 			else
 			{
+			    if (applyOffsets && y < y2)
+				// FIXME:
+			    	// The correct y offset below produces wrong
+				// texture coordinates for some reason.
+				offsetY = 0;
+				// offsetY = objToTopLeft->offsetTexCoordForQuadAfter.y;
 			    v[0] = COMP_TEX_COORD_XY (&matrix[it], x, y + offsetY); // s
 			    v[1] = COMP_TEX_COORD_YX (&matrix[it], x, y + offsetY); // t
 			}
