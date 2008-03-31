@@ -1182,6 +1182,7 @@ expoPaintTransformedOutput (CompScreen              *s,
 	    expoPaintWall (s, sAttrib, transform, region, output, mask, TRUE);
 
 	expoPaintWall (s, sAttrib, transform, region, output, mask, FALSE);
+	es->anyClick = FALSE;
     }
 
     WRAP (es, s, paintTransformedOutput, expoPaintTransformedOutput);
@@ -1215,7 +1216,8 @@ expoDrawWindow (CompWindow           *w,
 		expoGetHideDocks (s->display))
 	    {
 		if (expoAnimation == ExpoAnimationZoom &&
-		    (s->x == es->selectedVX && s->y == es->selectedVY))
+		    (es->paintingVX == es->selectedVX && 
+		     es->paintingVY == es->selectedVY))
 		{
 		    fA.opacity = fragment->opacity *
 				 (1 - sigmoidProgress (es->expoCam));
@@ -1371,7 +1373,8 @@ expoPaintWindow (CompWindow              *w,
 		expoGetHideDocks (s->display))
 	{
 	    if (expoAnimation == ExpoAnimationZoom &&
-		(s->x == es->selectedVX && s->y == es->selectedVY))
+		(es->paintingVX == es->selectedVX && 
+		 es->paintingVY == es->selectedVY))
 	    {
 		opacity = attrib->opacity *
 			  (1 - sigmoidProgress (es->expoCam));
