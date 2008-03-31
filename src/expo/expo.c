@@ -1009,7 +1009,8 @@ expoPaintWall (CompScreen              *s,
 
 	    if (vp < es->vpActivitySize)
 	    {
-		vpp = sigmoidProgress (es->vpActivity[vp]);
+		vpp = (es->expoCam * es->vpActivity[vp]) + (1 - es->expoCam);
+		vpp = sigmoidProgress (vpp);
 
 		es->vpBrightness = vpp + ((1.0 - vpp) *
 				   expoGetVpBrightness (s->display) / 100.0);
