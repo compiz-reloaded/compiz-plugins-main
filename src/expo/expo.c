@@ -929,21 +929,23 @@ expoPaintWall (CompScreen              *s,
 
     matrixScale (&sTransform, oScale, oScale, 1.0);
 
+    /* zoom out */
+    matrixTranslate (&sTransform, -camX, -camY, -camZ - DEFAULT_Z_CAMERA);
+    
     if (reflection)
     {
 	float scaleFactor = expoGetScaleFactor (s->display);
 
-	matrixTranslate (&sTransform, 0.0, -s->vsize * sy * aspectY, 0.0);
+	matrixTranslate (&sTransform, 0.0, 
+			 (s->vsize + ((s->vsize - 1) * gapY * 2)) * -sy * aspectY,
+			 0.0);
 	matrixScale (&sTransform, 1.0, -1.0, 1.0);
 	matrixTranslate (&sTransform, 0.0,
-			 - (1 - scaleFactor) / 2 * s->vsize * sy * aspectY,
-			 0.0);
+			 - (1 - scaleFactor) / 2 * sy * aspectY *
+			 (s->vsize + ((s->vsize - 1) * gapY * 2)), 0.0);
 	matrixScale (&sTransform, 1.0, scaleFactor, 1.0);
 	glCullFace (GL_FRONT);
     }
-
-    /* zoom out */
-    matrixTranslate (&sTransform, -camX, -camY, -camZ - DEFAULT_Z_CAMERA);
 
     /* rotate */
     matrixRotate (&sTransform, rotation, 0.0f, 1.0f, 0.0f);
