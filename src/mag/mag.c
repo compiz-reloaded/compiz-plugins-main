@@ -40,9 +40,6 @@
 #define MAG_SCREEN(s)                                                      \
     MagScreen *ms = GET_MAG_SCREEN (s, GET_MAG_DISPLAY (s->display))
 
-
-typedef void (*GLMultiTexCoord2fProc) (GLenum, GLfloat, GLfloat);
-
 static int displayPrivateIndex = 0;
 
 typedef struct _MagDisplay
@@ -86,8 +83,6 @@ typedef struct _MagScreen
     MagImage mask;
 
     GLuint program;
-
-    GLMultiTexCoord2fProc multiTexCoord2f;
 
     PositionPollingHandle pollHandle;
 	
@@ -200,7 +195,7 @@ loadImages (CompScreen *s)
 {
     MAG_SCREEN (s);
 
-    if (!ms->multiTexCoord2f)
+    if (!s->multiTexCoord2f)
 	return FALSE;
 
     ms->overlay.loaded = readImageToTexture (s, &ms->overlay.tex,
@@ -732,25 +727,25 @@ magPaintImage (CompScreen *s)
     glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
     glBegin (GL_QUADS);
-    (*ms->multiTexCoord2f) (GL_TEXTURE0_ARB, tc[0], tc[2]);
-    (*ms->multiTexCoord2f) (GL_TEXTURE1_ARB,
-			    COMP_TEX_COORD_X (&ms->mask.tex.matrix, 0),
-			    COMP_TEX_COORD_Y (&ms->mask.tex.matrix, 0));
+    (*s->multiTexCoord2f) (GL_TEXTURE0_ARB, tc[0], tc[2]);
+    (*s->multiTexCoord2f) (GL_TEXTURE1_ARB,
+			   COMP_TEX_COORD_X (&ms->mask.tex.matrix, 0),
+			   COMP_TEX_COORD_Y (&ms->mask.tex.matrix, 0));
     glVertex2f (vc[0], vc[2]);
-    (*ms->multiTexCoord2f) (GL_TEXTURE0_ARB, tc[0], tc[3]);
-    (*ms->multiTexCoord2f) (GL_TEXTURE1_ARB,
-			    COMP_TEX_COORD_X (&ms->mask.tex.matrix, 0),
-			    COMP_TEX_COORD_Y (&ms->mask.tex.matrix, h));
+    (*s->multiTexCoord2f) (GL_TEXTURE0_ARB, tc[0], tc[3]);
+    (*s->multiTexCoord2f) (GL_TEXTURE1_ARB,
+			   COMP_TEX_COORD_X (&ms->mask.tex.matrix, 0),
+			   COMP_TEX_COORD_Y (&ms->mask.tex.matrix, h));
     glVertex2f (vc[0], vc[3]);
-    (*ms->multiTexCoord2f) (GL_TEXTURE0_ARB, tc[1], tc[3]);
-    (*ms->multiTexCoord2f) (GL_TEXTURE1_ARB,
-			    COMP_TEX_COORD_X (&ms->mask.tex.matrix, w),
-			    COMP_TEX_COORD_Y (&ms->mask.tex.matrix, h));
+    (*s->multiTexCoord2f) (GL_TEXTURE0_ARB, tc[1], tc[3]);
+    (*s->multiTexCoord2f) (GL_TEXTURE1_ARB,
+			   COMP_TEX_COORD_X (&ms->mask.tex.matrix, w),
+			   COMP_TEX_COORD_Y (&ms->mask.tex.matrix, h));
     glVertex2f (vc[1], vc[3]);
-    (*ms->multiTexCoord2f) (GL_TEXTURE0_ARB, tc[1], tc[2]);
-    (*ms->multiTexCoord2f) (GL_TEXTURE1_ARB,
-			    COMP_TEX_COORD_X (&ms->mask.tex.matrix, w),
-			    COMP_TEX_COORD_Y (&ms->mask.tex.matrix, 0));
+    (*s->multiTexCoord2f) (GL_TEXTURE0_ARB, tc[1], tc[2]);
+    (*s->multiTexCoord2f) (GL_TEXTURE1_ARB,
+			   COMP_TEX_COORD_X (&ms->mask.tex.matrix, w),
+			   COMP_TEX_COORD_Y (&ms->mask.tex.matrix, 0));
     glVertex2f (vc[1], vc[2]);
     glEnd ();
 
@@ -1141,9 +1136,6 @@ magInitScreen (CompPlugin *p,
     magSetOverlayNotify (s, magOptionsChanged);
     magSetMaskNotify (s, magOptionsChanged);
     magSetModeNotify (s, magOptionsChanged);
-
-    ms->multiTexCoord2f = (GLMultiTexCoord2fProc)
-			  (*s->getProcAddress) ((GLubyte *)"glMultiTexCoord2f");
 
     switch (magGetMode (s))
     {
