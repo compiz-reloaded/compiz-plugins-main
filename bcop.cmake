@@ -13,8 +13,8 @@ macro (bcop plugin)
         OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.h
         COMMAND ${BCOP_EXECUTABLE}
                     --header ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.h
-                    ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml
-        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml
+                    ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml.in
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml.in
     )
     add_custom_command (
         OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.c
@@ -22,7 +22,7 @@ macro (bcop plugin)
                     --source ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml
                     ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.h
-        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml.in
                 ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.h
     )
 endmacro (bcop)
