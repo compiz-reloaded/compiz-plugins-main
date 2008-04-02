@@ -12,6 +12,7 @@ macro (add_plugin plugin sources)
     include_directories (
         ${compiz-fusion-plugins-main_SOURCE_DIR}/include
         ${COMPIZ_INCLUDE_DIRS}
+        ${CMAKE_CURRENT_BINARY_DIR}
     )
 
     link_directories (
