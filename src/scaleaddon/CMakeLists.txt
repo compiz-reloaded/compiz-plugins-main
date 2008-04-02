@@ -5,6 +5,7 @@ bcop (${plugin})
 include_directories (
     ${compiz-fusion-plugins-main_SOURCE_DIR}/include
     ${COMPIZ_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_BINARY_DIR}
     ${SCALE_INCLUDE_DIRS}
 )
 
