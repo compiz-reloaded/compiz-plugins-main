@@ -1425,7 +1425,7 @@ expoDonePaintScreen (CompScreen * s)
 
     if (es->expoCam == 1.0f)
 	for (i = 0; i < es->vpActivitySize; i++)
-	    if (es->vpActivity[i] != 0.0 || es->vpActivity[i] != 1.0)
+	    if (es->vpActivity[i] != 0.0 && es->vpActivity[i] != 1.0)
 		damageScreen (s);
 
     if (es->grabIndex && es->expoCam <= 0.0f && !es->expoMode)
