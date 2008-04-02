@@ -20,7 +20,7 @@ macro (bcop plugin)
         OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.c
         COMMAND ${BCOP_EXECUTABLE}
                     --source ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml
+                    ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml.in
                     ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.h
         DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../../metadata/${plugin}.xml.in
                 ${CMAKE_CURRENT_BINARY_DIR}/${plugin}_options.h
