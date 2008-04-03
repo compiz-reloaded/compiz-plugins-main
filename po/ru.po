@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:12+0530\n"
+"POT-Creation-Date: 2008-04-03 13:28+0530\n"
 "PO-Revision-Date: 2008-01-15 05:51+0100\n"
 "Last-Translator: Denis Rakhmangulov <danfocus@gmail.com>\n"
 "Language-Team: \n"
@@ -2617,6 +2617,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2629,6 +2632,11 @@ msgstr ""
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -5168,24 +5176,80 @@ msgid "Wall Sliding Duration"
 msgstr "/wall <сообщение> .......... команда администратора"
 
 #, fuzzy
+msgid "Background fill type."
+msgstr " Фоновый процесс: файл существует "
+
+#, fuzzy
 msgid "Backgrounds"
 msgstr "Фон и эмблемы"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Центр выделения"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Цвета"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Цвета"
 
 #, fuzzy
 msgid "Draw the desktop wallpaper"
 msgstr "Отрисовывать фон рабочего стола"
 
-msgid "Enable true alpha blending for transparent wallpapers"
+#, fuzzy
+msgid "Fill or first gradient color."
+msgstr "Степень непрозрачности фонового цвета"
+
+#, fuzzy
+msgid "Fill type"
+msgstr "Заполненный эллипс"
+
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Свёртывается горизонтально"
+
+#, fuzzy
+msgid "Image"
+msgstr "Изображения"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Изображение для верхней отметки"
+
+#, fuzzy
+msgid "Image position."
+msgstr "Позиция по горизонтали"
+
+#, fuzzy
+msgid "Position"
+msgstr "Позиция по горизонтали"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Масштаб"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Масштаб"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Конечный цвет градиента для фона"
+
+msgid "Solid fill"
 msgstr ""
 
 #, fuzzy
-msgid "Enable true blending"
-msgstr "Разрешить _регистрацию"
+msgid "Tiled"
+msgstr "Заполнять"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
-msgstr ""
-
-msgid "Tile backgrounds as opposed to stretching"
+msgid "Vertical gradient"
 msgstr ""
 
 msgid "Wallpaper"
@@ -5451,6 +5515,10 @@ msgstr ""
 #, fuzzy
 msgid "Workarounds"
 msgstr "Обходные пути"
+
+#, fuzzy
+#~ msgid "Enable true blending"
+#~ msgstr "Разрешить _регистрацию"
 
 #, fuzzy
 #~ msgid "Tilt view"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:11+0530\n"
+"POT-Creation-Date: 2008-04-03 13:28+0530\n"
 "PO-Revision-Date: 2008-01-31 15:42+0100\n"
 "Last-Translator: Elve <elve@savage-elve.net>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -2401,6 +2401,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2414,6 +2417,11 @@ msgstr "Maximale venster grootte (in procenten van de scherm breedte)"
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4619,26 +4627,80 @@ msgstr "Viewport wisselen"
 msgid "Wall Sliding Duration"
 msgstr "Duur van muur schuiven"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Achtergrond bestand"
+
 msgid "Backgrounds"
 msgstr "Achtergronden"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Plaats middenpunt"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Kleuren"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Kleuren"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Teken de bureaublad achtergrond"
 
-msgid "Enable true alpha blending for transparent wallpapers"
+#, fuzzy
+msgid "Fill or first gradient color."
+msgstr "Vuur partikel kleur."
+
+#, fuzzy
+msgid "Fill type"
+msgstr "Gevulde omtrek"
+
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Horizontaal vouwen"
+
+#, fuzzy
+msgid "Image"
+msgstr "Afbeeldingen"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Afbeelding bovenzĳde bestanden"
+
+#, fuzzy
+msgid "Image position."
+msgstr "X positie"
+
+#, fuzzy
+msgid "Position"
+msgstr "X positie"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Schaal addons"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Schaal addons"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Gradatie kleur 1"
+
+msgid "Solid fill"
 msgstr ""
-"Schakelt echte alpha blending in voor transparante achtergrond afbeeldingen."
 
-msgid "Enable true blending"
-msgstr "Blending inschakelen"
+#, fuzzy
+msgid "Tiled"
+msgstr "Tegelen"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+msgid "Vertical gradient"
 msgstr ""
-"De achtergrond specificatie's (zoals uitgelegd in DOCUMENTATIE) om te "
-"gebruiken."
-
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "Tegel achtergrond in tegenstelling tot oprekken"
 
 msgid "Wallpaper"
 msgstr "Achtergrond"
@@ -4857,6 +4919,23 @@ msgstr "Vensters op alle bureaubladen die sticky gemaakt moeten worden"
 
 msgid "Workarounds"
 msgstr "Workarounds"
+
+#~ msgid "Enable true alpha blending for transparent wallpapers"
+#~ msgstr ""
+#~ "Schakelt echte alpha blending in voor transparante achtergrond "
+#~ "afbeeldingen."
+
+#~ msgid "Enable true blending"
+#~ msgstr "Blending inschakelen"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr ""
+#~ "De achtergrond specificatie's (zoals uitgelegd in DOCUMENTATIE) om te "
+#~ "gebruiken."
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "Tegel achtergrond in tegenstelling tot oprekken"
 
 #~ msgid "Tilt view"
 #~ msgstr "Kantel weergave"

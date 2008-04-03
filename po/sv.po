@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:12+0530\n"
-"PO-Revision-Date: 2008-03-03 20:48+0100\n"
+"POT-Creation-Date: 2008-04-03 13:28+0530\n"
+"PO-Revision-Date: 2008-02-17 11:02+0100\n"
 "Last-Translator: Sebastian Parborg <zedDB@hotmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -2225,12 +2225,15 @@ msgstr "Insticksmodul för JPEG-bildformat"
 msgid "Quality of compression when saving JPEG images"
 msgstr "Kvaliteten på kompression när man sparar JPEG-bilder"
 
+#, fuzzy
 msgid "Background/Window brightness."
-msgstr "Ljusstyrka på bakgrund/fönster"
+msgstr "Ljusstyrka på bakgrund"
 
+#, fuzzy
 msgid "Background/Window saturation."
-msgstr "Färgmättnad för bakgrund/fönster"
+msgstr "Färgmättnad för bakgrund"
 
+#, fuzzy
 msgid "Fade In/Out Time"
 msgstr "Tona in/ut tid"
 
@@ -2238,46 +2241,55 @@ msgid "Fade In/Out Time."
 msgstr "Tona in/ut tid"
 
 msgid "Login"
-msgstr "Logga in"
+msgstr ""
 
+#, fuzzy
 msgid "Login Window Match"
-msgstr "Login in fönstermatchning"
+msgstr "Fönstermatchning"
 
+#, fuzzy
 msgid "Login Window match"
-msgstr "Login in fönstermatchning"
+msgstr "Fönstermatchning"
 
 msgid "Login/Logout"
-msgstr "Logga in/ut"
+msgstr ""
 
 msgid "Login/Logout effect"
-msgstr "Logga in/ut effekt"
+msgstr ""
 
 msgid "Logout"
-msgstr "Logga ut"
+msgstr ""
 
+#, fuzzy
 msgid "Logout Window Match"
-msgstr "Logga ut fönstermatchning"
+msgstr "Grupp fönstermatchning"
 
+#, fuzzy
 msgid "Logout Window match"
-msgstr "Logga ut fönstermatchning"
+msgstr "Fönstermatchning"
 
+#, fuzzy
 msgid "Window opacity."
 msgstr "Fönsteropacitet"
 
+#, fuzzy
 msgid "Border color"
-msgstr "Kantfärg"
+msgstr "Kantfärg på tabb"
 
+#, fuzzy
 msgid "Border width"
 msgstr "Bredd på kant"
 
+#, fuzzy
 msgid "Border widtht."
 msgstr "Bredd på kant"
 
 msgid "Box height."
-msgstr "Boxhöjd"
+msgstr ""
 
+#, fuzzy
 msgid "Box width."
-msgstr "Boxbredd"
+msgstr "Strålbredd"
 
 #, fuzzy
 msgid "Clip mask"
@@ -2286,95 +2298,93 @@ msgstr "Mipmaps"
 msgid "Clip mask."
 msgstr ""
 
+#, fuzzy
 msgid "Fisheye"
-msgstr "Fisköga"
+msgstr "Fiskstorlek"
 
 msgid "Height"
 msgstr "Höjd"
 
-#, fuzzy
 msgid "Image overlay"
-msgstr "Bildöverdrag"
+msgstr ""
 
 #, fuzzy
 msgid "Keep fully on screen"
-msgstr "Håll helt på skärmen"
+msgstr "Visa FPS på skärmen"
 
 #, fuzzy
 msgid "Keep fully on screen."
-msgstr "Håll helt på skärmen"
+msgstr "Visa FPS på skärmen"
 
 msgid "Magnifier"
-msgstr "Förstoringsglas"
+msgstr ""
 
-#, fuzzy
 msgid "Magnifier box"
-msgstr "Box för förstoringsglas"
+msgstr ""
 
-#, fuzzy
 msgid "Magnifier image"
-msgstr "Förstoringsglas bild"
+msgstr ""
 
-#, fuzzy
 msgid "Magnifier image."
-msgstr "Förstoringsglas bild"
+msgstr ""
 
 # Något bättre ord?
 #, fuzzy
 msgid "Mode"
-msgstr "Läge"
+msgstr "Undvik"
 
 # Något bättre ord?
 #, fuzzy
 msgid "Mode."
-msgstr "Läge"
+msgstr "Undvik"
 
+#, fuzzy
 msgid "Radius"
-msgstr "Radie"
+msgstr "Kantradie"
 
+#, fuzzy
 msgid "Radius of the magnification area."
-msgstr "Radie på det förstorade området."
+msgstr "Radie på den rundade kantens"
 
 msgid "Width"
 msgstr "Bredd"
 
-#, fuzzy
 msgid "X offset of the cursor"
-msgstr "X-kompensation för muspekaren"
+msgstr ""
 
-#, fuzzy
 msgid "X offset of the cursor."
-msgstr "X-kompensation för muspekaren"
+msgstr ""
 
-#, fuzzy
 msgid "Y offset of the cursor"
-msgstr "Y-kompensation för muspekaren"
+msgstr ""
 
-#, fuzzy
 msgid "Y offset of the cursor."
-msgstr "Y-kompensation för muspekaren"
+msgstr ""
 
-#, fuzzy
 msgid "Zoom factor for keyboard initiated magnifier."
-msgstr "Zoom-faktorn för tangentbords initierad förstoringsglas "
+msgstr ""
 
-#, fuzzy
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
-msgstr "Ignorera klibbigafönster i uträkningarna"
+msgstr ""
 
-#, fuzzy
 msgid "Maximumize"
-msgstr "Maximera"
+msgstr ""
 
 #, fuzzy
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
-msgstr ""
-"Maximerar fönster (ändrar storlek så att de passar in i det tillgängliga "
-"skärmutrymmet) "
+msgstr "Maximal fönsterstorlek (procentuellt av skärmens storlek"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4572,24 +4582,80 @@ msgstr "Växling av arbetsyta"
 msgid "Wall Sliding Duration"
 msgstr "Varaktighet för glidande vägg"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Bakgrundsfil"
+
 msgid "Backgrounds"
 msgstr "Bakgrunder"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Placera mitt"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Färger"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Färger"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Rita bakgrundsbilden"
 
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Aktivera äkta alfa-blandning för genomskinliga bakgrunder"
+#, fuzzy
+msgid "Fill or first gradient color."
+msgstr "Färg på eldpartiklar"
 
-msgid "Enable true blending"
-msgstr "Aktivera äkta blandning"
+#, fuzzy
+msgid "Fill type"
+msgstr "Fylld kontur"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Horisontella vikningar"
+
+#, fuzzy
+msgid "Image"
+msgstr "Bilder"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Bildfiler för översida"
+
+#, fuzzy
+msgid "Image position."
+msgstr "X-position"
+
+#, fuzzy
+msgid "Position"
+msgstr "X-position"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Skala tillägg"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Skala tillägg"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Gradientfärg 1"
+
+msgid "Solid fill"
 msgstr ""
-"Specificationer för bakgrunden som ska användas (förklarat i DOKUMENTATIONEN)"
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "Sätt bakgrunderna sida vid sida istället för att sträcka ut"
+#, fuzzy
+msgid "Tiled"
+msgstr "Kakla"
+
+msgid "Vertical gradient"
+msgstr ""
 
 msgid "Wallpaper"
 msgstr "Bakgrund"
@@ -4816,6 +4882,21 @@ msgstr "Fönster på alla arbetsytor som ska klistras"
 
 msgid "Workarounds"
 msgstr "Problemlösningar"
+
+#~ msgid "Enable true alpha blending for transparent wallpapers"
+#~ msgstr "Aktivera äkta alfa-blandning för genomskinliga bakgrunder"
+
+#~ msgid "Enable true blending"
+#~ msgstr "Aktivera äkta blandning"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr ""
+#~ "Specificationer för bakgrunden som ska användas (förklarat i "
+#~ "DOKUMENTATIONEN)"
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "Sätt bakgrunderna sida vid sida istället för att sträcka ut"
 
 #~ msgid "Tilt view"
 #~ msgstr "Luta vyn"

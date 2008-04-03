@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:11+0530\n"
+"POT-Creation-Date: 2008-04-03 13:27+0530\n"
 "PO-Revision-Date: 2007-12-17 12:25+0530\n"
 "Last-Translator: \n"
 "Language-Team: gist Gujarati team <info.gist@cdac.in>\n"
@@ -2361,6 +2361,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2374,6 +2377,11 @@ msgstr "મહત્તમ વિન્ડો માપ (સ્ક્રીન �
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4553,25 +4561,80 @@ msgstr "દૃશ્યપોર્ટ બદલવાનું"
 msgid "Wall Sliding Duration"
 msgstr "દિવાલ સરકાવવાનો ગાળો"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "પાશ્વભાગ ફાઈલ"
+
 msgid "Backgrounds"
 msgstr "પાશ્વભાગો"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "કેન્દ્ર મૂકો"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "રંગો"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "રંગો"
 
 msgid "Draw the desktop wallpaper"
 msgstr "ડેસ્કટોપ વોલપેપર દોરો"
 
 #, fuzzy
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "બરફકરાઓનું આલ્ફા ભળવાનું સક્રિય કરે છે."
+msgid "Fill or first gradient color."
+msgstr "આગ કણ રંગ."
 
 #, fuzzy
-msgid "Enable true blending"
-msgstr "ભળવાનું સક્રિય કરો"
+msgid "Fill type"
+msgstr "ભરેલ બાહ્ય કિનારી"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
-msgstr "વાપરવા માટેના પાશ્વભાગ સ્પષ્ટીકરણો (દસ્તાવેજીકરણમાં સમજાવ્યા અનુસાર)."
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "આડા ફોલ્ડ"
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "ખેંચવા પ્રમાણે પાશ્વભાગોની તકતી કરો"
+#, fuzzy
+msgid "Image"
+msgstr "ચિત્રો"
+
+#, fuzzy
+msgid "Image file."
+msgstr "ટોચની ચિત્ર ફાઈલો"
+
+#, fuzzy
+msgid "Image position."
+msgstr "X સ્થાન"
+
+#, fuzzy
+msgid "Position"
+msgstr "X સ્થાન"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "ઉમેરાઓ ખેંચો"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "ઉમેરાઓ ખેંચો"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "ઢાળ રંગ ૧"
+
+msgid "Solid fill"
+msgstr ""
+
+#, fuzzy
+msgid "Tiled"
+msgstr "તકતી"
+
+msgid "Vertical gradient"
+msgstr ""
 
 msgid "Wallpaper"
 msgstr "વોલપેપર"
@@ -4813,6 +4876,13 @@ msgstr "ઉકેલો"
 
 #~ msgid "Put Exact"
 #~ msgstr "ચોક્કસ સ્થાને મૂકો"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr "વાપરવા માટેના પાશ્વભાગ સ્પષ્ટીકરણો (દસ્તાવેજીકરણમાં સમજાવ્યા અનુસાર)."
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "ખેંચવા પ્રમાણે પાશ્વભાગોની તકતી કરો"
 
 #~ msgid "Tile or Stretch"
 #~ msgstr "તકતી અથવા ખેંચ"

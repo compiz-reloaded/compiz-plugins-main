@@ -1,13 +1,13 @@
-# compiz-fusion plugins en_GB translation.
-# Copyright (C) 2009 compiz-fusion.org
+# compiz-fusion plugins translations.
+# Copyright (C) 2008 compiz-fusion.org
 # This file is distributed under the same license as the compiz-fusion-plugins package.
-# David Lodge <dave@cirt.net>
+# David Lodge <dave@cirt.net>.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: compiz-fusion-plugins\n"
+"Project-Id-Version: compiz-fusion 0.7.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:10+0530\n"
+"POT-Creation-Date: 2008-04-03 13:26+0530\n"
 "PO-Revision-Date: 2008-03-13 08:06+0100\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: en_GB <dave@cirt.net>\n"
@@ -2322,6 +2322,10 @@ msgstr "Y offset of the cursor."
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Zoom factor for keyboard initiated magnifier."
 
+#, fuzzy
+msgid "Ignore already overlapping windows in the calculations"
+msgstr "Ignore sticky windows in the calculations"
+
 msgid "Ignore sticky windows in the calculations"
 msgstr "Ignore sticky windows in the calculations"
 
@@ -2334,6 +2338,14 @@ msgstr "Resize windows to fit the available screenspace."
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+"Treat sticky windows as non-existant when calculating space to use for the "
+"resized window."
+
+#, fuzzy
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "resized window."
@@ -4494,24 +4506,80 @@ msgstr "Viewport Switching"
 msgid "Wall Sliding Duration"
 msgstr "Wall Sliding Duration"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Background File"
+
 msgid "Backgrounds"
 msgstr "Backgrounds"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Put Centre"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Colours"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Colours"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Draw the desktop wallpaper"
 
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Enable true alpha blending for transparent wallpapers"
+#, fuzzy
+msgid "Fill or first gradient color."
+msgstr "Fire particle colour."
 
-msgid "Enable true blending"
-msgstr "Enable true blending"
+#, fuzzy
+msgid "Fill type"
+msgstr "Filled Outline"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Horizontal Folds"
+
+#, fuzzy
+msgid "Image"
+msgstr "Images"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Top image files"
+
+#, fuzzy
+msgid "Image position."
+msgstr "X position"
+
+#, fuzzy
+msgid "Position"
+msgstr "X position"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Scale Addons"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Scale Addons"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Gradient Colour 1"
+
+msgid "Solid fill"
 msgstr ""
-"The background specifications (as explained in the documentation) to use."
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "Tile backgrounds as opposed to stretching"
+#, fuzzy
+msgid "Tiled"
+msgstr "Tile"
+
+msgid "Vertical gradient"
+msgstr ""
 
 msgid "Wallpaper"
 msgstr "Wallpaper"
@@ -4735,3 +4803,17 @@ msgstr "Workarounds"
 
 #~ msgid "Tilt window view in expo mode"
 #~ msgstr "Tilt window view in expo mode"
+
+#~ msgid "Enable true alpha blending for transparent wallpapers"
+#~ msgstr "Enable true alpha blending for transparent wallpapers"
+
+#~ msgid "Enable true blending"
+#~ msgstr "Enable true blending"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr ""
+#~ "The background specifications (as explained in the documentation) to use."
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "Tile backgrounds as opposed to stretching"

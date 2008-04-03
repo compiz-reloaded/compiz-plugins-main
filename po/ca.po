@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Compiz Fusion Plugins 0.5.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:10+0530\n"
+"POT-Creation-Date: 2008-04-03 13:26+0530\n"
 "PO-Revision-Date: 2007-09-09 02:42+0100\n"
 "Last-Translator: Gustau L. Castells (Karasu) <gustaucastells@gmail.com>\n"
 "Language-Team: Catalan <gustaucastells@gmail.com>\n"
@@ -2335,6 +2335,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2349,6 +2352,11 @@ msgstr ""
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4484,24 +4492,78 @@ msgstr ""
 msgid "Wall Sliding Duration"
 msgstr ""
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Fitxer de fons"
+
 msgid "Backgrounds"
 msgstr "Fons"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Posa al centre"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Colors"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Colors"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Dibuixa el paper de fons"
 
 #, fuzzy
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Activa el barrejat alfa dels flocs de neu."
+msgid "Fill or first gradient color."
+msgstr "Color de les partícules del foc."
 
-#, fuzzy
-msgid "Enable true blending"
-msgstr "Activa barrejar"
-
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+msgid "Fill type"
 msgstr ""
 
-msgid "Tile backgrounds as opposed to stretching"
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Plecs horitzontals"
+
+#, fuzzy
+msgid "Image"
+msgstr "Imatges"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Arxius de les imatges superiors"
+
+#, fuzzy
+msgid "Image position."
+msgstr "Posició de les X"
+
+#, fuzzy
+msgid "Position"
+msgstr "Posició de les X"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Afegits d'escalat"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Afegits d'escalat"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Color de degradat 1"
+
+msgid "Solid fill"
+msgstr ""
+
+#, fuzzy
+msgid "Tiled"
+msgstr "Mosaic"
+
+msgid "Vertical gradient"
 msgstr ""
 
 msgid "Wallpaper"
@@ -4734,6 +4796,14 @@ msgstr "Finestres en tots els escriptoris que han de ser apegaloses"
 
 msgid "Workarounds"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Enable true alpha blending for transparent wallpapers"
+#~ msgstr "Activa el barrejat alfa dels flocs de neu."
+
+#, fuzzy
+#~ msgid "Enable true blending"
+#~ msgstr "Activa barrejar"
 
 #~ msgid "Tilt view"
 #~ msgstr "Vista inclinada"

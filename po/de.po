@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:10+0530\n"
+"POT-Creation-Date: 2008-04-03 13:26+0530\n"
 "PO-Revision-Date: 2008-02-20 09:57+0100\n"
 "Last-Translator: Danny Baumann <dannybaumann@web.de>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
@@ -2441,6 +2441,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2454,6 +2457,11 @@ msgstr "Breite des Ringes in Prozent der Bildschirmbreite"
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4729,24 +4737,79 @@ msgstr "Arbeitsflächenumschaltung"
 msgid "Wall Sliding Duration"
 msgstr "Animationsdauer"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Hintergrundbild"
+
 msgid "Backgrounds"
 msgstr "Hintergrundbild"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "In der Bildschirmmitte"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Farben"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Farben"
 
 msgid "Draw the desktop wallpaper"
 msgstr ""
 
 #, fuzzy
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Aktiviere Transparenz-Blendung für Schneeflocken."
+msgid "Fill or first gradient color."
+msgstr "Farbe der Feuerparktikel."
 
 #, fuzzy
-msgid "Enable true blending"
-msgstr "Aktiviere Blending"
+msgid "Fill type"
+msgstr "Gefüllter Rahmen"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Horizontales Zusammenfalten"
+
+#, fuzzy
+msgid "Image"
+msgstr "Bilder"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Logo-Datei."
+
+#, fuzzy
+msgid "Image position."
+msgstr "X-Position"
+
+#, fuzzy
+msgid "Position"
+msgstr "X-Position"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Scale-Erweiterungen"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Scale-Erweiterungen"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Farbe 1 für Farbverlauf"
+
+msgid "Solid fill"
 msgstr ""
 
-msgid "Tile backgrounds as opposed to stretching"
+#, fuzzy
+msgid "Tiled"
+msgstr "Kacheln"
+
+msgid "Vertical gradient"
 msgstr ""
 
 msgid "Wallpaper"
@@ -4980,6 +5043,14 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Abhilfen"
+
+#, fuzzy
+#~ msgid "Enable true alpha blending for transparent wallpapers"
+#~ msgstr "Aktiviere Transparenz-Blendung für Schneeflocken."
+
+#, fuzzy
+#~ msgid "Enable true blending"
+#~ msgstr "Aktiviere Blending"
 
 #~ msgid "Tilt view"
 #~ msgstr "Ansicht kippen"

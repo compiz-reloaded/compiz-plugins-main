@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins-new\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:12+0530\n"
+"POT-Creation-Date: 2008-04-03 13:28+0530\n"
 "PO-Revision-Date: 2007-12-31 01:40+0100\n"
 "Last-Translator: Gürkan Gür <seqizz@gmail.com>\n"
 "Language-Team: <tr@li.org>\n"
@@ -2306,6 +2306,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2318,6 +2321,11 @@ msgstr ""
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4434,23 +4442,76 @@ msgstr "Masaüstü Seçimi"
 msgid "Wall Sliding Duration"
 msgstr ""
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Arkaplan Dosyası"
+
 msgid "Backgrounds"
 msgstr "Arkaplanlar"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Ortaya Yerleştir"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Renkler"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Renkler"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Arkaplan duvar kağıdını oluştur"
 
-msgid "Enable true alpha blending for transparent wallpapers"
+#, fuzzy
+msgid "Fill or first gradient color."
+msgstr "Ateş rengi."
+
+msgid "Fill type"
 msgstr ""
 
 #, fuzzy
-msgid "Enable true blending"
-msgstr "Harmanlamayı Etkinleştir"
+msgid "Horizontal gradient"
+msgstr "Yatay Katlama"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+#, fuzzy
+msgid "Image"
+msgstr "Resimler"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Tavan resim dosyaları"
+
+#, fuzzy
+msgid "Image position."
+msgstr "X-Konumu"
+
+#, fuzzy
+msgid "Position"
+msgstr "X-Konumu"
+
+msgid "Scale and Crop"
 msgstr ""
 
-msgid "Tile backgrounds as opposed to stretching"
+msgid "Scaled"
+msgstr ""
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Karışım Rengi 1"
+
+msgid "Solid fill"
+msgstr ""
+
+#, fuzzy
+msgid "Tiled"
+msgstr "Döşe"
+
+msgid "Vertical gradient"
 msgstr ""
 
 msgid "Wallpaper"
@@ -4682,6 +4743,10 @@ msgstr "Tüm masaüstlerindeki pencereler yapışkan olmalı"
 
 msgid "Workarounds"
 msgstr "Hızlı Çözümler"
+
+#, fuzzy
+#~ msgid "Enable true blending"
+#~ msgstr "Harmanlamayı Etkinleştir"
 
 #~ msgid "Tilt view"
 #~ msgstr "Yatık görünüm"

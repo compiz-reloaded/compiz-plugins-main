@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:12+0530\n"
+"POT-Creation-Date: 2008-04-03 13:28+0530\n"
 "PO-Revision-Date: 2007-12-15 23:42+0100\n"
 "Last-Translator: Rodolfo Jose Ferreira <rodolfopacas@gmail.com>\n"
 "Language-Team: Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
@@ -2436,6 +2436,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2449,6 +2452,11 @@ msgstr "Tamanho máximo da janela (proporcional a largura da tela)"
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4688,26 +4696,80 @@ msgstr "Mudar de janela de visualização"
 msgid "Wall Sliding Duration"
 msgstr "Duração do Deslizamento do Muro"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Ficheiro com a Imagem de Fundo"
+
 msgid "Backgrounds"
 msgstr "Fundos"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Colocar no Centro"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Cores"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Cores"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Desenhar o papel de parede da área de trabalho"
 
 #, fuzzy
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Activa mistura alfa dos flocos de neve."
+msgid "Fill or first gradient color."
+msgstr "Cor das partículas."
 
 #, fuzzy
-msgid "Enable true blending"
-msgstr "Activar Mistura"
+msgid "Fill type"
+msgstr "Delineação preenchida"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Dobras horizontais"
+
+#, fuzzy
+msgid "Image"
+msgstr "Imagens"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Arquivos com as imagens para a face superior"
+
+#, fuzzy
+msgid "Image position."
+msgstr "Posição no eixo horizontal (X)"
+
+#, fuzzy
+msgid "Position"
+msgstr "Posição no eixo horizontal (X)"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Adições ao plugin de Dimensionamento"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Adições ao plugin de Dimensionamento"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Cor Gradiente 1"
+
+msgid "Solid fill"
 msgstr ""
-"As especificações do fundo (como explicado em DOCUMENTATION) para usar."
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "Criar mosaico do fundo ao invés de esticar"
+#, fuzzy
+msgid "Tiled"
+msgstr "Mosaico"
+
+msgid "Vertical gradient"
+msgstr ""
 
 msgid "Wallpaper"
 msgstr "Papel de parede"
@@ -4942,6 +5004,22 @@ msgstr "Janelas \"em todos as áreas de trabalho\" que devem ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correções de bug"
+
+#, fuzzy
+#~ msgid "Enable true alpha blending for transparent wallpapers"
+#~ msgstr "Activa mistura alfa dos flocos de neve."
+
+#, fuzzy
+#~ msgid "Enable true blending"
+#~ msgstr "Activar Mistura"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr ""
+#~ "As especificações do fundo (como explicado em DOCUMENTATION) para usar."
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "Criar mosaico do fundo ao invés de esticar"
 
 #~ msgid "Tilt view"
 #~ msgstr "Inclinar vista"

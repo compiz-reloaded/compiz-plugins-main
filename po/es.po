@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:10+0530\n"
+"POT-Creation-Date: 2008-04-03 13:26+0530\n"
 "PO-Revision-Date: 2008-02-23 00:18+0100\n"
 "Last-Translator: Felipe Montero <hanamishi@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -2431,6 +2431,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2443,6 +2446,11 @@ msgstr ""
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4732,25 +4740,78 @@ msgid "Wall Sliding Duration"
 msgstr "Duración del deslizamiendo de la pared"
 
 #, fuzzy
+msgid "Background fill type."
+msgstr "Brillo del fondo"
+
+#, fuzzy
 msgid "Backgrounds"
 msgstr "Fondo"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Dibujar con fuego en la pantalla"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Colores"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Colores"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Dibuje el papel tapiz del escritorio"
 
-msgid "Enable true alpha blending for transparent wallpapers"
+#, fuzzy
+msgid "Fill or first gradient color."
+msgstr "Color de las partículas de fuego"
+
+#, fuzzy
+msgid "Fill type"
+msgstr "Contorno relleno"
+
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Pliegues horizontales"
+
+#, fuzzy
+msgid "Image"
+msgstr "Imágenes"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Archivo de la imagen de los reflejos"
+
+#, fuzzy
+msgid "Image position."
+msgstr "Posición sobre el eje X"
+
+#, fuzzy
+msgid "Position"
+msgstr "Posición sobre el eje X"
+
+msgid "Scale and Crop"
+msgstr ""
+
+msgid "Scaled"
 msgstr ""
 
 #, fuzzy
-msgid "Enable true blending"
-msgstr "Habilitar el resplandor en las ventanas grupadas"
+msgid "Second gradient color."
+msgstr "Gradiente"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+msgid "Solid fill"
 msgstr ""
-"Las especificaciones del fondo (como se explica en la DOCUMENTACION) a usar."
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "Fondo en mosaico en lugar de expandido"
+#, fuzzy
+msgid "Tiled"
+msgstr "Mosaico"
+
+msgid "Vertical gradient"
+msgstr ""
 
 msgid "Wallpaper"
 msgstr "Fondo de Pantalla"
@@ -4997,6 +5058,19 @@ msgstr "Ventanas que deberían ser fundidas con el escritorio"
 
 msgid "Workarounds"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Enable true blending"
+#~ msgstr "Habilitar el resplandor en las ventanas grupadas"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr ""
+#~ "Las especificaciones del fondo (como se explica en la DOCUMENTACION) a "
+#~ "usar."
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "Fondo en mosaico en lugar de expandido"
 
 #, fuzzy
 #~ msgid "Tilt view"

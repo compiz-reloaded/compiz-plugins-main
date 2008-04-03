@@ -8,7 +8,7 @@
 # Fabio Fiorentini (Ahren / FaBBio) <fabio.fiorentini@gmail.com>, 2007.
 # Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>, 2007.
 # Emiliano Perulli <emiliano.perulli@alice.it>, 2007.
-# Milo Casagrande <milo_casagrande@yahoo.it>, 2007
+# Milo Casagrande <milo_casagrande@yahoo.it>, 2007-2008
 #
 #
 # **** Glossario ****
@@ -41,13 +41,14 @@
 # sloppy -> lento (trovato solo una volta... ma potrebbe venir usato ancora)
 # Inside Cube -> Dentro il cubo (la modalità)
 # binding -> associazione
+# blend -> trasformazione/trasformare (ne ho parlato con un Flame Artist)
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:11+0530\n"
-"PO-Revision-Date: 2008-03-14 23:01+0100\n"
+"POT-Creation-Date: 2008-04-03 13:27+0530\n"
+"PO-Revision-Date: 2008-03-29 15:58+0100\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -1118,7 +1119,7 @@ msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
 "contents if enabled."
 msgstr ""
-"Se abilitato, le decorazioni della finestra (bordi e barra del titolo) e i "
+"Se attivato, le decorazioni della finestra (bordi e barra del titolo) e i "
 "contenuti saranno filtrati."
 
 # (NdT) suggerimento
@@ -2536,7 +2537,7 @@ msgid "Magnifier image"
 msgstr "Immagine lente d'ingrandimento"
 
 msgid "Magnifier image."
-msgstr "Immagine dell'ingranditore."
+msgstr "Immagine della lente di ingrandimento."
 
 msgid "Mode"
 msgstr "Modalità"
@@ -2549,7 +2550,7 @@ msgstr "Raggio"
 
 # (ndt) suggerimento
 msgid "Radius of the magnification area."
-msgstr "Raggio dell'area di ingrandimento."
+msgstr "Raggio dell'area d'ingrandimento."
 
 msgid "Width"
 msgstr "Larghezza"
@@ -2569,6 +2570,11 @@ msgstr "L'offset Y del cursore."
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Fattore di zoom per la lente d'ingrandimento avviata da tastiera."
 
+# (ndt) opzione
+msgid "Ignore already overlapping windows in the calculations"
+msgstr "Ignorare finestre sovrapposte nei calcoli"
+
+# (ndt) opzione
 msgid "Ignore sticky windows in the calculations"
 msgstr "Ignorare finestre adesive nei calcoli"
 
@@ -2586,14 +2592,21 @@ msgid ""
 "maximumize window."
 msgstr ""
 "Considera le finestre adesive come non esistenti nel calcolo dello spazio da "
-"usare per massimizzare le finestre."
+"usare per allargare la finestra."
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
+msgstr ""
+"Considera le finestre contrapposte come non esistenti nel calcolo dello "
+"spazio da usare per allargare la finestra."
 
 msgid ""
 "Trigger a resize of the window currently focused so it fits as much of the "
 "available screenspae as possible."
 msgstr ""
-"Inizializza un ridimensionamento della finestra col focus in modo che occupi "
-"lo spazio su schermo disponibile."
+"Avvia un ridimensionamento della finestra col focus in modo che occupi lo "
+"spazio su schermo disponibile."
 
 msgid "Trigger maximumize"
 msgstr "Avvia l'allargamento"
@@ -3898,10 +3911,10 @@ msgstr "Tipi di finestre da nascondere nella modalità «Mostra scrivania»"
 
 # (ndt) trovare una traduzione per blending
 msgid "Additive blending"
-msgstr "Blending additivo"
+msgstr "Trasformazione additiva"
 
 msgid "Additive blending of particles"
-msgstr "Blending additivo delle particelle"
+msgstr "Trasformazione additiva delle particelle"
 
 # (ndt) opzione
 msgid "Darken backgound"
@@ -3917,7 +3930,7 @@ msgstr "Emettitori"
 msgid "Have random colors for the particles"
 msgstr "Colori casuali per le particelle"
 
-# (ndt) opzione
+# (ndt) descrizione del plug-in
 msgid "Increases the visibility of the mouse pointer"
 msgstr "Aumenta la visibilità del puntatore del mouse"
 
@@ -3967,7 +3980,7 @@ msgid "Rotation speed"
 msgstr "Velocità rotazione"
 
 msgid "Rotation speed."
-msgstr "Velocità della rotazione."
+msgstr "Velocità di rotazione."
 
 # (ndt) nome
 msgid "Show mouse"
@@ -4054,16 +4067,14 @@ msgstr ""
 "questo valore può rendere la nevicata più uniforme, ma si incrementa l'uso "
 "del processore."
 
-#, fuzzy
 msgid "Enable Blending"
-msgstr "Attivare blending"
+msgstr "Attivare trasformazione"
 
 msgid "Enable Textures"
 msgstr "Attivare texture"
 
-#, fuzzy
 msgid "Enables alpha blending of snowflakes."
-msgstr "Attiva blending alfa sui fiocchi di neve."
+msgstr "Attiva trasformazione alfa sui fiocchi di neve."
 
 msgid "Enables textured snowflakes. If not selected, color gradients are used."
 msgstr ""
@@ -4939,29 +4950,68 @@ msgstr "Selezione area di lavoro"
 msgid "Wall Sliding Duration"
 msgstr "Durata scorrimento muraglia"
 
+msgid "Background fill type."
+msgstr "Tipo di riempimento dello sfondo."
+
 msgid "Backgrounds"
 msgstr "Sfondi"
 
+msgid "Center Tiled"
+msgstr "Piastrellato al centro"
+
+msgid "Centered"
+msgstr "Centrato"
+
+msgid "Color 1"
+msgstr "Colore 1"
+
+msgid "Color 2"
+msgstr "Colore 2"
+
 msgid "Draw the desktop wallpaper"
-msgstr "Disegna lo sfondo della scrivania"
+msgstr "Disegna il rivestimento della scrivania"
 
-#, fuzzy
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Attivare blending alfa reale per sfondi trasparenti"
+msgid "Fill or first gradient color."
+msgstr "Riempimento o colore del primo gradiente."
 
-#, fuzzy
-msgid "Enable true blending"
-msgstr "Attivare blending reale"
+msgid "Fill type"
+msgstr "Tipo riempimento"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
-msgstr ""
-"Le specifiche dello sfondo da usare (come spiegato nella documentazione)."
+msgid "Horizontal gradient"
+msgstr "Gradiente orizzontale"
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "Affianca gli sfondi al posto di estenderli"
+msgid "Image"
+msgstr "Immagine"
+
+msgid "Image file."
+msgstr "File immagine."
+
+msgid "Image position."
+msgstr "Posizione immagine."
+
+msgid "Position"
+msgstr "Posizione"
+
+msgid "Scale and Crop"
+msgstr "Scala e taglia"
+
+msgid "Scaled"
+msgstr "Scalato"
+
+msgid "Second gradient color."
+msgstr "Colore del secondo gradiente."
+
+msgid "Solid fill"
+msgstr "Rimpimento solido"
+
+msgid "Tiled"
+msgstr "Piastrellato"
+
+msgid "Vertical gradient"
+msgstr "Gradiente verticale"
 
 msgid "Wallpaper"
-msgstr "Sfondo scrivania"
+msgstr "Rivestimento"
 
 msgid "Background Brightness"
 msgstr "Luminosità dello sfondo"
@@ -5182,58 +5232,3 @@ msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
-
-# (ndt) opzione
-#~ msgid "Tilt view"
-#~ msgstr "Vista inclinata"
-
-# (ndt) suggerimento
-#~ msgid "Tilt window view in expo mode"
-#~ msgstr "Mostra le finestre inclinate"
-
-#~ msgid "Move window to x, y"
-#~ msgstr "Muove finestra verso x, y"
-
-#~ msgid "Put Exact"
-#~ msgstr "Posizione esatta"
-
-#~ msgid "Misc. options"
-#~ msgstr "Altre opzioni"
-
-# (ndt) suggerimento
-#~ msgid "Show minimized windows"
-#~ msgstr "Mostra le finestre minimizzate"
-
-#~ msgid "Tile or Stretch"
-#~ msgstr "Affiancare o estendere"
-
-#~ msgid "Corner Bevelling"
-#~ msgstr "Smussatura angoli"
-
-#~ msgid "Create Mipmaps"
-#~ msgstr "Crea mipmap"
-
-#~ msgid "Disable Caps for Inside Cube"
-#~ msgstr "Disattivare le immagini ai capi nella modalità «Dentro il cubo»"
-
-#~ msgid ""
-#~ "Disables the drawing of the cube caps when the inside cube mode is set."
-#~ msgstr ""
-#~ "Disattiva le immagini superiori e inferiori del cubo nella modalità "
-#~ "«Dentro il cubo»."
-
-#~ msgid "Draw Window Backsides"
-#~ msgstr "Disegnare il retro delle finestre"
-
-#~ msgid "Enables the drawing of the backside of windows."
-#~ msgstr "Attiva la possibilità di disegnare il retro delle finestre."
-
-#~ msgid ""
-#~ "This will create mipmaps which improve overall texture appearence, and "
-#~ "reduce jagged edges."
-#~ msgstr ""
-#~ "Verranno create mipmap che migliorano l'aspetto generale delle texture e "
-#~ "ridurranno i bordi dentellati."
-
-#~ msgid "Window width"
-#~ msgstr "Larghezza finestre"

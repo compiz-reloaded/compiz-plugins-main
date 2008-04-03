@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fusion-plugins 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:11+0530\n"
-"PO-Revision-Date: 2008-03-06 22:57+0100\n"
+"POT-Creation-Date: 2008-04-03 13:27+0530\n"
+"PO-Revision-Date: 2008-03-16 19:01+0100\n"
 "Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <ketil.w.aanensen@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1250,24 +1250,20 @@ msgstr "Snarvei for å avslutte ekspo"
 msgid "Button binding to switch to next viewport in expo"
 msgstr "Snarvei for å bytte til neste arbeidsområde"
 
-#, fuzzy
 msgid "Curve"
-msgstr "Rundede bretter"
+msgstr "Kurve"
 
-#, fuzzy
 msgid "Curve strength"
-msgstr "Styrke for Bevegelsesslør"
+msgstr "Kurvestyrke"
 
-#, fuzzy
 msgid "Deformation"
-msgstr "Varighet"
+msgstr "Deformering"
 
-#, fuzzy
 msgid "Deformation of the expo wall"
-msgstr "Avstand til ekspo-veggen"
+msgstr "Deformering av ekspo-veggen"
 
 msgid "Distance between viewports"
-msgstr "Avstand mellom arbeidsområder"
+msgstr "Avstand mellom skrivebordsområder"
 
 msgid "Distance of the expo wall"
 msgstr "Avstand til ekspo-veggen"
@@ -1377,17 +1373,16 @@ msgid "Show a reflection of the viewports on the ground"
 msgstr "Vis et speil av arbeidsområdene på bakken"
 
 msgid "Strength of the deformation in curve mode"
-msgstr ""
+msgstr "Deformeringens styrke i kurvemodus"
 
-#, fuzzy
 msgid "Tilt"
-msgstr "Flislegg"
+msgstr "Skråstill"
 
 msgid "Timeframe to execute a double click"
 msgstr "Tidsramme for å utføre et dobbelklikk"
 
 msgid "Viewport distance"
-msgstr "Arbeidsområde-avstand"
+msgstr "Avstand mellom arbeidsområder"
 
 msgid "Vortex"
 msgstr "Virvel"
@@ -2221,13 +2216,13 @@ msgid "Quality of compression when saving JPEG images"
 msgstr "Kvalitet for kompresjon ved lagring av JPEG-bilder"
 
 msgid "Background/Window brightness."
-msgstr "Bakgrunnens/vinduets skarphet."
+msgstr "Skarphet for bakgrunn/vindu"
 
 msgid "Background/Window saturation."
-msgstr "Bakgrunnens/vinduets metning"
+msgstr "Metning for bakgrunn/vindu"
 
 msgid "Fade In/Out Time"
-msgstr "Varighet for inn-/uttoning."
+msgstr "Varighet for ton inn/ut"
 
 msgid "Fade In/Out Time."
 msgstr "Varighet for Ton inn-/ut."
@@ -2235,28 +2230,26 @@ msgstr "Varighet for Ton inn-/ut."
 msgid "Login"
 msgstr "Innlogging"
 
-# What is this supposed to do?
 msgid "Login Window Match"
-msgstr "Vindussamsvar ved innlogging"
+msgstr "Samsvar for innloggingsvindu"
 
-# Betyr?
 msgid "Login Window match"
-msgstr "Vindussamsvar ved innlogging"
+msgstr "Samsvar for innloggingsvindu"
 
 msgid "Login/Logout"
-msgstr "Logg inn/ut"
+msgstr "Inn-/utlogging"
 
 msgid "Login/Logout effect"
-msgstr "Effekt ved inn-/utlogging"
+msgstr "Inn-/utloggingseffekt"
 
 msgid "Logout"
 msgstr "Utlogging"
 
 msgid "Logout Window Match"
-msgstr "Vindussamsvar ved utlogging"
+msgstr "Samsvar for utloggingsvindu"
 
 msgid "Logout Window match"
-msgstr "Vindussamsvar ved utlogging"
+msgstr "Samsvar for utloggingsvindu"
 
 msgid "Window opacity."
 msgstr "Dekkevne for vindu."
@@ -2268,7 +2261,7 @@ msgid "Border width"
 msgstr "Kantbredde"
 
 msgid "Border widtht."
-msgstr "Kantbredde."
+msgstr "Kantbredde"
 
 msgid "Box height."
 msgstr "Bokshøyde."
@@ -2292,13 +2285,13 @@ msgid "Image overlay"
 msgstr "Bildeoverlegg"
 
 msgid "Keep fully on screen"
-msgstr "Behold fullt på skjermen"
+msgstr "Behold helt på skjermen"
 
 msgid "Keep fully on screen."
-msgstr "Behold fullt på skjermen."
+msgstr "Behold helt på skjermen."
 
 msgid "Magnifier"
-msgstr "Forstørrelsesglass"
+msgstr "Forstørrelse"
 
 msgid "Magnifier box"
 msgstr "Forstørrelsesboks"
@@ -2310,7 +2303,7 @@ msgid "Magnifier image."
 msgstr "Forstørrelsesbilde."
 
 msgid "Mode"
-msgstr "modus"
+msgstr "Modus"
 
 msgid "Mode."
 msgstr "Modus."
@@ -2337,7 +2330,11 @@ msgid "Y offset of the cursor."
 msgstr "Y-forskyvning for musepekeren."
 
 msgid "Zoom factor for keyboard initiated magnifier."
-msgstr "Forstørrelsesfaktor for tastaturstartet forstørrelse."
+msgstr "Forstørrelsesfaktor for tastaturstarted forstørrelse."
+
+#, fuzzy
+msgid "Ignore already overlapping windows in the calculations"
+msgstr "Ignorer klistrevinduer i beregningene"
 
 msgid "Ignore sticky windows in the calculations"
 msgstr "Ignorer klistrevinduer i beregningene"
@@ -2347,25 +2344,33 @@ msgstr "Maksimumer"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr ""
-"Maksimumerer vinduer (endrer størrelse på dem for å passe i tilgjengelig "
+"Maksimumiserer vinduer (endrer størrelse på dem til å passe til tilgjengelig "
 "skjermplass)."
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
 msgstr ""
-"Behandle klistrevinduer som ikkeeksisterende ved beregning av plassen som "
-"skal brukes av det maksimumerende vinduet."
+"Behandle klistrevinduer som ikke-eksisterende når plassen som skal brukes "
+"til det maksimumiserte vinduet beregnes."
+
+#, fuzzy
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
+msgstr ""
+"Behandle klistrevinduer som ikke-eksisterende når plassen som skal brukes "
+"til det maksimumiserte vinduet beregnes."
 
 msgid ""
 "Trigger a resize of the window currently focused so it fits as much of the "
 "available screenspae as possible."
 msgstr ""
-"Utløs en størrelsesendring av vinduet som nå har fokus, slik at det passer "
-"til så mye av den tilgjengelige skjermplassen som mulig."
+"Utløs en størrelsesendring av fokusert vindu slik at det passer til så mye "
+"av tilgjengelig skjermplass som mulig."
 
 msgid "Trigger maximumize"
-msgstr "Utløs maksimumer"
+msgstr "Utløs maksimumiser"
 
 msgid "Accumulation buffer"
 msgstr "Akkumuleringsbuffer"
@@ -2419,7 +2424,7 @@ msgid "Assign mousegestures to any existing action"
 msgstr "Tilegn musebevegelser til enhver eksisterende hendelse"
 
 msgid "Detect Diagonal Movements"
-msgstr ""
+msgstr "Gjenkjenn diagonale bevegelser"
 
 msgid "Gesture"
 msgstr "Gest"
@@ -2434,6 +2439,8 @@ msgid ""
 "If this option is selected, diagonal movements are detected, which may lead "
 "to a decreased detection accuracy."
 msgstr ""
+"Hvis dette valget velges, vil diagonale bevegelser gjenkjennes, noe som kan "
+"føre til nedsatt gjenkjennelses-nøyaktighet."
 
 msgid "Mouse gesture to assign an action to."
 msgstr "Musebevegelser å tilegne en hendelse til."
@@ -2457,7 +2464,7 @@ msgid "Mouse position polling"
 msgstr "Prøving av museposisjon"
 
 msgid "Updates the mouse pointer position from the xserver"
-msgstr "Oppdaterer museposisjon fra xserver"
+msgstr "Oppdaterer musepekerens posisjon fra xserver"
 
 msgid "Begin Gesture"
 msgstr "Start gest"
@@ -2663,9 +2670,8 @@ msgstr "Unngå utenfor skjermen"
 msgid "Avoids putting window borders offscreen"
 msgstr "Unngår å sette vinduskanter utenfor skjermen"
 
-# Type eller skriv?
 msgid "Move window arbitrarily by passing x, y and type."
-msgstr "Flytt vindu tilfeldig ved å sende x, y og type."
+msgstr "Flytt vinduer tilfeldig ved å sende x, y og type."
 
 msgid "Move window to a certain viewport"
 msgstr "Flytt vindu til et spesifikt arbeidsområde"
@@ -3195,7 +3201,7 @@ msgid "Highlight Color"
 msgstr "Farge for fremheving"
 
 msgid "Highlighted window only"
-msgstr "Kun markert vindu"
+msgstr "Kun valgt vindu"
 
 msgid "Highlights the hovered window with the given color"
 msgstr "Fremhever det svevende vinduet med den gitte fargen"
@@ -3308,9 +3314,9 @@ msgid ""
 "management protocol. This setting only should be used in KDE, as only KDE's "
 "session manager also saves those applications."
 msgstr ""
-"Prøv også å lagre og gjenopprette gamle applikasjoner som ikke støtter "
-"håndteringsprotokollen for X-sesjonen. Denne innstillingen burde kun bli "
-"brukt KDE, siden kun KDEs sesjonshåndterer også lagrer disse applikasjonene."
+"Prøv også å lagre og gjenopprette gamle applikasjoner som ikke støtter X "
+"sesjonshåndterings-protokollen. Denne innstillingen burde kun brukes i kDE, "
+"siden kun KDEs sesjonshåndterer også lagrer disse applikasjonene."
 
 msgid "Save Legacy Apps"
 msgstr "Lagre gamle applikasjoner"
@@ -3319,7 +3325,7 @@ msgid "Session Management"
 msgstr "Sesjonshåndtering"
 
 msgid "Talk to session manager and save/load window state"
-msgstr "Snakk til sesjonshåndterer og lagre/laste vindusstatus"
+msgstr "Snakk til sesjonshåndtereren og lagre/laste vindustilstand"
 
 msgid "Animation duration"
 msgstr "Animasjonsvarighet"
@@ -3340,10 +3346,10 @@ msgid "Reduces the scale factor making the window smaller."
 msgstr "Reduserer skaleringsfaktoren for å gjøre vinduet mindre."
 
 msgid "Reset the window to original size"
-msgstr "Nullstill vinduet til original størrelse"
+msgstr "Tilbakestill vinduet til original størrelse"
 
 msgid "Resets the currently focused window to original size"
-msgstr "Nullstiller det nåværende fokuserte vinduet til original størrelse"
+msgstr "Tilbakestiller det fokuserte vinduet til original størrelse"
 
 msgid "Scale a window down to a portion of it's size."
 msgstr "Skaler et vindu ned til en del av størrelsen."
@@ -3552,31 +3558,31 @@ msgid "Additive blending of particles"
 msgstr "Tilleggsblanding av partikler"
 
 msgid "Darken backgound"
-msgstr "Gjør bakgrunnen mørkere"
+msgstr "Gjør bakgrunn mørkere"
 
 msgid "Darken background under particles"
-msgstr "Gjør bakgrunnen mørkere under partiklene"
+msgstr "Gjør bakgrunn mørkere under partiklene"
 
 msgid "Emiters"
-msgstr "Utstrålere"
+msgstr "Utsendere"
 
 msgid "Have random colors for the particles"
 msgstr "Ha tilfeldige farger for partiklene"
 
 msgid "Increases the visibility of the mouse pointer"
-msgstr "Øker synligheten av musepekeren"
+msgstr "Øker musepekerens synlighet"
 
 msgid "Number Of Particles"
 msgstr "Antall partikler"
 
 msgid "Number of particle emiters."
-msgstr "Antall partikkelutsendere."
+msgstr "Antall partikkelutsendere"
 
 msgid "Number of particles."
-msgstr "Antall partikler."
+msgstr "Antall partikler"
 
 msgid "Particle Color"
-msgstr "Partiklenes farge"
+msgstr "Partikkelfarge"
 
 msgid "Particle Life"
 msgstr "Partiklenes levetid"
@@ -3591,16 +3597,16 @@ msgid "Particle Slowdown"
 msgstr "Partikkelbremsing"
 
 msgid "Particle color."
-msgstr "Partikkelfarge."
+msgstr "Partikkelfarge"
 
 msgid "Particle life."
-msgstr "Levetid for partikkel."
+msgstr "Levetid for partikkel"
 
 msgid "Particle size."
 msgstr "Partikkelstørrelse."
 
 msgid "Particle slowdown."
-msgstr "Partikkelbremsing."
+msgstr "Partikkelbremsing"
 
 msgid "Randomly Colored Particles"
 msgstr "Tilfeldig fargede partikler"
@@ -3612,13 +3618,13 @@ msgid "Rotation speed"
 msgstr "Rotasjonshastighet"
 
 msgid "Rotation speed."
-msgstr "Rotasjonshastighet"
+msgstr "Rotasjonshastighet."
 
 msgid "Show mouse"
 msgstr "Vis mus"
 
 msgid "Toggle the mouse pointer trail."
-msgstr "Slå av/på musepekersporet."
+msgstr "Slå av/på musepeker-sporet."
 
 msgid "Alt"
 msgstr "Alt"
@@ -3700,8 +3706,7 @@ msgid "Enables alpha blending of snowflakes."
 msgstr "Slår på alfa-blanding av snøfnugg."
 
 msgid "Enables textured snowflakes. If not selected, color gradients are used."
-msgstr ""
-"Slår på teksturerte snøfnugg. Hvis ikke valgt blir fargegradienter brukt."
+msgstr "Slår på tekstur-snøfnugg. Hvis ikke valgt blir fargeoverganger brukt."
 
 msgid "Flakes rotate if checked."
 msgstr "Snøfnugg roterer hvis avkrysset"
@@ -4511,24 +4516,80 @@ msgstr "Bytting av arbeidsområde"
 msgid "Wall Sliding Duration"
 msgstr "Varighet for glidende vegg"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Bakgrunnsfil"
+
 msgid "Backgrounds"
 msgstr "Bakgrunner"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Plasser i midten"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Farger"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Farger"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Tegn bakgrunnsbilde"
 
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Slå på sann alfa-blanding for gjennomsiktige skjermbakgrunner"
+#, fuzzy
+msgid "Fill or first gradient color."
+msgstr "Farge for brannpartikkel."
 
-msgid "Enable true blending"
-msgstr "Slå på sann blanding"
+#, fuzzy
+msgid "Fill type"
+msgstr "Fylt omriss"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Horisontale bretter"
+
+#, fuzzy
+msgid "Image"
+msgstr "Bilder"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Toppbildefiler"
+
+#, fuzzy
+msgid "Image position."
+msgstr "X-posisjon"
+
+#, fuzzy
+msgid "Position"
+msgstr "X-posisjon"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Skaler-tillegg"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Skaler-tillegg"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Fargeovergang, farge 1"
+
+msgid "Solid fill"
 msgstr ""
-"Spesifikasjoner for bakgrunner som skal brukes (forklart i DOKUMENTASJON)."
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "Flislegg bakgrunner, i motsetning til strekking"
+#, fuzzy
+msgid "Tiled"
+msgstr "Flislegg"
+
+msgid "Vertical gradient"
+msgstr ""
 
 msgid "Wallpaper"
 msgstr "Bakgrunnsbilde"
@@ -4750,14 +4811,25 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 msgid "Workarounds"
 msgstr "Omveier"
 
+#~ msgid "Enable true alpha blending for transparent wallpapers"
+#~ msgstr "Slå på sann alfa-blanding for gjennomsiktige skjermbakgrunner"
+
+#~ msgid "Enable true blending"
+#~ msgstr "Slå på sann blanding"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr ""
+#~ "Spesifikasjoner for bakgrunner som skal brukes (forklart i DOKUMENTASJON)."
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "Flislegg bakgrunner, i motsetning til strekking"
+
 #~ msgid "Tilt view"
 #~ msgstr "Skråstill"
 
 #~ msgid "Tilt window view in expo mode"
 #~ msgstr "Skråstill i ekspo-modus"
-
-#~ msgid "Hovered window only"
-#~ msgstr "Kun svevende vindu"
 
 #~ msgid "Move window to x, y"
 #~ msgstr "Flytt vindu til x, y"

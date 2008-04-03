@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:11+0530\n"
-"PO-Revision-Date: 2008-03-07 20:09+0900\n"
+"POT-Creation-Date: 2008-04-03 13:27+0530\n"
+"PO-Revision-Date: 2008-03-31 15:40+0200\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -1242,21 +1242,17 @@ msgstr "展開 の終了に割り当てるボタン"
 msgid "Button binding to switch to next viewport in expo"
 msgstr "展開 での次のビューポートへの切り替えに割り当てるボタン"
 
-#, fuzzy
 msgid "Curve"
-msgstr "折り曲げ"
+msgstr "湾曲"
 
-#, fuzzy
 msgid "Curve strength"
-msgstr "モーションブラーの強さ"
+msgstr "湾曲の度合い"
 
-#, fuzzy
 msgid "Deformation"
-msgstr "持続時間"
+msgstr "変形"
 
-#, fuzzy
 msgid "Deformation of the expo wall"
-msgstr "展開される壁までの距離"
+msgstr "展開の壁の変形"
 
 msgid "Distance between viewports"
 msgstr "ビューポート同士の間隔"
@@ -1369,11 +1365,10 @@ msgid "Show a reflection of the viewports on the ground"
 msgstr "ビューポートの反射を地面に表示"
 
 msgid "Strength of the deformation in curve mode"
-msgstr ""
+msgstr "湾曲形式における変形度合い"
 
-#, fuzzy
 msgid "Tilt"
-msgstr "タイル"
+msgstr "傾斜"
 
 msgid "Timeframe to execute a double click"
 msgstr "ダブルクリック認識の時間枠"
@@ -2314,21 +2309,31 @@ msgstr "マウスカーソルの Y 軸方向のオフセット"
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "拡大鏡がキーボードにより開始されたときのズーム係数"
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr "すでに覆いかぶさっているウィンドウは計算時に無視"
+
 msgid "Ignore sticky windows in the calculations"
 msgstr "計算時にスティッキー・ウィンドウを無視"
 
 msgid "Maximumize"
-msgstr "最許容大化"
+msgstr "最大化"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
-msgstr "ウィンドウの最許容大化（画面の空きスペースに合うようにサイズ変更）"
+msgstr "ウィンドウの最大化（画面の空きスペースの範囲内で最大限にサイズ変更）"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
 msgstr ""
-"ウィンドウの最許容大化に使用するスペースの計算時に、スティッキー・ウィンドウ"
-"を存在しないものとして扱う"
+"ウィンドウの最大化に使用するスペースの計算時に、スティッキー・ウィンドウを存"
+"在しないものとして扱う"
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
+msgstr ""
+"ウィンドウの最大化に使用するスペースの計算時に、現在のウィンドウにすでに覆い"
+"かぶさっているウィンドウを存在しないものとして扱う"
 
 msgid ""
 "Trigger a resize of the window currently focused so it fits as much of the "
@@ -2338,7 +2343,7 @@ msgstr ""
 "変更のオンオフ"
 
 msgid "Trigger maximumize"
-msgstr "最許容大化のオンオフ"
+msgstr "最大化のオンオフ"
 
 msgid "Accumulation buffer"
 msgstr "蓄積バッファ"
@@ -2392,7 +2397,7 @@ msgid "Assign mousegestures to any existing action"
 msgstr "既存のあらゆるアクションにマウスジェスチャーを割り当て"
 
 msgid "Detect Diagonal Movements"
-msgstr ""
+msgstr "斜め方向の動きの検知"
 
 msgid "Gesture"
 msgstr "ジェスチャー"
@@ -2407,6 +2412,8 @@ msgid ""
 "If this option is selected, diagonal movements are detected, which may lead "
 "to a decreased detection accuracy."
 msgstr ""
+"このオプションが有効の場合、斜め方向の動きが検知され、検知精度の減少につなが"
+"る可能性があります。"
 
 msgid "Mouse gesture to assign an action to."
 msgstr "アクションに割り当てるマウスジェスチャー"
@@ -2953,7 +2960,7 @@ msgstr "マウスによる選択を許可"
 msgid ""
 "Allow the selection of windows by just clicking on them while the switcher "
 "is active."
-msgstr "スイッチャのアクティブ中にクリックでのウィンドウ選択を許可"
+msgstr "スイッチャーのアクティブ中にクリックでのウィンドウ選択を許可"
 
 msgid ""
 "Amount of opacity (in percent) for windows in the ring which are not selected"
@@ -3049,7 +3056,7 @@ msgid "Ring Height"
 msgstr "リングの高さ"
 
 msgid "Ring Switcher"
-msgstr "リング・スイッチャ"
+msgstr "リング・スイッチャー"
 
 msgid "Ring Width"
 msgstr "リングの幅"
@@ -3094,32 +3101,32 @@ msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
 msgstr ""
-"スイッチャが非表示の場合は表示して、現在のアプリケーションの次のウィンドウを"
-"選択"
+"スイッチャーが非表示の場合は表示して、現在のアプリケーションの次のウィンドウ"
+"を選択"
 
 msgid "Show switcher if not visible and select next window out of all windows."
 msgstr ""
-"スイッチャが非表示の場合は表示して、すべてのウィンドウから次のウィンドウを選"
-"択"
+"スイッチャーが非表示の場合は表示して、すべてのウィンドウから次のウィンドウを"
+"選択"
 
 msgid "Show switcher if not visible and select next window."
-msgstr "スイッチャが非表示の場合は表示して、次のウィンドウを選択"
+msgstr "スイッチャーが非表示の場合は表示して、次のウィンドウを選択"
 
 msgid ""
 "Show switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
-"スイッチャが非表示の場合は表示して、現在のアプリケーションの前のウィンドウを"
-"選択"
+"スイッチャーが非表示の場合は表示して、現在のアプリケーションの前のウィンドウ"
+"を選択"
 
 msgid ""
 "Show switcher if not visible and select previous window out of all windows."
 msgstr ""
-"スイッチャが非表示の場合は表示して、すべてのウィンドウから前のウィンドウを選"
-"択"
+"スイッチャーが非表示の場合は表示して、すべてのウィンドウから前のウィンドウを"
+"選択"
 
 msgid "Show switcher if not visible and select previous window."
-msgstr "スイッチャが非表示の場合は表示して、前のウィンドウを選択"
+msgstr "スイッチャーが非表示の場合は表示して、前のウィンドウを選択"
 
 msgid "Show window title of currently selected window."
 msgstr "現在選択しているウィンドウのウィンドウタイトルを表示"
@@ -3333,7 +3340,7 @@ msgid "Scale interval"
 msgstr "拡縮間隔"
 
 msgid "Shelf"
-msgstr "棚置き"
+msgstr "シェルフ"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
@@ -3353,8 +3360,8 @@ msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
-"従来のようなサイズ変更の必要なく簡単に監視可能にするため、ウィンドウを縮尺表"
-"示"
+"ウィンドウを従来方式のサイズ変更はせずにそのまま縮尺表示してモニタしやすくす"
+"る"
 
 msgid "Background intensity"
 msgstr "背景の輝度"
@@ -3369,13 +3376,13 @@ msgid "Click duration"
 msgstr "クリック継続時間"
 
 msgid "Cover"
-msgstr "かぶせる"
+msgstr "カバー"
 
 msgid "Cover movement offset."
-msgstr "かぶせる動作のオフセット"
+msgstr "カバー動作のオフセット"
 
 msgid "Cover offset"
-msgstr "かぶせる対象のオフセット"
+msgstr "カバーのオフセット"
 
 msgid "Disabled"
 msgstr "無効"
@@ -3387,10 +3394,10 @@ msgid "Fade speed"
 msgstr "フェード速度"
 
 msgid "Flip"
-msgstr "めくる"
+msgstr "フリップ"
 
 msgid "Flip angle"
-msgstr "めくる対象の角度"
+msgstr "フリップの角度"
 
 msgid "Generate mipmaps"
 msgstr "ミップマップを生成"
@@ -3405,10 +3412,10 @@ msgid "Initiate (All Workspaces)"
 msgstr "開始（すべてのワークスペース）"
 
 msgid "Initiate switcher (All Workspaces)."
-msgstr "スイッチャを開始（すべてのワークスペース）"
+msgstr "スイッチャーを開始（すべてのワークスペース）"
 
 msgid "Initiate switcher."
-msgstr "スイッチャ開始"
+msgstr "スイッチャー開始"
 
 msgid "Max window size"
 msgstr "最大ウィンドウサイズ"
@@ -3426,26 +3433,26 @@ msgid "Mouse speed"
 msgstr "マウス速度"
 
 msgid "On activated output"
-msgstr "出力ごとのスイッチャ"
+msgstr "出力ごとのスイッチャー"
 
 msgid "One big switcher"
-msgstr "単一の大きなスイッチャ"
+msgstr "単一の大きなスイッチャー"
 
 msgid "Overlay an icon on windows in the shift switcher"
-msgstr "シフト・スイッチャのウィンドウ上にアイコンを重ね表示"
+msgstr "シフト・スイッチャーのウィンドウ上にアイコンを重ね表示"
 
 msgid "Rotation angle of the flip animation"
-msgstr "めくるアニメーションの循環角度"
+msgstr "フリップアニメーションの循環角度"
 
 msgid ""
 "Selects how the switcher is displayed if multiple output devices are used."
-msgstr "複数のデバイスを使用しているときのスイッチャを表示する方法の選択"
+msgstr "複数のデバイスを使用しているときのスイッチャーを表示する方法の選択"
 
 msgid "Shift Switcher"
-msgstr "シフト・スイッチャ"
+msgstr "シフト・スイッチャー"
 
 msgid "Shift Switcher Plugin"
-msgstr "シフトスイッチャ・プラグイン"
+msgstr "シフトスイッチャー・プラグイン"
 
 msgid "Shift Windows"
 msgstr "シフト・ウィンドウ"
@@ -3460,19 +3467,19 @@ msgid "Shift timestep"
 msgstr "シフトの刻み時間"
 
 msgid "Switcher mode"
-msgstr "スイッチャ形式"
+msgstr "スイッチャー形式"
 
 msgid "Switcher mode."
-msgstr "スイッチャ形式"
+msgstr "スイッチャー形式"
 
 msgid "Terminate"
 msgstr "停止"
 
 msgid "Terminate switcher."
-msgstr "スイッチャを停止"
+msgstr "スイッチャーを停止"
 
 msgid "Windows that should be shown in the shift switcher"
-msgstr "シフト・スイッチャに表示する対象ウィンドウ"
+msgstr "シフト・スイッチャーに表示する対象ウィンドウ"
 
 msgid "Access your desktop easily"
 msgstr "デスクトップに簡単アクセス"
@@ -3587,7 +3594,7 @@ msgid "Rotation speed."
 msgstr "回転速度"
 
 msgid "Show mouse"
-msgstr "マウス呈示"
+msgstr "マウス表示"
 
 msgid "Toggle the mouse pointer trail."
 msgstr "マウスポインタのたなびきのオンオフ"
@@ -4266,7 +4273,7 @@ msgid "Switch to viewport 9"
 msgstr "ビューポート 9 に切り替え"
 
 msgid "Viewport Switcher"
-msgstr "ビューポート・スイッチャ"
+msgstr "ビューポート・スイッチャー"
 
 msgid "Allow Wrap-Around"
 msgstr "循環を許可"
@@ -4316,16 +4323,17 @@ msgid "Edge flipping"
 msgstr "エッジめくり"
 
 msgid "First color for the background gradient of the switcher window."
-msgstr "スイッチャ・ウィンドウの背景グラデーションの1番目の色"
+msgstr "スイッチャー・ウィンドウの背景グラデーションの1番目の色"
 
 msgid "First color for the thumb gradient of the switcher window."
-msgstr "スイッチャ・ウィンドウのサムネイルのグラデーションの1番目の色"
+msgstr "スイッチャー・ウィンドウのサムネイルのグラデーションの1番目の色"
 
 msgid "First color for the thumb highlight gradient of the switcher window."
-msgstr "スイッチャ・ウィンドウのサムネイルの強調表示グラデーションの1番目の色"
+msgstr ""
+"スイッチャー・ウィンドウのサムネイルの強調表示グラデーションの1番目の色"
 
 msgid "First color of the arrow of the switcher window."
-msgstr "スイッチャ・ウィンドウの矢印の1番目の色"
+msgstr "スイッチャー・ウィンドウの矢印の1番目の色"
 
 msgid "Flip Down"
 msgstr "下にめくる"
@@ -4421,23 +4429,23 @@ msgid "Outline Color"
 msgstr "輪郭の色"
 
 msgid "Outline color of the switcher window."
-msgstr "スイッチャ・ウィンドウの輪郭の色"
+msgstr "スイッチャー・ウィンドウの輪郭の色"
 
 msgid "Radius of the rounded edge"
 msgstr "枠の四隅の丸み"
 
 msgid "Second color for the background gradient of the switcher window."
-msgstr "スイッチャ・ウィンドウの背景グラデーションの2番目の色"
+msgstr "スイッチャー・ウィンドウの背景グラデーションの2番目の色"
 
 msgid "Second color for the thumb gradient of the switcher window."
-msgstr "スイッチャ・ウィンドウのサムネイルのグラデーションの2番目の色"
+msgstr "スイッチャー・ウィンドウのサムネイルのグラデーションの2番目の色"
 
 msgid "Second color for the thumb highlight gradient of the switcher window."
 msgstr ""
-"スイッチャ・ウィンドウのサムネイルのハイライトグラデーションの2番目の色"
+"スイッチャー・ウィンドウのサムネイルのハイライトグラデーションの2番目の色"
 
 msgid "Second color of the arrow of the switcher window."
-msgstr "スイッチャ・ウィンドウの矢印の2番目の背景色"
+msgstr "スイッチャー・ウィンドウの矢印の2番目の背景色"
 
 msgid "Shadow Color"
 msgstr "影の色"
@@ -4449,10 +4457,10 @@ msgid "Show Viewport Switcher Preview"
 msgstr "ビューポート切り替えプレビューを表示"
 
 msgid "Show live viewport previews in switcher window"
-msgstr "ビューポート実画面プレビューをスイッチャ・ウィンドウに表示"
+msgstr "ビューポート実画面プレビューをスイッチャー・ウィンドウに表示"
 
 msgid "Show switcher window while switching viewports"
-msgstr "ビューポートの切り替え中にスイッチャ・ウィンドウを表示"
+msgstr "ビューポートの切り替え中にスイッチャー・ウィンドウを表示"
 
 msgid "Switch Target Preview Visibility Time"
 msgstr "切り替え先プレビューの表示時間"
@@ -4464,7 +4472,7 @@ msgid "Switch separately"
 msgstr "個別に切り替え"
 
 msgid "Third color for the background gradient of the switcher window."
-msgstr "スイッチャ・ウィンドウの背景グラデーションの3番目の色"
+msgstr "スイッチャー・ウィンドウの背景グラデーションの3番目の色"
 
 msgid "Thumb Gradient"
 msgstr "サムネイルのグラデーション"
@@ -4478,23 +4486,65 @@ msgstr "ビューポート切り替え"
 msgid "Wall Sliding Duration"
 msgstr "壁のスライドの持続時間"
 
+msgid "Background fill type."
+msgstr "背景の塗り方"
+
 msgid "Backgrounds"
 msgstr "背景"
+
+msgid "Center Tiled"
+msgstr "中央からタイル状"
+
+msgid "Centered"
+msgstr "中央"
+
+msgid "Color 1"
+msgstr "色1"
+
+msgid "Color 2"
+msgstr "色2"
 
 msgid "Draw the desktop wallpaper"
 msgstr "デスクトップの壁紙を描画"
 
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "透過な壁紙のための擬似ではない本当のアルファ合成を有効化"
+msgid "Fill or first gradient color."
+msgstr "塗りつぶしの色またはグラデーションの開始色"
 
-msgid "Enable true blending"
-msgstr "真アルファ合成を有効化"
+msgid "Fill type"
+msgstr "塗り方"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
-msgstr "使用する背景の指定"
+msgid "Horizontal gradient"
+msgstr "横方向にグラデーション"
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "ストレッチ時のタイルの背景"
+msgid "Image"
+msgstr "画像"
+
+msgid "Image file."
+msgstr "画像ファイル"
+
+msgid "Image position."
+msgstr "画像の配置位置"
+
+msgid "Position"
+msgstr "配置位置"
+
+msgid "Scale and Crop"
+msgstr "拡大と切り取り"
+
+msgid "Scaled"
+msgstr "拡大"
+
+msgid "Second gradient color."
+msgstr "グラデーションの終端色"
+
+msgid "Solid fill"
+msgstr "塗りつぶし"
+
+msgid "Tiled"
+msgstr "タイル状"
+
+msgid "Vertical gradient"
+msgstr "縦方向にグラデーション"
 
 msgid "Wallpaper"
 msgstr "壁紙"
@@ -4717,35 +4767,29 @@ msgstr ""
 msgid "Workarounds"
 msgstr "次善策"
 
-#~ msgid "Tilt view"
-#~ msgstr "傾けた表示"
-
-#~ msgid "Tilt window view in expo mode"
-#~ msgstr "展開モードでウィンドウを傾けて表示"
-
-#~ msgid "Move window to x, y"
-#~ msgstr "ウィンドウを座標X、Yへ移動"
-
-#~ msgid "Put Exact"
-#~ msgstr "正確な移動"
-
 #~ msgid ""
-#~ "Misc. optionsShow minimized windowsTile or StretchTimeout in seconds "
-#~ "before hiding the notificationUses libnotify to display errorsCorner "
-#~ "BevellingCreate MipmapsDisable Caps for Inside CubeDisables the drawing "
-#~ "of the cube caps when the inside cube mode is set.Draw Window "
-#~ "BacksidesEnables the drawing of the backside of windows.This will create "
-#~ "mipmaps which improve overall texture appearence, and reduce jagged edges."
-#~ "Window widthBeginGoto viewport specified by numbersSpring model on "
-#~ "moveUse spring model for the tab bar when moving the windowSet window as "
-#~ "widgetAppearenceBackground Base ColorBackground Highlight Color"
+#~ "Enable true alpha blending for transparent wallpapersEnable true "
+#~ "blendingThe background specifications (as explained in DOCUMENTATION) to "
+#~ "use.Tile backgrounds as opposed to stretchingTilt viewTilt window view in "
+#~ "expo modeMove window to x, yPut ExactMisc. optionsShow minimized "
+#~ "windowsTile or StretchTimeout in seconds before hiding the "
+#~ "notificationUses libnotify to display errorsCorner BevellingCreate "
+#~ "MipmapsDisable Caps for Inside CubeDisables the drawing of the cube caps "
+#~ "when the inside cube mode is set.Draw Window BacksidesEnables the drawing "
+#~ "of the backside of windows.This will create mipmaps which improve overall "
+#~ "texture appearence, and reduce jagged edges.Window widthBeginGoto "
+#~ "viewport specified by numbersSpring model on moveUse spring model for the "
+#~ "tab bar when moving the windowSet window as widgetAppearenceBackground "
+#~ "Base ColorBackground Highlight Color"
 #~ msgstr ""
-#~ "その他オプション最小化されているウィンドウも表示タイル か ストレッチ通知表"
-#~ "示を隠し始めるまでのタイムアウト（秒）libnotify を使用してエラーを表示コー"
-#~ "ナーの角度Mipmapの作成キューブ内での上側を利用不可能にするキューブの内部"
-#~ "モードでは、キューブの上側の描画を利用不可能にするウィンドウの裏側を描画す"
-#~ "るウィンドウの裏側描画を可能にするテクスチャの見栄えを良くし、ギザギザな"
-#~ "エッジを少なくするmipmapを作成するウィンドウ幅開始数値で指定されたビュー"
-#~ "ポートに移動移動時のスプリングモデルウィンドウの移動時にタブバーをスプリン"
-#~ "グモードにするウィンドウをウィジェットにしてください見栄え背景の基本色背景"
-#~ "の明るい部分の色"
+#~ "透過な壁紙のための擬似ではない本当のアルファ合成を有効化真アルファ合成を有"
+#~ "効化使用する背景の指定ストレッチ時のタイルの背景傾けた表示展開モードでウィ"
+#~ "ンドウを傾けて表示ウィンドウを座標X、Yへ移動正確な移動その他オプション最小"
+#~ "化されているウィンドウも表示タイル か ストレッチ通知表示を隠し始めるまでの"
+#~ "タイムアウト（秒）libnotify を使用してエラーを表示コーナーの角度Mipmapの作"
+#~ "成キューブ内での上側を利用不可能にするキューブの内部モードでは、キューブの"
+#~ "上側の描画を利用不可能にするウィンドウの裏側を描画するウィンドウの裏側描画"
+#~ "を可能にするテクスチャの見栄えを良くし、ギザギザなエッジを少なくするmipmap"
+#~ "を作成するウィンドウ幅開始数値で指定されたビューポートに移動移動時のスプリ"
+#~ "ングモデルウィンドウの移動時にタブバーをスプリングモードにするウィンドウを"
+#~ "ウィジェットにしてください見栄え背景の基本色背景の明るい部分の色"

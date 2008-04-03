@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:11+0530\n"
+"POT-Creation-Date: 2008-04-03 13:27+0530\n"
 "PO-Revision-Date: 2007-12-16 17:00+0530\n"
 "Last-Translator: Sangeeta Kumari\n"
 "Language-Team:  <en@li.org>\n"
@@ -2357,6 +2357,9 @@ msgstr ""
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 
+msgid "Ignore already overlapping windows in the calculations"
+msgstr ""
+
 msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
@@ -2370,6 +2373,11 @@ msgstr "अधिकतम विंडो आकार (स्क्रीन �
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr ""
+
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr ""
 
 msgid ""
@@ -4546,25 +4554,80 @@ msgstr "व्यूपोर्ट स्विचिंग"
 msgid "Wall Sliding Duration"
 msgstr "दीवाल स्लाइडिंग अवधि"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "पृष्ठभूमि फाइल"
+
 msgid "Backgrounds"
 msgstr "पृष्ठभूमि"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "केंद्रित रखें"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "रंग"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "रंग"
 
 msgid "Draw the desktop wallpaper"
 msgstr "डेस्कटॉप वालपेपर खीचें"
 
 #, fuzzy
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "बर्फ के टुकड़े के अल्फा ब्लेंडिंग को सक्रिय करता है."
+msgid "Fill or first gradient color."
+msgstr "फायर कण रंग."
 
 #, fuzzy
-msgid "Enable true blending"
-msgstr "ब्लेंडिंग सक्रिय करें"
+msgid "Fill type"
+msgstr "भरा हुआ अभिन्यास"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
-msgstr "प्रयोग करने के लिए पृष्ठभूमि विनिर्दिष्टता (जैसा कि दस्तावेजन में वर्णित है)."
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "क्षैतिज फोल्ड"
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "फैलाने के विपरीत टाइल पृष्ठभूमि"
+#, fuzzy
+msgid "Image"
+msgstr "चित्र"
+
+#, fuzzy
+msgid "Image file."
+msgstr "ऊपरी चित्र फाइल"
+
+#, fuzzy
+msgid "Image position."
+msgstr "X स्थिति"
+
+#, fuzzy
+msgid "Position"
+msgstr "X स्थिति"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "एडऑन मापें"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "एडऑन मापें"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "ढाल रंग 1"
+
+msgid "Solid fill"
+msgstr ""
+
+#, fuzzy
+msgid "Tiled"
+msgstr "टाइल"
+
+msgid "Vertical gradient"
+msgstr ""
 
 msgid "Wallpaper"
 msgstr "वालपेपर"
@@ -4806,6 +4869,13 @@ msgstr "समाधान"
 
 #~ msgid "Put Exact"
 #~ msgstr "सटीक रखें"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr "प्रयोग करने के लिए पृष्ठभूमि विनिर्दिष्टता (जैसा कि दस्तावेजन में वर्णित है)."
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "फैलाने के विपरीत टाइल पृष्ठभूमि"
 
 #~ msgid "Tile or Stretch"
 #~ msgstr "टाइल या विस्तार"
