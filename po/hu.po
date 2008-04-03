@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-03-15 20:11+0530\n"
+"POT-Creation-Date: 2008-04-03 13:34+0530\n"
 "PO-Revision-Date: 2008-02-25 13:13+0100\n"
 "Last-Translator: KAMI <kamihir@freemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -2340,6 +2340,10 @@ msgstr "Kurzor függőleges eltolása."
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Billentyűzetről indított nagyító nagyítása."
 
+#, fuzzy
+msgid "Ignore already overlapping windows in the calculations"
+msgstr "Ragadós ablakok figyelmen kívül hagyása"
+
 msgid "Ignore sticky windows in the calculations"
 msgstr "Ragadós ablakok figyelmen kívül hagyása"
 
@@ -2352,6 +2356,12 @@ msgstr "Maximum ablak méret (a képernyő szabad helyének kitöltésével)."
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
+msgstr "Maximalizált ablak helyét ne csökkentsék a ragadós ablakok."
+
+#, fuzzy
+msgid ""
+"Treat windows that are already overlapping with the current window as non-"
+"existant when calculating space to use for the maximumize window."
 msgstr "Maximalizált ablak helyét ne csökkentsék a ragadós ablakok."
 
 msgid ""
@@ -4540,25 +4550,80 @@ msgstr "Munkalapváltás"
 msgid "Wall Sliding Duration"
 msgstr "Fal váltásának időtartama"
 
+#, fuzzy
+msgid "Background fill type."
+msgstr "Háttérkép-fájl"
+
 msgid "Backgrounds"
 msgstr "Háttérképek"
+
+msgid "Center Tiled"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Elhelyezés középre"
+
+#, fuzzy
+msgid "Color 1"
+msgstr "Szín"
+
+#, fuzzy
+msgid "Color 2"
+msgstr "Szín"
 
 msgid "Draw the desktop wallpaper"
 msgstr "Asztalháttérkép megjelenítése"
 
-msgid "Enable true alpha blending for transparent wallpapers"
-msgstr "Valódi átlátszóságkezelés átlátszó háttérképekhez."
+#, fuzzy
+msgid "Fill or first gradient color."
+msgstr "Lángnyelvek színe."
 
-msgid "Enable true blending"
-msgstr "Valódi átlátszóságkezelés engedélyezése"
+#, fuzzy
+msgid "Fill type"
+msgstr "Kitöltött körvonal"
 
-msgid "The background specifications (as explained in DOCUMENTATION) to use."
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Vízszintes redők"
+
+#, fuzzy
+msgid "Image"
+msgstr "Képek"
+
+#, fuzzy
+msgid "Image file."
+msgstr "Felső képfájlok"
+
+#, fuzzy
+msgid "Image position."
+msgstr "Vízszintes pozíció"
+
+#, fuzzy
+msgid "Position"
+msgstr "Vízszintes pozíció"
+
+#, fuzzy
+msgid "Scale and Crop"
+msgstr "Áttekintés bővítmény"
+
+#, fuzzy
+msgid "Scaled"
+msgstr "Áttekintés bővítmény"
+
+#, fuzzy
+msgid "Second gradient color."
+msgstr "Színátmenet első színe"
+
+msgid "Solid fill"
 msgstr ""
-"A háttér specifikáció használata. (Erről részletesebben a dokumentációban "
-"olvashat.)"
 
-msgid "Tile backgrounds as opposed to stretching"
-msgstr "Háttérkép mozaik elrendezése a kitöltés helyett"
+#, fuzzy
+msgid "Tiled"
+msgstr "Csempe"
+
+msgid "Vertical gradient"
+msgstr ""
 
 msgid "Wallpaper"
 msgstr "Háttérkép"
@@ -4781,6 +4846,21 @@ msgstr "Az ablakok legyenek ragadósak az összes munkaasztalon"
 
 msgid "Workarounds"
 msgstr "Hibajavítások"
+
+#~ msgid "Enable true alpha blending for transparent wallpapers"
+#~ msgstr "Valódi átlátszóságkezelés átlátszó háttérképekhez."
+
+#~ msgid "Enable true blending"
+#~ msgstr "Valódi átlátszóságkezelés engedélyezése"
+
+#~ msgid ""
+#~ "The background specifications (as explained in DOCUMENTATION) to use."
+#~ msgstr ""
+#~ "A háttér specifikáció használata. (Erről részletesebben a dokumentációban "
+#~ "olvashat.)"
+
+#~ msgid "Tile backgrounds as opposed to stretching"
+#~ msgstr "Háttérkép mozaik elrendezése a kitöltés helyett"
 
 #~ msgid "Tilt view"
 #~ msgstr "Dőlt nézet"
