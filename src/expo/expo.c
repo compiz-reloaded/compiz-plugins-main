@@ -1611,8 +1611,9 @@ expoInitScreen (CompPlugin *p,
 
     es->grabIndex = 0;
 
-    es->expoCam  = 0.0f;
-    es->expoMode = 0;
+    es->expoActive = FALSE;
+    es->expoCam    = 0.0f;
+    es->expoMode   = 0;
 
     es->dndState  = DnDNone;
     es->dndWindow = NULL;
