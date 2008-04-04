@@ -352,6 +352,8 @@ mousepollInitScreen (CompPlugin *p,
 
     ms->clients = NULL;
     ms->freeId  = 1;
+    
+    ms->updateHandle = 0;
 
     s->base.privates[md->screenPrivateIndex].ptr = ms;
     return TRUE;
