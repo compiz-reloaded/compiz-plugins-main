@@ -159,9 +159,7 @@ winrulesSetNoFocus (CompWindow *w,
     }
 
    if (newProtocol != w->protocols)
-	winrulesSetProtocols (w->screen->display,
-		      w->protocols,
-		      w->id);
+	winrulesSetProtocols (w->screen->display, newProtocol, w->id);
 }
 
 static void
