@@ -57,6 +57,7 @@ typedef struct _WinrulesWindow {
     unsigned int stateSetMask;
     unsigned int protocolSetMask;
 
+    Bool oldInputHint;
     Bool hasAlpha;
 } WinrulesWindow;
 
@@ -146,16 +147,20 @@ winrulesSetNoFocus (CompWindow *w,
     {
 	if (w->protocols & CompWindowProtocolTakeFocusMask)
 	{
-    	    newProtocol = w->protocols & ~CompWindowProtocolTakeFocusMask;
-    	    ww->protocolSetMask |= CompWindowProtocolTakeFocusMask;
-    	    w->inputHint = FALSE;
+	    ww->protocolSetMask |= (w->protocols &
+				    CompWindowProtocolTakeFocusMask);
+	    newProtocol = w->protocols & ~CompWindowProtocolTakeFocusMask;
+	    ww->oldInputHint = w->inputHint;
+	    w->inputHint = FALSE;
 	}
     }
-    else if (ww->protocolSetMask & CompWindowProtocolTakeFocusMask)
+    else if (ww->oldInputHint ||
+	     (ww->protocolSetMask & CompWindowProtocolTakeFocusMask))
     {
-	newProtocol = w->protocols & CompWindowProtocolTakeFocusMask;
+	newProtocol = w->protocols |
+	              (ww->protocolSetMask & CompWindowProtocolTakeFocusMask);
 	ww->protocolSetMask &= ~CompWindowProtocolTakeFocusMask;
-	w->inputHint = TRUE;
+	w->inputHint = ww->oldInputHint;
     }
 
    if (newProtocol != w->protocols)
@@ -715,7 +720,8 @@ winrulesInitWindow (CompPlugin *p,
 
     ww->allowedActions = ~0;
 
-    ww->hasAlpha = w->alpha;
+    ww->hasAlpha     = w->alpha;
+    ww->oldInputHint = w->inputHint;
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
