@@ -49,10 +49,14 @@
 #
 # CF_MIN_COMPIZ_VERSION   = Minimal compiz version required for build
 # CF_MIN_BCOP_VERSION     = Minimal bcop version required for build
+#
 # CF_PLUGIN_I18N_DIR      = Translation file directory
 # CF_PLUGIN_INCLUDE_DIR   = Path to plugin header files
 # CF_PLUGIN_PKGCONFIG_DIR = Path to plugin *.pc.in files
 # CF_PLUGIN_XML_DIR       = Path to plugin *.xml[.in] files
+#
+# CF_DISABLE_SCHEMAS_INSTALL  = Disables gconf schema installation with gconftool
+# CF_INSTALL_GCONF_SCHEMA_DIR = Installation path of the gconf schema file
 #
 # VERSION = package version that is added to a plugin pkg-version file
 #
@@ -90,6 +94,12 @@ macro (_prepare_directories)
 	set (PLUGIN_XMLDIR    ${CMAKE_INSTALL_PREFIX}/share/compiz)
 	set (PLUGIN_IMAGEDIR  ${CMAKE_INSTALL_PREFIX}/share/compiz)
 	set (PLUGIN_DATADIR   ${CMAKE_INSTALL_PREFIX}/share/compiz)
+	if (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+            set (PLUGIN_SCHEMADIR "${CMAKE_INSTALL_PREFIX}/share/gconf/schemas")
+        else (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	    set (PLUGIN_SCHEMADIR "${CF_INSTALL_GCONF_SCHEMA_DIR}")
+	endif (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+
     elseif ("${CF_INSTALL_TYPE}" STREQUAL "compiz" OR
 	    "$ENV{BUILD_GLOBAL}" STREQUAL "true")
 	set (PLUGIN_BUILDTYPE global)
@@ -100,6 +110,11 @@ macro (_prepare_directories)
 	set (PLUGIN_XMLDIR    ${COMPIZ_PREFIX}/share/compiz)
 	set (PLUGIN_IMAGEDIR  ${COMPIZ_PREFIX}/share/compiz)
 	set (PLUGIN_DATADIR   ${COMPIZ_PREFIX}/share/compiz)
+	if (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+            set (PLUGIN_SCHEMADIR "${COMPIZ_PREFIX}/share/gconf/schemas")
+        else (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	    set (PLUGIN_SCHEMADIR "${CF_INSTALL_GCONF_SCHEMA_DIR}")
+	endif (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
 	
 	if (NOT "${CMAKE_BUILD_TYPE}")
 	    set (CMAKE_BUILD_TYPE debug)
@@ -112,6 +127,12 @@ macro (_prepare_directories)
 	set (PLUGIN_XMLDIR    $ENV{HOME}/.compiz/metadata)
 	set (PLUGIN_IMAGEDIR  $ENV{HOME}/.compiz/images)
 	set (PLUGIN_DATADIR   $ENV{HOME}/.compiz/data)
+
+	if (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+            set (PLUGIN_SCHEMADIR "$ENV{HOME}/.gconf/schemas")
+        else (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	    set (PLUGIN_SCHEMADIR "${CF_INSTALL_GCONF_SCHEMA_DIR}")
+	endif (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
 	
 	if (NOT "${CMAKE_BUILD_TYPE}")
 	    set (CMAKE_BUILD_TYPE debug)
@@ -155,6 +176,8 @@ macro (_check_plugin_pkg_deps _prefix)
 	    list (APPEND ${_prefix}_INCDIRS "${_${_name}_INCLUDE_DIRS}")
 	else (_${_name}_FOUND)
 	    set (${_prefix}_HAS_PKG_DEPS FALSE)
+	    _cf_set (${_prefix}_MISSING_DEPS "${${_prefix}_MISSING_DEPS} ${_val}")
+	    set(__pkg_config_checked__${_name} 0 CACHE INTERNAL "" FORCE)
 	endif (_${_name}_FOUND)
     endforeach (_val)
 endmacro (_check_plugin_pkg_deps)
@@ -184,6 +207,8 @@ macro (_check_plugin_plugin_deps _prefix)
 		list (APPEND ${_prefix}_INCDIRS "${_${_name}_INCLUDE_DIRS}")
 	    else (_${_name}_FOUND)
 		set (${_prefix}_HAS_PLUGIN_DEPS FALSE)
+		_cf_set (${_prefix}_MISSING_DEPS "${${_prefix}_MISSING_DEPS} compiz-${_val}")
+		set(__pkg_config_checked__${_name} 0 CACHE INTERNAL "" FORCE)
 	    endif (_${_name}_FOUND)
 	endif (_plugin_dep_${_val})
 
@@ -282,7 +307,7 @@ macro (_init_gconf_schema _plugin _xml)
 	)
 
 	find_program (_GCONFTOOL_EXECUTABLE gconftool-2)
-	if (_GCONFTOOL_EXECUTABLE)
+	if (_GCONFTOOL_EXECUTABLE AND NOT DEFINED CF_DISABLE_SCHEMAS_INSTALL)
 	    install (CODE "
 		    if (\"\$ENV{USER}\" STREQUAL \"root\")
 			exec_program (${_GCONFTOOL_EXECUTABLE}
@@ -295,7 +320,12 @@ macro (_init_gconf_schema _plugin _xml)
 			    ARGS \"--install-schema-file=${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema > /dev/null\")
 		    endif (\"\$ENV{USER}\" STREQUAL \"root\")
 		    ")
-	endif (_GCONFTOOL_EXECUTABLE)
+	endif (_GCONFTOOL_EXECUTABLE AND NOT DEFINED CF_DISABLE_SCHEMAS_INSTALL)
+	install (
+	    FILES "${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema"
+	    DESTINATION "${PLUGIN_SCHEMADIR}"
+	)
+
 	set (SCHEMA_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema")
     endif (_COMPIZ_GCONF_FOUND AND _XSLTPROC_EXECUTABLE)
 endmacro (_init_gconf_schema)
@@ -347,6 +377,7 @@ macro (compiz_fusion_plugin plugin)
     set (${_PLUGIN}_HAS_PLUGIN_DEPS)
 
     # check dependencies
+    _cf_unset (${_PLUGIN}_MISSING_DEPS)
     _check_plugin_pkg_deps (${_PLUGIN} ${${_PLUGIN}_PKGDEPS})
     _check_plugin_plugin_deps (${_PLUGIN} ${${_PLUGIN}_PLUGINDEPS})
 
@@ -504,6 +535,7 @@ macro (compiz_fusion_plugin plugin)
 
     else (COMPIZ_FOUND AND ${_PLUGIN}_HAS_PKG_DEPS AND ${_PLUGIN}_HAS_PLUGIN_DEPS)
 	message (STATUS "[WARNING] One or more dependencies for compiz plugin ${plugin} not found. Skipping plugin.")
+	message (STATUS "Missing dependencies :${${_PLUGIN}_MISSING_DEPS}")
 	_cf_set (CF_${_PLUGIN}_BUILD FALSE)
     endif (COMPIZ_FOUND AND ${_PLUGIN}_HAS_PKG_DEPS AND ${_PLUGIN}_HAS_PLUGIN_DEPS)
 endmacro (compiz_fusion_plugin)
