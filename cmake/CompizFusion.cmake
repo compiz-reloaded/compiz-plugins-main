@@ -330,6 +330,39 @@ macro (_init_gconf_schema _plugin _xml)
     endif (_COMPIZ_GCONF_FOUND AND _XSLTPROC_EXECUTABLE)
 endmacro (_init_gconf_schema)
 
+macro (compiz_fusion_add_uninstall)
+   if (NOT _cf_uninstall_rule_created)
+	_cf_set(_cf_uninstall_rule_created TRUE)
+
+	set (_file "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake")
+
+	file (WRITE  ${_file} "if (NOT EXISTS \"${CMAKE_BINARY_DIR}/install_manifest.txt\")\n")
+	file (APPEND ${_file} "  message (FATAL_ERROR \"Cannot find install manifest: \\\"${CMAKE_BINARY_DIR}/install_manifest.txt\\\"\")\n")
+	file (APPEND ${_file} "endif (NOT EXISTS \"${CMAKE_BINARY_DIR}/install_manifest.txt\")\n\n")
+	file (APPEND ${_file} "file (READ \"${CMAKE_BINARY_DIR}/install_manifest.txt\" files)\n")
+	file (APPEND ${_file} "string (REGEX REPLACE \"\\n\" \";\" files \"\${files}\")\n")
+	file (APPEND ${_file} "foreach (file \${files})\n")
+	file (APPEND ${_file} "  message (STATUS \"Uninstalling \\\"\${file}\\\"\")\n")
+	file (APPEND ${_file} "  if (EXISTS \"\${file}\")\n")
+	file (APPEND ${_file} "    exec_program(\n")
+	file (APPEND ${_file} "      \"${CMAKE_COMMAND}\" ARGS \"-E remove \\\"\${file}\\\"\"\n")
+	file (APPEND ${_file} "      OUTPUT_VARIABLE rm_out\n")
+	file (APPEND ${_file} "      RETURN_VALUE rm_retval\n")
+	file (APPEND ${_file} "      )\n")
+	file (APPEND ${_file} "    if (\"\${rm_retval}\" STREQUAL 0)\n")
+	file (APPEND ${_file} "    else (\"\${rm_retval}\" STREQUAL 0)\n")
+	file (APPEND ${_file} "      message (FATAL_ERROR \"Problem when removing \\\"\${file}\\\"\")\n")
+	file (APPEND ${_file} "    endif (\"\${rm_retval}\" STREQUAL 0)\n")
+	file (APPEND ${_file} "  else (EXISTS \"\${file}\")\n")
+	file (APPEND ${_file} "    message (STATUS \"File \\\"\${file}\\\" does not exist.\")\n")
+	file (APPEND ${_file} "  endif (EXISTS \"\${file}\")\n")
+	file (APPEND ${_file} "endforeach (file)\n")
+
+	add_custom_target(uninstall "${CMAKE_COMMAND}" -P "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake")
+
+    endif (NOT _cf_uninstall_rule_created)
+endmacro (compiz_fusion_add_uninstall)
+
 # main macro
 macro (compiz_fusion_plugin plugin)
     string (TOUPPER ${plugin} _PLUGIN)
@@ -532,6 +565,8 @@ macro (compiz_fusion_plugin plugin)
 	    TARGETS ${plugin}
 	    LIBRARY DESTINATION ${PLUGIN_LIBDIR}
 	)
+
+	compiz_fusion_add_uninstall ()
 
     else (COMPIZ_FOUND AND ${_PLUGIN}_HAS_PKG_DEPS AND ${_PLUGIN}_HAS_PLUGIN_DEPS)
 	message (STATUS "[WARNING] One or more dependencies for compiz plugin ${plugin} not found. Skipping plugin.")
