@@ -62,9 +62,11 @@
 #
 #######################################################################
 
+if (CMAKE_MAJOR_VERSION GREATER 2 OR CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MINOR_VERSION GREATER 5)
 cmake_policy (VERSION 2.4)
 cmake_policy(SET CMP0000 OLD)  
 cmake_policy(SET CMP0005 OLD)
+endif (CMAKE_MAJOR_VERSION GREATER 2 OR CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MINOR_VERSION GREATER 5)
 
 # add install prefix to pkgconfig search path
 if ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
