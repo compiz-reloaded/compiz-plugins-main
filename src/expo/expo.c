@@ -1282,27 +1282,43 @@ expoAddWindowGeometry (CompWindow *w,
 
 	reg.extents.y1 = region->extents.y1;
 	reg.extents.y2 = region->extents.y2;
-	
-	x1 = (region->extents.x1 / EXPO_GRID_SIZE) * EXPO_GRID_SIZE;
+
 	x1 = region->extents.x1;
 	x2 = MIN (x1 + EXPO_GRID_SIZE, region->extents.x2);
 	
 	UNWRAP (es, s, addWindowGeometry);
-	while (x1 < region->extents.x2)
+	if (region->numRects > 1)
 	{
-	    reg.extents.x1 = x1;
-	    reg.extents.x2 = x2;
-
-	    XIntersectRegion (region, &reg, es->tmpRegion);
-
-	    if (!XEmptyRegion (es->tmpRegion))
+	    while (x1 < region->extents.x2)
 	    {
-		(*w->screen->addWindowGeometry) (w, matrix, nMatrix,
-						 es->tmpRegion, clip);
-	    }
+		reg.extents.x1 = x1;
+		reg.extents.x2 = x2;
 
-	    x1 = x2;
-	    x2 = MIN (x2 + EXPO_GRID_SIZE, region->extents.x2);
+		XIntersectRegion (region, &reg, es->tmpRegion);
+
+		if (!XEmptyRegion (es->tmpRegion))
+		{
+		    (*w->screen->addWindowGeometry) (w, matrix, nMatrix,
+						     es->tmpRegion, clip);
+		}
+
+		x1 = x2;
+		x2 = MIN (x2 + EXPO_GRID_SIZE, region->extents.x2);
+	    }
+	}
+	else
+	{
+	    while (x1 < region->extents.x2)
+	    {
+		reg.extents.x1 = x1;
+		reg.extents.x2 = x2;
+
+		(*w->screen->addWindowGeometry) (w, matrix, nMatrix,
+						 &reg, clip);
+
+		x1 = x2;
+		x2 = MIN (x2 + EXPO_GRID_SIZE, region->extents.x2);
+	    }
 	}
 	WRAP (es, s, addWindowGeometry, expoAddWindowGeometry);
 	
