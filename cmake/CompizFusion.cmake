@@ -62,6 +62,10 @@
 #
 #######################################################################
 
+cmake_policy (VERSION 2.4)
+cmake_policy(SET CMP0000 OLD)  
+cmake_policy(SET CMP0005 OLD)
+
 # add install prefix to pkgconfig search path
 if ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
     set (ENV{PKG_CONFIG_PATH} "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig:${CMAKE_INSTALL_PREFIX}/share/pkgconfig")

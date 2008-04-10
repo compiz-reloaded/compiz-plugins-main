@@ -1,5 +1,7 @@
 project (compiz-fusion-plugins-main)
 
+cmake_minimum_required (VERSION 2.4)
+
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include (cmake/addons.cmake)
 include (cmake/CompizFusion.cmake)
