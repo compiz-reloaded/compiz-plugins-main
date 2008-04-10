@@ -1627,8 +1627,11 @@ expoInitScreen (CompPlugin *p,
 
     es->tmpRegion = XCreateRegion ();
     if (!es->tmpRegion)
+    {
+	free (es);
 	return FALSE;
-
+    }
+    
     es->anyClick  = FALSE;
     es->vpUpdateMode = VPUpdateNone;
 
