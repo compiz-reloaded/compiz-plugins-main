@@ -1273,6 +1273,7 @@ expoAddWindowGeometry (CompWindow *w,
 	REGION      reg;
 	GLfloat     *v;
 	int         offX = 0, offY = 0;
+	float       lastX, lastZ;
 	const float gapX = expoGetVpDistance (s->display) * 0.1f * s->height /
 		           s->width * es->expoCam;
 	const float angle = es->curveAngle * DEG2RAD * (1.0 / (1.0 + gapX));
@@ -1331,15 +1332,24 @@ expoAddWindowGeometry (CompWindow *w,
                                         s->windowOffsetY, &offX, &offY);
 	}
 
+	lastX = -1000000000.0;
+	
 	for (i = oldVCount; i < w->vCount; i++)
 	{
-	    if (v[0] + offX >= -EXPO_GRID_SIZE && 
+	    if (v[0] == lastX)
+	    {
+		v[2] = lastZ;
+	    }
+	    else if (v[0] + offX >= -EXPO_GRID_SIZE && 
 		v[0] + offX < s->width + EXPO_GRID_SIZE)
 	    {
 		v[2] = es->curveDistance - (cos (angle / 2.0 - ((v[0] + offX) /
 		       (float)s->width * angle)) * es->curveRadius);
 		v[2] *= sigmoidProgress (es->expoCam);
 	    }
+
+	    lastX = v[0];
+	    lastZ = v[2];
 
 	    v += w->vertexStride;
 	}
