@@ -1273,7 +1273,7 @@ expoAddWindowGeometry (CompWindow *w,
 	REGION      reg;
 	GLfloat     *v;
 	int         offX = 0, offY = 0;
-	float       lastX, lastZ;
+	float       lastX, lastZ = 0.0;
 	const float gapX = expoGetVpDistance (s->display) * 0.1f * s->height /
 		           s->width * es->expoCam;
 	const float angle = es->curveAngle * DEG2RAD * (1.0 / (1.0 + gapX));
