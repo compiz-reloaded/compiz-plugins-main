@@ -488,11 +488,15 @@ wallComputeTranslation (CompScreen *s,
 			float      *x,
 			float      *y)
 {
-    float dx, dy, elapsed;
+    float dx, dy, elapsed, duration;
 
     WALL_SCREEN (s);
 
-    elapsed = 1 - (ws->timer / (wallGetSlideDuration (s->display) * 1000));
+    duration = wallGetSlideDuration (s->display) * 1000.0;
+    if (duration != 0.0)
+	elapsed = 1.0 - (ws->timer / duration);
+    else
+	elapsed = 1.0;
 
     if (elapsed < 0.0)
 	elapsed = 0.0;
