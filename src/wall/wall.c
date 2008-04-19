@@ -1609,7 +1609,7 @@ wallCreateCairoContexts (CompScreen *s,
 
     WALL_SCREEN (s);
 
-    ws->viewportWidth = VIEWPORT_SWITCHER_SIZE;
+    ws->viewportWidth = VIEWPORT_SWITCHER_SIZE * (float)wallGetPreviewScale(s->display) / 100.0f;
     ws->viewportHeight = ws->viewportWidth * (float)s->height / (float)s->width;
     ws->viewportBorder = VIEWPORT_SWITCHER_BORDER;
     width = s->hsize * (ws->viewportWidth + ws->viewportBorder) + ws->viewportBorder;
@@ -1666,6 +1666,11 @@ wallDisplayOptionChanged (CompDisplay        *display,
     case WallDisplayOptionBackgroundGradientShadowColor:
 	for (s = display->screens; s; s = s->next)
 	    wallDrawSwitcherBackground (s);
+	break;
+
+    case WallDisplayOptionPreviewScale:
+	for (s = display->screens; s; s = s->next)
+	    wallCreateCairoContexts (s, FALSE);
 	break;
 
     case WallDisplayOptionThumbGradientBaseColor:
@@ -1813,6 +1818,7 @@ wallInitDisplay (CompPlugin  *p,
     wallSetFlipDownEdgeInitiate (d, wallFlipDown);
 
     wallSetEdgeRadiusNotify (d, wallDisplayOptionChanged);
+    wallSetPreviewScaleNotify (d, wallDisplayOptionChanged);
     wallSetOutlineColorNotify (d, wallDisplayOptionChanged);
     wallSetBackgroundGradientBaseColorNotify (d, wallDisplayOptionChanged);
     wallSetBackgroundGradientHighlightColorNotify (d, wallDisplayOptionChanged);

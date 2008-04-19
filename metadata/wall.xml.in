@@ -35,23 +35,30 @@
 					<max>2.0</max>
 					<precision>0.05</precision>
 				</option>
+				<option name="preview_scale" type="int">
+					<_short>Preview Scale</_short>
+					<_long>Size of the preview in %</_long>
+					<default>100</default>
+					<min>0</min>
+					<max>200</max>
+				</option>
 				<option name="edge_radius" type="int">
-						<_short>Edge Radius</_short>
-						<_long>Radius of the rounded edge</_long>
-						<default>5</default>
-						<min>0</min>
-						<max>20</max>
-					</option>
-					<option name="outline_color" type="color">
-						<_short>Outline Color</_short>
-						<_long>Outline color of the switcher window.</_long>
-						<default>
-							<red>0x3333</red>
-							<green>0x3333</green>
-							<blue>0x3333</blue>
-							<alpha>0xd998</alpha>
+					<_short>Edge Radius</_short>
+					<_long>Radius of the rounded edge</_long>
+					<default>5</default>
+					<min>0</min>
+					<max>20</max>
+				</option>
+				<option name="outline_color" type="color">
+					<_short>Outline Color</_short>
+					<_long>Outline color of the switcher window.</_long>
+					<default>
+						<red>0x3333</red>
+						<green>0x3333</green>
+						<blue>0x3333</blue>
+						<alpha>0xd998</alpha>
 						</default>
-					</option>
+				</option>
 				<subgroup>
 					<_short>Background Gradient</_short>
 					
