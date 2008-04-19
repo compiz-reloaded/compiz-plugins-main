@@ -38,7 +38,6 @@
 
 #define PI 3.14159265359f
 #define VIEWPORT_SWITCHER_SIZE   100
-#define VIEWPORT_SWITCHER_BORDER 10
 #define ARROW_SIZE 33
 
 #define WIN_X(w) ((w)->attrib.x - (w)->input.left)
@@ -1012,7 +1011,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
     float      centerX, centerY;
     float      width, height;
     float      topLeftX, topLeftY;
-    float      border = 10.0f;
+    float      border;
     int        i, j;
     CompMatrix matrix;
     BOX        box;
@@ -1027,6 +1026,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
     centerY = s->outputDev[ws->boxOutputDevice].region.extents.y1 +
 	      (s->outputDev[ws->boxOutputDevice].height / 2.0f);
 
+    border = (float) ws->viewportBorder;
     width  = (float) ws->switcherContext.width;
     height = (float) ws->switcherContext.height;
 
@@ -1611,7 +1611,7 @@ wallCreateCairoContexts (CompScreen *s,
 
     ws->viewportWidth = VIEWPORT_SWITCHER_SIZE * (float)wallGetPreviewScale(s->display) / 100.0f;
     ws->viewportHeight = ws->viewportWidth * (float)s->height / (float)s->width;
-    ws->viewportBorder = VIEWPORT_SWITCHER_BORDER;
+    ws->viewportBorder = wallGetBorderWidth(s->display);
     width = s->hsize * (ws->viewportWidth + ws->viewportBorder) + ws->viewportBorder;
     height = s->vsize * (ws->viewportHeight + ws->viewportBorder) + ws->viewportBorder;
 
@@ -1668,6 +1668,7 @@ wallDisplayOptionChanged (CompDisplay        *display,
 	    wallDrawSwitcherBackground (s);
 	break;
 
+    case WallDisplayOptionBorderWidth:
     case WallDisplayOptionPreviewScale:
 	for (s = display->screens; s; s = s->next)
 	    wallCreateCairoContexts (s, FALSE);
@@ -1818,6 +1819,7 @@ wallInitDisplay (CompPlugin  *p,
     wallSetFlipDownEdgeInitiate (d, wallFlipDown);
 
     wallSetEdgeRadiusNotify (d, wallDisplayOptionChanged);
+    wallSetBorderWidthNotify (d, wallDisplayOptionChanged);
     wallSetPreviewScaleNotify (d, wallDisplayOptionChanged);
     wallSetOutlineColorNotify (d, wallDisplayOptionChanged);
     wallSetBackgroundGradientBaseColorNotify (d, wallDisplayOptionChanged);
