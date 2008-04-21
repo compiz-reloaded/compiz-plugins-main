@@ -636,67 +636,31 @@ invertTransformedVertex (CompScreen              *s,
 
     alpha = -p1[2] / v[2];
 
-
     if (expoGetDeform (s->display) == DeformCurve && s->desktopWindowCount)
     {
-	/* If would be nice if someone would find a faster solution */
-	const float gapX  = expoGetVpDistance (s->display) * 0.1f * s->height /
-		            s->width * es->expoCam;
-	const float angle = es->curveAngle * DEG2RAD * (1.0 / (1.0 + gapX));
-	const float p     = sigmoidProgress (es->expoCam);
+	const float sws = s->width * s->width;
+	const float rs = (es->curveDistance * es->curveDistance) + 0.25;
+	const float p = ((2.0 * sws * (p1[2] - es->curveDistance) * v[2]) +
+			(2.0 * p1[0] * v[0]) - (v[0] * (float)s->width)) /
+			((v[2] * v[2] * sws) + (v[0] * v[0]));
+	const float q = (-(sws * rs) + (sws * (p1[2] - es->curveDistance) *
+			(p1[2] - es->curveDistance)) +
+                	(0.25 * sws) + (p1[0] * p1[0]) - (p1[0] * (float)s->width))
+			/ ((v[2] * v[2] * sws) + (v[0] * v[0]));
 
-	int   i = 10;
-	float a1, a2, *aM, x1, x2, *xM, d1, d2, *dM;
+	const float rq = (0.25 * p * p) - q;
+	const float ph = -p * 0.5;
 
-	a1 = -p1[2] / v[2];
-	a2 = (es->curveDistance - es->curveRadius - p1[2]) / v[2];
-
-	x1 = p1[0] + (a1 * v[0]);
-	x2 = p1[0] + (a2 * v[0]);
-
-	d1 = (es->curveDistance - (cos (angle / 2.0 - (x1 /
-		(float)s->width * angle)) * es->curveRadius)) * p;
-	d2 = (es->curveDistance - (cos (angle / 2.0 - (x2 /
-		(float)s->width * angle)) * es->curveRadius)) * p;
-
-	d1 = (d1 - p1[2]) / v[2];
-	d2 = (d2 - p1[2]) / v[2];
-
-	d1 = fabs (a1 - d1);
-	d2 = fabs (a2 - d2);
-
-	while (fabs(x1 - x2) > 1.0 && i--)
+	if (rq < 0.0)
 	{
-	    if (d1 < d2)
-	    {
-		aM = &a2;
-		dM = &d2;
-		xM = &x2;
-	    }
-	    else
-	    {
-		aM = &a1;
-		dM = &d1;
-		xM = &x1;
-	    }
-
-	    *aM = (a1 + a2) / 2.0;
-	    *xM = p1[0] + ((*aM) * v[0]);
-
-	    *dM = (es->curveDistance - (cos (angle / 2.0 - (*xM /
-		   (float)s->width * angle)) * es->curveRadius)) * p;
-	    *dM = (*dM - p1[2]) / v[2];
-
-	    *dM = fabs (*aM - *dM);
+	    vertex[0] = -1000;
+	    vertex[1] = -1000;
+	    return;
 	}
-
-	if (d1 < d2)
-	    alpha = a1;
 	else
-	    alpha = a2;
+	    alpha = ph + sqrt(rq);
     }
 
-    
     vertex[0] = ceil (p1[0] + (alpha * v[0]));
     vertex[1] = ceil (p1[1] + (alpha * v[1]));
 }
@@ -1274,10 +1238,10 @@ expoAddWindowGeometry (CompWindow *w,
 	GLfloat     *v;
 	int         offX = 0, offY = 0;
 	float       lastX, lastZ = 0.0;
-	const float gapX = expoGetVpDistance (s->display) * 0.1f * s->height /
-		           s->width * es->expoCam;
-	const float angle = es->curveAngle * DEG2RAD * (1.0 / (1.0 + gapX));
-			
+
+	const float radSquare = (es->curveDistance * es->curveDistance) + 0.25;
+	float       ang;
+	
 	reg.numRects = 1;
 	reg.rects = &reg.extents;
 
@@ -1343,9 +1307,13 @@ expoAddWindowGeometry (CompWindow *w,
 	    else if (v[0] + offX >= -EXPO_GRID_SIZE && 
 		v[0] + offX < s->width + EXPO_GRID_SIZE)
 	    {
-		v[2] = es->curveDistance - (cos (angle / 2.0 - ((v[0] + offX) /
-		       (float)s->width * angle)) * es->curveRadius);
-		v[2] *= sigmoidProgress (es->expoCam);
+		ang = (((v[0] + offX) / (float)s->width) - 0.5);
+		ang *= ang;
+		if (ang < radSquare)
+		{
+		    v[2] = es->curveDistance - sqrt (radSquare - ang);
+		    v[2] *= sigmoidProgress (es->expoCam);
+		}
 	    }
 
 	    lastX = v[0];
