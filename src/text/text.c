@@ -41,6 +41,8 @@
 #include "compiz-text.h"
 #include "text_options.h"
 
+#define PI 3.14159265359f
+
 static int displayPrivateIndex;
 
 typedef struct _TextDisplay
@@ -141,6 +143,31 @@ textGetWindowName (CompDisplay *d,
     return name;
 }
 
+/*
+ * Draw a rounded rectangle path
+ */
+static void
+textDrawTextBackground (cairo_t *cr, int x, int y, int width, int height,
+			int radius)
+{
+    int x0, y0, x1, y1;
+
+    x0 = x;
+    y0 = y;
+    x1 = x + width;
+    y1 = y + height;
+
+    cairo_new_path (cr);
+    cairo_arc (cr, x0 + radius, y1 - radius, radius, PI / 2, PI);
+    cairo_line_to (cr, x0, y0 + radius);
+    cairo_arc (cr, x0 + radius, y0 + radius, radius, PI, 3 * PI / 2);
+    cairo_line_to (cr, x1 - radius, y0);
+    cairo_arc (cr, x1 - radius, y0 + radius, radius, 3 * PI / 2, 2 * PI);
+    cairo_line_to (cr, x1, y1 - radius);
+    cairo_arc (cr, x1 - radius, y1 - radius, radius, 0, PI / 2);
+    cairo_close_path (cr);
+}
+
 
 static Bool
 textFileToImage (CompDisplay *d,
@@ -167,6 +194,7 @@ textFileToImage (CompDisplay *d,
 	Display              *dpy = d->display;
 	Screen               *screen;
 	int                  w, h;
+	int		    layoutWidth;
 	char                 *text = NULL;
 	
 	textAttrib = (CompTextAttrib*) name; /* get it through the name */
@@ -316,11 +344,20 @@ textFileToImage (CompDisplay *d,
 
 	pango_layout_get_pixel_size (layout, &w, &h);
 
+	if (textAttrib->style & TEXT_STYLE_BACKGROUND)
+	{
+	    w += 2 * textAttrib->backgroundHMargin;
+	    h += 2 * textAttrib->backgroundVMargin;
+	}
+
 	w = MIN (textAttrib->maxWidth, w);
 	h = MIN (textAttrib->maxHeight, h);
 
 	/* update the size of the pango layout */
-	pango_layout_set_width (layout, textAttrib->maxWidth * PANGO_SCALE);
+	layoutWidth = textAttrib->maxWidth;
+	if (textAttrib->style & TEXT_STYLE_BACKGROUND)
+	    layoutWidth -= 2 * textAttrib->backgroundHMargin;
+	pango_layout_set_width (layout, layoutWidth * PANGO_SCALE);
 
 	cairo_surface_destroy (surface);
 	cairo_destroy (cr);
@@ -373,6 +410,20 @@ textFileToImage (CompDisplay *d,
 
 	cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
 
+	if (textAttrib->style & TEXT_STYLE_BACKGROUND)
+	{
+	    textDrawTextBackground (cr, 0, 0, w, h,
+				    MIN (textAttrib->backgroundHMargin,
+					 textAttrib->backgroundVMargin));
+	    cairo_set_source_rgba (cr,
+				   textAttrib->backgroundColor[0] / 65535.0,
+				   textAttrib->backgroundColor[1] / 65535.0,
+				   textAttrib->backgroundColor[2] / 65535.0,
+				   textAttrib->backgroundColor[3] / 65535.0);
+	    cairo_fill (cr);
+	    cairo_move_to (cr, textAttrib->backgroundHMargin,
+			   textAttrib->backgroundVMargin);
+	}
 	cairo_set_source_rgba (cr,
 			       textAttrib->color[0] / 65535.0,
      			       textAttrib->color[1] / 65535.0,

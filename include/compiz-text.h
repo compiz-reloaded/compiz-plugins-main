@@ -21,13 +21,14 @@
 #ifndef _COMPIZ_TEXT_H
 #define _COMPIZ_TEXT_H
 
-#define TEXT_ABIVERSION 20070902
+#define TEXT_ABIVERSION 20080421
 
 #define TEXT_ID "TextToPixmap"
 
 #define TEXT_STYLE_NORMAL		(1 << 0)
 #define TEXT_STYLE_BOLD			(1 << 1)
 #define TEXT_STYLE_ITALIC		(1 << 2)
+#define TEXT_STYLE_BACKGROUND		(1 << 3)
 
 typedef enum {
     TextRenderNormal = 0,
@@ -49,6 +50,9 @@ typedef struct _CompTextAttrib {
     unsigned short color[4];
     unsigned int   style;
     Bool           ellipsize;
+    int            backgroundHMargin;
+    int            backgroundVMargin;
+    unsigned short backgroundColor[4];
 } CompTextAttrib;
 
 #endif
