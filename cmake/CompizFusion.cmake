@@ -62,11 +62,18 @@
 #
 #######################################################################
 
+if ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
+    message (SEND_ERROR "Building in the source directory is not supported.")
+    message (FATAL_ERROR "Please remove the created \"CMakeCache.txt\" file, the \"CMakeFiles\" directory and create a build directory and call \"${CMAKE_COMMAND} <path to the sources>\".")
+endif ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
+
 if (CMAKE_MAJOR_VERSION GREATER 2 OR CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MINOR_VERSION GREATER 5)
 cmake_policy (VERSION 2.4)
 cmake_policy(SET CMP0000 OLD)  
 cmake_policy(SET CMP0005 OLD)
 endif (CMAKE_MAJOR_VERSION GREATER 2 OR CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MINOR_VERSION GREATER 5)
+
+set (CMAKE_SKIP_RPATH On)
 
 # add install prefix to pkgconfig search path
 if ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
@@ -100,11 +107,11 @@ macro (_prepare_directories)
 	set (PLUGIN_XMLDIR    ${CMAKE_INSTALL_PREFIX}/share/compiz)
 	set (PLUGIN_IMAGEDIR  ${CMAKE_INSTALL_PREFIX}/share/compiz)
 	set (PLUGIN_DATADIR   ${CMAKE_INSTALL_PREFIX}/share/compiz)
-	if (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	if (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
             set (PLUGIN_SCHEMADIR "${CMAKE_INSTALL_PREFIX}/share/gconf/schemas")
-        else (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+        else (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
 	    set (PLUGIN_SCHEMADIR "${CF_INSTALL_GCONF_SCHEMA_DIR}")
-	endif (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	endif (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
 
     elseif ("${CF_INSTALL_TYPE}" STREQUAL "compiz" OR
 	    "$ENV{BUILD_GLOBAL}" STREQUAL "true")
@@ -116,14 +123,14 @@ macro (_prepare_directories)
 	set (PLUGIN_XMLDIR    ${COMPIZ_PREFIX}/share/compiz)
 	set (PLUGIN_IMAGEDIR  ${COMPIZ_PREFIX}/share/compiz)
 	set (PLUGIN_DATADIR   ${COMPIZ_PREFIX}/share/compiz)
-	if (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	if (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
             set (PLUGIN_SCHEMADIR "${COMPIZ_PREFIX}/share/gconf/schemas")
-        else (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+        else (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
 	    set (PLUGIN_SCHEMADIR "${CF_INSTALL_GCONF_SCHEMA_DIR}")
-	endif (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	endif (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
 	
 	if (NOT "${CMAKE_BUILD_TYPE}")
-	    set (CMAKE_BUILD_TYPE debug)
+	    _cf_set (CMAKE_BUILD_TYPE debug)
 	endif (NOT "${CMAKE_BUILD_TYPE}")	
     else ("${CF_INSTALL_TYPE}" STREQUAL "compiz" OR
 	  "$ENV{BUILD_GLOBAL}" STREQUAL "true")
@@ -134,14 +141,14 @@ macro (_prepare_directories)
 	set (PLUGIN_IMAGEDIR  $ENV{HOME}/.compiz/images)
 	set (PLUGIN_DATADIR   $ENV{HOME}/.compiz/data)
 
-	if (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	if (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
             set (PLUGIN_SCHEMADIR "$ENV{HOME}/.gconf/schemas")
-        else (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+        else (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
 	    set (PLUGIN_SCHEMADIR "${CF_INSTALL_GCONF_SCHEMA_DIR}")
-	endif (NOT DEFINED CF_INSTALL_GCONF_SCHEMA_DIR)
+	endif (NOT CF_INSTALL_GCONF_SCHEMA_DIR)
 	
 	if (NOT "${CMAKE_BUILD_TYPE}")
-	    set (CMAKE_BUILD_TYPE debug)
+	    _cf_set (CMAKE_BUILD_TYPE debug)
 	endif (NOT "${CMAKE_BUILD_TYPE}")
     endif ("${CF_INSTALL_TYPE}" STREQUAL "package")
 endmacro (_prepare_directories)
@@ -193,7 +200,7 @@ macro (_check_plugin_plugin_deps _prefix)
     set (${_prefix}_HAS_PLUGIN_DEPS TRUE)
     foreach (_val ${ARGN})
 	string (TOUPPER ${_val} _name)
-	
+
 	find_file (
 	    _plugin_dep_${_val}
 	    compiz-${_val}.h
@@ -218,6 +225,8 @@ macro (_check_plugin_plugin_deps _prefix)
 	    endif (_${_name}_FOUND)
 	endif (_plugin_dep_${_val})
 
+	_cf_set (_plugin_dep_${_val} "${_plugin_dep_${_val}}")
+
     endforeach (_val)
 endmacro (_check_plugin_plugin_deps)
 
@@ -238,102 +247,106 @@ macro (_init_bcop _plugin _file)
 		  ARGS "--variable=bin bcop" 
 		  OUTPUT_VARIABLE BCOP_EXECUTABLE)
     add_custom_command (
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}_options.h
+        OUTPUT ${CMAKE_BINARY_DIR}/generated/${_plugin}_options.h
         COMMAND ${BCOP_EXECUTABLE}
-                    --header ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}_options.h
+                    --header ${CMAKE_BINARY_DIR}/generated/${_plugin}_options.h
                     ${_file}
         DEPENDS ${_file}
     )
     add_custom_command (
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}_options.c
+        OUTPUT ${CMAKE_BINARY_DIR}/generated/${_plugin}_options.c
         COMMAND ${BCOP_EXECUTABLE}
-                    --source ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}_options.c
+                    --source ${CMAKE_BINARY_DIR}/generated/${_plugin}_options.c
                     ${_file}
-                    ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}_options.h
+                    ${CMAKE_BINARY_DIR}/generated/${_plugin}_options.h
         DEPENDS ${_file}
-                ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}_options.h
+                ${CMAKE_BINARY_DIR}/generated/${_plugin}_options.h
     )
-    set (BCOP_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}_options.h;${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}_options.c")
+    set (BCOP_SOURCES "${CMAKE_BINARY_DIR}/generated/${_plugin}_options.h;${CMAKE_BINARY_DIR}/generated/${_plugin}_options.c")
 endmacro (_init_bcop)
 
 # translate metadata file
 macro (_init_translation _plugin _file)
-    find_program (_INTLTOOL_MERGE_EXECUTABLE intltool-merge)
+    find_program (INTLTOOL_MERGE_EXECUTABLE intltool-merge)
+    mark_as_advanced (FORCE INTLTOOL_MERGE_EXECUTABLE)
 
-    if (_INTLTOOL_MERGE_EXECUTABLE 
+    if (INTLTOOL_MERGE_EXECUTABLE
 	AND CF_PLUGIN_I18N_DIR 
 	AND EXISTS ${CF_PLUGIN_I18N_DIR})
 	add_custom_command (
-	    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}.xml
-	    COMMAND ${_INTLTOOL_MERGE_EXECUTABLE} -x -u -c
+	    OUTPUT ${CMAKE_BINARY_DIR}/generated/${_plugin}.xml
+	    COMMAND ${INTLTOOL_MERGE_EXECUTABLE} -x -u -c
 		    ${CF_PLUGIN_I18N_DIR}/.intltool-merge-cache
 		    ${CF_PLUGIN_I18N_DIR}
 		    ${_file}
-		    ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}.xml
+		    ${CMAKE_BINARY_DIR}/generated/${_plugin}.xml
 	    DEPENDS ${_file}
 	)
-    else (_INTLTOOL_MERGE_EXECUTABLE 
+    else (INTLTOOL_MERGE_EXECUTABLE
 	  AND CF_PLUGIN_I18N_DIR 
 	  AND EXISTS ${CF_PLUGIN_I18N_DIR})
     	add_custom_command (
-	    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}.xml
+	    OUTPUT ${CMAKE_BINARY_DIR}/generated/${_plugin}.xml
 	    COMMAND cat ${_file} | 
 		    sed -e 's;<_;<;g' -e 's;</_;</;g' > 
-		    ${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}.xml
+		    ${CMAKE_BINARY_DIR}/generated/${_plugin}.xml
 	    DEPENDS ${_file}
 	)
-    endif (_INTLTOOL_MERGE_EXECUTABLE 
+    endif (INTLTOOL_MERGE_EXECUTABLE
 	   AND CF_PLUGIN_I18N_DIR 
 	   AND EXISTS ${CF_PLUGIN_I18N_DIR})
 
-    set (TRANSLATION_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/${_plugin}.xml")
+    set (TRANSLATION_SOURCES "${CMAKE_BINARY_DIR}/generated/${_plugin}.xml")
 endmacro (_init_translation)
 
 # generate gconf schema
 macro (_init_gconf_schema _plugin _xml)
-    if (DEFINED CF_MIN_COMPIZ_VERSION)
+    if (CF_MIN_COMPIZ_VERSION)
 	pkg_check_modules (_COMPIZ_GCONF compiz-gconf>=${CF_MIN_COMPIZ_VERSION})
-    else (DEFINED CF_MIN_COMPIZ_VERSION)
+    else (CF_MIN_COMPIZ_VERSION)
 	pkg_check_modules (_COMPIZ_GCONF compiz-gconf)
-    endif (DEFINED CF_MIN_COMPIZ_VERSION)
+    endif (CF_MIN_COMPIZ_VERSION)
 
-    find_program (_XSLTPROC_EXECUTABLE xsltproc)
+    find_program (XSLTPROC_EXECUTABLE xsltproc)
+    mark_as_advanced (FORCE XSLTPROC_EXECUTABLE)
 
-    if (_COMPIZ_GCONF_FOUND AND _XSLTPROC_EXECUTABLE)
+    if (_COMPIZ_GCONF_FOUND AND XSLTPROC_EXECUTABLE)
 	exec_program (${PKG_CONFIG_EXECUTABLE}
 		      ARGS "--variable=xsltdir compiz-gconf" 
 		      OUTPUT_VARIABLE _SCHEMA_XSLT_DIR)
 	add_custom_command (
-	    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema
-	    COMMAND ${_XSLTPROC_EXECUTABLE}
+	    OUTPUT ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema
+	    COMMAND ${XSLTPROC_EXECUTABLE}
 	            ${_SCHEMA_XSLT_DIR}/schemas.xslt
 	            ${_xml} >
-	            ${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema
+	            ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema
 	    DEPENDS ${_xml}
 	)
 
-	find_program (_GCONFTOOL_EXECUTABLE gconftool-2)
-	if (_GCONFTOOL_EXECUTABLE AND NOT DEFINED CF_DISABLE_SCHEMAS_INSTALL)
+	find_program (GCONFTOOL_EXECUTABLE gconftool-2)
+	mark_as_advanced (FORCE GCONFTOOL_EXECUTABLE)
+
+	if (GCONFTOOL_EXECUTABLE AND NOT CF_DISABLE_SCHEMAS_INSTALL)
 	    install (CODE "
 		    if (\"\$ENV{USER}\" STREQUAL \"root\")
-			exec_program (${_GCONFTOOL_EXECUTABLE}
+			exec_program (${GCONFTOOL_EXECUTABLE}
 			    ARGS \"--get-default-source\"
 			    OUTPUT_VARIABLE ENV{GCONF_CONFIG_SOURCE})
-			exec_program (${_GCONFTOOL_EXECUTABLE}
-			    ARGS \"--makefile-install-rule ${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema > /dev/null\")
+			exec_program (${GCONFTOOL_EXECUTABLE}
+			    ARGS \"--makefile-install-rule ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema > /dev/null\")
 		    else (\"\$ENV{USER}\" STREQUAL \"root\")
-			exec_program (${_GCONFTOOL_EXECUTABLE}
-			    ARGS \"--install-schema-file=${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema > /dev/null\")
+			exec_program (${GCONFTOOL_EXECUTABLE}
+			    ARGS \"--install-schema-file=${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema > /dev/null\")
 		    endif (\"\$ENV{USER}\" STREQUAL \"root\")
 		    ")
-	endif (_GCONFTOOL_EXECUTABLE AND NOT DEFINED CF_DISABLE_SCHEMAS_INSTALL)
+	endif (GCONFTOOL_EXECUTABLE AND NOT CF_DISABLE_SCHEMAS_INSTALL)
 	install (
-	    FILES "${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema"
+	    FILES "${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema"
 	    DESTINATION "${PLUGIN_SCHEMADIR}"
 	)
 
-	set (SCHEMA_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${_plugin}.schema")
-    endif (_COMPIZ_GCONF_FOUND AND _XSLTPROC_EXECUTABLE)
+	set (SCHEMA_SOURCES "${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema")
+    endif (_COMPIZ_GCONF_FOUND AND XSLTPROC_EXECUTABLE)
 endmacro (_init_gconf_schema)
 
 macro (compiz_fusion_add_uninstall)
@@ -370,15 +383,69 @@ macro (compiz_fusion_add_uninstall)
 endmacro (compiz_fusion_add_uninstall)
 
 # main macro
-macro (compiz_fusion_plugin plugin)
+macro (_build_compiz_fusion_plugin plugin)
     string (TOUPPER ${plugin} _PLUGIN)
 
+    if (CF_INSTALL_TYPE)
+	set (
+	    CF_INSTALL_TYPE ${CF_INSTALL_TYPE} CACHE STRING
+	    "Where a plugin should be installed \(package | compiz | local\)"
+	)
+    else (CF_INSTALL_TYPE)
+	set (
+	    CF_INSTALL_TYPE "local" CACHE STRING
+	    "Where a plugin should be installed \(package | compiz | local\)"
+	)
+    endif (CF_INSTALL_TYPE)
+
+    set (
+	CF_MIN_COMPIZ_VERSION ${CF_MIN_COMPIZ_VERSION} CACHE STRING
+	"Minimal compiz version required for build"
+    )
+    set (
+	CF_MIN_BCOP_VERSION ${CF_MIN_BCOP_VERSION} CACHE STRING
+	"Minimal bcop version required for build"
+    )
+
+    set (
+	CF_PLUGIN_I18N_DIR ${CF_PLUGIN_I18N_DIR} CACHE PATH
+	"Translation file directory"
+    )
+    set (
+	CF_PLUGIN_INCLUDE_DIR ${CF_PLUGIN_INCLUDE_DIR}
+	CACHE PATH "Path to plugin header files"
+    )
+    set (
+	CF_PLUGIN_PKGCONFIG_DIR ${CF_PLUGIN_PKGCONFIG_DIR}
+	CACHE PATH "Path to plugin *.pc.in files"
+    )
+    set (
+	CF_PLUGIN_XML_DIR ${CF_PLUGIN_XML_DIR} CACHE PATH
+	"Path to plugin *.xml[.in] files"
+    )
+
+    option (
+	CF_DISABLE_SCHEMAS_INSTALL
+	"Disables gconf schema installation with gconftool"
+	OFF
+    )
+
+    set (
+	CF_INSTALL_GCONF_SCHEMA_DIR ${CF_INSTALL_GCONF_SCHEMA_DIR} CACHE PATH
+	"Installation path of the gconf schema file"
+    )
+
+    set (
+	VERSION ${VERSION} CACHE STRING
+	"Package version that is added to a plugin pkg-version file"
+    )
+
     # check for compiz
-    if (DEFINED CF_MIN_COMPIZ_VERSION)
+    if (CF_MIN_COMPIZ_VERSION)
 	pkg_check_modules (COMPIZ REQUIRED compiz>=${CF_MIN_COMPIZ_VERSION})
-    else (DEFINED CF_MIN_COMPIZ_VERSION)
+    else (CF_MIN_COMPIZ_VERSION)
 	pkg_check_modules (COMPIZ REQUIRED compiz)
-    endif (DEFINED CF_MIN_COMPIZ_VERSION)
+    endif (CF_MIN_COMPIZ_VERSION)
 
     _get_plugin_parameters (${_PLUGIN} ${ARGN})
     _prepare_directories ()
@@ -404,11 +471,11 @@ macro (compiz_fusion_plugin plugin)
     endif (_${plugin}_xml)
 
     if (_needs_bcop)
-	if (DEFINED CF_MIN_BCOP_VERSION)
+	if (CF_MIN_BCOP_VERSION)
 	    list (APPEND ${_PLUGIN}_PKGDEPS bcop>=${CF_MIN_BCOP_VERSION})
-	else (DEFINED CF_MIN_BCOP_VERSION)
+	else (CF_MIN_BCOP_VERSION)
 	    list (APPEND ${_PLUGIN}_PKGDEPS bcop)
-	endif (DEFINED CF_MIN_BCOP_VERSION)
+	endif (CF_MIN_BCOP_VERSION)
     endif (_needs_bcop)
 
 
@@ -424,14 +491,14 @@ macro (compiz_fusion_plugin plugin)
 
 	_cf_set (CF_${_PLUGIN}_BUILD TRUE)
 
-	if (NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/generated)
-	    file (MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated)
-	endif (NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/generated)
+	if (NOT EXISTS ${CMAKE_BINARY_DIR}/generated)
+	    file (MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/generated)
+	endif (NOT EXISTS ${CMAKE_BINARY_DIR}/generated)
 	
 	if (_${plugin}_xml_in)
 	    # translate xml
 	    _init_translation (${plugin} ${_${plugin}_xml_in})
-	    set (_translated_xml ${CMAKE_CURRENT_BINARY_DIR}/generated/${plugin}.xml)
+	    set (_translated_xml ${CMAKE_BINARY_DIR}/generated/${plugin}.xml)
 	else (_${plugin}_xml_in)
 	    if (_${plugin}_xml)
 		set (_translated_xml ${_${plugin}_xml})
@@ -488,11 +555,11 @@ macro (compiz_fusion_plugin plugin)
 		endif (NOT VERSION)
 		configure_file (
 		    ${_${plugin}_pkg}
-		    ${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${plugin}.pc
+		    ${CMAKE_BINARY_DIR}/generated/compiz-${plugin}.pc
 		)
 		
 		install (
-		    FILES ${CMAKE_CURRENT_BINARY_DIR}/generated/compiz-${plugin}.pc
+		    FILES ${CMAKE_BINARY_DIR}/generated/compiz-${plugin}.pc
 		    DESTINATION ${PLUGIN_PKGDIR}
 		)
 		install (
@@ -534,11 +601,11 @@ macro (compiz_fusion_plugin plugin)
 			 -DDATADIR='\"${PLUGIN_DATADIR}\"')
 
 	include_directories (
-            ${COMPIZ_INCLUDE_DIRS}
             ${CMAKE_CURRENT_SOURCE_DIR}
             ${CF_PLUGIN_INCLUDE_DIR}
-            ${CMAKE_CURRENT_BINARY_DIR}/generated
+            ${CMAKE_BINARY_DIR}/generated
             ${${_PLUGIN}_INCDIRS}
+            ${COMPIZ_INCLUDE_DIRS}
 	)
 
 	link_directories (
@@ -579,4 +646,22 @@ macro (compiz_fusion_plugin plugin)
 	message (STATUS "Missing dependencies :${CF_${_PLUGIN}_MISSING_DEPS}")
 	_cf_set (CF_${_PLUGIN}_BUILD FALSE)
     endif (COMPIZ_FOUND AND ${_PLUGIN}_HAS_PKG_DEPS AND ${_PLUGIN}_HAS_PLUGIN_DEPS)
+
+    _cf_set (_${plugin}_hdr "${_${plugin}_hdr}")
+    _cf_set (_${plugin}_pkg "${_${plugin}_pkg}")
+    _cf_set (_${plugin}_xml "${_${plugin}_xml}")
+    _cf_set (_${plugin}_xml_in "${_${plugin}_xml_in}")
+endmacro (_build_compiz_fusion_plugin)
+
+macro (compiz_fusion_plugin plugin)
+    string (TOUPPER ${plugin} _PLUGIN)
+    option (
+	CF_DISABLE_PLUGIN_${_PLUGIN}
+	"Disable building of plugin \"${plugin}\""
+	OFF
+    )
+
+    if (NOT CF_DISABLE_PLUGIN_${_PLUGIN})
+	_build_compiz_fusion_plugin (${plugin} ${ARGN})
+    endif (NOT CF_DISABLE_PLUGIN_${_PLUGIN})
 endmacro (compiz_fusion_plugin)
