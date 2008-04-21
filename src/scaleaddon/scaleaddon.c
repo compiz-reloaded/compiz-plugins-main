@@ -597,7 +597,9 @@ scaleaddonSelectWindow (CompWindow *w)
     ADDON_SCREEN (s);
     SCALE_SCREEN (s);
 
-    ad->highlightedWindow = w->id;
+    ad->highlightedWindow     = w->id;
+    ad->lastHighlightedWindow = None;
+
     scaleaddonCheckWindowHighlight (s);
 
     UNWRAP (as, ss, selectWindow);
