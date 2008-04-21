@@ -1755,8 +1755,8 @@ initiateFocusAnimation(CompWindow *w)
 
 	    if (XEmptyRegion(fadeRegion))
 	    {
-		postAnimationCleanup(w, TRUE);
-		return; // empty -> won't be drawn
+		// empty intersection -> won't be drawn (will end prematurely)
+		duration = 0;
 	    }
 	    if ((chosenEffect == AnimEffectFocusFade ||
 		 chosenEffect == AnimEffectDodge) && wOldAbove)
