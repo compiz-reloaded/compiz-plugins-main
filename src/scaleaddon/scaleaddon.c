@@ -156,9 +156,8 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     }
 
     scale = sw->slot ? sw->slot->scale : sw->scale;
-    tA.maxWidth = (w->attrib.width * scale) - (2 * scaleaddonGetBorderSize (s));
-    tA.maxHeight = (w->attrib.height * scale) - 
-	           (2 * scaleaddonGetBorderSize (s));
+    tA.maxWidth = w->attrib.width * scale;
+    tA.maxHeight = w->attrib.height * scale;
     tA.screen = s;
     tA.size = scaleaddonGetTitleSize (s);
     tA.color[0] = scaleaddonGetFontColorRed (s);
@@ -167,8 +166,15 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     tA.color[3] = scaleaddonGetFontColorAlpha (s);
     tA.style = (scaleaddonGetTitleBold (s)) ?
 	       TEXT_STYLE_BOLD : TEXT_STYLE_NORMAL;
+    tA.style |= TEXT_STYLE_BACKGROUND;
     tA.family = "Sans";
     tA.ellipsize = TRUE;
+    tA.backgroundHMargin = scaleaddonGetBorderSize (s);
+    tA.backgroundVMargin = scaleaddonGetBorderSize (s);
+    tA.backgroundColor[0] = scaleaddonGetBackColorRed (s);
+    tA.backgroundColor[1] = scaleaddonGetBackColorGreen (s);
+    tA.backgroundColor[2] = scaleaddonGetBackColorBlue (s);
+    tA.backgroundColor[3] = scaleaddonGetBackColorAlpha (s);
 
     if (ss->type == ScaleTypeAll)
 	tA.renderMode = TextRenderWindowTitleWithViewport;
@@ -206,7 +212,7 @@ scaleaddonDrawWindowTitle (CompWindow *w)
 {
     GLboolean  wasBlend;
     GLint      oldBlendSrc, oldBlendDst;
-    float      x, y, width, height, border;
+    float      x, y, width, height;
     CompScreen *s = w->screen;
     CompMatrix *m;
 
@@ -215,7 +221,6 @@ scaleaddonDrawWindowTitle (CompWindow *w)
 
     width = aw->textWidth;
     height = aw->textHeight;
-    border = scaleaddonGetBorderSize (s);
 
     x = sw->tx + w->attrib.x + ((WIN_W (w) * sw->scale) / 2) - (width / 2);
     y = sw->ty + w->attrib.y + ((WIN_H (w) * sw->scale) / 2) - (height / 2);
@@ -231,58 +236,6 @@ scaleaddonDrawWindowTitle (CompWindow *w)
 	glEnable (GL_BLEND);
 
     glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
-    glColor4us (scaleaddonGetBackColorRed (s),
-		scaleaddonGetBackColorGreen (s),
-		scaleaddonGetBackColorBlue (s),
-		scaleaddonGetBackColorAlpha (s));
-
-    glPushMatrix ();
-
-    glTranslatef (x, y - height, 0.0f);
-    glRectf (0.0f, height, width, 0.0f);
-    glRectf (0.0f, 0.0f, width, -border);
-    glRectf (0.0f, height + border, width, height);
-    glRectf (-border, height, 0.0f, 0.0f);
-    glRectf (width, height, width + border, 0.0f);
-    glTranslatef (-border, -border, 0.0f);
-
-#define CORNER(a,b) \
-    for (k = a; k < b; k++) \
-    {\
-	float rad = k * (3.14159 / 180.0f);\
-	glVertex2f (0.0f, 0.0f);\
-	glVertex2f (cos (rad) * border, sin (rad) * border);\
-	glVertex2f (cos ((k - 1) * (3.14159 / 180.0f)) * border, \
-		    sin ((k - 1) * (3.14159 / 180.0f)) * border);\
-    }
-
-    /* Rounded corners */
-    int k;
-
-    glTranslatef (border, border, 0.0f);
-    glBegin (GL_TRIANGLES);
-    CORNER (180, 270) glEnd();
-    glTranslatef (-border, -border, 0.0f);
-
-    glTranslatef (width + border, border, 0.0f);
-    glBegin (GL_TRIANGLES);
-    CORNER (270, 360) glEnd();
-    glTranslatef (-(width + border), -border, 0.0f);
-
-    glTranslatef (border, height + border, 0.0f);
-    glBegin (GL_TRIANGLES);
-    CORNER (90, 180) glEnd();
-    glTranslatef (-border, -(height + border), 0.0f);
-
-    glTranslatef (width + border, height + border, 0.0f);
-    glBegin (GL_TRIANGLES);
-    CORNER (0, 90) glEnd();
-    glTranslatef (-(width + border), -(height + border), 0.0f);
-
-    glPopMatrix ();
-
-#undef CORNER
 
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glColor4f (1.0, 1.0, 1.0, 1.0);
