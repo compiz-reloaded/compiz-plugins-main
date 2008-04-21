@@ -1144,8 +1144,10 @@ ringTerminate (CompDisplay     *d,
 	}
     }
 
-    action->state &= ~(CompActionStateTermKey | CompActionStateTermButton |
-		       CompActionStateTermEdge);
+    if (action)
+	action->state &= ~(CompActionStateTermKey |
+			   CompActionStateTermButton |
+			   CompActionStateTermEdge);
 
     return FALSE;
 }
