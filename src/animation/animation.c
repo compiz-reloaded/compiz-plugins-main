@@ -1659,6 +1659,8 @@ initiateFocusAnimation(CompWindow *w)
     AnimEffect chosenEffect =
 	getMatchingAnimSelection (w, WindowEventFocus, &duration);
 
+    Bool prematureEnding = FALSE;
+
     if (chosenEffect &&
 	// On unminimization, focus event is fired first.
 	// When this happens and minimize is in progress,
@@ -1755,8 +1757,8 @@ initiateFocusAnimation(CompWindow *w)
 
 	    if (XEmptyRegion(fadeRegion))
 	    {
-		postAnimationCleanup(w, TRUE);
-		return; // empty -> won't be drawn
+		// empty intersection -> won't be drawn (will end prematurely)
+		prematureEnding = TRUE;
 	    }
 	    if ((chosenEffect == AnimEffectFocusFade ||
 		 chosenEffect == AnimEffectDodge) && wOldAbove)
@@ -1900,7 +1902,9 @@ initiateFocusAnimation(CompWindow *w)
 
 	animActivateEvent(s, TRUE);
 
-	if (chosenEffect != AnimEffectDodge)
+	if (prematureEnding)
+	    aw->animTotalTime = 0.01;
+	else if (chosenEffect != AnimEffectDodge)
 	    aw->animTotalTime = duration;
 	aw->animRemainingTime = aw->animTotalTime;
 
