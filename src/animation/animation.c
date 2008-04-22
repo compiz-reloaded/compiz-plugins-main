@@ -1951,7 +1951,7 @@ restackInfoStillGood(CompScreen *s, RestackInfo *restackInfo)
 }
 
 // Reset stacking related info
-static void inline
+static void
 resetStackingInfo (CompScreen *s)
 {
     CompWindow *w;
@@ -2963,30 +2963,43 @@ getBottommostInFocusChain (CompWindow *w)
 }
 
 static void
-resetNewCopyMarks (CompScreen *s)
+resetWalkerMarks (CompScreen *s)
 {
     CompWindow *w;
     for (w = s->windows; w; w = w->next)
     {
 	ANIM_WINDOW(w);
 	aw->walkerOverNewCopy = FALSE;
+	aw->walkerVisitCount = 0;
     }
 }
 
 static CompWindow*
 animWalkFirst (CompScreen *s)
 {
-    resetNewCopyMarks (s);
+    resetWalkerMarks (s);
 
-    return getBottommostInFocusChain(s->windows);
+    CompWindow *w = getBottommostInFocusChain(s->windows);
+    if (w)
+    {
+	ANIM_WINDOW (w);
+	aw->walkerVisitCount++;
+    }
+    return w;
 }
 
 static CompWindow*
 animWalkLast (CompScreen *s)
 {
-    resetNewCopyMarks (s);
+    resetWalkerMarks (s);
 
-    return s->reverseWindows;
+    CompWindow *w = s->reverseWindows;
+    if (w)
+    {
+	ANIM_WINDOW (w);
+	aw->walkerVisitCount++;
+    }
+    return w;
 }
 
 static Bool
@@ -3008,61 +3021,79 @@ static CompWindow*
 animWalkNext (CompWindow *w)
 {
     ANIM_WINDOW (w);
+    ANIM_SCREEN (w->screen);
+    CompWindow *wRet = NULL;
 
     if (!aw->walkerOverNewCopy)
     {
 	// Within a chain? (not the 1st or 2nd window)
 	if (aw->moreToBePaintedNext)
-	    return aw->moreToBePaintedNext;
-
-	// 2nd one in chain?
-	if (aw->winThisIsPaintedBefore)
-	    return aw->winThisIsPaintedBefore;
+	    wRet = aw->moreToBePaintedNext;
+	else if (aw->winThisIsPaintedBefore) // 2nd one in chain?
+	    wRet = aw->winThisIsPaintedBefore;
     }
     else
 	aw->walkerOverNewCopy = FALSE;
 
-    if (w->next && markNewCopy (w->next))
-	return w->next;
+    if (!wRet && w->next && markNewCopy (w->next))
+	wRet = w->next;
+    else if (!wRet)
+	wRet = getBottommostInFocusChain(w->next);
 
-    return getBottommostInFocusChain(w->next);
+    if (wRet)
+    {
+	AnimWindow *awRet = GET_ANIM_WINDOW (wRet, as);
+	// Prevent cycles, which cause freezes
+	if (awRet->walkerVisitCount > 1) // each window is visited at most twice
+	    return NULL;
+	awRet->walkerVisitCount++;
+    }
+    return wRet;
 }
 
 static CompWindow*
 animWalkPrev (CompWindow *w)
 {
     ANIM_WINDOW (w);
+    ANIM_SCREEN (w->screen);
+    CompWindow *wRet = NULL;
 
     // Focus chain start?
     CompWindow *w2 = aw->winToBePaintedBeforeThis;
     if (w2)
-	return w2;
-
-    if (!aw->walkerOverNewCopy)
+	wRet = w2;
+    else if (!aw->walkerOverNewCopy)
     {
 	// Within a focus chain? (not the last window)
 	CompWindow *wPrev = aw->moreToBePaintedPrev;
 	if (wPrev)
-	    return wPrev;
-
-	// Focus chain end?
-	if (aw->winThisIsPaintedBefore)
+	    wRet = wPrev;
+	else if (aw->winThisIsPaintedBefore) // Focus chain end?
 	    // go to the chain beginning and get the
 	    // prev. in X stacking order
 	{
 	    if (aw->winThisIsPaintedBefore->prev)
 		markNewCopy (aw->winThisIsPaintedBefore->prev);
 
-	    return aw->winThisIsPaintedBefore->prev;
+	    wRet = aw->winThisIsPaintedBefore->prev;
 	}
     }
     else
 	aw->walkerOverNewCopy = FALSE;
 
-    if (w->prev)
+    if (!wRet && w->prev)
 	markNewCopy (w->prev);
 
-    return w->prev;
+    wRet = w->prev;
+    if (wRet)
+    {
+	AnimWindow *awRet = GET_ANIM_WINDOW (wRet, as);
+	// Prevent cycles, which cause freezes
+	if (awRet->walkerVisitCount > 1) // each window is visited at most twice
+	    return NULL;
+	awRet->walkerVisitCount++;
+    }
+    return wRet;
 }
 
 static void

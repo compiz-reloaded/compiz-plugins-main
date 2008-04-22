@@ -653,7 +653,8 @@ typedef struct _AnimWindow
     CompWindow *dodgeChainPrev;	// for dodging windows
     CompWindow *dodgeChainNext;	// for dodging windows
     Bool skipPostPrepareScreen;
-    Bool walkerOverNewCopy;     // walker is on the copy at the new pos.
+    Bool walkerOverNewCopy;     // whether walker is on the copy at the new pos.
+    unsigned int walkerVisitCount; // how many times walker has visited this window
     CompWindow *winPassingThrough; // win. passing through this one during focus effect
 } AnimWindow;
 
