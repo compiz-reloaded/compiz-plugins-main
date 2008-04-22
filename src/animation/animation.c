@@ -2977,12 +2977,14 @@ resetWalkerMarks (CompScreen *s)
 static CompWindow*
 animWalkFirst (CompScreen *s)
 {
+    ANIM_SCREEN (s);
+
     resetWalkerMarks (s);
 
     CompWindow *w = getBottommostInFocusChain(s->windows);
     if (w)
     {
-	ANIM_WINDOW (w);
+	AnimWindow *aw = GET_ANIM_WINDOW (w, as);
 	aw->walkerVisitCount++;
     }
     return w;
@@ -2991,12 +2993,14 @@ animWalkFirst (CompScreen *s)
 static CompWindow*
 animWalkLast (CompScreen *s)
 {
+    ANIM_SCREEN (s);
+
     resetWalkerMarks (s);
 
     CompWindow *w = s->reverseWindows;
     if (w)
     {
-	ANIM_WINDOW (w);
+	AnimWindow *aw = GET_ANIM_WINDOW (w, as);
 	aw->walkerVisitCount++;
     }
     return w;
@@ -3021,7 +3025,6 @@ static CompWindow*
 animWalkNext (CompWindow *w)
 {
     ANIM_WINDOW (w);
-    ANIM_SCREEN (w->screen);
     CompWindow *wRet = NULL;
 
     if (!aw->walkerOverNewCopy)
@@ -3042,6 +3045,8 @@ animWalkNext (CompWindow *w)
 
     if (wRet)
     {
+	ANIM_SCREEN (w->screen);
+
 	AnimWindow *awRet = GET_ANIM_WINDOW (wRet, as);
 	// Prevent cycles, which cause freezes
 	if (awRet->walkerVisitCount > 1) // each window is visited at most twice
@@ -3055,7 +3060,6 @@ static CompWindow*
 animWalkPrev (CompWindow *w)
 {
     ANIM_WINDOW (w);
-    ANIM_SCREEN (w->screen);
     CompWindow *wRet = NULL;
 
     // Focus chain start?
@@ -3087,6 +3091,8 @@ animWalkPrev (CompWindow *w)
     wRet = w->prev;
     if (wRet)
     {
+	ANIM_SCREEN (w->screen);
+
 	AnimWindow *awRet = GET_ANIM_WINDOW (wRet, as);
 	// Prevent cycles, which cause freezes
 	if (awRet->walkerVisitCount > 1) // each window is visited at most twice
