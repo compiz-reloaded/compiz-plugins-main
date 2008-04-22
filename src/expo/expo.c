@@ -80,6 +80,7 @@ typedef struct _ExpoScreen
     DrawWindowProc             drawWindow;
     AddWindowGeometryProc      addWindowGeometry;
     DamageWindowRectProc       damageWindowRect;
+    DrawWindowTextureProc      drawWindowTexture;
 
     /*  Used for expo zoom animation */
     float expoCam;
@@ -122,6 +123,10 @@ typedef struct _ExpoScreen
     float curveAngle;
     float curveDistance;
     float curveRadius;
+
+    GLfloat      *vpNormals;
+    GLfloat      *winNormals;
+    unsigned int winNormSize;
 
 } ExpoScreen;
 
@@ -765,6 +770,15 @@ expoPreparePaintScreen (CompScreen *s,
 		else
 		    es->vpActivity[vp] = MAX (0.0, es->vpActivity[vp] - val);
 	    }
+
+	for (i = 0; i < 360; i++)
+	{
+	    es->vpNormals[i * 3] = (-sin ((float)i * DEG2RAD) / s->width)
+				   * es->expoCam;
+	    es->vpNormals[(i * 3) + 1] = 0.0;
+	    es->vpNormals[(i * 3) + 2] = (-cos ((float)i * DEG2RAD) *
+					 es->expoCam) - (1 - es->expoCam);
+	}
     }
     else if (es->vpActivitySize)
     {
@@ -1330,6 +1344,80 @@ expoAddWindowGeometry (CompWindow *w,
     }
 }
 
+static void
+expoDrawWindowTexture (CompWindow	    *w,
+		       CompTexture	    *texture,
+		       const FragmentAttrib *attrib,
+		       unsigned int	    mask)
+{
+    CompScreen *s = w->screen;
+
+    EXPO_SCREEN (s);
+
+    if (es->expoCam > 0.0 && expoGetDeform (s->display) == DeformCurve &&
+        s->desktopWindowCount && s->lighting)
+    {
+	int     i, idx;
+	int     offX = 0, offY = 0;
+	float   x;
+	GLfloat *v;
+
+	if (es->winNormSize < w->vCount * 3)
+	{
+	    es->winNormals = realloc (es->winNormals,
+				       w->vCount * 3 * sizeof (GLfloat));
+	    if (!es->winNormals)
+	    {
+		es->winNormSize = 0;
+		return;
+	    }
+	    es->winNormSize = w->vCount * 3;
+	}
+	
+	if (!windowOnAllViewports (w))
+	{
+	    getWindowMovementForOffset (w, s->windowOffsetX,
+                                        s->windowOffsetY, &offX, &offY);
+	}
+	
+	v = w->vertices + (w->vertexStride - 3);
+	
+	for (i = 0; i < w->vCount; i++)
+	{
+	    x = ((float)(v[0] + offX - (s->width / 2)) * es->curveAngle) /
+		(float)s->width;
+	    while (x < 0)
+		x += 360.0;
+
+	    idx = floor (x);
+
+	    es->winNormals[i * 3] = -es->vpNormals[idx * 3];
+	    es->winNormals[(i * 3) + 1] = es->vpNormals[(idx * 3) + 1];
+	    es->winNormals[(i * 3) + 2] = es->vpNormals[(idx * 3) + 2];
+
+	    v += w->vertexStride;
+	}
+	
+	glEnable (GL_NORMALIZE);
+	glNormalPointer (GL_FLOAT,0, es->winNormals);
+	
+	glEnableClientState (GL_NORMAL_ARRAY);
+	
+	UNWRAP (es, s, drawWindowTexture);
+	(*s->drawWindowTexture) (w, texture, attrib, mask);
+	WRAP (es, s, drawWindowTexture, expoDrawWindowTexture);
+
+	glDisable (GL_NORMALIZE);
+	glDisableClientState (GL_NORMAL_ARRAY);
+	glNormal3f (0.0, 0.0, -1.0);
+	return;
+    }
+
+    UNWRAP (es, s, drawWindowTexture);
+    (*s->drawWindowTexture) (w, texture, attrib, mask);
+    WRAP (es, s, drawWindowTexture, expoDrawWindowTexture);
+}
+
 static Bool
 expoPaintWindow (CompWindow              *w,
 		 const WindowPaintAttrib *attrib,
@@ -1621,6 +1709,13 @@ expoInitScreen (CompPlugin *p,
     es->vpActivity     = NULL;
     es->vpActivitySize = 0;
 
+    es->vpNormals = malloc (360 * 3 * sizeof (GLfloat));
+    if (!es->vpNormals)
+	return FALSE;
+
+    es->winNormals  = NULL;
+    es->winNormSize = 0;
+
     WRAP (es, s, paintOutput, expoPaintOutput);
     WRAP (es, s, paintScreen, expoPaintScreen);
     WRAP (es, s, donePaintScreen, expoDonePaintScreen);
@@ -1630,6 +1725,7 @@ expoInitScreen (CompPlugin *p,
     WRAP (es, s, damageWindowRect, expoDamageWindowRect);
     WRAP (es, s, paintWindow, expoPaintWindow);
     WRAP (es, s, addWindowGeometry, expoAddWindowGeometry);
+    WRAP (es, s, drawWindowTexture, expoDrawWindowTexture);
 
     s->base.privates[ed->screenPrivateIndex].ptr = es;
 
@@ -1659,6 +1755,7 @@ expoFiniScreen (CompPlugin *p,
     UNWRAP (es, s, damageWindowRect);
     UNWRAP (es, s, paintWindow);
     UNWRAP (es, s, addWindowGeometry);
+    UNWRAP (es, s, drawWindowTexture);
 
     free (es);
 }
