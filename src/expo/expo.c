@@ -663,7 +663,15 @@ invertTransformedVertex (CompScreen              *s,
 	    return;
 	}
 	else
+	{
 	    alpha = ph + sqrt(rq);
+	    if (p1[2] + (alpha * v[2]) > 0.0)
+	    {
+		vertex[0] = -1000;
+		vertex[1] = -1000;
+		return;
+	    }
+	}
     }
 
     vertex[0] = ceil (p1[0] + (alpha * v[0]));
