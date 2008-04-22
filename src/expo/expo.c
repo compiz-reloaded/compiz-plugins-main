@@ -916,8 +916,11 @@ expoPaintWall (CompScreen              *s,
     matrixScale (&sTransform, oScale, oScale, 1.0);
 
     /* zoom out */
+    oScale = DEFAULT_Z_CAMERA / (camZ + DEFAULT_Z_CAMERA);
+    matrixScale (&sTransform, oScale, oScale, oScale);
     matrixTranslate (&sTransform, -camX, -camY, -camZ - DEFAULT_Z_CAMERA);
-    
+
+
     if (reflection)
     {
 	float scaleFactor = expoGetScaleFactor (s->display);
