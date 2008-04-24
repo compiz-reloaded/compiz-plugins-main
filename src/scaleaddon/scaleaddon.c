@@ -598,7 +598,6 @@ scaleaddonSelectWindow (CompWindow *w)
     SCALE_SCREEN (s);
 
     ad->highlightedWindow     = w->id;
-    ad->lastHighlightedWindow = None;
 
     scaleaddonCheckWindowHighlight (s);
 
@@ -628,6 +627,15 @@ scaleaddonDonePaintScreen (CompScreen *s)
 
 	for (w = s->windows; w; w = w->next)
 	    scaleaddonFreeWindowTitle (w);
+    }
+
+    if (ss->state == SCALE_STATE_OUT &&
+	as->lastState != SCALE_STATE_OUT)
+    {
+	ADDON_DISPLAY (s->display);
+
+	ad->lastHighlightedWindow = None;
+	scaleaddonCheckWindowHighlight (s);
     }
 
     as->lastState = ss->state;
@@ -674,6 +682,7 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 		   ad->highlightedWindow     = sd->selectedWindow;
 		   here? do we want to show up the highlight without
 		   mouse move initially? */
+
 		ad->highlightedWindow     = None;
 		ad->lastHighlightedWindow = None;
 		scaleaddonCheckWindowHighlight (s);
