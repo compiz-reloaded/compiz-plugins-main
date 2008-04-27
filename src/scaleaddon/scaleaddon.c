@@ -11,10 +11,6 @@
  * Copyright : (C) 2006 Diogo Ferreira
  * E-mail    : diogo@underdev.org
  *
- * Rounded corner drawing taken from wall.c:
- * Copyright : (C) 2007 Robert Carr
- * E-mail    : racarr@beryl-project.org
- *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -155,7 +151,7 @@ scaleaddonRenderWindowTitle (CompWindow *w)
 	return;
     }
 
-    scale = sw->slot ? sw->slot->scale : sw->scale;
+    scale = sw->slot->scale;
     tA.maxWidth = w->attrib.width * scale;
     tA.maxHeight = w->attrib.height * scale;
     tA.screen = s;
@@ -452,7 +448,7 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	    if (!sw->slot)
 		return FALSE;
 
-	    head = outputDeviceForPoint (s, sw->slot->x1, sw->slot->y1);
+	    head      = outputDeviceForPoint (s, sw->slot->x1, sw->slot->y1);
 	    outputBox = w->screen->outputDev[head].region.extents;
 
 	    outputRect.x      = outputBox.x1;
