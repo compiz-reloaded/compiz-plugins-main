@@ -11,10 +11,6 @@
  * Copyright : (C) 2007 David Reveman
  * E-mail    : davidr@novell.com
  *
- * Rounded corner drawing taken from wall.c:
- * Copyright : (C) 2007 Robert Carr
- * E-mail    : racarr@beryl-project.org
- *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -61,7 +57,7 @@ static int displayPrivateIndex;
 
 typedef struct _RingSlot {
     int   x, y;            /* thumb center coordinates */
-    float scale;           /* size scale (fit to maximal thumb size */
+    float scale;           /* size scale (fit to maximal thumb size) */
     float depthScale;      /* scale for depth impression */
     float depthBrightness; /* brightness for depth impression */
 } RingSlot;
@@ -230,6 +226,7 @@ ringRenderWindowTitle (CompScreen *s)
     CompTextAttrib tA;
     int            stride;
     void           *data;
+    int            ox1, ox2, oy1, oy2;
 
     RING_SCREEN (s);
     RING_DISPLAY (s->display);
@@ -242,7 +239,6 @@ ringRenderWindowTitle (CompScreen *s)
     if (!ringGetWindowTitle (s))
 	return;
 
-    int ox1, ox2, oy1, oy2;
     getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
     /* 75% of the output device as maximum width */
@@ -294,19 +290,20 @@ ringRenderWindowTitle (CompScreen *s)
 static void
 ringDrawWindowTitle (CompScreen *s)
 {
-    RING_SCREEN(s);
-    GLboolean wasBlend;
-    GLint oldBlendSrc, oldBlendDst;
+    GLboolean  wasBlend;
+    GLint      oldBlendSrc, oldBlendDst;
+    float      x, y, width, height;
+    int        ox1, ox2, oy1, oy2;
+    CompMatrix *m;
 
-    float width = rs->textWidth;
-    float height = rs->textHeight;
-    float border = 10.0f;
+    RING_SCREEN (s);
 
-    int ox1, ox2, oy1, oy2;
+    width = rs->textWidth;
+    height = rs->textHeight;
+
     getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
-    float x = ox1 + ((ox2 - ox1) / 2) - (rs->textWidth / 2);
-    float y;
+    x = ox1 + ((ox2 - ox1) / 2) - (rs->textWidth / 2);
 
     /* assign y (for the lower corner!) according to the setting */
     switch (ringGetTitleTextPlacement (s))
@@ -320,11 +317,11 @@ ringDrawWindowTitle (CompScreen *s)
 		XRectangle workArea;
 		getWorkareaForOutput (s, s->currentOutputDev, &workArea);
 
-	    	if (ringGetTitleTextPlacement (s) == 
+	    	if (ringGetTitleTextPlacement (s) ==
 		    TitleTextPlacementAboveRing)
-    		    y = oy1 + workArea.y + (2 * border) + height;
+    		    y = oy1 + workArea.y + height;
 		else
-		    y = oy1 + workArea.y + workArea.height - (2 * border);
+		    y = oy1 + workArea.y + workArea.height;
 	    }
 	    break;
 	default:
@@ -337,10 +334,11 @@ ringDrawWindowTitle (CompScreen *s)
 
     glGetIntegerv (GL_BLEND_SRC, &oldBlendSrc);
     glGetIntegerv (GL_BLEND_DST, &oldBlendDst);
-    wasBlend = glIsEnabled (GL_BLEND);
 
+    wasBlend = glIsEnabled (GL_BLEND);
     if (!wasBlend)
 	glEnable (GL_BLEND);
+
     glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -348,7 +346,7 @@ ringDrawWindowTitle (CompScreen *s)
 
     enableTexture (s, &rs->textTexture,COMP_TEXTURE_FILTER_GOOD);
 
-    CompMatrix *m = &rs->textTexture.matrix;
+    m = &rs->textTexture.matrix;
 
     glBegin (GL_QUADS);
 
@@ -428,6 +426,7 @@ ringPaintWindow (CompWindow		 *w,
 	    {
     		fragment.brightness = (float) fragment.brightness * 
 		                      rw->slot->depthBrightness;
+
 		if (w->id != rs->selectedWindow)
 		    fragment.opacity = (float)fragment.opacity *
 			               ringGetInactiveOpacity (s) / 100;
@@ -464,19 +463,21 @@ ringPaintWindow (CompWindow		 *w,
 
 	    if (icon && (icon->texture.name || iconToTexture (w->screen, icon)))
 	    {
-		REGION iconReg;
-		CompMatrix matrix;
-		float  scale;
-		float  x, y;
-		int    width, height;
-		int    scaledWinWidth, scaledWinHeight;
-		RingOverlayIconEnum iconOverlay = ringGetOverlayIcon (s);
+		REGION              iconReg;
+		CompMatrix          matrix;
+		float               scale;
+		float               x, y;
+		int                 width, height;
+		int                 scaledWinWidth, scaledWinHeight;
+		RingOverlayIconEnum iconOverlay;
 
 		scaledWinWidth  = w->attrib.width  * rw->scale;
 		scaledWinHeight = w->attrib.height * rw->scale;
 
 		if (!w->texture->pixmap)
 		    iconOverlay = OverlayIconBig;
+		else
+		    iconOverlay = ringGetOverlayIcon (s);
 
 	    	switch (iconOverlay) {
     		case OverlayIconNone:
@@ -626,29 +627,35 @@ compareRingWindowDepth (const void *elem1,
 static Bool
 layoutThumbs (CompScreen *s)
 {
-    RING_SCREEN (s);
     CompWindow *w;
-    float baseAngle = (2 * PI * rs->rotTarget) / 3600;
-    float angle;
-    int index;
-    int ww, wh;
-    float xScale, yScale;
+    float      baseAngle, angle;
+    int        index;
+    int        ww, wh;
+    float      xScale, yScale;
+    int        ox1, ox2, oy1, oy2;
+    int        centerX, centerY;
+    int        ellipseA, ellipseB;
+    
+    RING_SCREEN (s);
 
     if ((rs->state == RingStateNone) || (rs->state == RingStateIn))
 	return FALSE;
 
-    int ox1, ox2, oy1, oy2;
+    baseAngle = (2 * PI * rs->rotTarget) / 3600;
+
     getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
+
     /* the center of the ellipse is in the middle 
        of the used output device */
-    int centerX = ox1 + (ox2 - ox1) / 2;
-    int centerY = oy1 + (oy2 - oy1) / 2;
-    int ellipseA = ((ox2 - ox1) * ringGetRingWidth (s)) / 200;
-    int ellipseB = ((oy2 - oy1) * ringGetRingHeight (s)) / 200;
+    centerX = ox1 + (ox2 - ox1) / 2;
+    centerY = oy1 + (oy2 - oy1) / 2;
+    ellipseA = ((ox2 - ox1) * ringGetRingWidth (s)) / 200;
+    ellipseB = ((oy2 - oy1) * ringGetRingHeight (s)) / 200;
 
     for (index = 0; index < rs->nWindows; index++)
     {
 	w = rs->windows[index];
+
 	RING_WINDOW (w);
 
 	if (!rw->slot)
@@ -804,8 +811,8 @@ switchToWindow (CompScreen *s,
     if (w)
     {
 	Window old = rs->selectedWindow;
-	rs->selectedWindow = w->id;
 
+	rs->selectedWindow = w->id;
 	if (old != w->id)
 	{
 	    if (toNext)
@@ -814,6 +821,7 @@ switchToWindow (CompScreen *s,
 		rs->rotAdjust -= DIST_ROT;
 
 	    rs->rotateAdjust = TRUE;
+
 	    damageScreen (s);
 	    ringRenderWindowTitle (s);
 	}
@@ -840,7 +848,7 @@ adjustRingRotation (CompScreen *s,
 		    float      chunk)
 {
     float dx, adjust, amount;
-    int change;
+    int   change;
 
     RING_SCREEN(s);
 
@@ -895,9 +903,9 @@ adjustRingVelocity (CompWindow *w)
     }
     else
     {
+	scale = 1.0f;
 	x1 = w->attrib.x;
 	y1 = w->attrib.y;
-	scale = 1.0f;
     }
 
     dx = x1 - (w->attrib.x + rw->tx);
@@ -970,7 +978,6 @@ ringPaintOutput (CompScreen		  *s,
     if (rs->state != RingStateNone)
     {
 	int           i;
-	CompWindow    *w;
 	CompTransform sTransform = *transform;
 
 	transformToScreenSpace (s, output, -DEFAULT_Z_CAMERA, &sTransform);
@@ -981,10 +988,10 @@ ringPaintOutput (CompScreen		  *s,
 
 	for (i = 0; i < rs->nWindows; i++)
 	{
-	    w = rs->drawSlots[i].w;
-
 	    if (rs->drawSlots[i].slot && *(rs->drawSlots[i].slot))
 	    {
+		CompWindow *w = rs->drawSlots[i].w;
+
 		(*s->paintWindow) (w, &w->paint, &sTransform,
 				   &infiniteRegion, 0);
 	    }
@@ -1007,8 +1014,7 @@ ringPreparePaintScreen (CompScreen *s,
 {
     RING_SCREEN (s);
 
-    if (rs->state != RingStateNone && 
-	(rs->moreAdjust || rs->rotateAdjust))
+    if (rs->state != RingStateNone && (rs->moreAdjust || rs->rotateAdjust))
     {
 	CompWindow *w;
 	int        steps;
@@ -1074,9 +1080,7 @@ ringDonePaintScreen (CompScreen *s)
 	else
 	{
 	    if (rs->rotateAdjust)
-	    {
 		damageScreen (s);
-	    }
 
 	    if (rs->state == RingStateIn)
 		rs->state = RingStateNone;
@@ -1336,10 +1340,10 @@ ringPrevGroup (CompDisplay     *d,
 }
 
 static void
-ringWindowSelectAt (CompScreen *s, int x, int y)
+ringWindowSelectAt (CompScreen *s,
+		    int        x,
+		    int        y)
 {
-    CompOption o;
-    CompWindow *w;
     int i;
 
     RING_SCREEN (s);
@@ -1351,10 +1355,10 @@ ringWindowSelectAt (CompScreen *s, int x, int y)
        pointer is over */
     for (i = rs->nWindows - 1; i >= 0; i--)
     {
-    	w = rs->drawSlots[i].w;
-
     	if (rs->drawSlots[i].slot && *(rs->drawSlots[i].slot))
 	{
+	    CompWindow *w = rs->drawSlots[i].w;
+
 	    RING_WINDOW (w);
 
     	    if ((x >= (rw->tx + w->attrib.x)) &&
@@ -1371,6 +1375,8 @@ ringWindowSelectAt (CompScreen *s, int x, int y)
 
     if (i >= 0)
     {
+	CompOption o;
+
     	o.type = CompOptionTypeInt;
     	o.name = "root";
 	o.value.i = s->root;
@@ -1380,24 +1386,24 @@ ringWindowSelectAt (CompScreen *s, int x, int y)
 }
 
 static void 
-ringWindowRemove (CompDisplay * d, 
-		  Window id)
+ringWindowRemove (CompDisplay *d, 
+		  Window      id)
 {
     CompWindow *w;
 
     w = findWindowAtDisplay (d, id);
     if (w)
     {
-	Bool inList = FALSE;
-	int j, i = 0;
+	Bool   inList = FALSE;
+	int    j, i = 0;
 	Window selected;
 
-	RING_SCREEN(w->screen);
+	RING_SCREEN (w->screen);
 
 	if (rs->state == RingStateNone)
 	    return;
 
-	if (isRingWin(w))
+	if (isRingWin (w))
     	    return;
 
 	selected = rs->selectedWindow;
@@ -1649,8 +1655,8 @@ ringInitScreen (CompPlugin *p,
 
     rs->state = RingStateNone;
 
-    rs->windows = NULL;
-    rs->drawSlots = NULL;
+    rs->windows     = NULL;
+    rs->drawSlots   = NULL;
     rs->windowsSize = 0;
 
     rs->paintingSwitcher = FALSE;
@@ -1698,7 +1704,8 @@ ringFiniScreen (CompPlugin *p,
 
     ringFreeWindowTitle (s);
 
-    XFreeCursor (s->display->display, rs->cursor);
+    if (rs->cursor)
+	XFreeCursor (s->display->display, rs->cursor);
 
     if (rs->windows)
 	free (rs->windows);
