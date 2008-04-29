@@ -108,6 +108,7 @@ typedef struct _WallScreen
     int boxTimeout;
     int boxOutputDevice;
 
+    int grabIndex;
     int timer;
 
     Window moveWindow;
@@ -538,6 +539,9 @@ wallMoveViewport (CompScreen *s,
 	}
 	ws->gotoX = s->x - x;
 	ws->gotoY = s->y - y;
+
+	if (!ws->grabIndex)
+	    ws->grabIndex = pushScreenGrab (s, s->invisibleCursor, "wall");
 
 	moveScreenViewport (s, x, y, TRUE);
 
@@ -1398,6 +1402,12 @@ wallPreparePaintScreen (CompScreen *s,
 	    wallReleaseMoveWindow (s);
 	else
 	    focusDefaultWindow (s);
+
+	if (ws->grabIndex)
+	{
+	    removeScreenGrab (s, ws->grabIndex, NULL);
+	    ws->grabIndex = 0;
+	}
     }
 
     UNWRAP (ws, s, preparePaintScreen);
@@ -1864,6 +1874,7 @@ wallInitScreen (CompPlugin *p,
 	return FALSE;
 
     ws->boxTimeout = 0;
+    ws->grabIndex = 0;
     ws->moving = FALSE;
     ws->showPreview = FALSE;
 
