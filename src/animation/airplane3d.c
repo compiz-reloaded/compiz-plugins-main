@@ -71,8 +71,7 @@ tessellateIntoAirplane (CompWindow * w)
 	}
     }
 
-    float thickness;
-    thickness = 1;
+    float thickness = 0;
     thickness /= w->screen->width;
     pset->thickness = thickness;
     pset->nTotalFrontVertices = 0;
@@ -119,8 +118,6 @@ tessellateIntoAirplane (CompWindow * w)
 	float topRightY, topLeftY, bottomLeftY, bottomRightY;
 	float topLeftX, topRightX, bottomLeftX, bottomRightX;
 
-	float n6, n7, n9, n10, n12, n13, n15, n16;
-
 	p->centerPos.x = p->centerPosStart.x = winLimitsX + H2;
 	p->centerPos.y = p->centerPosStart.y = winLimitsY + H2;
 	p->centerPos.z = p->centerPosStart.z = -halfThick;
@@ -141,14 +138,6 @@ tessellateIntoAirplane (CompWindow * w)
 	    bottomRightY = H2;
 	    topRightX = -H3;
 	    topRightY = H6;
-	    n6 = -1;
-	    n7 = 0;
-	    n9 = 0;
-	    n10 = 1;
-	    n12 = 1;
-	    n13 = 0;
-	    n15 = 1 / sqrt (2);
-	    n16 = 1 / sqrt (2);
 	    break;
 	case 1:
 	    topLeftX = -H3;
@@ -159,14 +148,6 @@ tessellateIntoAirplane (CompWindow * w)
 	    bottomRightY = H2;
 	    topRightX = 0;
 	    topRightY = H2;
-	    n6 = -1;
-	    n7 = 0;
-	    n9 = 0;
-	    n10 = 1;
-	    n12 = 1 / sqrt (2);
-	    n13 = 1 / sqrt (2);
-	    n15 = 1 / sqrt (2);
-	    n16 = 1 / sqrt (2);
 	    break;
 	case 2:
 	    topLeftX = -H3;
@@ -177,14 +158,6 @@ tessellateIntoAirplane (CompWindow * w)
 	    bottomRightY = H2;
 	    topRightX = W - H2;
 	    topRightY = H6;
-	    n6 = -1 / sqrt (2);
-	    n7 = 1 / sqrt (2);
-	    n9 = 0;
-	    n10 = 1;
-	    n12 = 1;
-	    n13 = 0;
-	    n15 = 0;
-	    n16 = -1;
 	    break;
 	case 3:
 	    topLeftX = -H2;
@@ -195,14 +168,6 @@ tessellateIntoAirplane (CompWindow * w)
 	    bottomRightY = H6;
 	    topRightX = W - H2;
 	    topRightY = 0;
-	    n6 = -1 / sqrt (2);
-	    n7 = 1 / sqrt (2);
-	    n9 = 0;
-	    n10 = 1;
-	    n12 = 1;
-	    n13 = 0;
-	    n15 = 0;
-	    n16 = -1;
 	    break;
 	case 4:
 	    topLeftX = -H3;
@@ -213,14 +178,6 @@ tessellateIntoAirplane (CompWindow * w)
 	    bottomRightY = 0;
 	    topRightX = W - H2;
 	    topRightY = -H6;
-	    n6 = -1 / sqrt (2);
-	    n7 = -1 / sqrt (2);
-	    n9 = 0;
-	    n10 = 1;
-	    n12 = 1;
-	    n13 = 0;
-	    n15 = 0;
-	    n16 = -1;
 	    break;
 	case 5:
 	    topLeftX = 0;
@@ -231,14 +188,6 @@ tessellateIntoAirplane (CompWindow * w)
 	    bottomRightY = -H6;
 	    topRightX = W - H2;
 	    topRightY = -H2;
-	    n6 = -1 / sqrt (2);
-	    n7 = -1 / sqrt (2);
-	    n9 = 0;
-	    n10 = 1;
-	    n12 = 1;
-	    n13 = 0;
-	    n15 = 0;
-	    n16 = -1;
 	    break;
 	case 6:
 	    topLeftX = -H3;
@@ -249,14 +198,6 @@ tessellateIntoAirplane (CompWindow * w)
 	    bottomRightY = -H6;
 	    topRightX = 0;
 	    topRightY = -H2;
-	    n6 = -1;
-	    n7 = 0;
-	    n9 = 1 / sqrt (2);
-	    n10 = 1 / sqrt (2);
-	    n12 = 1 / sqrt (2);
-	    n13 = 1 / sqrt (2);
-	    n15 = 0;
-	    n16 = -1;
 	    break;
 	default:
 	    topLeftX = -H2;
@@ -267,14 +208,6 @@ tessellateIntoAirplane (CompWindow * w)
 	    bottomRightY = -H6;
 	    topRightX = -H3;
 	    topRightY = -H2;
-	    n6 = -1;
-	    n7 = 0;
-	    n9 = 1 / sqrt (2);
-	    n10 = 1 / sqrt (2);
-	    n12 = 1;
-	    n13 = 0;
-	    n15 = 0;
-	    n16 = -1;
 	    break;
 	}
 
@@ -290,6 +223,7 @@ tessellateIntoAirplane (CompWindow * w)
 	    freePolygonObjects (pset);
 	    return FALSE;
 	}
+
 	GLfloat *pv = p->vertices;
 
 	// Determine 4 front vertices in ccw direction
@@ -361,48 +295,6 @@ tessellateIntoAirplane (CompWindow * w)
 	ind[id++] = 4;
 	ind[id++] = 7;
 	ind[id++] = 0;
-
-	// Surface normals
-	if (!p->normals)
-	{
-	    p->normals = calloc ((2 + 4) * 3, sizeof (GLfloat));
-	}
-	if (!p->normals)
-	{
-	    compLogMessage (w->screen->display, "animation",
-			    CompLogLevelError, "Not enough memory");
-	    freePolygonObjects (pset);
-	    return FALSE;
-	}
-
-	GLfloat *nor = p->normals;
-
-	// Front
-	nor[0] = 0;
-	nor[1] = 0;
-	nor[2] = -1;
-
-	// Back
-	nor[3] = 0;
-	nor[4] = 0;
-	nor[5] = 1;
-
-	// Sides
-	nor[6] = n6;
-	nor[7] = n7;
-	nor[8] = 0;
-
-	nor[9] = n9;
-	nor[10] = n10;
-	nor[11] = 0;
-
-	nor[12] = n12;
-	nor[13] = n13;
-	nor[14] = 0;
-
-	nor[15] = n15;
-	nor[16] = n16;
-	nor[17] = 0;
 
 	if (i < 4)
 	{

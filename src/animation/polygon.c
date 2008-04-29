@@ -242,6 +242,20 @@ tessellateIntoRectangles(CompWindow * w,
 		return FALSE;
 	    }
 
+	    // Vertex normals
+	    if (!p->normals)
+	    {
+		p->normals = calloc(8 * 3, sizeof(GLfloat));
+	    }
+	    if (!p->normals)
+	    {
+		compLogMessage (w->screen->display, "animation",
+				CompLogLevelError,
+				"Not enough memory");
+		freePolygonObjects(pset);
+		return FALSE;
+	    }
+
 	    GLfloat *pv = p->vertices;
 
 	    // Determine 4 front vertices in ccw direction
@@ -278,7 +292,7 @@ tessellateIntoRectangles(CompWindow * w,
 	    pv[22] = -halfH;
 	    pv[23] = -halfThick;
 
-	    // 16 indices for 4 sides (for quad strip)
+	    // 16 indices for 4 sides (for quads)
 	    if (!p->sideIndices)
 	    {
 		p->sideIndices = calloc(4 * 4, sizeof(GLushort));
@@ -292,71 +306,55 @@ tessellateIntoRectangles(CompWindow * w,
 	    }
 
 	    GLushort *ind = p->sideIndices;
-
-	    int id = 0;
-
-	    ind[id++] = 0;
-	    ind[id++] = 7;
-	    ind[id++] = 6;
-	    ind[id++] = 1;
-
-	    ind[id++] = 1;
-	    ind[id++] = 6;
-	    ind[id++] = 5;
-	    ind[id++] = 2;
-
-	    ind[id++] = 2;
-	    ind[id++] = 5;
-	    ind[id++] = 4;
-	    ind[id++] = 3;
-
-	    ind[id++] = 3;
-	    ind[id++] = 4;
-	    ind[id++] = 7;
-	    ind[id++] = 0;
-
-	    // Surface normals
-	    if (!p->normals)
-	    {
-		p->normals = calloc((2 + 4) * 3, sizeof(GLfloat));
-	    }
-	    if (!p->normals)
-	    {
-		compLogMessage (w->screen->display, "animation",
-				CompLogLevelError,
-				"Not enough memory");
-		freePolygonObjects(pset);
-		return FALSE;
-	    }
-
 	    GLfloat *nor = p->normals;
 
-	    // Front
+	    int id = 0;
+	    
+	    // Left face
+	    ind[id++] = 6; // First vertex
+	    ind[id++] = 1;
+	    ind[id++] = 0;
+	    ind[id++] = 7;
+	    nor[6 * 3 + 0] = -1; // Flat shading only uses 1st vertex's normal
+	    nor[6 * 3 + 1] = 0; // in a polygon, vertex 6 for this face.
+	    nor[6 * 3 + 2] = 0;
+
+	    // Bottom face
+	    ind[id++] = 1;
+	    ind[id++] = 6;
+	    ind[id++] = 5;
+	    ind[id++] = 2;
+	    nor[1 * 3 + 0] = 0;
+	    nor[1 * 3 + 1] = 1;
+	    nor[1 * 3 + 2] = 0;
+
+	    // Right face
+	    ind[id++] = 2;
+	    ind[id++] = 5;
+	    ind[id++] = 4;
+	    ind[id++] = 3;
+	    nor[2 * 3 + 0] = 1;
+	    nor[2 * 3 + 1] = 0;
+	    nor[2 * 3 + 2] = 0;
+
+	    // Top face
+	    ind[id++] = 7;
+	    ind[id++] = 0;
+	    ind[id++] = 3;
+	    ind[id++] = 4;
+	    nor[7 * 3 + 0] = 0;
+	    nor[7 * 3 + 1] = -1;
+	    nor[7 * 3 + 2] = 0;
+
+	    // Front face normal
 	    nor[0] = 0;
 	    nor[1] = 0;
-	    nor[2] = -1;
+	    nor[2] = 1;
 
-	    // Back
-	    nor[3] = 0;
-	    nor[4] = 0;
-	    nor[5] = 1;
-
-	    // Sides
-	    nor[6] = -1;
-	    nor[7] = 0;
-	    nor[8] = 0;
-
-	    nor[9] = 0;
-	    nor[10] = 1;
-	    nor[11] = 0;
-
-	    nor[12] = 1;
-	    nor[13] = 0;
-	    nor[14] = 0;
-
-	    nor[15] = 0;
-	    nor[16] = -1;
-	    nor[17] = 0;
+	    // Back face normal
+	    nor[4 * 3 + 0] = 0;
+	    nor[4 * 3 + 1] = 0;
+	    nor[4 * 3 + 2] = -1;
 
 	    // Determine bounding box (to test intersection with clips)
 	    p->boundingBox.x1 = -halfW + p->centerPos.x;
@@ -513,6 +511,19 @@ tessellateIntoHexagons(CompWindow * w,
 		}
 	    }
 
+	    // Vertex normals
+	    if (!p->normals)
+	    {
+		p->normals = calloc(6 * 2 * 3, sizeof(GLfloat));
+	    }
+	    if (!p->normals)
+	    {
+		compLogMessage (w->screen->display, "animation",
+				CompLogLevelError, "Not enough memory");
+		freePolygonObjects(pset);
+		return FALSE;
+	    }
+
 	    GLfloat *pv = p->vertices;
 
 	    // Determine 6 front vertices in ccw direction
@@ -566,7 +577,7 @@ tessellateIntoHexagons(CompWindow * w,
 	    pv[34] = topY;
 	    pv[35] = -halfThick;
 
-	    // 24 indices per 6 sides (for quad strip)
+	    // 24 indices per 6 sides (for quads)
 	    if (!p->sideIndices)
 	    {
 		p->sideIndices = calloc(4 * 6, sizeof(GLushort));
@@ -580,88 +591,83 @@ tessellateIntoHexagons(CompWindow * w,
 	    }
 
 	    GLushort *ind = p->sideIndices;
+	    GLfloat *nor = p->normals;
 
 	    int id = 0;
+
+	    // Approximate normals
+
 	    // upper left side face
-	    ind[id++] = 0;
-	    ind[id++] = 11;
+	    ind[id++] = 11; // First vertex
 	    ind[id++] = 10;
 	    ind[id++] = 1;
+	    ind[id++] = 0;
+	    nor[11 * 3 + 0] = -1; // Flat shading only uses 1st vertex's normal
+	    nor[11 * 3 + 1] = -1; // in a polygon, vertex 11 for this face.
+	    nor[11 * 3 + 2] = 0;
+	    if (y == 0) // top half cropped
+		nor[11 * 3 + 0] = 0;
+
 	    // left side face
 	    ind[id++] = 1;
 	    ind[id++] = 10;
 	    ind[id++] = 9;
 	    ind[id++] = 2;
+	    nor[1 * 3 + 0] = -1;
+	    nor[1 * 3 + 1] = 0;
+	    nor[1 * 3 + 2] = 0;
+
 	    // lower left side face
 	    ind[id++] = 2;
 	    ind[id++] = 9;
 	    ind[id++] = 8;
 	    ind[id++] = 3;
+	    nor[2 * 3 + 0] = -1;
+	    nor[2 * 3 + 1] = 1;
+	    nor[2 * 3 + 2] = 0;
+	    if (y == gridSizeY) // bottom half cropped
+		nor[2 * 3 + 0] = 0;
+
 	    // lower right side face
 	    ind[id++] = 3;
 	    ind[id++] = 8;
 	    ind[id++] = 7;
 	    ind[id++] = 4;
+	    nor[3 * 3 + 0] = 1;
+	    nor[3 * 3 + 1] = 1;
+	    nor[3 * 3 + 2] = 0;
+	    if (y == gridSizeY) // bottom half cropped
+		nor[3 * 3 + 0] = 0;
+
 	    // right side face
 	    ind[id++] = 4;
 	    ind[id++] = 7;
 	    ind[id++] = 6;
 	    ind[id++] = 5;
+	    nor[4 * 3 + 0] = 1;
+	    nor[4 * 3 + 1] = 0;
+	    nor[4 * 3 + 2] = 0;
+
 	    // upper right side face
 	    ind[id++] = 5;
 	    ind[id++] = 6;
 	    ind[id++] = 11;
-	    ind[id++] = 0;			
+	    ind[id++] = 0;
+	    nor[5 * 3 + 0] = 1;
+	    nor[5 * 3 + 1] = -1;
+	    nor[5 * 3 + 2] = 0;
+	    if (y == 0) // top half cropped
+		nor[5 * 3 + 0] = 0;
 
-	    // Surface normals
-	    if (!p->normals)
-	    {
-		p->normals = calloc((2 + 6) * 3, sizeof(GLfloat));
-	    }
-	    if (!p->normals)
-	    {
-		compLogMessage (w->screen->display, "animation",
-				CompLogLevelError, "Not enough memory");
-		freePolygonObjects(pset);
-		return FALSE;
-	    }
-
-	    GLfloat *nor = p->normals;
-
-	    // Front
+	    // Front face normal
 	    nor[0] = 0;
 	    nor[1] = 0;
-	    nor[2] = -1;
-			
-	    // Back
-	    nor[3] = 0;
-	    nor[4] = 0;
-	    nor[5] = 1;
-			
-	    // Sides
-	    nor[6] = -1;
-	    nor[7] = 1;
-	    nor[8] = 0;
-			
-	    nor[9] = -1;
-	    nor[10] = 0;
-	    nor[11] = 0;
-			
-	    nor[12] = -1;
-	    nor[13] = -1;
-	    nor[14] = 0;
+	    nor[2] = 1;
 
-	    nor[15] = 1;
-	    nor[16] = -1;
-	    nor[17] = 0;
-
-	    nor[18] = 1;
-	    nor[19] = 0;
-	    nor[20] = 0;
-
-	    nor[21] = 1;
-	    nor[22] = 1;
-	    nor[23] = 0;			
+	    // Back face normal
+	    nor[6 * 3 + 0] = 0;
+	    nor[6 * 3 + 1] = 0;
+	    nor[6 * 3 + 2] = -1;
 
 	    // Determine bounding box (to test intersection with clips)
 	    p->boundingBox.x1 = topLeftX + p->centerPos.x;
@@ -1010,6 +1016,18 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
     // OpenGL stuff starts here
 
+    GLboolean normalArrayWas;
+    glShadeModel(GL_FLAT);
+
+    if (pset->thickness > 0)
+    {
+	glPushAttrib(GL_NORMALIZE);
+	glEnable(GL_NORMALIZE);
+
+	normalArrayWas = glIsEnabled(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+    }
+
     if (pset->doLighting)
     {
 	glPushAttrib(GL_LIGHT0);
@@ -1020,22 +1038,17 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
 	GLfloat ambientLight[] = { 0.3f, 0.3f, 0.3f, 0.3f };
 	GLfloat diffuseLight[] = { 0.9f, 0.9f, 0.9f, 0.9f };
-	GLfloat light0Position[] = { -0.5f, 0.5f, -9.0f, 0.0f };
+	GLfloat light0Position[] = { -0.5f, 0.5f, 9.0f, 0.0f };
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
 	glLightfv(GL_LIGHT0, GL_POSITION, light0Position);
     }
-    glPushMatrix();
 
-    // Store old blend
-    GLboolean blendWas = glIsEnabled(GL_BLEND);
+    glPushMatrix();
 
     glPushAttrib(GL_STENCIL_BUFFER_BIT);
     glDisable(GL_STENCIL_TEST);
-
-    //GLboolean normalArrayWas = glIsEnabled(GL_NORMAL_ARRAY);
-    //glShadeModel(GL_FLAT);
 
     if (pset->doDepthTest)
     {
@@ -1083,8 +1096,8 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
     float newOpacity = opacity;
     float fadePassedBy;
 
-    if (!blendWas)				// if translucency is not already turned on in paint.c
-	glEnable(GL_BLEND);
+    glPushAttrib(GL_BLEND);
+    glEnable(GL_BLEND);
 
     if (saturationFull)
 	screenTexEnvMode(w->screen, GL_MODULATE);
@@ -1233,48 +1246,40 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
 		FragmentAttrib attrib = aw->curPaintAttrib;
 		attrib.opacity = newOpacityPolygon2 * OPAQUE;
-		prepareDrawingForAttrib (s, &attrib);
 
-		//glEnableClientState(GL_NORMAL_ARRAY);
-		//glEnable(GL_NORMALIZE);
+		prepareDrawingForAttrib (s, &attrib);
 
 		// Draw back face
 		glVertexPointer(3, GL_FLOAT, 0, p->vertices + 3 * p->nSides);
-		//glNormalPointer(GL_FLOAT, 0,
-		//              p->normals + 3 * p->nSides);
+		if (pset->thickness > 0)
+		    glNormalPointer(GL_FLOAT, 0, p->normals + 3 * p->nSides);
+		else
+		    glNormal3f (0.0f, 0.0f, -1.0f);
 		glTexCoordPointer(2, GL_FLOAT, 0,
 				  c->polygonVertexTexCoords +
 				  2 * (2 * nFrontVerticesTilThisPoly +
 				       p->nSides));
-
-		glNormal3f(p->normals[3], p->normals[4], p->normals[5]);
 		glDrawArrays(GL_POLYGON, 0, p->nSides);
 
-		// Front vertex coords
+		// Vertex coords
 		glVertexPointer(3, GL_FLOAT, 0, p->vertices);
-		//glNormalPointer(GL_FLOAT, 0, p->normals);
+		if (pset->thickness > 0)
+		    glNormalPointer(GL_FLOAT, 0, p->normals);
+		else
+		    glNormal3f (0.0f, 0.0f, 1.0f);
 		glTexCoordPointer(2, GL_FLOAT, 0,
 				  c->polygonVertexTexCoords +
 				  2 * 2 * nFrontVerticesTilThisPoly);
 
-		// TODO: Surface normals for sides
-		// Draw quad strip for sides
-		if (TRUE)
+		// Draw quads for sides
+		for (k = 0; k < p->nSides; k++)
 		{
-		    // Do each quad separately to be able to specify
-		    // different normals
-		    for (k = 0; k < p->nSides; k++)
-		    {
-			glNormal3f(p->normals[0],	// front face normal for now
-				   p->normals[1], p->normals[2]);
-			glDrawElements(GL_QUADS, 4,
-				       GL_UNSIGNED_SHORT,
-				       p->sideIndices + k * 4);
-		    }
+		    // GL_QUADS uses a different vertex normal than the first
+		    // so I use GL_POLYGON to make sure the normals are right.
+		    glDrawElements(GL_POLYGON, 4,
+				   GL_UNSIGNED_SHORT,
+				   p->sideIndices + k * 4);
 		}
-		else			// no need for separate quad rendering
-		    glDrawElements(GL_QUAD_STRIP, 2 * (p->nSides + 1),
-				   GL_UNSIGNED_SHORT, p->sideIndices);
 
 		// if opacity was changed just above
 		if (fadeBackAndSides)
@@ -1285,9 +1290,7 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 		    prepareDrawingForAttrib (s, &attrib);
 		}
 		// Draw front face
-		glNormal3f(p->normals[0], p->normals[1], p->normals[2]);
 		glDrawArrays(GL_POLYGON, 0, p->nSides);
-
 		for (k = 0; k < 4; k++)
 		    glDisable(GL_CLIP_PLANE0 + k);
 
@@ -1301,28 +1304,41 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
     // Restore old color values
     glColor4f(oldColor[0], oldColor[1], oldColor[2], oldColor[3]);
 
-    glPopAttrib();
+    glPopAttrib(); // GL_BLEND
+
     if (pset->doDepthTest)
     {
-	glPopAttrib();
-	glPopAttrib();
+	glPopAttrib(); // GL_DEPTH_TEST
+	glPopAttrib(); // GL_DEPTH_FUNC
     }
+
+    glPopAttrib(); // GL_STENCIL_BUFFER_BIT
+
     // Restore texture stuff
     if (saturationFull)
 	screenTexEnvMode(w->screen, GL_REPLACE);
 
-    // Restore blend
-    if (!blendWas)
-	glDisable(GL_BLEND);
-
     glPopMatrix();
 
-    if (pset->doLighting)		// && !s->lighting)
+    if (pset->doLighting)
     {
-	glPopAttrib();
-	glPopAttrib();
-	glPopAttrib();
+	glPopAttrib(); // GL_LIGHTING
+	glPopAttrib(); // GL_COLOR_MATERIAL
+	glPopAttrib(); // GL_LIGHT0
     }
+
+    if (pset->thickness > 0)
+    {
+	glPopAttrib(); // GL_NORMALIZE
+
+	if (normalArrayWas)
+	    glEnableClientState(GL_NORMAL_ARRAY);
+	else
+	    glDisableClientState(GL_NORMAL_ARRAY);
+    }
+    else
+	glNormal3f (0.0f, 0.0f, -1.0f);
+
     if (aw->clipsUpdated)		// set end mark for this group of clips
 	pset->lastClipInGroup[aw->nDrawGeometryCalls - 1] = lastClip;
 
