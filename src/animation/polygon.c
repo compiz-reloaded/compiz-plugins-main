@@ -1017,7 +1017,6 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
     // OpenGL stuff starts here
 
     GLboolean normalArrayWas;
-    glShadeModel(GL_FLAT);
 
     if (pset->thickness > 0)
     {
@@ -1030,6 +1029,9 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 
     if (pset->doLighting)
     {
+	glPushAttrib(GL_SHADE_MODEL);
+	glShadeModel(GL_FLAT);
+
 	glPushAttrib(GL_LIGHT0);
 	glPushAttrib(GL_COLOR_MATERIAL);
 	glPushAttrib(GL_LIGHTING);
@@ -1325,6 +1327,7 @@ void polygonsDrawCustomGeometry(CompScreen * s, CompWindow * w)
 	glPopAttrib(); // GL_LIGHTING
 	glPopAttrib(); // GL_COLOR_MATERIAL
 	glPopAttrib(); // GL_LIGHT0
+	glPopAttrib(); // GL_SHADE_MODEL
     }
 
     if (pset->thickness > 0)
