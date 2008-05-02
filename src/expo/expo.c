@@ -918,6 +918,7 @@ expoPaintWall (CompScreen              *s,
     /* zoom out */
     oScale = DEFAULT_Z_CAMERA / (camZ + DEFAULT_Z_CAMERA);
     matrixScale (&sTransform, oScale, oScale, oScale);
+    glNormal3f (0.0, 0.0, -oScale);
     matrixTranslate (&sTransform, -camX, -camY, -camZ - DEFAULT_Z_CAMERA);
 
 
@@ -1062,6 +1063,8 @@ expoPaintWall (CompScreen              *s,
 	/* not sure this will work with different resolutions */
 	matrixTranslate (&sTransform, 0, - ((1.0 * sy) + gapY), 0.0f);
     }
+
+    glNormal3f (0.0, 0.0, -1.0);
 
     if (reflection)
     {
@@ -1423,10 +1426,11 @@ expoDrawWindowTexture (CompWindow	    *w,
 	glNormal3f (0.0, 0.0, -1.0);
 	return;
     }
-
+glEnable (GL_NORMALIZE);
     UNWRAP (es, s, drawWindowTexture);
     (*s->drawWindowTexture) (w, texture, attrib, mask);
     WRAP (es, s, drawWindowTexture, expoDrawWindowTexture);
+    glDisable (GL_NORMALIZE);
 }
 
 static Bool
