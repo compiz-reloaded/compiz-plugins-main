@@ -8,23 +8,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:33+0530\n"
-"PO-Revision-Date: 2008-02-23 00:18+0100\n"
-"Last-Translator: Felipe Montero <hanamishi@gmail.com>\n"
+"POT-Creation-Date: 2008-05-02 13:51+0530\n"
+"PO-Revision-Date: 2008-04-27 06:47+0200\n"
+"Last-Translator: Rodrigo Steinmann <radiobuzz@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "3D sólo con rotación con el ratón"
 
 msgid "3D Windows"
 msgstr "Ventanas 3D"
-
-msgid "Animation Speed"
-msgstr "Velocidad de la animación"
 
 msgid "Bevel Bottom Left"
 msgstr "Biselar la esquina inferior izquierda"
@@ -58,15 +55,13 @@ msgid ""
 msgstr ""
 "Cambiar el espacio entre las ventanas (en porcentaje del tamaño del cubo)."
 
-msgid "Change the speed of the 3D animation"
-msgstr "Cambiar la velocidad de la animación 3D"
-
 msgid "Color of an inactive window's depth"
 msgstr "Color de la profundidad de una ventana inactiva"
 
+# Agregada una "d" que faltaba
 #, fuzzy
 msgid "Color of the active window's depth"
-msgstr "Color de la profundiad de una ventana activa"
+msgstr "Color de la profundidad de una ventana activa"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "Elevar las ventanas al rotar el cubo"
@@ -97,7 +92,7 @@ msgstr "Color de la Ventana (Activa)"
 
 #, fuzzy
 msgid "Window Color (Inactive)"
-msgstr "Color de la Ventana(Inactiva)"
+msgstr "Color de la Ventana (Inactiva)"
 
 #, fuzzy
 msgid "Window Depth"
@@ -198,7 +193,7 @@ msgstr "Ángulo de la ventana al final de la animación"
 
 #, fuzzy
 msgid "Animation Selection"
-msgstr "Seleccion de Animacion"
+msgstr "Selección de la animacion"
 
 #, fuzzy
 msgid "Animation Time Step"
@@ -213,7 +208,7 @@ msgstr "Duración de la animación en milisegundos para el efecto de cerrar"
 # ¿Como se llama la acción de "focus" en español? Seleccionar ventana?
 #, fuzzy
 msgid "Animation duration in milliseconds for focus effect."
-msgstr "Duración de la animación en milisegundos, para el efecto de foco"
+msgstr "Duración de la animación en milisegundos para el efecto de foco"
 
 msgid "Animation duration in milliseconds for minimize effect."
 msgstr "Duración de la animación en milisegundos para el efecto de minimizar."
@@ -259,8 +254,9 @@ msgstr "Desaceleración de las partículas de fuego"
 msgid "Beam Spacing"
 msgstr "Espaciado del haz"
 
+# ¿Haz no debería ser rayo?
 msgid "Beam Up"
-msgstr ""
+msgstr "Transporte del haz"
 
 #, fuzzy
 msgid "Beam Width"
@@ -1474,11 +1470,18 @@ msgstr ""
 msgid "Zoom time"
 msgstr "Zoom"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "Habilitar una ventana determinada"
+
 msgid "Activate Window"
 msgstr "Habilitar ventana"
 
 msgid "Activate a given window"
 msgstr "Habilitar una ventana determinada"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "Acciones del administrador de ventanas extra"
@@ -2568,6 +2571,9 @@ msgstr ""
 msgid "Switch viewport in response to mouse gesture"
 msgstr ""
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 #, fuzzy
 msgid "Exclude Windows"
 msgstr "Ventanas excluídas"
@@ -2575,6 +2581,10 @@ msgstr "Ventanas excluídas"
 #, fuzzy
 msgid "Neg Windows"
 msgstr "Ventanas en mosaico"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Reflexión en las decoraciones"
 
 msgid "Negative"
 msgstr "Negativo"
@@ -4681,6 +4691,9 @@ msgstr "Color de la línea externa"
 msgid "Outline color of the switcher window."
 msgstr "Color de la linea externa de la ventana del conmutador"
 
+msgid "Preview Scale"
+msgstr ""
+
 #, fuzzy
 msgid "Radius of the rounded edge"
 msgstr "El radio de los ejes de la barra de fichas"
@@ -4713,6 +4726,10 @@ msgstr ""
 msgid "Show switcher window while switching viewports"
 msgstr ""
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr ""
 
@@ -4738,6 +4755,9 @@ msgstr "Cambiando Viewport"
 #, fuzzy
 msgid "Wall Sliding Duration"
 msgstr "Duración del deslizamiendo de la pared"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4836,6 +4856,12 @@ msgid "End Widget Mode on Click"
 msgstr ""
 
 msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+msgid "Focus Widget Layer"
+msgstr ""
+
+msgid "Focus a window in the widget layer when activating the layer"
 msgstr ""
 
 #, fuzzy
@@ -5058,6 +5084,12 @@ msgstr "Ventanas que deberían ser fundidas con el escritorio"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Animation Speed"
+#~ msgstr "Velocidad de la animación"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "Cambiar la velocidad de la animación 3D"
 
 #, fuzzy
 #~ msgid "Enable true blending"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:35+0530\n"
+"POT-Creation-Date: 2008-05-02 13:53+0530\n"
 "PO-Revision-Date: 2008-02-22 04:46+0100\n"
 "Last-Translator: Gao Dexiang <biaji.cn@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -22,9 +22,6 @@ msgstr "仅鼠标转面时开启 3D 窗口"
 
 msgid "3D Windows"
 msgstr "3D 窗口"
-
-msgid "Animation Speed"
-msgstr "动画速度"
 
 msgid "Bevel Bottom Left"
 msgstr "圆滑左底角"
@@ -57,9 +54,6 @@ msgstr "圆滑右顶角"
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr "改变窗口间隔"
-
-msgid "Change the speed of the 3D animation"
-msgstr "改变 3D 动画速度"
 
 msgid "Color of an inactive window's depth"
 msgstr ""
@@ -1379,11 +1373,18 @@ msgstr ""
 msgid "Zoom time"
 msgstr "缩放"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "激活指定窗口"
+
 msgid "Activate Window"
 msgstr "激活窗口"
 
 msgid "Activate a given window"
 msgstr "激活指定窗口"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "其它窗口管理操作"
@@ -2436,6 +2437,9 @@ msgstr ""
 msgid "Switch viewport in response to mouse gesture"
 msgstr ""
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 #, fuzzy
 msgid "Exclude Windows"
 msgstr "排除窗口"
@@ -2443,6 +2447,10 @@ msgstr "排除窗口"
 #, fuzzy
 msgid "Neg Windows"
 msgstr "排列窗口"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "装饰映影"
 
 msgid "Negative"
 msgstr ""
@@ -4525,6 +4533,9 @@ msgstr "线条颜色"
 msgid "Outline color of the switcher window."
 msgstr ""
 
+msgid "Preview Scale"
+msgstr ""
+
 #, fuzzy
 msgid "Radius of the rounded edge"
 msgstr "标题栏边缘辐射半径"
@@ -4557,6 +4568,10 @@ msgstr ""
 msgid "Show switcher window while switching viewports"
 msgstr ""
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr ""
 
@@ -4582,6 +4597,9 @@ msgstr ""
 #, fuzzy
 msgid "Wall Sliding Duration"
 msgstr "动画时长"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4680,6 +4698,12 @@ msgid "End Widget Mode on Click"
 msgstr ""
 
 msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+msgid "Focus Widget Layer"
+msgstr ""
+
+msgid "Focus a window in the widget layer when activating the layer"
 msgstr ""
 
 #, fuzzy
@@ -4894,6 +4918,12 @@ msgstr "需要淡出到桌面的窗口"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Animation Speed"
+#~ msgstr "动画速度"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "改变 3D 动画速度"
 
 #, fuzzy
 #~ msgid "Enable true alpha blending for transparent wallpapers"

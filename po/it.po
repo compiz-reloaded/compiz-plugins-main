@@ -47,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:34+0530\n"
-"PO-Revision-Date: 2008-03-29 15:58+0100\n"
+"POT-Creation-Date: 2008-05-02 13:51+0530\n"
+"PO-Revision-Date: 2008-04-07 21:15+0200\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -61,9 +61,6 @@ msgstr "3D solo con la rotazione del mouse"
 
 msgid "3D Windows"
 msgstr "Finestre 3D"
-
-msgid "Animation Speed"
-msgstr "Velocità animazione"
 
 msgid "Bevel Bottom Left"
 msgstr "Smussa in basso a sinistra"
@@ -97,9 +94,6 @@ msgid ""
 msgstr ""
 "Modifica la quantità di spazio tra le finestre (in percentuale della "
 "dimensione del cubo)."
-
-msgid "Change the speed of the 3D animation"
-msgstr "Modifica la velocità dell'animazione 3D"
 
 # (ndt) non mi convince per niente
 msgid "Color of an inactive window's depth"
@@ -673,8 +667,8 @@ msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
-"Tempo in millisecondi tra ogni aggiornamento dell'animazione. Più alto il "
-"valore, più scattosa l'animazione."
+"Tempo in millisecondi tra ogni aggiornamento dell'animazione. Più alto è il "
+"valore, più l'animazione va a scatti."
 
 msgid ""
 "The amount of time in milliseconds between each render of the intense "
@@ -682,7 +676,7 @@ msgid ""
 "become."
 msgstr ""
 "Tempo in millisecondi tra ogni aggiornamento dell'animazione (come «Brucia», "
-"«Raggio luminoso»). Più il valore, più scattosa l'animazione."
+"«Raggio luminoso»). Più il valore, più l'animazione va a scatti."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
@@ -1535,11 +1529,18 @@ msgstr "Vortice"
 msgid "Zoom time"
 msgstr "Tempo dello zoom"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "Attiva una determinata finestra"
+
 msgid "Activate Window"
 msgstr "Attiva finestra"
 
 msgid "Activate a given window"
 msgstr "Attiva una determinata finestra"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "Azioni aggiuntive gestore finestre"
@@ -2719,11 +2720,19 @@ msgstr "Cambia area di lavoro con i gesti del mouse"
 msgid "Switch viewport in response to mouse gesture"
 msgstr "Cambia area di lavoro con un gesto del mouse"
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "Escludi finestre"
 
 msgid "Neg Windows"
 msgstr "Finestre in negativo"
+
+# (ndt) opzione
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Riflessi per le decorazioni"
 
 msgid "Negative"
 msgstr "Negativo"
@@ -4886,6 +4895,9 @@ msgstr "Colore bordo esterno"
 msgid "Outline color of the switcher window."
 msgstr "Colore del bordo esterno del selettore."
 
+msgid "Preview Scale"
+msgstr ""
+
 # (ndt) suggerimento
 msgid "Radius of the rounded edge"
 msgstr "Raggio degli angoli arrotondati"
@@ -4923,6 +4935,10 @@ msgstr "Mostra anteprime reali nella finestra del selettore"
 msgid "Show switcher window while switching viewports"
 msgstr "Mostra la finestra del selettore mentre si cambia area di lavoro"
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "Tempo visibilità anteprima selettore aree di lavoro"
 
@@ -4949,6 +4965,9 @@ msgstr "Selezione area di lavoro"
 
 msgid "Wall Sliding Duration"
 msgstr "Durata scorrimento muraglia"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 msgid "Background fill type."
 msgstr "Tipo di riempimento dello sfondo."
@@ -5002,7 +5021,7 @@ msgid "Second gradient color."
 msgstr "Colore del secondo gradiente."
 
 msgid "Solid fill"
-msgstr "Rimpimento solido"
+msgstr "Riempimento solido"
 
 msgid "Tiled"
 msgstr "Piastrellato"
@@ -5031,6 +5050,14 @@ msgstr "Termina modalità widget con un clic"
 msgid "End widget mode when a non-widget window is clicked."
 msgstr ""
 "Termina modalità widget quando viene fatto clic su una finestra non-widget."
+
+msgid "Focus Widget Layer"
+msgstr "Focus livello widget"
+
+msgid "Focus a window in the widget layer when activating the layer"
+msgstr ""
+"Da il focus a una finestra nel livello widget quando viene attivato il "
+"livello"
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "Saturazione delle finestre non-widget in modalità widget."
@@ -5103,7 +5130,7 @@ msgid "Non movable windows"
 msgstr "Finestre fisse"
 
 msgid "Non resizable windows"
-msgstr "Finestre non ridimensionabili"
+msgstr "Finestre non redimensionabili"
 
 msgid "Set window as non closable"
 msgstr "Imposta finestra come non chiudibile"
@@ -5118,7 +5145,7 @@ msgid "Set window as non movable"
 msgstr "Imposta finestra come fissa"
 
 msgid "Set window as non resizable"
-msgstr "Imposta finestra come non ridimensionabile"
+msgstr "Imposta finestra come non redimensionabile"
 
 msgid "Set windows rules"
 msgstr "Imposta regole per le finestre"
@@ -5232,3 +5259,9 @@ msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
+
+#~ msgid "Animation Speed"
+#~ msgstr "Velocità animazione"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "Modifica la velocità dell'animazione 3D"

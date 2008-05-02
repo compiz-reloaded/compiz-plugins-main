@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:33+0530\n"
+"POT-Creation-Date: 2008-05-02 13:50+0530\n"
 "PO-Revision-Date: 2008-02-20 09:57+0100\n"
 "Last-Translator: Danny Baumann <dannybaumann@web.de>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
@@ -22,9 +22,6 @@ msgstr "3D-Modus nur bei manueller Rotation mit der Maus"
 
 msgid "3D Windows"
 msgstr "3D-Fenster"
-
-msgid "Animation Speed"
-msgstr "Animationsgeschwindigkeit"
 
 msgid "Bevel Bottom Left"
 msgstr "Unten links abrunden"
@@ -59,9 +56,6 @@ msgid ""
 msgstr ""
 "Verändert den Abstand zwischen den Fenstern. (prozentual auf Würfelgröße "
 "bezogen)"
-
-msgid "Change the speed of the 3D animation"
-msgstr "Verändert die Geschwindigkeit der 3D-Animation."
 
 # ist mit 'window's depth' hier der schatten gemeint? oder geht es um tiefenwirkung innerhalb des fensters?
 msgid "Color of an inactive window's depth"
@@ -1458,11 +1452,18 @@ msgstr ""
 msgid "Zoom time"
 msgstr "Zoomdauer"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "Aktiviere ein bestimmtes Fenster"
+
 msgid "Activate Window"
 msgstr "Aktiviere Fenster"
 
 msgid "Activate a given window"
 msgstr "Aktiviere ein bestimmtes Fenster"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 # FIXME
 msgid "Extra WM Actions"
@@ -2584,11 +2585,18 @@ msgstr "Maus-Arbeitsflächenumschalter"
 msgid "Switch viewport in response to mouse gesture"
 msgstr ""
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "Ausgeschlossene Fenster"
 
 msgid "Neg Windows"
 msgstr "Negierbare Fenster"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Reflektionen für Fensterrahmen"
 
 msgid "Negative"
 msgstr "Fensterinhalt negieren"
@@ -4677,6 +4685,9 @@ msgstr "Rahmenfarbe"
 msgid "Outline color of the switcher window."
 msgstr "Farbe des Fenstertitels"
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr "Radius der abgerundeten Ecken"
 
@@ -4712,6 +4723,10 @@ msgstr ""
 msgid "Show switcher window while switching viewports"
 msgstr "Zeigt ein Vorschaufenster beim Umschalten von Arbeitsflächen an."
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "Anzeigedauer für Vorschaufenster"
 
@@ -4736,6 +4751,9 @@ msgstr "Arbeitsflächenumschaltung"
 
 msgid "Wall Sliding Duration"
 msgstr "Animationsdauer"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4835,6 +4853,12 @@ msgid "End Widget Mode on Click"
 msgstr ""
 
 msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+msgid "Focus Widget Layer"
+msgstr ""
+
+msgid "Focus a window in the widget layer when activating the layer"
 msgstr ""
 
 #, fuzzy
@@ -5043,6 +5067,12 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Abhilfen"
+
+#~ msgid "Animation Speed"
+#~ msgstr "Animationsgeschwindigkeit"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "Verändert die Geschwindigkeit der 3D-Animation."
 
 #, fuzzy
 #~ msgid "Enable true alpha blending for transparent wallpapers"

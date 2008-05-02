@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:34+0530\n"
+"POT-Creation-Date: 2008-05-02 13:52+0530\n"
 "PO-Revision-Date: 2008-02-14 08:45+0100\n"
 "Last-Translator: Jeong Seungwon <jeongseungwon@hanmail.net>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
@@ -21,9 +21,6 @@ msgstr "마우스 회전시에만 3D 사용"
 
 msgid "3D Windows"
 msgstr "3D 창"
-
-msgid "Animation Speed"
-msgstr "애니메이션 속도"
 
 msgid "Bevel Bottom Left"
 msgstr "왼쪽 하단을 둥글게 자름"
@@ -55,9 +52,6 @@ msgstr "오른쪽 상단을 둥글게 자름"
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr "창 사이의 간격 조절 (큐브 크기에 비례)"
-
-msgid "Change the speed of the 3D animation"
-msgstr "3D 애니메이션 속도"
 
 msgid "Color of an inactive window's depth"
 msgstr "비활성화된 창의 색 단계"
@@ -1381,11 +1375,18 @@ msgstr "소용돌이"
 msgid "Zoom time"
 msgstr "확대/축소 시간"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "주어진 창을 활성화함"
+
 msgid "Activate Window"
 msgstr "창 활성화"
 
 msgid "Activate a given window"
 msgstr "주어진 창을 활성화함"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "추가적인 창 관리 기능"
@@ -2450,11 +2451,18 @@ msgstr "마우스 변경"
 msgid "Switch viewport in response to mouse gesture"
 msgstr "마우스 제스쳐를 이용한 작업 공간 변경"
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "제외할 창"
 
 msgid "Neg Windows"
 msgstr "음화할 창"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "창 장식에 대한 반사 효과"
 
 msgid "Negative"
 msgstr "음화"
@@ -4434,6 +4442,9 @@ msgstr "외곽선 색"
 msgid "Outline color of the switcher window."
 msgstr "전환기 창의 외곽선 색."
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr "둥근 가장자리의 반경"
 
@@ -4464,6 +4475,10 @@ msgstr "전환기 창에서 실시간 작업 공간 미리 보기 표시"
 msgid "Show switcher window while switching viewports"
 msgstr "작업 공간 전환 시 전환기 창 표시"
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "전환 대상 미리 보기 지속 시간"
 
@@ -4487,6 +4502,9 @@ msgstr "작업 공간 전환"
 
 msgid "Wall Sliding Duration"
 msgstr "벽 슬라이딩 지속 시간"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4583,6 +4601,13 @@ msgstr "클릭하면 위젯 모드를 끝냄"
 
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "위젯이 아닌 창이 클릭되면 위젯 모드를 끝냄"
+
+#, fuzzy
+msgid "Focus Widget Layer"
+msgstr "위젯 레이어"
+
+msgid "Focus a window in the widget layer when activating the layer"
+msgstr ""
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "위젯모드에서 위젯이 아닌창의 채도"
@@ -4779,6 +4804,12 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 msgid "Workarounds"
 msgstr "문제 회피"
+
+#~ msgid "Animation Speed"
+#~ msgstr "애니메이션 속도"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "3D 애니메이션 속도"
 
 #~ msgid "Enable true alpha blending for transparent wallpapers"
 #~ msgstr "투명 배경 화면을 위한 알파 블렌딩 사용"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:33+0530\n"
+"POT-Creation-Date: 2008-05-02 13:51+0530\n"
 "PO-Revision-Date: 2008-03-18 21:11+0100\n"
 "Last-Translator: Tristan RABLAT <tristan.rablat@gmail.com>\n"
 "Language-Team: <fr@li.org>\n"
@@ -24,9 +24,6 @@ msgstr "Activer la 3D uniquement lors d'une rotation initiée avec la souris"
 
 msgid "3D Windows"
 msgstr "Fenêtres 3D"
-
-msgid "Animation Speed"
-msgstr "Vitesse d'animation"
 
 msgid "Bevel Bottom Left"
 msgstr "Biseauter en bas à gauche"
@@ -59,9 +56,6 @@ msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr ""
 "Modifier la distance entre les fenêtres (en pourcentage de la taille du cube)"
-
-msgid "Change the speed of the 3D animation"
-msgstr "Modifier la vitesse de l'animation 3D"
 
 msgid "Color of an inactive window's depth"
 msgstr "Couleur du fond d'une fenêtre inactive"
@@ -1419,11 +1413,18 @@ msgstr "Vortex"
 msgid "Zoom time"
 msgstr "Durée de Zoom"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "Active une fenêtre donnée"
+
 msgid "Activate Window"
 msgstr "Activer la fenêtre"
 
 msgid "Activate a given window"
 msgstr "Active une fenêtre donnée"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "Actions supplémentaires du Gestionnaire de Fenêtres"
@@ -2517,11 +2518,18 @@ msgstr "Changement à la Souris"
 msgid "Switch viewport in response to mouse gesture"
 msgstr "Changer de bureau en réponse aux mouvements de la souris"
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "Exclure les fenêtres"
 
 msgid "Neg Windows"
 msgstr "Fenêtres en négatif"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Réflexion pour les décorations"
 
 msgid "Negative"
 msgstr "Négatif"
@@ -4552,6 +4560,9 @@ msgstr "Couleur du bord extérieur"
 msgid "Outline color of the switcher window."
 msgstr "Couleur du bord extérieur de la fenêtre du sélecteur."
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr "Le rayon des bords arrondis"
 
@@ -4588,6 +4599,10 @@ msgstr "Montrer des prévisualisations temps réel dans la fenêtre du sélecteu
 msgid "Show switcher window while switching viewports"
 msgstr "Montrer la fenêtre du sélecteur pendant le changement de bureau"
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "Changer le temps de visibilité de la prévisualisation de la cible"
 
@@ -4612,6 +4627,9 @@ msgstr "Changement de bureau"
 
 msgid "Wall Sliding Duration"
 msgstr "Durée de glissement du chemin"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4708,6 +4726,13 @@ msgstr "Terminer le mode widget au clic"
 
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "Terminer le mode widget quand une fenêtre non-widget est cliquée."
+
+#, fuzzy
+msgid "Focus Widget Layer"
+msgstr "Couche Widget"
+
+msgid "Focus a window in the widget layer when activating the layer"
+msgstr ""
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "Saturation des fenêtres non-widget en mode Widget."
@@ -4908,6 +4933,12 @@ msgstr "Fenêtres sur tous les bureaux devant être rendues "
 
 msgid "Workarounds"
 msgstr "Solutions"
+
+#~ msgid "Animation Speed"
+#~ msgstr "Vitesse d'animation"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "Modifier la vitesse de l'animation 3D"
 
 #~ msgid "Enable true alpha blending for transparent wallpapers"
 #~ msgstr "Activer le vrai mélange alpha pour les fond d'écrans transparents"

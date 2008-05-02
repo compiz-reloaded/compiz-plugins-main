@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:34+0530\n"
+"POT-Creation-Date: 2008-05-02 13:51+0530\n"
 "PO-Revision-Date: 2007-12-16 17:00+0530\n"
 "Last-Translator: Sangeeta Kumari\n"
 "Language-Team:  <en@li.org>\n"
@@ -21,9 +21,6 @@ msgstr "3D सिर्फ माउस घुमाव पर"
 
 msgid "3D Windows"
 msgstr "3D विंडोज़"
-
-msgid "Animation Speed"
-msgstr "संजीवन गति"
 
 msgid "Bevel Bottom Left"
 msgstr "बेभेल नीचे बायाँ"
@@ -55,9 +52,6 @@ msgstr "बेभेल ऊपर दायाँ कोना"
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr "विंडो के बीच स्थान की मात्रा बदलें (घन आकार के प्रतिशत में)."
-
-msgid "Change the speed of the 3D animation"
-msgstr "3D संजीवन की गति बदलें"
 
 msgid "Color of an inactive window's depth"
 msgstr ""
@@ -1422,11 +1416,18 @@ msgstr "भंवर"
 msgid "Zoom time"
 msgstr "ज़ूम समय"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "दिया विंडो सक्रिय करें"
+
 msgid "Activate Window"
 msgstr "विंडो सक्रिय करें"
 
 msgid "Activate a given window"
 msgstr "दिया विंडो सक्रिय करें"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "अतिरिक्त WM क्रियाएँ"
@@ -2498,11 +2499,18 @@ msgstr "माउस स्विच"
 msgid "Switch viewport in response to mouse gesture"
 msgstr "माउस हाव भाव के जवाब में व्यूपोर्ट स्विच करें"
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "विंडोज़ निकालें"
 
 msgid "Neg Windows"
 msgstr "नकारात्मक विंडोज़"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "सजावट के लिए परावर्तन"
 
 msgid "Negative"
 msgstr "नकारात्मक"
@@ -4500,6 +4508,9 @@ msgstr "खाका रंग"
 msgid "Outline color of the switcher window."
 msgstr "स्विचर विंडो का खाका रंग."
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr "गोलाकार किनारे की त्रिज्या"
 
@@ -4530,6 +4541,10 @@ msgstr "स्विचर विंडो में जीवंत व्य�
 msgid "Show switcher window while switching viewports"
 msgstr "स्विचर विंडो में व्यूपोर्ट स्विचिंग के दौरान दिखाएँ"
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "लक्ष्य पूर्वावलोकन दृश्यता समय स्विच करें"
 
@@ -4553,6 +4568,9 @@ msgstr "व्यूपोर्ट स्विचिंग"
 
 msgid "Wall Sliding Duration"
 msgstr "दीवाल स्लाइडिंग अवधि"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4652,6 +4670,12 @@ msgid "End Widget Mode on Click"
 msgstr ""
 
 msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+msgid "Focus Widget Layer"
+msgstr ""
+
+msgid "Focus a window in the widget layer when activating the layer"
 msgstr ""
 
 #, fuzzy
@@ -4854,6 +4878,12 @@ msgstr "सभी डेस्कटॉप पर विंडोज़ जि�
 
 msgid "Workarounds"
 msgstr "समाधान"
+
+#~ msgid "Animation Speed"
+#~ msgstr "संजीवन गति"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "3D संजीवन की गति बदलें"
 
 #~ msgid "Misc. options"
 #~ msgstr "विविध विकल्प"

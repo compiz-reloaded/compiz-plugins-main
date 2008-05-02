@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:33+0530\n"
+"POT-Creation-Date: 2008-05-02 13:50+0530\n"
 "PO-Revision-Date: 2008-02-18 11:19+0100\n"
 "Last-Translator: Jim Dusis <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -21,9 +21,6 @@ msgstr "Τρισδιάστατη Περιστροφή Μόνο Με το Πον�
 
 msgid "3D Windows"
 msgstr "Τρισδιάστατα Παράθυρα"
-
-msgid "Animation Speed"
-msgstr "Ταχύτητα Γραφικής Απεικόνισης"
 
 msgid "Bevel Bottom Left"
 msgstr "Στρογγύλεμα Κάτω Αριστερά"
@@ -57,9 +54,6 @@ msgid ""
 msgstr ""
 "Αλλαγή του ποσού του χώρου μεταξύ των παραθύρων (σε ποσοστό του μεγέθους του "
 "κύβου)."
-
-msgid "Change the speed of the 3D animation"
-msgstr "Αλλαγή της ταχύτητας της τρισδιάστατης γραφικής απεικόνισης"
 
 msgid "Color of an inactive window's depth"
 msgstr "Χρώμα βάθους ενός ανενεργού παραθύρου"
@@ -1445,11 +1439,18 @@ msgstr "Κορυφαίο"
 msgid "Zoom time"
 msgstr "Χρόνος Ζουμ"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "Ενεργοποίηση ένος δωσμένου παράθυρου"
+
 msgid "Activate Window"
 msgstr "Ενεργοποίηση Παράθυρου"
 
 msgid "Activate a given window"
 msgstr "Ενεργοποίηση ένος δωσμένου παράθυρου"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "Επιπλέον Δραστηριότητες του ΔΠ"
@@ -2562,11 +2563,18 @@ msgid "Switch viewport in response to mouse gesture"
 msgstr ""
 "Αλλαγή εικονικής επιφάνειας εργασίας ανταποκρινόμενη στο νεύμα του ποντικιού"
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "Αποκλεισμός Παραθύρων"
 
 msgid "Neg Windows"
 msgstr "Μετατροπή Παραθύρων σε Αρνητικά"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Αντανάκλαση Διακοσμίσεων"
 
 msgid "Negative"
 msgstr "Αρνητικό"
@@ -4606,6 +4614,9 @@ msgstr "Χρώμα Περιγράμματος"
 msgid "Outline color of the switcher window."
 msgstr "Χρώμα περιγράμματος του επιλογέα παραθύρου"
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr "Ακτίνα της στρογγυλεμένης άκρης"
 
@@ -4641,6 +4652,10 @@ msgid "Show switcher window while switching viewports"
 msgstr ""
 "Εμφάνιση παραθύρου αλλαγής καθώς αλλάζουν οι εικονικές επιφάνειες εργασίας"
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "Αλλαγή του Χρόνου που θα είναι Ορατή η Προεπισκόπιση του Στόχου"
 
@@ -4664,6 +4679,9 @@ msgstr "Αλλαγή Εικονικής Επιφάνειας Εργασίας"
 
 msgid "Wall Sliding Duration"
 msgstr "Διάρκεια Γλυστρίματος Τοίχου"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4763,6 +4781,13 @@ msgid "End Widget Mode on Click"
 msgstr ""
 
 msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+#, fuzzy
+msgid "Focus Widget Layer"
+msgstr "Συσκευή"
+
+msgid "Focus a window in the widget layer when activating the layer"
 msgstr ""
 
 #, fuzzy
@@ -4968,6 +4993,12 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Μοντίφες"
+
+#~ msgid "Animation Speed"
+#~ msgstr "Ταχύτητα Γραφικής Απεικόνισης"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "Αλλαγή της ταχύτητας της τρισδιάστατης γραφικής απεικόνισης"
 
 #, fuzzy
 #~ msgid "Enable true alpha blending for transparent wallpapers"

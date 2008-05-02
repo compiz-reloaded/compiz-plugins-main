@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:32+0530\n"
+"POT-Creation-Date: 2008-05-02 13:50+0530\n"
 "PO-Revision-Date: 2007-10-10 00:12+0200\n"
 "Last-Translator: Banxoo <banxoo+compiz@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -21,9 +21,6 @@ msgstr "ثلاثة أبعاد فقط عند دوران الفأرة"
 
 msgid "3D Windows"
 msgstr "نوافذ ثلاثية الأبعاد"
-
-msgid "Animation Speed"
-msgstr "سرعة الحركة"
 
 msgid "Bevel Bottom Left"
 msgstr "ميل أسفل اليسار"
@@ -55,9 +52,6 @@ msgstr "ميل الزاوية العليا اليمنى"
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr "غيّر قدر المسافة الفاصلة بين النوافذ (بالنسبة المىٔوية من حجم المكعب)."
-
-msgid "Change the speed of the 3D animation"
-msgstr "غيّر سرعة الحركة الثلاثة الأبعا"
 
 msgid "Color of an inactive window's depth"
 msgstr ""
@@ -1385,10 +1379,16 @@ msgstr ""
 msgid "Zoom time"
 msgstr ""
 
+msgid "Activate Demanding Attention Window"
+msgstr ""
+
 msgid "Activate Window"
 msgstr ""
 
 msgid "Activate a given window"
+msgstr ""
+
+msgid "Activate next window which has the \"demands attention\" flag set."
 msgstr ""
 
 msgid "Extra WM Actions"
@@ -2417,11 +2417,18 @@ msgstr ""
 msgid "Switch viewport in response to mouse gesture"
 msgstr ""
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr ""
 
 msgid "Neg Windows"
 msgstr ""
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "مدة"
 
 msgid "Negative"
 msgstr ""
@@ -4331,6 +4338,9 @@ msgstr ""
 msgid "Outline color of the switcher window."
 msgstr ""
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr ""
 
@@ -4361,6 +4371,10 @@ msgstr ""
 msgid "Show switcher window while switching viewports"
 msgstr ""
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr ""
 
@@ -4383,6 +4397,9 @@ msgid "Viewport Switching"
 msgstr ""
 
 msgid "Wall Sliding Duration"
+msgstr ""
+
+msgid "Width of the border between the previews"
 msgstr ""
 
 #, fuzzy
@@ -4472,6 +4489,12 @@ msgid "End Widget Mode on Click"
 msgstr ""
 
 msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+msgid "Focus Widget Layer"
+msgstr ""
+
+msgid "Focus a window in the widget layer when activating the layer"
 msgstr ""
 
 #, fuzzy
@@ -4670,6 +4693,12 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Animation Speed"
+#~ msgstr "سرعة الحركة"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "غيّر سرعة الحركة الثلاثة الأبعا"
 
 #~ msgid "Misc. options"
 #~ msgstr "خيارات أخرى"

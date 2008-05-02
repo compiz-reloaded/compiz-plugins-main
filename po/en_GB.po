@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion 0.7.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:33+0530\n"
+"POT-Creation-Date: 2008-05-02 13:50+0530\n"
 "PO-Revision-Date: 2008-03-13 08:06+0100\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: en_GB <dave@cirt.net>\n"
@@ -21,9 +21,6 @@ msgstr "3D Only On Mouse Rotate"
 
 msgid "3D Windows"
 msgstr "3D Windows"
-
-msgid "Animation Speed"
-msgstr "Animation Speed"
 
 msgid "Bevel Bottom Left"
 msgstr "Bevel Bottom Left"
@@ -56,9 +53,6 @@ msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr ""
 "Change the amount of space between the windows (in percent of the cube size)."
-
-msgid "Change the speed of the 3D animation"
-msgstr "Change the speed of the 3D animation"
 
 msgid "Color of an inactive window's depth"
 msgstr "Colour of an inactive window's depth"
@@ -1393,11 +1387,18 @@ msgstr "Vortex"
 msgid "Zoom time"
 msgstr "Zoom time"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "Activate a given window"
+
 msgid "Activate Window"
 msgstr "Activate Window"
 
 msgid "Activate a given window"
 msgstr "Activate a given window"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "Extra WM Actions"
@@ -2464,11 +2465,18 @@ msgstr "Mouse switch"
 msgid "Switch viewport in response to mouse gesture"
 msgstr "Switch viewport in response to mouse gesture"
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "Exclude Windows"
 
 msgid "Neg Windows"
 msgstr "Negative Windows"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Reflection for Decorations"
 
 msgid "Negative"
 msgstr "Negative"
@@ -4452,6 +4460,9 @@ msgstr "Outline Colour"
 msgid "Outline color of the switcher window."
 msgstr "Outline colour of the switcher window."
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr "Radius of the rounded edge"
 
@@ -4482,6 +4493,10 @@ msgstr "Show live viewport previews in switcher window"
 msgid "Show switcher window while switching viewports"
 msgstr "Show switcher window while switching viewports"
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "Switch Target Preview Visibility Time"
 
@@ -4505,6 +4520,9 @@ msgstr "Viewport Switching"
 
 msgid "Wall Sliding Duration"
 msgstr "Wall Sliding Duration"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4601,6 +4619,13 @@ msgstr "End Widget Mode on Click"
 
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "End widget mode when a non-widget window is clicked."
+
+#, fuzzy
+msgid "Focus Widget Layer"
+msgstr "Widget Layer"
+
+msgid "Focus a window in the widget layer when activating the layer"
+msgstr ""
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "Saturation of non-widget windows in widget modes."
@@ -4797,6 +4822,12 @@ msgstr "Windows on all desktops that should be made sticky"
 
 msgid "Workarounds"
 msgstr "Workarounds"
+
+#~ msgid "Animation Speed"
+#~ msgstr "Animation Speed"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "Change the speed of the 3D animation"
 
 #~ msgid "Tilt view"
 #~ msgstr "Tilt view"

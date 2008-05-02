@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:33+0530\n"
+"POT-Creation-Date: 2008-05-02 13:51+0530\n"
 "PO-Revision-Date: 2008-03-25 02:51+0100\n"
 "Last-Translator: Fran Diéguez (GLUG) <fran.dieguez@glug.es>\n"
 "Language-Team: <gl@li.org>\n"
@@ -24,9 +24,6 @@ msgstr "3D só coa rotación do rato"
 
 msgid "3D Windows"
 msgstr "Fiestras 3D"
-
-msgid "Animation Speed"
-msgstr "Velocidade da animación"
 
 msgid "Bevel Bottom Left"
 msgstr "Bisel abaixo á esquerda"
@@ -60,9 +57,6 @@ msgid ""
 msgstr ""
 "Trocar a cantidade de espazo entre as fiestras (en porcentaxe do tamaño do "
 "cubo)."
-
-msgid "Change the speed of the 3D animation"
-msgstr "Trocar a velocidade da animación 3D"
 
 msgid "Color of an inactive window's depth"
 msgstr "Color da profundidade da fiestra inactiva"
@@ -1428,11 +1422,18 @@ msgstr "Vórtex"
 msgid "Zoom time"
 msgstr "Tempo de zoom"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "Activar unha fiestra especificada"
+
 msgid "Activate Window"
 msgstr "Activar fiestra"
 
 msgid "Activate a given window"
 msgstr "Activar unha fiestra especificada"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "Accións extra do xestor de fiestras"
@@ -2531,11 +2532,18 @@ msgstr "Interruptor do Rato"
 msgid "Switch viewport in response to mouse gesture"
 msgstr "Trocar escritorio en resposta a un xestos do rato"
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "Excluír Fiestras"
 
 msgid "Neg Windows"
 msgstr "Fiestras a Negativo"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Reflexo de Decoracións"
 
 msgid "Negative"
 msgstr "Negativo"
@@ -4564,6 +4572,9 @@ msgstr "Cor de Delineación"
 msgid "Outline color of the switcher window."
 msgstr "Cor do contorno da fiestra de mudanza."
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr "Radio das marxes redondeadas"
 
@@ -4596,6 +4607,10 @@ msgstr ""
 msgid "Show switcher window while switching viewports"
 msgstr "Mostrar fiestra do switcher durante o cambio de escritorio"
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "Trocar Tempo de Visibilidade da Antevisión do Alvo"
 
@@ -4619,6 +4634,9 @@ msgstr "Trocar deescritorio"
 
 msgid "Wall Sliding Duration"
 msgstr "Duración do deslizamento do muro"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4715,6 +4733,13 @@ msgstr "Finalizar Modo Widget con Click"
 
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "Finalizar modo widget cando é clicada unha fiestra que non é widget"
+
+#, fuzzy
+msgid "Focus Widget Layer"
+msgstr "Capa Widget"
+
+msgid "Focus a window in the widget layer when activating the layer"
+msgstr ""
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "Saturación das fiestras non-widget nos modos widget."
@@ -4916,6 +4941,12 @@ msgstr "Fiestras \"en tódolos escritorios\" que deben ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correccións"
+
+#~ msgid "Animation Speed"
+#~ msgstr "Velocidade da animación"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "Trocar a velocidade da animación 3D"
 
 #~ msgid "Enable true alpha blending for transparent wallpapers"
 #~ msgstr "Activa mistura alfa para os fondos de escritorios transparentes"

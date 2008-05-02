@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:34+0530\n"
+"POT-Creation-Date: 2008-05-02 13:52+0530\n"
 "PO-Revision-Date: 2008-01-31 15:42+0100\n"
 "Last-Translator: Elve <elve@savage-elve.net>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -28,9 +28,6 @@ msgstr "3D alleen bĳ muisrotatie"
 
 msgid "3D Windows"
 msgstr "3D vensters"
-
-msgid "Animation Speed"
-msgstr "Animatie snelheid"
 
 # Babelfish geeft "schuine rand" als vertaling voor "Bevel". Dit lijkt me geen geschikte vertaling. - mahler
 msgid "Bevel Bottom Left"
@@ -68,9 +65,6 @@ msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr ""
 "Pas de ruimte tussen de vensters aan (in procenten van de kubus grootte)."
-
-msgid "Change the speed of the 3D animation"
-msgstr "Pas snelheid van de 3D animatie aan"
 
 msgid "Color of an inactive window's depth"
 msgstr "Kleur van diepte van inactief venster"
@@ -1431,11 +1425,18 @@ msgstr ""
 msgid "Zoom time"
 msgstr "Zoom tĳd"
 
+#, fuzzy
+msgid "Activate Demanding Attention Window"
+msgstr "Activeer een gegeven venster"
+
 msgid "Activate Window"
 msgstr "Activeer venster"
 
 msgid "Activate a given window"
 msgstr "Activeer een gegeven venster"
+
+msgid "Activate next window which has the \"demands attention\" flag set."
+msgstr ""
 
 msgid "Extra WM Actions"
 msgstr "Extra WM actie's"
@@ -2537,11 +2538,18 @@ msgstr "Muis schakelaar"
 msgid "Switch viewport in response to mouse gesture"
 msgstr "Wissel viewport als reactie op een muisbeweging"
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr "Vensters uitsluiting"
 
 msgid "Neg Windows"
 msgstr "Negatief venster"
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Reflectie voor decoratie's"
 
 msgid "Negative"
 msgstr "Negatief"
@@ -4573,6 +4581,9 @@ msgstr "Omtrek kleur"
 msgid "Outline color of the switcher window."
 msgstr "Omtrek kleur van het wissel venster."
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr "Radius van de afgeronde hoek"
 
@@ -4603,6 +4614,10 @@ msgstr "Toon live viewport previews in wissel venster"
 msgid "Show switcher window while switching viewports"
 msgstr "Toon wissel venster tĳdens het wisselen van viewports"
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr "Switch doel preview zichtbaarheidstijd"
 
@@ -4626,6 +4641,9 @@ msgstr "Viewport wisselen"
 
 msgid "Wall Sliding Duration"
 msgstr "Duur van muur schuiven"
+
+msgid "Width of the border between the previews"
+msgstr ""
 
 #, fuzzy
 msgid "Background fill type."
@@ -4722,6 +4740,13 @@ msgstr "Beëindig Widget modus bĳ klikken"
 
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "Beëindig Widget modus als een niet-widget venster wordt aangeklikt."
+
+#, fuzzy
+msgid "Focus Widget Layer"
+msgstr "Widget laag"
+
+msgid "Focus a window in the widget layer when activating the layer"
+msgstr ""
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "Verzadiging van niet-widget vensters in Widget modi."
@@ -4919,6 +4944,12 @@ msgstr "Vensters op alle bureaubladen die sticky gemaakt moeten worden"
 
 msgid "Workarounds"
 msgstr "Workarounds"
+
+#~ msgid "Animation Speed"
+#~ msgstr "Animatie snelheid"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "Pas snelheid van de 3D animatie aan"
 
 #~ msgid "Enable true alpha blending for transparent wallpapers"
 #~ msgstr ""

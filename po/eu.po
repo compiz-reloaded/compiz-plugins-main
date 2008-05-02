@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-04-03 13:33+0530\n"
-"PO-Revision-Date: 2008-01-21 21:57+0100\n"
+"POT-Creation-Date: 2008-05-02 13:51+0530\n"
+"PO-Revision-Date: 2008-04-08 15:35+0200\n"
 "Last-Translator: Ander Elortondo <ander.elor@gmail.com>\n"
 "Language-Team: Euskara <eu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,6 @@ msgstr "3D xagua biratzean bakarrik"
 
 msgid "3D Windows"
 msgstr "3D leihoak"
-
-msgid "Animation Speed"
-msgstr "Animazio abiadura"
 
 msgid "Bevel Bottom Left"
 msgstr "Azpiko Ezkerra konikoa"
@@ -56,15 +53,11 @@ msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr "Leiho arteko tamaina aldatu (kubo tamainaren ehunekoan)"
 
-msgid "Change the speed of the 3D animation"
-msgstr "3D animazio abiadura aldatu"
-
 msgid "Color of an inactive window's depth"
-msgstr ""
+msgstr "Leiho ez aktiboaren sakontasun kolorea"
 
-#, fuzzy
 msgid "Color of the active window's depth"
-msgstr "Kuboaren goiko aurpegiko kolorea"
+msgstr "Leiho aktiboaren sakontasun kolorea"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "leihoa altzatu kuboa biratzean"
@@ -87,12 +80,13 @@ msgstr "Hainbat aukera"
 
 msgid "Roundoff corners for consistency with rounded decorations"
 msgstr ""
+"Borobildu ertzak, itxura borobilduen dekorazioekin parekotasuna izateko "
 
 msgid "Window Color (Active)"
-msgstr ""
+msgstr "Leiho kolorea (aktiboa)"
 
 msgid "Window Color (Inactive)"
-msgstr ""
+msgstr "Leiho kolorea (ez aktiboa)"
 
 msgid "Window Depth"
 msgstr "Leiho sakonera"
@@ -166,11 +160,15 @@ msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
 msgstr ""
+"Tolesdura horizontalen tamaina (tolesdurako uhinen tamaina) leiho "
+"zabalerarekin parekatuz. Balore negatiboekin kanporantz tolestuz."
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
+"Tolesdura kurbatuaren tamaina (tolesdurako uhinen tamaina) leiho "
+"zabalerarekin parekatuz. Balore negatiboekin kanporantz tolestuz."
 
 msgid "Angle of window at the end of the animation."
 msgstr "leihoaren angulua animazio amaitzean"
@@ -179,10 +177,10 @@ msgid "Animation Selection"
 msgstr "Animazioak aukeratu"
 
 msgid "Animation Time Step"
-msgstr ""
+msgstr "Animazio denbora-pausoa"
 
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "Animazio denbora-pausoa efektu bortitzetan"
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "Animazio iraupena milisegundutan ixte efektuan."
@@ -212,37 +210,38 @@ msgid "Away Position"
 msgstr "Kontrako posizio"
 
 msgid "Beam"
-msgstr ""
+msgstr "Argi-sorta"
 
 msgid "Beam Color"
-msgstr ""
+msgstr "Argi-sorta kolorea"
 
 msgid "Beam Life"
-msgstr ""
+msgstr "Argi-sortaren bizia"
 
 msgid "Beam Slowdown"
-msgstr ""
+msgstr "Argi-sortaren gainbehera"
 
 msgid "Beam Spacing"
-msgstr ""
+msgstr "Argi-sortaren tartea"
 
+#, fuzzy
 msgid "Beam Up"
-msgstr ""
+msgstr "Argi-sorta goi"
 
 msgid "Beam Width"
-msgstr ""
+msgstr "Argi-sorta zabalera"
 
 msgid "Beam color."
-msgstr ""
+msgstr "Argi-sorta kolorea."
 
 msgid "Beam life."
-msgstr ""
+msgstr "Argi-sorta bizia."
 
 msgid "Beam slowdown."
-msgstr ""
+msgstr "Argi-sorta gainbehera."
 
 msgid "Beam width."
-msgstr ""
+msgstr "Argi-sorta zabalera."
 
 msgid "Burn"
 msgstr "Su garrak"
@@ -257,11 +256,15 @@ msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
 "camera, -2.0: Away from camera)."
 msgstr ""
+"Animazio amaieran leihoaren gertutasuna kamerara (1.0: kameratik gertu, -"
+"2.0: kameratik urruti)."
 
 msgid ""
 "Comma separated list of option value assignments to override effect "
 "settings, e.g.: fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 msgstr ""
+"Gainidatziko diren, komaz banatutako, aukeren balioen zerrenda, adibidez:  "
+"fire_color=#0080ffff, fire_particles=700, fire_smoke=1"
 
 msgid "Curved Fold"
 msgstr "Kurbatutako tolesdura"
@@ -270,7 +273,7 @@ msgid "Curved Fold Amplitude"
 msgstr "Kurbatutako tolesduraren tamaina"
 
 msgid "Dodge"
-msgstr ""
+msgstr "Txiri egin"
 
 msgid "Dodge Gap Ratio"
 msgstr ""
@@ -315,7 +318,7 @@ msgid "Fire Particle Size"
 msgstr "Su partikularen tamaina"
 
 msgid "Fire Particle Slowdown"
-msgstr "Su partikulen deselerazioa"
+msgstr "Su partikulen gainbehera"
 
 msgid "Fire Smoke"
 msgstr "Suaren kea"
@@ -339,7 +342,7 @@ msgid "Fire particle size."
 msgstr "Su partikularen tamaina."
 
 msgid "Fire particle slowdown."
-msgstr "Su partikulen deselerazioa."
+msgstr "Su partikulen gainbehera."
 
 msgid "Fire smoke."
 msgstr "Suaren kea."
@@ -351,10 +354,10 @@ msgid "Fly to TaskBar on Minimize"
 msgstr "Egan ataza-barrara ikonotzean."
 
 msgid "Focus Animation"
-msgstr ""
+msgstr "Fokuaren animazioa"
 
 msgid "Focus Effect"
-msgstr ""
+msgstr "Fokuaren efektua"
 
 msgid "Fold"
 msgstr "Tolestu"
@@ -363,13 +366,13 @@ msgid "Fold Direction"
 msgstr "Toleste norabidea"
 
 msgid "Fold opening direction for pieces in Razr effect."
-msgstr ""
+msgstr "Mozketa efektuan, zatien irekitze tolesduraren norabidea"
 
 msgid "Glide 1"
-msgstr ""
+msgstr "Txirrist 1"
 
 msgid "Glide 2"
-msgstr ""
+msgstr "Txirrist 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr "Ausazko koloreak izan su efektuan, su mistikoa bezala ere ezaguna."
@@ -1357,10 +1360,16 @@ msgstr ""
 msgid "Zoom time"
 msgstr ""
 
+msgid "Activate Demanding Attention Window"
+msgstr ""
+
 msgid "Activate Window"
 msgstr ""
 
 msgid "Activate a given window"
+msgstr ""
+
+msgid "Activate next window which has the \"demands attention\" flag set."
 msgstr ""
 
 msgid "Extra WM Actions"
@@ -2389,11 +2398,18 @@ msgstr ""
 msgid "Switch viewport in response to mouse gesture"
 msgstr ""
 
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+
 msgid "Exclude Windows"
 msgstr ""
 
 msgid "Neg Windows"
 msgstr ""
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Iraupena"
 
 msgid "Negative"
 msgstr ""
@@ -4308,6 +4324,9 @@ msgstr ""
 msgid "Outline color of the switcher window."
 msgstr ""
 
+msgid "Preview Scale"
+msgstr ""
+
 msgid "Radius of the rounded edge"
 msgstr ""
 
@@ -4338,6 +4357,10 @@ msgstr ""
 msgid "Show switcher window while switching viewports"
 msgstr ""
 
+#, no-c-format
+msgid "Size of the preview in %"
+msgstr ""
+
 msgid "Switch Target Preview Visibility Time"
 msgstr ""
 
@@ -4360,6 +4383,9 @@ msgid "Viewport Switching"
 msgstr ""
 
 msgid "Wall Sliding Duration"
+msgstr ""
+
+msgid "Width of the border between the previews"
 msgstr ""
 
 #, fuzzy
@@ -4452,6 +4478,12 @@ msgid "End Widget Mode on Click"
 msgstr ""
 
 msgid "End widget mode when a non-widget window is clicked."
+msgstr ""
+
+msgid "Focus Widget Layer"
+msgstr ""
+
+msgid "Focus a window in the widget layer when activating the layer"
 msgstr ""
 
 #, fuzzy
@@ -4650,6 +4682,12 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Animation Speed"
+#~ msgstr "Animazio abiadura"
+
+#~ msgid "Change the speed of the 3D animation"
+#~ msgstr "3D animazio abiadura aldatu"
 
 #~ msgid "Misc. options"
 #~ msgstr "Hainbat aukera"
