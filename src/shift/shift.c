@@ -1423,6 +1423,9 @@ shiftPaintOutput (CompScreen		  *s,
 	{
 	    CompTransform  rTransform = sTransform;
 	    unsigned short color[4];
+	    int            cull, cullInv;
+	    glGetIntegerv (GL_CULL_FACE_MODE, &cull);
+	    cullInv = (cull == GL_BACK)? GL_FRONT : GL_BACK;
 
 	    matrixTranslate (&rTransform, 0.0, oy1 + oy2 + maxThumbHeight,
 			     0.0);
@@ -1431,7 +1434,7 @@ shiftPaintOutput (CompScreen		  *s,
 	    glPushMatrix ();
 	    glLoadMatrixf (rTransform.m);
 
-	    glDisable (GL_CULL_FACE);
+	    glCullFace (cullInv);
 
 	    if (shiftGetMipmaps (s))
 		s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
@@ -1457,7 +1460,7 @@ shiftPaintOutput (CompScreen		  *s,
 	    }
 
 	    glDisable (GL_CLIP_PLANE0);
-	    glEnable( GL_CULL_FACE);
+	    glCullFace (cull);
 
 	    glLoadIdentity();
 	    glTranslatef (0.0, 0.0, -DEFAULT_Z_CAMERA);
