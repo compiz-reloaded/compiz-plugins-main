@@ -270,9 +270,6 @@ getMatchingAnimSelection (CompWindow *w,
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
-    if (duration == NULL)
-	return AnimEffectNone;
-
     CompOptionValue *valMatch;
     CompOptionValue *valEffect;
     CompOptionValue *valDuration;
@@ -353,7 +350,8 @@ getMatchingAnimSelection (CompWindow *w,
 	aw->prevAnimSelectionRow = aw->curAnimSelectionRow;
 	aw->curAnimSelectionRow = i;
 
-	*duration = valDuration->list.value[i].i;
+	if (duration)
+	    *duration = valDuration->list.value[i].i;
 
 	return effects[valEffect->list.value[i].i];
     }
@@ -1725,6 +1723,12 @@ initiateFocusAnimation(CompWindow *w)
 		if (w == dw && chosenEffect == AnimEffectFocusFade)
 		    continue;
 
+		Bool nonMatching = FALSE;
+		if (chosenEffect == AnimEffectDodge &&
+		    getMatchingAnimSelection (dw, WindowEventFocus, NULL) !=
+		    chosenEffect)
+		    nonMatching = TRUE;
+
 		// Compute intersection of this (dw) with subject
 		rect.x = WIN_X(dw);
 		rect.y = WIN_Y(dw);
@@ -1750,6 +1754,8 @@ initiateFocusAnimation(CompWindow *w)
 
 		    numDodgingWins++;
 		    adw->dodgeOrder = numDodgingWins;
+		    if (nonMatching) // Use neg. values for non-matching windows
+			adw->dodgeOrder *= -1;
 		}
 	    }
 
@@ -1792,6 +1798,12 @@ initiateFocusAnimation(CompWindow *w)
 
 		    // Initiate dodge for this window
 
+		    Bool stationaryDodger = FALSE;
+		    if (adw->dodgeOrder < 0)
+		    {
+			adw->dodgeOrder *= -1; // Make it positive again
+			stationaryDodger = TRUE;
+		    }
 		    adw->dodgeSubjectWin = w;
 		    adw->curAnimEffect = AnimEffectDodge;
 
@@ -1809,16 +1821,22 @@ initiateFocusAnimation(CompWindow *w)
 		    float transformTotalProgress =
 			1 + adw->transformStartProgress;
 
+		    if (maxTransformTotalProgress < transformTotalProgress)
+			maxTransformTotalProgress = transformTotalProgress;
+
 		    // normalize
 		    adw->transformStartProgress /=
 			transformTotalProgress;
 
+		    if (stationaryDodger)
+		    {
+			adw->transformStartProgress = 0;
+			transformTotalProgress = 0;
+		    }
+
 		    adw->animTotalTime =
 			transformTotalProgress * duration;
 		    adw->animRemainingTime = adw->animTotalTime;
-
-		    if (maxTransformTotalProgress < transformTotalProgress)
-			maxTransformTotalProgress = transformTotalProgress;
 
 		    // Put window on dodge chain
 
