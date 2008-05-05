@@ -556,7 +556,8 @@ wallMoveViewport (CompScreen *s,
 	else
 	    ws->boxTimeout = 0;
 
-	if (otherScreenGrabExist (s, "move", "scale", "group-drag", "wall", 0))
+	if (otherScreenGrabExist (s, "move", "scale", "switcher",
+				  "group-drag", "wall", 0))
 	{
 	    ws->boxTimeout = 0;
 	    ws->moving = FALSE;
