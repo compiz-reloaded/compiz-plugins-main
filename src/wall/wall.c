@@ -1425,10 +1425,13 @@ wallPaintTransformedOutput (CompScreen              *s,
 			    unsigned int            mask)
 {
     WALL_SCREEN (s);
+    Bool clear = (mask & PAINT_SCREEN_CLEAR_MASK);
 
     if (ws->miniScreen)
     {
 	CompTransform sTransform = *transform;
+
+	mask &= ~PAINT_SCREEN_CLEAR_MASK;
 
 	/* move each screen to the correct output position */
 	matrixTranslate (&sTransform,
@@ -1475,7 +1478,8 @@ wallPaintTransformedOutput (CompScreen              *s,
 	float         px, py;
 	int           tx, ty;
 
-	clearTargetOutput (s->display, GL_COLOR_BUFFER_BIT);
+	if (clear)
+	    clearTargetOutput (s->display, GL_COLOR_BUFFER_BIT);
 
 	px = ws->curPosX;
 	py = ws->curPosY;
