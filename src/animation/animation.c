@@ -1267,8 +1267,6 @@ static Model *createModel(CompWindow * w,
 			"Not enough memory");
 	return 0;
     }
-    model->magicLampWaveCount = 0;
-    model->magicLampWaves = NULL;
 
     model->gridWidth = gridWidth;
     model->gridHeight = gridHeight;
@@ -1308,8 +1306,6 @@ animFreeModel(AnimWindow *aw)
     if (!aw->model)
 	return;
 
-    if (aw->model->magicLampWaves)
-	free(aw->model->magicLampWaves);
     if (aw->model->objects)
 	free(aw->model->objects);
     free(aw->model);
@@ -1433,11 +1429,11 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	aw->curAnimEffect = AnimEffectNone;
 	aw->animOverrideProgressDir = 0;
 
-	if (aw->model)
+	aw->magicLampWaveCount = 0;
+	if (aw->magicLampWaves)
 	{
-	    if (aw->model->magicLampWaves)
-		free(aw->model->magicLampWaves);
-	    aw->model->magicLampWaves = 0;
+	    free(aw->magicLampWaves);
+	    aw->magicLampWaves = 0;
 	}
     }
 

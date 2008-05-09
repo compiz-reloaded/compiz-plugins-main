@@ -234,8 +234,6 @@ typedef struct _Model
     Vector scale;
     Point scaleOrigin;
 
-    int magicLampWaveCount;
-    WaveParam *magicLampWaves;
     WindowEvent forWindowEvent;
     float topHeight;
     float bottomHeight;
@@ -628,6 +626,8 @@ typedef struct _AnimWindow
 
     // for magic lamp
     Bool minimizeToTop;
+    int magicLampWaveCount;
+    WaveParam *magicLampWaves;
 
     // for glide effect
     float glideModRotAngle;	// The angle of rotation modulo 360

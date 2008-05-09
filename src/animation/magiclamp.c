@@ -56,8 +56,6 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
     ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    Model *model = aw->model;
-
     int screenHeight = s->height;
     aw->minimizeToTop = (WIN_Y(w) + WIN_H(w) / 2) >
 	(aw->icon.y + aw->icon.height / 2);
@@ -84,7 +82,7 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
 
     if (maxWaves == 0)
     {
-	model->magicLampWaveCount = 0;
+	aw->magicLampWaveCount = 0;
 	return;
     }
 
@@ -95,13 +93,20 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
     else
 	distance = aw->icon.y - WIN_Y(w);
 
-    model->magicLampWaveCount =
+    aw->magicLampWaveCount =
 	1 + (float)maxWaves *distance / screenHeight;
 
-    if (!(model->magicLampWaves))
-	model->magicLampWaves =
-	    calloc(model->magicLampWaveCount, sizeof(WaveParam));
-
+    if (!(aw->magicLampWaves))
+    {
+	aw->magicLampWaves =
+	    calloc(aw->magicLampWaveCount, sizeof(WaveParam));
+	if (!aw->magicLampWaves)
+	{
+	    compLogMessage (w->screen->display, "animation", CompLogLevelError,
+			    "Not enough memory");
+	    return;
+	}
+    }
     // Compute wave parameters
 
     int ampDirection = (RAND_FLOAT() < 0.5 ? 1 : -1);
@@ -109,28 +114,27 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
     float minHalfWidth = 0.22f;
     float maxHalfWidth = 0.38f;
 
-    for (i = 0; i < model->magicLampWaveCount; i++)
+    for (i = 0; i < aw->magicLampWaveCount; i++)
     {
-	model->magicLampWaves[i].amp =
+	aw->magicLampWaves[i].amp =
 	    ampDirection * (waveAmpMax - waveAmpMin) *
 	    rand() / RAND_MAX + ampDirection * waveAmpMin;
-	model->magicLampWaves[i].halfWidth =
+	aw->magicLampWaves[i].halfWidth =
 	    RAND_FLOAT() * (maxHalfWidth -
 			    minHalfWidth) + minHalfWidth;
 
 	// avoid offset at top and bottom part by added waves
-	float availPos = 1 - 2 * model->magicLampWaves[i].halfWidth;
+	float availPos = 1 - 2 * aw->magicLampWaves[i].halfWidth;
 	float posInAvailSegment = 0;
 
 	if (i > 0)
 	    posInAvailSegment =
-		(availPos /
-		 model->magicLampWaveCount) * rand() / RAND_MAX;
+		(availPos / aw->magicLampWaveCount) * rand() / RAND_MAX;
 
-	model->magicLampWaves[i].pos =
+	aw->magicLampWaves[i].pos =
 	    (posInAvailSegment +
-	     i * availPos / model->magicLampWaveCount +
-	     model->magicLampWaves[i].halfWidth);
+	     i * availPos / aw->magicLampWaveCount +
+	     aw->magicLampWaves[i].halfWidth);
 
 	// switch wave direction
 	ampDirection *= -1;
@@ -246,15 +250,14 @@ fxMagicLampModelStepObject(CompWindow * w,
 
     // Apply waves
     int i;
-    for (i = 0; i < model->magicLampWaveCount; i++)
+    for (i = 0; i < aw->magicLampWaveCount; i++)
     {
-	float cosfx =
-	    (fx - model->magicLampWaves[i].pos) /
-	    model->magicLampWaves[i].halfWidth;
+	float cosfx = ((fx - aw->magicLampWaves[i].pos) /
+		       aw->magicLampWaves[i].halfWidth);
 	if (cosfx < -1 || cosfx > 1)
 	    continue;
 	targetx +=
-	    model->magicLampWaves[i].amp * model->scale.x *
+	    aw->magicLampWaves[i].amp * model->scale.x *
 	    (cos(cosfx * M_PI) + 1) / 2;
     }
 
@@ -305,6 +308,9 @@ fxMagicLampModelStep (CompScreen *s, CompWindow *w, float time)
 	getMousePointerXY(s, &aw->icon.x, &aw->icon.y);
     }
     float forwardProgress = defaultAnimProgress(aw);
+
+    if (aw->magicLampWaveCount > 0 && !aw->magicLampWaves)
+	return;
 
     int i;
     for (i = 0; i < model->numObjects; i++)
