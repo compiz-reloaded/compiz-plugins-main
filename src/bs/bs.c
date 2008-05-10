@@ -406,22 +406,30 @@ BSPaintWindow (CompWindow              *w,
 	       Region                  region,
 	       unsigned int            mask)
 {
-    Bool status;
+    Bool       status;
+    CompScreen *s = w->screen;
 
-    BS_SCREEN (w->screen);
+    BS_SCREEN (s);
     BS_WINDOW (w);
 
-    WindowPaintAttrib wAttrib = *attrib;
+    if (attrib->brightness != bw->brightness ||
+	attrib->saturation != bw->saturation)
+    {
+	WindowPaintAttrib wAttrib = *attrib;
 
-    if (w->paint.saturation != bw->saturation)
+	wAttrib.brightness = bw->brightness;
 	wAttrib.saturation = bw->saturation;
 
-    if (w->paint.brightness != bw->brightness)
-	wAttrib.brightness = bw->brightness;
-
-    UNWRAP (bs, w->screen, paintWindow);
-    status = (*w->screen->paintWindow) (w, &wAttrib, transform, region, mask);
-    WRAP (bs, w->screen, paintWindow, BSPaintWindow);
+	UNWRAP (bs, s, paintWindow);
+	status = (*s->paintWindow) (w, &wAttrib, transform, region, mask);
+	WRAP (bs, s, paintWindow, BSPaintWindow);
+    }
+    else
+    {
+	UNWRAP (bs, s, paintWindow);
+	status = (*s->paintWindow) (w, attrib, transform, region, mask);
+	WRAP (bs, s, paintWindow, BSPaintWindow);
+    }
 
     return status;
 }
