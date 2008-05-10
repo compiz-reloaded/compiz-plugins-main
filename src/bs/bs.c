@@ -26,10 +26,6 @@
 
 #include <compiz-core.h>
 
-
-#define BS_SATURATION_STEP_DEFAULT                  5
-#define BS_BRIGHTNESS_STEP_DEFAULT                  5
-
 #define BS_DISPLAY_OPTION_SATURATION_INCREASE_KEY	0
 #define BS_DISPLAY_OPTION_SATURATION_INCREASE_BUTTON	1
 #define BS_DISPLAY_OPTION_SATURATION_DECREASE_KEY	2
@@ -49,13 +45,14 @@
 #define BS_SCREEN_OPTION_NUM                    6
 
 static int displayPrivateIndex;
-
 static CompMetadata bsMetadata;
 
 typedef struct _BSDisplay
 {
     int screenPrivateIndex;
+
     HandleEventProc handleEvent;
+
     CompOption opt[BS_DISPLAY_OPTION_NUM];
 } BSDisplay;
 
@@ -64,9 +61,6 @@ typedef struct _BSScreen
 {
     int windowPrivateIndex;
 
-    int brightnessStep;
-    int saturationStep;
-
     int  brightnessFactor;
     int  saturationFactor;
 
@@ -74,7 +68,7 @@ typedef struct _BSScreen
     Bool saturationPropSet;
     Bool brightnessPropSet;
 */
-    PaintWindowProc        paintWindow;
+    PaintWindowProc paintWindow;
 
     CompOption opt[BS_SCREEN_OPTION_NUM];
 } BSScreen;
@@ -85,20 +79,28 @@ typedef struct _BSWindow
     int saturation;
 } BSWindow;
 
-#define GET_BS_DISPLAY(d) ((BSDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
-#define BS_DISPLAY(d) BSDisplay *bd = GET_BS_DISPLAY (d)
-#define GET_BS_SCREEN(s, bd) ((BSScreen *) (s)->base.privates[(bd)->screenPrivateIndex].ptr)
-#define BS_SCREEN(s) BSScreen *bs = GET_BS_SCREEN (s, GET_BS_DISPLAY (s->display))
-#define GET_BS_WINDOW(w, bs) ((BSWindow *) (w)->base.privates[(bs)->windowPrivateIndex].ptr)
-#define BS_WINDOW(w)                                       \
+#define GET_BS_DISPLAY(d) \
+    ((BSDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
+#define BS_DISPLAY(d) \
+    BSDisplay *bd = GET_BS_DISPLAY (d)
+
+#define GET_BS_SCREEN(s, bd) \
+    ((BSScreen *) (s)->base.privates[(bd)->screenPrivateIndex].ptr)
+#define BS_SCREEN(s) \
+    BSScreen *bs = GET_BS_SCREEN (s, GET_BS_DISPLAY (s->display))
+
+#define GET_BS_WINDOW(w, bs) \
+    ((BSWindow *) (w)->base.privates[(bs)->windowPrivateIndex].ptr)
+#define BS_WINDOW(w)                                     \
     BSWindow *bw = GET_BS_WINDOW  (w,                    \
-                     GET_BS_SCREEN  (w->screen,            \
-                     GET_BS_DISPLAY (w->screen->display)))
+                   GET_BS_SCREEN  (w->screen,            \
+                   GET_BS_DISPLAY (w->screen->display)))
 
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
 static void
-changeWindowSaturation (CompWindow * w, int direction)
+changeWindowSaturation (CompWindow *w,
+			int        direction)
 {
     int step, saturation;
 
@@ -111,18 +113,14 @@ changeWindowSaturation (CompWindow * w, int direction)
     if (w->type & CompWindowTypeDesktopMask)
 	return;
 
-    step = (COLOR * bs->saturationStep) / 100;
+    step = (COLOR * bs->opt[BS_SCREEN_OPTION_SATURATION_STEP].value.i) / 100;
     saturation = bw->saturation;
 
     saturation = saturation + step * direction;
     if (saturation > COLOR)
-    {
 	saturation = COLOR;
-    }
     else if (saturation < step)
-    {
 	saturation = step;
-    }
 
     if (bw->saturation != saturation)
     {
@@ -132,7 +130,8 @@ changeWindowSaturation (CompWindow * w, int direction)
 }
 
 static void
-changeWindowBrightness (CompWindow * w, int direction)
+changeWindowBrightness (CompWindow *w,
+			int        direction)
 {
     int step, brightness;
 
@@ -145,18 +144,14 @@ changeWindowBrightness (CompWindow * w, int direction)
     if (w->type & CompWindowTypeDesktopMask)
 	return;
 
-    step = (BRIGHT * bs->brightnessStep) / 100;
+    step = (BRIGHT * bs->opt[BS_SCREEN_OPTION_BRIGHTNESS_STEP].value.i) / 100;
     brightness = bw->brightness;
 
     brightness = brightness + step * direction;
     if (brightness > BRIGHT)
-    {
 	brightness = BRIGHT;
-    }
     else if (brightness < step)
-    {
 	brightness = step;
-    }
 
     if (bw->brightness != brightness)
     {
@@ -236,11 +231,14 @@ updateWindowBrightness (CompWindow *w)
 }
 
 static Bool
-alterSaturation (CompDisplay * d, CompAction * action,
-                    CompActionState state, CompOption * option, int nOption)
+alterSaturation (CompDisplay     *d,
+		 CompAction      *action,
+		 CompActionState state,
+		 CompOption      *option,
+		 int             nOption)
 {
     CompWindow *w;
-    Window xid;
+    Window     xid;
 
     xid = getIntOptionNamed (option, nOption, "window", 0);
 
@@ -252,11 +250,14 @@ alterSaturation (CompDisplay * d, CompAction * action,
 }
 
 static Bool
-alterBrightness (CompDisplay * d, CompAction * action,
-                    CompActionState state, CompOption * option, int nOption)
+alterBrightness (CompDisplay     *d,
+		 CompAction      *action,
+		 CompActionState state,
+		 CompOption      *option,
+		 int             nOption)
 {
     CompWindow *w;
-    Window xid;
+    Window     xid;
 
     xid = getIntOptionNamed (option, nOption, "window", 0);
 
@@ -268,45 +269,37 @@ alterBrightness (CompDisplay * d, CompAction * action,
 }
 
 static CompOption *
-BSGetDisplayOptions (CompPlugin *p, CompDisplay * display, int *count)
+BSGetDisplayOptions (CompPlugin  *p,
+		     CompDisplay *display,
+		     int         *count)
 {
-        BS_DISPLAY (display);
+    BS_DISPLAY (display);
 
-        *count = NUM_OPTIONS (bd);
-        return bd->opt;
+    *count = NUM_OPTIONS (bd);
+    return bd->opt;
 }
 
 static Bool
-BSSetDisplayOption (CompPlugin *p, CompDisplay * display, char *name,
-                    CompOptionValue * value)
+BSSetDisplayOption (CompPlugin      *p,
+		    CompDisplay     *display,
+		    char            *name,
+                    CompOptionValue *value)
 {
     CompOption *o;
-    int index;
 
     BS_DISPLAY (display);
 
-    o = compFindOption (bd->opt, NUM_OPTIONS (bd), name, &index);
+    o = compFindOption (bd->opt, NUM_OPTIONS (bd), name, NULL);
     if (!o)
         return FALSE;
 
-    switch (index)
-    {
-    case BS_DISPLAY_OPTION_SATURATION_INCREASE_BUTTON:
-    case BS_DISPLAY_OPTION_SATURATION_DECREASE_BUTTON:
-    case BS_DISPLAY_OPTION_BRIGHTNESS_INCREASE_BUTTON:
-    case BS_DISPLAY_OPTION_BRIGHTNESS_DECREASE_BUTTON:
-        if (setDisplayAction (display, o, value))
-            return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
+    return compSetDisplayOption (display, o, value);
 }
 
 static CompOption *
-BSGetScreenOptions (CompPlugin *p, CompScreen * screen, int *count)
+BSGetScreenOptions (CompPlugin *p,
+		    CompScreen *screen,
+		    int        *count)
 {
     BS_SCREEN (screen);
 
@@ -315,7 +308,10 @@ BSGetScreenOptions (CompPlugin *p, CompScreen * screen, int *count)
 }
 
 static Bool
-BSSetScreenOption (CompPlugin *p, CompScreen * screen, char *name, CompOptionValue * value)
+BSSetScreenOption (CompPlugin      *p,
+		   CompScreen      *screen,
+		   char            *name,
+		   CompOptionValue *value)
 {
     CompOption *o;
     int index;
@@ -328,21 +324,6 @@ BSSetScreenOption (CompPlugin *p, CompScreen * screen, char *name, CompOptionVal
 
     switch (index)
     {
-    case BS_SCREEN_OPTION_BRIGHTNESS_STEP:
-        if (compSetIntOption (o, value))
-        {
-            bs->brightnessStep = o->value.i;
-            return TRUE;
-        }
-        break;
-
-    case BS_SCREEN_OPTION_SATURATION_STEP:
-        if (compSetIntOption (o, value))
-        {
-            bs->saturationStep = o->value.i;
-            return TRUE;
-        }
-        break;
     case BS_SCREEN_OPTION_SATURATION_MATCHES:
 	if (compSetOptionList (o, value))
 	{
@@ -394,8 +375,10 @@ BSSetScreenOption (CompPlugin *p, CompScreen * screen, char *name, CompOptionVal
 	    return TRUE;
 	}
     default:
+	return compSetScreenOption (screen, o, value);
         break;
     }
+
     return FALSE;
 }
 
@@ -446,7 +429,8 @@ static const CompMetadataOptionInfo bsDisplayOptionInfo[] = {
 };
 
 static Bool
-BSInitDisplay (CompPlugin * p, CompDisplay * d)
+BSInitDisplay (CompPlugin  *p,
+	       CompDisplay *d)
 {
     BSDisplay *bd;
 
@@ -490,7 +474,8 @@ BSInitDisplay (CompPlugin * p, CompDisplay * d)
 }
 
 static void
-BSFiniDisplay (CompPlugin * p, CompDisplay * d)
+BSFiniDisplay (CompPlugin  *p,
+	       CompDisplay *d)
 {
     BS_DISPLAY (d);
 
@@ -502,8 +487,8 @@ BSFiniDisplay (CompPlugin * p, CompDisplay * d)
 }
 
 static const CompMetadataOptionInfo bsScreenOptionInfo[] = {
-    { "brightness_step", "int", 0, 0, 0 },
     { "saturation_step", "int", 0, 0, 0 },
+    { "brightness_step", "int", 0, 0, 0 },
     { "saturation_matches", "list", "<type>match</type>", 0, 0 },
     { "saturation_values", "list", "<type>int</type>", 0, 0 },
     { "brightness_matches", "list", "<type>match</type>", 0, 0 },
@@ -511,9 +496,11 @@ static const CompMetadataOptionInfo bsScreenOptionInfo[] = {
 };
 
 static Bool
-BSInitScreen (CompPlugin * p, CompScreen * s)
+BSInitScreen (CompPlugin *p,
+	      CompScreen *s)
 {
     BSScreen *bs;
+
     BS_DISPLAY (s->display);
 
     bs = malloc (sizeof (BSScreen));
@@ -538,8 +525,6 @@ BSInitScreen (CompPlugin * p, CompScreen * s)
         return FALSE;
     }
 
-    bs->saturationStep = BS_SATURATION_STEP_DEFAULT;
-    bs->brightnessStep = BS_BRIGHTNESS_STEP_DEFAULT;
     bs->saturationFactor = COLOR;
     bs->brightnessFactor = COLOR;
 
@@ -551,7 +536,8 @@ BSInitScreen (CompPlugin * p, CompScreen * s)
 }
 
 static void
-BSFiniScreen (CompPlugin * p, CompScreen * s)
+BSFiniScreen (CompPlugin *p,
+	      CompScreen *s)
 {
     BS_SCREEN (s);
 
@@ -613,7 +599,7 @@ BSInitObject (CompPlugin *p,
 
 static void
 BSFiniObject (CompPlugin *p,
-               CompObject *o)
+	      CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
        (FiniPluginObjectProc) 0, /* FiniCore */
@@ -628,29 +614,24 @@ BSFiniObject (CompPlugin *p,
 
 static CompOption *
 BSGetObjectOptions (CompPlugin *plugin,
-                          CompObject *object,
-
-                          int        *count)
-
+		    CompObject *object,
+		    int        *count)
 {
     static GetPluginObjectOptionsProc dispTab[] = {
-       (GetPluginObjectOptionsProc) 0, /*GetCoreOptions*/
+       (GetPluginObjectOptionsProc) 0, /* GetCoreOptions */
        (GetPluginObjectOptionsProc) BSGetDisplayOptions,
        (GetPluginObjectOptionsProc) BSGetScreenOptions
     };
 
-
     RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab),
-                    (void *) (*count = 0), (plugin, object, count));
-
+		     (void *) (*count = 0), (plugin, object, count));
 }
 
 static CompBool
 BSSetObjectOption (CompPlugin      *plugin,
-                         CompObject      *object,
-                         const char      *name,
-                         CompOptionValue *value)
-
+		   CompObject      *object,
+		   const char      *name,
+		   CompOptionValue *value)
 {
     static SetPluginObjectOptionProc dispTab[] = {
        (SetPluginObjectOptionProc) 0, /*SetCoreOption*/
@@ -660,11 +641,11 @@ BSSetObjectOption (CompPlugin      *plugin,
     };
 
     RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), FALSE,
-                    (plugin, object, name, value));
+		     (plugin, object, name, value));
 }
 
 static Bool
-BSInit (CompPlugin * p)
+BSInit (CompPlugin *p)
 {
     if (!compInitPluginMetadataFromInfo (&bsMetadata,
 					 p->vTable->name,
@@ -687,10 +668,9 @@ BSInit (CompPlugin * p)
 }
 
 static void
-BSFini (CompPlugin * p)
+BSFini (CompPlugin *p)
 {
-    if (displayPrivateIndex >= 0)
-        freeDisplayPrivateIndex (displayPrivateIndex);
+    freeDisplayPrivateIndex (displayPrivateIndex);
 
     compFiniMetadata (&bsMetadata);
 }
