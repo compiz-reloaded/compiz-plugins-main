@@ -407,6 +407,76 @@ scaleaddonCloseWindow (CompDisplay     *d,
 }
 
 static Bool
+scaleaddonPullWindow  (CompDisplay     *d,
+	               CompAction      *action,
+		       CompActionState state,
+		       CompOption      *option,
+		       int             nOption)
+{
+    CompScreen *s;
+    Window     xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+
+    s = findScreenAtDisplay (d, xid);
+    if (s)
+    {
+	CompWindow *w;
+
+	SCALE_SCREEN (s);
+
+	if (!ss->grabIndex)
+	    return FALSE;
+
+	if (state & CompActionStateInitKey)
+	{
+	    SCALE_DISPLAY (d);
+	    w = findWindowAtDisplay (d, sd->hoveredWindow);
+	}
+	else
+	    w = scaleaddonCheckForWindowAt (s, pointerX, pointerY);
+
+        if (w)
+	{
+	    int vx, vy;
+
+	    defaultViewportForWindow (w, &vx, &vy);
+
+	    if (vx != s->x || vy != s->y)
+	    {
+		int        opt, x, y;
+		CompAction *action;
+		CompOption o[1];
+
+		SCALE_DISPLAY (d);
+
+		x = w->attrib.x + (s->x - vx) * s->width;
+		y = w->attrib.y + (s->y - vy) * s->height;
+
+		moveWindowToViewportPosition (w, x, y, TRUE);
+
+		/* Activate this window when ending scale */
+		sd->selectedWindow = w->id;
+
+		opt = SCALE_DISPLAY_OPTION_INITIATE_KEY;
+		action = &sd->opt[opt].value.action;
+
+		o[0].type    = CompOptionTypeInt;
+		o[0].name    = "root";
+		o[0].value.i = s->root;
+
+		if (action->terminate)
+		    (*action->terminate) (d, action, 0, o, 1);
+
+		return TRUE;
+	    }
+	}
+    }
+
+    return FALSE;
+}
+
+static Bool
 scaleaddonZoomWindow (CompDisplay     *d,
 		      CompAction      *action,
 		      CompActionState state,
@@ -671,8 +741,10 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 	    {
 		addScreenAction (s, scaleaddonGetCloseKey (d));
 		addScreenAction (s, scaleaddonGetZoomKey (d));
+		addScreenAction (s, scaleaddonGetPullKey (d));
 		addScreenAction (s, scaleaddonGetCloseButton (d));
 		addScreenAction (s, scaleaddonGetZoomButton (d));
+		addScreenAction (s, scaleaddonGetPullButton (d));
 
 		/* TODO: or better
 		   ad->highlightedWindow     = sd->selectedWindow;
@@ -695,8 +767,10 @@ scaleaddonHandleCompizEvent (CompDisplay *d,
 
 		removeScreenAction (s, scaleaddonGetCloseKey (d));
 		removeScreenAction (s, scaleaddonGetZoomKey (d));
+		removeScreenAction (s, scaleaddonGetPullKey (d));
 		removeScreenAction (s, scaleaddonGetCloseButton (d));
 		removeScreenAction (s, scaleaddonGetZoomButton (d));
+		removeScreenAction (s, scaleaddonGetPullButton (d));
 	    }
 	}
     }
@@ -1193,8 +1267,10 @@ scaleaddonInitDisplay (CompPlugin  *p,
 
     scaleaddonSetCloseKeyInitiate (d, scaleaddonCloseWindow);
     scaleaddonSetZoomKeyInitiate (d, scaleaddonZoomWindow);
+    scaleaddonSetPullKeyInitiate (d, scaleaddonPullWindow);
     scaleaddonSetCloseButtonInitiate (d, scaleaddonCloseWindow);
     scaleaddonSetZoomButtonInitiate (d, scaleaddonZoomWindow);
+    scaleaddonSetPullButtonInitiate (d, scaleaddonPullWindow);
 
     return TRUE;
 }
