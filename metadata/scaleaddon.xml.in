@@ -157,6 +157,19 @@
 			<_name>Organic - EXPERIMENTAL</_name>
 		    </desc>
 		</option>
+		<subgroup>
+		    <_short>Window Pull</_short>
+		    <option name="constrain_pull_to_screen" type="bool">
+			<_short>Constrain Pull To Screen</_short>
+			<_long>Make sure windows are fully visible after pulling them to another viewport</_long>
+			<default>true</default>
+		    </option>
+		    <option name="exit_after_pull" type="bool">
+			<_short>Exit Scale On Pull</_short>
+			<_long>Exit scale mode after a window has been pulled.</_long>
+			<default>false</default>
+		    </option>
+		</subgroup>
 	    </group>
 	</screen>
     </plugin>

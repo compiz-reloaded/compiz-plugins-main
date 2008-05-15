@@ -438,36 +438,79 @@ scaleaddonPullWindow  (CompDisplay     *d,
 
         if (w)
 	{
-	    int vx, vy;
+	    int x, y, vx, vy;
 
 	    defaultViewportForWindow (w, &vx, &vy);
 
-	    if (vx != s->x || vy != s->y)
+	    x = w->attrib.x + (s->x - vx) * s->width;
+	    y = w->attrib.y + (s->y - vy) * s->height;
+
+	    if (scaleaddonGetConstrainPullToScreen (s))
 	    {
-		int        opt, x, y;
-		CompAction *action;
-		CompOption o[1];
+	        XRectangle        workArea;
+		CompWindowExtents extents;
 
-		SCALE_DISPLAY (d);
+		getWorkareaForOutput (s, outputDeviceForWindow (w), &workArea);
 
-		x = w->attrib.x + (s->x - vx) * s->width;
-		y = w->attrib.y + (s->y - vy) * s->height;
+		extents.left   = x - w->input.left;
+		extents.right  = x + w->width + w->input.right;
+		extents.top    = y - w->input.top;
+		extents.bottom = y + w->height + w->input.bottom;
+
+		if (extents.left < workArea.x)
+		    x += workArea.x - extents.left;
+		else if (extents.right > workArea.x + workArea.width)
+		    x += workArea.x + workArea.width - extents.right;
+
+		if (extents.top < workArea.y)
+		    y += workArea.y - extents.top;
+		else if (extents.bottom > workArea.y + workArea.height)
+		    y += workArea.y + workArea.height - extents.bottom;
+	    }
+
+	    if (x != w->attrib.x || y != w->attrib.y)
+	    {
+		SCALE_WINDOW (w);
 
 		moveWindowToViewportPosition (w, x, y, TRUE);
 
-		/* Activate this window when ending scale */
-		sd->selectedWindow = w->id;
+		/* Select this window when ending scale */
+		(*ss->selectWindow) (w);
 
-		opt = SCALE_DISPLAY_OPTION_INITIATE_KEY;
-		action = &sd->opt[opt].value.action;
+		/* stop scaled window dissapearing */
+		sw->tx -= (s->x - vx) * s->width;
+		sw->ty -= (s->y - vy) * s->height;
 
-		o[0].type    = CompOptionTypeInt;
-		o[0].name    = "root";
-		o[0].value.i = s->root;
+		if (scaleaddonGetExitAfterPull (s))
+		{
+		    int        opt;
+		    CompAction *action;
+		    CompOption o[1];
 
-		if (action->terminate)
-		    (*action->terminate) (d, action, 0, o, 1);
+		    SCALE_DISPLAY (d);
 
+		    opt = SCALE_DISPLAY_OPTION_INITIATE_KEY;
+		    action = &sd->opt[opt].value.action;
+
+		    o[0].type    = CompOptionTypeInt;
+		    o[0].name    = "root";
+		    o[0].value.i = s->root;
+
+		    if (action->terminate)
+			(*action->terminate) (d, action, 0, o, 1);
+		}
+		else
+		{
+		    /* provide a simple animation */
+		    sw->tx -= (sw->slot->x2 - sw->slot->x1) / 20;
+		    sw->ty -= (sw->slot->y2 - sw->slot->y1) / 20;
+		    sw->scale *= 1.1f;
+		    sw->adjust = TRUE;
+
+		    ss->state = SCALE_STATE_OUT;
+		    damageScreen (s);
+		}
+		
 		return TRUE;
 	    }
 	}
