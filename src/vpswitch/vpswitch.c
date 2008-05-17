@@ -71,7 +71,7 @@ typedef struct _VpSwitchDisplay
     xid = getIntOptionNamed (option, nOption, "window", 0); \
     w = findWindowAtDisplay (d, xid); \
     if ((!w || (w->type & CompWindowTypeDesktopMask) == 0) && \
-	(s->desktopWindowCount || xid != s->root)) \
+	xid != s->root) \
 	return FALSE;
 
 static Bool
