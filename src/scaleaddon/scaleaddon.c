@@ -502,13 +502,15 @@ scaleaddonPullWindow  (CompDisplay     *d,
 		else
 		{
 		    /* provide a simple animation */
+		    addWindowDamage (w);
+
 		    sw->tx -= (sw->slot->x2 - sw->slot->x1) / 20;
 		    sw->ty -= (sw->slot->y2 - sw->slot->y1) / 20;
 		    sw->scale *= 1.1f;
 		    sw->adjust = TRUE;
 
 		    ss->state = SCALE_STATE_OUT;
-		    damageScreen (s);
+		    addWindowDamage (w);
 		}
 		
 		return TRUE;
@@ -569,6 +571,9 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	    outputRect.width  = outputBox.x2 - outputBox.x1;
 	    outputRect.height = outputBox.y2 - outputBox.y1;
 
+	    /* damage old rect */
+	    addWindowDamage (w);
+
 	    if (!aw->rescaled)
 	    {
 		aw->oldAbove = w->next;
@@ -602,7 +607,8 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	    /* slot size may have changed, so
 	     * update window title */
 	    scaleaddonRenderWindowTitle (w);
-	    damageScreen (w->screen);
+
+	    addWindowDamage (w);
 
 	    return TRUE;
 	}
