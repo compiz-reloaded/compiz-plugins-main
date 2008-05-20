@@ -316,6 +316,33 @@ gradientChanged (CompDisplay              *d,
 	drawCairoBackground (s);
 }
 
+static void
+damagePaintRegion (CompScreen *s)
+{
+    REGION reg;
+    int    x, y;
+
+    INFO_SCREEN (s);
+
+    if (!is->fadeTime && !is->drawing)
+	return;
+
+    x = is->resizeGeometry.x + is->resizeGeometry.width / 2.0f -
+	RESIZE_POPUP_WIDTH / 2.0f;
+    y = is->resizeGeometry.y + is->resizeGeometry.height / 2.0f - 
+	RESIZE_POPUP_HEIGHT / 2.0f;
+
+    reg.rects    = &reg.extents;
+    reg.numRects = 1;
+
+    reg.extents.x1 = x - 5;
+    reg.extents.y1 = y - 5;
+    reg.extents.x2 = x + RESIZE_POPUP_WIDTH + 5;
+    reg.extents.y2 = y + RESIZE_POPUP_HEIGHT + 5;
+
+    damageScreenRegion (s, &reg);
+}
+
 /*  Handle the fade in /fade out. */
 static void
 infoPreparePaintScreen (CompScreen *s,
@@ -329,7 +356,7 @@ infoPreparePaintScreen (CompScreen *s,
 	if (is->fadeTime < 0)
 	    is->fadeTime = 0;
     }
-	
+
     UNWRAP (is, s, preparePaintScreen);
     (*s->preparePaintScreen) (s, ms);
     WRAP (is, s, preparePaintScreen, infoPreparePaintScreen);
@@ -342,26 +369,8 @@ infoDonePaintScreen (CompScreen *s)
 
     if (is->pWindow)
     {
-	if (is->fadeTime || is->drawing)
-	{
-	    REGION reg;
-	    int    x, y;
-
-	    x = is->resizeGeometry.x + is->resizeGeometry.width / 2.0f -
-		RESIZE_POPUP_WIDTH / 2.0f;
-    	    y = is->resizeGeometry.y + is->resizeGeometry.height / 2.0f - 
-		RESIZE_POPUP_HEIGHT / 2.0f;
-
-	    reg.rects    = &reg.extents;
-	    reg.numRects = 1;
-
-	    reg.extents.x1 = x - 5;
-	    reg.extents.y1 = y - 5;
-	    reg.extents.x2 = x + RESIZE_POPUP_WIDTH + 5;
-	    reg.extents.y2 = y + RESIZE_POPUP_HEIGHT + 5;
-
-	    damageScreenRegion (s, &reg);
-	}
+	if (is->fadeTime)
+	    damagePaintRegion (s);
 	
 	if (!is->fadeTime && !is->drawing)
 	    is->pWindow = 0;
@@ -550,6 +559,7 @@ infoHandleEvent (CompDisplay *d,
 		    is->resizeGeometry.height = event->xclient.data.l[3];
 
 		    updateTextLayer (w->screen);
+		    damagePaintRegion (w->screen);
 		}
 	    }
 	}
