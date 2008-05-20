@@ -1273,6 +1273,7 @@ zoomUpdateCursor (CompScreen * s, CursorTexture * cursor)
     unsigned char *pixels;
     int           i;
     Display       *dpy = s->display->display;
+    ZOOM_SCREEN   (s);
 
     if (!cursor->isSet)
     {
@@ -1282,10 +1283,22 @@ zoomUpdateCursor (CompScreen * s, CursorTexture * cursor)
 	glEnable (GL_TEXTURE_RECTANGLE_ARB);
 	glGenTextures (1, &cursor->texture);
 	glBindTexture (GL_TEXTURE_RECTANGLE_ARB, cursor->texture);
-	glTexParameteri (GL_TEXTURE_RECTANGLE_ARB,
-			 GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri (GL_TEXTURE_RECTANGLE_ARB,
-			 GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	if (zs->opt[SOPT_FILTER_LINEAR].value.b &&
+	    s->display->textureFilter != GL_NEAREST)
+	{
+	    glTexParameteri (GL_TEXTURE_RECTANGLE_ARB,
+			     GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	    glTexParameteri (GL_TEXTURE_RECTANGLE_ARB,
+			     GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	}
+	else
+	{
+	    glTexParameteri (GL_TEXTURE_RECTANGLE_ARB,
+			     GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	    glTexParameteri (GL_TEXTURE_RECTANGLE_ARB,
+			     GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	}
 	glTexParameteri (GL_TEXTURE_RECTANGLE_ARB,
 			 GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri (GL_TEXTURE_RECTANGLE_ARB,
