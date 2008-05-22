@@ -1,5 +1,6 @@
 /*
  * Copyright © 2005 Novell, Inc.
+ * Copyright (C) 2007, 2008 Kristian Lyngstøl
  *
  * Permission to use, copy, modify, distribute, and sell this software
  * and its documentation for any purpose is hereby granted without
@@ -89,7 +90,8 @@
 #include <time.h>
 
 #include <compiz-core.h>
-
+#include <compiz-mousepoll.h>
+ 
 static CompMetadata zoomMetadata;
 
 static int displayPrivateIndex;
@@ -129,7 +131,6 @@ typedef enum _ZsOpt
     SOPT_ZOOM_FACTOR,
     SOPT_FILTER_LINEAR,
     SOPT_SYNC_MOUSE,
-    SOPT_POLL_INTERVAL,
     SOPT_FOCUS_DELAY,
     SOPT_PAN_FACTOR,
     SOPT_FOCUS_FIT_WINDOW,
@@ -175,6 +176,7 @@ typedef struct _ZoomDisplay {
     int fixesEventBase;
     int fixesErrorBase;
     Bool canHideCursor;
+    MousePollFunc *mpFunc;
     CompOption opt[DOPT_NUM];
 } ZoomDisplay;
 
@@ -213,6 +215,7 @@ typedef struct _ZoomScreen {
     PreparePaintScreenProc	 preparePaintScreen;
     DonePaintScreenProc		 donePaintScreen;
     PaintOutputProc		 paintOutput;
+    PositionPollingHandle pollHandle;
     CompOption opt[SOPT_NUM];
     CompTimeoutHandle mouseIntervalTimeoutHandle;
     ZoomArea *zooms;
@@ -229,9 +232,9 @@ typedef struct _ZoomScreen {
 /* These prototypes must be pre-defined since they cross-refference eachother
  * and thus makes it impossible to order them in a fashion that avoids this.
  */
-static void updateMousePosition (CompScreen *s);
+static void updateMousePosition (CompScreen *s, int x, int y);
 static void syncCenterToMouse (CompScreen *s);
-static Bool updateMouseInterval (void *vs);
+static void updateMouseInterval (CompScreen *s, int x, int y);
 static void cursorZoomActive (CompScreen *s);
 static void cursorZoomInactive (CompScreen *s);
 static void drawCursor (CompScreen *s, CompOutput *output, const CompTransform
@@ -763,11 +766,10 @@ setScale (CompScreen *s, int out, float x, float y)
 	value = 1.0f;
     else
     {
-	if (!zs->grabbed)
+	if (!zs->pollHandle)
 	{
-	    zs->mouseIntervalTimeoutHandle =
-		compAddTimeout (zs->opt[SOPT_POLL_INTERVAL].value.i,
-				updateMouseInterval, s);
+	    ZOOM_DISPLAY (s->display);
+	    zs->pollHandle = (*zd->mpFunc->addPositionPolling) (s, updateMouseInterval);
 	}
 	zs->grabbed |= (1 << zs->zooms[out].output);
 	cursorZoomActive (s);
@@ -1160,38 +1162,37 @@ fetchMousePosition (CompScreen *s)
  * This might have to be added to a timer.
  */
 static void
-updateMousePosition (CompScreen *s)
+updateMousePosition (CompScreen *s, int x, int y)
 {
     ZOOM_SCREEN(s);
-
-    if (fetchMousePosition (s))
-    {
-	int out = outputDeviceForPoint (s, zs->mouseX, zs->mouseY);
-	if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out))
-	    setCenter (s, zs->mouseX, zs->mouseY, TRUE);
-	cursorMoved (s);
-	damageScreen (s);
-    }
+    int out; 
+    zs->mouseX = x;
+    zs->mouseY = y;
+    out = outputDeviceForPoint (s, zs->mouseX, zs->mouseY);
+    if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out))
+	setCenter (s, zs->mouseX, zs->mouseY, TRUE);
+    cursorMoved (s);
+    damageScreen (s);
 }
 
 /* Timeout handler to poll the mouse. Returns false (and thereby does not get
  * re-added to the queue) when zoom is not active.
  */
-static Bool
-updateMouseInterval (void *vs)
+static void
+updateMouseInterval (CompScreen *s, int x, int y)
 {
-    CompScreen  *s = vs;
     ZOOM_SCREEN (s);
 
-    updateMousePosition(s);
+    updateMousePosition(s, x, y);
 
     if (!zs->grabbed)
     {
-	zs->mouseIntervalTimeoutHandle = FALSE;
+	ZOOM_DISPLAY (s->display);
+	if (zs->pollHandle)
+		(*zd->mpFunc->removePositionPolling) (s, zs->pollHandle);
+	zs->pollHandle = 0;
 	cursorMoved (s);
-	return FALSE;
     }
-    return TRUE;
 }
 
 /* Free a cursor
@@ -2066,7 +2067,6 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "zoom_factor", "float", "<min>1.01</min>", 0, 0 },
     { "filter_linear", "bool", 0, 0, 0 },
     { "sync_mouse", "bool", 0, 0, 0 },
-    { "mouse_poll_interval", "int", "<min>1</min>", 0, 0 },
     { "follow_focus_delay", "int", "<min>0</min>", 0, 0 },
     { "pan_factor", "float", "<min>0.001</min><default>0.1</default>", 0, 0 },
     { "focus_fit_window", "bool", "<default>false</default>", 0, 0 },
@@ -2140,9 +2140,16 @@ zoomInitDisplay (CompPlugin  *p,
 		 CompDisplay *d)
 {
     int         minor, major;
+    int		index;
     ZoomDisplay *zd;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
+    if (!checkPluginABI ("mousepoll", MOUSEPOLL_ABIVERSION))
+	return FALSE;
+
+    if (!getPluginDisplayIndex (d, "mousepoll", &index))
 	return FALSE;
 
     zd = malloc (sizeof (ZoomDisplay));
@@ -2158,6 +2165,7 @@ zoomInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
+    zd->mpFunc = d->base.privates[index].ptr;
     zd->screenPrivateIndex = allocateScreenPrivateIndex (d);
     if (zd->screenPrivateIndex < 0)
     {
@@ -2227,6 +2235,7 @@ zoomInitScreen (CompPlugin *p,
     zs->cursorInfoSelected = FALSE;
     zs->cursor.isSet = FALSE;
     zs->cursorHidden = FALSE;
+    zs->pollHandle = 0;
 
     WRAP (zs, s, preparePaintScreen, zoomPreparePaintScreen);
     WRAP (zs, s, donePaintScreen, zoomDonePaintScreen);
@@ -2240,6 +2249,7 @@ static void
 zoomFiniScreen (CompPlugin *p,
 		CompScreen *s)
 {
+    ZOOM_DISPLAY (s->display);
     ZOOM_SCREEN (s);
 
     if (zs->mouseIntervalTimeoutHandle)
@@ -2248,6 +2258,8 @@ zoomFiniScreen (CompPlugin *p,
     UNWRAP (zs, s, preparePaintScreen);
     UNWRAP (zs, s, donePaintScreen);
     UNWRAP (zs, s, paintOutput);
+    if (zs->pollHandle)
+	    (*zd->mpFunc->removePositionPolling) (s, zs->pollHandle);
 
     compFiniScreenOptions (s, zs->opt, SOPT_NUM);
     free (zs);
