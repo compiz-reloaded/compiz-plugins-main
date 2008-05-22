@@ -120,9 +120,13 @@ updatePosition (void *c)
 
     if (getMousePosition (s))
     {
-	for (mc = ms->clients; mc; mc = mc->next)
+	MousepollClient *next;
+	for (mc = ms->clients; mc; mc = next)
+	{
+	    next = mc->next;
 	    if (mc->update)
 		(*mc->update) (s, ms->posX, ms->posY);
+	}
     }
 
     return TRUE;
