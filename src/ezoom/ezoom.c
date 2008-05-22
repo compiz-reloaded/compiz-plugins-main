@@ -30,12 +30,12 @@
  * Description:
  *
  * This plugin offers basic zoom, and does not require input to be disabled
- * while zooming. Key features of the new version is a hopefully more generic
- * interface to the basic zoom features, allowing advanced control of the
- * plugin based on events such as focus changes, cursor movement, manual
- * panning and similar. This plugin has also been inspired by the inputzoom.c
- * plugin written for the Beryl project and copyrighted to Dennis Kasprzyk and
- * Quinn Storm.
+ * while zooming. Key features of the new version is a hopefully more
+ * generic interface to the basic zoom features, allowing advanced control
+ * of the plugin based on events such as focus changes, cursor movement,
+ * manual panning and similar. This plugin has also been inspired by the
+ * inputzoom.c plugin written for the Beryl project and copyrighted to
+ * Dennis Kasprzyk and Quinn Storm.
  *
  * Note on actual zoom process
  *
@@ -72,9 +72,9 @@
  * XFixes which tends to bug up (Loose the cursor entirely, even when
  * we aren't hiding it, happens on firefox-loading cursors for instance).
  * The second, and rather minor weakness is that the sensitivity is rather
- * ... crazy. If you zoom in so your 1024-wide screen is showing 102 pixels,
- * you only have to move the mouse 1/10th of the distance you normally would
- * to move it across the visible area.
+ * ... crazy. If you zoom in so your 1024-wide screen is showing 102
+ * pixels, you only have to move the mouse 1/10th of the distance you
+ * normally would to move it across the visible area.
  *
  * Todo:
  *  - Different multihead modes
@@ -179,11 +179,11 @@ typedef struct _ZoomDisplay {
     CompOption      opt[DOPT_NUM];
 } ZoomDisplay;
 
-/* Stores an actual zoom-setup. This can later be used to store/restore zoom
- * areas on the fly.
+/* Stores an actual zoom-setup. This can later be used to store/restore
+ * zoom areas on the fly.
  *
- * [xy]Translate and newZoom are target values, and [xy]Translate always ranges
- * from -0.5 to 0.5.
+ * [xy]Translate and newZoom are target values, and [xy]Translate always
+ * ranges from -0.5 to 0.5.
  *
  * currentZoom is actual zoomed value
  *
@@ -232,7 +232,6 @@ static void updateMouseInterval (CompScreen *s, int x, int y);
 static void cursorZoomActive (CompScreen *s);
 static void cursorZoomInactive (CompScreen *s);
 static void restrainCursor (CompScreen *s, int out);
-static Bool fetchMousePosition (CompScreen *s);
 
 static void drawCursor (CompScreen          *s, 
 			CompOutput          *output, 
@@ -273,8 +272,7 @@ dontuseScreengrabExist (CompScreen * s, char * grab)
     return FALSE;
 }
 
-/* Check if the output is valid
- */
+/* Check if the output is valid */
 static inline Bool
 outputIsZoomArea (CompScreen *s, int out)
 {
@@ -315,8 +313,7 @@ isZoomed (CompScreen *s, int out)
     return FALSE;
 }
 
-/* Returns the distance to the defined edge in zoomed pixels.
- */
+/* Returns the distance to the defined edge in zoomed pixels.  */
 static int
 distanceToEdge (CompScreen *s, int out, ZoomEdge edge)
 {
@@ -339,8 +336,7 @@ distanceToEdge (CompScreen *s, int out, ZoomEdge edge)
     return 0; // Never reached.
 }
 
-/* Update/set translations based on zoom level and real translate.
- */
+/* Update/set translations based on zoom level and real translate.  */
 static void
 updateActualTranslates (ZoomArea *za)
 {
@@ -372,8 +368,7 @@ isInMovement (CompScreen *s, int out)
     return FALSE;
 }
 
-/* Set the initial values of a zoom area.
- */
+/* Set the initial values of a zoom area.  */
 static void
 initialiseZoomArea (ZoomArea *za, int out)
 {
@@ -392,13 +387,12 @@ initialiseZoomArea (ZoomArea *za, int out)
     updateActualTranslates (za);
 }
 
-/* Adjust the velocity in the z-direction.
- */
+/* Adjust the velocity in the z-direction.  */
 static void
 adjustZoomVelocity (CompScreen *s, int out, float chunk)
 {
-    ZOOM_SCREEN (s);
     float d, adjust, amount;
+    ZOOM_SCREEN (s);
 
     d = (zs->zooms[out].newZoom - zs->zooms[out].currentZoom) * 75.0f;
 
@@ -424,8 +418,8 @@ adjustZoomVelocity (CompScreen *s, int out, float chunk)
     }
 }
 
-/* Adjust the X/Y velocity based on target translation and real translation.
- */
+/* Adjust the X/Y velocity based on target translation and real
+ * translation. */
 static void
 adjustXYVelocity (CompScreen *s, int out, float chunk)
 {
@@ -437,9 +431,11 @@ adjustXYVelocity (CompScreen *s, int out, float chunk)
     zs->zooms[out].xVelocity /= 1.25f;
     zs->zooms[out].yVelocity /= 1.25f;
     xdiff =
-	(zs->zooms[out].xTranslate - zs->zooms[out].realXTranslate) * 75.0f;
+	(zs->zooms[out].xTranslate - zs->zooms[out].realXTranslate) *
+	75.0f;
     ydiff =
-	(zs->zooms[out].yTranslate - zs->zooms[out].realYTranslate) * 75.0f;
+	(zs->zooms[out].yTranslate - zs->zooms[out].realYTranslate) *
+	75.0f;
     xadjust = xdiff * 0.002f;
     yadjust = ydiff * 0.002f;
     xamount = fabs (xdiff);
@@ -506,7 +502,8 @@ zoomPreparePaintScreen (CompScreen *s,
 		updateActualTranslates (&zs->zooms[out]);
 		if (!isZoomed (s, out))
 		{
-		    zs->zooms[out].xVelocity = zs->zooms[out].yVelocity = 0.0f;
+		    zs->zooms[out].xVelocity = zs->zooms[out].yVelocity =
+			0.0f;
 		    zs->grabbed &= ~(1 << zs->zooms[out].output);
 		}
 	    }
@@ -561,7 +558,7 @@ zoomPaintOutput (CompScreen		 *s,
     {
 	ScreenPaintAttrib sa = *sAttrib;
 	int		  saveFilter;
-	CompTransform zTransform = *transform;
+	CompTransform     zTransform = *transform;
 
 	mask &= ~PAINT_SCREEN_REGION_MASK;
 	mask |= PAINT_SCREEN_CLEAR_MASK;
@@ -603,8 +600,7 @@ zoomPaintOutput (CompScreen		 *s,
 
 /* Makes sure we're not attempting to translate too far.
  * We are restricted to 0.5 to not go beyond the end
- * of the screen/head.
- */
+ * of the screen/head.  */
 static inline void
 constrainZoomTranslate (CompScreen *s)
 {
@@ -628,8 +624,7 @@ constrainZoomTranslate (CompScreen *s)
 /* Functions for adjusting the zoomed area.
  * These are the core of the zoom plugin; Anything wanting
  * to adjust the zoomed area must use setCenter or setZoomArea
- * and setScale or frontends to them.
- */
+ * and setScale or frontends to them.  */
 
 /* Sets the center of the zoom area to X,Y.
  * We have to be able to warp the pointer here: If we are moved by
@@ -668,10 +663,8 @@ setCenter (CompScreen *s, int x, int y, Bool instant)
 	restrainCursor (s, out);
 }
 
-/*
- * Zooms the area described.
- * The math could probably be cleaned up, but should be correct now.
- */
+/* Zooms the area described.
+ * The math could probably be cleaned up, but should be correct now. */
 static void
 setZoomArea (CompScreen *s, int x, int y, int width, int height, Bool instant)
 {
@@ -706,8 +699,7 @@ setZoomArea (CompScreen *s, int x, int y, int width, int height, Bool instant)
 	restrainCursor (s, out);
 }
 
-/* Moves the zoom area to the window specified
- */
+/* Moves the zoom area to the window specified */
 static void
 zoomAreaToWindow (CompWindow *w)
 {
@@ -719,10 +711,8 @@ zoomAreaToWindow (CompWindow *w)
     setZoomArea (w->screen, left, top, width, height, FALSE);
 }
 
-/* Pans the zoomed area vertically/horisontaly by
- * value * zs->panFactor
- * TODO: Fix output.
- */
+/* Pans the zoomed area vertically/horisontaly by * value * zs->panFactor
+ * TODO: Fix output. */
 static void
 panZoom (CompScreen *s, int xvalue, int yvalue)
 {
@@ -742,11 +732,9 @@ panZoom (CompScreen *s, int xvalue, int yvalue)
     constrainZoomTranslate (s);
 }
 
-/* Sets the zoom (or scale) level. Takes two float's
- * as argument for legacy reasons mainly; it uses the
- * larger of the two, allowing us to easily scale to
- * fit an area. FIXME: This shouldn't happen here.
- */
+/* Sets the zoom (or scale) level. Takes two float's as argument for legacy
+ * reasons mainly; it uses the larger of the two, allowing us to easily
+ * scale to fit an area. FIXME: This shouldn't happen here. */
 static void
 setScale (CompScreen *s, int out, float x, float y)
 {
@@ -763,7 +751,8 @@ setScale (CompScreen *s, int out, float x, float y)
 	if (!zs->pollHandle)
 	{
 	    ZOOM_DISPLAY (s->display);
-	    zs->pollHandle = (*zd->mpFunc->addPositionPolling) (s, updateMouseInterval);
+	    zs->pollHandle = 
+		(*zd->mpFunc->addPositionPolling) (s, updateMouseInterval);
 	}
 	zs->grabbed |= (1 << zs->zooms[out].output);
 	cursorZoomActive (s);
@@ -782,9 +771,8 @@ setScale (CompScreen *s, int out, float x, float y)
 
 /* Mouse code...
  * This takes care of keeping the mouse in sync with the zoomed area and
- * vice versa. This is necesarry since we don't have input redirection (yet).
- * They are easily disabled. We can also use a scaled mouse cursor. See
- * heading for description.
+ * vice versa. 
+ * See heading for description.
  */
 
 /* Syncs the center, based on translations, back to the mouse.
@@ -819,10 +807,14 @@ syncCenterToMouse (CompScreen *s)
     }
 }
 
-/* Convert the point X,Y to where it would be when zoomed.
- */
+/* Convert the point X,Y to where it would be when zoomed.  */
 static void
-convertToZoomed (CompScreen *s, int out, int x, int y, int *resultX, int *resultY)
+convertToZoomed (CompScreen *s, 
+		 int        out, 
+		 int        x, 
+		 int        y, 
+		 int        *resultX, 
+		 int        *resultY)
 {
     CompOutput  *o = &s->outputDev[out];
     ZoomArea    *za; 
@@ -874,8 +866,7 @@ convertToZoomedTarget (CompScreen *s,
 /* Make sure the given point + margin is visible;
  * Translate to make it visible if necesarry.
  * Returns false if the point isn't on a actively zoomed head
- * or the area is locked.
- */
+ * or the area is locked. */
 static Bool
 ensureVisibility (CompScreen *s, int x, int y, int margin)
 {
@@ -917,10 +908,12 @@ ensureVisibility (CompScreen *s, int x, int y, int margin)
     return TRUE;
 }
 
-/* Attempt to ensure the visibility of an area defined
- * by x1/y1 and x2/y2. See ensureVisibility () for details.
- * This attempts to find the translations that leaves the biggest part of the
- * area visible. 
+/* Attempt to ensure the visibility of an area defined by x1/y1 and x2/y2.
+ * See ensureVisibility () for details.
+ *
+ * This attempts to find the translations that leaves the biggest part of
+ * the area visible. 
+ *
  * gravity defines what part of the window that should get
  * priority if it isn't possible to fit all of it.
  */
@@ -1034,9 +1027,9 @@ ensureVisibilityArea (CompScreen  *s,
 }
 
 /* Ensures that the cursor is visible on the given head.
- * Note that we check if currentZoom is 1.0f, because that
- * often means that mouseX and mouseY is not up-to-date (since
- * the polling timer just started).
+ * Note that we check if currentZoom is 1.0f, because that often means that
+ * mouseX and mouseY is not up-to-date (since the polling timer just
+ * started).
  */
 static void
 restrainCursor (CompScreen *s, int out)
@@ -1047,6 +1040,7 @@ restrainCursor (CompScreen *s, int out)
     float       z;
     CompOutput  *o = &s->outputDev[out];
     ZOOM_SCREEN (s);
+    ZOOM_DISPLAY (s->display);
 
     z = zs->zooms[out].newZoom;
     margin = zs->opt[SOPT_RESTRAIN_MARGIN].value.i;
@@ -1056,7 +1050,10 @@ restrainCursor (CompScreen *s, int out)
     west = distanceToEdge (s, out, WEST);
 
     if (zs->zooms[out].currentZoom == 1.0f)
-	fetchMousePosition (s);
+    {
+	zs->lastChange = time(NULL);
+	(*zd->mpFunc->getCurrentPosition) (s, &zs->mouseX, &zs->mouseY);
+    }
 
     convertToZoomedTarget (s, out, zs->mouseX - zs->cursor.hotX, 
 			   zs->mouseY - zs->cursor.hotY, &x1, &y1);
@@ -1120,37 +1117,6 @@ cursorMoved (CompScreen *s)
     }
 }
 
-/* Updates zs->mouse[XY], returns TRUE if it changed and
- * is within the bounds of the current screen.
- */
-static Bool
-fetchMousePosition (CompScreen *s)
-{
-    Window       root_return;
-    Window       child_return;
-    int          rootX, rootY;
-    int          winX, winY;
-    unsigned int maskReturn;
-    ZOOM_SCREEN  (s);
-
-    XQueryPointer (s->display->display, s->root,
-		   &root_return, &child_return,
-		   &rootX, &rootY, &winX, &winY, &maskReturn);
-
-    if (rootX > s->width || rootY > s->height || s->root != root_return)
-	return FALSE;
-
-    if ((rootX != zs->mouseX || rootY != zs->mouseY))
-    {
-	zs->lastChange = time(NULL);
-	zs->mouseX = rootX;
-	zs->mouseY = rootY;
-	return TRUE;
-    }
-    return FALSE;
-}
-
-
 /* Update the mouse position.
  * Based on the zoom engine in use, we will have to move the zoom area.
  * This might have to be added to a timer.
@@ -1163,6 +1129,7 @@ updateMousePosition (CompScreen *s, int x, int y)
     zs->mouseX = x;
     zs->mouseY = y;
     out = outputDeviceForPoint (s, zs->mouseX, zs->mouseY);
+    zs->lastChange = time(NULL);
     if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out))
 	setCenter (s, zs->mouseX, zs->mouseY, TRUE);
     cursorMoved (s);
