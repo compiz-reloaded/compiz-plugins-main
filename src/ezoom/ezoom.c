@@ -160,24 +160,25 @@ typedef enum {
 
 typedef struct _CursorTexture
 {
-    Bool isSet;
-    GLuint texture;
+    Bool       isSet;
+    GLuint     texture;
     CompScreen *screen;
-    int width;
-    int height;
-    int hotX;
-    int hotY;
+    int        width;
+    int        height;
+    int        hotX;
+    int        hotY;
 } CursorTexture;
 
 typedef struct _ZoomDisplay {
-    int		    screenPrivateIndex;
     HandleEventProc handleEvent;
-    Bool fixesSupported;
-    int fixesEventBase;
-    int fixesErrorBase;
-    Bool canHideCursor;
-    MousePollFunc *mpFunc;
-    CompOption opt[DOPT_NUM];
+    MousePollFunc   *mpFunc;
+
+    int		    screenPrivateIndex;
+    Bool            fixesSupported;
+    int             fixesEventBase;
+    int             fixesErrorBase;
+    Bool            canHideCursor;
+    CompOption      opt[DOPT_NUM];
 } ZoomDisplay;
 
 /* Stores an actual zoom-setup. This can later be used to store/restore zoom
@@ -195,58 +196,58 @@ typedef struct _ZoomDisplay {
  * viewport is a mask of the viewport, or ~0 for "any".
  */
 typedef struct _ZoomArea {
-    int output;
+    int               output;
     unsigned long int viewport;
-    GLfloat currentZoom;
-    GLfloat newZoom;
-    GLfloat xVelocity;
-    GLfloat yVelocity;
-    GLfloat zVelocity;
-    GLfloat xTranslate;
-    GLfloat yTranslate;
-    GLfloat realXTranslate;
-    GLfloat realYTranslate;
-    GLfloat xtrans;
-    GLfloat ytrans;
-    Bool locked;
+    GLfloat           currentZoom;
+    GLfloat           newZoom;
+    GLfloat           xVelocity;
+    GLfloat           yVelocity;
+    GLfloat           zVelocity;
+    GLfloat           xTranslate;
+    GLfloat           yTranslate;
+    GLfloat           realXTranslate;
+    GLfloat           realYTranslate;
+    GLfloat           xtrans;
+    GLfloat           ytrans;
+    Bool              locked;
 } ZoomArea;
 
 typedef struct _ZoomScreen {
-    PreparePaintScreenProc	 preparePaintScreen;
-    DonePaintScreenProc		 donePaintScreen;
-    PaintOutputProc		 paintOutput;
-    PositionPollingHandle pollHandle;
-    CompOption opt[SOPT_NUM];
-    CompTimeoutHandle mouseIntervalTimeoutHandle;
-    ZoomArea *zooms;
-    int nZooms;
-    int mouseX;
-    int mouseY;
-    unsigned long int grabbed;
-    time_t lastChange;
-    CursorTexture cursor;
-    Bool cursorInfoSelected;
-    Bool cursorHidden;
+    PreparePaintScreenProc preparePaintScreen;
+    DonePaintScreenProc	   donePaintScreen;
+    PaintOutputProc	   paintOutput;
+    PositionPollingHandle  pollHandle;
+    CompOption             opt[SOPT_NUM];
+    ZoomArea               *zooms;
+    int                    nZooms;
+    int                    mouseX;
+    int                    mouseY;
+    unsigned long int      grabbed;
+    time_t                 lastChange;
+    CursorTexture          cursor;
+    Bool                   cursorInfoSelected;
+    Bool                   cursorHidden;
 } ZoomScreen;
 
 /* These prototypes must be pre-defined since they cross-refference eachother
  * and thus makes it impossible to order them in a fashion that avoids this.
  */
-static void updateMousePosition (CompScreen *s, int x, int y);
 static void syncCenterToMouse (CompScreen *s);
 static void updateMouseInterval (CompScreen *s, int x, int y);
 static void cursorZoomActive (CompScreen *s);
 static void cursorZoomInactive (CompScreen *s);
-static void drawCursor (CompScreen *s, CompOutput *output, const CompTransform
-			*transform);
 static void restrainCursor (CompScreen *s, int out);
 static Bool fetchMousePosition (CompScreen *s);
+
+static void drawCursor (CompScreen          *s, 
+			CompOutput          *output, 
+			const CompTransform *transform);
 static void convertToZoomedTarget (CompScreen *s,
-				   int	  out,
-				   int	  x,
-				   int	  y,
-				   int	  *resultX,
-				   int	  *resultY);
+				   int	      out,
+				   int	      x,
+				   int	      y,
+				   int	      *resultX,
+				   int	      *resultY);
 
 #define GET_ZOOM_DISPLAY(d)				      \
     ((ZoomDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
@@ -2251,9 +2252,6 @@ zoomFiniScreen (CompPlugin *p,
 {
     ZOOM_DISPLAY (s->display);
     ZOOM_SCREEN (s);
-
-    if (zs->mouseIntervalTimeoutHandle)
-	compRemoveTimeout (zs->mouseIntervalTimeoutHandle);
 
     UNWRAP (zs, s, preparePaintScreen);
     UNWRAP (zs, s, donePaintScreen);
