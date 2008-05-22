@@ -40,29 +40,27 @@
  * Note on actual zoom process
  *
  * This plug-in has been refactored to use scaling instead of z-translation
- * for the actual zoom operation. This presented only minor diffs, but some
- * minor tasks are left to sort out as of this writing.
+ * for the actual zoom operation. 
  *
  * The animation is done in preparePaintScreen, while instant movements
  * are done by calling updateActualTranslate () after updating the
  * translations. This causes [xyz]trans to be re-calculated. We keep track
  * of each head separately; It does not make sense to zoom a window across
- * multiple heads in most (or all?) cases.
+ * multiple heads in most cases.
  *
  * Note on input
  *
  * We can not redirect input yet, but this plugin offers two fundamentally
  * different approaches to achieve input:
  *
- * Making sure the real mouse is always at the correct place. This is
- * the traditional way we did input zoom in Beryl. This also means that
- * whenever you move the mouse, we have to move the zoomed area, and that
- * if we are working on a window that's in the upper right corner, the
- * mouse has to be in the upper right corner too. This is probably the
- * techincally best solution, as it is fairly simple, but it has the obvious
- * weakness that mouse movement equals panning, so you can't keep a single
- * window fully visible and interact with it without parts of it going
- * off screen.
+ * Making sure the real mouse is always at the correct place. This also
+ * means that whenever you move the mouse, we have to move the zoomed
+ * area, and that if we are working on a window that's in the upper right
+ * corner, the mouse has to be in the upper right corner too. This is
+ * probably the techincally best solution, as it is fairly simple, but it
+ * has the obvious weakness that mouse movement equals panning, so you
+ * can't keep a single window fully visible and interact with it without
+ * parts of it going off screen.
  *
  * The second method involves hiding the real cursor and showing a "fake"
  * one. This involves using XFixes to first get hold of the actual cursor
@@ -229,9 +227,6 @@ typedef struct _ZoomScreen {
     Bool                   cursorHidden;
 } ZoomScreen;
 
-/* These prototypes must be pre-defined since they cross-refference eachother
- * and thus makes it impossible to order them in a fashion that avoids this.
- */
 static void syncCenterToMouse (CompScreen *s);
 static void updateMouseInterval (CompScreen *s, int x, int y);
 static void cursorZoomActive (CompScreen *s);
@@ -481,8 +476,7 @@ adjustXYVelocity (CompScreen *s, int out, float chunk)
 	(zs->zooms[out].yVelocity * chunk) / s->redrawTime;
 }
 
-/* Animate the movement (if any) in preperation of a paint screen.
- */
+/* Animate the movement (if any) in preperation of a paint screen.  */
 static void
 zoomPreparePaintScreen (CompScreen *s,
 			int	   msSinceLastPaint)
@@ -525,8 +519,7 @@ zoomPreparePaintScreen (CompScreen *s,
     WRAP (zs, s, preparePaintScreen, zoomPreparePaintScreen);
 }
 
-/* Damage screen if we're still moving.
- */
+/* Damage screen if we're still moving.  */
 static void
 zoomDonePaintScreen (CompScreen *s)
 {
@@ -1210,8 +1203,7 @@ freeCursor (CursorTexture * cursor)
     cursor->texture = 0;
 }
 
-/* Translate into place and draw the scaled cursor.
- */
+/* Translate into place and draw the scaled cursor.  */
 static void
 drawCursor (CompScreen *s, CompOutput *output, const CompTransform *transform)
 {
@@ -1351,8 +1343,7 @@ zoomUpdateCursor (CompScreen * s, CursorTexture * cursor)
     free (pixels);
 }
 
-/* We are no longer zooming the cursor, so display it.
- */
+/* We are no longer zooming the cursor, so display it.  */
 static void
 cursorZoomInactive (CompScreen *s)
 {
