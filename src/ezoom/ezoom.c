@@ -306,10 +306,14 @@ isZoomed (CompScreen *s, int out)
 
     if (!outputIsZoomArea (s, out))
 	return FALSE;
-    if (zs->zooms[out].currentZoom != 1.0f || zs->zooms[out].newZoom != 1.0f)
+
+    if (zs->zooms[out].currentZoom != 1.0f 
+	|| zs->zooms[out].newZoom != 1.0f)
 	return TRUE;
+
     if (zs->zooms[out].zVelocity != 0.0f)
 	return TRUE;
+
     return FALSE;
 }
 
@@ -581,7 +585,8 @@ zoomPaintOutput (CompScreen		 *s,
 	    s->filter[SCREEN_TRANS_FILTER] = COMP_TEXTURE_FILTER_FAST;
 
 	UNWRAP (zs, s, paintOutput);
-	status = (*s->paintOutput) (s, &sa, &zTransform, region, output, mask);
+	status =
+	    (*s->paintOutput) (s, &sa, &zTransform, region, output, mask);
 	WRAP (zs, s, paintOutput, zoomPaintOutput);
 	drawCursor (s, output, transform);
 
@@ -590,7 +595,11 @@ zoomPaintOutput (CompScreen		 *s,
     else
     {
 	UNWRAP (zs, s, paintOutput);
-	status = (*s->paintOutput) (s, sAttrib, transform, region, output,
+	status = (*s->paintOutput) (s,
+				    sAttrib, 
+				    transform, 
+				    region, 
+				    output,
 				    mask);
 	WRAP (zs, s, paintOutput, zoomPaintOutput);
     }
@@ -666,7 +675,12 @@ setCenter (CompScreen *s, int x, int y, Bool instant)
 /* Zooms the area described.
  * The math could probably be cleaned up, but should be correct now. */
 static void
-setZoomArea (CompScreen *s, int x, int y, int width, int height, Bool instant)
+setZoomArea (CompScreen *s, 
+	     int        x, 
+	     int        y, 
+	     int        width, 
+	     int        height, 
+	     Bool       instant)
 {
     int         out = outputDeviceForGeometry (s, x, y, width, height, 0);
     CompOutput  *o = &s->outputDev[out];
@@ -1057,10 +1071,11 @@ restrainCursor (CompScreen *s, int out)
 
     convertToZoomedTarget (s, out, zs->mouseX - zs->cursor.hotX, 
 			   zs->mouseY - zs->cursor.hotY, &x1, &y1);
-    convertToZoomedTarget (s, out, 
-			   zs->mouseX - zs->cursor.hotX + zs->cursor.width, 
-			   zs->mouseY - zs->cursor.hotY + zs->cursor.height,
-			   &x2, &y2);
+    convertToZoomedTarget 
+	(s, out, 
+	 zs->mouseX - zs->cursor.hotX + zs->cursor.width, 
+	 zs->mouseY - zs->cursor.hotY + zs->cursor.height,
+	 &x2, &y2);
 
     if (x2 > o->region.extents.x2 - margin && east > 0)
 	diffX = x2 - o->region.extents.x2 + margin;
@@ -1075,7 +1090,7 @@ restrainCursor (CompScreen *s, int out)
     if (abs(diffX)*z > 0  || abs(diffY)*z > 0)
 	warpPointer (s,
 		(int) (zs->mouseX - pointerX) -  (int) ((float)diffX * z),
-		(int) (zs->mouseY  - pointerY) -  (int) ((float)diffY * z));
+		(int) (zs->mouseY - pointerY) -  (int) ((float)diffY * z));
 }
 
 /* Check if the cursor is still visible.
@@ -1136,9 +1151,8 @@ updateMousePosition (CompScreen *s, int x, int y)
     damageScreen (s);
 }
 
-/* Timeout handler to poll the mouse. Returns false (and thereby does not get
- * re-added to the queue) when zoom is not active.
- */
+/* Timeout handler to poll the mouse. Returns false (and thereby does not
+ * get re-added to the queue) when zoom is not active. */
 static void
 updateMouseInterval (CompScreen *s, int x, int y)
 {
@@ -1156,8 +1170,7 @@ updateMouseInterval (CompScreen *s, int x, int y)
     }
 }
 
-/* Free a cursor
- */
+/* Free a cursor */
 static void
 freeCursor (CursorTexture * cursor)
 {
@@ -1172,7 +1185,9 @@ freeCursor (CursorTexture * cursor)
 
 /* Translate into place and draw the scaled cursor.  */
 static void
-drawCursor (CompScreen *s, CompOutput *output, const CompTransform *transform)
+drawCursor (CompScreen          *s, 
+	    CompOutput          *output, 
+	    const CompTransform *transform)
 {
     int         out = output->id;
     ZOOM_SCREEN (s);
@@ -1226,8 +1241,7 @@ drawCursor (CompScreen *s, CompOutput *output, const CompTransform *transform)
 }
 
 /* Create (if necessarry) a texture to store the cursor,
- * fetch the cursor with XFixes. Store it.
- */
+ * fetch the cursor with XFixes. Store it.  */
 static void
 zoomUpdateCursor (CompScreen * s, CursorTexture * cursor)
 {
@@ -1810,7 +1824,11 @@ zoomFitWindowToZoom (CompDisplay     *d,
 			zs->zooms[out].currentZoom -
 			(int) ((w->input.top + w->input.bottom)));
 
-    constrainNewWindowSize (w, xwc.width, xwc.height, &xwc.width, &xwc.height);
+    constrainNewWindowSize (w, 
+			    xwc.width, 
+			    xwc.height, 
+			    &xwc.width,
+			    &xwc.height);
 
     if (xwc.width == w->serverWidth)
 	mask &= ~CWWidth;
@@ -1959,8 +1977,7 @@ focusTrack (CompDisplay *d,
 }
 
 /* Event handler. Pass focus-related events on and handle
- * XFixes events.
- */
+ * XFixes events. */
 static void
 zoomHandleEvent (CompDisplay *d,
 		 XEvent      *event)
@@ -2133,8 +2150,11 @@ zoomInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    zd->fixesSupported = XFixesQueryExtension(d->display, &zd->fixesEventBase,
-			 &zd->fixesErrorBase);
+    zd->fixesSupported = 
+	XFixesQueryExtension(d->display, 
+			     &zd->fixesEventBase,
+			     &zd->fixesErrorBase);
+
     XFixesQueryVersion(d->display, &major, &minor);
     if (major >= 4)
 	zd->canHideCursor = TRUE;
