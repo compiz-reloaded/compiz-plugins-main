@@ -118,6 +118,7 @@ typedef enum _ZdOpt
     DOPT_ENSURE_VISIBILITY,
     DOPT_SET_ZOOM_AREA,
     DOPT_LOCK_ZOOM,
+    DOPT_ZOOM_BOX,
     DOPT_NUM
 } ZoomDisplayOptions;
 
@@ -221,10 +222,12 @@ typedef struct _ZoomScreen {
     int                    mouseX;
     int                    mouseY;
     unsigned long int      grabbed;
+    int	                   grabIndex;
     time_t                 lastChange;
     CursorTexture          cursor;
     Bool                   cursorInfoSelected;
     Bool                   cursorHidden;
+    Box			   box;
 } ZoomScreen;
 
 static void syncCenterToMouse (CompScreen *s);
@@ -242,6 +245,13 @@ static void convertToZoomedTarget (CompScreen *s,
 				   int	      y,
 				   int	      *resultX,
 				   int	      *resultY);
+static void
+convertToZoomed (CompScreen *s, 
+		 int        out, 
+		 int        x, 
+		 int        y, 
+		 int        *resultX, 
+		 int        *resultY);
 
 #define GET_ZOOM_DISPLAY(d)				      \
     ((ZoomDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
@@ -542,7 +552,44 @@ zoomDonePaintScreen (CompScreen *s)
     (*s->donePaintScreen) (s);
     WRAP (zs, s, donePaintScreen, zoomDonePaintScreen);
 }
+/* Draws a box from the screen coordinates inx1,iny1 to inx2,iny2 */
+static void
+drawBox (CompScreen          *s, 
+	 const CompTransform *transform, 
+	 CompOutput          *output,
+	 Box                 box)
+{
+    CompTransform zTransform = *transform;
+    int           x1,x2,y1,y2;
+    int		  inx1, inx2, iny1, iny2;
+    int	          out = output->id;
 
+    transformToScreenSpace (s, output, -DEFAULT_Z_CAMERA, &zTransform);
+    convertToZoomed (s, out, box.x1, box.y1, &inx1, &iny1);
+    convertToZoomed (s, out, box.x2, box.y2, &inx2, &iny2);
+    
+    x1 = MIN (inx1, inx2);
+    y1 = MIN (iny1, iny2);
+    x2 = MAX (inx1, inx2);
+    y2 = MAX (iny1, iny2);
+    glPushMatrix ();
+    glLoadMatrixf (zTransform.m);
+    glDisableClientState (GL_TEXTURE_COORD_ARRAY);
+    glEnable (GL_BLEND);
+    glColor4us (0x2fff, 0x2fff, 0x4fff, 0x4fff);
+    glRecti (x1,y2,x2,y1);
+    glColor4us (0x2fff, 0x2fff, 0x4fff, 0x9fff);
+    glBegin (GL_LINE_LOOP);
+    glVertex2i (x1, y1);
+    glVertex2i (x2, y1);
+    glVertex2i (x2, y2);
+    glVertex2i (x1, y2);
+    glEnd ();
+    glColor4usv (defaultColor);
+    glDisable (GL_BLEND);
+    glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+    glPopMatrix ();
+}
 /* Apply the zoom if we are grabbed.
  * Make sure to use the correct filter.
  */
@@ -557,6 +604,7 @@ zoomPaintOutput (CompScreen		 *s,
     Bool status;
     int	 out = output->id;
     ZOOM_SCREEN (s);
+    
 
     if (isActive (s, out))
     {
@@ -603,6 +651,8 @@ zoomPaintOutput (CompScreen		 *s,
 				    mask);
 	WRAP (zs, s, paintOutput, zoomPaintOutput);
     }
+    if (zs->grabIndex)
+	drawBox (s, transform, output, zs->box);
 
     return status;
 }
@@ -691,7 +741,6 @@ setZoomArea (CompScreen *s,
 
     if (zs->zooms[out].locked)
 	return;
-
     zs->zooms[out].xTranslate =
 	 (float) -((o->width/2) - (x + (width/2) - o->region.extents.x1))
 	/ (o->width);
@@ -1503,6 +1552,76 @@ ensureVisibilityAction (CompDisplay     *d,
     return TRUE;
 }
 
+static Bool
+zoomBoxActivate (CompDisplay     *d,
+		 CompAction      *action,
+		 CompActionState state,
+		 CompOption      *option,
+		 int		 nOption)
+{
+    CompScreen *s;
+    int        xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s = findScreenAtDisplay (d, xid);
+
+    if (s)
+    {
+	ZOOM_SCREEN (s);
+	zs->grabIndex = pushScreenGrab (s, None, "ezoom");
+	zs->box.x1 = pointerX;
+	zs->box.y1 = pointerY;
+	zs->box.x2 = pointerX;
+	zs->box.y2 = pointerY;
+	if (state & CompActionStateInitButton)
+	    action->state |= CompActionStateTermButton;
+    return TRUE;
+    }
+    return FALSE;
+}
+
+static Bool
+zoomBoxDeactivate (CompDisplay     *d,
+		   CompAction      *action,
+		   CompActionState state,
+		   CompOption      *option,
+		   int	           nOption)
+{
+    CompScreen *s;
+    int        xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+
+    for (s = d->screens; s; s = s->next)
+    {
+	int x, y, width, height;
+	ZOOM_SCREEN (s);
+
+	if (zs->grabIndex)
+	{
+	    int        out;
+	    CompOutput *o;
+
+	    removeScreenGrab (s, zs->grabIndex, NULL);
+	    zs->grabIndex = 0;
+
+	    zs->box.x2 = pointerX;
+	    zs->box.y2 = pointerY;
+	    
+	    x = MIN (zs->box.x1, zs->box.x2);
+	    y = MIN (zs->box.y1, zs->box.y2);
+	    width = MAX (zs->box.x1, zs->box.x2) - x;
+	    height = MAX (zs->box.y1, zs->box.y2) - y;
+
+	    out = outputDeviceForPoint (s, pointerX, pointerY);
+	    o = &s->outputDev[out];
+	    setScale (s, out, (float) width/o->width, (float)  height/o->height);
+	    setZoomArea (s, x,y,width,height,FALSE);
+	}
+    }
+    return FALSE;
+}
+
 /* Zoom in to the area pointed to by the mouse.
  */
 static Bool
@@ -1983,9 +2102,24 @@ zoomHandleEvent (CompDisplay *d,
 		 XEvent      *event)
 {
     CompScreen *s;
+    XMotionEvent *mev;
     ZOOM_DISPLAY(d);
 
     switch (event->type) {
+	case MotionNotify:
+	    mev =  (XMotionEvent *) event;
+	    s = findScreenAtDisplay (d, mev->root);
+	    if (s)
+	    {
+		ZOOM_SCREEN (s);
+		if (zs->grabIndex)
+		{
+		    zs->box.x2 = pointerX;
+		    zs->box.y2 = pointerY;
+		    damageScreen(s);
+		}
+	    }
+	    break;
 	case FocusIn:
 	case MapNotify:
 	    focusTrack (d, event);
@@ -2034,6 +2168,7 @@ static const CompMetadataOptionInfo zoomDisplayOptionInfo[] = {
     { "ensure_visibility", "action", 0, ensureVisibilityAction, 0}, 
     { "set_zoom_area", "action", 0, setZoomAreaAction, 0}, 
     { "lock_zoom", "key", 0, lockZoomAction, 0},
+    { "zoom_box", "button", 0, zoomBoxActivate, zoomBoxDeactivate},
 };
 
 static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
@@ -2199,6 +2334,7 @@ zoomInitScreen (CompPlugin *p,
 	return FALSE;
     }
  
+    zs->grabIndex = 0;
     zs->nZooms = s->nOutputDev;
     zs->zooms = malloc (sizeof (ZoomArea) * zs->nZooms);
     for (i = 0; i < zs->nZooms; i ++ )
