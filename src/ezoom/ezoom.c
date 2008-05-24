@@ -2098,8 +2098,7 @@ focusTrack (CompDisplay *d,
     zoomAreaToWindow (w);
 }
 
-/* Event handler. Pass focus-related events on and handle
- * XFixes events. */
+/* Event handler. Pass focus-related events on and handle XFixes events. */
 static void
 zoomHandleEvent (CompDisplay *d,
 		 XEvent      *event)
