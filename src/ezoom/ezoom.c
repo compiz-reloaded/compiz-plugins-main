@@ -29,52 +29,40 @@
  *
  * Description:
  *
- * This plugin offers basic zoom, and does not require input to be disabled
- * while zooming. Key features of the new version is a hopefully more
- * generic interface to the basic zoom features, allowing advanced control
- * of the plugin based on events such as focus changes, cursor movement,
- * manual panning and similar. This plugin has also been inspired by the
- * inputzoom.c plugin written for the Beryl project and copyrighted to
- * Dennis Kasprzyk and Quinn Storm.
+ * This plugin offers zoom functionality with focus tracking,
+ * fit-to-window actions, mouse panning, zoom area locking. Without
+ * disabeling input.
  *
  * Note on actual zoom process
- *
- * This plug-in has been refactored to use scaling instead of z-translation
- * for the actual zoom operation. 
  *
  * The animation is done in preparePaintScreen, while instant movements
  * are done by calling updateActualTranslate () after updating the
  * translations. This causes [xyz]trans to be re-calculated. We keep track
- * of each head separately; It does not make sense to zoom a window across
- * multiple heads in most cases.
+ * of each head separately.
  *
  * Note on input
  *
  * We can not redirect input yet, but this plugin offers two fundamentally
- * different approaches to achieve input:
+ * different approaches to achieve input enabled zoom:
  *
- * Making sure the real mouse is always at the correct place. This also
- * means that whenever you move the mouse, we have to move the zoomed
- * area, and that if we are working on a window that's in the upper right
- * corner, the mouse has to be in the upper right corner too. This is
- * probably the techincally best solution, as it is fairly simple, but it
- * has the obvious weakness that mouse movement equals panning, so you
- * can't keep a single window fully visible and interact with it without
- * parts of it going off screen.
+ * 1.
+ * Always have the zoomed area be in sync with the mouse cursor. This binds
+ * the zoom area to the mouse position at any given time. It allows using
+ * the original mouse cursor drawn by X, and is techincally very safe.
+ * First used in Beryl's inputzoom.
  *
- * The second method involves hiding the real cursor and showing a "fake"
- * one. This involves using XFixes to first get hold of the actual cursor
- * (ie: normal pointer, resize-pointer, grab-pointer, etc) and XFixes to
- * hide the original. We then convert the real mouse coordinates to their
- * corresponding values zoomed, and draw the cursor. This gives a splendid
- * effect and is fairly close to what we will be able to do with input
- * redirection, but has a few weaknesses, the biggest being use of
- * XFixes which tends to bug up (Loose the cursor entirely, even when
- * we aren't hiding it, happens on firefox-loading cursors for instance).
- * The second, and rather minor weakness is that the sensitivity is rather
- * ... crazy. If you zoom in so your 1024-wide screen is showing 102
- * pixels, you only have to move the mouse 1/10th of the distance you
- * normally would to move it across the visible area.
+ * 2.
+ * Hide the real cursor and draw our own where it would be when zoomed in.
+ * This allows us to navigate with the mouse without constantly moving the
+ * zoom area. This is fairly close to what we want in the end when input
+ * redirection is available.
+ *
+ * This second method has one huge issue, which is bugged XFixes. After
+ * hiding the cursor once with XFixes, some mouse cursors will simply be
+ * invisible. The firefox loading cursor being one of them. 
+ *
+ * An other minor annoynance is that mouse sensitivity seems to increase as
+ * you zoom in, since the mouse isn't really zoomed at all.
  *
  * Todo:
  *  - Different multihead modes
@@ -222,7 +210,7 @@ typedef struct _ZoomScreen {
     int                    mouseX;
     int                    mouseY;
     unsigned long int      grabbed;
-    int	                   grabIndex;
+    int	                   grabIndex; // for zoomBox
     time_t                 lastChange;
     CursorTexture          cursor;
     Bool                   cursorInfoSelected;
@@ -268,7 +256,7 @@ convertToZoomed (CompScreen *s,
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
 /* Checks if a specific screen grab exist. DO NOT USE THIS.
- * This is a temporary fix that WILL be removed asap.
+ * This is a temporary fix that SHOULD be removed asap.
  * See comments in drawCursor.
  */
 
