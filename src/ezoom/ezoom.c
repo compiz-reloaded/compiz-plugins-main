@@ -1126,6 +1126,9 @@ restrainCursor (CompScreen *s, int out)
 	 zs->mouseY - zs->cursor.hotY + zs->cursor.height,
 	 &x2, &y2);
 
+    if ((x2 - x1 > o->region.extents.x2 - o->region.extents.x1) ||
+       (y2 - y1 > o->region.extents.y2 - o->region.extents.y1))
+	return;
     if (x2 > o->region.extents.x2 - margin && east > 0)
 	diffX = x2 - o->region.extents.x2 + margin;
     else if (x1 < o->region.extents.x1 + margin && west > 0)
