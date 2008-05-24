@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fusion-plugins 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:52+0530\n"
+"POT-Creation-Date: 2008-05-24 22:15+0530\n"
 "PO-Revision-Date: 2008-03-16 19:01+0100\n"
 "Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <ketil.w.aanensen@gmail.com>\n"
@@ -111,6 +111,12 @@ msgstr "Skarphet"
 
 msgid "Brightness of faded windows"
 msgstr "Skarphet for uttonede vinduer"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1046,6 +1052,9 @@ msgstr "Kommandolinje for vindushåndterer"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Kommandolinje for vindushåndterer. IKKE SKRIV COMPIZ HER!"
 
+msgid "Above"
+msgstr "Over"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Juster bunnbilde til rotasjon"
 
@@ -1066,6 +1075,19 @@ msgstr "Gå videre til neste toppbilde for kuben"
 
 msgid "Appearance"
 msgstr "Utseende"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Størrelsesforhold"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Autoforstørr/forminsk"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Autoforstørr/forminsk kun ved muserotering"
 
 msgid "Behaviour"
 msgstr "Oppførsel"
@@ -1102,17 +1124,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Farge på bunnen av kuben"
 
+msgid "Color of the ground (far)."
+msgstr "Farge på bakken (langt unna)."
+
+msgid "Color of the ground (near)."
+msgstr "Farge på bakken (nært)."
+
 msgid "Color of top face of the cube"
 msgstr "Farge på toppen av kuben"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz' kuberefleksjon"
 
 msgid "Cube Bottom Color"
 msgstr "Kubens bunnfarge"
 
-msgid "Cube Caps"
-msgstr "Kubeluer"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Speiling for deokrasjoner"
 
 msgid "Cube Top Color"
 msgstr "Kubens toppfarge"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Kubeluer"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Rens"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Deformering"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Autoforstørr/forminsk kun ved muserotering"
+
+msgid "Deformation"
+msgstr "Deformering"
+
+#, fuzzy
+msgid "Deformation in unfold cube mode."
+msgstr "Deformeringens styrke i kurvemodus"
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Deformering"
+
+msgid "Distance"
+msgstr "Avstand"
 
 msgid "Draw bottom face"
 msgstr "Tegn bunn"
@@ -1126,11 +1192,37 @@ msgstr "Tegn topp"
 msgid "Draw top face of the cube"
 msgstr "Tegn toppen på kuben"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Bruk"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Compiz' kuberefleksjon"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Gå tilbake til forrige bilde for bunnen av kuben"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Gå tilbake til forrige bilde for toppen av kuben"
+
+msgid "Ground color(far)"
+msgstr "Bakkefarge (langt unna)"
+
+msgid "Ground color(near)"
+msgstr "Bakkfarge (nært)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intensitet"
+
+msgid "Jumpy"
+msgstr "Hoppende"
+
+msgid "Jumpy reflection"
+msgstr "Hoppende refleksjon"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1138,6 +1230,22 @@ msgstr "Liste med PNG- og SVG-filer som skal gjengis på bunnen av kuben"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "Liste med PNG- og SVG-filer som skal gjengis på toppen av kuben"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Størrelsesforhold for ekspo-modus"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Juster bunnbilde til rotasjon"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Størrelsesforhold for ekspo-modus"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Juster toppbilde til rotasjon"
 
 msgid "Next bottom image"
 msgstr "Neste bunnbilde"
@@ -1151,62 +1259,8 @@ msgstr "Forrige bunnbilde"
 msgid "Prev top image"
 msgstr "Forrige toppbilde"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Gjengi bilder på toppen og bunnen av kuben"
-
-msgid "Scale bottom image"
-msgstr "Skaler bunnbilde"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Skaler bilde til å dekke bunnen av kuben"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Skaler bilde til å dekke toppen av kuben"
-
-msgid "Scale top image"
-msgstr "Skaler toppbilde"
-
-msgid "Top image files"
-msgstr "Toppbildefiler"
-
-msgid "Above"
-msgstr "Over"
-
-msgid "Auto zoom"
-msgstr "Autoforstørr/forminsk"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Autoforstørr/forminsk kun ved muserotering"
-
-msgid "Color of the ground (far)."
-msgstr "Farge på bakken (langt unna)."
-
-msgid "Color of the ground (near)."
-msgstr "Farge på bakken (nært)."
-
-msgid "Compiz cube reflection"
-msgstr "Compiz' kuberefleksjon"
-
-msgid "Cube Reflection"
-msgstr "Kuberefleksjon"
-
-msgid "Distance"
-msgstr "Avstand"
-
-msgid "Ground color(far)"
-msgstr "Bakkefarge (langt unna)"
-
-msgid "Ground color(near)"
-msgstr "Bakkfarge (nært)"
-
-msgid "Intensity"
-msgstr "Intensitet"
-
-msgid "Jumpy"
-msgstr "Hoppende"
-
-msgid "Jumpy reflection"
-msgstr "Hoppende refleksjon"
+msgid "Reflection"
+msgstr "Speiling"
 
 msgid "Reflection ground size"
 msgstr "Refleksjonens størrelse"
@@ -1222,6 +1276,28 @@ msgstr "Refleksjonsmodus"
 
 msgid "Reflection mode."
 msgstr "Refleksjonsmodus."
+
+msgid "Scale bottom image"
+msgstr "Skaler bunnbilde"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Skaler bilde til å dekke bunnen av kuben"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Skaler bilde til å dekke toppen av kuben"
+
+msgid "Scale top image"
+msgstr "Skaler toppbilde"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Hastighet"
+
+msgid "Top image files"
+msgstr "Toppbildefiler"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Forminsk automatisk kun ved muserotering."
@@ -1249,9 +1325,6 @@ msgstr "Kurve"
 
 msgid "Curve strength"
 msgstr "Kurvestyrke"
-
-msgid "Deformation"
-msgstr "Deformering"
 
 msgid "Deformation of the expo wall"
 msgstr "Deformering av ekspo-veggen"
@@ -1342,9 +1415,6 @@ msgstr "En vegg pr skjerm"
 
 msgid "Previous viewport"
 msgstr "Forrige arbeidsområde"
-
-msgid "Reflection"
-msgstr "Speiling"
 
 msgid "Reflection Scale"
 msgstr "Speilstørrelse"
@@ -1515,18 +1585,8 @@ msgstr "Skjul original musepeker"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "Skjuler den originale musepekeren når forstørret og musen skalert"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"HVor ofte skal museposisjonen prøves, i millisekunder. Reduser dette for å "
-"minske hakkete oppførsel."
-
 msgid "Mouse Behaviour"
 msgstr "Oppførsel for mus"
-
-msgid "Mouse Poll Interval"
-msgstr "Intervall for museprøving"
 
 msgid "Mouse Restrain Margin"
 msgstr "Tilbakeholdingsmargin for mus"
@@ -1641,6 +1701,10 @@ msgstr "Bruk lineært filter når forstørret"
 msgid "Zoom Area Movement"
 msgstr "Bevegelse for forstørrelsesområde"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Forstørr/forminsk"
+
 msgid "Zoom In"
 msgstr "Forstørr"
 
@@ -1667,6 +1731,9 @@ msgstr "Tidsskritt for forstørrelse"
 
 msgid "Zoom factor"
 msgstr "Forstørrelsesfaktor"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2458,8 +2525,18 @@ msgstr "Tillegget som hendelsen tilhører."
 msgid "Start gesture"
 msgstr "Start gest"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"HVor ofte skal museposisjonen prøves, i millisekunder. Reduser dette for å "
+"minske hakkete oppførsel."
+
 msgid "Misc"
 msgstr "Div"
+
+msgid "Mouse Poll Interval"
+msgstr "Intervall for museprøving"
 
 msgid "Mouse position polling"
 msgstr "Prøving av museposisjon"
@@ -3187,8 +3264,13 @@ msgstr "Alle vinduer"
 msgid "Background color of the window title"
 msgstr "Bakgrunnsfarge på vindustittelen"
 
-msgid "Close Windows In Scale"
-msgstr "Lukk vinduer i Skaler"
+#, fuzzy
+msgid "Close Window"
+msgstr "Flislegg vinduer"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Lukk vinduer mens modus er Skaler"
 
 msgid "Close windows while in scale mode"
 msgstr "Lukk vinduer mens modus er Skaler"
@@ -3196,8 +3278,17 @@ msgstr "Lukk vinduer mens modus er Skaler"
 msgid "Color used for highlighting the hovered window"
 msgstr "Farge brukt for å fremheve det svevende vinduet"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Tegn vindusfremheving"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Skriftfarge på vindustittelen"
@@ -3214,6 +3305,11 @@ msgstr "Kun valgt vindu"
 msgid "Highlights the hovered window with the given color"
 msgstr "Fremhever det svevende vinduet med den gitte fargen"
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr "Gjør vinduer lett synlige ved å sveve musen over dem"
+
 msgid "No display"
 msgstr "Ingen visning"
 
@@ -3222,6 +3318,14 @@ msgstr "Normal"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organisk - EKSPERIMENTELT"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Plasser vindu"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Lukk vinduer mens modus er Skaler"
 
 msgid "Scale Addons"
 msgstr "Skaler-tillegg"
@@ -3247,6 +3351,10 @@ msgstr "Fremhev vindu"
 msgid "Window Layout Mode"
 msgstr "Modus for vindusutforming"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Vindusregler"
+
 msgid "Window Title"
 msgstr "Vindustittel"
 
@@ -3256,10 +3364,12 @@ msgstr "Vindustittelvisning"
 msgid "Window title display in scale mode"
 msgstr "Vindustittelvisning i Skaler-modus"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Forstørr vinduer i Skaler"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Forstørr vinduer i Skaler-modus"
 
 msgid "Filter Case Insensitive"
@@ -4835,6 +4945,15 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 
 msgid "Workarounds"
 msgstr "Omveier"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Gjengi bilder på toppen og bunnen av kuben"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Kuberefleksjon"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Lukk vinduer i Skaler"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Animasjonshastighet"

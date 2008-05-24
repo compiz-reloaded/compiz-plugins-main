@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:53+0530\n"
+"POT-Creation-Date: 2008-05-24 22:16+0530\n"
 "PO-Revision-Date: 2008-02-22 04:46+0100\n"
 "Last-Translator: Gao Dexiang <biaji.cn@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -116,6 +116,12 @@ msgstr "亮度"
 
 msgid "Brightness of faded windows"
 msgstr "淡出窗口的亮度"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1028,6 +1034,9 @@ msgstr "窗口管理器命令行"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "窗口管理器命令行。（切勿填入 COMPIZ !!）"
 
+msgid "Above"
+msgstr "之上"
+
 msgid "Adjust bottom face image to rotation"
 msgstr ""
 
@@ -1048,6 +1057,18 @@ msgstr ""
 
 msgid "Appearance"
 msgstr "外观"
+
+msgid "Aspect ratio"
+msgstr ""
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "自动缩放"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "仅仅在鼠标转面时自动缩放"
 
 msgid "Behaviour"
 msgstr "行为"
@@ -1077,19 +1098,62 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr ""
 
+msgid "Color of the ground (far)."
+msgstr "基底远景色"
+
+msgid "Color of the ground (near)."
+msgstr "基底近景色"
+
 msgid "Color of top face of the cube"
 msgstr ""
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz 立方体映影"
 
 #, fuzzy
 msgid "Cube Bottom Color"
 msgstr "标签边框颜色"
 
-msgid "Cube Caps"
-msgstr ""
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "装饰映影"
 
 #, fuzzy
 msgid "Cube Top Color"
 msgstr "标签边框颜色"
+
+msgid "Cube caps"
+msgstr ""
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "清除"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "持续时间"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "仅仅在鼠标转面时自动缩放"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "持续时间"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "持续时间"
+
+msgid "Distance"
+msgstr "距离"
 
 msgid "Draw bottom face"
 msgstr ""
@@ -1103,17 +1167,55 @@ msgstr ""
 msgid "Draw top face of the cube"
 msgstr ""
 
+#, fuzzy
+msgid "Enabled"
+msgstr "启用"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Compiz 立方体映影"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr ""
 
 msgid "Go back to previous image for top face of the cube"
 msgstr ""
 
+msgid "Ground color(far)"
+msgstr "基底远景色"
+
+msgid "Ground color(near)"
+msgstr "基底近景色"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "密度"
+
+msgid "Jumpy"
+msgstr "跳动"
+
+msgid "Jumpy reflection"
+msgstr "跳动映影"
+
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
 msgstr ""
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
+msgstr ""
+
+msgid "Maintain bottom aspect ratio"
+msgstr ""
+
+msgid "Maintain bottom cap image aspect ratio."
+msgstr ""
+
+msgid "Maintain top aspect ratio"
+msgstr ""
+
+msgid "Maintain top cap image aspect ratio."
 msgstr ""
 
 msgid "Next bottom image"
@@ -1129,63 +1231,8 @@ msgstr "圆滑右底角"
 msgid "Prev top image"
 msgstr ""
 
-msgid "Render images on top and bottom of the cube"
-msgstr ""
-
-msgid "Scale bottom image"
-msgstr ""
-
-msgid "Scale image to cover bottom face of cube"
-msgstr ""
-
-msgid "Scale image to cover top face of cube"
-msgstr ""
-
-msgid "Scale top image"
-msgstr ""
-
-#, fuzzy
-msgid "Top image files"
-msgstr "Logo 图像文件。"
-
-msgid "Above"
-msgstr "之上"
-
-msgid "Auto zoom"
-msgstr "自动缩放"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "仅仅在鼠标转面时自动缩放"
-
-msgid "Color of the ground (far)."
-msgstr "基底远景色"
-
-msgid "Color of the ground (near)."
-msgstr "基底近景色"
-
-msgid "Compiz cube reflection"
-msgstr "Compiz 立方体映影"
-
-msgid "Cube Reflection"
-msgstr "立方体倒映"
-
-msgid "Distance"
-msgstr "距离"
-
-msgid "Ground color(far)"
-msgstr "基底远景色"
-
-msgid "Ground color(near)"
-msgstr "基底近景色"
-
-msgid "Intensity"
-msgstr "密度"
-
-msgid "Jumpy"
-msgstr "跳动"
-
-msgid "Jumpy reflection"
-msgstr "跳动映影"
+msgid "Reflection"
+msgstr "映影"
 
 msgid "Reflection ground size"
 msgstr "映影基底大小"
@@ -1201,6 +1248,29 @@ msgstr "映影模式"
 
 msgid "Reflection mode."
 msgstr "映影模式。"
+
+msgid "Scale bottom image"
+msgstr ""
+
+msgid "Scale image to cover bottom face of cube"
+msgstr ""
+
+msgid "Scale image to cover top face of cube"
+msgstr ""
+
+msgid "Scale top image"
+msgstr ""
+
+#, fuzzy
+msgid "Sphere"
+msgstr "速度"
+
+#, fuzzy
+msgid "Top image files"
+msgstr "Logo 图像文件。"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "仅在鼠标转面时自动缩小。"
@@ -1231,10 +1301,6 @@ msgstr "之上"
 #, fuzzy
 msgid "Curve strength"
 msgstr "动态模糊强度。"
-
-#, fuzzy
-msgid "Deformation"
-msgstr "持续时间"
 
 msgid "Deformation of the expo wall"
 msgstr ""
@@ -1329,9 +1395,6 @@ msgstr ""
 
 msgid "Previous viewport"
 msgstr ""
-
-msgid "Reflection"
-msgstr "映影"
 
 #, fuzzy
 msgid "Reflection Scale"
@@ -1493,17 +1556,9 @@ msgstr ""
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-
 #, fuzzy
 msgid "Mouse Behaviour"
 msgstr "行为"
-
-msgid "Mouse Poll Interval"
-msgstr ""
 
 msgid "Mouse Restrain Margin"
 msgstr ""
@@ -1610,6 +1665,10 @@ msgid "Zoom Area Movement"
 msgstr ""
 
 #, fuzzy
+msgid "Zoom Box"
+msgstr "缩放特效"
+
+#, fuzzy
 msgid "Zoom In"
 msgstr "缩放"
 
@@ -1639,6 +1698,9 @@ msgid "Zoom Timestep"
 msgstr "步长"
 
 msgid "Zoom factor"
+msgstr ""
+
+msgid "Zoom in on a boxed area"
 msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
@@ -2416,7 +2478,15 @@ msgstr ""
 msgid "Start gesture"
 msgstr ""
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
 msgid "Misc"
+msgstr ""
+
+msgid "Mouse Poll Interval"
 msgstr ""
 
 msgid "Mouse position polling"
@@ -3187,8 +3257,12 @@ msgid "Background color of the window title"
 msgstr "标签栏中窗口标题颜色"
 
 #, fuzzy
-msgid "Close Windows In Scale"
-msgstr "纵向排列窗口"
+msgid "Close Window"
+msgstr "排列窗口"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "立方体转面时浮起的窗口"
 
 #, fuzzy
 msgid "Close windows while in scale mode"
@@ -3197,9 +3271,18 @@ msgstr "立方体转面时浮起的窗口"
 msgid "Color used for highlighting the hovered window"
 msgstr ""
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 #, fuzzy
 msgid "Draw Window Highlight"
 msgstr "绘制窗口背面"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 #, fuzzy
 msgid "Font color of the window title"
@@ -3219,6 +3302,10 @@ msgstr "窗口排列"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+
 #, fuzzy
 msgid "No display"
 msgstr "窗口标题字体"
@@ -3229,6 +3316,14 @@ msgstr ""
 #, fuzzy
 msgid "Organic - EXPERIMENTAL"
 msgstr "窗口合并(实验性)"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "窗口排列"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "立方体转面时浮起的窗口"
 
 msgid "Scale Addons"
 msgstr ""
@@ -3258,6 +3353,10 @@ msgid "Window Layout Mode"
 msgstr "窗口部件大小"
 
 #, fuzzy
+msgid "Window Pull"
+msgstr "窗口规则"
+
+#, fuzzy
 msgid "Window Title"
 msgstr "窗口标题字体"
 
@@ -3270,11 +3369,12 @@ msgid "Window title display in scale mode"
 msgstr "窗口标题字体"
 
 #, fuzzy
-msgid "Zoom Windows In Scale"
+msgid "Zoom Window"
 msgstr "窗口间隔"
 
-msgid "Zoom windows while in scale mode"
-msgstr ""
+#, fuzzy
+msgid "Zoom window while in scale mode"
+msgstr "立方体转面时浮起的窗口"
 
 msgid "Filter Case Insensitive"
 msgstr ""
@@ -4918,6 +5018,13 @@ msgstr "需要淡出到桌面的窗口"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Cube Reflection"
+#~ msgstr "立方体倒映"
+
+#, fuzzy
+#~ msgid "Close Windows In Scale"
+#~ msgstr "纵向排列窗口"
 
 #~ msgid "Animation Speed"
 #~ msgstr "动画速度"

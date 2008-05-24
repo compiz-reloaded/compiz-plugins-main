@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Compiz-Fusion i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:51+0530\n"
+"POT-Creation-Date: 2008-05-24 22:13+0530\n"
 "PO-Revision-Date: 2008-03-12 06:43+0100\n"
 "Last-Translator: Ali Tarihi <ali.tarihi@gmail.com>\n"
 "Language-Team: l10n.ir\n"
@@ -120,6 +120,12 @@ msgid "Brightness"
 msgstr ""
 
 msgid "Brightness of faded windows"
+msgstr ""
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
 msgstr ""
 
 msgid ""
@@ -998,6 +1004,9 @@ msgstr ""
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr ""
 
+msgid "Above"
+msgstr ""
+
 msgid "Adjust bottom face image to rotation"
 msgstr ""
 
@@ -1017,6 +1026,18 @@ msgid "Advance to next image for top face of the cube"
 msgstr ""
 
 msgid "Appearance"
+msgstr ""
+
+msgid "Aspect ratio"
+msgstr ""
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr ""
+
+msgid "Auto zoom only on Mouse Rotate"
 msgstr ""
 
 msgid "Behaviour"
@@ -1046,16 +1067,53 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr ""
 
+msgid "Color of the ground (far)."
+msgstr ""
+
+msgid "Color of the ground (near)."
+msgstr ""
+
 msgid "Color of top face of the cube"
+msgstr ""
+
+msgid "Compiz cube reflection and deformation"
 msgstr ""
 
 msgid "Cube Bottom Color"
 msgstr ""
 
-msgid "Cube Caps"
+msgid "Cube Reflection and Deformation"
 msgstr ""
 
 msgid "Cube Top Color"
+msgstr ""
+
+msgid "Cube caps"
+msgstr ""
+
+msgid "Cylinder"
+msgstr ""
+
+msgid "Deform caps"
+msgstr ""
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "سه بعدی فقط روی چرخش موس"
+
+msgid "Deformation"
+msgstr ""
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+msgid "Deformation mode."
+msgstr ""
+
+msgid "Distance"
 msgstr ""
 
 msgid "Draw bottom face"
@@ -1070,10 +1128,34 @@ msgstr ""
 msgid "Draw top face of the cube"
 msgstr ""
 
+msgid "Enabled"
+msgstr ""
+
+msgid "Give cube a reflective ground."
+msgstr ""
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr ""
 
 msgid "Go back to previous image for top face of the cube"
+msgstr ""
+
+msgid "Ground color(far)"
+msgstr ""
+
+msgid "Ground color(near)"
+msgstr ""
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr ""
+
+msgid "Jumpy"
+msgstr ""
+
+msgid "Jumpy reflection"
 msgstr ""
 
 msgid ""
@@ -1081,6 +1163,18 @@ msgid ""
 msgstr ""
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
+msgstr ""
+
+msgid "Maintain bottom aspect ratio"
+msgstr ""
+
+msgid "Maintain bottom cap image aspect ratio."
+msgstr ""
+
+msgid "Maintain top aspect ratio"
+msgstr ""
+
+msgid "Maintain top cap image aspect ratio."
 msgstr ""
 
 msgid "Next bottom image"
@@ -1095,61 +1189,7 @@ msgstr ""
 msgid "Prev top image"
 msgstr ""
 
-msgid "Render images on top and bottom of the cube"
-msgstr ""
-
-msgid "Scale bottom image"
-msgstr ""
-
-msgid "Scale image to cover bottom face of cube"
-msgstr ""
-
-msgid "Scale image to cover top face of cube"
-msgstr ""
-
-msgid "Scale top image"
-msgstr ""
-
-msgid "Top image files"
-msgstr ""
-
-msgid "Above"
-msgstr ""
-
-msgid "Auto zoom"
-msgstr ""
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr ""
-
-msgid "Color of the ground (far)."
-msgstr ""
-
-msgid "Color of the ground (near)."
-msgstr ""
-
-msgid "Compiz cube reflection"
-msgstr ""
-
-msgid "Cube Reflection"
-msgstr ""
-
-msgid "Distance"
-msgstr ""
-
-msgid "Ground color(far)"
-msgstr ""
-
-msgid "Ground color(near)"
-msgstr ""
-
-msgid "Intensity"
-msgstr ""
-
-msgid "Jumpy"
-msgstr ""
-
-msgid "Jumpy reflection"
+msgid "Reflection"
 msgstr ""
 
 msgid "Reflection ground size"
@@ -1165,6 +1205,27 @@ msgid "Reflection mode"
 msgstr ""
 
 msgid "Reflection mode."
+msgstr ""
+
+msgid "Scale bottom image"
+msgstr ""
+
+msgid "Scale image to cover bottom face of cube"
+msgstr ""
+
+msgid "Scale image to cover top face of cube"
+msgstr ""
+
+msgid "Scale top image"
+msgstr ""
+
+msgid "Sphere"
+msgstr ""
+
+msgid "Top image files"
+msgstr ""
+
+msgid "Unfold cube deformation"
 msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
@@ -1192,9 +1253,6 @@ msgid "Curve"
 msgstr ""
 
 msgid "Curve strength"
-msgstr ""
-
-msgid "Deformation"
 msgstr ""
 
 msgid "Deformation of the expo wall"
@@ -1285,9 +1343,6 @@ msgid "One wall per output"
 msgstr ""
 
 msgid "Previous viewport"
-msgstr ""
-
-msgid "Reflection"
 msgstr ""
 
 msgid "Reflection Scale"
@@ -1442,15 +1497,7 @@ msgstr ""
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-
 msgid "Mouse Behaviour"
-msgstr ""
-
-msgid "Mouse Poll Interval"
 msgstr ""
 
 msgid "Mouse Restrain Margin"
@@ -1555,6 +1602,9 @@ msgstr ""
 msgid "Zoom Area Movement"
 msgstr ""
 
+msgid "Zoom Box"
+msgstr ""
+
 msgid "Zoom In"
 msgstr ""
 
@@ -1580,6 +1630,9 @@ msgid "Zoom Timestep"
 msgstr ""
 
 msgid "Zoom factor"
+msgstr ""
+
+msgid "Zoom in on a boxed area"
 msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
@@ -2328,7 +2381,15 @@ msgstr ""
 msgid "Start gesture"
 msgstr ""
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
 msgid "Misc"
+msgstr ""
+
+msgid "Mouse Poll Interval"
 msgstr ""
 
 msgid "Mouse position polling"
@@ -3020,8 +3081,13 @@ msgstr ""
 msgid "Background color of the window title"
 msgstr ""
 
-msgid "Close Windows In Scale"
-msgstr ""
+#, fuzzy
+msgid "Close Window"
+msgstr "پنجره‌های ۳بعدی"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "پنجره‌ها را هنگام چرخش مکعب، بالا ببر"
 
 msgid "Close windows while in scale mode"
 msgstr ""
@@ -3029,7 +3095,16 @@ msgstr ""
 msgid "Color used for highlighting the hovered window"
 msgstr ""
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
+msgstr ""
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
 msgstr ""
 
 msgid "Font color of the window title"
@@ -3047,6 +3122,10 @@ msgstr ""
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+
 msgid "No display"
 msgstr ""
 
@@ -3054,6 +3133,13 @@ msgid "Normal"
 msgstr ""
 
 msgid "Organic - EXPERIMENTAL"
+msgstr ""
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "پنجره‌های ۳بعدی"
+
+msgid "Pull window to current viewport while in scale mode"
 msgstr ""
 
 msgid "Scale Addons"
@@ -3080,6 +3166,9 @@ msgstr ""
 msgid "Window Layout Mode"
 msgstr ""
 
+msgid "Window Pull"
+msgstr ""
+
 msgid "Window Title"
 msgstr ""
 
@@ -3089,10 +3178,11 @@ msgstr ""
 msgid "Window title display in scale mode"
 msgstr ""
 
-msgid "Zoom Windows In Scale"
-msgstr ""
+#, fuzzy
+msgid "Zoom Window"
+msgstr "پنجره‌های ۳بعدی"
 
-msgid "Zoom windows while in scale mode"
+msgid "Zoom window while in scale mode"
 msgstr ""
 
 msgid "Filter Case Insensitive"

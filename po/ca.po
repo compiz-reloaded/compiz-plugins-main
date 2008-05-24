@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Compiz Fusion Plugins 0.5.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:50+0530\n"
+"POT-Creation-Date: 2008-05-24 22:13+0530\n"
 "PO-Revision-Date: 2007-09-09 02:42+0100\n"
 "Last-Translator: Gustau L. Castells (Karasu) <gustaucastells@gmail.com>\n"
 "Language-Team: Catalan <gustaucastells@gmail.com>\n"
@@ -120,6 +120,12 @@ msgstr "Brillantor"
 
 msgid "Brightness of faded windows"
 msgstr "Brillantor de les finestres quan s'esvaeixen"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1063,6 +1069,9 @@ msgstr "Línia de comandes del gestor de finestres"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Línia de comandes del gestor de finestres. NO ESCRIGUIS COMPIZ AQUÍ!!!"
 
+msgid "Above"
+msgstr "Per damunt"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Ajusta la imatge de la cara inferior a la rotació"
 
@@ -1083,6 +1092,19 @@ msgstr "Passa a la següent imatge per la superior inferior del cub"
 
 msgid "Appearance"
 msgstr "Aparença"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Relació d'aspecte"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Zoom automàtic"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Zoom automàtic només quan girem amb el ratolí"
 
 msgid "Behaviour"
 msgstr "Comportament"
@@ -1111,17 +1133,60 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Color de la cara inferior del cub"
 
+msgid "Color of the ground (far)."
+msgstr "Color del terra (lluny)."
+
+msgid "Color of the ground (near)."
+msgstr "Color del terra (a prop)."
+
 msgid "Color of top face of the cube"
 msgstr "Color de la cara superior del cub"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Reflexió del cub Compiz"
 
 msgid "Cube Bottom Color"
 msgstr "Color inferior del cub"
 
-msgid "Cube Caps"
-msgstr "Tapes del cub"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Fitxer d'imatge de reflexió"
 
 msgid "Cube Top Color"
 msgstr "Color superior del cub"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Tapes del cub"
+
+msgid "Cylinder"
+msgstr ""
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Duració"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Zoom automàtic només quan girem amb el ratolí"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Duració"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Duració"
+
+msgid "Distance"
+msgstr "Distància"
 
 msgid "Draw bottom face"
 msgstr "Dibuixa la cara inferior"
@@ -1135,11 +1200,37 @@ msgstr "Dibuixa la cara superior"
 msgid "Draw top face of the cube"
 msgstr "Dibuixa la cara superior del cub"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Activa"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Reflexió del cub Compiz"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Torna a la imatge anterior per la cara inferior del cub"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Torna a la imatge anterior per la cara superior del cub"
+
+msgid "Ground color(far)"
+msgstr "Color del terra(lluny)"
+
+msgid "Ground color(near)"
+msgstr "Color del terra(a prop)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intensitat"
+
+msgid "Jumpy"
+msgstr ""
+
+msgid "Jumpy reflection"
+msgstr ""
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1149,6 +1240,22 @@ msgstr ""
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
 "Llista d'arxius PNG i SVG que s'han de renderitzar a la tapa superior del cub"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Relació d'aspecte del mode expo"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Ajusta la imatge de la cara inferior a la rotació"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Relació d'aspecte del mode expo"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Ajusta la imatge superior a la rotació"
 
 msgid "Next bottom image"
 msgstr "Següent imatge inferior"
@@ -1162,62 +1269,8 @@ msgstr "Imatge inferior prèvia."
 msgid "Prev top image"
 msgstr "Imatge superior prèvia."
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Renderitza imatges en les cares superior i inferior del cub"
-
-msgid "Scale bottom image"
-msgstr "Escala la imatge inferior"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Escala la imatge per cobrir la cara inferior del cub"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Escala la imatge per cobrir la cara superior del cub"
-
-msgid "Scale top image"
-msgstr "Escala la imatge superior"
-
-msgid "Top image files"
-msgstr "Arxius de les imatges superiors"
-
-msgid "Above"
-msgstr "Per damunt"
-
-msgid "Auto zoom"
-msgstr "Zoom automàtic"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Zoom automàtic només quan girem amb el ratolí"
-
-msgid "Color of the ground (far)."
-msgstr "Color del terra (lluny)."
-
-msgid "Color of the ground (near)."
-msgstr "Color del terra (a prop)."
-
-msgid "Compiz cube reflection"
-msgstr "Reflexió del cub Compiz"
-
-msgid "Cube Reflection"
-msgstr "Reflexió del Cub"
-
-msgid "Distance"
-msgstr "Distància"
-
-msgid "Ground color(far)"
-msgstr "Color del terra(lluny)"
-
-msgid "Ground color(near)"
-msgstr "Color del terra(a prop)"
-
-msgid "Intensity"
-msgstr "Intensitat"
-
-msgid "Jumpy"
-msgstr ""
-
-msgid "Jumpy reflection"
-msgstr ""
+msgid "Reflection"
+msgstr "Reflexió"
 
 msgid "Reflection ground size"
 msgstr "Mida del terra en la reflexió"
@@ -1233,6 +1286,28 @@ msgstr "Mode de reflexió"
 
 msgid "Reflection mode."
 msgstr "Mode de reflexió."
+
+msgid "Scale bottom image"
+msgstr "Escala la imatge inferior"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Escala la imatge per cobrir la cara inferior del cub"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Escala la imatge per cobrir la cara superior del cub"
+
+msgid "Scale top image"
+msgstr "Escala la imatge superior"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Velocitat"
+
+msgid "Top image files"
+msgstr "Arxius de les imatges superiors"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Allunya automàticament només quan girem amb el ratolí."
@@ -1261,10 +1336,6 @@ msgstr "Cobrir"
 
 msgid "Curve strength"
 msgstr ""
-
-#, fuzzy
-msgid "Deformation"
-msgstr "Duració"
 
 #, fuzzy
 msgid "Deformation of the expo wall"
@@ -1357,9 +1428,6 @@ msgstr "Una paret per sortida"
 
 msgid "Previous viewport"
 msgstr "Vista anterior"
-
-msgid "Reflection"
-msgstr "Reflexió"
 
 msgid "Reflection Scale"
 msgstr "Escala de reflexió"
@@ -1524,17 +1592,9 @@ msgstr "Amaga el punter original del ratolí"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-
 #, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Comportament del Ratolí"
-
-msgid "Mouse Poll Interval"
-msgstr "Interval de sondeig del ratolí"
 
 msgid "Mouse Restrain Margin"
 msgstr "Marge de restricció del ratolí"
@@ -1643,6 +1703,10 @@ msgstr ""
 msgid "Zoom Area Movement"
 msgstr "Moviment de zoom"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Zoom"
+
 msgid "Zoom In"
 msgstr "Apropar"
 
@@ -1670,6 +1734,9 @@ msgstr ""
 
 msgid "Zoom factor"
 msgstr "Factor de zoom"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2456,8 +2523,16 @@ msgstr ""
 msgid "Start gesture"
 msgstr ""
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
 msgid "Misc"
 msgstr ""
+
+msgid "Mouse Poll Interval"
+msgstr "Interval de sondeig del ratolí"
 
 #, fuzzy
 msgid "Mouse position polling"
@@ -3168,8 +3243,13 @@ msgstr "Mosaic"
 msgid "Background color of the window title"
 msgstr "Color de fons del títol de la finestra"
 
-msgid "Close Windows In Scale"
-msgstr "Tanca finestres en escalat"
+#, fuzzy
+msgid "Close Window"
+msgstr "Mosaic"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Tanca finestres mentres estem en el mode d'escalat"
 
 msgid "Close windows while in scale mode"
 msgstr "Tanca finestres mentres estem en el mode d'escalat"
@@ -3177,8 +3257,17 @@ msgstr "Tanca finestres mentres estem en el mode d'escalat"
 msgid "Color used for highlighting the hovered window"
 msgstr ""
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Dibuixa la finestra realçada"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Color de la lletra del títol de la finestra"
@@ -3196,6 +3285,10 @@ msgstr "Mou la finestra a x, y"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+
 #, fuzzy
 msgid "No display"
 msgstr "Mostra el títol de la finestra"
@@ -3205,6 +3298,14 @@ msgstr "Normal"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organic - EXPERIMENTAL"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Posa finestra"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Tanca finestres mentres estem en el mode d'escalat"
 
 msgid "Scale Addons"
 msgstr "Afegits d'escalat"
@@ -3230,6 +3331,10 @@ msgstr "Realçat de finestra"
 msgid "Window Layout Mode"
 msgstr "Mode de col·locació de la finestra"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Títol de la finestra"
+
 msgid "Window Title"
 msgstr "Títol de la finestra"
 
@@ -3241,10 +3346,12 @@ msgstr "Mostra el títol de la finestra"
 msgid "Window title display in scale mode"
 msgstr "Mostra el títol de la finestra el el mode d'escalat"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Zoom finestres en escalat"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Fes zoom a les finestres en mode escalat"
 
 msgid "Filter Case Insensitive"
@@ -4820,6 +4927,15 @@ msgstr "Finestres en tots els escriptoris que han de ser apegaloses"
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Renderitza imatges en les cares superior i inferior del cub"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Reflexió del Cub"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Tanca finestres en escalat"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Velocitat d'animació"

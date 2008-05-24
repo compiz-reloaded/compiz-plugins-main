@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:52+0530\n"
+"POT-Creation-Date: 2008-05-24 22:15+0530\n"
 "PO-Revision-Date: 2008-01-31 15:42+0100\n"
 "Last-Translator: Elve <elve@savage-elve.net>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -130,6 +130,12 @@ msgstr "Helderheid"
 
 msgid "Brightness of faded windows"
 msgstr "Helderheid van opgerolde vensters"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1074,6 +1080,9 @@ msgstr "Vensterbeheerder commando regel"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Venster beheerder commando regel. HIER NIET COMPIZ INVULLEN!!!"
 
+msgid "Above"
+msgstr "Boven"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Onderzĳde afbeelding bĳstellen op rotatie"
 
@@ -1094,6 +1103,19 @@ msgstr "Doorgaan naar volgende afbeelding voor bovenzĳde van de kubus"
 
 msgid "Appearance"
 msgstr "Verschijning"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Expo modus aspect ratio"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Auto zoom"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Auto zoom alleen bĳ roteren met muis"
 
 msgid "Behaviour"
 msgstr "Gedrag"
@@ -1130,17 +1152,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Kleur van de onderzĳde van de kubus"
 
+msgid "Color of the ground (far)."
+msgstr "Kleur van de grond (ver)."
+
+msgid "Color of the ground (near)."
+msgstr "Kleur van de grond (dichtĳ)."
+
 msgid "Color of top face of the cube"
 msgstr "Kleur van de bovenzĳde van de kubus"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz kubus reflectie "
 
 msgid "Cube Bottom Color"
 msgstr "Kleur onderkant kubus"
 
-msgid "Cube Caps"
-msgstr "Kleur deksels"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Reflectie voor decoratie's"
 
 msgid "Cube Top Color"
 msgstr "Kubus bovenkant kleur"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Kleur deksels"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Wissen"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Duur"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Auto zoom alleen bĳ roteren met muis"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Duur"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Duur"
+
+msgid "Distance"
+msgstr "Afstand"
 
 msgid "Draw bottom face"
 msgstr "Teken onderzĳde"
@@ -1154,11 +1220,37 @@ msgstr "Teken bovenzĳde"
 msgid "Draw top face of the cube"
 msgstr "Teken bovenzĳde van de kubus"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Inschakelen"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Compiz kubus reflectie "
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Ga terug naar vorige afbeelding voor onderzĳde van de kubus"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Ga terug naar vorige afbeelding voor bovenzĳde kubus"
+
+msgid "Ground color(far)"
+msgstr "Grond kleur (ver)"
+
+msgid "Ground color(near)"
+msgstr "Grond kleur (dichtbĳ)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intensiteit"
+
+msgid "Jumpy"
+msgstr "Springerig"
+
+msgid "Jumpy reflection"
+msgstr "Springerige reflectie"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1170,6 +1262,22 @@ msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
 "Lijst van PNG en SVG bestanden die afgebeeld moeten worden op de bovenzijde "
 "van de kubus"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Expo modus aspect ratio"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Onderzĳde afbeelding bĳstellen op rotatie"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Expo modus aspect ratio"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Top zijde afbeelding bijstellen op rotatie"
 
 msgid "Next bottom image"
 msgstr "Volgende afbeelding onderzĳde"
@@ -1183,62 +1291,8 @@ msgstr "Vorige afbeelding onderzĳde"
 msgid "Prev top image"
 msgstr "Vorige afbeelding onderzĳde"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Teken afbeeldingen op boven- en onderzĳde"
-
-msgid "Scale bottom image"
-msgstr "Schaal afbeelding onderzĳde"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Schaal afbeelding voor afdekken van onderzĳde kubus"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Schaal afbeelding voor afdekken van bovenzĳde van kubus"
-
-msgid "Scale top image"
-msgstr "Schaal afbeelding bovenzĳde"
-
-msgid "Top image files"
-msgstr "Afbeelding bovenzĳde bestanden"
-
-msgid "Above"
-msgstr "Boven"
-
-msgid "Auto zoom"
-msgstr "Auto zoom"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Auto zoom alleen bĳ roteren met muis"
-
-msgid "Color of the ground (far)."
-msgstr "Kleur van de grond (ver)."
-
-msgid "Color of the ground (near)."
-msgstr "Kleur van de grond (dichtĳ)."
-
-msgid "Compiz cube reflection"
-msgstr "Compiz kubus reflectie "
-
-msgid "Cube Reflection"
-msgstr "Kubus reflectie"
-
-msgid "Distance"
-msgstr "Afstand"
-
-msgid "Ground color(far)"
-msgstr "Grond kleur (ver)"
-
-msgid "Ground color(near)"
-msgstr "Grond kleur (dichtbĳ)"
-
-msgid "Intensity"
-msgstr "Intensiteit"
-
-msgid "Jumpy"
-msgstr "Springerig"
-
-msgid "Jumpy reflection"
-msgstr "Springerige reflectie"
+msgid "Reflection"
+msgstr "Reflectie"
 
 msgid "Reflection ground size"
 msgstr "Reflectie grond grootte"
@@ -1254,6 +1308,28 @@ msgstr "Reflectie modus"
 
 msgid "Reflection mode."
 msgstr "Reflectie modus."
+
+msgid "Scale bottom image"
+msgstr "Schaal afbeelding onderzĳde"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Schaal afbeelding voor afdekken van onderzĳde kubus"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Schaal afbeelding voor afdekken van bovenzĳde van kubus"
+
+msgid "Scale top image"
+msgstr "Schaal afbeelding bovenzĳde"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Snelheid"
+
+msgid "Top image files"
+msgstr "Afbeelding bovenzĳde bestanden"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Automatisch uitzoomen alleen bĳ muis rotatie."
@@ -1283,10 +1359,6 @@ msgstr "Gebogen vouwen"
 #, fuzzy
 msgid "Curve strength"
 msgstr "Bewegingsvervaging sterkte."
-
-#, fuzzy
-msgid "Deformation"
-msgstr "Duur"
 
 #, fuzzy
 msgid "Deformation of the expo wall"
@@ -1379,9 +1451,6 @@ msgstr "Een muur per uitvoer"
 
 msgid "Previous viewport"
 msgstr "Vorige viewport"
-
-msgid "Reflection"
-msgstr "Reflectie"
 
 msgid "Reflection Scale"
 msgstr "Reflectie schaal"
@@ -1556,18 +1625,8 @@ msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 "Verbergt de originele muis aanwĳzer tĳdens inzoomen en schalen van de muis"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"Hoe vaak de muis positie opvragen, in miliseconden. Verminder dit om "
-"schokkerige beweging te verminderen."
-
 msgid "Mouse Behaviour"
 msgstr "Muis gedrag"
-
-msgid "Mouse Poll Interval"
-msgstr "Muis opvraag interval"
 
 msgid "Mouse Restrain Margin"
 msgstr "Muis inperking marge"
@@ -1684,6 +1743,10 @@ msgstr "Gebruik lineair filter zodra ingezoomd"
 msgid "Zoom Area Movement"
 msgstr "Zoom gebied beweging"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Inzoomen"
+
 msgid "Zoom In"
 msgstr "Inzoomen"
 
@@ -1710,6 +1773,9 @@ msgstr "Zoom tijdstap"
 
 msgid "Zoom factor"
 msgstr "Zoom factor"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "Zoom in/uit met deze factor. Hogere waarde betekent sneller zoomen."
@@ -2516,8 +2582,18 @@ msgstr "Plugin waar de actie toe behoort."
 msgid "Start gesture"
 msgstr "Begin muis beweging"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"Hoe vaak de muis positie opvragen, in miliseconden. Verminder dit om "
+"schokkerige beweging te verminderen."
+
 msgid "Misc"
 msgstr ""
+
+msgid "Mouse Poll Interval"
+msgstr "Muis opvraag interval"
 
 #, fuzzy
 msgid "Mouse position polling"
@@ -3263,8 +3339,13 @@ msgstr "Alle vensters"
 msgid "Background color of the window title"
 msgstr "Achtergrond kleur van de venster titel"
 
-msgid "Close Windows In Scale"
-msgstr "Sluit venster in Schalen"
+#, fuzzy
+msgid "Close Window"
+msgstr "Tegelen van vensters"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Sluit venster in Schaal modus"
 
 msgid "Close windows while in scale mode"
 msgstr "Sluit venster in Schaal modus"
@@ -3273,8 +3354,17 @@ msgid "Color used for highlighting the hovered window"
 msgstr ""
 "Kleur gebruikt om het venster op te laten lichten waaroverheen gezweefd wordt"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Teken venster oplichten"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Font kleur van de venster titel"
@@ -3293,6 +3383,12 @@ msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Laat het venster waar over heen gezweefd wordt oplichten met de gegeven kleur"
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+"Maak vensters makkelijk zichtbaar door er met de muis overheen te zweven"
+
 msgid "No display"
 msgstr "Geen display"
 
@@ -3301,6 +3397,14 @@ msgstr "Normaal"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organisch - EXPERIMENTEEL"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Plaats venster"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Sluit venster in Schaal modus"
 
 msgid "Scale Addons"
 msgstr "Schaal addons"
@@ -3326,6 +3430,10 @@ msgstr "Venster oplichten"
 msgid "Window Layout Mode"
 msgstr "Venster uitleg modus"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Breedte regels"
+
 msgid "Window Title"
 msgstr "Venster titel"
 
@@ -3335,10 +3443,12 @@ msgstr "Venster titel tonen"
 msgid "Window title display in scale mode"
 msgstr "Toon venster titel in schaal modus"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Zoom vensters in Schaal"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Toon vensters terwĳl in Schaal modus"
 
 msgid "Filter Case Insensitive"
@@ -4944,6 +5054,15 @@ msgstr "Vensters op alle bureaubladen die sticky gemaakt moeten worden"
 
 msgid "Workarounds"
 msgstr "Workarounds"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Teken afbeeldingen op boven- en onderzĳde"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Kubus reflectie"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Sluit venster in Schalen"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Animatie snelheid"

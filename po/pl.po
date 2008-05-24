@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:52+0530\n"
-"PO-Revision-Date: 2008-04-23 03:16+0200\n"
+"POT-Creation-Date: 2008-05-24 22:15+0530\n"
+"PO-Revision-Date: 2008-05-09 22:25+0200\n"
 "Last-Translator: Jarek Sobolewski <r@sledinmay.com>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -117,6 +117,12 @@ msgstr "Jasnosć"
 
 msgid "Brightness of faded windows"
 msgstr "Jasność zanikających okien"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -633,11 +639,12 @@ msgstr ""
 "Animowane okno będzie podzielone na części wzdłuż siatki. Określ liczbę "
 "kwadratów siatki wzdłuż wysokości okna."
 
+# Literówka w słowie Animowane
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
-"Animowae okno będzie podzielone na części wzdłuż siatki. Określ liczbę "
+"Animowane okno będzie podzielone na części wzdłuż siatki. Określ liczbę "
 "kwadratów siatki wzdłuż szerokości okna."
 
 msgid "The animation effect shown when closing a window."
@@ -682,10 +689,11 @@ msgstr "Minimalna amplituda (rozmiar fal) jaką będzie miała magiczna Lampa."
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
-"Liczba poziomych zginań które pojawią się w animacji Poziomego Zginania."
+"Liczba poziomych zginań, które pojawią się w animacji Poziomego Zginania."
 
+# zmiana z odniesiony na odniesiona (w końcu chodzi o amplitudę)
 msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Amplituda fal (rozmiar fal) odniesiony do wysokości okna."
+msgstr "Amplituda fal (rozmiar fal) odniesiona do wysokości okna."
 
 #, fuzzy
 msgid "The width of the wave relative to the window height."
@@ -723,8 +731,9 @@ msgstr "Używaj różnych animacji dla animowania okien"
 msgid "Vacuum"
 msgstr "Wsysacz"
 
+# literówka w słowie Wsysacz
 msgid "Vacuum Grid Y Resolution"
-msgstr "Rozdzielczość osi Y Wsysaca"
+msgstr "Rozdzielczość osi Y Wsysacza"
 
 msgid "Vacuum Open Start Width"
 msgstr "Szerokość początkowa Wsysacza"
@@ -808,9 +817,10 @@ msgstr "Długość siatki okna."
 msgid "Window folding direction."
 msgstr "Kierunek składania."
 
+# Brak przecinka przed "które"
 #, fuzzy
 msgid "Window that should animate with this effect when focused."
-msgstr "Okna które mogą być grupowane"
+msgstr "Okna, które mogą być grupowane"
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "Okna, które powinny być animowane tym efektem podczas zacienienia."
@@ -1105,6 +1115,9 @@ msgstr "Polecenie menedżera okien"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Polecenie meneżdera okien. UWAGA! NIE WPISUJ TUTAJ POLECENIA: COMPIZ"
 
+msgid "Above"
+msgstr "Ponad"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Dopasuj dolny obrazek do obrotu"
 
@@ -1125,6 +1138,19 @@ msgstr "Idź do następnego obrazka górnej ściany kostki"
 
 msgid "Appearance"
 msgstr "Wygląd"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Stosunek widoku"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Automatyczne pomniejszenie kostki"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Automatyczne pomniejszenie tylko podczas obrotu kostki myszą"
 
 msgid "Behaviour"
 msgstr "Zachowanie"
@@ -1164,17 +1190,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Kolor dolnej ściany kostki"
 
+msgid "Color of the ground (far)."
+msgstr "Kolor dalekiego tła."
+
+msgid "Color of the ground (near)."
+msgstr "Kolor bliskiego tła."
+
 msgid "Color of top face of the cube"
 msgstr "Kolor górnej ściany kostki"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Odbicie kostki"
 
 msgid "Cube Bottom Color"
 msgstr "Kolor dolnej ściany kostki"
 
-msgid "Cube Caps"
-msgstr "Obrazki na ścianach kostki"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Odbicia dekoracji"
 
 msgid "Cube Top Color"
 msgstr "Kolor górnej ściany kostki"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Obrazki na ścianach kostki"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Wyczyść"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Zniekształcenie"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Automatyczne pomniejszenie tylko podczas obrotu kostki myszą"
+
+msgid "Deformation"
+msgstr "Zniekształcenie"
+
+#, fuzzy
+msgid "Deformation in unfold cube mode."
+msgstr "Stopień deformacji w trybie wygięcia"
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Zniekształcenie"
+
+msgid "Distance"
+msgstr "Odległość"
 
 msgid "Draw bottom face"
 msgstr "Rysuj dolną ścianę"
@@ -1188,11 +1258,37 @@ msgstr "Rysuj górną ścianę"
 msgid "Draw top face of the cube"
 msgstr "Rysuj górną ścianę kostki"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Włącz"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Odbicie kostki"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Idź do poprzedniego obrazka dolnej ściany kostki"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Idź do poprzedniego obrazka górnej ściany kostki"
+
+msgid "Ground color(far)"
+msgstr "Kolor dalekiego tła"
+
+msgid "Ground color(near)"
+msgstr "Kolor bliskiego tła"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intensywność"
+
+msgid "Jumpy"
+msgstr "Odbicie lustrzane na podłożu"
+
+msgid "Jumpy reflection"
+msgstr "Odbicie lustrzane w powietrzu"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1202,6 +1298,20 @@ msgstr ""
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
 "Lista plików PNG i SVG, które mają być renderowane na górnej ścianie kostki"
+
+msgid "Maintain bottom aspect ratio"
+msgstr ""
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Dopasuj dolny obrazek do obrotu"
+
+msgid "Maintain top aspect ratio"
+msgstr ""
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Dopasuj górny obrazek do obrotu"
 
 msgid "Next bottom image"
 msgstr "Następny dolny obrazek"
@@ -1215,62 +1325,8 @@ msgstr "Poprzedni dolny obrazek"
 msgid "Prev top image"
 msgstr "Poprzedni górny obrazek"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Wyświetla obrazki na górnej i dolnej ścianie kostki"
-
-msgid "Scale bottom image"
-msgstr "Skaluj dolny obrazek"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Skaluj obrazek, by pokrywał dolną ścianę kostki"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Skaluj obrazek, by pokrywał górną ścianę kostki"
-
-msgid "Scale top image"
-msgstr "Skaluj górny obrazek"
-
-msgid "Top image files"
-msgstr "Pliki górnego obrazka"
-
-msgid "Above"
-msgstr "Ponad"
-
-msgid "Auto zoom"
-msgstr "Automatyczne pomniejszenie kostki"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Automatyczne pomniejszenie tylko podczas obrotu kostki myszą"
-
-msgid "Color of the ground (far)."
-msgstr "Kolor dalekiego tła."
-
-msgid "Color of the ground (near)."
-msgstr "Kolor bliskiego tła."
-
-msgid "Compiz cube reflection"
-msgstr "Odbicie kostki"
-
-msgid "Cube Reflection"
-msgstr "Odbicie kostki"
-
-msgid "Distance"
-msgstr "Odległość"
-
-msgid "Ground color(far)"
-msgstr "Kolor dalekiego tła"
-
-msgid "Ground color(near)"
-msgstr "Kolor bliskiego tła"
-
-msgid "Intensity"
-msgstr "Intensywność"
-
-msgid "Jumpy"
-msgstr "Odbicie lustrzane na podłożu"
-
-msgid "Jumpy reflection"
-msgstr "Odbicie lustrzane w powietrzu"
+msgid "Reflection"
+msgstr "Odbicie"
 
 msgid "Reflection ground size"
 msgstr "Rozmiar podłoża"
@@ -1286,6 +1342,28 @@ msgstr "Tryb odbicia"
 
 msgid "Reflection mode."
 msgstr "Tryb odbicia."
+
+msgid "Scale bottom image"
+msgstr "Skaluj dolny obrazek"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Skaluj obrazek, by pokrywał dolną ścianę kostki"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Skaluj obrazek, by pokrywał górną ścianę kostki"
+
+msgid "Scale top image"
+msgstr "Skaluj górny obrazek"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Szybkość"
+
+msgid "Top image files"
+msgstr "Pliki górnego obrazka"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Oddala kostkę automatycznie tylko gdy nastąpi obrót myszą."
@@ -1309,22 +1387,16 @@ msgid "Button binding to switch to next viewport in expo"
 msgstr ""
 "Przyporządkowanie klaiwsza do następnego wirtualnego pulpitu w trybie expo"
 
-#, fuzzy
 msgid "Curve"
-msgstr "Zagięcie"
+msgstr "Wygięcie"
 
-#, fuzzy
 msgid "Curve strength"
-msgstr "Stopień zagięcia"
-
-msgid "Deformation"
-msgstr "Zniekształcenie"
+msgstr "Stopień wygięcia"
 
 #, fuzzy
 msgid "Deformation of the expo wall"
 msgstr "Zniekształcenie ściany expo"
 
-#, fuzzy
 msgid "Distance between viewports"
 msgstr "Odległość między wirtualnymi pulpitami"
 
@@ -1337,9 +1409,8 @@ msgstr "Czas podwójnego kliknięcia"
 msgid "Drag&amp;drop"
 msgstr "Przeciągnij i upuść"
 
-#, fuzzy
 msgid "Duration of the zoomout animation"
-msgstr "Czas (w milisekundach) trwania animacji rozmieszczenia"
+msgstr "Czas trwania animacji przybliżenia"
 
 msgid "Engage wall expo mode button binding"
 msgstr ""
@@ -1414,10 +1485,6 @@ msgstr "Jedna ściana na każde uzrądzenie wyjściowe"
 msgid "Previous viewport"
 msgstr "Poprzedni pulpit"
 
-msgid "Reflection"
-msgstr "Odbicie"
-
-#, fuzzy
 msgid "Reflection Scale"
 msgstr "Skala odbicia"
 
@@ -1434,10 +1501,10 @@ msgid ""
 msgstr ""
 
 msgid "Show a reflection of the viewports on the ground"
-msgstr "Pokazuje odbicie wirtualnych pulpitów na ziemi."
+msgstr "Pokazuje odbicie wirtualnych pulpitów na podłożu"
 
 msgid "Strength of the deformation in curve mode"
-msgstr "Stopień deformacji w trybie zagięcia"
+msgstr "Stopień deformacji w trybie wygięcia"
 
 msgid "Tilt"
 msgstr "Przekrzywienie"
@@ -1445,9 +1512,8 @@ msgstr "Przekrzywienie"
 msgid "Timeframe to execute a double click"
 msgstr "Czas trwania podwójnego kliknięcia"
 
-#, fuzzy
 msgid "Viewport distance"
-msgstr "Prawy pulpit"
+msgstr "Rozstęp"
 
 msgid "Vortex"
 msgstr "Wir"
@@ -1534,9 +1600,8 @@ msgid ""
 "level. Disable to target mouse."
 msgstr ""
 
-#, fuzzy
 msgid "Enhanced Zoom Desktop"
-msgstr "Ulepszone przybliżanie pulpitu"
+msgstr "Zaawansowane powiększanie pulpitu"
 
 #, fuzzy
 msgid "Enhanced zoom functions for the visually impaired and other users"
@@ -1582,18 +1647,9 @@ msgstr ""
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-
 #, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Zachowanie myszy"
-
-# Corrected a typo
-msgid "Mouse Poll Interval"
-msgstr "Odstęp między sygnałami badającymi położenie wskaźnika myszy"
 
 msgid "Mouse Restrain Margin"
 msgstr "Margines przytrzymywania myszy"
@@ -1704,6 +1760,10 @@ msgid "Zoom Area Movement"
 msgstr "Przybliżaj od środka"
 
 #, fuzzy
+msgid "Zoom Box"
+msgstr "Zbliżenie"
+
+#, fuzzy
 msgid "Zoom In"
 msgstr "Zbliżenie"
 
@@ -1736,6 +1796,9 @@ msgstr "Krok czasu zoom"
 
 msgid "Zoom factor"
 msgstr "Współczynnik zbliżenia"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2582,8 +2645,17 @@ msgstr ""
 msgid "Start gesture"
 msgstr "Rozpocznij gest myszy"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
 msgid "Misc"
 msgstr ""
+
+# Corrected a typo
+msgid "Mouse Poll Interval"
+msgstr "Odstęp między sygnałami badającymi położenie wskaźnika myszy"
 
 #, fuzzy
 msgid "Mouse position polling"
@@ -3092,13 +3164,13 @@ msgid "Reflection Image file"
 msgstr "Plik z obrazem odbicia"
 
 msgid "Reflection Window Match"
-msgstr "Okna dla których zastoswane zostanie odbicie"
+msgstr "Okna, które mają być odbite"
 
 msgid "Reflection for Decorations"
-msgstr "Odbicia dla dekoracji"
+msgstr "Odbicia dekoracji"
 
 msgid "Reflection for Windows"
-msgstr "Odbicia dla okien"
+msgstr "Odbicia okien"
 
 msgid "Window match"
 msgstr "Dopasowanie okien"
@@ -3310,7 +3382,7 @@ msgstr ""
 
 msgid "Show switcher if not visible and select next window."
 msgstr ""
-"Pokaż przełącznik aplikacji, jeśli nie jest widoczny, i wybierz następnego "
+"Pokaż przełącznik aplikacji, jeśli nie jest widoczny, i wybierz następne "
 "okno."
 
 msgid ""
@@ -3359,8 +3431,13 @@ msgstr "Wszystkie okna"
 msgid "Background color of the window title"
 msgstr "Kolor tła dla tytułu okna"
 
-msgid "Close Windows In Scale"
-msgstr "Zamknij okno podczas skalowania"
+#, fuzzy
+msgid "Close Window"
+msgstr "Rozmieść równomiernie"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Zamykanie okna podczas trybu skalowania."
 
 msgid "Close windows while in scale mode"
 msgstr "Zamykanie okna podczas trybu skalowania."
@@ -3369,8 +3446,17 @@ msgstr "Zamykanie okna podczas trybu skalowania."
 msgid "Color used for highlighting the hovered window"
 msgstr "Kolor podświetlenia wybranego okna"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Rysuj podświetlenie okien"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Kolor czcionki dla tytułu okna"
@@ -3388,6 +3474,12 @@ msgstr "Tylko podświetlonego okna"
 msgid "Highlights the hovered window with the given color"
 msgstr "Podświetla wybrane okno wybranym kolorem"
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+"Powoduj, że okna będą łatwo widzialne poprzez najechanie na nie kursorem"
+
 msgid "No display"
 msgstr "Nie pokazuj"
 
@@ -3397,6 +3489,14 @@ msgstr "Normalny"
 #, fuzzy
 msgid "Organic - EXPERIMENTAL"
 msgstr "Połącz okna (EKSPERYMENTALNE)"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Rozmieszcza równomiernie okna na pulpicie"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Zamykanie okna podczas trybu skalowania."
 
 msgid "Scale Addons"
 msgstr "Dodatki do skalowania"
@@ -3422,6 +3522,10 @@ msgstr "Podświetlenie okna"
 msgid "Window Layout Mode"
 msgstr "Tryb rozmieszczenia okien"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Typy okien"
+
 msgid "Window Title"
 msgstr "Tytuł okna"
 
@@ -3431,10 +3535,12 @@ msgstr "Pokazuj tytuł okna"
 msgid "Window title display in scale mode"
 msgstr "Pokazuj tytuł okna w trybie skalowania"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Przybliż okna w trybie skalowania"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Przybliżaj okna w trybie skalowania"
 
 msgid "Filter Case Insensitive"
@@ -5073,6 +5179,15 @@ msgstr "Okna na wszystkich pulpitach które powinny być lepkie"
 
 msgid "Workarounds"
 msgstr "Obejścia problemów"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Wyświetla obrazki na górnej i dolnej ścianie kostki"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Odbicie kostki"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Zamknij okno podczas skalowania"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Prędkość animacji"

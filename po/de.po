@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:50+0530\n"
-"PO-Revision-Date: 2008-02-20 09:57+0100\n"
-"Last-Translator: Danny Baumann <dannybaumann@web.de>\n"
+"POT-Creation-Date: 2008-05-24 22:13+0530\n"
+"PO-Revision-Date: 2008-05-24 16:55+0200\n"
+"Last-Translator: Hans Christian Siller <hans.christian.siller@yale.edu>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "3D-Modus nur bei manueller Rotation mit der Maus"
@@ -54,17 +54,17 @@ msgstr "Ecke oben rechts abrunden"
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
 msgstr ""
-"Verändert den Abstand zwischen den Fenstern. (prozentual auf Würfelgröße "
-"bezogen)"
+"Verändert den Abstand zwischen den Fenstern (prozentual auf Würfelgröße "
+"bezogen)."
 
 # ist mit 'window's depth' hier der schatten gemeint? oder geht es um tiefenwirkung innerhalb des fensters?
 msgid "Color of an inactive window's depth"
-msgstr ""
+msgstr "Farbe der Abrundung inaktiver Fenster"
 
 # siehe eins vorher
 #, fuzzy
 msgid "Color of the active window's depth"
-msgstr "Schaltet die Negierung des Fensterinhaltes des aktiven Fensters um."
+msgstr "Farbe der Abrundung des aktiven Fensters"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "Hebt die Fenster während des Rotierens des Würfels an"
@@ -125,6 +125,12 @@ msgstr "Helligkeit"
 msgid "Brightness of faded windows"
 msgstr "Helligkeit von verblassten Fenstern"
 
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
+
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
 msgstr ""
@@ -182,9 +188,8 @@ msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
 msgstr ""
-"Amplitude (Umfang des Bogens beim Zusammenfalten) des gebogenen "
-"Zusammenfaltens im Verhältnis zur Breite des Fensters. Negative Werte "
-"bewirken eine Biegung nach außen."
+"Amplitude (Umfang) des Bogens beim Zusammenfalten im Verhältnis zur Breite "
+"des Fensters. Negative Werte bewirken eine Biegung nach außen."
 
 msgid "Angle of window at the end of the animation."
 msgstr "Fensterwinkel am Animationsende"
@@ -375,8 +380,9 @@ msgstr "Fügt dem Feuer Rauch hinzu"
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Der Fensterinhalt bewegt sich beim einrollen nicht mit"
 
+#, fuzzy
 msgid "Fly to TaskBar on Minimize"
-msgstr ""
+msgstr "Beim Minimieren zur Taskleiste fliegen"
 
 msgid "Focus Animation"
 msgstr "Fokusanimation"
@@ -413,8 +419,9 @@ msgstr "Horizontales Zusammenfalten"
 msgid "Horizontal Folds Amplitude"
 msgstr "Amplitude des horizontalen Zusammenfaltens"
 
+#, fuzzy
 msgid "How spring-like the Sidekick animation should be."
-msgstr ""
+msgstr "Stellt ein wie federnd die Sidekick Animation ist"
 
 msgid "How spring-like the Zoom animation should be."
 msgstr "Wie federnd die Zoom-Animation sein soll."
@@ -436,7 +443,7 @@ msgid "Left-right"
 msgstr "Links/Rechts"
 
 msgid "Length of airplane's flying path."
-msgstr ""
+msgstr "Länge des vom Flugzeug zurückgelegten Weges"
 
 msgid "Magic Lamp"
 msgstr "Wunderlampe"
@@ -487,9 +494,9 @@ msgstr "Anzahl der horizontalen Faltungen"
 msgid "Number of fire particles."
 msgstr "Anzahl der Feuerpartikel"
 
-#, no-c-format
+#, fuzzy, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
-msgstr ""
+msgstr "Anzahl der Umdrehungen für den Sidekick (plus oder minus 10% Zufall)"
 
 msgid "Off"
 msgstr "Aus"
@@ -501,9 +508,8 @@ msgstr "An"
 msgid "On open/close, move magic lamp ending point with the mouse pointer."
 msgstr "Endpunkt der Wunderlampe folgt dem Mauszeiger"
 
-#, fuzzy
 msgid "On open/close, move vacuum ending point with the mouse pointer."
-msgstr "Endpunkt des Vakuums folgt dem Mauszeiger"
+msgstr "Endpunkt des Staubsauger-Effekts folgt dem Mauszeiger"
 
 msgid "Open Animation"
 msgstr "Animation 'Öffnen'"
@@ -528,7 +534,7 @@ msgstr "Effektsammlung"
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
-msgstr "Effektsammlung, aus der zufällig gewählt wird"
+msgstr "Effektsammlung, aus der gewählt wird, falls Zufällig aktiviert ist."
 
 msgid "Random"
 msgstr "Zufällig"
@@ -585,8 +591,9 @@ msgstr "Trudeln"
 msgid "Sidekick Number of Rotations"
 msgstr "Trudeln Anzahl der Drehungen"
 
+#, fuzzy
 msgid "Sidekick Springiness"
-msgstr ""
+msgstr "Sidekick Federung"
 
 msgid "Skewer"
 msgstr ""
@@ -595,9 +602,8 @@ msgstr ""
 msgid "Skewer Direction"
 msgstr "Schnee-Richtung"
 
-#, fuzzy
 msgid "Spacing between beams."
-msgstr "Der Abstand zwischen den Vorschaubildern."
+msgstr "Der Abstand zwischen den Blitzen."
 
 #, fuzzy
 msgid ""
@@ -607,12 +613,11 @@ msgstr ""
 "Anfangsbreite des 'Öffen' Effekts und Endbreite des 'Schließen' Effekts der "
 "Wunderlampe"
 
-#, fuzzy
 msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
 "Anfangsbreite des 'Öffen' Effekts und Endbreite des 'Schließen' Effekts des "
-"Vakuums"
+"Staubsauger-Effekts"
 
 msgid "Tessellation Type"
 msgstr "Tesselations-Typ"
@@ -684,27 +689,24 @@ msgstr ""
 "Gitters erzeugt. Geben sie die Anzahl der einzelnen Gitterzeilen an, in die "
 "das Fenster vertikal zerlegt werden soll."
 
-#, fuzzy
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr "Maximaler Auschlag der Wellenbewegungen für den Wunderlampen-Effekt."
 
 msgid "The maximum number of waves for Magic Lamp."
 msgstr "Maximale Anzahl der Wellenbewegungen für den Wunderlampen-Effekt."
 
-#, fuzzy
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
 msgstr "Minimaler Ausschlag der Wellenbewegungen für den Wunderlampen-Effekt."
 
-#, fuzzy
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
-"Anzahl der horizontalen Faltungen bei der 'Horizontal Falten' Animation"
+"Anzahl der horizontalen Faltungen für die 'Horizontal Falten' Animation"
 
 # Ich kenne den Kontext nicht genau, deshalb bin ich mir mit der Übersetzung nicht zu sicher
 #, fuzzy
 msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Auschlag der Wellen relativ zur Fenstergröße"
+msgstr "Auschlag (Größe) der Wellen relativ zur Fensterhöhe"
 
 msgid "The width of the wave relative to the window height."
 msgstr "Breite der Welle in Relation zur Fensterbreite"
@@ -739,9 +741,8 @@ msgstr "Verschiedene Animationen als Fenstereffekte verwenden"
 msgid "Vacuum"
 msgstr "Vakuum"
 
-#, fuzzy
 msgid "Vacuum Grid Y Resolution"
-msgstr "Vakuum Gitternetz Y Auflösung"
+msgstr "Staubsauger-Effekt: Vertikale Auflösung des Gitternetzes"
 
 msgid "Vacuum Open Start Width"
 msgstr ""
@@ -755,12 +756,19 @@ msgid ""
 "of points used to define the curves. The higher the number, the smoother the "
 "curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
+"Auflösung des Vertexgitters für die Wunderlampe (nur Y Dimension). Dies "
+"beschreibt die Anzahl der Punkte, die die Kurve beschreiben. Je größer die "
+"Anzahl desto feiner die Kurve. Jedoch kostet dies mehr Leistung (mehr CPU "
+"Auslastung)."
 
 msgid ""
 "Vertex grid resolution for Vacuum (Y dimension only). This is the number of "
 "points used to define the curves. The higher the number, the smoother the "
 "curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
+"Auflösung des Vertexgitters für Vakuum (nur Y Dimension). Dies beschreibt "
+"die Anzahl der Punkte, die die Kurve beschreiben. Je größer die Anzahl desto "
+"feiner die Kurve. Jedoch kostet dies mehr Leistung (mehr CPU Auslastung)."
 
 msgid "Wave"
 msgstr "Welle"
@@ -774,28 +782,40 @@ msgstr "Wellenbreite"
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
 msgstr ""
+"Sollen die Fenster zur Taskleiste fliegen, falls beim Minimieren der Effekt "
+"Papierflugzeug benutzt wird?"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
+"Sollen die Fenster zur Taskleiste zoomen, falls beim Minimieren der Effekt "
+"Gebogenes Zusammenfalten benutzt wird?"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Dream effect."
 msgstr ""
+"Sollen die Fenster zur Taskleiste zoomen, falls beim Minimieren der Effekt "
+"Traum benutzt wird?"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 1 effect."
 msgstr ""
+"Sollen die Fenster zur Taskleiste zoomen, falls beim Minimieren der Effekt "
+"Gleiten 1 benutzt wird?"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 2 effect."
 msgstr ""
+"Sollen die Fenster zur Taskleiste zoomen, falls beim Minimieren der Effekt "
+"Gleiten 2 benutzt wird?"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Horizontal "
 "Folds effect."
 msgstr ""
+"Sollen die Fenster zur Taskleiste zoomen, falls beim Minimieren der Effekt "
+"Horizontales Zusammenfalten benutzt wird?"
 
 msgid "Window Grid Height"
 msgstr "Fenstergitterhöhe"
@@ -1095,6 +1115,9 @@ msgstr "Befehl zum Starten des Fenstermanagers"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Befehl zum Starten des Fenstermanagers. HIER NICHT COMPIZ EINTRAGEN!"
 
+msgid "Above"
+msgstr "Über"
+
 msgid "Adjust bottom face image to rotation"
 msgstr ""
 
@@ -1118,6 +1141,19 @@ msgstr ""
 
 msgid "Appearance"
 msgstr "Aussehen"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Seitenverhältnis"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Automatischer Zoom"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Automatischer Zoom nur bei manuellem Rotieren"
 
 msgid "Behaviour"
 msgstr "Verhalten"
@@ -1147,19 +1183,63 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Farbe der unteren Würfelfläche"
 
+msgid "Color of the ground (far)."
+msgstr "Farbe für den Boden (weit entfernt)"
+
+msgid "Color of the ground (near)."
+msgstr "Farbe für den Boden (nah)"
+
 msgid "Color of top face of the cube"
 msgstr "Farbe der oberen Würfelfläche"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz Würfelreflektion"
 
 #, fuzzy
 msgid "Cube Bottom Color"
 msgstr "Rahmenfarbe der Tab-Leiste"
 
-msgid "Cube Caps"
-msgstr ""
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Reflektionen für Fensterrahmen"
 
 #, fuzzy
 msgid "Cube Top Color"
 msgstr "Rahmenfarbe der Tab-Leiste"
+
+msgid "Cube caps"
+msgstr ""
+
+# FIXME
+#, fuzzy
+msgid "Cylinder"
+msgstr "Reinigen"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Dauer"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Automatischer Zoom nur bei manuellem Rotieren"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Dauer"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Dauer"
+
+msgid "Distance"
+msgstr "Entfernung"
 
 msgid "Draw bottom face"
 msgstr ""
@@ -1173,11 +1253,37 @@ msgstr ""
 msgid "Draw top face of the cube"
 msgstr ""
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Aktivieren"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Compiz Würfelreflektion"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr ""
 
 msgid "Go back to previous image for top face of the cube"
 msgstr ""
+
+msgid "Ground color(far)"
+msgstr "Bodenfarbe (weit weg)"
+
+msgid "Ground color(near)"
+msgstr "Bodenfarbe (nah)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intensivität"
+
+msgid "Jumpy"
+msgstr "Sprunghaft"
+
+msgid "Jumpy reflection"
+msgstr "Sprunghafte Reflektion"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1185,6 +1291,21 @@ msgstr ""
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Seitenverhältnis der Expo-Wand"
+
+msgid "Maintain bottom cap image aspect ratio."
+msgstr ""
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Seitenverhältnis der Expo-Wand"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Oberes Bild an Drehung anpassen"
 
 #, fuzzy
 msgid "Next bottom image"
@@ -1200,63 +1321,8 @@ msgstr "Unten rechts abrunden"
 msgid "Prev top image"
 msgstr ""
 
-msgid "Render images on top and bottom of the cube"
-msgstr ""
-
-msgid "Scale bottom image"
-msgstr ""
-
-msgid "Scale image to cover bottom face of cube"
-msgstr ""
-
-msgid "Scale image to cover top face of cube"
-msgstr ""
-
-msgid "Scale top image"
-msgstr ""
-
-#, fuzzy
-msgid "Top image files"
-msgstr "Logo-Datei."
-
-msgid "Above"
-msgstr "Über"
-
-msgid "Auto zoom"
-msgstr "Automatischer Zoom"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Automatischer Zoom nur bei manuellem Rotieren"
-
-msgid "Color of the ground (far)."
-msgstr "Farbe für den Boden (weit entfernt)"
-
-msgid "Color of the ground (near)."
-msgstr "Farbe für den Boden (nah)"
-
-msgid "Compiz cube reflection"
-msgstr "Compiz Würfelreflektion"
-
-msgid "Cube Reflection"
-msgstr "Würfelreflektion"
-
-msgid "Distance"
-msgstr "Entfernung"
-
-msgid "Ground color(far)"
-msgstr "Bodenfarbe (weit weg)"
-
-msgid "Ground color(near)"
-msgstr "Bodenfarbe (nah)"
-
-msgid "Intensity"
-msgstr "Intensivität"
-
-msgid "Jumpy"
-msgstr "Sprunghaft"
-
-msgid "Jumpy reflection"
-msgstr "Sprunghafte Reflektion"
+msgid "Reflection"
+msgstr "Reflektionen"
 
 msgid "Reflection ground size"
 msgstr "Größe des Bodens für die Reflektion"
@@ -1272,6 +1338,29 @@ msgstr "Reflektions-Modus"
 
 msgid "Reflection mode."
 msgstr "Reflektions-Modus"
+
+msgid "Scale bottom image"
+msgstr ""
+
+msgid "Scale image to cover bottom face of cube"
+msgstr ""
+
+msgid "Scale image to cover top face of cube"
+msgstr ""
+
+msgid "Scale top image"
+msgstr ""
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Geschwindigkeit"
+
+#, fuzzy
+msgid "Top image files"
+msgstr "Logo-Datei."
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr ""
@@ -1303,10 +1392,6 @@ msgstr "Gebogen Zusammenfalten"
 #, fuzzy
 msgid "Curve strength"
 msgstr "Stärke der Bewegungsunschärfe."
-
-#, fuzzy
-msgid "Deformation"
-msgstr "Dauer"
 
 # FIXME - is wall really == Wand here? -- Maybe we could use Ebene, Tafel or Brett here?
 #, fuzzy
@@ -1408,9 +1493,6 @@ msgstr ""
 #, fuzzy
 msgid "Previous viewport"
 msgstr "Vorherige Arbeitsfläche"
-
-msgid "Reflection"
-msgstr "Reflektionen"
 
 #, fuzzy
 msgid "Reflection Scale"
@@ -1584,17 +1666,9 @@ msgstr "Original-Mauszeiger verstecken"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-
 #, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Verhalten der Maus"
-
-msgid "Mouse Poll Interval"
-msgstr ""
 
 msgid "Mouse Restrain Margin"
 msgstr ""
@@ -1702,6 +1776,10 @@ msgid "Zoom Area Movement"
 msgstr "Aus der Mitte zoomen"
 
 #, fuzzy
+msgid "Zoom Box"
+msgstr "Zoom"
+
+#, fuzzy
 msgid "Zoom In"
 msgstr "Zoom"
 
@@ -1733,6 +1811,9 @@ msgstr "Zeitschritt"
 #, fuzzy
 msgid "Zoom factor"
 msgstr "Zoomdauer"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2564,7 +2645,15 @@ msgstr ""
 msgid "Start gesture"
 msgstr ""
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
 msgid "Misc"
+msgstr ""
+
+msgid "Mouse Poll Interval"
 msgstr ""
 
 msgid "Mouse position polling"
@@ -3321,8 +3410,13 @@ msgstr "Sämtliche Fenster"
 msgid "Background color of the window title"
 msgstr "Hintergrundfarbe für Fenstertitel"
 
-msgid "Close Windows In Scale"
-msgstr "Fenster schließen"
+#, fuzzy
+msgid "Close Window"
+msgstr "Fenster anordnen"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Fenster während des 'Skalierte Fenster'-Modus schließen"
 
 msgid "Close windows while in scale mode"
 msgstr "Fenster während des 'Skalierte Fenster'-Modus schließen"
@@ -3330,8 +3424,17 @@ msgstr "Fenster während des 'Skalierte Fenster'-Modus schließen"
 msgid "Color used for highlighting the hovered window"
 msgstr "Farbe, die zum Hervorheben des aktuellen Fensters verwendet wird"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Verwende Fensterhervorhebung"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Farbe des Fenstertitels"
@@ -3349,6 +3452,10 @@ msgstr "Gefilterte Fenster"
 msgid "Highlights the hovered window with the given color"
 msgstr "Hebt das aktuelle Fenster in der gewählten Farbe hervor."
 
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+
 #, fuzzy
 msgid "No display"
 msgstr "Fenstertitelanzeige"
@@ -3358,6 +3465,14 @@ msgstr "Normal"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organisch (EXPERIMENTELL)"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Erlaubt die Bewegung von Fenstern an bestimmte Positionen"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Fenster während des 'Skalierte Fenster'-Modus schließen"
 
 msgid "Scale Addons"
 msgstr "Scale-Erweiterungen"
@@ -3385,6 +3500,10 @@ msgstr "Fenstervervorhebung"
 msgid "Window Layout Mode"
 msgstr "Modus für Fensteranordnung"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Regeln für Fenster"
+
 msgid "Window Title"
 msgstr "Fenstertitel"
 
@@ -3396,10 +3515,12 @@ msgstr "Fenstertitelanzeige"
 msgid "Window title display in scale mode"
 msgstr "Fenstertitelanzeige im Skaliermodus"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Fenster zoomen"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Fenster in 'Fenster skalieren'-Modus auf Originalgröße zoomen"
 
 msgid "Filter Case Insensitive"
@@ -5067,6 +5188,12 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Abhilfen"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Würfelreflektion"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Fenster schließen"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Animationsgeschwindigkeit"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:50+0530\n"
+"POT-Creation-Date: 2008-05-24 22:13+0530\n"
 "PO-Revision-Date: 2008-02-18 11:19+0100\n"
 "Last-Translator: Jim Dusis <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -115,6 +115,12 @@ msgstr "Φωτεινότητα"
 
 msgid "Brightness of faded windows"
 msgstr "Φωτεινότητα των ξεθωριασμένων παραθύρων"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1086,6 +1092,9 @@ msgstr "Γραμμή Εντολών του Διαχειριστή Παραθύρ
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Γραμμή Εντολών του Διαχειριστή Παραθύρων. ΜΗΝ ΒΑΛΕΤΕ COMPIZ ΕΔΩ!!!"
 
+msgid "Above"
+msgstr "Απο Πάνω"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Προσαρμογή εικόνα κάτω όψης για περιστροφή"
 
@@ -1106,6 +1115,19 @@ msgstr "Πέρασμα στην επόμενη εικόνα για την πάν
 
 msgid "Appearance"
 msgstr "Εμφάνιση"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Αναλογία Διαστάσεων"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Αυτόματο ζουμ"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Αυτόματο ζουμ μόνο σε Γύρισμα με το Ποντίκι"
 
 msgid "Behaviour"
 msgstr "Συμπεριφορά"
@@ -1142,17 +1164,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Χρώμα κάτω όψης του κύβου."
 
+msgid "Color of the ground (far)."
+msgstr "Χρώμα Δαπέδου (μακρινό)."
+
+msgid "Color of the ground (near)."
+msgstr "Χρώμα Δαπέδου (κοντινό)."
+
 msgid "Color of top face of the cube"
 msgstr "Χρώμα πάνω όψης του κύβου."
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Αντανάκλαση του κύβου του Compiz"
 
 msgid "Cube Bottom Color"
 msgstr "Κάτω Χρώμα Κύβου"
 
-msgid "Cube Caps"
-msgstr "Καλύματα Κύβου"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Αντανάκλαση Διακοσμίσεων"
 
 msgid "Cube Top Color"
 msgstr "Πάνω Χρώμα Κύβου"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Καλύματα Κύβου"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Καθάρισμός"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Διάρκεια"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Αυτόματο ζουμ μόνο σε Γύρισμα με το Ποντίκι"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Διάρκεια"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Διάρκεια"
+
+msgid "Distance"
+msgstr "Απόσταση"
 
 msgid "Draw bottom face"
 msgstr "Ζωγράφισε κάτω όψη"
@@ -1166,11 +1232,37 @@ msgstr "Ζωγράφισε πάνω όψη"
 msgid "Draw top face of the cube"
 msgstr "Ζωγράφισε πάνω όψη του κύβου"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Ενεργοποίηση"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Αντανάκλαση του κύβου του Compiz"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Πήγαινε πίσω στη προηγούμενη εικόνα για την κάτω όψη του κύβου"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Πήγαινε πίσω στη προηγούμενη εικόνα για την πάνω όψη του κύβου"
+
+msgid "Ground color(far)"
+msgstr "Χρώμα δαπέδου(μακρινό)"
+
+msgid "Ground color(near)"
+msgstr "Χρώμα δαπέδου(κοντινό)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Ένταση"
+
+msgid "Jumpy"
+msgstr "Χοροπηδηχτό"
+
+msgid "Jumpy reflection"
+msgstr "Χοροπηδηχτή αντανάκλαση"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1182,6 +1274,22 @@ msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
 "Λίστα των PNG και SVG αρχείων που πρέπει να απεικονιστούν στην πάνω όψη του "
 "κύβου"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Αναλογία διαστάσεων της μεθόδου expo"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Προσαρμογή εικόνα κάτω όψης για περιστροφή"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Αναλογία διαστάσεων της μεθόδου expo"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Προσαρμογή εικόνας πάνω όψης για περιστροφή"
 
 msgid "Next bottom image"
 msgstr "Επόμενη κάτω εικόνα"
@@ -1195,62 +1303,8 @@ msgstr "Προηγούμενη κάτω εικόνα"
 msgid "Prev top image"
 msgstr "Προηγούμενη κάτω εικόνα"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Απεικόνιση εικόνων πάνω και κάτω του κύβου"
-
-msgid "Scale bottom image"
-msgstr "Κλιμάκωση κάτω εικόνας"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Κλιμάκωση εικόνας ωστε να καλύπτει την κάτω όψη του κύβου"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Κλιμάκωση εικόνας ωστε να καλύπτει την πάνω όψη του κύβου"
-
-msgid "Scale top image"
-msgstr "Κλιμάκωση πάνω εικόνας"
-
-msgid "Top image files"
-msgstr "Αρχεία πάνω εικόνας"
-
-msgid "Above"
-msgstr "Απο Πάνω"
-
-msgid "Auto zoom"
-msgstr "Αυτόματο ζουμ"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Αυτόματο ζουμ μόνο σε Γύρισμα με το Ποντίκι"
-
-msgid "Color of the ground (far)."
-msgstr "Χρώμα Δαπέδου (μακρινό)."
-
-msgid "Color of the ground (near)."
-msgstr "Χρώμα Δαπέδου (κοντινό)."
-
-msgid "Compiz cube reflection"
-msgstr "Αντανάκλαση του κύβου του Compiz"
-
-msgid "Cube Reflection"
-msgstr "Αντανάκλαση του Κύβου"
-
-msgid "Distance"
-msgstr "Απόσταση"
-
-msgid "Ground color(far)"
-msgstr "Χρώμα δαπέδου(μακρινό)"
-
-msgid "Ground color(near)"
-msgstr "Χρώμα δαπέδου(κοντινό)"
-
-msgid "Intensity"
-msgstr "Ένταση"
-
-msgid "Jumpy"
-msgstr "Χοροπηδηχτό"
-
-msgid "Jumpy reflection"
-msgstr "Χοροπηδηχτή αντανάκλαση"
+msgid "Reflection"
+msgstr "Αντανάκλαση"
 
 msgid "Reflection ground size"
 msgstr "Μέγεθος αντανάκλασης στο δάπεδο"
@@ -1266,6 +1320,28 @@ msgstr "Είδος αντανάκλασης"
 
 msgid "Reflection mode."
 msgstr "Είδος αντανάκλασης."
+
+msgid "Scale bottom image"
+msgstr "Κλιμάκωση κάτω εικόνας"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Κλιμάκωση εικόνας ωστε να καλύπτει την κάτω όψη του κύβου"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Κλιμάκωση εικόνας ωστε να καλύπτει την πάνω όψη του κύβου"
+
+msgid "Scale top image"
+msgstr "Κλιμάκωση πάνω εικόνας"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Ταχύτητα"
+
+msgid "Top image files"
+msgstr "Αρχεία πάνω εικόνας"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Αυτόματο ζουμ out μόνο στο γύρισμα με το ποντίκι."
@@ -1297,10 +1373,6 @@ msgstr "Καμπυλωτή Πτυχή"
 #, fuzzy
 msgid "Curve strength"
 msgstr "Ισχύς Θολώματος Κίνησης."
-
-#, fuzzy
-msgid "Deformation"
-msgstr "Διάρκεια"
 
 #, fuzzy
 msgid "Deformation of the expo wall"
@@ -1393,9 +1465,6 @@ msgstr "Ενας τοίχος για κάθε οθόνη"
 
 msgid "Previous viewport"
 msgstr "Προηγούμενη εικονική επιφάνεια εργασίας"
-
-msgid "Reflection"
-msgstr "Αντανάκλαση"
 
 msgid "Reflection Scale"
 msgstr "Κλίμακα Αντανάκλασης"
@@ -1574,18 +1643,8 @@ msgstr ""
 "Αποκρύπτει τον πραγματικό δείκτη ποντικιού όταν ζουμάρεται μέσα και "
 "κλιμακώνει το ποντίκι"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"Πόσο συχνά να συμψηφίζεται η θέση του ποντικιού, σε χιλιοστά δευτερολέπτου. "
-"Μειώστε το για να μειωθούν τα κοψίματα."
-
 msgid "Mouse Behaviour"
 msgstr "Συμπεριφορά Ποντικιού"
-
-msgid "Mouse Poll Interval"
-msgstr "Χρονικό Διάστημα Συμψηφισμού Ποντικιού"
 
 msgid "Mouse Restrain Margin"
 msgstr "Όριο Συγκράτησης Ποντικιού"
@@ -1700,6 +1759,10 @@ msgstr "Χρήση γραμμικού φίλτραρίσματος όταν ζο
 msgid "Zoom Area Movement"
 msgstr "Περιοχή Κίνησης Ζουμ"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Ζουμ"
+
 msgid "Zoom In"
 msgstr "Ζουμ Μέσα"
 
@@ -1726,6 +1789,9 @@ msgstr "Χρονικό Βήμα Ζουμ"
 
 msgid "Zoom factor"
 msgstr "Παράγοντας Ζουμ"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2540,8 +2606,18 @@ msgstr "Προσθήκη της ενέργειας που του ανήκει"
 msgid "Start gesture"
 msgstr "Εκκίνηση νεύματος"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"Πόσο συχνά να συμψηφίζεται η θέση του ποντικιού, σε χιλιοστά δευτερολέπτου. "
+"Μειώστε το για να μειωθούν τα κοψίματα."
+
 msgid "Misc"
 msgstr ""
+
+msgid "Mouse Poll Interval"
+msgstr "Χρονικό Διάστημα Συμψηφισμού Ποντικιού"
 
 #, fuzzy
 msgid "Mouse position polling"
@@ -3289,8 +3365,13 @@ msgstr "Όλα τα παράθυρα"
 msgid "Background color of the window title"
 msgstr "Χρώμα φόντου του τίτλου παραθύρου"
 
-msgid "Close Windows In Scale"
-msgstr "Κλείσιμο Παραθύρων στην Κλιμάκωση"
+#, fuzzy
+msgid "Close Window"
+msgstr "Μετατροπή Παραθύρων σε Πλακίδια"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Κλείσιμο παραθύρων στην μέθοδο κλιμάκωσης"
 
 msgid "Close windows while in scale mode"
 msgstr "Κλείσιμο παραθύρων στην μέθοδο κλιμάκωσης"
@@ -3298,8 +3379,17 @@ msgstr "Κλείσιμο παραθύρων στην μέθοδο κλιμάκω
 msgid "Color used for highlighting the hovered window"
 msgstr "Χρώμα τονισμού του παραθύρου που το ποντίκι μένει επάνω του."
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Σχεδίαση Τονισμού Παραθύρου"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Χρώμα γραμματοσειράς του τίτλου παραθύρου"
@@ -3317,6 +3407,11 @@ msgstr "Το αιωρηθέν παράθυρο μόνο"
 msgid "Highlights the hovered window with the given color"
 msgstr "Τονίζει το παράθυρο που το ποντίκι μένει επάνω του με το δωθέν χρώμα."
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr "Κάνε τα παράθυρα ευδιάκριτα όταν το ποντίκι παραμένει απο πάνω τους"
+
 msgid "No display"
 msgstr "Μη εμφάνιση"
 
@@ -3325,6 +3420,14 @@ msgstr "Κανονικό"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Οργανικό - (ΠΕΙΡΑΜΑΤΙΚΟ)"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Τοποθέτηση παραθύρου"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Κλείσιμο παραθύρων στην μέθοδο κλιμάκωσης"
 
 msgid "Scale Addons"
 msgstr "Κλιμάκωση Addons"
@@ -3351,6 +3454,10 @@ msgstr "Τονισμός Παραθύρου"
 msgid "Window Layout Mode"
 msgstr "Μέθοδος Διάταξης Παραθύρου"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Κανόνες Παραθύρων"
+
 msgid "Window Title"
 msgstr "Τίτλος Παραθύρου"
 
@@ -3360,10 +3467,12 @@ msgstr "Εμφάνιση Τίτλου Παραθύρου"
 msgid "Window title display in scale mode"
 msgstr "Εμφάνιση τίτλου παραθύρου στην κλιμάκωση"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Ζουμ Παραθύρων Στην Κλιμάκωση"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Ζουμ παραθύρων στην μέθοδο κλιμάκωσης"
 
 msgid "Filter Case Insensitive"
@@ -4993,6 +5102,15 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Μοντίφες"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Απεικόνιση εικόνων πάνω και κάτω του κύβου"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Αντανάκλαση του Κύβου"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Κλείσιμο Παραθύρων στην Κλιμάκωση"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Ταχύτητα Γραφικής Απεικόνισης"

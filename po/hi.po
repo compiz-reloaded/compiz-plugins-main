@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:51+0530\n"
+"POT-Creation-Date: 2008-05-24 22:14+0530\n"
 "PO-Revision-Date: 2007-12-16 17:00+0530\n"
 "Last-Translator: Sangeeta Kumari\n"
 "Language-Team:  <en@li.org>\n"
@@ -116,6 +116,12 @@ msgstr "चमकीलापन"
 
 msgid "Brightness of faded windows"
 msgstr "धुंधला विंडो का चमकीलापन"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1071,6 +1077,9 @@ msgstr "विंडो प्रबंधक कमांड रेखा"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "विंडो प्रबंधक कमांड रेखा. यहां कौंपिज को मात दाखिल करें!!!"
 
+msgid "Above"
+msgstr "ऊपर"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "तलवर्ती फेस चित्र को घुमाव पर समायोजित करें"
 
@@ -1091,6 +1100,19 @@ msgstr "घन के ऊपरी फेस के लिए अगला च�
 
 msgid "Appearance"
 msgstr "प्रकटन"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "पहलू अनुपात"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "स्वचालित जूम"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "सिर्फ माउस घुमाने पर स्वचालित जूम"
 
 msgid "Behaviour"
 msgstr "आचरण"
@@ -1125,17 +1147,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "घन के तलवर्ती फेस का रंग"
 
+msgid "Color of the ground (far)."
+msgstr "तल का रंग (दूर)."
+
+msgid "Color of the ground (near)."
+msgstr "तल का रंग (नजदीक)."
+
 msgid "Color of top face of the cube"
 msgstr "घन के ऊपरी फेस का रंग"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "कोंपिज घन परावर्तन"
 
 msgid "Cube Bottom Color"
 msgstr "घन तलवर्ती रंग"
 
-msgid "Cube Caps"
-msgstr "घन कैप्स"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "सजावट के लिए परावर्तन"
 
 msgid "Cube Top Color"
 msgstr "घन ऊपरी रंग"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "घन कैप्स"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "खाली"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "अवधि"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "सिर्फ माउस घुमाने पर स्वचालित जूम"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "अवधि"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "अवधि"
+
+msgid "Distance"
+msgstr "दूरी"
 
 msgid "Draw bottom face"
 msgstr "तलवर्ती फेस खीचें"
@@ -1149,11 +1215,37 @@ msgstr "ऊपरी फेस खीचें"
 msgid "Draw top face of the cube"
 msgstr "घन का ऊपरी फेस खीचें"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "सक्रिय करें"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "कोंपिज घन परावर्तन"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "घन का तलवर्ती फेस के लिए पिछले चित्र में वापस जाएं"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "घन का ऊपरी फेस के लिए पिछले चित्र में वापस जाएं"
+
+msgid "Ground color(far)"
+msgstr "तल रंग (दूर)"
+
+msgid "Ground color(near)"
+msgstr "तल रंग (नजदीक)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "तीव्रता"
+
+msgid "Jumpy"
+msgstr "जंपी"
+
+msgid "Jumpy reflection"
+msgstr "जंपी परावर्तन"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1161,6 +1253,22 @@ msgstr "PNG और SVG फाइल की सूची जो घन के त
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "सूची का PNG और SVG फाइल पर ऊपर का"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "एक्सपो मोड पहलू अनुपात"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "तलवर्ती फेस चित्र को घुमाव पर समायोजित करें"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "एक्सपो मोड पहलू अनुपात"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "शीर्ष फेस चित्र को घुमाव के लिए समायोजित करें"
 
 msgid "Next bottom image"
 msgstr "अगला तलवर्ती चित्र"
@@ -1174,62 +1282,8 @@ msgstr "पिछला तलवर्ती चित्र"
 msgid "Prev top image"
 msgstr "पिछला ऊपरी चित्र"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "घन के ऊपर व नीचे चित्र रेंडर करें"
-
-msgid "Scale bottom image"
-msgstr "तलवर्ती चित्र मापें"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "घन के तलवर्ती फेस को कवर करने के लिए चित्र मापें"
-
-msgid "Scale image to cover top face of cube"
-msgstr "घन के ऊपरी फेस को कवर करने के लिए चित्र मापें"
-
-msgid "Scale top image"
-msgstr "ऊपरी चित्र मापें"
-
-msgid "Top image files"
-msgstr "ऊपरी चित्र फाइल"
-
-msgid "Above"
-msgstr "ऊपर"
-
-msgid "Auto zoom"
-msgstr "स्वचालित जूम"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "सिर्फ माउस घुमाने पर स्वचालित जूम"
-
-msgid "Color of the ground (far)."
-msgstr "तल का रंग (दूर)."
-
-msgid "Color of the ground (near)."
-msgstr "तल का रंग (नजदीक)."
-
-msgid "Compiz cube reflection"
-msgstr "कोंपिज घन परावर्तन"
-
-msgid "Cube Reflection"
-msgstr "घन परावर्तन"
-
-msgid "Distance"
-msgstr "दूरी"
-
-msgid "Ground color(far)"
-msgstr "तल रंग (दूर)"
-
-msgid "Ground color(near)"
-msgstr "तल रंग (नजदीक)"
-
-msgid "Intensity"
-msgstr "तीव्रता"
-
-msgid "Jumpy"
-msgstr "जंपी"
-
-msgid "Jumpy reflection"
-msgstr "जंपी परावर्तन"
+msgid "Reflection"
+msgstr "परावर्तन"
 
 msgid "Reflection ground size"
 msgstr "आधार आकार का परावर्तन"
@@ -1245,6 +1299,28 @@ msgstr "परावर्तन मोड"
 
 msgid "Reflection mode."
 msgstr "परावर्तन मोड."
+
+msgid "Scale bottom image"
+msgstr "तलवर्ती चित्र मापें"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "घन के तलवर्ती फेस को कवर करने के लिए चित्र मापें"
+
+msgid "Scale image to cover top face of cube"
+msgstr "घन के ऊपरी फेस को कवर करने के लिए चित्र मापें"
+
+msgid "Scale top image"
+msgstr "ऊपरी चित्र मापें"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "गति"
+
+msgid "Top image files"
+msgstr "ऊपरी चित्र फाइल"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "सिर्फ माउस घुमाव पर स्वतः जूम आउट करें."
@@ -1274,10 +1350,6 @@ msgstr "वक्र मोड़"
 #, fuzzy
 msgid "Curve strength"
 msgstr "गति धुंधला शक्ति."
-
-#, fuzzy
-msgid "Deformation"
-msgstr "अवधि"
 
 #, fuzzy
 msgid "Deformation of the expo wall"
@@ -1370,9 +1442,6 @@ msgstr "प्रति आउटपुट एक दीवाल"
 
 msgid "Previous viewport"
 msgstr "पिछला व्यूपोर्ट"
-
-msgid "Reflection"
-msgstr "परावर्तन"
 
 msgid "Reflection Scale"
 msgstr "परावर्तन मापक"
@@ -1542,19 +1611,9 @@ msgstr "मौलिक माउस संकेतक छिपाएं"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "मौलिक माउस संकेतक छिपाएं जब जूम इन होता है और माउस स्केल किया जाता है"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"माउस स्थिति को कितनी बार पोल करना है मिली सेकेंड में. इस घटाएं चोपी व्यवहार को घटाने के "
-"लिए."
-
 #, fuzzy
 msgid "Mouse Behaviour"
 msgstr "माउस व्यवहार"
-
-msgid "Mouse Poll Interval"
-msgstr "माउस पोल अंतराल"
 
 msgid "Mouse Restrain Margin"
 msgstr "माउस प्रतिबंध हाशिया"
@@ -1663,6 +1722,10 @@ msgstr "जूम इन करने के दौरान रैखिक फ
 msgid "Zoom Area Movement"
 msgstr "ज़ूम गति"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "ज़ूम"
+
 msgid "Zoom In"
 msgstr "ज़ूम इन"
 
@@ -1690,6 +1753,9 @@ msgstr "ज़ूम टाइमस्टैंप"
 
 msgid "Zoom factor"
 msgstr "जूम कारक"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "इस कारक के द्वारा जूम इन/आउट. उच्चतर मान का अर्थ है तेज जूमिंग."
@@ -2477,8 +2543,18 @@ msgstr ""
 msgid "Start gesture"
 msgstr ""
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"माउस स्थिति को कितनी बार पोल करना है मिली सेकेंड में. इस घटाएं चोपी व्यवहार को घटाने के "
+"लिए."
+
 msgid "Misc"
 msgstr ""
+
+msgid "Mouse Poll Interval"
+msgstr "माउस पोल अंतराल"
 
 #, fuzzy
 msgid "Mouse position polling"
@@ -3203,8 +3279,13 @@ msgstr "विंडोज टाइल करें"
 msgid "Background color of the window title"
 msgstr "विंडो शीर्षक का पृष्ठभूमि रंग"
 
-msgid "Close Windows In Scale"
-msgstr "विंडोज़ को मापक में बन्द करें"
+#, fuzzy
+msgid "Close Window"
+msgstr "टाइल विन्डो"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "मापक मोड में विंडो बन्द करें"
 
 msgid "Close windows while in scale mode"
 msgstr "मापक मोड में विंडो बन्द करें"
@@ -3212,8 +3293,17 @@ msgstr "मापक मोड में विंडो बन्द करे�
 msgid "Color used for highlighting the hovered window"
 msgstr "आगे पीछे किये जा रहे विंडो को उभारने के लिए प्रयुक्त रंग"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "विंडो उभार खीचें"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "विंडो शीर्षक का फ़ॉन्ट रंग"
@@ -3232,6 +3322,11 @@ msgid "Highlights the hovered window with the given color"
 msgstr "दिए रंग के साथ आगे पीछे करता विंडो उभारता है"
 
 #, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr "विंडो को आसानी से दृश्य बनाता है उनपर माउस आगे पीछे करते हुए"
+
+#, fuzzy
 msgid "No display"
 msgstr "विंडो शीर्षक प्रदर्शन"
 
@@ -3240,6 +3335,14 @@ msgstr "सामान्य"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "जीवीय - प्रायोगिक"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "विंडो रखें"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "मापक मोड में विंडो बन्द करें"
 
 msgid "Scale Addons"
 msgstr "एडऑन मापें"
@@ -3265,6 +3368,10 @@ msgstr "विंडो उभार"
 msgid "Window Layout Mode"
 msgstr "विंडो अभिन्यास प्रकार"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "विंडो नियम"
+
 msgid "Window Title"
 msgstr "विंडो का शीर्षक"
 
@@ -3276,10 +3383,12 @@ msgstr "विंडो शीर्षक प्रदर्शन"
 msgid "Window title display in scale mode"
 msgstr "मापक मोड में विंडो दिखाता है"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "मापक में विंडोज़ जूम करें"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "मापक मोड में विंडो जूम करें"
 
 msgid "Filter Case Insensitive"
@@ -4878,6 +4987,15 @@ msgstr "सभी डेस्कटॉप पर विंडोज़ जि�
 
 msgid "Workarounds"
 msgstr "समाधान"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "घन के ऊपर व नीचे चित्र रेंडर करें"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "घन परावर्तन"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "विंडोज़ को मापक में बन्द करें"
 
 #~ msgid "Animation Speed"
 #~ msgstr "संजीवन गति"

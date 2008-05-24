@@ -47,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:51+0530\n"
-"PO-Revision-Date: 2008-04-07 21:15+0200\n"
+"POT-Creation-Date: 2008-05-24 22:14+0530\n"
+"PO-Revision-Date: 2008-05-18 14:03+0200\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -159,6 +159,12 @@ msgstr "Luminosità"
 
 msgid "Brightness of faded windows"
 msgstr "Luminosità delle finestre in dissolvenza"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1162,6 +1168,9 @@ msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr ""
 "Comando per avviare un gestore di finestre alternativo. Non scrivere «compiz»!"
 
+msgid "Above"
+msgstr "Sopra"
+
 # (NdT) suggerimento
 msgid "Adjust bottom face image to rotation"
 msgstr "Regola immagine faccia inferiore alla rotazione"
@@ -1186,6 +1195,19 @@ msgstr "Avanza all'immagine successiva per la faccia superiore del cubo"
 
 msgid "Appearance"
 msgstr "Aspetto"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Proporzioni aspetto"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Zoom automatico"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Zoom automatico solo alla rotazione col mouse"
 
 msgid "Behaviour"
 msgstr "Comportamento"
@@ -1223,18 +1245,63 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Colore della faccia inferiore del cubo"
 
+msgid "Color of the ground (far)."
+msgstr "Colore della base (lontano)."
+
+msgid "Color of the ground (near)."
+msgstr "Colore della base (vicino)."
+
 # (NdT) suggerimento
 msgid "Color of top face of the cube"
 msgstr "Colore della faccia superiore del cubo"
 
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Riflesso del cubo di Compiz"
+
 msgid "Cube Bottom Color"
 msgstr "Colore inferiore del cubo"
 
-msgid "Cube Caps"
-msgstr "Immagini ai capi del cubo"
+# (ndt) opzione
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Riflessi per le decorazioni"
 
 msgid "Cube Top Color"
 msgstr "Colore superiore del cubo"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Immagini ai capi del cubo"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Pulisci"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Deformazione"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Zoom automatico solo alla rotazione col mouse"
+
+msgid "Deformation"
+msgstr "Deformazione"
+
+#, fuzzy
+msgid "Deformation in unfold cube mode."
+msgstr "Forza della deformazione nella modalità «Curva»"
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Deformazione"
+
+msgid "Distance"
+msgstr "Distanza"
 
 # (NdT) opzione
 msgid "Draw bottom face"
@@ -1252,11 +1319,38 @@ msgstr "Disegnare la faccia superiore"
 msgid "Draw top face of the cube"
 msgstr "Disegna la faccia superiore del cubo"
 
+# (NdT) opzione
+#, fuzzy
+msgid "Enabled"
+msgstr "Attivare"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Riflesso del cubo di Compiz"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Torna all'immagine precedente per la faccia inferiore del cubo"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Torna all'immagine precedente per la faccia superiore del cubo"
+
+msgid "Ground color(far)"
+msgstr "Colore della base (lontano)"
+
+msgid "Ground color(near)"
+msgstr "Colore della base (vicino)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intensità"
+
+msgid "Jumpy"
+msgstr "Saltellante"
+
+msgid "Jumpy reflection"
+msgstr "Riflesso saltellante"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1264,6 +1358,24 @@ msgstr "Elenco di file PNG e SVG da usare per la faccia inferiore del cubo"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "Elenco di file PNG e SVG da usare per la faccia superiore del cubo"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Proporzioni aspetto per la modalità «Expo»"
+
+# (NdT) suggerimento
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Regola immagine faccia inferiore alla rotazione"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Proporzioni aspetto per la modalità «Expo»"
+
+# (NdT) suggerimento
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Regola immagine faccia superiore alla rotazione"
 
 msgid "Next bottom image"
 msgstr "Immagine inferiore successiva"
@@ -1277,66 +1389,8 @@ msgstr "Immagine inferiore precedente"
 msgid "Prev top image"
 msgstr "Immagine superiore precedente"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Applica delle immagini alle facce superiore e inferiore del cubo"
-
-# (NdT) opzione
-msgid "Scale bottom image"
-msgstr "Scalare immagine inferiore"
-
-# (NdT) suggerimento
-msgid "Scale image to cover bottom face of cube"
-msgstr "Scala l'immagine in modo da coprire la faccia inferiore del cubo"
-
-# (NdT) suggerimento
-msgid "Scale image to cover top face of cube"
-msgstr "Scala l'immagine in modo da coprire la faccia superiore del cubo"
-
-# (NdT) opzione
-msgid "Scale top image"
-msgstr "Scalare immagine superiore"
-
-msgid "Top image files"
-msgstr "File immagine superiore"
-
-msgid "Above"
-msgstr "Sopra"
-
-msgid "Auto zoom"
-msgstr "Zoom automatico"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Zoom automatico solo alla rotazione col mouse"
-
-msgid "Color of the ground (far)."
-msgstr "Colore della base (lontano)."
-
-msgid "Color of the ground (near)."
-msgstr "Colore della base (vicino)."
-
-msgid "Compiz cube reflection"
-msgstr "Riflesso del cubo di Compiz"
-
-msgid "Cube Reflection"
-msgstr "Riflesso del cubo"
-
-msgid "Distance"
-msgstr "Distanza"
-
-msgid "Ground color(far)"
-msgstr "Colore della base (lontano)"
-
-msgid "Ground color(near)"
-msgstr "Colore della base (vicino)"
-
-msgid "Intensity"
-msgstr "Intensità"
-
-msgid "Jumpy"
-msgstr "Saltellante"
-
-msgid "Jumpy reflection"
-msgstr "Riflesso saltellante"
+msgid "Reflection"
+msgstr "Riflesso"
 
 msgid "Reflection ground size"
 msgstr "Dimensione base riflesso"
@@ -1354,6 +1408,32 @@ msgstr "Modalità riflesso"
 
 msgid "Reflection mode."
 msgstr "La modalità del riflesso."
+
+# (NdT) opzione
+msgid "Scale bottom image"
+msgstr "Scalare immagine inferiore"
+
+# (NdT) suggerimento
+msgid "Scale image to cover bottom face of cube"
+msgstr "Scala l'immagine in modo da coprire la faccia inferiore del cubo"
+
+# (NdT) suggerimento
+msgid "Scale image to cover top face of cube"
+msgstr "Scala l'immagine in modo da coprire la faccia superiore del cubo"
+
+# (NdT) opzione
+msgid "Scale top image"
+msgstr "Scalare immagine superiore"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Velocità"
+
+msgid "Top image files"
+msgstr "File immagine superiore"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Esegue lo zoom automatico solo alla rotazione col mouse."
@@ -1383,9 +1463,6 @@ msgstr "Curva"
 
 msgid "Curve strength"
 msgstr "Forza della curva"
-
-msgid "Deformation"
-msgstr "Deformazione"
 
 msgid "Deformation of the expo wall"
 msgstr "Deformazione del muro «Expo»"
@@ -1481,9 +1558,6 @@ msgstr "Una muraglia per output"
 msgid "Previous viewport"
 msgstr "Area di lavoro precedente"
 
-msgid "Reflection"
-msgstr "Riflesso"
-
 msgid "Reflection Scale"
 msgstr "Scala riflesso"
 
@@ -1529,9 +1603,8 @@ msgstr "Vortice"
 msgid "Zoom time"
 msgstr "Tempo dello zoom"
 
-#, fuzzy
 msgid "Activate Demanding Attention Window"
-msgstr "Attiva una determinata finestra"
+msgstr "Attiva finestra con richiesta di attenzione"
 
 msgid "Activate Window"
 msgstr "Attiva finestra"
@@ -1541,6 +1614,8 @@ msgstr "Attiva una determinata finestra"
 
 msgid "Activate next window which has the \"demands attention\" flag set."
 msgstr ""
+"Attiva la finestra successiva che ha il flag di richiesta attenzione "
+"impostato."
 
 msgid "Extra WM Actions"
 msgstr "Azioni aggiuntive gestore finestre"
@@ -1669,18 +1744,8 @@ msgstr ""
 "Nasconde il puntatore originale del mouse negli ingrandimenti e nella "
 "scalatura del mouse"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"Tempo in millisecondi ogni quanto chiedere lo posizione del mouse. Ridurre "
-"questo valore per evitare rallentamenti."
-
 msgid "Mouse Behaviour"
 msgstr "Comportamento mouse"
-
-msgid "Mouse Poll Interval"
-msgstr "Intervallo richieste mouse"
 
 msgid "Mouse Restrain Margin"
 msgstr "Margine limite del mouse"
@@ -1821,6 +1886,13 @@ msgstr "Usa il filtro lineare nell'ingrandimento"
 msgid "Zoom Area Movement"
 msgstr "Movimento zoom"
 
+# (ndt) in questo caso lasciato zoom
+# perché ingrandisce e rimpicciolisce la finestra
+# come uno zoom fotografico
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Zoom"
+
 msgid "Zoom In"
 msgstr "Ingrandisci"
 
@@ -1847,6 +1919,9 @@ msgstr "Intervallo ingrandimento"
 
 msgid "Zoom factor"
 msgstr "Fattore ingrandimento"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 # (ndt) suggerimento
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
@@ -2699,8 +2774,18 @@ msgstr "Plug-in a cui è associata un'azione."
 msgid "Start gesture"
 msgstr "Inizia gesto"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"Tempo in millisecondi ogni quanto chiedere lo posizione del mouse. Ridurre "
+"questo valore per evitare rallentamenti."
+
 msgid "Misc"
 msgstr "Varie"
+
+msgid "Mouse Poll Interval"
+msgstr "Intervallo richieste mouse"
 
 msgid "Mouse position polling"
 msgstr "Recupero posizione del mouse"
@@ -2722,6 +2807,7 @@ msgstr "Cambia area di lavoro con un gesto del mouse"
 
 msgid "Also negate window decorations, not only the window contents."
 msgstr ""
+"Mette in negativo anche le decorazioni delle finestre, non solo i contenuti."
 
 msgid "Exclude Windows"
 msgstr "Escludi finestre"
@@ -2729,10 +2815,8 @@ msgstr "Escludi finestre"
 msgid "Neg Windows"
 msgstr "Finestre in negativo"
 
-# (ndt) opzione
-#, fuzzy
 msgid "Negate Decorations"
-msgstr "Riflessi per le decorazioni"
+msgstr "Negativo delle decorazioni"
 
 msgid "Negative"
 msgstr "Negativo"
@@ -3490,8 +3574,12 @@ msgstr "Tutte le finestre"
 msgid "Background color of the window title"
 msgstr "Colore di sfondo del titolo della finestra"
 
-msgid "Close Windows In Scale"
-msgstr "Chiudere finestre in «Scala finestre»"
+#, fuzzy
+msgid "Close Window"
+msgstr "Chiudi finestra"
+
+msgid "Close window while in scale mode"
+msgstr "Chiude la finestra mentre in modalità «Scala finestre»"
 
 msgid "Close windows while in scale mode"
 msgstr "Chiude le finestre in modalità «Scala finestre»"
@@ -3499,9 +3587,22 @@ msgstr "Chiude le finestre in modalità «Scala finestre»"
 msgid "Color used for highlighting the hovered window"
 msgstr "Colore utilizzato per evidenziare la finestra selezionata"
 
+#, fuzzy
+msgid "Constrain Pull To Screen"
+msgstr "Limitare il tiro allo schermo"
+
 # (ndt) opzione
 msgid "Draw Window Highlight"
 msgstr "Evidenziare finestra"
+
+#, fuzzy
+msgid "Exit Scale On Pull"
+msgstr "Uscire dalla modalità scala al tiro"
+
+#, fuzzy
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
+"Esce dalla modalità «Scala finestre» dopo che una finestra è stata tirata."
 
 # (ndt) suggerimento
 msgid "Font color of the window title"
@@ -3523,6 +3624,13 @@ msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidenzia la finestra su cui ci si sofferma col mouse con un dato colore"
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+"Rende le finestre completamente visibili dopo averle tirate in un'altra area "
+"di lavoro"
+
 msgid "No display"
 msgstr "Nessuna visualizzazione"
 
@@ -3532,8 +3640,19 @@ msgstr "Normale"
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organico (sperimentale)"
 
+# (ndt) non mi piace per niente...
+#, fuzzy
+msgid "Pull Window"
+msgstr "Tira la finestra"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr ""
+"Tira la finestra nell'area di lavoro attuale quando in modalità Scala "
+"finestre"
+
 msgid "Scale Addons"
-msgstr "Proprietà aggiuntiva di «Scala finestre»"
+msgstr "Proprietà aggiuntive di «Scala finestre»"
 
 # (ndt) suggerimento
 msgid "Selects the mode to layout the windows in scale mode"
@@ -3559,6 +3678,10 @@ msgstr "Evidenziazione finestra"
 msgid "Window Layout Mode"
 msgstr "Modalità disposizione finestra"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Finestra tirata"
+
 msgid "Window Title"
 msgstr "Titolo finestra"
 
@@ -3569,10 +3692,12 @@ msgstr "Visualizzazione titolo finestra"
 msgid "Window title display in scale mode"
 msgstr "Mostra il titolo della finestra nella modalità ridotta"
 
-msgid "Zoom Windows In Scale"
-msgstr "Zoom sulle finestre in scala"
+#, fuzzy
+msgid "Zoom Window"
+msgstr "Zoom sulla finestra"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Esegue lo zoom sulle finestre nella modalità «Scala finestre»"
 
 # (ndt) opzione
@@ -4896,7 +5021,7 @@ msgid "Outline color of the switcher window."
 msgstr "Colore del bordo esterno del selettore."
 
 msgid "Preview Scale"
-msgstr ""
+msgstr "Anteprima Scala finestre"
 
 # (ndt) suggerimento
 msgid "Radius of the rounded edge"
@@ -4937,7 +5062,7 @@ msgstr "Mostra la finestra del selettore mentre si cambia area di lavoro"
 
 #, no-c-format
 msgid "Size of the preview in %"
-msgstr ""
+msgstr "Dimensione anteprima in %"
 
 msgid "Switch Target Preview Visibility Time"
 msgstr "Tempo visibilità anteprima selettore aree di lavoro"
@@ -4967,7 +5092,7 @@ msgid "Wall Sliding Duration"
 msgstr "Durata scorrimento muraglia"
 
 msgid "Width of the border between the previews"
-msgstr ""
+msgstr "Larghezza del bordo tra le anteprime"
 
 msgid "Background fill type."
 msgstr "Tipo di riempimento dello sfondo."
@@ -5259,6 +5384,15 @@ msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Applica delle immagini alle facce superiore e inferiore del cubo"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Riflesso del cubo"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Chiudere finestre in «Scala finestre»"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Velocità animazione"

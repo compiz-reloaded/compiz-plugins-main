@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:52+0530\n"
-"PO-Revision-Date: 2008-05-01 12:40+0200\n"
+"POT-Creation-Date: 2008-05-24 22:16+0530\n"
+"PO-Revision-Date: 2008-05-15 21:04+0200\n"
 "Last-Translator: Sebastian Parborg <zedDB@hotmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -119,6 +119,12 @@ msgstr "Ljusstyrka"
 
 msgid "Brightness of faded windows"
 msgstr "Ljusstyrka av tonade fönster"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1063,6 +1069,9 @@ msgstr "Kommandorad för fönsterhanterare"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Kommandorad för fönsterhanterare. SKRIV INTE IN COMPIZ HÄR!!!"
 
+msgid "Above"
+msgstr "Ovanför"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Justera bilden på undersidan till rotation"
 
@@ -1083,6 +1092,19 @@ msgstr "Byt till nästa bild för översidan av kuben"
 
 msgid "Appearance"
 msgstr "Utseende"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Bildformat"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Automatisk zoom"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Zooma endast automatiskt vid musrotation"
 
 msgid "Behaviour"
 msgstr "Beteende"
@@ -1118,17 +1140,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Färgen på bottenytan av kuben"
 
+msgid "Color of the ground (far)."
+msgstr "Färgen på marken (långt bort)"
+
+msgid "Color of the ground (near)."
+msgstr "Färgen på marken (nära)"
+
 msgid "Color of top face of the cube"
 msgstr "Färgen på toppytan av kuben"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz kubreflektion"
 
 msgid "Cube Bottom Color"
 msgstr "Färgen på kubens undersidan"
 
-msgid "Cube Caps"
-msgstr "Kublock"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Reflektionen för ramar"
 
 msgid "Cube Top Color"
 msgstr "Färgen på kubens översida"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Kublock"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Rensa"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Deformation"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Zooma endast automatiskt vid musrotation"
+
+msgid "Deformation"
+msgstr "Deformation"
+
+#, fuzzy
+msgid "Deformation in unfold cube mode."
+msgstr "Styrkan på deformationen i kurvläget"
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Deformation"
+
+msgid "Distance"
+msgstr "Avstånd"
 
 msgid "Draw bottom face"
 msgstr "Rita undersida"
@@ -1142,11 +1208,37 @@ msgstr "Rita översida"
 msgid "Draw top face of the cube"
 msgstr "Ritar översidan av kuben"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Aktivera"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Compiz kubreflektion"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Gå tillbaka till föregående bild för undersidan av kuben"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Gå tillbaka till föregående bild för översidan av kuben"
+
+msgid "Ground color(far)"
+msgstr "Markfärg (långt bort)"
+
+msgid "Ground color(near)"
+msgstr "Markfärg (nära)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intensitet"
+
+msgid "Jumpy"
+msgstr "Hoppig"
+
+msgid "Jumpy reflection"
+msgstr "Hoppig reflektion"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1154,6 +1246,22 @@ msgstr "Lista på PNG och SVG filer som ska renderas på undersidan av kuben"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "Lista på PNG och SVG filer som ska renderas på översidan av kuben"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Expolägets bildformat"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Justera bilden på undersidan till rotation"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Expolägets bildformat"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Justera bilden på översidan till rotation"
 
 msgid "Next bottom image"
 msgstr "Nästa bild på undersida"
@@ -1167,62 +1275,8 @@ msgstr "Föreg bild på undersida"
 msgid "Prev top image"
 msgstr "Föreg bild på översida"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Rendererar bilder på toppen och botten av kuben"
-
-msgid "Scale bottom image"
-msgstr "Skala bilden på undersidan"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Skala bilden så den täcker undersidan av kuben"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Skala bilden så den täcker översidan av kuben"
-
-msgid "Scale top image"
-msgstr "Skala bilden på översidan"
-
-msgid "Top image files"
-msgstr "Bildfiler för översida"
-
-msgid "Above"
-msgstr "Ovanför"
-
-msgid "Auto zoom"
-msgstr "Automatisk zoom"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Zooma endast automatiskt vid musrotation"
-
-msgid "Color of the ground (far)."
-msgstr "Färgen på marken (långt bort)"
-
-msgid "Color of the ground (near)."
-msgstr "Färgen på marken (nära)"
-
-msgid "Compiz cube reflection"
-msgstr "Compiz kubreflektion"
-
-msgid "Cube Reflection"
-msgstr "Kubreflektion"
-
-msgid "Distance"
-msgstr "Avstånd"
-
-msgid "Ground color(far)"
-msgstr "Markfärg (långt bort)"
-
-msgid "Ground color(near)"
-msgstr "Markfärg (nära)"
-
-msgid "Intensity"
-msgstr "Intensitet"
-
-msgid "Jumpy"
-msgstr "Hoppig"
-
-msgid "Jumpy reflection"
-msgstr "Hoppig reflektion"
+msgid "Reflection"
+msgstr "Reflektion"
 
 msgid "Reflection ground size"
 msgstr "Storleken på reflektionen på marken"
@@ -1238,6 +1292,28 @@ msgstr "Reflektionsläge"
 
 msgid "Reflection mode."
 msgstr "Reflektionsläge."
+
+msgid "Scale bottom image"
+msgstr "Skala bilden på undersidan"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Skala bilden så den täcker undersidan av kuben"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Skala bilden så den täcker översidan av kuben"
+
+msgid "Scale top image"
+msgstr "Skala bilden på översidan"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Hastighet"
+
+msgid "Top image files"
+msgstr "Bildfiler för översida"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Zooma ut automatiskt endast vid musrotation."
@@ -1260,16 +1336,12 @@ msgstr "Knapp för att avsluta expo"
 msgid "Button binding to switch to next viewport in expo"
 msgstr "Tangentbindning för att byta till nästa skrivbordsyta i expo"
 
-#, fuzzy
 msgid "Curve"
-msgstr "Kurvad ihopvikning"
+msgstr "Kurva"
 
 #, fuzzy
 msgid "Curve strength"
-msgstr "Styrka för rörelseoskärpa."
-
-msgid "Deformation"
-msgstr "Deformation"
+msgstr "Styrka för kurva"
 
 msgid "Deformation of the expo wall"
 msgstr "Deformationen av expo-väggen"
@@ -1360,9 +1432,6 @@ msgstr "En vägg per utmatning"
 
 msgid "Previous viewport"
 msgstr "Föregående skrivbordsyta"
-
-msgid "Reflection"
-msgstr "Reflektion"
 
 msgid "Reflection Scale"
 msgstr "Reflektionsskala"
@@ -1531,18 +1600,8 @@ msgstr "Dölj orginalmuspekare"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "Döljer orginalmuspekaren vid inzoomning och musen är skalad"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"Hur ofta man ska fråga efter muspostionen, i millisekunder. Minska detta för "
-"att minska hackigt beteende"
-
 msgid "Mouse Behaviour"
 msgstr "Musbeteende"
-
-msgid "Mouse Poll Interval"
-msgstr "Mussökningsinstervall"
 
 msgid "Mouse Restrain Margin"
 msgstr "Musrestriktionsmarginal"
@@ -1652,6 +1711,10 @@ msgstr "Använd linjärfilter vid inzoomning"
 msgid "Zoom Area Movement"
 msgstr "Zoomrörelse"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Zoom"
+
 msgid "Zoom In"
 msgstr "Zooma in"
 
@@ -1678,6 +1741,9 @@ msgstr "Zoomtidssteg"
 
 msgid "Zoom factor"
 msgstr "Zoomfaktor"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "Zooma in/ut med denna faktor. Högre värde innebär snabbare zoomning"
@@ -2482,8 +2548,18 @@ msgstr "Insticksmodulen handlingen tillhör."
 msgid "Start gesture"
 msgstr "Starta gest"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"Hur ofta man ska fråga efter muspostionen, i millisekunder. Minska detta för "
+"att minska hackigt beteende"
+
 msgid "Misc"
 msgstr ""
+
+msgid "Mouse Poll Interval"
+msgstr "Mussökningsinstervall"
 
 #, fuzzy
 msgid "Mouse position polling"
@@ -3222,8 +3298,13 @@ msgstr "Alla fönster"
 msgid "Background color of the window title"
 msgstr "Bakgrundsfärg för fönstertitel"
 
-msgid "Close Windows In Scale"
-msgstr "Stäng fönster i skala"
+#, fuzzy
+msgid "Close Window"
+msgstr "Kakla fönster"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Stäng fönster i skalningsläge"
 
 msgid "Close windows while in scale mode"
 msgstr "Stäng fönster i skalningsläge"
@@ -3231,8 +3312,17 @@ msgstr "Stäng fönster i skalningsläge"
 msgid "Color used for highlighting the hovered window"
 msgstr "Färg använd för framhävning av fönster som man musen är över"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Rita fönsterframhävning"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Typsnittsfärg för fönstertitel"
@@ -3250,6 +3340,11 @@ msgstr "Endast fönster man har muspekaren över"
 msgid "Highlights the hovered window with the given color"
 msgstr "Framhäver fönstret som musen är över med den angivna färgen."
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr "Gör fönster lätt synliga genom att hålla musen över dem"
+
 msgid "No display"
 msgstr "Ingen visning"
 
@@ -3258,6 +3353,14 @@ msgstr "Normal"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organisk - EXPERIMENTELL"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Placera fönster"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Stäng fönster i skalningsläge"
 
 msgid "Scale Addons"
 msgstr "Skala tillägg"
@@ -3283,6 +3386,10 @@ msgstr "Fönsterframhävning"
 msgid "Window Layout Mode"
 msgstr "Fönsterlayoutläge"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Fönsterregler"
+
 msgid "Window Title"
 msgstr "Fönstertitel"
 
@@ -3292,10 +3399,12 @@ msgstr "Fönstertitelvisning"
 msgid "Window title display in scale mode"
 msgstr "Visa fönstertitel i skalningsläge"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Zooma fönster i skalning"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Zooma fönster i skalningsläge"
 
 msgid "Filter Case Insensitive"
@@ -4901,6 +5010,15 @@ msgstr "Fönster på alla arbetsytor som ska klistras"
 
 msgid "Workarounds"
 msgstr "Problemlösningar"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Rendererar bilder på toppen och botten av kuben"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Kubreflektion"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Stäng fönster i skala"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Animationshastighet"

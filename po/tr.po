@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins-new\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:53+0530\n"
+"POT-Creation-Date: 2008-05-24 22:16+0530\n"
 "PO-Revision-Date: 2007-12-31 01:40+0100\n"
 "Last-Translator: Gürkan Gür <seqizz@gmail.com>\n"
 "Language-Team: <tr@li.org>\n"
@@ -120,6 +120,12 @@ msgstr "Parlaklık"
 
 msgid "Brightness of faded windows"
 msgstr "Soldurulmuş pencerelerin parlaklığı"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1036,6 +1042,9 @@ msgstr "Pencere Yöneticisi Komut Satırı"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Pencere yöneticisi komut satırı. COMPIZ'İ BURAYA GİRMEYİN!!!"
 
+msgid "Above"
+msgstr "Yukarı"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Taban resmini döndürmeye ayarla"
 
@@ -1056,6 +1065,19 @@ msgstr ""
 
 msgid "Appearance"
 msgstr "Görünüm"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Görünüm Oranı"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Otomatik Büyütme"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Sadec Fare ile Döndürüldüğünde Otomatik Büyüt"
 
 msgid "Behaviour"
 msgstr "Davranış"
@@ -1084,17 +1106,62 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Küpün alt yüzünün rengi"
 
+msgid "Color of the ground (far)."
+msgstr "Alanın rengi (uzak)."
+
+msgid "Color of the ground (near)."
+msgstr "Alanın rengi (yakın)."
+
 msgid "Color of top face of the cube"
 msgstr "Küpün üst yüzünün rengi"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz Küp Yansıması"
 
 msgid "Cube Bottom Color"
 msgstr "Küp Alt Rengi"
 
-msgid "Cube Caps"
-msgstr "Küp Kapakları"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Dekorasyonlar için Yansıma"
 
 msgid "Cube Top Color"
 msgstr "Küp Üst Rengi"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Küp Kapakları"
+
+# FIXME
+#, fuzzy
+msgid "Cylinder"
+msgstr "Temizle"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Süre"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Sadec Fare ile Döndürüldüğünde Otomatik Büyüt"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Süre"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Süre"
+
+msgid "Distance"
+msgstr "Uzaklık"
 
 msgid "Draw bottom face"
 msgstr "Alt kapağı oluştur"
@@ -1108,11 +1175,37 @@ msgstr "Üst kapağı oluştur"
 msgid "Draw top face of the cube"
 msgstr "Küpün üst kapağını oluştur"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Etkinleştir"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Compiz Küp Yansıması"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr ""
 
 msgid "Go back to previous image for top face of the cube"
 msgstr ""
+
+msgid "Ground color(far)"
+msgstr "Alan rengi (uzak)"
+
+msgid "Ground color(near)"
+msgstr "Alan rengi (yakın)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Yoğunluk"
+
+msgid "Jumpy"
+msgstr "Gerginleştir"
+
+msgid "Jumpy reflection"
+msgstr "Gerginlik yansıması"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1120,6 +1213,22 @@ msgstr ""
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Segi kipi görünüm oranı"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Taban resmini döndürmeye ayarla"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Segi kipi görünüm oranı"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Tavan resmini döndürmeye ayarla"
 
 msgid "Next bottom image"
 msgstr "Sonraki taban resmi"
@@ -1133,62 +1242,8 @@ msgstr "Önceki taban resmi"
 msgid "Prev top image"
 msgstr "Önceki tavan resmi"
 
-msgid "Render images on top and bottom of the cube"
-msgstr ""
-
-msgid "Scale bottom image"
-msgstr "Taban resmini boyutlandır"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr ""
-
-msgid "Scale image to cover top face of cube"
-msgstr ""
-
-msgid "Scale top image"
-msgstr "Tavan resmini boyutlandır"
-
-msgid "Top image files"
-msgstr "Tavan resim dosyaları"
-
-msgid "Above"
-msgstr "Yukarı"
-
-msgid "Auto zoom"
-msgstr "Otomatik Büyütme"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Sadec Fare ile Döndürüldüğünde Otomatik Büyüt"
-
-msgid "Color of the ground (far)."
-msgstr "Alanın rengi (uzak)."
-
-msgid "Color of the ground (near)."
-msgstr "Alanın rengi (yakın)."
-
-msgid "Compiz cube reflection"
-msgstr "Compiz Küp Yansıması"
-
-msgid "Cube Reflection"
-msgstr "Küp Yansıması"
-
-msgid "Distance"
-msgstr "Uzaklık"
-
-msgid "Ground color(far)"
-msgstr "Alan rengi (uzak)"
-
-msgid "Ground color(near)"
-msgstr "Alan rengi (yakın)"
-
-msgid "Intensity"
-msgstr "Yoğunluk"
-
-msgid "Jumpy"
-msgstr "Gerginleştir"
-
-msgid "Jumpy reflection"
-msgstr "Gerginlik yansıması"
+msgid "Reflection"
+msgstr "Yansıma"
 
 msgid "Reflection ground size"
 msgstr "Yansıma alanı boyutu"
@@ -1204,6 +1259,28 @@ msgstr "Yansıma kipi"
 
 msgid "Reflection mode."
 msgstr "Yansıma kipi."
+
+msgid "Scale bottom image"
+msgstr "Taban resmini boyutlandır"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr ""
+
+msgid "Scale image to cover top face of cube"
+msgstr ""
+
+msgid "Scale top image"
+msgstr "Tavan resmini boyutlandır"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Hız"
+
+msgid "Top image files"
+msgstr "Tavan resim dosyaları"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr ""
@@ -1234,10 +1311,6 @@ msgstr "Eğimli Katlama"
 #, fuzzy
 msgid "Curve strength"
 msgstr "Hareketli bulnıklaştırma direnci."
-
-#, fuzzy
-msgid "Deformation"
-msgstr "Süre"
 
 # FIXME - is wall really == Wand here? -- Maybe we could use Ebene, Tafel or Brett here?
 #, fuzzy
@@ -1332,9 +1405,6 @@ msgstr "Her çıktı için bir duvar"
 
 msgid "Previous viewport"
 msgstr "Önceki masaüstü"
-
-msgid "Reflection"
-msgstr "Yansıma"
 
 msgid "Reflection Scale"
 msgstr "Yansıma Boyutu"
@@ -1498,17 +1568,9 @@ msgstr ""
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-
 #, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Fare Davranışı"
-
-msgid "Mouse Poll Interval"
-msgstr ""
 
 msgid "Mouse Restrain Margin"
 msgstr ""
@@ -1615,6 +1677,10 @@ msgstr ""
 msgid "Zoom Area Movement"
 msgstr "Büyürme Taşıması"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Büyütme"
+
 msgid "Zoom In"
 msgstr "Büyüt"
 
@@ -1642,6 +1708,9 @@ msgstr "Büyütme Zaman Aralığı"
 
 msgid "Zoom factor"
 msgstr "Büyütme basamağı"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2426,7 +2495,15 @@ msgstr ""
 msgid "Start gesture"
 msgstr ""
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
 msgid "Misc"
+msgstr ""
+
+msgid "Mouse Poll Interval"
 msgstr ""
 
 msgid "Mouse position polling"
@@ -3129,8 +3206,13 @@ msgstr "Pencereleri döşe"
 msgid "Background color of the window title"
 msgstr ""
 
-msgid "Close Windows In Scale"
-msgstr ""
+#, fuzzy
+msgid "Close Window"
+msgstr "Pencereleri Döşe"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Küp döndürülürken pencereleri yükseltir"
 
 msgid "Close windows while in scale mode"
 msgstr ""
@@ -3138,7 +3220,16 @@ msgstr ""
 msgid "Color used for highlighting the hovered window"
 msgstr ""
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
+msgstr ""
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
 msgstr ""
 
 msgid "Font color of the window title"
@@ -3157,6 +3248,10 @@ msgstr "Pencereyi belirli bir konuma taşı x, y"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+
 msgid "No display"
 msgstr ""
 
@@ -3165,6 +3260,14 @@ msgstr "Normal"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organik - DENEYSEL"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Pencereyi yerleştir"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Pencereyi üst masaüstüne taşı"
 
 msgid "Scale Addons"
 msgstr ""
@@ -3190,6 +3293,10 @@ msgstr "Pencere Vurgulaması"
 msgid "Window Layout Mode"
 msgstr "Pencere Yerleşim Kipi"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Pencere Kuralları"
+
 msgid "Window Title"
 msgstr "Pencere Başlığı"
 
@@ -3200,10 +3307,11 @@ msgstr "Pencere Başlığı"
 msgid "Window title display in scale mode"
 msgstr ""
 
-msgid "Zoom Windows In Scale"
-msgstr ""
+#, fuzzy
+msgid "Zoom Window"
+msgstr "3B Pencereler"
 
-msgid "Zoom windows while in scale mode"
+msgid "Zoom window while in scale mode"
 msgstr ""
 
 msgid "Filter Case Insensitive"
@@ -4767,6 +4875,9 @@ msgstr "Tüm masaüstlerindeki pencereler yapışkan olmalı"
 
 msgid "Workarounds"
 msgstr "Hızlı Çözümler"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Küp Yansıması"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Canlandırma Hızı"

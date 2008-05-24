@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:51+0530\n"
-"PO-Revision-Date: 2008-04-05 11:38+0200\n"
+"POT-Creation-Date: 2008-05-24 22:14+0530\n"
+"PO-Revision-Date: 2008-05-03 12:01+0200\n"
 "Last-Translator: KAMI <kamihir@freemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "Térhatás csak egérrel történő forgatáskor"
@@ -113,6 +113,12 @@ msgstr "Fényerő"
 
 msgid "Brightness of faded windows"
 msgstr "Az elhalványított ablakok fényereje"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1051,6 +1057,9 @@ msgstr "Ablakkezelő indítási parancsa"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "Ablakkezelő indítási parancsa. NE ADJA MEG ITT A COMPIZT!"
 
+msgid "Above"
+msgstr "Felülre"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Alsó kép szerkesztése forgatáshoz"
 
@@ -1071,6 +1080,19 @@ msgstr "Továbblépés a következő képhez a kocka felső képének beállít�
 
 msgid "Appearance"
 msgstr "Megjelenés"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Méretarány"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Automatikus nagyítás"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Kizárólag egérrel történő forgatás esetén legyen automatikus nagyítás"
 
 msgid "Behaviour"
 msgstr "Viselkedés"
@@ -1105,17 +1127,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "A kocka alsó lapjának színe"
 
+msgid "Color of the ground (far)."
+msgstr "Alapzat színe a távolban."
+
+msgid "Color of the ground (near)."
+msgstr "Alapzat színe a közelben."
+
 msgid "Color of top face of the cube"
 msgstr "A kocka felső lapjának színe"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz kocka tükröződés"
 
 msgid "Cube Bottom Color"
 msgstr "Kocka alsó szín"
 
-msgid "Cube Caps"
-msgstr "Kocka fedőlapok"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Ablakdíszítés tükröződése"
 
 msgid "Cube Top Color"
 msgstr "Kocka felső szín"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Kocka fedőlapok"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Törlés"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Alakváltozás"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Kizárólag egérrel történő forgatás esetén legyen automatikus nagyítás"
+
+msgid "Deformation"
+msgstr "Alakváltozás"
+
+#, fuzzy
+msgid "Deformation in unfold cube mode."
+msgstr "Az alakváltozás nagysága hajlított módban"
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Alakváltozás"
+
+msgid "Distance"
+msgstr "Távolság"
 
 msgid "Draw bottom face"
 msgstr "Alsó lap megjelenítése"
@@ -1129,11 +1195,37 @@ msgstr "Felső lap megjelenítése"
 msgid "Draw top face of the cube"
 msgstr "Megjeleníti a kocka felső lapját"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Bekapcsolás"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Compiz kocka tükröződés"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Megjeleníti a kocka alsó lapjának előző képét"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Megjeleníti a kocka felső lapjának előző képét"
+
+msgid "Ground color(far)"
+msgstr "Alapzat színe a távolban"
+
+msgid "Ground color(near)"
+msgstr "Alapzat színe a közelben"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intenzitás"
+
+msgid "Jumpy"
+msgstr "Ugra-bugra"
+
+msgid "Jumpy reflection"
+msgstr "Ugra-bugra tükröződés"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1144,6 +1236,22 @@ msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
 "Azon PNG és SVG képfájlok listája, amelyek megjelenhetnek a kocka felső "
 "lapján"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Közszemle mód képaránya"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Alsó kép szerkesztése forgatáshoz"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Közszemle mód képaránya"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Alsó kép szerkesztése forgatáshoz"
 
 msgid "Next bottom image"
 msgstr "Következő alsó kép"
@@ -1157,62 +1265,8 @@ msgstr "Előző alsó kép"
 msgid "Prev top image"
 msgstr "Előző felső kép"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Képek leképzése a kocka tetejére és aljára"
-
-msgid "Scale bottom image"
-msgstr "Alsó kép nyújtása"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Alsó kép nyújtása úgy, hogy lefedje a kocka alsó lapját"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Felső kép nyújtása úgy, hogy lefedje a kocka felső lapját"
-
-msgid "Scale top image"
-msgstr "Felső kép nyújtása"
-
-msgid "Top image files"
-msgstr "Felső képfájlok"
-
-msgid "Above"
-msgstr "Felülre"
-
-msgid "Auto zoom"
-msgstr "Automatikus nagyítás"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Kizárólag egérrel történő forgatás esetén legyen automatikus nagyítás"
-
-msgid "Color of the ground (far)."
-msgstr "Alapzat színe a távolban."
-
-msgid "Color of the ground (near)."
-msgstr "Alapzat színe a közelben."
-
-msgid "Compiz cube reflection"
-msgstr "Compiz kocka tükröződés"
-
-msgid "Cube Reflection"
-msgstr "Kocka tükröződés"
-
-msgid "Distance"
-msgstr "Távolság"
-
-msgid "Ground color(far)"
-msgstr "Alapzat színe a távolban"
-
-msgid "Ground color(near)"
-msgstr "Alapzat színe a közelben"
-
-msgid "Intensity"
-msgstr "Intenzitás"
-
-msgid "Jumpy"
-msgstr "Ugra-bugra"
-
-msgid "Jumpy reflection"
-msgstr "Ugra-bugra tükröződés"
+msgid "Reflection"
+msgstr "Tükröződés"
 
 msgid "Reflection ground size"
 msgstr "Tükröződés mérete az alapzaton"
@@ -1228,6 +1282,28 @@ msgstr "Tükröződés módja"
 
 msgid "Reflection mode."
 msgstr "A tükröződés módja."
+
+msgid "Scale bottom image"
+msgstr "Alsó kép nyújtása"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Alsó kép nyújtása úgy, hogy lefedje a kocka alsó lapját"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Felső kép nyújtása úgy, hogy lefedje a kocka felső lapját"
+
+msgid "Scale top image"
+msgstr "Felső kép nyújtása"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Sebesség"
+
+msgid "Top image files"
+msgstr "Felső képfájlok"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Automatikus nagyítás csak egérrel forgatáskor."
@@ -1255,9 +1331,6 @@ msgstr "Hajlítás"
 
 msgid "Curve strength"
 msgstr "Hajlítás erőssége"
-
-msgid "Deformation"
-msgstr "Alakváltozás"
 
 msgid "Deformation of the expo wall"
 msgstr "Közszemle fal alakváltozása"
@@ -1349,9 +1422,6 @@ msgstr "Egy nagy fal kimenetenként"
 msgid "Previous viewport"
 msgstr "Előző munkalap"
 
-msgid "Reflection"
-msgstr "Tükröződés"
-
 msgid "Reflection Scale"
 msgstr "Tükröződés mérete"
 
@@ -1392,9 +1462,8 @@ msgstr "Csavarodás"
 msgid "Zoom time"
 msgstr "Nagyítási idő"
 
-#, fuzzy
 msgid "Activate Demanding Attention Window"
-msgstr "Megadott ablak aktiválása"
+msgstr "Figyelmet igénylő ablak aktíválása"
 
 msgid "Activate Window"
 msgstr "Ablak aktiválása"
@@ -1404,6 +1473,8 @@ msgstr "Megadott ablak aktiválása"
 
 msgid "Activate next window which has the \"demands attention\" flag set."
 msgstr ""
+"Aktiválja a következő ablakot, amelynél a \"Figyelmet igényel\" jelölés be "
+"van állítva."
 
 msgid "Extra WM Actions"
 msgstr "További ablakkezelő műveletek"
@@ -1519,18 +1590,8 @@ msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 "Eredeti egérkurzor elrejtése amikor az egér nagyítva illetve átméretezve van"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"Milyen gyakran ellenőrizze a kurzor helyzetét ezredmásodpercben megadva. "
-"Állítsa kisebbre, hogy a szaggatott mozgást elkerülje."
-
 msgid "Mouse Behaviour"
 msgstr "Egér viselkedés"
-
-msgid "Mouse Poll Interval"
-msgstr "Egér lekérdezési időköz"
 
 msgid "Mouse Restrain Margin"
 msgstr "Egér korlátozásának távolsága"
@@ -1640,6 +1701,10 @@ msgstr "Lineáris szűrő használata nagyításnál"
 msgid "Zoom Area Movement"
 msgstr "Nagyított terület mozgása"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Nagyító"
+
 msgid "Zoom In"
 msgstr "Nagyítás"
 
@@ -1666,6 +1731,9 @@ msgstr "Nagyítás időköz"
 
 msgid "Zoom factor"
 msgstr "Nagyítási arány"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2449,8 +2517,18 @@ msgstr "Bővítményhez tartozó műveletek."
 msgid "Start gesture"
 msgstr "Mozdulat indítása"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"Milyen gyakran ellenőrizze a kurzor helyzetét ezredmásodpercben megadva. "
+"Állítsa kisebbre, hogy a szaggatott mozgást elkerülje."
+
 msgid "Misc"
 msgstr "Egyebek"
+
+msgid "Mouse Poll Interval"
+msgstr "Egér lekérdezési időköz"
 
 msgid "Mouse position polling"
 msgstr "Egérpozíció lekérdezése"
@@ -2471,7 +2549,7 @@ msgid "Switch viewport in response to mouse gesture"
 msgstr "Munkalap váltása egérmozdulattal"
 
 msgid "Also negate window decorations, not only the window contents."
-msgstr ""
+msgstr "Ablakdekorációt is invertálja, ne csak az ablak tartalmát."
 
 msgid "Exclude Windows"
 msgstr "Kizárt ablakok"
@@ -2479,9 +2557,8 @@ msgstr "Kizárt ablakok"
 msgid "Neg Windows"
 msgstr "Inverz ablakok"
 
-#, fuzzy
 msgid "Negate Decorations"
-msgstr "Ablakdíszítés tükröződése"
+msgstr "Ablakdíszítés invertálása"
 
 msgid "Negative"
 msgstr "Inverz"
@@ -3205,8 +3282,13 @@ msgstr "Minden ablak"
 msgid "Background color of the window title"
 msgstr "Az ablak címsorának háttérszíne"
 
-msgid "Close Windows In Scale"
-msgstr "Áttekintő nézetben elrejtendő ablaktípusok"
+#, fuzzy
+msgid "Close Window"
+msgstr "Ablakok darabolása"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Ablaktípusok, amelyek áttekintő nézetben nem jelennek meg"
 
 msgid "Close windows while in scale mode"
 msgstr "Ablaktípusok, amelyek áttekintő nézetben nem jelennek meg"
@@ -3214,8 +3296,17 @@ msgstr "Ablaktípusok, amelyek áttekintő nézetben nem jelennek meg"
 msgid "Color used for highlighting the hovered window"
 msgstr "Követett ablak kijelölőszíne"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Ablakkijelölő megjelenítése"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Az ablak címsorának betűszíne"
@@ -3232,6 +3323,11 @@ msgstr "Csak a kijelölt ablakot"
 msgid "Highlights the hovered window with the given color"
 msgstr "Kijelöli a követett ablakot a megadott színnel."
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr "Ablakok láthatóvá tétele az egérmutató ráhúzásával"
+
 msgid "No display"
 msgstr "Nincs megjelenítve"
 
@@ -3240,6 +3336,14 @@ msgstr "Szokványos"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organikus - KÍSÉRLETI"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Ablak elhelyezése"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Ablaktípusok, amelyek áttekintő nézetben nem jelennek meg"
 
 msgid "Scale Addons"
 msgstr "Áttekintés bővítmény"
@@ -3265,6 +3369,10 @@ msgstr "Ablak kijelölése"
 msgid "Window Layout Mode"
 msgstr "Ablakelrendezés módja"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Ablakszabályok"
+
 msgid "Window Title"
 msgstr "Ablak címsor"
 
@@ -3274,10 +3382,12 @@ msgstr "Ablak címsorának megjelenítése"
 msgid "Window title display in scale mode"
 msgstr "Ablak címsorának megjelenítése áttekintő módban"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Ablakok átméretezése áttekintéskor"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Ablakok nagyítása áttekintő nézetben"
 
 msgid "Filter Case Insensitive"
@@ -4496,7 +4606,7 @@ msgid "Outline color of the switcher window."
 msgstr "Ablakváltó vonalának színe"
 
 msgid "Preview Scale"
-msgstr ""
+msgstr "Áttekintés előnézete"
 
 msgid "Radius of the rounded edge"
 msgstr "Lekerekített élek sugara"
@@ -4531,7 +4641,7 @@ msgstr "Ablakváltó ablak megjelenítése munkalapváltás közben."
 
 #, no-c-format
 msgid "Size of the preview in %"
-msgstr ""
+msgstr "Előnézet méret (százalékban megadva)"
 
 msgid "Switch Target Preview Visibility Time"
 msgstr "Célválasztó előnézet megjelenítési ideje"
@@ -4558,7 +4668,7 @@ msgid "Wall Sliding Duration"
 msgstr "Fal váltásának időtartama"
 
 msgid "Width of the border between the previews"
-msgstr ""
+msgstr "Az előnézeteket elválasztó keret vastagsága"
 
 msgid "Background fill type."
 msgstr "Háttérkép kitöltésének típusa."
@@ -4641,12 +4751,11 @@ msgstr "Egérkattintással kilépés a Szerkentyű módból"
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "Kilépés a Szerkentyű módból, ha nem szerkentyű ablakra kattint."
 
-#, fuzzy
 msgid "Focus Widget Layer"
-msgstr "Szerkentyű réteg"
+msgstr "Szerkentyű réteg fókuszálása"
 
 msgid "Focus a window in the widget layer when activating the layer"
-msgstr ""
+msgstr "Ablak fókuszálása a Szerkentyű rétegen a réteg aktiválásakor"
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "Nem szerkentyű ablakok színtelítettsége Szerkentyű módban."
@@ -4848,6 +4957,15 @@ msgstr "Az ablakok legyenek ragadósak az összes munkaasztalon"
 
 msgid "Workarounds"
 msgstr "Hibajavítások"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Képek leképzése a kocka tetejére és aljára"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Kocka tükröződés"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "Áttekintő nézetben elrejtendő ablaktípusok"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Animáció sebessége"

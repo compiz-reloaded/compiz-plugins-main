@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:51+0530\n"
+"POT-Creation-Date: 2008-05-24 22:13+0530\n"
 "PO-Revision-Date: 2008-04-08 15:35+0200\n"
 "Last-Translator: Ander Elortondo <ander.elor@gmail.com>\n"
 "Language-Team: Euskara <eu@li.org>\n"
@@ -114,6 +114,12 @@ msgstr "Disdira"
 
 msgid "Brightness of faded windows"
 msgstr "Leiho zeharrargiko disdira"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1028,6 +1034,9 @@ msgstr ""
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr ""
 
+msgid "Above"
+msgstr "Gaina"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Biratzean azpiko aurpegiko irudia doitu"
 
@@ -1048,6 +1057,18 @@ msgstr "Kuboko goiko irudirako joan hurrengo irudira"
 
 msgid "Appearance"
 msgstr "Itxura"
+
+msgid "Aspect ratio"
+msgstr ""
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Auto zoom"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Auto zoom xaguaz biratzean bakarrik"
 
 msgid "Behaviour"
 msgstr "Jokabidea"
@@ -1076,17 +1097,60 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Kuboaren azpiko aurpegiko kolorea"
 
+msgid "Color of the ground (far)."
+msgstr "Oinarriko kolorea (urruti)."
+
+msgid "Color of the ground (near)."
+msgstr "Oinarriko kolorea (gertu)."
+
 msgid "Color of top face of the cube"
 msgstr "Kuboaren goiko aurpegiko kolorea"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz kuboaren islapena"
 
 msgid "Cube Bottom Color"
 msgstr "Kuboaren azpiko kolorea"
 
-msgid "Cube Caps"
-msgstr "Kubo estaldura"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Kubo islapena"
 
 msgid "Cube Top Color"
 msgstr "Kuboaren goiko kolorea"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Kubo estaldura"
+
+msgid "Cylinder"
+msgstr ""
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Iraupena"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Auto zoom xaguaz biratzean bakarrik"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "Iraupena"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Iraupena"
+
+msgid "Distance"
+msgstr "Distantzia"
 
 msgid "Draw bottom face"
 msgstr "Marraztu azpiko aurpegia"
@@ -1100,11 +1164,37 @@ msgstr "Marraztu goiko aurpegia"
 msgid "Draw top face of the cube"
 msgstr "Marraztu kuboaren goiko aurpegia"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Gaitu"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Compiz kuboaren islapena"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Kuboko azpiko aurpegiko irudirako joan aurreko irudira"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Kuboko goiko aurpegiko irudirako joan aurreko irudira"
+
+msgid "Ground color(far)"
+msgstr "Oinarri kolorea (urruti)"
+
+msgid "Ground color(near)"
+msgstr "Oinarri kolorea (gertu)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intentsitatea"
+
+msgid "Jumpy"
+msgstr ""
+
+msgid "Jumpy reflection"
+msgstr ""
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1114,6 +1204,20 @@ msgstr ""
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
 "Kuboko goiko aurpegian prozesatu daitezkeen PNG eta SVG fitxategien zerrenda"
+
+msgid "Maintain bottom aspect ratio"
+msgstr ""
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Biratzean azpiko aurpegiko irudia doitu"
+
+msgid "Maintain top aspect ratio"
+msgstr ""
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Biratzean goiko aurpegiko irudia doitu"
 
 msgid "Next bottom image"
 msgstr "Hurrengo azpiko irudia"
@@ -1127,61 +1231,7 @@ msgstr "Aurreko azpiko irudia"
 msgid "Prev top image"
 msgstr "Aurreko goiko irudia"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Kuboaren goiko eta azpiko irudiak prozesatu"
-
-msgid "Scale bottom image"
-msgstr "Azpiko irudia eskalatu"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Kuboaren azpiko aurpegia estaltzen duen irudia eskalatu"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Kuboaren goiko aurpegia estaltzen duen irudia eskalatu"
-
-msgid "Scale top image"
-msgstr "Goiko irudia eskalatu"
-
-msgid "Top image files"
-msgstr "Goiko irudi fitxategiak"
-
-msgid "Above"
-msgstr "Gaina"
-
-msgid "Auto zoom"
-msgstr "Auto zoom"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Auto zoom xaguaz biratzean bakarrik"
-
-msgid "Color of the ground (far)."
-msgstr "Oinarriko kolorea (urruti)."
-
-msgid "Color of the ground (near)."
-msgstr "Oinarriko kolorea (gertu)."
-
-msgid "Compiz cube reflection"
-msgstr "Compiz kuboaren islapena"
-
-msgid "Cube Reflection"
-msgstr "Kubo islapena"
-
-msgid "Distance"
-msgstr "Distantzia"
-
-msgid "Ground color(far)"
-msgstr "Oinarri kolorea (urruti)"
-
-msgid "Ground color(near)"
-msgstr "Oinarri kolorea (gertu)"
-
-msgid "Intensity"
-msgstr "Intentsitatea"
-
-msgid "Jumpy"
-msgstr ""
-
-msgid "Jumpy reflection"
+msgid "Reflection"
 msgstr ""
 
 msgid "Reflection ground size"
@@ -1197,6 +1247,27 @@ msgid "Reflection mode"
 msgstr ""
 
 msgid "Reflection mode."
+msgstr ""
+
+msgid "Scale bottom image"
+msgstr "Azpiko irudia eskalatu"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Kuboaren azpiko aurpegia estaltzen duen irudia eskalatu"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Kuboaren goiko aurpegia estaltzen duen irudia eskalatu"
+
+msgid "Scale top image"
+msgstr "Goiko irudia eskalatu"
+
+msgid "Sphere"
+msgstr ""
+
+msgid "Top image files"
+msgstr "Goiko irudi fitxategiak"
+
+msgid "Unfold cube deformation"
 msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
@@ -1226,10 +1297,6 @@ msgstr "Kurbatutako tolesdura"
 
 msgid "Curve strength"
 msgstr ""
-
-#, fuzzy
-msgid "Deformation"
-msgstr "Iraupena"
 
 msgid "Deformation of the expo wall"
 msgstr ""
@@ -1319,9 +1386,6 @@ msgid "One wall per output"
 msgstr ""
 
 msgid "Previous viewport"
-msgstr ""
-
-msgid "Reflection"
 msgstr ""
 
 msgid "Reflection Scale"
@@ -1476,17 +1540,9 @@ msgstr ""
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-
 #, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Jokabidea"
-
-msgid "Mouse Poll Interval"
-msgstr ""
 
 msgid "Mouse Restrain Margin"
 msgstr ""
@@ -1591,6 +1647,10 @@ msgstr ""
 msgid "Zoom Area Movement"
 msgstr "Zoom erditik"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Zoom"
+
 msgid "Zoom In"
 msgstr ""
 
@@ -1616,6 +1676,9 @@ msgid "Zoom Timestep"
 msgstr ""
 
 msgid "Zoom factor"
+msgstr ""
+
+msgid "Zoom in on a boxed area"
 msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
@@ -2377,7 +2440,15 @@ msgstr ""
 msgid "Start gesture"
 msgstr ""
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+
 msgid "Misc"
+msgstr ""
+
+msgid "Mouse Poll Interval"
 msgstr ""
 
 msgid "Mouse position polling"
@@ -3072,8 +3143,13 @@ msgstr "Baztertu leihoa"
 msgid "Background color of the window title"
 msgstr ""
 
-msgid "Close Windows In Scale"
-msgstr ""
+#, fuzzy
+msgid "Close Window"
+msgstr "3D leihoak"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "leihoa altzatu kuboa biratzean"
 
 msgid "Close windows while in scale mode"
 msgstr ""
@@ -3081,7 +3157,16 @@ msgstr ""
 msgid "Color used for highlighting the hovered window"
 msgstr ""
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
+msgstr ""
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
 msgstr ""
 
 msgid "Font color of the window title"
@@ -3100,6 +3185,10 @@ msgstr "Lehio iragaziak"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+
 msgid "No display"
 msgstr ""
 
@@ -3107,6 +3196,13 @@ msgid "Normal"
 msgstr ""
 
 msgid "Organic - EXPERIMENTAL"
+msgstr ""
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Baztertu leihoa"
+
+msgid "Pull window to current viewport while in scale mode"
 msgstr ""
 
 msgid "Scale Addons"
@@ -3133,6 +3229,10 @@ msgstr ""
 msgid "Window Layout Mode"
 msgstr ""
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Leiho sakonera"
+
 msgid "Window Title"
 msgstr ""
 
@@ -3143,10 +3243,11 @@ msgstr "leiho motak"
 msgid "Window title display in scale mode"
 msgstr ""
 
-msgid "Zoom Windows In Scale"
-msgstr ""
+#, fuzzy
+msgid "Zoom Window"
+msgstr "3D leihoak"
 
-msgid "Zoom windows while in scale mode"
+msgid "Zoom window while in scale mode"
 msgstr ""
 
 msgid "Filter Case Insensitive"
@@ -4682,6 +4783,9 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Kuboaren goiko eta azpiko irudiak prozesatu"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Animazio abiadura"

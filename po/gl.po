@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:51+0530\n"
+"POT-Creation-Date: 2008-05-24 22:14+0530\n"
 "PO-Revision-Date: 2008-03-25 02:51+0100\n"
 "Last-Translator: Fran Diéguez (GLUG) <fran.dieguez@glug.es>\n"
 "Language-Team: <gl@li.org>\n"
@@ -120,6 +120,12 @@ msgstr "Brillo"
 
 msgid "Brightness of faded windows"
 msgstr "Brillo das fiestras desvanecidas"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1078,6 +1084,9 @@ msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr ""
 "Comando do xestor de fiestras alternativo. NON INTRODUZA COMPIZ AQUÍ!!!"
 
+msgid "Above"
+msgstr "Arriba"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "Axustar imaxe da cara inferior ó efectuar a rotación"
 
@@ -1098,6 +1107,19 @@ msgstr "Avanzar á próxima imaxe na cara de arriba do cubo."
 
 msgid "Appearance"
 msgstr "Aparencia"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Proporción de Aspecto"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "Zoom automático"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "Zoom automático só con rotación através do rato"
 
 msgid "Behaviour"
 msgstr "Comportamento"
@@ -1134,17 +1156,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "Cor da cara inferior do cubo"
 
+msgid "Color of the ground (far)."
+msgstr "Cor do chán (lonxe)"
+
+msgid "Color of the ground (near)."
+msgstr "Cor do chán (perto)"
+
 msgid "Color of top face of the cube"
 msgstr "Cor da cara superior do cubo"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "Crear un reflexo do cubo"
 
 msgid "Cube Bottom Color"
 msgstr "Cor da cara inferior do cubo"
 
-msgid "Cube Caps"
-msgstr "Caras do cubo"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Reflexo de Decoracións"
 
 msgid "Cube Top Color"
 msgstr "Cor da cara superior do cubo"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Caras do cubo"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Limpar"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "Deformación"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "Zoom automático só con rotación através do rato"
+
+msgid "Deformation"
+msgstr "Deformación"
+
+#, fuzzy
+msgid "Deformation in unfold cube mode."
+msgstr "Forza da deformación do modo curva"
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "Deformación"
+
+msgid "Distance"
+msgstr "Distancia"
 
 msgid "Draw bottom face"
 msgstr "Debuxar a cara inferior"
@@ -1158,11 +1224,37 @@ msgstr "Debuxar a cara superior"
 msgid "Draw top face of the cube"
 msgstr "Debuxar a cara superior do cubo"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Activar"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "Crear un reflexo do cubo"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Retroceder para a imaxe anterior na cara de abaixo do cubo."
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "Retroceder para a imaxe anterior na cara de cima do cubo."
+
+msgid "Ground color(far)"
+msgstr "Cor do chán (lonxe)"
+
+msgid "Ground color(near)"
+msgstr "Cor do chán (perto)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Intensidade"
+
+msgid "Jumpy"
+msgstr "Saltante (O cubo acompaña ó reflexo) "
+
+msgid "Jumpy reflection"
+msgstr "Reflexo saltante (A reflexo acompaña o cubo) "
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1174,6 +1266,22 @@ msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr ""
 "Lista de arquivos PNG e SVG que deben ser renderizados na cara superior do "
 "cubo"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Proporción de aspecto do modo expo"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "Axustar imaxe da cara inferior ó efectuar a rotación"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Proporción de aspecto do modo expo"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "Axustar imaxe da cara superior ó efectuar a rotación"
 
 msgid "Next bottom image"
 msgstr "Imaxe inferior seguinte"
@@ -1187,62 +1295,8 @@ msgstr "Imaxe inferior anterior"
 msgid "Prev top image"
 msgstr "Imaxe superior anterior"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "Mostrar imaxes nas caras de cima e de abaixo do cubo"
-
-msgid "Scale bottom image"
-msgstr "Escalar imaxe inferior"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "Escalar imaxe para cobrir a cara inferior do cubo"
-
-msgid "Scale image to cover top face of cube"
-msgstr "Escalar imaxe para cobrir a cara superior do cubo"
-
-msgid "Scale top image"
-msgstr "Escalar imaxe superior"
-
-msgid "Top image files"
-msgstr "Ficheiros coas imaxes para cara superior"
-
-msgid "Above"
-msgstr "Arriba"
-
-msgid "Auto zoom"
-msgstr "Zoom automático"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "Zoom automático só con rotación através do rato"
-
-msgid "Color of the ground (far)."
-msgstr "Cor do chán (lonxe)"
-
-msgid "Color of the ground (near)."
-msgstr "Cor do chán (perto)"
-
-msgid "Compiz cube reflection"
-msgstr "Crear un reflexo do cubo"
-
-msgid "Cube Reflection"
-msgstr "Reflexo do cubo"
-
-msgid "Distance"
-msgstr "Distancia"
-
-msgid "Ground color(far)"
-msgstr "Cor do chán (lonxe)"
-
-msgid "Ground color(near)"
-msgstr "Cor do chán (perto)"
-
-msgid "Intensity"
-msgstr "Intensidade"
-
-msgid "Jumpy"
-msgstr "Saltante (O cubo acompaña ó reflexo) "
-
-msgid "Jumpy reflection"
-msgstr "Reflexo saltante (A reflexo acompaña o cubo) "
+msgid "Reflection"
+msgstr "Reflexo"
 
 msgid "Reflection ground size"
 msgstr "Tamaño do reflexo no chán"
@@ -1258,6 +1312,28 @@ msgstr "Modo de reflexo"
 
 msgid "Reflection mode."
 msgstr "Modo de reflexo."
+
+msgid "Scale bottom image"
+msgstr "Escalar imaxe inferior"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "Escalar imaxe para cobrir a cara inferior do cubo"
+
+msgid "Scale image to cover top face of cube"
+msgstr "Escalar imaxe para cobrir a cara superior do cubo"
+
+msgid "Scale top image"
+msgstr "Escalar imaxe superior"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Velocidade"
+
+msgid "Top image files"
+msgstr "Ficheiros coas imaxes para cara superior"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Retroceder o zoom automaticamente só coa rotación do rato."
@@ -1285,9 +1361,6 @@ msgstr "Curva"
 
 msgid "Curve strength"
 msgstr "Ancho da curva"
-
-msgid "Deformation"
-msgstr "Deformación"
 
 msgid "Deformation of the expo wall"
 msgstr "Deformación do muro expo"
@@ -1378,9 +1451,6 @@ msgstr "Un muro por output"
 
 msgid "Previous viewport"
 msgstr "Viewport anterior"
-
-msgid "Reflection"
-msgstr "Reflexo"
 
 msgid "Reflection Scale"
 msgstr "Escala Reflexo"
@@ -1558,18 +1628,8 @@ msgstr ""
 "Esconde o cursor orixinal do rato cando ten magnificación activa e escala do "
 "rato"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"Cantas veces verificar a posición do rato, en milisegundos. Diminúa este "
-"valor para reducir comportamento \" aos saltos\" ."
-
 msgid "Mouse Behaviour"
 msgstr "Comportamento do Rato"
-
-msgid "Mouse Poll Interval"
-msgstr "Refrescamento Punteiro Rato"
 
 msgid "Mouse Restrain Margin"
 msgstr "Marxe Restrinxemento Rato"
@@ -1686,6 +1746,10 @@ msgstr "Empregar filtro linear cando magnificar."
 msgid "Zoom Area Movement"
 msgstr "Movemento da Área de Zoom"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Zoom"
+
 msgid "Zoom In"
 msgstr "Aumentar o zoom"
 
@@ -1712,6 +1776,9 @@ msgstr "Espazo de tempo de alteración entre níbeis de zoom"
 
 msgid "Zoom factor"
 msgstr "Factor de zoom"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2511,8 +2578,18 @@ msgstr "Plugin ó que pertence a acción."
 msgid "Start gesture"
 msgstr "Comezar xesto"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"Cantas veces verificar a posición do rato, en milisegundos. Diminúa este "
+"valor para reducir comportamento \" aos saltos\" ."
+
 msgid "Misc"
 msgstr "Varios"
+
+msgid "Mouse Poll Interval"
+msgstr "Refrescamento Punteiro Rato"
 
 msgid "Mouse position polling"
 msgstr "Enquisa da posición do rato"
@@ -3259,8 +3336,13 @@ msgstr "Tódalas fiestras"
 msgid "Background color of the window title"
 msgstr "Cor de fondo do título da fiestra"
 
-msgid "Close Windows In Scale"
-msgstr "pechar Fiestras en Scale"
+#, fuzzy
+msgid "Close Window"
+msgstr "Crear Mosaico das Fiestras"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "pechar fiestras mentres en modo Scale"
 
 msgid "Close windows while in scale mode"
 msgstr "pechar fiestras mentres en modo Scale"
@@ -3268,8 +3350,17 @@ msgstr "pechar fiestras mentres en modo Scale"
 msgid "Color used for highlighting the hovered window"
 msgstr "Cor usada para evidenciar a fiestra sobre a cal paira o cursor do rato"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Debuxar realce da fiestra"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Cor do título da fiestra"
@@ -3287,6 +3378,11 @@ msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidencía a fiestra sobre a cal paira o cursor do rato coa cor escollida"
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr "Torna as fiestras visibles parando co cursor sobre elas"
+
 msgid "No display"
 msgstr "Ningunha pantalla"
 
@@ -3295,6 +3391,14 @@ msgstr "Normal"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Orgánico - EXPERIMENTAL"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "Colocar fiestra"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "pechar fiestras mentres en modo Scale"
 
 msgid "Scale Addons"
 msgstr "Adicións ao Scale"
@@ -3320,6 +3424,10 @@ msgstr "Realzar fiestra"
 msgid "Window Layout Mode"
 msgstr "Modo Exibición Fiestras"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Regras para Fiestras"
+
 msgid "Window Title"
 msgstr "Título fiestra"
 
@@ -3329,10 +3437,12 @@ msgstr "Mostrar Tipo da Fiestra"
 msgid "Window title display in scale mode"
 msgstr "Mostrar título da fiestra no modo escalado"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "Magnificar Fiestras En Scale"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "Magnificar fiestras mentres en modo scale"
 
 msgid "Filter Case Insensitive"
@@ -4941,6 +5051,15 @@ msgstr "Fiestras \"en tódolos escritorios\" que deben ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correccións"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Mostrar imaxes nas caras de cima e de abaixo do cubo"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Reflexo do cubo"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "pechar Fiestras en Scale"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Velocidade da animación"

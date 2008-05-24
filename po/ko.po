@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:52+0530\n"
+"POT-Creation-Date: 2008-05-24 22:15+0530\n"
 "PO-Revision-Date: 2008-02-14 08:45+0100\n"
 "Last-Translator: Jeong Seungwon <jeongseungwon@hanmail.net>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
@@ -113,6 +113,12 @@ msgstr "밝기"
 
 msgid "Brightness of faded windows"
 msgstr "흐린 창의 밝기"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1029,6 +1035,9 @@ msgstr "창 관리자 명령 행"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "창 관리자 명령 행. 여기에 compiz를 입력하지 마세요!!!"
 
+msgid "Above"
+msgstr "맨 위에"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "회전시 바닥 이미지 조절"
 
@@ -1049,6 +1058,19 @@ msgstr "큐브의 위쪽을 다음 그림으로 바꾸기"
 
 msgid "Appearance"
 msgstr "외양"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "화면 비율"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr "자동 확대"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "마우스 회전시에만 자동 확대"
 
 msgid "Behaviour"
 msgstr "동작"
@@ -1083,17 +1105,61 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "큐브의 바닥 색"
 
+msgid "Color of the ground (far)."
+msgstr "바닥 색(먼 쪽)"
+
+msgid "Color of the ground (near)."
+msgstr "바닥 색(가까운 쪽)"
+
 msgid "Color of top face of the cube"
 msgstr "큐브의 천장 색"
+
+#, fuzzy
+msgid "Compiz cube reflection and deformation"
+msgstr "컴피즈 큐브 반사"
 
 msgid "Cube Bottom Color"
 msgstr "큐브 바닥 색"
 
-msgid "Cube Caps"
-msgstr "큐브 캡"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "창 장식에 대한 반사 효과"
 
 msgid "Cube Top Color"
 msgstr "큐브 천장 색"
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "큐브 캡"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "지우기"
+
+#, fuzzy
+msgid "Deform caps"
+msgstr "지속시간"
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "마우스 회전시에만 자동 확대"
+
+#, fuzzy
+msgid "Deformation"
+msgstr "지속시간"
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+#, fuzzy
+msgid "Deformation mode."
+msgstr "지속시간"
+
+msgid "Distance"
+msgstr "거리"
 
 msgid "Draw bottom face"
 msgstr "바닥을 그림"
@@ -1107,11 +1173,37 @@ msgstr "천장을 그림"
 msgid "Draw top face of the cube"
 msgstr "큐브의 천장을 그림"
 
+#, fuzzy
+msgid "Enabled"
+msgstr "활성화"
+
+#, fuzzy
+msgid "Give cube a reflective ground."
+msgstr "컴피즈 큐브 반사"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "이전 바닥 이미지로 돌아감"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "이전 천장 이미지로 돌아감"
+
+msgid "Ground color(far)"
+msgstr "바닥 색(먼 쪽)"
+
+msgid "Ground color(near)"
+msgstr "바닥 색(가까운 쪽)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "밀도"
+
+msgid "Jumpy"
+msgstr "튀기기"
+
+msgid "Jumpy reflection"
+msgstr "반사면과 튀기기"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1119,6 +1211,22 @@ msgstr "큐브의 바닥 이미지로 사용될 PNG와 SVG 파일 목록"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "큐브의 천장 이미지로 사용될 PNG와 SVG 파일 목록"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "엑스포 모드 화면 비율"
+
+#, fuzzy
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "회전시 바닥 이미지 조절"
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "엑스포 모드 화면 비율"
+
+#, fuzzy
+msgid "Maintain top cap image aspect ratio."
+msgstr "회전시 천장 이미지 조절"
 
 msgid "Next bottom image"
 msgstr "다음 바닥 이미지"
@@ -1132,62 +1240,8 @@ msgstr "이전 바닥 이미지"
 msgid "Prev top image"
 msgstr "이전 천장 이미지"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "큐브의 천장과 바닥 이미지를 그림"
-
-msgid "Scale bottom image"
-msgstr "바닥 이미지 크기 조절"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "큐브의 바닥에 맞도록 이미지의 크기를 조절함"
-
-msgid "Scale image to cover top face of cube"
-msgstr "큐브의 천장에 맞도록 이미지의 크기를 조절함"
-
-msgid "Scale top image"
-msgstr "천장 이미지 크기 조절"
-
-msgid "Top image files"
-msgstr "천장 이미지 파일 목록"
-
-msgid "Above"
-msgstr "맨 위에"
-
-msgid "Auto zoom"
-msgstr "자동 확대"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "마우스 회전시에만 자동 확대"
-
-msgid "Color of the ground (far)."
-msgstr "바닥 색(먼 쪽)"
-
-msgid "Color of the ground (near)."
-msgstr "바닥 색(가까운 쪽)"
-
-msgid "Compiz cube reflection"
-msgstr "컴피즈 큐브 반사"
-
-msgid "Cube Reflection"
-msgstr "큐브 반사"
-
-msgid "Distance"
-msgstr "거리"
-
-msgid "Ground color(far)"
-msgstr "바닥 색(먼 쪽)"
-
-msgid "Ground color(near)"
-msgstr "바닥 색(가까운 쪽)"
-
-msgid "Intensity"
-msgstr "밀도"
-
-msgid "Jumpy"
-msgstr "튀기기"
-
-msgid "Jumpy reflection"
-msgstr "반사면과 튀기기"
+msgid "Reflection"
+msgstr "반사"
 
 msgid "Reflection ground size"
 msgstr "반사면 크기"
@@ -1203,6 +1257,28 @@ msgstr "반사 모드"
 
 msgid "Reflection mode."
 msgstr "반사 모드"
+
+msgid "Scale bottom image"
+msgstr "바닥 이미지 크기 조절"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "큐브의 바닥에 맞도록 이미지의 크기를 조절함"
+
+msgid "Scale image to cover top face of cube"
+msgstr "큐브의 천장에 맞도록 이미지의 크기를 조절함"
+
+msgid "Scale top image"
+msgstr "천장 이미지 크기 조절"
+
+#, fuzzy
+msgid "Sphere"
+msgstr "속도"
+
+msgid "Top image files"
+msgstr "천장 이미지 파일 목록"
+
+msgid "Unfold cube deformation"
+msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "마우스 회전시에 자동으로 축소"
@@ -1232,10 +1308,6 @@ msgstr "휘어지게 접기"
 #, fuzzy
 msgid "Curve strength"
 msgstr "모션 블러 강도"
-
-#, fuzzy
-msgid "Deformation"
-msgstr "지속시간"
 
 #, fuzzy
 msgid "Deformation of the expo wall"
@@ -1330,9 +1402,6 @@ msgstr "출력마다 하나의 벽"
 
 msgid "Previous viewport"
 msgstr "이전 작업 공간"
-
-msgid "Reflection"
-msgstr "반사"
 
 msgid "Reflection Scale"
 msgstr "반사 크기"
@@ -1501,18 +1570,8 @@ msgstr "원래의 마우스 포인터를 숨김"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "마우스가 확대되면 원래의 마우스는 숨김"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"얼마나 자주 마우스 위치를 바꿀 것인지 밀리세컨드 단위로 입력하세요. 자연스러"
-"운 동작을 원하신다면 이 값을 줄이시기 바랍니다."
-
 msgid "Mouse Behaviour"
 msgstr "마우스 동작"
-
-msgid "Mouse Poll Interval"
-msgstr "마우스 폴 간격"
 
 msgid "Mouse Restrain Margin"
 msgstr "마우스 구속 한계"
@@ -1619,6 +1678,10 @@ msgstr "확대할 때, 선형 필터 사용"
 msgid "Zoom Area Movement"
 msgstr "확대 영역 이동"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "축소"
+
 msgid "Zoom In"
 msgstr "확대"
 
@@ -1645,6 +1708,9 @@ msgstr "확대 시간 간격"
 
 msgid "Zoom factor"
 msgstr "확대 수준"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -2429,8 +2495,18 @@ msgstr "동작이 속한 플러그인."
 msgid "Start gesture"
 msgstr "제스쳐 시작"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"얼마나 자주 마우스 위치를 바꿀 것인지 밀리세컨드 단위로 입력하세요. 자연스러"
+"운 동작을 원하신다면 이 값을 줄이시기 바랍니다."
+
 msgid "Misc"
 msgstr ""
+
+msgid "Mouse Poll Interval"
+msgstr "마우스 폴 간격"
 
 #, fuzzy
 msgid "Mouse position polling"
@@ -3151,7 +3227,12 @@ msgstr "모든 창"
 msgid "Background color of the window title"
 msgstr "창 제목의 배경 색"
 
-msgid "Close Windows In Scale"
+#, fuzzy
+msgid "Close Window"
+msgstr "윈도우 타일"
+
+#, fuzzy
+msgid "Close window while in scale mode"
 msgstr "스케일 상태에서 창을 닫음"
 
 msgid "Close windows while in scale mode"
@@ -3160,8 +3241,17 @@ msgstr "스케일 상태에서 창을 닫음"
 msgid "Color used for highlighting the hovered window"
 msgstr "선택할려는 창을 강조하기 위해 사용할 색"
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "창을 강조함"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "창 제목에 대한 글자 색"
@@ -3179,6 +3269,11 @@ msgstr "마우스 포인터 아래에 있는 창만"
 msgid "Highlights the hovered window with the given color"
 msgstr "선택할려는 창을 주어진 색으로 강조함"
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr "마우스를 창 위에 가져갔을 때, 창이 쉽게 보이도록 합니다."
+
 msgid "No display"
 msgstr "표시 안 함"
 
@@ -3187,6 +3282,14 @@ msgstr "보통"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "유기적으로 - 불안정함"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "창 던지기"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "스케일 상태에서 창을 닫음"
 
 msgid "Scale Addons"
 msgstr "스케일 부가 기능"
@@ -3212,6 +3315,10 @@ msgstr "창 강조"
 msgid "Window Layout Mode"
 msgstr "창 배치 방식"
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "창의 규칙들"
+
 msgid "Window Title"
 msgstr "창 제목"
 
@@ -3221,10 +3328,12 @@ msgstr "창 제목 표시"
 msgid "Window title display in scale mode"
 msgstr "스케일 상태에서 창 제목을 보여줌"
 
-msgid "Zoom Windows In Scale"
+#, fuzzy
+msgid "Zoom Window"
 msgstr "스케일 상태에서 창을 확대함"
 
-msgid "Zoom windows while in scale mode"
+#, fuzzy
+msgid "Zoom window while in scale mode"
 msgstr "스케일 상태에서 창을 확대함"
 
 msgid "Filter Case Insensitive"
@@ -4804,6 +4913,15 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 msgid "Workarounds"
 msgstr "문제 회피"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "큐브의 천장과 바닥 이미지를 그림"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "큐브 반사"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "스케일 상태에서 창을 닫음"
 
 #~ msgid "Animation Speed"
 #~ msgstr "애니메이션 속도"

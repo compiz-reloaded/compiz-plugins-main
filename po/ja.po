@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:52+0530\n"
-"PO-Revision-Date: 2008-04-30 22:50+0900\n"
+"POT-Creation-Date: 2008-05-24 22:15+0530\n"
+"PO-Revision-Date: 2008-05-22 16:33+0200\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "マウスによる回転時のみ立体表示"
@@ -116,6 +116,12 @@ msgstr "明度"
 
 msgid "Brightness of faded windows"
 msgstr "フェードしたウィンドウの明るさ"
+
+msgid "Enable ADD Helper on start"
+msgstr "スタート時点でヘルパーの追加をオン"
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr "ヘルパーの追加を読み込んだ時点で即利用可能にする"
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1040,6 +1046,9 @@ msgstr "ウィンドウマネージャのコマンドライン"
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr "ウィンドウマネージャのコマンドライン。COMPIZと書いてはダメ!!!"
 
+msgid "Above"
+msgstr "上"
+
 msgid "Adjust bottom face image to rotation"
 msgstr "下面画像を回転に合わせる"
 
@@ -1060,6 +1069,18 @@ msgstr "キューブ上面の次の画像に進む"
 
 msgid "Appearance"
 msgstr "外観"
+
+msgid "Aspect ratio"
+msgstr "縦横比"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr "変形キューブの縦横比"
+
+msgid "Auto zoom"
+msgstr "自動ズーム"
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr "マウス回転時のみ自動ズーム"
 
 msgid "Behaviour"
 msgstr "動作"
@@ -1094,17 +1115,53 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr "キューブの下面の色"
 
+msgid "Color of the ground (far)."
+msgstr "地面の色(遠方)"
+
+msgid "Color of the ground (near)."
+msgstr "地面の色(近景)"
+
 msgid "Color of top face of the cube"
 msgstr "キューブの上面の色"
+
+msgid "Compiz cube reflection and deformation"
+msgstr "Compiz キューブの反射と変形"
 
 msgid "Cube Bottom Color"
 msgstr "キューブ下面の色"
 
-msgid "Cube Caps"
-msgstr "キューブのふた"
+msgid "Cube Reflection and Deformation"
+msgstr "キューブの反射と変形"
 
 msgid "Cube Top Color"
 msgstr "キューブ上面の色"
+
+msgid "Cube caps"
+msgstr "キューブのふた"
+
+msgid "Cylinder"
+msgstr "シリンダー"
+
+msgid "Deform caps"
+msgstr "ふたの変形"
+
+msgid "Deform cube caps."
+msgstr "キューブのふたを変形させる"
+
+msgid "Deform only on mouse rotate"
+msgstr "マウスによる回転時にのみ変形"
+
+msgid "Deformation"
+msgstr "変形"
+
+msgid "Deformation in unfold cube mode."
+msgstr "キューブの展開モード時における変形"
+
+msgid "Deformation mode."
+msgstr "変形の形態"
+
+msgid "Distance"
+msgstr "距離"
 
 msgid "Draw bottom face"
 msgstr "下面を描画"
@@ -1118,11 +1175,35 @@ msgstr "上面を描画"
 msgid "Draw top face of the cube"
 msgstr "キューブの上面を描画"
 
+msgid "Enabled"
+msgstr "有効化"
+
+msgid "Give cube a reflective ground."
+msgstr "キューブに反射的な地面を付ける"
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "前のキューブ下面の画像に戻る"
 
 msgid "Go back to previous image for top face of the cube"
 msgstr "前にキューブ上面の画像に戻る"
+
+msgid "Ground color(far)"
+msgstr "地面の色(遠方)"
+
+msgid "Ground color(near)"
+msgstr "地面の色(近景)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr "マウスによって回転される場合にのみキューブのシリンダー変形を開始"
+
+msgid "Intensity"
+msgstr "輝度"
+
+msgid "Jumpy"
+msgstr "飛び跳ね"
+
+msgid "Jumpy reflection"
+msgstr "反射側の飛び跳ね"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1130,6 +1211,18 @@ msgstr "キューブ下面に表示する PNG や SVG ファイルのリスト"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "キューブ上面に表示する PNG や SVG ファイルのリスト"
+
+msgid "Maintain bottom aspect ratio"
+msgstr "下面画像の縦横比を保つ"
+
+msgid "Maintain bottom cap image aspect ratio."
+msgstr "下面のふたの画像の縦横比を保つ"
+
+msgid "Maintain top aspect ratio"
+msgstr "上面画像の縦横比を保つ"
+
+msgid "Maintain top cap image aspect ratio."
+msgstr "上面のふたの画像の縦横比を保つ"
 
 msgid "Next bottom image"
 msgstr "次の下面画像"
@@ -1143,62 +1236,8 @@ msgstr "前の下面画像"
 msgid "Prev top image"
 msgstr "前の上面画像"
 
-msgid "Render images on top and bottom of the cube"
-msgstr "キューブの上下面に画像を表示"
-
-msgid "Scale bottom image"
-msgstr "下面画像の引き伸ばし"
-
-msgid "Scale image to cover bottom face of cube"
-msgstr "キューブ下面を覆うように画像を引き伸ばす"
-
-msgid "Scale image to cover top face of cube"
-msgstr "キューブ上面を覆うように画像を引き伸ばす"
-
-msgid "Scale top image"
-msgstr "上面画像の引き伸ばし"
-
-msgid "Top image files"
-msgstr "上面の画像ファイル"
-
-msgid "Above"
-msgstr "上"
-
-msgid "Auto zoom"
-msgstr "自動ズーム"
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr "マウス回転時のみ自動ズーム"
-
-msgid "Color of the ground (far)."
-msgstr "地面の色(遠方)"
-
-msgid "Color of the ground (near)."
-msgstr "地面の色(近景)"
-
-msgid "Compiz cube reflection"
-msgstr "Compiz キューブの反射"
-
-msgid "Cube Reflection"
-msgstr "キューブの反射"
-
-msgid "Distance"
-msgstr "距離"
-
-msgid "Ground color(far)"
-msgstr "地面の色(遠方)"
-
-msgid "Ground color(near)"
-msgstr "地面の色(近景)"
-
-msgid "Intensity"
-msgstr "輝度"
-
-msgid "Jumpy"
-msgstr "飛び跳ね"
-
-msgid "Jumpy reflection"
-msgstr "反射側の飛び跳ね"
+msgid "Reflection"
+msgstr "反射"
 
 msgid "Reflection ground size"
 msgstr "反射の地面の大きさ"
@@ -1214,6 +1253,27 @@ msgstr "反射形式"
 
 msgid "Reflection mode."
 msgstr "反射の形式"
+
+msgid "Scale bottom image"
+msgstr "下面画像の引き伸ばし"
+
+msgid "Scale image to cover bottom face of cube"
+msgstr "キューブ下面を覆うように画像を引き伸ばす"
+
+msgid "Scale image to cover top face of cube"
+msgstr "キューブ上面を覆うように画像を引き伸ばす"
+
+msgid "Scale top image"
+msgstr "上面画像の引き伸ばし"
+
+msgid "Sphere"
+msgstr "球体"
+
+msgid "Top image files"
+msgstr "上面の画像ファイル"
+
+msgid "Unfold cube deformation"
+msgstr "展開したキューブの変形"
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "マウス回転時のみ自動的なズームアウト"
@@ -1241,9 +1301,6 @@ msgstr "カーブ"
 
 msgid "Curve strength"
 msgstr "カーブの度合い"
-
-msgid "Deformation"
-msgstr "変形"
 
 msgid "Deformation of the expo wall"
 msgstr "展開の壁の変形"
@@ -1334,9 +1391,6 @@ msgstr "出力ごとの壁"
 
 msgid "Previous viewport"
 msgstr "前のビューポート"
-
-msgid "Reflection"
-msgstr "反射"
 
 msgid "Reflection Scale"
 msgstr "反射の拡縮率"
@@ -1504,18 +1558,8 @@ msgstr "元マウスポインタを隠す"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "ズームイン時に元マウスポインタを隠してマウスを拡大"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"ミリ秒単位でのマウス位置読み取り間隔。ぎくしゃくした動きを抑制するにはこの値"
-"を減らしてください。"
-
 msgid "Mouse Behaviour"
 msgstr "マウス動作"
-
-msgid "Mouse Poll Interval"
-msgstr "マウス位置読み取り間隔"
 
 msgid "Mouse Restrain Margin"
 msgstr "マウス制限域マージン"
@@ -1624,6 +1668,10 @@ msgstr "ズームインの際に線形フィルタを使用"
 msgid "Zoom Area Movement"
 msgstr "ズーム域の移動"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "ズーム"
+
 msgid "Zoom In"
 msgstr "ズームイン"
 
@@ -1650,6 +1698,9 @@ msgstr "ズーム描画の刻み時間"
 
 msgid "Zoom factor"
 msgstr "ズーム係数"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "ズームインやアウトの分量、より素早いズームには高い値を"
@@ -2433,8 +2484,18 @@ msgstr "当該アクションが帰属しているプラグイン"
 msgid "Start gesture"
 msgstr "ジェスチャー開始"
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"ミリ秒単位でのマウス位置読み取り間隔。ぎくしゃくした動きを抑制するにはこの値"
+"を減らしてください。"
+
 msgid "Misc"
 msgstr "その他"
+
+msgid "Mouse Poll Interval"
+msgstr "マウス位置読み取り間隔"
 
 msgid "Mouse position polling"
 msgstr "マウス位置問い合わせ"
@@ -3167,8 +3228,11 @@ msgstr "すべてのウィンドウ"
 msgid "Background color of the window title"
 msgstr "ウィンドウタイトルの背景色"
 
-msgid "Close Windows In Scale"
-msgstr "スケールのウィンドウを閉じる"
+msgid "Close Window"
+msgstr "ウィンドウを閉じる"
+
+msgid "Close window while in scale mode"
+msgstr "スケールモード中に選択ウィンドウを閉じる"
 
 msgid "Close windows while in scale mode"
 msgstr "スケールモード中のウィンドウを閉じる"
@@ -3176,8 +3240,17 @@ msgstr "スケールモード中のウィンドウを閉じる"
 msgid "Color used for highlighting the hovered window"
 msgstr "マウスが置かれているウィンドウの強調に使用する色"
 
+msgid "Constrain Pull To Screen"
+msgstr "引き入れて配置する位置を画面内に制限"
+
 msgid "Draw Window Highlight"
 msgstr "ウィンドウの強調表示を描画"
+
+msgid "Exit Scale On Pull"
+msgstr "引き入れによりスケールを終了"
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr "ウィンドウを引き入れた後、スケールモードを終了"
 
 msgid "Font color of the window title"
 msgstr "ウィンドウタイトルのフォント色"
@@ -3194,6 +3267,12 @@ msgstr "強調表示されたウィンドウのみ"
 msgid "Highlights the hovered window with the given color"
 msgstr "マウスが置かれているウィンドウを指定色で強調表示"
 
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr ""
+"ウィンドウを別ビューポートに引き入れた場合に、確実にそのウィンドウ全体が見え"
+"るようにする"
+
 msgid "No display"
 msgstr "非表示"
 
@@ -3202,6 +3281,12 @@ msgstr "通常"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "オーガニック - 実験的"
+
+msgid "Pull Window"
+msgstr "ウィンドウを引き入れる"
+
+msgid "Pull window to current viewport while in scale mode"
+msgstr "スケールモード中に選択ウィンドウを現在のビューポートに引き入れる"
 
 msgid "Scale Addons"
 msgstr "スケールのアドオン"
@@ -3227,6 +3312,9 @@ msgstr "ウィンドウの強調表示"
 msgid "Window Layout Mode"
 msgstr "ウィンドウの配列方式"
 
+msgid "Window Pull"
+msgstr "ウィンドウの引き入れ"
+
 msgid "Window Title"
 msgstr "ウィンドウタイトル"
 
@@ -3236,11 +3324,11 @@ msgstr "ウィンドウタイトル表示"
 msgid "Window title display in scale mode"
 msgstr "スケールモードでのウィンドウタイトルの表示"
 
-msgid "Zoom Windows In Scale"
-msgstr "スケールのウィンドウをズーム"
+msgid "Zoom Window"
+msgstr "ウィンドウをズーム"
 
-msgid "Zoom windows while in scale mode"
-msgstr "スケールモードにおいてウィンドウをズーム"
+msgid "Zoom window while in scale mode"
+msgstr "スケールモード中に選択ウィンドウをズーム"
 
 msgid "Filter Case Insensitive"
 msgstr "大文字小文字を区別しないフィルタ"
@@ -3847,7 +3935,7 @@ msgid "Generate Mipmaps"
 msgstr "ミップマップを生成"
 
 msgid "Generate mipmaps when possible for higher quality scaling."
-msgstr "より高質のスケールが可能なときにミップマップを生成"
+msgstr "より高質のスケールが可能なときはミップマップを生成"
 
 msgid "Paint Thumbnails Always on Top."
 msgstr "サムネイルを常に最前面に描画"
@@ -4794,35 +4882,167 @@ msgstr ""
 msgid "Workarounds"
 msgstr "次善策"
 
-#~ msgid "Animation Speed"
-#~ msgstr "アニメーション速度"
+#~ msgid "Bicubic filter"
+#~ msgstr "双三次補間フィルタ"
 
-#~ msgid "Change the speed of the 3D animation"
-#~ msgstr "立体アニメーションの速度を変更"
+#~ msgid "Bicubic texture filtering"
+#~ msgstr "双三次補間法によるテクスチャ・フィルタ"
+
+#~ msgid "Compiz cube reflection"
+#~ msgstr "Compiz キューブの反射"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "キューブの反射"
+
+#~ msgid "Intensity."
+#~ msgstr "輝度"
+
+#~ msgid "Show repaint"
+#~ msgstr "再描画表示"
+
+#~ msgid "Show repainted regions in different colors"
+#~ msgstr "再描画域を異なる色で表示"
+
+#~ msgid "Toggle showing of repainted regions."
+#~ msgstr "再描画域の表示のオンオフ"
+
+#~ msgid "Alignment for rows that are not fully filled"
+#~ msgstr "横に空きがある場合の配列の仕方"
+
+#~ msgid "Amount of brightness in percent"
+#~ msgstr "明度の割合"
+
+#~ msgid "Amount of opacity in percent"
+#~ msgstr "不透明度の割合"
+
+#~ msgid "Amount of saturation in percent"
+#~ msgstr "彩度の割合"
+
+#~ msgid "Auto Change Viewport"
+#~ msgstr "ビューポート自動切り替え"
+
+#~ msgid "Bring To Front"
+#~ msgstr "手前に提示"
+
+#~ msgid "Bring selected window to front"
+#~ msgstr "選択ウィンドウを手前に提示"
+
+#~ msgid "Change to the viewport of the selected window while switching"
+#~ msgstr "スイッチ中に選択ウィンドウが存在するビューポートに切り替え"
+
+#~ msgid "Generate mipmaps when possible for higher quality scaling"
+#~ msgstr "より高質のスケールが可能なときはミップマップを生成"
+
+#~ msgid "Icon"
+#~ msgstr "アイコン"
+
+#~ msgid "Mipmap"
+#~ msgstr "ミップマップ"
+
+#~ msgid "Next Panel"
+#~ msgstr "次のパネル"
+
+#~ msgid "Next window"
+#~ msgstr "次のウィンドウ"
+
+#~ msgid "Next window (All windows)"
+#~ msgstr "次のウィンドウ（全ウィンドウから）"
+
+#~ msgid "Next window (Group)"
+#~ msgstr "次のウィンドウ(グループから)"
+
+#~ msgid "Next window (No popup)"
+#~ msgstr "次のウィンドウ（ポップアップなし）"
+
+#~ msgid "Popup Window Delay"
+#~ msgstr "ポップアップ・ウィンドウの遅延時間"
+
+#~ msgid "Popup switcher if not visible and select next window"
+#~ msgstr "スイッチャーが非表示の場合は表示して、次のウィンドウを選択"
 
 #~ msgid ""
-#~ "Enable true alpha blending for transparent wallpapersEnable true "
-#~ "blendingThe background specifications (as explained in DOCUMENTATION) to "
-#~ "use.Tile backgrounds as opposed to stretchingTilt viewTilt window view in "
-#~ "expo modeMove window to x, yPut ExactMisc. optionsShow minimized "
-#~ "windowsTile or StretchTimeout in seconds before hiding the "
-#~ "notificationUses libnotify to display errorsCorner BevellingCreate "
-#~ "MipmapsDisable Caps for Inside CubeDisables the drawing of the cube caps "
-#~ "when the inside cube mode is set.Draw Window BacksidesEnables the drawing "
-#~ "of the backside of windows.This will create mipmaps which improve overall "
-#~ "texture appearence, and reduce jagged edges.Window widthBeginGoto "
-#~ "viewport specified by numbersSpring model on moveUse spring model for the "
-#~ "tab bar when moving the windowSet window as widgetAppearenceBackground "
-#~ "Base ColorBackground Highlight Color"
+#~ "Popup switcher if not visible and select next window of the current "
+#~ "application."
 #~ msgstr ""
-#~ "透過な壁紙のための擬似ではない本当のアルファ合成を有効化真アルファ合成を有"
-#~ "効化使用する背景の指定ストレッチ時のタイルの背景傾けた表示展開モードでウィ"
-#~ "ンドウを傾けて表示ウィンドウを座標X、Yへ移動正確な移動その他オプション最小"
-#~ "化されているウィンドウも表示タイル か ストレッチ通知表示を隠し始めるまでの"
-#~ "タイムアウト（秒）libnotify を使用してエラーを表示コーナーの角度Mipmapの作"
-#~ "成キューブ内での上側を利用不可能にするキューブの内部モードでは、キューブの"
-#~ "上側の描画を利用不可能にするウィンドウの裏側を描画するウィンドウの裏側描画"
-#~ "を可能にするテクスチャの見栄えを良くし、ギザギザなエッジを少なくするmipmap"
-#~ "を作成するウィンドウ幅開始数値で指定されたビューポートに移動移動時のスプリ"
-#~ "ングモデルウィンドウの移動時にタブバーをスプリングモードにするウィンドウを"
-#~ "ウィジェットにしてください見栄え背景の基本色背景の明るい部分の色"
+#~ "スイッチャーが非表示の場合は表示して、現在のアプリケーションの次のウィンド"
+#~ "ウを選択"
+
+#~ msgid ""
+#~ "Popup switcher if not visible and select next window out of all windows"
+#~ msgstr ""
+#~ "スイッチャーが非表示の場合は表示して、すべてのウィンドウから次のウィンドウ"
+#~ "を選択"
+
+#~ msgid "Popup switcher if not visible and select previous window"
+#~ msgstr "スイッチャーが非表示の場合は表示して、前のウィンドウを選択"
+
+#~ msgid ""
+#~ "Popup switcher if not visible and select previous window of the current "
+#~ "application."
+#~ msgstr ""
+#~ "スイッチャーが非表示の場合は表示して、現在のアプリケーションの前のウィンド"
+#~ "ウを選択"
+
+#~ msgid ""
+#~ "Popup switcher if not visible and select previous window out of all "
+#~ "windows"
+#~ msgstr ""
+#~ "スイッチャーが非表示の場合は表示して、すべてのウィンドウから前のウィンドウ"
+#~ "を選択"
+
+#~ msgid "Prev Panel"
+#~ msgstr "前のパネル"
+
+#~ msgid "Prev window"
+#~ msgstr "前のウィンドウ"
+
+#~ msgid "Prev window (All windows)"
+#~ msgstr "前のウィンドウ(全ウィンドウから)"
+
+#~ msgid "Prev window (Group)"
+#~ msgstr "前のウィンドウ(グループから)"
+
+#~ msgid "Prev window (No popup)"
+#~ msgstr "前のウィンドウ（ポップアップなし）"
+
+#~ msgid "Row Alignment"
+#~ msgstr "配列"
+
+#~ msgid "Select next panel type window."
+#~ msgstr "次のパネルタイプ・ウィンドウを選択"
+
+#~ msgid "Select next window without showing the popup window."
+#~ msgstr "ポップアップ・ウィンドウの表示なしに次のウィンドウを選択"
+
+#~ msgid "Select previous panel type window."
+#~ msgstr "前のパネルタイプ・ウィンドウを選択"
+
+#~ msgid "Select previous window without showing the popup window."
+#~ msgstr "ポップアップ・ウィンドウの表示なしに前のウィンドウを選択"
+
+#~ msgid "Show icon next to thumbnail"
+#~ msgstr "サムネイルの隣にアイコンを表示"
+
+#~ msgid "Show minimized windows"
+#~ msgstr "最小化されているウィンドウも表示"
+
+#~ msgid "Static Application Switcher"
+#~ msgstr "不動型アプリケーション・スイッチャー"
+
+#~ msgid "Switcher speed"
+#~ msgstr "スイッチャーの速度"
+
+#~ msgid "Switcher timestep"
+#~ msgstr "スイッチャー描画の刻み時間"
+
+#~ msgid "Switcher windows"
+#~ msgstr "スイッチャー対象ウィンドウ"
+
+#~ msgid "Time (in s) the popup window should be delayed before appearing"
+#~ msgstr "ポップアップ・ウィンドウが表示されるまでの遅延時間（秒単位）"
+
+#~ msgid "Windows that should be shown in switcher"
+#~ msgstr "スイッチャーに表示する対象ウィンドウ"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "スケールのウィンドウを閉じる"

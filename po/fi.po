@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-02 13:51+0530\n"
+"POT-Creation-Date: 2008-05-24 22:14+0530\n"
 "PO-Revision-Date: 2008-04-17 12:19+0200\n"
 "Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
@@ -117,6 +117,12 @@ msgstr "Kirkkaus"
 
 msgid "Brightness of faded windows"
 msgstr "Häivyttyneiden ikkunoiden kirkkaus"
+
+msgid "Enable ADD Helper on start"
+msgstr ""
+
+msgid "Enables ADD helper when it is first loaded."
+msgstr ""
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1043,6 +1049,9 @@ msgstr ""
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
 msgstr ""
 
+msgid "Above"
+msgstr "Ylhäällä"
+
 msgid "Adjust bottom face image to rotation"
 msgstr ""
 
@@ -1063,6 +1072,19 @@ msgstr ""
 
 msgid "Appearance"
 msgstr "Ulkoasu"
+
+#, fuzzy
+msgid "Aspect ratio"
+msgstr "Kuvasuhde"
+
+msgid "Aspect ratio of the deformed cube"
+msgstr ""
+
+msgid "Auto zoom"
+msgstr ""
+
+msgid "Auto zoom only on Mouse Rotate"
+msgstr ""
 
 msgid "Behaviour"
 msgstr "Toiminta"
@@ -1091,17 +1113,57 @@ msgstr ""
 msgid "Color of bottom face of the cube"
 msgstr ""
 
+msgid "Color of the ground (far)."
+msgstr "Maan väri (kaukana)."
+
+msgid "Color of the ground (near)."
+msgstr "Maan väri (lähellä)."
+
 msgid "Color of top face of the cube"
+msgstr ""
+
+msgid "Compiz cube reflection and deformation"
 msgstr ""
 
 msgid "Cube Bottom Color"
 msgstr ""
 
-msgid "Cube Caps"
-msgstr "Kuution kannet"
+#, fuzzy
+msgid "Cube Reflection and Deformation"
+msgstr "Kuution heijastus"
 
 msgid "Cube Top Color"
 msgstr ""
+
+#, fuzzy
+msgid "Cube caps"
+msgstr "Kuution kannet"
+
+#, fuzzy
+msgid "Cylinder"
+msgstr "Tyhjennä"
+
+msgid "Deform caps"
+msgstr ""
+
+msgid "Deform cube caps."
+msgstr ""
+
+#, fuzzy
+msgid "Deform only on mouse rotate"
+msgstr "3D vain pyörittäessä hiirellä"
+
+msgid "Deformation"
+msgstr ""
+
+msgid "Deformation in unfold cube mode."
+msgstr ""
+
+msgid "Deformation mode."
+msgstr ""
+
+msgid "Distance"
+msgstr "Etäisyys"
 
 msgid "Draw bottom face"
 msgstr ""
@@ -1115,10 +1177,35 @@ msgstr ""
 msgid "Draw top face of the cube"
 msgstr ""
 
+#, fuzzy
+msgid "Enabled"
+msgstr "Käytä"
+
+msgid "Give cube a reflective ground."
+msgstr ""
+
 msgid "Go back to previous image for bottom face of the cube"
 msgstr ""
 
 msgid "Go back to previous image for top face of the cube"
+msgstr ""
+
+msgid "Ground color(far)"
+msgstr "Maan väri (kaukana)"
+
+msgid "Ground color(near)"
+msgstr "Maan väri (lähellä)"
+
+msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
+msgstr ""
+
+msgid "Intensity"
+msgstr "Voimakkuus"
+
+msgid "Jumpy"
+msgstr "Vaihteleva"
+
+msgid "Jumpy reflection"
 msgstr ""
 
 msgid ""
@@ -1127,6 +1214,20 @@ msgstr "Luettelo kuution pohjaan asetettavista PNG- ja SVG-tiedostoista"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "Luettelo kuution päälle asetettavista PNG- ja SVG-tiedostoista"
+
+#, fuzzy
+msgid "Maintain bottom aspect ratio"
+msgstr "Expotilan kuvasuhde"
+
+msgid "Maintain bottom cap image aspect ratio."
+msgstr ""
+
+#, fuzzy
+msgid "Maintain top aspect ratio"
+msgstr "Expotilan kuvasuhde"
+
+msgid "Maintain top cap image aspect ratio."
+msgstr ""
 
 msgid "Next bottom image"
 msgstr ""
@@ -1140,62 +1241,8 @@ msgstr ""
 msgid "Prev top image"
 msgstr ""
 
-msgid "Render images on top and bottom of the cube"
-msgstr ""
-
-msgid "Scale bottom image"
-msgstr ""
-
-msgid "Scale image to cover bottom face of cube"
-msgstr ""
-
-msgid "Scale image to cover top face of cube"
-msgstr ""
-
-msgid "Scale top image"
-msgstr ""
-
-msgid "Top image files"
-msgstr ""
-
-msgid "Above"
-msgstr "Ylhäällä"
-
-msgid "Auto zoom"
-msgstr ""
-
-msgid "Auto zoom only on Mouse Rotate"
-msgstr ""
-
-msgid "Color of the ground (far)."
-msgstr "Maan väri (kaukana)."
-
-msgid "Color of the ground (near)."
-msgstr "Maan väri (lähellä)."
-
-msgid "Compiz cube reflection"
-msgstr ""
-
-msgid "Cube Reflection"
-msgstr "Kuution heijastus"
-
-msgid "Distance"
-msgstr "Etäisyys"
-
-msgid "Ground color(far)"
-msgstr "Maan väri (kaukana)"
-
-msgid "Ground color(near)"
-msgstr "Maan väri (lähellä)"
-
-msgid "Intensity"
-msgstr "Voimakkuus"
-
-msgid "Jumpy"
-msgstr "Vaihteleva"
-
-msgid "Jumpy reflection"
-msgstr ""
+msgid "Reflection"
+msgstr "Heijastus"
 
 msgid "Reflection ground size"
 msgstr "Heijastuksen koko alustalla"
@@ -1210,6 +1257,28 @@ msgid "Reflection mode"
 msgstr ""
 
 msgid "Reflection mode."
+msgstr ""
+
+msgid "Scale bottom image"
+msgstr ""
+
+msgid "Scale image to cover bottom face of cube"
+msgstr ""
+
+msgid "Scale image to cover top face of cube"
+msgstr ""
+
+msgid "Scale top image"
+msgstr ""
+
+#, fuzzy
+msgid "Sphere"
+msgstr "Nopeus"
+
+msgid "Top image files"
+msgstr ""
+
+msgid "Unfold cube deformation"
 msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
@@ -1237,9 +1306,6 @@ msgid "Curve"
 msgstr ""
 
 msgid "Curve strength"
-msgstr ""
-
-msgid "Deformation"
 msgstr ""
 
 msgid "Deformation of the expo wall"
@@ -1333,9 +1399,6 @@ msgstr "Yksi seinä per ulostulo"
 
 msgid "Previous viewport"
 msgstr "Edellinen näkymä"
-
-msgid "Reflection"
-msgstr "Heijastus"
 
 msgid "Reflection Scale"
 msgstr "Heijastusasteikko"
@@ -1491,18 +1554,8 @@ msgstr "Piilota alkuperäinen kohdistin"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "Piilottaa alkuperäisen hiiren osoittimen zoomauksen aikana"
 
-msgid ""
-"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
-"choppy behavior."
-msgstr ""
-"Hiiren paikan tarkistusväli millisekunneissa. Pienennä tätä vähentääksesi "
-"pätkimistä."
-
 msgid "Mouse Behaviour"
 msgstr "Hiiren käytös"
-
-msgid "Mouse Poll Interval"
-msgstr "Hiiren seurantatiheys"
 
 msgid "Mouse Restrain Margin"
 msgstr ""
@@ -1610,6 +1663,10 @@ msgstr "Käytä tasasuodatusta zoomattaessa sisään"
 msgid "Zoom Area Movement"
 msgstr "Zoomausalueen liike"
 
+#, fuzzy
+msgid "Zoom Box"
+msgstr "Zoomaus"
+
 msgid "Zoom In"
 msgstr "Lähennä"
 
@@ -1636,6 +1693,9 @@ msgstr "Zoomauksen viive"
 
 msgid "Zoom factor"
 msgstr "Suurennuskerroin"
+
+msgid "Zoom in on a boxed area"
+msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "Lähennä/loitonna tällä kertoimella. Suurempi arvo zoomaa nopeammin."
@@ -2388,8 +2448,18 @@ msgstr ""
 msgid "Start gesture"
 msgstr ""
 
+msgid ""
+"How often to poll the mouse position, in miliseconds. Reduce this to reduce "
+"choppy behavior."
+msgstr ""
+"Hiiren paikan tarkistusväli millisekunneissa. Pienennä tätä vähentääksesi "
+"pätkimistä."
+
 msgid "Misc"
 msgstr "Sekalaiset"
+
+msgid "Mouse Poll Interval"
+msgstr "Hiiren seurantatiheys"
 
 msgid "Mouse position polling"
 msgstr "Hiiren sijainnin tarkkailu"
@@ -3083,8 +3153,13 @@ msgstr "3D Ikkunat"
 msgid "Background color of the window title"
 msgstr "Ikkunan nimen taustaväri"
 
-msgid "Close Windows In Scale"
-msgstr ""
+#, fuzzy
+msgid "Close Window"
+msgstr "Seuraava ikkuna"
+
+#, fuzzy
+msgid "Close window while in scale mode"
+msgstr "Nostaa ikkunoita kuutiota pyörittäessä"
 
 msgid "Close windows while in scale mode"
 msgstr ""
@@ -3092,8 +3167,17 @@ msgstr ""
 msgid "Color used for highlighting the hovered window"
 msgstr ""
 
+msgid "Constrain Pull To Screen"
+msgstr ""
+
 msgid "Draw Window Highlight"
 msgstr "Piirrä ikkunan korostus"
+
+msgid "Exit Scale On Pull"
+msgstr ""
+
+msgid "Exit scale mode after a window has been pulled."
+msgstr ""
 
 msgid "Font color of the window title"
 msgstr "Ikkunan nimen fontin väri"
@@ -3110,6 +3194,11 @@ msgstr "Vain korostettu ikkuna"
 msgid "Highlights the hovered window with the given color"
 msgstr ""
 
+#, fuzzy
+msgid ""
+"Make sure windows are fully visible after pulling them to another viewport"
+msgstr "Tee ikkunat hyvin näkyviksi siirtämällä hiiri niiden päälle"
+
 msgid "No display"
 msgstr ""
 
@@ -3118,6 +3207,14 @@ msgstr "Tavallinen"
 
 msgid "Organic - EXPERIMENTAL"
 msgstr "Orgaaninen - KOKEELLINEN"
+
+#, fuzzy
+msgid "Pull Window"
+msgstr "3D Ikkunat"
+
+#, fuzzy
+msgid "Pull window to current viewport while in scale mode"
+msgstr "Siirrä ikkuna ylempään työtilaan"
 
 msgid "Scale Addons"
 msgstr ""
@@ -3143,6 +3240,10 @@ msgstr "Ikkunan korostus"
 msgid "Window Layout Mode"
 msgstr ""
 
+#, fuzzy
+msgid "Window Pull"
+msgstr "Ikkunan säännöt"
+
 msgid "Window Title"
 msgstr "Ikkunan otsikko"
 
@@ -3153,10 +3254,11 @@ msgstr "Ikkunatyypit"
 msgid "Window title display in scale mode"
 msgstr ""
 
-msgid "Zoom Windows In Scale"
-msgstr ""
+#, fuzzy
+msgid "Zoom Window"
+msgstr "3D-ikkunat"
 
-msgid "Zoom windows while in scale mode"
+msgid "Zoom window while in scale mode"
 msgstr ""
 
 msgid "Filter Case Insensitive"
