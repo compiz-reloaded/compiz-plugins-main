@@ -1613,7 +1613,7 @@ zoomBoxDeactivate (CompDisplay     *d,
 	    width = MAX (zs->box.x1, zs->box.x2) - x;
 	    height = MAX (zs->box.y1, zs->box.y2) - y;
 
-	    out = outputDeviceForPoint (s, pointerX, pointerY);
+	    out = outputDeviceForGeometry (s, x,y,width,height,0);
 	    o = &s->outputDev[out];
 	    setScale (s, out, (float) width/o->width, (float)  height/o->height);
 	    setZoomArea (s, x,y,width,height,FALSE);
