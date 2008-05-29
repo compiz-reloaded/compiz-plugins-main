@@ -75,13 +75,17 @@ endif (CMAKE_MAJOR_VERSION GREATER 2 OR CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MI
 
 set (CMAKE_SKIP_RPATH On)
 
-# add install prefix to pkgconfig search path
-if ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
-    set (ENV{PKG_CONFIG_PATH} "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig:${CMAKE_INSTALL_PREFIX}/share/pkgconfig")
-else ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
-    set (ENV{PKG_CONFIG_PATH}
-         "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig:${CMAKE_INSTALL_PREFIX}/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
-endif ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
+set (PKGCONFIG_REGEX ".*${CMAKE_INSTALL_PREFIX}/lib/pkgconfig:${CMAKE_INSTALL_PREFIX}/share/pkgconfig.*")
+
+# add install prefix to pkgconfig search path if needed
+if (NOT "$ENV{PKG_CONFIG_PATH}" MATCHES "${PKGCONFIG_REGEX}")
+    if ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
+        set (ENV{PKG_CONFIG_PATH} "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig:${CMAKE_INSTALL_PREFIX}/share/pkgconfig")
+    else ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
+        set (ENV{PKG_CONFIG_PATH}
+             "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig:${CMAKE_INSTALL_PREFIX}/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+    endif ("" STREQUAL "$ENV{PKG_CONFIG_PATH}")
+endif (NOT "$ENV{PKG_CONFIG_PATH}" MATCHES "${PKGCONFIG_REGEX}")
 
 include (FindPkgConfig)
 
