@@ -319,11 +319,11 @@ macro (_init_gconf_schema _plugin _xml)
 		      ARGS "--variable=xsltdir compiz-gconf" 
 		      OUTPUT_VARIABLE _SCHEMA_XSLT_DIR)
 	add_custom_command (
-	    OUTPUT ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema
+	    OUTPUT ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schemas
 	    COMMAND ${XSLTPROC_EXECUTABLE}
 	            ${_SCHEMA_XSLT_DIR}/schemas.xslt
 	            ${_xml} >
-	            ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema
+	            ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schemas
 	    DEPENDS ${_xml}
 	)
 
@@ -337,19 +337,19 @@ macro (_init_gconf_schema _plugin _xml)
 			    ARGS \"--get-default-source\"
 			    OUTPUT_VARIABLE ENV{GCONF_CONFIG_SOURCE})
 			exec_program (${GCONFTOOL_EXECUTABLE}
-			    ARGS \"--makefile-install-rule ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema > /dev/null\")
+			    ARGS \"--makefile-install-rule ${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schemas > /dev/null\")
 		    else (\"\$ENV{USER}\" STREQUAL \"root\")
 			exec_program (${GCONFTOOL_EXECUTABLE}
-			    ARGS \"--install-schema-file=${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema > /dev/null\")
+			    ARGS \"--install-schema-file=${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schemas > /dev/null\")
 		    endif (\"\$ENV{USER}\" STREQUAL \"root\")
 		    ")
 	endif (GCONFTOOL_EXECUTABLE AND NOT CF_DISABLE_SCHEMAS_INSTALL)
 	install (
-	    FILES "${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema"
+	    FILES "${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schemas"
 	    DESTINATION "${PLUGIN_SCHEMADIR}"
 	)
 
-	set (SCHEMA_SOURCES "${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schema")
+	set (SCHEMA_SOURCES "${CMAKE_BINARY_DIR}/generated/compiz-${_plugin}.schemas")
     endif (_COMPIZ_GCONF_FOUND AND XSLTPROC_EXECUTABLE)
 endmacro (_init_gconf_schema)
 
