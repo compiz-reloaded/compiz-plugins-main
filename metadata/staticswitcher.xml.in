@@ -196,6 +196,34 @@
 			<_name>Centered</_name>
 		    </desc>
 		</option>
+		<subgroup>
+		    <_short>Selected Window Highlight</_short>
+		    <option name="highlight_selected" type="bool">
+			<_short>Highlight Selected Window</_short>
+			<_long>Highlight window that currently is selected</_long>
+			<default>false</default>
+		    </option>
+		    <option name="highlight_color" type="color">
+			<_short>Highlight Color</_short>
+			<_long>Color of highlight rectangle</_long>
+			<default>
+			    <red>0x0000</red>
+			    <green>0x0000</green>
+			    <blue>0x0000</blue>
+			    <alpha>0x9696</alpha>
+			</default>
+		    </option>
+		    <option name="highlight_border_color" type="color">
+			<_short>Highlight Border Color</_short>
+			<_long>Color of highlight rectangle border</_long>
+			<default>
+			    <red>0x0000</red>
+			    <green>0x0000</green>
+			    <blue>0x0000</blue>
+			    <alpha>0xc8c8</alpha>
+			</default>
+		    </option>
+		</subgroup>
 	    </group>
 	</screen>
     </plugin>

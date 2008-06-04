@@ -1151,23 +1151,66 @@ switchPaintOutput (CompScreen		   *s,
 	    insertWindowIntoScreen (s, zoomed, zoomedAbove);
 	}
 
-	if (switcher)
+	if (switcher || staticswitcherGetHighlightSelected (s))
 	{
 	    CompTransform sTransform = *transform;
-
-	    switcher->destroyed = saveDestroyed;
 
 	    transformToScreenSpace (s, output, -DEFAULT_Z_CAMERA, &sTransform);
 
 	    glPushMatrix ();
 	    glLoadMatrixf (sTransform.m);
 
-	    if (!switcher->destroyed			 &&
-		switcher->attrib.map_state == IsViewable &&
-		switcher->damaged)
+	    if (!ss->popupDelayHandle && staticswitcherGetHighlightSelected (s))
 	    {
-		(*s->paintWindow) (switcher, &switcher->paint, &sTransform,
-				   &infiniteRegion, 0);
+		CompWindow *w;
+
+		if (zoomed)
+		    w = zoomed;
+		else
+		    w = findWindowAtScreen (s, ss->selectedWindow);
+
+		if (w)
+		{
+		    BoxRec box;
+
+		    box.x1 = w->attrib.x - w->input.left;
+		    box.y1 = w->attrib.y - w->input.top;
+		    box.x2 = w->attrib.x + w->width + w->input.right;
+		    box.y2 = w->attrib.y + w->height + w->input.bottom;
+
+		    glEnable (GL_BLEND);
+
+		    /* fill rectangle */
+		    glColor4usv (staticswitcherGetHighlightColor (s));
+		    glRecti (box.x1, box.y2, box.x2, box.y1);
+
+		    /* draw outline */
+		    glColor4usv (staticswitcherGetHighlightBorderColor (s));
+		    glLineWidth (2.0);
+		    glBegin (GL_LINE_LOOP);
+		    glVertex2i (box.x1, box.y1);
+		    glVertex2i (box.x2, box.y1);
+		    glVertex2i (box.x2, box.y2);
+		    glVertex2i (box.x1, box.y2);
+		    glEnd ();
+
+		    /* clean up */
+		    glColor4usv (defaultColor);
+		    glDisable (GL_BLEND);
+		}
+	    }
+
+	    if (switcher)
+	    {
+		switcher->destroyed = saveDestroyed;
+
+		if (!switcher->destroyed		     &&
+		    switcher->attrib.map_state == IsViewable &&
+		    switcher->damaged)
+		{
+		    (*s->paintWindow) (switcher, &switcher->paint, &sTransform,
+				       &infiniteRegion, 0);
+		}
 	    }
 
 	    glPopMatrix ();
