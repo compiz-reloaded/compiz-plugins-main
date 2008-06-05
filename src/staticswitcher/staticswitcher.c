@@ -1121,9 +1121,12 @@ switchPaintOutput (CompScreen		   *s,
 	    switcher->destroyed = TRUE;
 	}
 
-	mode = staticswitcherGetHighlightMode (s);
+	if (!ss->popupDelayHandle)
+	    mode = staticswitcherGetHighlightMode (s);
+	else
+	    mode = HighlightModeNone;
 
-	if (mode == HighlightModeBringSelectedToFront && !ss->popupDelayHandle)
+	if (mode == HighlightModeBringSelectedToFront)
 	{
 	    zoomed = findWindowAtScreen (s, ss->selectedWindow);
 	    if (zoomed)
@@ -1162,7 +1165,7 @@ switchPaintOutput (CompScreen		   *s,
 	    glPushMatrix ();
 	    glLoadMatrixf (sTransform.m);
 
-	    if (mode == HighlightModeShowRectangle && !ss->popupDelayHandle)
+	    if (mode == HighlightModeShowRectangle)
 	    {
 		CompWindow *w;
 
