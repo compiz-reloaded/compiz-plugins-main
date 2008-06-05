@@ -1109,10 +1109,10 @@ switchPaintOutput (CompScreen		   *s,
 
     if (ss->grabIndex)
     {
-	CompWindow    *zoomed;
-	CompWindow    *switcher;
-	Window	      zoomedAbove = None;
-	Bool	      saveDestroyed = FALSE;
+	StaticswitcherHighlightModeEnum mode;
+	CompWindow                      *switcher, *zoomed;
+	Window	                        zoomedAbove = None;
+	Bool	                        saveDestroyed = FALSE;
 
 	switcher = findWindowAtScreen (s, ss->popupWindow);
 	if (switcher)
@@ -1121,7 +1121,9 @@ switchPaintOutput (CompScreen		   *s,
 	    switcher->destroyed = TRUE;
 	}
 
-	if (staticswitcherGetBringToFront (s) && !ss->popupDelayHandle)
+	mode = staticswitcherGetHighlightMode (s);
+
+	if (mode == HighlightModeBringSelectedToFront && !ss->popupDelayHandle)
 	{
 	    zoomed = findWindowAtScreen (s, ss->selectedWindow);
 	    if (zoomed)
@@ -1151,7 +1153,7 @@ switchPaintOutput (CompScreen		   *s,
 	    insertWindowIntoScreen (s, zoomed, zoomedAbove);
 	}
 
-	if (switcher || staticswitcherGetHighlightSelected (s))
+	if (switcher || mode == HighlightModeShowRectangle)
 	{
 	    CompTransform sTransform = *transform;
 
@@ -1160,7 +1162,7 @@ switchPaintOutput (CompScreen		   *s,
 	    glPushMatrix ();
 	    glLoadMatrixf (sTransform.m);
 
-	    if (!ss->popupDelayHandle && staticswitcherGetHighlightSelected (s))
+	    if (mode == HighlightModeShowRectangle && !ss->popupDelayHandle)
 	    {
 		CompWindow *w;
 
