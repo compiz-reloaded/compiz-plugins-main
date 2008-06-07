@@ -555,6 +555,7 @@ opacifyInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
     d->base.privates[displayPrivateIndex].ptr = od;
+    od->timeoutHandle = 0;
     od->activeScreen = d->screens->screenNum;
     od->toggle = TRUE;
 
