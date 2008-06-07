@@ -1904,6 +1904,11 @@ initiateFocusAnimation(CompWindow *w)
 		aw->animTotalTime =
 		    maxTransformTotalProgress * duration;
 	    }
+
+	    XDestroyRegion (fadeRegion);
+	    XDestroyRegion (thisAndSubjectIntersection);
+	    XDestroyRegion (thisWinRegion);
+	    XDestroyRegion (subjectWinRegion);
 	}
 
 	if (!animEnsureModel(w))
