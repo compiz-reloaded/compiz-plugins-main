@@ -1359,6 +1359,7 @@ scaleaddonInitScreen (CompPlugin *p,
     }
 
     as->scale = 1.0f;
+    as->lastState = SCALE_STATE_NONE;
 
     WRAP (as, s, donePaintScreen, scaleaddonDonePaintScreen);
     WRAP (as, ss, scalePaintDecoration, scaleaddonScalePaintDecoration);
