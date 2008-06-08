@@ -205,7 +205,9 @@ updateTextLayer (CompScreen *s)
     cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
 
     asprintf (&info, "%d x %d", xv, yv);
- 
+    if (!info)
+	return;
+
     font = pango_font_description_new ();
     layout = pango_cairo_create_layout (is->textLayer.cr);
   
@@ -237,6 +239,7 @@ updateTextLayer (CompScreen *s)
 
     pango_font_description_free (font);
     g_object_unref (layout);
+    free (info);
 }
 
 /* Draw the background. We draw this on a second layer so that we do
