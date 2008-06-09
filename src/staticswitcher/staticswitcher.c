@@ -1174,7 +1174,9 @@ switchPaintOutput (CompScreen		   *s,
 		else
 		    w = findWindowAtScreen (s, ss->selectedWindow);
 
-		if (w)
+		/* TODO: highlight minimized windows as well, e.g. by
+		   highlighting the task bar entry (_NET_WM_ICON_GEOMETRY) */
+		if (w && (w->attrib.map_state == IsViewable || w->shaded))
 		{
 		    BoxRec box;
 
