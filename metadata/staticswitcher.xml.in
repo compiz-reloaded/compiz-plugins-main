@@ -122,7 +122,12 @@
 		<option name="window_match" type="match">
 		    <_short>Switcher windows</_short>
 		    <_long>Windows that should be shown in switcher</_long>
-		    <default>any</default>
+		    <default>Normal | Dialog | Toolbar | Utility | Unknown</default>
+		</option>
+		<option name="bring_to_front" type="bool">
+		    <_short>Bring To Front</_short>
+		    <_long>Bring selected window to front</_long>
+		    <default>true</default>
 		</option>
 		<option name="minimized" type="bool">
 		    <_short>Show Minimized</_short>
@@ -193,24 +198,10 @@
 		</option>
 		<subgroup>
 		    <_short>Selected Window Highlight</_short>
-		    <option name="highlight_mode" type="int">
-			<_short>Highlight Mode</_short>
-			<_long>Mode for highlighting the currently selected window</_long>
-			<min>0</min>
-			<max>2</max>
-			<default>1</default>
-			<desc>
-			    <value>0</value>
-			    <_name>None</_name>
-			</desc>
-			<desc>
-			    <value>1</value>
-			    <_name>Bring Selected To Front</_name>
-			</desc>
-			<desc>
-			    <value>2</value>
-			    <_name>Show Rectangle</_name>
-			</desc>
+		    <option name="highlight_selected" type="bool">
+			<_short>Highlight Selected Window</_short>
+			<_long>Highlight window that currently is selected</_long>
+			<default>false</default>
 		    </option>
 		    <option name="highlight_color" type="color">
 			<_short>Highlight Color</_short>
