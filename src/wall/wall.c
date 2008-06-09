@@ -1880,8 +1880,10 @@ wallInitScreen (CompPlugin *p,
 
     ws->boxTimeout = 0;
     ws->grabIndex = 0;
+    ws->timer = 0;
     ws->moving = FALSE;
     ws->showPreview = FALSE;
+    ws->moveWindow = None;
 
     memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
     memset (&ws->thumbContext, 0, sizeof (WallCairoContext));
