@@ -50,14 +50,6 @@
 #define THUMB_SCREEN(s)						      \
     ThumbScreen *ts = GET_THUMB_SCREEN (s, GET_THUMB_DISPLAY (s->display))
 
-#define GET_THUMB_WINDOW(w, ts)                               \
-    ((ThumbWindow *) (w)->base.privates[(ts)->windowPrivateIndex].ptr)
-
-#define THUMB_WINDOW(w)                                       \
-    ThumbWindow *tw = GET_THUMB_WINDOW  (w,                   \
-		      GET_THUMB_SCREEN  (w->screen,           \
-		      GET_THUMB_DISPLAY (w->screen->display)))
-
 #define WIN_X(w) ((w)->attrib.x - (w)->input.left)
 #define WIN_Y(w) ((w)->attrib.y - (w)->input.top)
 #define WIN_W(w) ((w)->width + (w)->input.left + (w)->input.right)
@@ -76,8 +68,6 @@ typedef struct _ThumbDisplay
     HandleEventProc handleEvent;
 
     Bool textAvailable;
-
-    Atom winIconGeometryAtom;
 } ThumbDisplay;
 
 typedef struct _Thumbnail
@@ -102,8 +92,6 @@ typedef struct _Thumbnail
 
 typedef struct _ThumbScreen
 {
-    int windowPrivateIndex;
-
     CompTimeoutHandle mouseTimeout;
     CompTimeoutHandle displayTimeout;
 
@@ -129,21 +117,6 @@ typedef struct _ThumbScreen
     int x;
     int y;
 } ThumbScreen;
-
-typedef struct _IconGeometry
-{
-    int x;
-    int y;
-    int width;
-    int height;
-    
-    Bool isSet;
-} IconGeometry;
-
-typedef struct _ThumbWindow
-{
-    IconGeometry ig;
-} ThumbWindow;
 
 static void
 freeThumbText (CompScreen *s,
@@ -211,41 +184,6 @@ renderThumbText (CompScreen *s,
 }
 
 static void
-updateWindowIconGeometry (CompWindow *w)
-{
-    Atom          actual;
-    int           result, format;
-    unsigned long n, left;
-    unsigned char *data;
-    unsigned long *mydata;
-
-    THUMB_DISPLAY (w->screen->display);
-    THUMB_WINDOW (w);
-
-    result = XGetWindowProperty (w->screen->display->display,
-				 w->id, td->winIconGeometryAtom, 0L, 4L,
-				 FALSE, XA_CARDINAL, &actual, &format, &n,
-				 &left, &data);
-
-    mydata = (unsigned long *) data;
-
-    tw->ig.isSet = FALSE;
-
-    if (result == Success)
-    {
-	if (actual == XA_CARDINAL && n == 4)
-	{
-	    tw->ig.x      = mydata[0];
-	    tw->ig.y      = mydata[1];
-	    tw->ig.width  = mydata[2];
-	    tw->ig.height = mydata[3];
-	    tw->ig.isSet  = TRUE;
-	}
-	XFree (data);
-    }
-}
-
-static void
 damageThumbRegion (CompScreen *s,
 		   Thumbnail  *t)
 {
@@ -272,13 +210,14 @@ damageThumbRegion (CompScreen *s,
 static void
 thumbUpdateThumbnail (CompScreen *s)
 {
-    int    igMidPoint[2], tMidPoint[2];
-    int    tPos[2], tmpPos[2];
-    float  distance = 1000000;
-    int    off, oDev, tHeight;
-    int    ox1, oy1, ox2, oy2, ow, oh;
-    float  maxSize = thumbnailGetThumbSize (s);
-    double scale  = 1.0;
+    int        igMidPoint[2], tMidPoint[2];
+    int        tPos[2], tmpPos[2];
+    float      distance = 1000000;
+    int        off, oDev, tHeight;
+    int        ox1, oy1, ox2, oy2, ow, oh;
+    float      maxSize = thumbnailGetThumbSize (s);
+    double     scale  = 1.0;
+    CompWindow *w;
 
     THUMB_SCREEN (s);
 
@@ -300,32 +239,35 @@ thumbUpdateThumbnail (CompScreen *s)
     if (!ts->thumb.win)
 	return;
 
+    w = ts->thumb.win;
+
     /* do we nee to scale the window down? */
-    if (WIN_W (ts->thumb.win) > maxSize || WIN_H (ts->thumb.win) > maxSize)
+    if (WIN_W (w) > maxSize || WIN_H (w) > maxSize)
     {
-	if (WIN_W (ts->thumb.win) >= WIN_H (ts->thumb.win) )
-	    scale = maxSize / WIN_W (ts->thumb.win);
+	if (WIN_W (w) >= WIN_H (w))
+	    scale = maxSize / WIN_W (w);
 	else
-	    scale = maxSize / WIN_H (ts->thumb.win);
+	    scale = maxSize / WIN_H (w);
     }
 
-    ts->thumb.width  = WIN_W (ts->thumb.win) * scale;
-    ts->thumb.height = WIN_H (ts->thumb.win) * scale;
+    ts->thumb.width  = WIN_W (w)* scale;
+    ts->thumb.height = WIN_H (w) * scale;
     ts->thumb.scale  = scale;
-
-    THUMB_WINDOW (ts->thumb.win);
 
     if (thumbnailGetTitleEnabled (s))
 	renderThumbText (s, &ts->thumb, FALSE);
     else
 	freeThumbText (s, &ts->thumb);
 
-    igMidPoint[0] = tw->ig.x + (tw->ig.width / 2);
-    igMidPoint[1] = tw->ig.y + (tw->ig.height / 2);
+    igMidPoint[0] = w->iconGeometry.x + (w->iconGeometry.width / 2);
+    igMidPoint[1] = w->iconGeometry.y + (w->iconGeometry.height / 2);
 
     off = thumbnailGetBorder (s);
-    oDev = outputDeviceForPoint (s, tw->ig.x + (tw->ig.width / 2),
-				 tw->ig.y + (tw->ig.height / 2) );
+    oDev = outputDeviceForPoint (s,
+				 w->iconGeometry.x +
+				 (w->iconGeometry.width / 2),
+				 w->iconGeometry.y +
+				 (w->iconGeometry.height / 2));
 
     if (s->nOutputDev == 1 || oDev > s->nOutputDev)
     {
@@ -353,14 +295,10 @@ thumbUpdateThumbnail (CompScreen *s)
     // failsave position
     tPos[0] = igMidPoint[0] - (ts->thumb.width / 2.0);
 
-    if (tw->ig.y - tHeight >= 0)
-    {
-	tPos[1] = tw->ig.y - tHeight;
-    }
+    if (w->iconGeometry.y - tHeight >= 0)
+	tPos[1] = w->iconGeometry.y - tHeight;
     else
-    {
-	tPos[1] = tw->ig.y + tw->ig.height;
-    }
+	tPos[1] = w->iconGeometry.y + w->iconGeometry.height;
 
     // above
     tmpPos[0] = igMidPoint[0] - (ts->thumb.width / 2.0);
@@ -528,9 +466,7 @@ thumbUpdateMouse (void *vs)
 
 	for (; cw && !found; cw = cw->next)
 	{
-	    THUMB_WINDOW (cw);
-
-	    if (!tw->ig.isSet)
+	    if (!cw->iconGeometrySet)
 		continue;
 
 	    if (cw->attrib.map_state != IsViewable)
@@ -548,9 +484,11 @@ thumbUpdateMouse (void *vs)
 	    if (!w->texture->pixmap)
 		continue;
 
-	    if (rootX >= tw->ig.x && rootX < tw->ig.x + tw->ig.width &&
-		rootY >= tw->ig.y && rootY < tw->ig.y + tw->ig.height &&
-		checkPosition (cw) )
+	    if (rootX >= cw->iconGeometry.x                          &&
+		rootX < cw->iconGeometry.x + cw->iconGeometry.width  &&
+		rootY >= cw->iconGeometry.y                          &&
+		rootY < cw->iconGeometry.y + cw->iconGeometry.height &&
+		checkPosition (cw))
 	    {
 		found = cw;
 	    }
@@ -559,7 +497,7 @@ thumbUpdateMouse (void *vs)
 	if (found)
 	{
 	    if (!ts->showingThumb &&
-		! (ts->thumb.opacity != 0.0 && ts->thumb.win == found) )
+		! (ts->thumb.opacity != 0.0 && ts->thumb.win == found))
 	    {
 		if (ts->displayTimeout)
 		{
@@ -651,16 +589,7 @@ thumbHandleEvent (CompDisplay * d,
     switch (event->type)
     {
     case PropertyNotify:
-	if (event->xproperty.atom == td->winIconGeometryAtom)
-	{
-	    w = findWindowAtDisplay (d, event->xproperty.window);
-
-	    if (w)
-	    {
-		updateWindowIconGeometry (w);
-	    }
-	}
-	else if (event->xproperty.atom == d->wmNameAtom)
+	if (event->xproperty.atom == d->wmNameAtom)
 	{
 	    w = findWindowAtDisplay (d, event->xproperty.window);
 
@@ -1175,9 +1104,6 @@ thumbInitDisplay (CompPlugin  *p,
 	compLogMessage (d, "thumbnail", CompLogLevelWarn,
 			"No compatible text plugin found.");
 
-    td->winIconGeometryAtom = XInternAtom (d->display,
-					   "_NET_WM_ICON_GEOMETRY", FALSE);
-
     WRAP (td, d, handleEvent, thumbHandleEvent);
 
     d->base.privates[displayPrivateIndex].ptr = td;
@@ -1199,31 +1125,10 @@ thumbFiniDisplay (CompPlugin  *p,
     free (td);
 }
 
-static Bool
-thumbInitWindow (CompPlugin *p,
-		 CompWindow *w)
-{
-    ThumbWindow *tw;
-
-    THUMB_SCREEN (w->screen);
-
-    /* create window */
-    tw = calloc (1, sizeof (ThumbWindow));
-    if (!tw)
-	return FALSE;
-
-    w->base.privates[ts->windowPrivateIndex].ptr = tw;
-
-    updateWindowIconGeometry (w);
-
-    return TRUE;
-}
-
 static void
 thumbFiniWindow (CompPlugin *p,
 		 CompWindow *w)
 {
-    THUMB_WINDOW (w);
     THUMB_SCREEN (w->screen);
 
     if (ts->thumb.win == w)
@@ -1239,9 +1144,6 @@ thumbFiniWindow (CompPlugin *p,
 	ts->oldThumb.win = NULL;
 	ts->oldThumb.opacity = 0;
     }
-
-    /* free window pointer */
-    free (tw);
 }
 
 static Bool
@@ -1255,8 +1157,6 @@ thumbInitScreen (CompPlugin *p,
     ts = calloc (1, sizeof (ThumbScreen));
     if (!ts)
 	return FALSE;
-
-    ts->windowPrivateIndex = allocateWindowPrivateIndex (s);
 
     WRAP (ts, s, paintOutput, thumbPaintOutput);
     WRAP (ts, s, damageWindowRect, thumbDamageWindowRect);
@@ -1344,8 +1244,7 @@ thumbInitObject (CompPlugin *p,
     static InitPluginObjectProc dispTab[] = {
 	(InitPluginObjectProc) 0, /* InitCore */
 	(InitPluginObjectProc) thumbInitDisplay,
-	(InitPluginObjectProc) thumbInitScreen,
-	(InitPluginObjectProc) thumbInitWindow
+	(InitPluginObjectProc) thumbInitScreen
     };
 
     RETURN_DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), TRUE, (p, o));
