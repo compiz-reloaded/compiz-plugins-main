@@ -3140,42 +3140,6 @@ animInitWindowWalker (CompScreen *s,
     }
 }
 
-static Bool animGetWindowIconGeometry(CompWindow * w, XRectangle * rect)
-{
-    Atom actual;
-    int result, format;
-    unsigned long n, left;
-    unsigned char *data;
-
-    ANIM_DISPLAY(w->screen->display);
-
-    result = XGetWindowProperty(w->screen->display->display, w->id,
-				ad->winIconGeometryAtom,
-				0L, 4L, FALSE, XA_CARDINAL, &actual,
-				&format, &n, &left, &data);
-
-    if (result == Success && n && data)
-    {
-	if (n == 4)
-	{
-	    unsigned long *geometry = (unsigned long *)data;
-
-	    rect->x = geometry[0];
-	    rect->y = geometry[1];
-	    rect->width = geometry[2];
-	    rect->height = geometry[3];
-
-	    XFree(data);
-
-	    return TRUE;
-	}
-
-	XFree(data);
-    }
-
-    return FALSE;
-}
-
 static const PluginEventInfo watchedPlugins[] =
 {
     {"switcher", "activate"},
@@ -3391,8 +3355,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			damagePendingOnScreen (w->screen);
 		    }
 		}
-		else if (!w->invisible &&
-			 animGetWindowIconGeometry(w, &aw->icon))
+		else if (!w->invisible && w->iconGeometrySet)
 		{
 		    // MINIMIZE event!
 
@@ -3400,6 +3363,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    // minimized.
 		    resetStackingInfo (w->screen);
 
+		    aw->icon     = w->iconGeometry;
 		    aw->newState = IconicState;
 
 		    chosenEffect =
@@ -3892,13 +3856,17 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 		    if (animEnsureModel(w))
 		    {
-			if (!animGetWindowIconGeometry(w, &aw->icon))
+			if (!w->iconGeometrySet)
 			{
 			    // minimize to bottom-center if there is no window list
 			    aw->icon.x = w->screen->width / 2;
 			    aw->icon.y = w->screen->height;
 			    aw->icon.width = 100;
 			    aw->icon.height = 20;
+			}
+			else
+			{
+			    aw->icon = w->iconGeometry;
 			}
 
 			damagePendingOnScreen (w->screen);
@@ -4290,9 +4258,6 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
 	free(ad);
 	return FALSE;
     }
-
-    ad->winIconGeometryAtom =
-	XInternAtom(d->display, "_NET_WM_ICON_GEOMETRY", 0);
 
     // Never animate screen-dimming layer of logout window and gksu.
     matchInit (&ad->neverAnimateMatch);

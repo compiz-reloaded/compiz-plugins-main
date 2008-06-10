@@ -400,7 +400,6 @@ extern CompMetadata animMetadata;
 typedef struct _AnimDisplay
 {
     int screenPrivateIndex;
-    Atom winIconGeometryAtom;
     HandleEventProc handleEvent;
     HandleCompizEventProc handleCompizEvent;
     int activeWindow;
