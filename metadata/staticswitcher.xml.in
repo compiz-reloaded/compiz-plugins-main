@@ -212,6 +212,25 @@
 			    <_name>Show Rectangle</_name>
 			</desc>
 		    </option>
+		    <option name="highlight_rect_hidden" type="int">
+			<_short>Minimized Window Highlight Rectangle</_short>
+			<_long>Where to draw highlight rectangle for minimized windows</_long>
+			<min>0</min>
+			<max>2</max>
+			<default>1</default>
+			<desc>
+			    <value>0</value>
+			    <_name>None</_name>
+			</desc>
+			<desc>
+			    <value>1</value>
+			    <_name>Taskbar Entry</_name>
+			</desc>
+			<desc>
+			    <value>2</value>
+			    <_name>Original Window Position</_name>
+			</desc>
+		    </option>
 		    <option name="highlight_color" type="color">
 			<_short>Highlight Color</_short>
 			<_long>Color of highlight rectangle</_long>

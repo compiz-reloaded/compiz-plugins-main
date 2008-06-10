@@ -333,27 +333,62 @@ switchCreateWindowList (CompScreen *s,
     switchUpdateWindowList (s, count);
 }
 
+static Bool
+switchGetPaintRectangle (CompWindow *w,
+			 BoxPtr     rect,
+			 int        *opacity)
+{
+    StaticswitcherHighlightRectHiddenEnum mode;
+
+    mode = staticswitcherGetHighlightRectHidden (w->screen);
+
+    if (w->attrib.map_state == IsViewable || w->shaded)
+    {
+	rect->x1 = w->attrib.x - w->input.left;
+	rect->y1 = w->attrib.y - w->input.top;
+	rect->x2 = w->attrib.x + w->width + w->input.right;
+	rect->y2 = w->attrib.y + w->height + w->input.bottom;
+	return TRUE;
+    }
+    else if (mode == HighlightRectHiddenTaskbarEntry && w->iconGeometrySet)
+    {
+	rect->x1 = w->iconGeometry.x;
+	rect->y1 = w->iconGeometry.y;
+	rect->x2 = rect->x1 + w->iconGeometry.width;
+	rect->y2 = rect->y1 + w->iconGeometry.height;
+	return TRUE;
+    }
+    else if (mode == HighlightRectHiddenOriginalWindowPosition)
+    {
+	rect->x1 = w->serverX - w->input.left;
+	rect->y1 = w->serverY - w->input.top;
+	rect->x2 = w->serverX + w->serverWidth + w->input.right;
+	rect->y2 = w->serverY + w->serverHeight + w->input.bottom;
+
+	if (opacity)
+	    *opacity /= 4;
+
+	return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void
 switchDoWindowDamage (CompWindow *w)
 {
     if (w->attrib.map_state == IsViewable || w->shaded)
 	addWindowDamage (w);
-    else if (w->iconGeometrySet)
+    else
     {
-	StaticswitcherHighlightModeEnum mode;
-	
-	mode = staticswitcherGetHighlightMode (w->screen);
-	if (mode == HighlightModeShowRectangle)
+	BoxRec box;
+	if (switchGetPaintRectangle (w, &box, NULL))
 	{
 	    REGION reg;
 
 	    reg.rects    = &reg.extents;
 	    reg.numRects = 1;
-
-	    reg.extents.x1 = w->iconGeometry.x;
-	    reg.extents.y1 = w->iconGeometry.y;
-	    reg.extents.x2 = reg.extents.x1 + w->iconGeometry.width;
-	    reg.extents.y2 = reg.extents.y1 + w->iconGeometry.height;
+	    reg.extents  = box;
 
 	    damageScreenRegion (w->screen, &reg);
 	}
@@ -1204,35 +1239,31 @@ switchPaintOutput (CompScreen		   *s,
 		if (w)
 		{
 		    BoxRec box;
-		    Bool   valid = FALSE;
+		    int    opacity = 100;
 
-		    if (w->attrib.map_state == IsViewable || w->shaded)
+		    if (switchGetPaintRectangle (w, &box, &opacity))
 		    {
-			box.x1 = w->attrib.x - w->input.left;
-			box.y1 = w->attrib.y - w->input.top;
-			box.x2 = w->attrib.x + w->width + w->input.right;
-			box.y2 = w->attrib.y + w->height + w->input.bottom;
-			valid  = TRUE;
-		    }
-		    else if (w->iconGeometrySet)
-		    {
-			box.x1 = w->iconGeometry.x;
-			box.y1 = w->iconGeometry.y;
-			box.x2 = box.x1 + w->iconGeometry.width;
-			box.y2 = box.y1 + w->iconGeometry.height;
-			valid  = TRUE;
-		    }
+			GLushort r, g, b, a;
 
-		    if (valid)
-		    {
 			glEnable (GL_BLEND);
 
 			/* fill rectangle */
-			glColor4usv (staticswitcherGetHighlightColor (s));
+			r = staticswitcherGetHighlightColorRed (s);
+			g = staticswitcherGetHighlightColorGreen (s);
+			b = staticswitcherGetHighlightColorBlue (s);
+			a = staticswitcherGetHighlightColorAlpha (s);
+			a = a * opacity / 100;
+
+			glColor4us (r, g, b, a);
 			glRecti (box.x1, box.y2, box.x2, box.y1);
 
 			/* draw outline */
-			glColor4usv (staticswitcherGetHighlightBorderColor (s));
+			r = staticswitcherGetHighlightBorderColorRed (s);
+			g = staticswitcherGetHighlightBorderColorGreen (s);
+			b = staticswitcherGetHighlightBorderColorBlue (s);
+			a = staticswitcherGetHighlightBorderColorAlpha (s);
+			a = a * opacity / 100;
+			glColor4us (r, g, b, a);
 			glLineWidth (2.0);
 			glBegin (GL_LINE_LOOP);
 			glVertex2i (box.x1, box.y1);
