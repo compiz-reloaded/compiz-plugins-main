@@ -1157,6 +1157,21 @@ switchPreparePaintScreen (CompScreen *s,
     WRAP (ss, s, preparePaintScreen, switchPreparePaintScreen);
 }
 
+static inline void
+switchPaintRect (BoxRec *box,
+		 unsigned int offset,
+		 unsigned short *color,
+		 int opacity)
+{
+    glColor4us (color[0], color[1], color[2], color[3] * opacity / 100);
+    glBegin (GL_LINE_LOOP);
+    glVertex2i (box->x1 + offset, box->y1 + offset);
+    glVertex2i (box->x2 - offset, box->y1 + offset);
+    glVertex2i (box->x2 - offset, box->y2 - offset);
+    glVertex2i (box->x1 + offset, box->y2 - offset);
+    glEnd ();
+}
+
 static Bool
 switchPaintOutput (CompScreen		   *s,
 		   const ScreenPaintAttrib *sAttrib,
@@ -1243,7 +1258,8 @@ switchPaintOutput (CompScreen		   *s,
 
 		    if (switchGetPaintRectangle (w, &box, &opacity))
 		    {
-			GLushort r, g, b, a;
+			unsigned short *color;
+			GLushort       r, g, b, a;
 
 			glEnable (GL_BLEND);
 
@@ -1258,19 +1274,11 @@ switchPaintOutput (CompScreen		   *s,
 			glRecti (box.x1, box.y2, box.x2, box.y1);
 
 			/* draw outline */
-			r = staticswitcherGetHighlightBorderColorRed (s);
-			g = staticswitcherGetHighlightBorderColorGreen (s);
-			b = staticswitcherGetHighlightBorderColorBlue (s);
-			a = staticswitcherGetHighlightBorderColorAlpha (s);
-			a = a * opacity / 100;
-			glColor4us (r, g, b, a);
-			glLineWidth (2.0);
-			glBegin (GL_LINE_LOOP);
-			glVertex2i (box.x1, box.y1);
-			glVertex2i (box.x2, box.y1);
-			glVertex2i (box.x2, box.y2);
-			glVertex2i (box.x1, box.y2);
-			glEnd ();
+			color = staticswitcherGetHighlightBorderColor (s);
+			switchPaintRect (&box, 0, color, opacity);
+			switchPaintRect (&box, 2, color, opacity);
+			color = staticswitcherGetHighlightBorderInlayColor (s);
+			switchPaintRect (&box, 1, color, opacity);
 
 			/* clean up */
 			glColor4usv (defaultColor);
