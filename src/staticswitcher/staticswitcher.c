@@ -1593,14 +1593,25 @@ switchGetRowXOffset (CompScreen   *s,
 		     SwitchScreen *ss,
 		     int          y)
 {
-    if (staticswitcherGetRowAlign (s) == RowAlignLeft)
-	return 0;
+    int retval = 0;
 
     if (ss->nWindows - (y * ss->xCount) >= ss->xCount)
 	return 0;
 
-    return (ss->xCount - ss->nWindows + (y * ss->xCount)) *
-	   (ss->previewWidth + ss->previewBorder) / 2;
+    switch (staticswitcherGetRowAlign (s)) {
+    case RowAlignLeft:
+	break;
+    case RowAlignCentered:
+	retval = (ss->xCount - ss->nWindows + (y * ss->xCount)) *
+	         (ss->previewWidth + ss->previewBorder) / 2;
+	break;
+    case RowAlignRight:
+	retval = (ss->xCount - ss->nWindows + (y * ss->xCount)) *
+	         (ss->previewWidth + ss->previewBorder);
+	break;
+    }
+
+    return retval;
 }
 
 static Bool
