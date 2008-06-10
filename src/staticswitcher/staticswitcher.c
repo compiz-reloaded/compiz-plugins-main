@@ -334,6 +334,33 @@ switchCreateWindowList (CompScreen *s,
 }
 
 static void
+switchDoWindowDamage (CompWindow *w)
+{
+    if (w->attrib.map_state == IsViewable || w->shaded)
+	addWindowDamage (w);
+    else if (w->iconGeometrySet)
+    {
+	StaticswitcherHighlightModeEnum mode;
+	
+	mode = staticswitcherGetHighlightMode (w->screen);
+	if (mode == HighlightModeShowRectangle)
+	{
+	    REGION reg;
+
+	    reg.rects    = &reg.extents;
+	    reg.numRects = 1;
+
+	    reg.extents.x1 = w->iconGeometry.x;
+	    reg.extents.y1 = w->iconGeometry.y;
+	    reg.extents.x2 = reg.extents.x1 + w->iconGeometry.width;
+	    reg.extents.y2 = reg.extents.y1 + w->iconGeometry.height;
+
+	    damageScreenRegion (w->screen, &reg);
+	}
+    }
+}
+
+static void
 switchToWindow (CompScreen *s,
 		Bool	   toNext)
 {
@@ -410,13 +437,13 @@ switchToWindow (CompScreen *s,
 	    setSelectedWindowHint (s);
 	}
 
-	addWindowDamage (w);
+	switchDoWindowDamage (w);
 
 	if (old)
 	{
 	    w = findWindowAtScreen (s, old);
 	    if (w)
-		addWindowDamage (w);
+		switchDoWindowDamage (w);
 	}
     }
 }
@@ -933,11 +960,11 @@ switchWindowRemove (CompDisplay *d,
 
 	if (old != ss->selectedWindow)
 	{
-	    addWindowDamage (w);
+	    switchDoWindowDamage (w);
 
 	    w = findWindowAtScreen (w->screen, old);
 	    if (w)
-		addWindowDamage (w);
+		switchDoWindowDamage (w);
 
 	    ss->moreAdjust = 1;
 	}
@@ -1174,36 +1201,50 @@ switchPaintOutput (CompScreen		   *s,
 		else
 		    w = findWindowAtScreen (s, ss->selectedWindow);
 
-		/* TODO: highlight minimized windows as well, e.g. by
-		   highlighting the task bar entry (_NET_WM_ICON_GEOMETRY) */
-		if (w && (w->attrib.map_state == IsViewable || w->shaded))
+		if (w)
 		{
 		    BoxRec box;
+		    Bool   valid = FALSE;
 
-		    box.x1 = w->attrib.x - w->input.left;
-		    box.y1 = w->attrib.y - w->input.top;
-		    box.x2 = w->attrib.x + w->width + w->input.right;
-		    box.y2 = w->attrib.y + w->height + w->input.bottom;
+		    if (w->attrib.map_state == IsViewable || w->shaded)
+		    {
+			box.x1 = w->attrib.x - w->input.left;
+			box.y1 = w->attrib.y - w->input.top;
+			box.x2 = w->attrib.x + w->width + w->input.right;
+			box.y2 = w->attrib.y + w->height + w->input.bottom;
+			valid  = TRUE;
+		    }
+		    else if (w->iconGeometrySet)
+		    {
+			box.x1 = w->iconGeometry.x;
+			box.y1 = w->iconGeometry.y;
+			box.x2 = box.x1 + w->iconGeometry.width;
+			box.y2 = box.y1 + w->iconGeometry.height;
+			valid  = TRUE;
+		    }
 
-		    glEnable (GL_BLEND);
+		    if (valid)
+		    {
+			glEnable (GL_BLEND);
 
-		    /* fill rectangle */
-		    glColor4usv (staticswitcherGetHighlightColor (s));
-		    glRecti (box.x1, box.y2, box.x2, box.y1);
+			/* fill rectangle */
+			glColor4usv (staticswitcherGetHighlightColor (s));
+			glRecti (box.x1, box.y2, box.x2, box.y1);
 
-		    /* draw outline */
-		    glColor4usv (staticswitcherGetHighlightBorderColor (s));
-		    glLineWidth (2.0);
-		    glBegin (GL_LINE_LOOP);
-		    glVertex2i (box.x1, box.y1);
-		    glVertex2i (box.x2, box.y1);
-		    glVertex2i (box.x2, box.y2);
-		    glVertex2i (box.x1, box.y2);
-		    glEnd ();
+			/* draw outline */
+			glColor4usv (staticswitcherGetHighlightBorderColor (s));
+			glLineWidth (2.0);
+			glBegin (GL_LINE_LOOP);
+			glVertex2i (box.x1, box.y1);
+			glVertex2i (box.x2, box.y1);
+			glVertex2i (box.x2, box.y2);
+			glVertex2i (box.x1, box.y2);
+			glEnd ();
 
-		    /* clean up */
-		    glColor4usv (defaultColor);
-		    glDisable (GL_BLEND);
+			/* clean up */
+			glColor4usv (defaultColor);
+			glDisable (GL_BLEND);
+		    }
 		}
 	    }
 
