@@ -388,7 +388,11 @@ switchDoWindowDamage (CompWindow *w)
 
 	    reg.rects    = &reg.extents;
 	    reg.numRects = 1;
-	    reg.extents  = box;
+
+	    reg.extents.x1 = box.x1 - 2;
+	    reg.extents.y1 = box.y1 - 2;
+	    reg.extents.x2 = box.x2 + 2;
+	    reg.extents.y2 = box.y2 + 2;
 
 	    damageScreenRegion (w->screen, &reg);
 	}
