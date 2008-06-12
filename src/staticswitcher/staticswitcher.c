@@ -1278,6 +1278,9 @@ switchPaintOutput (CompScreen		   *s,
 			glRecti (box.x1, box.y2, box.x2, box.y1);
 
 			/* draw outline */
+			glLineWidth (1.0);
+			glDisable (GL_LINE_SMOOTH);
+
 			color = staticswitcherGetHighlightBorderColor (s);
 			switchPaintRect (&box, 0, color, opacity);
 			switchPaintRect (&box, 2, color, opacity);
