@@ -2359,9 +2359,7 @@ animAddWindowGeometry(CompWindow * w,
 	if (aw->useDrawRegion)
 	{
 	    awRegion = XCreateRegion();
-	    XOffsetRegion(aw->drawRegion, WIN_X(w), WIN_Y(w));
 	    XIntersectRegion(region, aw->drawRegion, awRegion);
-	    XOffsetRegion(aw->drawRegion, -WIN_X(w), -WIN_Y(w));
 	    nClip = awRegion->numRects;
 	    pClip = awRegion->rects;
 	}

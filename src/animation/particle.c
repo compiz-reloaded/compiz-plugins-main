@@ -297,6 +297,9 @@ particlesUpdateBB (CompOutput *output,
 	    int j;
 	    for (j = 0; j < ps->numParticles; j++, part++)
 	    {
+		if (part->life <= 0.0f)	     // Ignore dead particles
+		    continue;
+
 		float w = part->width / 2;
 		float h = part->height / 2;
 

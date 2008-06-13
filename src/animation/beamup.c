@@ -210,9 +210,9 @@ fxBeamUpModelStep (CompScreen *s, CompWindow *w, float time)
     {
 	XRectangle rect;
 
-	rect.x = ((new / 2) * WIN_W(w));
+	rect.x = WIN_X(w) + ((new / 2) * WIN_W(w));
 	rect.width = (1 - new) * WIN_W(w);
-	rect.y = ((new / 2) * WIN_H(w));
+	rect.y = WIN_Y(w) + ((new / 2) * WIN_H(w));
 	rect.height = (1 - new) * WIN_H(w);
 	XUnionRectWithRegion(&rect, &emptyRegion, aw->drawRegion);
     }
