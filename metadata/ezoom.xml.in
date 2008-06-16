@@ -149,6 +149,14 @@
 		    <max>3</max>
 		    <precision>0.01</precision>
 		</option>
+		<option type="float" name="minimum_zoom">
+		    <_short>Minimum zoom factor</_short>
+		    <_long>The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of 0.25 equals 4x zoom.</_long>
+		    <default>0.125</default>
+		    <min>0.000001</min>
+		    <max>0.999999</max>
+		    <precision>0.0001</precision>
+		</option>
 	    </group>
 	    <group>
 		<_short>Mouse Behaviour</_short>

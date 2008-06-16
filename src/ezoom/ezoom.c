@@ -127,6 +127,7 @@ typedef enum _ZsOpt
     SOPT_RESTRAIN_MOUSE,
     SOPT_RESTRAIN_MARGIN,
     SOPT_MOUSE_PAN,
+    SOPT_MINIMUM_ZOOM,
     SOPT_NUM
 } ZoomScreenOptions;
 
@@ -815,6 +816,9 @@ setScale (CompScreen *s, int out, float x, float y)
 	zs->zooms[out].yTranslate = 0.0f;
 	cursorZoomInactive (s);
     }
+
+    if (value < zs->opt[SOPT_MINIMUM_ZOOM].value.f)
+	value = zs->opt[SOPT_MINIMUM_ZOOM].value.f;
 
     zs->zooms[out].newZoom = value;
     damageScreen(s);
@@ -2176,7 +2180,8 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "hide_original_mouse", "bool", "<default>false</default>", 0, 0 },
     { "restrain_mouse", "bool", "<default>false</default>", 0, 0 },
     { "restrain_margin", "int", "<default>5</default>", 0, 0 },
-    { "mouse_pan", "bool", "<default>false</default>", 0, 0 }
+    { "mouse_pan", "bool", "<default>false</default>", 0, 0 },
+    { "minimum_zoom", "float", "<max>1.00</max>", 0, 0 }
 };
 
 static CompOption *
