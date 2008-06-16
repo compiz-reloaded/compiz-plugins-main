@@ -784,13 +784,12 @@ panZoom (CompScreen *s, int xvalue, int yvalue)
     constrainZoomTranslate (s);
 }
 
-/* Sets the zoom (or scale) level. Takes two float's as argument for legacy
- * reasons mainly; it uses the larger of the two, allowing us to easily
- * scale to fit an area. FIXME: This shouldn't happen here. */
+/* Sets the zoom (or scale) level. 
+ * Cleans up if we are suddenly zoomed out. 
+ */
 static void
-setScale (CompScreen *s, int out, float x, float y)
+setScale (CompScreen *s, int out, float value)
 {
-    float value = x > y ? x : y;
     ZOOM_SCREEN(s);
 
     if (zs->zooms[out].locked)
@@ -822,6 +821,15 @@ setScale (CompScreen *s, int out, float x, float y)
 
     zs->zooms[out].newZoom = value;
     damageScreen(s);
+}
+
+/* Sets the zoom factor to the bigger of the two floats supplied. 
+ * Convenince function for setting the scale factor for an area.
+ */
+static inline void
+setScaleBigger (CompScreen *s, int out, float x, float y)
+{
+    setScale (s, out, x > y ? x : y);
 }
 
 /* Mouse code...
@@ -1479,8 +1487,8 @@ setZoomAreaAction (CompDisplay     *d,
 	setZoomArea (s, x1, y1, WIDTH, HEIGHT, FALSE);
 	o = &s->outputDev[out];
 	if (scale && WIDTH && HEIGHT)
-	    setScale (s, out, (float) WIDTH/o->width, 
-		      (float) HEIGHT/o->height);
+	    setScaleBigger (s, out, (float) WIDTH/o->width, 
+			    (float) HEIGHT/o->height);
 #undef WIDTH
 #undef HEIGHT
 	if (restrain)
@@ -1537,8 +1545,8 @@ ensureVisibilityAction (CompDisplay     *d,
 #define WIDTH (x2 - x1)
 #define HEIGHT (y2 - y1)
 	if (scale && WIDTH && HEIGHT)
-	    setScale (s, out, (float) WIDTH/o->width, 
-		      (float) HEIGHT/o->height);
+	    setScaleBigger (s, out, (float) WIDTH/o->width, 
+			    (float) HEIGHT/o->height);
 #undef WIDTH
 #undef HEIGHT
 	if (restrain)
@@ -1610,7 +1618,8 @@ zoomBoxDeactivate (CompDisplay     *d,
 
 	    out = outputDeviceForGeometry (s, x,y,width,height,0);
 	    o = &s->outputDev[out];
-	    setScale (s, out, (float) width/o->width, (float)  height/o->height);
+	    setScaleBigger (s, out, (float) width/o->width, (float)
+			    height/o->height);
 	    setZoomArea (s, x,y,width,height,FALSE);
 	}
     }
@@ -1641,8 +1650,8 @@ zoomIn (CompDisplay     *d,
 	    setCenter (s, pointerX, pointerY, TRUE);
 
 	setScale (s, out,
-		  zs->zooms[out].newZoom/zs->opt[SOPT_ZOOM_FACTOR].value.f,
-		  -1.0f);
+		  zs->zooms[out].newZoom /
+		  zs->opt[SOPT_ZOOM_FACTOR].value.f);
     }
     return TRUE;
 }
@@ -1705,7 +1714,7 @@ zoomSpecific (CompDisplay     *d,
 	if (otherScreenGrabExist (s, 0))
 	    return FALSE;
 
-	setScale (s, out, target, target);
+	setScale (s, out, target);
 
 	w = findWindowAtDisplay(d, d->activeWindow);
 	if (zd->opt[DOPT_SPECIFIC_TARGET_FOCUS].value.b
@@ -1792,7 +1801,8 @@ zoomToWindow (CompDisplay     *d,
     height = w->height + w->input.top + w->input.bottom;
     out = outputDeviceForWindow (w);
     o = &s->outputDev[out];
-    setScale (s, out, (float) width/o->width, (float)  height/o->height);
+    setScaleBigger (s, out, (float) width/o->width, 
+		    (float) height/o->height);
     zoomAreaToWindow (w);
     return TRUE;
 }
@@ -1994,8 +2004,7 @@ zoomOut (CompDisplay     *d,
 
 	setScale (s, out,
 		  zs->zooms[out].newZoom *
-		  zs->opt[SOPT_ZOOM_FACTOR].value.f,
-		  -1.0f);
+		  zs->opt[SOPT_ZOOM_FACTOR].value.f);
     }
 
     return TRUE;
@@ -2083,9 +2092,9 @@ focusTrack (CompDisplay *d,
 	int width = w->width + w->input.left + w->input.right;
 	int height = w->height + w->input.top + w->input.bottom;
 	
-	setScale (w->screen, out,
-		  (float) width / w->screen->outputDev[out].width,
-		  (float)  height/w->screen->outputDev[out].height);
+	setScaleBigger (w->screen, out,
+			(float) width / w->screen->outputDev[out].width,
+			(float)  height/w->screen->outputDev[out].height);
     }
     zoomAreaToWindow (w);
 }
