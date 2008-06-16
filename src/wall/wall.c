@@ -508,67 +508,60 @@ wallMoveViewport (CompScreen *s,
     if (!x && !y)
 	return FALSE;
 
-    if (wallCheckDestination (s, x, y))
-    {
-	if (ws->moveWindow != moveWindow)
-	{
-	    CompWindow *w;
+    if (otherScreenGrabExist (s, "move", "switcher", "group-drag", "wall", 0))
+	return FALSE;
 
-	    wallReleaseMoveWindow (s);
-	    w = findWindowAtScreen (s, moveWindow);
-	    if (w)
-    	    {
-		if (!(w->type & (CompWindowTypeDesktopMask |
-				 CompWindowTypeDockMask)))
+    if (!wallCheckDestination (s, x, y))
+	return FALSE;
+
+    if (ws->moveWindow != moveWindow)
+    {
+	CompWindow *w;
+
+	wallReleaseMoveWindow (s);
+	w = findWindowAtScreen (s, moveWindow);
+	if (w)
+	{
+	    if (!(w->type & (CompWindowTypeDesktopMask |
+			     CompWindowTypeDockMask)))
+	    {
+		if (!(w->state & CompWindowStateStickyMask))
 		{
-		    if (!(w->state & CompWindowStateStickyMask))
-		    {
-			ws->moveWindow = w->id;
-			ws->moveWindowX = w->attrib.x;
-			ws->moveWindowY = w->attrib.y;
-			raiseWindow (w);
-		    }
+		    ws->moveWindow = w->id;
+		    ws->moveWindowX = w->attrib.x;
+		    ws->moveWindowY = w->attrib.y;
+		    raiseWindow (w);
 		}
 	    }
 	}
-
-	if (!ws->moving)
-	{
-	    ws->curPosX = s->x;
-	    ws->curPosY = s->y;
-	}
-	ws->gotoX = s->x - x;
-	ws->gotoY = s->y - y;
-
-	if (!ws->grabIndex)
-	    ws->grabIndex = pushScreenGrab (s, s->invisibleCursor, "wall");
-
-	moveScreenViewport (s, x, y, TRUE);
-
-	ws->moving = TRUE;
-	ws->boxOutputDevice = outputDeviceForPoint (s, pointerX, pointerY);
     }
 
-    if (ws->moving)
+    if (!ws->moving)
     {
-	if (wallGetShowSwitcher (s->display))
-	    ws->boxTimeout = wallGetPreviewTimeout (s->display) * 1000;
-	else
-	    ws->boxTimeout = 0;
-
-	if (otherScreenGrabExist (s, "move", "scale", "switcher",
-				  "group-drag", "wall", 0))
-	{
-	    ws->boxTimeout = 0;
-	    ws->moving = FALSE;
-	}
-
-	ws->timer = wallGetSlideDuration (s->display) * 1000;
+	ws->curPosX = s->x;
+	ws->curPosY = s->y;
     }
+    ws->gotoX = s->x - x;
+    ws->gotoY = s->y - y;
+
+    if (!ws->grabIndex)
+	ws->grabIndex = pushScreenGrab (s, s->invisibleCursor, "wall");
+
+    moveScreenViewport (s, x, y, TRUE);
+
+    ws->moving = TRUE;
+    ws->boxOutputDevice = outputDeviceForPoint (s, pointerX, pointerY);
+
+    if (wallGetShowSwitcher (s->display))
+	ws->boxTimeout = wallGetPreviewTimeout (s->display) * 1000;
+    else
+	ws->boxTimeout = 0;
+
+    ws->timer = wallGetSlideDuration (s->display) * 1000;
 
     damageScreen (s);
 
-    return ws->moving;
+    return TRUE;
 }
 
 static void
@@ -589,7 +582,7 @@ wallHandleEvent (CompDisplay *d,
 	    if (!s)
 		break;
 
-	    if (otherScreenGrabExist (s, "switcher", "scale", 0))
+	    if (otherScreenGrabExist (s, "switcher", 0))
 		break;
 
     	    dx = event->xclient.data.l[0] / s->width - s->x;
@@ -707,7 +700,8 @@ wallInitiate (CompScreen      *s,
     WALL_SCREEN (s);
 
     wallCheckAmount (s, dx, dy, &amountX, &amountY);
-    wallMoveViewport (s, amountX, amountY, win);
+    if (!wallMoveViewport (s, amountX, amountY, win))
+	return TRUE;
 
     if (state & CompActionStateInitKey)
 	action->state |= CompActionStateTermKey;
