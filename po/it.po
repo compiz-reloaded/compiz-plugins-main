@@ -47,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-24 22:14+0530\n"
-"PO-Revision-Date: 2008-05-18 14:03+0200\n"
+"POT-Creation-Date: 2008-06-16 16:46+0530\n"
+"PO-Revision-Date: 2008-06-03 21:14+0200\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -161,10 +161,10 @@ msgid "Brightness of faded windows"
 msgstr "Luminosità delle finestre in dissolvenza"
 
 msgid "Enable ADD Helper on start"
-msgstr ""
+msgstr "Abilitare «Aiuto concentrazione» all'avvio"
 
 msgid "Enables ADD helper when it is first loaded."
-msgstr ""
+msgstr "Abilita l'aiuto alla concentrazione al primo avvio."
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1196,12 +1196,11 @@ msgstr "Avanza all'immagine successiva per la faccia superiore del cubo"
 msgid "Appearance"
 msgstr "Aspetto"
 
-#, fuzzy
 msgid "Aspect ratio"
-msgstr "Proporzioni aspetto"
+msgstr "Proporzioni"
 
 msgid "Aspect ratio of the deformed cube"
-msgstr ""
+msgstr "Proporzioni del cubo deformato"
 
 msgid "Auto zoom"
 msgstr "Zoom automatico"
@@ -1255,50 +1254,42 @@ msgstr "Colore della base (vicino)."
 msgid "Color of top face of the cube"
 msgstr "Colore della faccia superiore del cubo"
 
-#, fuzzy
 msgid "Compiz cube reflection and deformation"
-msgstr "Riflesso del cubo di Compiz"
+msgstr "Riflesso e deformazione del cubo di Compiz"
 
 msgid "Cube Bottom Color"
 msgstr "Colore inferiore del cubo"
 
 # (ndt) opzione
-#, fuzzy
 msgid "Cube Reflection and Deformation"
-msgstr "Riflessi per le decorazioni"
+msgstr "Riflesso e deformazione del cubo"
 
 msgid "Cube Top Color"
 msgstr "Colore superiore del cubo"
 
-#, fuzzy
 msgid "Cube caps"
-msgstr "Immagini ai capi del cubo"
+msgstr "Capi del cubo"
 
-#, fuzzy
 msgid "Cylinder"
-msgstr "Pulisci"
+msgstr "Cilindro"
 
-#, fuzzy
 msgid "Deform caps"
-msgstr "Deformazione"
+msgstr "Deformare i capi"
 
 msgid "Deform cube caps."
-msgstr ""
+msgstr "Deforma i capi del cubo."
 
-#, fuzzy
 msgid "Deform only on mouse rotate"
-msgstr "Zoom automatico solo alla rotazione col mouse"
+msgstr "Deformare solo alla rotazione col mouse"
 
 msgid "Deformation"
 msgstr "Deformazione"
 
-#, fuzzy
 msgid "Deformation in unfold cube mode."
-msgstr "Forza della deformazione nella modalità «Curva»"
+msgstr "Deformazione all'apertura del cubo."
 
-#, fuzzy
 msgid "Deformation mode."
-msgstr "Deformazione"
+msgstr "Modalità di deformazione"
 
 msgid "Distance"
 msgstr "Distanza"
@@ -1320,13 +1311,11 @@ msgid "Draw top face of the cube"
 msgstr "Disegna la faccia superiore del cubo"
 
 # (NdT) opzione
-#, fuzzy
 msgid "Enabled"
-msgstr "Attivare"
+msgstr "Attivato"
 
-#, fuzzy
 msgid "Give cube a reflective ground."
-msgstr "Riflesso del cubo di Compiz"
+msgstr "Fornisce al cubo una base riflettente."
 
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Torna all'immagine precedente per la faccia inferiore del cubo"
@@ -1342,6 +1331,8 @@ msgstr "Colore della base (vicino)"
 
 msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
 msgstr ""
+"Inizializza la deformazione del cilindro solo se la rotazione è guidata dal "
+"mouse."
 
 msgid "Intensity"
 msgstr "Intensità"
@@ -1359,23 +1350,19 @@ msgstr "Elenco di file PNG e SVG da usare per la faccia inferiore del cubo"
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "Elenco di file PNG e SVG da usare per la faccia superiore del cubo"
 
-#, fuzzy
 msgid "Maintain bottom aspect ratio"
-msgstr "Proporzioni aspetto per la modalità «Expo»"
+msgstr "Mantenere proporzioni inferiori"
 
 # (NdT) suggerimento
-#, fuzzy
 msgid "Maintain bottom cap image aspect ratio."
-msgstr "Regola immagine faccia inferiore alla rotazione"
+msgstr "Mantiene le proporzioni dell'immagine inferiore."
 
-#, fuzzy
 msgid "Maintain top aspect ratio"
-msgstr "Proporzioni aspetto per la modalità «Expo»"
+msgstr "Mantenere proporzioni superiori"
 
 # (NdT) suggerimento
-#, fuzzy
 msgid "Maintain top cap image aspect ratio."
-msgstr "Regola immagine faccia superiore alla rotazione"
+msgstr "Mantiene le proporzioni dell'immagine superiore."
 
 msgid "Next bottom image"
 msgstr "Immagine inferiore successiva"
@@ -1425,15 +1412,14 @@ msgstr "Scala l'immagine in modo da coprire la faccia superiore del cubo"
 msgid "Scale top image"
 msgstr "Scalare immagine superiore"
 
-#, fuzzy
 msgid "Sphere"
-msgstr "Velocità"
+msgstr "Sfera"
 
 msgid "Top image files"
 msgstr "File immagine superiore"
 
 msgid "Unfold cube deformation"
-msgstr ""
+msgstr "Deformazione apertura cubo"
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Esegue lo zoom automatico solo alla rotazione col mouse."
@@ -1445,7 +1431,7 @@ msgid "Animation used when switching to expo mode"
 msgstr "Animazione da usare nel passaggio alla modalità «Expo»"
 
 msgid "Aspect Ratio"
-msgstr "Proporzioni aspetto"
+msgstr "Proporzioni"
 
 msgid "Button binding for drag &amp; drop of windows"
 msgstr "Associazione pulsante per il drag &amp; drop delle finestre"
@@ -1513,7 +1499,7 @@ msgid "Expo key"
 msgstr "Tasto Expo"
 
 msgid "Expo mode aspect ratio"
-msgstr "Proporzioni aspetto per la modalità «Expo»"
+msgstr "Proporzioni per la modalità «Expo»"
 
 msgid "Fade + Zoom"
 msgstr "Dissolvi + Zoom"
@@ -1889,9 +1875,8 @@ msgstr "Movimento zoom"
 # (ndt) in questo caso lasciato zoom
 # perché ingrandisce e rimpicciolisce la finestra
 # come uno zoom fotografico
-#, fuzzy
 msgid "Zoom Box"
-msgstr "Zoom"
+msgstr "Riquadro di zoom"
 
 msgid "Zoom In"
 msgstr "Ingrandisci"
@@ -1921,7 +1906,7 @@ msgid "Zoom factor"
 msgstr "Fattore ingrandimento"
 
 msgid "Zoom in on a boxed area"
-msgstr ""
+msgstr "Ingrandisce un'area delimitata"
 
 # (ndt) suggerimento
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
@@ -3574,7 +3559,6 @@ msgstr "Tutte le finestre"
 msgid "Background color of the window title"
 msgstr "Colore di sfondo del titolo della finestra"
 
-#, fuzzy
 msgid "Close Window"
 msgstr "Chiudi finestra"
 
@@ -3587,7 +3571,6 @@ msgstr "Chiude le finestre in modalità «Scala finestre»"
 msgid "Color used for highlighting the hovered window"
 msgstr "Colore utilizzato per evidenziare la finestra selezionata"
 
-#, fuzzy
 msgid "Constrain Pull To Screen"
 msgstr "Limitare il tiro allo schermo"
 
@@ -3595,11 +3578,9 @@ msgstr "Limitare il tiro allo schermo"
 msgid "Draw Window Highlight"
 msgstr "Evidenziare finestra"
 
-#, fuzzy
 msgid "Exit Scale On Pull"
 msgstr "Uscire dalla modalità scala al tiro"
 
-#, fuzzy
 msgid "Exit scale mode after a window has been pulled."
 msgstr ""
 "Esce dalla modalità «Scala finestre» dopo che una finestra è stata tirata."
@@ -3624,7 +3605,6 @@ msgid "Highlights the hovered window with the given color"
 msgstr ""
 "Evidenzia la finestra su cui ci si sofferma col mouse con un dato colore"
 
-#, fuzzy
 msgid ""
 "Make sure windows are fully visible after pulling them to another viewport"
 msgstr ""
@@ -3641,11 +3621,9 @@ msgid "Organic - EXPERIMENTAL"
 msgstr "Organico (sperimentale)"
 
 # (ndt) non mi piace per niente...
-#, fuzzy
 msgid "Pull Window"
 msgstr "Tira la finestra"
 
-#, fuzzy
 msgid "Pull window to current viewport while in scale mode"
 msgstr ""
 "Tira la finestra nell'area di lavoro attuale quando in modalità Scala "
@@ -3678,7 +3656,6 @@ msgstr "Evidenziazione finestra"
 msgid "Window Layout Mode"
 msgstr "Modalità disposizione finestra"
 
-#, fuzzy
 msgid "Window Pull"
 msgstr "Finestra tirata"
 
@@ -3692,11 +3669,9 @@ msgstr "Visualizzazione titolo finestra"
 msgid "Window title display in scale mode"
 msgstr "Mostra il titolo della finestra nella modalità ridotta"
 
-#, fuzzy
 msgid "Zoom Window"
 msgstr "Zoom sulla finestra"
 
-#, fuzzy
 msgid "Zoom window while in scale mode"
 msgstr "Esegue lo zoom sulle finestre nella modalità «Scala finestre»"
 
@@ -5315,6 +5290,9 @@ msgstr "Corrispondenza adesività tutte le scrivanie"
 msgid "AIGLX Fragment Parameter Fix"
 msgstr "Correzione parametro AIGLX Fragment"
 
+msgid "Convert Urgency to Demands Attention"
+msgstr ""
+
 msgid "Firefox Menu Fix"
 msgstr "Correzione menù Firefox"
 
@@ -5358,6 +5336,12 @@ msgid ""
 msgstr ""
 "Rende le finestre adesive su tutte le scrivanie. Le finestre adesive sono "
 "visibili in tutte le aree di lavoro."
+
+#, fuzzy
+msgid "Make \"urgent\" windows also \"demand attention\"."
+msgstr ""
+"Attiva la finestra successiva che ha il flag di richiesta attenzione "
+"impostato."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""
