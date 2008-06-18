@@ -482,6 +482,7 @@ positionUpdate (CompScreen *s,
 		    compRemoveTimeout (ts->displayTimeout);
 		    ts->displayTimeout =
 		        compAddTimeout (thumbnailGetShowDelay (s),
+					thumbnailGetShowDelay (s) + 500,
 					thumbShowThumbnail, s);
 		}
 	    }
@@ -489,6 +490,7 @@ positionUpdate (CompScreen *s,
 	    {
 		ts->displayTimeout =
 		    compAddTimeout (thumbnailGetShowDelay (s),
+				    thumbnailGetShowDelay (s) + 500,
 				    thumbShowThumbnail, s);
 	    }
         }
