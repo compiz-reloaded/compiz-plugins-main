@@ -238,8 +238,12 @@ thumbUpdateThumbnail (CompScreen *s)
     ts->thumb.win  = ts->pointedWin;
     ts->thumb.dock = ts->dock;
 
-    if (!ts->thumb.win)
+    if (!ts->thumb.win || !ts->dock)
+    {
+	ts->thumb.win  = NULL;
+        ts->thumb.dock = NULL;
 	return;
+    }
 
     w = ts->thumb.win;
 
