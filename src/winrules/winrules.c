@@ -725,7 +725,7 @@ winrulesInitWindow (CompPlugin *p,
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
-    compAddTimeout (0, winrulesApplyRules, w);
+    compAddTimeout (0, 0, winrulesApplyRules, w);
 
     return TRUE;
 }
