@@ -406,6 +406,8 @@ opacifyHandleEvent (CompDisplay *d,
 		handleTimeout (s);
 	    else
 	    	od->timeoutHandle = compAddTimeout (opacifyGetTimeout (d),
+						    (float)
+						    opacifyGetTimeout (d) * 1.2,
 						    handleTimeout, s);
 	}
      	break;
