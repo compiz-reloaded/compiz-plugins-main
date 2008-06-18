@@ -656,6 +656,7 @@ switchInitiate (CompScreen            *s,
 			compRemoveTimeout (ss->popupDelayHandle);
 
 		    ss->popupDelayHandle = compAddTimeout (delay,
+							   (float) delay * 1.2,
 							   switchShowPopup, s);
 		}
 		else
