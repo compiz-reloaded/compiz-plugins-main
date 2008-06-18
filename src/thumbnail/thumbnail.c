@@ -32,6 +32,7 @@
 
 #include <compiz-core.h>
 #include <compiz-text.h>
+#include <compiz-mousepoll.h>
 
 #include <X11/Xatom.h>
 
@@ -55,8 +56,6 @@
 #define WIN_W(w) ((w)->width + (w)->input.left + (w)->input.right)
 #define WIN_H(w) ((w)->height + (w)->input.top + (w)->input.bottom)
 
-#define THUMB_MOUSE_UPDATE_SPEED 100
-
 #define TEXT_DISTANCE 10
 
 static int displayPrivateIndex;
@@ -68,6 +67,8 @@ typedef struct _ThumbDisplay
     HandleEventProc handleEvent;
 
     Bool textAvailable;
+
+    MousePollFunc *mpFunc;
 } ThumbDisplay;
 
 typedef struct _Thumbnail
@@ -85,14 +86,13 @@ typedef struct _Thumbnail
 
     CompTexture textTexture;
     Pixmap      textPixmap;
-    
+
     int tWidth;
     int tHeight;
 } Thumbnail;
 
 typedef struct _ThumbScreen
 {
-    CompTimeoutHandle mouseTimeout;
     CompTimeoutHandle displayTimeout;
 
     PreparePaintScreenProc     preparePaintScreen;
@@ -105,7 +105,7 @@ typedef struct _ThumbScreen
 
     CompWindow *dock;
     CompWindow *pointedWin;
-    
+
     Bool      showingThumb;
     Thumbnail thumb;
     Thumbnail oldThumb;
@@ -116,6 +116,8 @@ typedef struct _ThumbScreen
 
     int x;
     int y;
+
+    PositionPollingHandle pollHandle;
 } ThumbScreen;
 
 static void
@@ -426,133 +428,74 @@ checkPosition (CompWindow *w)
     return TRUE;
 }
 
-static Bool
-thumbUpdateMouse (void *vs)
+static void
+positionUpdate (CompScreen *s,
+		int        x,
+		int        y)
 {
-    CompScreen   *s = (CompScreen *) vs;
-    CompWindow   *w;
-    int          winX, winY;
-    int          rootX, rootY;
-    unsigned int mask_return;
-    Window       root_return;
-    Window       child_return;
+    CompWindow *cw    = s->windows;
+    CompWindow *found = NULL;
 
     THUMB_SCREEN (s);
 
-    XQueryPointer (s->display->display, s->root,
-		   &root_return, &child_return,
-		   &rootX, &rootY, &winX, &winY, &mask_return);
-
-    w = findWindowAtDisplay (s->display, child_return);
-
-    if (w && w->type & CompWindowTypeDockMask)
+    for (; cw && !found; cw = cw->next)
     {
-	CompWindow *cw    = s->windows;
-	CompWindow *found = NULL;
+	if (!cw->iconGeometrySet)
+	    continue;
 
-	if (ts->dock != w)
+	if (cw->attrib.map_state != IsViewable)
+	    continue;
+	
+	if (cw->state & CompWindowStateSkipTaskbarMask)
+	    continue;
+
+	if (cw->state & CompWindowStateSkipPagerMask)
+	    continue;
+
+	if (!cw->managed)
+	    continue;
+
+	if (!cw->texture->pixmap)
+	    continue;
+
+	if (x >= cw->iconGeometry.x                          &&
+	    x < cw->iconGeometry.x + cw->iconGeometry.width  &&
+	    y >= cw->iconGeometry.y                          &&
+	    y < cw->iconGeometry.y + cw->iconGeometry.height &&
+	    checkPosition (cw))
 	{
-	    ts->dock = w;
+	    found = cw;
 
+	}
+    }
+
+    if (found)
+    {
+	if (!ts->showingThumb &&
+	    !(ts->thumb.opacity != 0.0 && ts->thumb.win == found))
+	{
 	    if (ts->displayTimeout)
+
 	    {
-		compRemoveTimeout (ts->displayTimeout);
-		ts->displayTimeout = 0;
-	    }
-
-	    ts->pointedWin   = NULL;
-	    ts->showingThumb = FALSE;
-	}
-
-	for (; cw && !found; cw = cw->next)
-	{
-	    if (!cw->iconGeometrySet)
-		continue;
-
-	    if (cw->attrib.map_state != IsViewable)
-		continue;
-
-	    if (cw->state & CompWindowStateSkipTaskbarMask)
-		continue;
-
-	    if (cw->state & CompWindowStateSkipPagerMask)
-		continue;
-
-	    if (!cw->managed)
-		continue;
-
-	    if (!w->texture->pixmap)
-		continue;
-
-	    if (rootX >= cw->iconGeometry.x                          &&
-		rootX < cw->iconGeometry.x + cw->iconGeometry.width  &&
-		rootY >= cw->iconGeometry.y                          &&
-		rootY < cw->iconGeometry.y + cw->iconGeometry.height &&
-		checkPosition (cw))
-	    {
-		found = cw;
-	    }
-	}
-
-	if (found)
-	{
-	    if (!ts->showingThumb &&
-		! (ts->thumb.opacity != 0.0 && ts->thumb.win == found))
-	    {
-		if (ts->displayTimeout)
+		if (ts->pointedWin != found)
 		{
-		    if (ts->pointedWin != found)
-		    {
-			compRemoveTimeout (ts->displayTimeout);
-			ts->displayTimeout =
-			    compAddTimeout (thumbnailGetShowDelay (s),
-					    thumbShowThumbnail, s);
-		    }
-		}
-		else
-		{
+		    compRemoveTimeout (ts->displayTimeout);
 		    ts->displayTimeout =
-			compAddTimeout (thumbnailGetShowDelay (s),
+		        compAddTimeout (thumbnailGetShowDelay (s),
 					thumbShowThumbnail, s);
 		}
 	    }
-
-	    ts->pointedWin = found;
-
-	    thumbUpdateThumbnail (s);
-	}
-	else
-	{
-	    ts->dock = NULL;
-
-	    if (ts->displayTimeout)
+	    else
 	    {
-		compRemoveTimeout (ts->displayTimeout);
-		ts->displayTimeout = 0;
+		ts->displayTimeout =
+		    compAddTimeout (thumbnailGetShowDelay (s),
+				    thumbShowThumbnail, s);
 	    }
+        }
 
-	    ts->pointedWin   = 0;
-	    ts->showingThumb = FALSE;
-	}
-
+        ts->pointedWin = found;
+        thumbUpdateThumbnail (s);
     }
-    else
-    {
-	ts->dock = NULL;
-
-	if (ts->displayTimeout)
-	{
-	    compRemoveTimeout (ts->displayTimeout);
-	    ts->displayTimeout = 0;
-	}
-
-	ts->pointedWin   = NULL;
-	ts->showingThumb = FALSE;
-    }
-
-    ts->mouseTimeout = compAddTimeout (THUMB_MOUSE_UPDATE_SPEED,
-				       thumbUpdateMouse, s);
-    return FALSE;
 }
 
 
@@ -612,8 +555,6 @@ thumbHandleEvent (CompDisplay * d,
 
 	    THUMB_SCREEN (s);
 
-	    ts->dock = NULL;
-
 	    if (ts->displayTimeout)
 	    {
 		compRemoveTimeout (ts->displayTimeout);
@@ -622,6 +563,88 @@ thumbHandleEvent (CompDisplay * d,
 
 	    ts->pointedWin   = 0;
 	    ts->showingThumb = FALSE;
+	}
+	break;
+
+    case EnterNotify:
+	w = findWindowAtDisplay (d, event->xcrossing.window);
+	if (w)
+	{
+	    CompScreen *s = w->screen;
+
+	    THUMB_SCREEN (s);
+	    THUMB_DISPLAY (w->screen->display);
+
+	    if (w->type & CompWindowTypeDockMask)
+	    {
+		if (ts->dock != w)
+		{
+		    ts->dock = w;
+
+		    if (ts->displayTimeout)
+		    {
+			compRemoveTimeout (ts->displayTimeout);
+			ts->displayTimeout = 0;
+		    }
+
+		    ts->pointedWin   = NULL;
+		    ts->showingThumb = FALSE;
+		}
+
+		if (!ts->pollHandle)
+		{
+		    ts->pollHandle =
+			(*td->mpFunc->addPositionPolling) (s, positionUpdate);
+		}
+	    }
+	    else
+	    {
+		ts->dock = NULL;
+
+		if (ts->displayTimeout)
+		{
+		    compRemoveTimeout (ts->displayTimeout);
+		    ts->displayTimeout = 0;
+		}
+
+		ts->pointedWin   = NULL;
+		ts->showingThumb = FALSE;
+
+		if (ts->pollHandle)
+		{
+		    (*td->mpFunc->removePositionPolling) (s, ts->pollHandle);
+		    ts->pollHandle = 0;
+		}
+	    }
+	}
+	break;
+    case LeaveNotify:
+	w = findWindowAtDisplay (d, event->xcrossing.window);
+	if (w)
+	{
+	    THUMB_SCREEN (w->screen);
+	    THUMB_DISPLAY (w->screen->display);
+
+	    if (w->type & CompWindowTypeDockMask)
+	    {
+		ts->dock = NULL;
+
+		if (ts->displayTimeout)
+		{
+		    compRemoveTimeout (ts->displayTimeout);
+		    ts->displayTimeout = 0;
+		}
+
+		ts->pointedWin   = NULL;
+		ts->showingThumb = FALSE;
+
+		if (ts->pollHandle)
+		{
+		    (*td->mpFunc->removePositionPolling) (w->screen,
+		 					  ts->pollHandle);
+		    ts->pollHandle = 0;
+		}
+	    }
 	}
 	break;
 
@@ -1083,8 +1106,13 @@ thumbInitDisplay (CompPlugin  *p,
 		  CompDisplay *d)
 {
     ThumbDisplay *td;
+    int          index;
 
-    if (!checkPluginABI ("core", CORE_ABIVERSION))
+    if (!checkPluginABI ("core", CORE_ABIVERSION) ||
+	!checkPluginABI ("mousepoll", MOUSEPOLL_ABIVERSION))
+	return FALSE;
+
+    if (!getPluginDisplayIndex (d, "mousepoll", &index))
 	return FALSE;
 
     td = malloc (sizeof (ThumbDisplay));
@@ -1103,6 +1131,8 @@ thumbInitDisplay (CompPlugin  *p,
     if (!td->textAvailable)
 	compLogMessage (d, "thumbnail", CompLogLevelWarn,
 			"No compatible text plugin found.");
+
+    td->mpFunc = d->base.privates[index].ptr;
 
     WRAP (td, d, handleEvent, thumbHandleEvent);
 
@@ -1172,11 +1202,9 @@ thumbInitScreen (CompPlugin *p,
     ts->thumb.win      = NULL;
     ts->oldThumb.win   = NULL;
     ts->showingThumb   = FALSE;
+    ts->pollHandle     = 0;
 
     s->base.privates[td->screenPrivateIndex].ptr = ts;
-
-    ts->mouseTimeout =
-	compAddTimeout (THUMB_MOUSE_UPDATE_SPEED, thumbUpdateMouse, s);
 
     initTexture (s, &ts->glowTexture);
     initTexture (s, &ts->windowTexture);
@@ -1207,8 +1235,13 @@ thumbFiniScreen (CompPlugin *p,
     UNWRAP (ts, s, windowResizeNotify);
     UNWRAP (ts, s, paintTransformedOutput);
 
-    if (ts->mouseTimeout)
-	compRemoveTimeout (ts->mouseTimeout);
+    if (ts->pollHandle)
+    {
+	THUMB_DISPLAY (s->display);
+
+	(*td->mpFunc->removePositionPolling) (s, ts->pollHandle);
+	ts->pollHandle = 0;
+    }
 
     freeThumbText (s, &ts->thumb);
     freeThumbText (s, &ts->oldThumb);
