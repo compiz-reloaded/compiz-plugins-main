@@ -2348,6 +2348,7 @@ zoomInitScreen (CompPlugin *p,
 	    break;
 	initialiseZoomArea (&zs->zooms[i], i);
     }
+    zs->lastChange = 0;
     zs->grabbed = 0;
     zs->mouseX = -1;
     zs->mouseY = -1;
