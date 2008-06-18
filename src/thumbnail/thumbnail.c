@@ -496,6 +496,17 @@ positionUpdate (CompScreen *s,
         ts->pointedWin = found;
         thumbUpdateThumbnail (s);
     }
+    else
+    {
+	if (ts->displayTimeout)
+	{
+	    compRemoveTimeout (ts->displayTimeout);
+	    ts->displayTimeout = 0;
+	}
+
+	ts->pointedWin   = NULL;
+	ts->showingThumb = FALSE;
+    }
 }
 
 
