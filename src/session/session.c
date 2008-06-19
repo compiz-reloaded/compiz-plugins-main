@@ -1045,7 +1045,7 @@ sessionInitDisplay (CompPlugin  *p,
 	free (prevClientId);
     }
 
-    sd->windowAddTimeout = compAddTimeout (0, sessionWindowAddTimeout, d);
+    sd->windowAddTimeout = compAddTimeout (0, 0, sessionWindowAddTimeout, d);
 
     WRAP (sd, d, handleEvent, sessionHandleEvent);
 
