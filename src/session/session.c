@@ -486,13 +486,8 @@ saveState (CompDisplay *d,
 	    if (!isSessionWindow (w))
 		continue;
 
-	    /* skip invisible windows that we didn't unmap */
-	    if (w->attrib.map_state != IsViewable &&
-		!(w->minimized || w->shaded ||
-		  w->inShowDesktopMode || w->hidden))
-	    {
+	    if (!w->managed)
 		continue;
-	    }
 
 	    sessionWriteWindow (w, outfile);
 	}
@@ -1050,7 +1045,7 @@ sessionInitDisplay (CompPlugin  *p,
 	free (prevClientId);
     }
 
-    sd->windowAddTimeout = compAddTimeout (0, 0, sessionWindowAddTimeout, d);
+    sd->windowAddTimeout = compAddTimeout (0, sessionWindowAddTimeout, d);
 
     WRAP (sd, d, handleEvent, sessionHandleEvent);
 
