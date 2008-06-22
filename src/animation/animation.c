@@ -1430,11 +1430,12 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	aw->animOverrideProgressDir = 0;
 
 	aw->magicLampWaveCount = 0;
-	if (aw->magicLampWaves)
-	{
-	    free(aw->magicLampWaves);
-	    aw->magicLampWaves = 0;
-	}
+    }
+
+    if (aw->magicLampWaves)
+    {
+	free (aw->magicLampWaves);
+	aw->magicLampWaves = 0;
     }
 
     if (!finishing && aw->BB.x1 != MAXSHORT)
