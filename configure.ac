@@ -89,9 +89,9 @@ AC_SUBST(compdatadir)
 dnl ============================================================
 dnl Check for the pkg-config path.
 if test x"$PKG_CONFIG_PATH" = x; then
-    PKG_CONFIG_PATH=${prefix}/lib/pkgconfig
+    PKG_CONFIG_PATH=${prefix}/lib/pkgconfig:${prefix}/share/pkgconfig
         else
-    PKG_CONFIG_PATH=${prefix}/lib/pkgconfig:${PKG_CONFIG_PATH}
+    PKG_CONFIG_PATH=${prefix}/lib/pkgconfig:${prefix}/share/pkgconfig:${PKG_CONFIG_PATH}
 fi
 export PKG_CONFIG_PATH
 AC_SUBST(PKG_CONFIG_PATH)
