@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-24 22:14+0530\n"
-"PO-Revision-Date: 2008-05-03 12:01+0200\n"
+"POT-Creation-Date: 2008-06-16 16:46+0530\n"
+"PO-Revision-Date: 2008-05-31 09:16+0200\n"
 "Last-Translator: KAMI <kamihir@freemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -115,10 +115,10 @@ msgid "Brightness of faded windows"
 msgstr "Az elhalványított ablakok fényereje"
 
 msgid "Enable ADD Helper on start"
-msgstr ""
+msgstr "Halványító automatikus engedélyezése"
 
 msgid "Enables ADD helper when it is first loaded."
-msgstr ""
+msgstr "Halványító automatikus engedélyezése az első indításkor."
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -1081,12 +1081,11 @@ msgstr "Továbblépés a következő képhez a kocka felső képének beállít�
 msgid "Appearance"
 msgstr "Megjelenés"
 
-#, fuzzy
 msgid "Aspect ratio"
 msgstr "Méretarány"
 
 msgid "Aspect ratio of the deformed cube"
-msgstr ""
+msgstr "Kocka alakváltozásának méretaránya"
 
 msgid "Auto zoom"
 msgstr "Automatikus nagyítás"
@@ -1136,49 +1135,41 @@ msgstr "Alapzat színe a közelben."
 msgid "Color of top face of the cube"
 msgstr "A kocka felső lapjának színe"
 
-#, fuzzy
 msgid "Compiz cube reflection and deformation"
-msgstr "Compiz kocka tükröződés"
+msgstr "Compiz kocka tükröződés és alakváltozás"
 
 msgid "Cube Bottom Color"
 msgstr "Kocka alsó szín"
 
-#, fuzzy
 msgid "Cube Reflection and Deformation"
-msgstr "Ablakdíszítés tükröződése"
+msgstr "Kocka tükröződés és alakváltozás"
 
 msgid "Cube Top Color"
 msgstr "Kocka felső szín"
 
-#, fuzzy
 msgid "Cube caps"
 msgstr "Kocka fedőlapok"
 
-#, fuzzy
 msgid "Cylinder"
-msgstr "Törlés"
+msgstr "Henger"
 
-#, fuzzy
 msgid "Deform caps"
-msgstr "Alakváltozás"
+msgstr "Fedőlapok alakváltozása"
 
 msgid "Deform cube caps."
-msgstr ""
+msgstr "Kocka fedőlapjainak alakváltozása."
 
-#, fuzzy
 msgid "Deform only on mouse rotate"
-msgstr "Kizárólag egérrel történő forgatás esetén legyen automatikus nagyítás"
+msgstr "Kizárólag egérrel történő forgatás esetén legyen alakváltozás"
 
 msgid "Deformation"
 msgstr "Alakváltozás"
 
-#, fuzzy
 msgid "Deformation in unfold cube mode."
-msgstr "Az alakváltozás nagysága hajlított módban"
+msgstr "Az alakváltozás nagysága kiterített kocka módban."
 
-#, fuzzy
 msgid "Deformation mode."
-msgstr "Alakváltozás"
+msgstr "Alakváltozás módja."
 
 msgid "Distance"
 msgstr "Távolság"
@@ -1195,13 +1186,11 @@ msgstr "Felső lap megjelenítése"
 msgid "Draw top face of the cube"
 msgstr "Megjeleníti a kocka felső lapját"
 
-#, fuzzy
 msgid "Enabled"
 msgstr "Bekapcsolás"
 
-#, fuzzy
 msgid "Give cube a reflective ground."
-msgstr "Compiz kocka tükröződés"
+msgstr "Kocka tükröződése a talajon."
 
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Megjeleníti a kocka alsó lapjának előző képét"
@@ -1217,6 +1206,7 @@ msgstr "Alapzat színe a közelben"
 
 msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
 msgstr ""
+"Kocka hengeres alakváltozása csak egérrel kezdeményezett forgatás esetén."
 
 msgid "Intensity"
 msgstr "Intenzitás"
@@ -1237,21 +1227,17 @@ msgstr ""
 "Azon PNG és SVG képfájlok listája, amelyek megjelenhetnek a kocka felső "
 "lapján"
 
-#, fuzzy
 msgid "Maintain bottom aspect ratio"
-msgstr "Közszemle mód képaránya"
+msgstr "Alsó fedőlap méretarányának szabályzása"
 
-#, fuzzy
 msgid "Maintain bottom cap image aspect ratio."
-msgstr "Alsó kép szerkesztése forgatáshoz"
+msgstr "Alsó fedőlap-kép méretarányának szabályzása."
 
-#, fuzzy
 msgid "Maintain top aspect ratio"
-msgstr "Közszemle mód képaránya"
+msgstr "Felső fedőlap méretarányának szabályzása"
 
-#, fuzzy
 msgid "Maintain top cap image aspect ratio."
-msgstr "Alsó kép szerkesztése forgatáshoz"
+msgstr "Felső fedőlap-kép méretarányának szabályzása."
 
 msgid "Next bottom image"
 msgstr "Következő alsó kép"
@@ -1295,15 +1281,14 @@ msgstr "Felső kép nyújtása úgy, hogy lefedje a kocka felső lapját"
 msgid "Scale top image"
 msgstr "Felső kép nyújtása"
 
-#, fuzzy
 msgid "Sphere"
-msgstr "Sebesség"
+msgstr "Gömb"
 
 msgid "Top image files"
 msgstr "Felső képfájlok"
 
 msgid "Unfold cube deformation"
-msgstr ""
+msgstr "Kiterített kocka alakváltozás"
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Automatikus nagyítás csak egérrel forgatáskor."
@@ -1701,7 +1686,6 @@ msgstr "Lineáris szűrő használata nagyításnál"
 msgid "Zoom Area Movement"
 msgstr "Nagyított terület mozgása"
 
-#, fuzzy
 msgid "Zoom Box"
 msgstr "Nagyító"
 
@@ -1733,7 +1717,7 @@ msgid "Zoom factor"
 msgstr "Nagyítási arány"
 
 msgid "Zoom in on a boxed area"
-msgstr ""
+msgstr "Kijelölt terület nagyítása"
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -3282,13 +3266,11 @@ msgstr "Minden ablak"
 msgid "Background color of the window title"
 msgstr "Az ablak címsorának háttérszíne"
 
-#, fuzzy
 msgid "Close Window"
-msgstr "Ablakok darabolása"
+msgstr "Ablak bezárása"
 
-#, fuzzy
 msgid "Close window while in scale mode"
-msgstr "Ablaktípusok, amelyek áttekintő nézetben nem jelennek meg"
+msgstr "Ablak bezárása áttekintő nézetben"
 
 msgid "Close windows while in scale mode"
 msgstr "Ablaktípusok, amelyek áttekintő nézetben nem jelennek meg"
@@ -3297,16 +3279,16 @@ msgid "Color used for highlighting the hovered window"
 msgstr "Követett ablak kijelölőszíne"
 
 msgid "Constrain Pull To Screen"
-msgstr ""
+msgstr "Képernyőre kényszerítés"
 
 msgid "Draw Window Highlight"
 msgstr "Ablakkijelölő megjelenítése"
 
 msgid "Exit Scale On Pull"
-msgstr ""
+msgstr "Húzásra kilépés az áttekintő nézetből"
 
 msgid "Exit scale mode after a window has been pulled."
-msgstr ""
+msgstr "Kilépés az áttekintő nézetből egy ablak húzása esetén."
 
 msgid "Font color of the window title"
 msgstr "Az ablak címsorának betűszíne"
@@ -3323,10 +3305,9 @@ msgstr "Csak a kijelölt ablakot"
 msgid "Highlights the hovered window with the given color"
 msgstr "Kijelöli a követett ablakot a megadott színnel."
 
-#, fuzzy
 msgid ""
 "Make sure windows are fully visible after pulling them to another viewport"
-msgstr "Ablakok láthatóvá tétele az egérmutató ráhúzásával"
+msgstr "Ablakok teljesen láthatóvá tétele egy másik munkaterületre húzás során"
 
 msgid "No display"
 msgstr "Nincs megjelenítve"
@@ -3337,13 +3318,11 @@ msgstr "Szokványos"
 msgid "Organic - EXPERIMENTAL"
 msgstr "Organikus - KÍSÉRLETI"
 
-#, fuzzy
 msgid "Pull Window"
-msgstr "Ablak elhelyezése"
+msgstr "Ablak átrántása"
 
-#, fuzzy
 msgid "Pull window to current viewport while in scale mode"
-msgstr "Ablaktípusok, amelyek áttekintő nézetben nem jelennek meg"
+msgstr "Ablakok átrántása az aktuális munkalapra áttekintő nézetben"
 
 msgid "Scale Addons"
 msgstr "Áttekintés bővítmény"
@@ -3369,9 +3348,8 @@ msgstr "Ablak kijelölése"
 msgid "Window Layout Mode"
 msgstr "Ablakelrendezés módja"
 
-#, fuzzy
 msgid "Window Pull"
-msgstr "Ablakszabályok"
+msgstr "Ablak átrántása"
 
 msgid "Window Title"
 msgstr "Ablak címsor"
@@ -3382,11 +3360,9 @@ msgstr "Ablak címsorának megjelenítése"
 msgid "Window title display in scale mode"
 msgstr "Ablak címsorának megjelenítése áttekintő módban"
 
-#, fuzzy
 msgid "Zoom Window"
-msgstr "Ablakok átméretezése áttekintéskor"
+msgstr "Ablakok nagyítása"
 
-#, fuzzy
 msgid "Zoom window while in scale mode"
 msgstr "Ablakok nagyítása áttekintő nézetben"
 
@@ -4889,6 +4865,9 @@ msgstr "Minden asztalon legyenek \\\"ragadós ablakok\\\""
 msgid "AIGLX Fragment Parameter Fix"
 msgstr "AIGLX helytelen paraméter-használat javítás"
 
+msgid "Convert Urgency to Demands Attention"
+msgstr ""
+
 msgid "Firefox Menu Fix"
 msgstr "Firefox menük javítása"
 
@@ -4933,6 +4912,12 @@ msgid ""
 msgstr ""
 "Minden asztalon legyenek \"ragadós ablakok\". A ragadós ablakok láthatóak "
 "minden asztalon."
+
+#, fuzzy
+msgid "Make \"urgent\" windows also \"demand attention\"."
+msgstr ""
+"Aktiválja a következő ablakot, amelynél a \"Figyelmet igényel\" jelölés be "
+"van állítva."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Teljes képernyős Wine és örökölt alkalmazások helyes megjelenítése."

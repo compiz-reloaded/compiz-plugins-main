@@ -67,6 +67,7 @@ typedef struct _WorkaroundsWindow {
     Bool madeSticky;
     Bool madeFullscreen;
     Bool isFullscreen;
+    Bool madeDemandAttention;
 } WorkaroundsWindow;
 
 #define GET_WORKAROUNDS_DISPLAY(d) \
@@ -268,6 +269,35 @@ workaroundsUpdateSticky (CompWindow *w)
     }
     else
 	workaroundsRemoveSticky (w);
+}
+
+static void
+updateUrgencyState (CompWindow *w)
+{
+    XWMHints *hints;
+    Bool     urgent = FALSE;
+
+    WORKAROUNDS_WINDOW (w);
+
+    hints = XGetWMHints (w->screen->display->display, w->id);
+    if (hints)
+    {
+	if (hints->flags & XUrgencyHint)
+	    urgent = TRUE;
+
+	XFree (hints);
+    }
+
+    if (urgent)
+    {
+	ww->madeDemandAttention = TRUE;
+	changeWindowState (w, w->state | CompWindowStateDemandsAttentionMask);
+    }
+    else if (ww->madeDemandAttention)
+    {
+	ww->madeDemandAttention = FALSE;
+	changeWindowState (w, w->state & ~CompWindowStateDemandsAttentionMask);
+    }
 }
 
 static void
@@ -588,6 +618,15 @@ workaroundsHandleEvent (CompDisplay *d,
 	    if (w)
 		workaroundsDoFixes (w);
 	}
+	else if (event->xproperty.atom == XA_WM_HINTS)
+	{
+	    if (workaroundsGetConvertUrgency (d))
+	    {
+		w = findWindowAtDisplay (d, event->xproperty.window);
+		if (w)
+		    updateUrgencyState (w);
+	    }
+	}
 	break;
     default:
 	break;
@@ -728,6 +767,7 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
     ww->adjustedWinType = FALSE;
     ww->isFullscreen = FALSE;
     ww->madeFullscreen = FALSE;
+    ww->madeDemandAttention = FALSE;
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 

@@ -349,6 +349,8 @@ fxBurnModelStep (CompScreen *s, CompWindow *w, float time)
 	    rect.height = WIN_H(w) - (new * WIN_H(w));
 	    break;
 	}
+	rect.x += WIN_X(w);
+	rect.y += WIN_Y(w);
 	XUnionRectWithRegion(&rect, &emptyRegion, aw->drawRegion);
     }
     else

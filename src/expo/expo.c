@@ -1692,9 +1692,15 @@ expoInitScreen (CompPlugin *p,
     EXPO_DISPLAY (s->display);
 
     es = malloc (sizeof (ExpoScreen));
-
     if (!es)
 	return FALSE;
+
+    es->vpNormals = malloc (360 * 3 * sizeof (GLfloat));
+    if (!es->vpNormals)
+    {
+	free (es);
+	return FALSE;
+    }
 
     es->tmpRegion = XCreateRegion ();
     if (!es->tmpRegion)
@@ -1723,10 +1729,6 @@ expoInitScreen (CompPlugin *p,
 
     es->vpActivity     = NULL;
     es->vpActivitySize = 0;
-
-    es->vpNormals = malloc (360 * 3 * sizeof (GLfloat));
-    if (!es->vpNormals)
-	return FALSE;
 
     es->winNormals  = NULL;
     es->winNormSize = 0;
@@ -1760,6 +1762,15 @@ expoFiniScreen (CompPlugin *p,
     }
 
     XDestroyRegion (es->tmpRegion);
+
+    if (es->vpNormals)
+	free (es->vpNormals);
+
+    if (es->winNormals)
+	free (es->winNormals);
+
+    if (es->vpActivity)
+	free (es->vpActivity);
 
     UNWRAP (es, s, paintOutput);
     UNWRAP (es, s, paintScreen);

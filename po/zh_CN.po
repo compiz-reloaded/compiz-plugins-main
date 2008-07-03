@@ -3,19 +3,20 @@
 # Copyright (C) 2007 opencompositing.org
 # This file is distributed under the same license as the compiz-fusion package.
 # Thruth <gubotruth@gmail.com>, 2007
+# Cheng JING <jingcheng01@gmail.com> 2008
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-05-24 22:16+0530\n"
-"PO-Revision-Date: 2008-02-22 04:46+0100\n"
-"Last-Translator: Gao Dexiang <biaji.cn@gmail.com>\n"
+"POT-Creation-Date: 2008-06-16 16:47+0530\n"
+"PO-Revision-Date: 2008-06-06 07:40+0200\n"
+"Last-Translator: wyat1984 <wyat1984@163.com>\n"
 "Language-Team: Chinese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "仅鼠标转面时开启 3D 窗口"
@@ -56,11 +57,11 @@ msgid ""
 msgstr "改变窗口间隔"
 
 msgid "Color of an inactive window's depth"
-msgstr ""
+msgstr "未激活窗口颜色深度"
 
 #, fuzzy
 msgid "Color of the active window's depth"
-msgstr "开关窗口重导"
+msgstr "激活窗口颜色深度"
 
 msgid "Elevates windows while rotating the cube"
 msgstr "立方体转面时浮起的窗口"
@@ -71,10 +72,10 @@ msgid ""
 msgstr "仅仅在用鼠标转动桌面的时候显示 3D 效果。(例，您通过鼠标进行转面操作)"
 
 msgid "Minimum Cube Size"
-msgstr "最小立方体大小"
+msgstr "立方体最小大小"
 
 msgid "Minimum cube size (in percent)."
-msgstr ""
+msgstr "立方体最小大小（百分比）"
 
 msgid "Misc. Options"
 msgstr "杂项设置"
@@ -118,10 +119,10 @@ msgid "Brightness of faded windows"
 msgstr "淡出窗口的亮度"
 
 msgid "Enable ADD Helper on start"
-msgstr ""
+msgstr "启动时启用ADD帮助"
 
 msgid "Enables ADD helper when it is first loaded."
-msgstr ""
+msgstr "首次载入时启用ADD帮助"
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -166,12 +167,12 @@ msgstr ""
 msgid ""
 "Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
 "to the window width. Negative values fold outward."
-msgstr ""
+msgstr "相对于窗口宽度的水平折叠振幅（折叠时波浪的大小）。负值代表向外折叠。"
 
 msgid ""
 "Amplitude (size of the waves in the fold) of the curved fold relative to "
 "window width. Negative values fold outward."
-msgstr ""
+msgstr "相对于窗口宽度的弯曲折叠振幅（折叠时波浪的大小）。负值代表向外折叠。"
 
 #, fuzzy
 msgid "Angle of window at the end of the animation."
@@ -184,7 +185,7 @@ msgid "Animation Time Step"
 msgstr "动画时间步长"
 
 msgid "Animation Time Step For Intense Effects"
-msgstr ""
+msgstr "剧烈效果的动画时间步长"
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "以毫秒为单位的关闭效果的动画持续时间"
@@ -207,8 +208,9 @@ msgstr "动画"
 msgid "Automatic"
 msgstr "自动"
 
+#, fuzzy
 msgid "Away Angle"
-msgstr ""
+msgstr "离开角度"
 
 #, fuzzy
 msgid "Away Position"
@@ -238,8 +240,9 @@ msgstr ""
 msgid "Beam Width"
 msgstr "边框宽度"
 
+#, fuzzy
 msgid "Beam color."
-msgstr ""
+msgstr "光线颜色"
 
 msgid "Beam life."
 msgstr ""
@@ -272,10 +275,10 @@ msgid ""
 msgstr ""
 
 msgid "Curved Fold"
-msgstr ""
+msgstr "弯曲折叠"
 
 msgid "Curved Fold Amplitude"
-msgstr ""
+msgstr "弯曲折叠振幅"
 
 msgid "Dodge"
 msgstr "闪避效果"
@@ -1124,7 +1127,7 @@ msgid "Cube Top Color"
 msgstr "标签边框颜色"
 
 msgid "Cube caps"
-msgstr ""
+msgstr "立方体齿轮"
 
 #, fuzzy
 msgid "Cylinder"
@@ -2240,32 +2243,31 @@ msgid "Fade In/Out Time."
 msgstr "淡入淡出时长"
 
 msgid "Login"
-msgstr ""
+msgstr "登录"
 
 #, fuzzy
 msgid "Login Window Match"
-msgstr "窗口匹配"
+msgstr "登录窗口匹配"
 
 #, fuzzy
 msgid "Login Window match"
-msgstr "窗口匹配"
+msgstr "登录窗口匹配"
 
+#, fuzzy
 msgid "Login/Logout"
-msgstr ""
+msgstr "登录/注销"
 
 msgid "Login/Logout effect"
-msgstr ""
+msgstr "登录/注销效果"
 
 msgid "Logout"
-msgstr ""
+msgstr "注销"
 
-#, fuzzy
 msgid "Logout Window Match"
-msgstr "组合窗口匹配"
+msgstr "注销窗口匹配"
 
-#, fuzzy
 msgid "Logout Window match"
-msgstr "窗口匹配"
+msgstr "注销窗口匹配"
 
 #, fuzzy
 msgid "Window opacity."
@@ -3783,7 +3785,7 @@ msgstr "动画速度"
 
 #, fuzzy
 msgid "Show mouse"
-msgstr "标签栏显示延迟"
+msgstr "显示鼠标"
 
 msgid "Toggle the mouse pointer trail."
 msgstr ""
@@ -4800,11 +4802,13 @@ msgstr ""
 msgid "End widget mode when a non-widget window is clicked."
 msgstr ""
 
+#, fuzzy
 msgid "Focus Widget Layer"
-msgstr ""
+msgstr "聚焦Widget层"
 
+#, fuzzy
 msgid "Focus a window in the widget layer when activating the layer"
-msgstr ""
+msgstr "聚焦活动层中的窗口"
 
 #, fuzzy
 msgid "Saturation of non-widget windows in widget modes."
@@ -4815,17 +4819,17 @@ msgid "Show or hide widget windows"
 msgstr "飞雪漫窗"
 
 msgid "Show widget windows on a separate layer"
-msgstr ""
+msgstr "widget层独立显示"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
+msgstr "widget层淡入/出时间(以秒计）"
 
 #, fuzzy
 msgid "Toggle Widget Display"
 msgstr "开关窗口重导"
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "Widget层"
 
 #, fuzzy
 msgid "Widget Windows"
@@ -4836,17 +4840,18 @@ msgid "Windows that always should be treated as widgets"
 msgstr "使用 3D 的窗口"
 
 msgid "Above others windows"
-msgstr ""
+msgstr "顶置"
 
 #, fuzzy
 msgid "Below others windows"
-msgstr "飞雪漫窗"
+msgstr "底置"
 
+#, fuzzy
 msgid "Don't show application in pager"
-msgstr ""
+msgstr "页面不显示程序"
 
 msgid "Don't show application in taskbar"
-msgstr ""
+msgstr "任务栏不显示程序"
 
 #, fuzzy
 msgid "Fixed Size Windows"
@@ -4863,14 +4868,15 @@ msgstr "窗口排列"
 msgid "Height values"
 msgstr ""
 
+#, fuzzy
 msgid "Matches"
-msgstr ""
+msgstr "匹配"
 
 msgid "No ARGB visuals"
-msgstr ""
+msgstr "ARGB非可见"
 
 msgid "No focus"
-msgstr ""
+msgstr "无焦点"
 
 #, fuzzy
 msgid "Non closable windows"
@@ -4892,10 +4898,10 @@ msgid "Non resizable windows"
 msgstr "窗口排列"
 
 msgid "Set window as non closable"
-msgstr ""
+msgstr "设置窗口无法关闭"
 
 msgid "Set window as non maximizable"
-msgstr ""
+msgstr "设置窗口无法最大化"
 
 msgid "Set window as non minimizable"
 msgstr "设置窗口无法最小化"
@@ -4910,17 +4916,19 @@ msgid "Set windows rules"
 msgstr "设置窗口规则"
 
 msgid "Size rules"
-msgstr ""
+msgstr "尺寸规则"
 
 #, fuzzy
 msgid "Sized Windows"
 msgstr "改变了大小的窗口"
 
+#, fuzzy
 msgid "Skip pager"
-msgstr ""
+msgstr "跳过页面调度程序"
 
+#, fuzzy
 msgid "Skip taskbar"
-msgstr ""
+msgstr "跳过任务栏"
 
 #, fuzzy
 msgid "Sticky"
@@ -4931,7 +4939,7 @@ msgid "Sticky windows"
 msgstr "窗口排列"
 
 msgid "Width values"
-msgstr ""
+msgstr "宽度值"
 
 msgid "Window Rules"
 msgstr "窗口规则"
@@ -4948,11 +4956,15 @@ msgstr "不会获得焦点的窗口"
 msgid "\"On all desktops\" sticky match"
 msgstr ""
 
+#, fuzzy
 msgid "AIGLX Fragment Parameter Fix"
+msgstr "AIGLX片段参数修正"
+
+msgid "Convert Urgency to Demands Attention"
 msgstr ""
 
 msgid "Firefox Menu Fix"
-msgstr ""
+msgstr "火狐菜单修正"
 
 msgid "Fix broken glProgramEnvParameter4f implementation."
 msgstr ""
@@ -4964,19 +4976,19 @@ msgid "Fix screen updates in XGL with fglrx."
 msgstr ""
 
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr ""
+msgstr "修正火狐与雷鸟菜单的窗口类型"
 
 msgid "Fix window type of OpenOffice.org menus."
-msgstr ""
+msgstr "修正OpenOffice菜单的窗口类型"
 
 msgid "Fix window type of notification daemon windows."
-msgstr ""
+msgstr "修正通知守护程序的窗口类型"
 
 msgid "Fix window type of various Java windows."
-msgstr ""
+msgstr "修正各种Java窗口的类型"
 
 msgid "Fix window type of various Qt windows."
-msgstr ""
+msgstr "修正各种Qt窗口的类型"
 
 msgid "Java Window Fix"
 msgstr "java窗口修正"
@@ -4990,31 +5002,33 @@ msgstr "粘着“总在可见工作区”窗口"
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
+msgstr "粘着“总在可见工作区”窗口。粘着的窗口在所有视口中可见。"
+
+msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
-msgstr ""
+msgstr "使Wine和传统程序正确全屏。"
 
 msgid "Metacity-like workarounds."
 msgstr ""
 
 msgid "Notification Daemon Fix"
-msgstr ""
+msgstr "通知守护进程修正"
 
 msgid "OpenOffice.org Menu Fix"
-msgstr ""
+msgstr "OpenOffice.org菜单修正"
 
-#, fuzzy
 msgid "Qt Window Fix"
-msgstr "窗口宽度"
+msgstr "Qt窗口修正"
 
 #, fuzzy
 msgid "Window stickyness"
-msgstr "开关窗口置顶"
+msgstr "窗口粘着"
 
 #, fuzzy
 msgid "Windows on all desktops that should be made sticky"
-msgstr "需要淡出到桌面的窗口"
+msgstr "“总在可见工作区”的窗口应该有粘着效果"
 
 msgid "Workarounds"
 msgstr ""

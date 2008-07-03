@@ -406,6 +406,8 @@ opacifyHandleEvent (CompDisplay *d,
 		handleTimeout (s);
 	    else
 	    	od->timeoutHandle = compAddTimeout (opacifyGetTimeout (d),
+						    (float)
+						    opacifyGetTimeout (d) * 1.2,
 						    handleTimeout, s);
 	}
      	break;
@@ -555,6 +557,7 @@ opacifyInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
     d->base.privates[displayPrivateIndex].ptr = od;
+    od->timeoutHandle = 0;
     od->activeScreen = d->screens->screenNum;
     od->toggle = TRUE;
 

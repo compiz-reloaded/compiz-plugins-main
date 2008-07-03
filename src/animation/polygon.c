@@ -130,11 +130,13 @@ void freePolygonSet(AnimWindow * aw)
     PolygonSet *pset = aw->polygonSet;
 
     freePolygonObjects(pset);
-    if (pset->clipCapacity > 0)
-    {
-	freeClipsPolygons(pset);
+    freeClipsPolygons(pset);
+    
+    if (pset->clips)
 	free(pset->clips);
-    }
+    if (pset->lastClipInGroup)
+	free (pset->lastClipInGroup);
+
     free(pset);
     aw->polygonSet = 0;
 }

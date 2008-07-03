@@ -122,7 +122,7 @@
 		<option name="window_match" type="match">
 		    <_short>Switcher windows</_short>
 		    <_long>Windows that should be shown in switcher</_long>
-		    <default>any</default>
+		    <default>Normal | Dialog | Toolbar | Utility | Unknown</default>
 		</option>
 		<option name="minimized" type="bool">
 		    <_short>Show Minimized</_short>
@@ -181,7 +181,7 @@
 		    <_long>Alignment for rows that are not fully filled</_long>
 		    <default>1</default>
 		    <min>0</min>
-		    <max>1</max>
+		    <max>2</max>
 		    <desc>
 			<value>0</value>
 			<_name>Left</_name>
@@ -189,6 +189,10 @@
 		    <desc>
 			<value>1</value>
 			<_name>Centered</_name>
+		    </desc>
+		    <desc>
+			<value>2</value>
+			<_name>Right</_name>
 		    </desc>
 		</option>
 		<subgroup>
@@ -212,6 +216,25 @@
 			    <_name>Show Rectangle</_name>
 			</desc>
 		    </option>
+		    <option name="highlight_rect_hidden" type="int">
+			<_short>Minimized Window Highlight Rectangle</_short>
+			<_long>Where to draw highlight rectangle for minimized windows</_long>
+			<min>0</min>
+			<max>2</max>
+			<default>1</default>
+			<desc>
+			    <value>0</value>
+			    <_name>None</_name>
+			</desc>
+			<desc>
+			    <value>1</value>
+			    <_name>Taskbar Entry</_name>
+			</desc>
+			<desc>
+			    <value>2</value>
+			    <_name>Original Window Position</_name>
+			</desc>
+		    </option>
 		    <option name="highlight_color" type="color">
 			<_short>Highlight Color</_short>
 			<_long>Color of highlight rectangle</_long>
@@ -229,6 +252,16 @@
 			    <red>0x0000</red>
 			    <green>0x0000</green>
 			    <blue>0x0000</blue>
+			    <alpha>0xc8c8</alpha>
+			</default>
+		    </option>
+		    <option name="highlight_border_inlay_color" type="color">
+			<_short>Highlight Border Inlay Color</_short>
+			<_long>Color of inlay in highlight rectangle border</_long>
+			<default>
+			    <red>0xc8c8</red>
+			    <green>0xc8c8</green>
+			    <blue>0xc8c8</blue>
 			    <alpha>0xc8c8</alpha>
 			</default>
 		    </option>

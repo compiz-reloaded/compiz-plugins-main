@@ -166,6 +166,7 @@ mousepollAddPositionPolling (CompScreen         *s,
 	getMousePosition (s);
 	ms->updateHandle =
 	    compAddTimeout (
+		md->opt[MP_DISPLAY_OPTION_MOUSE_POLL_INTERVAL].value.i / 2,
 		md->opt[MP_DISPLAY_OPTION_MOUSE_POLL_INTERVAL].value.i,
 		updatePosition, s);
     }
@@ -271,8 +272,10 @@ mousepollSetDisplayOption (CompPlugin      *plugin,
 		compRemoveTimeout (ms->updateHandle);
 		ms->updateHandle =
 		    compAddTimeout (
+			md->opt[MP_DISPLAY_OPTION_MOUSE_POLL_INTERVAL].value.i
+			/ 2,
 			md->opt[MP_DISPLAY_OPTION_MOUSE_POLL_INTERVAL].value.i,
-			updatePosition, s);
+   			updatePosition, s);
 	    }
 	}
 	return status;

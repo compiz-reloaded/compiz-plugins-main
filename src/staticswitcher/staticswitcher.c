@@ -145,6 +145,9 @@ isSwitchWin (CompWindow *w)
 
 	if (w->state & CompWindowStateSkipTaskbarMask)
 	    return FALSE;
+
+	if (!matchEval (staticswitcherGetWindowMatch (s), w))
+	    return FALSE;
     }
 
     if (ss->selection == CurrentViewport)
@@ -169,9 +172,6 @@ isSwitchWin (CompWindow *w)
 	    ss->clientLeader != w->id)
 	    return FALSE;
     }
-
-    if (!matchEval (staticswitcherGetWindowMatch (s), w))
-	return FALSE;
 
     return TRUE;
 }
@@ -333,6 +333,72 @@ switchCreateWindowList (CompScreen *s,
     switchUpdateWindowList (s, count);
 }
 
+static Bool
+switchGetPaintRectangle (CompWindow *w,
+			 BoxPtr     rect,
+			 int        *opacity)
+{
+    StaticswitcherHighlightRectHiddenEnum mode;
+
+    mode = staticswitcherGetHighlightRectHidden (w->screen);
+
+    if (w->attrib.map_state == IsViewable || w->shaded)
+    {
+	rect->x1 = w->attrib.x - w->input.left;
+	rect->y1 = w->attrib.y - w->input.top;
+	rect->x2 = w->attrib.x + w->width + w->input.right;
+	rect->y2 = w->attrib.y + w->height + w->input.bottom;
+	return TRUE;
+    }
+    else if (mode == HighlightRectHiddenTaskbarEntry && w->iconGeometrySet)
+    {
+	rect->x1 = w->iconGeometry.x;
+	rect->y1 = w->iconGeometry.y;
+	rect->x2 = rect->x1 + w->iconGeometry.width;
+	rect->y2 = rect->y1 + w->iconGeometry.height;
+	return TRUE;
+    }
+    else if (mode == HighlightRectHiddenOriginalWindowPosition)
+    {
+	rect->x1 = w->serverX - w->input.left;
+	rect->y1 = w->serverY - w->input.top;
+	rect->x2 = w->serverX + w->serverWidth + w->input.right;
+	rect->y2 = w->serverY + w->serverHeight + w->input.bottom;
+
+	if (opacity)
+	    *opacity /= 4;
+
+	return TRUE;
+    }
+
+    return FALSE;
+}
+
+static void
+switchDoWindowDamage (CompWindow *w)
+{
+    if (w->attrib.map_state == IsViewable || w->shaded)
+	addWindowDamage (w);
+    else
+    {
+	BoxRec box;
+	if (switchGetPaintRectangle (w, &box, NULL))
+	{
+	    REGION reg;
+
+	    reg.rects    = &reg.extents;
+	    reg.numRects = 1;
+
+	    reg.extents.x1 = box.x1 - 2;
+	    reg.extents.y1 = box.y1 - 2;
+	    reg.extents.x2 = box.x2 + 2;
+	    reg.extents.y2 = box.y2 + 2;
+
+	    damageScreenRegion (w->screen, &reg);
+	}
+    }
+}
+
 static void
 switchToWindow (CompScreen *s,
 		Bool	   toNext)
@@ -410,13 +476,13 @@ switchToWindow (CompScreen *s,
 	    setSelectedWindowHint (s);
 	}
 
-	addWindowDamage (w);
+	switchDoWindowDamage (w);
 
 	if (old)
 	{
 	    w = findWindowAtScreen (s, old);
 	    if (w)
-		addWindowDamage (w);
+		switchDoWindowDamage (w);
 	}
     }
 }
@@ -590,6 +656,7 @@ switchInitiate (CompScreen            *s,
 			compRemoveTimeout (ss->popupDelayHandle);
 
 		    ss->popupDelayHandle = compAddTimeout (delay,
+							   (float) delay * 1.2,
 							   switchShowPopup, s);
 		}
 		else
@@ -933,11 +1000,11 @@ switchWindowRemove (CompDisplay *d,
 
 	if (old != ss->selectedWindow)
 	{
-	    addWindowDamage (w);
+	    switchDoWindowDamage (w);
 
 	    w = findWindowAtScreen (w->screen, old);
 	    if (w)
-		addWindowDamage (w);
+		switchDoWindowDamage (w);
 
 	    ss->moreAdjust = 1;
 	}
@@ -1095,6 +1162,21 @@ switchPreparePaintScreen (CompScreen *s,
     WRAP (ss, s, preparePaintScreen, switchPreparePaintScreen);
 }
 
+static inline void
+switchPaintRect (BoxRec *box,
+		 unsigned int offset,
+		 unsigned short *color,
+		 int opacity)
+{
+    glColor4us (color[0], color[1], color[2], color[3] * opacity / 100);
+    glBegin (GL_LINE_LOOP);
+    glVertex2i (box->x1 + offset, box->y1 + offset);
+    glVertex2i (box->x2 - offset, box->y1 + offset);
+    glVertex2i (box->x2 - offset, box->y2 - offset);
+    glVertex2i (box->x1 + offset, box->y2 - offset);
+    glEnd ();
+}
+
 static Bool
 switchPaintOutput (CompScreen		   *s,
 		   const ScreenPaintAttrib *sAttrib,
@@ -1121,9 +1203,12 @@ switchPaintOutput (CompScreen		   *s,
 	    switcher->destroyed = TRUE;
 	}
 
-	mode = staticswitcherGetHighlightMode (s);
+	if (!ss->popupDelayHandle)
+	    mode = staticswitcherGetHighlightMode (s);
+	else
+	    mode = HighlightModeNone;
 
-	if (mode == HighlightModeBringSelectedToFront && !ss->popupDelayHandle)
+	if (mode == HighlightModeBringSelectedToFront)
 	{
 	    zoomed = findWindowAtScreen (s, ss->selectedWindow);
 	    if (zoomed)
@@ -1162,7 +1247,7 @@ switchPaintOutput (CompScreen		   *s,
 	    glPushMatrix ();
 	    glLoadMatrixf (sTransform.m);
 
-	    if (mode == HighlightModeShowRectangle && !ss->popupDelayHandle)
+	    if (mode == HighlightModeShowRectangle)
 	    {
 		CompWindow *w;
 
@@ -1174,31 +1259,39 @@ switchPaintOutput (CompScreen		   *s,
 		if (w)
 		{
 		    BoxRec box;
+		    int    opacity = 100;
 
-		    box.x1 = w->attrib.x - w->input.left;
-		    box.y1 = w->attrib.y - w->input.top;
-		    box.x2 = w->attrib.x + w->width + w->input.right;
-		    box.y2 = w->attrib.y + w->height + w->input.bottom;
+		    if (switchGetPaintRectangle (w, &box, &opacity))
+		    {
+			unsigned short *color;
+			GLushort       r, g, b, a;
 
-		    glEnable (GL_BLEND);
+			glEnable (GL_BLEND);
 
-		    /* fill rectangle */
-		    glColor4usv (staticswitcherGetHighlightColor (s));
-		    glRecti (box.x1, box.y2, box.x2, box.y1);
+			/* fill rectangle */
+			r = staticswitcherGetHighlightColorRed (s);
+			g = staticswitcherGetHighlightColorGreen (s);
+			b = staticswitcherGetHighlightColorBlue (s);
+			a = staticswitcherGetHighlightColorAlpha (s);
+			a = a * opacity / 100;
 
-		    /* draw outline */
-		    glColor4usv (staticswitcherGetHighlightBorderColor (s));
-		    glLineWidth (2.0);
-		    glBegin (GL_LINE_LOOP);
-		    glVertex2i (box.x1, box.y1);
-		    glVertex2i (box.x2, box.y1);
-		    glVertex2i (box.x2, box.y2);
-		    glVertex2i (box.x1, box.y2);
-		    glEnd ();
+			glColor4us (r, g, b, a);
+			glRecti (box.x1, box.y2, box.x2, box.y1);
 
-		    /* clean up */
-		    glColor4usv (defaultColor);
-		    glDisable (GL_BLEND);
+			/* draw outline */
+			glLineWidth (1.0);
+			glDisable (GL_LINE_SMOOTH);
+
+			color = staticswitcherGetHighlightBorderColor (s);
+			switchPaintRect (&box, 0, color, opacity);
+			switchPaintRect (&box, 2, color, opacity);
+			color = staticswitcherGetHighlightBorderInlayColor (s);
+			switchPaintRect (&box, 1, color, opacity);
+
+			/* clean up */
+			glColor4usv (defaultColor);
+			glDisable (GL_BLEND);
+		    }
 		}
 	    }
 
@@ -1508,14 +1601,25 @@ switchGetRowXOffset (CompScreen   *s,
 		     SwitchScreen *ss,
 		     int          y)
 {
-    if (staticswitcherGetRowAlign (s) == RowAlignLeft)
-	return 0;
+    int retval = 0;
 
     if (ss->nWindows - (y * ss->xCount) >= ss->xCount)
 	return 0;
 
-    return (ss->xCount - ss->nWindows + (y * ss->xCount)) *
-	   (ss->previewWidth + ss->previewBorder) / 2;
+    switch (staticswitcherGetRowAlign (s)) {
+    case RowAlignLeft:
+	break;
+    case RowAlignCentered:
+	retval = (ss->xCount - ss->nWindows + (y * ss->xCount)) *
+	         (ss->previewWidth + ss->previewBorder) / 2;
+	break;
+    case RowAlignRight:
+	retval = (ss->xCount - ss->nWindows + (y * ss->xCount)) *
+	         (ss->previewWidth + ss->previewBorder);
+	break;
+    }
+
+    return retval;
 }
 
 static Bool

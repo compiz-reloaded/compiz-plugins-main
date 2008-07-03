@@ -37,7 +37,12 @@
                 <_short>Qt Window Fix</_short>
                 <_long>Fix window type of various Qt windows.</_long>
                 <default>true</default>
-            </option>
+	    </option>
+	    <option type="bool" name="convert_urgency">
+		<_short>Convert Urgency to Demands Attention</_short>
+		<_long>Make "urgent" windows also "demand attention".</_long>
+		<default>false</default>
+	    </option>
 	    <option type="bool" name="aiglx_fragment_fix">
                 <_short>AIGLX Fragment Parameter Fix</_short>
                 <_long>Fix broken glProgramEnvParameter4f implementation.</_long>
