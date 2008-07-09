@@ -3,15 +3,15 @@
 # Copyright (C) 2007 opencompositing.org
 # This file is distributed under the same license as the compiz-fusion package.
 # Thruth <gubotruth@gmail.com>, 2007
-# Cheng JING <jingcheng01@gmail.com> 2008
+# JING Cheng <jingcheng01@gmail.com> 2008
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:47+0530\n"
-"PO-Revision-Date: 2008-06-06 07:40+0200\n"
-"Last-Translator: wyat1984 <wyat1984@163.com>\n"
+"POT-Creation-Date: 2008-07-09 16:55+0530\n"
+"PO-Revision-Date: 2008-07-09 04:49+0200\n"
+"Last-Translator: JING Cheng <jingcheng01@gmail.com>\n"
 "Language-Team: Chinese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,10 +19,10 @@ msgstr ""
 "X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
-msgstr "仅鼠标转面时开启 3D 窗口"
+msgstr "仅鼠标转面时开启3D窗口"
 
 msgid "3D Windows"
-msgstr "3D 窗口"
+msgstr "3D窗口"
 
 msgid "Bevel Bottom Left"
 msgstr "圆滑左底角"
@@ -64,7 +64,7 @@ msgid "Color of the active window's depth"
 msgstr "激活窗口颜色深度"
 
 msgid "Elevates windows while rotating the cube"
-msgstr "立方体转面时浮起的窗口"
+msgstr "立方体转面时浮起窗口"
 
 msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
@@ -690,7 +690,7 @@ msgid "Up-down"
 msgstr "上/下"
 
 msgid "Use various animations as window effects"
-msgstr "使用不同的窗口动画效果"
+msgstr "使用各种窗口动画效果"
 
 msgid "Vacuum"
 msgstr "真空特效"
@@ -882,6 +882,13 @@ msgstr "测试窗口的 Y 坐标"
 msgid "Y position"
 msgstr "Y 坐标"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "切换滤镜"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "降低亮度"
 
@@ -912,7 +919,7 @@ msgid "Brightness windows"
 msgstr "淡出窗口的亮度"
 
 msgid "General"
-msgstr "一般"
+msgstr "常规"
 
 msgid "Saturation Decrease"
 msgstr "降低饱和度"
@@ -1035,7 +1042,7 @@ msgid "Window Manager Command Line"
 msgstr "窗口管理器命令行"
 
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
-msgstr "窗口管理器命令行。（切勿填入 COMPIZ !!）"
+msgstr "窗口管理器命令行。切勿在此输入COMPIZ！！！"
 
 msgid "Above"
 msgstr "之上"
@@ -1281,6 +1288,20 @@ msgstr "仅在鼠标转面时自动缩小。"
 #, fuzzy
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "自动缩小立方体以适合屏幕。"
+
+#, fuzzy
+msgid "Cube Caps"
+msgstr "立方体齿轮"
+
+msgid "Render images on top and bottom of the cube"
+msgstr ""
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "立方体倒映"
+
+msgid "Cube Reflection"
+msgstr "立方体倒映"
 
 msgid "Animation used when switching to expo mode"
 msgstr ""
@@ -1559,6 +1580,9 @@ msgstr ""
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
+msgid "Minimum zoom factor"
+msgstr ""
+
 #, fuzzy
 msgid "Mouse Behaviour"
 msgstr "行为"
@@ -1647,6 +1671,11 @@ msgid "Sync Mouse"
 msgstr ""
 
 msgid "Target Focused Window on Specific level"
+msgstr ""
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
 msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
@@ -2151,7 +2180,7 @@ msgid "The size of the grouped window glow"
 msgstr "组合窗口光晕大小"
 
 msgid "The size of the window thumbs in the task bar"
-msgstr "任务栏中缩略图大小"
+msgstr "在任务栏中的窗口缩略图大小"
 
 msgid "The size of the window title font in the tab bar"
 msgstr "标签栏中窗口标题字体大小"
@@ -2216,20 +2245,19 @@ msgid "Y distance for spring model"
 msgstr "弹性模型的距离 Y"
 
 msgid "Compression Quality"
-msgstr ""
+msgstr "压缩质量"
 
 msgid "JPEG"
-msgstr ""
+msgstr "JPEG"
 
 msgid "JPEG image format plugin"
-msgstr ""
+msgstr "JPEG图像格式插件"
 
 msgid "Quality of compression when saving JPEG images"
-msgstr ""
+msgstr "保存JPEG图像时的压缩质量"
 
-#, fuzzy
 msgid "Background/Window brightness."
-msgstr "背景亮度。"
+msgstr "背景/窗口亮度。"
 
 #, fuzzy
 msgid "Background/Window saturation."
@@ -2693,7 +2721,7 @@ msgstr "动画速度"
 
 #, fuzzy
 msgid "Animation timestep"
-msgstr "动画选项"
+msgstr "动画时间步长"
 
 msgid "Avoid Offscreen"
 msgstr ""
@@ -3039,7 +3067,7 @@ msgid "Show resize info for all windows."
 msgstr "为窗口绘制映影。"
 
 msgid "Text color."
-msgstr ""
+msgstr "文本颜色"
 
 #, fuzzy
 msgid "Above ring"
@@ -3125,15 +3153,14 @@ msgstr ""
 msgid "Minimum Scale Factor"
 msgstr ""
 
-#, fuzzy
 msgid "Next Window"
-msgstr "排列窗口"
+msgstr "下一个窗口"
 
 msgid "Next Window (All Workspaces)"
-msgstr ""
+msgstr "下一个窗口(所有工作区)"
 
 msgid "Next Window (Group)"
-msgstr ""
+msgstr "下一个窗口(组)"
 
 msgid "Overlay Icon"
 msgstr ""
@@ -3157,7 +3184,7 @@ msgid "Ring Height"
 msgstr "右"
 
 msgid "Ring Switcher"
-msgstr ""
+msgstr "环形切换器"
 
 #, fuzzy
 msgid "Ring Width"
@@ -3200,9 +3227,8 @@ msgstr ""
 msgid "Show Minimized"
 msgstr ""
 
-#, fuzzy
 msgid "Show Window Title"
-msgstr "窗口标题字体"
+msgstr "显示窗口标题"
 
 msgid ""
 "Show switcher if not visible and select next window of the current "
@@ -3242,33 +3268,28 @@ msgstr ""
 msgid "Thumbnail Width"
 msgstr ""
 
-#, fuzzy
 msgid "Window title display"
-msgstr "窗口标题字体"
+msgstr "窗口标题显示"
 
 #, fuzzy
 msgid "Windows that should be shown in ring"
-msgstr "使用 3D 的窗口"
+msgstr "使用3D的窗口"
 
-#, fuzzy
 msgid "All windows"
-msgstr "窗口排列"
+msgstr "全部窗口"
 
 #, fuzzy
 msgid "Background color of the window title"
 msgstr "标签栏中窗口标题颜色"
 
-#, fuzzy
 msgid "Close Window"
-msgstr "排列窗口"
+msgstr "关闭窗口"
 
-#, fuzzy
 msgid "Close window while in scale mode"
-msgstr "立方体转面时浮起的窗口"
+msgstr "在scale模式中时关闭窗口"
 
-#, fuzzy
 msgid "Close windows while in scale mode"
-msgstr "立方体转面时浮起的窗口"
+msgstr "在scale模式中时关闭窗口"
 
 msgid "Color used for highlighting the hovered window"
 msgstr ""
@@ -3323,9 +3344,8 @@ msgstr "窗口合并(实验性)"
 msgid "Pull Window"
 msgstr "窗口排列"
 
-#, fuzzy
 msgid "Pull window to current viewport while in scale mode"
-msgstr "立方体转面时浮起的窗口"
+msgstr ""
 
 msgid "Scale Addons"
 msgstr ""
@@ -3376,7 +3396,7 @@ msgstr "窗口间隔"
 
 #, fuzzy
 msgid "Zoom window while in scale mode"
-msgstr "立方体转面时浮起的窗口"
+msgstr "立方体转面时缩放窗口"
 
 msgid "Filter Case Insensitive"
 msgstr ""
@@ -3427,7 +3447,7 @@ msgid "Initiate screencasting"
 msgstr "启动火焰绘制"
 
 msgid "Put screenshot images in this directory"
-msgstr ""
+msgstr "保存截屏图片到此目录"
 
 #, fuzzy
 msgid "ScreenCast plugin"
@@ -3614,45 +3634,40 @@ msgid ""
 msgstr ""
 
 msgid "Shift Switcher"
-msgstr ""
+msgstr "轮转切换器"
 
 msgid "Shift Switcher Plugin"
-msgstr ""
+msgstr "轮转切换器插件"
 
-#, fuzzy
 msgid "Shift Windows"
-msgstr "排列窗口"
+msgstr "轮转窗口"
 
-#, fuzzy
 msgid "Shift animation speed"
-msgstr "动画速度"
+msgstr "轮转动画速度"
 
-#, fuzzy
 msgid "Shift speed"
-msgstr "速度"
+msgstr "轮转速度"
 
-#, fuzzy
 msgid "Shift timestep"
-msgstr "标签步长"
+msgstr "轮转时间步长"
 
 msgid "Switcher mode"
-msgstr ""
+msgstr "切换器模式"
 
 msgid "Switcher mode."
-msgstr ""
+msgstr "切换器模式。"
 
 msgid "Terminate"
-msgstr ""
+msgstr "终止"
 
 msgid "Terminate switcher."
-msgstr ""
+msgstr "终止切换器。"
 
-#, fuzzy
 msgid "Windows that should be shown in the shift switcher"
-msgstr "允许加入组合的窗口"
+msgstr "应显示于轮转切换器中的窗口"
 
 msgid "Access your desktop easily"
-msgstr "清空桌面的快捷方式"
+msgstr ""
 
 msgid "Direction of window movement"
 msgstr "窗口移动方向"
@@ -3775,15 +3790,12 @@ msgstr "随机颜色火焰"
 msgid "Ring radius"
 msgstr "边框投影"
 
-#, fuzzy
 msgid "Rotation speed"
-msgstr "动画速度"
+msgstr "旋转速度"
 
-#, fuzzy
 msgid "Rotation speed."
-msgstr "动画速度"
+msgstr "旋转速度。"
 
-#, fuzzy
 msgid "Show mouse"
 msgstr "显示鼠标"
 
@@ -3852,9 +3864,8 @@ msgstr ""
 msgid "Use this bindings to avoid snapping."
 msgstr ""
 
-#, fuzzy
 msgid "Window edges"
-msgstr "窗口类型"
+msgstr "窗口边缘"
 
 msgid "Bottom to Top"
 msgstr "从底至顶"
@@ -3866,7 +3877,7 @@ msgstr ""
 "屏幕刷新延迟(微秒)。减小这个值可以让飞雪动画更加平滑，但会增加 CPU 占用。"
 
 msgid "Enable Blending"
-msgstr "启用渲染"
+msgstr "启用混合"
 
 msgid "Enable Textures"
 msgstr "启用纹理"
@@ -4012,12 +4023,247 @@ msgstr "闪屏"
 msgid "Start Splash."
 msgstr "启动闪屏."
 
-msgid "Render text to texture"
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
 msgstr ""
 
 #, fuzzy
+msgid "Behavior"
+msgstr "行为"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "背景文件"
+
+msgid "On Thumbnail"
+msgstr ""
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "激活指定窗口"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "选定窗口的饱和度"
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "窗口宽度"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "基底远景色"
+
+#, fuzzy
+msgid "Windows"
+msgstr "3D窗口"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "应显示于轮转切换器中的窗口"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "火焰神笔绘画时的背景亮度"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "页面不显示程序"
+
+msgid "Auto Change Viewport"
+msgstr ""
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "在屏幕上绘制火焰"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "选取方框填充色"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr ""
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "标签高亮颜色"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "标签高亮颜色"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "标签高亮颜色"
+
+#, fuzzy
+msgid "Icon"
+msgstr "进"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "窗口宽度"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "创建 Mipmap"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "开关当前窗口滤镜"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "下一个窗口"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "下一个窗口(所有工作区)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "下一个窗口(组)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "下一个窗口(组)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "组合窗口匹配"
+
+msgid "Popup switcher if not visible and select next window"
+msgstr ""
+
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+
+msgid "Popup switcher if not visible and select previous window"
+msgstr ""
+
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "组合窗口"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "全部窗口"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "下一个窗口(组)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "下一个窗口(组)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "选取单个窗口"
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "选取单个窗口"
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "窗口宽度"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "矩形光晕"
+
+msgid "Show icon next to thumbnail"
+msgstr ""
+
+#, fuzzy
+msgid "Show minimized windows"
+msgstr "飞雪漫窗"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "切换器模式"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "轮转时间步长"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "窗口排列"
+
+msgid "Taskbar Entry"
+msgstr ""
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "应显示于轮转切换器中的窗口"
+
+msgid "Render text to texture"
+msgstr "渲染文本纹理"
+
 msgid "Text"
-msgstr "纹理"
+msgstr "文本"
 
 #, fuzzy
 msgid "Enable Titles"
@@ -4094,13 +4340,11 @@ msgstr ""
 msgid "Time (in ms) before Thumbnail is shown."
 msgstr ""
 
-#, fuzzy
 msgid "Window Previews"
-msgstr "窗口部件大小"
+msgstr "窗口预览"
 
-#, fuzzy
 msgid "Window thumbnails at the taskbar"
-msgstr "任务栏中缩略图大小"
+msgstr "在任务栏中显示窗口缩略图"
 
 #, fuzzy
 msgid "Window title"
@@ -4715,10 +4959,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "在屏幕上绘制火焰"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "颜色"
 
@@ -5033,9 +5273,6 @@ msgstr "“总在可见工作区”的窗口应该有粘着效果"
 msgid "Workarounds"
 msgstr ""
 
-#~ msgid "Cube Reflection"
-#~ msgstr "立方体倒映"
-
 #, fuzzy
 #~ msgid "Close Windows In Scale"
 #~ msgstr "纵向排列窗口"
@@ -5061,10 +5298,6 @@ msgstr ""
 #~ msgid "Misc. options"
 #~ msgstr "杂项设置"
 
-#, fuzzy
-#~ msgid "Show minimized windows"
-#~ msgstr "飞雪漫窗"
-
 #~ msgid "Disable Caps for Inside Cube"
 #~ msgstr "立方体禁用顶面底面"
 
@@ -5079,9 +5312,6 @@ msgstr ""
 #~ "This will create mipmaps which improve overall texture appearence, and "
 #~ "reduce jagged edges."
 #~ msgstr "创建 mipmap 将改善整体纹理显示,并降低边缘锯齿化几率"
-
-#~ msgid "Window width"
-#~ msgstr "窗口宽度"
 
 #~ msgid "Spring model on move"
 #~ msgstr "移动类型的弹性模型"

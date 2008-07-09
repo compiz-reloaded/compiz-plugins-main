@@ -47,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:46+0530\n"
-"PO-Revision-Date: 2008-06-03 21:14+0200\n"
+"POT-Creation-Date: 2008-07-09 16:54+0530\n"
+"PO-Revision-Date: 2008-07-08 22:38+0200\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -1004,6 +1004,12 @@ msgstr "Posizione Y della finestra del benchmark"
 msgid "Y position"
 msgstr "Posizione Y"
 
+msgid "Bicubic filter"
+msgstr "Filtro bicubico"
+
+msgid "Bicubic texture filtering"
+msgstr "Filtro texture bicubico"
+
 msgid "Brightness Decrease"
 msgstr "Diminuzione luminosità"
 
@@ -1427,6 +1433,18 @@ msgstr "Esegue lo zoom automatico solo alla rotazione col mouse."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Esegue lo zoom automatico per mostrare tutto il cubo sullo schermo."
 
+msgid "Cube Caps"
+msgstr "Capi del cubo"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Applica delle immagini alle facce superiore e inferiore del cubo"
+
+msgid "Compiz cube reflection"
+msgstr "Riflesso del cubo"
+
+msgid "Cube Reflection"
+msgstr "Riflesso del cubo"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animazione da usare nel passaggio alla modalità «Expo»"
 
@@ -1730,6 +1748,9 @@ msgstr ""
 "Nasconde il puntatore originale del mouse negli ingrandimenti e nella "
 "scalatura del mouse"
 
+msgid "Minimum zoom factor"
+msgstr "Minimo fattore di ingrandimento"
+
 msgid "Mouse Behaviour"
 msgstr "Comportamento mouse"
 
@@ -1848,6 +1869,13 @@ msgstr "Sincronizzare il mouse"
 # alla finestra col focus invece che al mouse.
 msgid "Target Focused Window on Specific level"
 msgstr "Applicare il livello specifico alla finestra col focus"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
+"Il fattore minimo di ingrandimento consentito. Un valore di 0.5 equivale a "
+"un ingrandimento 2x, un valore di 0.25 a un ingrandimento 4x."
 
 # (ndt) suggerimento
 msgid "The size of the margin to add when attempting to restrain the mouse."
@@ -4330,6 +4358,221 @@ msgstr "Splash"
 msgid "Start Splash."
 msgstr "Avvia «Splash»."
 
+# (ndt) suggerimento
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+"Quantità di opacità (in percentuale) per le finestre nel selettore che non "
+"sono selezionate"
+
+msgid "Behavior"
+msgstr "Comportamento"
+
+# (ndt) suggerimento
+msgid "Darken background when showing the stack"
+msgstr "Oscurare lo sfondo alla visualizzazione della pila"
+
+msgid "On Thumbnail"
+msgstr "Sulla miniatura"
+
+msgid "Rotate inactive windows"
+msgstr "Ruotare le finestre inattive"
+
+msgid "Should not selected windows be rotated"
+msgstr "Indica se le finestre non selezionate debbano essere ruotate"
+
+msgid "Stack Window Switcher"
+msgstr "Selettore finestre a pila"
+
+msgid "Tilt angle of the background."
+msgstr "Inclina l'angolo dello sfondo"
+
+msgid "Windows"
+msgstr "Finestre"
+
+msgid "Windows that should be shown in the switcher"
+msgstr "Finestre da mostrare nel selettore"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr "Allineamento per le righe non completamente piene"
+
+msgid "Amount of brightness in percent"
+msgstr "Luminosità in percentuale"
+
+msgid "Amount of opacity in percent"
+msgstr "Opacità in percentuale"
+
+msgid "Amount of saturation in percent"
+msgstr "Saturazione in percentuale"
+
+msgid "Auto Change Viewport"
+msgstr "Cambiamento automatico area di lavoro"
+
+msgid "Bring Selected To Front"
+msgstr "Portare la selezione in primo piano"
+
+msgid "Centered"
+msgstr "Centrato"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+"Passa all'area di lavoro della finestra selezionata durante la selezione"
+
+msgid "Color of highlight rectangle"
+msgstr "Colore del rettangolo di evidenziazione"
+
+msgid "Color of highlight rectangle border"
+msgstr "Colore del bordo del rettangolo di evidenziazione"
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr "Colore dell'intaglio nel bordo del rettangolo di evidenziazione"
+
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "Genera mipmap quando possibile per una migliore qualità"
+
+msgid "Highlight Border Color"
+msgstr "Colore bordo evidenziazione"
+
+msgid "Highlight Border Inlay Color"
+msgstr "Colore intaglio bordo evidenziazione"
+
+msgid "Highlight Mode"
+msgstr "Modalità evidenziazione"
+
+msgid "Icon"
+msgstr "Icona"
+
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Rettangolo evidenziazione finestra minimizzata"
+
+msgid "Mipmap"
+msgstr "Mipmap"
+
+msgid "Mode for highlighting the currently selected window"
+msgstr "Modalità per evidenziare la finestra selezionata"
+
+msgid "Next Panel"
+msgstr "Pannello successivo"
+
+msgid "Next window"
+msgstr "Finestra successiva"
+
+msgid "Next window (All windows)"
+msgstr "Finestra successiva (tutte le finestre)"
+
+msgid "Next window (Group)"
+msgstr "Finestra successiva (gruppo)"
+
+msgid "Next window (No popup)"
+msgstr "Finestra successiva (niente pop-up)"
+
+msgid "Original Window Position"
+msgstr "Posizione originale della finestra"
+
+msgid "Popup Window Delay"
+msgstr "Ritardo finestra pop-up"
+
+msgid "Popup switcher if not visible and select next window"
+msgstr "Mostra il selettore se non visibile e seleziona la finestra successiva"
+
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Mostra il selettore se non visibile e seleziona la finestra successiva "
+"dell'applicazione corrente"
+
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Mostra il selettore se non visibile e seleziona la finestra successiva tra "
+"tutte le finestre"
+
+msgid "Popup switcher if not visible and select previous window"
+msgstr "Mostra il selettore se non visibile e seleziona la finestra precedente"
+
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Mostra il selettore se non visibile e seleziona la finestra precedente "
+"dell'applicazione corrente"
+
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Mostra il selettore se non visibile e seleziona la finestra precedente tra "
+"tutte le finestre"
+
+msgid "Prev Panel"
+msgstr "Pannello precedente"
+
+msgid "Prev window"
+msgstr "Finestra precedente"
+
+msgid "Prev window (All windows)"
+msgstr "Finestra precedente (tutte le finestre)"
+
+msgid "Prev window (Group)"
+msgstr "Finestra precedente (gruppo)"
+
+msgid "Prev window (No popup)"
+msgstr "Finestra precedente (niente pop-up)"
+
+msgid "Row Alignment"
+msgstr "Allineamento riga"
+
+# (ndt) non mi è molto chiaro cosa faccia
+msgid "Select next panel type window."
+msgstr "Seleziona il pannello successivo"
+
+msgid "Select next window without showing the popup window."
+msgstr "Seleziona la finestra successiva senza mostrare la finestra di pop-up"
+
+# (ndt) non mi è molto chiaro cosa faccia
+msgid "Select previous panel type window."
+msgstr "Seleziona il pannello precedente"
+
+msgid "Select previous window without showing the popup window."
+msgstr "Seleziona la finestra precedente senza mostrare la finestra di pop-up"
+
+msgid "Selected Window Highlight"
+msgstr "Evidenziazione finestra selezionata"
+
+msgid "Show Rectangle"
+msgstr "Mostrare rettangolo"
+
+msgid "Show icon next to thumbnail"
+msgstr "Mostrare icona vicino la miniatura"
+
+msgid "Show minimized windows"
+msgstr "Mostrare finestre minimizzate"
+
+msgid "Static Application Switcher"
+msgstr "Selettore applicazione statico"
+
+msgid "Switcher speed"
+msgstr "Velocità selettore"
+
+msgid "Switcher timestep"
+msgstr "Intervallo selettore"
+
+msgid "Switcher windows"
+msgstr "Finestre da selezionare"
+
+msgid "Taskbar Entry"
+msgstr "Voce barra delle applicazioni"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr "Tempo (in secondi) prima che la finestra pop-up venga mostrata"
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+"Dove disegnare il rettangolo di evidenziozione per le finestre minimizzate"
+
+msgid "Windows that should be shown in switcher"
+msgstr "Finestre da mostrare nel selettore"
+
 msgid "Render text to texture"
 msgstr "Rende il testo in texture"
 
@@ -4339,7 +4582,7 @@ msgstr "Testo"
 # (ndt) non so se sia un'opzione...
 # nel qual caso va all'infinito...
 msgid "Enable Titles"
-msgstr "Attiva titoli"
+msgstr "Attivare titoli"
 
 msgid "Fade In/Out Duration"
 msgstr "Durata dissolvenza"
@@ -5078,9 +5321,6 @@ msgstr "Sfondi"
 msgid "Center Tiled"
 msgstr "Piastrellato al centro"
 
-msgid "Centered"
-msgstr "Centrato"
-
 msgid "Color 1"
 msgstr "Colore 1"
 
@@ -5291,7 +5531,7 @@ msgid "AIGLX Fragment Parameter Fix"
 msgstr "Correzione parametro AIGLX Fragment"
 
 msgid "Convert Urgency to Demands Attention"
-msgstr ""
+msgstr "Conversione delle finestre con flag \"urgent\" in \"demand attention\""
 
 msgid "Firefox Menu Fix"
 msgstr "Correzione menù Firefox"
@@ -5337,11 +5577,9 @@ msgstr ""
 "Rende le finestre adesive su tutte le scrivanie. Le finestre adesive sono "
 "visibili in tutte le aree di lavoro."
 
-#, fuzzy
+# (ndt) traduzione precedente: flag richiesta attenzione
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr ""
-"Attiva la finestra successiva che ha il flag di richiesta attenzione "
-"impostato."
+msgstr "Rende le finestre \"urgent\" anche \"demand attention\"."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""
@@ -5368,12 +5606,6 @@ msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
-
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Applica delle immagini alle facce superiore e inferiore del cubo"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Riflesso del cubo"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Chiudere finestre in «Scala finestre»"

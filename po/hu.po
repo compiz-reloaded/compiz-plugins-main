@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:46+0530\n"
+"POT-Creation-Date: 2008-07-09 16:54+0530\n"
 "PO-Revision-Date: 2008-05-31 09:16+0200\n"
 "Last-Translator: KAMI <kamihir@freemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -905,6 +905,13 @@ msgstr "A teljesítménymérő ablak függőleges pozíciója"
 msgid "Y position"
 msgstr "Függőleges pozíció"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Szűrő váltása"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Fényerő csökkentése"
 
@@ -1296,6 +1303,20 @@ msgstr "Automatikus nagyítás csak egérrel forgatáskor."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Automatikus nagyítás, hogy a kocka a elférjen a képernyőn."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Kocka fedőlapok"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Képek leképzése a kocka tetejére és aljára"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Kocka tükröződés"
+
+msgid "Cube Reflection"
+msgstr "Kocka tükröződés"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animáció használata közszemlére váltáskor"
 
@@ -1575,6 +1596,10 @@ msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 "Eredeti egérkurzor elrejtése amikor az egér nagyítva illetve átméretezve van"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Minimális méretarány"
+
 msgid "Mouse Behaviour"
 msgstr "Egér viselkedés"
 
@@ -1667,6 +1692,11 @@ msgstr "Egér szinkronizálása"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Megadott nagyítási mérték alkalmazása aktív ablakra"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Margó szélessége amikor megpróbálja korlátozni az egeret."
@@ -3960,6 +3990,267 @@ msgstr "Indítókép"
 msgid "Start Splash."
 msgstr "Indítókép megjelenítése."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+"Átlátszatlanság mértéke (százalékban megadva) a nem kiválasztott ablakokhoz "
+"a gyűrűben."
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Viselkedés"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Háttér elsötétítése a gyűrű megjelenítésekor"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Előnézet szélessége"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Megadott ablak aktiválása"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Ablak címsorának megjelenítése félkövér betűstílussal."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Gyűrűk ura"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "A háttér színátmenetének első színe."
+
+#, fuzzy
+msgid "Windows"
+msgstr "Térhatású ablakok"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Fortélyos váltóban megjelenő ablakok"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Háttér fényereje rajzolás alatt"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr ""
+"Azon programok listája, amely futásuk alatt sem jelenhetnek meg a "
+"munkaterület váltón"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Elhelyezés a munkalapon"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+msgid "Centered"
+msgstr "Középre helyezett"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "A kiválasztó téglalap kitöltőszíne"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr ""
+"MIP térképek készítése, hacsak lehetséges, a jobb minőségű skálázás érdekében"
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Kijelölés színe"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Kijelölés színe"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Kijelölés színe"
+
+#, fuzzy
+msgid "Icon"
+msgstr "Bent"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Ablak kijelölése"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "MIP térképek"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Követett ablak kijelölőszíne"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Következő ablak"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Következő ablak (összes munkaterület)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Következő ablak (csoportok)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Következő ablak (csoportok)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Ablakcsoportok egyezése"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr ""
+"Ablakváltó megjelenítése ha nem látható és a következő ablak kiválasztása."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Ablakváltó megjelenítése ha nem látható és a jelenlegi alkalmazás ablakai "
+"közül a következő ablak kiválasztása."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Ablakváltó megjelenítése ha nem látható és az összes ablak közül a következő "
+"ablak kiválasztása."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "Ablakváltó megjelenítése ha nem látható és az előző ablak kiválasztása"
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Ablakváltó megjelenítése ha nem látható és a jelenlegi alkalmazás ablakai "
+"közül az előző ablak kiválasztása."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Ablakváltó megjelenítése ha nem látható és az összes ablak közül az előző "
+"ablak kiválasztása."
+
+#, fuzzy
+msgid "Prev Panel"
+msgstr "Áttekintés előnézete"
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Előző ablak"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Előző ablak (összes munkaterület)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Előző ablak (csoportok)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Előző ablak (csoportok)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Megadja, hogy az ablakok címsora hova kerüljön."
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Megadja, hogy az ablakok címsora hova kerüljön."
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Ablak kijelölése"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Négyszögletes"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Ablak címsorának megjelenítése az előnézeti képen."
+
+msgid "Show minimized windows"
+msgstr "Minimalizált ablakok megjelenítése"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Váltás módja"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Váltás időköz"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Kiszűrt ablakok"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Tálca"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Fortélyos váltóban megjelenő ablakok"
+
 msgid "Render text to texture"
 msgstr "Szöveg textúrára leképzése"
 
@@ -4655,9 +4946,6 @@ msgstr "Háttérképek"
 msgid "Center Tiled"
 msgstr "Mozaik középre"
 
-msgid "Centered"
-msgstr "Középre helyezett"
-
 msgid "Color 1"
 msgstr "Szín 1"
 
@@ -4943,12 +5231,6 @@ msgstr "Az ablakok legyenek ragadósak az összes munkaasztalon"
 msgid "Workarounds"
 msgstr "Hibajavítások"
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Képek leképzése a kocka tetejére és aljára"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Kocka tükröződés"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Áttekintő nézetben elrejtendő ablaktípusok"
 
@@ -4987,9 +5269,6 @@ msgstr "Hibajavítások"
 
 #~ msgid "Misc. options"
 #~ msgstr "További beállítások"
-
-#~ msgid "Show minimized windows"
-#~ msgstr "Minimalizált ablakok megjelenítése"
 
 #~ msgid "Tile or Stretch"
 #~ msgstr "Mozaik vagy kitöltés"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:46+0530\n"
+"POT-Creation-Date: 2008-07-09 16:55+0530\n"
 "PO-Revision-Date: 2008-06-02 14:56+0200\n"
 "Last-Translator: Nicolau Gonçalves <excentriko@gmail.com>\n"
 "Language-Team: \n"
@@ -928,6 +928,13 @@ msgstr "Posição Y da janela de benchmark"
 msgid "Y position"
 msgstr "Posição Y"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Trocar de filtro"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Diminuir Brilho"
 
@@ -1325,6 +1332,20 @@ msgstr "Retroceder o zoom automaticamente apenas com rotação através do rato.
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Diminuir o zoom automaticamente para o cubo caber no ecrã."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Coberturas Cubo"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Mostrar imagens nas faces de cima e de baixo do cubo"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Reflexão do cubo"
+
+msgid "Cube Reflection"
+msgstr "Reflexão do cubo"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animação usada quando se muda para o modo expo"
 
@@ -1610,6 +1631,10 @@ msgstr ""
 "Esconde o cursor original do rato quando tem magnificação activa e "
 "escalamento do rato"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Factor de Escalamento Mínimo"
+
 msgid "Mouse Behaviour"
 msgstr "Comportamento do Rato"
 
@@ -1707,6 +1732,11 @@ msgstr "Sincronizar Rato"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Mostrar a Janela Focada num Nível Específico"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
@@ -4020,6 +4050,264 @@ msgstr "Ecrã de logótipo"
 msgid "Start Splash."
 msgstr "Iniciar Ecrã de Logótipo."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+"Nível de opacidade (em percentagem) para janelas no anel que não estão "
+"seleccionadas"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Comportamento"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Escurecer fundo quando se estiver a mostrar o anel"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Largura Miniatura"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Activar uma janela especificada"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Deverá o título da janela ser mostrada a negrito."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Alternador de Aplicações em Anel"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Cor 1 do gradiente de fundo."
+
+#, fuzzy
+msgid "Windows"
+msgstr "Janelas 3D"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Janelas que se devem mostrar no shift switcher"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Luminosidade do fundo durante o desenho"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Não mostrar aplicação no pager"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Colocar no Viewport"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+msgid "Centered"
+msgstr "Centrada"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Cor com que se preenche o rectângulo de selecção"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "Gerar mipmaps quando possível para escalamento de melhor qualidade."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Cor Realce"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Cor Realce"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Cor Realce"
+
+#, fuzzy
+msgid "Icon"
+msgstr "Aproximar"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Realçar Janela"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Cor usada para evidenciar a janela sobre a qual paira o cursor do rato"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Próxima Janela"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Próxima Janela (Todos os Ambientes de Trabalho)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Próxima Janela (Grupo)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Próxima Janela (Grupo)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Tipos de janelas a agrupar"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "Mostrar anel se não estiver visível e seleccionar a próxima janela."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Mostar anel se não visível e seleccionar a próxima janela da aplicação "
+"actual."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Mostrar anel, se não estiver visível, e selecionar próxima janela de todas "
+"as janelas."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "Mostrar anel se não estiver visível e seleccionar a janela anterior."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Mostar anel se não visível e seleccionar a janela anterior da aplicação "
+"actual."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Mostrar anel, se não estiver visível, e selecionar janela anterior de todas "
+"as janelas."
+
+#, fuzzy
+msgid "Prev Panel"
+msgstr "Prever Escalamento"
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Janela Anterior"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Janela Anterior (Todos os Ambientes de Trabalho)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Janela Anterior (Grupo)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Janela Anterior (Grupo)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Selecciona onde posicionar o título da janela."
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Selecciona onde posicionar o título da janela."
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Realçar Janela"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rectangular"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Mostrar Título da Janela na Miniatura."
+
+#, fuzzy
+msgid "Show minimized windows"
+msgstr "Janelas não minimizáveis"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Modo do alternador"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Espaço de tempo do Shift"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Janelas filtradas"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Barra de tarefas"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Janelas que se devem mostrar no shift switcher"
+
 msgid "Render text to texture"
 msgstr "Renderizar texto em texturas"
 
@@ -4722,9 +5010,6 @@ msgstr "Fundos"
 msgid "Center Tiled"
 msgstr "Centrar Mosaico"
 
-msgid "Centered"
-msgstr "Centrada"
-
 msgid "Color 1"
 msgstr "Cor 1"
 
@@ -5008,12 +5293,6 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Correcções"
-
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Mostrar imagens nas faces de cima e de baixo do cubo"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Reflexão do cubo"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Fechar Janelas em Scale"

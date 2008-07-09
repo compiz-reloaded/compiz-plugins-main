@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:45+0530\n"
-"PO-Revision-Date: 2008-06-05 23:21+0200\n"
-"Last-Translator: Roy Alvear <racl@gulix.cl>\n"
+"POT-Creation-Date: 2008-07-09 16:53+0530\n"
+"PO-Revision-Date: 2008-06-28 16:52+0100\n"
+"Last-Translator: Rafa Ramírez <berylog@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
-msgstr "3D sólo con rotación con el ratón"
+msgstr "3D únicamente al rotar con el ratón"
 
 msgid "3D Windows"
 msgstr "Ventanas 3D"
@@ -69,14 +69,14 @@ msgid ""
 "Initiates the 3D display only if rotate is mouse driven. (Ex. You rotate the "
 "cube via the mouse)"
 msgstr ""
-"Inicia la visualizacion 3D solamente si la rotación se dirige con el ratón. "
-"(Por ejemplo: Usted gira el cubo con el ratón.)"
+"Inicia las ventanas 3D únicamente al rotar con el ratón. (Por ejemplo: desde "
+"el escritorio girar el cubo usando la rueda del ratón)"
 
 msgid "Minimum Cube Size"
-msgstr "Tamaño Minimo del Cubo"
+msgstr "Tamaño Mínimo del Cubo"
 
 msgid "Minimum cube size (in percent)."
-msgstr "Tamaño Minimo del Cubo (porcentual)"
+msgstr "Tamaño mínimo del cubo (porcentaje)"
 
 msgid "Misc. Options"
 msgstr "Opciones varias"
@@ -108,7 +108,7 @@ msgstr "Ventanas que deberían ser procesadas por 3D"
 
 # ADD Helper es un plugin de Beryl
 msgid "ADD Helper"
-msgstr "Agregar Ayudante"
+msgstr "Ayudante de Concentración"
 
 msgid "Bindings"
 msgstr "Combinación de Teclas"
@@ -132,10 +132,10 @@ msgstr ""
 "la activa."
 
 msgid "Opacity"
-msgstr "Transparencia"
+msgstr "Opacidad"
 
 msgid "Opacity of faded windows"
-msgstr "Transparencia de las ventanas translúcidas"
+msgstr "Opacidad de las ventanas translúcidas"
 
 msgid "Saturation"
 msgstr "Saturación"
@@ -155,7 +155,7 @@ msgid "Window Types"
 msgstr "Tipos de ventana"
 
 msgid "Window types that should be Opacified."
-msgstr "Tipos de ventanas de deberían ser transparentes"
+msgstr "Tipos de ventanas de deberían ser opacadas mas"
 
 msgid "Airplane"
 msgstr "Aeroplano"
@@ -220,13 +220,12 @@ msgstr "Animaciones"
 msgid "Automatic"
 msgstr "Automático"
 
-#, fuzzy
+# Reemplazado desde "ángulo lejano"
 msgid "Away Angle"
-msgstr "Angulo externo"
+msgstr "Ángulo opuesto"
 
-#, fuzzy
 msgid "Away Position"
-msgstr "Posición externa"
+msgstr "Posición alejada"
 
 msgid "Beam"
 msgstr "Haz"
@@ -271,14 +270,14 @@ msgid "Close Animation"
 msgstr "Animación de Cerrado"
 
 msgid "Close Effect"
-msgstr "Efecto de Cerrarado"
+msgstr "Efecto de Cerrado"
 
 msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
 "camera, -2.0: Away from camera)."
 msgstr ""
-"Cercania de la ventana a la camara al final de la animacion (1.0 Cerca de la "
-"camara, -2.0 lejos de la camara)"
+"Cercanía de la ventana a la cámara al final de la animación (1.0: Cerca de "
+"la cámara, -2.0: Lejos de la cámara)"
 
 msgid ""
 "Comma separated list of option value assignments to override effect "
@@ -376,7 +375,6 @@ msgstr "Interior de la ventana fijo durante la animación de enrollado"
 msgid "Fly to TaskBar on Minimize"
 msgstr "Volar hasta la Barra de Tareas al minimizar"
 
-#, fuzzy
 msgid "Focus Animation"
 msgstr "Animación Foco"
 
@@ -386,26 +384,22 @@ msgstr "Efecto de Foco"
 msgid "Fold"
 msgstr "Plegar"
 
-#, fuzzy
 msgid "Fold Direction"
 msgstr "Dirección del pliegue"
 
-#, fuzzy
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr ""
 "Dirección de apertura del pliegue para las piezas en el efecto Cuchilla."
 
-#, fuzzy
 msgid "Glide 1"
 msgstr "Planear 1"
 
-#, fuzzy
 msgid "Glide 2"
 msgstr "Planear 2"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
-"Utilizar colores aleatorios para el effecto fuego, también conocido como "
+"Utilizar colores aleatorios para el efecto fuego, también conocido como "
 "\"Fuego Místico\"."
 
 msgid "Hexagonal"
@@ -421,21 +415,18 @@ msgstr "Amplitud de los pliegues horizontales"
 msgid "How spring-like the Sidekick animation should be."
 msgstr "Cuánto se debería parecer a un muelle la animación Sidekick."
 
-#, fuzzy
 msgid "How spring-like the Zoom animation should be."
 msgstr "Cúanto se debería parecer a un muelle la animación Zoom."
 
-#, fuzzy
 msgid "In"
 msgstr "Dentro"
 
-#, fuzzy
 msgid "In-out"
 msgstr "Dentro-Fuera"
 
 #, fuzzy
 msgid "Leaf Spread"
-msgstr "Caída de las hojas."
+msgstr "Separación de las hojas"
 
 msgid "Left"
 msgstr "Izquierda"
@@ -451,7 +442,7 @@ msgstr "Lámpara mágica"
 
 #, fuzzy
 msgid "Magic Lamp Grid Y Resolution"
-msgstr "Resolución eje-Y de la regilla de la Lámpara Mágica"
+msgstr "Resolución en eje-Y de la Rejilla de la Lámpara Mágica"
 
 msgid "Magic Lamp Max Wave Amplitude"
 msgstr "Amplitud máxima de la onda de la Lámpara Mágica"
@@ -472,7 +463,6 @@ msgid "Make fire effect duration be dependent on window height."
 msgstr ""
 "Hacer la duracion del efecto de fuego dependiento de la altura de la ventana"
 
-#, fuzzy
 msgid "Minimize Animation"
 msgstr "Minimizar animacion"
 
@@ -482,34 +472,29 @@ msgstr "Efecto al minimizar"
 msgid "Minimize/Unminimize Only"
 msgstr "Sólo Minimizar/restaurar"
 
-#, fuzzy
 msgid "Movement direction(s) for window pieces."
 msgstr "Dirección del movimiento para las partes de la ventana."
 
 msgid "None"
 msgstr "Ninguno/a"
 
-#, fuzzy
 msgid "Number Of Fire Particles"
-msgstr "Número de partículas de fuego"
+msgstr "Número de Partículas de Fuego"
 
-#, fuzzy
 msgid "Number of Horizontal Folds"
 msgstr "Número de pliegues horizontales"
 
-#, fuzzy
 msgid "Number of fire particles."
-msgstr "Número de partículas"
+msgstr "Número de partículas de fuego"
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
-msgstr "Numero de rotaciones por deslizamiento (mas o menos 10% aleatoriedad) "
+msgstr ""
+"Numero de rotaciones para Deslizamiento (más o menos un 10% de aleatoriedad) "
 
-#, fuzzy
 msgid "Off"
 msgstr "Apagado"
 
-#, fuzzy
 msgid "On"
 msgstr "Encendido"
 
@@ -523,12 +508,14 @@ msgstr ""
 "Cuando se abra/cierre, mover el punto final de la aspiradora con el puntero "
 "del mouse"
 
+# Depende del contexto, podría ser "Abrir animación"
 #, fuzzy
 msgid "Open Animation"
-msgstr "Tipo de animación del mosaico"
+msgstr "Animación de Apertura"
 
+# También podría ser "Efecto de apertura", o "Efecto al abrir".
 msgid "Open Effect"
-msgstr "Abrir efecto"
+msgstr "Efecto de apertura"
 
 msgid "Open/Close Only"
 msgstr "Abrir/Cerrar Solo"
@@ -561,8 +548,9 @@ msgstr "Efectos aleatorios"
 msgid "Randomly Colored Fire"
 msgstr "Fuego de colores aleatorios"
 
+#, fuzzy
 msgid "Ratio of gaps between dodge start times to focus duration."
-msgstr ""
+msgstr "Relación de duración entre los tiempos de inicio y foco."
 
 msgid "Razr"
 msgstr "Razr"
@@ -572,7 +560,7 @@ msgstr "Direccion de apertura del doblez Razr"
 
 #, fuzzy
 msgid "Rectangular"
-msgstr "Resplandor rectangular"
+msgstr "Rectangular"
 
 msgid "Right"
 msgstr "Derecha"
@@ -582,17 +570,17 @@ msgstr "Enrollar hacia arriba"
 
 # Enrollo? Alguna palabra mas "precisa"?
 msgid "Rollup Fixed Interior"
-msgstr "Interior Fijo del Enrollo"
+msgstr "Interior Fijo del Enrollado"
 
 msgid "Rotation Angle"
-msgstr "Angulo de rotacion"
+msgstr "Angulo de rotación"
 
 msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "Angulo de rotacion de las piecas de la ventana animada ( en grados )."
+msgstr "Angulo de rotación de las piezas de la ventana animada (en grados)."
 
 #, fuzzy
 msgid "Shade Animation"
-msgstr "Animacion de la Sombra"
+msgstr "Animación de la Sombra"
 
 msgid "Shade Effect"
 msgstr "Efecto de Sombra"
@@ -601,18 +589,21 @@ msgstr "Efecto de Sombra"
 msgid "Sidekick"
 msgstr "Deslizar"
 
+#, fuzzy
 msgid "Sidekick Number of Rotations"
 msgstr "Deslizar numero de rotaciones"
 
+#, fuzzy
 msgid "Sidekick Springiness"
-msgstr ""
+msgstr "Elasticidad de Deslizar"
 
+#, fuzzy
 msgid "Skewer"
-msgstr "Nieve"
+msgstr "Skewer"
 
 #, fuzzy
 msgid "Skewer Direction"
-msgstr "Dirección de la nieve"
+msgstr "Dirección del efecto skewer"
 
 #, fuzzy
 msgid "Spacing between beams."
@@ -621,12 +612,19 @@ msgstr "El espacio entre las vistas previas"
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
-msgstr "Ancho inicial del efecto de apertura  y terminal de la Lampara Magica"
+msgstr ""
+"Ancho inicial del efecto de apertura y final del efecto de cierre para  la "
+"Lampara Magica."
 
+# Vacuum puede tener varios significados, dependiendo del contexto.
+#, fuzzy
 msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
+"Ancho inicial del efecto de apertura y final del efecto de cierre para "
+"Aspiradora."
 
+# Una "tesela" es cada una de las piezas diminutas que conforma un mosaico. Una traducción "bruta" sería "teselización".
 #, fuzzy
 msgid "Tessellation Type"
 msgstr "Tipo de animación del mosaico"
@@ -641,6 +639,8 @@ msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
+"Tiempo en milisegundos entre cada una de las muestras de la animación. "
+"Mientras más alto sea el número, más bruscos serán los movimientos."
 
 msgid ""
 "The amount of time in milliseconds between each render of the intense "
@@ -652,11 +652,17 @@ msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
+"La ventana de la animación será dividida en trozos a lo largo de una "
+"rejilla. Especifica el número de celdas de la rejilla a lo largo de la "
+"altura de la ventana."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
+"La ventana de la animación será dividida en trozos a lo largo de una "
+"rejilla. Especifica el número de celdas de la rejilla a lo largo de la "
+"anchura de la ventana."
 
 msgid "The animation effect shown when closing a window."
 msgstr "Efecto de animacion cuando se cierra una ventana"
@@ -691,29 +697,28 @@ msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr ""
 "La cantidad maxima (numero de particulas) que la lampara magica puede tener"
 
-#, fuzzy
 msgid "The maximum number of waves for Magic Lamp."
-msgstr "Cantidad máxima de partículas activas"
+msgstr "Cantidad máxima de ondas para Lámpara Mágica."
 
-#, fuzzy
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
-msgstr "Amplitud mínima (tamaño de onda) que tendrá la Lampara Mágica"
+msgstr "Amplitud mínima (tamaño de las ondas) que tendrá Lampara Mágica"
 
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
+"Número de pliegues horizontales que ocurren en la animación Pliegue "
+"Horizontal."
 
 msgid "The wave amplitude (size of the waves) relative to the window height."
 msgstr ""
-"La amplitud de onda (Tamaño de onda) Es relativo a la altura de la ventana"
+"Amplitud de onda (tamaño de las ondas) en relación a la altura de la ventana."
 
-#, fuzzy
 msgid "The width of the wave relative to the window height."
-msgstr "El ancho del la onda es relativo a la altura de la ventana"
+msgstr ""
+"Ancho de onda (tamaño de las ondas) en relación a la altura de la ventana."
 
-#, fuzzy
 msgid "The windows that will be animated."
-msgstr "Tipos de ventanas que deberían ser transparentes"
+msgstr "Ventanas que serán animadas."
 
 msgid "Thickness"
 msgstr "Grosor"
@@ -733,7 +738,6 @@ msgstr "Grosor de las piezas de las ventanas que explotan (en pixeles)."
 msgid "Up"
 msgstr "Arriba"
 
-#, fuzzy
 msgid "Up-down"
 msgstr "Arriba/Abajo"
 
@@ -770,9 +774,8 @@ msgstr "Onda"
 msgid "Wave Amplitude"
 msgstr "Amplitud de onda"
 
-#, fuzzy
 msgid "Wave Width"
-msgstr "Ancho de la onda"
+msgstr "Ancho de onda"
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -784,105 +787,116 @@ msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
+"Si la ventana debe hacer zoom a la barra de tareas cuando se minimiza con el "
+"Pliegue Curvo."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Dream effect."
 msgstr ""
+"Si la ventana debe hacer zoom a la barra de tareas cuando se minimiza con el "
+"efecto Sueño."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 1 effect."
 msgstr ""
+"Si la ventana debe hacer zoom a la barra de tareas cuando se minimiza con el "
+"efecto Planeo 1."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 2 effect."
 msgstr ""
+"Si la ventana debe hacer zoom a la barra de tareas cuando se minimiza con el "
+"efecto Planeo 2."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Horizontal "
 "Folds effect."
 msgstr ""
+"Si la ventana debe hacer zoom a la barra de tareas cuando se minimiza con el "
+"efecto Pliegue Horizontal."
 
-#, fuzzy
 msgid "Window Grid Height"
-msgstr "Ancho de las ventanas"
+msgstr "Altura de la rejilla de la ventana"
 
-#, fuzzy
 msgid "Window Grid Width"
-msgstr "Ancho de las ventanas"
+msgstr "Ancho de la rejilla de la ventana"
 
-#, fuzzy
 msgid "Window folding direction."
-msgstr "Dirección de la nieve"
+msgstr "Dirección de plegado de la ventana"
+
+msgid "Window that should animate with this effect when focused."
+msgstr ""
+"Ventanas que deberían animarse con este efecto cuando obtengan el foco."
+
+# Perder el foco por "shaded"...
+#, fuzzy
+msgid "Window that should animate with this effect when shaded."
+msgstr "Ventanas que deberían animarse con este efecto cuando pierdan el foco."
 
 #, fuzzy
-msgid "Window that should animate with this effect when focused."
-msgstr "Ventanas que deberían poder ser agrupadas"
-
-msgid "Window that should animate with this effect when shaded."
-msgstr ""
-
 msgid ""
 "Window thickness in pixels. Setting this to larger than 0 will disable "
 "shadow, blur, and reflection during the animation."
 msgstr ""
+"Grosor de la ventana en píxeles. Ajustar este valor a más de 0 desactivará "
+"la sombra, el desenfocado y el reflejo durante la animación."
 
 msgid "Zoom"
 msgstr "Zoom"
 
 msgid "Zoom Springiness"
-msgstr ""
+msgstr "Elasticidad del zoom"
 
 msgid "Zoom from Center"
 msgstr "Zoom desde el centro"
 
+# Sidekick por "desplazamiento lateral".
+#, fuzzy
 msgid "Zoom from center when playing the Sidekick animation."
 msgstr ""
+"Zoom desde el centro cuando se use la animación Desplazamiento Lateral."
 
 msgid "Zoom from center when playing the Zoom animation."
-msgstr ""
+msgstr "Zoom desde el centro cuando se use la animación Zoom."
 
 msgid "Zoom to TaskBar on Minimize"
-msgstr "Zoom a la barra de tareas minimizada"
+msgstr "Zoom a la barra de tareas al minimizar"
 
 msgid "Colors"
 msgstr "Colores"
 
 msgid "Cube Atlantis"
-msgstr ""
+msgstr "Cubo Atlantis"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Tamaño del delfín"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Tamaño del delfín."
 
-#, fuzzy
 msgid "Enable colors"
-msgstr "Habilitar el resplandor en las ventanas"
+msgstr "Habilitar colores"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Tamaño del pez"
 
-#, fuzzy
 msgid "Number of fish"
-msgstr "Número de partículas"
+msgstr "Número de peces"
 
-#, fuzzy
 msgid "Number of fish inside the cube"
-msgstr "Número de partículas"
+msgstr "Número de peces dentro del cubo"
 
 msgid "Render some fish inside of the transparent cube"
-msgstr ""
+msgstr "Dibujar algunos peces en el interior del cubo transparente"
 
 msgid "Shark size"
-msgstr ""
+msgstr "Tamaño de los tiburones"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Tamaño de las ballenas"
 
-#, fuzzy
 msgid "Whale size."
-msgstr "Tamaño de las partículas de fuego."
+msgstr "Tamaño de las ballenas."
 
 msgid "A simple benchmark plugin"
 msgstr "Un simple plugin de pruebas"
@@ -898,7 +912,7 @@ msgstr "Tiempo de actualización de la salida a la consola"
 
 #, fuzzy
 msgid "Disable Compiz integrated FPS limiter"
-msgstr "Deshabilitar el limitador de cuadros integrado de Beryl"
+msgstr "Deshabilitar el limitador de cuadros integrado de Compiz"
 
 msgid "Disable limiter"
 msgstr "Deshabilitar el limitador"
@@ -940,10 +954,15 @@ msgid "Y position"
 msgstr "Posición sobre el eje Y"
 
 #, fuzzy
+msgid "Bicubic filter"
+msgstr "Intercambiar Filtro"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Quitar Brillo"
 
-#, fuzzy
 msgid "Brightness Increase"
 msgstr "Aumentar Brillo"
 
@@ -951,23 +970,18 @@ msgstr "Aumentar Brillo"
 msgid "Brightness Step"
 msgstr "Brillo"
 
-#, fuzzy
 msgid "Brightness and Saturation"
-msgstr "Brillo de las ventanas translúcidas"
+msgstr "Brillo y Saturación"
 
-#, fuzzy
 msgid "Brightness and Saturation adjustments"
-msgstr "Ajuste del Brillo de las ventanas translúcidas"
+msgstr "Ajuste de Brillo y Saturación"
 
-#, fuzzy
 msgid "Brightness settings"
-msgstr "Configuración de Brillo"
+msgstr "Ajustes de Brillo"
 
-#, fuzzy
 msgid "Brightness values for windows"
 msgstr "Valor del Brillo de las ventanas"
 
-#, fuzzy
 msgid "Brightness window values"
 msgstr "Valor del Brillo de las ventanas"
 
@@ -978,29 +992,25 @@ msgstr "Brillo de las ventanas"
 msgid "General"
 msgstr "General"
 
-#, fuzzy
 msgid "Saturation Decrease"
-msgstr "Quitar Saturación"
+msgstr "Disminuir Saturación"
 
-#, fuzzy
 msgid "Saturation Increase"
-msgstr "Agregar Saturación"
+msgstr "Aumentar Saturación"
 
 #, fuzzy
 msgid "Saturation Step"
 msgstr "Saturación"
 
-#, fuzzy
 msgid "Saturation settings"
-msgstr "Saturación de las ventanas seleccionadas"
+msgstr "Ajustes de Saturación"
 
-#, fuzzy
 msgid "Saturation values for windows"
-msgstr "Saturación de las ventanas translúcidas"
+msgstr "Valores de saturación para las ventanas"
 
 #, fuzzy
 msgid "Saturation window values"
-msgstr "Saturación de las ventanas translúcidas"
+msgstr "Valores de saturación de las ventanas"
 
 #, fuzzy
 msgid "Saturation windows"
@@ -1010,24 +1020,20 @@ msgstr "Saturación de las ventanas translúcidas"
 msgid "Window specific"
 msgstr "Opacidad de la ventana"
 
-#, fuzzy
 msgid "Windows that should have a different brightness by default"
-msgstr "Ventanas que deberían ser procesadas por 3D"
+msgstr "Ventanas que deberían tener un brillo diferente por defecto"
 
-#, fuzzy
 msgid "Windows that should have a different saturation by default"
-msgstr "Ventanas que deberían ser procesadas por 3D"
+msgstr "Ventanas que deberían tener una saturación diferente por defecto"
 
-#, fuzzy
 msgid "Color filter"
-msgstr "Transparencia por color"
+msgstr "Filtro de color"
 
-#, fuzzy
 msgid "Exclude windows"
-msgstr "Ventanas excluídas"
+msgstr "Excluir ventanas"
 
 msgid "Filter colors for accessibility purposes"
-msgstr ""
+msgstr "Filtros de color para propósitos de accesibilidad"
 
 #, fuzzy
 msgid "Filter window decorations"
@@ -1044,12 +1050,19 @@ msgid ""
 "List of plain text filter files that should be applied when filtering "
 "windows or screen."
 msgstr ""
+"Lista de ficheros de filtro de texto plano que deben de aplicarse cuando se "
+"filtren la pantalla o las ventanas ."
 
+#, fuzzy
 msgid ""
 "Select filter to use from filters list : either apply all filters or only "
 "one specific filter (triggering this action switches filters one by one and "
 "eventually comes back to the \"all filters\" mode)."
-msgstr "Seleccionar el filtro que va a usar desde la lista de filtros:"
+msgstr ""
+"Seleccionar el filtro que va a usar desde la lista de filtros: si se "
+"aplicarán todos los filtros o sólo un filtro específico (activar esta acción "
+"alterna los filtros de uno en uno y eventualmente volverá al modo de \"todos "
+"los filtros\")."
 
 msgid "Switch filter"
 msgstr "Intercambiar Filtro"
@@ -1196,7 +1209,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Compiz cube reflection and deformation"
-msgstr "Reflejo del cubo de compiz"
+msgstr "Reflejo del cubo de Compiz"
 
 #, fuzzy
 msgid "Cube Bottom Color"
@@ -1213,9 +1226,8 @@ msgstr "Color del borde de las fichas"
 msgid "Cube caps"
 msgstr ""
 
-#, fuzzy
 msgid "Cylinder"
-msgstr "Borrar"
+msgstr "Cilindro"
 
 #, fuzzy
 msgid "Deform caps"
@@ -1230,14 +1242,14 @@ msgstr "Zoom automático cuando la rotación es conducida por el ratón"
 
 #, fuzzy
 msgid "Deformation"
-msgstr "Duración"
+msgstr "Deformación"
 
 msgid "Deformation in unfold cube mode."
 msgstr ""
 
 #, fuzzy
 msgid "Deformation mode."
-msgstr "Duración"
+msgstr "Modo de deformación."
 
 msgid "Distance"
 msgstr "Distancia"
@@ -1254,9 +1266,8 @@ msgstr ""
 msgid "Draw top face of the cube"
 msgstr ""
 
-#, fuzzy
 msgid "Enabled"
-msgstr "Habilitar"
+msgstr "Activado"
 
 #, fuzzy
 msgid "Give cube a reflective ground."
@@ -1342,24 +1353,23 @@ msgid "Scale bottom image"
 msgstr ""
 
 msgid "Scale image to cover bottom face of cube"
-msgstr ""
+msgstr "Escalar la imagen hasta cubrir toda la cara inferior del cubo"
 
 msgid "Scale image to cover top face of cube"
-msgstr ""
+msgstr "Escalar la imagen hasta cubrir toda la cara superior del cubo"
 
 msgid "Scale top image"
 msgstr ""
 
-#, fuzzy
 msgid "Sphere"
-msgstr "Velocidad"
+msgstr "Esfera"
 
 #, fuzzy
 msgid "Top image files"
 msgstr "Archivo de la imagen de los reflejos"
 
 msgid "Unfold cube deformation"
-msgstr ""
+msgstr "Deformación aplicada al desplegar el cubo"
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "Zoom automático cuando la rotación es conducida por el ratón."
@@ -1367,6 +1377,21 @@ msgstr "Zoom automático cuando la rotación es conducida por el ratón."
 #, fuzzy
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Zoom automático para hacer que el cubo entre en la pantalla."
+
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Engranajes del cubo"
+
+#, fuzzy
+msgid "Render images on top and bottom of the cube"
+msgstr "Escalar la imagen hasta cubrir toda la cara inferior del cubo"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Reflejo del cubo"
+
+msgid "Cube Reflection"
+msgstr "Reflejo del cubo"
 
 msgid "Animation used when switching to expo mode"
 msgstr ""
@@ -1392,13 +1417,13 @@ msgid "Curve strength"
 msgstr "Intensidad del desenfoque de movimiento."
 
 msgid "Deformation of the expo wall"
-msgstr ""
+msgstr "Deformación de la pared"
 
 msgid "Distance between viewports"
-msgstr ""
+msgstr "Distancia entre escritorios"
 
 msgid "Distance of the expo wall"
-msgstr ""
+msgstr "Distancia de la pared"
 
 msgid "Double click time"
 msgstr "Tiempo doble click"
@@ -1420,26 +1445,26 @@ msgid "Engage wall expo mode key binding"
 msgstr ""
 
 msgid "Exit expo"
-msgstr ""
+msgstr "Salir de expo"
 
 msgid "Expo"
-msgstr ""
+msgstr "Expo"
 
 #, fuzzy
 msgid "Expo Animation"
 msgstr "Velocidad de la animación"
 
 msgid "Expo Plugin"
-msgstr ""
+msgstr "Plugin Expo"
 
 msgid "Expo button"
-msgstr ""
+msgstr "Botón del ratón para iniciar Expo"
 
 msgid "Expo edge"
-msgstr ""
+msgstr "Borde de la pantalla para iniciar Expo"
 
 msgid "Expo key"
-msgstr ""
+msgstr "Teclas para iniciar Expo"
 
 msgid "Expo mode aspect ratio"
 msgstr ""
@@ -1449,22 +1474,23 @@ msgid "Fade + Zoom"
 msgstr "Tiempo de fundición"
 
 msgid "Generate mipmaps in expo mode"
-msgstr ""
+msgstr "Generar mipmaps en Expo"
 
 msgid "Hide panels/docks in expo"
-msgstr ""
+msgstr "No mostrar paneles/docks en Expo"
 
 msgid "Hide panels/docks in expo."
-msgstr ""
+msgstr "No mostrar paneles/docks en Expo."
 
+# berylog: esta opción se refiere a no usar ventanas gelatinosas al usar Expo
 msgid "Immediate moves"
-msgstr ""
+msgstr "Mover inmediatamente"
 
 msgid "Inactive viewport brightness."
-msgstr ""
+msgstr "Brillo de los escritorios inactivos."
 
 msgid "Inactive viewport saturation."
-msgstr ""
+msgstr "Saturación de los escritorios inactivos."
 
 #, fuzzy
 msgid "Mipmaps"
@@ -1474,7 +1500,7 @@ msgid "Multi Output Mode"
 msgstr ""
 
 msgid "Next viewport"
-msgstr ""
+msgstr "Escritorio siguiente"
 
 msgid "One big wall"
 msgstr "Un gran muro"
@@ -1483,7 +1509,7 @@ msgid "One wall per output"
 msgstr ""
 
 msgid "Previous viewport"
-msgstr ""
+msgstr "Escritorio previo"
 
 #, fuzzy
 msgid "Reflection Scale"
@@ -1521,9 +1547,8 @@ msgstr "Visor Derecho"
 msgid "Vortex"
 msgstr ""
 
-#, fuzzy
 msgid "Zoom time"
-msgstr "Zoom"
+msgstr "Tiempo de aplicación del zoom"
 
 #, fuzzy
 msgid "Activate Demanding Attention Window"
@@ -1587,7 +1612,7 @@ msgid ""
 msgstr ""
 
 msgid "Center the mouse"
-msgstr "Centrar el raton"
+msgstr "Centrar el ratón"
 
 msgid "Enable focus tracking"
 msgstr "Activar seguimiento del foco"
@@ -1600,9 +1625,8 @@ msgid ""
 "level. Disable to target mouse."
 msgstr ""
 
-#, fuzzy
 msgid "Enhanced Zoom Desktop"
-msgstr "Fundir y mostrar el escritorio"
+msgstr "Zoom mejorado del escritorio"
 
 msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr ""
@@ -1640,10 +1664,14 @@ msgid "Follow Focus Delay"
 msgstr ""
 
 msgid "Hide original mouse pointer"
-msgstr "Ocultar el puntero por defecto del raton "
+msgstr "Ocultar el puntero por defecto del ratón "
 
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
+
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Factor de escala mínimo"
 
 #, fuzzy
 msgid "Mouse Behaviour"
@@ -1735,6 +1763,11 @@ msgstr ""
 msgid "Target Focused Window on Specific level"
 msgstr ""
 
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
+
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
 
@@ -1760,26 +1793,25 @@ msgstr "Zoom"
 
 #, fuzzy
 msgid "Zoom In"
-msgstr "Zoom"
+msgstr "Acercar"
 
 #, fuzzy
 msgid "Zoom In/Out"
-msgstr "Zoom"
+msgstr "Acercar/Alejar"
 
 #, fuzzy
 msgid "Zoom Out"
-msgstr "Zoom"
+msgstr "Alejar"
 
 msgid "Zoom Specific Level 1"
-msgstr "Zoom especifico 1"
+msgstr "Zoom específico 1"
 
 msgid "Zoom Specific Level 2"
-msgstr "Zoom especifico 2"
+msgstr "Zoom específico 2"
 
 msgid "Zoom Specific Level 3"
-msgstr "Zoom especifico 3"
+msgstr "Zoom específico 3"
 
-#, fuzzy
 msgid "Zoom Speed"
 msgstr "Velocidad del Zoom"
 
@@ -1855,19 +1887,16 @@ msgid "Clear"
 msgstr "Borrar"
 
 msgid "Clear (button)"
-msgstr ""
+msgstr "Borrar (botón del ratón)"
 
-#, fuzzy
 msgid "Clear (key)"
-msgstr "Borrar"
+msgstr "Borrar (tecla)"
 
-#, fuzzy
 msgid "Initiate (button)"
-msgstr "Iniciar"
+msgstr "Iniciar (botón del ratón)"
 
-#, fuzzy
 msgid "Initiate (key)"
-msgstr "Iniciar"
+msgstr "Iniciar (tecla)"
 
 msgid "Initiate fire drawing"
 msgstr "Iniciar dibujo del fuego"
@@ -1885,7 +1914,7 @@ msgid "Paint fire or other particles on the screen"
 msgstr "Dibujar con fuego o con otras partículas en la pantalla"
 
 msgid "Cube Gears"
-msgstr ""
+msgstr "Engranajes del cubo"
 
 msgid "Render gears inside of the transparent cube"
 msgstr ""
@@ -2340,10 +2369,10 @@ msgid "Y distance for spring model"
 msgstr "Distancia sobre el eje Y para el modelo de resortes"
 
 msgid "Compression Quality"
-msgstr ""
+msgstr "Calidad de compresión"
 
 msgid "JPEG"
-msgstr ""
+msgstr "JPEG"
 
 msgid "JPEG image format plugin"
 msgstr "Complemento de Imagen en formato JPEG"
@@ -2367,7 +2396,7 @@ msgid "Fade In/Out Time."
 msgstr ""
 
 msgid "Login"
-msgstr ""
+msgstr "Iniciar sesión"
 
 #, fuzzy
 msgid "Login Window Match"
@@ -2378,13 +2407,13 @@ msgid "Login Window match"
 msgstr "Coincidir ventanas"
 
 msgid "Login/Logout"
-msgstr ""
+msgstr "Iniciar/cerrar sesión"
 
 msgid "Login/Logout effect"
-msgstr ""
+msgstr "Efecto al iniciar/cerrar sesión"
 
 msgid "Logout"
-msgstr ""
+msgstr "Cerrar sesión"
 
 #, fuzzy
 msgid "Logout Window Match"
@@ -2394,21 +2423,17 @@ msgstr "Tipos de ventana que pueden ser agrupados"
 msgid "Logout Window match"
 msgstr "Tipos de ventana que pueden ser agrupados"
 
-#, fuzzy
 msgid "Window opacity."
-msgstr "Opacidad de la ventana"
+msgstr "Opacidad de la ventana."
 
-#, fuzzy
 msgid "Border color"
-msgstr "Color del borde de las fichas"
+msgstr "Color del borde"
 
-#, fuzzy
 msgid "Border width"
 msgstr "Ancho del borde"
 
-#, fuzzy
 msgid "Border widtht."
-msgstr "Ancho del borde"
+msgstr "Ancho del borde."
 
 msgid "Box height."
 msgstr ""
@@ -2427,9 +2452,8 @@ msgstr ""
 msgid "Fisheye"
 msgstr ""
 
-#, fuzzy
 msgid "Height"
-msgstr "Altura"
+msgstr "Alto"
 
 msgid "Image overlay"
 msgstr ""
@@ -2454,21 +2478,17 @@ msgstr ""
 msgid "Magnifier image."
 msgstr ""
 
-#, fuzzy
 msgid "Mode"
-msgstr "Esquivar"
+msgstr "Modo"
 
-#, fuzzy
 msgid "Mode."
-msgstr "Esquivar"
+msgstr "Modo."
 
-#, fuzzy
 msgid "Radius"
-msgstr "Radio del borde"
+msgstr "Radio"
 
-#, fuzzy
 msgid "Radius of the magnification area."
-msgstr "El radio de los ejes de la barra de fichas"
+msgstr "Radio del área al que se aplica zoom"
 
 msgid "Width"
 msgstr "Ancho OR anchura"
@@ -2495,10 +2515,12 @@ msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
 msgid "Maximumize"
-msgstr ""
+msgstr "Maximumize"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr ""
+"Maximumiza ventanas (las redimensiona hasta usar todo el espacio disponible "
+"en la pantalla)"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2560,9 +2582,8 @@ msgstr "Habilitar/deshabilitar el desenfoque de movimiento."
 msgid "Visibility/Performance"
 msgstr "Visibilidad/Rendimiento"
 
-#, fuzzy
 msgid "Action"
-msgstr "Velocidad de la animación"
+msgstr "Acción"
 
 msgid "Action that is to be invoked."
 msgstr ""
@@ -2573,16 +2594,14 @@ msgstr ""
 msgid "Detect Diagonal Movements"
 msgstr ""
 
-#, fuzzy
 msgid "Gesture"
-msgstr "Texturas"
+msgstr "Gesto"
 
 msgid "Gesture assignment"
 msgstr ""
 
-#, fuzzy
 msgid "Gestures"
-msgstr "Texturas"
+msgstr "Gestos"
 
 msgid ""
 "If this option is selected, diagonal movements are detected, which may lead "
@@ -2593,7 +2612,7 @@ msgid "Mouse gesture to assign an action to."
 msgstr ""
 
 msgid "Mousegestures"
-msgstr ""
+msgstr "Gestos del ratón"
 
 msgid "Plugin"
 msgstr "Plugin"
@@ -2602,7 +2621,7 @@ msgid "Plugin the action belongs to."
 msgstr ""
 
 msgid "Start gesture"
-msgstr ""
+msgstr "Iniciar gesto"
 
 msgid ""
 "How often to poll the mouse position, in miliseconds. Reduce this to reduce "
@@ -2636,17 +2655,14 @@ msgstr ""
 msgid "Also negate window decorations, not only the window contents."
 msgstr ""
 
-#, fuzzy
 msgid "Exclude Windows"
 msgstr "Ventanas excluídas"
 
-#, fuzzy
 msgid "Neg Windows"
-msgstr "Ventanas en mosaico"
+msgstr "Ventanas en negativo"
 
-#, fuzzy
 msgid "Negate Decorations"
-msgstr "Reflexión en las decoraciones"
+msgstr ""
 
 msgid "Negative"
 msgstr "Negativo"
@@ -2667,16 +2683,14 @@ msgstr "Habilitar o deshabilitar la Redirección la de ventanas"
 msgid "Toggle screen negative"
 msgstr "Habilitar o deshabilitar \"Pantalla Completa\""
 
-#, fuzzy
 msgid "Used to set a window or screen negative"
-msgstr "Crear fichas automáticamente en las ventanas cuando son creadas"
+msgstr "Utilizado para ver una ventana o pantalla en negativo"
 
 msgid "Windows to be negative by default"
 msgstr ""
 
-#, fuzzy
 msgid "Windows to exclude from negating"
-msgstr "Ventanas que deben excluirse del mosaico"
+msgstr "Ventanas que no se verán en negativo"
 
 msgid "Debug"
 msgstr "Depurar"
@@ -2688,38 +2702,36 @@ msgid "Error"
 msgstr "Error"
 
 msgid "Error Notifications"
-msgstr "Notificacion de error"
+msgstr "Notificaciones de error"
 
-#, fuzzy
 msgid "Fatal"
-msgstr "Metal"
+msgstr "Fatal"
 
 #, fuzzy
 msgid "Hide Timeout"
 msgstr "Tiempo de fundición"
 
 msgid "Info"
-msgstr "Informacion"
+msgstr "Información"
 
 msgid "Maximum Log Level"
-msgstr "Nivel maximo de registro"
+msgstr "Nivel máximo de registro"
 
 msgid "The maximum log level to display"
-msgstr "Nivel maximo de registro en pantalla"
+msgstr "Nivel máximo de registro en pantalla"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
-"Timeout(En segundos) Antes de ocultar la notificaion,,Set es -1 para sistema "
-"por defecto y 0 para indefinido"
+"Timeout (en segundos) antes de ocultar la notificación, asignado a -1 para "
+"el valor por defecto y 0 para indefinido"
 
 msgid "Warning"
-msgstr "Peligro"
+msgstr "Advertencia"
 
-#, fuzzy
 msgid "Active Opacity"
-msgstr "Transparencia"
+msgstr "Opacidad Activa"
 
 msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
@@ -2755,7 +2767,6 @@ msgstr "Opacidad"
 msgid "Opacity Levels"
 msgstr "Niveles de opacidad"
 
-#, fuzzy
 msgid "Passive Opacity"
 msgstr "Opacidad Pasiva"
 
@@ -2815,7 +2826,6 @@ msgid ""
 "usually when you start Compiz."
 msgstr ""
 
-#, fuzzy
 msgid "Animation speed"
 msgstr "Velocidad de la animación"
 
@@ -2830,101 +2840,91 @@ msgid "Avoids putting window borders offscreen"
 msgstr ""
 
 msgid "Move window arbitrarily by passing x, y and type."
-msgstr ""
+msgstr "Mover ventana aleatoriamente eligiendo x,y así como el tipo."
 
 msgid "Move window to a certain viewport"
-msgstr ""
+msgstr "Mover ventana a un escritorio concreto"
 
-#, fuzzy
 msgid "Move window to the bottom edge"
-msgstr "Mover cada ventana en el grupo"
+msgstr "Mover la ventana hacia el borde inferior"
 
-#, fuzzy
 msgid "Move window to the bottom left corner"
-msgstr "Biselar la esquina inferior izquierda"
+msgstr "Mover la ventana hacia la esquina inferior izquierda"
 
-#, fuzzy
 msgid "Move window to the bottom right corner"
-msgstr "Biselar la esquina inferior derecha"
+msgstr "Mover la ventana hacia la esquina superior derecha"
 
-#, fuzzy
 msgid "Move window to the center"
-msgstr "Mover cada ventana en el grupo"
+msgstr "Mover la ventana hacia el centro"
 
 msgid "Move window to the last position"
-msgstr ""
+msgstr "Mover ventana a la última posición"
 
-#, fuzzy
 msgid "Move window to the left edge"
-msgstr "Mover cada ventana en el grupo"
+msgstr "Mover la ventana hacia el borde izquierdo"
 
 msgid "Move window to the pointer position"
-msgstr ""
+msgstr "Mover ventana a la posición del puntero del ratón"
 
-#, fuzzy
 msgid "Move window to the right edge"
-msgstr "Mover cada ventana en el grupo"
+msgstr "Mover la ventana hacia el borde derecho"
 
-#, fuzzy
 msgid "Move window to the top edge"
-msgstr "Mover cada ventana en el grupo"
+msgstr "Mover la ventana hacia el borde superior"
 
-#, fuzzy
 msgid "Move window to the top left corner"
-msgstr "Biselar la esquina inferior izquierda"
+msgstr "Mover la ventana hacia la esquina superior izquierda"
 
-#, fuzzy
 msgid "Move window to the top right corner"
-msgstr "Biselar la esquina inferior derecha"
+msgstr "Mover la ventana hacia la esquina superior derecha"
 
 msgid "Move window to the viewport on the bottom"
-msgstr ""
+msgstr "Mover ventana al escritorio de abajo"
 
 msgid "Move window to the viewport on the left"
-msgstr ""
+msgstr "Mover ventana al escritorio de la izquierda"
 
 msgid "Move window to the viewport on the right"
-msgstr ""
+msgstr "Mover ventana al escritorio de la derecha"
 
-#, fuzzy
 msgid "Move window to the viewport on the top"
-msgstr "Mover cada ventana en el grupo"
+msgstr "Mover ventana al escritorio de arriba"
 
 msgid "Move window to viewport 1"
-msgstr "Mover ventana hacia el visor 1"
+msgstr "Mover ventana al escritorio 1"
 
 msgid "Move window to viewport 10"
-msgstr "Mover ventana hacia el visor 10"
+msgstr "Mover ventana al escritorio 10"
 
 msgid "Move window to viewport 11"
-msgstr "Mover ventana hacia el visor 11"
+msgstr "Mover ventana al escritorio 11"
 
 msgid "Move window to viewport 12"
-msgstr "Mover ventana hacia el visor 12"
+msgstr "Mover ventana al escritorio 12"
 
 msgid "Move window to viewport 2"
-msgstr "Mover ventana hacia el visor 2"
+msgstr "Mover ventana al escritorio 2"
 
 msgid "Move window to viewport 3"
-msgstr "Mover ventana hacia el visor 3"
+msgstr "Mover ventana al escritorio 3"
 
 msgid "Move window to viewport 4"
-msgstr "Mover ventana hacia el visor 4"
+msgstr "Mover ventana al escritorio 4"
 
 msgid "Move window to viewport 5"
-msgstr "Mover ventana hacia el visor 5"
+msgstr "Mover ventana al escritorio 5"
 
 msgid "Move window to viewport 6"
-msgstr "Mover ventana hacia el visor 6"
+msgstr "Mover ventana al escritorio 6"
 
 msgid "Move window to viewport 7"
-msgstr "Mover ventana hacia el visor 7"
+msgstr "Mover ventana al escritorio 7"
 
 msgid "Move window to viewport 8"
-msgstr "Mover ventana hacia el visor 8"
+msgstr "Mover ventana al escritorio 8"
 
 msgid "Move window to viewport 9"
-msgstr "Mover ventana hacia el visor 9"
+msgstr "Mover ventana al escritorio 9"
 
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
@@ -2958,7 +2958,7 @@ msgid "Padding"
 msgstr "Relleno"
 
 msgid "Put"
-msgstr ""
+msgstr "Poner ventana"
 
 #, fuzzy
 msgid "Put Bottom"
@@ -2973,7 +2973,7 @@ msgid "Put Bottom Right"
 msgstr "Biselar la esquina inferior derecha"
 
 msgid "Put Center"
-msgstr ""
+msgstr "Poner en el centro"
 
 #, fuzzy
 msgid "Put Left"
@@ -3040,24 +3040,26 @@ msgid "Put pointer uses the center of the window"
 msgstr "Poner el puntero en el centro de la ventana"
 
 msgid "Put to adjacent viewport"
-msgstr "Poner en el visor adyacente"
+msgstr "Poner en el escritorio adyacente"
 
 # arbitrario==(aleatorio)????
+# berylog: mejor aleatorio
 msgid "Put to arbitrary viewport"
-msgstr "Poner en un visor arbitrario(aleatorio)"
+msgstr "Poner en un escritorio aleatorio"
 
 #, fuzzy
 msgid "Put window"
 msgstr "Ventanas en mosaico"
 
+#, fuzzy
 msgid "Put within viewport"
-msgstr ""
+msgstr "Poner dentro del escritorio"
 
 msgid "Restore Position"
-msgstr "Restablecer Posicion"
+msgstr "Restablecer Posición"
 
 msgid "Unfocus Window"
-msgstr "Desenfocar ventanas"
+msgstr "Desenfocar ventana"
 
 msgid "Unfocus windows that are moved off the viewport"
 msgstr ""
@@ -3067,13 +3069,13 @@ msgid "Viewport Bottom"
 msgstr "De arriba a abajo"
 
 msgid "Viewport Left"
-msgstr "Visor Izquierdo"
+msgstr "Escritorio Izquierdo"
 
 msgid "Viewport Right"
-msgstr "Visor Derecho"
+msgstr "Escritorio Derecho"
 
 msgid "Viewport Top"
-msgstr "Visor Superior"
+msgstr "Escritorio Superior"
 
 msgid "Window Center"
 msgstr "Centrar Ventana"
@@ -3200,7 +3202,7 @@ msgid "Big"
 msgstr ""
 
 msgid "Bold Font"
-msgstr ""
+msgstr "Negrita"
 
 #, fuzzy
 msgid "Centered on screen"
@@ -3210,17 +3212,21 @@ msgid ""
 "Changes the minimum brightness factor for windows in the ring. The farer "
 "away windows are, the less bright are they."
 msgstr ""
+"Cambia el factor de brillo mínimo para las ventanas en el anillo. Cuanto más "
+"lejos estén las ventanas, menos brillo tendrán."
 
 msgid ""
 "Changes the minimum scale factor for windows in the ring. The farer away "
 "windows are, the smaller are they."
 msgstr ""
+"Cambia el factor de escala mínimo para las ventanas en el anillo. Cuanto más "
+"lejos estén las ventanas, más pequeñas serán."
 
 msgid "Darken Background"
-msgstr ""
+msgstr "Oscurecer fondo"
 
 msgid "Darken background when showing the ring"
-msgstr ""
+msgstr "Oscurecer fondo cuando se muestra el anillo"
 
 #, fuzzy
 msgid "Emblem"
@@ -3239,26 +3245,28 @@ msgid "Inactive Window Opacity"
 msgstr "Opacidad de la ventana"
 
 msgid "Maximum horizontal size of a thumbnail in the ring"
-msgstr ""
+msgstr "Ancho máximo de las miniaturas en el anillo"
 
 msgid "Maximum vertical size of a thumbnail in the ring"
-msgstr ""
+msgstr "Alto máximo de las miniaturas en el anillo"
 
+#, fuzzy
 msgid "Minimum Brightness Factor"
-msgstr ""
+msgstr "Factor de brillo mínimo"
 
+#, fuzzy
 msgid "Minimum Scale Factor"
-msgstr ""
+msgstr "Factor de escala mínimo"
 
 #, fuzzy
 msgid "Next Window"
 msgstr "Ventanas en mosaico"
 
 msgid "Next Window (All Workspaces)"
-msgstr ""
+msgstr "Siguiente ventana (en todos los escritorios)"
 
 msgid "Next Window (Group)"
-msgstr ""
+msgstr "Siguiente ventana (del grupo de ventanas)"
 
 msgid "Overlay Icon"
 msgstr ""
@@ -3322,7 +3330,7 @@ msgid "Selects where to place the window title."
 msgstr ""
 
 msgid "Show Minimized"
-msgstr ""
+msgstr "Mostrar ventanas minimizadas"
 
 #, fuzzy
 msgid "Show Window Title"
@@ -3358,21 +3366,20 @@ msgid "Show windows that are minimized, shaded or in show desktop mode."
 msgstr ""
 
 msgid "Text Placement"
-msgstr ""
+msgstr "Posición del texto"
 
 msgid "Thumbnail Height"
-msgstr ""
+msgstr "Alto de la miniatura"
 
 msgid "Thumbnail Width"
-msgstr ""
+msgstr "Ancho de la miniatura"
 
 #, fuzzy
 msgid "Window title display"
 msgstr "Fuente de los títulos de las ventanas"
 
-#, fuzzy
 msgid "Windows that should be shown in ring"
-msgstr "Ventanas que deberían ser procesadas por 3D"
+msgstr "Ventanas que deberían ser mostradas en el anillo"
 
 #, fuzzy
 msgid "All windows"
@@ -3417,13 +3424,11 @@ msgstr "El color del título de la ventana en la barra de fichas"
 msgid "Font size for window title display"
 msgstr ""
 
-#, fuzzy
 msgid "Highlight Color"
-msgstr "Color de resalte de las fichas"
+msgstr "Color para destacar una ventana"
 
-#, fuzzy
 msgid "Highlighted window only"
-msgstr "Mover ventana hacia X o Y"
+msgstr "Únicamente la ventana destacada"
 
 msgid "Highlights the hovered window with the given color"
 msgstr ""
@@ -3451,8 +3456,10 @@ msgstr "Ventanas en mosaico"
 msgid "Pull window to current viewport while in scale mode"
 msgstr "Elevar las ventanas al rotar el cubo"
 
+# berylog: no sé muy bien cómo traducir Scale Addons, pero creo que es mejor poner Extras y no Añadidos
+#, fuzzy
 msgid "Scale Addons"
-msgstr ""
+msgstr "Extras para Escalar ventanas"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr ""
@@ -3574,13 +3581,11 @@ msgstr ""
 msgid "Talk to session manager and save/load window state"
 msgstr ""
 
-#, fuzzy
 msgid "Animation duration"
 msgstr "Duración de la animación"
 
-#, fuzzy
 msgid "Duration of the animation in milliseconds."
-msgstr "Duración (en milisegundos) de la animación de puesta en mosaico"
+msgstr "Duración de la animación en milisegundos."
 
 msgid "Increase the scale factor making the window bigger."
 msgstr ""
@@ -3635,24 +3640,20 @@ msgid ""
 "traditional resizing."
 msgstr ""
 
-#, fuzzy
 msgid "Background intensity"
 msgstr "Brillo del fondo"
 
-#, fuzzy
 msgid "Background intensity."
-msgstr "Brillo del fondo"
+msgstr "Brillo del fondo."
 
-#, fuzzy
 msgid "Below"
-msgstr "Resplandor"
+msgstr "Debajo"
 
 msgid "Click duration"
 msgstr ""
 
-#, fuzzy
 msgid "Cover"
-msgstr "Arriba"
+msgstr ""
 
 msgid "Cover movement offset."
 msgstr ""
@@ -3660,17 +3661,14 @@ msgstr ""
 msgid "Cover offset"
 msgstr ""
 
-#, fuzzy
 msgid "Disabled"
-msgstr "Distancia"
+msgstr "Desactivado"
 
-#, fuzzy
 msgid "Fade in/out speed"
-msgstr "Tiempo de agrupación"
+msgstr "Velocidad de activar/desactivar fundición"
 
-#, fuzzy
 msgid "Fade speed"
-msgstr "Tiempo de fundición"
+msgstr "Velocidad de fundición"
 
 msgid "Flip"
 msgstr ""
@@ -3678,31 +3676,28 @@ msgstr ""
 msgid "Flip angle"
 msgstr ""
 
-#, fuzzy
 msgid "Generate mipmaps"
-msgstr "Crear mipmaps"
+msgstr "Generar mipmaps"
 
 msgid "Hide all non Desktop windows during switching"
 msgstr ""
 
-#, fuzzy
 msgid "Hide non Desktop windows"
-msgstr "Fundir y mostrar el escritorio"
+msgstr ""
 
-#, fuzzy
 msgid "Initiate (All Workspaces)"
-msgstr "Iniciar splash"
+msgstr "Iniciar (en todos los escritorios)"
 
 msgid "Initiate switcher (All Workspaces)."
 msgstr ""
 
 #, fuzzy
 msgid "Initiate switcher."
-msgstr "Iniciar splash"
+msgstr "Iniciar switcher."
 
 #, fuzzy
 msgid "Max window size"
-msgstr "Dibujar la parte trasera de las ventanas"
+msgstr "Tamaño máximo de la ventana"
 
 msgid "Maximum click duration in miliseconds."
 msgstr ""
@@ -3725,9 +3720,8 @@ msgstr ""
 msgid "Overlay an icon on windows in the shift switcher"
 msgstr ""
 
-#, fuzzy
 msgid "Rotation angle of the flip animation"
-msgstr "Duración (en milisegundos) de la animación de puesta en mosaico"
+msgstr "Ángulo de rotación de la animación flip"
 
 msgid ""
 "Selects how the switcher is displayed if multiple output devices are used."
@@ -3827,7 +3821,7 @@ msgid "Darken background under particles"
 msgstr ""
 
 msgid "Emiters"
-msgstr ""
+msgstr "Emisores"
 
 #, fuzzy
 msgid "Have random colors for the particles"
@@ -3838,53 +3832,41 @@ msgstr ""
 msgid "Increases the visibility of the mouse pointer"
 msgstr ""
 
-#, fuzzy
 msgid "Number Of Particles"
 msgstr "Número de partículas"
 
-#, fuzzy
 msgid "Number of particle emiters."
-msgstr "Número de partículas"
+msgstr "Número de emisores de partículas."
 
-#, fuzzy
 msgid "Number of particles."
-msgstr "Número de partículas"
+msgstr "Número de partículas."
 
-#, fuzzy
 msgid "Particle Color"
-msgstr "Color de las partículas de fuego"
+msgstr "Color de las partículas"
 
-#, fuzzy
 msgid "Particle Life"
-msgstr "Tiempo de vida de las partículas de fuego"
+msgstr "Tiempo de vida de las partículas"
 
-#, fuzzy
 msgid "Particle Options"
-msgstr "Opciones varias"
+msgstr "Opciones de las partículas"
 
-#, fuzzy
 msgid "Particle Size"
-msgstr "Tamaño de las partículas de fuego"
+msgstr "Tamaño de las partículas"
 
-#, fuzzy
 msgid "Particle Slowdown"
-msgstr "Desaceleración de las partículas de fuego"
+msgstr "Desaceleración de las partículas"
 
-#, fuzzy
 msgid "Particle color."
-msgstr "Color de las partículas de fuego"
+msgstr "Color de las partículas."
 
-#, fuzzy
 msgid "Particle life."
-msgstr "Tiempo de vida de las partículas de fuego"
+msgstr "Tiempo de vida de las partículas."
 
-#, fuzzy
 msgid "Particle size."
-msgstr "Tamaño de las partículas de fuego."
+msgstr "Tamaño de las partículas."
 
-#, fuzzy
 msgid "Particle slowdown."
-msgstr "Desaceleración de las partículas de fuego."
+msgstr "Desaceleración de las partículas."
 
 #, fuzzy
 msgid "Randomly Colored Particles"
@@ -3902,15 +3884,14 @@ msgstr "Velocidad de la animación"
 msgid "Rotation speed."
 msgstr "Velocidad de la animación"
 
-#, fuzzy
 msgid "Show mouse"
-msgstr "Tiempo de espera hasta mostrar la barra de fichas"
+msgstr "Mostrar puntero del ratón"
 
 msgid "Toggle the mouse pointer trail."
 msgstr ""
 
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Avoid Snap Modifier"
 msgstr ""
@@ -3919,38 +3900,35 @@ msgid "Choose 'Resistance', 'Attraction' or 'Full Mode'."
 msgstr ""
 
 msgid "Control"
-msgstr ""
+msgstr "Control"
 
 msgid "Edge Attraction Distance"
-msgstr ""
+msgstr "Distancia de atracción a los bordes"
 
 msgid "Edge Resistance Distance"
-msgstr ""
+msgstr "Distancia de resistencia a los bordes"
 
-#, fuzzy
 msgid "Edge attraction"
-msgstr "Saturación"
+msgstr "Atracción de los bordes"
 
-#, fuzzy
 msgid "Edge resistance"
-msgstr "Distancia"
+msgstr "Resistencia de los bordes"
 
 msgid "Edges"
-msgstr ""
+msgstr "Bordes de la pantalla"
 
+#, fuzzy
 msgid "Enables windows edges resistance"
-msgstr ""
+msgstr "Activa la resistencia a los bordes de las ventanas"
 
-#, fuzzy
 msgid "Meta"
-msgstr "Metal"
+msgstr "Meta"
 
-#, fuzzy
 msgid "Screen edges"
-msgstr "Profundidad de la pantalla"
+msgstr "Bordes de la pantalla"
 
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Snap Type"
 msgstr ""
@@ -3971,9 +3949,8 @@ msgstr ""
 msgid "Use this bindings to avoid snapping."
 msgstr ""
 
-#, fuzzy
 msgid "Window edges"
-msgstr "Tipos de ventana"
+msgstr "Bordes de la ventana"
 
 msgid "Bottom to Top"
 msgstr "De abajo a arriba"
@@ -4061,7 +4038,7 @@ msgid "Snow Toggle"
 msgstr "Habilitar o deshabilitar la nieve"
 
 msgid "Snow for Compiz"
-msgstr "Nieve para compiz"
+msgstr "Nieve para Compiz"
 
 msgid "Snow is drawn above windows"
 msgstr "Dibujar la nieve sobre las ventanas"
@@ -4127,29 +4104,263 @@ msgid "Splash"
 msgstr "Splash"
 
 msgid "Start Splash."
-msgstr "Empezar splash"
+msgstr "Iniciar splash"
+
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Comportamiento"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Oscurecer fondo cuando se muestra el anillo"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Ancho de la miniatura"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Habilitar una ventana determinada"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Saturación de las ventanas seleccionadas"
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Ancho de las ventanas"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Color del suelo (lejos)."
+
+#, fuzzy
+msgid "Windows"
+msgstr "Ventanas 3D"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Ventanas que deberían poder ser agrupadas"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Brillo del fondo durante el dibujo"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "No mostrar la aplicación en el paginador"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Poner en visor"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+msgid "Centered"
+msgstr "Centrado"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Color de relleno del rectángulo de selección"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr ""
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Color para destacar una ventana"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Color para destacar una ventana"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Color para destacar una ventana"
+
+#, fuzzy
+msgid "Icon"
+msgstr "Dentro"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Ancho de las ventanas"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Crear mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "La tecla para seleccionar la ventana activa."
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Ventanas en mosaico"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Siguiente ventana (en todos los escritorios)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Siguiente ventana (del grupo de ventanas)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Siguiente ventana (del grupo de ventanas)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Tipos de ventana que pueden ser agrupados"
+
+msgid "Popup switcher if not visible and select next window"
+msgstr ""
+
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+
+msgid "Popup switcher if not visible and select previous window"
+msgstr ""
+
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+
+#, fuzzy
+msgid "Prev Panel"
+msgstr "Vista previa escalable"
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Agrupar ventanas"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Ventanas en mosaico"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Siguiente ventana (del grupo de ventanas)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Siguiente ventana (del grupo de ventanas)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Seleccionar una sola ventana"
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Seleccionar una sola ventana"
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Ancho de las ventanas"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rectangular"
+
+msgid "Show icon next to thumbnail"
+msgstr ""
+
+#, fuzzy
+msgid "Show minimized windows"
+msgstr "Nieve sobre las ventanas"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Velocidad"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Intercambiar Filtro"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Ventanas en mosaico"
+
+msgid "Taskbar Entry"
+msgstr ""
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Ventanas que deberían poder ser agrupadas"
 
 msgid "Render text to texture"
 msgstr ""
 
-#, fuzzy
 msgid "Text"
-msgstr "Texturas"
+msgstr "Textos"
 
-#, fuzzy
 msgid "Enable Titles"
-msgstr "Habilitar texturas"
+msgstr "Activar títulos"
 
-#, fuzzy
 msgid "Fade In/Out Duration"
-msgstr "Saturación"
+msgstr "Duración del tiempo de fundición"
 
 msgid "Fade In/Out Duration in seconds."
 msgstr ""
 
-#, fuzzy
 msgid "Generate Mipmaps"
-msgstr "Crear mipmaps"
+msgstr "Generar Mipmaps"
 
 msgid "Generate mipmaps when possible for higher quality scaling."
 msgstr ""
@@ -4188,21 +4399,17 @@ msgstr ""
 msgid "Thumbnail Background and Border Glow Color."
 msgstr ""
 
-#, fuzzy
 msgid "Thumbnail Border Glow Color"
-msgstr "Color del borde de las fichas"
+msgstr "Color del borde de las miniaturas"
 
-#, fuzzy
 msgid "Thumbnail Border Size"
-msgstr "Tamaño de las vistas previas"
+msgstr "Tamaño del borde de las miniaturas"
 
-#, fuzzy
 msgid "Thumbnail Window Size"
-msgstr "Tamaño de las vistas previas"
+msgstr "Tamaño de la miniatura"
 
-#, fuzzy
 msgid "Thumbnail window size."
-msgstr "Ventanas en mosaico"
+msgstr "Tamaño de la miniatura."
 
 msgid "Thumbnails Always on Top"
 msgstr ""
@@ -4210,25 +4417,22 @@ msgstr ""
 msgid "Time (in ms) before Thumbnail is shown."
 msgstr ""
 
-#, fuzzy
+# berylog: ¿no debería ser Previsualización de ventanas en lugar de Tipos de ventana?
 msgid "Window Previews"
-msgstr "Tipos de ventana"
+msgstr "Previsualización de ventanas"
 
 #, fuzzy
 msgid "Window thumbnails at the taskbar"
 msgstr "El tamaño de las vistas previas de las ventanas en la barra de tareas"
 
-#, fuzzy
 msgid "Window title"
-msgstr "Fuente de los títulos de las ventanas"
+msgstr "Título de la ventana"
 
-#, fuzzy
 msgid "Window title Font Color."
-msgstr "Fuente de los títulos de las ventanas"
+msgstr "Color del título de la ventana."
 
-#, fuzzy
 msgid "Window title Font Size."
-msgstr "Fuente de los títulos de las ventanas"
+msgstr "Tamaño de los títulos de las ventanas."
 
 msgid "Animation Duration"
 msgstr "Duración de la animación"
@@ -4485,13 +4689,11 @@ msgstr ""
 msgid "Initiate/Terminate the selected plugin action"
 msgstr "Iniciar/Terminar plugin seleccionado"
 
-#, fuzzy
 msgid "Move Down"
-msgstr "Mover Abajo"
+msgstr "Mover abajo"
 
-#, fuzzy
 msgid "Move Left"
-msgstr "Mover a la Izquierda"
+msgstr "Mover a la izquierda"
 
 msgid "Move Next"
 msgstr "Mover a la siguiente"
@@ -4499,7 +4701,6 @@ msgstr "Mover a la siguiente"
 msgid "Move Prev"
 msgstr "Mover al previo"
 
-#, fuzzy
 msgid "Move Right"
 msgstr "Mover a la derecha"
 
@@ -4525,7 +4726,7 @@ msgid "Move up"
 msgstr "Mover Arriba"
 
 msgid "Number-Based Viewport Switching"
-msgstr "cambiar de escritorio mediante números"
+msgstr "Cambiar de escritorio mediante números"
 
 msgid "Plugin for initiate action"
 msgstr "Plugin para iniciar la acción"
@@ -4623,8 +4824,9 @@ msgstr "Gradiente del fondo"
 msgid "Base Color"
 msgstr "Color de la base"
 
+# No existe "parede" hay que usar "pared" o "paredes" al referirse a "wall"
 msgid "Desktop Wall"
-msgstr "Parede de escritorio"
+msgstr "Pared de escritorios"
 
 msgid "Desktop Wall Plugin"
 msgstr "Plugin de la pared de escritorio"
@@ -4651,15 +4853,15 @@ msgstr ""
 msgid "Edge Flipping"
 msgstr ""
 
-#, fuzzy
 msgid "Edge Radius"
 msgstr "Radio del borde"
 
 msgid "Edge flipping"
 msgstr ""
 
+#, fuzzy
 msgid "First color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Primer color para el gradiente del fondo de la ventana de \"switcher\""
 
 msgid "First color for the thumb gradient of the switcher window."
 msgstr ""
@@ -4670,20 +4872,19 @@ msgstr ""
 msgid "First color of the arrow of the switcher window."
 msgstr ""
 
-#, fuzzy
 msgid "Flip Down"
-msgstr "Arriba/Abajo"
+msgstr "Voltear hacia abajo"
 
-#, fuzzy
 msgid "Flip Left"
-msgstr "Izquierda"
+msgstr "Voltear hacia la izquierda"
 
 #, fuzzy
 msgid "Flip Right"
-msgstr "Derecha"
+msgstr "Voltear hacia la derecha"
 
+#, fuzzy
 msgid "Flip Up"
-msgstr ""
+msgstr "Voltear hacia arriba"
 
 msgid "Flip down"
 msgstr ""
@@ -4759,8 +4960,9 @@ msgstr ""
 msgid "Move with window along the wall up"
 msgstr "Mover cada ventana en el grupo"
 
+#, fuzzy
 msgid "Move with window within wall"
-msgstr ""
+msgstr "Mover con la ventana dentro de la pared."
 
 msgid "Move within wall"
 msgstr "Mover dentro de la ventana"
@@ -4803,14 +5005,14 @@ msgid "Show Viewport Switcher Preview"
 msgstr "Mostrar vista previa del cambiador de Viewport"
 
 msgid "Show live viewport previews in switcher window"
-msgstr ""
+msgstr "Mostrar previsualizaciones en el cambiador de ventanas"
 
 msgid "Show switcher window while switching viewports"
 msgstr ""
 
 #, no-c-format
 msgid "Size of the preview in %"
-msgstr ""
+msgstr "Tamaño de la previsualización en %"
 
 msgid "Switch Target Preview Visibility Time"
 msgstr ""
@@ -4847,9 +5049,6 @@ msgstr "Fondos"
 
 msgid "Center Tiled"
 msgstr "Mosaico Centrado"
-
-msgid "Centered"
-msgstr "Centrado"
 
 msgid "Color 1"
 msgstr "Color 1"
@@ -4968,7 +5167,7 @@ msgid "Fixed Size Windows"
 msgstr "Dimensión de ventanas compuesta"
 
 msgid "Fullscreen"
-msgstr "Pantalla Completa"
+msgstr "Pantalla completa"
 
 msgid "Fullscreen windows"
 msgstr "Ventanas a pantalla completa"
@@ -5110,7 +5309,7 @@ msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Has que wine y legacy corran pantalla completa correctamente."
 
 msgid "Metacity-like workarounds."
-msgstr "Metacity como Solucion"
+msgstr "Metacity como solución"
 
 msgid "Notification Daemon Fix"
 msgstr "Fijar Demonio de Notificación"
@@ -5126,13 +5325,10 @@ msgid "Window stickyness"
 msgstr "Fijar ventanas al escritorio"
 
 msgid "Windows on all desktops that should be made sticky"
-msgstr "Ventanas en todos los escritorios que deberían ser fundidas con él."
+msgstr "Ventanas en todos los escritorios que deberían ser \"pegajosas\"."
 
 msgid "Workarounds"
 msgstr "Entorno de trabajo"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Reflejo del cubo"
 
 #, fuzzy
 #~ msgid "Close Windows In Scale"
@@ -5167,10 +5363,6 @@ msgstr "Entorno de trabajo"
 #~ msgid "Misc. options"
 #~ msgstr "Opciones varias"
 
-#, fuzzy
-#~ msgid "Show minimized windows"
-#~ msgstr "Nieve sobre las ventanas"
-
 #~ msgid "Tile or Stretch"
 #~ msgstr "Mosaico o Expandido"
 
@@ -5193,9 +5385,6 @@ msgstr "Entorno de trabajo"
 #~ msgstr ""
 #~ "Esto creará mipmaps, los cuales mejorarán la apariencia de las texturas, "
 #~ "y reducirá los bordes dentados."
-
-#~ msgid "Window width"
-#~ msgstr "Ancho de las ventanas"
 
 #~ msgid "Spring model on move"
 #~ msgstr "Utilizar el modelo de resortes cuando la ventana es movida"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:47+0530\n"
+"POT-Creation-Date: 2008-07-09 16:55+0530\n"
 "PO-Revision-Date: 2008-05-15 21:04+0200\n"
 "Last-Translator: Sebastian Parborg <zedDB@hotmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -915,6 +915,13 @@ msgstr "Y-position på prestandatest-fönster"
 msgid "Y position"
 msgstr "Y-position"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Bytningsfilter"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Minska ljusstyrka"
 
@@ -1321,6 +1328,20 @@ msgstr "Zooma ut automatiskt endast vid musrotation."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Zooma ut automatiskt för att få kuben att passa skärmen."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Kublock"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Rendererar bilder på toppen och botten av kuben"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Kubreflektion"
+
+msgid "Cube Reflection"
+msgstr "Kubreflektion"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animationen som används när man växlar till expoläge"
 
@@ -1600,6 +1621,10 @@ msgstr "Dölj orginalmuspekare"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "Döljer orginalmuspekaren vid inzoomning och musen är skalad"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Minsta skalningsfaktorn"
+
 msgid "Mouse Behaviour"
 msgstr "Musbeteende"
 
@@ -1691,6 +1716,11 @@ msgstr "Synkronisera musen"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Välj ett fokuserat fönster på en specifik nivå"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Välj storleksmarginal att lägga till vid försök att hålla kvar musen."
@@ -4021,6 +4051,262 @@ msgstr "Startbild"
 msgid "Start Splash."
 msgstr "Startbild för start"
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr "Mängden opacitet (i procent) för fönster i ringen som inte är valda"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Beteende"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Förmörka bakgrunden när ringen visas"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Miniatyrbredd"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Aktivera ett angivet fönster"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Ska fönstertiteln vara fet"
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Fönsterbredd"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Färg 1 för gradient bakgrund"
+
+# La till ett bindestreck
+#, fuzzy
+msgid "Windows"
+msgstr "3D-fönster"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Fönster som ska visas i skiftväxlaren"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Ljustyrka på bakgrund under ritande"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Visa inte program i sidindelning"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Placera på arbetsyta"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Placera mitt"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Fyllnadsfärgen för selektionsrektangeln"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr ""
+"Generera mipmaps när det är möjligt att förbättra kvalitet på skalning."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Framhävningsfärg"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Framhävningsfärg"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Framhävningsfärg"
+
+#, fuzzy
+msgid "Icon"
+msgstr "In"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Fönsterframhävning"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Färg använd för framhävning av fönster som man musen är över"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Nästa fönster"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Nästa fönster (Alla skrivbordsytor)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Nästa fönster (Grupp)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Nästa fönster (Grupp)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Grupp fönstermatchning"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "Visa bytare om den inte är synlig och välj nästa fönster."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Visa bytare om den inte är synlig och välj nästa fönster av det nuvarande "
+"programmet."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Visa bytare om den inte är synlig och välj nästa fönster utav alla fönster."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "Visa bytare om den inte är synlig och välj föregående fönster."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Visa bytare om den inte är synlig och välj föregående fönster av det "
+"nuvarande programmet."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Visa bytare om den inte är synlig och välj föregående fönster utav alla "
+"fönster."
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Föregående fönster"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Föregående fönster (Alla arbetsytor)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Föregående fönster (Grupp)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Föregående fönster (Grupp)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Väljer placeringen av fönstertiteln"
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Väljer placeringen av fönstertiteln"
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Fönsterframhävning"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rektangulär"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Visa fönstertitel i miniatyren"
+
+msgid "Show minimized windows"
+msgstr "Visa minimerade fönster"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Växlarläge"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Skifttidsteg"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Filtrerade fönster"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Aktivitetsfältet"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Fönster som ska visas i skiftväxlaren"
+
 msgid "Render text to texture"
 msgstr "Renderera text till textur"
 
@@ -4714,10 +5000,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "Placera mitt"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "Färger"
 
@@ -5017,12 +5299,6 @@ msgstr "Fönster på alla arbetsytor som ska klistras"
 msgid "Workarounds"
 msgstr "Problemlösningar"
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Rendererar bilder på toppen och botten av kuben"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Kubreflektion"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Stäng fönster i skala"
 
@@ -5062,9 +5338,6 @@ msgstr "Problemlösningar"
 #~ msgid "Misc. options"
 #~ msgstr "Diverse inställningar"
 
-#~ msgid "Show minimized windows"
-#~ msgstr "Visa minimerade fönster"
-
 #~ msgid "Tile or Stretch"
 #~ msgstr "Sida vid sida eller sträck ut"
 
@@ -5093,6 +5366,3 @@ msgstr "Problemlösningar"
 #~ msgstr ""
 #~ "Det här kommer skapa mipmaps som generellt kommer förbättra utseende på "
 #~ "textur och reducera ojämna kanter"
-
-#~ msgid "Window width"
-#~ msgstr "Fönsterbredd"

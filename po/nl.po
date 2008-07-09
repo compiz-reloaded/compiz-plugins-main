@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:46+0530\n"
+"POT-Creation-Date: 2008-07-09 16:54+0530\n"
 "PO-Revision-Date: 2008-01-31 15:42+0100\n"
 "Last-Translator: Elve <elve@savage-elve.net>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -928,6 +928,13 @@ msgstr "Y positie van benchmark venster"
 msgid "Y position"
 msgstr "Y positie"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Schakel filter"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Helderheid verminderen"
 
@@ -1337,6 +1344,20 @@ msgstr "Automatisch uitzoomen alleen bĳ muis rotatie."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Automatisch uitzoomen om de kubus in het beeld te laten passen."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Kleur deksels"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Teken afbeeldingen op boven- en onderzĳde"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Kubus reflectie"
+
+msgid "Cube Reflection"
+msgstr "Kubus reflectie"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animatie die wordt gebruikt wanneer geschakeld wordt naar expo mode"
 
@@ -1625,6 +1646,10 @@ msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 "Verbergt de originele muis aanwĳzer tĳdens inzoomen en schalen van de muis"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Minimum schaal factor"
+
 msgid "Mouse Behaviour"
 msgstr "Muis gedrag"
 
@@ -1720,6 +1745,11 @@ msgstr "Synchroniseer muis"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Zet venster met focus als doel op specifiek niveau"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
@@ -4071,6 +4101,264 @@ msgstr "Splash"
 msgid "Start Splash."
 msgstr "Start Splash."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+"Mate van opacificeer (in procent) voor vensters in de ring welke niet "
+"geselecteerd zĳn"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Gedrag"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Maak de achtergrond donker als de ring getoond wordt"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Thumbnail breedte"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Activeer een gegeven venster"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "De venstertitel in vet lettertype."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Ring wisselaar"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Kleur 1 van de gradatie achtergrond."
+
+#, fuzzy
+msgid "Windows"
+msgstr "3D vensters"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Vensters die moeten worden getoond in de schuif wisselaar"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Achtergrond helderheid gedurende tekenen"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Toon programma niet in pager"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Plaats op viewport"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Plaats middenpunt"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Vul kleur voor de selectie rechthoek"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "Mipmaps genereren indien mogelijk voor hogere kwaliteit schalen."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Oplicht kleur"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Oplicht kleur"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Oplicht kleur"
+
+#, fuzzy
+msgid "Icon"
+msgstr "In"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Venster oplichten"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr ""
+"Kleur gebruikt om het venster op te laten lichten waaroverheen gezweefd wordt"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Volgende venster"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Volgende venster (Alle werkruitmen)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Volgende venster (groep)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Volgende venster (groep)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Groepeer venster match"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "Toon wisselaar indien niet zichtbaar en selecteer vogende venster."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Toon wisselaar indien niet zichtbaar en toon volgende venster van de huidige "
+"applicatie."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Toon wisselaar indien niet zichtbaar en selecteer volgende venster uit alle "
+"vensters."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "Toon venster indien niet zichtbaar en selecteer vorige venster."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Toon wisselaar indien niet zichtbaar en selecteer vorige venster van de "
+"huidige applicatie."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Toon wisselaar indien niet zichtbaar en selecteer vorige venster uit alle "
+"vensters."
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Vorige venster"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Vorige venster (Alle werkruimten)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Vorige venster (groep)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Vorige venster (groep)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Selecteert waar de venster titel geplaatst moet worden."
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Selecteert waar de venster titel geplaatst moet worden."
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Venster oplichten"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rechthoekig"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Toon venster titel in thumbnail."
+
+msgid "Show minimized windows"
+msgstr "Toon geminimaliseerde vensters"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Wisselaar modus"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Schuif tĳdstap"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Gefilterde vensters"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Taakbalk"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Vensters die moeten worden getoond in de schuif wisselaar"
+
 msgid "Render text to texture"
 msgstr "Render tekst naar een tekstuur"
 
@@ -4766,10 +5054,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "Plaats middenpunt"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "Kleuren"
 
@@ -5061,12 +5345,6 @@ msgstr "Vensters op alle bureaubladen die sticky gemaakt moeten worden"
 msgid "Workarounds"
 msgstr "Workarounds"
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Teken afbeeldingen op boven- en onderzĳde"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Kubus reflectie"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Sluit venster in Schalen"
 
@@ -5107,9 +5385,6 @@ msgstr "Workarounds"
 
 #~ msgid "Misc. options"
 #~ msgstr "Diverse optie's"
-
-#~ msgid "Show minimized windows"
-#~ msgstr "Toon geminimaliseerde vensters"
 
 #~ msgid "Tile or Stretch"
 #~ msgstr "Tegelen of uitrekken"

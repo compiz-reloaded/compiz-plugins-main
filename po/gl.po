@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:45+0530\n"
+"POT-Creation-Date: 2008-07-09 16:53+0530\n"
 "PO-Revision-Date: 2008-03-25 02:51+0100\n"
 "Last-Translator: Fran Diéguez (GLUG) <fran.dieguez@glug.es>\n"
 "Language-Team: <gl@li.org>\n"
@@ -931,6 +931,13 @@ msgstr "Posición no eixo vertical (Y) da fiestra do banco de probas"
 msgid "Y position"
 msgstr "Posición no eixo vertical (Y)"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Trocar de filtro"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Reducir Brillo"
 
@@ -1341,6 +1348,20 @@ msgstr "Retroceder o zoom automaticamente só coa rotación do rato."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Diminuír o zoom automaticamente para que o cubo caiba na pantalla ."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Caras do cubo"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Mostrar imaxes nas caras de cima e de abaixo do cubo"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Reflexo do cubo"
+
+msgid "Cube Reflection"
+msgstr "Reflexo do cubo"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animación empregada cando se troca para o modo expo "
 
@@ -1628,6 +1649,10 @@ msgstr ""
 "Esconde o cursor orixinal do rato cando ten magnificación activa e escala do "
 "rato"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Factor de Escalamento Mínimo"
+
 msgid "Mouse Behaviour"
 msgstr "Comportamento do Rato"
 
@@ -1724,6 +1749,11 @@ msgstr "Sincronizar Rato"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Mostrar a fiestra Focada nun Nivel Específico"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
@@ -4048,6 +4078,264 @@ msgstr "Pantalla de Logotipo"
 msgid "Start Splash."
 msgstr "Iniciar pantalla de logotipo."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+"Nivel de opacidade (en percentaxe) para fiestras no anel que non están "
+"seleccionadas"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Comportamento"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Escurecer fondo cando se estivera a mostrar o anel"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Ancho Miniatura"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Activar unha fiestra especificada"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Deberá o título da fiestra ser mostra a negrito"
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Alternador de Aplicacións en Anel"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Cor 1 do gradiente de fondo."
+
+#, fuzzy
+msgid "Windows"
+msgstr "Fiestras 3D"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Fiestras que se deben mostrar no shift switcher"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Luminosidade do fondo durante o deseño"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Non mostrar aplicación no paxer."
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Colocar noescritorio"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Colocar no Centro"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Cor con que se rechea o rectángulo de selección"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "Xerar imaxes cando sexa posíbel para escalas de mellor calidade."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Cor Realce"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Cor Realce"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Cor Realce"
+
+#, fuzzy
+msgid "Icon"
+msgstr "Aproximar"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Realzar fiestra"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Cor usada para evidenciar a fiestra sobre a cal paira o cursor do rato"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Próxima fiestra"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Próxima fiestra (Todos os Ambientes de Traballo)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Próxima fiestra (Grupo)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Próxima fiestra (Grupo)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Tipos de fiestras a agrupar"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "Mostrar anel se non estivera visíbel e seleccionar a próxima fiestra."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Mostar anel se non visíbel e seleccionar a próxima fiestra da aplicación "
+"actual."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Mostrar anel, se non estivera visíbel, e selecionar próxima fiestra de todas "
+"as fiestras."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "Mostrar anel se non estivera visíbel e seleccionar a fiestra anterior."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Mostar anel se non visíbel e seleccionar a fiestra anterior da aplicación "
+"actual."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Mostrar anel, se non estivera visíbel, e selecionar fiestra anterior de "
+"todas as fiestras"
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "fiestra Anterior"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "fiestra Anterior (Todos os Ambientes de Traballo)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "fiestra Anterior (Grupo)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "fiestra Anterior (Grupo)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Selecciona onde posicionar o título da fiestra."
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Selecciona onde posicionar o título da fiestra."
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Realzar fiestra"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rectangular"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Mostrar Título da fiestra na Miniatura."
+
+#, fuzzy
+msgid "Show minimized windows"
+msgstr "Fiestras non minimizábeis"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Modo do alternador"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Espazo de tempo do Shift"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Fiestras filtradas"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Barra de tarefas"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Fiestras que se deben mostrar no shift switcher"
+
 msgid "Render text to texture"
 msgstr "Renderizar texto en texturas"
 
@@ -4759,10 +5047,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "Colocar no Centro"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "Cores"
 
@@ -5057,12 +5341,6 @@ msgstr "Fiestras \"en tódolos escritorios\" que deben ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correccións"
-
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Mostrar imaxes nas caras de cima e de abaixo do cubo"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Reflexo do cubo"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "pechar Fiestras en Scale"

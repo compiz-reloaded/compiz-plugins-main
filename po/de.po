@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:44+0530\n"
-"PO-Revision-Date: 2008-05-24 16:55+0200\n"
-"Last-Translator: Hans Christian Siller <hans.christian.siller@yale.edu>\n"
+"POT-Creation-Date: 2008-07-09 16:52+0530\n"
+"PO-Revision-Date: 2008-07-04 16:25+0200\n"
+"Last-Translator: mandavi <mandavi@web.de>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,6 @@ msgstr ""
 msgid "Window Color (Active)"
 msgstr "Farbe des aktiven Fensters"
 
-#, fuzzy
 msgid "Window Color (Inactive)"
 msgstr "Farbe des inaktiven Fensters"
 
@@ -953,6 +952,13 @@ msgid "Y position"
 msgstr "Y-Position"
 
 #, fuzzy
+msgid "Bicubic filter"
+msgstr "Filter umschalten"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
+#, fuzzy
 msgid "Brightness Decrease"
 msgstr "Helligkeit"
 
@@ -1369,6 +1375,19 @@ msgstr ""
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Automatisch herauszoomen, um den Würfel dem Bildschirm anzupassen."
 
+msgid "Cube Caps"
+msgstr ""
+
+msgid "Render images on top and bottom of the cube"
+msgstr ""
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Würfelreflektion"
+
+msgid "Cube Reflection"
+msgstr "Würfelreflektion"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Beim Wechsel in den und aus dem Expo-Modus verwendete Animation."
 
@@ -1667,6 +1686,10 @@ msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
 #, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Kleinster Größen-Faktor"
+
+#, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Verhalten der Maus"
 
@@ -1754,6 +1777,11 @@ msgid "Sync Mouse"
 msgstr ""
 
 msgid "Target Focused Window on Specific level"
+msgstr ""
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
 msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
@@ -4168,6 +4196,269 @@ msgstr "Ladebildschirm"
 msgid "Start Splash."
 msgstr "Zeige Ladebildschirm."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr "Sichtbarkeit (in Prozent) von nicht ausgewählten Fenstern im Ring"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Verhalten"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Hintergrund während der Anzeige des Ringes abdunkeln"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Fensterbreite"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Aktiviere ein bestimmtes Fenster"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Aktiviert Fettdruck für die Anzeige des Fenstertitels."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Fensterbreite"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Farbe 1 für den Hintergrundfarbverlauf"
+
+#, fuzzy
+msgid "Windows"
+msgstr "3D-Fenster"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Fenster, die im Umschalter angezeigt werden sollen"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Hintergrundhelligkeit während des Zeichnens"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+# FIXME - pager = ?
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Fenster, die nicht im Pager angezeigt werden sollen"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Zu Arbeitsfläche bewegen"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "In der Bildschirmmitte"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Füllfarbe für Selektionsrahmen"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr ""
+"Mipmaps benutzen (wenn möglich), um eine bessere Darstellungsqualität zu "
+"erreichen."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Hervorhebungsfarbe"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Hervorhebungsfarbe"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Hervorhebungsfarbe"
+
+# FIXME: Herein und Heraus sind noch nicht optimal
+#, fuzzy
+msgid "Icon"
+msgstr "Herein"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Fenstervervorhebung"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps benutzen"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Farbe, die zum Hervorheben des aktuellen Fensters verwendet wird"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Nächstes Fenster"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Nächstes Fenster (alle Arbeitsflächen)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Nächstes Fenster (aktuelle Anwendung)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Nächstes Fenster (aktuelle Anwendung)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Gruppierbare Fenster"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr ""
+"Zeige Umschalter an (wenn nicht schon sichtbar) und wechsele zum nächsten "
+"Fenster."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Zeige Umschalter an (wenn nicht schon sichtbar) und wechsele zum nächsten "
+"Fenster der aktuellen Anwendung."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Zeige Umschalter an (wenn nicht schon sichtbar) und wechsele zum nächsten "
+"Fenster (von allen Arbeitsflächen)."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr ""
+"Zeige Umschalter an (wenn nicht schon sichtbar) und wechsele zum nächsten "
+"Fenster."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Zeige Umschalter an (wenn nicht schon sichtbar) und wechsele zum vorherigen "
+"Fenster der aktuellen Anwendung."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Zeige Umschalter an (wenn nicht schon sichtbar) und wechsele zum vorherigen "
+"Fenster (von allen Arbeitsflächen)."
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Vorheriges Fenster"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Vorheriges Fenster (alle Arbeitsflächen)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Vorheriges Fenster (aktuelle Anwendung)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Vorheriges Fenster (aktuelle Anwendung)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Auswahl der Platzierung des Fenstertitels"
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Auswahl der Platzierung des Fenstertitels"
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Fenstervervorhebung"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rechteckig"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Fenstertitel im Vorschaubild anzeigen."
+
+msgid "Show minimized windows"
+msgstr "Wenn ausgewählt, werden auch minimierte Fenster angezeigt."
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Umschalt-Modus"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Animationszeitschritt"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Gefilterte Fenster"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Taskleiste"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Fenster, die im Umschalter angezeigt werden sollen"
+
 msgid "Render text to texture"
 msgstr "Text in Texturen rendern"
 
@@ -4887,10 +5178,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "In der Bildschirmmitte"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "Farben"
 
@@ -5195,9 +5482,6 @@ msgstr ""
 msgid "Workarounds"
 msgstr "Abhilfen"
 
-#~ msgid "Cube Reflection"
-#~ msgstr "Würfelreflektion"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Fenster schließen"
 
@@ -5223,9 +5507,6 @@ msgstr "Abhilfen"
 
 #~ msgid "Misc. options"
 #~ msgstr "Sonstige Optionen"
-
-#~ msgid "Show minimized windows"
-#~ msgstr "Wenn ausgewählt, werden auch minimierte Fenster angezeigt."
 
 #, fuzzy
 #~ msgid "Tile or Stretch"
@@ -5258,9 +5539,6 @@ msgstr "Abhilfen"
 #~ msgstr ""
 #~ "Aktiviert Mipmaps, welche das allgemeine Aussehen der Texturen verbesern "
 #~ "werden."
-
-#~ msgid "Window width"
-#~ msgstr "Fensterbreite"
 
 #~ msgid "Spring model on move"
 #~ msgstr "Federmodell bei Bewegung"

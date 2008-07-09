@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:44+0530\n"
+"POT-Creation-Date: 2008-07-09 16:52+0530\n"
 "PO-Revision-Date: 2008-05-26 03:23+0200\n"
 "Last-Translator: Jim Dusis <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -939,6 +939,13 @@ msgstr "Y Θέση του παραθύρου του τεστ απόδοσης"
 msgid "Y position"
 msgstr "Υ Θέση"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Αλλαγή φίλτραρίσματος"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Μείωση Φωτεινότητας"
 
@@ -1335,6 +1342,20 @@ msgstr "Αυτόματο ζουμ out μόνο στο γύρισμα με το �
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Αυτόματο ζουμ out για να χορέσει ο κύβος στην οθόνη."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Καπάκια Κύβου"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Απεικόνιση εικόνων πάνω και κάτω του κύβου"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Αντανάκλαση του Κύβου"
+
+msgid "Cube Reflection"
+msgstr "Αντανάκλαση του Κύβου"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Γραφική απεικόνιση για την αλλαγή σε κατάσταση expo"
 
@@ -1624,6 +1645,10 @@ msgstr ""
 "Αποκρύπτει τον πραγματικό δείκτη ποντικιού όταν ζουμάρεται μέσα και "
 "κλιμακώνει το ποντίκι"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Ελάχιστος Συντελεστής Μεγέθους"
+
 msgid "Mouse Behaviour"
 msgstr "Συμπεριφορά Ποντικιού"
 
@@ -1717,6 +1742,11 @@ msgstr "Συγχρονισμός Ποντικιού"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Στόχευση Εστιασμένου Παραθύρου σε Συγκεκριμένο Επίπεδο"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
@@ -4041,6 +4071,264 @@ msgstr "Αρχική Οθόνη"
 msgid "Start Splash."
 msgstr "Εκκίνηση Αρχικής Οθόνης."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+"Ποσό αδιαφάνειας (σε ποσοστό) για τα παράθυρα στο δαχτυλίδι που δεν είναι "
+"επιλεγμένα"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Συμπεριφορά"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Σκοτείνιασμα φόντου όταν εμφανίζεται το δαχτυλίδι"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Πλάτος Μικρογραφίας"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Ενεργοποίηση ένος δωσμένου παράθυρου"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Αν πρέπει ο τίτλος παραθύρου να γίνει Έντονος."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Πλάτος Παραθύρου"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Χρώμα 1 του διαβαθμισμένου φόντου."
+
+#, fuzzy
+msgid "Windows"
+msgstr "Τρισδιάστατα Παράθυρα"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Παράθυρα που πρέπει να εμφανίζονται στο επιλογέα μετατόπισης"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Φωτεινότητα Φόντου κατα τη διάρκεια ζωγραφίσματος"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Μη εμφάνιση εφαρμογής στο pager"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Τοποθέτηση στην Επιφάνεια Εργασίας"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+msgid "Centered"
+msgstr "Κεντραρισμένο"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Χρώμα γεμίσματος του επιλεγμένου ορθογωνίου"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "Δημιουργία mipmaps ει δυνατόν για υψηλότερη ποιότητα κλιμάκωσης."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Χρώμα Τονισμού"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Χρώμα Τονισμού"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Χρώμα Τονισμού"
+
+#, fuzzy
+msgid "Icon"
+msgstr "Μέσα"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Τονισμός Παραθύρου"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Χρώμα τονισμού του παραθύρου που το ποντίκι μένει επάνω του."
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Επόμενο Παράθυρο"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Επόμενο Παράθυρο (Όλες οι Επιφάνειες Εργασίας)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Επόμενο Παράθυρο (Ομάδα)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Επόμενο Παράθυρο (Ομάδα)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Ταίριασμα Ομαδοποιημένων Παραθύρων"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή επόμενου παραθύρου."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή επόμενου παραθύρου για την "
+"τρέχουσα εφαρμογή."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή επόμενου παραθύρου μέσα "
+"απο όλα τα παράθυρα."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή προηγούμενου παραθύρου."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή προηγούμενου παραθύρου της "
+"τρέχουσας εφαρμογής."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Εμφάνιση επιλογέα αν δεν είναι ορατός και επιλογή προηγούμενου παραθύρου "
+"μέσα απο όλα τα παράθυρα."
+
+#, fuzzy
+msgid "Prev Panel"
+msgstr "Προεπισκόπιση Κλιμάκωσης"
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Προηγούμενο Παράθυρο"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Προηγούμενο Παράθυρο (Όλες οι Επιφάνειες Εργασίας)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Προηγούμενο Παράθυρο (Ομάδα)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Προηγούμενο Παράθυρο (Ομάδα)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Επιλέγει που να τοποθετήσει τον τίτλο παραθύρου"
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Επιλέγει που να τοποθετήσει τον τίτλο παραθύρου"
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Τονισμός Παραθύρου"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Ορθογώνιο"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Εμφάνιση του Τίτλου Παραθύρου στην Μικρογραφία."
+
+msgid "Show minimized windows"
+msgstr "Εμφάνιση ελαχιστοποιημένων παραθύρων"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Κατάσταση επιλογέα"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Βήμα χρόνου Μετατόπισης"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Φιλτραρισμένα παράθυρα"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Γραμμή Εργασιών"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Παράθυρα που πρέπει να εμφανίζονται στο επιλογέα μετατόπισης"
+
 msgid "Render text to texture"
 msgstr "Προσθήκη κειμένου στην υφή"
 
@@ -4756,9 +5044,6 @@ msgstr "Φόντο"
 msgid "Center Tiled"
 msgstr ""
 
-msgid "Centered"
-msgstr "Κεντραρισμένο"
-
 msgid "Color 1"
 msgstr "Χρώμα 1"
 
@@ -5042,12 +5327,6 @@ msgstr ""
 msgid "Workarounds"
 msgstr "Μοντίφες"
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Απεικόνιση εικόνων πάνω και κάτω του κύβου"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Αντανάκλαση του Κύβου"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Κλείσιμο Παραθύρων στην Κλιμάκωση"
 
@@ -5087,9 +5366,6 @@ msgstr "Μοντίφες"
 #~ msgid "Misc. options"
 #~ msgstr "Διάφορες επιλογές"
 
-#~ msgid "Show minimized windows"
-#~ msgstr "Εμφάνιση ελαχιστοποιημένων παραθύρων"
-
 #~ msgid "Tile or Stretch"
 #~ msgstr "Μετατροπή σε Πλακίδια ή Τέντωμα"
 
@@ -5120,9 +5396,6 @@ msgstr "Μοντίφες"
 #~ msgstr ""
 #~ "Δημιουργεί Mipmaps που βελτιώνουν την εμφάνιση των υφών γενικά, και "
 #~ "περιορίζει τις κομμένες άκρες."
-
-#~ msgid "Window width"
-#~ msgstr "Πλάτος Παραθύρου"
 
 #~ msgid "Set window as widget"
 #~ msgstr "Θέσε παράθυρο ως συσκευή"

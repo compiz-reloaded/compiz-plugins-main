@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:46+0530\n"
+"POT-Creation-Date: 2008-07-09 16:54+0530\n"
 "PO-Revision-Date: 2008-02-14 08:45+0100\n"
 "Last-Translator: Jeong Seungwon <jeongseungwon@hanmail.net>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
@@ -885,6 +885,13 @@ msgstr "벤치마크 창의 Y 위치"
 msgid "Y position"
 msgstr "Y 위치"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "필터 변경"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "밝기 감소"
 
@@ -1286,6 +1293,20 @@ msgstr "마우스 회전시에 자동으로 축소"
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "큐브가 화면에 적합하도록 자동으로 축소됨"
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "큐브 캡"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "큐브의 천장과 바닥 이미지를 그림"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "큐브 반사"
+
+msgid "Cube Reflection"
+msgstr "큐브 반사"
+
 msgid "Animation used when switching to expo mode"
 msgstr "엑스포 모드로 전환할 때 애니메이션 사용"
 
@@ -1570,6 +1591,10 @@ msgstr "원래의 마우스 포인터를 숨김"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "마우스가 확대되면 원래의 마우스는 숨김"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "최소 크기 인자"
+
 msgid "Mouse Behaviour"
 msgstr "마우스 동작"
 
@@ -1659,6 +1684,11 @@ msgstr "마우스 동기화"
 
 msgid "Target Focused Window on Specific level"
 msgstr "확대 수준을 전환할 때, 현재 창을 목표로 설정"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "마우스를 구속하려할 때, 더할 여유분"
@@ -3943,6 +3973,259 @@ msgstr "스플래시"
 msgid "Start Splash."
 msgstr "스플래시 시작."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr "선택되지 않은 원 안의 창들에 대한 투명도 (퍼센트 단위)"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "동작"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "원을 표시할 때 배경을 어둡게 함"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "미리 보기 넓이"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "주어진 창을 활성화함"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "창 제목을 굵은 글씨로 표시함."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "창 너비"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "그래디엔트 배경을 위한 첫 번째 색"
+
+#, fuzzy
+msgid "Windows"
+msgstr "3D 창"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "이동 전환기를 적용할 창들"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "페인트 중의 배경 밝기"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "작업 공간 전환기에 표시 안 함"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "작업 공간으로 던지기"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "중앙으로 던지기"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "선택 영역을 색으로 채우기"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "고품질 스케일링을 위한 Mipmap을 생성함."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "강조 색"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "강조 색"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "강조 색"
+
+#, fuzzy
+msgid "Icon"
+msgstr "안쪽"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "창 강조"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmap"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "선택할려는 창을 강조하기 위해 사용할 색"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "다음 창"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "다음 창 (모든 작업 공간)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "다음 창 (그룹)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "다음 창 (그룹)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "창 그룹 매치"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "전환기가 보이지 않는다면 전환기를 보여주고, 다음 창으로 전환함"
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"전환기가 보이지 않는다면 전환기를 보여주고, 이 프로그램의 다음 창으로 전환함"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"전환기가 보이지 않는다면 전환기를 보여주고, 모든 창들 중에서 다음 창으로 전환"
+"함"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "전환기가 보이지 않는다면 전환기를 보여주고, 이전 창으로 전환함"
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"전환기가 보이지 않는다면 전환기를 보여주고, 이 프로그램의 이전 창으로 전환함"
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"전환기가 보이지 않는다면 전환기를 보여주고, 모든 창들 중에서 이전 창으로 전환"
+"함"
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "이전 창"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "이전 창 (모든 작업 공간)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "이전 창 (그룹)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "이전 창 (그룹)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "창 제목을 어디에 둘지 선택함"
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "창 제목을 어디에 둘지 선택함"
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "창 강조"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "사각형"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "미리 보기에서 창 제목을 표시함."
+
+msgid "Show minimized windows"
+msgstr "최소화된 창도 보여줌"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "전환 방식"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "이도 시간 간격"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "필터링된 창"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "창 목록"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "이동 전환기를 적용할 창들"
+
 msgid "Render text to texture"
 msgstr "글자를 텍스쳐로 렌더링함"
 
@@ -4626,10 +4909,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "중앙으로 던지기"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "색"
 
@@ -4920,12 +5199,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 msgid "Workarounds"
 msgstr "문제 회피"
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "큐브의 천장과 바닥 이미지를 그림"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "큐브 반사"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "스케일 상태에서 창을 닫음"
 
@@ -4963,9 +5236,6 @@ msgstr "문제 회피"
 #~ msgid "Misc. options"
 #~ msgstr "기타 옵션"
 
-#~ msgid "Show minimized windows"
-#~ msgstr "최소화된 창도 보여줌"
-
 #~ msgid "Tile or Stretch"
 #~ msgstr "바둑판식이나 늘이기"
 
@@ -4991,6 +5261,3 @@ msgstr "문제 회피"
 #~ msgstr ""
 #~ "이 옵션은 전체적인 텍스쳐 모양을 향상시키는 mipmaps를 만들고 들쭉날쭉한 모"
 #~ "서리를 감소시킵니다."
-
-#~ msgid "Window width"
-#~ msgstr "창 너비"

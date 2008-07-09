@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fusion-plugins 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:46+0530\n"
+"POT-Creation-Date: 2008-07-09 16:54+0530\n"
 "PO-Revision-Date: 2008-03-16 19:01+0100\n"
 "Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <ketil.w.aanensen@gmail.com>\n"
@@ -900,6 +900,13 @@ msgstr "Y-posisjon for ytelsestestvinduet"
 msgid "Y position"
 msgstr "Y-posisjon"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Bytt filter"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Redusert skarphet"
 
@@ -1305,6 +1312,20 @@ msgstr "Forminsk automatisk kun ved muserotering."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Forminsk automatisk for å få kuben til å passe til skjermen."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Kubeluer"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Gjengi bilder på toppen og bunnen av kuben"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Kuberefleksjon"
+
+msgid "Cube Reflection"
+msgstr "Kuberefleksjon"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animasjon som brukes ved bytte til ekspo-modus"
 
@@ -1585,6 +1606,10 @@ msgstr "Skjul original musepeker"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "Skjuler den originale musepekeren når forstørret og musen skalert"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Minimum skaleringsfaktor"
+
 msgid "Mouse Behaviour"
 msgstr "Oppførsel for mus"
 
@@ -1680,6 +1705,11 @@ msgstr "Synkroniser mus"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Sikt fokusert vindu på spesifikt nivå"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Størrelsen på margen som legges til når musen forsøkes holdt tilbake."
@@ -3962,6 +3992,257 @@ msgstr "Plask"
 msgid "Start Splash."
 msgstr "Start Plask"
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr "Dekkevne (i prosent) for vinduer i i ringen, som ikke er valgt"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Oppførsel"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Gjør bakgrunnen mørkere når ringen vises"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Miniatyrbredde"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Aktiver et gitt vindu"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Skal være vindustittelen fet."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Ringskifter"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Farge 1 av fargeoverganen i bakgrunnen"
+
+#, fuzzy
+msgid "Windows"
+msgstr "3D-vinduer"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Vinduer som skal bli vist i Bytt-skifteren"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Bakgrunnens skarphet ved maling"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Ikke vis program i oversikt"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Plasser på arbeidsområde"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Plasser i midten"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Fyllfarge for utvalgsrektangelet"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "Lag MIP-kart når det er mulig for skalering med høyere kvalitet"
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Farge for fremheving"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Farge for fremheving"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Farge for fremheving"
+
+#, fuzzy
+msgid "Icon"
+msgstr "Inn"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Fremhev vindu"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "MIP-kart"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Farge brukt for å fremheve det svevende vinduet"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Neste vindu"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Neste vindu (alle arbeidsområder)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Neste vindu (gruppe)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Neste vindu (gruppe)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Vinduer som skal grupperes"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "Vis skifter hvis ikke synlig og velg neste vindu."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Vis skifteren hvis den ikke er synlig, og velg neste vindu av nåværende "
+"program."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr "Vis skifteren hvis ikke synlig, og velg neste vindu av alle vinduer."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "Vis skifter hvis ikke synlig og velg neste vindu."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Vis skifteren hvis den ikke er synlig, og velg forrige vindu av nåværende "
+"program."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr "Vis skifter hvis ikke synlig, og velg forrige vindu av alle vinduer."
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Forrige vindu"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Forrige vindu (alle arbeidsområder)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Forrige vindu (gruppe)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Forrige vindu (gruppe)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Velger hvor vindustittelen plasseres."
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Velger hvor vindustittelen plasseres."
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Fremhev vindu"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rektangulær"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Vis vindustittel i miniatyr."
+
+msgid "Show minimized windows"
+msgstr "Vis minimerte vinduer"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Skiftermodus"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Tidsskritt for Bytt"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Filtrerte vinduer"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Oppgavelinje"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Vinduer som skal bli vist i Bytt-skifteren"
+
 msgid "Render text to texture"
 msgstr "Gjengi tekst til tekstur"
 
@@ -4655,10 +4936,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "Plasser i midten"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "Farger"
 
@@ -4952,12 +5229,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 msgid "Workarounds"
 msgstr "Omveier"
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Gjengi bilder på toppen og bunnen av kuben"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Kuberefleksjon"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Lukk vinduer i Skaler"
 
@@ -4995,9 +5266,6 @@ msgstr "Omveier"
 
 #~ msgid "Misc. options"
 #~ msgstr "Diverse valg"
-
-#~ msgid "Show minimized windows"
-#~ msgstr "Vis minimerte vinduer"
 
 #~ msgid "Show window title in scale mode"
 #~ msgstr "Vis vindustittel i Skaler-modus"

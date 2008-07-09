@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:46+0530\n"
+"POT-Creation-Date: 2008-07-09 16:54+0530\n"
 "PO-Revision-Date: 2008-05-31 19:51+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -894,6 +894,12 @@ msgstr "ベンチマークウィンドウのY座標"
 msgid "Y position"
 msgstr "Y座標"
 
+msgid "Bicubic filter"
+msgstr "双三次補間フィルタ"
+
+msgid "Bicubic texture filtering"
+msgstr "双三次補間法によるテクスチャ・フィルタ"
+
 msgid "Brightness Decrease"
 msgstr "明度を下げる"
 
@@ -1281,6 +1287,20 @@ msgstr "マウス回転時のみ自動的なズームアウト"
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "キューブを画面に合わせるための自動的なズームアウト"
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "キューブのふた"
+
+#, fuzzy
+msgid "Render images on top and bottom of the cube"
+msgstr "キューブ下面の次の画像に進む"
+
+msgid "Compiz cube reflection"
+msgstr "Compiz キューブの反射"
+
+msgid "Cube Reflection"
+msgstr "キューブの反射"
+
 msgid "Animation used when switching to expo mode"
 msgstr "展開モードに切り替えるときのアニメーション"
 
@@ -1558,6 +1578,10 @@ msgstr "元マウスポインタを隠す"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "ズームイン時に元マウスポインタを隠してマウスを拡大"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "縮尺率の最小値"
+
 msgid "Mouse Behaviour"
 msgstr "マウス動作"
 
@@ -1647,6 +1671,11 @@ msgstr "マウスに追従"
 
 msgid "Target Focused Window on Specific level"
 msgstr "指定ズーム率使用時はフォーカス・ウィンドウを対象"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "マウスを制限している場合の制限域のマージンの大きさ"
@@ -3915,6 +3944,233 @@ msgstr "スプラッシュ"
 msgid "Start Splash."
 msgstr "スプラッシュ開始"
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr "リングの非選択ウィンドウに適用する不透明度（％単位）"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "動作"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "リングを表示する際に背景を暗くする"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "サムネイルの幅"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "該当ウィンドウのアクティブ化"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "選択ウィンドウを手前に提示"
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "不動型アプリケーション・スイッチャー"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "グラデーション背景の色 1"
+
+#, fuzzy
+msgid "Windows"
+msgstr "3D ウィンドウ"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "スイッチャーに表示する対象ウィンドウ"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr "横に空きがある場合の配列の仕方"
+
+msgid "Amount of brightness in percent"
+msgstr "明度の割合"
+
+msgid "Amount of opacity in percent"
+msgstr "不透明度の割合"
+
+msgid "Amount of saturation in percent"
+msgstr "彩度の割合"
+
+msgid "Auto Change Viewport"
+msgstr "ビューポート自動切り替え"
+
+#, fuzzy
+msgid "Bring Selected To Front"
+msgstr "手前に提示"
+
+msgid "Centered"
+msgstr "中央"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr "スイッチ中に選択ウィンドウが存在するビューポートに切り替え"
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "選択矩形の塗り色"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "より高質のスケールが可能なときはミップマップを生成"
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "強調表示色"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "強調表示色"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "強調表示色"
+
+msgid "Icon"
+msgstr "アイコン"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "ウィンドウの強調表示"
+
+msgid "Mipmap"
+msgstr "ミップマップ"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "マウスが置かれているウィンドウの強調に使用する色"
+
+msgid "Next Panel"
+msgstr "次のパネル"
+
+msgid "Next window"
+msgstr "次のウィンドウ"
+
+msgid "Next window (All windows)"
+msgstr "次のウィンドウ（全ウィンドウから）"
+
+msgid "Next window (Group)"
+msgstr "次のウィンドウ(グループから)"
+
+msgid "Next window (No popup)"
+msgstr "次のウィンドウ（ポップアップなし）"
+
+msgid "Original Window Position"
+msgstr ""
+
+msgid "Popup Window Delay"
+msgstr "ポップアップ・ウィンドウの遅延時間"
+
+msgid "Popup switcher if not visible and select next window"
+msgstr "スイッチャーが非表示の場合は表示して、次のウィンドウを選択"
+
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"スイッチャーが非表示の場合は表示して、現在のアプリケーションの次のウィンドウ"
+"を選択"
+
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"スイッチャーが非表示の場合は表示して、すべてのウィンドウから次のウィンドウを"
+"選択"
+
+msgid "Popup switcher if not visible and select previous window"
+msgstr "スイッチャーが非表示の場合は表示して、前のウィンドウを選択"
+
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"スイッチャーが非表示の場合は表示して、現在のアプリケーションの前のウィンドウ"
+"を選択"
+
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"スイッチャーが非表示の場合は表示して、すべてのウィンドウから前のウィンドウを"
+"選択"
+
+msgid "Prev Panel"
+msgstr "前のパネル"
+
+msgid "Prev window"
+msgstr "前のウィンドウ"
+
+msgid "Prev window (All windows)"
+msgstr "前のウィンドウ(全ウィンドウから)"
+
+msgid "Prev window (Group)"
+msgstr "前のウィンドウ(グループから)"
+
+msgid "Prev window (No popup)"
+msgstr "前のウィンドウ（ポップアップなし）"
+
+msgid "Row Alignment"
+msgstr "配列"
+
+msgid "Select next panel type window."
+msgstr "次のパネルタイプ・ウィンドウを選択"
+
+msgid "Select next window without showing the popup window."
+msgstr "ポップアップ・ウィンドウの表示なしに次のウィンドウを選択"
+
+msgid "Select previous panel type window."
+msgstr "前のパネルタイプ・ウィンドウを選択"
+
+msgid "Select previous window without showing the popup window."
+msgstr "ポップアップ・ウィンドウの表示なしに前のウィンドウを選択"
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "ウィンドウの強調表示"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "矩形"
+
+msgid "Show icon next to thumbnail"
+msgstr "サムネイルの隣にアイコンを表示"
+
+msgid "Show minimized windows"
+msgstr "最小化されているウィンドウも表示"
+
+msgid "Static Application Switcher"
+msgstr "不動型アプリケーション・スイッチャー"
+
+msgid "Switcher speed"
+msgstr "スイッチャーの速度"
+
+msgid "Switcher timestep"
+msgstr "スイッチャー描画の刻み時間"
+
+msgid "Switcher windows"
+msgstr "スイッチャー対象ウィンドウ"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "タスクバー"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr "ポップアップ・ウィンドウが表示されるまでの遅延時間（秒単位）"
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+msgid "Windows that should be shown in switcher"
+msgstr "スイッチャーに表示する対象ウィンドウ"
+
 msgid "Render text to texture"
 msgstr "テキストをテクスチャに描画"
 
@@ -4603,9 +4859,6 @@ msgstr "背景"
 msgid "Center Tiled"
 msgstr "中央からタイル状"
 
-msgid "Centered"
-msgstr "中央"
-
 msgid "Color 1"
 msgstr "色1"
 
@@ -4889,18 +5142,6 @@ msgstr ""
 msgid "Workarounds"
 msgstr "次善策"
 
-#~ msgid "Bicubic filter"
-#~ msgstr "双三次補間フィルタ"
-
-#~ msgid "Bicubic texture filtering"
-#~ msgstr "双三次補間法によるテクスチャ・フィルタ"
-
-#~ msgid "Compiz cube reflection"
-#~ msgstr "Compiz キューブの反射"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "キューブの反射"
-
 #~ msgid "Intensity."
 #~ msgstr "輝度"
 
@@ -4912,144 +5153,6 @@ msgstr "次善策"
 
 #~ msgid "Toggle showing of repainted regions."
 #~ msgstr "再描画域の表示のオンオフ"
-
-#~ msgid "Alignment for rows that are not fully filled"
-#~ msgstr "横に空きがある場合の配列の仕方"
-
-#~ msgid "Amount of brightness in percent"
-#~ msgstr "明度の割合"
-
-#~ msgid "Amount of opacity in percent"
-#~ msgstr "不透明度の割合"
-
-#~ msgid "Amount of saturation in percent"
-#~ msgstr "彩度の割合"
-
-#~ msgid "Auto Change Viewport"
-#~ msgstr "ビューポート自動切り替え"
-
-#~ msgid "Bring To Front"
-#~ msgstr "手前に提示"
-
-#~ msgid "Bring selected window to front"
-#~ msgstr "選択ウィンドウを手前に提示"
-
-#~ msgid "Change to the viewport of the selected window while switching"
-#~ msgstr "スイッチ中に選択ウィンドウが存在するビューポートに切り替え"
-
-#~ msgid "Generate mipmaps when possible for higher quality scaling"
-#~ msgstr "より高質のスケールが可能なときはミップマップを生成"
-
-#~ msgid "Icon"
-#~ msgstr "アイコン"
-
-#~ msgid "Mipmap"
-#~ msgstr "ミップマップ"
-
-#~ msgid "Next Panel"
-#~ msgstr "次のパネル"
-
-#~ msgid "Next window"
-#~ msgstr "次のウィンドウ"
-
-#~ msgid "Next window (All windows)"
-#~ msgstr "次のウィンドウ（全ウィンドウから）"
-
-#~ msgid "Next window (Group)"
-#~ msgstr "次のウィンドウ(グループから)"
-
-#~ msgid "Next window (No popup)"
-#~ msgstr "次のウィンドウ（ポップアップなし）"
-
-#~ msgid "Popup Window Delay"
-#~ msgstr "ポップアップ・ウィンドウの遅延時間"
-
-#~ msgid "Popup switcher if not visible and select next window"
-#~ msgstr "スイッチャーが非表示の場合は表示して、次のウィンドウを選択"
-
-#~ msgid ""
-#~ "Popup switcher if not visible and select next window of the current "
-#~ "application."
-#~ msgstr ""
-#~ "スイッチャーが非表示の場合は表示して、現在のアプリケーションの次のウィンド"
-#~ "ウを選択"
-
-#~ msgid ""
-#~ "Popup switcher if not visible and select next window out of all windows"
-#~ msgstr ""
-#~ "スイッチャーが非表示の場合は表示して、すべてのウィンドウから次のウィンドウ"
-#~ "を選択"
-
-#~ msgid "Popup switcher if not visible and select previous window"
-#~ msgstr "スイッチャーが非表示の場合は表示して、前のウィンドウを選択"
-
-#~ msgid ""
-#~ "Popup switcher if not visible and select previous window of the current "
-#~ "application."
-#~ msgstr ""
-#~ "スイッチャーが非表示の場合は表示して、現在のアプリケーションの前のウィンド"
-#~ "ウを選択"
-
-#~ msgid ""
-#~ "Popup switcher if not visible and select previous window out of all "
-#~ "windows"
-#~ msgstr ""
-#~ "スイッチャーが非表示の場合は表示して、すべてのウィンドウから前のウィンドウ"
-#~ "を選択"
-
-#~ msgid "Prev Panel"
-#~ msgstr "前のパネル"
-
-#~ msgid "Prev window"
-#~ msgstr "前のウィンドウ"
-
-#~ msgid "Prev window (All windows)"
-#~ msgstr "前のウィンドウ(全ウィンドウから)"
-
-#~ msgid "Prev window (Group)"
-#~ msgstr "前のウィンドウ(グループから)"
-
-#~ msgid "Prev window (No popup)"
-#~ msgstr "前のウィンドウ（ポップアップなし）"
-
-#~ msgid "Row Alignment"
-#~ msgstr "配列"
-
-#~ msgid "Select next panel type window."
-#~ msgstr "次のパネルタイプ・ウィンドウを選択"
-
-#~ msgid "Select next window without showing the popup window."
-#~ msgstr "ポップアップ・ウィンドウの表示なしに次のウィンドウを選択"
-
-#~ msgid "Select previous panel type window."
-#~ msgstr "前のパネルタイプ・ウィンドウを選択"
-
-#~ msgid "Select previous window without showing the popup window."
-#~ msgstr "ポップアップ・ウィンドウの表示なしに前のウィンドウを選択"
-
-#~ msgid "Show icon next to thumbnail"
-#~ msgstr "サムネイルの隣にアイコンを表示"
-
-#~ msgid "Show minimized windows"
-#~ msgstr "最小化されているウィンドウも表示"
-
-#~ msgid "Static Application Switcher"
-#~ msgstr "不動型アプリケーション・スイッチャー"
-
-#~ msgid "Switcher speed"
-#~ msgstr "スイッチャーの速度"
-
-#~ msgid "Switcher timestep"
-#~ msgstr "スイッチャー描画の刻み時間"
-
-#~ msgid "Switcher windows"
-#~ msgstr "スイッチャー対象ウィンドウ"
-
-#~ msgid "Time (in s) the popup window should be delayed before appearing"
-#~ msgstr "ポップアップ・ウィンドウが表示されるまでの遅延時間（秒単位）"
-
-#~ msgid "Windows that should be shown in switcher"
-#~ msgstr "スイッチャーに表示する対象ウィンドウ"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "スケールのウィンドウを閉じる"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:45+0530\n"
+"POT-Creation-Date: 2008-07-09 16:53+0530\n"
 "PO-Revision-Date: 2007-12-17 12:25+0530\n"
 "Last-Translator: \n"
 "Language-Team: gist Gujarati team <info.gist@cdac.in>\n"
@@ -895,6 +895,13 @@ msgid "Y position"
 msgstr "Y સ્થાન"
 
 #, fuzzy
+msgid "Bicubic filter"
+msgstr "ગાળક બદલો"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
+#, fuzzy
 msgid "Brightness Decrease"
 msgstr "તેજસ્વીતા"
 
@@ -1315,6 +1322,20 @@ msgstr "માત્ર માઉસ ફેરવવા પર જ આપોઆ�
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "ઘનને સ્ક્રીનમાં બંધબેસાડવા માટે આપોઆપ નાનું કરો."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "ઘન કેપ્સ"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "ઘનની ટોચ અને તળિયેના ચિત્રો ઢાળો"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "ઘન પરાવર્તન"
+
+msgid "Cube Reflection"
+msgstr "ઘન પરાવર્તન"
+
 msgid "Animation used when switching to expo mode"
 msgstr "જ્યારે expo સ્થિતિમાં બદલી રહ્યા હોય ત્યારે વપરાતું એનીમેશન"
 
@@ -1602,6 +1623,10 @@ msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "જ્યારે માઉસ મોટું થયેલ હોય અને ખેંચાયેલ હોય ત્યારે મૂળ માઉસ નિર્દેશકને છુપાવે છે"
 
 #, fuzzy
+msgid "Minimum zoom factor"
+msgstr "ન્યૂનતમ ખેંચાણ અવયવ"
+
+#, fuzzy
 msgid "Mouse Behaviour"
 msgstr "માઉસ વર્તણૂક"
 
@@ -1695,6 +1720,11 @@ msgstr "માઉસ સુમેળ કરો"
 
 msgid "Target Focused Window on Specific level"
 msgstr "ફોકસ થયેલ વિન્ડોને ચોક્કસ સ્તર પર લક્ષ્યાંકિત કરો"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "જ્યારે માઉસ પુનઃખેંચવાનો પ્રયાસ કરી રહ્યા હોય ત્યારે ઉમેરવાના હાંસિયાનું માપ"
@@ -4019,6 +4049,258 @@ msgstr "ઝબકાર"
 msgid "Start Splash."
 msgstr "ઝબકાર શરૂ કરો."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr "રીંગમાં વિન્ડો માટે અપારદર્શકતાનો જથ્થો (ટકામાં) કે જેઓ પસંદ થયેલ નહિં હોય"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "વર્તણૂક"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "જ્યારે રીંગ બતાવી રહ્યા હોય ત્યારે પાશ્વભાગ ઘાટો કરો"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "થમ્બનેઈલ પહોળાઈ"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "આપેલ વિન્ડો સક્રિય કરો"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "વિન્ડો શીર્ષક ઘાટા હોવા જોઈએ."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "રીંગ બદલનાર"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "ઢાળવાળા પાશ્વભાગનો રંગ ૧."
+
+#, fuzzy
+msgid "Windows"
+msgstr "3D વિન્ડો"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "વિન્ડો કે જે બદલનાર ખસેડોમાં બતાવવામાં આવવી જોઈએ"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "રંગકામ દરમ્યાન પાશ્વભાગ તેજસ્વીતા"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "પેજરમાં કાર્યક્રમ બતાવશો નહિં"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "દૃશ્યપોર્ટ પર મૂકો"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "કેન્દ્ર મૂકો"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "પસંદિત લંબચોરસનો રંગ ભરો"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "જ્યારે ઊંચા ગુણવત્તાવાળા ખેંચાણ માટે શક્ય હોય ત્યારે મીપમેપ બનાવો."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "પ્રકાશિત રંગ"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "પ્રકાશિત રંગ"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "પ્રકાશિત રંગ"
+
+#, fuzzy
+msgid "Icon"
+msgstr "અંદર"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "વિન્ડો પ્રકાશન"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "મીપમેપ"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "ઉપર આવેલ વિન્ડોના પ્રકાશન માટે વપરાતો રંગ"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "આગળની વિન્ડો"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "આગળની વિન્ડો (બધા કાર્યસ્થળો)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "આગળની વિન્ડો (જૂથ)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "આગળની વિન્ડો (જૂથ)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "વિન્ડો જોડણી જૂથ કરો"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "દૃશ્યમાન નહિં હોય તો બદલનાર બતાવો જો અને આગળની વિન્ડો પસંદ કરો."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"દૃશ્યમાન નહિં હોય તો બદલનાર બતાવો જો અને વર્તમાન કાર્યક્રમની આગળની વિન્ડો પસંદ કરો."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"દૃશ્યમાન નહિં હોય તો બદલનાર બતાવો જો અને બધી વિન્ડોમાંથી આગળની વિન્ડો પસંદ કરો."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "દૃશ્યમાન નહિં હોય તો બદલનાર બતાવો જો અને પહેલાંની વિન્ડો પસંદ કરો."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"દૃશ્યમાન નહિં હોય તો બદલનાર બતાવો જો અને વર્તમાન કાર્યક્રમની પહેલાંની વિન્ડો પસંદ કરો."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"દૃશ્યમાન નહિં હોય તો બદલનાર બતાવો જો અને બધી વિન્ડોમાંની પહેલાંની વિન્ડો પસંદ કરો."
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "પહેલાંની વિન્ડો"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "પહેલાંની વિન્ડો (બધા કાર્યસ્થળો)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "પહેલાંની વિન્ડો (જૂથ)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "પહેલાંની વિન્ડો (જૂથ)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "વિન્ડો શીર્ષકને ક્યાં મૂકવી તે પસંદ કરે છે."
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "વિન્ડો શીર્ષકને ક્યાં મૂકવી તે પસંદ કરે છે."
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "વિન્ડો પ્રકાશન"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "લંબચોરસ"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "વિન્ડો શીર્ષક થમ્બમેઈલમાં બતાવો."
+
+#, fuzzy
+msgid "Show minimized windows"
+msgstr "ન્યૂનતમ નહિં કરી શકાય તેવી વિન્ડો"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "બદલનાર સ્થિતિ"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "સમયપગલું ખસેડો"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "ગળાયેલ વિન્ડો"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "ક્રિયાપટ્ટી"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "વિન્ડો કે જે બદલનાર ખસેડોમાં બતાવવામાં આવવી જોઈએ"
+
 msgid "Render text to texture"
 msgstr "લખાણવાળામાંથી લખાણ ઢાળો."
 
@@ -4699,10 +4981,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "કેન્દ્ર મૂકો"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "રંગો"
 
@@ -5000,12 +5278,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 
 msgid "Workarounds"
 msgstr "ઉકેલો"
-
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "ઘનની ટોચ અને તળિયેના ચિત્રો ઢાળો"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "ઘન પરાવર્તન"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "ખેંચવા પર વિન્ડો બંધ કરો"

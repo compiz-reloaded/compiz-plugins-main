@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:45+0530\n"
+"POT-Creation-Date: 2008-07-09 16:53+0530\n"
 "PO-Revision-Date: 2008-03-18 21:11+0100\n"
 "Last-Translator: Tristan RABLAT <tristan.rablat@gmail.com>\n"
 "Language-Team: <fr@li.org>\n"
@@ -918,6 +918,13 @@ msgstr "Position verticale de la fenêtre de benchmark"
 msgid "Y position"
 msgstr "Position verticale"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Changer de filtre"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Diminution de la Luminosité"
 
@@ -1331,6 +1338,20 @@ msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr ""
 "Dézoomer automatiquement pour que la taille du cube soit adaptée à l'écran"
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Dessus/Dessous du Cube"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Dessiner les images au dessus et en dessous du cube"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Réflexion du Cube"
+
+msgid "Cube Reflection"
+msgstr "Réflexion du Cube"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animation utilisée lors du passage au mode Exposé"
 
@@ -1616,6 +1637,10 @@ msgstr ""
 "Cache le pointeur d'origine de la souris lors du zoom et lors de la mise à "
 "l'échelle du pointeur"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Facteur d'échelle minimum"
+
 msgid "Mouse Behaviour"
 msgstr "Comportement du pointeur"
 
@@ -1710,6 +1735,11 @@ msgstr "Souris synchronisée"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Cible la fenêtre ayant le focus à un niveau spécifique"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Taille de la marge à ajouter en essayant de restraindre la souris."
@@ -4042,6 +4072,269 @@ msgstr "Écran d'accueil"
 msgid "Start Splash."
 msgstr "Afficher l'écran d'accueil"
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+"Opacité (en pourcentage) pour les fenêtres de l'Anneau qui ne sont pas "
+"sélectionnées"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Comportement"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Arrière-plan assombri en affichant l'Anneau"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Largeur de Miniature"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Active une fenêtre donnée"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Graisse du titre de la fenêtre."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Sélecteur en Anneau"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Couleur 1 du gradient d'arrière plan."
+
+#, fuzzy
+msgid "Windows"
+msgstr "Fenêtres 3D"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Fenêtre qui doivent être affichées dans le sélecteur"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Luminosité du fond en dessinant"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Ne pas montrer l'application dans le sélecteur"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Placer sur le Bureau"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Placer au Centre"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Couleur de remplissage pour le rectangle de sélection"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr ""
+"Générer des mipmaps quand cela est possible pour une meilleure qualité de "
+"mise à l'échelle."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Couleur de surbrillance"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Couleur de surbrillance"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Couleur de surbrillance"
+
+#, fuzzy
+msgid "Icon"
+msgstr "Entrée"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Surbrillance de fenêtre"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Couleur utilisée pour mettre la fenêtre survolée en surbrillance."
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Fenêtre suivante"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Fenêtre suivante (tous les bureaux)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Fenêtre suivante (groupe)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Fenêtre suivante (groupe)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Fenêtre pour le regroupement"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr ""
+"Afficher le sélecteur s'il n'est pas visible et sélectionner la fenêtre "
+"suivante."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Afficher le sélecteur s'il n'est pas visible et sélectionner la fenêtre "
+"suivante de l'application courante."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Afficher le sélecteur s'il n'est pas visible et sélectionner la fenêtre "
+"suivante, de toutes les fenêtres."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr ""
+"Afficher le sélecteur s'il n'est pas visible et sélectionner la fenêtre "
+"précédente."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Afficher le sélecteur s'il n'est pas visible et sélectionner la fenêtre "
+"précédente de l'application courante."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Afficher le sélecteur s'il n'est pas visible et sélectionner la fenêtre "
+"précédente, de toutes les fenêtres."
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Fenêtre précédente"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Fenêtre précédente (tous les bureaux)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Fenêtre précédente (groupe)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Fenêtre précédente (groupe)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Position du titre de la fenêtre"
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Position du titre de la fenêtre"
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Surbrillance de fenêtre"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rectangulaire"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Afficher le titre de la fenêtre dans la miniature."
+
+msgid "Show minimized windows"
+msgstr "Afficher les fenêtres minimisées"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Mode de sélection"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Intervalle"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Fenêtres filtrées"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Barre de tâches"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Fenêtre qui doivent être affichées dans le sélecteur"
+
 msgid "Render text to texture"
 msgstr "Rendre le texte sous forme de texture"
 
@@ -4753,10 +5046,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "Placer au Centre"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "Couleurs"
 
@@ -5051,12 +5340,6 @@ msgstr "Fenêtres sur tous les bureaux devant être rendues "
 msgid "Workarounds"
 msgstr "Solutions"
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Dessiner les images au dessus et en dessous du cube"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Réflexion du Cube"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Fermer les fenêtres en mode Échelle"
 
@@ -5095,9 +5378,6 @@ msgstr "Solutions"
 
 #~ msgid "Misc. options"
 #~ msgstr "Divers"
-
-#~ msgid "Show minimized windows"
-#~ msgstr "Afficher les fenêtres minimisées"
 
 #~ msgid "Tile or Stretch"
 #~ msgstr "Carreler ou étirer"

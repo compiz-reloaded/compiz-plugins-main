@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Compiz Fusion Plugins 0.5.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:44+0530\n"
+"POT-Creation-Date: 2008-07-09 16:52+0530\n"
 "PO-Revision-Date: 2007-09-09 02:42+0100\n"
 "Last-Translator: Gustau L. Castells (Karasu) <gustaucastells@gmail.com>\n"
 "Language-Team: Catalan <gustaucastells@gmail.com>\n"
@@ -900,6 +900,13 @@ msgid "Y position"
 msgstr "Posició de les Y"
 
 #, fuzzy
+msgid "Bicubic filter"
+msgstr "Intercambia el filtre"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
+#, fuzzy
 msgid "Brightness Decrease"
 msgstr "Brillantor"
 
@@ -1315,6 +1322,20 @@ msgstr "Allunya automàticament només quan girem amb el ratolí."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Allunya automàticament per encavir el cub a la pantalla."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Tapes del cub"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Renderitza imatges en les cares superior i inferior del cub"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Reflexió del Cub"
+
+msgid "Cube Reflection"
+msgstr "Reflexió del Cub"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animació que s'usa quan es canvia al mode expo"
 
@@ -1593,6 +1614,10 @@ msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 
 #, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Factor d'escalat mínim"
+
+#, fuzzy
 msgid "Mouse Behaviour"
 msgstr "Comportament del Ratolí"
 
@@ -1682,6 +1707,11 @@ msgid "Sync Mouse"
 msgstr "Sincronitza el ratolí"
 
 msgid "Target Focused Window on Specific level"
+msgstr ""
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
 msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
@@ -3968,6 +3998,262 @@ msgstr "Presentació"
 msgid "Start Splash."
 msgstr "Comença la presentació"
 
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Comportament"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Enfosqueix el fons quan mostra l'anell"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Amplada de la miniatura"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Saturació de les finestres quan s'esvaeixen"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Dibuixa el títol de la finestra en negreta."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Amplada de finestra"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "Color 1 del degradat de fons."
+
+#, fuzzy
+msgid "Windows"
+msgstr "Finestres 3D"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Finestres que es mostraran en l'anell"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Brillantor del fons mentres es pinta"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "No mostra l'aplicació en el paginador"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Posa a la vista"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "Posa al centre"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Color de la línia del rectangle de selecció"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr ""
+"Genera mipmaps quan sigui possible per una millor qualitat de l'escalat."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Color de realçat"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Color de realçat"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Color de realçat"
+
+#, fuzzy
+msgid "Icon"
+msgstr "Dins"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Realçat de finestra"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Mostra el títol de la finestra seleccionada."
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Finestra següent"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Finestra següent (tots els espais de treball)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Finestra següent (grup)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Finestra següent (grup)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Agrupa finestres"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr ""
+"Mostra el commutador si no és visible i selecciona la següent finestra."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Mostra el commutador si no és visible i selecciona la finestra següent de "
+"l'aplicació actual."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Mostra el commutador si no és visible i selecciona la següent finestra "
+"d'entre totes les finestres."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr ""
+"Mostra el commutador si no és visible i selecciona la finestra anterior."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Mostra el commutador si no és visible i selecciona la finestra anterior de "
+"l'aplicació actual."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Mostra el commutador si no és visible i selecciona la finestra anterior "
+"d'entre totes les finestres."
+
+msgid "Prev Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Finestra prèvia"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Finestra prèvia (tots els espais de treball)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Finestra prèvia (grup)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Finestra prèvia (grup)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Selecciona on posar el títol de la finestra."
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Selecciona on posar el títol de la finestra."
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Realçat de finestra"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rectangular"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Mostra el títol de la finestra en la miniatura."
+
+msgid "Show minimized windows"
+msgstr "Mostra finestres minimitzades"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+msgid "Switcher speed"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Intercambia el filtre"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Finestres filtrades"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Barra de tasques"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Finestres que es mostraran en l'anell"
+
 msgid "Render text to texture"
 msgstr "Renderitza el text a una textura"
 
@@ -4628,10 +4914,6 @@ msgid "Center Tiled"
 msgstr ""
 
 #, fuzzy
-msgid "Centered"
-msgstr "Posa al centre"
-
-#, fuzzy
 msgid "Color 1"
 msgstr "Colors"
 
@@ -4934,12 +5216,6 @@ msgstr "Finestres en tots els escriptoris que han de ser apegaloses"
 msgid "Workarounds"
 msgstr ""
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Renderitza imatges en les cares superior i inferior del cub"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Reflexió del Cub"
-
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Tanca finestres en escalat"
 
@@ -4972,9 +5248,6 @@ msgstr ""
 #~ msgid "Misc. options"
 #~ msgstr "Altres opcions"
 
-#~ msgid "Show minimized windows"
-#~ msgstr "Mostra finestres minimitzades"
-
 #~ msgid "Corner Bevelling"
 #~ msgstr "Arrodoniment de cantons"
 
@@ -5001,6 +5274,3 @@ msgstr ""
 #~ msgstr ""
 #~ "Això crearà mipmaps que millorarà l'aparença general de la textura, i "
 #~ "reduirà els cantons escapçats."
-
-#~ msgid "Window width"
-#~ msgstr "Amplada de finestra"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion 0.7.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-06-16 16:45+0530\n"
+"POT-Creation-Date: 2008-07-09 16:53+0530\n"
 "PO-Revision-Date: 2008-05-26 15:47+0200\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: en_GB <dave@cirt.net>\n"
@@ -898,6 +898,13 @@ msgstr "Y Position of benchmark window"
 msgid "Y position"
 msgstr "Y position"
 
+#, fuzzy
+msgid "Bicubic filter"
+msgstr "Switch filter"
+
+msgid "Bicubic texture filtering"
+msgstr ""
+
 msgid "Brightness Decrease"
 msgstr "Brightness Decrease"
 
@@ -1286,6 +1293,20 @@ msgstr "Zoom out automatically only on mouse rotate."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Zoom out automatically to make the cube fit to the screen."
 
+#, fuzzy
+msgid "Cube Caps"
+msgstr "Cube caps"
+
+msgid "Render images on top and bottom of the cube"
+msgstr "Render images on top and bottom of the cube"
+
+#, fuzzy
+msgid "Compiz cube reflection"
+msgstr "Cube Reflection"
+
+msgid "Cube Reflection"
+msgstr "Cube Reflection"
+
 msgid "Animation used when switching to expo mode"
 msgstr "Animation used when switching to expo mode"
 
@@ -1563,6 +1584,10 @@ msgstr "Hide original mouse pointer"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "Hides the original mouse pointer when zoomed in and scaling the mouse"
 
+#, fuzzy
+msgid "Minimum zoom factor"
+msgstr "Minimum Scale Factor"
+
 msgid "Mouse Behaviour"
 msgstr "Mouse Behaviour"
 
@@ -1653,6 +1678,11 @@ msgstr "Synchronise Mouse"
 
 msgid "Target Focused Window on Specific level"
 msgstr "Target Focused Window on Specific level"
+
+msgid ""
+"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
+"0.25 equals 4x zoom."
+msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "The size of the margin to add when attempting to restrain the mouse."
@@ -3926,6 +3956,261 @@ msgstr "Splash"
 msgid "Start Splash."
 msgstr "Start Splash."
 
+#, fuzzy
+msgid ""
+"Amount of opacity (in percent) for windows in the switcher which are not "
+"selected"
+msgstr ""
+"Amount of opacity (in percent) for windows in the ring which are not selected"
+
+#, fuzzy
+msgid "Behavior"
+msgstr "Behaviour"
+
+#, fuzzy
+msgid "Darken background when showing the stack"
+msgstr "Darken background when showing the ring"
+
+#, fuzzy
+msgid "On Thumbnail"
+msgstr "Thumbnail Width"
+
+#, fuzzy
+msgid "Rotate inactive windows"
+msgstr "Activate a given window"
+
+#, fuzzy
+msgid "Should not selected windows be rotated"
+msgstr "Should be the window title Bold."
+
+#, fuzzy
+msgid "Stack Window Switcher"
+msgstr "Ring Switcher"
+
+#, fuzzy
+msgid "Tilt angle of the background."
+msgstr "First colour of the gradient background."
+
+#, fuzzy
+msgid "Windows"
+msgstr "3D Windows"
+
+#, fuzzy
+msgid "Windows that should be shown in the switcher"
+msgstr "Windows that should be shown in the shift switcher"
+
+msgid "Alignment for rows that are not fully filled"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of brightness in percent"
+msgstr "Background brightness during paint"
+
+msgid "Amount of opacity in percent"
+msgstr ""
+
+#, fuzzy
+msgid "Amount of saturation in percent"
+msgstr "Don't show application in pager"
+
+#, fuzzy
+msgid "Auto Change Viewport"
+msgstr "Put On Viewport"
+
+msgid "Bring Selected To Front"
+msgstr ""
+
+msgid "Centered"
+msgstr "Centred"
+
+msgid "Change to the viewport of the selected window while switching"
+msgstr ""
+
+#, fuzzy
+msgid "Color of highlight rectangle"
+msgstr "Fill colour of the selection rectangle"
+
+msgid "Color of highlight rectangle border"
+msgstr ""
+
+msgid "Color of inlay in highlight rectangle border"
+msgstr ""
+
+#, fuzzy
+msgid "Generate mipmaps when possible for higher quality scaling"
+msgstr "Generate mipmaps when possible for higher quality scaling."
+
+#, fuzzy
+msgid "Highlight Border Color"
+msgstr "Highlight Colour"
+
+#, fuzzy
+msgid "Highlight Border Inlay Color"
+msgstr "Highlight Colour"
+
+#, fuzzy
+msgid "Highlight Mode"
+msgstr "Highlight Colour"
+
+#, fuzzy
+msgid "Icon"
+msgstr "In"
+
+#, fuzzy
+msgid "Minimized Window Highlight Rectangle"
+msgstr "Window Highlight"
+
+#, fuzzy
+msgid "Mipmap"
+msgstr "Mipmaps"
+
+#, fuzzy
+msgid "Mode for highlighting the currently selected window"
+msgstr "Colour used for highlighting the hovered window"
+
+msgid "Next Panel"
+msgstr ""
+
+#, fuzzy
+msgid "Next window"
+msgstr "Next Window"
+
+#, fuzzy
+msgid "Next window (All windows)"
+msgstr "Next Window (All Workspaces)"
+
+#, fuzzy
+msgid "Next window (Group)"
+msgstr "Next Window (Group)"
+
+#, fuzzy
+msgid "Next window (No popup)"
+msgstr "Next Window (Group)"
+
+msgid "Original Window Position"
+msgstr ""
+
+#, fuzzy
+msgid "Popup Window Delay"
+msgstr "Group Window Match"
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window"
+msgstr "Show switcher if not visible and select next window."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select next window of the current "
+"application."
+msgstr ""
+"Show switcher if not visible and select next window of the current "
+"application."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select next window out of all windows"
+msgstr ""
+"Show switcher if not visible and select next window out of all windows."
+
+#, fuzzy
+msgid "Popup switcher if not visible and select previous window"
+msgstr "Show switcher if not visible and select previous window."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window of the current "
+"application."
+msgstr ""
+"Show switcher if not visible and select previous window of the current "
+"application."
+
+#, fuzzy
+msgid ""
+"Popup switcher if not visible and select previous window out of all windows"
+msgstr ""
+"Show switcher if not visible and select previous window out of all windows."
+
+#, fuzzy
+msgid "Prev Panel"
+msgstr "Preview Scale"
+
+#, fuzzy
+msgid "Prev window"
+msgstr "Previous Window"
+
+#, fuzzy
+msgid "Prev window (All windows)"
+msgstr "Previous Window (All Workspaces)"
+
+#, fuzzy
+msgid "Prev window (Group)"
+msgstr "Previous Window (Group)"
+
+#, fuzzy
+msgid "Prev window (No popup)"
+msgstr "Previous Window (Group)"
+
+msgid "Row Alignment"
+msgstr ""
+
+#, fuzzy
+msgid "Select next panel type window."
+msgstr "Selects where to place the window title."
+
+msgid "Select next window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Select previous panel type window."
+msgstr "Selects where to place the window title."
+
+msgid "Select previous window without showing the popup window."
+msgstr ""
+
+#, fuzzy
+msgid "Selected Window Highlight"
+msgstr "Window Highlight"
+
+#, fuzzy
+msgid "Show Rectangle"
+msgstr "Rectangular"
+
+#, fuzzy
+msgid "Show icon next to thumbnail"
+msgstr "Show Window Title in Thumbnail."
+
+#, fuzzy
+msgid "Show minimized windows"
+msgstr "Non-minimisable windows"
+
+msgid "Static Application Switcher"
+msgstr ""
+
+#, fuzzy
+msgid "Switcher speed"
+msgstr "Switcher mode"
+
+#, fuzzy
+msgid "Switcher timestep"
+msgstr "Shift timestep"
+
+#, fuzzy
+msgid "Switcher windows"
+msgstr "Filtered windows"
+
+#, fuzzy
+msgid "Taskbar Entry"
+msgstr "Taskbar"
+
+msgid "Time (in s) the popup window should be delayed before appearing"
+msgstr ""
+
+msgid "Where to draw highlight rectangle for minimized windows"
+msgstr ""
+
+#, fuzzy
+msgid "Windows that should be shown in switcher"
+msgstr "Windows that should be shown in the shift switcher"
+
 msgid "Render text to texture"
 msgstr "Render text to texture"
 
@@ -4611,9 +4896,6 @@ msgstr "Backgrounds"
 msgid "Center Tiled"
 msgstr "Centre Tiled"
 
-msgid "Centered"
-msgstr "Centred"
-
 msgid "Color 1"
 msgstr "Colour 1"
 
@@ -4891,12 +5173,6 @@ msgstr "Windows on all desktops that should be made sticky"
 
 msgid "Workarounds"
 msgstr "Workarounds"
-
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Render images on top and bottom of the cube"
-
-#~ msgid "Cube Reflection"
-#~ msgstr "Cube Reflection"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Close Windows In Scale"
