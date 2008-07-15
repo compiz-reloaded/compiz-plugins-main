@@ -77,13 +77,13 @@ typedef struct _ColorFilterWindow
     ((ColorFilterScreen *) (s)->base.privates[(cfd)->screenPrivateIndex].ptr)
 #define FILTER_SCREEN(s)					\
     ColorFilterScreen *cfs = GET_FILTER_SCREEN (s,		\
-			     GET_FILTER_DISPLAY (s->display))
+			     GET_FILTER_DISPLAY ((s)->display))
 #define GET_FILTER_WINDOW(w, cfs)					\
     ((ColorFilterWindow *) (w)->base.privates[(cfs)->windowPrivateIndex].ptr)
 #define FILTER_WINDOW(w)						\
     ColorFilterWindow *cfw = GET_FILTER_WINDOW  (w,			\
-			     GET_FILTER_SCREEN  (w->screen,		\
-			     GET_FILTER_DISPLAY (w->screen->display)))
+			     GET_FILTER_SCREEN  ((w)->screen,		\
+			     GET_FILTER_DISPLAY ((w)->screen->display)))
 
 /* Compiz-core imports ------------------------------------------------------ */
 
