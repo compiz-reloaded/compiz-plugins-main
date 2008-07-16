@@ -751,8 +751,7 @@ modelInitObjects (Model * model,
 		  int width, int height);
 
 void
-postAnimationCleanup (CompWindow * w,
-		      Bool resetAnimation);
+postAnimationCleanup (CompWindow * w);
 
 float
 defaultAnimProgress (AnimWindow * aw);

@@ -1383,7 +1383,6 @@ static void cleanUpParentChildChainItem(AnimScreen *as, AnimWindow *aw)
 }
 
 static void postAnimationCleanupCustom (CompWindow * w,
-					Bool resetAnimation,
 					Bool closing,
 					Bool finishing,
 					Bool clearMatchingRow)
@@ -1423,19 +1422,17 @@ static void postAnimationCleanupCustom (CompWindow * w,
 		aw2->winPassingThrough = NULL;
 	}
     }
-    if (resetAnimation)
-    {
-	if (aw->curAnimEffect == AnimEffectFocusFade ||
-	    aw->curAnimEffect == AnimEffectDodge)
-	{
-	    as->walkerAnimCount--;
-	}
-	aw->curWindowEvent = WindowEventNone;
-	aw->curAnimEffect = AnimEffectNone;
-	aw->animOverrideProgressDir = 0;
 
-	aw->magicLampWaveCount = 0;
+    if (aw->curAnimEffect == AnimEffectFocusFade ||
+	aw->curAnimEffect == AnimEffectDodge)
+    {
+	as->walkerAnimCount--;
     }
+    aw->curWindowEvent = WindowEventNone;
+    aw->curAnimEffect = AnimEffectNone;
+    aw->animOverrideProgressDir = 0;
+
+    aw->magicLampWaveCount = 0;
 
     if (aw->magicLampWaves)
     {
@@ -1560,14 +1557,13 @@ static void postAnimationCleanupCustom (CompWindow * w,
     }
 }
 
-void postAnimationCleanup(CompWindow * w, Bool resetAnimation)
+void postAnimationCleanup (CompWindow * w)
 {
-    postAnimationCleanupCustom (w, resetAnimation, FALSE, FALSE, TRUE);
+    postAnimationCleanupCustom (w, FALSE, FALSE, TRUE);
 }
 
 static void
 postAnimationCleanupPrev (CompWindow * w,
-			  Bool resetAnimation,
 			  Bool closing,
 			  Bool clearMatchingRow)
 {
@@ -1577,8 +1573,7 @@ postAnimationCleanupPrev (CompWindow * w,
     // Use previous event's anim selection row
     aw->curAnimSelectionRow = aw->prevAnimSelectionRow;
 
-    postAnimationCleanupCustom (w, resetAnimation, closing, FALSE,
-				clearMatchingRow);
+    postAnimationCleanupCustom (w, closing, FALSE, clearMatchingRow);
 
     // Restore current event's anim selection row
     aw->curAnimSelectionRow = curAnimSelectionRow;
@@ -1925,7 +1920,7 @@ initiateFocusAnimation(CompWindow *w)
 
 	if (!animEnsureModel(w))
 	{
-	    postAnimationCleanup(w, TRUE);
+	    postAnimationCleanup (w);
 	    return;
 	}
 
@@ -2214,7 +2209,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 					    "animation", CompLogLevelError,
 					    "Not enough memory");
 			    // Abort this window's animation
-			    postAnimationCleanup(w, TRUE);
+			    postAnimationCleanup (w);
 			    continue;
 			}
 			aw->polygonSet->allFadeDuration = -1.0f;
@@ -2244,7 +2239,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		    if (!animEnsureModel (w))
 		    {
 			// Abort this window's animation
-			postAnimationCleanup(w, TRUE);
+			postAnimationCleanup (w);
 			continue;
 		    }
 		}
@@ -2283,7 +2278,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		if (aw->animRemainingTime <= 0)
 		{
 		    // Animation done
-		    postAnimationCleanup(w, TRUE);
+		    postAnimationCleanup (w);
 		}
 		animStillInProgress |= (aw->animRemainingTime > 0);
 	    }
@@ -2293,7 +2288,7 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		if (aw->curAnimEffect != AnimEffectNone ||
 		    aw->unmapCnt > 0 || aw->destroyCnt > 0)
 		{
-		    postAnimationCleanup(w, TRUE);
+		    postAnimationCleanup (w);
 		}
 		aw->curWindowEvent = WindowEventNone;
 		aw->curAnimEffect = AnimEffectNone;
@@ -2871,7 +2866,7 @@ animPaintWindow(CompWindow * w,
 	{
 	    // This window shouldn't really be undergoing animation,
 	    // because it won't make progress with false as->animInProgress.
-	    postAnimationCleanup(w, TRUE);
+	    postAnimationCleanup (w);
 
 	    UNWRAP(as, w->screen, paintWindow);
 	    status = (*w->screen->paintWindow) (w, attrib, transform, region,
@@ -2890,7 +2885,7 @@ animPaintWindow(CompWindow * w,
 	    return FALSE;
 	}
 	if (aw->curWindowEvent == WindowEventFocus && otherPluginsActive(as))
-	    postAnimationCleanup(w, TRUE);
+	    postAnimationCleanup (w);
 
 	WindowPaintAttrib wAttrib = *attrib;
 	CompTransform wTransform = *transform;
@@ -3317,7 +3312,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    if (aw->curWindowEvent != WindowEventUnshade)
 			    {
-				postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
+				postAnimationCleanupPrev (w, FALSE, FALSE);
 			    }
 			    else
 			    {
@@ -3361,7 +3356,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 			if (!animEnsureModel(w))
 			{
-			    postAnimationCleanup(w, TRUE);
+			    postAnimationCleanup (w);
 			}
 
 			aw->unmapCnt++;
@@ -3392,7 +3387,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			{
 			    if (aw->curWindowEvent != WindowEventUnminimize)
 			    {
-				postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
+				postAnimationCleanupPrev (w, FALSE, FALSE);
 			    }
 			    else
 			    {
@@ -3436,7 +3431,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 			if (!animEnsureModel(w))
 			{
-			    postAnimationCleanup(w, TRUE);
+			    postAnimationCleanup (w);
 			}
 			else
 			{
@@ -3506,7 +3501,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			}
 			else
 			{
-			    postAnimationCleanupPrev (w, TRUE, TRUE, FALSE);
+			    postAnimationCleanupPrev (w, TRUE, FALSE);
 			}
 		    }
 
@@ -3532,7 +3527,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 		    if (!animEnsureModel(w))
 		    {
-			postAnimationCleanup(w, TRUE);
+			postAnimationCleanup (w);
 		    }
 		    else if (getMousePointerXY
 			     (w->screen, &aw->icon.x, &aw->icon.y))
@@ -3567,7 +3562,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    if ((aw->curWindowEvent != WindowEventNone) &&
 			(aw->curWindowEvent != WindowEventClose))
 		    {
-			postAnimationCleanup(w, TRUE);
+			postAnimationCleanup (w);
 		    }
 		    // set some properties to make sure this window will use the
 		    // correct open effect the next time it's "opened"
@@ -3823,7 +3818,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventMinimize)
 		    {
-			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -3888,7 +3883,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    }
 		    else
 		    {
-			postAnimationCleanup(w, TRUE);
+			postAnimationCleanup (w);
 		    }
 		}
 	    }
@@ -3911,7 +3906,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventShade)
 		    {
-			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -3960,7 +3955,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (animEnsureModel(w))
 			damagePendingOnScreen (w->screen);
 		    else
-			postAnimationCleanup(w, TRUE);
+			postAnimationCleanup (w);
 		}
 	    }
 	}
@@ -3989,7 +3984,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		{
 		    if (aw->curWindowEvent != WindowEventClose)
 		    {
-			postAnimationCleanupPrev (w, TRUE, FALSE, FALSE);
+			postAnimationCleanupPrev (w, FALSE, FALSE);
 		    }
 		    else
 		    {
@@ -4053,7 +4048,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		    if (animEnsureModel(w))
 			damagePendingOnScreen (w->screen);
 		    else
-			postAnimationCleanup(w, TRUE);
+			postAnimationCleanup (w);
 		}
 	    }
 	}
@@ -4093,7 +4088,7 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 	if (aw->animRemainingTime > 0)
 	{
 	    aw->animRemainingTime = 0;
-	    postAnimationCleanup(w, TRUE);
+	    postAnimationCleanup (w);
 	}
     }
 
@@ -4149,7 +4144,7 @@ animWindowMoveNotify(CompWindow * w, int dx, int dy, Bool immediate)
 		    if (!animStillInProgress)
 			animActivateEvent(w->screen, FALSE);
 		}
-		postAnimationCleanup(w, TRUE);
+		postAnimationCleanup (w);
 	    }
 
 	    if (aw->model)
@@ -4503,7 +4498,7 @@ static void animFiniWindow(CompPlugin * p, CompWindow * w)
 {
     ANIM_WINDOW(w);
 
-    postAnimationCleanupCustom (w, TRUE, FALSE, TRUE, TRUE);
+    postAnimationCleanupCustom (w, FALSE, TRUE, TRUE);
 
     animFreeModel(aw);
 
