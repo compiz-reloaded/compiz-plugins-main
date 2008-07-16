@@ -549,6 +549,9 @@ typedef struct _AnimScreen
 
     Bool animInProgress;
 
+    int walkerAnimCount; // count of how many windows are currently involved in
+			 // animations that require walker (dodge & focus fade)
+
     AnimEffect openRandomEffects[NUM_CLOSE_EFFECT];
     AnimEffect closeRandomEffects[NUM_CLOSE_EFFECT];
     AnimEffect minimizeRandomEffects[NUM_MINIMIZE_EFFECT];

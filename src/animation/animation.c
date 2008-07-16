@@ -1425,6 +1425,11 @@ static void postAnimationCleanupCustom (CompWindow * w,
     }
     if (resetAnimation)
     {
+	if (aw->curAnimEffect == AnimEffectFocusFade ||
+	    aw->curAnimEffect == AnimEffectDodge)
+	{
+	    as->walkerAnimCount--;
+	}
 	aw->curWindowEvent = WindowEventNone;
 	aw->curAnimEffect = AnimEffectNone;
 	aw->animOverrideProgressDir = 0;
@@ -1684,6 +1689,8 @@ initiateFocusAnimation(CompWindow *w)
 	if (chosenEffect == AnimEffectFocusFade ||
 	    chosenEffect == AnimEffectDodge)
 	{
+	    as->walkerAnimCount++;
+
 	    // Find union region of all windows that will be
 	    // faded through by w. If the region is empty, don't
 	    // run focus fade effect.
@@ -1801,8 +1808,12 @@ initiateFocusAnimation(CompWindow *w)
 			adw->dodgeOrder *= -1; // Make it positive again
 			stationaryDodger = TRUE;
 		    }
+		    if (adw->curAnimEffect != AnimEffectDodge)
+		    {
+			adw->curAnimEffect = AnimEffectDodge;
+			as->walkerAnimCount++;
+		    }
 		    adw->dodgeSubjectWin = w;
-		    adw->curAnimEffect = AnimEffectDodge;
 
 		    // Slight change in dodge movement start
 		    // to reflect stacking order of dodgy windows
@@ -3130,8 +3141,13 @@ animInitWindowWalker (CompScreen *s,
     (*s->initWindowWalker) (s, walker);
     WRAP (as, s, initWindowWalker, animInitWindowWalker);
 
-    if (as->animInProgress)
+    if (as->walkerAnimCount > 0) // only walk if necessary
     {
+	if (!as->animInProgress) // just in case
+	{
+	    as->walkerAnimCount = 0;
+	    return;
+	}
 	walker->first = animWalkFirst;
 	walker->last  = animWalkLast;
 	walker->next  = animWalkNext;
@@ -4487,7 +4503,7 @@ static void animFiniWindow(CompPlugin * p, CompWindow * w)
 {
     ANIM_WINDOW(w);
 
-    postAnimationCleanupCustom (w, FALSE, FALSE, TRUE, TRUE);
+    postAnimationCleanupCustom (w, TRUE, FALSE, TRUE, TRUE);
 
     animFreeModel(aw);
 
