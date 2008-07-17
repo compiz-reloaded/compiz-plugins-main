@@ -50,7 +50,7 @@ fxRollUpInitGrid(AnimScreen * as, AnimWindow *aw,
 	*gridHeight = 2;
 }
 
-static void
+static void inline
 fxRollUpModelStepObject(CompWindow * w,
 			Model * model,
 			Object * object,
@@ -127,16 +127,18 @@ fxRollUpModelStep (CompScreen *s, CompWindow *w, float time)
     Model *model = aw->model;
 
     float forwardProgress = sigmoidAnimProgress(aw);
+    Bool fixedInterior = animGetB (as, aw,
+				   ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR);
 
+    Object *object = model->objects;
     int i;
-    for (i = 0; i < model->numObjects; i++)
+    for (i = 0; i < model->numObjects; i++, object++)
 	fxRollUpModelStepObject
 	    (w, 
 	     model,
-	     &model->objects[i],
+	     object,
 	     forwardProgress,
-	     animGetB(as, aw,
-		      ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR));
+	     fixedInterior);
 }
 
 void fxRollUpAnimInit(CompScreen * s, CompWindow * w)

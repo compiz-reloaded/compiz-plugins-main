@@ -54,11 +54,12 @@ fxHorizontalFoldsInitGrid(AnimScreen *as,
 	    animGetI(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
 }
 
-static void
+static void inline
 fxHorizontalFoldsModelStepObject(CompWindow * w,
 				 Model * model,
 				 Object * object,
 				 float forwardProgress,
+				 float sinForProg,
 				 float curveMaxAmp, int rowNo)
 {
     ANIM_WINDOW(w);
@@ -91,7 +92,7 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 	else
 	{
 	    object->position.x =
-		origx + sin(forwardProgress * M_PI / 2) *
+		origx + sinForProg *
 		(0.5 -
 		 object->gridPosition.x) * 2 * model->scale.x *
 		(curveMaxAmp -
@@ -103,14 +104,15 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 	}
     }
     else
-    {							// Execute normal mode
+    {
+	// Execute normal mode
 
 	float relDistToFoldCenter;
 
 	relDistToFoldCenter = (rowNo % 2 == 0 ? 0.5 : 0);
 
 	object->position.x =
-	    origx + sin(forwardProgress * M_PI / 2) *
+	    origx + sinForProg *
 	    (0.5 - object->gridPosition.x) * 2 * model->scale.x *
 	    (curveMaxAmp - curveMaxAmp * 4 *
 	     relDistToFoldCenter * relDistToFoldCenter);
@@ -141,13 +143,19 @@ fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
     else
 	forwardProgress = defaultAnimProgress(aw);
 
+    float sinForProg = sin(forwardProgress * M_PI / 2);
+    float curveMaxAmp =
+	animGetF (as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP) *
+	WIN_W(w);
+
+    Object *object = model->objects;
     int i;
-    for (i = 0; i < model->numObjects; i++)
+    for (i = 0; i < model->numObjects; i++, object++)
 	fxHorizontalFoldsModelStepObject(w, 
 					 model,
-					 &model->objects[i],
+					 object,
 					 forwardProgress,
-					 animGetF(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP) *
-					 WIN_W(w),
+					 sinForProg,
+					 curveMaxAmp,
 					 i / model->gridWidth);
 }

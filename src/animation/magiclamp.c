@@ -141,152 +141,6 @@ void fxMagicLampInit(CompScreen * s, CompWindow * w)
     }
 }
 
-static void
-fxMagicLampModelStepObject(CompWindow * w,
-			   Model * model,
-			   Object * object,
-			   float forwardProgress)
-{
-    ANIM_WINDOW(w);
-
-    float iconCloseEndY;
-    float iconFarEndY;
-    float winFarEndY;
-    float winVisibleCloseEndY;
-
-    if (aw->minimizeToTop)
-    {
-	iconFarEndY = aw->icon.y;
-	iconCloseEndY = aw->icon.y + aw->icon.height;
-	winFarEndY = WIN_Y(w) + WIN_H(w);
-	winVisibleCloseEndY = WIN_Y(w);
-	if (winVisibleCloseEndY < iconCloseEndY)
-	    winVisibleCloseEndY = iconCloseEndY;
-    }
-    else
-    {
-	iconFarEndY = aw->icon.y + aw->icon.height;
-	iconCloseEndY = aw->icon.y;
-	winFarEndY = WIN_Y(w);
-	winVisibleCloseEndY = WIN_Y(w) + WIN_H(w);
-	if (winVisibleCloseEndY > iconCloseEndY)
-	    winVisibleCloseEndY = iconCloseEndY;
-    }
-
-    float preShapePhaseEnd = 0.22f;
-    float stretchPhaseEnd =
-	preShapePhaseEnd + (1 - preShapePhaseEnd) *
-	(iconCloseEndY -
-	 winVisibleCloseEndY) / ((iconCloseEndY - winFarEndY) +
-				 (iconCloseEndY - winVisibleCloseEndY));
-    if (stretchPhaseEnd < preShapePhaseEnd + 0.1)
-	stretchPhaseEnd = preShapePhaseEnd + 0.1;
-
-    float origx = w->attrib.x + (WIN_W(w) * object->gridPosition.x -
-				 w->output.left) * model->scale.x;
-    float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
-				 w->output.top) * model->scale.y;
-
-    float iconShadowLeft =
-	((float)(w->output.left - w->input.left)) * 
-	aw->icon.width / w->width;
-    float iconShadowRight =
-	((float)(w->output.right - w->input.right)) * 
-	aw->icon.width / w->width;
-    float iconx =
-	(aw->icon.x - iconShadowLeft) + 
-	(aw->icon.width + iconShadowLeft + iconShadowRight) *
-	object->gridPosition.x;
-    float icony = aw->icon.y + aw->icon.height * object->gridPosition.y;
-
-    float stretchedPos;
-
-    if (aw->minimizeToTop)
-	stretchedPos =
-	    object->gridPosition.y * origy +
-	    (1 - object->gridPosition.y) * icony;
-    else
-	stretchedPos =
-	    (1 - object->gridPosition.y) * origy +
-	    object->gridPosition.y * icony;
-
-    // Compute current y position
-    if (forwardProgress < preShapePhaseEnd)
-    {
-	float stretchProgress =	forwardProgress / stretchPhaseEnd;
-	object->position.y =
-	    (1 - stretchProgress) * origy +
-	    stretchProgress * stretchedPos;
-    }
-    else
-    {
-	if (forwardProgress < stretchPhaseEnd)
-	{
-	    float stretchProgress =	forwardProgress / stretchPhaseEnd;
-
-	    object->position.y =
-		(1 - stretchProgress) * origy +
-		stretchProgress * stretchedPos;
-	}
-	else
-	{
-	    float postStretchProgress =
-		(forwardProgress - stretchPhaseEnd) / (1 - stretchPhaseEnd);
-
-	    object->position.y =
-		(1 - postStretchProgress) *
-		stretchedPos +
-		postStretchProgress *
-		(stretchedPos + (iconCloseEndY - winFarEndY));
-	}
-    }
-
-    // Compute "target shape" x position
-    float fx = ((iconCloseEndY - object->position.y) / 
-		(iconCloseEndY - winFarEndY));
-    float fy = ((sigmoid(fx) - sigmoid(0)) /
-		(sigmoid(1) - sigmoid(0)));
-    float targetx = fy * (origx - iconx) + iconx;
-
-    // Apply waves
-    int i;
-    for (i = 0; i < aw->magicLampWaveCount; i++)
-    {
-	float cosfx = ((fx - aw->magicLampWaves[i].pos) /
-		       aw->magicLampWaves[i].halfWidth);
-	if (cosfx < -1 || cosfx > 1)
-	    continue;
-	targetx +=
-	    aw->magicLampWaves[i].amp * model->scale.x *
-	    (cos(cosfx * M_PI) + 1) / 2;
-    }
-
-    // Compute current x position
-    if (forwardProgress < preShapePhaseEnd)
-    {
-	float preShapeProgress = forwardProgress / preShapePhaseEnd;
-
-	// Slow down "shaping" toward the end
-	preShapeProgress = 1 - decelerateProgress(1 - preShapeProgress);
-
-	object->position.x =
-	    (1 - preShapeProgress) * origx + preShapeProgress * targetx;
-    }
-    else	    
-	object->position.x = targetx;
-
-    if (aw->minimizeToTop)
-    {
-	if (object->position.y < iconFarEndY)
-	    object->position.y = iconFarEndY;
-    }
-    else
-    {
-	if (object->position.y > iconFarEndY)
-	    object->position.y = iconFarEndY;
-    }
-}
-
 void
 fxMagicLampModelStep (CompScreen *s, CompWindow *w, float time)
 {
@@ -312,8 +166,165 @@ fxMagicLampModelStep (CompScreen *s, CompWindow *w, float time)
     if (aw->magicLampWaveCount > 0 && !aw->magicLampWaves)
 	return;
 
+    float iconCloseEndY;
+    float iconFarEndY;
+    float winFarEndY;
+    float winVisibleCloseEndY;
+
+    float iconShadowLeft =
+	((float)(w->output.left - w->input.left)) * 
+	aw->icon.width / w->width;
+    float iconShadowRight =
+	((float)(w->output.right - w->input.right)) * 
+	aw->icon.width / w->width;
+
+    float sigmoid0 = sigmoid(0);
+    float sigmoid1 = sigmoid(1);
+    float winw = WIN_W(w);
+    float winh = WIN_H(w);
+
+    if (aw->minimizeToTop)
+    {
+	iconFarEndY = aw->icon.y;
+	iconCloseEndY = aw->icon.y + aw->icon.height;
+	winFarEndY = WIN_Y(w) + winh;
+	winVisibleCloseEndY = WIN_Y(w);
+	if (winVisibleCloseEndY < iconCloseEndY)
+	    winVisibleCloseEndY = iconCloseEndY;
+    }
+    else
+    {
+	iconFarEndY = aw->icon.y + aw->icon.height;
+	iconCloseEndY = aw->icon.y;
+	winFarEndY = WIN_Y(w);
+	winVisibleCloseEndY = WIN_Y(w) + winh;
+	if (winVisibleCloseEndY > iconCloseEndY)
+	    winVisibleCloseEndY = iconCloseEndY;
+    }
+
+    float preShapePhaseEnd = 0.22f;
+    float preShapeProgress  = 0;
+    float postStretchProgress = 0;
+    float stretchProgress = 0;
+    float stretchPhaseEnd =
+	preShapePhaseEnd + (1 - preShapePhaseEnd) *
+	(iconCloseEndY -
+	 winVisibleCloseEndY) / ((iconCloseEndY - winFarEndY) +
+				 (iconCloseEndY - winVisibleCloseEndY));
+    if (stretchPhaseEnd < preShapePhaseEnd + 0.1)
+	stretchPhaseEnd = preShapePhaseEnd + 0.1;
+
+    if (forwardProgress < preShapePhaseEnd)
+    {
+	preShapeProgress = forwardProgress / preShapePhaseEnd;
+
+	// Slow down "shaping" toward the end
+	preShapeProgress = 1 - decelerateProgress(1 - preShapeProgress);
+    }
+
+    if (forwardProgress < preShapePhaseEnd)
+    {
+	stretchProgress = forwardProgress / stretchPhaseEnd;
+    }
+    else
+    {
+	if (forwardProgress < stretchPhaseEnd)
+	{
+	    stretchProgress = forwardProgress / stretchPhaseEnd;
+	}
+	else
+	{
+	    postStretchProgress =
+		(forwardProgress - stretchPhaseEnd) / (1 - stretchPhaseEnd);
+	}
+    }
+
+    Object *object = model->objects;
     int i;
-    for (i = 0; i < model->numObjects; i++)
-	fxMagicLampModelStepObject(w, model, &model->objects[i],
-				   forwardProgress);
+    for (i = 0; i < model->numObjects; i++, object++)
+    {
+	float origx = w->attrib.x + (winw * object->gridPosition.x -
+				     w->output.left) * model->scale.x;
+	float origy = w->attrib.y + (winh * object->gridPosition.y -
+				     w->output.top) * model->scale.y;
+
+	float iconx =
+	    (aw->icon.x - iconShadowLeft) + 
+	    (aw->icon.width + iconShadowLeft + iconShadowRight) *
+	    object->gridPosition.x;
+	float icony = aw->icon.y + aw->icon.height * object->gridPosition.y;
+
+	float stretchedPos;
+	if (aw->minimizeToTop)
+	    stretchedPos =
+		object->gridPosition.y * origy +
+		(1 - object->gridPosition.y) * icony;
+	else
+	    stretchedPos =
+		(1 - object->gridPosition.y) * origy +
+		object->gridPosition.y * icony;
+
+	// Compute current y position
+	if (forwardProgress < preShapePhaseEnd)
+	{
+	    object->position.y =
+		(1 - stretchProgress) * origy +
+		stretchProgress * stretchedPos;
+	}
+	else
+	{
+	    if (forwardProgress < stretchPhaseEnd)
+	    {
+		object->position.y =
+		    (1 - stretchProgress) * origy +
+		    stretchProgress * stretchedPos;
+	    }
+	    else
+	    {
+		object->position.y =
+		    (1 - postStretchProgress) *
+		    stretchedPos +
+		    postStretchProgress *
+		    (stretchedPos + (iconCloseEndY - winFarEndY));
+	    }
+	}
+
+	// Compute "target shape" x position
+	float fx = ((iconCloseEndY - object->position.y) / 
+		    (iconCloseEndY - winFarEndY));
+	float fy = ((sigmoid(fx) - sigmoid0) /
+		    (sigmoid1 - sigmoid0));
+	float targetx = fy * (origx - iconx) + iconx;
+
+	// Apply waves
+	int i;
+	for (i = 0; i < aw->magicLampWaveCount; i++)
+	{
+	    float cosfx = ((fx - aw->magicLampWaves[i].pos) /
+			   aw->magicLampWaves[i].halfWidth);
+	    if (cosfx < -1 || cosfx > 1)
+		continue;
+	    targetx +=
+		aw->magicLampWaves[i].amp * model->scale.x *
+		(cos(cosfx * M_PI) + 1) / 2;
+	}
+
+	// Compute current x position
+	if (forwardProgress < preShapePhaseEnd)
+	    object->position.x =
+		(1 - preShapeProgress) * origx + preShapeProgress * targetx;
+	else	    
+	    object->position.x = targetx;
+
+	if (aw->minimizeToTop)
+	{
+	    if (object->position.y < iconFarEndY)
+		object->position.y = iconFarEndY;
+	}
+	else
+	{
+	    if (object->position.y > iconFarEndY)
+		object->position.y = iconFarEndY;
+	}
+    }
 }

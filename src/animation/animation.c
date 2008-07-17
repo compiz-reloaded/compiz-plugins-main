@@ -646,39 +646,43 @@ static void
 modelUpdateBB (CompOutput *output,
 	       CompWindow * w)
 {
-    float x, y;
     int i;
 
     ANIM_WINDOW (w);
-    ANIM_SCREEN (w->screen);
 
     Model *model = aw->model;
     if (!model)
 	return;
 
-    if (animZoomToIcon(as, aw))
-	for (i = 0; i < model->numObjects; i++)
-	{
-	    CompVector coords;
+    Object *object = model->objects;
+    ANIM_SCREEN (w->screen);
 
-	    coords.x = model->objects[i].position.x;
-	    coords.y = model->objects[i].position.y;
-	    coords.z = 0;
-	    coords.w = 1;
+    if (animZoomToIcon(as, aw))
+    {
+	CompVector coords;
+	coords.z = 0;
+	coords.w = 1;
+
+	for (i = 0; i < model->numObjects; i++, object++)
+	{
+	    coords.x = object->position.x;
+	    coords.y = object->position.y;
 
 	    expandBoxWithPoint2DTransform (w->screen,
 					   &aw->BB,
 					   &coords,
 					   &aw->transform);
 	}
+    }
     else
-	for (i = 0; i < model->numObjects; i++)
+    {
+	for (i = 0; i < model->numObjects; i++, object++)
 	{
-	    x = model->objects[i].position.x + 0.5;
-	    y = model->objects[i].position.y + 0.5;
-
-	    expandBoxWithPoint (&aw->BB, x, y);
+	    expandBoxWithPoint (&aw->BB,
+				object->position.x + 0.5,
+				object->position.y + 0.5);
 	}
+    }
 }
 
 void
@@ -1239,12 +1243,12 @@ modelMove (Model *model,
 	   float tx,
 	   float ty)
 {
+    Object *object = model->objects;
     int i;
-
-    for (i = 0; i < model->numObjects; i++)
+    for (i = 0; i < model->numObjects; i++, object++)
     {
-	model->objects[i].position.x += tx;
-	model->objects[i].position.y += ty;
+	object->position.x += tx;
+	object->position.y += ty;
     }
 }
 

@@ -38,11 +38,13 @@
 
 // =====================  Effect: Curved Fold  =========================
 
-static void
+static void inline
 fxCurvedFoldModelStepObject(CompWindow * w,
 			    Model * model,
 			    Object * object,
-			    float forwardProgress, float curveMaxAmp)
+			    float forwardProgress,
+			    float sinForProg,
+			    float curveMaxAmp)
 {
     ANIM_WINDOW(w);
 
@@ -79,7 +81,7 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 	else
 	{
 	    object->position.x =
-		origx + sin(forwardProgress * M_PI / 2) *
+		origx + sinForProg *
 		(0.5 - object->gridPosition.x) * 2 * model->scale.x *
 		curveMaxAmp *
 		(1 - pow (pow(2 * relDistToCenter, 1.3), 2));
@@ -104,7 +106,7 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 	    relDistToCenter = 0.5;
 
 	object->position.x =
-	    origx + sin(forwardProgress * M_PI / 2) *
+	    origx + sinForProg *
 	    (0.5 - object->gridPosition.x) * 2 * model->scale.x *
 	    curveMaxAmp *
 	    (1 - pow (pow(2 * relDistToCenter, 1.3), 2));
@@ -138,13 +140,18 @@ fxCurvedFoldModelStep (CompScreen *s, CompWindow *w, float time)
     float curveMaxAmp =
 	animGetF(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_AMP) * WIN_W(w) *
 	pow(WIN_H(w) / (s->height * 1.2f), 0.7);
+
+    float sinForProg = sin(forwardProgress * M_PI / 2);
+
+    Object *object = model->objects;
     int i;
-    for (i = 0; i < model->numObjects; i++)
+    for (i = 0; i < model->numObjects; i++, object++)
 	fxCurvedFoldModelStepObject
 	    (w, 
 	     model,
-	     &model->objects[i],
+	     object,
 	     forwardProgress,
+	     sinForProg,
 	     curveMaxAmp);
 }
 

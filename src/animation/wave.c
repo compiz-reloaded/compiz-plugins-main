@@ -38,21 +38,19 @@
 
 // =====================  Effect: Wave  =========================
 
-static void
+static void inline
 fxWaveModelStepObject(CompWindow * w,
 		      Model * model,
 		      Object * object,
 		      float forwardProgress,
-		      float waveAmp, float waveHalfWidth)
+		      float wavePosition,
+		      float waveAmp,
+		      float waveHalfWidth)
 {
     float origx = w->attrib.x + (WIN_W(w) * object->gridPosition.x -
 				 w->output.left) * model->scale.x;
     float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
 				 w->output.top) * model->scale.y;
-
-    float wavePosition =
-	WIN_Y(w) - waveHalfWidth +
-	forwardProgress * (WIN_H(w) * model->scale.y + 2 * waveHalfWidth);
 
     object->position.y = origy;
     object->position.x = origx;
@@ -77,15 +75,22 @@ fxWaveModelStep (CompScreen *s, CompWindow *w, float time)
 
     float forwardProgress = 1 - defaultAnimProgress(aw);
 
+    float waveAmp = (WIN_H(w) * model->scale.y *
+		     animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_AMP));
+    float waveHalfWidth = (WIN_H(w) * model->scale.y *
+			   animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_WIDTH) / 2);
+    float wavePosition =
+	WIN_Y(w) - waveHalfWidth +
+	forwardProgress * (WIN_H(w) * model->scale.y + 2 * waveHalfWidth);
+
+    Object *object = model->objects;
     int i;
-    for (i = 0; i < model->numObjects; i++)
+    for (i = 0; i < model->numObjects; i++, object++)
 	fxWaveModelStepObject(w,
 			      model,
-			      &model->objects[i],
+			      object,
 			      forwardProgress,
-			      WIN_H(w) * model->scale.y *
-			      animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_AMP),
-			      WIN_H(w) * model->scale.y *
-			      animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_WIDTH) /
-			      2);
+			      wavePosition,
+			      waveAmp,
+			      waveHalfWidth);
 }

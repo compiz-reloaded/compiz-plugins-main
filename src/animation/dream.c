@@ -52,11 +52,13 @@ fxDreamAnimInit (CompScreen * s, CompWindow * w)
     defaultAnimInit(s, w);
 }
 
-static void
-fxDreamModelStepObject(CompWindow * w,
-		       Model * model, Object * object, float forwardProgress)
+static void inline
+fxDreamModelStepObject (CompWindow * w,
+			Model * model,
+			Object * object,
+			float forwardProgress,
+			float waveAmpMax)
 {
-    float waveAmpMax = MIN(WIN_H(w), WIN_W(w)) * 0.125f;
     float waveWidth = 10.0f;
     float waveSpeed = 7.0f;
 
@@ -71,7 +73,6 @@ fxDreamModelStepObject(CompWindow * w,
 	forwardProgress * waveAmpMax * model->scale.x *
 	sin(object->gridPosition.y * M_PI * waveWidth +
 	    waveSpeed * forwardProgress);
-
 }
 
 void
@@ -95,11 +96,16 @@ fxDreamModelStep (CompScreen *s, CompWindow *w, float time)
     else
 	forwardProgress = defaultAnimProgress(aw);
 
+    float waveAmpMax = MIN(WIN_H(w), WIN_W(w)) * 0.125f;
+
+    Object *object = model->objects;
     int i;
-    for (i = 0; i < model->numObjects; i++)
+    for (i = 0; i < model->numObjects; i++, object++)
 	fxDreamModelStepObject(w,
 			       model,
-			       &model->objects[i], forwardProgress);
+			       object,
+			       forwardProgress,
+			       waveAmpMax);
 }
 
 void
