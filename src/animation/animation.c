@@ -938,41 +938,52 @@ animSetScreenOptions(CompPlugin *plugin,
 	    int i;
 	    for (i = 0; i < o->value.list.nValue; i++)
 		matchUpdate (screen->display, &o->value.list.value[i].match);
+	    return TRUE;
 	}
 	break;
     case ANIM_SCREEN_OPTION_OPEN_OPTIONS:
 	if (compSetOptionList(o, value))
 	{
-	    updateOptionSets
-		(screen, as->eventOptionSets[WindowEventOpen], &o->value.list);
+	    updateOptionSets (screen,
+			      as->eventOptionSets[WindowEventOpen],
+			      &o->value.list);
+	    return TRUE;
 	}
 	break;
     case ANIM_SCREEN_OPTION_CLOSE_OPTIONS:
 	if (compSetOptionList(o, value))
 	{
-	    updateOptionSets
-		(screen, as->eventOptionSets[WindowEventClose], &o->value.list);
+	    updateOptionSets (screen,
+			      as->eventOptionSets[WindowEventClose],
+			      &o->value.list);
+	    return TRUE;
 	}
 	break;
     case ANIM_SCREEN_OPTION_MINIMIZE_OPTIONS:
 	if (compSetOptionList(o, value))
 	{
-	    updateOptionSets
-		(screen, as->eventOptionSets[WindowEventMinimize], &o->value.list);
+	    updateOptionSets (screen,
+			      as->eventOptionSets[WindowEventMinimize],
+			      &o->value.list);
+	    return TRUE;
 	}
 	break;
     case ANIM_SCREEN_OPTION_FOCUS_OPTIONS:
 	if (compSetOptionList(o, value))
 	{
-	    updateOptionSets
-		(screen, as->eventOptionSets[WindowEventFocus], &o->value.list);
+	    updateOptionSets (screen,
+			      as->eventOptionSets[WindowEventFocus],
+			      &o->value.list);
+	    return TRUE;
 	}
 	break;
     case ANIM_SCREEN_OPTION_SHADE_OPTIONS:
 	if (compSetOptionList(o, value))
 	{
-	    updateOptionSets
-		(screen, as->eventOptionSets[WindowEventShade], &o->value.list);
+	    updateOptionSets (screen,
+			      as->eventOptionSets[WindowEventShade],
+			      &o->value.list);
+	    return TRUE;
 	}
 	break;
     case ANIM_SCREEN_OPTION_OPEN_RANDOM_EFFECTS:
