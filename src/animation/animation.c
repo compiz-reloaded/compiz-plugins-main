@@ -1493,7 +1493,7 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	    wCur = awCur->moreToBePaintedPrev;
 	}
     }
-    if (closing || !thereIsUnfinishedChainElem)
+    if (closing || finishing || !thereIsUnfinishedChainElem)
     {
 	// Finish off all windows in parent-child chain
 	CompWindow *wCur = aw->moreToBePaintedNext;
@@ -2987,12 +2987,16 @@ getBottommostInFocusChain (CompWindow *w)
     ANIM_WINDOW (w);
     ANIM_SCREEN (w->screen);
 
-    if (!aw->winToBePaintedBeforeThis)
+    CompWindow *bottommost = aw->winToBePaintedBeforeThis;
+
+    if (!bottommost || bottommost->destroyed)
 	return w;
 
-    CompWindow *bottommost = aw->winToBePaintedBeforeThis;
-    CompWindow *wPrev =
-	GET_ANIM_WINDOW(bottommost, as)->moreToBePaintedPrev;
+    AnimWindow *awBottommost = GET_ANIM_WINDOW (bottommost, as);
+    CompWindow *wPrev = NULL;
+
+    if (awBottommost)
+	wPrev = awBottommost->moreToBePaintedPrev;
     while (wPrev)
     {
 	bottommost = wPrev;
