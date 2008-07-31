@@ -543,11 +543,7 @@ ringPaintWindow (CompWindow		 *w,
 		    CompTransform  wTransform = *transform;
 
 		    if (!w->texture->pixmap)
-		    {
-			/* the fade plugin does weird things to
-			   w->paint.opacity, so better use the atom value */
-			sAttrib.opacity = w->opacity;
-		    }
+			sAttrib.opacity = w->paint.opacity;
 
 		    initFragmentAttrib (&fragment, &sAttrib);
 
