@@ -196,7 +196,6 @@ metadata/Makefile
 include/Makefile
 src/Makefile
 src/animation/Makefile
-src/bs/Makefile
 src/colorfilter/Makefile
 src/expo/Makefile
 src/ezoom/Makefile
