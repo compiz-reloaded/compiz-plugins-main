@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Compiz-Fusion i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:53+0530\n"
+"POT-Creation-Date: 2008-08-07 11:27+0530\n"
 "PO-Revision-Date: 2008-03-12 06:43+0100\n"
 "Last-Translator: Ali Tarihi <ali.tarihi@gmail.com>\n"
 "Language-Team: l10n.ir\n"
@@ -167,16 +167,6 @@ msgid ""
 "selected for an event, that event won't be animated."
 msgstr ""
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-
 msgid "Angle of window at the end of the animation."
 msgstr ""
 
@@ -271,7 +261,7 @@ msgstr ""
 msgid "Curved Fold"
 msgstr ""
 
-msgid "Curved Fold Amplitude"
+msgid "Curved Fold Amplitude Multiplier"
 msgstr ""
 
 msgid "Dodge"
@@ -367,6 +357,11 @@ msgstr ""
 msgid "Fold Direction"
 msgstr ""
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr ""
 
@@ -385,7 +380,7 @@ msgstr ""
 msgid "Horizontal Folds"
 msgstr ""
 
-msgid "Horizontal Folds Amplitude"
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr ""
 
 msgid "How spring-like the Sidekick animation should be."
@@ -639,9 +634,6 @@ msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
-
 msgid "The width of the wave relative to the window height."
 msgstr ""
 
@@ -699,10 +691,15 @@ msgstr ""
 msgid "Wave"
 msgstr ""
 
-msgid "Wave Amplitude"
+msgid "Wave Amplitude Multiplier"
 msgstr ""
 
 msgid "Wave Width"
+msgstr ""
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
 msgstr ""
 
 msgid ""
@@ -863,66 +860,6 @@ msgid "Bicubic filter"
 msgstr ""
 
 msgid "Bicubic texture filtering"
-msgstr ""
-
-msgid "Brightness Decrease"
-msgstr ""
-
-msgid "Brightness Increase"
-msgstr ""
-
-msgid "Brightness Step"
-msgstr ""
-
-msgid "Brightness and Saturation"
-msgstr ""
-
-msgid "Brightness and Saturation adjustments"
-msgstr ""
-
-msgid "Brightness settings"
-msgstr ""
-
-msgid "Brightness values for windows"
-msgstr ""
-
-msgid "Brightness window values"
-msgstr ""
-
-msgid "Brightness windows"
-msgstr ""
-
-msgid "General"
-msgstr ""
-
-msgid "Saturation Decrease"
-msgstr ""
-
-msgid "Saturation Increase"
-msgstr ""
-
-msgid "Saturation Step"
-msgstr ""
-
-msgid "Saturation settings"
-msgstr ""
-
-msgid "Saturation values for windows"
-msgstr ""
-
-msgid "Saturation window values"
-msgstr ""
-
-msgid "Saturation windows"
-msgstr ""
-
-msgid "Window specific"
-msgstr ""
-
-msgid "Windows that should have a different brightness by default"
-msgstr ""
-
-msgid "Windows that should have a different saturation by default"
 msgstr ""
 
 msgid "Color filter"
@@ -1838,6 +1775,9 @@ msgid "Font Color"
 msgstr ""
 
 msgid "Font Size"
+msgstr ""
+
+msgid "General"
 msgstr ""
 
 msgid "Glass"

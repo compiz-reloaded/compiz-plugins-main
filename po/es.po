@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:53+0530\n"
+"POT-Creation-Date: 2008-08-07 11:27+0530\n"
 "PO-Revision-Date: 2008-06-28 16:52+0100\n"
 "Last-Translator: Rafa Ramírez <berylog@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -171,21 +171,6 @@ msgstr ""
 "seleccionado. Si se ha elegido \"Ninguno\" para un evento, dicho evento no "
 "será animado."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Amplitud (tamaño de las ondas en el pliegue) de los Pliegues Horizontales "
-"relativos a la anchura de la ventana. Los valores negativos pliegan hacia "
-"fuera."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Amplitud (tamaño de las ondas en el pliegue) de los pliegues curvos "
-"relativos al ancho de la ventana. Los valores negativos pliegan hacia fuera."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Angulo de la ventana al final de la animación"
 
@@ -290,7 +275,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Doblado con curvas"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Amplitud del doblado con curvas"
 
 msgid "Dodge"
@@ -387,6 +373,11 @@ msgstr "Plegar"
 msgid "Fold Direction"
 msgstr "Dirección del pliegue"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr ""
 "Dirección de apertura del pliegue para las piezas en el efecto Cuchilla."
@@ -408,7 +399,8 @@ msgstr "Hexagonal"
 msgid "Horizontal Folds"
 msgstr "Pliegues horizontales"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Amplitud de los pliegues horizontales"
 
 #, fuzzy
@@ -709,10 +701,6 @@ msgstr ""
 "Número de pliegues horizontales que ocurren en la animación Pliegue "
 "Horizontal."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
-"Amplitud de onda (tamaño de las ondas) en relación a la altura de la ventana."
-
 msgid "The width of the wave relative to the window height."
 msgstr ""
 "Ancho de onda (tamaño de las ondas) en relación a la altura de la ventana."
@@ -771,11 +759,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Onda"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Amplitud de onda"
 
 msgid "Wave Width"
 msgstr "Ancho de onda"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -959,72 +953,6 @@ msgstr "Intercambiar Filtro"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Quitar Brillo"
-
-msgid "Brightness Increase"
-msgstr "Aumentar Brillo"
-
-#, fuzzy
-msgid "Brightness Step"
-msgstr "Brillo"
-
-msgid "Brightness and Saturation"
-msgstr "Brillo y Saturación"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Ajuste de Brillo y Saturación"
-
-msgid "Brightness settings"
-msgstr "Ajustes de Brillo"
-
-msgid "Brightness values for windows"
-msgstr "Valor del Brillo de las ventanas"
-
-msgid "Brightness window values"
-msgstr "Valor del Brillo de las ventanas"
-
-#, fuzzy
-msgid "Brightness windows"
-msgstr "Brillo de las ventanas"
-
-msgid "General"
-msgstr "General"
-
-msgid "Saturation Decrease"
-msgstr "Disminuir Saturación"
-
-msgid "Saturation Increase"
-msgstr "Aumentar Saturación"
-
-#, fuzzy
-msgid "Saturation Step"
-msgstr "Saturación"
-
-msgid "Saturation settings"
-msgstr "Ajustes de Saturación"
-
-msgid "Saturation values for windows"
-msgstr "Valores de saturación para las ventanas"
-
-#, fuzzy
-msgid "Saturation window values"
-msgstr "Valores de saturación de las ventanas"
-
-#, fuzzy
-msgid "Saturation windows"
-msgstr "Saturación de las ventanas translúcidas"
-
-#, fuzzy
-msgid "Window specific"
-msgstr "Opacidad de la ventana"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Ventanas que deberían tener un brillo diferente por defecto"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Ventanas que deberían tener una saturación diferente por defecto"
 
 msgid "Color filter"
 msgstr "Filtro de color"
@@ -2014,6 +1942,9 @@ msgstr "Color de la fuente"
 
 msgid "Font Size"
 msgstr "Tamaño de la fuente"
+
+msgid "General"
+msgstr "General"
 
 msgid "Glass"
 msgstr "Vidrio"
@@ -5329,6 +5260,91 @@ msgstr "Ventanas en todos los escritorios que deberían ser \"pegajosas\"."
 
 msgid "Workarounds"
 msgstr "Entorno de trabajo"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitud (tamaño de las ondas en el pliegue) de los Pliegues Horizontales "
+#~ "relativos a la anchura de la ventana. Los valores negativos pliegan hacia "
+#~ "fuera."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitud (tamaño de las ondas en el pliegue) de los pliegues curvos "
+#~ "relativos al ancho de la ventana. Los valores negativos pliegan hacia "
+#~ "fuera."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr ""
+#~ "Amplitud de onda (tamaño de las ondas) en relación a la altura de la "
+#~ "ventana."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Quitar Brillo"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Aumentar Brillo"
+
+#, fuzzy
+#~ msgid "Brightness Step"
+#~ msgstr "Brillo"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Brillo y Saturación"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Ajuste de Brillo y Saturación"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Ajustes de Brillo"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Valor del Brillo de las ventanas"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Valor del Brillo de las ventanas"
+
+#, fuzzy
+#~ msgid "Brightness windows"
+#~ msgstr "Brillo de las ventanas"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Disminuir Saturación"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Aumentar Saturación"
+
+#, fuzzy
+#~ msgid "Saturation Step"
+#~ msgstr "Saturación"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Ajustes de Saturación"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Valores de saturación para las ventanas"
+
+#, fuzzy
+#~ msgid "Saturation window values"
+#~ msgstr "Valores de saturación de las ventanas"
+
+#, fuzzy
+#~ msgid "Saturation windows"
+#~ msgstr "Saturación de las ventanas translúcidas"
+
+#, fuzzy
+#~ msgid "Window specific"
+#~ msgstr "Opacidad de la ventana"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Ventanas que deberían tener un brillo diferente por defecto"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Ventanas que deberían tener una saturación diferente por defecto"
 
 #, fuzzy
 #~ msgid "Close Windows In Scale"

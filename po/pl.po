@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:54+0530\n"
+"POT-Creation-Date: 2008-08-07 11:29+0530\n"
 "PO-Revision-Date: 2008-06-19 15:21+0200\n"
 "Last-Translator: Michal Kaluzniak <the_hooltay@o2.pl>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
@@ -166,20 +166,6 @@ msgstr ""
 "Wszystkie efekty są wybierane losowo, ignorując wybrany efekt. Jeśli wybrane "
 "jest 'Brak' dla zdarzenia, to zdarzenie nie będzie animowane."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Amplituda (wielkość fali podczas składania) Poziomych Składań związanych z "
-"szerokością okna. Negatywne wartości powodują składanie się na zewnątrz."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Amplituda (wielkość fali podczas składania) zakrzywionego zginania związana "
-"z szerokością okna. Negatywne wartości powodują składanie na zewnątrz."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Kąt okna na końcu animacji"
 
@@ -279,7 +265,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Zakrzywione składanie"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Amplituda zakrzywionego składania"
 
 msgid "Dodge"
@@ -375,6 +362,11 @@ msgstr "Zginanie"
 msgid "Fold Direction"
 msgstr "Kierunek składania"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Kierunek otwierania zagięcia dla części w efekcie Razr"
 
@@ -393,7 +385,8 @@ msgstr "Sześciokątny"
 msgid "Horizontal Folds"
 msgstr "Poziome zginanie"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Amplituda poziomych zginań"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -674,10 +667,6 @@ msgid ""
 msgstr ""
 "Liczba poziomych zginań, które pojawią się w animacji Poziomego Zginania."
 
-# zmiana z odniesiony na odniesiona (w końcu chodzi o amplitudę)
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Amplituda fal (rozmiar fal) odniesiona do wysokości okna."
-
 msgid "The width of the wave relative to the window height."
 msgstr "Szerokość fali w odniesieniu do wysokości okna"
 
@@ -744,11 +733,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Fala"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Amplituda Fali"
 
 msgid "Wave Width"
 msgstr "Długość Fali"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -927,67 +922,6 @@ msgstr "Zmień filtr"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Zmniejsz jasność"
-
-msgid "Brightness Increase"
-msgstr "Zwiększ jasność"
-
-msgid "Brightness Step"
-msgstr "Krok zmiany jasności"
-
-msgid "Brightness and Saturation"
-msgstr "Jasność i nasycenie"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Regulacje jasności i nasycenia"
-
-msgid "Brightness settings"
-msgstr "Ustawienia jasności"
-
-msgid "Brightness values for windows"
-msgstr "Wartości jasności dla okien"
-
-msgid "Brightness window values"
-msgstr "Wartości jasności okien"
-
-msgid "Brightness windows"
-msgstr "Jasność okien"
-
-msgid "General"
-msgstr "Ogólne"
-
-msgid "Saturation Decrease"
-msgstr "Zwiększ nasycenie"
-
-msgid "Saturation Increase"
-msgstr "Zmniejsz nasycenie"
-
-msgid "Saturation Step"
-msgstr "Krok zmiany nasycenia"
-
-msgid "Saturation settings"
-msgstr "Ustawienia nasycenia"
-
-msgid "Saturation values for windows"
-msgstr "Wartości nasycenia dla okien"
-
-msgid "Saturation window values"
-msgstr "Wartości nasycenia okien"
-
-msgid "Saturation windows"
-msgstr "Nasycenie okien"
-
-#, fuzzy
-msgid "Window specific"
-msgstr "Charakter okien"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Okna, które domyślnie powinny mieć inną jasność"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Okna, które domyślnie powinny mieć inne nasycenie"
 
 msgid "Color filter"
 msgstr "Kolor filtru"
@@ -1980,6 +1914,9 @@ msgstr "Kolor czcionki"
 
 msgid "Font Size"
 msgstr "Wielkość czcionki"
+
+msgid "General"
+msgstr "Ogólne"
 
 msgid "Glass"
 msgstr "Szkło"
@@ -5314,6 +5251,84 @@ msgstr "Okna na wszystkich pulpitach które powinny być lepkie"
 
 msgid "Workarounds"
 msgstr "Obejścia problemów"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplituda (wielkość fali podczas składania) Poziomych Składań związanych "
+#~ "z szerokością okna. Negatywne wartości powodują składanie się na zewnątrz."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplituda (wielkość fali podczas składania) zakrzywionego zginania "
+#~ "związana z szerokością okna. Negatywne wartości powodują składanie na "
+#~ "zewnątrz."
+
+# zmiana z odniesiony na odniesiona (w końcu chodzi o amplitudę)
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "Amplituda fal (rozmiar fal) odniesiona do wysokości okna."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Zmniejsz jasność"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Zwiększ jasność"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Krok zmiany jasności"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Jasność i nasycenie"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Regulacje jasności i nasycenia"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Ustawienia jasności"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Wartości jasności dla okien"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Wartości jasności okien"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Jasność okien"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Zwiększ nasycenie"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Zmniejsz nasycenie"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Krok zmiany nasycenia"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Ustawienia nasycenia"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Wartości nasycenia dla okien"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Wartości nasycenia okien"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Nasycenie okien"
+
+#, fuzzy
+#~ msgid "Window specific"
+#~ msgstr "Charakter okien"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Okna, które domyślnie powinny mieć inną jasność"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Okna, które domyślnie powinny mieć inne nasycenie"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Zamknij okno podczas skalowania"

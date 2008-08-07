@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:54+0530\n"
-"PO-Revision-Date: 2008-02-14 08:45+0100\n"
-"Last-Translator: Jeong Seungwon <jeongseungwon@hanmail.net>\n"
+"POT-Creation-Date: 2008-08-07 11:28+0530\n"
+"PO-Revision-Date: 2008-07-29 09:52+0200\n"
+"Last-Translator: Lee June Hee <bugbear5@gmail.com>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "마우스 회전시에만 3D 사용"
@@ -115,10 +115,10 @@ msgid "Brightness of faded windows"
 msgstr "흐린 창의 밝기"
 
 msgid "Enable ADD Helper on start"
-msgstr ""
+msgstr "시작할 때 활성창 돋보이기 사용"
 
 msgid "Enables ADD helper when it is first loaded."
-msgstr ""
+msgstr "처음 시작될 때 활성창 돋보이기를 가능하게 함"
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -160,20 +160,6 @@ msgid ""
 msgstr ""
 "선택된 효과를 무시하고 모든 효과를 무작위로 선택합니다. 아무런 효과도 선택되"
 "지 않은 이벤트는 애니메이션을 사용하지 않습니다."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"수평으로 접는 크기이며, 창 너비에 대한 상대적인 값입니다. 음수를 입력하면 바"
-"깥쪽으로 접습니다."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"휘어지게 접는 크기이며, 창 너비에 대한 상대적인 값입니다. 음수를 입력하면 바"
-"깥쪽으로 접습니다."
 
 msgid "Angle of window at the end of the animation."
 msgstr "애니메이션 종료 시의 창의 각도"
@@ -273,7 +259,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "휘어지게 접기"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "휘어지게 접는 크기"
 
 msgid "Dodge"
@@ -369,6 +356,11 @@ msgstr "접기"
 msgid "Fold Direction"
 msgstr "접는 방향"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "면도날 효과에서 조각들이 접히는 방향."
 
@@ -387,7 +379,8 @@ msgstr "6각형"
 msgid "Horizontal Folds"
 msgstr "수평으로 접기"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "수평으로 접는 크기"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -493,11 +486,9 @@ msgstr "옵션"
 msgid "Out"
 msgstr "바깥쪽"
 
-#, fuzzy
 msgid "Pool"
 msgstr "목록"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
@@ -657,9 +648,6 @@ msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr "수평으로 접기 애니메이션에서 접는 횟수"
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "창의 높이에 따른 파동의 진폭(크기)"
-
 msgid "The width of the wave relative to the window height."
 msgstr "창의 높이에 따른 파동의 넓이"
 
@@ -723,11 +711,17 @@ msgstr ""
 msgid "Wave"
 msgstr "파동"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "파동의 크기"
 
 msgid "Wave Width"
 msgstr "파동의 폭"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -885,72 +879,11 @@ msgstr "벤치마크 창의 Y 위치"
 msgid "Y position"
 msgstr "Y 위치"
 
-#, fuzzy
 msgid "Bicubic filter"
-msgstr "필터 변경"
+msgstr "Bicubic Filter"
 
 msgid "Bicubic texture filtering"
-msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "밝기 감소"
-
-msgid "Brightness Increase"
-msgstr "밝기 증가"
-
-msgid "Brightness Step"
-msgstr "밝기 단계"
-
-msgid "Brightness and Saturation"
-msgstr "밝기와 채도"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "밝기와 채도 조절"
-
-msgid "Brightness settings"
-msgstr "밝기 설정"
-
-msgid "Brightness values for windows"
-msgstr "창의 밝기"
-
-msgid "Brightness window values"
-msgstr "창의 밝기 값"
-
-msgid "Brightness windows"
-msgstr "창 밝기"
-
-msgid "General"
-msgstr "일반"
-
-msgid "Saturation Decrease"
-msgstr "채도 감소"
-
-msgid "Saturation Increase"
-msgstr "채도 증가"
-
-msgid "Saturation Step"
-msgstr "채도 단계"
-
-msgid "Saturation settings"
-msgstr "채도 설정"
-
-msgid "Saturation values for windows"
-msgstr "창의 채도 값"
-
-msgid "Saturation window values"
-msgstr "창의 채도 값"
-
-msgid "Saturation windows"
-msgstr "창 채도"
-
-msgid "Window specific"
-msgstr "창에 따라서"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "기본적으로 다른 밝기 값을 가질 창들"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "기본적으로 다른 채도 값을 가질 창들"
+msgstr "Bicubic 텍스쳐 필터링"
 
 msgid "Color filter"
 msgstr "색상 필터"
@@ -1066,12 +999,11 @@ msgstr "큐브의 위쪽을 다음 그림으로 바꾸기"
 msgid "Appearance"
 msgstr "외양"
 
-#, fuzzy
 msgid "Aspect ratio"
-msgstr "화면 비율"
+msgstr "크기 비율"
 
 msgid "Aspect ratio of the deformed cube"
-msgstr ""
+msgstr "변형된 큐브의 가로세로 비율"
 
 msgid "Auto zoom"
 msgstr "자동 확대"
@@ -1148,7 +1080,7 @@ msgid "Deform caps"
 msgstr "지속시간"
 
 msgid "Deform cube caps."
-msgstr ""
+msgstr "변형된 큐브 캡."
 
 #, fuzzy
 msgid "Deform only on mouse rotate"
@@ -1159,7 +1091,7 @@ msgid "Deformation"
 msgstr "지속시간"
 
 msgid "Deformation in unfold cube mode."
-msgstr ""
+msgstr "큐브 펼침 모드에서의 변형"
 
 #, fuzzy
 msgid "Deformation mode."
@@ -1180,7 +1112,6 @@ msgstr "천장을 그림"
 msgid "Draw top face of the cube"
 msgstr "큐브의 천장을 그림"
 
-#, fuzzy
 msgid "Enabled"
 msgstr "활성화"
 
@@ -1201,7 +1132,7 @@ msgid "Ground color(near)"
 msgstr "바닥 색(가까운 쪽)"
 
 msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
-msgstr ""
+msgstr "마우스로 끌때만 큐브 원통 변형을 시작합니다."
 
 msgid "Intensity"
 msgstr "밀도"
@@ -1285,7 +1216,7 @@ msgid "Top image files"
 msgstr "천장 이미지 파일 목록"
 
 msgid "Unfold cube deformation"
-msgstr ""
+msgstr "큐브 변형 펼치기"
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "마우스 회전시에 자동으로 축소"
@@ -1401,10 +1332,10 @@ msgid "Immediate moves"
 msgstr "바로 이동"
 
 msgid "Inactive viewport brightness."
-msgstr ""
+msgstr "비활성화된 작업공간 밝기."
 
 msgid "Inactive viewport saturation."
-msgstr ""
+msgstr "비활성화된 작업공간 대조."
 
 msgid "Mipmaps"
 msgstr "Mipmap"
@@ -1446,7 +1377,7 @@ msgid "Show a reflection of the viewports on the ground"
 msgstr "작업 공간이 바닥에 반사됨"
 
 msgid "Strength of the deformation in curve mode"
-msgstr ""
+msgstr "곡선 모드에서의 변형의 강도"
 
 #, fuzzy
 msgid "Tilt"
@@ -1476,7 +1407,7 @@ msgid "Activate a given window"
 msgstr "주어진 창을 활성화함"
 
 msgid "Activate next window which has the \"demands attention\" flag set."
-msgstr ""
+msgstr "\"주의 필요\" 표시가 되어있는 다음 창을 활성화"
 
 msgid "Extra WM Actions"
 msgstr "추가적인 창 관리 기능"
@@ -1689,6 +1620,7 @@ msgid ""
 "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
 "0.25 equals 4x zoom."
 msgstr ""
+"허용된 최소 크기 인자. 0.5 값은 2x 줌과 같고, 0.25 값은 4x 줌과 같습니다."
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "마우스를 구속하려할 때, 더할 여유분"
@@ -1740,7 +1672,7 @@ msgid "Zoom factor"
 msgstr "확대 수준"
 
 msgid "Zoom in on a boxed area"
-msgstr ""
+msgstr "박스로 선택된 영역을 확대"
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
@@ -1923,6 +1855,9 @@ msgstr "글자 색"
 
 msgid "Font Size"
 msgstr "글자 크기"
+
+msgid "General"
+msgstr "일반"
 
 msgid "Glass"
 msgstr "유리"
@@ -2282,7 +2217,6 @@ msgstr "배경 밝기."
 msgid "Background/Window saturation."
 msgstr "배경 채도."
 
-#, fuzzy
 msgid "Fade In/Out Time"
 msgstr "페이드 인/아웃 시간."
 
@@ -2290,7 +2224,7 @@ msgid "Fade In/Out Time."
 msgstr "페이드 인/아웃 시간."
 
 msgid "Login"
-msgstr ""
+msgstr "로그인"
 
 #, fuzzy
 msgid "Login Window Match"
@@ -2301,13 +2235,13 @@ msgid "Login Window match"
 msgstr "일치하는 창"
 
 msgid "Login/Logout"
-msgstr ""
+msgstr "로그인/로그아웃"
 
 msgid "Login/Logout effect"
-msgstr ""
+msgstr "로그인/로그아웃 효과"
 
 msgid "Logout"
-msgstr ""
+msgstr "로그아웃"
 
 #, fuzzy
 msgid "Logout Window Match"
@@ -2334,7 +2268,7 @@ msgid "Border widtht."
 msgstr "가장자리 두께"
 
 msgid "Box height."
-msgstr ""
+msgstr "박스 높이."
 
 #, fuzzy
 msgid "Box width."
@@ -2345,7 +2279,7 @@ msgid "Clip mask"
 msgstr "Mipmap"
 
 msgid "Clip mask."
-msgstr ""
+msgstr "클립 마스크."
 
 #, fuzzy
 msgid "Fisheye"
@@ -2355,7 +2289,7 @@ msgid "Height"
 msgstr "높이"
 
 msgid "Image overlay"
-msgstr ""
+msgstr "이미지 오버레이"
 
 #, fuzzy
 msgid "Keep fully on screen"
@@ -2366,16 +2300,16 @@ msgid "Keep fully on screen."
 msgstr "화면에 초당 프레임 표시"
 
 msgid "Magnifier"
-msgstr ""
+msgstr "돋보기"
 
 msgid "Magnifier box"
-msgstr ""
+msgstr "박스 돋보기"
 
 msgid "Magnifier image"
-msgstr ""
+msgstr "돋보기 이미지"
 
 msgid "Magnifier image."
-msgstr ""
+msgstr "돋보기 이미지."
 
 #, fuzzy
 msgid "Mode"
@@ -2397,28 +2331,28 @@ msgid "Width"
 msgstr "넓이"
 
 msgid "X offset of the cursor"
-msgstr ""
+msgstr "커서의 X 오프셋"
 
 msgid "X offset of the cursor."
-msgstr ""
+msgstr "커서의 X 오프셋."
 
 msgid "Y offset of the cursor"
-msgstr ""
+msgstr "커서의 Y 오프셋"
 
 msgid "Y offset of the cursor."
-msgstr ""
+msgstr "커서의 Y 오프셋."
 
 msgid "Zoom factor for keyboard initiated magnifier."
-msgstr ""
+msgstr "키보드로 작동하는 돋보기의 크기 인자."
 
 msgid "Ignore already overlapping windows in the calculations"
-msgstr ""
+msgstr "이미 겹쳐진 창은 계산에서 무시"
 
 msgid "Ignore sticky windows in the calculations"
-msgstr ""
+msgstr "끈적이 창은 계산에서 무시"
 
 msgid "Maximumize"
-msgstr ""
+msgstr "최대화"
 
 #, fuzzy
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
@@ -2428,19 +2362,23 @@ msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
 msgstr ""
+"최대화를 위한 공간계산에서 끈적이는 창은 존재하지 않는 것 처럼 다룹니다."
 
 msgid ""
 "Treat windows that are already overlapping with the current window as non-"
 "existant when calculating space to use for the maximumize window."
 msgstr ""
+"최대화를 위한 공간 계산에서 현재 창에 겹쳐진 창은 존재하지 않는 것 처럼 다룹"
+"니다."
 
 msgid ""
 "Trigger a resize of the window currently focused so it fits as much of the "
 "available screenspae as possible."
 msgstr ""
+"현재 초점이 있는 창의 크기를 사용 가능한 공간에 최대화하기 위한 단축키."
 
 msgid "Trigger maximumize"
-msgstr ""
+msgstr "최대화 단축키"
 
 msgid "Accumulation buffer"
 msgstr "집적 버퍼"
@@ -2494,7 +2432,7 @@ msgid "Assign mousegestures to any existing action"
 msgstr "모든 동작에 마우스 제스쳐를 할당함"
 
 msgid "Detect Diagonal Movements"
-msgstr ""
+msgstr "사선 이동 감지"
 
 msgid "Gesture"
 msgstr "제스쳐"
@@ -2509,6 +2447,8 @@ msgid ""
 "If this option is selected, diagonal movements are detected, which may lead "
 "to a decreased detection accuracy."
 msgstr ""
+"이 옵션이 선택되면 사선 이동을 감지합니다. 이 옵션은 감지의 정확도를 감소시"
+"킬 수도 있습니다."
 
 msgid "Mouse gesture to assign an action to."
 msgstr "동작에 할당할 마우스 제스쳐."
@@ -2533,7 +2473,7 @@ msgstr ""
 "운 동작을 원하신다면 이 값을 줄이시기 바랍니다."
 
 msgid "Misc"
-msgstr ""
+msgstr "기타"
 
 msgid "Mouse Poll Interval"
 msgstr "마우스 폴 간격"
@@ -2543,7 +2483,7 @@ msgid "Mouse position polling"
 msgstr "마우스 이동"
 
 msgid "Updates the mouse pointer position from the xserver"
-msgstr ""
+msgstr "마우스 포인터 위치를 X서버로부터 업데이트"
 
 msgid "Begin Gesture"
 msgstr "제스쳐 시작"
@@ -2558,7 +2498,7 @@ msgid "Switch viewport in response to mouse gesture"
 msgstr "마우스 제스쳐를 이용한 작업 공간 변경"
 
 msgid "Also negate window decorations, not only the window contents."
-msgstr ""
+msgstr "창 내용과 더불어 창 장식도 끕니다."
 
 msgid "Exclude Windows"
 msgstr "제외할 창"
@@ -2748,7 +2688,7 @@ msgid "Avoids putting window borders offscreen"
 msgstr "창 가장자리를 화면 밖에 두지 않음"
 
 msgid "Move window arbitrarily by passing x, y and type."
-msgstr ""
+msgstr "x축, y축, 타입에 상관없이 창을 독립적으로 움직임."
 
 msgid "Move window to a certain viewport"
 msgstr "특정 작업 공간으로 창을 이동"
@@ -3272,16 +3212,16 @@ msgid "Color used for highlighting the hovered window"
 msgstr "선택할려는 창을 강조하기 위해 사용할 색"
 
 msgid "Constrain Pull To Screen"
-msgstr ""
+msgstr "화면으로 끌어오기 제한"
 
 msgid "Draw Window Highlight"
 msgstr "창을 강조함"
 
 msgid "Exit Scale On Pull"
-msgstr ""
+msgstr "끌어온 후 스케일 모드 나감"
 
 msgid "Exit scale mode after a window has been pulled."
-msgstr ""
+msgstr "창을 끌어온 다음 스케일 모드를 빠져나갑니다."
 
 msgid "Font color of the window title"
 msgstr "창 제목에 대한 글자 색"
@@ -3424,15 +3364,18 @@ msgid ""
 "management protocol. This setting only should be used in KDE, as only KDE's "
 "session manager also saves those applications."
 msgstr ""
+"X세션 관리 프로토콜을 지원하지 않는 오래된 어플리케이션도 저장하고 복구하도"
+"록 시도합니다. KDE의 세션 관리자만이 그런 어플리케이션을 저장하기 때문에 이 "
+"설정은 오직 KDE에서만 사용됩니다. "
 
 msgid "Save Legacy Apps"
-msgstr ""
+msgstr "오래된 어플리케이션 저장"
 
 msgid "Session Management"
-msgstr ""
+msgstr "세션 관리"
 
 msgid "Talk to session manager and save/load window state"
-msgstr ""
+msgstr "창의 상태를 저장/로드 하도록 세션 관리자 호출"
 
 msgid "Animation duration"
 msgstr "애니메이션 지속 시간"
@@ -3457,7 +3400,7 @@ msgid "Reset the window to original size"
 msgstr "창을 크기 조절 할 수 없게 함"
 
 msgid "Resets the currently focused window to original size"
-msgstr ""
+msgstr "현재 초점을 가진 창을 원래 크기로 초기화"
 
 msgid "Scale a window down to a portion of it's size."
 msgstr "창의 크기를 기준으로 창을 축소합니다."
@@ -3657,7 +3600,7 @@ msgid ""
 msgstr "바탕화면 보기 상태에서 시야에서 사라질 창의 종류"
 
 msgid "Additive blending"
-msgstr ""
+msgstr "추가 조합"
 
 #, fuzzy
 msgid "Additive blending of particles"
@@ -3672,7 +3615,7 @@ msgid "Darken background under particles"
 msgstr "배경을 어둡게"
 
 msgid "Emiters"
-msgstr ""
+msgstr "방사되는 불꽃 수"
 
 #, fuzzy
 msgid "Have random colors for the particles"
@@ -3979,7 +3922,6 @@ msgid ""
 "selected"
 msgstr "선택되지 않은 원 안의 창들에 대한 투명도 (퍼센트 단위)"
 
-#, fuzzy
 msgid "Behavior"
 msgstr "동작"
 
@@ -4016,14 +3958,14 @@ msgid "Windows that should be shown in the switcher"
 msgstr "이동 전환기를 적용할 창들"
 
 msgid "Alignment for rows that are not fully filled"
-msgstr ""
+msgstr "채워지지 않은 열의 정렬"
 
 #, fuzzy
 msgid "Amount of brightness in percent"
 msgstr "페인트 중의 배경 밝기"
 
 msgid "Amount of opacity in percent"
-msgstr ""
+msgstr "투명의 정도(퍼센트)"
 
 #, fuzzy
 msgid "Amount of saturation in percent"
@@ -4034,24 +3976,24 @@ msgid "Auto Change Viewport"
 msgstr "작업 공간으로 던지기"
 
 msgid "Bring Selected To Front"
-msgstr ""
+msgstr "선택된 것을 앞으로 가져옴"
 
 #, fuzzy
 msgid "Centered"
 msgstr "중앙으로 던지기"
 
 msgid "Change to the viewport of the selected window while switching"
-msgstr ""
+msgstr "전환하는 동안 선택된 창이 있는 작업공간으로 바꾸기"
 
 #, fuzzy
 msgid "Color of highlight rectangle"
 msgstr "선택 영역을 색으로 채우기"
 
 msgid "Color of highlight rectangle border"
-msgstr ""
+msgstr "강조된 직사각형 테두리의 색"
 
 msgid "Color of inlay in highlight rectangle border"
-msgstr ""
+msgstr "강조된 직사각형 테두리의 무늬 색"
 
 #, fuzzy
 msgid "Generate mipmaps when possible for higher quality scaling"
@@ -4077,7 +4019,6 @@ msgstr "안쪽"
 msgid "Minimized Window Highlight Rectangle"
 msgstr "창 강조"
 
-#, fuzzy
 msgid "Mipmap"
 msgstr "Mipmap"
 
@@ -4086,9 +4027,8 @@ msgid "Mode for highlighting the currently selected window"
 msgstr "선택할려는 창을 강조하기 위해 사용할 색"
 
 msgid "Next Panel"
-msgstr ""
+msgstr "다음 패널"
 
-#, fuzzy
 msgid "Next window"
 msgstr "다음 창"
 
@@ -4096,7 +4036,6 @@ msgstr "다음 창"
 msgid "Next window (All windows)"
 msgstr "다음 창 (모든 작업 공간)"
 
-#, fuzzy
 msgid "Next window (Group)"
 msgstr "다음 창 (그룹)"
 
@@ -4105,7 +4044,7 @@ msgid "Next window (No popup)"
 msgstr "다음 창 (그룹)"
 
 msgid "Original Window Position"
-msgstr ""
+msgstr "원래 창 위치"
 
 #, fuzzy
 msgid "Popup Window Delay"
@@ -4147,9 +4086,8 @@ msgstr ""
 "함"
 
 msgid "Prev Panel"
-msgstr ""
+msgstr "이전 패널"
 
-#, fuzzy
 msgid "Prev window"
 msgstr "이전 창"
 
@@ -4157,7 +4095,6 @@ msgstr "이전 창"
 msgid "Prev window (All windows)"
 msgstr "이전 창 (모든 작업 공간)"
 
-#, fuzzy
 msgid "Prev window (Group)"
 msgstr "이전 창 (그룹)"
 
@@ -4166,21 +4103,21 @@ msgid "Prev window (No popup)"
 msgstr "이전 창 (그룹)"
 
 msgid "Row Alignment"
-msgstr ""
+msgstr "열 정렬"
 
 #, fuzzy
 msgid "Select next panel type window."
 msgstr "창 제목을 어디에 둘지 선택함"
 
 msgid "Select next window without showing the popup window."
-msgstr ""
+msgstr "팝업 창을 보여주지 않고 다음 창을 선택합니다."
 
 #, fuzzy
 msgid "Select previous panel type window."
 msgstr "창 제목을 어디에 둘지 선택함"
 
 msgid "Select previous window without showing the popup window."
-msgstr ""
+msgstr "팝업창을 보여주지 않고 이전 창을 선택합니다."
 
 #, fuzzy
 msgid "Selected Window Highlight"
@@ -4198,7 +4135,7 @@ msgid "Show minimized windows"
 msgstr "최소화된 창도 보여줌"
 
 msgid "Static Application Switcher"
-msgstr ""
+msgstr "고정된 응용프로그램 전환"
 
 #, fuzzy
 msgid "Switcher speed"
@@ -4217,10 +4154,10 @@ msgid "Taskbar Entry"
 msgstr "창 목록"
 
 msgid "Time (in s) the popup window should be delayed before appearing"
-msgstr ""
+msgstr "팝업 창이 나타나기 전까지 지연되어야 할 시간(초)"
 
 msgid "Where to draw highlight rectangle for minimized windows"
-msgstr ""
+msgstr "최소화된 창을 위해 강조된 직사각형을 그릴 장소"
 
 #, fuzzy
 msgid "Windows that should be shown in switcher"
@@ -4835,7 +4772,7 @@ msgid "Outline color of the switcher window."
 msgstr "전환기 창의 외곽선 색."
 
 msgid "Preview Scale"
-msgstr ""
+msgstr "미리보기 크기"
 
 msgid "Radius of the rounded edge"
 msgstr "둥근 가장자리의 반경"
@@ -4869,7 +4806,7 @@ msgstr "작업 공간 전환 시 전환기 창 표시"
 
 #, no-c-format
 msgid "Size of the preview in %"
-msgstr ""
+msgstr "미리보기의 크기(퍼센트)"
 
 msgid "Switch Target Preview Visibility Time"
 msgstr "전환 대상 미리 보기 지속 시간"
@@ -4896,7 +4833,7 @@ msgid "Wall Sliding Duration"
 msgstr "벽 슬라이딩 지속 시간"
 
 msgid "Width of the border between the previews"
-msgstr ""
+msgstr "미리보기 사이 테두리의 너비"
 
 #, fuzzy
 msgid "Background fill type."
@@ -4906,7 +4843,7 @@ msgid "Backgrounds"
 msgstr "배경"
 
 msgid "Center Tiled"
-msgstr ""
+msgstr "중앙에 타일 정렬"
 
 #, fuzzy
 msgid "Color 1"
@@ -4931,7 +4868,6 @@ msgstr "채워진 외곽선"
 msgid "Horizontal gradient"
 msgstr "수평으로 접기"
 
-#, fuzzy
 msgid "Image"
 msgstr "이미지"
 
@@ -4960,14 +4896,14 @@ msgid "Second gradient color."
 msgstr "그래디언트 색 1"
 
 msgid "Solid fill"
-msgstr ""
+msgstr "단색으로 채움"
 
 #, fuzzy
 msgid "Tiled"
 msgstr "타일"
 
 msgid "Vertical gradient"
-msgstr ""
+msgstr "수직으로 그라데이션"
 
 msgid "Wallpaper"
 msgstr "배경 화면"
@@ -4995,7 +4931,7 @@ msgid "Focus Widget Layer"
 msgstr "위젯 레이어"
 
 msgid "Focus a window in the widget layer when activating the layer"
-msgstr ""
+msgstr "위젯레이어를 활성화 했을때 초점을 맞출 창"
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "위젯모드에서 위젯이 아닌창의 채도"
@@ -5088,7 +5024,7 @@ msgid "Set windows rules"
 msgstr "창의 규칙을 설정함"
 
 msgid "Size rules"
-msgstr ""
+msgstr "크기 규칙"
 
 msgid "Sized Windows"
 msgstr "크기가 고정된 창"
@@ -5127,7 +5063,7 @@ msgid "AIGLX Fragment Parameter Fix"
 msgstr "AIGLX 조각 매개 변수 고침"
 
 msgid "Convert Urgency to Demands Attention"
-msgstr ""
+msgstr "\"긴금합\"을 \"주의 필요\"로 바꿈"
 
 msgid "Firefox Menu Fix"
 msgstr "Firefox 메뉴 고침"
@@ -5173,7 +5109,7 @@ msgstr ""
 "\"에서 나타납니다."
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr ""
+msgstr "\"긴급한\" 창을 \"주의 필요\"로 만듭니다."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Wine이나 오래된 응용 프로그램의 전체 화면을 제대로 만들어줍니다."
@@ -5198,6 +5134,81 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 msgid "Workarounds"
 msgstr "문제 회피"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "수평으로 접는 크기이며, 창 너비에 대한 상대적인 값입니다. 음수를 입력하면 "
+#~ "바깥쪽으로 접습니다."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "휘어지게 접는 크기이며, 창 너비에 대한 상대적인 값입니다. 음수를 입력하면 "
+#~ "바깥쪽으로 접습니다."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "창의 높이에 따른 파동의 진폭(크기)"
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "밝기 감소"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "밝기 증가"
+
+#~ msgid "Brightness Step"
+#~ msgstr "밝기 단계"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "밝기와 채도"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "밝기와 채도 조절"
+
+#~ msgid "Brightness settings"
+#~ msgstr "밝기 설정"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "창의 밝기"
+
+#~ msgid "Brightness window values"
+#~ msgstr "창의 밝기 값"
+
+#~ msgid "Brightness windows"
+#~ msgstr "창 밝기"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "채도 감소"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "채도 증가"
+
+#~ msgid "Saturation Step"
+#~ msgstr "채도 단계"
+
+#~ msgid "Saturation settings"
+#~ msgstr "채도 설정"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "창의 채도 값"
+
+#~ msgid "Saturation window values"
+#~ msgstr "창의 채도 값"
+
+#~ msgid "Saturation windows"
+#~ msgstr "창 채도"
+
+#~ msgid "Window specific"
+#~ msgstr "창에 따라서"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "기본적으로 다른 밝기 값을 가질 창들"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "기본적으로 다른 채도 값을 가질 창들"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "스케일 상태에서 창을 닫음"

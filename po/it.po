@@ -47,7 +47,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:54+0530\n"
+"POT-Creation-Date: 2008-08-07 11:28+0530\n"
 "PO-Revision-Date: 2008-07-08 22:38+0200\n"
 "Last-Translator: Milo Casagrande <milo_casagrande@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -210,21 +210,6 @@ msgstr ""
 "Tutti gli effetti sono scelti casualmente, ignorando l'effetto selezionato. "
 "Se per un evento è selezionato «Nessuno», l'evento non avrà animazioni."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Ampiezza (dimensione delle onde nella piega) di «Ripiegatura orizzontale» "
-"relativa alla larghezza della finestra. Valori negativi portano le pieghe in "
-"avanti."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Ampiezza (misura delle onde nella piega) della piega curvata relativamente "
-"alla larghezza della finestra. Valori negativi portano le pieghe in avanti."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Angolo della finestra alla fine dell'animazione."
 
@@ -330,7 +315,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Ripiegatura curva"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Ampiezza ripiegatura curva"
 
 msgid "Dodge"
@@ -429,6 +415,11 @@ msgstr "Ripiegatura"
 msgid "Fold Direction"
 msgstr "Direzione pieghe"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Direzione di apertura dei pezzi nell'effetto «Rasoio»."
 
@@ -449,7 +440,8 @@ msgstr "Esagonale"
 msgid "Horizontal Folds"
 msgstr "Ripiegatura orizzontale"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Ampiezza ripiegatura orizzontale"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -744,10 +736,6 @@ msgid ""
 msgstr ""
 "Il numero di pieghe orizzontali dell'animazione «Ripiegatura orizzontale»."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
-"L'ampiezza delle onde (dimensione) relativa all'altezza della finestra."
-
 msgid "The width of the wave relative to the window height."
 msgstr "La larghezza dell'onda relativa all'altezza della finestra."
 
@@ -815,11 +803,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Onde"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Ampiezza onde"
 
 msgid "Wave Width"
 msgstr "Larghezza onde"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -1009,66 +1003,6 @@ msgstr "Filtro bicubico"
 
 msgid "Bicubic texture filtering"
 msgstr "Filtro texture bicubico"
-
-msgid "Brightness Decrease"
-msgstr "Diminuzione luminosità"
-
-msgid "Brightness Increase"
-msgstr "Aumento luminosità"
-
-msgid "Brightness Step"
-msgstr "Passo luminosità"
-
-msgid "Brightness and Saturation"
-msgstr "Luminosità e saturazione"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Regolazioni luminosità e saturazione"
-
-msgid "Brightness settings"
-msgstr "Impostazioni luminosità"
-
-msgid "Brightness values for windows"
-msgstr "Valori luminosità per le finestre"
-
-msgid "Brightness window values"
-msgstr "Valori luminosità finestre"
-
-msgid "Brightness windows"
-msgstr "Luminosità finestre"
-
-msgid "General"
-msgstr "Generale"
-
-msgid "Saturation Decrease"
-msgstr "Diminuzione saturazione"
-
-msgid "Saturation Increase"
-msgstr "Aumento saturazione"
-
-msgid "Saturation Step"
-msgstr "Passo saturazione"
-
-msgid "Saturation settings"
-msgstr "Impostazioni saturazione"
-
-msgid "Saturation values for windows"
-msgstr "Valori saturazione per le finestre"
-
-msgid "Saturation window values"
-msgstr "Valori saturazione finestre"
-
-msgid "Saturation windows"
-msgstr "Saturazione finestre"
-
-msgid "Window specific"
-msgstr "Specifico alla finestra"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Finestre con luminosità diversa in modo predefinito"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Finestre con saturazione diversa in modo predefinito"
 
 # (NdT) nome del plug-in
 msgid "Color filter"
@@ -2135,6 +2069,9 @@ msgstr "Colore carattere"
 
 msgid "Font Size"
 msgstr "Dimensione carattere"
+
+msgid "General"
+msgstr "Generale"
 
 msgid "Glass"
 msgstr "Vetro"
@@ -5606,6 +5543,84 @@ msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Ampiezza (dimensione delle onde nella piega) di «Ripiegatura orizzontale» "
+#~ "relativa alla larghezza della finestra. Valori negativi portano le pieghe "
+#~ "in avanti."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Ampiezza (misura delle onde nella piega) della piega curvata "
+#~ "relativamente alla larghezza della finestra. Valori negativi portano le "
+#~ "pieghe in avanti."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr ""
+#~ "L'ampiezza delle onde (dimensione) relativa all'altezza della finestra."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Diminuzione luminosità"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Aumento luminosità"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Passo luminosità"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Luminosità e saturazione"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Regolazioni luminosità e saturazione"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Impostazioni luminosità"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Valori luminosità per le finestre"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Valori luminosità finestre"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Luminosità finestre"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Diminuzione saturazione"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Aumento saturazione"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Passo saturazione"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Impostazioni saturazione"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Valori saturazione per le finestre"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Valori saturazione finestre"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Saturazione finestre"
+
+#~ msgid "Window specific"
+#~ msgstr "Specifico alla finestra"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Finestre con luminosità diversa in modo predefinito"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Finestre con saturazione diversa in modo predefinito"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Chiudere finestre in «Scala finestre»"

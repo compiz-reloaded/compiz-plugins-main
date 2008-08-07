@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:53+0530\n"
+"POT-Creation-Date: 2008-08-07 11:27+0530\n"
 "PO-Revision-Date: 2008-04-17 12:19+0200\n"
 "Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
@@ -166,20 +166,6 @@ msgstr ""
 "Kaikki tehosteet valitaan sattumanvaraisesti, mutta valittua tehostetta ei "
 "käytetä. Jos mitään tehostetta ei valita, kyseistä tapahtumaa ei animoida"
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Vaakataitosten amplitudi (aallonkorkeus) suhteessa ikkunan leveyteen. "
-"Negatiiviset arvot taittavat ulospäin."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Kaarevien taitosten amplitudi (aallonkorkeus) suhteessa ikkunan leveyteen. "
-"Negatiiviset arvot taittavat ulospäin."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Ikkunan kulma animaation lopussa."
 
@@ -280,7 +266,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Kaarevat taitokset"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Kaarevien taitosten amplitudi"
 
 msgid "Dodge"
@@ -376,6 +363,11 @@ msgstr "Laskostus"
 msgid "Fold Direction"
 msgstr "Laskoksen suunta"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Laskosten avautumissuunta Razr-tehosteen osille."
 
@@ -396,7 +388,8 @@ msgstr "Monikulmio"
 msgid "Horizontal Folds"
 msgstr "Vaakalaskokset"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Vaakalaskosten amplitudi"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -664,9 +657,6 @@ msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr "Laskosten lukumäärä vaakalaskos-animaatiossa"
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Aallonkorkeus suhteessa ikkunan leveyteen."
-
 msgid "The width of the wave relative to the window height."
 msgstr "Aallonpituus suhteessa ikkunan korkeuteen"
 
@@ -724,11 +714,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Aalto"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Aallonkorkeus"
 
 msgid "Wave Width"
 msgstr "Aaltojen leveys"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -902,66 +898,6 @@ msgid "Bicubic filter"
 msgstr "Vaihda suodatin"
 
 msgid "Bicubic texture filtering"
-msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Vähennä kirkkautta"
-
-msgid "Brightness Increase"
-msgstr "Lisää kirkkautta"
-
-msgid "Brightness Step"
-msgstr "Kirkkaussäädön porras"
-
-msgid "Brightness and Saturation"
-msgstr "Kirkkaus ja kylläisyys"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Kirkkauden ja värikylläisyyden säädöt"
-
-msgid "Brightness settings"
-msgstr "Kirkkausasetukset"
-
-msgid "Brightness values for windows"
-msgstr "Ikkunoiden kirkkausasetus"
-
-msgid "Brightness window values"
-msgstr "Kirkkaus, ikkunan arvot"
-
-msgid "Brightness windows"
-msgstr "Kirkkaus, ikkunat"
-
-msgid "General"
-msgstr "Yleiset"
-
-msgid "Saturation Decrease"
-msgstr "Vahennä kylläisyyttä"
-
-msgid "Saturation Increase"
-msgstr "Lisää kylläisyyttä"
-
-msgid "Saturation Step"
-msgstr "Kylläisyysporras"
-
-msgid "Saturation settings"
-msgstr "Kylläisyysasetukset"
-
-msgid "Saturation values for windows"
-msgstr "Kylläisyysarvot ikkunoille"
-
-msgid "Saturation window values"
-msgstr "Kylläisyys, ikkunoiden arvot"
-
-msgid "Saturation windows"
-msgstr "Kylläisyys, ikkunat"
-
-msgid "Window specific"
-msgstr "Ikkunakohtainen"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Ikkunat joilla tulee olla eri peruskirkkaus"
-
-msgid "Windows that should have a different saturation by default"
 msgstr ""
 
 msgid "Color filter"
@@ -1907,6 +1843,9 @@ msgstr "Kirjasimen väri"
 
 msgid "Font Size"
 msgstr "Kirjasimen koko"
+
+msgid "General"
+msgstr "Yleiset"
 
 msgid "Glass"
 msgstr "Lasi"
@@ -5033,6 +4972,78 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Kiertokeinot"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Vaakataitosten amplitudi (aallonkorkeus) suhteessa ikkunan leveyteen. "
+#~ "Negatiiviset arvot taittavat ulospäin."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Kaarevien taitosten amplitudi (aallonkorkeus) suhteessa ikkunan "
+#~ "leveyteen. Negatiiviset arvot taittavat ulospäin."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "Aallonkorkeus suhteessa ikkunan leveyteen."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Vähennä kirkkautta"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Lisää kirkkautta"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Kirkkaussäädön porras"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Kirkkaus ja kylläisyys"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Kirkkauden ja värikylläisyyden säädöt"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Kirkkausasetukset"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Ikkunoiden kirkkausasetus"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Kirkkaus, ikkunan arvot"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Kirkkaus, ikkunat"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Vahennä kylläisyyttä"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Lisää kylläisyyttä"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Kylläisyysporras"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Kylläisyysasetukset"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Kylläisyysarvot ikkunoille"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Kylläisyys, ikkunoiden arvot"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Kylläisyys, ikkunat"
+
+#~ msgid "Window specific"
+#~ msgstr "Ikkunakohtainen"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Ikkunat joilla tulee olla eri peruskirkkaus"
 
 #~ msgid "Animation Speed"
 #~ msgstr "Animaation nopeus"

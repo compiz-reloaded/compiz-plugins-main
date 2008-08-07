@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:52+0530\n"
+"POT-Creation-Date: 2008-08-07 11:27+0530\n"
 "PO-Revision-Date: 2008-05-26 03:23+0200\n"
 "Last-Translator: Jim Dusis <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -165,22 +165,6 @@ msgstr ""
 "Επιλογή τυχαίων εφέ, αγνοώντας το επιλεγμένο. Αν έχει επιλεγεί 'Κανενα' "
 "γιακάποιο γεγονός, αυτο δεν θα απεικονιστεί γραφικα."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Έκταση (μέγεθος των κυμάτων στην πτυχή) των Οριζόντιων Πτυχών σε σχέση με το "
-"πλάτος του παραθύρου(Μήκος Κύματος). Οι αρνητικές τιμές κάνουν πτυχές προς "
-"τα έξω"
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Έκταση (μέγεθος των κυμάτων στην πτυχή) των καμπυλώτων πτυχών σε σχέση με το "
-"πλάτος του παραθύρου(Πλάτος Ταλάντωσης). Οι αρνητικές τιμές κάνουν πτυχές "
-"προς τα έξω"
-
 msgid "Angle of window at the end of the animation."
 msgstr "Γωνία του παραθύρου μετά την ολοκλήρωση της γραφικής απεικόνισης."
 
@@ -287,7 +271,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Καμπυλωτή Πτυχή"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Έκταση Καμπυλωτής Πτυχής"
 
 msgid "Dodge"
@@ -385,6 +370,11 @@ msgstr "Δίπλωμα"
 msgid "Fold Direction"
 msgstr "Κατεύθυνση διπλώματος"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Κατεύθυνση ανοίγματος των πτυχών των κομματιών στο εφέ Ξυράφι."
 
@@ -403,7 +393,8 @@ msgstr "Εξάγωνο"
 msgid "Horizontal Folds"
 msgstr "Οριζόντιες Πτυχές"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Έκταση Οριζόντιων Πτυχών"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -694,9 +685,6 @@ msgstr ""
 "Αριθμός των οριζόντιων πτυχών που εμφανίζονται στην γραφική απεικόνιση "
 "Οριζόντιας Πτύχωσης."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Έκταση κυμάτων (μέγεθος κυμάτων) σε σχέση με το ύψος του παραθύρου."
-
 msgid "The width of the wave relative to the window height."
 msgstr "Πλάτος του κύματος σε σχέση με το ύψος του παραθύρου."
 
@@ -762,11 +750,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Κύμα"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Έκταση Κύματος"
 
 msgid "Wave Width"
 msgstr "Πλάτος Κύματος"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -945,66 +939,6 @@ msgstr "Αλλαγή φίλτραρίσματος"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Μείωση Φωτεινότητας"
-
-msgid "Brightness Increase"
-msgstr "Αύξηση Φωτεινότητας"
-
-msgid "Brightness Step"
-msgstr "Βήμα Φωτεινότητας"
-
-msgid "Brightness and Saturation"
-msgstr "Φωτεινότητα και Κορεσμός"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Ρυθμιστικά Φωτεινότητας και Κορεσμού"
-
-msgid "Brightness settings"
-msgstr "Ρυθμίσεις Φωτεινότητας"
-
-msgid "Brightness values for windows"
-msgstr "Τιμές φωτεινότητας για παράθυρα"
-
-msgid "Brightness window values"
-msgstr "Τιμές φωτεινότητας παραθύρων"
-
-msgid "Brightness windows"
-msgstr "Φωτεινότητα παραθύρων"
-
-msgid "General"
-msgstr "Γενικά"
-
-msgid "Saturation Decrease"
-msgstr "Μείωση Κορεσμού"
-
-msgid "Saturation Increase"
-msgstr "Αύξηση Κορεσμού"
-
-msgid "Saturation Step"
-msgstr "Βήμα Κορεσμού"
-
-msgid "Saturation settings"
-msgstr "Ρυθμίσεις κορεσμού"
-
-msgid "Saturation values for windows"
-msgstr "Τιμές κορεσμού για παράθυρα"
-
-msgid "Saturation window values"
-msgstr "Τιμές κορεσμού παραθύρων"
-
-msgid "Saturation windows"
-msgstr "Κορεσμός παραθύρων"
-
-msgid "Window specific"
-msgstr "Συγκεκριμένα για παράθυρο"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Παράθυρα που πρέπει να έχουν προεπιλεγμένη διαφορετική φωτεινότητα"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Παράθυρα που πρέπει να έχουν προεπιλεγμένο διαφορετικό κορεσμό"
 
 msgid "Color filter"
 msgstr "Χρωματιστό φίλτράρισμα"
@@ -1994,6 +1928,9 @@ msgstr "Χρώμα Γραμματοσειράς"
 
 msgid "Font Size"
 msgstr "Μέγεθος Γραμματοσειράς"
+
+msgid "General"
+msgstr "Γενικά"
 
 msgid "Glass"
 msgstr "Γυαλί"
@@ -5326,6 +5263,83 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Μοντίφες"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Έκταση (μέγεθος των κυμάτων στην πτυχή) των Οριζόντιων Πτυχών σε σχέση με "
+#~ "το πλάτος του παραθύρου(Μήκος Κύματος). Οι αρνητικές τιμές κάνουν πτυχές "
+#~ "προς τα έξω"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Έκταση (μέγεθος των κυμάτων στην πτυχή) των καμπυλώτων πτυχών σε σχέση με "
+#~ "το πλάτος του παραθύρου(Πλάτος Ταλάντωσης). Οι αρνητικές τιμές κάνουν "
+#~ "πτυχές προς τα έξω"
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "Έκταση κυμάτων (μέγεθος κυμάτων) σε σχέση με το ύψος του παραθύρου."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Μείωση Φωτεινότητας"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Αύξηση Φωτεινότητας"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Βήμα Φωτεινότητας"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Φωτεινότητα και Κορεσμός"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Ρυθμιστικά Φωτεινότητας και Κορεσμού"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Ρυθμίσεις Φωτεινότητας"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Τιμές φωτεινότητας για παράθυρα"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Τιμές φωτεινότητας παραθύρων"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Φωτεινότητα παραθύρων"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Μείωση Κορεσμού"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Αύξηση Κορεσμού"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Βήμα Κορεσμού"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Ρυθμίσεις κορεσμού"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Τιμές κορεσμού για παράθυρα"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Τιμές κορεσμού παραθύρων"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Κορεσμός παραθύρων"
+
+#~ msgid "Window specific"
+#~ msgstr "Συγκεκριμένα για παράθυρο"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Παράθυρα που πρέπει να έχουν προεπιλεγμένη διαφορετική φωτεινότητα"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Παράθυρα που πρέπει να έχουν προεπιλεγμένο διαφορετικό κορεσμό"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Κλείσιμο Παραθύρων στην Κλιμάκωση"

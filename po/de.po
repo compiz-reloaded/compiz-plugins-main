@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:52+0530\n"
-"PO-Revision-Date: 2008-07-04 16:25+0200\n"
-"Last-Translator: mandavi <mandavi@web.de>\n"
+"POT-Creation-Date: 2008-08-07 11:27+0530\n"
+"PO-Revision-Date: 2008-07-25 21:06+0200\n"
+"Last-Translator: Philipp B. <philipp2812@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,22 +174,6 @@ msgstr ""
 "ignoriert. Wenn 'Keine' als Animation für ein bestimmtes Ereignis ausgewählt "
 "wurde, wird dieses Ereignis nicht animiert."
 
-#, fuzzy
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Maximale Auslenkung der horizontalen Wellen, relativ zur Fensterbreite. "
-"Negative Werte führen zur entgegengesetzten Richtung."
-
-#, fuzzy
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Amplitude (Umfang) des Bogens beim Zusammenfalten im Verhältnis zur Breite "
-"des Fensters. Negative Werte bewirken eine Biegung nach außen."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Fensterwinkel am Animationsende"
 
@@ -296,7 +280,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Gebogen Zusammenfalten"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Bogen-Amplitude"
 
 msgid "Dodge"
@@ -395,6 +380,11 @@ msgstr "Falten"
 msgid "Fold Direction"
 msgstr "Falt-Richtung"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 # siehe 'Razr'
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Ausrichtung des Razr-Effekts"
@@ -415,7 +405,8 @@ msgstr "Sechseckig"
 msgid "Horizontal Folds"
 msgstr "Horizontales Zusammenfalten"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Amplitude des horizontalen Zusammenfaltens"
 
 #, fuzzy
@@ -702,11 +693,6 @@ msgid ""
 msgstr ""
 "Anzahl der horizontalen Faltungen für die 'Horizontal Falten' Animation"
 
-# Ich kenne den Kontext nicht genau, deshalb bin ich mir mit der Übersetzung nicht zu sicher
-#, fuzzy
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Auschlag (Größe) der Wellen relativ zur Fensterhöhe"
-
 msgid "The width of the wave relative to the window height."
 msgstr "Breite der Welle in Relation zur Fensterbreite"
 
@@ -772,11 +758,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Welle"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Wellen-Amplitude"
 
 msgid "Wave Width"
 msgstr "Wellenbreite"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -836,18 +828,21 @@ msgid ""
 "Window thickness in pixels. Setting this to larger than 0 will disable "
 "shadow, blur, and reflection during the animation."
 msgstr ""
+"Fensterdicke in Pixel. Bei einer Einstellung über 0 wird der Schatten, die "
+"Unschärfe und die Reflektion während der Animation deaktiviert."
 
 msgid "Zoom"
 msgstr "Zoom"
 
 msgid "Zoom Springiness"
-msgstr ""
+msgstr "Federung beim Zoomen"
 
 msgid "Zoom from Center"
 msgstr "Aus der Mitte zoomen"
 
+#, fuzzy
 msgid "Zoom from center when playing the Sidekick animation."
-msgstr ""
+msgstr "Bei Sidekick-Animation von der Mitte aus zoomen."
 
 msgid "Zoom from center when playing the Zoom animation."
 msgstr ""
@@ -858,8 +853,9 @@ msgstr ""
 msgid "Colors"
 msgstr "Farben"
 
+#, fuzzy
 msgid "Cube Atlantis"
-msgstr ""
+msgstr "Atlantis Würfel"
 
 msgid "Dolphin size"
 msgstr ""
@@ -957,84 +953,6 @@ msgstr "Filter umschalten"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-#, fuzzy
-msgid "Brightness Decrease"
-msgstr "Helligkeit"
-
-#, fuzzy
-msgid "Brightness Increase"
-msgstr "Helligkeit"
-
-#, fuzzy
-msgid "Brightness Step"
-msgstr "Helligkeit"
-
-#, fuzzy
-msgid "Brightness and Saturation"
-msgstr "Helligkeit von verblassten Fenstern"
-
-msgid "Brightness and Saturation adjustments"
-msgstr ""
-
-#, fuzzy
-msgid "Brightness settings"
-msgstr "Helligkeit selektierter Fenster"
-
-#, fuzzy
-msgid "Brightness values for windows"
-msgstr "Helligkeit von verblassten Fenstern"
-
-#, fuzzy
-msgid "Brightness window values"
-msgstr "Helligkeit von verblassten Fenstern"
-
-#, fuzzy
-msgid "Brightness windows"
-msgstr "Helligkeit von verblassten Fenstern"
-
-msgid "General"
-msgstr "Allgemein"
-
-#, fuzzy
-msgid "Saturation Decrease"
-msgstr "Sättigung"
-
-#, fuzzy
-msgid "Saturation Increase"
-msgstr "Sättigung"
-
-#, fuzzy
-msgid "Saturation Step"
-msgstr "Sättigung"
-
-#, fuzzy
-msgid "Saturation settings"
-msgstr "Sättigung der selektierten Fenster"
-
-#, fuzzy
-msgid "Saturation values for windows"
-msgstr "Sättigung von verblassten Fenstern"
-
-#, fuzzy
-msgid "Saturation window values"
-msgstr "Sättigung von verblassten Fenstern"
-
-#, fuzzy
-msgid "Saturation windows"
-msgstr "Sättigung von verblassten Fenstern"
-
-#, fuzzy
-msgid "Window specific"
-msgstr "Sichtbarkeit der Fenster"
-
-#, fuzzy
-msgid "Windows that should have a different brightness by default"
-msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden soll"
-
-#, fuzzy
-msgid "Windows that should have a different saturation by default"
-msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden soll"
 
 msgid "Color filter"
 msgstr "Farbfilter"
@@ -2034,6 +1952,9 @@ msgstr "Textfarbe"
 
 msgid "Font Size"
 msgstr "Textgröße"
+
+msgid "General"
+msgstr "Allgemein"
 
 msgid "Glass"
 msgstr "Glas"
@@ -5481,6 +5402,102 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Abhilfen"
+
+#, fuzzy
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Maximale Auslenkung der horizontalen Wellen, relativ zur Fensterbreite. "
+#~ "Negative Werte führen zur entgegengesetzten Richtung."
+
+#, fuzzy
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (Umfang) des Bogens beim Zusammenfalten im Verhältnis zur "
+#~ "Breite des Fensters. Negative Werte bewirken eine Biegung nach außen."
+
+# Ich kenne den Kontext nicht genau, deshalb bin ich mir mit der Übersetzung nicht zu sicher
+#, fuzzy
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "Auschlag (Größe) der Wellen relativ zur Fensterhöhe"
+
+#, fuzzy
+#~ msgid "Brightness Decrease"
+#~ msgstr "Helligkeit"
+
+#, fuzzy
+#~ msgid "Brightness Increase"
+#~ msgstr "Helligkeit"
+
+#, fuzzy
+#~ msgid "Brightness Step"
+#~ msgstr "Helligkeit"
+
+#, fuzzy
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Helligkeit von verblassten Fenstern"
+
+#, fuzzy
+#~ msgid "Brightness settings"
+#~ msgstr "Helligkeit selektierter Fenster"
+
+#, fuzzy
+#~ msgid "Brightness values for windows"
+#~ msgstr "Helligkeit von verblassten Fenstern"
+
+#, fuzzy
+#~ msgid "Brightness window values"
+#~ msgstr "Helligkeit von verblassten Fenstern"
+
+#, fuzzy
+#~ msgid "Brightness windows"
+#~ msgstr "Helligkeit von verblassten Fenstern"
+
+#, fuzzy
+#~ msgid "Saturation Decrease"
+#~ msgstr "Sättigung"
+
+#, fuzzy
+#~ msgid "Saturation Increase"
+#~ msgstr "Sättigung"
+
+#, fuzzy
+#~ msgid "Saturation Step"
+#~ msgstr "Sättigung"
+
+#, fuzzy
+#~ msgid "Saturation settings"
+#~ msgstr "Sättigung der selektierten Fenster"
+
+#, fuzzy
+#~ msgid "Saturation values for windows"
+#~ msgstr "Sättigung von verblassten Fenstern"
+
+#, fuzzy
+#~ msgid "Saturation window values"
+#~ msgstr "Sättigung von verblassten Fenstern"
+
+#, fuzzy
+#~ msgid "Saturation windows"
+#~ msgstr "Sättigung von verblassten Fenstern"
+
+#, fuzzy
+#~ msgid "Window specific"
+#~ msgstr "Sichtbarkeit der Fenster"
+
+#, fuzzy
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr ""
+#~ "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden soll"
+
+#, fuzzy
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr ""
+#~ "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden soll"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Fenster schließen"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fusion-plugins 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:54+0530\n"
+"POT-Creation-Date: 2008-08-07 11:29+0530\n"
 "PO-Revision-Date: 2008-03-16 19:01+0100\n"
 "Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <ketil.w.aanensen@gmail.com>\n"
@@ -161,20 +161,6 @@ msgstr ""
 "Alle effekter blir valgt tilfeldig, og ignorerer den valgte effekten. Hvis "
 "Ingen er valgt for en hendelse blir ikke hendelsen animert."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Amplitude (størrelse på bølgene i bretten) på de horisontale brettene, "
-"relativt til vindusbredde. Negative verdier bretter utover."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Amplitude (størrelse på bølgene i bretten) på de rundede brettene, relativt "
-"til vindusbredde. Negative verdier bretter utover."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Vinduets vinkel når animasjonen slutter."
 
@@ -273,7 +259,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Rundede bretter"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Amplitude for rundede bretter"
 
 msgid "Dodge"
@@ -369,6 +356,11 @@ msgstr "Brett"
 msgid "Fold Direction"
 msgstr "Bretteretning"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Begynnende bretteretning for deler i \"Razr\"-effekten."
 
@@ -387,7 +379,8 @@ msgstr "Sekskantet"
 msgid "Horizontal Folds"
 msgstr "Horisontale bretter"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Amplitude for horisontale bretter"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -660,9 +653,6 @@ msgid ""
 msgstr ""
 "Antall horisontale bretter som forekommer i animasjonen horisontal brett."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Bølgeamplituden (bølgestørrelse), relativ til vindushøyden."
-
 msgid "The width of the wave relative to the window height."
 msgstr "Bølgebredden, relativ til vindushøyden."
 
@@ -726,11 +716,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Bølge"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Bølgeamplitude"
 
 msgid "Wave Width"
 msgstr "Bølgebredde"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -906,66 +902,6 @@ msgstr "Bytt filter"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Redusert skarphet"
-
-msgid "Brightness Increase"
-msgstr "Økt skarphet"
-
-msgid "Brightness Step"
-msgstr "Steg for skarphet"
-
-msgid "Brightness and Saturation"
-msgstr "Skarphet og metning"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Justeringer for Skarphet og metning"
-
-msgid "Brightness settings"
-msgstr "Innstillinger for skarphet"
-
-msgid "Brightness values for windows"
-msgstr "Skarphetsverdier for vinduer"
-
-msgid "Brightness window values"
-msgstr "Skarphetsverdier for vinduer"
-
-msgid "Brightness windows"
-msgstr "Skarphet for vinduer"
-
-msgid "General"
-msgstr "Generelt"
-
-msgid "Saturation Decrease"
-msgstr "Redusert metning"
-
-msgid "Saturation Increase"
-msgstr "Økt metning"
-
-msgid "Saturation Step"
-msgstr "Steg for metning"
-
-msgid "Saturation settings"
-msgstr "Instillinger for metning"
-
-msgid "Saturation values for windows"
-msgstr "Metningsverdier for vinduer"
-
-msgid "Saturation window values"
-msgstr "Metningsverdier for vinduer"
-
-msgid "Saturation windows"
-msgstr "Metning for vinduer"
-
-msgid "Window specific"
-msgstr "Vindusspesifikk"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Vinduer som skal ha en endret skarphet som standard"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Vinduer som skal ha en endret metning som standard"
 
 msgid "Color filter"
 msgstr "Fargefilter"
@@ -1952,6 +1888,9 @@ msgstr "Skriftfarge"
 
 msgid "Font Size"
 msgstr "Skriftstørrelse"
+
+msgid "General"
+msgstr "Generelt"
 
 msgid "Glass"
 msgstr "Glass"
@@ -5228,6 +5167,81 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 
 msgid "Workarounds"
 msgstr "Omveier"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (størrelse på bølgene i bretten) på de horisontale brettene, "
+#~ "relativt til vindusbredde. Negative verdier bretter utover."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (størrelse på bølgene i bretten) på de rundede brettene, "
+#~ "relativt til vindusbredde. Negative verdier bretter utover."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "Bølgeamplituden (bølgestørrelse), relativ til vindushøyden."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Redusert skarphet"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Økt skarphet"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Steg for skarphet"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Skarphet og metning"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Justeringer for Skarphet og metning"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Innstillinger for skarphet"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Skarphetsverdier for vinduer"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Skarphetsverdier for vinduer"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Skarphet for vinduer"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Redusert metning"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Økt metning"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Steg for metning"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Instillinger for metning"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Metningsverdier for vinduer"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Metningsverdier for vinduer"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Metning for vinduer"
+
+#~ msgid "Window specific"
+#~ msgstr "Vindusspesifikk"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Vinduer som skal ha en endret skarphet som standard"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Vinduer som skal ha en endret metning som standard"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Lukk vinduer i Skaler"

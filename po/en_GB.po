@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion 0.7.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:53+0530\n"
+"POT-Creation-Date: 2008-08-07 11:27+0530\n"
 "PO-Revision-Date: 2008-05-26 15:47+0200\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: en_GB <dave@cirt.net>\n"
@@ -163,20 +163,6 @@ msgstr ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Angle of window at the end of the animation."
 
@@ -275,7 +261,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Curved Fold"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Curved Fold Amplitude"
 
 msgid "Dodge"
@@ -371,6 +358,11 @@ msgstr "Fold"
 msgid "Fold Direction"
 msgstr "Fold Direction"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Fold opening direction for pieces in Razr effect."
 
@@ -389,7 +381,8 @@ msgstr "Hexagonal"
 msgid "Horizontal Folds"
 msgstr "Horizontal Folds"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Horizontal Folds Amplitude"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -662,9 +655,6 @@ msgid ""
 msgstr ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "The wave amplitude (size of the waves) relative to the window height."
-
 msgid "The width of the wave relative to the window height."
 msgstr "The width of the wave relative to the window height."
 
@@ -728,11 +718,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Wave"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Wave Amplitude"
 
 msgid "Wave Width"
 msgstr "Wave Width"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -904,66 +900,6 @@ msgstr "Switch filter"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Brightness Decrease"
-
-msgid "Brightness Increase"
-msgstr "Brightness Increase"
-
-msgid "Brightness Step"
-msgstr "Brightness Step"
-
-msgid "Brightness and Saturation"
-msgstr "Brightness and Saturation"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Brightness and Saturation adjustments"
-
-msgid "Brightness settings"
-msgstr "Brightness settings"
-
-msgid "Brightness values for windows"
-msgstr "Brightness values for windows"
-
-msgid "Brightness window values"
-msgstr "Brightness window values"
-
-msgid "Brightness windows"
-msgstr "Brightness windows"
-
-msgid "General"
-msgstr "General"
-
-msgid "Saturation Decrease"
-msgstr "Saturation Decrease"
-
-msgid "Saturation Increase"
-msgstr "Saturation Increase"
-
-msgid "Saturation Step"
-msgstr "Saturation Step"
-
-msgid "Saturation settings"
-msgstr "Saturation settings"
-
-msgid "Saturation values for windows"
-msgstr "Saturation values for windows"
-
-msgid "Saturation window values"
-msgstr "Saturation window values"
-
-msgid "Saturation windows"
-msgstr "Saturation windows"
-
-msgid "Window specific"
-msgstr "Window specific"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Windows that should have a different brightness by default"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Windows that should have a different saturation by default"
 
 msgid "Color filter"
 msgstr "Colour filter"
@@ -1918,6 +1854,9 @@ msgstr "Font Colour"
 
 msgid "Font Size"
 msgstr "Font Size"
+
+msgid "General"
+msgstr "General"
 
 msgid "Glass"
 msgstr "Glass"
@@ -5173,6 +5112,82 @@ msgstr "Windows on all desktops that should be made sticky"
 
 msgid "Workarounds"
 msgstr "Workarounds"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Brightness Decrease"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Brightness Increase"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Brightness Step"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Brightness and Saturation"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Brightness and Saturation adjustments"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Brightness settings"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Brightness values for windows"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Brightness window values"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Brightness windows"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Saturation Decrease"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Saturation Increase"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Saturation Step"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Saturation settings"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Saturation values for windows"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Saturation window values"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Saturation windows"
+
+#~ msgid "Window specific"
+#~ msgstr "Window specific"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Windows that should have a different brightness by default"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Windows that should have a different saturation by default"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Close Windows In Scale"

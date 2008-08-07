@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:53+0530\n"
+"POT-Creation-Date: 2008-08-07 11:28+0530\n"
 "PO-Revision-Date: 2008-03-25 02:51+0100\n"
 "Last-Translator: Fran Diéguez (GLUG) <fran.dieguez@glug.es>\n"
 "Language-Team: <gl@li.org>\n"
@@ -173,20 +173,6 @@ msgstr ""
 "seleccionado. Se nengún estivera seleccionado para un evento, ese evento non "
 "será animado."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-" Amplitude (tamaño das ondas das dobras) das Dobras Horizontais  "
-"relativamente á largura da fiestra. Valores negativos dobran para fora."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-" Amplitude (tamaño das ondas das dobras) das dobras curvadas relativamente "
-"á  largura da fiestra. Valores negativos dobran para fora."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Angulo da fiestra no fin da animación"
 
@@ -286,7 +272,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Dobras Curvadas"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Amplitude das dobras curvadas"
 
 msgid "Dodge"
@@ -382,6 +369,11 @@ msgstr "Dobrar"
 msgid "Fold Direction"
 msgstr "Dirección da dobra"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Dirección de abertura das dobras para as pezas no efecto Razr"
 
@@ -402,7 +394,8 @@ msgstr "Hexagonal"
 msgid "Horizontal Folds"
 msgstr "Dobras horizontais"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Amplitude Dobras horizontais"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -684,10 +677,6 @@ msgid ""
 msgstr ""
 "Número de dobras horizontais que acontecerán na animación Dobra Horizontal."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
-"Amplitude das ondas (tamaño das ondas) relativamente á altura da fiestra."
-
 msgid "The width of the wave relative to the window height."
 msgstr "Ancho da onda relativamente á altura da fiestra."
 
@@ -755,11 +744,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Onda"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Amplitude Onda"
 
 msgid "Wave Width"
 msgstr "Ancho Onda"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -937,66 +932,6 @@ msgstr "Trocar de filtro"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Reducir Brillo"
-
-msgid "Brightness Increase"
-msgstr "Aumentar Brillo"
-
-msgid "Brightness Step"
-msgstr "Salto do Brillo"
-
-msgid "Brightness and Saturation"
-msgstr "Brillo e saturación"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Axustes de brillo e saturación"
-
-msgid "Brightness settings"
-msgstr "Preferenzas de brillo"
-
-msgid "Brightness values for windows"
-msgstr "Valores de brillo para as fiestras"
-
-msgid "Brightness window values"
-msgstr "Valores de brillo das fiestras"
-
-msgid "Brightness windows"
-msgstr "Brillo das fiestras"
-
-msgid "General"
-msgstr "Xeral"
-
-msgid "Saturation Decrease"
-msgstr "Reducir Saturación"
-
-msgid "Saturation Increase"
-msgstr "Aumentar Saturación"
-
-msgid "Saturation Step"
-msgstr "Salto da Saturación"
-
-msgid "Saturation settings"
-msgstr "Preferenzas de saturación"
-
-msgid "Saturation values for windows"
-msgstr "Valores de saturación das fiestras"
-
-msgid "Saturation window values"
-msgstr "Valores de saturación da fiestra"
-
-msgid "Saturation windows"
-msgstr "Saturación das fiestras"
-
-msgid "Window specific"
-msgstr "Especifico da fiestra"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Fiestras que deben ter un brillo diferente por omisión"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Fiestras que debenter unha saturación por omisión"
 
 msgid "Color filter"
 msgstr "Filtro de Cor"
@@ -2001,6 +1936,9 @@ msgstr "Cor da fonte"
 
 msgid "Font Size"
 msgstr "Tamaño da fonte"
+
+msgid "General"
+msgstr "Xeral"
 
 msgid "Glass"
 msgstr "Vidro"
@@ -5341,6 +5279,82 @@ msgstr "Fiestras \"en tódolos escritorios\" que deben ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correccións"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ " Amplitude (tamaño das ondas das dobras) das Dobras Horizontais  "
+#~ "relativamente á largura da fiestra. Valores negativos dobran para fora."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ " Amplitude (tamaño das ondas das dobras) das dobras curvadas "
+#~ "relativamente á  largura da fiestra. Valores negativos dobran para fora."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr ""
+#~ "Amplitude das ondas (tamaño das ondas) relativamente á altura da fiestra."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Reducir Brillo"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Aumentar Brillo"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Salto do Brillo"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Brillo e saturación"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Axustes de brillo e saturación"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Preferenzas de brillo"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Valores de brillo para as fiestras"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Valores de brillo das fiestras"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Brillo das fiestras"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Reducir Saturación"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Aumentar Saturación"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Salto da Saturación"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Preferenzas de saturación"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Valores de saturación das fiestras"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Valores de saturación da fiestra"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Saturación das fiestras"
+
+#~ msgid "Window specific"
+#~ msgstr "Especifico da fiestra"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Fiestras que deben ter un brillo diferente por omisión"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Fiestras que debenter unha saturación por omisión"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "pechar Fiestras en Scale"

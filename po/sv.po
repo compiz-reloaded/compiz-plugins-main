@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:55+0530\n"
-"PO-Revision-Date: 2008-05-15 21:04+0200\n"
-"Last-Translator: Sebastian Parborg <zedDB@hotmail.com>\n"
+"POT-Creation-Date: 2008-08-07 11:29+0530\n"
+"PO-Revision-Date: 2008-07-15 20:07+0200\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,20 +169,6 @@ msgstr ""
 "Alla effekter är slumpmässigt utvalda, ignorerar den valda effekten. Om "
 "inget är valt för en händelse kommer den händelse inte att bli animerad."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Storleken på den horisontella vikningen i relativitet med fönstrets bredd."
-"Negativa värden viker utåt."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Storlek på den kurvade vikningen i relativitet med fönstrets bredd. Negativa "
-"värden viker utåt"
-
 msgid "Angle of window at the end of the animation."
 msgstr "Vinkel på fönster i slutet av animationen"
 
@@ -283,7 +269,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Kurvad ihopvikning"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Styrka på kurvad ihopvikning"
 
 # Något bättre ord?
@@ -380,6 +367,11 @@ msgstr "Vik"
 msgid "Fold Direction"
 msgstr "Vikriktning"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Vikriktning vid öppning för delar i Razreffekt"
 
@@ -398,7 +390,8 @@ msgstr "Hexagonal"
 msgid "Horizontal Folds"
 msgstr "Horisontella vikningar"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Styrka på de horisontella vikningarna"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -673,9 +666,6 @@ msgid ""
 msgstr ""
 "Antal horisontella vikningar som sker i den horisontella vikningsanimationen"
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Storleken på vågorna i relativitet med höjd på fönster"
-
 msgid "The width of the wave relative to the window height."
 msgstr "Bredden på vågen i relativitet med höjd på fönster"
 
@@ -741,11 +731,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Våg"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Vågstyrka"
 
 msgid "Wave Width"
 msgstr "Vågbredd"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -921,68 +917,6 @@ msgstr "Bytningsfilter"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Minska ljusstyrka"
-
-msgid "Brightness Increase"
-msgstr "Öka ljusstyrka"
-
-msgid "Brightness Step"
-msgstr "Ljusstyrke steg"
-
-msgid "Brightness and Saturation"
-msgstr "Ljusstyrka och färgmättnad"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Justering av ljusstyrka och färgmättnad"
-
-msgid "Brightness settings"
-msgstr "Ljusstyrkeinställningar"
-
-msgid "Brightness values for windows"
-msgstr "Ljusstyrkevärden för fönster"
-
-msgid "Brightness window values"
-msgstr "Fönsters ljusstyrkevärden"
-
-#, fuzzy
-msgid "Brightness windows"
-msgstr "Ljusstyrka fönster"
-
-msgid "General"
-msgstr "Allmänt"
-
-msgid "Saturation Decrease"
-msgstr "Minska färgmättnad"
-
-msgid "Saturation Increase"
-msgstr "Öka färgmättnad"
-
-msgid "Saturation Step"
-msgstr "Färgmättnads steg"
-
-msgid "Saturation settings"
-msgstr "Färgmättnads inställningar"
-
-msgid "Saturation values for windows"
-msgstr "Färgmättnadsvärden för fönster"
-
-msgid "Saturation window values"
-msgstr "Fönsters färgmättnadsvärden"
-
-#, fuzzy
-msgid "Saturation windows"
-msgstr "Färgmättnad fönster"
-
-msgid "Window specific"
-msgstr "Fönster specifikt"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Fönster som ska ha en annan standardljusstyrka"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Fönster som ska ha en annan standardfärgmättnad"
 
 msgid "Color filter"
 msgstr "Färgfilter"
@@ -1958,6 +1892,9 @@ msgstr "Typsnittsfärg"
 
 msgid "Font Size"
 msgstr "Typsnittsstorlek"
+
+msgid "General"
+msgstr "Allmänt"
 
 msgid "Glass"
 msgstr "Glas"
@@ -3134,7 +3071,7 @@ msgid ""
 "Allow the selection of windows by just clicking on them while the switcher "
 "is active."
 msgstr ""
-"Tillåt val av fönster bara genom att klicka på dem medans bytaren är aktiv."
+"Tillåt val av fönster bara genom att klicka på dem medans växlaren är aktiv."
 
 msgid ""
 "Amount of opacity (in percent) for windows in the ring which are not selected"
@@ -3230,7 +3167,7 @@ msgid "Ring Height"
 msgstr "Ringhöjd"
 
 msgid "Ring Switcher"
-msgstr "Ringbytare"
+msgstr "Ringväxlare"
 
 msgid "Ring Width"
 msgstr "Ringbredd"
@@ -3275,31 +3212,31 @@ msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
 msgstr ""
-"Visa bytare om den inte är synlig och välj nästa fönster av det nuvarande "
+"Visa växlare om den inte är synlig och välj nästa fönster av det nuvarande "
 "programmet."
 
 msgid "Show switcher if not visible and select next window out of all windows."
 msgstr ""
-"Visa bytare om den inte är synlig och välj nästa fönster utav alla fönster."
+"Visa växlare om den inte är synlig och välj nästa fönster utav alla fönster."
 
 msgid "Show switcher if not visible and select next window."
-msgstr "Visa bytare om den inte är synlig och välj nästa fönster."
+msgstr "Visa växlare om den inte är synlig och välj nästa fönster."
 
 msgid ""
 "Show switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
-"Visa bytare om den inte är synlig och välj föregående fönster av det "
+"Visa växlare om den inte är synlig och välj föregående fönster av det "
 "nuvarande programmet."
 
 msgid ""
 "Show switcher if not visible and select previous window out of all windows."
 msgstr ""
-"Visa bytare om den inte är synlig och välj föregående fönster utav alla "
+"Visa växlare om den inte är synlig och välj föregående fönster utav alla "
 "fönster."
 
 msgid "Show switcher if not visible and select previous window."
-msgstr "Visa bytare om den inte är synlig och välj föregående fönster."
+msgstr "Visa växlare om den inte är synlig och välj föregående fönster."
 
 msgid "Show window title of currently selected window."
 msgstr "Visa fönstertitel på det nuvarande valda fönstret."
@@ -4193,38 +4130,38 @@ msgstr "Grupp fönstermatchning"
 
 #, fuzzy
 msgid "Popup switcher if not visible and select next window"
-msgstr "Visa bytare om den inte är synlig och välj nästa fönster."
+msgstr "Visa växlare om den inte är synlig och välj nästa fönster."
 
 #, fuzzy
 msgid ""
 "Popup switcher if not visible and select next window of the current "
 "application."
 msgstr ""
-"Visa bytare om den inte är synlig och välj nästa fönster av det nuvarande "
+"Visa växlare om den inte är synlig och välj nästa fönster av det nuvarande "
 "programmet."
 
 #, fuzzy
 msgid "Popup switcher if not visible and select next window out of all windows"
 msgstr ""
-"Visa bytare om den inte är synlig och välj nästa fönster utav alla fönster."
+"Visa växlare om den inte är synlig och välj nästa fönster utav alla fönster."
 
 #, fuzzy
 msgid "Popup switcher if not visible and select previous window"
-msgstr "Visa bytare om den inte är synlig och välj föregående fönster."
+msgstr "Visa växlare om den inte är synlig och välj föregående fönster."
 
 #, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
-"Visa bytare om den inte är synlig och välj föregående fönster av det "
+"Visa växlare om den inte är synlig och välj föregående fönster av det "
 "nuvarande programmet."
 
 #, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window out of all windows"
 msgstr ""
-"Visa bytare om den inte är synlig och välj föregående fönster utav alla "
+"Visa växlare om den inte är synlig och välj föregående fönster utav alla "
 "fönster."
 
 msgid "Prev Panel"
@@ -5298,6 +5235,83 @@ msgstr "Fönster på alla arbetsytor som ska klistras"
 
 msgid "Workarounds"
 msgstr "Problemlösningar"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Storleken på den horisontella vikningen i relativitet med fönstrets bredd."
+#~ "Negativa värden viker utåt."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Storlek på den kurvade vikningen i relativitet med fönstrets bredd. "
+#~ "Negativa värden viker utåt"
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "Storleken på vågorna i relativitet med höjd på fönster"
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Minska ljusstyrka"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Öka ljusstyrka"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Ljusstyrke steg"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Ljusstyrka och färgmättnad"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Justering av ljusstyrka och färgmättnad"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Ljusstyrkeinställningar"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Ljusstyrkevärden för fönster"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Fönsters ljusstyrkevärden"
+
+#, fuzzy
+#~ msgid "Brightness windows"
+#~ msgstr "Ljusstyrka fönster"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Minska färgmättnad"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Öka färgmättnad"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Färgmättnads steg"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Färgmättnads inställningar"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Färgmättnadsvärden för fönster"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Fönsters färgmättnadsvärden"
+
+#, fuzzy
+#~ msgid "Saturation windows"
+#~ msgstr "Färgmättnad fönster"
+
+#~ msgid "Window specific"
+#~ msgstr "Fönster specifikt"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Fönster som ska ha en annan standardljusstyrka"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Fönster som ska ha en annan standardfärgmättnad"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Stäng fönster i skala"

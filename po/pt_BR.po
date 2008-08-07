@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:54+0530\n"
+"POT-Creation-Date: 2008-08-07 11:29+0530\n"
 "PO-Revision-Date: 2008-04-18 17:28+0200\n"
 "Last-Translator: Arthur Rodrigues Araruna <araruna@gmail.com>\n"
 "Language-Team: Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
@@ -173,20 +173,6 @@ msgstr ""
 "selecionado. Se nenhum efeito estiver selecionado para um evento, esse "
 "evento não será animado."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Amplitude (tamanho das ondas das dobras) das Dobras Horizontais "
-"relativamente à largura da janela. Valores negativos dobram para fora."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Amplitude (tamanho das ondas das dobras) das dobras curvadas relativamente à "
-"largura da janela. Valores negativos dobram para fora."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Ângulo da janela no fim da animação"
 
@@ -286,7 +272,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Dobras Curvadas"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Amplitude das Dobras Curvadas"
 
 msgid "Dodge"
@@ -382,6 +369,11 @@ msgstr "Dobrar"
 msgid "Fold Direction"
 msgstr "Direção da Dobra"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Direção de abertura das dobras para as peças no efeito Razr"
 
@@ -402,7 +394,8 @@ msgstr "Hexagonal"
 msgid "Horizontal Folds"
 msgstr "Dobras horizontais"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Amplitude das dobras horizontais"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -687,10 +680,6 @@ msgid ""
 msgstr ""
 "Número de dobras horizontais que irão ocorrer na animação Dobra Horizontal."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
-"Amplitude das ondas (tamanho das ondas) relativamente à altura da janela."
-
 msgid "The width of the wave relative to the window height."
 msgstr "Largura da onda relativamente à altura da janela."
 
@@ -757,11 +746,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Onda"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Amplitude da Onda"
 
 msgid "Wave Width"
 msgstr "Largura da Onda"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -945,84 +940,6 @@ msgstr "Trocar de filtro"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-#, fuzzy
-msgid "Brightness Decrease"
-msgstr "Brilho"
-
-#, fuzzy
-msgid "Brightness Increase"
-msgstr "Brilho"
-
-#, fuzzy
-msgid "Brightness Step"
-msgstr "Brilho"
-
-#, fuzzy
-msgid "Brightness and Saturation"
-msgstr "Brilho das janelas desvanecidas"
-
-msgid "Brightness and Saturation adjustments"
-msgstr ""
-
-#, fuzzy
-msgid "Brightness settings"
-msgstr "Brilho das janelas selecionadas"
-
-#, fuzzy
-msgid "Brightness values for windows"
-msgstr "Brilho das janelas desvanecidas"
-
-#, fuzzy
-msgid "Brightness window values"
-msgstr "Brilho das janelas desvanecidas"
-
-#, fuzzy
-msgid "Brightness windows"
-msgstr "Brilho das janelas desvanecidas"
-
-msgid "General"
-msgstr "Geral"
-
-#, fuzzy
-msgid "Saturation Decrease"
-msgstr "Saturação"
-
-#, fuzzy
-msgid "Saturation Increase"
-msgstr "Saturação"
-
-#, fuzzy
-msgid "Saturation Step"
-msgstr "Saturação"
-
-#, fuzzy
-msgid "Saturation settings"
-msgstr "Contraste das janelas selecionadas"
-
-#, fuzzy
-msgid "Saturation values for windows"
-msgstr "Saturação das janelas desvanecidas"
-
-#, fuzzy
-msgid "Saturation window values"
-msgstr "Saturação das janelas desvanecidas"
-
-#, fuzzy
-msgid "Saturation windows"
-msgstr "Saturação das janelas desvanecidas"
-
-#, fuzzy
-msgid "Window specific"
-msgstr "Opacidade das Janelas"
-
-#, fuzzy
-msgid "Windows that should have a different brightness by default"
-msgstr "Janelas que devem ser redimensionadas por padrão"
-
-#, fuzzy
-msgid "Windows that should have a different saturation by default"
-msgstr "Janelas que devem ser redimensionadas por padrão"
 
 msgid "Color filter"
 msgstr "Filtro de Cor"
@@ -2033,6 +1950,9 @@ msgstr "Cor da fonte"
 
 msgid "Font Size"
 msgstr "Tamanho da fonte"
+
+msgid "General"
+msgstr "Geral"
 
 msgid "Glass"
 msgstr "Vidro"
@@ -5427,6 +5347,97 @@ msgstr "Janelas \"em todos as áreas de trabalho\" que devem ficar \"fixas\""
 
 msgid "Workarounds"
 msgstr "Correções de bug"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (tamanho das ondas das dobras) das Dobras Horizontais "
+#~ "relativamente à largura da janela. Valores negativos dobram para fora."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (tamanho das ondas das dobras) das dobras curvadas "
+#~ "relativamente à largura da janela. Valores negativos dobram para fora."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr ""
+#~ "Amplitude das ondas (tamanho das ondas) relativamente à altura da janela."
+
+#, fuzzy
+#~ msgid "Brightness Decrease"
+#~ msgstr "Brilho"
+
+#, fuzzy
+#~ msgid "Brightness Increase"
+#~ msgstr "Brilho"
+
+#, fuzzy
+#~ msgid "Brightness Step"
+#~ msgstr "Brilho"
+
+#, fuzzy
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Brilho das janelas desvanecidas"
+
+#, fuzzy
+#~ msgid "Brightness settings"
+#~ msgstr "Brilho das janelas selecionadas"
+
+#, fuzzy
+#~ msgid "Brightness values for windows"
+#~ msgstr "Brilho das janelas desvanecidas"
+
+#, fuzzy
+#~ msgid "Brightness window values"
+#~ msgstr "Brilho das janelas desvanecidas"
+
+#, fuzzy
+#~ msgid "Brightness windows"
+#~ msgstr "Brilho das janelas desvanecidas"
+
+#, fuzzy
+#~ msgid "Saturation Decrease"
+#~ msgstr "Saturação"
+
+#, fuzzy
+#~ msgid "Saturation Increase"
+#~ msgstr "Saturação"
+
+#, fuzzy
+#~ msgid "Saturation Step"
+#~ msgstr "Saturação"
+
+#, fuzzy
+#~ msgid "Saturation settings"
+#~ msgstr "Contraste das janelas selecionadas"
+
+#, fuzzy
+#~ msgid "Saturation values for windows"
+#~ msgstr "Saturação das janelas desvanecidas"
+
+#, fuzzy
+#~ msgid "Saturation window values"
+#~ msgstr "Saturação das janelas desvanecidas"
+
+#, fuzzy
+#~ msgid "Saturation windows"
+#~ msgstr "Saturação das janelas desvanecidas"
+
+#, fuzzy
+#~ msgid "Window specific"
+#~ msgstr "Opacidade das Janelas"
+
+#, fuzzy
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Janelas que devem ser redimensionadas por padrão"
+
+#, fuzzy
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Janelas que devem ser redimensionadas por padrão"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Fechar Janelas Dimensionadas"

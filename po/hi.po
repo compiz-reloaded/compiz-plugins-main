@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:54+0530\n"
+"POT-Creation-Date: 2008-08-07 11:28+0530\n"
 "PO-Revision-Date: 2007-12-16 17:00+0530\n"
 "Last-Translator: Sangeeta Kumari\n"
 "Language-Team:  <en@li.org>\n"
@@ -164,20 +164,6 @@ msgstr ""
 "सभी प्रभाव को क्रमहीन रूप में चुने जाते हैं, चयनित प्रभाव को अनदेखा करते हुए. यदि कोई नहीं "
 "इस घटना के लिए चुना जाता है, वो घटना संजीवित नहीं किया जायेगा."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"विंडो चौड़ाई के सापेक्षिक क्षैतिज फोल्ड का आयाम (फोल्ड में तरंग का आकार). नकारात्मक मान "
-"फोल्ड आउटवार्ड है."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"विंडो चौड़ाई के सापेक्षिक वक्र फोल्ड का आयाम (फोल्ड में तरंग का आकार). नकारात्मक मान "
-"आउटवार्ड फोल्ड करता है."
-
 msgid "Angle of window at the end of the animation."
 msgstr "संजीवन के अंत में विंडो का कोण."
 
@@ -275,7 +261,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "वक्र मोड़"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "वक्र फोल्ड आयाम"
 
 msgid "Dodge"
@@ -371,6 +358,11 @@ msgstr "मोड़"
 msgid "Fold Direction"
 msgstr "मोड़ दिशा"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "रेजर प्रभाव में टुकड़े के लिए फोल्ड दिशा खोल रहा है."
 
@@ -391,7 +383,8 @@ msgstr "षट्कोणीय"
 msgid "Horizontal Folds"
 msgstr "क्षैतिज फोल्ड"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "क्षैतिज फोल्ड आयाम"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -663,9 +656,6 @@ msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr "क्षैतिज मोड़ संजीवन में आने वाले क्षैतिज मोड़ की संख्या."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "विंडो ऊचाई के सापेक्ष लहर आयाम (लहर का आकार)."
-
 msgid "The width of the wave relative to the window height."
 msgstr "विंडो ऊँचाई के सापेक्ष लहर की चौड़ाई."
 
@@ -729,11 +719,17 @@ msgstr ""
 msgid "Wave"
 msgstr "लहर"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "लहर आयाम"
 
 msgid "Wave Width"
 msgstr "लहर चौड़ाई"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -913,84 +909,6 @@ msgstr "फिल्टर बदलें"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-#, fuzzy
-msgid "Brightness Decrease"
-msgstr "चमकीलापन"
-
-#, fuzzy
-msgid "Brightness Increase"
-msgstr "चमकीलापन"
-
-#, fuzzy
-msgid "Brightness Step"
-msgstr "चमकीलापन"
-
-#, fuzzy
-msgid "Brightness and Saturation"
-msgstr "धुंधला विंडो का चमकीलापन"
-
-msgid "Brightness and Saturation adjustments"
-msgstr ""
-
-#, fuzzy
-msgid "Brightness settings"
-msgstr "चयनित विंडो का चमकीलापन"
-
-#, fuzzy
-msgid "Brightness values for windows"
-msgstr "धुंधला विंडो का चमकीलापन"
-
-#, fuzzy
-msgid "Brightness window values"
-msgstr "धुंधला विंडो का चमकीलापन"
-
-#, fuzzy
-msgid "Brightness windows"
-msgstr "धुंधला विंडो का चमकीलापन"
-
-msgid "General"
-msgstr "सामान्य"
-
-#, fuzzy
-msgid "Saturation Decrease"
-msgstr "संतृप्ति"
-
-#, fuzzy
-msgid "Saturation Increase"
-msgstr "संतृप्ति"
-
-#, fuzzy
-msgid "Saturation Step"
-msgstr "संतृप्ति"
-
-#, fuzzy
-msgid "Saturation settings"
-msgstr "चयनित विंडो की संतृप्ति"
-
-#, fuzzy
-msgid "Saturation values for windows"
-msgstr "धुंधले विंडो की संतृप्ति"
-
-#, fuzzy
-msgid "Saturation window values"
-msgstr "धुंधले विंडो की संतृप्ति"
-
-#, fuzzy
-msgid "Saturation windows"
-msgstr "धुंधले विंडो की संतृप्ति"
-
-#, fuzzy
-msgid "Window specific"
-msgstr "विंडो अपारदर्शिता"
-
-#, fuzzy
-msgid "Windows that should have a different brightness by default"
-msgstr "विंडोज़ जिसे मूलभूत रूप से फिर आकार दिया जाना चाहिए"
-
-#, fuzzy
-msgid "Windows that should have a different saturation by default"
-msgstr "विंडोज़ जिसे मूलभूत रूप से फिर आकार दिया जाना चाहिए"
 
 msgid "Color filter"
 msgstr "रंग फिल्टर"
@@ -1969,6 +1887,9 @@ msgstr "फॉन्ट रंग"
 
 msgid "Font Size"
 msgstr "फ़ॉन्ट आकार"
+
+msgid "General"
+msgstr "सामान्य"
 
 msgid "Glass"
 msgstr "ग्लास"
@@ -5267,6 +5188,96 @@ msgstr "सभी डेस्कटॉप पर विंडोज़ जि�
 
 msgid "Workarounds"
 msgstr "समाधान"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "विंडो चौड़ाई के सापेक्षिक क्षैतिज फोल्ड का आयाम (फोल्ड में तरंग का आकार). नकारात्मक "
+#~ "मान फोल्ड आउटवार्ड है."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "विंडो चौड़ाई के सापेक्षिक वक्र फोल्ड का आयाम (फोल्ड में तरंग का आकार). नकारात्मक मान "
+#~ "आउटवार्ड फोल्ड करता है."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "विंडो ऊचाई के सापेक्ष लहर आयाम (लहर का आकार)."
+
+#, fuzzy
+#~ msgid "Brightness Decrease"
+#~ msgstr "चमकीलापन"
+
+#, fuzzy
+#~ msgid "Brightness Increase"
+#~ msgstr "चमकीलापन"
+
+#, fuzzy
+#~ msgid "Brightness Step"
+#~ msgstr "चमकीलापन"
+
+#, fuzzy
+#~ msgid "Brightness and Saturation"
+#~ msgstr "धुंधला विंडो का चमकीलापन"
+
+#, fuzzy
+#~ msgid "Brightness settings"
+#~ msgstr "चयनित विंडो का चमकीलापन"
+
+#, fuzzy
+#~ msgid "Brightness values for windows"
+#~ msgstr "धुंधला विंडो का चमकीलापन"
+
+#, fuzzy
+#~ msgid "Brightness window values"
+#~ msgstr "धुंधला विंडो का चमकीलापन"
+
+#, fuzzy
+#~ msgid "Brightness windows"
+#~ msgstr "धुंधला विंडो का चमकीलापन"
+
+#, fuzzy
+#~ msgid "Saturation Decrease"
+#~ msgstr "संतृप्ति"
+
+#, fuzzy
+#~ msgid "Saturation Increase"
+#~ msgstr "संतृप्ति"
+
+#, fuzzy
+#~ msgid "Saturation Step"
+#~ msgstr "संतृप्ति"
+
+#, fuzzy
+#~ msgid "Saturation settings"
+#~ msgstr "चयनित विंडो की संतृप्ति"
+
+#, fuzzy
+#~ msgid "Saturation values for windows"
+#~ msgstr "धुंधले विंडो की संतृप्ति"
+
+#, fuzzy
+#~ msgid "Saturation window values"
+#~ msgstr "धुंधले विंडो की संतृप्ति"
+
+#, fuzzy
+#~ msgid "Saturation windows"
+#~ msgstr "धुंधले विंडो की संतृप्ति"
+
+#, fuzzy
+#~ msgid "Window specific"
+#~ msgstr "विंडो अपारदर्शिता"
+
+#, fuzzy
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "विंडोज़ जिसे मूलभूत रूप से फिर आकार दिया जाना चाहिए"
+
+#, fuzzy
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "विंडोज़ जिसे मूलभूत रूप से फिर आकार दिया जाना चाहिए"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "विंडोज़ को मापक में बन्द करें"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:54+0530\n"
+"POT-Creation-Date: 2008-08-07 11:28+0530\n"
 "PO-Revision-Date: 2008-05-31 19:51+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -165,20 +165,6 @@ msgstr ""
 "候補群から何も効果を選択していない場合、そのイベント時にはアニメーションな"
 "し。"
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"ウィンドウ幅に相対する水平折りたたみの振幅(折りたたみの波の大きさ)、負の値で"
-"は外側に広がる"
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"ウィンドウ幅に相対する曲がりの振幅(折り曲げの波の大きさ)、負の値では外側に広"
-"がる"
-
 msgid "Angle of window at the end of the animation."
 msgstr "アニメーションの最終時点のウィンドウの角度"
 
@@ -279,7 +265,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "折り曲げ"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "折り曲げの振幅"
 
 msgid "Dodge"
@@ -376,6 +363,11 @@ msgstr "折りたたみ"
 msgid "Fold Direction"
 msgstr "折りたたみ方向"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "カミソリ効果における断片の展開方向"
 
@@ -394,7 +386,8 @@ msgstr "六角形"
 msgid "Horizontal Folds"
 msgstr "水平の折りたたみ"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "水平折りたたみの振幅"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -661,9 +654,6 @@ msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr "水平折りたたみアニメーションでの折り数"
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "ウィンドウの高さに相対する波揺れの振幅（波揺れの大きさ）"
-
 msgid "The width of the wave relative to the window height."
 msgstr "ウィンドウの幅に対する波の幅"
 
@@ -727,11 +717,17 @@ msgstr ""
 msgid "Wave"
 msgstr "ウェーブ"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "ウェーブの振幅"
 
 msgid "Wave Width"
 msgstr "ウェーブの幅"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -899,66 +895,6 @@ msgstr "双三次補間フィルタ"
 
 msgid "Bicubic texture filtering"
 msgstr "双三次補間法によるテクスチャ・フィルタ"
-
-msgid "Brightness Decrease"
-msgstr "明度を下げる"
-
-msgid "Brightness Increase"
-msgstr "明度を上げる"
-
-msgid "Brightness Step"
-msgstr "明度の変更刻み"
-
-msgid "Brightness and Saturation"
-msgstr "明度と彩度"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "明度と彩度の調節"
-
-msgid "Brightness settings"
-msgstr "明度の設定"
-
-msgid "Brightness values for windows"
-msgstr "ウィンドウに割り当てる明度"
-
-msgid "Brightness window values"
-msgstr "指定ウィンドウの明度"
-
-msgid "Brightness windows"
-msgstr "明度指定ウィンドウ"
-
-msgid "General"
-msgstr "一般"
-
-msgid "Saturation Decrease"
-msgstr "彩度を下げる"
-
-msgid "Saturation Increase"
-msgstr "彩度を上げる"
-
-msgid "Saturation Step"
-msgstr "彩度の変更刻み"
-
-msgid "Saturation settings"
-msgstr "彩度の設定"
-
-msgid "Saturation values for windows"
-msgstr "ウィンドウに割り当てる彩度"
-
-msgid "Saturation window values"
-msgstr "指定ウィンドウの彩度"
-
-msgid "Saturation windows"
-msgstr "彩度指定ウィンドウ"
-
-msgid "Window specific"
-msgstr "特定ウィンドウ"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "デフォルトで他とは異なる明度を持たせるウィンドウ"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "デフォルトで他とは異なる彩度を持たせるウィンドウ"
 
 msgid "Color filter"
 msgstr "カラーフィルタ"
@@ -1912,6 +1848,9 @@ msgstr "フォントの色"
 
 msgid "Font Size"
 msgstr "フォントの大きさ"
+
+msgid "General"
+msgstr "一般"
 
 msgid "Glass"
 msgstr "ガラス"
@@ -5141,6 +5080,81 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "次善策"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "ウィンドウ幅に相対する水平折りたたみの振幅(折りたたみの波の大きさ)、負の値"
+#~ "では外側に広がる"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "ウィンドウ幅に相対する曲がりの振幅(折り曲げの波の大きさ)、負の値では外側に"
+#~ "広がる"
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "ウィンドウの高さに相対する波揺れの振幅（波揺れの大きさ）"
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "明度を下げる"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "明度を上げる"
+
+#~ msgid "Brightness Step"
+#~ msgstr "明度の変更刻み"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "明度と彩度"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "明度と彩度の調節"
+
+#~ msgid "Brightness settings"
+#~ msgstr "明度の設定"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "ウィンドウに割り当てる明度"
+
+#~ msgid "Brightness window values"
+#~ msgstr "指定ウィンドウの明度"
+
+#~ msgid "Brightness windows"
+#~ msgstr "明度指定ウィンドウ"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "彩度を下げる"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "彩度を上げる"
+
+#~ msgid "Saturation Step"
+#~ msgstr "彩度の変更刻み"
+
+#~ msgid "Saturation settings"
+#~ msgstr "彩度の設定"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "ウィンドウに割り当てる彩度"
+
+#~ msgid "Saturation window values"
+#~ msgstr "指定ウィンドウの彩度"
+
+#~ msgid "Saturation windows"
+#~ msgstr "彩度指定ウィンドウ"
+
+#~ msgid "Window specific"
+#~ msgstr "特定ウィンドウ"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "デフォルトで他とは異なる明度を持たせるウィンドウ"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "デフォルトで他とは異なる彩度を持たせるウィンドウ"
 
 #~ msgid "Intensity."
 #~ msgstr "輝度"

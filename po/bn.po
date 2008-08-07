@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:52+0530\n"
+"POT-Creation-Date: 2008-08-07 11:27+0530\n"
 "PO-Revision-Date: 2007-12-26 09:57+0100\n"
 "Last-Translator: Mahdee Jameel <mahdee.jameel@gmail.com>\n"
 "Language-Team: gist bengali team <info.gist@cdac.in>,মাহদী জামীল <mahdee."
@@ -164,20 +164,6 @@ msgstr ""
 "নির্বাচিত ইফেক্টটিকে অগ্রাহ্য করে বাকি সব ইফেক্টগুলিকে ইচ্ছামত পছন্দ করা হয়েছে. যদি "
 "ইফেক্টের জন্য কোন কিছু নির্বাচন করা না হয় তাহলে কোন ঘটনাতেই অ্যানিমেশন করা হবে না."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"উইন্ডোর প্রস্থের সাপেক্ষে অনুভূমিক ভাজের মান (ভাজে তরঙ্গের আকার). ঋণাত্মক মানের জন্য "
-"ভাজ বাইরের দিকে হবে."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"উইন্ডোর প্রস্থের সাপেক্ষে বক্র ভাজের মান (ভাজে তরঙ্গের আকার). ঋণাত্মক মানের জন্য ভাজ "
-"বাইরের দিকে হবে."
-
 msgid "Angle of window at the end of the animation."
 msgstr "অ্যানিমেশনের শেষে উইন্ডোর কোণ."
 
@@ -276,7 +262,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "বাকানো ভাজ"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "ভাজ বাকানোর মান"
 
 msgid "Dodge"
@@ -373,6 +360,11 @@ msgstr "ভাজ"
 msgid "Fold Direction"
 msgstr "ভাজের দিক"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "রেজর ইফেক্টের ক্ষেত্রে টুকরোগুলির ভাজ খোলার দিক."
 
@@ -391,7 +383,8 @@ msgstr "ষড়ভুজ"
 msgid "Horizontal Folds"
 msgstr "অনুভূমিক ভাজ"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "অনুভূমিক ভাজের মান"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -645,9 +638,6 @@ msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr ""
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
-
 msgid "The width of the wave relative to the window height."
 msgstr ""
 
@@ -705,10 +695,15 @@ msgstr ""
 msgid "Wave"
 msgstr ""
 
-msgid "Wave Amplitude"
+msgid "Wave Amplitude Multiplier"
 msgstr ""
 
 msgid "Wave Width"
+msgstr ""
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
 msgstr ""
 
 msgid ""
@@ -871,84 +866,6 @@ msgstr ""
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-#, fuzzy
-msgid "Brightness Decrease"
-msgstr "উজ্জ্বলতা"
-
-#, fuzzy
-msgid "Brightness Increase"
-msgstr "উজ্জ্বলতা"
-
-#, fuzzy
-msgid "Brightness Step"
-msgstr "উজ্জ্বলতা"
-
-#, fuzzy
-msgid "Brightness and Saturation"
-msgstr "মলিন উইন্ডোর উজ্জ্বলতা"
-
-msgid "Brightness and Saturation adjustments"
-msgstr ""
-
-#, fuzzy
-msgid "Brightness settings"
-msgstr "উজ্জ্বলতা"
-
-#, fuzzy
-msgid "Brightness values for windows"
-msgstr "মলিন উইন্ডোর উজ্জ্বলতা"
-
-#, fuzzy
-msgid "Brightness window values"
-msgstr "মলিন উইন্ডোর উজ্জ্বলতা"
-
-#, fuzzy
-msgid "Brightness windows"
-msgstr "মলিন উইন্ডোর উজ্জ্বলতা"
-
-msgid "General"
-msgstr ""
-
-#, fuzzy
-msgid "Saturation Decrease"
-msgstr "সম্পৃক্তি"
-
-#, fuzzy
-msgid "Saturation Increase"
-msgstr "সম্পৃক্তি"
-
-#, fuzzy
-msgid "Saturation Step"
-msgstr "সম্পৃক্তি"
-
-#, fuzzy
-msgid "Saturation settings"
-msgstr "সম্পৃক্তি"
-
-#, fuzzy
-msgid "Saturation values for windows"
-msgstr "মলিন উইন্ডোর সম্পৃক্তি"
-
-#, fuzzy
-msgid "Saturation window values"
-msgstr "মলিন উইন্ডোর সম্পৃক্তি"
-
-#, fuzzy
-msgid "Saturation windows"
-msgstr "মলিন উইন্ডোর সম্পৃক্তি"
-
-#, fuzzy
-msgid "Window specific"
-msgstr "উইন্ডোর ব্যবধান"
-
-#, fuzzy
-msgid "Windows that should have a different brightness by default"
-msgstr "যে উইন্ডোগুলি 3D দ্বারা পরিচালিত হবে"
-
-#, fuzzy
-msgid "Windows that should have a different saturation by default"
-msgstr "যে উইন্ডোগুলি 3D দ্বারা পরিচালিত হবে"
 
 msgid "Color filter"
 msgstr ""
@@ -1867,6 +1784,9 @@ msgid "Font Color"
 msgstr ""
 
 msgid "Font Size"
+msgstr ""
+
+msgid "General"
 msgstr ""
 
 msgid "Glass"
@@ -4998,6 +4918,92 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "উইন্ডোর প্রস্থের সাপেক্ষে অনুভূমিক ভাজের মান (ভাজে তরঙ্গের আকার). ঋণাত্মক মানের "
+#~ "জন্য ভাজ বাইরের দিকে হবে."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "উইন্ডোর প্রস্থের সাপেক্ষে বক্র ভাজের মান (ভাজে তরঙ্গের আকার). ঋণাত্মক মানের জন্য "
+#~ "ভাজ বাইরের দিকে হবে."
+
+#, fuzzy
+#~ msgid "Brightness Decrease"
+#~ msgstr "উজ্জ্বলতা"
+
+#, fuzzy
+#~ msgid "Brightness Increase"
+#~ msgstr "উজ্জ্বলতা"
+
+#, fuzzy
+#~ msgid "Brightness Step"
+#~ msgstr "উজ্জ্বলতা"
+
+#, fuzzy
+#~ msgid "Brightness and Saturation"
+#~ msgstr "মলিন উইন্ডোর উজ্জ্বলতা"
+
+#, fuzzy
+#~ msgid "Brightness settings"
+#~ msgstr "উজ্জ্বলতা"
+
+#, fuzzy
+#~ msgid "Brightness values for windows"
+#~ msgstr "মলিন উইন্ডোর উজ্জ্বলতা"
+
+#, fuzzy
+#~ msgid "Brightness window values"
+#~ msgstr "মলিন উইন্ডোর উজ্জ্বলতা"
+
+#, fuzzy
+#~ msgid "Brightness windows"
+#~ msgstr "মলিন উইন্ডোর উজ্জ্বলতা"
+
+#, fuzzy
+#~ msgid "Saturation Decrease"
+#~ msgstr "সম্পৃক্তি"
+
+#, fuzzy
+#~ msgid "Saturation Increase"
+#~ msgstr "সম্পৃক্তি"
+
+#, fuzzy
+#~ msgid "Saturation Step"
+#~ msgstr "সম্পৃক্তি"
+
+#, fuzzy
+#~ msgid "Saturation settings"
+#~ msgstr "সম্পৃক্তি"
+
+#, fuzzy
+#~ msgid "Saturation values for windows"
+#~ msgstr "মলিন উইন্ডোর সম্পৃক্তি"
+
+#, fuzzy
+#~ msgid "Saturation window values"
+#~ msgstr "মলিন উইন্ডোর সম্পৃক্তি"
+
+#, fuzzy
+#~ msgid "Saturation windows"
+#~ msgstr "মলিন উইন্ডোর সম্পৃক্তি"
+
+#, fuzzy
+#~ msgid "Window specific"
+#~ msgstr "উইন্ডোর ব্যবধান"
+
+#, fuzzy
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "যে উইন্ডোগুলি 3D দ্বারা পরিচালিত হবে"
+
+#, fuzzy
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "যে উইন্ডোগুলি 3D দ্বারা পরিচালিত হবে"
 
 #~ msgid "Animation Speed"
 #~ msgstr "অ্যানিমেশনের গতি"

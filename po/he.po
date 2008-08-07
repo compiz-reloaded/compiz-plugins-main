@@ -1,14 +1,14 @@
-# comiz fusion plugins translation.
-# Copyright (C) compiz-fusion.org
-# This file is distributed under the same license as the compiz-fusion-plugins package.
-# Yotam Benshalom <benshalom@gmail.com>.
+# compiz-fusion plugins translation 
+# Copyright (C) 2008 compiz-fusion.org
+# This file is distributed under the same license as the compiz-fusion plugins package.
+# Yotam Benshalom <benshalom@gmail.com>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: compiz-fusion-plugins\n"
+"Project-Id-Version: 0.7.7\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:53+0530\n"
-"PO-Revision-Date: 2008-06-03 02:00+0200\n"
+"POT-Creation-Date: 2008-08-07 11:28+0530\n"
+"PO-Revision-Date: 2008-07-12 15:33+0200\n"
 "Last-Translator: Yotam Benshalom <benshalom@gmail.com>\n"
 "Language-Team: Yotam Benshalom <benshalom@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -159,20 +159,6 @@ msgstr ""
 "כל האפקטים נבחרים באקראי, בלי להתחשב באפקט שנבחר. אם שום אפקט לא נבחר עבור "
 "האירוע, לא תוצג עבורו אנימציה."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"המשרעת (גובה גלי הקיפול) של הקפלים האופקיים ביחס לרוחב החלון. ערכים שליליים "
-"יוצגו כקיפול החוצה."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"המשרעת (גובה גל הקיפול) של הקפל המעוקל ביחס לרוחב החלון. ערכים שליליים יוצגו "
-"כקיפול החוצה."
-
 msgid "Angle of window at the end of the animation."
 msgstr "זווית החלון בסוף האנימציה."
 
@@ -270,7 +256,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "קפל מעוקל"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "משרעת קפל מעוקל"
 
 msgid "Dodge"
@@ -366,6 +353,11 @@ msgstr "קיפול"
 msgid "Fold Direction"
 msgstr "כיוון קיפול"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "הכיוון ההתחלתי להסרת פיסות בעת אפקט גילוח."
 
@@ -384,7 +376,8 @@ msgstr "משושה"
 msgid "Horizontal Folds"
 msgstr "קפלים אופקיים"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "משרעת קפלים אופקיים"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -652,9 +645,6 @@ msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr "מספר הקפלים האופקיים המוצגים באנימציית קפל אופקי."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "המשרעת (גובה הגלים) בהתאם לגובה החלון."
-
 msgid "The width of the wave relative to the window height."
 msgstr "רוחב הגל בהתאם לגובה החלון."
 
@@ -718,11 +708,17 @@ msgstr ""
 msgid "Wave"
 msgstr "גל"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "משרעת גל"
 
 msgid "Wave Width"
 msgstr "רוחב גל"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -769,860 +765,844 @@ msgid ""
 "Window thickness in pixels. Setting this to larger than 0 will disable "
 "shadow, blur, and reflection during the animation."
 msgstr ""
+"עובי חלון בפיקסלים. ערך גדול מ-0 יבטל אפקטים של צל, טשטוש והשתקפות בזמן "
+"האנימציה."
 
 msgid "Zoom"
-msgstr ""
+msgstr "תקריב"
 
 msgid "Zoom Springiness"
-msgstr ""
+msgstr "קפיציות תקריב"
 
 msgid "Zoom from Center"
-msgstr ""
+msgstr "תקריב מן המרכז"
 
 msgid "Zoom from center when playing the Sidekick animation."
-msgstr ""
+msgstr "תקריב מן המרכז בעת הצגת אנימצית הגלגלון."
 
 msgid "Zoom from center when playing the Zoom animation."
-msgstr ""
+msgstr "תקריב מן המרכז בעת הצגת אנימצית תקריב."
 
 msgid "Zoom to TaskBar on Minimize"
-msgstr ""
+msgstr "תקריב לשורת המשימות בעת מזעור"
 
 msgid "Colors"
-msgstr ""
+msgstr "צבעים"
 
 msgid "Cube Atlantis"
-msgstr ""
+msgstr "קוביית אטלנטיס"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "גודל דולפין"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "גודל דולפין."
 
 msgid "Enable colors"
-msgstr ""
+msgstr "אפשר צבעים"
 
 msgid "Fish size"
-msgstr ""
+msgstr "גודל דג"
 
 msgid "Number of fish"
-msgstr ""
+msgstr "מספר דגים"
 
 msgid "Number of fish inside the cube"
-msgstr ""
+msgstr "מספר הדגים בתוך הקוביה"
 
 msgid "Render some fish inside of the transparent cube"
-msgstr ""
+msgstr "צייר מספר דגים בתוך הקוביה השקופה"
 
 msgid "Shark size"
-msgstr ""
+msgstr "גודל כריש"
 
 msgid "Whale size"
-msgstr ""
+msgstr "גודל לווייתן"
 
 msgid "Whale size."
-msgstr ""
+msgstr "גודל לווייתן."
 
 msgid "A simple benchmark plugin"
-msgstr ""
+msgstr "התקן פשוט למדידת ביצועים"
 
 msgid "Benchmark"
-msgstr ""
+msgstr "מד ביצועים"
 
 msgid "Console Output"
-msgstr ""
+msgstr "פלט לטרמינל"
 
 msgid "Console output update time"
-msgstr ""
+msgstr "זמן עדכון פלט לטרמינל"
 
 msgid "Disable Compiz integrated FPS limiter"
-msgstr ""
+msgstr "נטרל את מגביל ה-FPS המובנה של קומפיז"
 
 msgid "Disable limiter"
-msgstr ""
+msgstr "נטרל מגביל"
 
 msgid "Display FPS on screen"
-msgstr ""
+msgstr "הצג FPS על המסך"
 
 msgid "Enable"
-msgstr ""
+msgstr "אפשר"
 
 msgid "Initiate"
-msgstr ""
+msgstr "הפעל"
 
 msgid "Main"
-msgstr ""
+msgstr "ראשי"
 
 msgid "Print FPS to console"
-msgstr ""
+msgstr "הדפס FPS בטרמינל"
 
 msgid "Screen Output"
-msgstr ""
+msgstr "פלט למסך"
 
 msgid "Start benchmark"
-msgstr ""
+msgstr "התחל מדידת ביצועים"
 
 msgid "Update time"
-msgstr ""
+msgstr "זמן עדכון"
 
 msgid "X Position of benchmark window"
-msgstr ""
+msgstr "מיקום X של חלון מד הביצועים"
 
 msgid "X position"
-msgstr ""
+msgstr "מיקום X"
 
 msgid "Y Position of benchmark window"
-msgstr ""
+msgstr "מיקום Y של חלון מד הביצועים"
 
 msgid "Y position"
-msgstr ""
+msgstr "מיקום Y"
 
+#, fuzzy
 msgid "Bicubic filter"
-msgstr ""
+msgstr "עבור מסנן"
 
 msgid "Bicubic texture filtering"
 msgstr ""
 
-msgid "Brightness Decrease"
-msgstr ""
-
-msgid "Brightness Increase"
-msgstr ""
-
-msgid "Brightness Step"
-msgstr ""
-
-msgid "Brightness and Saturation"
-msgstr ""
-
-msgid "Brightness and Saturation adjustments"
-msgstr ""
-
-msgid "Brightness settings"
-msgstr ""
-
-msgid "Brightness values for windows"
-msgstr ""
-
-msgid "Brightness window values"
-msgstr ""
-
-msgid "Brightness windows"
-msgstr ""
-
-msgid "General"
-msgstr ""
-
-msgid "Saturation Decrease"
-msgstr ""
-
-msgid "Saturation Increase"
-msgstr ""
-
-msgid "Saturation Step"
-msgstr ""
-
-msgid "Saturation settings"
-msgstr ""
-
-msgid "Saturation values for windows"
-msgstr ""
-
-msgid "Saturation window values"
-msgstr ""
-
-msgid "Saturation windows"
-msgstr ""
-
-msgid "Window specific"
-msgstr ""
-
-msgid "Windows that should have a different brightness by default"
-msgstr ""
-
-msgid "Windows that should have a different saturation by default"
-msgstr ""
-
 msgid "Color filter"
-msgstr ""
+msgstr "מסנן צבע"
 
 msgid "Exclude windows"
-msgstr ""
+msgstr "חלונות יוצאים מן הכלל"
 
 msgid "Filter colors for accessibility purposes"
-msgstr ""
+msgstr "סנן צבעים מטעמי נגישות"
 
 msgid "Filter window decorations"
-msgstr ""
+msgstr "סנן מסגרות חלון"
 
 msgid "Filtered windows"
-msgstr ""
+msgstr "חלונות מסוננים"
 
 msgid "Filters files"
-msgstr ""
+msgstr "קבצי מסננים"
 
 msgid ""
 "List of plain text filter files that should be applied when filtering "
 "windows or screen."
 msgstr ""
+"רשימת קבצי טקסט של הגדרות מסנן, שאותן יש להפעיל בעת סינון חלונות או מסך."
 
 msgid ""
 "Select filter to use from filters list : either apply all filters or only "
 "one specific filter (triggering this action switches filters one by one and "
 "eventually comes back to the \"all filters\" mode)."
 msgstr ""
+"בחירת מסנן מתוך הרשימה: ניתן להפעיל את כל המסננים או רק אחד מהם (ביצוע פעולה "
+"זו עובר בין כל המסננים אחד אחד, ולבסוף שב למצב \"כל המסננים\")."
 
 msgid "Switch filter"
-msgstr ""
+msgstr "עבור מסנן"
 
 msgid "Toggle filtering for currently focused window."
-msgstr ""
+msgstr "הפעל\\נטל סינון עבור החלון הפעיל."
 
 msgid "Toggle filtering for every window on the screen."
-msgstr ""
+msgstr "הפעל\\נטרל סינון עבור כל החלונות על המסך."
 
 msgid "Toggle screen filtering"
-msgstr ""
+msgstr "הפעל\\נטרל סינון מסך"
 
 msgid "Toggle window filtering"
-msgstr ""
+msgstr "הפעל\\נטרל סינון חלון"
 
 msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
 "contents if enabled."
 msgstr ""
+"אם מאופשר, מסגרת החלון (גבולות ושורת כותרת) תסונן גם היא לצד תוכן החלון."
 
 msgid "Windows to be filtered by default."
-msgstr ""
+msgstr "חלונות לסינון כברירת מחדל."
 
 msgid "Windows to exclude from filtering."
-msgstr ""
+msgstr "חלונות שאין לסנן."
 
 msgid "Activate Crash Handler."
-msgstr ""
+msgstr "הפעל מגן התרסקות"
 
 msgid "Compiz crash handler plugin"
-msgstr ""
+msgstr "התקן מגן ההתרסקות של קומפיז"
 
 msgid "Crash Dump Directory"
-msgstr ""
+msgstr "תיקייה להטלת פלט התרסקות"
 
 msgid "Crash handler"
-msgstr ""
+msgstr "מגן התרסקות"
 
 msgid "Directory to dump the crash logs to."
-msgstr ""
+msgstr "תיקייה שבה יישמרו לוגים של התרסקות."
 
 msgid "Enable Crash Handler"
-msgstr ""
+msgstr "אפשר מגן התרסקות"
 
 msgid "Start Other Window Manager"
-msgstr ""
+msgstr "הפעל מנהל חלונות אחר"
 
 msgid "Start other window manager on Crash."
-msgstr ""
+msgstr "בעת התרסקות, הפעל מנהל חלונות אחר."
 
 msgid "Window Manager Command Line"
-msgstr ""
+msgstr "שורת פקודה של מנהל חלונות"
 
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
-msgstr ""
+msgstr "שורת פקודה של מנהל חלונות. אין להזין כאן compiz!!!"
 
 msgid "Above"
-msgstr ""
+msgstr "מעל"
 
 msgid "Adjust bottom face image to rotation"
-msgstr ""
+msgstr "התאם התמונה בפאה התחתונה לסיבוב"
 
 msgid "Adjust bottom image"
-msgstr ""
+msgstr "התאם תמונה תחתונה"
 
 msgid "Adjust top face image to rotation"
-msgstr ""
+msgstr "התאם התמונה בפאה העליונה לסיבוב"
 
 msgid "Adjust top image"
-msgstr ""
+msgstr "התאם תמונה עליונה"
 
 msgid "Advance to next image for bottom face of the cube"
-msgstr ""
+msgstr "עבור לתמונה הבאה בפאה התחתונה של הקוביה"
 
 msgid "Advance to next image for top face of the cube"
-msgstr ""
+msgstr "עבור לתמונה הבאה בפאה העליונה של הקוביה"
 
 msgid "Appearance"
-msgstr ""
+msgstr "מראה"
 
+#, fuzzy
 msgid "Aspect ratio"
-msgstr ""
+msgstr "יחס אורך ורוחב"
 
 msgid "Aspect ratio of the deformed cube"
 msgstr ""
 
 msgid "Auto zoom"
-msgstr ""
+msgstr "תקריב אוטומטי"
 
 msgid "Auto zoom only on Mouse Rotate"
-msgstr ""
+msgstr "תקריב אוטומטי רק בעת סיבוב עם העכבר"
 
 msgid "Behaviour"
-msgstr ""
+msgstr "התנהגות"
 
 msgid "Bottom image files"
-msgstr ""
+msgstr "קבצי תמונה תחתונה"
 
 msgid "Clamp bottom face image to border"
-msgstr ""
+msgstr "הצמד תמונה בפאה תחתונה לגבול"
 
 msgid ""
 "Clamp bottom face image to border. This is often the best if your image "
 "doesn't fit the size of the cube or if it's transparent. It can lead to some "
 "ugly dotted lines when enabled (especially with large enough images) though."
 msgstr ""
+"הצמד את התמונה בפאה התחתונה לגבול. הדבר נחוץ בעיקר אם גודל התמונה אינו מתאים "
+"לקוביה, או אם היא שקופה. הגדרה זו עלולה להביא להופעת קווים מנוקדים ולא "
+"אסתטיים, בייחוד במקרה של תמונות גדולות."
 
 msgid "Clamp top face image to border"
-msgstr ""
+msgstr "הצמד תמונה בפאה עליונה לגבול"
 
 msgid ""
 "Clamp top face image to border. This is often the best if your image doesn't "
 "fit the size of the cube or if it's transparent. It can lead to some ugly "
 "dotted lines when enabled (especially with large enough images) though."
 msgstr ""
+"הצמד את התמונה בפאה העליונה לגבול. הדבר נחוץ בעיקר אם גודל התמונה אינו מתאים "
+"לקוביה, או אם היא שקופה. הגדרה זו עלולה להביא להופעת קווים מנוקדים ולא "
+"אסתטיים, בייחוד במקרה של תמונות גדולות."
 
 msgid "Color of bottom face of the cube"
-msgstr ""
+msgstr "צבע פאת קוביה תחתונה"
 
 msgid "Color of the ground (far)."
-msgstr ""
+msgstr "צבע הקרקע (רחוקה)."
 
 msgid "Color of the ground (near)."
-msgstr ""
+msgstr "צבע הקרקע (קרובה)."
 
 msgid "Color of top face of the cube"
-msgstr ""
+msgstr "צבע פאת קוביה עליונה"
 
+#, fuzzy
 msgid "Compiz cube reflection and deformation"
-msgstr ""
+msgstr "השתקפות קוביה בקומפיז"
 
 msgid "Cube Bottom Color"
-msgstr ""
+msgstr "צבע קוביה תחתון"
 
+#, fuzzy
 msgid "Cube Reflection and Deformation"
-msgstr ""
+msgstr "השתקפות מסגרות"
 
 msgid "Cube Top Color"
-msgstr ""
+msgstr "צבע קוביה עליון"
 
+#, fuzzy
 msgid "Cube caps"
-msgstr ""
+msgstr "מכסי קוביה"
 
+#, fuzzy
 msgid "Cylinder"
-msgstr ""
+msgstr "נקה"
 
+#, fuzzy
 msgid "Deform caps"
-msgstr ""
+msgstr "עיוות"
 
 msgid "Deform cube caps."
 msgstr ""
 
 #, fuzzy
 msgid "Deform only on mouse rotate"
-msgstr "3D רק בעת סיבוב עם העכבר"
+msgstr "תקריב אוטומטי רק בעת סיבוב עם העכבר"
 
 msgid "Deformation"
-msgstr ""
+msgstr "עיוות"
 
+#, fuzzy
 msgid "Deformation in unfold cube mode."
-msgstr ""
+msgstr "עוצמת העיוות במצב עיקול"
 
+#, fuzzy
 msgid "Deformation mode."
-msgstr ""
+msgstr "עיוות"
 
 msgid "Distance"
-msgstr ""
+msgstr "מרחק"
 
 msgid "Draw bottom face"
-msgstr ""
+msgstr "צייר פאה תחתונה"
 
 msgid "Draw bottom face of the cube"
-msgstr ""
+msgstr "צייר את פאת הקוביה התחתונה"
 
 msgid "Draw top face"
-msgstr ""
+msgstr "צייר פאה עליונה"
 
 msgid "Draw top face of the cube"
-msgstr ""
+msgstr "צייר את פאת הקוביה העליונה"
 
+#, fuzzy
 msgid "Enabled"
-msgstr ""
+msgstr "אפשר"
 
+#, fuzzy
 msgid "Give cube a reflective ground."
-msgstr ""
+msgstr "השתקפות קוביה בקומפיז"
 
 msgid "Go back to previous image for bottom face of the cube"
-msgstr ""
+msgstr "חזור לתמונה הקודמת על גבי פאת הקוביה התחתונה"
 
 msgid "Go back to previous image for top face of the cube"
-msgstr ""
+msgstr "חזור לתמונה הקודמת על גבי פאת הקוביה העליונה"
 
 msgid "Ground color(far)"
-msgstr ""
+msgstr "צבע קרקע (רחוקה)"
 
 msgid "Ground color(near)"
-msgstr ""
+msgstr "צבע קרקע (קרובה)"
 
 msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
 msgstr ""
 
 msgid "Intensity"
-msgstr ""
+msgstr "עוצמה"
 
 msgid "Jumpy"
-msgstr ""
+msgstr "קופצני"
 
 msgid "Jumpy reflection"
-msgstr ""
+msgstr "השתקפות קופצנית"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
-msgstr ""
+msgstr "רשימת קבצי PNG ו-SVG לציור על פאת הקוביה התחתונה"
 
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
-msgstr ""
+msgstr "רשימת קבצי PNG ו-SVG לציור על פאת הקוביה העליונה"
 
+#, fuzzy
 msgid "Maintain bottom aspect ratio"
-msgstr ""
+msgstr "יחס אורך ורוחב במצב אקספו"
 
+#, fuzzy
 msgid "Maintain bottom cap image aspect ratio."
-msgstr ""
+msgstr "התאם התמונה בפאה התחתונה לסיבוב"
 
+#, fuzzy
 msgid "Maintain top aspect ratio"
-msgstr ""
+msgstr "יחס אורך ורוחב במצב אקספו"
 
+#, fuzzy
 msgid "Maintain top cap image aspect ratio."
-msgstr ""
+msgstr "התאם התמונה בפאה העליונה לסיבוב"
 
 msgid "Next bottom image"
-msgstr ""
+msgstr "התמונה התחתונה הבאה"
 
 msgid "Next top image"
-msgstr ""
+msgstr "תמונה העליונה הבאה"
 
 msgid "Prev bottom image"
-msgstr ""
+msgstr "התמונה התחתונה הקודמת"
 
 msgid "Prev top image"
-msgstr ""
+msgstr "התמונה העליונה הקודמת"
 
 msgid "Reflection"
-msgstr ""
+msgstr "השתקפות"
 
 msgid "Reflection ground size"
-msgstr ""
+msgstr "גודל הקרקע"
 
 msgid "Reflection ground size."
-msgstr ""
+msgstr "גודל הקרקע עבור השתקפות."
 
 msgid "Reflection intensity"
-msgstr ""
+msgstr "עוצמת השתקפות"
 
 msgid "Reflection mode"
-msgstr ""
+msgstr "אופן השתקפות"
 
 msgid "Reflection mode."
-msgstr ""
+msgstr "אופן השתקפות."
 
 msgid "Scale bottom image"
-msgstr ""
+msgstr "התאם גודל תמונה תחתונה"
 
 msgid "Scale image to cover bottom face of cube"
-msgstr ""
+msgstr "התאם את גודל התמונה כדי לכסות את פאת הקוביה התחתונה"
 
 msgid "Scale image to cover top face of cube"
-msgstr ""
+msgstr "התאם את גודל התמונה כדי לכסות את פאת הקוביה העליונה"
 
 msgid "Scale top image"
-msgstr ""
+msgstr "התאם גודל תמונה עליונה"
 
+#, fuzzy
 msgid "Sphere"
-msgstr ""
+msgstr "מהירות"
 
 msgid "Top image files"
-msgstr ""
+msgstr "קבצי תמונה עליונה"
 
 msgid "Unfold cube deformation"
 msgstr ""
 
 msgid "Zoom out automatically only on mouse rotate."
-msgstr ""
+msgstr "תקריב אוטומטי החוצה רק בעת סיבוב עם העכבר."
 
 msgid "Zoom out automatically to make the cube fit to the screen."
-msgstr ""
+msgstr "תקריב אוטומטי החוצה על מנת להתאים את גודל הקוביה למסך."
 
 msgid "Cube Caps"
-msgstr ""
+msgstr "מכסי קוביה"
 
 msgid "Render images on top and bottom of the cube"
-msgstr ""
+msgstr "צייר תמונות על גבי פאת הקוביה התחתונה"
 
 msgid "Compiz cube reflection"
-msgstr ""
+msgstr "השתקפות קוביה בקומפיז"
 
 msgid "Cube Reflection"
-msgstr ""
+msgstr "השתקפות קוביה"
 
 msgid "Animation used when switching to expo mode"
-msgstr ""
+msgstr "אנימציה בעת מעבר למצב אקספו"
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "יחס אורך ורוחב"
 
 msgid "Button binding for drag &amp; drop of windows"
-msgstr ""
+msgstr "כפתור לגרירה והשלכה של חלונות"
 
 msgid "Button binding to exit expo"
-msgstr ""
+msgstr "כפתור ליציאה מאקספו"
 
 msgid "Button binding to switch to next viewport in expo"
-msgstr ""
+msgstr "כפתור למעבר למשטח העבודה הבא באקספו"
 
 msgid "Curve"
-msgstr ""
+msgstr "עיקול"
 
 msgid "Curve strength"
-msgstr ""
+msgstr "חדות עיקול"
 
 msgid "Deformation of the expo wall"
-msgstr ""
+msgstr "עיוות של קיר האקספו"
 
 msgid "Distance between viewports"
-msgstr ""
+msgstr "מרחק בין משטחי עבודה"
 
 msgid "Distance of the expo wall"
-msgstr ""
+msgstr "מרחק קיר האקספו"
 
 msgid "Double click time"
-msgstr ""
+msgstr "משך הקלקה כפולה"
 
 msgid "Drag&amp;drop"
-msgstr ""
+msgstr "גרירה והשלכה"
 
 msgid "Duration of the zoomout animation"
-msgstr ""
+msgstr "משך אנימציה של תקריב החוצה"
 
 msgid "Engage wall expo mode button binding"
-msgstr ""
+msgstr "כפתור להפעלת מצב קיר אקספו"
 
 msgid "Engage wall expo mode edge binding"
-msgstr ""
+msgstr "קצה מסך להפעלת מצב קיר אקספו"
 
 msgid "Engage wall expo mode key binding"
-msgstr ""
+msgstr "מקש להפעלת מצב קיר אקספו"
 
 msgid "Exit expo"
-msgstr ""
+msgstr "צא מאקספו"
 
 msgid "Expo"
-msgstr ""
+msgstr "אקספו"
 
 msgid "Expo Animation"
-msgstr ""
+msgstr "אנימצית אקספו"
 
 msgid "Expo Plugin"
-msgstr ""
+msgstr "התקן אקספו"
 
 msgid "Expo button"
-msgstr ""
+msgstr "כפתור אקספו"
 
 msgid "Expo edge"
-msgstr ""
+msgstr "קצה מסך לאקספו"
 
 msgid "Expo key"
-msgstr ""
+msgstr "מקש אקספו"
 
 msgid "Expo mode aspect ratio"
-msgstr ""
+msgstr "יחס אורך ורוחב במצב אקספו"
 
 msgid "Fade + Zoom"
-msgstr ""
+msgstr "דהיה + תקריב"
 
 msgid "Generate mipmaps in expo mode"
-msgstr ""
+msgstr "ייצר mipmap במצב אקספו"
 
 msgid "Hide panels/docks in expo"
-msgstr ""
+msgstr "הסתר פאנלים\\מעגנים במצב אקספו"
 
 msgid "Hide panels/docks in expo."
-msgstr ""
+msgstr "הסתר פאנלים\\מעגנים במצב אקספו."
 
 msgid "Immediate moves"
-msgstr ""
+msgstr "תזוזות מיידיות"
 
 msgid "Inactive viewport brightness."
-msgstr ""
+msgstr "בהירות משטח עבודה לא פעיל."
 
 msgid "Inactive viewport saturation."
-msgstr ""
+msgstr "רווית משטח עבודה לא פעיל."
 
 msgid "Mipmaps"
-msgstr ""
+msgstr "Mipmaps"
 
 msgid "Multi Output Mode"
-msgstr ""
+msgstr "מצב פלט מרובה"
 
 msgid "Next viewport"
-msgstr ""
+msgstr "משטח העבודה הבא"
 
 msgid "One big wall"
-msgstr ""
+msgstr "קיר גדול יחיד"
 
 msgid "One wall per output"
-msgstr ""
+msgstr "קיר לכל פלט"
 
 msgid "Previous viewport"
-msgstr ""
+msgstr "משטח העבודה הקודם"
 
 msgid "Reflection Scale"
-msgstr ""
+msgstr "גודל השתקפות"
 
 msgid "Scale factor of the expo wall reflection"
-msgstr ""
+msgstr "מקדם הגודל של השתקפות הקיר באקספו"
 
 msgid ""
 "Selects how the expo wall is displayed if multiple output devices are used."
-msgstr ""
+msgstr "קובע כיצד יוצג קיר האקספו כאשר נעשה שימוש במספר התקני פלט."
 
 msgid ""
 "Selects if windows movements in expo mode should be immediate - this among "
 "other things disables wobbliness"
 msgstr ""
+"קובע אם תנועות חלון באקספו צריכות להיות מיידיות - בין השאר, מבטל את אפקט "
+"הנדנוד"
 
 msgid "Show a reflection of the viewports on the ground"
-msgstr ""
+msgstr "הצג השתקפות של משטחי העבודה על הקרקע"
 
 msgid "Strength of the deformation in curve mode"
-msgstr ""
+msgstr "עוצמת העיוות במצב עיקול"
 
 msgid "Tilt"
-msgstr ""
+msgstr "שיפוע"
 
 msgid "Timeframe to execute a double click"
-msgstr ""
+msgstr "משך זמן לביצוע הקלקה כפולה"
 
 msgid "Viewport distance"
-msgstr ""
+msgstr "מרחק משטח עבודה"
 
 msgid "Vortex"
-msgstr ""
+msgstr "מערבולת"
 
 msgid "Zoom time"
-msgstr ""
+msgstr "משך תקריב"
 
+#, fuzzy
 msgid "Activate Demanding Attention Window"
-msgstr ""
+msgstr "הפעל חלון נתון"
 
 msgid "Activate Window"
-msgstr ""
+msgstr "הפעל חלון"
 
 msgid "Activate a given window"
-msgstr ""
+msgstr "הפעל חלון נתון"
 
 msgid "Activate next window which has the \"demands attention\" flag set."
 msgstr ""
 
 msgid "Extra WM Actions"
-msgstr ""
+msgstr "פעולות חלון נוספות"
 
 msgid "Provides less commonly used WM actions"
-msgstr ""
+msgstr "מספק פעולות ניהול חלונות שאינן נפוצות"
 
 msgid "Toggle Always-On-Top"
-msgstr ""
+msgstr "הפעל\\נטרל תמיד למעלה"
 
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "הפעל\\נטרל מסך מלא"
 
 msgid "Toggle Redirect"
-msgstr ""
+msgstr "הפעל\\נטרל נתב מחדש"
 
 msgid "Toggle Sticky"
-msgstr ""
+msgstr "הפעל\\נטרל דביק"
 
 msgid "Toggle always on top for the active window"
-msgstr ""
+msgstr "הפעל\\נטרל תמיד למעלה עבור החלון הפעיל"
 
 msgid "Toggle window fullscreen"
-msgstr ""
+msgstr "הפעל\\נטרל חלון במסך מלא"
 
 msgid "Toggle window redirect"
-msgstr ""
+msgstr "הפעל\\נטרל נתב מחדש את החלון"
 
 msgid "Toggle window stickyness"
-msgstr ""
+msgstr "הפעל\\נטרל דביקות חלון"
 
 msgid "Always fit to window on focus track"
-msgstr ""
+msgstr "התאם תמיד לחלון בעת מעקב אחרי המוקד"
 
 msgid ""
 "Always keep the zoomed area in sync with where the mouse is, and vice versa. "
 "Use this if you don't intend to draw a scaled pointer or hide the original "
 "pointer. The zoomed area will move as you move your mouse."
 msgstr ""
+"סנכרן תמיד את איזור התקריב עם מקום סמן העכבר. יש להשתמש באפשרות זו אם אין "
+"כוונה לצייר סמן בגודל מותאם או להסתיר את הסמן המקורי. איזור התקריב יזוז עם "
+"סמן העכבר."
 
 msgid "Animation"
-msgstr ""
+msgstr "אנימציה"
 
 msgid ""
 "Attempt to keep the zoomed mouse visible by warping it when it is moved "
 "outside the zoom area."
 msgstr ""
+"נסה לדאוג לכך שסמן העכבר תמיד ייראה לעין בזמן תקריב על ידי הקפצתו חזרה במידה "
+"שהוא מוסט אל מחוץ לאיזור התקריב."
 
 msgid "Center the mouse"
-msgstr ""
+msgstr "מרכז את העכבר"
 
 msgid "Enable focus tracking"
-msgstr ""
+msgstr "אפשר מעקב אחר מוקד"
 
 msgid "Enable this to get a gradually larger mouse pointer as you zoom in"
-msgstr ""
+msgstr "מאפשר הצגת סמן עכבר גדול יותר ויותר בעת תקריב פנימה."
 
 msgid ""
 "Enable this to target the focused window when jumping to a specific zoom "
 "level. Disable to target mouse."
 msgstr ""
+"מאפשר נעילה על החלון הפעיל בעת קפיצה לרמת תקריב ספציפית. ביטול אפשרות זו "
+"יביא לנעילה על סמן העכבר."
 
 msgid "Enhanced Zoom Desktop"
-msgstr ""
+msgstr "תקריב משופר"
 
 msgid "Enhanced zoom functions for the visually impaired and other users"
-msgstr ""
+msgstr "פונקציות תקריב מתקדמות עבור משתמשים כבדי ראייה ואחרים"
 
 msgid "Filter Linear"
-msgstr ""
+msgstr "מסנן לינארי"
 
 msgid "Fit the window to the zoom level"
-msgstr ""
+msgstr "התאם החלון לרמת התקריב"
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking."
-msgstr ""
+msgstr "התאם את איזור התקריב לחלון כאשר איזור התקריב מוזז בשל מעקב אחרי מוקד."
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking. Even when not initially zoomed in."
 msgstr ""
+"התאם את איזור התקריב לחלון כאשר איזור התקריב מוזז בשל מעקב אחרי מוקד, אפילו "
+"אם לא התבצע תקריב מלכתחילה."
 
 msgid "Fit zoom level to window on focus change"
-msgstr ""
+msgstr "התאם את רמת התקריב לחלון בעת העברת מוקד"
 
 msgid "Fit zoomed area to window"
-msgstr ""
+msgstr "התאם את איזור התקריב לחלון"
 
 msgid "Fitting"
-msgstr ""
+msgstr "התאמה"
 
 msgid "Focus Tracking"
-msgstr ""
+msgstr "מעקב אחר המוקד"
 
 msgid "Follow Focus Delay"
-msgstr ""
+msgstr "השהייה לפני מעקב אחר המוקד"
 
 msgid "Hide original mouse pointer"
-msgstr ""
+msgstr "הסתר את סמן העכבר המקורי"
 
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
-msgstr ""
+msgstr "מסתיר את סמן העכבר המקורי בעת תקריב פנימה והתאמת גודל הסמן"
 
+#, fuzzy
 msgid "Minimum zoom factor"
-msgstr ""
+msgstr "מקדם שינוי גודל מזערי"
 
 msgid "Mouse Behaviour"
-msgstr ""
+msgstr "התנהגות עכבר"
 
 msgid "Mouse Restrain Margin"
-msgstr ""
+msgstr "שוליים תוחמי עכבר"
 
 msgid "Mouse panning"
-msgstr ""
+msgstr "פנייה באמצעות העכבר"
 
 msgid "Move the zoom area when focus changes."
-msgstr ""
+msgstr "הזז את איזור התקריב בעת מעבר מוקד."
 
 msgid ""
 "Move the zoomed area this much whenever you pan the zoomed area with keys."
-msgstr ""
+msgstr "הזז את איזור התקריב במידה זו בעת הסטת איזר התקריב בעזרת מקשי המקלדת."
 
 msgid ""
 "Only attempt to center newly focused windows if the mouse hasn't moved in "
 "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgstr ""
+"נסה להתמרכז על חלונות חדשים רק אם העכבר לא זז במשך מספר זה של שניות. אפשרות "
+"זו מונעת קפיצות בעת שימוש במיקוד רשלני (העברת המוקד באמצעות הזזת סמן העכבר "
+"מעל החלון ללא הקלקה)."
 
 msgid "Pan (move) the zoom area down"
-msgstr ""
+msgstr "הפנה (הזז) את איזור התקריב מטה"
 
 msgid "Pan (move) the zoom area left"
-msgstr ""
+msgstr "הפנה (הזז) את איזור התקריב שמאלה"
 
 msgid "Pan (move) the zoom area right"
-msgstr ""
+msgstr "הפנה (הזז) את איזור התקריב ימינה"
 
 msgid "Pan (move) the zoom area up"
-msgstr ""
+msgstr "הפנה (הזז) את איזור התקריב מעלה"
 
 msgid "Pan Factor"
-msgstr ""
+msgstr "מקדם הפנייה"
 
 msgid "Pan Zoom Down"
-msgstr ""
+msgstr "הפנה תקריב מטה"
 
 msgid "Pan Zoom Left"
-msgstr ""
+msgstr "הפנה תקריב שמאלה"
 
 msgid "Pan Zoom Right"
-msgstr ""
+msgstr "הפנה תקריב ימינה"
 
 msgid "Pan Zoom Up"
-msgstr ""
+msgstr "הפנה תקריב מעלה"
 
 msgid "Pan the zoom area when the mouse cursor moves outside the visible area."
-msgstr ""
+msgstr "הפנה את איזור התקריב כאשר סמן העכבר יוצא מן התחום הנראה"
 
 msgid "Panning"
-msgstr ""
+msgstr "הפנייה"
 
 msgid "Puts the mouse in the middle of the screen (Regardless of zoom level)"
-msgstr ""
+msgstr "ממקם את סמן העכבר במרכז המסך (בלי להתחשב ברמת התקריב)"
 
 msgid "Resize the window so it matches the current zoom level."
-msgstr ""
+msgstr "שנה את גודל החלון כך שיתאים לרמת התקריב הנוכחית."
 
 msgid "Restrain the mouse to the zoom area"
-msgstr ""
+msgstr "הגבל עכבר לאיזור התקריב"
 
 msgid "Scale the mouse pointer"
-msgstr ""
+msgstr "התאם את גודל סמן העכבר"
 
 msgid "Specific Zoom"
-msgstr ""
+msgstr "תקריב ספציפי"
 
 msgid "Specific zoom factor 1"
-msgstr ""
+msgstr "מקדם תקריב 1"
 
 msgid "Specific zoom factor 2"
-msgstr ""
+msgstr "מקדם תקריב 2"
 
 msgid "Specific zoom factor 3"
-msgstr ""
+msgstr "מקדם תקריב 3"
 
 msgid "Speed"
-msgstr ""
+msgstr "מהירות"
 
 msgid "Sync Mouse"
-msgstr ""
+msgstr "סנכרון עכבר"
 
 msgid "Target Focused Window on Specific level"
-msgstr ""
+msgstr "הינעל על החלון הפעיל ברמה ספציפית"
 
 msgid ""
 "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
@@ -1630,1521 +1610,1575 @@ msgid ""
 msgstr ""
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
-msgstr ""
+msgstr "גודל השוליים להוספה בעת נסיון להגביל את העכבר."
 
 msgid "Timestep"
-msgstr ""
+msgstr "יחידת זמן"
 
 msgid "Toggle zoom area lock"
-msgstr ""
+msgstr "הפעל\\נטרל נעילת איזור תקריב"
 
 msgid "Toggles a lock on the zoom area so it doesn't change on various events"
-msgstr ""
+msgstr "מפעיל או מנטרל את נעילת איזור התקריב, כך שלא יושפע מאירועים שונים"
 
 msgid "Use linear filter when zoomed in"
-msgstr ""
+msgstr "השתמש בפילטר לינארי בעת תקריב פנימה"
 
 msgid "Zoom Area Movement"
-msgstr ""
+msgstr "תזוזת איזור תקריב"
 
+#, fuzzy
 msgid "Zoom Box"
-msgstr ""
+msgstr "תקריב"
 
 msgid "Zoom In"
-msgstr ""
+msgstr "תקריב פנימה"
 
 msgid "Zoom In/Out"
-msgstr ""
+msgstr "תקריב פנימה\\החוצה"
 
 msgid "Zoom Out"
-msgstr ""
+msgstr "תקריב החוצה"
 
 msgid "Zoom Specific Level 1"
-msgstr ""
+msgstr "רמת תקריב ספציפית 1"
 
 msgid "Zoom Specific Level 2"
-msgstr ""
+msgstr "רמת תקריב ספציפית 2"
 
 msgid "Zoom Specific Level 3"
-msgstr ""
+msgstr "רמת תקריב ספציפית 3"
 
 msgid "Zoom Speed"
-msgstr ""
+msgstr "מהירות תקריב"
 
 msgid "Zoom Timestep"
-msgstr ""
+msgstr "יחידת זמן תקריב"
 
 msgid "Zoom factor"
-msgstr ""
+msgstr "מקדם תקריב"
 
 msgid "Zoom in on a boxed area"
 msgstr ""
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
-msgstr ""
+msgstr "מקדם לתקריב פנימה\\החוצה. ערך גבוה יותר יביא לתקריב מהיר יותר."
 
 msgid "Zoom level to go to when triggering hotkey 1"
-msgstr ""
+msgstr "רמת התקריב שיש לעבור אליה בעת הפעלת מקש חם 1"
 
 msgid "Zoom level to go to when triggering hotkey 2"
-msgstr ""
+msgstr "רמת התקריב שיש לעבור אליה בעת הפעלת מקש חם 2"
 
 msgid "Zoom level to go to when triggering hotkey 3"
-msgstr ""
+msgstr "רמת התקריב שיש לעבור אליה בעת הפעלת מקש חם 3"
 
 msgid "Zoom to the specific zoom level 1"
-msgstr ""
+msgstr "תקריב לרמת תקריב ספציפית 1"
 
 msgid "Zoom to the specific zoom level 2"
-msgstr ""
+msgstr "תקריב לרמת תקריב ספציפית 2"
 
 msgid "Zoom to the specific zoom level 3"
-msgstr ""
+msgstr "תקריב לרמת תקריב ספציפית 3"
 
 msgid ""
 "Zooms in/out so the focused window is zoomed to the maximum while still "
 "being fully visible."
-msgstr ""
+msgstr "מבצע תקריב פנימה\\החוצה כך שהחלון מוצג בתקריב מירבי אך עדיין נראה לעין"
 
 msgid "Easily access your desktop"
-msgstr ""
+msgstr "גישה קלה לשולחן העבודה"
 
 msgid "Fade Time"
-msgstr ""
+msgstr "זמן דהייה"
 
 msgid "Fade time (in ms)"
-msgstr ""
+msgstr "זמן דהייה (במילישניות)"
 
 msgid "Fade to Desktop"
-msgstr ""
+msgstr "דהייה אל שולחן העבודה"
 
 msgid "Windows that should be faded to desktop"
-msgstr ""
+msgstr "חלונות האמורים לדהות אל שולחן העבודה"
 
 msgid "Alter window opacity based on color."
-msgstr ""
+msgstr "שנה אטימות חלון בהתבסס על הצבע."
 
 msgid "Color Opacity"
-msgstr ""
+msgstr "אטימות צבע"
 
 msgid "Toggle Window Fake ARGB"
-msgstr ""
+msgstr "הפעל\\נטרל ARGB מזויף לחלון"
 
 msgid "Toggle window fake ARGB."
-msgstr ""
+msgstr "הפעל\\נטרל ARGB מזויף לחלון."
 
 msgid "Background brightness"
-msgstr ""
+msgstr "בהירות רקע"
 
 msgid "Background brightness during paint"
-msgstr ""
+msgstr "בהירות רקע במהלך צביעה"
 
 msgid "Clear"
-msgstr ""
+msgstr "נקה"
 
 msgid "Clear (button)"
-msgstr ""
+msgstr "נקה (כפתור)"
 
 msgid "Clear (key)"
-msgstr ""
+msgstr "נקה (מקש)"
 
 msgid "Initiate (button)"
-msgstr ""
+msgstr "הפעל (כפתור)"
 
 msgid "Initiate (key)"
-msgstr ""
+msgstr "הפעל (מקש)"
 
 msgid "Initiate fire drawing"
-msgstr ""
+msgstr "התחל לצייר אש"
 
 msgid "Maximum number of active particles"
-msgstr ""
+msgstr "מספר חלקיקים פעילים מירבי"
 
 msgid "Number of particles"
-msgstr ""
+msgstr "מספר חלקיקים"
 
 msgid "Paint fire on the screen"
-msgstr ""
+msgstr "צייר אש על המסך"
 
 msgid "Paint fire or other particles on the screen"
-msgstr ""
+msgstr "צייר אש או חלקיקים אחרים על המסך"
 
 msgid "Cube Gears"
-msgstr ""
+msgstr "קוביית גלגלי שיניים"
 
 msgid "Render gears inside of the transparent cube"
-msgstr ""
+msgstr "צייר גלגלי שיניים בתוך הקוביה השקופה"
 
 msgid "Animation Options"
-msgstr ""
+msgstr "אפשרויות אנימציה"
 
 msgid "Autotab windows on creation"
-msgstr ""
+msgstr "אגד חלונות בתווית אוטומטית עם יצירתם"
 
 msgid "Autotab windows with themselves on window creation"
-msgstr ""
+msgstr "אגד חלונות בתווית עם עצמם אוטומטית בעת יצירת חלון"
 
 msgid "Border Radius"
-msgstr ""
+msgstr "רדיוס גבול"
 
 msgid "Border Width"
-msgstr ""
+msgstr "רוחב גבול"
 
 msgid "Border color of the tab bar"
-msgstr ""
+msgstr "צבע גבול שורת התוויות"
 
 msgid "Brightness of selected windows"
-msgstr ""
+msgstr "בהירות החלונות שנבחרו"
 
 msgid "Change Tab Left"
-msgstr ""
+msgstr "עבור לתווית משמאל"
 
 msgid "Change Tab Right"
-msgstr ""
+msgstr "עבור לתווית מימין"
 
 msgid "Change tab animation duration"
-msgstr ""
+msgstr "משך אנימצית מעבר תווית"
 
 msgid "Close Group"
-msgstr ""
+msgstr "סגור קבוצה"
 
 msgid "Create mipmaps for thumbnails"
-msgstr ""
+msgstr "צור mipmap עבור תמונות מוקטנות"
 
 msgid "Create mipmaps for thumbnails in the tab bar"
-msgstr ""
+msgstr "צור mipmap עבור תמונות מוקטנות בשורת התוויות"
 
 msgid ""
 "Distance (in pixels) between the tab bar and the dragged slot for applying "
 "the spring model. If the distance is larger than that value, the model isn't "
 "applied."
 msgstr ""
+"מרחק (בפיקסלים) בין שורת התוויות ובין התווית שנגררה על מנת להפעיל את מודל "
+"הקפיצים. אם המרחק עולה על ערך זה, המודל לא יופעל."
 
 msgid "Duration (in s) of the animation that happens when changing tabs"
-msgstr ""
+msgstr "משך האנימציה (בשניות) המתרחשת בעת מעבר תווית."
 
 msgid "Duration (in s) of the tab bar fading animation when showing/hiding it"
-msgstr ""
+msgstr "משך אנימצית דהיית שורת התוויות (בשניות) בעת הצגתה\\הסתרתה."
 
 msgid "Duration (in s) of the tab bar pulse animation"
-msgstr ""
+msgstr "משך אנימצית הבהוב בשורת התוויות (בשניות)."
 
 msgid "Duration (in s) of the tab bar reflex animation"
-msgstr ""
+msgstr "משך אנימצית השתקפות בשורת התוויות (בשניות)."
 
 msgid "Duration (in s) of the text fading animation when showing/hiding it"
-msgstr ""
+msgstr "משך אנימצית דהיית הטקסט (בשניות) בעת הצגתו\\הסתרתו."
 
 msgid "Enable Glow"
-msgstr ""
+msgstr "אפשר הילה"
 
 msgid "Enable grouped window glowing"
-msgstr ""
+msgstr "אפשר הילה של חלונות מקובצים"
 
 msgid "Fade time for tab bar animations"
-msgstr ""
+msgstr "משך דהיה עבור אנימציות שורת התוויות"
 
 msgid "Fade time for text animations"
-msgstr ""
+msgstr "משך דהייה עבור אנימציות טקסט"
 
 msgid "Fill color of the selection rectangle"
-msgstr ""
+msgstr "צבע מילוי מרובע הבחירה"
 
 msgid "Fill color of the tab bar"
-msgstr ""
+msgstr "צבע מילוי שורת התוויות"
 
 msgid "Font Color"
-msgstr ""
+msgstr "צבע גופן"
 
 msgid "Font Size"
-msgstr ""
+msgstr "גודל גופן"
+
+msgid "General"
+msgstr "כללי"
 
 msgid "Glass"
-msgstr ""
+msgstr "זכוכית"
 
 msgid "Glow"
-msgstr ""
+msgstr "הילה"
 
 msgid "Glow Color Change"
-msgstr ""
+msgstr "שינוי צבע הילה"
 
 msgid "Glow Size"
-msgstr ""
+msgstr "גודל הילה"
 
 msgid "Glow Type"
-msgstr ""
+msgstr "סוג הילה"
 
 msgid "Glow ring"
-msgstr ""
+msgstr "הילת טבעת"
 
 msgid "Gradient"
-msgstr ""
+msgstr "הדרגתי"
 
 msgid "Group Window Match"
-msgstr ""
+msgstr "חלונות מתאימים לקיבוץ"
 
 msgid "Group Windows"
-msgstr ""
+msgstr "קיבוץ חלונות"
 
 msgid "Group and Tab Windows"
-msgstr ""
+msgstr "קיבוץ ואיגוד חלונות"
 
 msgid "Group the windows after selection"
-msgstr ""
+msgstr "קבץ חלונות לאחר בחירה"
 
 msgid "Grouping"
-msgstr ""
+msgstr "קיבוץ"
 
 msgid "Hover time for slot dragging"
-msgstr ""
+msgstr "זמן ריחוף לשם גרירת תווית"
 
 msgid ""
 "If one window in the group is (un)maximized, all other group windows are (un)"
 "maximized as well."
 msgstr ""
+"אם אחד החלונות בקבוצה מוגדל אל \\ משוחזר מן הגודל המירבי, תחול הפעולה על כל "
+"יתר החלונות בקבוצה."
 
 msgid ""
 "If one window in the group is (un)minimized, all other group windows are (un)"
 "minimized as well."
 msgstr ""
+"אם אחד החלונות בקבוצה ממוזער אל \\ משוחזר משורת המשימות, תחול הפעולה על כל "
+"יתר החלונות בקבוצה."
 
 msgid ""
 "If one window in the group is (un)shaded, all other group windows are (un)"
 "shaded as well."
 msgstr ""
+"אם אחד החלונות בקבוצה נגלל \\ נפרש, תחול הפעולה על כל יתר החלונות בקבוצה."
 
 msgid ""
 "If one window in the group is activated, all other group windows are raised "
 "as well."
 msgstr ""
+"אם אחד החלונות בקבוצה הופך לפעיל, תחול הפעולה על כל יתר החלונות בקבוצה."
 
 msgid ""
 "If one window in the group is moved, all other group windows are moved as "
 "well."
-msgstr ""
+msgstr "אם אחד החלונות בקבוצה מוזז, תחול הפעולה על כל יתר החלונות בקבוצה."
 
 msgid ""
 "If one window in the group is resized, all other group windows are resized "
 "as well."
 msgstr ""
+"אם משנים את גודל אחד החלונות בקבוצה, תחול הפעולה על כל יתר החלונות בקבוצה."
 
 msgid "If there is only 1 window left in the group, it will be ungrouped."
-msgstr ""
+msgstr "אם נותר רק חלון אחד בקבוצה, היא תפורק."
 
 msgid ""
 "If you don't like the current glow color, you can change it with this key."
-msgstr ""
+msgstr "אם צבע ההילה הנוכחי אינו לטעמך, ניתן להחליפו בעזרת מקש זה."
 
 msgid ""
 "If you have selected some windows, this automatically groups them (Doesn't "
 "work with selection mode 'Normal')."
 msgstr ""
+"אם בחרת מספר חלונות, אפשרות זו מקבצת אותם אוטומטית (לא עובד במצב בחירה "
+"'רגיל')."
 
 msgid "Ignore Group"
-msgstr ""
+msgstr "התעלם מקבוצה"
 
 msgid "Key bindings"
-msgstr ""
+msgstr "צירופי מקשים"
 
 msgid "Line Color"
-msgstr ""
+msgstr "צבע קו"
 
 msgid "Line color of the selection rectangle"
-msgstr ""
+msgstr "צבע הקו של מרובע הבחירה"
 
 msgid "Maximize/unmaximize with group"
-msgstr ""
+msgstr "הגדל אל \\ שחר מן הגודל המירבי עם הקבוצה"
 
 msgid "Metal"
-msgstr ""
+msgstr "מתכת"
 
 msgid "Minimize with group"
-msgstr ""
+msgstr "מזער עם הקבוצה"
 
 msgid ""
 "Mouse pointer movement speed limit (in pixels/second) for the spring model"
-msgstr ""
+msgstr "מגבלת מהירות של סמן העכבר (בפיקסלים לשניה) עבור מודל הקפיצים"
 
 msgid "Move every window in the group"
-msgstr ""
+msgstr "הזז את כל החלונות בקבוצה"
 
 msgid "Murrina"
-msgstr ""
+msgstr "מורינה"
 
 msgid "Opacity of selected windows"
-msgstr ""
+msgstr "אטימות החלונות הנבחרים"
 
 msgid "Play animations on the tab bar e.g. on fade in."
-msgstr ""
+msgstr "הצג אנימציות בשורת התוויות, למשל בעת דהייה."
 
 msgid "Precision"
-msgstr ""
+msgstr "דיוק"
 
 msgid ""
 "Precision of the selection (percentage of the visible window area which must "
 "be selected for the selection to be recognized)."
-msgstr ""
+msgstr "דיוק הבחירה (אחוז שטח החלון הנראה שיש לבחור כדי שהבחירה תוכר ככזו)"
 
 msgid "Raise every window in the group"
-msgstr ""
+msgstr "העלה כל חלון בקבוצה"
 
 msgid "Rectangular glow"
-msgstr ""
+msgstr "הילה מרובעת"
 
 msgid "Remove Group Window"
-msgstr ""
+msgstr "הסר חלון מקבוצה"
 
 msgid "Remove window from group after dropping it outside a tab bar"
-msgstr ""
+msgstr "הסר את החלון מן הקבוצה לאחר השלכתו מחוץ לשורת התוויות"
 
 msgid "Resize every window in the group"
-msgstr ""
+msgstr "שנה גודל כל חלון בקבוצה"
 
 msgid "Saturation of selected windows"
-msgstr ""
+msgstr "רווית חלונות נבחרים"
 
 msgid "Select"
-msgstr ""
+msgstr "בחירה"
 
 msgid "Select Single Window"
-msgstr ""
+msgstr "בחירת חלון בודד"
 
 msgid "Selection"
-msgstr ""
+msgstr "בחירה"
 
 msgid "Selection Color"
-msgstr ""
+msgstr "צבע בחירה"
 
 msgid "Shade with group"
-msgstr ""
+msgstr "גלול עם הקבוצה"
 
 msgid "Simple"
-msgstr ""
+msgstr "פשוט"
 
 msgid "Slot Drag Spring K"
-msgstr ""
+msgstr "קבוע קפיץ לגרירת תווית"
 
 msgid "Slot Dragging"
-msgstr ""
+msgstr "גרירת תווית"
 
 msgid "Slot drag friction"
-msgstr ""
+msgstr "חיכוך לגרירת תווית"
 
 msgid "Space"
-msgstr ""
+msgstr "רווח"
 
 msgid "Speed limit for spring model"
-msgstr ""
+msgstr "מגבלת מהירות עבור מודל קפיצים"
 
 msgid "Spring Konstant used for slot dragging"
-msgstr ""
+msgstr "קבוע קפיץ עבור גרירת תווית"
 
 msgid "Spring friction for slot dragging"
-msgstr ""
+msgstr "חיכוך קפיץ עבור גרירת תווית"
 
 msgid "Tab Bar Show Delay"
-msgstr ""
+msgstr "השהייה לפני הצגת שורת תוויות"
 
 msgid "Tab Base Color"
-msgstr ""
+msgstr "צבע תווית בסיסי"
 
 msgid "Tab Border Color"
-msgstr ""
+msgstr "צבע גבול בסיסי"
 
 msgid "Tab Group"
-msgstr ""
+msgstr "אגד קבוצה"
 
 msgid "Tab Highlight Color"
-msgstr ""
+msgstr "צבע להבלטת תווית"
 
 msgid "Tab Style"
-msgstr ""
+msgstr "סגנון תווית"
 
 msgid "Tab bar visibility time after tab change"
-msgstr ""
+msgstr "משך הצגת שורת התוויות לאחר מעבר תווית"
 
 msgid "Tabbing"
-msgstr ""
+msgstr "תוויות"
 
 msgid "Tabbing Speed"
-msgstr ""
+msgstr "מהירות מעבר תוויות"
 
 msgid "Tabbing Timestep"
-msgstr ""
+msgstr "יחידת זמן עבור מעבר תוויות"
 
 msgid "Tabbing speed"
-msgstr ""
+msgstr "מהירות מעבר תוויות"
 
 msgid "Tabbing timestep"
-msgstr ""
+msgstr "יחידת זמן עבור מעבר תוויות"
 
 msgid "The color of the window title in the tab bar"
-msgstr ""
+msgstr "צבע כותרת החלון בשורת התוויות"
 
 msgid "The key for closing all windows in the group."
-msgstr ""
+msgstr "מקש לסגירת כל החלונות בקבוצה."
 
 msgid "The key for grouping windows."
-msgstr ""
+msgstr "מקש לקיבוץ חלונות."
 
 msgid ""
 "The key for ignoring the group. If this key is pressed, you can do actions "
 "for a single window in the group only."
 msgstr ""
+"מקש להתעלמות מקבוצה. לאחר לחיצה עליו, ניתן לבצע פעולות רק עבור חלון בודד "
+"בקבוצה."
 
 msgid "The key for removing the selected window from its group."
-msgstr ""
+msgstr "מקש להסרת החלון הנבחר מקבוצתו."
 
 msgid "The key for selecting the current window."
-msgstr ""
+msgstr "מקש לבחירת החלון הנוכחי."
 
 msgid "The key for starting selecting windows."
-msgstr ""
+msgstr "מקש להתחלת בחירת חלונות."
 
 msgid "The key for switching to the tab left of the current one."
-msgstr ""
+msgstr "מקש למעבר לתווית שמשמאל לזו הנוכחית."
 
 msgid "The key for switching to the tab right of the current one."
-msgstr ""
+msgstr "מקש למעבר לתווית שמימין לזו הנוכחית."
 
 msgid "The key for toggling the tab mode for the current group."
-msgstr ""
+msgstr "מקש להחלפת מצב התוויות עבור הקבוצה הנוכחית."
 
 msgid "The key for ungrouping the current group."
-msgstr ""
+msgstr "מקש לפירוק הקבוצה הנוכחית."
 
 msgid "The radius for the tab bar edges"
-msgstr ""
+msgstr "רדיוס שולי שורת התוויות."
 
 msgid "The size of the grouped window glow"
-msgstr ""
+msgstr "גודל הילת החלון המקובץ"
 
 msgid "The size of the window thumbs in the task bar"
-msgstr ""
+msgstr "גודל החלונות הממוזערים בשורת התוויות"
 
 msgid "The size of the window title font in the tab bar"
-msgstr ""
+msgstr "גודל גופן כותרת החלון בשורת התוויות"
 
 msgid "The space between the thumbs"
-msgstr ""
+msgstr "הרווח בין החלונות הממוזערים"
 
 msgid "The style of the tab bar"
-msgstr ""
+msgstr "סגנון שורת התוויות"
 
 msgid "The type of the glow"
-msgstr ""
+msgstr "סגנון ההילה"
 
 msgid "The width of the tab bar outline"
-msgstr ""
+msgstr "רוחב קר המתאר של שורת התוויות"
 
 msgid "Thumb Size"
-msgstr ""
+msgstr "גודל חלונות ממוזערים"
 
 msgid "Time (in s) before the tab bar is shown after hovering the title bar"
 msgstr ""
+"משך זמן (בשניות) לפני ששורת התוויות מוצגת לאחר ריחוף על שורת הכותרת עם העכבר"
 
 msgid "Time (in s) the tab bar is visibly after a tab change"
-msgstr ""
+msgstr "משך זמן (בשניות) שבו שורת התוויות נראית לעין לאחר מעבר תווית"
 
 msgid "Time for tab bar pulse animation"
-msgstr ""
+msgstr "זמן אנימצית הבהוב בשורת התוויות"
 
 msgid "Time for tab bar reflex animation"
-msgstr ""
+msgstr "מן אנימצית השתקפות בשורת התוויות"
 
 msgid ""
 "Timespan (in s) after which a grouped window is activated if a window of "
 "another group is dragged over it"
 msgstr ""
+"משך הזמן (בשניות) שלאחריו יופעל חלון מקובץ, במידה שחלון השייך לקבוצה אחרת "
+"ייגרר מעליו"
 
 msgid "Ungroup Windows"
-msgstr ""
+msgstr "פרק קבוצת חלונות"
 
 msgid "Ungroup the windows if only one window is left"
-msgstr ""
+msgstr "פרק את קבוצת החלונות אם רק חלון אחד נשאר"
 
 msgid "Untab the group when closing the top tab window instead of changing tab"
-msgstr ""
+msgstr "שחרר את איגוד התוויות של הקבוצה לאחר סגירת חלון התווית העליונה"
 
 msgid "Untab when closing top tab"
-msgstr ""
+msgstr "שחרר איגוד תוויות לאחר סגירת תווית עליונה"
 
 msgid "Use tab bar animations"
-msgstr ""
+msgstr "הצג אנימציות בשורת התוויות"
 
 msgid "Window Title Font"
-msgstr ""
+msgstr "גופן כותרת חלון"
 
 msgid "Windows that should be allowed to be grouped"
-msgstr ""
+msgstr "חלונות שמותר לצרפם לקבוצות"
 
 msgid "With this plugin you can group and tab windows"
-msgstr ""
+msgstr "בעזרת התקן זה ניתן לקבץ ולאגד חלונות"
 
 msgid "Y distance for spring model"
-msgstr ""
+msgstr "מרחק Y עבור מודל קפיצים"
 
 msgid "Compression Quality"
-msgstr ""
+msgstr "איכות דחיסה"
 
 msgid "JPEG"
-msgstr ""
+msgstr "JPEG"
 
 msgid "JPEG image format plugin"
-msgstr ""
+msgstr "התקן תסדיר תמונה JPEG"
 
 msgid "Quality of compression when saving JPEG images"
-msgstr ""
+msgstr "איכות הדחיסה בעת שמירת תמונות JPEG"
 
 msgid "Background/Window brightness."
-msgstr ""
+msgstr "בהירות רקע \\ חלון."
 
 msgid "Background/Window saturation."
-msgstr ""
+msgstr "רווית רקע \\ חלון."
 
 msgid "Fade In/Out Time"
-msgstr ""
+msgstr "משך דהייה פנימה\\החוצה"
 
 msgid "Fade In/Out Time."
-msgstr ""
+msgstr "משך דהייה פנימה\\החוצה."
 
 msgid "Login"
-msgstr ""
+msgstr "התחברות"
 
 msgid "Login Window Match"
-msgstr ""
+msgstr "תבנית חלון התחברות"
 
 msgid "Login Window match"
-msgstr ""
+msgstr "תבנית חלון התחברות"
 
 msgid "Login/Logout"
-msgstr ""
+msgstr "התחברות\\התנתקות"
 
 msgid "Login/Logout effect"
-msgstr ""
+msgstr "אפקט התחברות\\התנתקות"
 
 msgid "Logout"
-msgstr ""
+msgstr "התנתקות"
 
 msgid "Logout Window Match"
-msgstr ""
+msgstr "תבנית חלון התנתקות"
 
 msgid "Logout Window match"
-msgstr ""
+msgstr "תבנית חלון התנתקות"
 
 msgid "Window opacity."
-msgstr ""
+msgstr "אטימות חלון."
 
 msgid "Border color"
-msgstr ""
+msgstr "צבע גבול"
 
 msgid "Border width"
-msgstr ""
+msgstr "רוחב גבול"
 
 msgid "Border widtht."
-msgstr ""
+msgstr "רוחב הגבול."
 
 msgid "Box height."
-msgstr ""
+msgstr "גובה קופסה."
 
 msgid "Box width."
-msgstr ""
+msgstr "רוחב קופסה."
 
 msgid "Clip mask"
-msgstr ""
+msgstr "מסיכת גזירה"
 
 msgid "Clip mask."
-msgstr ""
+msgstr "מסיכת גזירה."
 
 msgid "Fisheye"
-msgstr ""
+msgstr "עין דג"
 
 msgid "Height"
-msgstr ""
+msgstr "גובה"
 
 msgid "Image overlay"
-msgstr ""
+msgstr "תמונת כיסוי"
 
 msgid "Keep fully on screen"
-msgstr ""
+msgstr "שמור את הכל על המסך"
 
 msgid "Keep fully on screen."
-msgstr ""
+msgstr "שמור את הכל על המסך."
 
 msgid "Magnifier"
-msgstr ""
+msgstr "זכוכית מגדלת"
 
 msgid "Magnifier box"
-msgstr ""
+msgstr "תיבת זכוכית מגדלת"
 
 msgid "Magnifier image"
-msgstr ""
+msgstr "תמונת זכוכית מגדלת"
 
 msgid "Magnifier image."
-msgstr ""
+msgstr "תמונת זכוכית מגדלת."
 
 msgid "Mode"
-msgstr ""
+msgstr "מצב"
 
 msgid "Mode."
-msgstr ""
+msgstr "מצב."
 
 msgid "Radius"
-msgstr ""
+msgstr "רדיוס"
 
 msgid "Radius of the magnification area."
-msgstr ""
+msgstr "רדיוס השטח המוגדל."
 
 msgid "Width"
-msgstr ""
+msgstr "רוחב"
 
 msgid "X offset of the cursor"
-msgstr ""
+msgstr "הסטת X של הסמן"
 
 msgid "X offset of the cursor."
-msgstr ""
+msgstr "הסטת X של הסמן."
 
 msgid "Y offset of the cursor"
-msgstr ""
+msgstr "הסטת Y של הסמן"
 
 msgid "Y offset of the cursor."
-msgstr ""
+msgstr "הסטת Y של הסמן."
 
 msgid "Zoom factor for keyboard initiated magnifier."
-msgstr ""
+msgstr "מקדם תקריב עבור זכוכית מגדלת המופעלת בעזרת המקלדת."
 
 msgid "Ignore already overlapping windows in the calculations"
-msgstr ""
+msgstr "התעלם מחלונות חופפים לצורך החישובים"
 
 msgid "Ignore sticky windows in the calculations"
-msgstr ""
+msgstr "התעלם מחלונות דביקים לצורך החישובים"
 
 msgid "Maximumize"
-msgstr ""
+msgstr "התרחב בחלל הפנוי"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr ""
+"מרחיב את החלונות בחלל הפנוי (משנה את גודלם כדי שיתאימו למשטח המסך הזמין)."
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
 "maximumize window."
 msgstr ""
+"בעת חישוב החלל עבור הרחבת חלון בחלל הפנוי, התייחס לחלונות דביקים כאילו אינם "
+"קיימים."
 
 msgid ""
 "Treat windows that are already overlapping with the current window as non-"
 "existant when calculating space to use for the maximumize window."
 msgstr ""
+"בעת חישוב החלל עבור הרחבת חלון בחלל הפנוי, התייחס לחלונות החופפים לחלון "
+"הנוכחי כאילו אינם קיימים."
 
 msgid ""
 "Trigger a resize of the window currently focused so it fits as much of the "
 "available screenspae as possible."
-msgstr ""
+msgstr "משנה את גודל החלון הפעיל כדי להתאים לכמה שיותר מן החלל הפנוי על המסך."
 
 msgid "Trigger maximumize"
-msgstr ""
+msgstr "הרחב לחלל הפנוי"
 
 msgid "Accumulation buffer"
-msgstr ""
+msgstr "חוצץ צבירה"
 
 msgid "Activate"
-msgstr ""
+msgstr "הפעל"
 
 msgid "Execute Motion Blur if the screen is transformed."
-msgstr ""
+msgstr "הפעל טשטוש תנועה אם צורת המסך משתנה."
 
 msgid "Motion Blur Strength"
-msgstr ""
+msgstr "עוצמת טשטוש תנועה"
 
 msgid "Motion Blur mode"
-msgstr ""
+msgstr "אופן טשטוש תנועה"
 
 msgid "Motion Blur on Transformed Screen"
-msgstr ""
+msgstr "טשטוש תנועה בשינוי מסך"
 
 msgid "Motion Blur render mode."
-msgstr ""
+msgstr "אופן ציור טשטוש תנועה."
 
 msgid "Motion Blur strength."
-msgstr ""
+msgstr "עוצמת טשטוש תנועה."
 
 msgid "Motion blur"
-msgstr ""
+msgstr "טשטוש תנועה"
 
 msgid "Motion blur effect"
-msgstr ""
+msgstr "אפקט טשטוש תנועה"
 
 msgid "Texture Copy"
-msgstr ""
+msgstr "העתקת טקסטורות"
 
 msgid "Toggle Motion Blur"
-msgstr ""
+msgstr "הפעל\\נטרל טשטוש תנועה"
 
 msgid "Toggle motion Blur effect."
-msgstr ""
+msgstr "הפעל\\נטרל אפקט טשטוש תנועה."
 
 msgid "Visibility/Performance"
-msgstr ""
+msgstr "מראה\\ביצועים"
 
 msgid "Action"
-msgstr ""
+msgstr "פעולה"
 
 msgid "Action that is to be invoked."
-msgstr ""
+msgstr "הפעולה שתופעל."
 
 msgid "Assign mousegestures to any existing action"
-msgstr ""
+msgstr "הצמד מחוות עכבר לכל פעולה קיימת שהיא"
 
 msgid "Detect Diagonal Movements"
-msgstr ""
+msgstr "זהה תנועות באלכסון"
 
 msgid "Gesture"
-msgstr ""
+msgstr "מחווה"
 
 msgid "Gesture assignment"
-msgstr ""
+msgstr "הצמדת מחוות"
 
 msgid "Gestures"
-msgstr ""
+msgstr "מחוות"
 
 msgid ""
 "If this option is selected, diagonal movements are detected, which may lead "
 "to a decreased detection accuracy."
 msgstr ""
+"אם אפשרות זו נבחרה ניתן יהיה לזהות תנועות אלכסוניות, מה שעלול לפגוע בדייקנות "
+"הזיהוי."
 
 msgid "Mouse gesture to assign an action to."
-msgstr ""
+msgstr "מחוות עכבר שתוצמד לפעולה."
 
 msgid "Mousegestures"
-msgstr ""
+msgstr "מחוות עכבר"
 
 msgid "Plugin"
-msgstr ""
+msgstr "התקן"
 
 msgid "Plugin the action belongs to."
-msgstr ""
+msgstr "ההתקן שהפעולה שייכת אליו."
 
 msgid "Start gesture"
-msgstr ""
+msgstr "התחל מחווה"
 
 msgid ""
 "How often to poll the mouse position, in miliseconds. Reduce this to reduce "
 "choppy behavior."
 msgstr ""
+"תדירות בדיקת מיקום העכבר במילישניות. הקטנת ערך זה תפחית את קופצניות התזוזה."
 
 msgid "Misc"
-msgstr ""
+msgstr "שונות"
 
 msgid "Mouse Poll Interval"
-msgstr ""
+msgstr "מרווח זמן לבדיקת עכבר"
 
 msgid "Mouse position polling"
-msgstr ""
+msgstr "סקר מיקום עכבר"
 
 msgid "Updates the mouse pointer position from the xserver"
-msgstr ""
+msgstr "מקבל עדכונים משרת ה-X על מיקום העכבר "
 
 msgid "Begin Gesture"
-msgstr ""
+msgstr "התחל מחווה"
 
 msgid "Begin Mouse Gesture"
-msgstr ""
+msgstr "התחל מחוות עכבר"
 
 msgid "Mouse switch"
-msgstr ""
+msgstr "מעבר עכבר"
 
 msgid "Switch viewport in response to mouse gesture"
-msgstr ""
+msgstr "עבור למשטח עבודה אחר בתגובה למחוות עכבר"
 
 msgid "Also negate window decorations, not only the window contents."
 msgstr ""
 
 msgid "Exclude Windows"
-msgstr ""
+msgstr "התעלם מחלונות"
 
 msgid "Neg Windows"
-msgstr ""
+msgstr "שלול חלונות"
 
+#, fuzzy
 msgid "Negate Decorations"
-msgstr ""
+msgstr "השתקפות מסגרות"
 
 msgid "Negative"
-msgstr ""
+msgstr "תשליל"
 
 msgid "Toggle Screen Negative"
-msgstr ""
+msgstr "הפעל\\נטרל תשליל מסך"
 
 msgid "Toggle Window Negative"
-msgstr ""
+msgstr "הפעל\\נטרל תשליל חלון"
 
 msgid "Toggle active window negative"
-msgstr ""
+msgstr "הפעל\\נטרל תשליל בחלון הפעיל"
 
 msgid "Toggle screen negative"
-msgstr ""
+msgstr "הפעל\\נטרל תשליל מסך"
 
 msgid "Used to set a window or screen negative"
-msgstr ""
+msgstr "צובע חלון או מסך כתשליל"
 
 msgid "Windows to be negative by default"
-msgstr ""
+msgstr "חלונות בצבעי תשליל כברירת מחדל"
 
 msgid "Windows to exclude from negating"
-msgstr ""
+msgstr "חלונות שאין לצבוע כתשליל"
 
 msgid "Debug"
-msgstr ""
+msgstr "דיבוג"
 
 msgid "Display errors and other messages using libnotify."
-msgstr ""
+msgstr "מציג הודעות שגיאה ומסרים אחרים באמצעות libnotify."
 
 msgid "Error"
-msgstr ""
+msgstr "שגיאה"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "הודעות שגיאה"
 
 msgid "Fatal"
-msgstr ""
+msgstr "בעיה פטלית"
 
 msgid "Hide Timeout"
-msgstr ""
+msgstr "זמן לפני הסתרה"
 
 msgid "Info"
-msgstr ""
+msgstr "מידע"
 
 msgid "Maximum Log Level"
-msgstr ""
+msgstr "רמת לוג מירבית"
 
 msgid "The maximum log level to display"
-msgstr ""
+msgstr "רמת הלוג המירבית שתוצג"
 
 msgid ""
 "Timeout (in seconds) before hiding the notification, set to -1 for system "
 "default and 0 for indefinite"
 msgstr ""
+"פרק זמן (בשניות) לפני הסתרת ההודעה. 1- פירושו ברירת המחדל של המערכת, ו-0 "
+"פירושו ללא הגבלת זמן."
 
 msgid "Warning"
-msgstr ""
+msgstr "אזהרה"
 
 msgid "Active Opacity"
-msgstr ""
+msgstr "אטימות חלון פעיל"
 
 msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
 "already."
-msgstr ""
+msgstr "עקוף השהייה כאשר התקן האיטום כבר מפחית את אטימותו של חלון כלשהו."
 
 msgid "Bypass delay when the new active window is the focused window."
-msgstr ""
+msgstr "עקוף השהייה כאשר החלון הפעיל החדש הוא החלון בעל המוקד."
 
 msgid "Delay until Opacification"
-msgstr ""
+msgstr "השהייה לפני איטום"
 
 msgid ""
 "Do not wait if the window we are hovering is the focused window. This allows "
 "us to instantly see the focused window. You probably want to disable this if "
 "you are not using 'Click to Focus'."
 msgstr ""
+"אם החלון עליו מרחף סמן העכבר הוא החלון הפעיל, אל תשתהה. הדבר מאפשר לראות "
+"מייד את החלון הפעיל. אם אינכם משתמשים ב-'הקלקה למיקוד' סביר שתעדיפו לבטל זאת."
 
 msgid "Make windows easily visible by hovering the mouse over them"
-msgstr ""
+msgstr "הצג את החלונות בקלות על ידי העברת סמן העכבר מעליהם"
 
 msgid "Only increase opacity if a window is blocking"
-msgstr ""
+msgstr "הגבר אטימות רק אם קיים חלון חוסם"
 
 msgid ""
 "Only increase the opacity on the targeted window if it has one or more "
 "windows blocking it from view."
-msgstr ""
+msgstr "הגבר את אטימות החלון הנבחר רק אם יש מעליו חלונות המסתירים אותו."
 
 msgid "Opacify"
-msgstr ""
+msgstr "איטום"
 
 msgid "Opacity Levels"
-msgstr ""
+msgstr "רמות אטימות"
 
 msgid "Passive Opacity"
-msgstr ""
+msgstr "אטימות סבילה"
 
 msgid "Reset opacity to original values when toggling"
-msgstr ""
+msgstr "החזר אטימות לערכה המקורי בעת הפעלה\\נטרול"
 
 msgid ""
 "Reset the opacity of all windows modified by opacify when toggling Opacify "
 "with the defined key-combination."
 msgstr ""
+"החזר את אטימותם של כל החלונות שהושפעו על ידי התקן האיטום כאשר ההתקן מופעל או "
+"מנוטרל באמצעות צירוף מקשים."
 
 msgid ""
 "The delay (in ms) before Opacify changes opacity after the active window has "
 "changed."
 msgstr ""
+"השהייה (במילישניות) לפני שהתקן האיטום משנה את האטימות לאחר החלפת החלון הפעיל."
 
 msgid ""
 "The maximum opacity percentage a window blocking the current targeted window "
 "can have. A blocking window will have either this opacity or the preset "
 "opacity, whichever is lower."
 msgstr ""
+"אחוז האטימות המירבי שחלון החוסם את החלון הנבחר רשאי להגיע אליו. חלון חוסם "
+"יהיה בעל אטימות זו או האטימות הקבועה מראש (הנמוכה מביניהן)."
 
 msgid ""
 "The minimum opacity percentage to ensure a targeted window has. A target "
 "window will have either this opacity or the preset opacity, whichever is "
 "higher."
 msgstr ""
+"אחוז האטימות המזערי של חלון נבחר. חלון נבחר יהיה בעל אטימות זו או האטימות "
+"הקבועה מראש (הגבוהה מביניהן)."
 
 msgid ""
 "This enables you to let Opacify instantly opacify new windows when you're "
 "already making one or more windows invisible. Makes for faster behavior "
 "while looking through layers of hidden windows."
 msgstr ""
+"הנח להתקן האיטום לפעול מייד על חלונות חדשים כאשר אחד או יותר מן החלונות כבר "
+"הפך לשקוף. כך ניתן להביט מהר יותר דרך שכבות של חלונות."
 
 msgid "Toggle Opacify"
-msgstr ""
+msgstr "הפעל\\נטרל איטום"
 
 msgid "Toggle Opacify on by default"
-msgstr ""
+msgstr "הפעל איטום כברירת מחדל"
 
 msgid ""
 "Use this to enable/disable Opacify on the fly. Previously opacified windows "
 "will not be reset once you disable it like this."
 msgstr ""
+"משמש להפעלת\\ניטרול איטום תוך כדי עבודה. חלונות שכבר הופעל עליהם איטום לא "
+"ישוחזרו אם ההתקן ינוטרל בדרך זו."
 
 msgid "Windows that should be opacified."
-msgstr ""
+msgstr "חלונות שיש להפעיל עליהם איטום."
 
 msgid ""
 "With this enabled, opacify will be on when you load Opacify, which is "
 "usually when you start Compiz."
-msgstr ""
+msgstr "משמש להפעלת התקן האיטום בעת טעינתו, המתרחשת לרוב בעת טעינת קומפיז."
 
 msgid "Animation speed"
-msgstr ""
+msgstr "מהירות אנימציה"
 
 msgid "Animation timestep"
-msgstr ""
+msgstr "יחידת זמן אנימציה"
 
 msgid "Avoid Offscreen"
-msgstr ""
+msgstr "אל תצא מגבולות המסך"
 
 msgid "Avoids putting window borders offscreen"
-msgstr ""
+msgstr "הגדרה זו מונעת הצבת גבולות חלונות מחוץ למסך"
 
 msgid "Move window arbitrarily by passing x, y and type."
-msgstr ""
+msgstr "הזז חלונות באופן שרירותי על ידי העברת x, y, וסוג."
 
 msgid "Move window to a certain viewport"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה מסוים"
 
 msgid "Move window to the bottom edge"
-msgstr ""
+msgstr "הזז חלון אל קצה המסך התחתון"
 
 msgid "Move window to the bottom left corner"
-msgstr ""
+msgstr "הזז חלון אל הפינה השמאלית התחתונה"
 
 msgid "Move window to the bottom right corner"
-msgstr ""
+msgstr "הזז חלון אל הפינה הימנית התחתונה"
 
 msgid "Move window to the center"
-msgstr ""
+msgstr "הזז חלון אל המרכז"
 
 msgid "Move window to the last position"
-msgstr ""
+msgstr "הזז חלון אל המיקום האחרון"
 
 msgid "Move window to the left edge"
-msgstr ""
+msgstr "הזז חלון אל קצה המסך השמאלי"
 
 msgid "Move window to the pointer position"
-msgstr ""
+msgstr "הזז חלון אל מיקום הסמן"
 
 msgid "Move window to the right edge"
-msgstr ""
+msgstr "הזז חלון אל קצה המסך הימני"
 
 msgid "Move window to the top edge"
-msgstr ""
+msgstr "הזז חלון אל קצה המסך העליון"
 
 msgid "Move window to the top left corner"
-msgstr ""
+msgstr "הזז חלון אל הפינה השמאלית העליונה"
 
 msgid "Move window to the top right corner"
-msgstr ""
+msgstr "הזז חלון אל הפינה הימנית העליונה"
 
 msgid "Move window to the viewport on the bottom"
-msgstr ""
+msgstr "הזז חלון אל משטח העבודה שמתחת"
 
 msgid "Move window to the viewport on the left"
-msgstr ""
+msgstr "הזז חלון אל משטח העבודה שמשמאל"
 
 msgid "Move window to the viewport on the right"
-msgstr ""
+msgstr "הזז חלון אל משטח העבודה שמימין"
 
 msgid "Move window to the viewport on the top"
-msgstr ""
+msgstr "הזז חלון אל משטח העבודה שמלמעלה"
 
 msgid "Move window to viewport 1"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 1"
 
 msgid "Move window to viewport 10"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 10"
 
 msgid "Move window to viewport 11"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 11"
 
 msgid "Move window to viewport 12"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 12"
 
 msgid "Move window to viewport 2"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 2"
 
 msgid "Move window to viewport 3"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 3"
 
 msgid "Move window to viewport 4"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 4"
 
 msgid "Move window to viewport 5"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 5"
 
 msgid "Move window to viewport 6"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 6"
 
 msgid "Move window to viewport 7"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 7"
 
 msgid "Move window to viewport 8"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 8"
 
 msgid "Move window to viewport 9"
-msgstr ""
+msgstr "הזז חלון אל משטח עבודה 9"
 
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
-msgstr ""
+msgstr "מספר הפיקסלים מקצה המסך התחתון שבהם יעצור החלון מתנועה"
 
 msgid "Number of pixels from the left edge where the window will come to rest"
-msgstr ""
+msgstr "מספר הפיקסלים מקצה המסך השמאלי שבהם יעצור החלון מתנועה"
 
 msgid "Number of pixels from the right edge where the window will come to rest"
-msgstr ""
+msgstr "מספר הפיקסלים מקצה המסך הימני שבהם יעצור החלון מתנועה"
 
 msgid "Number of pixels from the top edge where the window will come to rest"
-msgstr ""
+msgstr "מספר הפיקסלים מקצה המסך העליון שבהם יעצור החלון מתנועה"
 
 msgid "Pad Bottom"
-msgstr ""
+msgstr "ריפוד תחתון"
 
 msgid "Pad Left"
-msgstr ""
+msgstr "ריפוד שמאלי"
 
 msgid "Pad Right"
-msgstr ""
+msgstr "ריפוד ימני"
 
 msgid "Pad Top"
-msgstr ""
+msgstr "ריפוד עליון"
 
 msgid "Padding"
-msgstr ""
+msgstr "ריפוד"
 
 msgid "Put"
-msgstr ""
+msgstr "הצבה"
 
 msgid "Put Bottom"
-msgstr ""
+msgstr "הצב מטה"
 
 msgid "Put Bottom Left"
-msgstr ""
+msgstr "הצב מטה משמאל"
 
 msgid "Put Bottom Right"
-msgstr ""
+msgstr "הצב מטה מימין"
 
 msgid "Put Center"
-msgstr ""
+msgstr "הצב במרכז"
 
 msgid "Put Left"
-msgstr ""
+msgstr "הצב בשמאל"
 
 msgid "Put On Viewport"
-msgstr ""
+msgstr "הצב במשטח עבודה"
 
 msgid "Put On Viewport 1"
-msgstr ""
+msgstr "הצב במשטח עבודה 1"
 
 msgid "Put On Viewport 10"
-msgstr ""
+msgstr "הצב במשטח עבודה 10"
 
 msgid "Put On Viewport 11"
-msgstr ""
+msgstr "הצב במשטח עבודה 11"
 
 msgid "Put On Viewport 12"
-msgstr ""
+msgstr "הצב במשטח עבודה 12"
 
 msgid "Put On Viewport 2"
-msgstr ""
+msgstr "הצב במשטח עבודה 2"
 
 msgid "Put On Viewport 3"
-msgstr ""
+msgstr "הצב במשטח עבודה 3"
 
 msgid "Put On Viewport 4"
-msgstr ""
+msgstr "הצב במשטח עבודה 4"
 
 msgid "Put On Viewport 5"
-msgstr ""
+msgstr "הצב במשטח עבודה 5"
 
 msgid "Put On Viewport 6"
-msgstr ""
+msgstr "הצב במשטח עבודה 6"
 
 msgid "Put On Viewport 7"
-msgstr ""
+msgstr "הצב במשטח עבודה 7"
 
 msgid "Put On Viewport 8"
-msgstr ""
+msgstr "הצב במשטח עבודה 8"
 
 msgid "Put On Viewport 9"
-msgstr ""
+msgstr "הצב במשטח עבודה 9"
 
 msgid "Put Pointer"
-msgstr ""
+msgstr "הצב על סמן"
 
 msgid "Put Right"
-msgstr ""
+msgstr "הצב בימין"
 
 msgid "Put Top"
-msgstr ""
+msgstr "הצב מעלה"
 
 msgid "Put Top Left"
-msgstr ""
+msgstr "הצב מעלה משמאל"
 
 msgid "Put Top Right"
-msgstr ""
+msgstr "הצב מעלה מימין"
 
 msgid "Put pointer uses the center of the window"
-msgstr ""
+msgstr "הצבה על הסמן מוגדרת על פי מרכז החלון"
 
 msgid "Put to adjacent viewport"
-msgstr ""
+msgstr "הצב במשטח עבודה סמוך"
 
 msgid "Put to arbitrary viewport"
-msgstr ""
+msgstr "הצב במשטח עבודה כלשהו"
 
 msgid "Put window"
-msgstr ""
+msgstr "הצב חלון"
 
 msgid "Put within viewport"
-msgstr ""
+msgstr "הצב בתוך משטח עבודה"
 
 msgid "Restore Position"
-msgstr ""
+msgstr "שחזר מיקום"
 
 msgid "Unfocus Window"
-msgstr ""
+msgstr "בטל את מיקוד החלון"
 
 msgid "Unfocus windows that are moved off the viewport"
-msgstr ""
+msgstr "בטל את המיקוד על חלון שהוזז אל מחוץ למשטח העבודה"
 
 msgid "Viewport Bottom"
-msgstr ""
+msgstr "משטח עבודה תחתון"
 
 msgid "Viewport Left"
-msgstr ""
+msgstr "משטח עבודה שמאלי"
 
 msgid "Viewport Right"
-msgstr ""
+msgstr "משטח עבודה ימני"
 
 msgid "Viewport Top"
-msgstr ""
+msgstr "משטח עבודה עליון"
 
 msgid "Window Center"
-msgstr ""
+msgstr "מרכז חלון"
 
 msgid "Alpha Dependence Threshold"
-msgstr ""
+msgstr "סף תלות באלפא"
 
 msgid "Alpha dependence threshold."
-msgstr ""
+msgstr "סף תלות באלפא."
 
 msgid "Draw Reflection for decorations."
-msgstr ""
+msgstr "צייר השתקפות על מסגרות חלונות."
 
 msgid "Draw Reflection for windows."
-msgstr ""
+msgstr "צייר השתקפות על חלונות."
 
 msgid "Draws reflections"
-msgstr ""
+msgstr "ציור השתקפויות"
 
 msgid "Move the reflection on window move."
-msgstr ""
+msgstr "הזז את ההשתקפות בעת הזזת חלון."
 
 msgid "Moving reflection"
-msgstr ""
+msgstr "השתקפות נעה"
 
 msgid "Reflection Image"
-msgstr ""
+msgstr "תמונה משתקפת"
 
 msgid "Reflection Image file"
-msgstr ""
+msgstr "קבוץ תמונה משתקפת"
 
 msgid "Reflection Window Match"
-msgstr ""
+msgstr "סוגי חלונות להשתקפות"
 
 msgid "Reflection for Decorations"
-msgstr ""
+msgstr "השתקפות מסגרות"
 
 msgid "Reflection for Windows"
-msgstr ""
+msgstr "השתקפות חלונות"
 
 msgid "Window match"
-msgstr ""
+msgstr "סוגי חלונות"
 
 msgid "Color 1 of the gradient background."
-msgstr ""
+msgstr "צבע 1 עבור הרקע המדורג."
 
 msgid "Color 2 of the gradient background."
-msgstr ""
+msgstr "צבע 2 עבור הרקע המדורג."
 
 msgid "Color 3 of the gradient background."
-msgstr ""
+msgstr "צבע 3 עבור הרקע המדורג."
 
 msgid "Color of text on resize popup."
-msgstr ""
+msgstr "צבע הטקסט בחלונית שינוי הגודל."
 
 msgid "Display info on resize similar to metacity"
-msgstr ""
+msgstr "הצג מידע אודות שינוי גודל בדומה ל-metacity"
 
 msgid "Fade time (in ms) for popup window"
-msgstr ""
+msgstr "משך דהיית החלונית (במילישניות)"
 
 msgid "Gradient Color 1"
-msgstr ""
+msgstr "צבע מדורג 1"
 
 msgid "Gradient Color 2"
-msgstr ""
+msgstr "צבע מדורג 2"
 
 msgid "Gradient Color 3"
-msgstr ""
+msgstr "צבע מדורג 3"
 
 msgid "Resize Info"
-msgstr ""
+msgstr "פרטי שינוי גודל"
 
 msgid ""
 "Show resize info for all windows as opposed to just windows with a resize "
 "increment of greater than 1."
 msgstr ""
+"מציג מידע על שינוי הגודל של כל החלונות, ולא רק על זה של חלונות ששינוי הגודל "
+"המצטבר שלהם גדול מ-1."
 
 msgid "Show resize info for all windows."
-msgstr ""
+msgstr "הצג פרטי שינוי גודל עבור כל החלונות."
 
 msgid "Text color."
-msgstr ""
+msgstr "צבע טקסט."
 
 msgid "Above ring"
-msgstr ""
+msgstr "מעל הטבעת"
 
 msgid "Allow Mouse Selection"
-msgstr ""
+msgstr "אפשר בחירה בעזרת העכבר"
 
 msgid ""
 "Allow the selection of windows by just clicking on them while the switcher "
 "is active."
-msgstr ""
+msgstr "אפשר בחירה חלונות על ידי הקלקה עליהם בזמן שהמעביר פעיל"
 
 msgid ""
 "Amount of opacity (in percent) for windows in the ring which are not selected"
-msgstr ""
+msgstr "אחוז האטימות של החלונות בטבעת שלא נבחרו"
 
 msgid "Background Color"
-msgstr ""
+msgstr "צבע רקע"
 
 msgid "Background color for the window title"
-msgstr ""
+msgstr "צבע רקע כותרת החלון"
 
 msgid "Below ring"
-msgstr ""
+msgstr "מתחת לטבעת"
 
 msgid "Big"
-msgstr ""
+msgstr "גדול"
 
 msgid "Bold Font"
-msgstr ""
+msgstr "גופן מודגש"
 
 msgid "Centered on screen"
-msgstr ""
+msgstr "ממורכז על המסך"
 
 msgid ""
 "Changes the minimum brightness factor for windows in the ring. The farer "
 "away windows are, the less bright are they."
 msgstr ""
+"קובע את מקדם הבהירות המזערי עבור חלונות בטבעת. חלונות מרוחקים יותר יהיו כהים "
+"יותר."
 
 msgid ""
 "Changes the minimum scale factor for windows in the ring. The farer away "
 "windows are, the smaller are they."
 msgstr ""
+"קובע את מקדם שינוי הגודל המזערי עבור חלונות בטבעת. חלונות מרוחקים יותר יהיו "
+"קטנים יותר."
 
 msgid "Darken Background"
-msgstr ""
+msgstr "הכהה רקע"
 
 msgid "Darken background when showing the ring"
-msgstr ""
+msgstr "הכהה את הרקע בעת הצגת הטבעת"
 
 msgid "Emblem"
-msgstr ""
+msgstr "סמל"
 
 msgid "Font color for the window title"
-msgstr ""
+msgstr "צבע גופן כותרת החלון"
 
 msgid "Font size for the window title"
-msgstr ""
+msgstr "גודל גופן כותרת החלון"
 
 msgid "Inactive Window Opacity"
-msgstr ""
+msgstr "אטימות חלון לא פעיל"
 
 msgid "Maximum horizontal size of a thumbnail in the ring"
-msgstr ""
+msgstr "גודל אופקי מירבי של תמונה ממוזערת בטבעת"
 
 msgid "Maximum vertical size of a thumbnail in the ring"
-msgstr ""
+msgstr "גודל אנכי מירבי של תמונה ממוזערת בטבעת"
 
 msgid "Minimum Brightness Factor"
-msgstr ""
+msgstr "מקדם בהירות מזערי"
 
 msgid "Minimum Scale Factor"
-msgstr ""
+msgstr "מקדם שינוי גודל מזערי"
 
 msgid "Next Window"
-msgstr ""
+msgstr "החלון הבא"
 
 msgid "Next Window (All Workspaces)"
-msgstr ""
+msgstr "החלון הבא (כל משטחי העבודה)"
 
 msgid "Next Window (Group)"
-msgstr ""
+msgstr "החלון הבא (קבוצה)"
 
 msgid "Overlay Icon"
-msgstr ""
+msgstr "צלמית מודבקת"
 
 msgid "Overlay an icon on windows in the ring"
-msgstr ""
+msgstr "הדבק צלמית על חלונות בטבעת"
 
 msgid "Previous Window"
-msgstr ""
+msgstr "החלון הקודם"
 
 msgid "Previous Window (All Workspaces)"
-msgstr ""
+msgstr "החלון הקודם (כל משטחי העבודה)"
 
 msgid "Previous Window (Group)"
-msgstr ""
+msgstr "החלון הקודם (קבוצה)"
 
 msgid "Ring Height"
-msgstr ""
+msgstr "גובה הטבעת"
 
 msgid "Ring Switcher"
-msgstr ""
+msgstr "מעביר טבעת"
 
 msgid "Ring Width"
-msgstr ""
+msgstr "רוחב הטבעת"
 
 msgid "Ring Windows"
-msgstr ""
+msgstr "חלונות בטבעת"
 
 msgid "Ring appearance"
-msgstr ""
+msgstr "מראה הטבעת"
 
 msgid "Ring height (in percent of the screen height)"
-msgstr ""
+msgstr "גובה הטבעת (באחוזים מגובה המסך)"
 
 msgid "Ring speed"
-msgstr ""
+msgstr "מהירות הטבעת"
 
 msgid "Ring timestep"
-msgstr ""
+msgstr "יחידת זמן טבעת"
 
 msgid "Ring width (in percent of the screen width)"
-msgstr ""
+msgstr "רוחב הטבעת (באחוזים מרוחב המסך)"
 
 msgid "Rotate Ring Clockwise on Next"
-msgstr ""
+msgstr "בעת העברה לחלון הבא, סובב הטבעת בכיוון השעון"
 
 msgid "Rotate ring clockwise for next window instead of counterclockwise"
-msgstr ""
+msgstr "בעת העברה לחלון הבא, סובב את הטבעת בכיוון השעון במקום נגדו"
 
 msgid "Selects if the window title should be displayed in bold font or not."
-msgstr ""
+msgstr "קובע אם כותרת החלון תוצג בגופן מודגש אם לאו."
 
 msgid "Selects where to place the window title."
-msgstr ""
+msgstr "קובע את מיקום כותרת החלון."
 
 msgid "Show Minimized"
-msgstr ""
+msgstr "הצג ממוזערים"
 
 msgid "Show Window Title"
-msgstr ""
+msgstr "הצג כותרת חלון"
 
 msgid ""
 "Show switcher if not visible and select next window of the current "
 "application."
 msgstr ""
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא של היישום הנוכחי."
 
 msgid "Show switcher if not visible and select next window out of all windows."
 msgstr ""
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא מבין כל החלונות."
 
 msgid "Show switcher if not visible and select next window."
-msgstr ""
+msgstr "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא."
 
 msgid ""
 "Show switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם של היישום הנוכחי."
 
 msgid ""
 "Show switcher if not visible and select previous window out of all windows."
 msgstr ""
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם מבין כל החלונות."
 
 msgid "Show switcher if not visible and select previous window."
-msgstr ""
+msgstr "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם."
 
 msgid "Show window title of currently selected window."
-msgstr ""
+msgstr "הצג את כותרת החלון הנבחר."
 
 msgid "Show windows that are minimized, shaded or in show desktop mode."
-msgstr ""
+msgstr "הצג חלונות ממוזערים, גלולים או מוסתרים על ידי מצב 'הצג שולחן עבודה'."
 
 msgid "Text Placement"
-msgstr ""
+msgstr "מיקום טקסט"
 
 msgid "Thumbnail Height"
-msgstr ""
+msgstr "גובה תמונה מוקטנת"
 
 msgid "Thumbnail Width"
-msgstr ""
+msgstr "רוחב תמונה מוקטנת"
 
 msgid "Window title display"
-msgstr ""
+msgstr "הצגת כותרת חלון"
 
 msgid "Windows that should be shown in ring"
-msgstr ""
+msgstr "חלונות שיש להציג בטבעת"
 
 msgid "All windows"
-msgstr ""
+msgstr "כל החלונות"
 
 msgid "Background color of the window title"
-msgstr ""
+msgstr "צבע רקע כותרת החלון"
 
 #, fuzzy
 msgid "Close Window"
-msgstr "חלונות 3D"
+msgstr "ריצוף חלונות"
 
 #, fuzzy
 msgid "Close window while in scale mode"
-msgstr "הרם חלונות בעת סיבוב הקוביה"
+msgstr "סגור חלונות במצב מבט על"
 
 msgid "Close windows while in scale mode"
-msgstr ""
+msgstr "סגור חלונות במצב מבט על"
 
 msgid "Color used for highlighting the hovered window"
-msgstr ""
+msgstr "צבע להדגשת חלון בעת מעבר עכבר"
 
 msgid "Constrain Pull To Screen"
 msgstr ""
 
 msgid "Draw Window Highlight"
-msgstr ""
+msgstr "צייר הדגשת חלון"
 
 msgid "Exit Scale On Pull"
 msgstr ""
@@ -3153,684 +3187,706 @@ msgid "Exit scale mode after a window has been pulled."
 msgstr ""
 
 msgid "Font color of the window title"
-msgstr ""
+msgstr "צבע גופן כותרת חלון"
 
 msgid "Font size for window title display"
-msgstr ""
+msgstr "גודל גופן להצגת כותרת חלון"
 
 msgid "Highlight Color"
-msgstr ""
+msgstr "צבע הדגשה"
 
 msgid "Highlighted window only"
-msgstr ""
+msgstr "החלון המודגש בלבד"
 
 msgid "Highlights the hovered window with the given color"
-msgstr ""
+msgstr "מדגיש את החלון בעזרת הצבע הנתון בעת מעבר עכבר"
 
+#, fuzzy
 msgid ""
 "Make sure windows are fully visible after pulling them to another viewport"
-msgstr ""
+msgstr "הצג את החלונות בקלות על ידי העברת סמן העכבר מעליהם"
 
 msgid "No display"
-msgstr ""
+msgstr "אל תציג"
 
 msgid "Normal"
-msgstr ""
+msgstr "רגיל"
 
 msgid "Organic - EXPERIMENTAL"
-msgstr ""
+msgstr "אורגני (נסיוני)"
 
 #, fuzzy
 msgid "Pull Window"
-msgstr "חלונות 3D"
+msgstr "הצב חלון"
 
+#, fuzzy
 msgid "Pull window to current viewport while in scale mode"
-msgstr ""
+msgstr "סגור חלונות במצב מבט על"
 
 msgid "Scale Addons"
-msgstr ""
+msgstr "תוספות למבט על"
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
+msgstr "מצב סידור החלונות בעת מבט על"
 
 msgid "Size of the border around the window title"
-msgstr ""
+msgstr "גודל הגבול סביב כותרת החלון"
 
 msgid "Some useful additions to the scale plugin"
-msgstr ""
+msgstr "מספר תוספות שימושיות להתקן מבט על"
 
 msgid "Title Border Size"
-msgstr ""
+msgstr "גודל גבול כותרת"
 
 msgid "Use bold font for window title display"
-msgstr ""
+msgstr "השתמש בגופן מודגש להצגת כותרת החלון"
 
 msgid "Window Highlight"
-msgstr ""
+msgstr "הדגשת חלון"
 
 msgid "Window Layout Mode"
-msgstr ""
+msgstr "מצב סידור חלונות"
 
 #, fuzzy
 msgid "Window Pull"
-msgstr "עומק חלון"
+msgstr "חוקי חלונות"
 
 msgid "Window Title"
-msgstr ""
+msgstr "כותרת חלון"
 
 msgid "Window Title Display"
-msgstr ""
+msgstr "הצגת כותרת חלון"
 
 msgid "Window title display in scale mode"
-msgstr ""
+msgstr "הצגת כותרת חלון במצב מבט על"
 
 #, fuzzy
 msgid "Zoom Window"
-msgstr "חלונות 3D"
+msgstr "תקריב על חלונות במבט על"
 
+#, fuzzy
 msgid "Zoom window while in scale mode"
-msgstr ""
+msgstr "תקריב על חלונות במצב מבט על"
 
 msgid "Filter Case Insensitive"
-msgstr ""
+msgstr "סינון ללא התחשבות באותיות רישיות"
 
 msgid "Filter Type Timeout"
-msgstr ""
+msgstr "חלון זמן להקלדת מסנן"
 
 msgid "Scale Window Title Filter"
-msgstr ""
+msgstr "מסנן כותרות במבט על"
 
 msgid "Show Filter Text"
-msgstr ""
+msgstr "הצג טקסט סינון"
 
 msgid "Show filter text."
-msgstr ""
+msgstr "הצג טקסט סינון."
 
 msgid "Time (in ms) after which the filter typing is automatically ended"
-msgstr ""
+msgstr "זמן (במילישניות) לסיום אוטומטי של הקלדת המסנן"
 
 msgid "Use case insensitive string matching when filtering."
-msgstr ""
+msgstr "בעת סינון השתמש בהתאמת מחרוזות ללא התחשבות באותיות רישיות."
 
 msgid "Window title filter facility for the scale plugin"
-msgstr ""
+msgstr "התקן סינון כותרות חלון עבור התקן מבט על"
 
 msgid ""
 "Embeds a Guile scheme interpreter and provides bindings for meaningful "
 "Compiz integration."
 msgstr ""
+"משלב מפרש ל-Guile scheme, ומספק צימוד המאפשר אינטגרציה משמעותית עם קומפיז. "
 
 msgid "Scheme Interpreter"
-msgstr ""
+msgstr "מפרש Scheme"
 
 msgid "Toggle Prompt Visible"
-msgstr ""
+msgstr "אפשר\\נטרל הצגת שורת קלט"
 
 msgid "Toggle prompt visible."
-msgstr ""
+msgstr "אפשר\\נטרל הצגת שורת קלט."
 
 msgid "Directory"
-msgstr ""
+msgstr "תיקיה"
 
 msgid "Initiate screencasting"
-msgstr ""
+msgstr "הפעל שידור מסך"
 
 msgid "Put screenshot images in this directory"
-msgstr ""
+msgstr "שמור את צילומי המסך בתיקיה זו"
 
 msgid "ScreenCast plugin"
-msgstr ""
+msgstr "התקן שידור מסך"
 
 msgid "ScreenCasting"
-msgstr ""
+msgstr "שידור מסך"
 
 msgid ""
 "Also try to save and restore legacy apps that don't support the X session "
 "management protocol. This setting only should be used in KDE, as only KDE's "
 "session manager also saves those applications."
 msgstr ""
+"נסה לשמור ולשחזר גם יישומים מיושנים שאינם תומכים בפרוטוקול ניהול ההפעלות של "
+"X. יש להשתמש בהגדרה זו רק תחת KDE, משום שרק מנהל ההפעלות של KDE שומר גם את "
+"היישומים האלה."
 
 msgid "Save Legacy Apps"
-msgstr ""
+msgstr "שמור יישומים מיושנים"
 
 msgid "Session Management"
-msgstr ""
+msgstr "ניהול הפעלות"
 
 msgid "Talk to session manager and save/load window state"
-msgstr ""
+msgstr "דבר עם מנהל ההפעלות ושמור\\טען את מצב החלון"
 
 msgid "Animation duration"
-msgstr ""
+msgstr "משך אנימציה"
 
 msgid "Duration of the animation in milliseconds."
-msgstr ""
+msgstr "משך האנימציה במילשניות."
 
 msgid "Increase the scale factor making the window bigger."
-msgstr ""
+msgstr "הגדל את מקדם גודל החלון."
 
 msgid "Make the window bigger"
-msgstr ""
+msgstr "הגדל את החלון"
 
 msgid "Make the window smaller"
-msgstr ""
+msgstr "הקטן את החלון"
 
 msgid "Reduces the scale factor making the window smaller."
-msgstr ""
+msgstr "הקטן את מקדם גודל החלון."
 
 msgid "Reset the window to original size"
-msgstr ""
+msgstr "שחזר את גודל החלון המקורי"
 
 msgid "Resets the currently focused window to original size"
-msgstr ""
+msgstr "משחזר את החלון הפעיל לגודלו המקורי"
 
 msgid "Scale a window down to a portion of it's size."
-msgstr ""
+msgstr "הפחת את גודל החלון לכדי חלק מגודלו הקודם."
 
 msgid ""
 "Scale a window down to a ration of the screen size. Respectively half, a "
 "third or a sixth of the screen."
 msgstr ""
+"הפחת את גודל החלון לכדי חלק מגודל המסך: מחצית, שליש או שישית המסך בהתאמה."
 
 msgid "Scale interval"
-msgstr ""
+msgstr "מרווח זמן לשינוי גודל"
 
 msgid "Shelf"
-msgstr ""
+msgstr "מדף"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
 "(respectively) increasing and decreasing the scale level manually. Higher "
 "number means finer changes."
 msgstr ""
+"המספר שבו יוכפל או יחולק מקדם שינוי הגודל, בהתאמה, כאשר מגדילים או מקטינים "
+"את הגודל באופן ידני. מספר גבוה יותר יביא לשינויים קטנים יותר."
 
 msgid "Trigger scale down"
-msgstr ""
+msgstr "הקטן גודל"
 
 msgid "Trigger scale down to screen"
-msgstr ""
+msgstr "הקטן גודל על פי המסך"
 
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
+"מקטין את החלון למראית עין על מנת לאפשר ניטור קל ללא שינוי גודל אמיתי\\מסורתי."
 
 msgid "Background intensity"
-msgstr ""
+msgstr "עוצמת רקע"
 
 msgid "Background intensity."
-msgstr ""
+msgstr "עוצמת רקע."
 
 msgid "Below"
-msgstr ""
+msgstr "מתחת"
 
 msgid "Click duration"
-msgstr ""
+msgstr "משך הקלקה"
 
 msgid "Cover"
-msgstr ""
+msgstr "הגשה"
 
 msgid "Cover movement offset."
-msgstr ""
+msgstr "הסטת תנועת הגשה."
 
 msgid "Cover offset"
-msgstr ""
+msgstr "הסטת הגשה"
 
 msgid "Disabled"
-msgstr ""
+msgstr "מנוטרל"
 
 msgid "Fade in/out speed"
-msgstr ""
+msgstr "מהירות דהייה"
 
 msgid "Fade speed"
-msgstr ""
+msgstr "מהירות דהייה"
 
 msgid "Flip"
-msgstr ""
+msgstr "טריפה"
 
 msgid "Flip angle"
-msgstr ""
+msgstr "זווית טריפה"
 
 msgid "Generate mipmaps"
-msgstr ""
+msgstr "ייצר mipmap"
 
 msgid "Hide all non Desktop windows during switching"
-msgstr ""
+msgstr "הסתר בעת העברה את כל החלונות, פרט לשולחן העבודה"
 
 msgid "Hide non Desktop windows"
-msgstr ""
+msgstr "הסתר חלונות שאינם שולחן העבודה"
 
 msgid "Initiate (All Workspaces)"
-msgstr ""
+msgstr "הפעל (בכל משטחי העבודה)"
 
 msgid "Initiate switcher (All Workspaces)."
-msgstr ""
+msgstr "הפעל מעביר (בכל משטחי העבודה)"
 
 msgid "Initiate switcher."
-msgstr ""
+msgstr "הפעל מעביר."
 
 msgid "Max window size"
-msgstr ""
+msgstr "גודל חלון מירבי"
 
 msgid "Maximum click duration in miliseconds."
-msgstr ""
+msgstr "משך הקלקה מירבי במילישניות."
 
 msgid "Maximum window size (in percent of the screen width)"
-msgstr ""
+msgstr "גודל חלון מירבי (באחוזים מגודל המסך)"
 
 msgid "Mouse movement speed"
-msgstr ""
+msgstr "מהירות תזוזת עכבר"
 
 msgid "Mouse speed"
-msgstr ""
+msgstr "מהירות עכבר"
 
 msgid "On activated output"
-msgstr ""
+msgstr "פלט בזמן הפעלה"
 
 msgid "One big switcher"
-msgstr ""
+msgstr "מעביר גדול יחיד"
 
 msgid "Overlay an icon on windows in the shift switcher"
-msgstr ""
+msgstr "הדבק צלמית על החלון במעביר ההזחה"
 
 msgid "Rotation angle of the flip animation"
-msgstr ""
+msgstr "זווית סיבוב באנימצית טריפה"
 
 msgid ""
 "Selects how the switcher is displayed if multiple output devices are used."
-msgstr ""
+msgstr "קובע כיצד יוצג המעביר בעת שימוש ביותר מהתקן פלט אחד."
 
 msgid "Shift Switcher"
-msgstr ""
+msgstr "מעביר הזחה"
 
 msgid "Shift Switcher Plugin"
-msgstr ""
+msgstr "התקן מעביר הזחה"
 
 msgid "Shift Windows"
-msgstr ""
+msgstr "חלונות להזחה"
 
 msgid "Shift animation speed"
-msgstr ""
+msgstr "מהירות אנימצית הזחה"
 
 msgid "Shift speed"
-msgstr ""
+msgstr "מהירות הזחה"
 
 msgid "Shift timestep"
-msgstr ""
+msgstr "יחידת זמן הזחה"
 
 msgid "Switcher mode"
-msgstr ""
+msgstr "אופן הזחה"
 
 msgid "Switcher mode."
-msgstr ""
+msgstr "אופן הזחה."
 
 msgid "Terminate"
-msgstr ""
+msgstr "הפסק"
 
 msgid "Terminate switcher."
-msgstr ""
+msgstr "הפסק את פעולת המעביר."
 
 msgid "Windows that should be shown in the shift switcher"
-msgstr ""
+msgstr "חלונות שיוצגו במעביר ההזחה"
 
 msgid "Access your desktop easily"
-msgstr ""
+msgstr "נגישות קלה לשולחן העבודה"
 
 msgid "Direction of window movement"
-msgstr ""
+msgstr "כיוון תזוזת החלונות"
 
 msgid "Left/Right"
-msgstr ""
+msgstr "שמאלה\\ימינה"
 
 msgid "Movement Direction"
-msgstr ""
+msgstr "כיוון התזוזה"
 
 msgid "Show desktop"
-msgstr ""
+msgstr "הצג שולחן עבודה"
 
 msgid "To Corners"
-msgstr ""
+msgstr "אל הפינות"
 
 msgid "Up/Down"
-msgstr ""
+msgstr "למעלה\\למטה"
 
 msgid "Window Opacity"
-msgstr ""
+msgstr "אטימות החלונות"
 
 msgid "Window Part Size"
-msgstr ""
+msgstr "גודל חלק חלון"
 
 msgid "Window movement speed"
-msgstr ""
+msgstr "מהירות תזוזת החלון"
 
 msgid "Window movement timestep"
-msgstr ""
+msgstr "יחידת זמן לתזוזת החלון"
 
 msgid "Window opacity when showdesktop'd"
-msgstr ""
+msgstr "אטימות החלון בעת הצגת שולחן העבודה"
 
 msgid "Window part size when showdesktop'd"
-msgstr ""
+msgstr "גודל חלק חלון בעת הצגת שולחן העבודה"
 
 msgid ""
 "Window types that should be moved out of sight when entering showdesktop mode"
-msgstr ""
+msgstr "סוגי חלונות שיש להזיזם הצידה בעת כניסה למצב הצגת שולחן עבודה"
 
 msgid "Additive blending"
-msgstr ""
+msgstr "התמזגות מוספת"
 
 msgid "Additive blending of particles"
-msgstr ""
+msgstr "התמזגות חלקיקים מוספת"
 
 msgid "Darken backgound"
-msgstr ""
+msgstr "הכהה רקע"
 
 msgid "Darken background under particles"
-msgstr ""
+msgstr "הכהה את הרקע מתחת לחלקיקים"
 
 msgid "Emiters"
-msgstr ""
+msgstr "משגרים"
 
 msgid "Have random colors for the particles"
-msgstr ""
+msgstr "צבע חלקיקים אקראי"
 
 msgid "Increases the visibility of the mouse pointer"
-msgstr ""
+msgstr "משפר את נראות סמן העכבר"
 
 msgid "Number Of Particles"
-msgstr ""
+msgstr "מספר חלקיקים"
 
 msgid "Number of particle emiters."
-msgstr ""
+msgstr "מספר משגרי חלקיקים."
 
 msgid "Number of particles."
-msgstr ""
+msgstr "מספר החלקיקים."
 
 msgid "Particle Color"
-msgstr ""
+msgstr "צבע החלקיקים"
 
 msgid "Particle Life"
-msgstr ""
+msgstr "אורך חיי חלקיקים"
 
 msgid "Particle Options"
-msgstr ""
+msgstr "אפשרויות חלקיקים"
 
 msgid "Particle Size"
-msgstr ""
+msgstr "גודל חלקיקים"
 
 msgid "Particle Slowdown"
-msgstr ""
+msgstr "האטת חלקיקים"
 
 msgid "Particle color."
-msgstr ""
+msgstr "צבע חלקיקים."
 
 msgid "Particle life."
-msgstr ""
+msgstr "אורך חיי חלקיקים."
 
 msgid "Particle size."
-msgstr ""
+msgstr "גודל חלקיקים."
 
 msgid "Particle slowdown."
-msgstr ""
+msgstr "האטת חלקיקים."
 
 msgid "Randomly Colored Particles"
-msgstr ""
+msgstr "חלקיקים בצבע אקראי"
 
 msgid "Ring radius"
-msgstr ""
+msgstr "קוטר טבעת"
 
 msgid "Rotation speed"
-msgstr ""
+msgstr "מהירות סיבוב"
 
 msgid "Rotation speed."
-msgstr ""
+msgstr "מהירות סיבוב."
 
 msgid "Show mouse"
-msgstr ""
+msgstr "הצג עכבר"
 
 msgid "Toggle the mouse pointer trail."
-msgstr ""
+msgstr "הפעל\\נטרל את שובל סמן העכבר."
 
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 msgid "Avoid Snap Modifier"
-msgstr ""
+msgstr "צירוף לעצירת מיגנוט"
 
 msgid "Choose 'Resistance', 'Attraction' or 'Full Mode'."
-msgstr ""
+msgstr "יש לבחור בין 'דחייה', 'משיכה' ו-'מצב מלא'."
 
 msgid "Control"
-msgstr ""
+msgstr "Control"
 
 msgid "Edge Attraction Distance"
-msgstr ""
+msgstr "מרחק למשיכה אל הגבול"
 
 msgid "Edge Resistance Distance"
-msgstr ""
+msgstr "מרחק לדחייה מן הגבול"
 
 msgid "Edge attraction"
-msgstr ""
+msgstr "משיכת גבול"
 
 msgid "Edge resistance"
-msgstr ""
+msgstr "דחיית גבול"
 
 msgid "Edges"
-msgstr ""
+msgstr "גבולות"
 
 msgid "Enables windows edges resistance"
-msgstr ""
+msgstr "מאפשר דחיית חלונות מגבולות"
 
 msgid "Meta"
-msgstr ""
+msgstr "Meta"
 
 msgid "Screen edges"
-msgstr ""
+msgstr "גבולות המסך"
 
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 msgid "Snap Type"
-msgstr ""
+msgstr "אופן מיגנוט"
 
 msgid "Snap to 'Screen Edges', 'Windows Edges' or 'Both'."
-msgstr ""
+msgstr "התמגנט אל 'גבולות המסך', 'גבולות חלונות' או 'שניהם'."
 
 msgid "Snapping Windows"
-msgstr ""
+msgstr "חלונות מגנטיים"
 
 msgid "The distance until edge attraction takes place."
-msgstr ""
+msgstr "המרחק מן הגבול שבו מופעלת משיכה."
 
 msgid "The distance until edge resistance takes place."
-msgstr ""
+msgstr "המרחק מן הגבול שבו מופעלת דחייה."
 
 msgid "Use this bindings to avoid snapping."
-msgstr ""
+msgstr "השתמש בצירוף זה כדי לעצור את המיגנוט."
 
 msgid "Window edges"
-msgstr ""
+msgstr "גבולות חלונות"
 
 msgid "Bottom to Top"
-msgstr ""
+msgstr "מלמטה למעלה"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
 "fall more smoothly, but will also increase CPU usage."
 msgstr ""
+"משך זמן (במילישניות) בין עדכוני מסך. הפחתת ערך זה תוכל להביא לירידת שלג חלקה "
+"יותר, אך תגביר את העומס על המעבד."
 
 msgid "Enable Blending"
-msgstr ""
+msgstr "אפשר מיזוג"
 
 msgid "Enable Textures"
-msgstr ""
+msgstr "אפשר טקסטורות"
 
 msgid "Enables alpha blending of snowflakes."
-msgstr ""
+msgstr "אפשר מיזוג אלפא של פתיתי שלג."
 
 msgid "Enables textured snowflakes. If not selected, color gradients are used."
 msgstr ""
+"אפשר טקסטורות עבור פתיתי שלג. אם האפשרות לא נבחרה, ייעשה שימוש בצבע מדורג."
 
 msgid "Flakes rotate if checked."
-msgstr ""
+msgstr "אם האפשרות נבחרה, הפתיתים יסתחררו."
 
 msgid "How deep into the screen snowflakes can be drawn before being removed"
-msgstr ""
+msgstr "עד לאיזה עומק בתוך המסך יש לצייר את פתיתי השלג טרם הסרתם."
 
 msgid ""
 "How far outside the screen resolution snow flakes can be before being "
 "removed. Needed because of FOV."
 msgstr ""
+"עד לאיזה מרחק מחוץ לאבחנת המסך יש לצייר את פתית השלג טרם הסרתם. נחוץ מטעמי "
+"שדה ראייה."
 
 msgid "Key Bindings"
-msgstr ""
+msgstr "צירופי מקשים"
 
 msgid "Left to Right"
-msgstr ""
+msgstr "משמאל לימין"
 
 msgid "Number Of Snowflakes"
-msgstr ""
+msgstr "מספר פתיתי השלג"
 
 msgid "Number of snowflakes"
-msgstr ""
+msgstr "מספר פתיתי השלג"
 
 msgid "Right to Left"
-msgstr ""
+msgstr "מימין לשמאל"
 
 msgid "Rotate Flakes"
-msgstr ""
+msgstr "סחרר פתיתים"
 
 msgid "Screen Boxing"
-msgstr ""
+msgstr "קופסת המסך"
 
 msgid "Screen Depth"
-msgstr ""
+msgstr "עומק המסך"
 
 msgid "Select snow flake movement direction"
-msgstr ""
+msgstr "בחר את כיוון תנועת פתיתי השלג"
 
 msgid "Settings"
-msgstr ""
+msgstr "הגדרות"
 
 msgid "Size Of Snowflakes"
-msgstr ""
+msgstr "גודל פתיתי השלג"
 
 msgid "Size of snowflakes"
-msgstr ""
+msgstr "גודל פתיתי השלג"
 
 msgid "Snow"
-msgstr ""
+msgstr "שלג"
 
 msgid "Snow Direction"
-msgstr ""
+msgstr "כיוון השלג"
 
 msgid "Snow Over Windows"
-msgstr ""
+msgstr "שלג מעל החלונות"
 
 msgid "Snow Speed"
-msgstr ""
+msgstr "מהירות השלג"
 
 msgid "Snow Textures"
-msgstr ""
+msgstr "טקסטורות שלג"
 
 msgid "Snow Toggle"
-msgstr ""
+msgstr "הפעל\\נטרל שלג"
 
 msgid "Snow for Compiz"
-msgstr ""
+msgstr "שלג עבור קומפיז"
 
 msgid "Snow is drawn above windows"
-msgstr ""
+msgstr "השלג מצטייר מעל לחלונות"
 
 msgid "Snow textures"
-msgstr ""
+msgstr "טקסטורות שלג"
 
 msgid "Snow toggle key"
-msgstr ""
+msgstr "מקש להפעלת\\ניטרול שלג"
 
 msgid "Speed of falling snow"
-msgstr ""
+msgstr "מהירות צניחת השלג"
 
 msgid "Textures"
-msgstr ""
+msgstr "טקסטורות"
 
 msgid "Top to Bottom"
-msgstr ""
+msgstr "מלמעלה למטה"
 
 msgid "Update Delay"
-msgstr ""
+msgstr "השהייה לפני עדכון"
 
 msgid "A simple splash plugin"
-msgstr ""
+msgstr "התקן פשוט של מסך פתיחה"
 
 msgid "Background File"
-msgstr ""
+msgstr "קובץ רקע"
 
 msgid "Background brightness."
-msgstr ""
+msgstr "בהירות הרקע."
 
 msgid "Background image File."
-msgstr ""
+msgstr "קובץ תמונת רקע."
 
 msgid "Background saturation."
-msgstr ""
+msgstr "רווית הרקע."
 
 msgid "Display In/Out Time."
-msgstr ""
+msgstr "משך הצגה ומחיקה."
 
 msgid "Display Time"
-msgstr ""
+msgstr "משך הצגה"
 
 msgid "Images"
-msgstr ""
+msgstr "תמונות"
 
 msgid "Initiate Splash"
-msgstr ""
+msgstr "הפעל מסך פתיחה"
 
 msgid "Logo File"
-msgstr ""
+msgstr "קובץ לוגו"
 
 msgid "Logo image File."
-msgstr ""
+msgstr "קובץ תמונת לוגו."
 
 msgid "Show on first start"
-msgstr ""
+msgstr "הראה בתחילת הפעלה"
 
 msgid "Show splash on first start."
-msgstr ""
+msgstr "הראה את מסך הפתיחה בתחילת ההפעלה."
 
 msgid "Splash"
-msgstr ""
+msgstr "מסך פתיחה"
 
 msgid "Start Splash."
-msgstr ""
+msgstr "מסך פתיחה התחלי."
 
+#, fuzzy
 msgid ""
 "Amount of opacity (in percent) for windows in the switcher which are not "
 "selected"
-msgstr ""
+msgstr "אחוז האטימות של החלונות בטבעת שלא נבחרו"
 
+#, fuzzy
 msgid "Behavior"
-msgstr ""
+msgstr "התנהגות"
 
+#, fuzzy
 msgid "Darken background when showing the stack"
-msgstr ""
+msgstr "הכהה את הרקע בעת הצגת הטבעת"
 
+#, fuzzy
 msgid "On Thumbnail"
-msgstr ""
+msgstr "רוחב תמונה מוקטנת"
 
 #, fuzzy
 msgid "Rotate inactive windows"
-msgstr "צבע עומק של חלון לא פעיל"
+msgstr "הפעל חלון נתון"
 
+#, fuzzy
 msgid "Should not selected windows be rotated"
-msgstr ""
+msgstr "פונט מודגש עבור כותרת החלון."
 
 #, fuzzy
 msgid "Stack Window Switcher"
-msgstr "חלונות תואמים"
+msgstr "מעביר טבעת"
 
+#, fuzzy
 msgid "Tilt angle of the background."
-msgstr ""
+msgstr "צבע 1 עבור הרקע המדורג."
 
 #, fuzzy
 msgid "Windows"
@@ -3838,34 +3894,38 @@ msgstr "חלונות 3D"
 
 #, fuzzy
 msgid "Windows that should be shown in the switcher"
-msgstr "חלונות המטופלים ע\"י 3D"
+msgstr "חלונות שיוצגו במעביר ההזחה"
 
 msgid "Alignment for rows that are not fully filled"
 msgstr ""
 
+#, fuzzy
 msgid "Amount of brightness in percent"
-msgstr ""
+msgstr "בהירות רקע במהלך צביעה"
 
 msgid "Amount of opacity in percent"
 msgstr ""
 
+#, fuzzy
 msgid "Amount of saturation in percent"
-msgstr ""
+msgstr "אל תציג את היישום בפייג'ר"
 
+#, fuzzy
 msgid "Auto Change Viewport"
-msgstr ""
+msgstr "הצב במשטח עבודה"
 
 msgid "Bring Selected To Front"
 msgstr ""
 
 msgid "Centered"
-msgstr ""
+msgstr "ממורכז"
 
 msgid "Change to the viewport of the selected window while switching"
 msgstr ""
 
+#, fuzzy
 msgid "Color of highlight rectangle"
-msgstr ""
+msgstr "צבע מילוי מרובע הבחירה"
 
 msgid "Color of highlight rectangle border"
 msgstr ""
@@ -3873,135 +3933,167 @@ msgstr ""
 msgid "Color of inlay in highlight rectangle border"
 msgstr ""
 
+#, fuzzy
 msgid "Generate mipmaps when possible for higher quality scaling"
-msgstr ""
+msgstr "ייצר mipmap במידת האפשר על מנת לשפר את איכות שינוי הגודל."
 
+#, fuzzy
 msgid "Highlight Border Color"
-msgstr ""
+msgstr "צבע הדגשה"
 
+#, fuzzy
 msgid "Highlight Border Inlay Color"
-msgstr ""
+msgstr "צבע הדגשה"
 
+#, fuzzy
 msgid "Highlight Mode"
-msgstr ""
+msgstr "צבע הדגשה"
 
 #, fuzzy
 msgid "Icon"
 msgstr "פנימה"
 
+#, fuzzy
 msgid "Minimized Window Highlight Rectangle"
-msgstr ""
+msgstr "הדגשת חלון"
 
+#, fuzzy
 msgid "Mipmap"
-msgstr ""
+msgstr "Mipmaps"
 
+#, fuzzy
 msgid "Mode for highlighting the currently selected window"
-msgstr ""
+msgstr "צבע להדגשת חלון בעת מעבר עכבר"
 
 msgid "Next Panel"
 msgstr ""
 
 #, fuzzy
 msgid "Next window"
-msgstr "חלונות 3D"
+msgstr "החלון הבא"
 
+#, fuzzy
 msgid "Next window (All windows)"
-msgstr ""
+msgstr "החלון הבא (כל משטחי העבודה)"
 
+#, fuzzy
 msgid "Next window (Group)"
-msgstr ""
+msgstr "החלון הבא (קבוצה)"
 
+#, fuzzy
 msgid "Next window (No popup)"
-msgstr ""
+msgstr "החלון הבא (קבוצה)"
 
 msgid "Original Window Position"
 msgstr ""
 
 #, fuzzy
 msgid "Popup Window Delay"
-msgstr "חלונות 3D"
+msgstr "חלונות מתאימים לקיבוץ"
 
+#, fuzzy
 msgid "Popup switcher if not visible and select next window"
-msgstr ""
+msgstr "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא."
 
+#, fuzzy
 msgid ""
 "Popup switcher if not visible and select next window of the current "
 "application."
 msgstr ""
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא של היישום הנוכחי."
 
+#, fuzzy
 msgid "Popup switcher if not visible and select next window out of all windows"
 msgstr ""
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא מבין כל החלונות."
 
+#, fuzzy
 msgid "Popup switcher if not visible and select previous window"
-msgstr ""
+msgstr "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם."
 
+#, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם של היישום הנוכחי."
 
+#, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window out of all windows"
 msgstr ""
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם מבין כל החלונות."
 
 msgid "Prev Panel"
 msgstr ""
 
 #, fuzzy
 msgid "Prev window"
-msgstr "חלונות 3D"
+msgstr "החלון הקודם"
 
+#, fuzzy
 msgid "Prev window (All windows)"
-msgstr ""
+msgstr "החלון הקודם (כל משטחי העבודה)"
 
+#, fuzzy
 msgid "Prev window (Group)"
-msgstr ""
+msgstr "החלון הקודם (קבוצה)"
 
+#, fuzzy
 msgid "Prev window (No popup)"
-msgstr ""
+msgstr "החלון הקודם (קבוצה)"
 
 msgid "Row Alignment"
 msgstr ""
 
+#, fuzzy
 msgid "Select next panel type window."
-msgstr ""
+msgstr "קובע את מיקום כותרת החלון."
 
 msgid "Select next window without showing the popup window."
 msgstr ""
 
+#, fuzzy
 msgid "Select previous panel type window."
-msgstr ""
+msgstr "קובע את מיקום כותרת החלון."
 
 msgid "Select previous window without showing the popup window."
 msgstr ""
 
+#, fuzzy
 msgid "Selected Window Highlight"
-msgstr ""
+msgstr "הדגשת חלון"
 
 #, fuzzy
 msgid "Show Rectangle"
 msgstr "מלבני"
 
+#, fuzzy
 msgid "Show icon next to thumbnail"
-msgstr ""
+msgstr "הצג את כותרת החלון בתמונה המוקטנת."
 
+#, fuzzy
 msgid "Show minimized windows"
-msgstr ""
+msgstr "חלונות שלא ניתן למזער"
 
 msgid "Static Application Switcher"
 msgstr ""
 
+#, fuzzy
 msgid "Switcher speed"
-msgstr ""
+msgstr "אופן הזחה"
 
+#, fuzzy
 msgid "Switcher timestep"
-msgstr ""
+msgstr "יחידת זמן הזחה"
 
+#, fuzzy
 msgid "Switcher windows"
-msgstr ""
+msgstr "חלונות מסוננים"
 
+#, fuzzy
 msgid "Taskbar Entry"
-msgstr ""
+msgstr "שורת המשימות"
 
 msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr ""
@@ -4011,937 +4103,1047 @@ msgstr ""
 
 #, fuzzy
 msgid "Windows that should be shown in switcher"
-msgstr "חלונות המטופלים ע\"י 3D"
+msgstr "חלונות שיוצגו במעביר ההזחה"
 
 msgid "Render text to texture"
-msgstr ""
+msgstr "הפוך טקסט לטקסטורה"
 
 msgid "Text"
-msgstr ""
+msgstr "טקסט"
 
 msgid "Enable Titles"
-msgstr ""
+msgstr "אפשר כותרות"
 
 msgid "Fade In/Out Duration"
-msgstr ""
+msgstr "משך דהייה"
 
 msgid "Fade In/Out Duration in seconds."
-msgstr ""
+msgstr "משך הדהייה בשניות."
 
 msgid "Generate Mipmaps"
-msgstr ""
+msgstr "ייצר mipmap"
 
 msgid "Generate mipmaps when possible for higher quality scaling."
-msgstr ""
+msgstr "ייצר mipmap במידת האפשר על מנת לשפר את איכות שינוי הגודל."
 
 msgid "Paint Thumbnails Always on Top."
-msgstr ""
+msgstr "צייר תמיד את התמונות המוקטנות בחזית."
 
 msgid "Paint Window Like Background"
-msgstr ""
+msgstr "צייר רקע דמוי חלון"
 
 msgid "Paint Window Like Background instead of Glow."
-msgstr ""
+msgstr "צייר רקע דמוי חלון במקום הילה."
 
 msgid "Set it if the Taskbar shows only Windows of Current Viewport."
-msgstr ""
+msgstr "הפעל אם שורת המשימות מראה רק חלונות ממשטח העבודה הנוכחי."
 
 msgid "Should be the window title Bold."
-msgstr ""
+msgstr "פונט מודגש עבור כותרת החלון."
 
 msgid "Show Delay"
-msgstr ""
+msgstr "השהייה טרם הצגה"
 
 msgid "Show Window Title in Thumbnail."
-msgstr ""
+msgstr "הצג את כותרת החלון בתמונה המוקטנת."
 
 msgid "Size of Thumbnail Border."
-msgstr ""
+msgstr "גודל גבול התמונה המוקטנת."
 
 msgid "Taskbar"
-msgstr ""
+msgstr "שורת המשימות"
 
 msgid "Taskbar Shows Only Windows of Current Viewport"
-msgstr ""
+msgstr "שורת המשימות מציגה רק חלונות ממשטח העבודה הנוכחי"
 
 msgid "Thumbnail Background and Border Glow Color."
-msgstr ""
+msgstr "צבע רקע והילת גבול עבור התמונה המוקטנת."
 
 msgid "Thumbnail Border Glow Color"
-msgstr ""
+msgstr "צבע הילת גבול התמונה המוקטנת"
 
 msgid "Thumbnail Border Size"
-msgstr ""
+msgstr "גודל גבול התמונה המוקטנת"
 
 msgid "Thumbnail Window Size"
-msgstr ""
+msgstr "גודל חלון התמונה המוקטנת"
 
 msgid "Thumbnail window size."
-msgstr ""
+msgstr "גודל חלון התמונה המוקטנת."
 
 msgid "Thumbnails Always on Top"
-msgstr ""
+msgstr "תמונות מוקטנות תמיד בחזית"
 
 msgid "Time (in ms) before Thumbnail is shown."
-msgstr ""
+msgstr "זמן (במילישניות) לפני הצגת תמונה מוקטנת."
 
 msgid "Window Previews"
-msgstr ""
+msgstr "תצוגת חלונות מקדימה"
 
 msgid "Window thumbnails at the taskbar"
-msgstr ""
+msgstr "תמונות מוקטנות של החלונות בשורת המשימות"
 
 msgid "Window title"
-msgstr ""
+msgstr "כותרת החלון"
 
 msgid "Window title Font Color."
-msgstr ""
+msgstr "צבע גופן כותרת החלון."
 
 msgid "Window title Font Size."
-msgstr ""
+msgstr "גודל גופן כותרת החלון."
 
 msgid "Animation Duration"
-msgstr ""
+msgstr "משך האנימציה"
 
 msgid "Cascade"
-msgstr ""
+msgstr "דירוג"
 
 msgid "Cascade Delta"
-msgstr ""
+msgstr "דלתת דירוג"
 
 msgid "Cascade Windows"
-msgstr ""
+msgstr "דרג חלונות"
 
 msgid "Choose the tiling type you want when using toggle."
-msgstr ""
+msgstr "נא לבחור את סוג ריצוף החלונות שיופעל."
 
 msgid "Distance between windows when using cascade"
-msgstr ""
+msgstr "מרחק בין חלונות בעת דירוג"
 
 msgid "Drop From Top"
-msgstr ""
+msgstr "הורד מלמעלה"
 
 msgid "Duration (in ms) of the tiling animation"
-msgstr ""
+msgstr "משך אנימצית הריצוף במילישניות"
 
 msgid "Excluded Windows"
-msgstr ""
+msgstr "מלבד חלונות אלה"
 
 msgid "Filled Outline"
-msgstr ""
+msgstr "קו מתאר ממולא"
 
 msgid "Join Windows (EXPERIMENTAL)"
-msgstr ""
+msgstr "צרף חלונות (נסיוני)"
 
 msgid "Left Occupancy"
-msgstr ""
+msgstr "תפיסת שטח משמאל"
 
 msgid ""
 "Move and resize all visible windows both vertically and horizontally, so "
 "that the occupy whole screen and are in a grid."
 msgstr ""
+"הזז את כל החלונות הנראים ושנה את גודלם, במאונך ובמאוזן, כך שיתפסו את כל המסך "
+"ויסתדרו במשבצות."
 
 msgid ""
 "Move and resize all visible windows so that they have full height, same "
 "width and occupy whole screen."
 msgstr ""
+"הזז את כל החלונות הנראים ושנה את גודלם, במאונך ובמאוזן, כך שיתפסו את כל המסך."
 
 msgid ""
 "Move and resize all visible windows so that they have full width, same "
 "height and occupy whole screen."
 msgstr ""
+"הזז את כל החלונות הנראים והרחב אותם למקסימום מבלי לשנות את גובהם, כך שיתפסו "
+"את כל המסך."
 
 msgid ""
 "Move and resize all visible windows with the delta value set for cascading."
 msgstr ""
+"הזז את כל החלונות הנראים ושנה את גודלם על פי ערך הדלתא שנקבע עבור דירוג."
 
 msgid ""
 "Occupancy percentage for window placed left. This number is percentage of "
 "screen width, which the active window will have it as width when tiled. "
 "Applies to Left tiling type."
 msgstr ""
+"אחוז תפיסת השטח עבור חלונות הממוקמים משמאל. מספר זה מייצג את רוחב החלון "
+"הפעיל בעת ריצופו באחוזים מרוחב המסך. מתייחס לאופן ריצוף שמאלי. "
 
 msgid "Restore Windows"
-msgstr ""
+msgstr "שחזר חלונות"
 
 msgid "Restore windows to their original position they had before tiling."
-msgstr ""
+msgstr "שחזר את החלונות למקומם המקורי לפני הריצוף."
 
 msgid "Selects the animation used while tiling"
-msgstr ""
+msgstr "האנימציה שתוצג בעת ריצוף"
 
 msgid "Slide"
-msgstr ""
+msgstr "גלישה"
 
 msgid "Tile"
-msgstr ""
+msgstr "ריצוף"
 
 msgid "Tile Horizontally"
-msgstr ""
+msgstr "ריצוף במאוזן"
 
 msgid "Tile Vertically"
-msgstr ""
+msgstr "ריצוף במאונך"
 
 msgid "Tile Windows"
-msgstr ""
+msgstr "ריצוף חלונות"
 
 msgid "Tile Windows Horizontally"
-msgstr ""
+msgstr "ריצוף חלונות במאוזן"
 
 msgid "Tile Windows Vertically"
-msgstr ""
+msgstr "ריצוף חלונות במאונך"
 
 msgid "Tile windows"
-msgstr ""
+msgstr "ריצוף חלונות"
 
 msgid "Tiling Animation Type"
-msgstr ""
+msgstr "סוג אנימצית ריצוף"
 
 msgid "Tiling Method For Toggle"
-msgstr ""
+msgstr "אופן הפעלת ריצוף"
 
 msgid "Toggle Tiling"
-msgstr ""
+msgstr "הפעל\\נטרל ריצוף"
 
 msgid "Toggle between tile and restore"
-msgstr ""
+msgstr "העבר בין ריצוף ושחזור"
 
 msgid ""
 "Tries to join the windows together when horizontal, vertical or left tiling "
 "is enabled so that when you resize a window surrounding windows resize "
 "accordingly. This may cause problems if you dont leave them enough space."
 msgstr ""
+"נסה לצרף חלונות יחדיו כאשר מוגדר ריצוף שמאלי, במאוזן או במאונך, כך שבעת "
+"שינוי גודל חלון ישתנה בהתאם גודל החלונות המקיפים אותו. הדבר עלול לגרום "
+"לבעיות אם לא נותר מספיק שטח."
 
 msgid "Windows which should be excluded from tiling"
-msgstr ""
+msgstr "חלונות שאין לרצפם"
 
 msgid ""
 "Adjust the opacity, saturation and brightness of windows based on when they "
 "last had focus."
 msgstr ""
+"התאם את אטימות, רווית ובהירות חלונות בהתאם למועד האחרון שבו היו פעילים."
 
 msgid "Brightness Level of Focused Windows"
-msgstr ""
+msgstr "בהירות חלון פעיל"
 
 msgid "Brightness Level of Unfocused Windows"
-msgstr ""
+msgstr "בהירות חלון לא פעיל"
 
 msgid ""
 "Brightness of the currently focused window. Windows will get brightness "
 "levels between the focused and minimum."
 msgstr ""
+"בהירות החלון הפעיל הנוכחי. החלונות יקבלו ערכי בהירות שבין ערך זה ובין "
+"המינימום."
 
 msgid ""
 "Brightness of the least focused window. Windows will get brightness levels "
 "between the focused and minimum."
 msgstr ""
+"בהירות החלון הכי פחות פעיל. החלונות יקבלו ערכי בהירות שבין ערך החלון הפעיל "
+"ובין המינימום."
 
 msgid "Number of Windows to Track"
-msgstr ""
+msgstr "מספר חלונות למעקב"
 
 msgid ""
 "Number of windows Trailfocus will keep track of. Windows that had focus this "
 "amount of windows ago or more will be considered completly unfocused."
 msgstr ""
+"מספר החלונות שאחריהם ינסה לעקוב התקן מעקב פעילות. החלונות שהיו פעילים לפני "
+"מספר זה או של חלונות או גבוה ממנו ייחשבו לבלתי-פעילים לחלוטין."
 
 msgid "Opacity Level of Focused Windows"
-msgstr ""
+msgstr "אטימות חלון פעיל"
 
 msgid "Opacity Level of Unfocused Windows"
-msgstr ""
+msgstr "אטימות חלון לא פעיל"
 
 msgid ""
 "Opacity of the currently focused window. Windows will get opacity levels "
 "between the focused and minimum."
 msgstr ""
+"אטימות החלון הפעיל הנוכחי. החלונות יקבלו ערכי אטימות שבין ערך זה ובין "
+"המינימום."
 
 msgid ""
 "Opacity of the least focused window. Windows will get opacity levels between "
 "the focused and minimum."
 msgstr ""
+"אטימות החלון הכי פחות פעיל. החלונות יקבלו ערכי אטימות שבין ערך החלון הפעיל "
+"ובין המינימום."
 
 msgid "Saturation Level of Focused Windows"
-msgstr ""
+msgstr "רווית חלון פעיל"
 
 msgid "Saturation Level of Unfocused Windows"
-msgstr ""
+msgstr "רווית חלון לא פעיל"
 
 msgid ""
 "Saturation of the currently focused window. Windows will get saturation "
 "levels between the focused and minimum."
 msgstr ""
+"רווית החלון הפעיל הנוכחי. החלונות יקבלו ערכי רוויה שבין ערך זה ובין המינימום."
 
 msgid ""
 "Saturation of the least focused window. Windows will get saturation levels "
 "between the focused and minimum."
 msgstr ""
+"רווית החלון הפעיל הנוכחי. החלונות יקבלו ערכי רוויה שבין ערך החלון הפעיל ובין "
+"המינימום."
 
 msgid ""
 "This defines when Trailfocus will start fading windows. This lets you set up "
 "trailfocus to treat the N first Windows as fully focused."
 msgstr ""
+"הגדרה זו קובעת מתי יתחיל התקן מעקב הפעילות לשנות את צבע החלונות. ניתן "
+"להתייחס אל N החלונות הראשונים כאל חלונות פעילים לחלוטין."
 
 msgid "Trailfocus"
-msgstr ""
+msgstr "מעקב פעילות"
 
 msgid "Window to Start Fading"
-msgstr ""
+msgstr "מספר חלונות לפני תחילת פעולה"
 
 msgid "Window types that should be handled by Trailfocus"
-msgstr ""
+msgstr "סוגי חלונות המטופלים על ידי מעקב פעילות"
 
 msgid "Action name for initiate"
-msgstr ""
+msgstr "שם פעולה עבור הפעלה"
 
 msgid "Action name for initiate/terminate"
-msgstr ""
+msgstr "שם פעולה עבור הפעלה\\כיבוי"
 
 msgid "Begin Viewport Switch"
-msgstr ""
+msgstr "התחל העברת משטח עבודה"
 
 msgid "Begin entering viewport number"
-msgstr ""
+msgstr "התחל להזין מספר משטח עבודה"
 
 msgid "Desktop-based Viewport Switching"
-msgstr ""
+msgstr "העברת משטחי עבודה מבוססת שולחן עבודה"
 
 msgid "Go to specific viewport"
-msgstr ""
+msgstr "לך אל משטח עבודה מסוים"
 
 msgid "Initiate plugin action"
-msgstr ""
+msgstr "התחל פעולת התקן"
 
 msgid "Initiate viewport changes through several events"
-msgstr ""
+msgstr "התחל שינויי משטח עבודה במספר שלבים"
 
 msgid "Initiate/Terminate the selected plugin action"
-msgstr ""
+msgstr "הפעלת\\כיבוי פעולת ההתקן שנבחרה"
 
 msgid "Move Down"
-msgstr ""
+msgstr "הזז מטה"
 
 msgid "Move Left"
-msgstr ""
+msgstr "הזז שמאלה"
 
 msgid "Move Next"
-msgstr ""
+msgstr "הזז קדימה"
 
 msgid "Move Prev"
-msgstr ""
+msgstr "הזז אחורה"
 
 msgid "Move Right"
-msgstr ""
+msgstr "הזז ימינה"
 
 msgid "Move Up"
-msgstr ""
+msgstr "הזז מעלה"
 
 msgid "Move down"
-msgstr ""
+msgstr "הזז מטה"
 
 msgid "Move to the left"
-msgstr ""
+msgstr "הזז כלפי שמאל"
 
 msgid "Move to the next viewport"
-msgstr ""
+msgstr "הזז אל משטח העבודה הבא"
 
 msgid "Move to the previous viewport"
-msgstr ""
+msgstr "הזז אל משטח העבודה הקודם"
 
 msgid "Move to the right"
-msgstr ""
+msgstr "הזז כלפי ימין"
 
 msgid "Move up"
-msgstr ""
+msgstr "הזז כלפי מעלה"
 
 msgid "Number-Based Viewport Switching"
-msgstr ""
+msgstr "העברת משטחי עבודה מבוססת מספרים"
 
 msgid "Plugin for initiate action"
-msgstr ""
+msgstr "התקן להתחלת פעולה"
 
 msgid "Plugin for initiate/action action"
-msgstr ""
+msgstr "התקן להפעלה או סיום של פעולה"
 
 msgid "Switch to Viewport 1"
-msgstr ""
+msgstr "העבר למשטח עבודה 1"
 
 msgid "Switch to Viewport 10"
-msgstr ""
+msgstr "העבר למשטח עבודה 10"
 
 msgid "Switch to Viewport 11"
-msgstr ""
+msgstr "העבר למשטח עבודה 11"
 
 msgid "Switch to Viewport 12"
-msgstr ""
+msgstr "העבר למשטח עבודה 12"
 
 msgid "Switch to Viewport 2"
-msgstr ""
+msgstr "העבר למשטח עבודה 2"
 
 msgid "Switch to Viewport 3"
-msgstr ""
+msgstr "העבר למשטח עבודה 3"
 
 msgid "Switch to Viewport 4"
-msgstr ""
+msgstr "העבר למשטח עבודה 4"
 
 msgid "Switch to Viewport 5"
-msgstr ""
+msgstr "העבר למשטח עבודה 5"
 
 msgid "Switch to Viewport 6"
-msgstr ""
+msgstr "העבר למשטח עבודה 6"
 
 msgid "Switch to Viewport 7"
-msgstr ""
+msgstr "העבר למשטח עבודה 7"
 
 msgid "Switch to Viewport 8"
-msgstr ""
+msgstr "העבר למשטח עבודה 8"
 
 msgid "Switch to Viewport 9"
-msgstr ""
+msgstr "העבר למשטח עבודה 9"
 
 msgid "Switch to viewport 1"
-msgstr ""
+msgstr "העבר למשטח עבודה 1"
 
 msgid "Switch to viewport 10"
-msgstr ""
+msgstr "העבר למשטח עבודה 10"
 
 msgid "Switch to viewport 11"
-msgstr ""
+msgstr "העבר למשטח עבודה 11"
 
 msgid "Switch to viewport 12"
-msgstr ""
+msgstr "העבר למשטח עבודה 12"
 
 msgid "Switch to viewport 2"
-msgstr ""
+msgstr "העבר למשטח עבודה 2"
 
 msgid "Switch to viewport 3"
-msgstr ""
+msgstr "העבר למשטח עבודה 3"
 
 msgid "Switch to viewport 4"
-msgstr ""
+msgstr "העבר למשטח עבודה 4"
 
 msgid "Switch to viewport 5"
-msgstr ""
+msgstr "העבר למשטח עבודה 5"
 
 msgid "Switch to viewport 6"
-msgstr ""
+msgstr "העבר למשטח עבודה 6"
 
 msgid "Switch to viewport 7"
-msgstr ""
+msgstr "העבר למשטח עבודה 7"
 
 msgid "Switch to viewport 8"
-msgstr ""
+msgstr "העבר למשטח עבודה 8"
 
 msgid "Switch to viewport 9"
-msgstr ""
+msgstr "העבר למשטח עבודה 9"
 
 msgid "Viewport Switcher"
-msgstr ""
+msgstr "מעביר משטחי עבודה"
 
 msgid "Allow Wrap-Around"
-msgstr ""
+msgstr "אפשר גישה מסביב"
 
 msgid "Allow wrap-around when moving the wall up/down/left/right"
-msgstr ""
+msgstr "אפשר גישה מסביב בעת הזזת הקיר מעלה, מטה, שמאלה או ימינה"
 
 msgid "Arrow Colors"
-msgstr ""
+msgstr "צבעי החץ"
 
 msgid "Background Gradient"
-msgstr ""
+msgstr "רקע מדורג"
 
 msgid "Base Color"
-msgstr ""
+msgstr "צבע בסיס"
 
 msgid "Desktop Wall"
-msgstr ""
+msgstr "שולחן קיר"
 
 msgid "Desktop Wall Plugin"
-msgstr ""
+msgstr "התקן שולחן קיר"
 
 msgid "Duration (in s) for wall sliding viewport switching animation"
-msgstr ""
+msgstr "משך אנימצית גלישת משטח העבודה על גבי הקיר במילישניות"
 
 msgid ""
 "Duration (in s) the switch target preview should remain visible after "
 "switching ends."
 msgstr ""
+"משך הזמן שבו ניתן יהיה לראות את התמונה המקדימה של משטח העבודה המיועד לאחר "
+"תום ההעברה."
 
 msgid "Edge Flip DnD"
-msgstr ""
+msgstr "גרור והשלך את קצה המסך"
 
 msgid "Edge Flip Move"
-msgstr ""
+msgstr "זוז דרך קצה המסך"
 
 msgid "Edge Flip Pointer"
-msgstr ""
+msgstr "העבר בהזזת הסמן לקצה המסך"
 
 msgid "Edge Flipping"
-msgstr ""
+msgstr "העברה דרך קצה המסך"
 
 msgid "Edge Radius"
-msgstr ""
+msgstr "רדיוס קצה המסך"
 
 msgid "Edge flipping"
-msgstr ""
+msgstr "העברה דרך קצה המסך"
 
 msgid "First color for the background gradient of the switcher window."
-msgstr ""
+msgstr "הצבע הראשון ברקע המדורג של חלון המעביר."
 
 msgid "First color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "הצבע הראשון של התמונה המוקטנת המדורגת של חלון המעביר."
 
 msgid "First color for the thumb highlight gradient of the switcher window."
-msgstr ""
+msgstr "הצבע הראשון של ההדגשה המדורגת סביב התמונה המוקטנת בחלון המעביר."
 
 msgid "First color of the arrow of the switcher window."
-msgstr ""
+msgstr "הצבע הראשון של החץ המדורג בחלון המעביר."
 
 msgid "Flip Down"
-msgstr ""
+msgstr "העבר מטה"
 
 msgid "Flip Left"
-msgstr ""
+msgstr "העבר שמאלה"
 
 msgid "Flip Right"
-msgstr ""
+msgstr "העבר ימינה"
 
 msgid "Flip Up"
-msgstr ""
+msgstr "העבר מעלה"
 
 msgid "Flip down"
-msgstr ""
+msgstr "העבר מטה"
 
 msgid "Flip left"
-msgstr ""
+msgstr "העבר שמאלה"
 
 msgid "Flip right"
-msgstr ""
+msgstr "העבר ימינה"
 
 msgid "Flip up"
-msgstr ""
+msgstr "העבר מעלה"
 
 msgid "Flip viewport when dragging an object to a screen edge"
-msgstr ""
+msgstr "העבר משטח עבודה בעת גרירת עצם אל קצה המסך"
 
 msgid "Flip viewport when moving a window to a screen edge"
-msgstr ""
+msgstr "העבר משטח עבודה בעת הזזת חלון אל קצה המסך"
 
 msgid "Flip viewport when moving the pointer to a screen edge"
-msgstr ""
+msgstr "העבר משטח עבודה בעת הזזת הסמן אל קצה המסך"
 
 msgid "Highlight Gradient"
-msgstr ""
+msgstr "צבע מדורג להדגשה"
 
 msgid "How should a multimonitor configuration be handled"
-msgstr ""
+msgstr "כיצד לטפל בתצורה מרובת מסכים"
 
 msgid "Move Down With Window"
-msgstr ""
+msgstr "הזז מטה עם החלון"
 
 msgid "Move Left With Window"
-msgstr ""
+msgstr "הזז שמאלה עם החלון"
 
 msgid "Move Right With Window"
-msgstr ""
+msgstr "הזז ימינה עם החלון"
 
 msgid "Move Up With Window"
-msgstr ""
+msgstr "הזז מעלה עם החלון"
 
 msgid "Move along the wall down"
-msgstr ""
+msgstr "עבור מטה לאורך הקיר"
 
 msgid "Move along the wall to the left"
-msgstr ""
+msgstr "עבור שמאלה לאורך הקיר"
 
 msgid "Move along the wall to the next viewport"
-msgstr ""
+msgstr "עבור אל משטח העבודה הבא לאורך הקיר"
 
 msgid "Move along the wall to the previous viewport"
-msgstr ""
+msgstr "עבור אל משטח העבודה הקודם לאורך הקיר"
 
 msgid "Move along the wall to the right"
-msgstr ""
+msgstr "עבור ימינה לאורך הקיר"
 
 msgid "Move along the wall up"
-msgstr ""
+msgstr "עבור מעלה לאורך הקיר"
 
 msgid "Move with window along the wall down"
-msgstr ""
+msgstr "עבור עם החלון מטה לאורך הקיר"
 
 msgid "Move with window along the wall to the left"
-msgstr ""
+msgstr "עבור עם החלון שמאלה לאורך הקיר"
 
 msgid "Move with window along the wall to the right"
-msgstr ""
+msgstr "עבור עם החלון ימינה לאורך הקיר"
 
 msgid "Move with window along the wall up"
-msgstr ""
+msgstr "עבור עם החלון מעלה לאורך הקיר"
 
 msgid "Move with window within wall"
-msgstr ""
+msgstr "עבור עם החלון לאורך הקיר"
 
 msgid "Move within wall"
-msgstr ""
+msgstr "עבור לאורך הקיר"
 
 msgid "Multimonitor behavior"
-msgstr ""
+msgstr "התנהגות מרובת מסכים"
 
 msgid "Outline Color"
-msgstr ""
+msgstr "צבע מתאר"
 
 msgid "Outline color of the switcher window."
-msgstr ""
+msgstr "צבע המתאר עבור חלון המעביר."
 
 msgid "Preview Scale"
 msgstr ""
 
 msgid "Radius of the rounded edge"
-msgstr ""
+msgstr "רדיוס קצה המסך המעוגל"
 
 msgid "Second color for the background gradient of the switcher window."
-msgstr ""
+msgstr "הצבע השני ברקע המדורג של חלון המעביר."
 
 msgid "Second color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "הצבע השני של התמונה המוקטנת המדורגת של חלון המעביר."
 
 msgid "Second color for the thumb highlight gradient of the switcher window."
-msgstr ""
+msgstr "הצבע השני של ההדגשה המדורגת סביב התמונה המוקטנת בחלון המעביר."
 
 msgid "Second color of the arrow of the switcher window."
-msgstr ""
+msgstr "הצבע השני של החץ המדורג בחלון המעביר."
 
 msgid "Shadow Color"
-msgstr ""
+msgstr "צבע הצל"
 
 msgid "Show Live Viewport Previews"
-msgstr ""
+msgstr "הצג תמונות מקדימות של משטחי העבודה"
 
 msgid "Show Viewport Switcher Preview"
-msgstr ""
+msgstr "הצג במעביר תמונות מקדימות של משטחי העבודה"
 
 msgid "Show live viewport previews in switcher window"
-msgstr ""
+msgstr "הצג בחלון המעביר תמונות מקדימות של משטחי העבודה"
 
 msgid "Show switcher window while switching viewports"
-msgstr ""
+msgstr "הצג את חלון המעביר בעת העברת משטחי עבודה"
 
 #, no-c-format
 msgid "Size of the preview in %"
 msgstr ""
 
 msgid "Switch Target Preview Visibility Time"
-msgstr ""
+msgstr "משך הצגת התמונה המקדימה של המשטח המיועד"
 
 msgid "Switch all"
-msgstr ""
+msgstr "העבר בכולם"
 
 msgid "Switch separately"
-msgstr ""
+msgstr "העבר בנפרד"
 
 msgid "Third color for the background gradient of the switcher window."
-msgstr ""
+msgstr "צבע שלישי עבור הרקע המדורג של חלון המעביר."
 
 msgid "Thumb Gradient"
-msgstr ""
+msgstr "תמונה מוקטנת מדורגת"
 
 msgid "Viewport Switch Preview"
-msgstr ""
+msgstr "תמונה מקדימה של העברת משטח עבודה"
 
 msgid "Viewport Switching"
-msgstr ""
+msgstr "העברת משטחי עבודה"
 
 msgid "Wall Sliding Duration"
-msgstr ""
+msgstr "משך גלישת הקיר"
 
 msgid "Width of the border between the previews"
 msgstr ""
 
 msgid "Background fill type."
-msgstr ""
+msgstr "אופן מילוי הרקע."
 
 msgid "Backgrounds"
-msgstr ""
+msgstr "רקעים"
 
 msgid "Center Tiled"
-msgstr ""
+msgstr "מרוצף במרכז"
 
 msgid "Color 1"
-msgstr ""
+msgstr "צבע 1"
 
 msgid "Color 2"
-msgstr ""
+msgstr "צבע 2"
 
 msgid "Draw the desktop wallpaper"
-msgstr ""
+msgstr "צייר את תמונת הרקע של שולחן העבודה"
 
 msgid "Fill or first gradient color."
-msgstr ""
+msgstr "צבע המילוי או צבע מדורג ראשון."
 
 msgid "Fill type"
-msgstr ""
+msgstr "אופן המילוי"
 
 msgid "Horizontal gradient"
-msgstr ""
+msgstr "צבע מדורג אופקי"
 
 msgid "Image"
-msgstr ""
+msgstr "תמונה"
 
 msgid "Image file."
-msgstr ""
+msgstr "קובץ תמונה."
 
 msgid "Image position."
-msgstr ""
+msgstr "מיקום התמונה."
 
 msgid "Position"
-msgstr ""
+msgstr "מיקום"
 
 msgid "Scale and Crop"
-msgstr ""
+msgstr "שנה גודל וקצץ"
 
 msgid "Scaled"
-msgstr ""
+msgstr "מותאם גודל"
 
 msgid "Second gradient color."
-msgstr ""
+msgstr "צבע רקע מדורג שני."
 
 msgid "Solid fill"
-msgstr ""
+msgstr "מילוי אחיד"
 
 msgid "Tiled"
-msgstr ""
+msgstr "מרוצף"
 
 msgid "Vertical gradient"
-msgstr ""
+msgstr "צבע מדורג אנכי"
 
 msgid "Wallpaper"
-msgstr ""
+msgstr "תמונת רקע"
 
 msgid "Background Brightness"
-msgstr ""
+msgstr "בהירות הרקע"
 
 msgid "Background Saturation"
-msgstr ""
+msgstr "רווית הרקע"
 
 msgid "Background in Widget Mode"
-msgstr ""
+msgstr "רקע במצב ווידג'טים"
 
 msgid "Brightness of non-widget windows in widget modes."
-msgstr ""
+msgstr "בהירות חלונות שאינם ווידג'טים כאשר מצב ווידג'טים מופעל."
 
 msgid "End Widget Mode on Click"
-msgstr ""
+msgstr "צא ממצב ווידג'טים בהקלקה"
 
 msgid "End widget mode when a non-widget window is clicked."
-msgstr ""
+msgstr "צא ממצב ווידג'טים בעת הקלקה על חלון שאינו ווידג'ט."
 
+#, fuzzy
 msgid "Focus Widget Layer"
-msgstr ""
+msgstr "שכבת ווידג'טים"
 
 msgid "Focus a window in the widget layer when activating the layer"
 msgstr ""
 
 msgid "Saturation of non-widget windows in widget modes."
-msgstr ""
+msgstr "רווית חלונות שאינם ווידג'טים כאשר מצב ווידג'טים מופעל."
 
 msgid "Show or hide widget windows"
-msgstr ""
+msgstr "הצג או הסתר חלונות ווידג'טים."
 
 msgid "Show widget windows on a separate layer"
-msgstr ""
+msgstr "הצג חלונות ווידג'טים בשכבה נפרדת"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
+msgstr "זמן דהייה אל\\מתוך שכבת הווידג'טים במילישניות."
 
 msgid "Toggle Widget Display"
-msgstr ""
+msgstr "הפעל\\נטרל תצוגת ווידג'טים"
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "שכבת ווידג'טים"
 
 msgid "Widget Windows"
-msgstr ""
+msgstr "חלונות ווידג'טים"
 
 msgid "Windows that always should be treated as widgets"
-msgstr ""
+msgstr "חלונות אליהם יש להתייחס כאל ווידג'טים"
 
 msgid "Above others windows"
-msgstr ""
+msgstr "מעל חלונות אחרים"
 
 msgid "Below others windows"
-msgstr ""
+msgstr "מתחת חלונות אחרים"
 
 msgid "Don't show application in pager"
-msgstr ""
+msgstr "אל תציג את היישום בפייג'ר"
 
 msgid "Don't show application in taskbar"
-msgstr ""
+msgstr "אל תציג את היישום בשורת המשימות"
 
 msgid "Fixed Size Windows"
-msgstr ""
+msgstr "חלונות בגודל קבוע"
 
 msgid "Fullscreen"
-msgstr ""
+msgstr "מסך מלא"
 
 msgid "Fullscreen windows"
-msgstr ""
+msgstr "חלונות במסך מלא"
 
 msgid "Height values"
-msgstr ""
+msgstr "ערכי גובה"
 
 msgid "Matches"
-msgstr ""
+msgstr "התאמות"
 
 msgid "No ARGB visuals"
-msgstr ""
+msgstr "ללא הצגת ARGB"
 
 msgid "No focus"
-msgstr ""
+msgstr "ללא מוקד"
 
 msgid "Non closable windows"
-msgstr ""
+msgstr "חלונות שלא ניתן לסגור"
 
 msgid "Non maximizable windows"
-msgstr ""
+msgstr "חלונות שלא ניתן להגדיל למקסימום"
 
 msgid "Non minimizable windows"
-msgstr ""
+msgstr "חלונות שלא ניתן למזער"
 
 msgid "Non movable windows"
-msgstr ""
+msgstr "חלונות שלא ניתן להזיז"
 
 msgid "Non resizable windows"
-msgstr ""
+msgstr "חלונות שלא ניתן לשנות את גודלם"
 
 msgid "Set window as non closable"
-msgstr ""
+msgstr "קבע שחלון הוא בלתי ניתן לסגירה"
 
 msgid "Set window as non maximizable"
-msgstr ""
+msgstr "קבע שחלון הוא בלתי ניתן להגדלה למקסימום"
 
 msgid "Set window as non minimizable"
-msgstr ""
+msgstr "קבע שחלון הוא בלתי ניתן למזעור"
 
 msgid "Set window as non movable"
-msgstr ""
+msgstr "קבע שחלון הוא בלתי ניתן להזזה"
 
 msgid "Set window as non resizable"
-msgstr ""
+msgstr "קבע שחלון הוא בלתי ניתן לשינוי גודל"
 
 msgid "Set windows rules"
-msgstr ""
+msgstr "קבע חוקים לחלונות"
 
 msgid "Size rules"
-msgstr ""
+msgstr "חוקי גודל"
 
 msgid "Sized Windows"
-msgstr ""
+msgstr "חלונות שנקבע להם גודל"
 
 msgid "Skip pager"
-msgstr ""
+msgstr "דלג על הפייג'ר"
 
 msgid "Skip taskbar"
-msgstr ""
+msgstr "דלג על שורת המשימות"
 
 msgid "Sticky"
-msgstr ""
+msgstr "דביקים"
 
 msgid "Sticky windows"
-msgstr ""
+msgstr "חלונות דביקים"
 
 msgid "Width values"
-msgstr ""
+msgstr "ערכי רוחב"
 
 msgid "Window Rules"
-msgstr ""
+msgstr "חוקי חלונות"
 
 msgid "Windows that should be resized by default"
-msgstr ""
+msgstr "חלונות שאין לשנות את גודלם כברירת מחדל"
 
 msgid "Windows that should be treated as not supporting transparency"
-msgstr ""
+msgstr "חלונות אליהם יש להתייחס כאילו אינם תומכים בשקיפות"
 
 msgid "Windows will not have focus"
-msgstr ""
+msgstr "חלונות שלא יקבלו מוקד"
 
 msgid "\"On all desktops\" sticky match"
-msgstr ""
+msgstr "התאמה לדביקים \"בכל שולחנות העבודה\""
 
 msgid "AIGLX Fragment Parameter Fix"
-msgstr ""
+msgstr "תיקון לפרמטר פרגמנט AIGLX"
 
 msgid "Convert Urgency to Demands Attention"
 msgstr ""
 
 msgid "Firefox Menu Fix"
-msgstr ""
+msgstr "תיקון לתפריט פיירפוקס"
 
 msgid "Fix broken glProgramEnvParameter4f implementation."
-msgstr ""
+msgstr "תיקון ליישום glProgramEnvParameter4f."
 
 msgid "Fix for broken GLX_MESA_copy_sub_buffer on XGL in fglrx."
-msgstr ""
+msgstr "תיקון לתקלה ב-GLX_MESA_copy_sub_buffer ב-XGL תחת fglrx."
 
 msgid "Fix screen updates in XGL with fglrx."
-msgstr ""
+msgstr "תיקון לעדכוני מסך ב-XGL תחת fglrx."
 
 msgid "Fix window type of Firefox and Thunderbird menus."
-msgstr ""
+msgstr "תיקון לסוג החלון של תפריטי פיירפוקס ות'אנדרבירד."
 
 msgid "Fix window type of OpenOffice.org menus."
-msgstr ""
+msgstr "תיקון לסוג החלון של תפריטי אופן אופיס."
 
 msgid "Fix window type of notification daemon windows."
-msgstr ""
+msgstr "תיקון לסוג החלון של דיימון ההודעות."
 
 msgid "Fix window type of various Java windows."
-msgstr ""
+msgstr "תיקון לסוג החלון של חלונות ג'אווה שונים."
 
 msgid "Fix window type of various Qt windows."
-msgstr ""
+msgstr "תיקון לסוג החלון של חלונות Qt שונים."
 
 msgid "Java Window Fix"
-msgstr ""
+msgstr "תיקון לחלונות ג'אווה"
 
 msgid "Legacy Fullscreen Support"
-msgstr ""
+msgstr "תמיכה במצב מיושן של מסך מלא"
 
 msgid "Make \"on all desktops\" windows \"sticky\""
-msgstr ""
+msgstr "הפוך חלונות ש-\"על כל שולחנות העבודה\" ל-\"דביקים\""
 
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
 msgstr ""
+"הפוך חלונות ש-\"על כל שולחנות העבודה\" ל-\"דביקים\". חלונות דביקים מוצגים על "
+"כל משטחי העבודה."
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
-msgstr ""
+msgstr "הצג כראוי במסך מלא יישומים מיושנים ויישומי Wine."
 
 msgid "Metacity-like workarounds."
-msgstr ""
+msgstr "תיקונים דמויי Metacity."
 
 msgid "Notification Daemon Fix"
-msgstr ""
+msgstr "תיקון לדיימון ההודעות"
 
 msgid "OpenOffice.org Menu Fix"
-msgstr ""
+msgstr "תיקון לתפריט אופן אופיס"
 
 msgid "Qt Window Fix"
-msgstr ""
+msgstr "תיקון לחלונות Qt"
 
 msgid "Window stickyness"
-msgstr ""
+msgstr "דביקות חלון"
 
 msgid "Windows on all desktops that should be made sticky"
-msgstr ""
+msgstr "חלונות בכל שולחנות העבודה האמורים להפוך לדביקים"
 
 msgid "Workarounds"
-msgstr ""
+msgstr "מעקפים"
 
 #~ msgid "Animation Speed"
 #~ msgstr "מהירות אנימציה"
 
 #~ msgid "Change the speed of the 3D animation"
 #~ msgstr "שנה מהירות אנימצית 3D"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "המשרעת (גובה גלי הקיפול) של הקפלים האופקיים ביחס לרוחב החלון. ערכים "
+#~ "שליליים יוצגו כקיפול החוצה."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "המשרעת (גובה גל הקיפול) של הקפל המעוקל ביחס לרוחב החלון. ערכים שליליים "
+#~ "יוצגו כקיפול החוצה."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "המשרעת (גובה הגלים) בהתאם לגובה החלון."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "הפחתת בהירות"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "הגברת בהירות"
+
+#~ msgid "Brightness Step"
+#~ msgstr "מרווח בהירות"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "בהירות ורוויה"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "שינויים לבהירות ולרוויה"
+
+#~ msgid "Brightness settings"
+#~ msgstr "הגדרות בהירות"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "ערכי בהירות לחלונות"
+
+#~ msgid "Brightness window values"
+#~ msgstr "ערכי בהירות חלון"
+
+#~ msgid "Brightness windows"
+#~ msgstr "בהירות חלונות"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "הפחתת רוויה"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "הגברת רוויה"
+
+#~ msgid "Saturation Step"
+#~ msgstr "מרווח רוויה"
+
+#~ msgid "Saturation settings"
+#~ msgstr "הגדרות רוויה"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "ערכי רוויה לחלונות"
+
+#~ msgid "Saturation window values"
+#~ msgstr "ערכי רווית חלונות"
+
+#~ msgid "Saturation windows"
+#~ msgstr "רווית חלונות"
+
+#~ msgid "Window specific"
+#~ msgstr "על פי חלון"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "חלונות בעלי בהירות שונה כברירת מחדל"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "חלונות בעלי רוויה שונה כברירת מחדל"
+
+#~ msgid "Close Windows In Scale"
+#~ msgstr "סגור חלונות במבט על"

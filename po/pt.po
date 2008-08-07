@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:55+0530\n"
-"PO-Revision-Date: 2008-06-02 14:56+0200\n"
+"POT-Creation-Date: 2008-08-07 11:29+0530\n"
+"PO-Revision-Date: 2008-07-12 15:44+0100\n"
 "Last-Translator: Nicolau Gonçalves <excentriko@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -169,20 +169,6 @@ msgstr ""
 "seleccionado. Se Nenhum estiver seleccionado para um evento, esse evento não "
 "será animado."
 
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Amplitude (tamanho das ondas das dobras) das Dobras Horizontais "
-"relativamente à largura da janela. Valores negativos dobram para fora."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Amplitude (tamanho das ondas das dobras) das dobras curvadas relativamente à "
-"largura da janela. Valores negativos dobram para fora."
-
 msgid "Angle of window at the end of the animation."
 msgstr "Ãngulo da janela no fim da animação."
 
@@ -282,7 +268,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Dobras Curvadas"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Amplitude Dobras Curvadas"
 
 msgid "Dodge"
@@ -378,6 +365,11 @@ msgstr "Dobrar"
 msgid "Fold Direction"
 msgstr "Direcção da Dobra"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Direcção de abertura das dobras para as peças no efeito Razr."
 
@@ -398,7 +390,8 @@ msgstr "Hexagonal"
 msgid "Horizontal Folds"
 msgstr "Dobras horizontais"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Amplitude Dobras horizontais"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -683,10 +676,6 @@ msgid ""
 msgstr ""
 "Número de dobras horizontais que irão ocorrer na animação Dobra Horizontal."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr ""
-"Amplitude das ondas (tamanho das ondas) relativamente à altura da janela."
-
 msgid "The width of the wave relative to the window height."
 msgstr "Largura da onda relativamente à altura da janela."
 
@@ -752,11 +741,17 @@ msgstr ""
 msgid "Wave"
 msgstr "Onda"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Amplitude Onda"
 
 msgid "Wave Width"
 msgstr "Largura Onda"
+
+msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -928,72 +923,11 @@ msgstr "Posição Y da janela de benchmark"
 msgid "Y position"
 msgstr "Posição Y"
 
-#, fuzzy
 msgid "Bicubic filter"
-msgstr "Trocar de filtro"
+msgstr "Filtro bicúbico"
 
 msgid "Bicubic texture filtering"
-msgstr ""
-
-msgid "Brightness Decrease"
-msgstr "Diminuir Brilho"
-
-msgid "Brightness Increase"
-msgstr "Aumentar Brilho"
-
-msgid "Brightness Step"
-msgstr "Incremento no Brilho"
-
-msgid "Brightness and Saturation"
-msgstr "Brilho e Constraste"
-
-msgid "Brightness and Saturation adjustments"
-msgstr "Ajustes de Brilho e Contraste"
-
-msgid "Brightness settings"
-msgstr "Definições de brilho"
-
-msgid "Brightness values for windows"
-msgstr "Valores de brilho para janelas"
-
-msgid "Brightness window values"
-msgstr "Valores de brilho da janela"
-
-msgid "Brightness windows"
-msgstr "Janelas com brilho"
-
-msgid "General"
-msgstr "Geral"
-
-msgid "Saturation Decrease"
-msgstr "Diminuir Contraste"
-
-msgid "Saturation Increase"
-msgstr "Aumentar Contraste"
-
-msgid "Saturation Step"
-msgstr "Incremento de Contraste"
-
-msgid "Saturation settings"
-msgstr "Definições de Contraste"
-
-msgid "Saturation values for windows"
-msgstr "Valores de contraste para janelas"
-
-msgid "Saturation window values"
-msgstr "Valores de contraste da janela"
-
-msgid "Saturation windows"
-msgstr "Janelas com Contraste"
-
-msgid "Window specific"
-msgstr "Janela específica"
-
-msgid "Windows that should have a different brightness by default"
-msgstr "Janelas que devem ser ter um brilho diferente por omissão"
-
-msgid "Windows that should have a different saturation by default"
-msgstr "Janelas que devem ser ter um contraste diferente por omissão"
+msgstr "Filtragem bicúbica"
 
 msgid "Color filter"
 msgstr "Filtro de cor"
@@ -1332,16 +1266,14 @@ msgstr "Retroceder o zoom automaticamente apenas com rotação através do rato.
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Diminuir o zoom automaticamente para o cubo caber no ecrã."
 
-#, fuzzy
 msgid "Cube Caps"
 msgstr "Coberturas Cubo"
 
 msgid "Render images on top and bottom of the cube"
 msgstr "Mostrar imagens nas faces de cima e de baixo do cubo"
 
-#, fuzzy
 msgid "Compiz cube reflection"
-msgstr "Reflexão do cubo"
+msgstr "Reflexão do cubo compiz"
 
 msgid "Cube Reflection"
 msgstr "Reflexão do cubo"
@@ -1631,9 +1563,8 @@ msgstr ""
 "Esconde o cursor original do rato quando tem magnificação activa e "
 "escalamento do rato"
 
-#, fuzzy
 msgid "Minimum zoom factor"
-msgstr "Factor de Escalamento Mínimo"
+msgstr "Factor mínimo de zoom"
 
 msgid "Mouse Behaviour"
 msgstr "Comportamento do Rato"
@@ -1737,6 +1668,8 @@ msgid ""
 "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
 "0.25 equals 4x zoom."
 msgstr ""
+"O factor mínimo de zoom permitido. Um valor de 0.5 significa zoom 2x, um "
+"valor de 0.25 significa zoom 4x."
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
@@ -1984,6 +1917,9 @@ msgstr "Cor da fonte"
 
 msgid "Font Size"
 msgstr "Tamanho da fonte"
+
+msgid "General"
+msgstr "Geral"
 
 msgid "Glass"
 msgstr "Vidro"
@@ -4050,168 +3986,138 @@ msgstr "Ecrã de logótipo"
 msgid "Start Splash."
 msgstr "Iniciar Ecrã de Logótipo."
 
-#, fuzzy
 msgid ""
 "Amount of opacity (in percent) for windows in the switcher which are not "
 "selected"
 msgstr ""
-"Nível de opacidade (em percentagem) para janelas no anel que não estão "
+"Nível de opacidade (em percentagem) para janelas no alternador que não estão "
 "seleccionadas"
 
-#, fuzzy
 msgid "Behavior"
 msgstr "Comportamento"
 
-#, fuzzy
 msgid "Darken background when showing the stack"
-msgstr "Escurecer fundo quando se estiver a mostrar o anel"
+msgstr "Escurecer fundo quando se estiver a mostrar a pilha"
 
-#, fuzzy
 msgid "On Thumbnail"
-msgstr "Largura Miniatura"
+msgstr "Em Miniatura"
 
-#, fuzzy
 msgid "Rotate inactive windows"
-msgstr "Activar uma janela especificada"
+msgstr "Rodar janelas inactivas"
 
-#, fuzzy
 msgid "Should not selected windows be rotated"
-msgstr "Deverá o título da janela ser mostrada a negrito."
+msgstr "Janelas não selecionadas devem ser rodadas"
 
-#, fuzzy
 msgid "Stack Window Switcher"
-msgstr "Alternador de Aplicações em Anel"
+msgstr "Alternador Janelas Pilha"
 
-#, fuzzy
 msgid "Tilt angle of the background."
-msgstr "Cor 1 do gradiente de fundo."
+msgstr "Ângulo de inclinação do fundo."
 
-#, fuzzy
 msgid "Windows"
-msgstr "Janelas 3D"
+msgstr "Janelas"
 
-#, fuzzy
 msgid "Windows that should be shown in the switcher"
-msgstr "Janelas que se devem mostrar no shift switcher"
+msgstr "Janelas que devem ser mostradas no alternador"
 
 msgid "Alignment for rows that are not fully filled"
-msgstr ""
+msgstr "Alinhamento para linhas que não estão completamente preenchidas"
 
-#, fuzzy
 msgid "Amount of brightness in percent"
-msgstr "Luminosidade do fundo durante o desenho"
+msgstr "Valor de brilho em percentagem"
 
 msgid "Amount of opacity in percent"
-msgstr ""
+msgstr "Valor de opacidade em percentagem"
 
-#, fuzzy
 msgid "Amount of saturation in percent"
-msgstr "Não mostrar aplicação no pager"
+msgstr "Valor de saturação em percentagem"
 
-#, fuzzy
 msgid "Auto Change Viewport"
-msgstr "Colocar no Viewport"
+msgstr "Mudar Automaticamente Viewport"
 
 msgid "Bring Selected To Front"
-msgstr ""
+msgstr "Colocar Selecção Na Frente"
 
 msgid "Centered"
 msgstr "Centrada"
 
 msgid "Change to the viewport of the selected window while switching"
-msgstr ""
+msgstr "Mudar para o viewport da janela selecionada ao alternar"
 
-#, fuzzy
 msgid "Color of highlight rectangle"
-msgstr "Cor com que se preenche o rectângulo de selecção"
+msgstr "Cor do rectângulo de realce"
 
 msgid "Color of highlight rectangle border"
-msgstr ""
+msgstr "Cor da margem do rectângulo de realce"
 
 msgid "Color of inlay in highlight rectangle border"
-msgstr ""
+msgstr "Cor do inlay na margem de realce rectangular"
 
-#, fuzzy
 msgid "Generate mipmaps when possible for higher quality scaling"
-msgstr "Gerar mipmaps quando possível para escalamento de melhor qualidade."
+msgstr "Gerar MipMaps quando possível para escalamento de melhor qualidade"
 
-#, fuzzy
 msgid "Highlight Border Color"
-msgstr "Cor Realce"
+msgstr "Cor Margem Realce"
 
-#, fuzzy
 msgid "Highlight Border Inlay Color"
-msgstr "Cor Realce"
+msgstr "Cor Inlay Margem Realce"
 
-#, fuzzy
 msgid "Highlight Mode"
-msgstr "Cor Realce"
+msgstr "Modo Realce"
 
-#, fuzzy
 msgid "Icon"
-msgstr "Aproximar"
+msgstr "Ícone"
 
-#, fuzzy
 msgid "Minimized Window Highlight Rectangle"
-msgstr "Realçar Janela"
+msgstr "Rectângulo Realce Janelas Minimizadas"
 
-#, fuzzy
 msgid "Mipmap"
-msgstr "Mipmaps"
+msgstr "MipMap"
 
-#, fuzzy
 msgid "Mode for highlighting the currently selected window"
-msgstr "Cor usada para evidenciar a janela sobre a qual paira o cursor do rato"
+msgstr "Modo para realçar a janela seleccionada actualmente"
 
 msgid "Next Panel"
-msgstr ""
+msgstr "Painel Seguinte"
 
-#, fuzzy
 msgid "Next window"
-msgstr "Próxima Janela"
+msgstr "Próxima janela"
 
-#, fuzzy
 msgid "Next window (All windows)"
-msgstr "Próxima Janela (Todos os Ambientes de Trabalho)"
+msgstr "Próxima Janela (Todas as janelas)"
 
-#, fuzzy
 msgid "Next window (Group)"
 msgstr "Próxima Janela (Grupo)"
 
-#, fuzzy
 msgid "Next window (No popup)"
-msgstr "Próxima Janela (Grupo)"
+msgstr "Próxima Janela (Sem popup)"
 
 msgid "Original Window Position"
-msgstr ""
+msgstr "Posição Original Janela"
 
-#, fuzzy
 msgid "Popup Window Delay"
-msgstr "Tipos de janelas a agrupar"
+msgstr "Atraso Janela Popup"
 
-#, fuzzy
 msgid "Popup switcher if not visible and select next window"
-msgstr "Mostrar anel se não estiver visível e seleccionar a próxima janela."
+msgstr ""
+"Mostrar alternador, se não estiver visível, e selecionar próxima janela"
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select next window of the current "
 "application."
 msgstr ""
-"Mostar anel se não visível e seleccionar a próxima janela da aplicação "
-"actual."
+"Mostrar alternador, se não estiver visível, e seleccionar a próxima janela "
+"da aplicação actual."
 
-#, fuzzy
 msgid "Popup switcher if not visible and select next window out of all windows"
 msgstr ""
-"Mostrar anel, se não estiver visível, e selecionar próxima janela de todas "
-"as janelas."
+"Mostrar alternador, se não estiver visível, e selecionar próxima janela de "
+"todas as janelas"
 
-#, fuzzy
 msgid "Popup switcher if not visible and select previous window"
-msgstr "Mostrar anel se não estiver visível e seleccionar a janela anterior."
+msgstr ""
+"Mostrar alternador, se não estiver visível, e selecionar janela anterior"
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window of the current "
 "application."
@@ -4219,94 +4125,77 @@ msgstr ""
 "Mostar anel se não visível e seleccionar a janela anterior da aplicação "
 "actual."
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window out of all windows"
 msgstr ""
-"Mostrar anel, se não estiver visível, e selecionar janela anterior de todas "
-"as janelas."
+"Mostrar alternador, se não estiver visível, e selecionar janela anterior de "
+"todas as janelas"
 
-#, fuzzy
 msgid "Prev Panel"
-msgstr "Prever Escalamento"
+msgstr "Painel Anterior"
 
-#, fuzzy
 msgid "Prev window"
-msgstr "Janela Anterior"
+msgstr "Janela anterior"
 
-#, fuzzy
 msgid "Prev window (All windows)"
-msgstr "Janela Anterior (Todos os Ambientes de Trabalho)"
+msgstr "Janela anterior (Todas as janelas)"
 
-#, fuzzy
 msgid "Prev window (Group)"
 msgstr "Janela Anterior (Grupo)"
 
-#, fuzzy
 msgid "Prev window (No popup)"
-msgstr "Janela Anterior (Grupo)"
+msgstr "Janela anterior (Sem popup)"
 
 msgid "Row Alignment"
-msgstr ""
+msgstr "Alinhamento Horizontal"
 
-#, fuzzy
 msgid "Select next panel type window."
-msgstr "Selecciona onde posicionar o título da janela."
+msgstr "Seleccionar janela de tipo de painel seguinte"
 
 msgid "Select next window without showing the popup window."
-msgstr ""
+msgstr "Seleccionar janela seguinte sem mostrar a janela de popup."
 
-#, fuzzy
 msgid "Select previous panel type window."
-msgstr "Selecciona onde posicionar o título da janela."
+msgstr "Seleccionar janela de tipo de painel anterior"
 
 msgid "Select previous window without showing the popup window."
-msgstr ""
+msgstr "Seleccionar janela anterior sem mostrar a janela de popup."
 
-#, fuzzy
 msgid "Selected Window Highlight"
-msgstr "Realçar Janela"
+msgstr "Seleccionar Realce Janela"
 
-#, fuzzy
 msgid "Show Rectangle"
-msgstr "Rectangular"
+msgstr "Mostar Rectângulo"
 
-#, fuzzy
 msgid "Show icon next to thumbnail"
-msgstr "Mostrar Título da Janela na Miniatura."
+msgstr "Mostrar ícone ao lado da miniatura"
 
-#, fuzzy
 msgid "Show minimized windows"
-msgstr "Janelas não minimizáveis"
+msgstr "Mostrar janelas minimizadas"
 
 msgid "Static Application Switcher"
-msgstr ""
+msgstr "Alternador Estático de Aplicações"
 
-#, fuzzy
 msgid "Switcher speed"
-msgstr "Modo do alternador"
+msgstr "Velocidade do alternador"
 
-#, fuzzy
 msgid "Switcher timestep"
-msgstr "Espaço de tempo do Shift"
+msgstr "Timestep do alternador"
 
-#, fuzzy
 msgid "Switcher windows"
-msgstr "Janelas filtradas"
+msgstr "Janelas a alternar"
 
-#, fuzzy
 msgid "Taskbar Entry"
-msgstr "Barra de tarefas"
+msgstr "Entrada Barra Tarefas"
 
 msgid "Time (in s) the popup window should be delayed before appearing"
-msgstr ""
+msgstr "Tempo (em s) que a janela popup deve ser atrasada antes de aparecer"
 
 msgid "Where to draw highlight rectangle for minimized windows"
-msgstr ""
+msgstr "Onde mostrar rectângulo de realce para janelas minimizadas"
 
-#, fuzzy
 msgid "Windows that should be shown in switcher"
-msgstr "Janelas que se devem mostrar no shift switcher"
+msgstr "Janelas que devem ser mostradas no alternador"
 
 msgid "Render text to texture"
 msgstr "Renderizar texto em texturas"
@@ -5215,7 +5104,7 @@ msgid "AIGLX Fragment Parameter Fix"
 msgstr "Correcção Parâmetro Fragmento AIGLX"
 
 msgid "Convert Urgency to Demands Attention"
-msgstr ""
+msgstr "Converter Urgência para Necessita Atenção"
 
 msgid "Firefox Menu Fix"
 msgstr "Correcção para o Menu do Firefox"
@@ -5262,10 +5151,8 @@ msgstr ""
 "Tornar janelas com a opção \"Em todos os ambientes de trabalho\"  fixas. "
 "Janelas fixas irão ser visíveis em todos os viewports."
 
-#, fuzzy
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr ""
-"Activa a próxima janela que tenha a opção \"necessita atenção\" activada."
+msgstr "Tornar janelas \"urgentes\" também  \"a necessitar atenção\"."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""
@@ -5293,6 +5180,82 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Correcções"
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (tamanho das ondas das dobras) das Dobras Horizontais "
+#~ "relativamente à largura da janela. Valores negativos dobram para fora."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Amplitude (tamanho das ondas das dobras) das dobras curvadas "
+#~ "relativamente à largura da janela. Valores negativos dobram para fora."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr ""
+#~ "Amplitude das ondas (tamanho das ondas) relativamente à altura da janela."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Diminuir Brilho"
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Aumentar Brilho"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Incremento no Brilho"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Brilho e Constraste"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Ajustes de Brilho e Contraste"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Definições de brilho"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Valores de brilho para janelas"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Valores de brilho da janela"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Janelas com brilho"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Diminuir Contraste"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Aumentar Contraste"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Incremento de Contraste"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Definições de Contraste"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Valores de contraste para janelas"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Valores de contraste da janela"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Janelas com Contraste"
+
+#~ msgid "Window specific"
+#~ msgstr "Janela específica"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Janelas que devem ser ter um brilho diferente por omissão"
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Janelas que devem ser ter um contraste diferente por omissão"
 
 #~ msgid "Close Windows In Scale"
 #~ msgstr "Fechar Janelas em Scale"

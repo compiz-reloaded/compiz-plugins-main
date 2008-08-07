@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-07-09 16:53+0530\n"
-"PO-Revision-Date: 2008-06-03 10:40+0200\n"
+"POT-Creation-Date: 2008-08-07 11:27+0530\n"
+"PO-Revision-Date: 2008-08-06 12:47+0200\n"
 "Last-Translator: Ander Elortondo <ander.elor@gmail.com>\n"
 "Language-Team: Euskara <eu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -104,10 +104,11 @@ msgid "Windows that should be handled by 3D"
 msgstr "3Dn landu beharko liratekeen leihoak"
 
 msgid "ADD Helper"
-msgstr ""
+msgstr "ADI laguntzailea"
 
+#, fuzzy
 msgid "Bindings"
-msgstr ""
+msgstr "Loturak"
 
 msgid "Brightness"
 msgstr "Disdira"
@@ -116,10 +117,10 @@ msgid "Brightness of faded windows"
 msgstr "Leiho zeharrargiko disdira"
 
 msgid "Enable ADD Helper on start"
-msgstr ""
+msgstr "Gaitu ADI laguntzailea hasterakoan"
 
 msgid "Enables ADD helper when it is first loaded."
-msgstr ""
+msgstr "Gaitu ADI laguntzailea lehen aldiz kargatzean"
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -161,20 +162,6 @@ msgid ""
 msgstr ""
 "Eketu guztiak ausazkoak, aukeratutako efektua ahaztuz. Gertaera baten ez "
 "bada efekturik aukeratu, ez da animatuko."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the Horizontal Folds relative "
-"to the window width. Negative values fold outward."
-msgstr ""
-"Tolesdura horizontalen tamaina (tolesdurako uhinen tamaina) leiho "
-"zabalerarekin parekatuz. Balore negatiboekin kanporantz tolestuz."
-
-msgid ""
-"Amplitude (size of the waves in the fold) of the curved fold relative to "
-"window width. Negative values fold outward."
-msgstr ""
-"Tolesdura kurbatuaren tamaina (tolesdurako uhinen tamaina) leiho "
-"zabalerarekin parekatuz. Balore negatiboekin kanporantz tolestuz."
 
 msgid "Angle of window at the end of the animation."
 msgstr "leihoaren angulua animazio amaitzean"
@@ -275,7 +262,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Kurbatutako tolesdura"
 
-msgid "Curved Fold Amplitude"
+#, fuzzy
+msgid "Curved Fold Amplitude Multiplier"
 msgstr "Kurbatutako tolesduraren tamaina"
 
 msgid "Dodge"
@@ -371,6 +359,11 @@ msgstr "Tolestu"
 msgid "Fold Direction"
 msgstr "Toleste norabidea"
 
+msgid ""
+"Fold amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
 msgid "Fold opening direction for pieces in Razr effect."
 msgstr "Mozketa efektuan, zatien irekitze tolesduraren norabidea"
 
@@ -389,7 +382,8 @@ msgstr "Hexagonala"
 msgid "Horizontal Folds"
 msgstr "Horizontalean tolestu"
 
-msgid "Horizontal Folds Amplitude"
+#, fuzzy
+msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Toleste horizontalaren zabalera"
 
 msgid "How spring-like the Sidekick animation should be."
@@ -496,12 +490,14 @@ msgid "Out"
 msgstr "Kanpoan"
 
 msgid "Pool"
-msgstr "Inkesta"
+msgstr "Gordailu"
 
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to restore full list."
 msgstr ""
+"Ausazko efektua aukeratuz gero, aukeran dauden efektuen gordailua. Klik "
+"berrezarri zerrenda osoa leheneratzeko."
 
 msgid "Random"
 msgstr "Ausaz"
@@ -558,22 +554,26 @@ msgid "Sidekick Springiness"
 msgstr ""
 
 msgid "Skewer"
-msgstr ""
+msgstr "Birrindu"
 
 msgid "Skewer Direction"
-msgstr ""
+msgstr "Birrintze norabidea"
 
 msgid "Spacing between beams."
-msgstr ""
+msgstr "Argi-sorten arteko tartea."
 
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
 msgstr ""
+"Hasierako zabalera irekitzean eta amaierako zabalera ixtean lanpara magiko "
+"efektuan."
 
 msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
+"Hasierako zabalera irekitzean eta amaierako zabalera ixtean xurgailu "
+"efektuan."
 
 msgid "Tessellation Type"
 msgstr ""
@@ -588,22 +588,30 @@ msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
+"Milisegundo kopurua animazio irudikatzeen artean. Gero eta zenbaki handiagoa "
+"mugimendu zakarragoa."
 
 msgid ""
 "The amount of time in milliseconds between each render of the intense "
 "animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
 "become."
 msgstr ""
+"Milisegundo kopurua animazio bizien (adib. sua, argi-sorta)  irudikatzeen "
+"artean. Gero eta zenbaki handiagoa mugimendu zakarragoa."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
+"Animatutako leihoa saretan zehar zatikatuko da. Adierazi saretaren gelaxka "
+"kopurua leihoaren altueran."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
+"Animatutako leihoa saretan zehar zatikatuko da. Adierazi saretaren gelaxka "
+"kopurua leihoaren zabaleran."
 
 msgid "The animation effect shown when closing a window."
 msgstr "Animazio efektua ikusgai leihoa ixtean."
@@ -647,9 +655,6 @@ msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
 msgstr "Emango diren toleste horizontal kopurua Toleste Horizontal animazioan."
 
-msgid "The wave amplitude (size of the waves) relative to the window height."
-msgstr "Uhinaren tamaina leiho alturaren araberakoa."
-
 msgid "The width of the wave relative to the window height."
 msgstr "Uhinaren zabalera leihoaren altueraren araberakoa."
 
@@ -687,10 +692,10 @@ msgid "Vacuum Grid Y Resolution"
 msgstr "Sareta hutsaren Y resoluzioa"
 
 msgid "Vacuum Open Start Width"
-msgstr ""
+msgstr "Xurgailuaren hasierako zabalera."
 
 msgid "Vacuum Open/Close Moving End"
-msgstr ""
+msgstr "Xurgailuaren Ireki/itxi mugimendu amaiera"
 
 msgid ""
 "Vertex grid resolution for Magic Lamp (Y dimension only). This is the number "
@@ -707,41 +712,57 @@ msgid ""
 "points used to define the curves. The higher the number, the smoother the "
 "curves. However there will be a loss of performance (CPU usage increases)."
 msgstr ""
+"Sareta erpinaren resoluzioa xurgailuan (Y dimensioan bakarrik). Kurbak "
+"definitzeko erabiliko diren puntu kopurua da. Zenbakia handiagoak kurba "
+"leuntzen du. Hala ere, errendimendu txikitzea ekar dezake. (CPU erabilera "
+"igotzen da)."
 
 msgid "Wave"
 msgstr "Uhina"
 
-msgid "Wave Amplitude"
+#, fuzzy
+msgid "Wave Amplitude Multiplier"
 msgstr "Uhin tamaina"
 
 msgid "Wave Width"
 msgstr "Uhin zabalera"
 
 msgid ""
+"Wave amplitude (size) is multiplied by this number. Negative values fold "
+"outward."
+msgstr ""
+
+msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
 msgstr ""
+"Leihoak ataza-barrara hegan egin behar badu hegazkin efektuaz txikitzean."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
+"Leihoak ataza-barrara zoom egin behar badu toleste oker efektuaz txikitzean."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Dream effect."
-msgstr ""
+msgstr "Leihoak ataza-barrara zoom egin behar badu amets efektuaz txikitzean."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 1 effect."
 msgstr ""
+"Leihoak ataza-barrara zoom egin behar badu txirrist 1 efektuaz txikitzean."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Glide 2 effect."
 msgstr ""
+"Leihoak ataza-barrara zoom egin behar badu txirrist 2 efektuaz txikitzean."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Horizontal "
 "Folds effect."
 msgstr ""
+"Leihoak ataza-barrara zoom egin behar badu toleste horizontal efektuaz "
+"txikitzean."
 
 msgid "Window Grid Height"
 msgstr "Leihoko Saretaren Altura"
@@ -871,90 +892,11 @@ msgstr "Erreferentzi leihoko Y posizioa"
 msgid "Y position"
 msgstr "Y posizioa"
 
-#, fuzzy
 msgid "Bicubic filter"
-msgstr "Aldatu iragazkia"
+msgstr "Iragazki bikubikoa"
 
 msgid "Bicubic texture filtering"
 msgstr ""
-
-#, fuzzy
-msgid "Brightness Decrease"
-msgstr "Disdira"
-
-#, fuzzy
-msgid "Brightness Increase"
-msgstr "Disdira"
-
-#, fuzzy
-msgid "Brightness Step"
-msgstr "Disdira"
-
-#, fuzzy
-msgid "Brightness and Saturation"
-msgstr "Saturazioa"
-
-msgid "Brightness and Saturation adjustments"
-msgstr ""
-
-#, fuzzy
-msgid "Brightness settings"
-msgstr "Disdira"
-
-#, fuzzy
-msgid "Brightness values for windows"
-msgstr "Leiho zeharrargiko disdira"
-
-#, fuzzy
-msgid "Brightness window values"
-msgstr "Leiho zeharrargiko disdira"
-
-#, fuzzy
-msgid "Brightness windows"
-msgstr "Leiho zeharrargiko disdira"
-
-msgid "General"
-msgstr ""
-
-#, fuzzy
-msgid "Saturation Decrease"
-msgstr "Saturazioa"
-
-#, fuzzy
-msgid "Saturation Increase"
-msgstr "Saturazioa"
-
-#, fuzzy
-msgid "Saturation Step"
-msgstr "Saturazioa"
-
-#, fuzzy
-msgid "Saturation settings"
-msgstr "Saturazioa"
-
-#, fuzzy
-msgid "Saturation values for windows"
-msgstr "Leiho zeharrargiko saturazioa"
-
-#, fuzzy
-msgid "Saturation window values"
-msgstr "Leiho zeharrargiko saturazioa"
-
-#, fuzzy
-msgid "Saturation windows"
-msgstr "Leiho zeharrargiko saturazioa"
-
-#, fuzzy
-msgid "Window specific"
-msgstr "Leiho kokapena"
-
-#, fuzzy
-msgid "Windows that should have a different brightness by default"
-msgstr "3Dn landu beharko liratekeen leihoak"
-
-#, fuzzy
-msgid "Windows that should have a different saturation by default"
-msgstr "3Dn landu beharko liratekeen leihoak"
 
 msgid "Color filter"
 msgstr "kolore filtroa"
@@ -978,32 +920,39 @@ msgid ""
 "List of plain text filter files that should be applied when filtering "
 "windows or screen."
 msgstr ""
+"Leihoak edo pantaila iragaztean aplikatuko diren testu hutsezko iragazkien "
+"zerrenda."
 
 msgid ""
 "Select filter to use from filters list : either apply all filters or only "
 "one specific filter (triggering this action switches filters one by one and "
 "eventually comes back to the \"all filters\" mode)."
 msgstr ""
+"Aukeratu iragazkia, zerrendatik: Erabili iragazki guztiak edo bat bereziki. "
+"(ekintza hau abiaraztean, iragazkiak banan-banan aldatuko ditu, \"iragazki "
+"guztiak\" modura itzuliz tokatzean)"
 
 msgid "Switch filter"
 msgstr "Aldatu iragazkia"
 
 msgid "Toggle filtering for currently focused window."
-msgstr ""
+msgstr "Aldatu iragaztea orain fokua duen leihora."
 
 msgid "Toggle filtering for every window on the screen."
-msgstr ""
+msgstr "Aldatu iragaztea pantailan dauden leiho guztietara."
 
 msgid "Toggle screen filtering"
-msgstr ""
+msgstr "Aldatu pantaila iragazkia."
 
 msgid "Toggle window filtering"
-msgstr ""
+msgstr "Aldatu leiho iragazkia."
 
 msgid ""
 "Window decorations (borders and titlebar) will be filtered as well as window "
 "contents if enabled."
 msgstr ""
+"Leiho dekorazioak (ertzak eta titulu-barra) iragazi egingo dira, leiho "
+"edukiaz bat, gaitua badago."
 
 msgid "Windows to be filtered by default."
 msgstr "Lehenetsita iragaziko diren leihoak."
@@ -1012,34 +961,34 @@ msgid "Windows to exclude from filtering."
 msgstr "Iragaziko ez diren leihoak."
 
 msgid "Activate Crash Handler."
-msgstr ""
+msgstr "Aktibatu Kraskadura laguntzailea."
 
 msgid "Compiz crash handler plugin"
-msgstr ""
+msgstr "Compiz kraskadura laguntzaile plugina"
 
 msgid "Crash Dump Directory"
-msgstr ""
+msgstr "Kraskatzean iraultze karpeta. "
 
 msgid "Crash handler"
-msgstr ""
+msgstr "Kraskadura laguntzailea."
 
 msgid "Directory to dump the crash logs to."
-msgstr ""
+msgstr "Kraskadura egunkaria irauliko den karpeta."
 
 msgid "Enable Crash Handler"
-msgstr ""
+msgstr "Gaitu kraskadura laguntzailea."
 
 msgid "Start Other Window Manager"
-msgstr "Beste leiho kudetzaile bat abiarazi"
+msgstr "Beste leiho kudeatzaile bat abiarazi"
 
 msgid "Start other window manager on Crash."
-msgstr "Beste leiho kudetzaile bat abiarazi aplikazioa erortzean"
+msgstr "Beste leiho kudeatzaile bat abiarazi kraskatzean."
 
 msgid "Window Manager Command Line"
-msgstr ""
+msgstr "Leiho kudeatzailearen komando lerroa"
 
 msgid "Window manager command line. DO NOT ENTER COMPIZ HERE!!!"
-msgstr ""
+msgstr "Leiho kudeatzailearen komando lerroa. EZ IDATZI HEMEN COMPIZ!!!"
 
 msgid "Above"
 msgstr "Gaina"
@@ -1066,10 +1015,10 @@ msgid "Appearance"
 msgstr "Itxura"
 
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Ikuspegi-ratio"
 
 msgid "Aspect ratio of the deformed cube"
-msgstr ""
+msgstr "Ikuspegi-ratioa deformatutako kuboan"
 
 msgid "Auto zoom"
 msgstr "Auto zoom"
@@ -1084,22 +1033,30 @@ msgid "Bottom image files"
 msgstr "Azpiko irudiaren fitxategiak"
 
 msgid "Clamp bottom face image to border"
-msgstr ""
+msgstr "Lotu azpiko aurpegiaren irudia ertzari"
 
 msgid ""
 "Clamp bottom face image to border. This is often the best if your image "
 "doesn't fit the size of the cube or if it's transparent. It can lead to some "
 "ugly dotted lines when enabled (especially with large enough images) though."
 msgstr ""
+"Lotu azpiko aurpegiaren irudia ertzari. Hau izanen da aukerarik onena "
+"irudiaren tamaina ez badator bat kuboarekin edo hau  gardena bada. It can "
+"lead to some ugly dotted lines when enabled (especially with large enough "
+"images) though."
 
 msgid "Clamp top face image to border"
-msgstr ""
+msgstr "Lotu goiko aurpegiaren irudia ertzari"
 
 msgid ""
 "Clamp top face image to border. This is often the best if your image doesn't "
 "fit the size of the cube or if it's transparent. It can lead to some ugly "
 "dotted lines when enabled (especially with large enough images) though."
 msgstr ""
+"Lotu azpiko aurpegiaren irudia ertzari. Hau izanen da aukerarik onena "
+"irudiaren tamaina ez badator bat kuboarekin edo hau  gardena bada. It can "
+"lead to some ugly dotted lines when enabled (especially with large enough "
+"images) though."
 
 msgid "Color of bottom face of the cube"
 msgstr "Kuboaren azpiko aurpegiko kolorea"
@@ -1113,48 +1070,41 @@ msgstr "Oinarriko kolorea (gertu)."
 msgid "Color of top face of the cube"
 msgstr "Kuboaren goiko aurpegiko kolorea"
 
-#, fuzzy
 msgid "Compiz cube reflection and deformation"
-msgstr "Compiz kuboaren islapena"
+msgstr "Compiz kuboaren islapena eta deformazioa"
 
 msgid "Cube Bottom Color"
 msgstr "Kuboaren azpiko kolorea"
 
-#, fuzzy
 msgid "Cube Reflection and Deformation"
-msgstr "Kubo islapena"
+msgstr "Kuboaren islapena eta deformazioa"
 
 msgid "Cube Top Color"
 msgstr "Kuboaren goiko kolorea"
 
-#, fuzzy
 msgid "Cube caps"
 msgstr "Kubo estaldura"
 
 msgid "Cylinder"
-msgstr ""
+msgstr "Zilindroa"
 
-#, fuzzy
 msgid "Deform caps"
-msgstr "Iraupena"
+msgstr "Deformatu estaldura"
 
 msgid "Deform cube caps."
-msgstr ""
+msgstr "Deformatu kubo estaldura."
 
-#, fuzzy
 msgid "Deform only on mouse rotate"
-msgstr "Auto zoom xaguaz biratzean bakarrik"
+msgstr "Deformatu saguaz biratzean bakarrik"
 
-#, fuzzy
 msgid "Deformation"
-msgstr "Iraupena"
+msgstr "Deformazioa"
 
 msgid "Deformation in unfold cube mode."
-msgstr ""
+msgstr "Deformazioa tolestu gabeko kubo moduan."
 
-#, fuzzy
 msgid "Deformation mode."
-msgstr "Iraupena"
+msgstr "Deformazio modua."
 
 msgid "Distance"
 msgstr "Distantzia"
@@ -1171,13 +1121,11 @@ msgstr "Marraztu goiko aurpegia"
 msgid "Draw top face of the cube"
 msgstr "Marraztu kuboaren goiko aurpegia"
 
-#, fuzzy
 msgid "Enabled"
-msgstr "Gaitu"
+msgstr "Gaitua"
 
-#, fuzzy
 msgid "Give cube a reflective ground."
-msgstr "Compiz kuboaren islapena"
+msgstr "Eman kuboari zoru islakorra."
 
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "Kuboko azpiko aurpegiko irudirako joan aurreko irudira"
@@ -1186,22 +1134,22 @@ msgid "Go back to previous image for top face of the cube"
 msgstr "Kuboko goiko aurpegiko irudirako joan aurreko irudira"
 
 msgid "Ground color(far)"
-msgstr "Oinarri kolorea (urruti)"
+msgstr "Zoruaren kolorea (urruti)"
 
 msgid "Ground color(near)"
-msgstr "Oinarri kolorea (gertu)"
+msgstr "Zoruaren kolorea (gertu)"
 
 msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
-msgstr ""
+msgstr "Hasi kuboaren deformazio zilindrikoa, biratzea saguaz ematen bada."
 
 msgid "Intensity"
 msgstr "Intentsitatea"
 
 msgid "Jumpy"
-msgstr ""
+msgstr "Saltoka"
 
 msgid "Jumpy reflection"
-msgstr ""
+msgstr "Saltoen islatzea"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -1213,18 +1161,16 @@ msgstr ""
 "Kuboko goiko aurpegian prozesatu daitezkeen PNG eta SVG fitxategien zerrenda"
 
 msgid "Maintain bottom aspect ratio"
-msgstr ""
+msgstr "Mantendu azpiko itxura-ratioa"
 
-#, fuzzy
 msgid "Maintain bottom cap image aspect ratio."
-msgstr "Biratzean azpiko aurpegiko irudia doitu"
+msgstr "Mantendu azpiko estaldura irudiaren itxura-ratioa."
 
 msgid "Maintain top aspect ratio"
-msgstr ""
+msgstr "Mantendu goiko itxura-ratioa"
 
-#, fuzzy
 msgid "Maintain top cap image aspect ratio."
-msgstr "Biratzean goiko aurpegiko irudia doitu"
+msgstr "Mantendu goikok estaldura irudiaren itxura-ratioa."
 
 msgid "Next bottom image"
 msgstr "Hurrengo azpiko irudia"
@@ -1239,22 +1185,22 @@ msgid "Prev top image"
 msgstr "Aurreko goiko irudia"
 
 msgid "Reflection"
-msgstr ""
+msgstr "Islatzea"
 
 msgid "Reflection ground size"
-msgstr ""
+msgstr "Islatzearen zoru tamaina"
 
 msgid "Reflection ground size."
-msgstr ""
+msgstr "Islatzearen zoru tamaina."
 
 msgid "Reflection intensity"
-msgstr ""
+msgstr "Islatze intentsitatea"
 
 msgid "Reflection mode"
-msgstr ""
+msgstr "Islatze modua"
 
 msgid "Reflection mode."
-msgstr ""
+msgstr "Islatze modua."
 
 msgid "Scale bottom image"
 msgstr "Azpiko irudia eskalatu"
@@ -1269,74 +1215,70 @@ msgid "Scale top image"
 msgstr "Goiko irudia eskalatu"
 
 msgid "Sphere"
-msgstr ""
+msgstr "Esfera"
 
 msgid "Top image files"
 msgstr "Goiko irudi fitxategiak"
 
 msgid "Unfold cube deformation"
-msgstr ""
+msgstr "Zabaldutako kuboaren deformazioa"
 
 msgid "Zoom out automatically only on mouse rotate."
-msgstr ""
+msgstr "Txikiagotu automatikoki saguaz biratzean bakarrik."
 
 msgid "Zoom out automatically to make the cube fit to the screen."
-msgstr ""
+msgstr "Txikiagotu automatikoki kuboa pantailara egokitzeko."
 
-#, fuzzy
 msgid "Cube Caps"
-msgstr "Kubo estaldura"
+msgstr "Kubo estaldurak"
 
 msgid "Render images on top and bottom of the cube"
 msgstr "Kuboaren goiko eta azpiko irudiak prozesatu"
 
-#, fuzzy
 msgid "Compiz cube reflection"
-msgstr "Compiz kuboaren islapena"
+msgstr "Compiz kuboaren islatzea"
 
-#, fuzzy
 msgid "Cube Reflection"
-msgstr "Kubo islapena"
+msgstr "Kubo islatzea"
 
 msgid "Animation used when switching to expo mode"
-msgstr ""
+msgstr "Expo modura aldatzean erabilitako animazioa"
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "Itxura ratioa"
 
 msgid "Button binding for drag &amp; drop of windows"
-msgstr ""
+msgstr "Laster-tekla, leihoak arrastatu eta jaregin egiteko"
 
 msgid "Button binding to exit expo"
-msgstr ""
+msgstr "Expotik irteteko laster-tekla"
 
 msgid "Button binding to switch to next viewport in expo"
-msgstr ""
+msgstr "Laster-tekla hurrengo mahaigain aurkezpenera aldatzeko"
 
-#, fuzzy
 msgid "Curve"
-msgstr "Kurbatutako tolesdura"
+msgstr "Kurbadura"
 
 msgid "Curve strength"
-msgstr ""
+msgstr "Kurbaduraren indarra"
 
 msgid "Deformation of the expo wall"
-msgstr ""
+msgstr "Expo ormaren deformazioa"
 
 msgid "Distance between viewports"
-msgstr ""
+msgstr "Mahaingain aurkezpenen arteko tartea"
 
 msgid "Distance of the expo wall"
-msgstr ""
+msgstr "Expo ormara distantzia"
 
 msgid "Double click time"
-msgstr "Klik bikotzaren denbora"
+msgstr "Klik bikoitzaren denbora"
 
 msgid "Drag&amp;drop"
-msgstr ""
+msgstr "Arrastatu eta jaregin"
 
 msgid "Duration of the zoomout animation"
-msgstr ""
+msgstr "Txikitze animazioaren denbora"
 
 msgid "Engage wall expo mode button binding"
 msgstr ""
@@ -1348,91 +1290,94 @@ msgid "Engage wall expo mode key binding"
 msgstr ""
 
 msgid "Exit expo"
-msgstr ""
+msgstr "Expotik irten"
 
 msgid "Expo"
-msgstr ""
+msgstr "Expo"
 
 msgid "Expo Animation"
-msgstr ""
+msgstr "Expo animazioa"
 
 msgid "Expo Plugin"
-msgstr ""
+msgstr "Expo plugina"
 
 msgid "Expo button"
-msgstr ""
+msgstr "Expo botoia"
 
 msgid "Expo edge"
-msgstr ""
+msgstr "Expo ertza"
 
 msgid "Expo key"
-msgstr ""
+msgstr "Expo tekla"
 
 msgid "Expo mode aspect ratio"
-msgstr ""
+msgstr "Expo moduaren itxura ratioa"
 
 msgid "Fade + Zoom"
-msgstr ""
+msgstr "Iraungi + zoom"
 
 msgid "Generate mipmaps in expo mode"
-msgstr ""
+msgstr "Sortu mipmaps expo moduan"
 
 msgid "Hide panels/docks in expo"
-msgstr ""
+msgstr "Gorde panelak/docks expon"
 
 msgid "Hide panels/docks in expo."
-msgstr ""
+msgstr "Gorde panelak/docks expon."
 
 msgid "Immediate moves"
-msgstr ""
+msgstr "Berehala mugitu"
 
 msgid "Inactive viewport brightness."
-msgstr ""
+msgstr "Aktibo ez dauden mahaigain aurkezpenen distira."
 
 msgid "Inactive viewport saturation."
-msgstr ""
+msgstr "Aktibo ez dauden mahaigain aurkezpenen saturazioa."
 
 msgid "Mipmaps"
 msgstr "Mipmaps"
 
 msgid "Multi Output Mode"
-msgstr ""
+msgstr "Irteera anitzeko modua"
 
 msgid "Next viewport"
-msgstr ""
+msgstr "Hurrengo mahaigain aurkezpena"
 
 msgid "One big wall"
-msgstr ""
+msgstr "Orma handi bakarra"
 
 msgid "One wall per output"
-msgstr ""
+msgstr "Orma bat irteerako"
 
 msgid "Previous viewport"
-msgstr ""
+msgstr "Aurreko mahaigain aurkezpena"
 
 msgid "Reflection Scale"
-msgstr ""
+msgstr "Islatzearen eskala"
 
 msgid "Scale factor of the expo wall reflection"
-msgstr ""
+msgstr "Eskala faktorea expo ormaren islatzean"
 
 msgid ""
 "Selects how the expo wall is displayed if multiple output devices are used."
 msgstr ""
+"Aukeratu expo orma nola ikusiko den irteera gailu anitzak erabiltzen badira."
 
 msgid ""
 "Selects if windows movements in expo mode should be immediate - this among "
 "other things disables wobbliness"
 msgstr ""
+"Aukeratu leiho mugimendua berehalakoak izan behar badira - this among other "
+"things disables wobbliness"
 
 msgid "Show a reflection of the viewports on the ground"
-msgstr ""
+msgstr "Ikus mahaigain aurkezpenaren islatzea zoruan"
 
 msgid "Strength of the deformation in curve mode"
-msgstr ""
+msgstr "Deformazioaren indarra kurba moduan"
 
 msgid "Tilt"
-msgstr ""
+msgstr "Tilt"
 
 msgid "Timeframe to execute a double click"
 msgstr ""
@@ -1889,6 +1834,9 @@ msgstr ""
 
 msgid "Font Size"
 msgstr ""
+
+msgid "General"
+msgstr "Orokorra"
 
 msgid "Glass"
 msgstr ""
@@ -5032,6 +4980,82 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
+#~ "relative to the window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Tolesdura horizontalen tamaina (tolesdurako uhinen tamaina) leiho "
+#~ "zabalerarekin parekatuz. Balore negatiboekin kanporantz tolestuz."
+
+#~ msgid ""
+#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
+#~ "window width. Negative values fold outward."
+#~ msgstr ""
+#~ "Tolesdura kurbatuaren tamaina (tolesdurako uhinen tamaina) leiho "
+#~ "zabalerarekin parekatuz. Balore negatiboekin kanporantz tolestuz."
+
+#~ msgid ""
+#~ "The wave amplitude (size of the waves) relative to the window height."
+#~ msgstr "Uhinaren tamaina leiho alturaren araberakoa."
+
+#~ msgid "Brightness Decrease"
+#~ msgstr "Distira txikitu "
+
+#~ msgid "Brightness Increase"
+#~ msgstr "Distira handitu"
+
+#~ msgid "Brightness Step"
+#~ msgstr "Distira tartea"
+
+#~ msgid "Brightness and Saturation"
+#~ msgstr "Distira eta Saturazioa"
+
+#~ msgid "Brightness and Saturation adjustments"
+#~ msgstr "Distira eta saturazioa doitzea"
+
+#~ msgid "Brightness settings"
+#~ msgstr "Distira ezarpenak"
+
+#~ msgid "Brightness values for windows"
+#~ msgstr "Distira balioak leihoentzat"
+
+#~ msgid "Brightness window values"
+#~ msgstr "Distira balioak leihoentzat"
+
+#~ msgid "Brightness windows"
+#~ msgstr "Leihoen distira"
+
+#~ msgid "Saturation Decrease"
+#~ msgstr "Saturazioa txikitu"
+
+#~ msgid "Saturation Increase"
+#~ msgstr "Saturazioa handitu"
+
+#~ msgid "Saturation Step"
+#~ msgstr "Saturazioa tartea"
+
+#~ msgid "Saturation settings"
+#~ msgstr "Saturazio ezarpenak"
+
+#~ msgid "Saturation values for windows"
+#~ msgstr "Saturazio balioak leihoentzat"
+
+#~ msgid "Saturation window values"
+#~ msgstr "Saturazio balioak leihoentzat"
+
+#~ msgid "Saturation windows"
+#~ msgstr "Leihoen saturazioa"
+
+#, fuzzy
+#~ msgid "Window specific"
+#~ msgstr "Leiho kokapena"
+
+#~ msgid "Windows that should have a different brightness by default"
+#~ msgstr "Lehenetsita distira ezberdina izan behar duten leihoak."
+
+#~ msgid "Windows that should have a different saturation by default"
+#~ msgstr "Lehenetsita saturazio ezberdina izan behar duten leihoak."
 
 #~ msgid "Animation Speed"
 #~ msgstr "Animazio abiadura"
