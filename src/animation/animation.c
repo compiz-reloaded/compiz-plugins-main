@@ -211,8 +211,20 @@ defaultMinimizeAnimInit (CompScreen * s, CompWindow * w)
     {
 	aw->animTotalTime /= ZOOM_PERCEIVED_T;
 	aw->animRemainingTime = aw->animTotalTime;
+	aw->usingTransform = TRUE;
     }
     defaultAnimInit(s, w);
+}
+
+static void
+animWithTransformInit (CompScreen * s,
+		       CompWindow * w)
+{
+    ANIM_WINDOW(w);
+
+    aw->usingTransform = TRUE;
+
+    defaultMinimizeAnimInit (s, w);
 }
 
 static inline Bool
@@ -490,6 +502,49 @@ float decelerateProgress(float progress)
     return decelerateProgressCustom(progress, 0.5, 0.75);
 }
 
+float
+getProgressAndCenter (CompWindow *w,
+		      Point *center)
+{
+    float forwardProgress = 0;
+
+    ANIM_SCREEN (w->screen);
+    ANIM_WINDOW (w);
+
+    if (center)
+	center->x = WIN_X (w) + WIN_W (w) / 2.0;
+
+    if (animZoomToIcon (as, aw))
+    {
+	float dummy;
+	fxZoomAnimProgress (as, aw, &forwardProgress, &dummy, TRUE);
+
+	if (center)
+	    getZoomCenterScale (w, center, NULL);
+    }
+    else
+    {
+	forwardProgress = defaultAnimProgress (aw);
+
+	if (center)
+	{
+	    if (aw->curWindowEvent == WindowEventShade ||
+		aw->curWindowEvent == WindowEventUnshade)
+	    {
+		float origCenterY = WIN_Y (w) + WIN_H (w) / 2.0;
+		center->y =
+		    (1 - forwardProgress) * origCenterY +
+		    forwardProgress * (WIN_Y (w) + aw->model->topHeight);
+	    }
+	    else // i.e. (un)minimizing without zooming
+	    {
+		    center->y = WIN_Y (w) + WIN_H (w) / 2.0;
+	    }
+	}
+    }
+    return forwardProgress;
+}
+
 void
 defaultAnimStep (CompScreen *s, CompWindow *w, float time)
 {
@@ -517,7 +572,7 @@ defaultAnimStep (CompScreen *s, CompWindow *w, float time)
     matrixGetIdentity (&aw->transform);
     if (animZoomToIcon(as, aw))
     {
-	applyZoomTransform (w, &aw->transform);
+	applyZoomTransform (w);
     }
 }
 
@@ -533,15 +588,22 @@ defaultMinimizeUpdateWindowAttrib(AnimScreen * as,
 }
 
 void
-defaultMinimizeUpdateWindowTransform(CompScreen *s,
-				     CompWindow *w,
-				     CompTransform *wTransform)
+defaultUpdateWindowTransform (CompScreen *s,
+			      CompWindow *w,
+			      CompTransform *wTransform)
 {
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    if (animZoomToIcon(as, aw))
-	fxZoomUpdateWindowTransform(s, w, wTransform);
+    if (aw->usingTransform)
+	applyTransform (wTransform, &aw->transform);
+}
+
+// Apply transform to wTransform
+inline void
+applyTransform (CompTransform *wTransform,
+		CompTransform *transform)
+{
+    matrixMultiply (wTransform, wTransform, transform);
 }
 
 static void
@@ -604,12 +666,14 @@ expandBoxWithPoint2DTransform (CompScreen *s,
     expandBoxWithPoint (target, coordsTransformed.x, coordsTransformed.y);
 }
 
+// Either points or objects should be non-NULL.
 static Bool
 expandBoxWithPoints3DTransform (CompOutput          *output,
 				CompScreen          *s,
 				const CompTransform *transform,
 				Box                 *targetBox,
 				const float         *points,
+				Object              *objects,
 				int                 nPoints)
 {
     GLdouble dModel[16];
@@ -627,18 +691,33 @@ expandBoxWithPoints3DTransform (CompOutput          *output,
 	 output->width,
 	 output->height};
 
-    while (nPoints--)
+    if (points) // use points
     {
-	if (!gluProject (points[0], points[1], points[2],
-			 dModel, dProjection, viewport,
-			 &x, &y, &z))
-	    return FALSE;
-
-	expandBoxWithPoint (targetBox, x + 0.5, (s->height - y) + 0.5);
-
-	points += 3;
+	for (; nPoints; nPoints--, points += 3)
+	{
+	    if (!gluProject (points[0], points[1], points[2],
+			     dModel, dProjection, viewport,
+			     &x, &y, &z))
+		return FALSE;
+    
+	    expandBoxWithPoint (targetBox, x + 0.5, (s->height - y) + 0.5);
+	}
     }
+    else // use objects
+    {
+	Object *object = objects;
+	for (; nPoints; nPoints--, object++)
+	{
+	    if (!gluProject (object->position.x,
+			     object->position.y,
+			     object->position.z,
+			     dModel, dProjection, viewport,
+			     &x, &y, &z))
+		return FALSE;
 
+	    expandBoxWithPoint (targetBox, x + 0.5, (s->height - y) + 0.5);
+	}
+    }
     return TRUE;
 }
 
@@ -655,24 +734,40 @@ modelUpdateBB (CompOutput *output,
 	return;
 
     Object *object = model->objects;
-    ANIM_SCREEN (w->screen);
 
-    if (animZoomToIcon(as, aw))
+    if (aw->usingTransform)
     {
-	CompVector coords;
-	coords.z = 0;
-	coords.w = 1;
-
-	for (i = 0; i < model->numObjects; i++, object++)
+	if (animEffectPropertiesTmp[aw->curAnimEffect].modelAnimIs3D)
 	{
-	    coords.x = object->position.x;
-	    coords.y = object->position.y;
+	    CompTransform wTransform;
+	    prepareTransform (w->screen, output, &wTransform, &aw->transform);
 
-	    expandBoxWithPoint2DTransform (w->screen,
-					   &aw->BB,
-					   &coords,
-					   &aw->transform);
+	    expandBoxWithPoints3DTransform (output,
+					    w->screen,
+					    &wTransform,
+					    &aw->BB,
+					    NULL,
+					    model->objects,
+					    model->numObjects);
 	}
+	else
+	{
+	    Object *object = model->objects;
+	    for (i = 0; i < model->numObjects; i++, object++)
+	    {
+		CompVector coords;
+    
+		coords.x = object->position.x;
+		coords.y = object->position.y;
+		coords.z = 0;
+		coords.w = 1;
+
+		expandBoxWithPoint2DTransform (w->screen,
+					       &aw->BB,
+					       &coords,
+					       &aw->transform);
+	    }
+  	}
     }
     else
     {
@@ -741,6 +836,7 @@ compTransformUpdateBB (CompOutput *output,
 				    &wTransform,
 				    &aw->BB,
 				    corners,
+				    NULL,
 				    4);
 }
 
@@ -772,100 +868,100 @@ damageBoundingBox (CompWindow * w)
 
 AnimEffectProperties animEffectProperties[AnimEffectNum] = {
     // AnimEffectNone
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     // AnimEffectRandom
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     // AnimEffectAirplane3D
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, fxAirplane3DAnimStep,
      fxAirplane3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-     fxAirplane3DLinearAnimStepPolygon, 0, 0, 0, updateBBScreen},
+     fxAirplane3DLinearAnimStepPolygon, 0, 0, 0, updateBBScreen, 0},
     // AnimEffectBeamUp
     {fxBeamupUpdateWindowAttrib, 0, drawParticleSystems, fxBeamUpModelStep,
-     fxBeamUpInit, 0, 0, 0, 1, 0, 0, 0, 0, particlesUpdateBB},
+     fxBeamUpInit, 0, 0, 0, 0, 0, 0, 0, 0, particlesUpdateBB, 0},
     // AnimEffectBurn
-    {0, 0, drawParticleSystems, fxBurnModelStep, fxBurnInit, 0, 0, 0, 1, 0,
-     0, 0, 0, particlesUpdateBB},
+    {0, 0, drawParticleSystems, fxBurnModelStep, fxBurnInit, 0, 0, 0, 0, 0,
+     0, 0, 0, particlesUpdateBB, 0},
     // AnimEffectCurvedFold
     {fxFoldUpdateWindowAttrib, 0, 0, fxCurvedFoldModelStep,
-     defaultMinimizeAnimInit, fxMagicLampInitGrid, 0, 0, 0, 0, 0,
-     defaultMinimizeUpdateWindowTransform, 0, modelUpdateBB},
+     animWithTransformInit, fxMagicLampInitGrid, 0, 0, 1, 0, 0,
+     defaultUpdateWindowTransform, 0, modelUpdateBB, 0},
     // AnimEffectDodge
     {0, 0, 0, fxDodgeAnimStep, defaultAnimInit, 0, 0, 0, 0, 0,
      defaultLetOthersDrawGeoms,
      fxDodgeUpdateWindowTransform, fxDodgePostPreparePaintScreen,
-     fxDodgeUpdateBB},
+     fxDodgeUpdateBB, 0},
     // AnimEffectDomino3D
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
      fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-     polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB},
+     polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB, 0},
     // AnimEffectDream
     {fxDreamUpdateWindowAttrib, 0, 0, fxDreamModelStep, fxDreamAnimInit,
-     fxMagicLampInitGrid, 0, 0, 0, 0, 0, defaultMinimizeUpdateWindowTransform,
-     0, modelUpdateBB},
+     fxMagicLampInitGrid, 0, 0, 0, 0, 0, defaultUpdateWindowTransform,
+     0, modelUpdateBB, 0},
     // AnimEffectExplode3D
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
      fxExplode3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-     polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB},
+     polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB, 0},
     // AnimEffectFade
     {fxFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit, 0, 0,
-     0, 0, 0, defaultLetOthersDrawGeoms, 0, 0, updateBBWindow},
+     0, 0, 0, defaultLetOthersDrawGeoms, 0, 0, updateBBWindow, 0},
     // AnimEffectFocusFade
     {fxFocusFadeUpdateWindowAttrib, 0, 0, defaultAnimStep, defaultAnimInit,
-     0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0, updateBBWindow},
+     0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, 0, 0, updateBBWindow, 0},
     // AnimEffectFold3D
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
     fxFold3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-    fxFold3dAnimStepPolygon, 0, 0, 0, polygonsUpdateBB},
+    fxFold3dAnimStepPolygon, 0, 0, 0, polygonsUpdateBB, 0},
     // AnimEffectGlide3D1
     {fxGlideUpdateWindowAttrib, fxGlidePrePaintWindow,
      fxGlidePostPaintWindow, fxGlideAnimStep,
      fxGlideInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
      polygonsDeceleratingAnimStepPolygon,
      fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0,
-     fxGlideUpdateBB},
+     fxGlideUpdateBB, 0},
     // AnimEffectGlide3D2
     {fxGlideUpdateWindowAttrib, fxGlidePrePaintWindow,
      fxGlidePostPaintWindow, fxGlideAnimStep,
      fxGlideInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
      polygonsDeceleratingAnimStepPolygon,
      fxGlideLetOthersDrawGeoms, fxGlideUpdateWindowTransform, 0,
-     fxGlideUpdateBB},
+     fxGlideUpdateBB, 0},
     // AnimEffectHorizontalFolds
     {fxFoldUpdateWindowAttrib, 0, 0, fxHorizontalFoldsModelStep,
-     defaultMinimizeAnimInit, fxHorizontalFoldsInitGrid, 0, 0, 0, 0, 0,
-     defaultMinimizeUpdateWindowTransform, 0, modelUpdateBB},
+     animWithTransformInit, fxHorizontalFoldsInitGrid, 0, 0, 1, 0, 0,
+     defaultUpdateWindowTransform, 0, modelUpdateBB, 0},
     // AnimEffectLeafSpread3D
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
      fxLeafSpread3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-     polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB},
+     polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB, 0},
     // AnimEffectMagicLamp
     {0, 0, 0, fxMagicLampModelStep, fxMagicLampInit, fxMagicLampInitGrid,
-     0, 0, 0, 0, 0, 0, 0, modelUpdateBB},
+     0, 0, 0, 0, 0, 0, 0, modelUpdateBB, 1},
     // AnimEffectRazr3D
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
      fxDomino3DInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-     polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB},
+     polygonsLinearAnimStepPolygon, 0, 0, 0, polygonsUpdateBB, 0},
     // AnimEffectRollUp
-    {0, 0, 0, fxRollUpModelStep, fxRollUpAnimInit, fxRollUpInitGrid, 0, 0, 1,
-     0, 0, 0, 0, modelUpdateBB},
+    {0, 0, 0, fxRollUpModelStep, fxRollUpAnimInit, fxRollUpInitGrid, 0, 0, 0,
+     0, 0, 0, 0, modelUpdateBB, 0},
     // AnimEffectSidekick
     {fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxSidekickInit,
-     0, 0, 0, 1, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
-     0, compTransformUpdateBB},
+     0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, defaultUpdateWindowTransform,
+     0, compTransformUpdateBB, 0},
     // AnimEffectSkewer
     {0, polygonsPrePaintWindow, polygonsPostPaintWindow, polygonsAnimStep,
     fxSkewerInit, 0, polygonsStoreClips, polygonsDrawCustomGeometry, 0,
-    fxSkewerAnimStepPolygon, 0, 0, 0, polygonsUpdateBB},
+    fxSkewerAnimStepPolygon, 0, 0, 0, polygonsUpdateBB, 0},
     // AnimEffectVacuum
     {0, 0, 0, fxMagicLampModelStep, fxMagicLampInit,
-     fxVacuumInitGrid, 0, 0, 0, 0, 0, 0, 0, modelUpdateBB},
+     fxVacuumInitGrid, 0, 0, 0, 0, 0, 0, 0, modelUpdateBB, 1},
     // AnimEffectWave
-    {0, 0, 0, fxWaveModelStep, 0, fxMagicLampInitGrid, 0, 0, 0, 0, 0, 0, 0,
-     modelUpdateBB},
+    {0, 0, 0, fxWaveModelStep, animWithTransformInit, fxMagicLampInitGrid,
+     0, 0, 1, 0, 0, defaultUpdateWindowTransform, 0, modelUpdateBB, 0},
     // AnimEffectZoom
     {fxZoomUpdateWindowAttrib, 0, 0, defaultAnimStep, fxZoomInit,
-     0, 0, 0, 1, 0, defaultLetOthersDrawGeoms, fxZoomUpdateWindowTransform,
-     0, compTransformUpdateBB}
+     0, 0, 0, 0, 0, defaultLetOthersDrawGeoms, defaultUpdateWindowTransform,
+     0, compTransformUpdateBB, 0}
 };
 
 
@@ -1076,7 +1172,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "beam_color", "color", 0, 0, 0 },
     { "beam_slowdown", "float", "<min>0.1</min>", 0, 0 },
     { "beam_life", "float", "<min>0.1</min>", 0, 0 },
-    { "curved_fold_amp", "float", "<min>-0.5</min><max>0.5</max>", 0, 0 },
+    { "curved_fold_amp_mult", "float", "<min>-1.5</min><max>2.0</max>", 0, 0 },
     { "curved_fold_zoom_to_taskbar", "bool", 0, 0, 0 },
     { "dodge_gap_ratio", "float", "<min>0.0</min><max>1.0</max>", 0, 0 },
     { "domino_direction", "int", RESTOSTRING (0, LAST_ANIM_DIRECTION), 0, 0 },
@@ -1106,7 +1202,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "glide2_away_angle", "float", 0, 0, 0 },
     { "glide2_thickness", "float", "<min>0</min>", 0, 0 },
     { "glide2_zoom_to_taskbar", "bool", 0, 0, 0 },
-    { "horizontal_folds_amp", "float", "<min>-0.5</min><max>0.5</max>", 0, 0 },
+    { "horizontal_folds_amp_mult", "float", "<min>-1.0</min><max>3.0</max>", 0, 0 },
     { "horizontal_folds_num_folds", "int", "<min>1</min>", 0, 0 },
     { "horizontal_folds_zoom_to_taskbar", "bool", 0, 0, 0 },
     { "magic_lamp_moving_end", "bool", 0, 0, 0 },
@@ -1129,7 +1225,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "vacuum_grid_res", "int", "<min>4</min>", 0, 0 },
     { "vacuum_open_start_width", "int", "<min>0</min>", 0, 0 },
     { "wave_width", "float", "<min>0</min>", 0, 0 },
-    { "wave_amp", "float", "<min>0</min>", 0, 0 },
+    { "wave_amp_mult", "float", "<min>-20.0</min><max>20.0</max>", 0, 0 },
     { "zoom_from_center", "int", RESTOSTRING (0, LAST_ZOOM_FROM_CENTER), 0, 0 },
     { "zoom_springiness", "float", "<min>0</min><max>1</max>", 0, 0 }
 };
@@ -1446,6 +1542,7 @@ static void postAnimationCleanupCustom (CompWindow * w,
     aw->curWindowEvent = WindowEventNone;
     aw->curAnimEffect = AnimEffectNone;
     aw->animOverrideProgressDir = 0;
+    aw->usingTransform = FALSE;
 
     aw->magicLampWaveCount = 0;
 
@@ -2342,6 +2439,54 @@ static void animDonePaintScreen(CompScreen * s)
     WRAP(as, s, donePaintScreen, animDonePaintScreen);
 }
 
+// Scales z by 0 and does perspective distortion so that it
+// looks the same wherever on the screen
+void
+perspectiveDistortAndResetZ (CompScreen *s,
+			     CompTransform *transform)
+{
+    float v = -1.0 / s->width;
+    /*
+      This does
+      transform = M * transform, where M is
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 0, v,
+      0, 0, 0, 1
+    */
+    float *m = transform->m;
+    m[8] = v * m[12];
+    m[9] = v * m[13];
+    m[10] = v * m[14];
+    m[11] = v * m[15];
+}
+
+void
+applyPerspectiveSkew (CompScreen *s,
+		      CompTransform *transform,
+		      Point *center)
+{
+    ANIM_SCREEN (s);
+
+    GLfloat skewx = -(((center->x - as->output->region.extents.x1) -
+		       as->output->width / 2) * 1.15);
+    GLfloat skewy = -(((center->y - as->output->region.extents.y1) -
+		       as->output->height / 2) * 1.15);
+
+    /* transform = M * transform, where M is the skew matrix
+	{1,0,0,0,
+	 0,1,0,0,
+	 skewx,skewy,1,0,
+	 0,0,0,1};
+    */
+
+    float *m = transform->m;
+    m[8] = skewx * m[0] + skewy * m[4] + m[8];
+    m[9] = skewx * m[1] + skewy * m[5] + m[9];
+    m[10] = skewx * m[2] + skewy * m[6] + m[10];
+    m[11] = skewx * m[3] + skewy * m[7] + m[11];
+}
+
 static void
 animAddWindowGeometry(CompWindow * w,
 		      CompMatrix * matrix,
@@ -2365,18 +2510,22 @@ animAddWindowGeometry(CompWindow * w,
 	float width, height;
 	float winContentsY, winContentsHeight;
 	float deformedX, deformedY;
+	float deformedZ = 0;
 	int nVertX, nVertY, wx, wy;
 	int vSize, it;
 	float gridW, gridH, x, y;
 	Bool rect = TRUE;
-	Bool useTextureQ = TRUE;
+	Bool useTextureQ = FALSE;
 	Model *model = aw->model;
 	Region awRegion = NULL;
 
+	Bool notUsing3dCoords =
+	    !animEffectProperties[aw->curAnimEffect].modelAnimIs3D;
+
 	// Use Q texture coordinate to avoid jagged-looking quads
 	// http://www.r3.nu/~cass/qcoord/
-	if (animEffectProperties[aw->curAnimEffect].dontUseQTexCoord)
-	    useTextureQ = FALSE;
+	if (animEffectProperties[aw->curAnimEffect].useQTexCoord)
+	    useTextureQ = TRUE;
 
 	if (aw->useDrawRegion)
 	{
@@ -2637,15 +2786,24 @@ animAddWindowGeometry(CompWindow * w,
 		    float hor1y = (1 - inx) *
 			objToTopLeft->position.y +
 			inx * objToTopRight->position.y;
+		    float hor1z = notUsing3dCoords ? 0 :
+			(1 - inx) *
+			objToTopLeft->position.z +
+			inx * objToTopRight->position.z;
 		    float hor2x = (1 - inx) *
 			objToBottomLeft->position.x +
 			inx * objToBottomRight->position.x;
 		    float hor2y = (1 - inx) *
 			objToBottomLeft->position.y +
 			inx * objToBottomRight->position.y;
+		    float hor2z = notUsing3dCoords ? 0 :
+			(1 - inx) *
+			objToBottomLeft->position.z +
+			inx * objToBottomRight->position.z;
 
 		    deformedX = (1 - iny) * hor1x + iny * hor2x;
 		    deformedY = (1 - iny) * hor1y + iny * hor2y;
+		    deformedZ = (1 - iny) * hor1z + iny * hor2z;
 
 		    // Texture coordinates (s, t, r, q)
 
@@ -2740,10 +2898,9 @@ animAddWindowGeometry(CompWindow * w,
 			}
 		    }
 
-		    // Vertex coordinates (x, y, z)
 		    v[0] = deformedX;
 		    v[1] = deformedY;
-		    v[2] = 0; // z
+		    v[2] = deformedZ;
 
 		    // Copy vertex coordinates to duplicate row
 		    if (0 < jy && jy < nVertY - 1)

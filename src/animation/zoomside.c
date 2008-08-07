@@ -124,6 +124,8 @@ void fxZoomInit(CompScreen * s, CompWindow * w)
     }
     aw->animRemainingTime = aw->animTotalTime;
 
+    aw->usingTransform = TRUE;
+
     defaultAnimInit(s, w);
 }
 
@@ -239,8 +241,11 @@ fxZoomUpdateWindowAttrib(AnimScreen * as,
 	(GLushort) (aw->storedOpacity * (1 - forwardProgress));
 }
 
-void
-applyZoomTransform (CompWindow * w, CompTransform *transform)
+static void
+getZoomCenterScaleFull (CompWindow *w,
+			Point *pCurCenter, Point *pCurScale,
+			Point *pWinCenter, Point *pIconCenter,
+			float *pRotateProgress)
 {
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
@@ -284,6 +289,43 @@ applyZoomTransform (CompWindow * w, CompTransform *transform)
 	 ((1 - scaleProgress) * winSize.y + scaleProgress * aw->icon.height) /
 	 winSize.y};
 
+    // Copy calculated variables
+    if (pCurCenter)
+	*pCurCenter = curCenter;
+    if (pCurScale)
+	*pCurScale = curScale;
+    if (pWinCenter)
+	*pWinCenter = winCenter;
+    if (pIconCenter)
+	*pIconCenter = iconCenter;
+    if (pRotateProgress)
+	*pRotateProgress = rotateProgress;
+}
+
+inline void
+getZoomCenterScale (CompWindow *w,
+		    Point *pCurCenter, Point *pCurScale)
+{
+    getZoomCenterScaleFull (w, pCurCenter, pCurScale, NULL, NULL, NULL);
+}
+
+void
+applyZoomTransform (CompWindow * w)
+{
+    ANIM_SCREEN(w->screen);
+    ANIM_WINDOW(w);
+
+    CompTransform *transform = &aw->transform;
+    
+    Point curCenter;
+    Point curScale;
+    Point winCenter;
+    Point iconCenter;
+    float rotateProgress;
+
+    getZoomCenterScaleFull (w, &curCenter, &curScale,
+			    &winCenter, &iconCenter, &rotateProgress);
+
     if (fxZoomGetSpringiness(as, aw) == 0.0f &&
 	(aw->curAnimEffect == AnimEffectZoom ||
 	 aw->curAnimEffect == AnimEffectSidekick) &&
@@ -292,7 +334,7 @@ applyZoomTransform (CompWindow * w, CompTransform *transform)
     {
 	matrixTranslate (transform,
 			 iconCenter.x, iconCenter.y, 0);
-	matrixScale (transform, curScale.x, curScale.y, 1.0f);
+	matrixScale (transform, curScale.x, curScale.y, curScale.y);
 	matrixTranslate (transform,
 			 -iconCenter.x, -iconCenter.y, 0);
 
@@ -312,13 +354,13 @@ applyZoomTransform (CompWindow * w, CompTransform *transform)
 	{
 	    // avoid parallelogram look
 	    float maxScale = MAX(curScale.x, curScale.y);
-	    matrixScale (transform, maxScale, maxScale, 1.0f);
+	    matrixScale (transform, maxScale, maxScale, maxScale);
 	    tx = (curCenter.x - winCenter.x) / maxScale;
 	    ty = (curCenter.y - winCenter.y) / maxScale;
 	}
 	else
 	{
-	    matrixScale (transform, curScale.x, curScale.y, 1.0f);
+	    matrixScale (transform, curScale.x, curScale.y, curScale.y);
 	    tx = (curCenter.x - winCenter.x) / curScale.x;
 	    ty = (curCenter.y - winCenter.y) / curScale.y;
 	}
@@ -332,13 +374,3 @@ applyZoomTransform (CompWindow * w, CompTransform *transform)
     }
 }
 
-void
-fxZoomUpdateWindowTransform (CompScreen *s,
-			     CompWindow *w,
-			     CompTransform *wTransform)
-{
-    ANIM_WINDOW(w);
-
-    // Apply transform to wTransform
-    matrixMultiply (wTransform, wTransform, &aw->transform);
-}

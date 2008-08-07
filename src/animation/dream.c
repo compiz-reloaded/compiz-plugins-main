@@ -43,7 +43,10 @@ fxDreamAnimInit (CompScreen * s, CompWindow * w)
     ANIM_WINDOW(w);
 
     if (animZoomToIcon(as, aw))
+    {
 	aw->animTotalTime /= ZOOM_PERCEIVED_T;
+	aw->usingTransform = TRUE;
+    }
     else
 	aw->animTotalTime /= DREAM_PERCEIVED_T;
 
@@ -67,12 +70,12 @@ fxDreamModelStepObject (CompWindow * w,
     float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
 				 w->output.top) * model->scale.y;
 
-    object->position.y = origy;
     object->position.x =
 	origx +
 	forwardProgress * waveAmpMax * model->scale.x *
 	sin(object->gridPosition.y * M_PI * waveWidth +
 	    waveSpeed * forwardProgress);
+    object->position.y = origy;
 }
 
 void
@@ -80,21 +83,11 @@ fxDreamModelStep (CompScreen *s, CompWindow *w, float time)
 {
     defaultAnimStep (s, w, time);
 
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
     Model *model = aw->model;
 
-    float forwardProgress;
-    if ((aw->curWindowEvent == WindowEventMinimize ||
-	 aw->curWindowEvent == WindowEventUnminimize) &&
-	animGetB(as, aw, ANIM_SCREEN_OPTION_DREAM_Z2TOM))
-    {
-	float dummy;
-	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
-    }
-    else
-	forwardProgress = defaultAnimProgress(aw);
+    float forwardProgress = getProgressAndCenter (w, NULL);
 
     float waveAmpMax = MIN(WIN_H(w), WIN_W(w)) * 0.125f;
 
@@ -127,3 +120,4 @@ fxDreamUpdateWindowAttrib(AnimScreen * as,
 
     wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
 }
+

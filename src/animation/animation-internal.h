@@ -212,7 +212,7 @@ typedef enum
 typedef struct _Object
 {
     Point gridPosition;		// position on window in [0,1] range
-    Point position;		// position on screen
+    Point3d position;		// position on screen
 
     // Texture x, y coordinates will be offset by given amounts
     // for quads that fall after and before this object in x and y directions.
@@ -453,7 +453,7 @@ typedef enum
     ANIM_SCREEN_OPTION_BEAMUP_COLOR,
     ANIM_SCREEN_OPTION_BEAMUP_SLOWDOWN,
     ANIM_SCREEN_OPTION_BEAMUP_LIFE,
-    ANIM_SCREEN_OPTION_CURVED_FOLD_AMP,
+    ANIM_SCREEN_OPTION_CURVED_FOLD_AMP_MULT,
     ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM,
     ANIM_SCREEN_OPTION_DODGE_GAP_RATIO,
     ANIM_SCREEN_OPTION_DOMINO_DIRECTION,
@@ -483,7 +483,7 @@ typedef enum
     ANIM_SCREEN_OPTION_GLIDE2_AWAY_ANGLE,
     ANIM_SCREEN_OPTION_GLIDE2_THICKNESS,
     ANIM_SCREEN_OPTION_GLIDE2_Z2TOM,
-    ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP,
+    ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP_MULT,
     ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS,
     ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM,
     ANIM_SCREEN_OPTION_MAGIC_LAMP_MOVING_END,
@@ -506,7 +506,7 @@ typedef enum
     ANIM_SCREEN_OPTION_VACUUM_GRID_RES,
     ANIM_SCREEN_OPTION_VACUUM_OPEN_START_WIDTH,
     ANIM_SCREEN_OPTION_WAVE_WIDTH,
-    ANIM_SCREEN_OPTION_WAVE_AMP,
+    ANIM_SCREEN_OPTION_WAVE_AMP_MULT,
     ANIM_SCREEN_OPTION_ZOOM_FROM_CENTER,
     ANIM_SCREEN_OPTION_ZOOM_SPRINGINESS,
 
@@ -658,6 +658,8 @@ typedef struct _AnimWindow
     Bool walkerOverNewCopy;     // whether walker is on the copy at the new pos.
     unsigned int walkerVisitCount; // how many times walker has visited this window
     CompWindow *winPassingThrough; // win. passing through this one during focus effect
+
+    Bool usingTransform;        // whether transform matrix is used for the current effect
 } AnimWindow;
 
 typedef struct _AnimEffectProperties
@@ -672,13 +674,14 @@ typedef struct _AnimEffectProperties
     void (*addCustomGeometryFunc) (CompScreen *, CompWindow *, int, Box *,
 				   int, CompMatrix *);
     void (*drawCustomGeometryFunc) (CompScreen *, CompWindow *);
-    Bool dontUseQTexCoord;		// TRUE if effect doesn't need Q coord.
+    Bool modelAnimIs3D;		// TRUE if anim uses model and 3d coords
     void (*animStepPolygonFunc) (CompWindow *, PolygonObject *, float);
     Bool (*letOthersDrawGeoms) (CompScreen *, CompWindow *);
     void (*updateWindowTransformFunc)
     (CompScreen *, CompWindow *, CompTransform *);
     void (*postPreparePaintScreenFunc) (CompScreen *, CompWindow *);
     void (*updateBBFunc) (CompOutput *, CompWindow *);
+    Bool useQTexCoord;		// TRUE if effect needs Q texture coordinates
 } AnimEffectProperties;
 
 AnimEffectProperties *animEffectPropertiesTmp;
@@ -789,14 +792,14 @@ defaultAnimInit (CompScreen * s,
 		 CompWindow * w);
 
 void
+defaultUpdateWindowTransform (CompScreen *s,
+			      CompWindow *w,
+			      CompTransform *wTransform);
+
+void
 defaultMinimizeUpdateWindowAttrib(AnimScreen * as,
 				  CompWindow * w,
 				  WindowPaintAttrib * wAttrib);
-
-void
-defaultMinimizeUpdateWindowTransform(CompScreen *s,
-				     CompWindow *w,
-				     CompTransform *wTransform);
 
 Bool
 animZoomToIcon (AnimScreen *as, AnimWindow *aw);
@@ -830,6 +833,24 @@ prepareTransform (CompScreen *s,
 		  CompOutput *output,
 		  CompTransform *resultTransform,
 		  CompTransform *transform);
+
+void
+perspectiveDistortAndResetZ (CompScreen *s,
+			     CompTransform *wTransform);
+
+void
+applyPerspectiveSkew (CompScreen *s,
+		      CompTransform *transform,
+		      Point *center);
+
+inline void
+applyTransform (CompTransform *wTransform,
+		CompTransform *transform);
+
+float
+getProgressAndCenter (CompWindow *w,
+		      Point *center);
+
 
 /* airplane3d.c */
 
@@ -1211,11 +1232,6 @@ fxZoomUpdateWindowAttrib (AnimScreen *as,
 			  WindowPaintAttrib *wAttrib);
 
 void
-fxZoomUpdateWindowTransform(CompScreen *s,
-			    CompWindow *w,
-			    CompTransform *wTransform);
-
-void
 fxZoomAnimProgress(AnimScreen * as,
 		   AnimWindow * aw,
 		   float *moveProgress,
@@ -1231,5 +1247,9 @@ fxZoomInit (CompScreen * s,
 	    CompWindow * w);
 
 void
-applyZoomTransform (CompWindow * w,
-		    CompTransform *transform);
+applyZoomTransform (CompWindow * w);
+
+void
+getZoomCenterScale (CompWindow *w,
+		    Point *pCurCenter, Point *pCurScale);
+

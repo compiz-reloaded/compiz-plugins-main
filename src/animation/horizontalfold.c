@@ -38,6 +38,18 @@
 
 // =====================  Effect: Horizontal Folds  =========================
 
+static inline float
+getObjectZ (Model *model,
+	    float forwardProgress,
+	    float sinForProg,
+	    float relDistToFoldCenter,
+	    float foldMaxAmp)
+{
+    return -(sinForProg *
+	     foldMaxAmp *
+	     model->scale.x *
+	     2 * (0.5 - relDistToFoldCenter));
+}
 
 void
 fxHorizontalFoldsInitGrid(AnimScreen *as,
@@ -60,7 +72,7 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 				 Object * object,
 				 float forwardProgress,
 				 float sinForProg,
-				 float curveMaxAmp, int rowNo)
+				 float foldMaxAmp, int rowNo)
 {
     ANIM_WINDOW(w);
 
@@ -68,6 +80,8 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 				 w->output.left) * model->scale.x;
     float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
 				 w->output.top) * model->scale.y;
+
+    object->position.x = origx;
 
     if (aw->curWindowEvent == WindowEventShade ||
 	aw->curWindowEvent == WindowEventUnshade)
@@ -78,29 +92,25 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 
 	if (object->gridPosition.y == 0)
 	{
-	    object->position.x = origx;
 	    object->position.y = WIN_Y(w);
+	    object->position.z = 0;
 	}
 	else if (object->gridPosition.y == 1)
 	{
-	    object->position.x = origx;
 	    object->position.y =
 		(1 - forwardProgress) * origy +
 		forwardProgress *
 		(WIN_Y(w) + model->topHeight + model->bottomHeight);
+	    object->position.z = 0;
 	}
 	else
 	{
-	    object->position.x =
-		origx + sinForProg *
-		(0.5 -
-		 object->gridPosition.x) * 2 * model->scale.x *
-		(curveMaxAmp -
-		 curveMaxAmp * 4 * relDistToFoldCenter *
-		 relDistToFoldCenter);
 	    object->position.y =
 		(1 - forwardProgress) * origy +
 		forwardProgress * (WIN_Y(w) + model->topHeight);
+	    object->position.z =
+		getObjectZ (model, forwardProgress, sinForProg,
+			    relDistToFoldCenter, foldMaxAmp);
 	}
     }
     else
@@ -111,14 +121,12 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 
 	relDistToFoldCenter = (rowNo % 2 == 0 ? 0.5 : 0);
 
-	object->position.x =
-	    origx + sinForProg *
-	    (0.5 - object->gridPosition.x) * 2 * model->scale.x *
-	    (curveMaxAmp - curveMaxAmp * 4 *
-	     relDistToFoldCenter * relDistToFoldCenter);
 	object->position.y =
 	    (1 - forwardProgress) * origy +
 	    forwardProgress * (BORDER_Y(w) + BORDER_H(w) / 2.0);
+	object->position.z =
+		getObjectZ (model, forwardProgress, sinForProg,
+			    relDistToFoldCenter, foldMaxAmp);
     }
 }
 
@@ -132,21 +140,28 @@ fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
 
     Model *model = aw->model;
 
-    float forwardProgress;
-    if ((aw->curWindowEvent == WindowEventMinimize ||
-	 aw->curWindowEvent == WindowEventUnminimize) &&
-	animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM))
+    // center for perspective correction
+    Point center;
+
+    float winHeight = 0;
+    if (aw->curWindowEvent == WindowEventShade ||
+	aw->curWindowEvent == WindowEventUnshade)
     {
-	float dummy;
-	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
+	winHeight = (w)->height;
     }
     else
-	forwardProgress = defaultAnimProgress(aw);
+    {
+	winHeight = BORDER_H (w);
+    }
+    int nHalfFolds =
+	2.0 * animGetI (as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
+    float foldMaxAmp =
+	0.3 * pow ((winHeight / nHalfFolds) / s->height, 0.3) *
+	animGetF (as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP_MULT);
 
-    float sinForProg = sin(forwardProgress * M_PI / 2);
-    float curveMaxAmp =
-	animGetF (as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP) *
-	WIN_W(w);
+    float forwardProgress = getProgressAndCenter (w, &center);
+
+    float sinForProg = sin (forwardProgress * M_PI / 2);
 
     Object *object = model->objects;
     int i;
@@ -156,6 +171,9 @@ fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
 					 object,
 					 forwardProgress,
 					 sinForProg,
-					 curveMaxAmp,
+					 foldMaxAmp,
 					 i / model->gridWidth);
+
+    applyPerspectiveSkew (w->screen, &aw->transform, &center);
 }
+

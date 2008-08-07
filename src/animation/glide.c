@@ -96,31 +96,13 @@ float fxGlideAnimProgress(AnimWindow * aw)
     return decelerateProgress(forwardProgress);
 }
 
-// Scales z by 0 and does perspective distortion so that it
-// looks the same wherever on screen
 static void
-resetAndPerspectiveDistortOnZ (CompTransform *wTransform, float v)
-{
-    /*
-      This does
-      wTransform = M * wTransform, where M is
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 0, v,
-      0, 0, 0, 1
-    */
-    float *m = wTransform->m;
-    m[8] = v * m[12];
-    m[9] = v * m[13];
-    m[10] = v * m[14];
-    m[11] = v * m[15];
-}
-
-static void
-applyGlideTransform (CompWindow *w, CompTransform *transform)
+applyGlideTransform (CompWindow *w)
 {
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
+
+    CompTransform *transform = &aw->transform;
 
     float finalDistFac;
     float finalRotAng;
@@ -153,7 +135,7 @@ applyGlideTransform (CompWindow *w, CompTransform *transform)
     // put back to window position
     matrixTranslate (transform, rotAxisOffset.x, rotAxisOffset.y, 0);
 
-    resetAndPerspectiveDistortOnZ (transform, -1.0 / w->screen->width);
+    perspectiveDistortAndResetZ (w->screen, transform);
 
     // animation movement
     matrixTranslate (transform, translation.x, translation.y, translation.z);
@@ -181,7 +163,7 @@ fxGlideAnimStep (CompScreen *s, CompWindow *w, float time)
     {
 	defaultAnimStep (s, w, time);
 
-	applyGlideTransform (w, &aw->transform);
+	applyGlideTransform (w);
     }
 }
 
@@ -219,8 +201,7 @@ fxGlideUpdateWindowTransform (CompScreen *s,
     if (fxGlideIsPolygonBased (as, aw))
 	return;
 
-    // apply the transform
-    matrixMultiply (wTransform, wTransform, &aw->transform);
+    applyTransform (wTransform, &aw->transform);
 }
 
 void fxGlideInit(CompScreen * s, CompWindow * w)

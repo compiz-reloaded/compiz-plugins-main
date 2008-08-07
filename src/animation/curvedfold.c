@@ -38,6 +38,19 @@
 
 // =====================  Effect: Curved Fold  =========================
 
+static inline float
+getObjectZ (Model *model,
+	    float forwardProgress,
+	    float sinForProg,
+	    float relDistToCenter,
+	    float curveMaxAmp)
+{
+    return -(sinForProg *
+	     (1 - pow (pow(2 * relDistToCenter, 1.3), 2)) *
+	     curveMaxAmp *
+	     model->scale.x);
+}
+
 static void inline
 fxCurvedFoldModelStepObject(CompWindow * w,
 			    Model * model,
@@ -53,6 +66,8 @@ fxCurvedFoldModelStepObject(CompWindow * w,
     float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
 				 w->output.top) * model->scale.y;
 
+    object->position.x = origx;
+
     if (aw->curWindowEvent == WindowEventShade ||
 	aw->curWindowEvent == WindowEventUnshade)
     {
@@ -67,27 +82,25 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 
 	if (object->gridPosition.y == 0)
 	{
-	    object->position.x = origx;
 	    object->position.y = WIN_Y(w);
+	    object->position.z = 0;
 	}
 	else if (object->gridPosition.y == 1)
 	{
-	    object->position.x = origx;
 	    object->position.y = 
 		(1 - forwardProgress) * origy +
 		forwardProgress *
 		(WIN_Y(w) + model->topHeight + model->bottomHeight);
+	    object->position.z = 0;
 	}
 	else
 	{
-	    object->position.x =
-		origx + sinForProg *
-		(0.5 - object->gridPosition.x) * 2 * model->scale.x *
-		curveMaxAmp *
-		(1 - pow (pow(2 * relDistToCenter, 1.3), 2));
 	    object->position.y =
 		(1 - forwardProgress) * origy +
 		forwardProgress * (WIN_Y(w) + model->topHeight);
+	    object->position.z =
+		getObjectZ (model, forwardProgress, sinForProg, relDistToCenter,
+			    curveMaxAmp);
 	}
     }
     else
@@ -105,14 +118,12 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 	if (relDistToCenter > 0.5)
 	    relDistToCenter = 0.5;
 
-	object->position.x =
-	    origx + sinForProg *
-	    (0.5 - object->gridPosition.x) * 2 * model->scale.x *
-	    curveMaxAmp *
-	    (1 - pow (pow(2 * relDistToCenter, 1.3), 2));
 	object->position.y =
 	    (1 - forwardProgress) * origy +
 	    forwardProgress * (BORDER_Y(w) + BORDER_H(w) / 2.0);
+	object->position.z =
+	    getObjectZ (model, forwardProgress, sinForProg, relDistToCenter,
+			curveMaxAmp);
     }
 }
 
@@ -126,20 +137,13 @@ fxCurvedFoldModelStep (CompScreen *s, CompWindow *w, float time)
 
     Model *model = aw->model;
 
-    float forwardProgress;
-    if ((aw->curWindowEvent == WindowEventMinimize ||
-	 aw->curWindowEvent == WindowEventUnminimize) &&
-	animGetB(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM))
-    {
-	float dummy;
-	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
-    }
-    else
-	forwardProgress = defaultAnimProgress(aw);
+    // center for perspective correction
+    Point center;
 
-    float curveMaxAmp =
-	animGetF(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_AMP) * WIN_W(w) *
-	pow(WIN_H(w) / (s->height * 1.2f), 0.7);
+    float forwardProgress = getProgressAndCenter (w, &center);
+
+    float curveMaxAmp = 0.4 * pow ((float)WIN_H (w) / s->height, 0.4) *
+	animGetF (as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_AMP_MULT);
 
     float sinForProg = sin(forwardProgress * M_PI / 2);
 
@@ -153,6 +157,8 @@ fxCurvedFoldModelStep (CompScreen *s, CompWindow *w, float time)
 	     forwardProgress,
 	     sinForProg,
 	     curveMaxAmp);
+
+    applyPerspectiveSkew (w->screen, &aw->transform, &center);
 }
 
 void
@@ -187,3 +193,4 @@ fxFoldUpdateWindowAttrib(AnimScreen * as,
     }
     // if shade/unshade don't do anything
 }
+

@@ -199,8 +199,7 @@ fxDodgeUpdateWindowTransform (CompScreen *s,
     if (aw->isDodgeSubject)
 	return;
 
-    // Apply transform to wTransform
-    matrixMultiply (wTransform, wTransform, &aw->transform);
+    applyTransform (wTransform, &aw->transform);
 }
 
 void

@@ -52,15 +52,16 @@ fxWaveModelStepObject(CompWindow * w,
     float origy = w->attrib.y + (WIN_H(w) * object->gridPosition.y -
 				 w->output.top) * model->scale.y;
 
-    object->position.y = origy;
     object->position.x = origx;
+    object->position.y = origy;
+    object->position.z = 0;
 
     if (fabs(object->position.y - wavePosition) < waveHalfWidth)
-	object->position.x +=
-	    (object->gridPosition.x - 0.5) * waveAmp *
-	    (cos
-	     ((object->position.y -
-	       wavePosition) * M_PI / waveHalfWidth) + 1) / 2;
+    {
+	object->position.z += waveAmp *
+	    (cos ((object->position.y - wavePosition) *
+		  M_PI / waveHalfWidth) + 1) / 2;
+    }
 }
 
 void
@@ -73,12 +74,18 @@ fxWaveModelStep (CompScreen *s, CompWindow *w, float time)
 
     Model *model = aw->model;
 
+    // center for perspective correction
+    Point center = {WIN_X (w) + WIN_W (w) / 2.0,
+		    WIN_Y (w) + WIN_H (w) / 2.0};
+
     float forwardProgress = 1 - defaultAnimProgress(aw);
 
-    float waveAmp = (WIN_H(w) * model->scale.y *
-		     animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_AMP));
     float waveHalfWidth = (WIN_H(w) * model->scale.y *
 			   animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_WIDTH) / 2);
+
+    float waveAmp = (0.02 * pow ((float)WIN_H (w) / s->height, 0.4) *
+		     animGetF (as, aw, ANIM_SCREEN_OPTION_WAVE_AMP_MULT));
+
     float wavePosition =
 	WIN_Y(w) - waveHalfWidth +
 	forwardProgress * (WIN_H(w) * model->scale.y + 2 * waveHalfWidth);
@@ -93,4 +100,7 @@ fxWaveModelStep (CompScreen *s, CompWindow *w, float time)
 			      wavePosition,
 			      waveAmp,
 			      waveHalfWidth);
+
+    applyPerspectiveSkew (w->screen, &aw->transform, &center);
 }
+

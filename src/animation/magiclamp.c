@@ -43,6 +43,7 @@ fxMagicLampInitGrid(AnimScreen *as, AnimWindow *aw,
     *gridWidth = 2;
     *gridHeight = animGetI(as, aw, ANIM_SCREEN_OPTION_MAGIC_LAMP_GRID_RES);
 }
+
 void
 fxVacuumInitGrid(AnimScreen * as, AnimWindow *aw,
 		 int *gridWidth, int *gridHeight)
@@ -326,5 +327,9 @@ fxMagicLampModelStep (CompScreen *s, CompWindow *w, float time)
 	    if (object->position.y > iconFarEndY)
 		object->position.y = iconFarEndY;
 	}
+
+	// No need to set object->position.z to 0, since they won't be used
+	// due to modelAnimIs3D being FALSE for magic lamp.
     }
 }
+
