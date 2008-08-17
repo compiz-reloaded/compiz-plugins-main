@@ -91,7 +91,7 @@ fxFocusFadeUpdateWindowAttrib(AnimScreen * as,
     ANIM_WINDOW(w);
 
     float forwardProgress = defaultAnimProgress(aw);
-    float opacity = aw->storedOpacity / (float)OPAQUE;
+    float opacity = wAttrib->opacity / (float)OPAQUE;
 
     wAttrib->opacity =
 	fxFocusFadeComputeOpacity(w, forwardProgress, opacity);
