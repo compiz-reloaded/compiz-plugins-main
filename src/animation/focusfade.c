@@ -41,10 +41,11 @@
 // Compute the cross-fade opacity to make the effect look good with every
 // window opacity value.
 static GLushort
-fxFocusFadeComputeOpacity(CompWindow *w, float progress, float opacity)
+fxFocusFadeComputeOpacity (CompWindow *w, float progress, GLushort opacityInt)
 {
     ANIM_WINDOW(w);
 
+    float opacity = opacityInt / (float)OPAQUE;
     float multiplier;
 
     // for one side of the cross-fade
@@ -91,8 +92,7 @@ fxFocusFadeUpdateWindowAttrib(AnimScreen * as,
     ANIM_WINDOW(w);
 
     float forwardProgress = defaultAnimProgress(aw);
-    float opacity = wAttrib->opacity / (float)OPAQUE;
 
     wAttrib->opacity =
-	fxFocusFadeComputeOpacity(w, forwardProgress, opacity);
+	fxFocusFadeComputeOpacity (w, forwardProgress, wAttrib->opacity);
 }
