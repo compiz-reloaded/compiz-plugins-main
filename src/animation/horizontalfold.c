@@ -140,9 +140,6 @@ fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
 
     Model *model = aw->model;
 
-    // center for perspective correction
-    Point center;
-
     float winHeight = 0;
     if (aw->curWindowEvent == WindowEventShade ||
 	aw->curWindowEvent == WindowEventUnshade)
@@ -159,7 +156,7 @@ fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
 	0.3 * pow ((winHeight / nHalfFolds) / s->height, 0.3) *
 	animGetF (as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP_MULT);
 
-    float forwardProgress = getProgressAndCenter (w, &center);
+    float forwardProgress = getProgressAndCenter (w, NULL);
 
     float sinForProg = sin (forwardProgress * M_PI / 2);
 
@@ -173,7 +170,5 @@ fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
 					 sinForProg,
 					 foldMaxAmp,
 					 i / model->gridWidth);
-
-    applyPerspectiveSkew (w->screen, &aw->transform, &center);
 }
 

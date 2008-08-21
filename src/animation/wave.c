@@ -74,10 +74,6 @@ fxWaveModelStep (CompScreen *s, CompWindow *w, float time)
 
     Model *model = aw->model;
 
-    // center for perspective correction
-    Point center = {WIN_X (w) + WIN_W (w) / 2.0,
-		    WIN_Y (w) + WIN_H (w) / 2.0};
-
     float forwardProgress = 1 - defaultAnimProgress(aw);
 
     float waveHalfWidth = (WIN_H(w) * model->scale.y *
@@ -100,7 +96,5 @@ fxWaveModelStep (CompScreen *s, CompWindow *w, float time)
 			      wavePosition,
 			      waveAmp,
 			      waveHalfWidth);
-
-    applyPerspectiveSkew (w->screen, &aw->transform, &center);
 }
 

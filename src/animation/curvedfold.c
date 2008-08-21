@@ -137,10 +137,7 @@ fxCurvedFoldModelStep (CompScreen *s, CompWindow *w, float time)
 
     Model *model = aw->model;
 
-    // center for perspective correction
-    Point center;
-
-    float forwardProgress = getProgressAndCenter (w, &center);
+    float forwardProgress = getProgressAndCenter (w, NULL);
 
     float curveMaxAmp = 0.4 * pow ((float)WIN_H (w) / s->height, 0.4) *
 	animGetF (as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_AMP_MULT);
@@ -157,8 +154,6 @@ fxCurvedFoldModelStep (CompScreen *s, CompWindow *w, float time)
 	     forwardProgress,
 	     sinForProg,
 	     curveMaxAmp);
-
-    applyPerspectiveSkew (w->screen, &aw->transform, &center);
 }
 
 void
@@ -191,6 +186,6 @@ fxFoldUpdateWindowAttrib(AnimScreen * as,
     {
 	fxZoomUpdateWindowAttrib(as, w, wAttrib);
     }
-    // if shade/unshade don't do anything
+    // if shade/unshade, don't do anything
 }
 

@@ -595,7 +595,24 @@ defaultUpdateWindowTransform (CompScreen *s,
     ANIM_WINDOW(w);
 
     if (aw->usingTransform)
-	applyTransform (wTransform, &aw->transform);
+    {
+	if (animEffectPropertiesTmp[aw->curAnimEffect].modelAnimIs3D)
+	{
+	    // center for perspective correction
+	    Point center;
+	    getProgressAndCenter (w, &center);
+	
+	    CompTransform skewTransform;
+	    matrixGetIdentity (&skewTransform);
+	    applyPerspectiveSkew (w->screen, &skewTransform, &center);
+	    applyTransform (wTransform, &aw->transform);
+	    applyTransform (wTransform, &skewTransform);
+	}
+	else
+	{
+	    applyTransform (wTransform, &aw->transform);
+	}
+    }
 }
 
 // Apply transform to wTransform
@@ -740,7 +757,16 @@ modelUpdateBB (CompOutput *output,
 	if (animEffectPropertiesTmp[aw->curAnimEffect].modelAnimIs3D)
 	{
 	    CompTransform wTransform;
-	    prepareTransform (w->screen, output, &wTransform, &aw->transform);
+
+	    // center for perspective correction
+	    Point center;
+	    getProgressAndCenter (w, &center);
+
+	    CompTransform fullTransform;
+	    memcpy (fullTransform.m, aw->transform.m, sizeof (float) * 16);
+	    applyPerspectiveSkew (w->screen, &fullTransform, &center);
+
+	    prepareTransform (w->screen, output, &wTransform, &fullTransform);
 
 	    expandBoxWithPoints3DTransform (output,
 					    w->screen,
