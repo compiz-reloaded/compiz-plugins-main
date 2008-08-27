@@ -68,8 +68,8 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 
     object->position.x = origx;
 
-    if (aw->curWindowEvent == WindowEventShade ||
-	aw->curWindowEvent == WindowEventUnshade)
+    if (aw->com.curWindowEvent == WindowEventShade ||
+	aw->com.curWindowEvent == WindowEventUnshade)
     {
 	// Execute shade mode
 
@@ -128,27 +128,27 @@ fxCurvedFoldModelStepObject(CompWindow * w,
 }
 
 void
-fxCurvedFoldModelStep (CompScreen *s, CompWindow *w, float time)
+fxCurvedFoldModelStep (CompWindow *w, float time)
 {
-    defaultAnimStep (s, w, time);
+    defaultAnimStep (w, time);
 
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
     Model *model = aw->model;
 
     float forwardProgress = getProgressAndCenter (w, NULL);
 
-    float curveMaxAmp = 0.4 * pow ((float)WIN_H (w) / s->height, 0.4) *
-	animGetF (as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_AMP_MULT);
+    float curveMaxAmp = 0.4 * pow ((float)WIN_H (w) / w->screen->height, 0.4) *
+	animGetF (w, ANIM_SCREEN_OPTION_CURVED_FOLD_AMP_MULT);
 
     float sinForProg = sin(forwardProgress * M_PI / 2);
 
     Object *object = model->objects;
+
     int i;
     for (i = 0; i < model->numObjects; i++, object++)
 	fxCurvedFoldModelStepObject
-	    (w, 
+	    (w,
 	     model,
 	     object,
 	     forwardProgress,
@@ -157,35 +157,43 @@ fxCurvedFoldModelStep (CompScreen *s, CompWindow *w, float time)
 }
 
 void
-fxFoldUpdateWindowAttrib(AnimScreen * as,
-			 CompWindow * w,
+fxFoldUpdateWindowAttrib(CompWindow * w,
 			 WindowPaintAttrib * wAttrib)
 {
     ANIM_WINDOW(w);
 
-    if (aw->curWindowEvent == WindowEventOpen ||
-	aw->curWindowEvent == WindowEventClose ||
-	((aw->curWindowEvent == WindowEventMinimize ||
-	  aw->curWindowEvent == WindowEventUnminimize) &&
-	 ((aw->curAnimEffect == AnimEffectCurvedFold &&
-	   !animGetB(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM)) ||
-	  (aw->curAnimEffect == AnimEffectHorizontalFolds &&
-	   !animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM)))))
+    if (aw->com.curWindowEvent == WindowEventOpen ||
+	aw->com.curWindowEvent == WindowEventClose ||
+	((aw->com.curWindowEvent == WindowEventMinimize ||
+	  aw->com.curWindowEvent == WindowEventUnminimize) &&
+	 ((aw->com.curAnimEffect == AnimEffectCurvedFold &&
+	   !animGetB (w, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM)) ||
+	  (aw->com.curAnimEffect == AnimEffectHorizontalFolds &&
+	   !animGetB (w, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM)))))
     {
-	float forwardProgress = defaultAnimProgress(aw);
+	float forwardProgress = defaultAnimProgress (w);
 
 	wAttrib->opacity =
-	    (GLushort) (aw->storedOpacity * (1 - forwardProgress));
+	    (GLushort) (aw->com.storedOpacity * (1 - forwardProgress));
     }
-    else if ((aw->curWindowEvent == WindowEventMinimize ||
-	      aw->curWindowEvent == WindowEventUnminimize) &&
-	     ((aw->curAnimEffect == AnimEffectCurvedFold &&
-	       animGetB(as, aw, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM)) ||
-	      (aw->curAnimEffect == AnimEffectHorizontalFolds &&
-	       animGetB(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM))))
+    else if ((aw->com.curWindowEvent == WindowEventMinimize ||
+	      aw->com.curWindowEvent == WindowEventUnminimize) &&
+	     ((aw->com.curAnimEffect == AnimEffectCurvedFold &&
+	       animGetB (w, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM)) ||
+	      (aw->com.curAnimEffect == AnimEffectHorizontalFolds &&
+	       animGetB (w, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM))))
     {
-	fxZoomUpdateWindowAttrib(as, w, wAttrib);
+	fxZoomUpdateWindowAttrib (w, wAttrib);
     }
     // if shade/unshade, don't do anything
+}
+
+Bool
+fxCurvedFoldZoomToIcon (CompWindow *w)
+{
+    ANIM_WINDOW(w);
+    return ((aw->com.curWindowEvent == WindowEventMinimize ||
+	     aw->com.curWindowEvent == WindowEventUnminimize) &&
+	    animGetB (w, ANIM_SCREEN_OPTION_CURVED_FOLD_Z2TOM));
 }
 

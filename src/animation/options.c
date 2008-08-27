@@ -27,66 +27,48 @@
 
 #include "animation-internal.h"
 
+extern ExtensionPluginInfo animExtensionPluginInfo;
+extern AnimBaseFunctions animBaseFunctions;
+
 // =================  Option Related Functions  =================
 
-CompOptionValue *
-animGetOptVal(AnimScreen *as,
-	      AnimWindow *aw,
-	      int optionId)
+AnimEvent win2AnimEventMap[WindowEventNum] =
 {
+    AnimEventOpen,
+    AnimEventClose,
+    AnimEventMinimize,
+    AnimEventMinimize,
+    AnimEventShade,
+    AnimEventShade,
+    AnimEventFocus
+};
+
+OPTION_GETTERS (&animBaseFunctions,
+		&animExtensionPluginInfo, NUM_NONEFFECT_OPTIONS)
+
+CompOptionValue *
+animGetPluginOptVal (CompWindow *w,
+		     ExtensionPluginInfo *pluginInfo,
+		     int optionId)
+{
+    ANIM_WINDOW (w);
+    ANIM_SCREEN (w->screen);
+
     OptionSet *os =
-	&as->eventOptionSets[aw->curWindowEvent]->sets[aw->curAnimSelectionRow];
+	&as->eventOptionSets[win2AnimEventMap[aw->com.curWindowEvent]].
+	sets[aw->curAnimSelectionRow];
     IdValuePair *pair = os->pairs;
 
     int i;
     for (i = 0; i < os->nPairs; i++, pair++)
-	if (pair->id == optionId)
+	if (pair->pluginInfo == pluginInfo &&
+	    pair->optionId == optionId)
 	    return &pair->value;
-    return &as->opt[optionId].value;
-}
-
-inline Bool
-animGetB(AnimScreen *as,
-	 AnimWindow *aw,
-	 int optionId)
-{
-    return animGetOptVal(as, aw, optionId)->b;
-}
-
-inline int
-animGetI(AnimScreen *as,
-	 AnimWindow *aw,
-	 int optionId)
-{
-    return animGetOptVal(as, aw, optionId)->i;
-}
-
-inline float
-animGetF(AnimScreen *as,
-	 AnimWindow *aw,
-	 int optionId)
-{
-    return animGetOptVal(as, aw, optionId)->f;
-}
-
-inline char *
-animGetS(AnimScreen *as,
-	 AnimWindow *aw,
-	 int optionId)
-{
-    return animGetOptVal(as, aw, optionId)->s;
-}
-
-inline unsigned short *
-animGetC(AnimScreen *as,
-	 AnimWindow *aw,
-	 int optionId)
-{
-    return animGetOptVal(as, aw, optionId)->c;
+    return &pluginInfo->effectOptions[optionId].value;
 }
 
 static
-void freeSingleEventOptionSets(OptionSets *oss)
+void freeSingleEventOptionSets (OptionSets *oss)
 {
     int j;
     for (j = 0; j < oss->nSets; j++)
@@ -97,24 +79,11 @@ void freeSingleEventOptionSets(OptionSets *oss)
 }
 
 void
-freeAllOptionSets(OptionSets **eventsOss)
+freeAllOptionSets (AnimScreen *as)
 {
-    int i;
-    for (i = 0; i < NUM_EVENTS; i++)
-    {
-	OptionSets *oss = eventsOss[i];
-	if (!oss->sets)
-	    continue;
-	freeSingleEventOptionSets(oss);
-    }
-    free (eventsOss[WindowEventOpen]);
-    free (eventsOss[WindowEventClose]);
-    free (eventsOss[WindowEventMinimize]);
-    free (eventsOss[WindowEventFocus]);
-    free (eventsOss[WindowEventShade]);
-
-    for (i = 0; i < NUM_EVENTS; i++)
-	eventsOss[i] = NULL;
+    AnimEvent e;
+    for (e = 0; e < AnimEventNum; e++)
+	freeSingleEventOptionSets (&as->eventOptionSets[e]);
 }
 
 static void
@@ -166,9 +135,11 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 
     // Tokenize pairs
     name = strtok(optNamesValues, betweenOptVal);
+
+    IdValuePair *pair = &os->pairs[0];
     int errorNo = -1;
     int i;
-    for (i = 0; name && i < nPairs; i++)
+    for (i = 0; name && i < nPairs; i++, pair++)
     {
 	errorNo = 0;
 	if (strchr(name, betweenPairs[0])) // handle "a, b=4" case
@@ -190,35 +161,44 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 	    break;
 	}
 
+	// TODO: Fix: Convert to "pluginname:option_name" format
+	// Warning: Assumes that option names in different extension plugins
+	// will be different.
+	Bool matched = FALSE;
+	const ExtensionPluginInfo *extensionPluginInfo;
 	CompOption *o;
-	int j;
-
-	// Skip non-effect options
-	for (j = 0; j < ANIM_SCREEN_OPTION_NUM; j++)
+	int optId;
+	int k;
+	for (k = 0; k < as->nExtensionPlugins; k++)
 	{
-	    o = &as->opt[j];
-	    if (strcasecmp(nameTrimmed, o->name) == 0)
+	    extensionPluginInfo = as->extensionPlugins[k];
+	    unsigned int nOptions = extensionPluginInfo->nEffectOptions;
+	    o = extensionPluginInfo->effectOptions;
+	    for (optId = 0; optId < nOptions; optId++, o++)
+	    {
+		if (strcasecmp(nameTrimmed, o->name) == 0)
+		{
+		    matched = TRUE;
+		    break;
+		}
+	    }
+	    if (matched)
 		break;
 	}
-	if (j == ANIM_SCREEN_OPTION_NUM) // no match
+	if (!matched)
 	{
 	    errorNo = 4;
 	    break;
 	}
-	else if (j < NUM_NONEFFECT_OPTIONS)
-	{
-	    errorNo = 5;
-	    break;
-	}
-
 	CompOptionValue v;
 
-	os->pairs[i].id = j;
+	pair->pluginInfo = extensionPluginInfo;
+	pair->optionId = optId;
 	int valueRead = -1;
 	switch (o->type)
 	{
 	case CompOptionTypeBool:
-	    valueRead = sscanf(valueStr, " %d ", &os->pairs[i].value.b);
+	    valueRead = sscanf(valueStr, " %d ", &pair->value.b);
 	    break;
 	case CompOptionTypeInt:
 	    valueRead = sscanf(valueStr, " %d ", &v.i);
@@ -227,7 +207,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 		// Store option's original value
 		int backup = o->value.i;
 		if (compSetIntOption (o, &v))
-		    os->pairs[i].value = v;
+		    pair->value = v;
 		else
 		    errorNo = 7;
 		// Restore value
@@ -241,7 +221,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 		// Store option's original value
 		float backup = o->value.f;
 		if (compSetFloatOption (o, &v))
-		    os->pairs[i].value = v;
+		    pair->value = v;
 		else
 		    errorNo = 7;
 		// Restore value
@@ -266,7 +246,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 				&c[0], &c[1], &c[2], &c[3]);
 	    if (valueRead == 4)
 	    {
-		CompOptionValue * pv = &os->pairs[i].value;
+		CompOptionValue * pv = &pair->value;
 		int j;
 		for (j = 0; j < 4; j++)
 		    pv->c[j] = c[j] << 8 | c[j];
@@ -311,11 +291,6 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 			    "Unknown option \"%s\" in \"%s\"",
 			    nameTrimmed, optNamesValuesOrig);
 	    break;
-	case 5:
-	    compLogMessage (s->display, "animation", CompLogLevelError,
-			    "Option \"%s\" cannot be changed in option strings.",
-			    nameTrimmed);
-	    break;
 	case 6:
 	    compLogMessage (s->display, "animation", CompLogLevelError,
 			    "Invalid value \"%s\" in \"%s\"",
@@ -338,10 +313,13 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 }
 
 void
-updateOptionSets(CompScreen *s,
-		 OptionSets *oss,
-		 CompListValue *listVal)
+updateOptionSets (CompScreen *s,
+		  AnimEvent e)
 {
+    ANIM_SCREEN (s);
+
+    OptionSets *oss = &as->eventOptionSets[e];
+    CompListValue *listVal = &as->opt[customOptionOptionIds[e]].value.list;
     int n = listVal->nValue;
 
     if (oss->sets)
@@ -360,3 +338,4 @@ updateOptionSets(CompScreen *s,
     for (i = 0; i < n; i++)
 	updateOptionSet(s, &oss->sets[i], listVal->value[i].s);
 }
+

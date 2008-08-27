@@ -36,23 +36,22 @@
 
 #include "animation-internal.h"
 
-void
-fxDreamAnimInit (CompScreen * s, CompWindow * w)
+Bool
+fxDreamAnimInit (CompWindow * w)
 {
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    if (animZoomToIcon(as, aw))
+    if (fxDreamZoomToIcon (w))
     {
-	aw->animTotalTime /= ZOOM_PERCEIVED_T;
-	aw->usingTransform = TRUE;
+	aw->com.animTotalTime /= ZOOM_PERCEIVED_T;
+	aw->com.usingTransform = TRUE;
     }
     else
-	aw->animTotalTime /= DREAM_PERCEIVED_T;
+	aw->com.animTotalTime /= DREAM_PERCEIVED_T;
 
-    aw->animRemainingTime = aw->animTotalTime;
+    aw->com.animRemainingTime = aw->com.animTotalTime;
 
-    defaultAnimInit(s, w);
+    return defaultAnimInit (w);
 }
 
 static void inline
@@ -79,9 +78,9 @@ fxDreamModelStepObject (CompWindow * w,
 }
 
 void
-fxDreamModelStep (CompScreen *s, CompWindow *w, float time)
+fxDreamModelStep (CompWindow *w, float time)
 {
-    defaultAnimStep (s, w, time);
+    defaultAnimStep (w, time);
 
     ANIM_WINDOW(w);
 
@@ -102,22 +101,28 @@ fxDreamModelStep (CompScreen *s, CompWindow *w, float time)
 }
 
 void
-fxDreamUpdateWindowAttrib(AnimScreen * as,
-			  CompWindow * w,
-			  WindowPaintAttrib * wAttrib)
+fxDreamUpdateWindowAttrib (CompWindow * w,
+			   WindowPaintAttrib * wAttrib)
 {
     ANIM_WINDOW(w);
 
-    if ((aw->curWindowEvent == WindowEventMinimize ||
-	 aw->curWindowEvent == WindowEventUnminimize) &&
-	animGetB(as, aw, ANIM_SCREEN_OPTION_DREAM_Z2TOM))
+    if (fxDreamZoomToIcon (w))
     {
-	fxZoomUpdateWindowAttrib(as, w, wAttrib);
+	fxZoomUpdateWindowAttrib (w, wAttrib);
 	return;
     }
 
-    float forwardProgress = defaultAnimProgress(aw);
+    float forwardProgress = defaultAnimProgress (w);
 
-    wAttrib->opacity = (GLushort) (aw->storedOpacity * (1 - forwardProgress));
+    wAttrib->opacity = (GLushort) (aw->com.storedOpacity * (1 - forwardProgress));
+}
+
+Bool
+fxDreamZoomToIcon (CompWindow *w)
+{
+    ANIM_WINDOW(w);
+    return ((aw->com.curWindowEvent == WindowEventMinimize ||
+	     aw->com.curWindowEvent == WindowEventUnminimize) &&
+	    animGetB (w, ANIM_SCREEN_OPTION_DREAM_Z2TOM));
 }
 

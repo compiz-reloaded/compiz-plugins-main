@@ -136,7 +136,7 @@ applyDodgeTransform (CompWindow * w, CompTransform *transform)
     if (aw->isDodgeSubject)
 	return;
 
-    float amount = sin(M_PI * aw->transformProgress) * aw->dodgeMaxAmount;
+    float amount = sin(M_PI * aw->com.transformProgress) * aw->dodgeMaxAmount;
 
     if (aw->dodgeDirection > 1) // if x axis
 	matrixTranslate (transform, amount, 0.0f, 0.0f);
@@ -145,20 +145,20 @@ applyDodgeTransform (CompWindow * w, CompTransform *transform)
 }
 
 void
-fxDodgeAnimStep (CompScreen *s, CompWindow *w, float time)
+fxDodgeAnimStep (CompWindow *w, float time)
 {
-    defaultAnimStep (s, w, time);
+    defaultAnimStep (w, time);
 
     ANIM_WINDOW(w);
 
-    aw->transformProgress = 0;
+    aw->com.transformProgress = 0;
 
-    float forwardProgress = defaultAnimProgress(aw);
-    if (forwardProgress > aw->transformStartProgress)
+    float forwardProgress = defaultAnimProgress (w);
+    if (forwardProgress > aw->com.transformStartProgress)
     {
-	aw->transformProgress = 
-	    (forwardProgress - aw->transformStartProgress) /
-	    (1 - aw->transformStartProgress);
+	aw->com.transformProgress = 
+	    (forwardProgress - aw->com.transformStartProgress) /
+	    (1 - aw->com.transformStartProgress);
     }
 
     if (!aw->isDodgeSubject && !aw->dodgeSubjectWin)
@@ -167,7 +167,7 @@ fxDodgeAnimStep (CompScreen *s, CompWindow *w, float time)
 			__FILE__, __LINE__);
     if (!aw->isDodgeSubject &&
 	aw->dodgeSubjectWin &&
-	aw->transformProgress <= 0.5f)
+	aw->com.transformProgress <= 0.5f)
     {
 	XRectangle dodgeBox;
 	fxDodgeFindDodgeBox (w, &dodgeBox);
@@ -185,13 +185,12 @@ fxDodgeAnimStep (CompScreen *s, CompWindow *w, float time)
 	}
     }
 
-    matrixGetIdentity (&aw->transform);
-    applyDodgeTransform (w, &aw->transform);
+    matrixGetIdentity (&aw->com.transform);
+    applyDodgeTransform (w, &aw->com.transform);
 }
 
 void
-fxDodgeUpdateWindowTransform (CompScreen *s,
-			      CompWindow *w,
+fxDodgeUpdateWindowTransform (CompWindow *w,
 			      CompTransform *wTransform)
 {
     ANIM_WINDOW(w);
@@ -199,13 +198,13 @@ fxDodgeUpdateWindowTransform (CompScreen *s,
     if (aw->isDodgeSubject)
 	return;
 
-    applyTransform (wTransform, &aw->transform);
+    applyTransform (wTransform, &aw->com.transform);
 }
 
 void
-fxDodgePostPreparePaintScreen(CompScreen *s, CompWindow *w)
+fxDodgePostPreparePaintScreen (CompWindow *w)
 {
-    ANIM_SCREEN(s);
+    ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
     // Only dodge subjects should be processed here
@@ -230,7 +229,7 @@ fxDodgePostPreparePaintScreen(CompScreen *s, CompWindow *w)
 	// reached 50% progress yet. The subject window should be
 	// painted right behind that one (or right in front of it if
 	// the subject window is being lowered).
-	if (!(adw->transformProgress > 0.5f))
+	if (!(adw->com.transformProgress > 0.5f))
 	    break;
     }
     AnimWindow *awOldHost = NULL;
@@ -275,7 +274,7 @@ fxDodgePostPreparePaintScreen(CompScreen *s, CompWindow *w)
 		wDodgeChainAbove = aw->restackInfo->wOldAbove;
 
 	    if (!wDodgeChainAbove)
-		compLogMessage (s->display, "animation", CompLogLevelError,
+		compLogMessage (w->screen->display, "animation", CompLogLevelError,
 				"%s: error at line %d", __FILE__, __LINE__);
 	    else if (aw->winThisIsPaintedBefore !=
 		     wDodgeChainAbove) // w's host is changing
@@ -303,10 +302,11 @@ fxDodgePostPreparePaintScreen(CompScreen *s, CompWindow *w)
 
 void
 fxDodgeUpdateBB (CompOutput *output,
-		 CompWindow * w)
+		 CompWindow * w,
+		 Box *BB)
 {
     ANIM_WINDOW(w);
 
     if (!aw->isDodgeSubject)
-	compTransformUpdateBB (output, w);
+	compTransformUpdateBB (output, w, BB);
 }

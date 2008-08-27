@@ -39,59 +39,29 @@
 // =====================  Effect: Glide  =========================
 
 static void
-fxGlideGetParams (AnimScreen *as,
-		  AnimWindow *aw,
+fxGlideGetParams (CompWindow *w,
 		  float *finalDistFac,
 		  float *finalRotAng,
 		  float *thickness)
 {
-    if (aw->curAnimEffect == AnimEffectGlide3D1)
-    {
-	*finalDistFac = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE1_AWAY_POS);
-	*finalRotAng = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE1_AWAY_ANGLE);
-	*thickness = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE1_THICKNESS);
-    }
-    else
-    {
-	*finalDistFac = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE2_AWAY_POS);
-	*finalRotAng = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE2_AWAY_ANGLE);
-	*thickness = animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE2_THICKNESS);
-    }
-}
-
-Bool
-fxGlideIsPolygonBased (AnimScreen *as, AnimWindow *aw)
-{
-    if (aw->curAnimEffect == AnimEffectGlide3D1)
-	return (animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE1_THICKNESS) > 1e-5);
-    else
-	return (animGetF(as, aw, ANIM_SCREEN_OPTION_GLIDE2_THICKNESS) > 1e-5);
-}
-
-static inline Bool
-fxGlideZoomToTaskBar (AnimScreen *as, AnimWindow *aw)
-{
-    return
-	(aw->curWindowEvent == WindowEventMinimize ||
-	 aw->curWindowEvent == WindowEventUnminimize) &&
-	((aw->curAnimEffect == AnimEffectGlide3D1 &&
-	  animGetB(as, aw, ANIM_SCREEN_OPTION_GLIDE1_Z2TOM)) ||
-	 (aw->curAnimEffect == AnimEffectGlide3D2 &&
-	  animGetB(as, aw, ANIM_SCREEN_OPTION_GLIDE2_Z2TOM)));
-}
-
-Bool
-fxGlideLetOthersDrawGeoms(CompScreen *s, CompWindow *w)
-{
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    return !fxGlideIsPolygonBased(as, aw);
+    if (aw->com.curAnimEffect == AnimEffectGlide1)
+    {
+	*finalDistFac = animGetF (w, ANIM_SCREEN_OPTION_GLIDE1_AWAY_POS);
+	*finalRotAng = animGetF (w, ANIM_SCREEN_OPTION_GLIDE1_AWAY_ANGLE);
+    }
+    else
+    {
+	*finalDistFac = animGetF (w, ANIM_SCREEN_OPTION_GLIDE2_AWAY_POS);
+	*finalRotAng = animGetF (w, ANIM_SCREEN_OPTION_GLIDE2_AWAY_ANGLE);
+    }
 }
 
-float fxGlideAnimProgress(AnimWindow * aw)
+float
+fxGlideAnimProgress (CompWindow *w)
 {
-    float forwardProgress = defaultAnimProgress(aw);
+    float forwardProgress = defaultAnimProgress (w);
 
     return decelerateProgress(forwardProgress);
 }
@@ -99,25 +69,24 @@ float fxGlideAnimProgress(AnimWindow * aw)
 static void
 applyGlideTransform (CompWindow *w)
 {
-    ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
-    CompTransform *transform = &aw->transform;
+    CompTransform *transform = &aw->com.transform;
 
     float finalDistFac;
     float finalRotAng;
     float thickness;
 
-    fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
+    fxGlideGetParams (w, &finalDistFac, &finalRotAng, &thickness);
 
     float forwardProgress;
-    if (fxGlideZoomToTaskBar(as, aw))
+    if (fxGlideZoomToIcon (w))
     {
 	float dummy;
-	fxZoomAnimProgress(as, aw, &forwardProgress, &dummy, TRUE);
+	fxZoomAnimProgress (w, &forwardProgress, &dummy, TRUE);
     }
     else
-	forwardProgress = fxGlideAnimProgress(aw);
+	forwardProgress = fxGlideAnimProgress (w);
 
     float finalz = finalDistFac * 0.8 * DEFAULT_Z_CAMERA *
 	w->screen->width;
@@ -152,146 +121,81 @@ applyGlideTransform (CompWindow *w)
 }
 
 void
-fxGlideAnimStep (CompScreen *s, CompWindow *w, float time)
+fxGlideAnimStep (CompWindow *w, float time)
 {
-    ANIM_SCREEN(s);
-    ANIM_WINDOW(w);
+    defaultAnimStep (w, time);
 
-    if (fxGlideIsPolygonBased(as, aw))
-	polygonsAnimStep (s, w, time);
-    else
-    {
-	defaultAnimStep (s, w, time);
-
-	applyGlideTransform (w);
-    }
+    applyGlideTransform (w);
 }
 
 void
-fxGlideUpdateWindowAttrib(AnimScreen * as,
-			  CompWindow * w,
-			  WindowPaintAttrib * wAttrib)
+fxGlideUpdateWindowAttrib (CompWindow * w,
+			   WindowPaintAttrib * wAttrib)
 {
     ANIM_WINDOW(w);
 
-    if (fxGlideIsPolygonBased(as, aw))
-	return;
-
-    // the effect is CompTransform-based
-
-    if (fxGlideZoomToTaskBar(as, aw))
+    if (fxGlideZoomToIcon (w))
     {
-	fxZoomUpdateWindowAttrib(as, w, wAttrib);
+	fxZoomUpdateWindowAttrib (w, wAttrib);
 	return;
     }
 
-    float forwardProgress = fxGlideAnimProgress(aw);
+    float forwardProgress = fxGlideAnimProgress (w);
 
-    wAttrib->opacity = aw->storedOpacity * (1 - forwardProgress);
+    wAttrib->opacity = aw->com.storedOpacity * (1 - forwardProgress);
 }
 
 void
-fxGlideUpdateWindowTransform (CompScreen *s,
-			      CompWindow *w,
+fxGlideUpdateWindowTransform (CompWindow *w,
 			      CompTransform *wTransform)
 {
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    if (fxGlideIsPolygonBased (as, aw))
-	return;
-
-    applyTransform (wTransform, &aw->transform);
+    applyTransform (wTransform, &aw->com.transform);
 }
 
-void fxGlideInit(CompScreen * s, CompWindow * w)
+Bool
+fxGlideInit (CompWindow * w)
 {
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    if (fxGlideZoomToTaskBar(as, aw))
+    if (fxGlideZoomToIcon (w))
     {
-	aw->animTotalTime /= ZOOM_PERCEIVED_T;
-	aw->animRemainingTime = aw->animTotalTime;
+	aw->com.animTotalTime /= ZOOM_PERCEIVED_T;
+	aw->com.animRemainingTime = aw->com.animTotalTime;
     }
 
-    if (!fxGlideIsPolygonBased(as, aw))
-    {
-	defaultAnimInit (s, w);
-	return; // we're done with CompTransform-based glide initialization
-    }
-
-    // for polygon-based glide effect
-
-    float finalDistFac;
-    float finalRotAng;
-    float thickness;
-
-    fxGlideGetParams(as, aw, &finalDistFac, &finalRotAng, &thickness);
-
-    PolygonSet *pset = aw->polygonSet;
-
-    pset->includeShadows = (thickness < 1e-5);
-
-    if (!tessellateIntoRectangles(w, 1, 1, thickness))
-	return;
-
-    PolygonObject *p = pset->polygons;
-
-    int i;
-
-    for (i = 0; i < pset->nPolygons; i++, p++)
-    {
-	p->rotAxis.x = 1;
-	p->rotAxis.y = 0;
-	p->rotAxis.z = 0;
-
-	p->finalRelPos.x = 0;
-	p->finalRelPos.y = 0;
-	p->finalRelPos.z = finalDistFac * 0.8 * DEFAULT_Z_CAMERA * s->width;
-
-	p->finalRotAng = finalRotAng;
-    }
-    pset->allFadeDuration = 1.0f;
-    pset->backAndSidesFadeDur = 0.2f;
-    pset->doLighting = TRUE;
-    pset->correctPerspective = CorrectPerspectivePolygon;
+    return defaultAnimInit (w);
 }
 
-void fxGlidePrePaintWindow(CompScreen *s,
-			   CompWindow *w)
+void fxGlidePrePaintWindow (CompWindow *w)
 {
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    if (fxGlideIsPolygonBased(as, aw))
-	polygonsPrePaintWindow(s, w);
-    else if (90 < aw->glideModRotAngle &&
-	     aw->glideModRotAngle < 270)
+    if (90 < aw->glideModRotAngle &&
+	aw->glideModRotAngle < 270)
 	glCullFace(GL_FRONT);
 }
 
-void fxGlidePostPaintWindow(CompScreen * s, CompWindow * w)
+void fxGlidePostPaintWindow (CompWindow * w)
 {
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
-    if (fxGlideIsPolygonBased(as, aw))
-	polygonsPostPaintWindow(s, w);
-    else if (90 < aw->glideModRotAngle &&
-	     aw->glideModRotAngle < 270)
+    if (90 < aw->glideModRotAngle &&
+	aw->glideModRotAngle < 270)
 	glCullFace(GL_BACK);
 }
 
-void
-fxGlideUpdateBB (CompOutput *output,
-		 CompWindow *w)
+Bool
+fxGlideZoomToIcon (CompWindow *w)
 {
-    ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
-
-    if (fxGlideIsPolygonBased (as, aw))
-	polygonsUpdateBB (output, w);
-    else
-	compTransformUpdateBB (output, w);
+    return
+	((aw->com.curWindowEvent == WindowEventMinimize ||
+	  aw->com.curWindowEvent == WindowEventUnminimize) &&
+	 ((aw->com.curAnimEffect == AnimEffectGlide1 &&
+	   animGetB (w, ANIM_SCREEN_OPTION_GLIDE1_Z2TOM)) ||
+	  (aw->com.curAnimEffect == AnimEffectGlide2 &&
+	   animGetB (w, ANIM_SCREEN_OPTION_GLIDE2_Z2TOM))));
 }
+

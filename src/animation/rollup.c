@@ -39,12 +39,14 @@
 // =====================  Effect: Roll Up  =========================
 
 void
-fxRollUpInitGrid(AnimScreen * as, AnimWindow *aw,
+fxRollUpInitGrid(CompWindow *w,
 		 int *gridWidth, int *gridHeight)
 {
+    ANIM_WINDOW(w);
+
     *gridWidth = 2;
-    if (aw->curWindowEvent == WindowEventShade ||
-	aw->curWindowEvent == WindowEventUnshade)
+    if (aw->com.curWindowEvent == WindowEventShade ||
+	aw->com.curWindowEvent == WindowEventUnshade)
 	*gridHeight = 4;
     else
 	*gridHeight = 2;
@@ -60,8 +62,8 @@ fxRollUpModelStepObject(CompWindow * w,
 
     float origx = WIN_X(w) + WIN_W(w) * object->gridPosition.x;
 
-    if (aw->curWindowEvent == WindowEventShade ||
-	aw->curWindowEvent == WindowEventUnshade)
+    if (aw->com.curWindowEvent == WindowEventShade ||
+	aw->com.curWindowEvent == WindowEventUnshade)
     {
 	// Execute shade mode
 
@@ -117,18 +119,16 @@ fxRollUpModelStepObject(CompWindow * w,
 }
 
 void
-fxRollUpModelStep (CompScreen *s, CompWindow *w, float time)
+fxRollUpModelStep (CompWindow *w, float time)
 {
-    defaultAnimStep (s, w, time);
+    defaultAnimStep (w, time);
 
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
     Model *model = aw->model;
 
-    float forwardProgress = sigmoidAnimProgress(aw);
-    Bool fixedInterior = animGetB (as, aw,
-				   ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR);
+    float forwardProgress = sigmoidAnimProgress (w);
+    Bool fixedInterior = animGetB (w, ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR);
 
     Object *object = model->objects;
     int i;
@@ -141,10 +141,14 @@ fxRollUpModelStep (CompScreen *s, CompWindow *w, float time)
 	     fixedInterior);
 }
 
-void fxRollUpAnimInit(CompScreen * s, CompWindow * w)
+Bool
+fxRollUpAnimInit (CompWindow * w)
 {
     ANIM_WINDOW(w);
 
-    aw->animTotalTime /= ROLLUP_PERCEIVED_T;
-    aw->animRemainingTime = aw->animTotalTime;
+    aw->com.animTotalTime /= ROLLUP_PERCEIVED_T;
+    aw->com.animRemainingTime = aw->com.animTotalTime;
+    
+    return TRUE;
 }
+

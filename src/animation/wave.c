@@ -65,22 +65,21 @@ fxWaveModelStepObject(CompWindow * w,
 }
 
 void
-fxWaveModelStep (CompScreen *s, CompWindow *w, float time)
+fxWaveModelStep (CompWindow *w, float time)
 {
-    defaultAnimStep (s, w, time);
+    defaultAnimStep (w, time);
 
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
     Model *model = aw->model;
 
-    float forwardProgress = 1 - defaultAnimProgress(aw);
+    float forwardProgress = 1 - defaultAnimProgress (w);
 
     float waveHalfWidth = (WIN_H(w) * model->scale.y *
-			   animGetF(as, aw, ANIM_SCREEN_OPTION_WAVE_WIDTH) / 2);
+			   animGetF (w, ANIM_SCREEN_OPTION_WAVE_WIDTH) / 2);
 
-    float waveAmp = (0.02 * pow ((float)WIN_H (w) / s->height, 0.4) *
-		     animGetF (as, aw, ANIM_SCREEN_OPTION_WAVE_AMP_MULT));
+    float waveAmp = (0.02 * pow ((float)WIN_H (w) / w->screen->height, 0.4) *
+		     animGetF (w, ANIM_SCREEN_OPTION_WAVE_AMP_MULT));
 
     float wavePosition =
 	WIN_Y(w) - waveHalfWidth +

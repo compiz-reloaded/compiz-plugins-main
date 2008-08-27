@@ -52,18 +52,19 @@ getObjectZ (Model *model,
 }
 
 void
-fxHorizontalFoldsInitGrid(AnimScreen *as,
-			  AnimWindow *aw,
+fxHorizontalFoldsInitGrid(CompWindow *w,
 			  int *gridWidth, int *gridHeight)
 {
+    ANIM_WINDOW(w);
+
     *gridWidth = 2;
-    if (aw->curWindowEvent == WindowEventShade ||
-	aw->curWindowEvent == WindowEventUnshade)
+    if (aw->com.curWindowEvent == WindowEventShade ||
+	aw->com.curWindowEvent == WindowEventUnshade)
 	*gridHeight = 3 + 2 *	
-	    animGetI(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
+	    animGetI (w, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
     else
 	*gridHeight = 1 + 2 *
-	    animGetI(as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
+	    animGetI (w, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
 }
 
 static void inline
@@ -83,8 +84,8 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 
     object->position.x = origx;
 
-    if (aw->curWindowEvent == WindowEventShade ||
-	aw->curWindowEvent == WindowEventUnshade)
+    if (aw->com.curWindowEvent == WindowEventShade ||
+	aw->com.curWindowEvent == WindowEventUnshade)
     {
 	// Execute shade mode
 
@@ -131,18 +132,17 @@ fxHorizontalFoldsModelStepObject(CompWindow * w,
 }
 
 void
-fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
+fxHorizontalFoldsModelStep (CompWindow *w, float time)
 {
-    defaultAnimStep (s, w, time);
+    defaultAnimStep (w, time);
 
-    ANIM_SCREEN(s);
     ANIM_WINDOW(w);
 
     Model *model = aw->model;
 
     float winHeight = 0;
-    if (aw->curWindowEvent == WindowEventShade ||
-	aw->curWindowEvent == WindowEventUnshade)
+    if (aw->com.curWindowEvent == WindowEventShade ||
+	aw->com.curWindowEvent == WindowEventUnshade)
     {
 	winHeight = (w)->height;
     }
@@ -151,10 +151,10 @@ fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
 	winHeight = BORDER_H (w);
     }
     int nHalfFolds =
-	2.0 * animGetI (as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
+	2.0 * animGetI (w, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_NUM_FOLDS);
     float foldMaxAmp =
-	0.3 * pow ((winHeight / nHalfFolds) / s->height, 0.3) *
-	animGetF (as, aw, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP_MULT);
+	0.3 * pow ((winHeight / nHalfFolds) / w->screen->height, 0.3) *
+	animGetF (w, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_AMP_MULT);
 
     float forwardProgress = getProgressAndCenter (w, NULL);
 
@@ -170,5 +170,14 @@ fxHorizontalFoldsModelStep (CompScreen *s, CompWindow *w, float time)
 					 sinForProg,
 					 foldMaxAmp,
 					 i / model->gridWidth);
+}
+
+Bool
+fxHorizontalFoldsZoomToIcon (CompWindow *w)
+{
+    ANIM_WINDOW(w);
+    return ((aw->com.curWindowEvent == WindowEventMinimize ||
+	     aw->com.curWindowEvent == WindowEventUnminimize) &&
+	    animGetB (w, ANIM_SCREEN_OPTION_HORIZONTAL_FOLDS_Z2TOM));
 }
 

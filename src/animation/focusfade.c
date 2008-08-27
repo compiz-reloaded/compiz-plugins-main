@@ -85,14 +85,12 @@ fxFocusFadeComputeOpacity (CompWindow *w, float progress, GLushort opacityInt)
 }
 
 void
-fxFocusFadeUpdateWindowAttrib(AnimScreen * as,
-			      CompWindow * w,
+fxFocusFadeUpdateWindowAttrib(CompWindow * w,
 			      WindowPaintAttrib * wAttrib)
 {
-    ANIM_WINDOW(w);
-
-    float forwardProgress = defaultAnimProgress(aw);
+    float forwardProgress = defaultAnimProgress (w);
 
     wAttrib->opacity =
 	fxFocusFadeComputeOpacity (w, forwardProgress, wAttrib->opacity);
 }
+
