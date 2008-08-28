@@ -625,44 +625,6 @@ wallActivateWindow (CompWindow *w)
     WRAP (ws, s, activateWindow, wallActivateWindow);
 }
 
-static Bool
-wallNext (CompDisplay     *d,
-	  CompAction      *action,
-	  CompActionState state,
-	  CompOption      *option,
-	  int             nOption)
-{
-    GET_SCREEN;
-
-    if ((s->x == s->hsize - 1) && (s->y == s->vsize - 1))
-	wallMoveViewport (s, s->hsize - 1, s->vsize - 1, None);
-    else if (s->x == s->hsize - 1)
-	wallMoveViewport (s, s->hsize - 1, -1, None);
-    else
-	wallMoveViewport (s, -1, 0, None);
-
-    return TRUE;
-}
-
-static Bool
-wallPrev (CompDisplay     *d,
-	  CompAction      *action,
-	  CompActionState state,
-	  CompOption      *option,
-	  int             nOption)
-{
-    GET_SCREEN;
-
-    if ((s->x == 0) && (s->y == 0))
-	wallMoveViewport (s, -(s->hsize - 1), -(s->vsize - 1), None);
-    else if (s->x == 0)
-	wallMoveViewport (s, -(s->hsize - 1), 1, None);
-    else
-	wallMoveViewport (s, 1, 0, None);
-
-    return TRUE;
-}
-
 static void
 wallCheckAmount (CompScreen *s,
 		 int        dx,
@@ -885,6 +847,64 @@ wallDown (CompDisplay     *d,
     GET_SCREEN;
 
     return wallInitiate (s, 0, 1, None, action, state);
+}
+
+static Bool
+wallNext (CompDisplay     *d,
+	  CompAction      *action,
+	  CompActionState state,
+	  CompOption      *option,
+	  int             nOption)
+{
+    int amountX, amountY;
+    GET_SCREEN;
+
+    if ((s->x == s->hsize - 1) && (s->y == s->vsize - 1))
+    {
+	amountX = -(s->hsize - 1);
+	amountY = -(s->vsize - 1);
+    }
+    else if (s->x == s->hsize - 1)
+    {
+	amountX = -(s->hsize - 1);
+	amountY = 1;
+    }
+    else
+    {
+	amountX = 1;
+	amountY = 0;
+    }
+
+    return wallInitiate (s, amountX, amountY, None, action, state);
+}
+
+static Bool
+wallPrev (CompDisplay     *d,
+	  CompAction      *action,
+	  CompActionState state,
+	  CompOption      *option,
+	  int             nOption)
+{
+    int amountX, amountY;
+    GET_SCREEN;
+
+    if ((s->x == 0) && (s->y == 0))
+    {
+	amountX = s->hsize - 1;
+	amountY = s->vsize - 1;
+    }
+    else if (s->x == 0)
+    {
+	amountX = s->hsize - 1;
+	amountY = -1;
+    }
+    else
+    {
+	amountX = -1;
+	amountY = 0;
+    }
+
+    return wallInitiate (s, amountX, amountY, None, action, state);
 }
 
 static Bool
@@ -1396,12 +1416,16 @@ wallPreparePaintScreen (CompScreen *s,
 	if (ws->moveWindow)
 	    wallReleaseMoveWindow (s);
 	else
-	    focusDefaultWindow (s);
-
-	if (ws->grabIndex)
 	{
-	    removeScreenGrab (s, ws->grabIndex, NULL);
-	    ws->grabIndex = 0;
+	    int i;
+	    for (i = 0; i < s->maxGrab; i++)
+		if (s->grabs[i].active)
+		    if (strcmp(s->grabs[i].name, "switcher") == 0)
+			break;
+
+	    /* only focus default window if switcher is not active */
+	    if (i == s->maxGrab)
+		focusDefaultWindow (s);
 	}
     }
 
@@ -1601,12 +1625,15 @@ wallDonePaintScreen (CompScreen *s)
     WALL_SCREEN (s);
 
     if (ws->moving || ws->boxTimeout)
-	damageScreen (s);
-
-    if (ws->boxTimeout < 0)
     {
-	ws->boxTimeout = 0;
+	ws->boxTimeout = MAX (0, ws->boxTimeout);
 	damageScreen (s);
+    }
+
+    if (!ws->moving && !ws->showPreview && ws->grabIndex)
+    {
+	removeScreenGrab (s, ws->grabIndex, NULL);
+	ws->grabIndex = 0;
     }
 
     UNWRAP (ws, s, donePaintScreen);
@@ -1909,6 +1936,9 @@ wallFiniScreen (CompPlugin *p,
 		CompScreen *s)
 {
     WALL_SCREEN (s);
+
+    if (ws->grabIndex)
+	removeScreenGrab (s, ws->grabIndex, NULL);
 
     wallDestroyCairoContext (s, &ws->switcherContext);
     wallDestroyCairoContext (s, &ws->thumbContext);
