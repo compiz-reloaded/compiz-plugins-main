@@ -36,17 +36,18 @@
 #define WINRULES_SCREEN_OPTION_BELOW_MATCH        3
 #define WINRULES_SCREEN_OPTION_STICKY_MATCH       4
 #define WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH   5
-#define WINRULES_SCREEN_OPTION_NOARGB_MATCH       6
-#define WINRULES_SCREEN_OPTION_NOMOVE_MATCH       7
-#define WINRULES_SCREEN_OPTION_NORESIZE_MATCH     8
-#define WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH   9
-#define WINRULES_SCREEN_OPTION_NOMAXIMIZE_MATCH   10
-#define WINRULES_SCREEN_OPTION_NOCLOSE_MATCH      11
-#define WINRULES_SCREEN_OPTION_NOFOCUS_MATCH      12
-#define WINRULES_SCREEN_OPTION_SIZE_MATCHES	  13
-#define WINRULES_SCREEN_OPTION_SIZE_WIDTH_VALUES  14
-#define WINRULES_SCREEN_OPTION_SIZE_HEIGHT_VALUES 15
-#define WINRULES_SCREEN_OPTION_NUM		  16
+#define WINRULES_SCREEN_OPTION_MAXIMIZE_MATCH     6
+#define WINRULES_SCREEN_OPTION_NOARGB_MATCH       7
+#define WINRULES_SCREEN_OPTION_NOMOVE_MATCH       8
+#define WINRULES_SCREEN_OPTION_NORESIZE_MATCH     9
+#define WINRULES_SCREEN_OPTION_NOMINIMIZE_MATCH   10
+#define WINRULES_SCREEN_OPTION_NOMAXIMIZE_MATCH   11
+#define WINRULES_SCREEN_OPTION_NOCLOSE_MATCH      12
+#define WINRULES_SCREEN_OPTION_NOFOCUS_MATCH      13
+#define WINRULES_SCREEN_OPTION_SIZE_MATCHES	  14
+#define WINRULES_SCREEN_OPTION_SIZE_WIDTH_VALUES  15
+#define WINRULES_SCREEN_OPTION_SIZE_HEIGHT_VALUES 16
+#define WINRULES_SCREEN_OPTION_NUM		  17
 
 static CompMetadata winrulesMetadata;
 
@@ -373,6 +374,12 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	    updateStateMask = CompWindowStateFullscreenMask;
 	break;
 
+    case WINRULES_SCREEN_OPTION_MAXIMIZE_MATCH:
+	if (compSetMatchOption (o, value))
+	    updateStateMask = CompWindowStateMaximizedHorzMask |
+			      CompWindowStateMaximizedVertMask;
+	break;
+
     case WINRULES_SCREEN_OPTION_NOMOVE_MATCH:
 	if (compSetMatchOption (o, value))
 	    updateActionsMask = CompWindowActionMoveMask;
@@ -526,6 +533,11 @@ winrulesApplyRules (void *closure)
 			 WINRULES_SCREEN_OPTION_FULLSCREEN_MATCH,
 			 CompWindowStateFullscreenMask);
 
+    winrulesUpdateState (w,
+			 WINRULES_SCREEN_OPTION_MAXIMIZE_MATCH,
+			 CompWindowStateMaximizedHorzMask |
+			 CompWindowStateMaximizedVertMask);
+
     winrulesSetAllowedActions (w,
 			       WINRULES_SCREEN_OPTION_NOMOVE_MATCH,
 			       CompWindowActionMoveMask);
@@ -638,6 +650,7 @@ static const CompMetadataOptionInfo winrulesScreenOptionInfo[] = {
     { "below_match", "match", 0, 0, 0 },
     { "sticky_match", "match", 0, 0, 0 },
     { "fullscreen_match", "match", 0, 0, 0 },
+    { "maximize_match", "match", 0, 0, 0 },
     { "no_argb_match", "match", 0, 0, 0 },
     { "no_move_match", "match", 0, 0, 0 },
     { "no_resize_match", "match", 0, 0, 0 },
