@@ -458,9 +458,6 @@ getMatchingAnimSelection (CompWindow *w,
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
-    if (duration == NULL)
-	return AnimEffectNone;
-
     EffectSet *eventEffects;
     CompOptionValue *valMatch;
     CompOptionValue *valDuration;
@@ -1835,7 +1832,7 @@ initiateFocusAnimation(CompWindow *w)
 
 		Bool nonMatching = FALSE;
 		if (chosenEffect == AnimEffectDodge &&
-		    getMatchingAnimSelection (dw, WindowEventFocus, NULL) !=
+		    getMatchingAnimSelection (dw, AnimEventFocus, NULL) !=
 		    chosenEffect)
 		    nonMatching = TRUE;
 
