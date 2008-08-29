@@ -1,5 +1,10 @@
 compizincludedir = $(includedir)/compiz
+
+if TEXT_PLUGIN
+textinclude = compiz-text.h
+endif
+
 compizinclude_HEADERS = \
-	compiz-text.h \
+	compiz-animation.h \
 	compiz-mousepoll.h \
-	compiz-animation.h
+	$(textinclude)
