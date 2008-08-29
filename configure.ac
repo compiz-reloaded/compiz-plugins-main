@@ -186,6 +186,7 @@ fi
 AC_OUTPUT([
 compiz-text.pc
 compiz-mousepoll.pc
+compiz-animation.pc
 data/Makefile
 data/filters/Makefile
 images/Makefile
