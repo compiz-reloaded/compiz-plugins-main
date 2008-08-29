@@ -4,7 +4,6 @@ libanimation_la_LDFLAGS = $(PFLAGS)
 libanimation_la_LIBADD = @COMPIZ_LIBS@
 libanimation_la_SOURCES = animation.c \
 			  animation-internal.h \
-			  compiz-animation.h
 			  curvedfold.c \
 			  dodge.c \
 			  dream.c \
