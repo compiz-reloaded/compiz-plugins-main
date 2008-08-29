@@ -69,7 +69,7 @@ endif ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
 
 if (CMAKE_MAJOR_VERSION GREATER 2 OR CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MINOR_VERSION GREATER 5)
 cmake_policy (VERSION 2.4)
-cmake_policy(SET CMP0000 OLD)  
+cmake_policy(SET CMP0000 OLD)
 cmake_policy(SET CMP0005 OLD)
 endif (CMAKE_MAJOR_VERSION GREATER 2 OR CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MINOR_VERSION GREATER 5)
 
@@ -184,8 +184,10 @@ endmacro (_get_plugin_parameters)
 macro (_check_plugin_pkg_deps _prefix)
     set (${_prefix}_HAS_PKG_DEPS TRUE)
     foreach (_val ${ARGN})
-	string (TOUPPER ${_val} _name)
-	pkg_check_modules (_${_name} ${_val})
+        string (REGEX REPLACE "[<>=\\.]" "_" _name ${_val})
+	string (TOUPPER ${_name} _name)
+	
+        pkg_check_modules (_${_name} ${_val})
 
 	if (_${_name}_FOUND)
 	    list (APPEND ${_prefix}_LIBDIRS "${_${_name}_LIBRARY_DIRS}")
@@ -386,6 +388,13 @@ macro (compiz_fusion_add_uninstall)
     endif (NOT _cf_uninstall_rule_created)
 endmacro (compiz_fusion_add_uninstall)
 
+macro (_cf_configure_file _input _output)
+    file (READ ${_input} _content)
+    string (CONFIGURE ${_content} _content)
+    string (REGEX REPLACE ";" " " _content "${_content}")
+    file (WRITE ${_output} "${_content}")
+endmacro (_cf_configure_file)
+
 # main macro
 macro (_build_compiz_fusion_plugin plugin)
     string (TOUPPER ${plugin} _PLUGIN)
@@ -557,7 +566,7 @@ macro (_build_compiz_fusion_plugin plugin)
 		if (NOT VERSION)
 		    set (VERSION 0.0.1-git)
 		endif (NOT VERSION)
-		configure_file (
+		_cf_configure_file (
 		    ${_${plugin}_pkg}
 		    ${CMAKE_BINARY_DIR}/generated/compiz-${plugin}.pc
 		)
