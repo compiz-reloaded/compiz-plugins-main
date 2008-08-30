@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.7\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-07 11:28+0530\n"
-"PO-Revision-Date: 2008-07-12 15:33+0200\n"
+"POT-Creation-Date: 2008-08-30 11:42+0530\n"
+"PO-Revision-Date: 2008-08-08 18:47+0200\n"
 "Last-Translator: Yotam Benshalom <benshalom@gmail.com>\n"
 "Language-Team: Yotam Benshalom <benshalom@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -113,10 +113,10 @@ msgid "Brightness of faded windows"
 msgstr "בהירות חלונות מעומעמים"
 
 msgid "Enable ADD Helper on start"
-msgstr ""
+msgstr "הפעל את סייען ADD עם הפעלת קומפיז"
 
 msgid "Enables ADD helper when it is first loaded."
-msgstr ""
+msgstr "הפעל את סייען ADD עם טעינתו הראשונה."
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -146,12 +146,6 @@ msgstr "סוגי חלונות"
 msgid "Window types that should be Opacified."
 msgstr "סוגי חלונות שיש להחיל עליהם את הכללים."
 
-msgid "Airplane"
-msgstr "אווירון"
-
-msgid "Airplane Flying Path Length"
-msgstr "אורך נתיב טיסת האווירון"
-
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -167,9 +161,6 @@ msgstr "בחירת אנימציה"
 
 msgid "Animation Time Step"
 msgstr "יחידת זמן עבור אנימציה"
-
-msgid "Animation Time Step For Intense Effects"
-msgstr "יחידת זמן עבור אנימציה של אפקטים אינטנסיביים"
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "משך אנימציה במילישניות עבור אפקט סגירה."
@@ -189,50 +180,11 @@ msgstr "משך אנימציה במילישניות עבור אפקט גלילה.
 msgid "Animations"
 msgstr "אנימציות"
 
-msgid "Automatic"
-msgstr "אוטומטי"
-
 msgid "Away Angle"
 msgstr "זווית במצב מרוחק"
 
 msgid "Away Position"
 msgstr "מיקום במצב מרוחק"
-
-msgid "Beam"
-msgstr "שיגור"
-
-msgid "Beam Color"
-msgstr "צבע שיגור"
-
-msgid "Beam Life"
-msgstr "אורך חיי שיגור"
-
-msgid "Beam Slowdown"
-msgstr "האטת שיגור"
-
-msgid "Beam Spacing"
-msgstr "ריווח שיגור"
-
-msgid "Beam Up"
-msgstr "שגר מעלה"
-
-msgid "Beam Width"
-msgstr "רוחב שיגור"
-
-msgid "Beam color."
-msgstr "צבע שיגור."
-
-msgid "Beam life."
-msgstr "אורך חיי שיגור."
-
-msgid "Beam slowdown."
-msgstr "האטת שיגור."
-
-msgid "Beam width."
-msgstr "רוחב שיגור."
-
-msgid "Burn"
-msgstr "שריפה"
 
 msgid "Close Animation"
 msgstr "אנימצית סגירה"
@@ -256,24 +208,14 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "קפל מעוקל"
 
-#, fuzzy
 msgid "Curved Fold Amplitude Multiplier"
-msgstr "משרעת קפל מעוקל"
+msgstr "מכפיל משרעת קפל מעוקל"
 
 msgid "Dodge"
 msgstr "פלס דרך"
 
 msgid "Dodge Gap Ratio"
 msgstr "יחס פערים לפילוס דרך"
-
-msgid "Domino"
-msgstr "דומינו"
-
-msgid "Domino Piece Falling Direction"
-msgstr "כיוון נפילת אבני הדומינו"
-
-msgid "Down"
-msgstr "למטה"
 
 msgid "Dream"
 msgstr "חלום"
@@ -284,62 +226,11 @@ msgstr "משך"
 msgid "Effect Settings"
 msgstr "הגדרות אפקט"
 
-msgid "Explode"
-msgstr "פיצוץ"
-
 msgid "Fade"
 msgstr "פייד"
 
-msgid "Falling direction for Domino pieces."
-msgstr "כיוון נפילת אבני הדומינו."
-
-msgid "Fire"
-msgstr "אש"
-
-msgid "Fire Particle Color"
-msgstr "צבע חלקיקי אש"
-
-msgid "Fire Particle Life"
-msgstr "אורך חיי חלקיקי אש"
-
-msgid "Fire Particle Size"
-msgstr "גודל חלקיקי אש"
-
-msgid "Fire Particle Slowdown"
-msgstr "האטת חלקיקי אש"
-
-msgid "Fire Smoke"
-msgstr "אש ועשן"
-
-msgid "Fire constant speed"
-msgstr "מהירות אש קבועה"
-
-msgid "Fire direction"
-msgstr "כיוון אש"
-
-msgid "Fire direction."
-msgstr "כיוון אש."
-
-msgid "Fire particle color."
-msgstr "צבע חלקיקי אש."
-
-msgid "Fire particle life."
-msgstr "אורך חיי חלקיקי אש."
-
-msgid "Fire particle size."
-msgstr "גודל חלקיקי אש."
-
-msgid "Fire particle slowdown."
-msgstr "האטת חלקיקי אש."
-
-msgid "Fire smoke."
-msgstr "אש ועשן."
-
 msgid "Fixed window interior during the Rollup animation."
 msgstr "תוכן חלון מקובע בעת אנימצית גלילה כלפי מעלה."
-
-msgid "Fly to TaskBar on Minimize"
-msgstr "טוס אל שורת המשימות בעת מזעור"
 
 msgid "Focus Animation"
 msgstr "אנימצית קבלת מיקוד"
@@ -347,19 +238,10 @@ msgstr "אנימצית קבלת מיקוד"
 msgid "Focus Effect"
 msgstr "אפקט קבלת מיקוד"
 
-msgid "Fold"
-msgstr "קיפול"
-
-msgid "Fold Direction"
-msgstr "כיוון קיפול"
-
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
-msgstr ""
-
-msgid "Fold opening direction for pieces in Razr effect."
-msgstr "הכיוון ההתחלתי להסרת פיסות בעת אפקט גילוח."
+msgstr "משרעת (גודל) הקפל מוכפל במספר זה. ערכים שליליים ייצרו קיפול כפי חוץ."
 
 msgid "Glide 1"
 msgstr "גלישה 1"
@@ -367,42 +249,17 @@ msgstr "גלישה 1"
 msgid "Glide 2"
 msgstr "גלישה 2"
 
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr "צבעים אקראיים עבור אפקט האש; אש פיות."
-
-msgid "Hexagonal"
-msgstr "משושה"
-
 msgid "Horizontal Folds"
 msgstr "קפלים אופקיים"
 
-#, fuzzy
 msgid "Horizontal Folds Amplitude Multiplier"
-msgstr "משרעת קפלים אופקיים"
+msgstr "מכפיל משרעת קפלים אופקיים"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr "מידת הקפיציות של אנימצית הגלגלון."
 
 msgid "How spring-like the Zoom animation should be."
 msgstr "מידת הקפיציות של אנימצית התקריב."
-
-msgid "In"
-msgstr "פנימה"
-
-msgid "In-out"
-msgstr "פנימה-החוצה"
-
-msgid "Leaf Spread"
-msgstr "פיזור עלים"
-
-msgid "Left"
-msgstr "שמאלה"
-
-msgid "Left-right"
-msgstr "שמאלה-ימינה"
-
-msgid "Length of airplane's flying path."
-msgstr "אורך נתיב טיסת האווירון."
 
 msgid "Magic Lamp"
 msgstr "מנורת קסמים"
@@ -425,9 +282,6 @@ msgstr "רוחב התחלתי בעת פתיחה"
 msgid "Magic Lamp Open/Close Moving End"
 msgstr "פיית מנורה מתנייעת עבור פתיחה וסגירה"
 
-msgid "Make fire effect duration be dependent on window height."
-msgstr "התאם את משך אפקט האש לגובה החלון."
-
 msgid "Minimize Animation"
 msgstr "אנימצית מזעור"
 
@@ -437,20 +291,11 @@ msgstr "אפקט מזעור"
 msgid "Minimize/Unminimize Only"
 msgstr "מזעור\\שחזור בלבד"
 
-msgid "Movement direction(s) for window pieces."
-msgstr "כיוון או כיוונים של פיסות החלון."
-
 msgid "None"
 msgstr "ללא"
 
-msgid "Number Of Fire Particles"
-msgstr "מספר חלקיקי אש"
-
 msgid "Number of Horizontal Folds"
 msgstr "מספר קפלים אופקיים"
-
-msgid "Number of fire particles."
-msgstr "מספר חלקיקי אש."
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -480,15 +325,13 @@ msgstr "פתיחה\\סגירה בלבד"
 msgid "Options"
 msgstr "אפשרויות"
 
-msgid "Out"
-msgstr "החוצה"
-
 msgid "Pool"
 msgstr "מאגר"
 
+#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to use all effects."
 msgstr ""
 "מאגר אפקטים לבחירה אם נבחר אפקט \"אקראי\". כדי לשחזר את הרשימה המלאה יש "
 "להקליק על \"נקה\"."
@@ -502,35 +345,14 @@ msgstr "אנימציות אקראיות לכל האירועים"
 msgid "Random Effects"
 msgstr "אפקטים אקראיים"
 
-msgid "Randomly Colored Fire"
-msgstr "אש בצבעים אקראיים"
-
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr "יחס הפערים בין משך תחילת פילוס הדרך ובין משך קבלת המוקד."
-
-msgid "Razr"
-msgstr "גילוח"
-
-msgid "Razr Fold Opening Direction"
-msgstr "כיוון פותח של קיפול גילוח"
-
-msgid "Rectangular"
-msgstr "מלבני"
-
-msgid "Right"
-msgstr "ימינה"
 
 msgid "Roll Up"
 msgstr "גלול מעלה"
 
 msgid "Rollup Fixed Interior"
 msgstr "תוכן מקובע בעת גלילה מעלה"
-
-msgid "Rotation Angle"
-msgstr "זווית סיבוב"
-
-msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "זווית הסיבוב של פיסות חלון מונפשות (במעלות)."
 
 msgid "Shade Animation"
 msgstr "אנימצית גלילה"
@@ -547,15 +369,6 @@ msgstr "מספר סיבובי גלגלון"
 msgid "Sidekick Springiness"
 msgstr "קפיציות גלגלון"
 
-msgid "Skewer"
-msgstr "ביתור"
-
-msgid "Skewer Direction"
-msgstr "כיוון ביתור"
-
-msgid "Spacing between beams."
-msgstr "רווח בין קרני שיגור."
-
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
@@ -565,43 +378,12 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr "רוחב התחלתי של אפקט פתיחה ורוחב סופי של אפקט סגירה עבור ואקום."
 
-msgid "Tessellation Type"
-msgstr "אופן סידור פיסות"
-
-msgid "Tessellation type for exploding window pieces."
-msgstr "אופן סידור פיסות החלון בעת הפיצוץ."
-
-msgid "Tessellation type for window pieces."
-msgstr "אופן סידור פיסות חלון."
-
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
 "משך הזמן במילישניות בין כל רענון של האנימציה. ככל שהמספר גבוה יותר התנועה "
 "מקוטעת יותר."
-
-msgid ""
-"The amount of time in milliseconds between each render of the intense "
-"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
-"become."
-msgstr ""
-"משך הזמן במילישניות בין כל רענון של אנימציה אינטנסיבית (למשל שריפה, שיגור). "
-"ככל שהמספר גבוה יותר התנועה מקוטעת יותר."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"החלון המונפש יתפצל למספר פיסות על גבי רשת. קבע את מספר המשבצות ברשת על פי "
-"גובה החלון."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"החלון המונפש יתפצל למספר פיסות על גבי רשת. קבע את מספר המשבצות ברשת על פי "
-"רוחב החלון."
 
 msgid "The animation effect shown when closing a window."
 msgstr "אפקט האנימציה המוצג בעת סגירת חלון."
@@ -617,20 +399,6 @@ msgstr "אפקט האנימציה המוצג בעת מזעור חלון."
 
 msgid "The animation effect shown when shading a window."
 msgstr "אפקט האנימציה המוצג בעת גלילת חלון."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"החלון המתפוצץ יתפצל למספר פיסות על גבי רשת. קבע את מספר המשבצות ברשת על פי "
-"גובה החלון."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"החלון המתפוצץ יתפצל למספר פיסות על גבי רשת. קבע את מספר המשבצות ברשת על פי "
-"רוחב החלון."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr "המשרעת (גובה הגלים) המירבית של מנורת הקסמים."
@@ -650,27 +418,6 @@ msgstr "רוחב הגל בהתאם לגובה החלון."
 
 msgid "The windows that will be animated."
 msgstr "החלון שיונפש."
-
-msgid "Thickness"
-msgstr "עובי"
-
-msgid "Thickness of Animated Polygons"
-msgstr "עובי פוליגונים מונפשים"
-
-msgid "Thickness of Exploding Polygons"
-msgstr "עובי פוליגונים מתפוצצים"
-
-msgid "Thickness of animated window pieces (in pixels)."
-msgstr "עובי פיסות חלון מונפשות (בפיקסלים)."
-
-msgid "Thickness of exploding window pieces (in pixels)."
-msgstr "עובי פיסות חלון מתפוצצות (בפיקסלים)."
-
-msgid "Up"
-msgstr "למעלה"
-
-msgid "Up-down"
-msgstr "למעלה-למטה"
 
 msgid "Use various animations as window effects"
 msgstr "הצג אפקטים שונים של אנימציות חלון"
@@ -708,9 +455,8 @@ msgstr ""
 msgid "Wave"
 msgstr "גל"
 
-#, fuzzy
 msgid "Wave Amplitude Multiplier"
-msgstr "משרעת גל"
+msgstr "מכפיל משרעת גל"
 
 msgid "Wave Width"
 msgstr "רוחב גל"
@@ -718,11 +464,7 @@ msgstr "רוחב גל"
 msgid ""
 "Wave amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
-msgstr ""
-
-msgid ""
-"Whether the window should fly to taskbar when minimized with Airplane effect."
-msgstr "קובע אם החלון יתעופף אל שורת המשימות בעזרת אפקט אווירון בעת מזעורו."
+msgstr "משרעת (גודל) הגל מוכפלת במספר זה. ערכים שליליים ייצרו קיפול כלפי חוץ."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
@@ -746,27 +488,11 @@ msgid ""
 "Folds effect."
 msgstr "קובע אם החלון יתמזער אל שורת המשימות בעזרת אפקט קפלים אופקיים."
 
-msgid "Window Grid Height"
-msgstr "גובה רשת חלון"
-
-msgid "Window Grid Width"
-msgstr "רוחב רשת חלון"
-
-msgid "Window folding direction."
-msgstr "כיוון קיפול חלון."
-
 msgid "Window that should animate with this effect when focused."
 msgstr "חלון שעליו יש להפעיל אפקט אנימציה זה בעת קבלת מוקד."
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "חלון שעליו יש להפעיל אפקט אנימציה זה בעת גלילה."
-
-msgid ""
-"Window thickness in pixels. Setting this to larger than 0 will disable "
-"shadow, blur, and reflection during the animation."
-msgstr ""
-"עובי חלון בפיקסלים. ערך גדול מ-0 יבטל אפקטים של צל, טשטוש והשתקפות בזמן "
-"האנימציה."
 
 msgid "Zoom"
 msgstr "תקריב"
@@ -876,12 +602,11 @@ msgstr "מיקום Y של חלון מד הביצועים"
 msgid "Y position"
 msgstr "מיקום Y"
 
-#, fuzzy
 msgid "Bicubic filter"
-msgstr "עבור מסנן"
+msgstr "מסנן דו-קובייתי"
 
 msgid "Bicubic texture filtering"
-msgstr ""
+msgstr "מסנן טקסטורות דו-קובייתי"
 
 msgid "Color filter"
 msgstr "מסנן צבע"
@@ -996,12 +721,11 @@ msgstr "עבור לתמונה הבאה בפאה העליונה של הקוביה
 msgid "Appearance"
 msgstr "מראה"
 
-#, fuzzy
 msgid "Aspect ratio"
 msgstr "יחס אורך ורוחב"
 
 msgid "Aspect ratio of the deformed cube"
-msgstr ""
+msgstr "יחס האורך והרוחב של הקובייה המעוותת"
 
 msgid "Auto zoom"
 msgstr "תקריב אוטומטי"
@@ -1051,49 +775,41 @@ msgstr "צבע הקרקע (קרובה)."
 msgid "Color of top face of the cube"
 msgstr "צבע פאת קוביה עליונה"
 
-#, fuzzy
 msgid "Compiz cube reflection and deformation"
-msgstr "השתקפות קוביה בקומפיז"
+msgstr "השתקפות ועיוות קוביית קומפיז"
 
 msgid "Cube Bottom Color"
 msgstr "צבע קוביה תחתון"
 
-#, fuzzy
 msgid "Cube Reflection and Deformation"
-msgstr "השתקפות מסגרות"
+msgstr "השתקפות ועיוות קוביה"
 
 msgid "Cube Top Color"
 msgstr "צבע קוביה עליון"
 
-#, fuzzy
 msgid "Cube caps"
 msgstr "מכסי קוביה"
 
-#, fuzzy
 msgid "Cylinder"
-msgstr "נקה"
+msgstr "גליל"
 
-#, fuzzy
 msgid "Deform caps"
-msgstr "עיוות"
+msgstr "עוות מכסים"
 
 msgid "Deform cube caps."
-msgstr ""
+msgstr "עוות מכסי קוביה."
 
-#, fuzzy
 msgid "Deform only on mouse rotate"
-msgstr "תקריב אוטומטי רק בעת סיבוב עם העכבר"
+msgstr "עוות רק בעת סיבוב עם העכבר"
 
 msgid "Deformation"
 msgstr "עיוות"
 
-#, fuzzy
 msgid "Deformation in unfold cube mode."
-msgstr "עוצמת העיוות במצב עיקול"
+msgstr "עיוות במצב פרישת קוביה."
 
-#, fuzzy
 msgid "Deformation mode."
-msgstr "עיוות"
+msgstr "מצב עיוות."
 
 msgid "Distance"
 msgstr "מרחק"
@@ -1110,13 +826,11 @@ msgstr "צייר פאה עליונה"
 msgid "Draw top face of the cube"
 msgstr "צייר את פאת הקוביה העליונה"
 
-#, fuzzy
 msgid "Enabled"
-msgstr "אפשר"
+msgstr "פועל"
 
-#, fuzzy
 msgid "Give cube a reflective ground."
-msgstr "השתקפות קוביה בקומפיז"
+msgstr "הצב את הקוביה על משטח משקף."
 
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "חזור לתמונה הקודמת על גבי פאת הקוביה התחתונה"
@@ -1131,7 +845,7 @@ msgid "Ground color(near)"
 msgstr "צבע קרקע (קרובה)"
 
 msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
-msgstr ""
+msgstr "הפעל עיוות גלילי של הקוביה רק אם הסיבוב נעשה באמצעות העכבר."
 
 msgid "Intensity"
 msgstr "עוצמה"
@@ -1149,21 +863,17 @@ msgstr "רשימת קבצי PNG ו-SVG לציור על פאת הקוביה הת�
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "רשימת קבצי PNG ו-SVG לציור על פאת הקוביה העליונה"
 
-#, fuzzy
 msgid "Maintain bottom aspect ratio"
-msgstr "יחס אורך ורוחב במצב אקספו"
+msgstr "שמר יחס אורך ורוחב במכסה התחתון"
 
-#, fuzzy
 msgid "Maintain bottom cap image aspect ratio."
-msgstr "התאם התמונה בפאה התחתונה לסיבוב"
+msgstr "שמר יחס אורך ורוחב בתמונת המכסה התחתון."
 
-#, fuzzy
 msgid "Maintain top aspect ratio"
-msgstr "יחס אורך ורוחב במצב אקספו"
+msgstr "שמר יחס אורך ורוחב במכסה העליון"
 
-#, fuzzy
 msgid "Maintain top cap image aspect ratio."
-msgstr "התאם התמונה בפאה העליונה לסיבוב"
+msgstr "שמר יחס אורך ורוחב בתמונת המכסה העליון."
 
 msgid "Next bottom image"
 msgstr "התמונה התחתונה הבאה"
@@ -1207,15 +917,14 @@ msgstr "התאם את גודל התמונה כדי לכסות את פאת הקו
 msgid "Scale top image"
 msgstr "התאם גודל תמונה עליונה"
 
-#, fuzzy
 msgid "Sphere"
-msgstr "מהירות"
+msgstr "כדור"
 
 msgid "Top image files"
 msgstr "קבצי תמונה עליונה"
 
 msgid "Unfold cube deformation"
-msgstr ""
+msgstr "עיוות פרישה של הקוביה"
 
 msgid "Zoom out automatically only on mouse rotate."
 msgstr "תקריב אוטומטי החוצה רק בעת סיבוב עם העכבר."
@@ -1384,9 +1093,8 @@ msgstr "מערבולת"
 msgid "Zoom time"
 msgstr "משך תקריב"
 
-#, fuzzy
 msgid "Activate Demanding Attention Window"
-msgstr "הפעל חלון נתון"
+msgstr "הפעל חלון הדורש תשומת לב"
 
 msgid "Activate Window"
 msgstr "הפעל חלון"
@@ -1395,7 +1103,7 @@ msgid "Activate a given window"
 msgstr "הפעל חלון נתון"
 
 msgid "Activate next window which has the \"demands attention\" flag set."
-msgstr ""
+msgstr "הפעל את החלון הבא שעבורו נקבע הדגל \"דורש תשומת לב\"."
 
 msgid "Extra WM Actions"
 msgstr "פעולות חלון נוספות"
@@ -1510,9 +1218,8 @@ msgstr "הסתר את סמן העכבר המקורי"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "מסתיר את סמן העכבר המקורי בעת תקריב פנימה והתאמת גודל הסמן"
 
-#, fuzzy
 msgid "Minimum zoom factor"
-msgstr "מקדם שינוי גודל מזערי"
+msgstr "מקדם תקריב מזערי"
 
 msgid "Mouse Behaviour"
 msgstr "התנהגות עכבר"
@@ -1608,6 +1315,8 @@ msgid ""
 "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
 "0.25 equals 4x zoom."
 msgstr ""
+"מקדם התקריב המזערי. ערך של 0.5 פירושו תקריב של פי 2, ערך של 0.25 פירושו "
+"תקריב של פי 4."
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "גודל השוליים להוספה בעת נסיון להגביל את העכבר."
@@ -1627,9 +1336,8 @@ msgstr "השתמש בפילטר לינארי בעת תקריב פנימה"
 msgid "Zoom Area Movement"
 msgstr "תזוזת איזור תקריב"
 
-#, fuzzy
 msgid "Zoom Box"
-msgstr "תקריב"
+msgstr "תיבת תקריב"
 
 msgid "Zoom In"
 msgstr "תקריב פנימה"
@@ -1659,7 +1367,7 @@ msgid "Zoom factor"
 msgstr "מקדם תקריב"
 
 msgid "Zoom in on a boxed area"
-msgstr ""
+msgstr "תקריב פנימה מתוחם בתיבה"
 
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "מקדם לתקריב פנימה\\החוצה. ערך גבוה יותר יביא לתקריב מהיר יותר."
@@ -1714,6 +1422,13 @@ msgstr "הפעל\\נטרל ARGB מזויף לחלון"
 msgid "Toggle window fake ARGB."
 msgstr "הפעל\\נטרל ARGB מזויף לחלון."
 
+#, fuzzy
+msgid "Add Particle"
+msgstr "אורך חיי חלקיקים"
+
+msgid "Adds a fire particle at position (x,y), where x and y are floats."
+msgstr ""
+
 msgid "Background brightness"
 msgstr "בהירות רקע"
 
@@ -1728,6 +1443,33 @@ msgstr "נקה (כפתור)"
 
 msgid "Clear (key)"
 msgstr "נקה (מקש)"
+
+msgid "Fire Particle Color"
+msgstr "צבע חלקיקי אש"
+
+msgid "Fire Particle Life"
+msgstr "אורך חיי חלקיקי אש"
+
+msgid "Fire Particle Size"
+msgstr "גודל חלקיקי אש"
+
+msgid "Fire Particle Slowdown"
+msgstr "האטת חלקיקי אש"
+
+msgid "Fire particle color."
+msgstr "צבע חלקיקי אש."
+
+msgid "Fire particle life."
+msgstr "אורך חיי חלקיקי אש."
+
+msgid "Fire particle size."
+msgstr "גודל חלקיקי אש."
+
+msgid "Fire particle slowdown."
+msgstr "האטת חלקיקי אש."
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr "צבעים אקראיים עבור אפקט האש; אש פיות."
 
 msgid "Initiate (button)"
 msgstr "הפעל (כפתור)"
@@ -1749,6 +1491,9 @@ msgstr "צייר אש על המסך"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "צייר אש או חלקיקים אחרים על המסך"
+
+msgid "Randomly Colored Fire"
+msgstr "אש בצבעים אקראיים"
 
 msgid "Cube Gears"
 msgstr "קוביית גלגלי שיניים"
@@ -1831,7 +1576,7 @@ msgid "Fade time for text animations"
 msgstr "משך דהייה עבור אנימציות טקסט"
 
 msgid "Fill color of the selection rectangle"
-msgstr "צבע מילוי מרובע הבחירה"
+msgstr "צבע מילוי מלבן הבחירה"
 
 msgid "Fill color of the tab bar"
 msgstr "צבע מילוי שורת התוויות"
@@ -1945,7 +1690,7 @@ msgid "Line Color"
 msgstr "צבע קו"
 
 msgid "Line color of the selection rectangle"
-msgstr "צבע הקו של מרובע הבחירה"
+msgstr "צבע הקו של מלבן הבחירה"
 
 msgid "Maximize/unmaximize with group"
 msgstr "הגדל אל \\ שחר מן הגודל המירבי עם הקבוצה"
@@ -1984,7 +1729,7 @@ msgid "Raise every window in the group"
 msgstr "העלה כל חלון בקבוצה"
 
 msgid "Rectangular glow"
-msgstr "הילה מרובעת"
+msgstr "הילה מלבנית"
 
 msgid "Remove Group Window"
 msgstr "הסר חלון מקבוצה"
@@ -2464,7 +2209,7 @@ msgid "Switch viewport in response to mouse gesture"
 msgstr "עבור למשטח עבודה אחר בתגובה למחוות עכבר"
 
 msgid "Also negate window decorations, not only the window contents."
-msgstr ""
+msgstr "הפוך גם את צבעי מסגרת החלון, לא רק את אלה של תוכן החלון."
 
 msgid "Exclude Windows"
 msgstr "התעלם מחלונות"
@@ -2472,9 +2217,8 @@ msgstr "התעלם מחלונות"
 msgid "Neg Windows"
 msgstr "שלול חלונות"
 
-#, fuzzy
 msgid "Negate Decorations"
-msgstr "השתקפות מסגרות"
+msgstr "שלול מסגרות"
 
 msgid "Negative"
 msgstr "תשליל"
@@ -3160,13 +2904,11 @@ msgstr "כל החלונות"
 msgid "Background color of the window title"
 msgstr "צבע רקע כותרת החלון"
 
-#, fuzzy
 msgid "Close Window"
-msgstr "ריצוף חלונות"
+msgstr "סגור חלון"
 
-#, fuzzy
 msgid "Close window while in scale mode"
-msgstr "סגור חלונות במצב מבט על"
+msgstr "סגור חלון במצב מבט על"
 
 msgid "Close windows while in scale mode"
 msgstr "סגור חלונות במצב מבט על"
@@ -3175,16 +2917,16 @@ msgid "Color used for highlighting the hovered window"
 msgstr "צבע להדגשת חלון בעת מעבר עכבר"
 
 msgid "Constrain Pull To Screen"
-msgstr ""
+msgstr "הגבל משיכה למסך"
 
 msgid "Draw Window Highlight"
 msgstr "צייר הדגשת חלון"
 
 msgid "Exit Scale On Pull"
-msgstr ""
+msgstr "צא ממבט על בעת משיכה"
 
 msgid "Exit scale mode after a window has been pulled."
-msgstr ""
+msgstr "צא ממצב מבט על לאחר משיכת חלון."
 
 msgid "Font color of the window title"
 msgstr "צבע גופן כותרת חלון"
@@ -3201,10 +2943,9 @@ msgstr "החלון המודגש בלבד"
 msgid "Highlights the hovered window with the given color"
 msgstr "מדגיש את החלון בעזרת הצבע הנתון בעת מעבר עכבר"
 
-#, fuzzy
 msgid ""
 "Make sure windows are fully visible after pulling them to another viewport"
-msgstr "הצג את החלונות בקלות על ידי העברת סמן העכבר מעליהם"
+msgstr "וודא שניתן לראות את החלונות במלואם לאחר משיכתם אל משטח עבודה אחר"
 
 msgid "No display"
 msgstr "אל תציג"
@@ -3215,13 +2956,11 @@ msgstr "רגיל"
 msgid "Organic - EXPERIMENTAL"
 msgstr "אורגני (נסיוני)"
 
-#, fuzzy
 msgid "Pull Window"
-msgstr "הצב חלון"
+msgstr "משוך חלון"
 
-#, fuzzy
 msgid "Pull window to current viewport while in scale mode"
-msgstr "סגור חלונות במצב מבט על"
+msgstr "משוך חלון אל משטח העבודה הנוכחי במצב מבט על"
 
 msgid "Scale Addons"
 msgstr "תוספות למבט על"
@@ -3247,9 +2986,8 @@ msgstr "הדגשת חלון"
 msgid "Window Layout Mode"
 msgstr "מצב סידור חלונות"
 
-#, fuzzy
 msgid "Window Pull"
-msgstr "חוקי חלונות"
+msgstr "משיכת חלון"
 
 msgid "Window Title"
 msgstr "כותרת חלון"
@@ -3260,13 +2998,11 @@ msgstr "הצגת כותרת חלון"
 msgid "Window title display in scale mode"
 msgstr "הצגת כותרת חלון במצב מבט על"
 
-#, fuzzy
 msgid "Zoom Window"
-msgstr "תקריב על חלונות במבט על"
+msgstr "תקריב על חלון"
 
-#, fuzzy
 msgid "Zoom window while in scale mode"
-msgstr "תקריב על חלונות במצב מבט על"
+msgstr "תקריב על חלון במצב מבט על"
 
 msgid "Filter Case Insensitive"
 msgstr "סינון ללא התחשבות באותיות רישיות"
@@ -3523,17 +3259,29 @@ msgstr "נגישות קלה לשולחן העבודה"
 msgid "Direction of window movement"
 msgstr "כיוון תזוזת החלונות"
 
+msgid "Down"
+msgstr "למטה"
+
+msgid "Left"
+msgstr "שמאלה"
+
 msgid "Left/Right"
 msgstr "שמאלה\\ימינה"
 
 msgid "Movement Direction"
 msgstr "כיוון התזוזה"
 
+msgid "Right"
+msgstr "ימינה"
+
 msgid "Show desktop"
 msgstr "הצג שולחן עבודה"
 
 msgid "To Corners"
 msgstr "אל הפינות"
+
+msgid "Up"
+msgstr "למעלה"
 
 msgid "Up/Down"
 msgstr "למעלה\\למטה"
@@ -3854,256 +3602,208 @@ msgstr "מסך פתיחה"
 msgid "Start Splash."
 msgstr "מסך פתיחה התחלי."
 
-#, fuzzy
 msgid ""
 "Amount of opacity (in percent) for windows in the switcher which are not "
 "selected"
-msgstr "אחוז האטימות של החלונות בטבעת שלא נבחרו"
+msgstr "אחוז האטימות של החלונות במעביר שלא נבחרו"
 
-#, fuzzy
 msgid "Behavior"
 msgstr "התנהגות"
 
-#, fuzzy
 msgid "Darken background when showing the stack"
-msgstr "הכהה את הרקע בעת הצגת הטבעת"
+msgstr "הכהה את הרקע בעת הצגת השולחן"
 
-#, fuzzy
 msgid "On Thumbnail"
-msgstr "רוחב תמונה מוקטנת"
+msgstr "בתמונה מוקטנת"
 
-#, fuzzy
 msgid "Rotate inactive windows"
-msgstr "הפעל חלון נתון"
+msgstr "סובב חלונות לא פעילים"
 
-#, fuzzy
 msgid "Should not selected windows be rotated"
-msgstr "פונט מודגש עבור כותרת החלון."
+msgstr "האם יש לסובב חלונות שלא נבחרו"
 
-#, fuzzy
 msgid "Stack Window Switcher"
-msgstr "מעביר טבעת"
+msgstr "מעביר שולחן"
 
-#, fuzzy
 msgid "Tilt angle of the background."
-msgstr "צבע 1 עבור הרקע המדורג."
+msgstr "זווית נטייה של הרקע."
 
-#, fuzzy
 msgid "Windows"
-msgstr "חלונות 3D"
+msgstr "חלונות"
 
-#, fuzzy
 msgid "Windows that should be shown in the switcher"
-msgstr "חלונות שיוצגו במעביר ההזחה"
+msgstr "חלונות שיוצגו במעביר"
 
 msgid "Alignment for rows that are not fully filled"
-msgstr ""
+msgstr "יישור השורות שאינן מלאות לגמרי"
 
-#, fuzzy
 msgid "Amount of brightness in percent"
-msgstr "בהירות רקע במהלך צביעה"
+msgstr "אחוז בהירות"
 
 msgid "Amount of opacity in percent"
-msgstr ""
+msgstr "אחוז אטימות"
 
-#, fuzzy
 msgid "Amount of saturation in percent"
-msgstr "אל תציג את היישום בפייג'ר"
+msgstr "אחוז רוויה"
 
-#, fuzzy
 msgid "Auto Change Viewport"
-msgstr "הצב במשטח עבודה"
+msgstr "שנה משטח עבודה אוטומטית"
 
 msgid "Bring Selected To Front"
-msgstr ""
+msgstr "הבא את העצם הנבחר לחזית"
 
 msgid "Centered"
 msgstr "ממורכז"
 
 msgid "Change to the viewport of the selected window while switching"
-msgstr ""
+msgstr "שנה את משטח העבודה של החלון הנבחר בעת העברה"
 
-#, fuzzy
 msgid "Color of highlight rectangle"
-msgstr "צבע מילוי מרובע הבחירה"
+msgstr "צבע מלבן ההדגשה"
 
 msgid "Color of highlight rectangle border"
-msgstr ""
+msgstr "צבע גבול מלבן ההדגשה"
 
 msgid "Color of inlay in highlight rectangle border"
-msgstr ""
+msgstr "צבע מילוי גבול מלבן ההדגשה"
 
-#, fuzzy
 msgid "Generate mipmaps when possible for higher quality scaling"
-msgstr "ייצר mipmap במידת האפשר על מנת לשפר את איכות שינוי הגודל."
+msgstr "ייצר mipmap במידת האפשר על מנת לשפר את איכות שינוי הגודל"
 
-#, fuzzy
 msgid "Highlight Border Color"
-msgstr "צבע הדגשה"
+msgstr "צבע גבול ההדגשה"
 
-#, fuzzy
 msgid "Highlight Border Inlay Color"
-msgstr "צבע הדגשה"
+msgstr "צבע מילוי גבול ההדגשה"
 
-#, fuzzy
 msgid "Highlight Mode"
-msgstr "צבע הדגשה"
+msgstr "מצב הדגשה"
 
-#, fuzzy
 msgid "Icon"
-msgstr "פנימה"
+msgstr "צלמית"
 
-#, fuzzy
 msgid "Minimized Window Highlight Rectangle"
-msgstr "הדגשת חלון"
+msgstr "מלבן הדגשה של חלון ממוזער"
 
-#, fuzzy
 msgid "Mipmap"
-msgstr "Mipmaps"
+msgstr "Mipmap"
 
-#, fuzzy
 msgid "Mode for highlighting the currently selected window"
-msgstr "צבע להדגשת חלון בעת מעבר עכבר"
+msgstr "מצב הדגשת החלון הנבחר"
 
 msgid "Next Panel"
-msgstr ""
+msgstr "הפאנל הבא"
 
-#, fuzzy
 msgid "Next window"
 msgstr "החלון הבא"
 
-#, fuzzy
 msgid "Next window (All windows)"
-msgstr "החלון הבא (כל משטחי העבודה)"
+msgstr "החלון הבא (כל החלונות)"
 
-#, fuzzy
 msgid "Next window (Group)"
 msgstr "החלון הבא (קבוצה)"
 
-#, fuzzy
 msgid "Next window (No popup)"
-msgstr "החלון הבא (קבוצה)"
+msgstr "החלון הבא (ללא חלונות קופצים)"
 
 msgid "Original Window Position"
-msgstr ""
+msgstr "מיקום חלון מקורי"
 
-#, fuzzy
 msgid "Popup Window Delay"
-msgstr "חלונות מתאימים לקיבוץ"
+msgstr "השהיית חלון קופץ"
 
-#, fuzzy
 msgid "Popup switcher if not visible and select next window"
-msgstr "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא."
+msgstr "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא"
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select next window of the current "
 "application."
 msgstr ""
 "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא של היישום הנוכחי."
 
-#, fuzzy
 msgid "Popup switcher if not visible and select next window out of all windows"
 msgstr ""
 "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הבא מבין כל החלונות."
 
-#, fuzzy
 msgid "Popup switcher if not visible and select previous window"
-msgstr "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם."
+msgstr "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם"
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
 "הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם של היישום הנוכחי."
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window out of all windows"
 msgstr ""
-"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם מבין כל החלונות."
+"הצג את המעביר, אם הוא אינו מוצג כבר, ובחר את החלון הקודם מבין כל החלונות"
 
 msgid "Prev Panel"
-msgstr ""
+msgstr "הפאנל הקודם"
 
-#, fuzzy
 msgid "Prev window"
 msgstr "החלון הקודם"
 
-#, fuzzy
 msgid "Prev window (All windows)"
-msgstr "החלון הקודם (כל משטחי העבודה)"
+msgstr "החלון הקודם (כל החלונות)"
 
-#, fuzzy
 msgid "Prev window (Group)"
 msgstr "החלון הקודם (קבוצה)"
 
-#, fuzzy
 msgid "Prev window (No popup)"
-msgstr "החלון הקודם (קבוצה)"
+msgstr "החלון הקודם (ללא חלון קופץ)"
 
 msgid "Row Alignment"
-msgstr ""
+msgstr "יישור שורה"
 
-#, fuzzy
 msgid "Select next panel type window."
-msgstr "קובע את מיקום כותרת החלון."
+msgstr "בוחר את חלון הפאנל הבא."
 
 msgid "Select next window without showing the popup window."
-msgstr ""
+msgstr "בוחר את החלון הבא בלי להציג את החלון הקופץ."
 
-#, fuzzy
 msgid "Select previous panel type window."
-msgstr "קובע את מיקום כותרת החלון."
+msgstr "בוחר את חלון הפענל הקודם."
 
 msgid "Select previous window without showing the popup window."
-msgstr ""
+msgstr "בוחר את החלון הקודם בלי להציג את החלון הקופץ."
 
-#, fuzzy
 msgid "Selected Window Highlight"
-msgstr "הדגשת חלון"
+msgstr "הדגשת חלון נבחר"
 
-#, fuzzy
 msgid "Show Rectangle"
-msgstr "מלבני"
+msgstr "הצג מלבן"
 
-#, fuzzy
 msgid "Show icon next to thumbnail"
-msgstr "הצג את כותרת החלון בתמונה המוקטנת."
+msgstr "הצג צלמית לצד התמונה המוקטנת"
 
-#, fuzzy
 msgid "Show minimized windows"
-msgstr "חלונות שלא ניתן למזער"
+msgstr "הצג חלונות ממוזערים"
 
 msgid "Static Application Switcher"
-msgstr ""
+msgstr "מעביר חלונות סטטי"
 
-#, fuzzy
 msgid "Switcher speed"
-msgstr "אופן הזחה"
+msgstr "מהירות המעביר"
 
-#, fuzzy
 msgid "Switcher timestep"
-msgstr "יחידת זמן הזחה"
+msgstr "יחידת זמן עבור המעביר"
 
-#, fuzzy
 msgid "Switcher windows"
-msgstr "חלונות מסוננים"
+msgstr "חלונות המעביר"
 
-#, fuzzy
 msgid "Taskbar Entry"
-msgstr "שורת המשימות"
+msgstr "ערך בשורת המשימות"
 
 msgid "Time (in s) the popup window should be delayed before appearing"
-msgstr ""
+msgstr "משך המתנת החלון הקופץ בשניות לפני הופעתו"
 
 msgid "Where to draw highlight rectangle for minimized windows"
-msgstr ""
+msgstr "היכן לצייר את מלבן ההדגשה עבור חלונות ממוזערים"
 
-#, fuzzy
 msgid "Windows that should be shown in switcher"
-msgstr "חלונות שיוצגו במעביר ההזחה"
+msgstr "חלונות שיוצגו במעביר"
 
 msgid "Render text to texture"
 msgstr "הפוך טקסט לטקסטורה"
@@ -4714,7 +4414,7 @@ msgid "Outline color of the switcher window."
 msgstr "צבע המתאר עבור חלון המעביר."
 
 msgid "Preview Scale"
-msgstr ""
+msgstr "תצוגה מוקדמת של מבט על"
 
 msgid "Radius of the rounded edge"
 msgstr "רדיוס קצה המסך המעוגל"
@@ -4748,7 +4448,7 @@ msgstr "הצג את חלון המעביר בעת העברת משטחי עבוד�
 
 #, no-c-format
 msgid "Size of the preview in %"
-msgstr ""
+msgstr "גודל התצוגה המוקדמת באחוזים"
 
 msgid "Switch Target Preview Visibility Time"
 msgstr "משך הצגת התמונה המקדימה של המשטח המיועד"
@@ -4775,7 +4475,7 @@ msgid "Wall Sliding Duration"
 msgstr "משך גלישת הקיר"
 
 msgid "Width of the border between the previews"
-msgstr ""
+msgstr "רוחב הגבול בין תצוגות מוקדמות"
 
 msgid "Background fill type."
 msgstr "אופן מילוי הרקע."
@@ -4855,12 +4555,11 @@ msgstr "צא ממצב ווידג'טים בהקלקה"
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "צא ממצב ווידג'טים בעת הקלקה על חלון שאינו ווידג'ט."
 
-#, fuzzy
 msgid "Focus Widget Layer"
-msgstr "שכבת ווידג'טים"
+msgstr "מיקוד שכבת ווידג'טים"
 
 msgid "Focus a window in the widget layer when activating the layer"
-msgstr ""
+msgstr "מקד חלון בשכבת הווידג'טים בעת הפעלת השכבה"
 
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "רווית חלונות שאינם ווידג'טים כאשר מצב ווידג'טים מופעל."
@@ -4912,6 +4611,14 @@ msgstr "ערכי גובה"
 
 msgid "Matches"
 msgstr "התאמות"
+
+#, fuzzy
+msgid "Maximized"
+msgstr "התרחב בחלל הפנוי"
+
+#, fuzzy
+msgid "Maximized windows"
+msgstr "חלונות שלא ניתן להגדיל למקסימום"
 
 msgid "No ARGB visuals"
 msgstr "ללא הצגת ARGB"
@@ -4992,7 +4699,7 @@ msgid "AIGLX Fragment Parameter Fix"
 msgstr "תיקון לפרמטר פרגמנט AIGLX"
 
 msgid "Convert Urgency to Demands Attention"
-msgstr ""
+msgstr "המר \"דחיפות\" ל-\"דורש תשומת לב\""
 
 msgid "Firefox Menu Fix"
 msgstr "תיקון לתפריט פיירפוקס"
@@ -5038,7 +4745,7 @@ msgstr ""
 "כל משטחי העבודה."
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr ""
+msgstr "ודא שחלון המוגדר כ-\"דחוף\" יוגדר גם כ-\"דורש תשומת לב\"."
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "הצג כראוי במסך מלא יישומים מיושנים ויישומי Wine."
@@ -5063,6 +4770,237 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 msgid "Workarounds"
 msgstr "מעקפים"
+
+#~ msgid "Airplane"
+#~ msgstr "אווירון"
+
+#~ msgid "Airplane Flying Path Length"
+#~ msgstr "אורך נתיב טיסת האווירון"
+
+#~ msgid "Animation Time Step For Intense Effects"
+#~ msgstr "יחידת זמן עבור אנימציה של אפקטים אינטנסיביים"
+
+#~ msgid "Automatic"
+#~ msgstr "אוטומטי"
+
+#~ msgid "Beam"
+#~ msgstr "שיגור"
+
+#~ msgid "Beam Color"
+#~ msgstr "צבע שיגור"
+
+#~ msgid "Beam Life"
+#~ msgstr "אורך חיי שיגור"
+
+#~ msgid "Beam Slowdown"
+#~ msgstr "האטת שיגור"
+
+#~ msgid "Beam Spacing"
+#~ msgstr "ריווח שיגור"
+
+#~ msgid "Beam Up"
+#~ msgstr "שגר מעלה"
+
+#~ msgid "Beam Width"
+#~ msgstr "רוחב שיגור"
+
+#~ msgid "Beam color."
+#~ msgstr "צבע שיגור."
+
+#~ msgid "Beam life."
+#~ msgstr "אורך חיי שיגור."
+
+#~ msgid "Beam slowdown."
+#~ msgstr "האטת שיגור."
+
+#~ msgid "Beam width."
+#~ msgstr "רוחב שיגור."
+
+#~ msgid "Burn"
+#~ msgstr "שריפה"
+
+#~ msgid "Domino"
+#~ msgstr "דומינו"
+
+#~ msgid "Domino Piece Falling Direction"
+#~ msgstr "כיוון נפילת אבני הדומינו"
+
+#~ msgid "Explode"
+#~ msgstr "פיצוץ"
+
+#~ msgid "Falling direction for Domino pieces."
+#~ msgstr "כיוון נפילת אבני הדומינו."
+
+#~ msgid "Fire"
+#~ msgstr "אש"
+
+#~ msgid "Fire Smoke"
+#~ msgstr "אש ועשן"
+
+#~ msgid "Fire constant speed"
+#~ msgstr "מהירות אש קבועה"
+
+#~ msgid "Fire direction"
+#~ msgstr "כיוון אש"
+
+#~ msgid "Fire direction."
+#~ msgstr "כיוון אש."
+
+#~ msgid "Fire smoke."
+#~ msgstr "אש ועשן."
+
+#~ msgid "Fly to TaskBar on Minimize"
+#~ msgstr "טוס אל שורת המשימות בעת מזעור"
+
+#~ msgid "Fold"
+#~ msgstr "קיפול"
+
+#~ msgid "Fold Direction"
+#~ msgstr "כיוון קיפול"
+
+#~ msgid "Fold opening direction for pieces in Razr effect."
+#~ msgstr "הכיוון ההתחלתי להסרת פיסות בעת אפקט גילוח."
+
+#~ msgid "Hexagonal"
+#~ msgstr "משושה"
+
+#~ msgid "In"
+#~ msgstr "פנימה"
+
+#~ msgid "In-out"
+#~ msgstr "פנימה-החוצה"
+
+#~ msgid "Leaf Spread"
+#~ msgstr "פיזור עלים"
+
+#~ msgid "Left-right"
+#~ msgstr "שמאלה-ימינה"
+
+#~ msgid "Length of airplane's flying path."
+#~ msgstr "אורך נתיב טיסת האווירון."
+
+#~ msgid "Make fire effect duration be dependent on window height."
+#~ msgstr "התאם את משך אפקט האש לגובה החלון."
+
+#~ msgid "Movement direction(s) for window pieces."
+#~ msgstr "כיוון או כיוונים של פיסות החלון."
+
+#~ msgid "Number Of Fire Particles"
+#~ msgstr "מספר חלקיקי אש"
+
+#~ msgid "Number of fire particles."
+#~ msgstr "מספר חלקיקי אש."
+
+#~ msgid "Out"
+#~ msgstr "החוצה"
+
+#~ msgid "Razr"
+#~ msgstr "גילוח"
+
+#~ msgid "Razr Fold Opening Direction"
+#~ msgstr "כיוון פותח של קיפול גילוח"
+
+#~ msgid "Rectangular"
+#~ msgstr "מלבני"
+
+#~ msgid "Rotation Angle"
+#~ msgstr "זווית סיבוב"
+
+#~ msgid "Rotation angle of animated window pieces (in degrees)."
+#~ msgstr "זווית הסיבוב של פיסות חלון מונפשות (במעלות)."
+
+#~ msgid "Skewer"
+#~ msgstr "ביתור"
+
+#~ msgid "Skewer Direction"
+#~ msgstr "כיוון ביתור"
+
+#~ msgid "Spacing between beams."
+#~ msgstr "רווח בין קרני שיגור."
+
+#~ msgid "Tessellation Type"
+#~ msgstr "אופן סידור פיסות"
+
+#~ msgid "Tessellation type for exploding window pieces."
+#~ msgstr "אופן סידור פיסות החלון בעת הפיצוץ."
+
+#~ msgid "Tessellation type for window pieces."
+#~ msgstr "אופן סידור פיסות חלון."
+
+#~ msgid ""
+#~ "The amount of time in milliseconds between each render of the intense "
+#~ "animation (Ex. Burn, Beam). The higher the number, the jerkier the "
+#~ "movements become."
+#~ msgstr ""
+#~ "משך הזמן במילישניות בין כל רענון של אנימציה אינטנסיבית (למשל שריפה, "
+#~ "שיגור). ככל שהמספר גבוה יותר התנועה מקוטעת יותר."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "החלון המונפש יתפצל למספר פיסות על גבי רשת. קבע את מספר המשבצות ברשת על פי "
+#~ "גובה החלון."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "החלון המונפש יתפצל למספר פיסות על גבי רשת. קבע את מספר המשבצות ברשת על פי "
+#~ "רוחב החלון."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "החלון המתפוצץ יתפצל למספר פיסות על גבי רשת. קבע את מספר המשבצות ברשת על "
+#~ "פי גובה החלון."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "החלון המתפוצץ יתפצל למספר פיסות על גבי רשת. קבע את מספר המשבצות ברשת על "
+#~ "פי רוחב החלון."
+
+#~ msgid "Thickness"
+#~ msgstr "עובי"
+
+#~ msgid "Thickness of Animated Polygons"
+#~ msgstr "עובי פוליגונים מונפשים"
+
+#~ msgid "Thickness of Exploding Polygons"
+#~ msgstr "עובי פוליגונים מתפוצצים"
+
+#~ msgid "Thickness of animated window pieces (in pixels)."
+#~ msgstr "עובי פיסות חלון מונפשות (בפיקסלים)."
+
+#~ msgid "Thickness of exploding window pieces (in pixels)."
+#~ msgstr "עובי פיסות חלון מתפוצצות (בפיקסלים)."
+
+#~ msgid "Up-down"
+#~ msgstr "למעלה-למטה"
+
+#~ msgid ""
+#~ "Whether the window should fly to taskbar when minimized with Airplane "
+#~ "effect."
+#~ msgstr "קובע אם החלון יתעופף אל שורת המשימות בעזרת אפקט אווירון בעת מזעורו."
+
+#~ msgid "Window Grid Height"
+#~ msgstr "גובה רשת חלון"
+
+#~ msgid "Window Grid Width"
+#~ msgstr "רוחב רשת חלון"
+
+#~ msgid "Window folding direction."
+#~ msgstr "כיוון קיפול חלון."
+
+#~ msgid ""
+#~ "Window thickness in pixels. Setting this to larger than 0 will disable "
+#~ "shadow, blur, and reflection during the animation."
+#~ msgstr ""
+#~ "עובי חלון בפיקסלים. ערך גדול מ-0 יבטל אפקטים של צל, טשטוש והשתקפות בזמן "
+#~ "האנימציה."
 
 #~ msgid "Animation Speed"
 #~ msgstr "מהירות אנימציה"

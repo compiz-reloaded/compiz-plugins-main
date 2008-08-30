@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-07 11:26+0530\n"
+"POT-Creation-Date: 2008-08-30 11:41+0530\n"
 "PO-Revision-Date: 2007-10-10 00:12+0200\n"
 "Last-Translator: Banxoo <banxoo+compiz@gmail.com>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -148,12 +148,6 @@ msgstr "أنواع النوافذ"
 msgid "Window types that should be Opacified."
 msgstr "أنواع النوافذ التي لا يجب أن تكون شفافة"
 
-msgid "Airplane"
-msgstr "طاىٔرة ورقية"
-
-msgid "Airplane Flying Path Length"
-msgstr "طول مسار الطاىٔرة"
-
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -169,9 +163,6 @@ msgstr "إختيار التحريك"
 
 msgid "Animation Time Step"
 msgstr "وقت الخطوة في التحريك"
-
-msgid "Animation Time Step For Intense Effects"
-msgstr "وقت الخطوة في التحريك للمؤثرات الثقيلة"
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "مدة التحريك للتأثير الإغلاق بالجزﺀ من الألف من الثانية"
@@ -191,50 +182,11 @@ msgstr "مدة التحريك لتأثير التظليل بالجزﺀ من ا�
 msgid "Animations"
 msgstr "التحريك"
 
-msgid "Automatic"
-msgstr "تلقاىٔي"
-
 msgid "Away Angle"
 msgstr "زاوية الإبعاد"
 
 msgid "Away Position"
 msgstr "موقع الإبعاد"
-
-msgid "Beam"
-msgstr "الشعاع"
-
-msgid "Beam Color"
-msgstr "لون الشعاع"
-
-msgid "Beam Life"
-msgstr "مدة حياة الشعاع"
-
-msgid "Beam Slowdown"
-msgstr "تباطؤ الشعاع"
-
-msgid "Beam Spacing"
-msgstr "تباعد الشعاع"
-
-msgid "Beam Up"
-msgstr "ظهور الشعاع"
-
-msgid "Beam Width"
-msgstr "طول الشعاع"
-
-msgid "Beam color."
-msgstr "لون الشعاع"
-
-msgid "Beam life."
-msgstr "مدة حياة الشعاع"
-
-msgid "Beam slowdown."
-msgstr "تباطؤ الشعاع"
-
-msgid "Beam width."
-msgstr "طول الشعاع"
-
-msgid "Burn"
-msgstr "الحرق"
 
 msgid "Close Animation"
 msgstr "حركة الإغلاق"
@@ -269,15 +221,6 @@ msgstr "مراوغة"
 msgid "Dodge Gap Ratio"
 msgstr "مستوى هوة المراوغة"
 
-msgid "Domino"
-msgstr "دومينو"
-
-msgid "Domino Piece Falling Direction"
-msgstr "إتجاه سقوط قطع الدومينو"
-
-msgid "Down"
-msgstr "أسفل"
-
 msgid "Dream"
 msgstr "حلم"
 
@@ -287,62 +230,11 @@ msgstr "مدة"
 msgid "Effect Settings"
 msgstr "خيارات الموْثرة"
 
-msgid "Explode"
-msgstr "تفجير"
-
 msgid "Fade"
 msgstr "تلاشي"
 
-msgid "Falling direction for Domino pieces."
-msgstr "إتجاه سقوط قطع الدومينو."
-
-msgid "Fire"
-msgstr "نار"
-
-msgid "Fire Particle Color"
-msgstr "لون أجزاﺀ النار"
-
-msgid "Fire Particle Life"
-msgstr "مدة حياة اجزاﺀ النار"
-
-msgid "Fire Particle Size"
-msgstr "حجم اجزاﺀ النار"
-
-msgid "Fire Particle Slowdown"
-msgstr "تباطؤ أجزاﺀ النار"
-
-msgid "Fire Smoke"
-msgstr "دخان النار"
-
-msgid "Fire constant speed"
-msgstr "نار ذو سرعة ثابتة"
-
-msgid "Fire direction"
-msgstr "إتجاه النار"
-
-msgid "Fire direction."
-msgstr "إتجاه النار."
-
-msgid "Fire particle color."
-msgstr "لون أجزاﺀ النار."
-
-msgid "Fire particle life."
-msgstr "مدة حياة اجزاﺀ النا.ر"
-
-msgid "Fire particle size."
-msgstr "حجم اجزاﺀ النار."
-
-msgid "Fire particle slowdown."
-msgstr "تباطؤ أجزاﺀ النار."
-
-msgid "Fire smoke."
-msgstr "دخان النار."
-
 msgid "Fixed window interior during the Rollup animation."
 msgstr "داخل النافذة ثابت أثناﺀ حركة الرفع"
-
-msgid "Fly to TaskBar on Minimize"
-msgstr "طيران إلى شريط المهام "
 
 msgid "Focus Animation"
 msgstr "حركة التركيز"
@@ -350,31 +242,16 @@ msgstr "حركة التركيز"
 msgid "Focus Effect"
 msgstr "مؤثرات التركيز"
 
-msgid "Fold"
-msgstr "طَوي"
-
-msgid "Fold Direction"
-msgstr "إتجاه الطَوي"
-
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-msgid "Fold opening direction for pieces in Razr effect."
-msgstr "إتجاه الطوي عند البداية للقطع في تأثير الشفرات "
 
 msgid "Glide 1"
 msgstr "زحلقة ١"
 
 msgid "Glide 2"
 msgstr "زحلقة ٢"
-
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr "إستخدام ألوان عشواىٔية لتأثير النار، معروف أيضا بإسم النار الأسطورية"
-
-msgid "Hexagonal"
-msgstr "مسدس"
 
 msgid "Horizontal Folds"
 msgstr "طوي أفقي"
@@ -388,24 +265,6 @@ msgstr "كيف حركة الركلة الخارجية عليها ان تكون �
 
 msgid "How spring-like the Zoom animation should be."
 msgstr "كيف حركة التقريب عليها ان تكون مع النابض."
-
-msgid "In"
-msgstr "داخل"
-
-msgid "In-out"
-msgstr "داخل-خارج"
-
-msgid "Leaf Spread"
-msgstr "إنتشار ورق الشجر"
-
-msgid "Left"
-msgstr "يسار"
-
-msgid "Left-right"
-msgstr "يسار-يمين"
-
-msgid "Length of airplane's flying path."
-msgstr "طول مسار الطاىٔرة"
 
 msgid "Magic Lamp"
 msgstr "المصباح السحري"
@@ -428,9 +287,6 @@ msgstr "العرض عند بداية المصباح السحري"
 msgid "Magic Lamp Open/Close Moving End"
 msgstr "نهاية فتح / غلق المصباح السحري"
 
-msgid "Make fire effect duration be dependent on window height."
-msgstr "جعل مدة تأثير النار مرتبط بطول النافذة"
-
 msgid "Minimize Animation"
 msgstr "حركة التصغير"
 
@@ -440,20 +296,11 @@ msgstr "تأثير التصغير"
 msgid "Minimize/Unminimize Only"
 msgstr "تصغير / إرجاع فقط"
 
-msgid "Movement direction(s) for window pieces."
-msgstr "إتجاه حركة قطع النافذة"
-
 msgid "None"
 msgstr "لا شئ"
 
-msgid "Number Of Fire Particles"
-msgstr "عدد أجزاﺀ النار"
-
 msgid "Number of Horizontal Folds"
 msgstr "عدد الطويات الأفقية"
-
-msgid "Number of fire particles."
-msgstr "عدد أجزاﺀ النار."
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -483,15 +330,13 @@ msgstr "فتح / غلق فقط"
 msgid "Options"
 msgstr "خيارات"
 
-msgid "Out"
-msgstr "خارج"
-
 msgid "Pool"
 msgstr "صندوق"
 
+#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to use all effects."
 msgstr ""
 "صندوق من المؤثرات ليتم الإختيار بينهم تأثير عشواىٔي. إضعط إعادة لإستعادة "
 "اللاىٔحة كاملة."
@@ -505,35 +350,14 @@ msgstr "تحريك عشواىٔي لجميع الأحداث"
 msgid "Random Effects"
 msgstr "مؤثرات عشواىٔية"
 
-msgid "Randomly Colored Fire"
-msgstr "نار ملونة عشواىٔيا"
-
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr "نسبة الفرق بين وقت بداية المناورة و مدة التركيز"
-
-msgid "Razr"
-msgstr "شفرات"
-
-msgid "Razr Fold Opening Direction"
-msgstr "إتجاه بداية الطوي الحاد"
-
-msgid "Rectangular"
-msgstr "مستطيل"
-
-msgid "Right"
-msgstr "يمين"
 
 msgid "Roll Up"
 msgstr "رفع"
 
 msgid "Rollup Fixed Interior"
 msgstr "رفع مع داخل ثابت"
-
-msgid "Rotation Angle"
-msgstr "زاوية الدوران"
-
-msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "زاوية دوران حركة أجزاﺀ النافذة (بالدرجات)"
 
 msgid "Shade Animation"
 msgstr "حركة التظليل"
@@ -550,15 +374,6 @@ msgstr "عدد دوران الركلة الجانبية"
 msgid "Sidekick Springiness"
 msgstr "مرونة الركلة الجانبية"
 
-msgid "Skewer"
-msgstr "إنحراف"
-
-msgid "Skewer Direction"
-msgstr "إتجاه الإنحراف"
-
-msgid "Spacing between beams."
-msgstr "التباعد بين الأشعة"
-
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
@@ -568,43 +383,12 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr "العرض عند بداية الفتح و العرض عند الإغلاق لتأثير الفراغ."
 
-msgid "Tessellation Type"
-msgstr "نوع الفسيفساﺀ"
-
-msgid "Tessellation type for exploding window pieces."
-msgstr "نوع الفسيفساﺀ لقطع النافذة المتفجرة."
-
-msgid "Tessellation type for window pieces."
-msgstr "نوع الفسيفساﺀ لقطع النافذة."
-
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
 "المدة الزمنية بالميللي ثانية لكل صورة في التحريك. كلما كان الرقم أكبر، زاد "
 "سوﺀ التحريك و أصبح متقطشا."
-
-msgid ""
-"The amount of time in milliseconds between each render of the intense "
-"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
-"become."
-msgstr ""
-"المدة الزمنية بالميللي ثانية لكل صورة في التحريك للمؤثرات الثقيلة (النار أو "
-"الشعاع مثلا). كلما كان الرقم أكبر، زاد سوﺀ التحريكو أصبح متقطشا."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"النافذة المتحركة ستقسم لقطع على طول شبكة. الرجاﺀ تحديد عدد خلايا الشبكة على "
-"طول النافذة."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"النافذة المتحركة ستقسم لقطع على طول شبكة. الرجاﺀ تحديد عدد خلايا الشبكة على "
-"عرض النافذة."
 
 msgid "The animation effect shown when closing a window."
 msgstr ".التأثير الذي سيستعمل عند إغلاق النافذة"
@@ -620,20 +404,6 @@ msgstr ".التأثير الذي سيستعمل عند تصغير النافذة
 
 msgid "The animation effect shown when shading a window."
 msgstr ".التأثير الذي سيستعمل عند تظليل النافذة"
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"النافذة المتحركة ستقسم لقطع على طول شبكة. الرجاﺀ تحديد عدد خلايا الشبكة على "
-"طول النافذة."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"النافذة المتحركة ستقسم لقطع على طول شبكة. الرجاﺀ تحديد عدد خلايا الشبكة على "
-"عرض النافذة."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr "مدى التردد الأقصى (حجم الموجات) للمصباح السحري."
@@ -653,27 +423,6 @@ msgstr "عرض الموجة بالنسبة لطول النافذة."
 
 msgid "The windows that will be animated."
 msgstr "النوافذ التي ستحرّك."
-
-msgid "Thickness"
-msgstr "السماكة"
-
-msgid "Thickness of Animated Polygons"
-msgstr "سماكة المضلّع المحرّك"
-
-msgid "Thickness of Exploding Polygons"
-msgstr "سماكة المضلّع المنفجر"
-
-msgid "Thickness of animated window pieces (in pixels)."
-msgstr "سماكة قطع النافذة المحركة (بالنقط)."
-
-msgid "Thickness of exploding window pieces (in pixels)."
-msgstr "سماكة قطع النافذة المنفجرة (بالنقط)."
-
-msgid "Up"
-msgstr "فوق"
-
-msgid "Up-down"
-msgstr "فوق-تحت"
 
 msgid "Use various animations as window effects"
 msgstr "إستعمل تحريكات متنوعة كمؤثرات للنافذة"
@@ -718,12 +467,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Whether the window should fly to taskbar when minimized with Airplane effect."
-msgstr ""
-"إذا كان على النافذة الطيران إلى شريط المهام عند تصغيرها مع إستعمال تأثير "
-"الطاىٔرة."
-
-msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
@@ -755,27 +498,11 @@ msgstr ""
 "إذا كان على النافذة أن تُحجّم إلى شريط المهام عند تصغيرها مع إستعمال تأثير "
 "الطوي الأفقي."
 
-msgid "Window Grid Height"
-msgstr "طول شبكة النافذة"
-
-msgid "Window Grid Width"
-msgstr "عرض شبكة النافذة"
-
-msgid "Window folding direction."
-msgstr "إتجاه طوي النافذة"
-
 msgid "Window that should animate with this effect when focused."
 msgstr "النافذة التي يجب تحريكها مع هذا التأثير عند التركيزعليها"
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "النافذة التي يجب تحريكها مع هذا التأثير عند تظليلها"
-
-msgid ""
-"Window thickness in pixels. Setting this to larger than 0 will disable "
-"shadow, blur, and reflection during the animation."
-msgstr ""
-"سماكة النافذة بالنقط. ضبط هذه بقيمة أعلى من صفر سيعطّل الظلال و الغباش و "
-"الإنعكاسات خلال التحريك."
 
 msgid "Zoom"
 msgstr "تكبير"
@@ -1689,6 +1416,13 @@ msgstr ""
 msgid "Toggle window fake ARGB."
 msgstr ""
 
+#, fuzzy
+msgid "Add Particle"
+msgstr "مدة حياة اجزاﺀ النار"
+
+msgid "Adds a fire particle at position (x,y), where x and y are floats."
+msgstr ""
+
 msgid "Background brightness"
 msgstr ""
 
@@ -1703,6 +1437,33 @@ msgstr ""
 
 msgid "Clear (key)"
 msgstr ""
+
+msgid "Fire Particle Color"
+msgstr "لون أجزاﺀ النار"
+
+msgid "Fire Particle Life"
+msgstr "مدة حياة اجزاﺀ النار"
+
+msgid "Fire Particle Size"
+msgstr "حجم اجزاﺀ النار"
+
+msgid "Fire Particle Slowdown"
+msgstr "تباطؤ أجزاﺀ النار"
+
+msgid "Fire particle color."
+msgstr "لون أجزاﺀ النار."
+
+msgid "Fire particle life."
+msgstr "مدة حياة اجزاﺀ النا.ر"
+
+msgid "Fire particle size."
+msgstr "حجم اجزاﺀ النار."
+
+msgid "Fire particle slowdown."
+msgstr "تباطؤ أجزاﺀ النار."
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr "إستخدام ألوان عشواىٔية لتأثير النار، معروف أيضا بإسم النار الأسطورية"
 
 msgid "Initiate (button)"
 msgstr ""
@@ -1724,6 +1485,9 @@ msgstr ""
 
 msgid "Paint fire or other particles on the screen"
 msgstr ""
+
+msgid "Randomly Colored Fire"
+msgstr "نار ملونة عشواىٔيا"
 
 msgid "Cube Gears"
 msgstr ""
@@ -3458,17 +3222,29 @@ msgstr ""
 msgid "Direction of window movement"
 msgstr ""
 
+msgid "Down"
+msgstr "أسفل"
+
+msgid "Left"
+msgstr "يسار"
+
 msgid "Left/Right"
 msgstr ""
 
 msgid "Movement Direction"
 msgstr ""
 
+msgid "Right"
+msgstr "يمين"
+
 msgid "Show desktop"
 msgstr ""
 
 msgid "To Corners"
 msgstr ""
+
+msgid "Up"
+msgstr "فوق"
 
 msgid "Up/Down"
 msgstr ""
@@ -4802,6 +4578,13 @@ msgstr ""
 msgid "Matches"
 msgstr ""
 
+msgid "Maximized"
+msgstr ""
+
+#, fuzzy
+msgid "Maximized windows"
+msgstr "نصوع النوافذ المتلاشية"
+
 msgid "No ARGB visuals"
 msgstr ""
 
@@ -4950,6 +4733,239 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr ""
+
+#~ msgid "Airplane"
+#~ msgstr "طاىٔرة ورقية"
+
+#~ msgid "Airplane Flying Path Length"
+#~ msgstr "طول مسار الطاىٔرة"
+
+#~ msgid "Animation Time Step For Intense Effects"
+#~ msgstr "وقت الخطوة في التحريك للمؤثرات الثقيلة"
+
+#~ msgid "Automatic"
+#~ msgstr "تلقاىٔي"
+
+#~ msgid "Beam"
+#~ msgstr "الشعاع"
+
+#~ msgid "Beam Color"
+#~ msgstr "لون الشعاع"
+
+#~ msgid "Beam Life"
+#~ msgstr "مدة حياة الشعاع"
+
+#~ msgid "Beam Slowdown"
+#~ msgstr "تباطؤ الشعاع"
+
+#~ msgid "Beam Spacing"
+#~ msgstr "تباعد الشعاع"
+
+#~ msgid "Beam Up"
+#~ msgstr "ظهور الشعاع"
+
+#~ msgid "Beam Width"
+#~ msgstr "طول الشعاع"
+
+#~ msgid "Beam color."
+#~ msgstr "لون الشعاع"
+
+#~ msgid "Beam life."
+#~ msgstr "مدة حياة الشعاع"
+
+#~ msgid "Beam slowdown."
+#~ msgstr "تباطؤ الشعاع"
+
+#~ msgid "Beam width."
+#~ msgstr "طول الشعاع"
+
+#~ msgid "Burn"
+#~ msgstr "الحرق"
+
+#~ msgid "Domino"
+#~ msgstr "دومينو"
+
+#~ msgid "Domino Piece Falling Direction"
+#~ msgstr "إتجاه سقوط قطع الدومينو"
+
+#~ msgid "Explode"
+#~ msgstr "تفجير"
+
+#~ msgid "Falling direction for Domino pieces."
+#~ msgstr "إتجاه سقوط قطع الدومينو."
+
+#~ msgid "Fire"
+#~ msgstr "نار"
+
+#~ msgid "Fire Smoke"
+#~ msgstr "دخان النار"
+
+#~ msgid "Fire constant speed"
+#~ msgstr "نار ذو سرعة ثابتة"
+
+#~ msgid "Fire direction"
+#~ msgstr "إتجاه النار"
+
+#~ msgid "Fire direction."
+#~ msgstr "إتجاه النار."
+
+#~ msgid "Fire smoke."
+#~ msgstr "دخان النار."
+
+#~ msgid "Fly to TaskBar on Minimize"
+#~ msgstr "طيران إلى شريط المهام "
+
+#~ msgid "Fold"
+#~ msgstr "طَوي"
+
+#~ msgid "Fold Direction"
+#~ msgstr "إتجاه الطَوي"
+
+#~ msgid "Fold opening direction for pieces in Razr effect."
+#~ msgstr "إتجاه الطوي عند البداية للقطع في تأثير الشفرات "
+
+#~ msgid "Hexagonal"
+#~ msgstr "مسدس"
+
+#~ msgid "In"
+#~ msgstr "داخل"
+
+#~ msgid "In-out"
+#~ msgstr "داخل-خارج"
+
+#~ msgid "Leaf Spread"
+#~ msgstr "إنتشار ورق الشجر"
+
+#~ msgid "Left-right"
+#~ msgstr "يسار-يمين"
+
+#~ msgid "Length of airplane's flying path."
+#~ msgstr "طول مسار الطاىٔرة"
+
+#~ msgid "Make fire effect duration be dependent on window height."
+#~ msgstr "جعل مدة تأثير النار مرتبط بطول النافذة"
+
+#~ msgid "Movement direction(s) for window pieces."
+#~ msgstr "إتجاه حركة قطع النافذة"
+
+#~ msgid "Number Of Fire Particles"
+#~ msgstr "عدد أجزاﺀ النار"
+
+#~ msgid "Number of fire particles."
+#~ msgstr "عدد أجزاﺀ النار."
+
+#~ msgid "Out"
+#~ msgstr "خارج"
+
+#~ msgid "Razr"
+#~ msgstr "شفرات"
+
+#~ msgid "Razr Fold Opening Direction"
+#~ msgstr "إتجاه بداية الطوي الحاد"
+
+#~ msgid "Rectangular"
+#~ msgstr "مستطيل"
+
+#~ msgid "Rotation Angle"
+#~ msgstr "زاوية الدوران"
+
+#~ msgid "Rotation angle of animated window pieces (in degrees)."
+#~ msgstr "زاوية دوران حركة أجزاﺀ النافذة (بالدرجات)"
+
+#~ msgid "Skewer"
+#~ msgstr "إنحراف"
+
+#~ msgid "Skewer Direction"
+#~ msgstr "إتجاه الإنحراف"
+
+#~ msgid "Spacing between beams."
+#~ msgstr "التباعد بين الأشعة"
+
+#~ msgid "Tessellation Type"
+#~ msgstr "نوع الفسيفساﺀ"
+
+#~ msgid "Tessellation type for exploding window pieces."
+#~ msgstr "نوع الفسيفساﺀ لقطع النافذة المتفجرة."
+
+#~ msgid "Tessellation type for window pieces."
+#~ msgstr "نوع الفسيفساﺀ لقطع النافذة."
+
+#~ msgid ""
+#~ "The amount of time in milliseconds between each render of the intense "
+#~ "animation (Ex. Burn, Beam). The higher the number, the jerkier the "
+#~ "movements become."
+#~ msgstr ""
+#~ "المدة الزمنية بالميللي ثانية لكل صورة في التحريك للمؤثرات الثقيلة (النار "
+#~ "أو الشعاع مثلا). كلما كان الرقم أكبر، زاد سوﺀ التحريكو أصبح متقطشا."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "النافذة المتحركة ستقسم لقطع على طول شبكة. الرجاﺀ تحديد عدد خلايا الشبكة "
+#~ "على طول النافذة."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "النافذة المتحركة ستقسم لقطع على طول شبكة. الرجاﺀ تحديد عدد خلايا الشبكة "
+#~ "على عرض النافذة."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "النافذة المتحركة ستقسم لقطع على طول شبكة. الرجاﺀ تحديد عدد خلايا الشبكة "
+#~ "على طول النافذة."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "النافذة المتحركة ستقسم لقطع على طول شبكة. الرجاﺀ تحديد عدد خلايا الشبكة "
+#~ "على عرض النافذة."
+
+#~ msgid "Thickness"
+#~ msgstr "السماكة"
+
+#~ msgid "Thickness of Animated Polygons"
+#~ msgstr "سماكة المضلّع المحرّك"
+
+#~ msgid "Thickness of Exploding Polygons"
+#~ msgstr "سماكة المضلّع المنفجر"
+
+#~ msgid "Thickness of animated window pieces (in pixels)."
+#~ msgstr "سماكة قطع النافذة المحركة (بالنقط)."
+
+#~ msgid "Thickness of exploding window pieces (in pixels)."
+#~ msgstr "سماكة قطع النافذة المنفجرة (بالنقط)."
+
+#~ msgid "Up-down"
+#~ msgstr "فوق-تحت"
+
+#~ msgid ""
+#~ "Whether the window should fly to taskbar when minimized with Airplane "
+#~ "effect."
+#~ msgstr ""
+#~ "إذا كان على النافذة الطيران إلى شريط المهام عند تصغيرها مع إستعمال تأثير "
+#~ "الطاىٔرة."
+
+#~ msgid "Window Grid Height"
+#~ msgstr "طول شبكة النافذة"
+
+#~ msgid "Window Grid Width"
+#~ msgstr "عرض شبكة النافذة"
+
+#~ msgid "Window folding direction."
+#~ msgstr "إتجاه طوي النافذة"
+
+#~ msgid ""
+#~ "Window thickness in pixels. Setting this to larger than 0 will disable "
+#~ "shadow, blur, and reflection during the animation."
+#~ msgstr ""
+#~ "سماكة النافذة بالنقط. ضبط هذه بقيمة أعلى من صفر سيعطّل الظلال و الغباش و "
+#~ "الإنعكاسات خلال التحريك."
 
 #~ msgid ""
 #~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-07 11:28+0530\n"
+"POT-Creation-Date: 2008-08-30 11:42+0530\n"
 "PO-Revision-Date: 2008-05-31 19:51+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -151,12 +151,6 @@ msgstr "ウィンドウの種類"
 msgid "Window types that should be Opacified."
 msgstr "不透明度等の変更の適用対象にするウィンドウの種類"
 
-msgid "Airplane"
-msgstr "飛行機"
-
-msgid "Airplane Flying Path Length"
-msgstr "飛行機の航路距離"
-
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -173,9 +167,6 @@ msgstr "アニメーションの選択"
 
 msgid "Animation Time Step"
 msgstr "アニメーション刻み時間"
-
-msgid "Animation Time Step For Intense Effects"
-msgstr "アニメーション刻み時間（激しい効果の）"
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "閉じる時の効果のアニメーション持続時間(ミリ秒)"
@@ -195,51 +186,11 @@ msgstr "シェード時の効果のアニメーション持続時間(ミリ秒)"
 msgid "Animations"
 msgstr "アニメーション"
 
-msgid "Automatic"
-msgstr "自動"
-
 msgid "Away Angle"
 msgstr "離れる角度"
 
 msgid "Away Position"
 msgstr "離れる位置"
-
-msgid "Beam"
-msgstr "ビーム"
-
-msgid "Beam Color"
-msgstr "ビームの色"
-
-msgid "Beam Life"
-msgstr "ビームの持続時間"
-
-msgid "Beam Slowdown"
-msgstr "ビームのスローダウン"
-
-msgid "Beam Spacing"
-msgstr "ビームの間隔"
-
-# スタートレック
-msgid "Beam Up"
-msgstr "転送ビーム"
-
-msgid "Beam Width"
-msgstr "ビームの幅"
-
-msgid "Beam color."
-msgstr "ビームの色"
-
-msgid "Beam life."
-msgstr "ビームの持続時間"
-
-msgid "Beam slowdown."
-msgstr "ビームのスローダウン"
-
-msgid "Beam width."
-msgstr "ビームの幅"
-
-msgid "Burn"
-msgstr "炎"
 
 # CCSM上での表示に影響するので短い表記にしました
 msgid "Close Animation"
@@ -275,15 +226,6 @@ msgstr "回避"
 msgid "Dodge Gap Ratio"
 msgstr "回避ずらし率"
 
-msgid "Domino"
-msgstr "ドミノ"
-
-msgid "Domino Piece Falling Direction"
-msgstr "ドミノ片の落下方向"
-
-msgid "Down"
-msgstr "下"
-
 msgid "Dream"
 msgstr "夢"
 
@@ -294,62 +236,11 @@ msgstr "持続時間"
 msgid "Effect Settings"
 msgstr "エフェクト設定"
 
-msgid "Explode"
-msgstr "爆発"
-
 msgid "Fade"
 msgstr "フェード"
 
-msgid "Falling direction for Domino pieces."
-msgstr "ドミノ片が落下する方向"
-
-msgid "Fire"
-msgstr "炎"
-
-msgid "Fire Particle Color"
-msgstr "炎の色"
-
-msgid "Fire Particle Life"
-msgstr "炎の寿命"
-
-msgid "Fire Particle Size"
-msgstr "炎の大きさ"
-
-msgid "Fire Particle Slowdown"
-msgstr "炎のスローダウン"
-
-msgid "Fire Smoke"
-msgstr "炎の煙"
-
-msgid "Fire constant speed"
-msgstr "定速の炎"
-
-msgid "Fire direction"
-msgstr "炎の向き"
-
-msgid "Fire direction."
-msgstr "炎の向き"
-
-msgid "Fire particle color."
-msgstr "炎の色"
-
-msgid "Fire particle life."
-msgstr "炎の寿命"
-
-msgid "Fire particle size."
-msgstr "炎の大きさ"
-
-msgid "Fire particle slowdown."
-msgstr "炎のスローダウン"
-
-msgid "Fire smoke."
-msgstr "炎の煙"
-
 msgid "Fixed window interior during the Rollup animation."
 msgstr "巻き上げアニメーション時にウィンドウ内部を固定して描画"
-
-msgid "Fly to TaskBar on Minimize"
-msgstr "最小化時にタスクバーへ飛行"
 
 msgid "Focus Animation"
 msgstr "フォーカス時の効果"
@@ -357,31 +248,16 @@ msgstr "フォーカス時の効果"
 msgid "Focus Effect"
 msgstr "フォーカス時の効果"
 
-msgid "Fold"
-msgstr "折りたたみ"
-
-msgid "Fold Direction"
-msgstr "折りたたみ方向"
-
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-msgid "Fold opening direction for pieces in Razr effect."
-msgstr "カミソリ効果における断片の展開方向"
 
 msgid "Glide 1"
 msgstr "滑空 1"
 
 msgid "Glide 2"
 msgstr "滑空 2"
-
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr "炎効果にランダム色の色付け、いわゆる神秘的な炎"
-
-msgid "Hexagonal"
-msgstr "六角形"
 
 msgid "Horizontal Folds"
 msgstr "水平の折りたたみ"
@@ -395,24 +271,6 @@ msgstr "サイドキックアニメーションのバネ効果"
 
 msgid "How spring-like the Zoom animation should be."
 msgstr "ズームアニメーションのバネ効果"
-
-msgid "In"
-msgstr "内"
-
-msgid "In-out"
-msgstr "内と外"
-
-msgid "Leaf Spread"
-msgstr "散らばる葉っぱ"
-
-msgid "Left"
-msgstr "左"
-
-msgid "Left-right"
-msgstr "左と右"
-
-msgid "Length of airplane's flying path."
-msgstr "飛行機の航路距離"
 
 msgid "Magic Lamp"
 msgstr "魔法のランプ"
@@ -435,9 +293,6 @@ msgstr "魔法ランプの開く時の開始幅"
 msgid "Magic Lamp Open/Close Moving End"
 msgstr "魔法ランプの開く/閉じる時の終点移動"
 
-msgid "Make fire effect duration be dependent on window height."
-msgstr "炎効果の持続時間をウィンドウの高さに委ねる"
-
 msgid "Minimize Animation"
 msgstr "最小化時の効果"
 
@@ -447,20 +302,11 @@ msgstr "最小化時の効果"
 msgid "Minimize/Unminimize Only"
 msgstr "最小化や最小化解除時のみ"
 
-msgid "Movement direction(s) for window pieces."
-msgstr "ウィンドウ片の移動方向"
-
 msgid "None"
 msgstr "なし"
 
-msgid "Number Of Fire Particles"
-msgstr "炎の数"
-
 msgid "Number of Horizontal Folds"
 msgstr "水平折りたたみの折り数"
-
-msgid "Number of fire particles."
-msgstr "炎の数"
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -490,15 +336,13 @@ msgstr "開く/閉じる時のみ"
 msgid "Options"
 msgstr "オプション"
 
-msgid "Out"
-msgstr "外"
-
 msgid "Pool"
 msgstr "候補群"
 
+#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to use all effects."
 msgstr ""
 "ランダム効果選択の場合の選択候補群。フルリストに戻すにはリセットをクリック。"
 
@@ -511,35 +355,14 @@ msgstr "すべてのイベントにランダムなアニメーション"
 msgid "Random Effects"
 msgstr "ランダムな効果"
 
-msgid "Randomly Colored Fire"
-msgstr "ランダム色の炎"
-
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr "フォーカスのため各回避を開始する時間のずれの割合"
-
-msgid "Razr"
-msgstr "カミソリ"
-
-msgid "Razr Fold Opening Direction"
-msgstr "カミソリ展開方向"
-
-msgid "Rectangular"
-msgstr "矩形"
-
-msgid "Right"
-msgstr "右"
 
 msgid "Roll Up"
 msgstr "巻き上げ"
 
 msgid "Rollup Fixed Interior"
 msgstr "内部を固定して巻き上げ"
-
-msgid "Rotation Angle"
-msgstr "回転角度"
-
-msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "ウィンドウ片の回転角度"
 
 msgid "Shade Animation"
 msgstr "シェード時の効果"
@@ -556,15 +379,6 @@ msgstr "サイドキックの回転数"
 msgid "Sidekick Springiness"
 msgstr "サイドキックの跳ね具合"
 
-msgid "Skewer"
-msgstr "破砕"
-
-msgid "Skewer Direction"
-msgstr "破砕方向"
-
-msgid "Spacing between beams."
-msgstr "ビーム間隔"
-
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
@@ -574,43 +388,12 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr "バキュームの開く時効果での開始幅と閉じる時効果での終了幅"
 
-msgid "Tessellation Type"
-msgstr "モザイクの形式"
-
-msgid "Tessellation type for exploding window pieces."
-msgstr "爆発ウィンドウ片のモザイク形式"
-
-msgid "Tessellation type for window pieces."
-msgstr "ウィンドウ片のモザイクの形式"
-
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
 "アニメーション描画の刻み時間(ミリ秒)、数値が大きくなるほどぎくしゃくした動き"
 "に"
-
-msgid ""
-"The amount of time in milliseconds between each render of the intense "
-"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
-"become."
-msgstr ""
-"激しいアニメーション（例 炎やビーム）の描画の刻み時間(ミリ秒)、数値が大きくな"
-"るほどぎくしゃくした動きに"
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"アニメーションされるウィンドウは格子に沿って分割されます。ウィンドウの高さに"
-"沿った格子のマス目数を指定してください。"
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"アニメーションされるウィンドウは格子に沿って分割されます。ウィンドウの幅に"
-"沿った格子のマス目数を指定してください。"
 
 msgid "The animation effect shown when closing a window."
 msgstr "ウィンドウを閉じるとき表示するアニメーション効果"
@@ -626,20 +409,6 @@ msgstr "ウィンドウを最小化したとき表示するアニメーション
 
 msgid "The animation effect shown when shading a window."
 msgstr "ウィンドウをシェードしたとき表示するアニメーション効果"
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"爆発するウィンドウは格子に沿って分割されます。ウィンドウの高さに沿った格子の"
-"マス目数を指定してください。"
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"爆発するウィンドウは格子に沿って分割されます。ウィンドウの幅に沿った格子のマ"
-"ス目数を指定してください。"
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr "魔法のランプの最大振幅（波揺れの大きさ）"
@@ -659,27 +428,6 @@ msgstr "ウィンドウの幅に対する波の幅"
 
 msgid "The windows that will be animated."
 msgstr "アニメーションされるウィンドウ"
-
-msgid "Thickness"
-msgstr "厚さ"
-
-msgid "Thickness of Animated Polygons"
-msgstr "アニメーションされるポリゴンの厚さ"
-
-msgid "Thickness of Exploding Polygons"
-msgstr "爆発片ポリゴンの厚さ"
-
-msgid "Thickness of animated window pieces (in pixels)."
-msgstr "爆発ウィンドウ片の厚さ（ピクセル）"
-
-msgid "Thickness of exploding window pieces (in pixels)."
-msgstr "爆発ウィンドウ片の厚さ（ピクセル）"
-
-msgid "Up"
-msgstr "上"
-
-msgid "Up-down"
-msgstr "上と下"
 
 msgid "Use various animations as window effects"
 msgstr "ウィンドウ効果として様々なアニメーションを使用"
@@ -730,10 +478,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Whether the window should fly to taskbar when minimized with Airplane effect."
-msgstr "飛行機効果で最小化するときにウィンドウをタスクバーに飛行させるかどうか"
-
-msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
@@ -760,27 +504,11 @@ msgstr ""
 "水平折りたたみ効果で最小化するとき、ウィンドウをタスクバーにズームさせるかど"
 "うか"
 
-msgid "Window Grid Height"
-msgstr "ウィンドウの格子の高さ"
-
-msgid "Window Grid Width"
-msgstr "ウィンドウの格子の幅"
-
-msgid "Window folding direction."
-msgstr "ウィンドウの折たたみ方向"
-
 msgid "Window that should animate with this effect when focused."
 msgstr "フォーカスしたときにこの効果でアニメーションするウィンドウ"
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "シェードしたときにこの効果でアニメーションするウィンドウ"
-
-msgid ""
-"Window thickness in pixels. Setting this to larger than 0 will disable "
-"shadow, blur, and reflection during the animation."
-msgstr ""
-"ウィンドウの厚さ（ピクセル）。0 より大きく設定すると、アニメーション中の影や"
-"ブラー、反射が無効になります。"
 
 msgid "Zoom"
 msgstr "ズーム"
@@ -1721,6 +1449,13 @@ msgstr "ウィンドウの色(透過)の切り替え"
 msgid "Toggle window fake ARGB."
 msgstr "ウィンドウの色(透過)の切り替え"
 
+#, fuzzy
+msgid "Add Particle"
+msgstr "粒子の寿命"
+
+msgid "Adds a fire particle at position (x,y), where x and y are floats."
+msgstr ""
+
 msgid "Background brightness"
 msgstr "背景の明度"
 
@@ -1735,6 +1470,33 @@ msgstr "消去（ボタン）"
 
 msgid "Clear (key)"
 msgstr "消去（キー）"
+
+msgid "Fire Particle Color"
+msgstr "炎の色"
+
+msgid "Fire Particle Life"
+msgstr "炎の寿命"
+
+msgid "Fire Particle Size"
+msgstr "炎の大きさ"
+
+msgid "Fire Particle Slowdown"
+msgstr "炎のスローダウン"
+
+msgid "Fire particle color."
+msgstr "炎の色"
+
+msgid "Fire particle life."
+msgstr "炎の寿命"
+
+msgid "Fire particle size."
+msgstr "炎の大きさ"
+
+msgid "Fire particle slowdown."
+msgstr "炎のスローダウン"
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr "炎効果にランダム色の色付け、いわゆる神秘的な炎"
 
 msgid "Initiate (button)"
 msgstr "開始（ボタン）"
@@ -1756,6 +1518,9 @@ msgstr "炎の描画"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "画面に炎や粒子を描画"
+
+msgid "Randomly Colored Fire"
+msgstr "ランダム色の炎"
 
 msgid "Cube Gears"
 msgstr "キューブ・ギア"
@@ -3553,17 +3318,29 @@ msgstr "デスクトップに簡単アクセス"
 msgid "Direction of window movement"
 msgstr "ウィンドウの移動方向"
 
+msgid "Down"
+msgstr "下"
+
+msgid "Left"
+msgstr "左"
+
 msgid "Left/Right"
 msgstr "左右"
 
 msgid "Movement Direction"
 msgstr "動作設定"
 
+msgid "Right"
+msgstr "右"
+
 msgid "Show desktop"
 msgstr "デスクトップの表示"
 
 msgid "To Corners"
 msgstr "四隅"
+
+msgid "Up"
+msgstr "上"
 
 msgid "Up/Down"
 msgstr "上下"
@@ -4926,6 +4703,14 @@ msgstr "高さの値"
 msgid "Matches"
 msgstr "マッチ"
 
+#, fuzzy
+msgid "Maximized"
+msgstr "最大化"
+
+#, fuzzy
+msgid "Maximized windows"
+msgstr "最大化不可ウィンドウ"
+
 msgid "No ARGB visuals"
 msgstr "ARGB ビジュアル不可"
 
@@ -5080,6 +4865,239 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "次善策"
+
+#~ msgid "Airplane"
+#~ msgstr "飛行機"
+
+#~ msgid "Airplane Flying Path Length"
+#~ msgstr "飛行機の航路距離"
+
+#~ msgid "Animation Time Step For Intense Effects"
+#~ msgstr "アニメーション刻み時間（激しい効果の）"
+
+#~ msgid "Automatic"
+#~ msgstr "自動"
+
+#~ msgid "Beam"
+#~ msgstr "ビーム"
+
+#~ msgid "Beam Color"
+#~ msgstr "ビームの色"
+
+#~ msgid "Beam Life"
+#~ msgstr "ビームの持続時間"
+
+#~ msgid "Beam Slowdown"
+#~ msgstr "ビームのスローダウン"
+
+#~ msgid "Beam Spacing"
+#~ msgstr "ビームの間隔"
+
+# スタートレック
+#~ msgid "Beam Up"
+#~ msgstr "転送ビーム"
+
+#~ msgid "Beam Width"
+#~ msgstr "ビームの幅"
+
+#~ msgid "Beam color."
+#~ msgstr "ビームの色"
+
+#~ msgid "Beam life."
+#~ msgstr "ビームの持続時間"
+
+#~ msgid "Beam slowdown."
+#~ msgstr "ビームのスローダウン"
+
+#~ msgid "Beam width."
+#~ msgstr "ビームの幅"
+
+#~ msgid "Burn"
+#~ msgstr "炎"
+
+#~ msgid "Domino"
+#~ msgstr "ドミノ"
+
+#~ msgid "Domino Piece Falling Direction"
+#~ msgstr "ドミノ片の落下方向"
+
+#~ msgid "Explode"
+#~ msgstr "爆発"
+
+#~ msgid "Falling direction for Domino pieces."
+#~ msgstr "ドミノ片が落下する方向"
+
+#~ msgid "Fire"
+#~ msgstr "炎"
+
+#~ msgid "Fire Smoke"
+#~ msgstr "炎の煙"
+
+#~ msgid "Fire constant speed"
+#~ msgstr "定速の炎"
+
+#~ msgid "Fire direction"
+#~ msgstr "炎の向き"
+
+#~ msgid "Fire direction."
+#~ msgstr "炎の向き"
+
+#~ msgid "Fire smoke."
+#~ msgstr "炎の煙"
+
+#~ msgid "Fly to TaskBar on Minimize"
+#~ msgstr "最小化時にタスクバーへ飛行"
+
+#~ msgid "Fold"
+#~ msgstr "折りたたみ"
+
+#~ msgid "Fold Direction"
+#~ msgstr "折りたたみ方向"
+
+#~ msgid "Fold opening direction for pieces in Razr effect."
+#~ msgstr "カミソリ効果における断片の展開方向"
+
+#~ msgid "Hexagonal"
+#~ msgstr "六角形"
+
+#~ msgid "In"
+#~ msgstr "内"
+
+#~ msgid "In-out"
+#~ msgstr "内と外"
+
+#~ msgid "Leaf Spread"
+#~ msgstr "散らばる葉っぱ"
+
+#~ msgid "Left-right"
+#~ msgstr "左と右"
+
+#~ msgid "Length of airplane's flying path."
+#~ msgstr "飛行機の航路距離"
+
+#~ msgid "Make fire effect duration be dependent on window height."
+#~ msgstr "炎効果の持続時間をウィンドウの高さに委ねる"
+
+#~ msgid "Movement direction(s) for window pieces."
+#~ msgstr "ウィンドウ片の移動方向"
+
+#~ msgid "Number Of Fire Particles"
+#~ msgstr "炎の数"
+
+#~ msgid "Number of fire particles."
+#~ msgstr "炎の数"
+
+#~ msgid "Out"
+#~ msgstr "外"
+
+#~ msgid "Razr"
+#~ msgstr "カミソリ"
+
+#~ msgid "Razr Fold Opening Direction"
+#~ msgstr "カミソリ展開方向"
+
+#~ msgid "Rectangular"
+#~ msgstr "矩形"
+
+#~ msgid "Rotation Angle"
+#~ msgstr "回転角度"
+
+#~ msgid "Rotation angle of animated window pieces (in degrees)."
+#~ msgstr "ウィンドウ片の回転角度"
+
+#~ msgid "Skewer"
+#~ msgstr "破砕"
+
+#~ msgid "Skewer Direction"
+#~ msgstr "破砕方向"
+
+#~ msgid "Spacing between beams."
+#~ msgstr "ビーム間隔"
+
+#~ msgid "Tessellation Type"
+#~ msgstr "モザイクの形式"
+
+#~ msgid "Tessellation type for exploding window pieces."
+#~ msgstr "爆発ウィンドウ片のモザイク形式"
+
+#~ msgid "Tessellation type for window pieces."
+#~ msgstr "ウィンドウ片のモザイクの形式"
+
+#~ msgid ""
+#~ "The amount of time in milliseconds between each render of the intense "
+#~ "animation (Ex. Burn, Beam). The higher the number, the jerkier the "
+#~ "movements become."
+#~ msgstr ""
+#~ "激しいアニメーション（例 炎やビーム）の描画の刻み時間(ミリ秒)、数値が大き"
+#~ "くなるほどぎくしゃくした動きに"
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "アニメーションされるウィンドウは格子に沿って分割されます。ウィンドウの高さ"
+#~ "に沿った格子のマス目数を指定してください。"
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "アニメーションされるウィンドウは格子に沿って分割されます。ウィンドウの幅に"
+#~ "沿った格子のマス目数を指定してください。"
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "爆発するウィンドウは格子に沿って分割されます。ウィンドウの高さに沿った格子"
+#~ "のマス目数を指定してください。"
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "爆発するウィンドウは格子に沿って分割されます。ウィンドウの幅に沿った格子の"
+#~ "マス目数を指定してください。"
+
+#~ msgid "Thickness"
+#~ msgstr "厚さ"
+
+#~ msgid "Thickness of Animated Polygons"
+#~ msgstr "アニメーションされるポリゴンの厚さ"
+
+#~ msgid "Thickness of Exploding Polygons"
+#~ msgstr "爆発片ポリゴンの厚さ"
+
+#~ msgid "Thickness of animated window pieces (in pixels)."
+#~ msgstr "爆発ウィンドウ片の厚さ（ピクセル）"
+
+#~ msgid "Thickness of exploding window pieces (in pixels)."
+#~ msgstr "爆発ウィンドウ片の厚さ（ピクセル）"
+
+#~ msgid "Up-down"
+#~ msgstr "上と下"
+
+#~ msgid ""
+#~ "Whether the window should fly to taskbar when minimized with Airplane "
+#~ "effect."
+#~ msgstr ""
+#~ "飛行機効果で最小化するときにウィンドウをタスクバーに飛行させるかどうか"
+
+#~ msgid "Window Grid Height"
+#~ msgstr "ウィンドウの格子の高さ"
+
+#~ msgid "Window Grid Width"
+#~ msgstr "ウィンドウの格子の幅"
+
+#~ msgid "Window folding direction."
+#~ msgstr "ウィンドウの折たたみ方向"
+
+#~ msgid ""
+#~ "Window thickness in pixels. Setting this to larger than 0 will disable "
+#~ "shadow, blur, and reflection during the animation."
+#~ msgstr ""
+#~ "ウィンドウの厚さ（ピクセル）。0 より大きく設定すると、アニメーション中の影"
+#~ "やブラー、反射が無効になります。"
 
 #~ msgid ""
 #~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-07 11:28+0530\n"
-"PO-Revision-Date: 2008-07-29 09:52+0200\n"
+"POT-Creation-Date: 2008-08-30 11:43+0530\n"
+"PO-Revision-Date: 2008-08-07 14:46+0200\n"
 "Last-Translator: Lee June Hee <bugbear5@gmail.com>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
 "MIME-Version: 1.0\n"
@@ -148,12 +148,6 @@ msgstr "창 종류"
 msgid "Window types that should be Opacified."
 msgstr "투명도가 변경되는 창의 종류"
 
-msgid "Airplane"
-msgstr "종이 비행기"
-
-msgid "Airplane Flying Path Length"
-msgstr "종이 비행기의 비행 거리"
-
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -169,9 +163,6 @@ msgstr "애니메이션 선택"
 
 msgid "Animation Time Step"
 msgstr "애니메이션 시간 간격"
-
-msgid "Animation Time Step For Intense Effects"
-msgstr "강한 효과를 위한 애니메이션 시간 간격"
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "닫기 효과에 대한 애니메이션 지속 시간 (밀리세컨드 단위)."
@@ -191,50 +182,11 @@ msgstr "말아올리기 효과에 대한 애니메이션 지속 시간 (밀리�
 msgid "Animations"
 msgstr "애니메이션"
 
-msgid "Automatic"
-msgstr "자동"
-
 msgid "Away Angle"
 msgstr "종료 각도"
 
 msgid "Away Position"
 msgstr "종료 위치"
-
-msgid "Beam"
-msgstr "광선"
-
-msgid "Beam Color"
-msgstr "광선 색"
-
-msgid "Beam Life"
-msgstr "광선의 수명"
-
-msgid "Beam Slowdown"
-msgstr "광선의 감속"
-
-msgid "Beam Spacing"
-msgstr "광선 간격"
-
-msgid "Beam Up"
-msgstr "광선"
-
-msgid "Beam Width"
-msgstr "광선 너비"
-
-msgid "Beam color."
-msgstr "광선 색."
-
-msgid "Beam life."
-msgstr "광선의 수명."
-
-msgid "Beam slowdown."
-msgstr "광선의 감속."
-
-msgid "Beam width."
-msgstr "광선의 너비."
-
-msgid "Burn"
-msgstr "불 태우기"
 
 msgid "Close Animation"
 msgstr "닫기 애니메이션"
@@ -259,24 +211,14 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "휘어지게 접기"
 
-#, fuzzy
 msgid "Curved Fold Amplitude Multiplier"
-msgstr "휘어지게 접는 크기"
+msgstr "휘어지게 접는 폭의 배수"
 
 msgid "Dodge"
 msgstr "회피"
 
 msgid "Dodge Gap Ratio"
 msgstr "회피하는 간격 비율"
-
-msgid "Domino"
-msgstr "도미노"
-
-msgid "Domino Piece Falling Direction"
-msgstr "도미노가 넘어지는 방향"
-
-msgid "Down"
-msgstr "아래"
 
 msgid "Dream"
 msgstr "꿈"
@@ -287,62 +229,11 @@ msgstr "지속시간"
 msgid "Effect Settings"
 msgstr "효과 설정"
 
-msgid "Explode"
-msgstr "폭발"
-
 msgid "Fade"
 msgstr "페이드"
 
-msgid "Falling direction for Domino pieces."
-msgstr "도미노가 넘어지는 방향"
-
-msgid "Fire"
-msgstr "불꽃"
-
-msgid "Fire Particle Color"
-msgstr "불꽃의 색"
-
-msgid "Fire Particle Life"
-msgstr "불꽃의 수명"
-
-msgid "Fire Particle Size"
-msgstr "불꽃의 크기"
-
-msgid "Fire Particle Slowdown"
-msgstr "불꽃의 감속"
-
-msgid "Fire Smoke"
-msgstr "연기"
-
-msgid "Fire constant speed"
-msgstr "일정한 속도로 태우기"
-
-msgid "Fire direction"
-msgstr "불타는 방향"
-
-msgid "Fire direction."
-msgstr "불타는 방향."
-
-msgid "Fire particle color."
-msgstr "불꽃의 색."
-
-msgid "Fire particle life."
-msgstr "불꽃의 수명."
-
-msgid "Fire particle size."
-msgstr "불꽃의 크기."
-
-msgid "Fire particle slowdown."
-msgstr "불꽃의 감속."
-
-msgid "Fire smoke."
-msgstr "연기."
-
 msgid "Fixed window interior during the Rollup animation."
 msgstr "감아올리기 애니메이션시 창 내부를 고정함."
-
-msgid "Fly to TaskBar on Minimize"
-msgstr "최소화시 창 목록까지 날아감"
 
 msgid "Focus Animation"
 msgstr "초점 애니메이션"
@@ -350,19 +241,12 @@ msgstr "초점 애니메이션"
 msgid "Focus Effect"
 msgstr "초점 효과"
 
-msgid "Fold"
-msgstr "접기"
-
-msgid "Fold Direction"
-msgstr "접는 방향"
-
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-msgid "Fold opening direction for pieces in Razr effect."
-msgstr "면도날 효과에서 조각들이 접히는 방향."
+"이곳에 설정한 숫자로 접히는 정도의 배수(크기)를 정합니다. 음의 정수 값은 바깥"
+"쪽으로 접게 합니다."
 
 msgid "Glide 1"
 msgstr "비행 1"
@@ -370,42 +254,17 @@ msgstr "비행 1"
 msgid "Glide 2"
 msgstr "비행 2"
 
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr "불 태우기 효과에서 불꽃 색을 무작위로 하기(신비한 불꽃 효과)."
-
-msgid "Hexagonal"
-msgstr "6각형"
-
 msgid "Horizontal Folds"
 msgstr "수평으로 접기"
 
-#, fuzzy
 msgid "Horizontal Folds Amplitude Multiplier"
-msgstr "수평으로 접는 크기"
+msgstr "수평으로 접는 폭의 배수"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr "사이드킥 애니메이션의 탄성 정도"
 
 msgid "How spring-like the Zoom animation should be."
 msgstr "확대 애니메이션의 탄성 정도"
-
-msgid "In"
-msgstr "안쪽"
-
-msgid "In-out"
-msgstr "안쪽에서 바깥쪽"
-
-msgid "Leaf Spread"
-msgstr "잎이 퍼지듯이"
-
-msgid "Left"
-msgstr "왼쪽"
-
-msgid "Left-right"
-msgstr "왼쪽에서 오른쪽"
-
-msgid "Length of airplane's flying path."
-msgstr "종이 비행기의 비행 거리"
 
 msgid "Magic Lamp"
 msgstr "마술 램프"
@@ -428,9 +287,6 @@ msgstr "마술 램프의 초기 너비"
 msgid "Magic Lamp Open/Close Moving End"
 msgstr "열기/닫기시 마술 램프의 종료 위치 변경"
 
-msgid "Make fire effect duration be dependent on window height."
-msgstr "불 태우기 효과 지속시간이 창의 높이에 따라 달라지게 함."
-
 msgid "Minimize Animation"
 msgstr "최소화 애니메이션"
 
@@ -440,20 +296,11 @@ msgstr "최소화 애니메이션"
 msgid "Minimize/Unminimize Only"
 msgstr "최소화/취소시에만"
 
-msgid "Movement direction(s) for window pieces."
-msgstr "창 조각의 이동 방향."
-
 msgid "None"
 msgstr "없음"
 
-msgid "Number Of Fire Particles"
-msgstr "꽃의 숫자"
-
 msgid "Number of Horizontal Folds"
 msgstr "수평으로 접는 횟수"
-
-msgid "Number of fire particles."
-msgstr "불꽃의 숫자"
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -483,15 +330,13 @@ msgstr "열기/닫기시에만"
 msgid "Options"
 msgstr "옵션"
 
-msgid "Out"
-msgstr "바깥쪽"
-
 msgid "Pool"
 msgstr "목록"
 
+#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to use all effects."
 msgstr ""
 "무작위 효과가 선택되었을 때 사용되는 효과 목록. 초기화 버튼을 클릭하면 목록 "
 "전체로 초기화됩니다."
@@ -505,35 +350,14 @@ msgstr "모든 효과에 무작위 애니메이션 사용"
 msgid "Random Effects"
 msgstr "무작위 효과"
 
-msgid "Randomly Colored Fire"
-msgstr "불꽃 색을 무작위로"
-
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr "회피 시작 시간과 초점 지속 시간 사이의 간격 비율"
-
-msgid "Razr"
-msgstr "면도날"
-
-msgid "Razr Fold Opening Direction"
-msgstr "면도날 효과에서 접는 방향"
-
-msgid "Rectangular"
-msgstr "사각형"
-
-msgid "Right"
-msgstr "오른쪽"
 
 msgid "Roll Up"
 msgstr "감아 올리기"
 
 msgid "Rollup Fixed Interior"
 msgstr "감아올릴 때 창 내부를 고정"
-
-msgid "Rotation Angle"
-msgstr "회전 각도"
-
-msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "애니메이션 창 조각들의 회전 각도 (도 단위)."
 
 msgid "Shade Animation"
 msgstr "말아올리기 애니메이션"
@@ -550,15 +374,6 @@ msgstr "사이드킥 회전 횟수"
 msgid "Sidekick Springiness"
 msgstr "사이드킥 탄성"
 
-msgid "Skewer"
-msgstr "왜곡"
-
-msgid "Skewer Direction"
-msgstr "왜곡하는 방향"
-
-msgid "Spacing between beams."
-msgstr "광선 사이의 간격"
-
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
@@ -568,43 +383,12 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr "진공 닫기 효과의 시작 너비와 종료 너비."
 
-msgid "Tessellation Type"
-msgstr "모자이크 형태"
-
-msgid "Tessellation type for exploding window pieces."
-msgstr "폭발 효과에서 창 조각들의 모자이크 형태"
-
-msgid "Tessellation type for window pieces."
-msgstr "창 조각들의 모자이크 형태"
-
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
 "애니메이션 렌더링 간격 (밀리세컨드 단위). 숫자가 클수록 동작이 부자연스럽습니"
 "다."
-
-msgid ""
-"The amount of time in milliseconds between each render of the intense "
-"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
-"become."
-msgstr ""
-"강한 애니메이션(예, 불 태우기, 광선) 렌더링 간격 (밀리세컨드 단위). 숫자가 클"
-"수록 동작이 부자연스럽습니다."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"애니메이션이 적용될 때 창은 격자 형태로 분할됩니다. 창의 높이에 따른 격자 조"
-"각의 숫자를 지정하세요."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"애니메이션이 적용될 때 창은 격자 형태로 분할됩니다. 창의 높이에 따른 격자 조"
-"각의 숫자를 지정하세요."
 
 msgid "The animation effect shown when closing a window."
 msgstr "창을 닫을 때 적용되는 애니메이션."
@@ -620,20 +404,6 @@ msgstr "창을 최소화할 때 적용되는 애니메이션."
 
 msgid "The animation effect shown when shading a window."
 msgstr "창을 말아올릴 때 적용되는 애니메이션."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"폭발 효과가 적용되면 창은 격자에 따라 조각들로 분할됩니다. 창의 높이에 따른 "
-"격자 조각의 숫자를 지정하세요."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"폭발 효과가 적용되면 창은 격자에 따라 조각들로 분할됩니다. 창의 높이에 따른 "
-"격자 조각의 숫자를 지정하세요."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr "마술 램프의 최대 파동 크기."
@@ -653,27 +423,6 @@ msgstr "창의 높이에 따른 파동의 넓이"
 
 msgid "The windows that will be animated."
 msgstr "애니메이션이 적용될 창"
-
-msgid "Thickness"
-msgstr "두께"
-
-msgid "Thickness of Animated Polygons"
-msgstr "애니메이션 폴리곤의 두께"
-
-msgid "Thickness of Exploding Polygons"
-msgstr "폭발하는 폴리곤의 두께"
-
-msgid "Thickness of animated window pieces (in pixels)."
-msgstr "애니메이션 창 조각의 두께 (픽셀 단위)"
-
-msgid "Thickness of exploding window pieces (in pixels)."
-msgstr "폭발하는 창 조각의 두께 (픽셀 단위)"
-
-msgid "Up"
-msgstr "위로"
-
-msgid "Up-down"
-msgstr "위에서 아래로"
 
 msgid "Use various animations as window effects"
 msgstr "창 효과로 다양한 애니메이션을 사용함"
@@ -711,9 +460,8 @@ msgstr ""
 msgid "Wave"
 msgstr "파동"
 
-#, fuzzy
 msgid "Wave Amplitude Multiplier"
-msgstr "파동의 크기"
+msgstr "파동 진폭의 배수"
 
 msgid "Wave Width"
 msgstr "파동의 폭"
@@ -722,10 +470,8 @@ msgid ""
 "Wave amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-msgid ""
-"Whether the window should fly to taskbar when minimized with Airplane effect."
-msgstr "종이 비행기 효과에서 최소화시 창이 창 목록으로 날아가는지 여부."
+"이곳에 설정한 숫자로 파동 진폭(크기)을 정합니다. 음의 정수 값은 바깥쪽으로 접"
+"게 합니다."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
@@ -749,27 +495,11 @@ msgid ""
 "Folds effect."
 msgstr "수평으로 접기 효과에서 최소화시 창이 창 목록 방향으로 축소되는지 여부"
 
-msgid "Window Grid Height"
-msgstr "창 격자 높이"
-
-msgid "Window Grid Width"
-msgstr "창 격자 너비"
-
-msgid "Window folding direction."
-msgstr "창을 접는 방향."
-
 msgid "Window that should animate with this effect when focused."
 msgstr "초점을 얻었을 때 이 애니메이션 효과가 적용되는 창"
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "말아올릴 때 이 애니메이션 효과가 적용되는 창"
-
-msgid ""
-"Window thickness in pixels. Setting this to larger than 0 will disable "
-"shadow, blur, and reflection during the animation."
-msgstr ""
-"창 두께 (픽셀 단위). 이 값을 0보다 크게 하면 애니메이션시에 그림자와 블러, 반"
-"사 효과가 적용되지 않습니다."
 
 msgid "Zoom"
 msgstr "축소"
@@ -1053,49 +783,41 @@ msgstr "바닥 색(가까운 쪽)"
 msgid "Color of top face of the cube"
 msgstr "큐브의 천장 색"
 
-#, fuzzy
 msgid "Compiz cube reflection and deformation"
-msgstr "컴피즈 큐브 반사"
+msgstr "컴피즈 큐브 반사와 변형"
 
 msgid "Cube Bottom Color"
 msgstr "큐브 바닥 색"
 
-#, fuzzy
 msgid "Cube Reflection and Deformation"
-msgstr "창 장식에 대한 반사 효과"
+msgstr "큐브 반사와 변형"
 
 msgid "Cube Top Color"
 msgstr "큐브 천장 색"
 
-#, fuzzy
 msgid "Cube caps"
 msgstr "큐브 캡"
 
-#, fuzzy
 msgid "Cylinder"
-msgstr "지우기"
+msgstr "원기둥"
 
-#, fuzzy
 msgid "Deform caps"
-msgstr "지속시간"
+msgstr "캡 변형"
 
 msgid "Deform cube caps."
 msgstr "변형된 큐브 캡."
 
-#, fuzzy
 msgid "Deform only on mouse rotate"
-msgstr "마우스 회전시에만 자동 확대"
+msgstr "마우스 회전시에만 큐브 변형"
 
-#, fuzzy
 msgid "Deformation"
-msgstr "지속시간"
+msgstr "변형"
 
 msgid "Deformation in unfold cube mode."
 msgstr "큐브 펼침 모드에서의 변형"
 
-#, fuzzy
 msgid "Deformation mode."
-msgstr "지속시간"
+msgstr "변형 형태."
 
 msgid "Distance"
 msgstr "거리"
@@ -1115,9 +837,8 @@ msgstr "큐브의 천장을 그림"
 msgid "Enabled"
 msgstr "활성화"
 
-#, fuzzy
 msgid "Give cube a reflective ground."
-msgstr "컴피즈 큐브 반사"
+msgstr "큐브에 반사되는 땅을 추가합니다."
 
 msgid "Go back to previous image for bottom face of the cube"
 msgstr "이전 바닥 이미지로 돌아감"
@@ -1150,21 +871,17 @@ msgstr "큐브의 바닥 이미지로 사용될 PNG와 SVG 파일 목록"
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "큐브의 천장 이미지로 사용될 PNG와 SVG 파일 목록"
 
-#, fuzzy
 msgid "Maintain bottom aspect ratio"
-msgstr "엑스포 모드 화면 비율"
+msgstr "아래쪽 크기 비율 유지"
 
-#, fuzzy
 msgid "Maintain bottom cap image aspect ratio."
-msgstr "회전시 바닥 이미지 조절"
+msgstr "아래쪽 뚜껑 이미지의 크기 비율을 유지합니다."
 
-#, fuzzy
 msgid "Maintain top aspect ratio"
-msgstr "엑스포 모드 화면 비율"
+msgstr "위쪽 크기 비율 유지"
 
-#, fuzzy
 msgid "Maintain top cap image aspect ratio."
-msgstr "회전시 천장 이미지 조절"
+msgstr "위쪽 뚜껑 이미지의 크기 비율을 유지합니다."
 
 msgid "Next bottom image"
 msgstr "다음 바닥 이미지"
@@ -1208,9 +925,8 @@ msgstr "큐브의 천장에 맞도록 이미지의 크기를 조절함"
 msgid "Scale top image"
 msgstr "천장 이미지 크기 조절"
 
-#, fuzzy
 msgid "Sphere"
-msgstr "속도"
+msgstr "공"
 
 msgid "Top image files"
 msgstr "천장 이미지 파일 목록"
@@ -1224,16 +940,14 @@ msgstr "마우스 회전시에 자동으로 축소"
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "큐브가 화면에 적합하도록 자동으로 축소됨"
 
-#, fuzzy
 msgid "Cube Caps"
 msgstr "큐브 캡"
 
 msgid "Render images on top and bottom of the cube"
 msgstr "큐브의 천장과 바닥 이미지를 그림"
 
-#, fuzzy
 msgid "Compiz cube reflection"
-msgstr "큐브 반사"
+msgstr "컴피즈 큐브 반사"
 
 msgid "Cube Reflection"
 msgstr "큐브 반사"
@@ -1253,21 +967,17 @@ msgstr "엑스포 모드를 종료하는 버튼"
 msgid "Button binding to switch to next viewport in expo"
 msgstr "엑스포 모드에서 다음 작업 공간으로 전환하는 버튼"
 
-#, fuzzy
 msgid "Curve"
-msgstr "휘어지게 접기"
+msgstr "휘어짐"
 
-#, fuzzy
 msgid "Curve strength"
-msgstr "모션 블러 강도"
+msgstr "휘어진 강도"
 
-#, fuzzy
 msgid "Deformation of the expo wall"
-msgstr "엑스포 벽의 거리"
+msgstr "엑스포 벽 변형"
 
-#, fuzzy
 msgid "Distance between viewports"
-msgstr "1번 작업 공간으로 전환"
+msgstr "작업공간간 거리"
 
 msgid "Distance of the expo wall"
 msgstr "엑스포 벽의 거리"
@@ -1284,9 +994,8 @@ msgstr "축소 애니메이션 시간"
 msgid "Engage wall expo mode button binding"
 msgstr "엑스포 모드 시작 버튼"
 
-#, fuzzy
 msgid "Engage wall expo mode edge binding"
-msgstr "엑스포 모드를 시작하는 가장자리"
+msgstr "엑스포 모드를 시작하는 모서리"
 
 msgid "Engage wall expo mode key binding"
 msgstr "엑스포 모드 시작 키"
@@ -1306,9 +1015,8 @@ msgstr "엑스포 플러그인"
 msgid "Expo button"
 msgstr "엑스포 버튼"
 
-#, fuzzy
 msgid "Expo edge"
-msgstr "엑스포 가장자리"
+msgstr "엑스포 모서리"
 
 msgid "Expo key"
 msgstr "엑스포 키"
@@ -1379,16 +1087,14 @@ msgstr "작업 공간이 바닥에 반사됨"
 msgid "Strength of the deformation in curve mode"
 msgstr "곡선 모드에서의 변형의 강도"
 
-#, fuzzy
 msgid "Tilt"
-msgstr "타일"
+msgstr "기울어짐"
 
 msgid "Timeframe to execute a double click"
 msgstr "더블 클릭에 대한 시간 간격"
 
-#, fuzzy
 msgid "Viewport distance"
-msgstr "작업 공간 전환기"
+msgstr "작업공간 거리"
 
 msgid "Vortex"
 msgstr "소용돌이"
@@ -1396,9 +1102,8 @@ msgstr "소용돌이"
 msgid "Zoom time"
 msgstr "확대/축소 시간"
 
-#, fuzzy
 msgid "Activate Demanding Attention Window"
-msgstr "주어진 창을 활성화함"
+msgstr "주의 필요 창 활성화"
 
 msgid "Activate Window"
 msgstr "창 활성화"
@@ -1522,9 +1227,8 @@ msgstr "원래의 마우스 포인터를 숨김"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "마우스가 확대되면 원래의 마우스는 숨김"
 
-#, fuzzy
 msgid "Minimum zoom factor"
-msgstr "최소 크기 인자"
+msgstr "최소 확대 인자"
 
 msgid "Mouse Behaviour"
 msgstr "마우스 동작"
@@ -1640,9 +1344,8 @@ msgstr "확대할 때, 선형 필터 사용"
 msgid "Zoom Area Movement"
 msgstr "확대 영역 이동"
 
-#, fuzzy
 msgid "Zoom Box"
-msgstr "축소"
+msgstr "박스 확대"
 
 msgid "Zoom In"
 msgstr "확대"
@@ -1728,6 +1431,13 @@ msgstr "가짜 창 ARGB 기능 토글"
 msgid "Toggle window fake ARGB."
 msgstr "가짜 창 ARGB 기능 토글"
 
+#, fuzzy
+msgid "Add Particle"
+msgstr "입자의 수명"
+
+msgid "Adds a fire particle at position (x,y), where x and y are floats."
+msgstr ""
+
 msgid "Background brightness"
 msgstr "배경 밝기"
 
@@ -1742,6 +1452,33 @@ msgstr "지우기 (버튼)"
 
 msgid "Clear (key)"
 msgstr "지우기 (키)"
+
+msgid "Fire Particle Color"
+msgstr "불꽃의 색"
+
+msgid "Fire Particle Life"
+msgstr "불꽃의 수명"
+
+msgid "Fire Particle Size"
+msgstr "불꽃의 크기"
+
+msgid "Fire Particle Slowdown"
+msgstr "불꽃의 감속"
+
+msgid "Fire particle color."
+msgstr "불꽃의 색."
+
+msgid "Fire particle life."
+msgstr "불꽃의 수명."
+
+msgid "Fire particle size."
+msgstr "불꽃의 크기."
+
+msgid "Fire particle slowdown."
+msgstr "불꽃의 감속."
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr "불 태우기 효과에서 불꽃 색을 무작위로 하기(신비한 불꽃 효과)."
 
 msgid "Initiate (button)"
 msgstr "시작 (버튼)"
@@ -1763,6 +1500,9 @@ msgstr "화면에 불꽃으로 그림을 그림"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "화면에 불꽃이나 다른 입자로 그림을 그림"
+
+msgid "Randomly Colored Fire"
+msgstr "불꽃 색을 무작위로"
 
 msgid "Cube Gears"
 msgstr "큐브 기어"
@@ -2209,13 +1949,11 @@ msgstr "JPEG 이미지 형식 플러그인"
 msgid "Quality of compression when saving JPEG images"
 msgstr "JPEG 이미지를 저장할 때의 압축 품질"
 
-#, fuzzy
 msgid "Background/Window brightness."
-msgstr "배경 밝기."
+msgstr "배경/창의 밝기."
 
-#, fuzzy
 msgid "Background/Window saturation."
-msgstr "배경 채도."
+msgstr "배경/창의 채도."
 
 msgid "Fade In/Out Time"
 msgstr "페이드 인/아웃 시간."
@@ -2226,13 +1964,11 @@ msgstr "페이드 인/아웃 시간."
 msgid "Login"
 msgstr "로그인"
 
-#, fuzzy
 msgid "Login Window Match"
-msgstr "일치하는 창"
+msgstr "로그인 창과 일치"
 
-#, fuzzy
 msgid "Login Window match"
-msgstr "일치하는 창"
+msgstr "로그인 창과 일치"
 
 msgid "Login/Logout"
 msgstr "로그인/로그아웃"
@@ -2243,47 +1979,38 @@ msgstr "로그인/로그아웃 효과"
 msgid "Logout"
 msgstr "로그아웃"
 
-#, fuzzy
 msgid "Logout Window Match"
-msgstr "창 그룹 매치"
+msgstr "로그아웃 창과 일치"
 
-#, fuzzy
 msgid "Logout Window match"
-msgstr "일치하는 창"
+msgstr "로그아웃 창과 일치"
 
-#, fuzzy
 msgid "Window opacity."
-msgstr "창 투명도"
+msgstr "창 투명도."
 
-#, fuzzy
 msgid "Border color"
-msgstr "탭 테두리 색깔"
+msgstr "테두리 색"
 
-#, fuzzy
 msgid "Border width"
 msgstr "가장자리 두께"
 
-#, fuzzy
 msgid "Border widtht."
 msgstr "가장자리 두께"
 
 msgid "Box height."
 msgstr "박스 높이."
 
-#, fuzzy
 msgid "Box width."
-msgstr "광선의 너비."
+msgstr "박스 너비."
 
-#, fuzzy
 msgid "Clip mask"
-msgstr "Mipmap"
+msgstr "클립 마스크"
 
 msgid "Clip mask."
 msgstr "클립 마스크."
 
-#, fuzzy
 msgid "Fisheye"
-msgstr "물고기 크기"
+msgstr "어안렌즈"
 
 msgid "Height"
 msgstr "높이"
@@ -2291,13 +2018,11 @@ msgstr "높이"
 msgid "Image overlay"
 msgstr "이미지 오버레이"
 
-#, fuzzy
 msgid "Keep fully on screen"
-msgstr "화면에 초당 프레임 표시"
+msgstr "화면안에 완전히 잡아둠"
 
-#, fuzzy
 msgid "Keep fully on screen."
-msgstr "화면에 초당 프레임 표시"
+msgstr "화면안에 완전히 잡아둡니다."
 
 msgid "Magnifier"
 msgstr "돋보기"
@@ -2311,21 +2036,17 @@ msgstr "돋보기 이미지"
 msgid "Magnifier image."
 msgstr "돋보기 이미지."
 
-#, fuzzy
 msgid "Mode"
-msgstr "회피"
+msgstr "모드"
 
-#, fuzzy
 msgid "Mode."
-msgstr "회피"
+msgstr "모드."
 
-#, fuzzy
 msgid "Radius"
-msgstr "가장자리 반경"
+msgstr "반경"
 
-#, fuzzy
 msgid "Radius of the magnification area."
-msgstr "둥근 가장자리의 반경"
+msgstr "돋보기 영역의 반경"
 
 msgid "Width"
 msgstr "넓이"
@@ -2354,9 +2075,8 @@ msgstr "끈적이 창은 계산에서 무시"
 msgid "Maximumize"
 msgstr "최대화"
 
-#, fuzzy
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
-msgstr "최대 창 크기 (화면 넓이에 대한 퍼센트 단위)"
+msgstr "창 최대화 (빈 화면 공간에 맞도록 창 크기 조절)"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2478,9 +2198,8 @@ msgstr "기타"
 msgid "Mouse Poll Interval"
 msgstr "마우스 폴 간격"
 
-#, fuzzy
 msgid "Mouse position polling"
-msgstr "마우스 이동"
+msgstr "마우스 위치 잡기"
 
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "마우스 포인터 위치를 X서버로부터 업데이트"
@@ -2506,9 +2225,8 @@ msgstr "제외할 창"
 msgid "Neg Windows"
 msgstr "음화할 창"
 
-#, fuzzy
 msgid "Negate Decorations"
-msgstr "창 장식에 대한 반사 효과"
+msgstr "창 장식 무효"
 
 msgid "Negative"
 msgstr "음화"
@@ -3197,13 +2915,11 @@ msgstr "모든 창"
 msgid "Background color of the window title"
 msgstr "창 제목의 배경 색"
 
-#, fuzzy
 msgid "Close Window"
-msgstr "윈도우 타일"
+msgstr "창 닫기"
 
-#, fuzzy
 msgid "Close window while in scale mode"
-msgstr "스케일 상태에서 창을 닫음"
+msgstr "스케일 상태에서 창 닫기"
 
 msgid "Close windows while in scale mode"
 msgstr "스케일 상태에서 창을 닫음"
@@ -3232,17 +2948,15 @@ msgstr "창 제목 표시를 위한 글자 색"
 msgid "Highlight Color"
 msgstr "강조 색"
 
-#, fuzzy
 msgid "Highlighted window only"
-msgstr "마우스 포인터 아래에 있는 창만"
+msgstr "강조된 창만"
 
 msgid "Highlights the hovered window with the given color"
 msgstr "선택할려는 창을 주어진 색으로 강조함"
 
-#, fuzzy
 msgid ""
 "Make sure windows are fully visible after pulling them to another viewport"
-msgstr "마우스를 창 위에 가져갔을 때, 창이 쉽게 보이도록 합니다."
+msgstr "다른 작업공간으로 창을 끌어온 후 확실히 보이도록 함"
 
 msgid "No display"
 msgstr "표시 안 함"
@@ -3253,13 +2967,11 @@ msgstr "보통"
 msgid "Organic - EXPERIMENTAL"
 msgstr "유기적으로 - 불안정함"
 
-#, fuzzy
 msgid "Pull Window"
-msgstr "창 던지기"
+msgstr "창 끌어오기"
 
-#, fuzzy
 msgid "Pull window to current viewport while in scale mode"
-msgstr "스케일 상태에서 창을 닫음"
+msgstr "스케일 상태에서 현재 작업공간으로 창을 끌어옴"
 
 msgid "Scale Addons"
 msgstr "스케일 부가 기능"
@@ -3285,9 +2997,8 @@ msgstr "창 강조"
 msgid "Window Layout Mode"
 msgstr "창 배치 방식"
 
-#, fuzzy
 msgid "Window Pull"
-msgstr "창의 규칙들"
+msgstr "창 끌어오기"
 
 msgid "Window Title"
 msgstr "창 제목"
@@ -3298,13 +3009,11 @@ msgstr "창 제목 표시"
 msgid "Window title display in scale mode"
 msgstr "스케일 상태에서 창 제목을 보여줌"
 
-#, fuzzy
 msgid "Zoom Window"
-msgstr "스케일 상태에서 창을 확대함"
+msgstr "창 확대"
 
-#, fuzzy
 msgid "Zoom window while in scale mode"
-msgstr "스케일 상태에서 창을 확대함"
+msgstr "스케일 상태에서 창을 확대"
 
 msgid "Filter Case Insensitive"
 msgstr "대/소문자 구별없이 필터링함"
@@ -3395,9 +3104,8 @@ msgstr "창을 축소함"
 msgid "Reduces the scale factor making the window smaller."
 msgstr "창이 작아지도록 크기 인수를 감소시킴"
 
-#, fuzzy
 msgid "Reset the window to original size"
-msgstr "창을 크기 조절 할 수 없게 함"
+msgstr "원래 크기로 창 초기화"
 
 msgid "Resets the currently focused window to original size"
 msgstr "현재 초점을 가진 창을 원래 크기로 초기화"
@@ -3432,11 +3140,12 @@ msgstr "축소 시작"
 msgid "Trigger scale down to screen"
 msgstr "화면을 기준으로 축소 시작"
 
-#, fuzzy
 msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
-msgstr "창의 크기를 조절 없이, 창을 축소함."
+msgstr ""
+"실제로/전통적인 크기 조절 없이 쉽게 모니터링 할 수 있도록 비쥬얼적으로 창을 "
+"나열합니다."
 
 msgid "Background intensity"
 msgstr "배경 강도"
@@ -3562,17 +3271,29 @@ msgstr "바탕 화면으로 쉽게 접근함"
 msgid "Direction of window movement"
 msgstr "창 이동 방향"
 
+msgid "Down"
+msgstr "아래"
+
+msgid "Left"
+msgstr "왼쪽"
+
 msgid "Left/Right"
 msgstr "왼쪽/오른쪽"
 
 msgid "Movement Direction"
 msgstr "이동 방향"
 
+msgid "Right"
+msgstr "오른쪽"
+
 msgid "Show desktop"
 msgstr "바탕 화면 보기"
 
 msgid "To Corners"
 msgstr "가장자리로"
+
+msgid "Up"
+msgstr "위로"
 
 msgid "Up/Down"
 msgstr "위/아래"
@@ -3602,100 +3323,77 @@ msgstr "바탕화면 보기 상태에서 시야에서 사라질 창의 종류"
 msgid "Additive blending"
 msgstr "추가 조합"
 
-#, fuzzy
 msgid "Additive blending of particles"
-msgstr "불꽃의 수"
+msgstr "입자의 추가 조합"
 
-#, fuzzy
 msgid "Darken backgound"
-msgstr "배경을 어둡게"
+msgstr "배경을 어둡게 함"
 
-#, fuzzy
 msgid "Darken background under particles"
-msgstr "배경을 어둡게"
+msgstr "입자 아래의 배경을 어둡게 함"
 
 msgid "Emiters"
 msgstr "방사되는 불꽃 수"
 
-#, fuzzy
 msgid "Have random colors for the particles"
-msgstr "불 태우기 효과에서 불꽃 색을 무작위로 하기(신비한 불꽃 효과)."
+msgstr "입자의 색을 랜덤으로 함"
 
-#, fuzzy
 msgid "Increases the visibility of the mouse pointer"
-msgstr "마우스 포인터의 크기를 변경함"
+msgstr "마우스 포인터의 가시성 증가"
 
-#, fuzzy
 msgid "Number Of Particles"
-msgstr "불꽃의 수"
+msgstr "입자의 수"
 
-#, fuzzy
 msgid "Number of particle emiters."
-msgstr "불꽃의 수"
+msgstr "방사되는 입자의 수"
 
-#, fuzzy
 msgid "Number of particles."
-msgstr "불꽃의 수"
+msgstr "입자의 수."
 
-#, fuzzy
 msgid "Particle Color"
-msgstr "불꽃의 색"
+msgstr "입자의 색"
 
-#, fuzzy
 msgid "Particle Life"
-msgstr "불꽃의 수명"
+msgstr "입자의 수명"
 
-#, fuzzy
 msgid "Particle Options"
-msgstr "기타 옵션"
+msgstr "입자 옵션"
 
-#, fuzzy
 msgid "Particle Size"
-msgstr "불꽃의 크기"
+msgstr "입자 크기"
 
-#, fuzzy
 msgid "Particle Slowdown"
-msgstr "불꽃의 감속"
+msgstr "입자 감속"
 
-#, fuzzy
 msgid "Particle color."
-msgstr "불꽃의 색."
+msgstr "입자 색."
 
-#, fuzzy
 msgid "Particle life."
-msgstr "불꽃의 수명."
+msgstr "입자 수명."
 
-#, fuzzy
 msgid "Particle size."
-msgstr "불꽃의 크기."
+msgstr "입자 크기."
 
-#, fuzzy
 msgid "Particle slowdown."
-msgstr "불꽃의 감속."
+msgstr "입자 감속."
 
-#, fuzzy
 msgid "Randomly Colored Particles"
-msgstr "불꽃 색을 무작위로"
+msgstr "무작위 입자 색"
 
-#, fuzzy
 msgid "Ring radius"
-msgstr "가장자리 반경"
+msgstr "링 반경"
 
-#, fuzzy
 msgid "Rotation speed"
-msgstr "애니메이션 속도"
+msgstr "회전 속도"
 
-#, fuzzy
 msgid "Rotation speed."
-msgstr "애니메이션 속도"
+msgstr "회전 속도."
 
-#, fuzzy
 msgid "Show mouse"
-msgstr "마우스 동기화"
+msgstr "마우스 보기"
 
-#, fuzzy
 msgid "Toggle the mouse pointer trail."
-msgstr "마우스 포인터의 크기를 변경함"
+msgstr "마우스 포인터 추적을 켭니다."
 
 msgid "Alt"
 msgstr "Alt"
@@ -3776,9 +3474,10 @@ msgstr "텍스쳐 활성화"
 msgid "Enables alpha blending of snowflakes."
 msgstr "눈송이에 대한 알파 블렌딩 활성화."
 
-#, fuzzy
 msgid "Enables textured snowflakes. If not selected, color gradients are used."
-msgstr "눈송이 텍스쳐를 사용함. 선택하지 않으면, 색 그래디언트가 사용됨."
+msgstr ""
+"텍스쳐화 되어있는 눈송이를 사용합니다. 선택하지 않으면, 색 그래디언트를 사용"
+"합니다."
 
 msgid "Flakes rotate if checked."
 msgstr "눈송이를 회전함."
@@ -3916,78 +3615,64 @@ msgstr "스플래시"
 msgid "Start Splash."
 msgstr "스플래시 시작."
 
-#, fuzzy
 msgid ""
 "Amount of opacity (in percent) for windows in the switcher which are not "
 "selected"
-msgstr "선택되지 않은 원 안의 창들에 대한 투명도 (퍼센트 단위)"
+msgstr "전환할 때 선택되지 않은 창의 투명도 정도(퍼센트)"
 
 msgid "Behavior"
 msgstr "동작"
 
-#, fuzzy
 msgid "Darken background when showing the stack"
-msgstr "원을 표시할 때 배경을 어둡게 함"
+msgstr "선반이 나타날때 배경을 어둡게 함"
 
-#, fuzzy
 msgid "On Thumbnail"
-msgstr "미리 보기 넓이"
+msgstr "미리보기로 표시"
 
-#, fuzzy
 msgid "Rotate inactive windows"
-msgstr "주어진 창을 활성화함"
+msgstr "비활성 창 회전"
 
-#, fuzzy
 msgid "Should not selected windows be rotated"
-msgstr "창 제목을 굵은 글씨로 표시함."
+msgstr "선택되지 않은 창도 회전하게 함"
 
-#, fuzzy
 msgid "Stack Window Switcher"
-msgstr "창 너비"
+msgstr "선반 창 전환"
 
-#, fuzzy
 msgid "Tilt angle of the background."
-msgstr "그래디엔트 배경을 위한 첫 번째 색"
+msgstr "배경의 기울어진 각도."
 
-#, fuzzy
 msgid "Windows"
-msgstr "3D 창"
+msgstr "적용되는 창들"
 
-#, fuzzy
 msgid "Windows that should be shown in the switcher"
-msgstr "이동 전환기를 적용할 창들"
+msgstr "전환할 때 반드시 보여야할 창들"
 
 msgid "Alignment for rows that are not fully filled"
 msgstr "채워지지 않은 열의 정렬"
 
-#, fuzzy
 msgid "Amount of brightness in percent"
-msgstr "페인트 중의 배경 밝기"
+msgstr "배경 밝기 정도(퍼센트)"
 
 msgid "Amount of opacity in percent"
 msgstr "투명의 정도(퍼센트)"
 
-#, fuzzy
 msgid "Amount of saturation in percent"
-msgstr "작업 공간 전환기에 표시 안 함"
+msgstr "채도의 정도(퍼센트)"
 
-#, fuzzy
 msgid "Auto Change Viewport"
-msgstr "작업 공간으로 던지기"
+msgstr "작업공간 자동 변경"
 
 msgid "Bring Selected To Front"
 msgstr "선택된 것을 앞으로 가져옴"
 
-#, fuzzy
 msgid "Centered"
-msgstr "중앙으로 던지기"
+msgstr "가운데"
 
 msgid "Change to the viewport of the selected window while switching"
 msgstr "전환하는 동안 선택된 창이 있는 작업공간으로 바꾸기"
 
-#, fuzzy
 msgid "Color of highlight rectangle"
-msgstr "선택 영역을 색으로 채우기"
+msgstr "강조된 직사각형의 색"
 
 msgid "Color of highlight rectangle border"
 msgstr "강조된 직사각형 테두리의 색"
@@ -3995,36 +3680,29 @@ msgstr "강조된 직사각형 테두리의 색"
 msgid "Color of inlay in highlight rectangle border"
 msgstr "강조된 직사각형 테두리의 무늬 색"
 
-#, fuzzy
 msgid "Generate mipmaps when possible for higher quality scaling"
-msgstr "고품질 스케일링을 위한 Mipmap을 생성함."
+msgstr "고품질 스케일링을 위해 가능할때 Mipmap 생성"
 
-#, fuzzy
 msgid "Highlight Border Color"
-msgstr "강조 색"
+msgstr "강조 테두리 색"
 
-#, fuzzy
 msgid "Highlight Border Inlay Color"
-msgstr "강조 색"
+msgstr "강조 테두리 무늬 색"
 
-#, fuzzy
 msgid "Highlight Mode"
-msgstr "강조 색"
+msgstr "강조 모드"
 
-#, fuzzy
 msgid "Icon"
-msgstr "안쪽"
+msgstr "아이콘"
 
-#, fuzzy
 msgid "Minimized Window Highlight Rectangle"
-msgstr "창 강조"
+msgstr "최소화된 창 직사각형 강조"
 
 msgid "Mipmap"
 msgstr "Mipmap"
 
-#, fuzzy
 msgid "Mode for highlighting the currently selected window"
-msgstr "선택할려는 창을 강조하기 위해 사용할 색"
+msgstr "현재 선택된 창을 강조하기위한 모드"
 
 msgid "Next Panel"
 msgstr "다음 패널"
@@ -4032,58 +3710,49 @@ msgstr "다음 패널"
 msgid "Next window"
 msgstr "다음 창"
 
-#, fuzzy
 msgid "Next window (All windows)"
-msgstr "다음 창 (모든 작업 공간)"
+msgstr "다음 창 (모든 창)"
 
 msgid "Next window (Group)"
 msgstr "다음 창 (그룹)"
 
-#, fuzzy
 msgid "Next window (No popup)"
-msgstr "다음 창 (그룹)"
+msgstr "다음 창 (팝업 없음)"
 
 msgid "Original Window Position"
 msgstr "원래 창 위치"
 
-#, fuzzy
 msgid "Popup Window Delay"
-msgstr "창 그룹 매치"
+msgstr "팝업 창 지연"
 
-#, fuzzy
 msgid "Popup switcher if not visible and select next window"
-msgstr "전환기가 보이지 않는다면 전환기를 보여주고, 다음 창으로 전환함"
+msgstr "전환기가 보이지 않는다면 전환기를 띄우고, 다음 창으로 전환"
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select next window of the current "
 "application."
 msgstr ""
-"전환기가 보이지 않는다면 전환기를 보여주고, 이 프로그램의 다음 창으로 전환함"
+"전환기가 보이지 않는다면 전환기를 띄우고, 이 프로그램의 다음 창으로 전환합니"
+"다."
 
-#, fuzzy
 msgid "Popup switcher if not visible and select next window out of all windows"
 msgstr ""
-"전환기가 보이지 않는다면 전환기를 보여주고, 모든 창들 중에서 다음 창으로 전환"
-"함"
+"전환기가 보이지 않는다면 전환기를 띄우고, 모든 창들 중에서 다음 창으로 전환함"
 
-#, fuzzy
 msgid "Popup switcher if not visible and select previous window"
-msgstr "전환기가 보이지 않는다면 전환기를 보여주고, 이전 창으로 전환함"
+msgstr "전환기가 보이지 않는다면 전환기를 띄우고, 이전 창으로 전환함"
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window of the current "
 "application."
 msgstr ""
-"전환기가 보이지 않는다면 전환기를 보여주고, 이 프로그램의 이전 창으로 전환함"
+"전환기가 보이지 않는다면 전환기를 띄우고, 이 프로그램의 이전 창으로 전환합니"
+"다."
 
-#, fuzzy
 msgid ""
 "Popup switcher if not visible and select previous window out of all windows"
 msgstr ""
-"전환기가 보이지 않는다면 전환기를 보여주고, 모든 창들 중에서 이전 창으로 전환"
-"함"
+"전환기가 보이지 않는다면 전환기를 띄우고, 모든 창들 중에서 이전 창으로 전환함"
 
 msgid "Prev Panel"
 msgstr "이전 패널"
@@ -4091,45 +3760,38 @@ msgstr "이전 패널"
 msgid "Prev window"
 msgstr "이전 창"
 
-#, fuzzy
 msgid "Prev window (All windows)"
-msgstr "이전 창 (모든 작업 공간)"
+msgstr "이전 창 (모든 창)"
 
 msgid "Prev window (Group)"
 msgstr "이전 창 (그룹)"
 
-#, fuzzy
 msgid "Prev window (No popup)"
-msgstr "이전 창 (그룹)"
+msgstr "이전 창 (팝업 없음)"
 
 msgid "Row Alignment"
 msgstr "열 정렬"
 
-#, fuzzy
 msgid "Select next panel type window."
-msgstr "창 제목을 어디에 둘지 선택함"
+msgstr "다음 패널 타입 창을 선택합니다."
 
 msgid "Select next window without showing the popup window."
 msgstr "팝업 창을 보여주지 않고 다음 창을 선택합니다."
 
-#, fuzzy
 msgid "Select previous panel type window."
-msgstr "창 제목을 어디에 둘지 선택함"
+msgstr "이전 패널 타입 창을 선택합니다."
 
 msgid "Select previous window without showing the popup window."
 msgstr "팝업창을 보여주지 않고 이전 창을 선택합니다."
 
-#, fuzzy
 msgid "Selected Window Highlight"
-msgstr "창 강조"
+msgstr "선택된 창 강조"
 
-#, fuzzy
 msgid "Show Rectangle"
-msgstr "사각형"
+msgstr "사각형 보여주기"
 
-#, fuzzy
 msgid "Show icon next to thumbnail"
-msgstr "미리 보기에서 창 제목을 표시함."
+msgstr "미리보기 옆에 아이콘 표시"
 
 msgid "Show minimized windows"
 msgstr "최소화된 창도 보여줌"
@@ -4137,21 +3799,17 @@ msgstr "최소화된 창도 보여줌"
 msgid "Static Application Switcher"
 msgstr "고정된 응용프로그램 전환"
 
-#, fuzzy
 msgid "Switcher speed"
-msgstr "전환 방식"
+msgstr "전환 속도"
 
-#, fuzzy
 msgid "Switcher timestep"
-msgstr "이도 시간 간격"
+msgstr "전환 시간간격"
 
-#, fuzzy
 msgid "Switcher windows"
-msgstr "필터링된 창"
+msgstr "전환을 적용할 창들"
 
-#, fuzzy
 msgid "Taskbar Entry"
-msgstr "창 목록"
+msgstr "태스크바 항목"
 
 msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "팝업 창이 나타나기 전까지 지연되어야 할 시간(초)"
@@ -4159,9 +3817,8 @@ msgstr "팝업 창이 나타나기 전까지 지연되어야 할 시간(초)"
 msgid "Where to draw highlight rectangle for minimized windows"
 msgstr "최소화된 창을 위해 강조된 직사각형을 그릴 장소"
 
-#, fuzzy
 msgid "Windows that should be shown in switcher"
-msgstr "이동 전환기를 적용할 창들"
+msgstr "전환할 때 보여야할 창들"
 
 msgid "Render text to texture"
 msgstr "글자를 텍스쳐로 렌더링함"
@@ -4835,9 +4492,8 @@ msgstr "벽 슬라이딩 지속 시간"
 msgid "Width of the border between the previews"
 msgstr "미리보기 사이 테두리의 너비"
 
-#, fuzzy
 msgid "Background fill type."
-msgstr "배경 파일"
+msgstr "배경 채우기 형태."
 
 msgid "Backgrounds"
 msgstr "배경"
@@ -4845,62 +4501,50 @@ msgstr "배경"
 msgid "Center Tiled"
 msgstr "중앙에 타일 정렬"
 
-#, fuzzy
 msgid "Color 1"
-msgstr "색"
+msgstr "색 1"
 
-#, fuzzy
 msgid "Color 2"
-msgstr "색"
+msgstr "색 2"
 
 msgid "Draw the desktop wallpaper"
 msgstr "데스크탑 배경 화면 그리기"
 
-#, fuzzy
 msgid "Fill or first gradient color."
-msgstr "불꽃의 색."
+msgstr "채우기 혹은 첫번째 그라데이션 색."
 
-#, fuzzy
 msgid "Fill type"
-msgstr "채워진 외곽선"
+msgstr "채우기 형태"
 
-#, fuzzy
 msgid "Horizontal gradient"
-msgstr "수평으로 접기"
+msgstr "수평 그라데이션"
 
 msgid "Image"
 msgstr "이미지"
 
-#, fuzzy
 msgid "Image file."
-msgstr "천장 이미지 파일 목록"
+msgstr "Image file."
 
-#, fuzzy
 msgid "Image position."
-msgstr "X 위치"
+msgstr "이미지 위치."
 
-#, fuzzy
 msgid "Position"
-msgstr "X 위치"
+msgstr "위치"
 
-#, fuzzy
 msgid "Scale and Crop"
-msgstr "스케일 부가 기능"
+msgstr "비율유지와 자르기"
 
-#, fuzzy
 msgid "Scaled"
-msgstr "스케일 부가 기능"
+msgstr "비율 유지"
 
-#, fuzzy
 msgid "Second gradient color."
-msgstr "그래디언트 색 1"
+msgstr "두번째 그라데이션 색."
 
 msgid "Solid fill"
 msgstr "단색으로 채움"
 
-#, fuzzy
 msgid "Tiled"
-msgstr "타일"
+msgstr "바둑판"
 
 msgid "Vertical gradient"
 msgstr "수직으로 그라데이션"
@@ -4926,9 +4570,8 @@ msgstr "클릭하면 위젯 모드를 끝냄"
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "위젯이 아닌 창이 클릭되면 위젯 모드를 끝냄"
 
-#, fuzzy
 msgid "Focus Widget Layer"
-msgstr "위젯 레이어"
+msgstr "위젯 레이어 초점"
 
 msgid "Focus a window in the widget layer when activating the layer"
 msgstr "위젯레이어를 활성화 했을때 초점을 맞출 창"
@@ -4983,6 +4626,14 @@ msgstr "높이 값"
 
 msgid "Matches"
 msgstr "조건"
+
+#, fuzzy
+msgid "Maximized"
+msgstr "최대화"
+
+#, fuzzy
+msgid "Maximized windows"
+msgstr "최대화 되지 않는 창"
 
 msgid "No ARGB visuals"
 msgstr "ARGB 비주얼 사용하지 않음"
@@ -5134,6 +4785,237 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 msgid "Workarounds"
 msgstr "문제 회피"
+
+#~ msgid "Airplane"
+#~ msgstr "종이 비행기"
+
+#~ msgid "Airplane Flying Path Length"
+#~ msgstr "종이 비행기의 비행 거리"
+
+#~ msgid "Animation Time Step For Intense Effects"
+#~ msgstr "강한 효과를 위한 애니메이션 시간 간격"
+
+#~ msgid "Automatic"
+#~ msgstr "자동"
+
+#~ msgid "Beam"
+#~ msgstr "광선"
+
+#~ msgid "Beam Color"
+#~ msgstr "광선 색"
+
+#~ msgid "Beam Life"
+#~ msgstr "광선의 수명"
+
+#~ msgid "Beam Slowdown"
+#~ msgstr "광선의 감속"
+
+#~ msgid "Beam Spacing"
+#~ msgstr "광선 간격"
+
+#~ msgid "Beam Up"
+#~ msgstr "광선"
+
+#~ msgid "Beam Width"
+#~ msgstr "광선 너비"
+
+#~ msgid "Beam color."
+#~ msgstr "광선 색."
+
+#~ msgid "Beam life."
+#~ msgstr "광선의 수명."
+
+#~ msgid "Beam slowdown."
+#~ msgstr "광선의 감속."
+
+#~ msgid "Beam width."
+#~ msgstr "광선의 너비."
+
+#~ msgid "Burn"
+#~ msgstr "불 태우기"
+
+#~ msgid "Domino"
+#~ msgstr "도미노"
+
+#~ msgid "Domino Piece Falling Direction"
+#~ msgstr "도미노가 넘어지는 방향"
+
+#~ msgid "Explode"
+#~ msgstr "폭발"
+
+#~ msgid "Falling direction for Domino pieces."
+#~ msgstr "도미노가 넘어지는 방향"
+
+#~ msgid "Fire"
+#~ msgstr "불꽃"
+
+#~ msgid "Fire Smoke"
+#~ msgstr "연기"
+
+#~ msgid "Fire constant speed"
+#~ msgstr "일정한 속도로 태우기"
+
+#~ msgid "Fire direction"
+#~ msgstr "불타는 방향"
+
+#~ msgid "Fire direction."
+#~ msgstr "불타는 방향."
+
+#~ msgid "Fire smoke."
+#~ msgstr "연기."
+
+#~ msgid "Fly to TaskBar on Minimize"
+#~ msgstr "최소화시 창 목록까지 날아감"
+
+#~ msgid "Fold"
+#~ msgstr "접기"
+
+#~ msgid "Fold Direction"
+#~ msgstr "접는 방향"
+
+#~ msgid "Fold opening direction for pieces in Razr effect."
+#~ msgstr "면도날 효과에서 조각들이 접히는 방향."
+
+#~ msgid "Hexagonal"
+#~ msgstr "6각형"
+
+#~ msgid "In"
+#~ msgstr "안쪽"
+
+#~ msgid "In-out"
+#~ msgstr "안쪽에서 바깥쪽"
+
+#~ msgid "Leaf Spread"
+#~ msgstr "잎이 퍼지듯이"
+
+#~ msgid "Left-right"
+#~ msgstr "왼쪽에서 오른쪽"
+
+#~ msgid "Length of airplane's flying path."
+#~ msgstr "종이 비행기의 비행 거리"
+
+#~ msgid "Make fire effect duration be dependent on window height."
+#~ msgstr "불 태우기 효과 지속시간이 창의 높이에 따라 달라지게 함."
+
+#~ msgid "Movement direction(s) for window pieces."
+#~ msgstr "창 조각의 이동 방향."
+
+#~ msgid "Number Of Fire Particles"
+#~ msgstr "꽃의 숫자"
+
+#~ msgid "Number of fire particles."
+#~ msgstr "불꽃의 숫자"
+
+#~ msgid "Out"
+#~ msgstr "바깥쪽"
+
+#~ msgid "Razr"
+#~ msgstr "면도날"
+
+#~ msgid "Razr Fold Opening Direction"
+#~ msgstr "면도날 효과에서 접는 방향"
+
+#~ msgid "Rectangular"
+#~ msgstr "사각형"
+
+#~ msgid "Rotation Angle"
+#~ msgstr "회전 각도"
+
+#~ msgid "Rotation angle of animated window pieces (in degrees)."
+#~ msgstr "애니메이션 창 조각들의 회전 각도 (도 단위)."
+
+#~ msgid "Skewer"
+#~ msgstr "왜곡"
+
+#~ msgid "Skewer Direction"
+#~ msgstr "왜곡하는 방향"
+
+#~ msgid "Spacing between beams."
+#~ msgstr "광선 사이의 간격"
+
+#~ msgid "Tessellation Type"
+#~ msgstr "모자이크 형태"
+
+#~ msgid "Tessellation type for exploding window pieces."
+#~ msgstr "폭발 효과에서 창 조각들의 모자이크 형태"
+
+#~ msgid "Tessellation type for window pieces."
+#~ msgstr "창 조각들의 모자이크 형태"
+
+#~ msgid ""
+#~ "The amount of time in milliseconds between each render of the intense "
+#~ "animation (Ex. Burn, Beam). The higher the number, the jerkier the "
+#~ "movements become."
+#~ msgstr ""
+#~ "강한 애니메이션(예, 불 태우기, 광선) 렌더링 간격 (밀리세컨드 단위). 숫자"
+#~ "가 클수록 동작이 부자연스럽습니다."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "애니메이션이 적용될 때 창은 격자 형태로 분할됩니다. 창의 높이에 따른 격자 "
+#~ "조각의 숫자를 지정하세요."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "애니메이션이 적용될 때 창은 격자 형태로 분할됩니다. 창의 높이에 따른 격자 "
+#~ "조각의 숫자를 지정하세요."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "폭발 효과가 적용되면 창은 격자에 따라 조각들로 분할됩니다. 창의 높이에 따"
+#~ "른 격자 조각의 숫자를 지정하세요."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "폭발 효과가 적용되면 창은 격자에 따라 조각들로 분할됩니다. 창의 높이에 따"
+#~ "른 격자 조각의 숫자를 지정하세요."
+
+#~ msgid "Thickness"
+#~ msgstr "두께"
+
+#~ msgid "Thickness of Animated Polygons"
+#~ msgstr "애니메이션 폴리곤의 두께"
+
+#~ msgid "Thickness of Exploding Polygons"
+#~ msgstr "폭발하는 폴리곤의 두께"
+
+#~ msgid "Thickness of animated window pieces (in pixels)."
+#~ msgstr "애니메이션 창 조각의 두께 (픽셀 단위)"
+
+#~ msgid "Thickness of exploding window pieces (in pixels)."
+#~ msgstr "폭발하는 창 조각의 두께 (픽셀 단위)"
+
+#~ msgid "Up-down"
+#~ msgstr "위에서 아래로"
+
+#~ msgid ""
+#~ "Whether the window should fly to taskbar when minimized with Airplane "
+#~ "effect."
+#~ msgstr "종이 비행기 효과에서 최소화시 창이 창 목록으로 날아가는지 여부."
+
+#~ msgid "Window Grid Height"
+#~ msgstr "창 격자 높이"
+
+#~ msgid "Window Grid Width"
+#~ msgstr "창 격자 너비"
+
+#~ msgid "Window folding direction."
+#~ msgstr "창을 접는 방향."
+
+#~ msgid ""
+#~ "Window thickness in pixels. Setting this to larger than 0 will disable "
+#~ "shadow, blur, and reflection during the animation."
+#~ msgstr ""
+#~ "창 두께 (픽셀 단위). 이 값을 0보다 크게 하면 애니메이션시에 그림자와 블"
+#~ "러, 반사 효과가 적용되지 않습니다."
 
 #~ msgid ""
 #~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "

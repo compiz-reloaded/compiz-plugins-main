@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins-new\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-07 11:29+0530\n"
+"POT-Creation-Date: 2008-08-30 11:43+0530\n"
 "PO-Revision-Date: 2007-12-31 01:40+0100\n"
 "Last-Translator: Gürkan Gür <seqizz@gmail.com>\n"
 "Language-Team: <tr@li.org>\n"
@@ -157,12 +157,6 @@ msgstr "Pencere Tipleri"
 msgid "Window types that should be Opacified."
 msgstr "Matlaştırılması gereken pencere tipleri."
 
-msgid "Airplane"
-msgstr "Kağıt Uçak"
-
-msgid "Airplane Flying Path Length"
-msgstr "Kağıt Uçağın Gideceği Yol Uzunluğu"
-
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -178,10 +172,6 @@ msgstr "Canlandırma Seçimi"
 
 msgid "Animation Time Step"
 msgstr "Canlandırma Zaman Aralığı"
-
-# FIXED - Intense Effects == aufregende Effekte (analog zu OOo)
-msgid "Animation Time Step For Intense Effects"
-msgstr ""
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "Kapatma efekti için milisaniye olarak canlandırma süresi."
@@ -201,53 +191,11 @@ msgstr "Gölgeleme efekti için milisaniye olarak canlandırma süresi."
 msgid "Animations"
 msgstr "Canlandırmalar"
 
-msgid "Automatic"
-msgstr "Otomatik"
-
 msgid "Away Angle"
 msgstr "Uzak Açı"
 
 msgid "Away Position"
 msgstr "Uzak Konum"
-
-msgid "Beam"
-msgstr "Işıma"
-
-# Vielleicht ein bisschen gewagt aber 'Teleportation' wäre die korrekte Übersetzung - zu lang?
-msgid "Beam Color"
-msgstr "Işıma Rengi"
-
-msgid "Beam Life"
-msgstr "Işıma Süresi"
-
-msgid "Beam Slowdown"
-msgstr "Işıma Yavaşlaması"
-
-msgid "Beam Spacing"
-msgstr "Işıma Aralığı"
-
-# Star-Trek-Referenz im Deutschen sowieso nicht machbar
-msgid "Beam Up"
-msgstr "Işıma"
-
-msgid "Beam Width"
-msgstr "Işıma Genişliği"
-
-msgid "Beam color."
-msgstr "Işıma rengi."
-
-msgid "Beam life."
-msgstr "Işıma süresi."
-
-msgid "Beam slowdown."
-msgstr "Işıma yavaşlaması."
-
-msgid "Beam width."
-msgstr "Işıma genişliği."
-
-# Da der Effekt im Original einen eigenen Namen, trifft's 'Verbrennen' besser als 'Feuer'
-msgid "Burn"
-msgstr "Alev"
 
 msgid "Close Animation"
 msgstr "Kapatma Canlandırması"
@@ -280,15 +228,6 @@ msgstr "Yana Kaçma"
 msgid "Dodge Gap Ratio"
 msgstr ""
 
-msgid "Domino"
-msgstr "Domino"
-
-msgid "Domino Piece Falling Direction"
-msgstr "Domino Taşlarının Düşme Yönü"
-
-msgid "Down"
-msgstr "Aşağı"
-
 msgid "Dream"
 msgstr "Hayal"
 
@@ -298,62 +237,11 @@ msgstr "Süre"
 msgid "Effect Settings"
 msgstr "Efekt Ayarları"
 
-msgid "Explode"
-msgstr "Patlama"
-
 msgid "Fade"
 msgstr "Belirme/Kaybolma"
 
-msgid "Falling direction for Domino pieces."
-msgstr "Domino parçacıklarının düşme yönü."
-
-msgid "Fire"
-msgstr "Ateş"
-
-msgid "Fire Particle Color"
-msgstr "Ateş Rengi"
-
-msgid "Fire Particle Life"
-msgstr "Ateş Parçacığı Ömrü"
-
-msgid "Fire Particle Size"
-msgstr "Ateş Parçacığı Boyutu"
-
-msgid "Fire Particle Slowdown"
-msgstr "Alev Parçacığı Yavaşlaması"
-
-msgid "Fire Smoke"
-msgstr "Ateş Dumanı"
-
-msgid "Fire constant speed"
-msgstr "Ateş hızı"
-
-msgid "Fire direction"
-msgstr "Ateş yönü"
-
-msgid "Fire direction."
-msgstr "Ateş yönü."
-
-msgid "Fire particle color."
-msgstr "Ateş rengi."
-
-msgid "Fire particle life."
-msgstr "Ateş parçacığı ömrü."
-
-msgid "Fire particle size."
-msgstr "Ateş parçacığı boyutu."
-
-msgid "Fire particle slowdown."
-msgstr "Alev parçacığı yavaşlaması."
-
-msgid "Fire smoke."
-msgstr "Ateş dumanı."
-
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Toparlamada Pencerenin İç Yüzünü Onar."
-
-msgid "Fly to TaskBar on Minimize"
-msgstr "Küçültme sırasında Görev Çubuğuna Uç"
 
 msgid "Focus Animation"
 msgstr "Odaklama Canlandırması"
@@ -361,19 +249,9 @@ msgstr "Odaklama Canlandırması"
 msgid "Focus Effect"
 msgstr "Odaklama Efekti"
 
-msgid "Fold"
-msgstr "Katlama"
-
-msgid "Fold Direction"
-msgstr "Katlama Yönü"
-
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
-msgstr ""
-
-# siehe 'Razr'
-msgid "Fold opening direction for pieces in Razr effect."
 msgstr ""
 
 msgid "Glide 1"
@@ -381,12 +259,6 @@ msgstr "Havadan Süzülme 1"
 
 msgid "Glide 2"
 msgstr "Havadan Süzülme 2"
-
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr ""
-
-msgid "Hexagonal"
-msgstr "Altıgen"
 
 msgid "Horizontal Folds"
 msgstr "Yatay Katlama"
@@ -400,25 +272,6 @@ msgstr ""
 
 msgid "How spring-like the Zoom animation should be."
 msgstr ""
-
-# FIXME: Herein und Heraus sind noch nicht optimal
-msgid "In"
-msgstr "İç"
-
-msgid "In-out"
-msgstr "İç-dış"
-
-msgid "Leaf Spread"
-msgstr "Yaprak Yayılması"
-
-msgid "Left"
-msgstr "Sol"
-
-msgid "Left-right"
-msgstr "Sol-sağ"
-
-msgid "Length of airplane's flying path."
-msgstr "Uçağın uçuş yolunun uzunluğu."
 
 msgid "Magic Lamp"
 msgstr "Sihirli Lamba"
@@ -441,9 +294,6 @@ msgstr "Sihirli Lamba Açma Başlama Genişliği"
 msgid "Magic Lamp Open/Close Moving End"
 msgstr "Sihirli Lamba Açma/Kapatma Taşıma Sonu"
 
-msgid "Make fire effect duration be dependent on window height."
-msgstr ""
-
 msgid "Minimize Animation"
 msgstr "Küçültme Canlandırması"
 
@@ -453,20 +303,11 @@ msgstr "Küçültme efekti"
 msgid "Minimize/Unminimize Only"
 msgstr "Sadece Küçültme / Geri Yükleme"
 
-msgid "Movement direction(s) for window pieces."
-msgstr "Pencere parçaları için taşıma yönleri."
-
 msgid "None"
 msgstr "Hiçbiri"
 
-msgid "Number Of Fire Particles"
-msgstr "Ateş Parçacıklarının Sayısı"
-
 msgid "Number of Horizontal Folds"
 msgstr "Yatay Katlamaların Sayısı"
-
-msgid "Number of fire particles."
-msgstr "Alevin parçacık sayısı."
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -496,15 +337,12 @@ msgstr "Sadece Aç / Kapat"
 msgid "Options"
 msgstr "Seçenekler"
 
-msgid "Out"
-msgstr "Dış"
-
 msgid "Pool"
 msgstr "Havuz"
 
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to use all effects."
 msgstr ""
 
 msgid "Random"
@@ -516,37 +354,14 @@ msgstr "Tüm Olaylar için Rastgele Canlandırmalar"
 msgid "Random Effects"
 msgstr "Rastgele Efektler"
 
-msgid "Randomly Colored Fire"
-msgstr "Rastgele Renklendirilmiş Alev"
-
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr ""
-
-# bei 'Razr' belassen oder 'Rasierklinge'?
-msgid "Razr"
-msgstr ""
-
-msgid "Razr Fold Opening Direction"
-msgstr ""
-
-msgid "Rectangular"
-msgstr "Dikdörtgen"
-
-msgid "Right"
-msgstr "Sağ"
 
 msgid "Roll Up"
 msgstr "Toparlama"
 
 msgid "Rollup Fixed Interior"
 msgstr "Toparlamada Pencereyi Onar"
-
-msgid "Rotation Angle"
-msgstr "Döndürme Açısı"
-
-# FIXME: besser Bruchstücke statt Teile?
-msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr ""
 
 msgid "Shade Animation"
 msgstr "Gölgeleme Canlandırması"
@@ -563,15 +378,6 @@ msgstr "Yardımcının Döndürme Sayısı"
 msgid "Sidekick Springiness"
 msgstr "Yardımcı Esnekliği"
 
-msgid "Skewer"
-msgstr "Şişeleme"
-
-msgid "Skewer Direction"
-msgstr "Şişeleme Yönü"
-
-msgid "Spacing between beams."
-msgstr "Işınlar arasındaki mesafe."
-
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
@@ -581,34 +387,9 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
 
-msgid "Tessellation Type"
-msgstr "Mozaik Tipi"
-
-msgid "Tessellation type for exploding window pieces."
-msgstr "Patlayan pencere parçacıkları için mozaik tipi."
-
-msgid "Tessellation type for window pieces."
-msgstr "Pencere parçacıkları için mozaik tipi."
-
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
-msgstr ""
-
-msgid ""
-"The amount of time in milliseconds between each render of the intense "
-"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
-"become."
-msgstr ""
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
 msgstr ""
 
 msgid "The animation effect shown when closing a window."
@@ -625,16 +406,6 @@ msgstr "Bir pencere küçültülürken uygulanacak efekt."
 
 msgid "The animation effect shown when shading a window."
 msgstr "Bir pencere gölgelenirken uygulanacak efekt."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr ""
@@ -654,27 +425,6 @@ msgstr ""
 
 msgid "The windows that will be animated."
 msgstr "Canlandırılacak pencereler."
-
-msgid "Thickness"
-msgstr "Kalınlık"
-
-msgid "Thickness of Animated Polygons"
-msgstr ""
-
-msgid "Thickness of Exploding Polygons"
-msgstr ""
-
-msgid "Thickness of animated window pieces (in pixels)."
-msgstr ""
-
-msgid "Thickness of exploding window pieces (in pixels)."
-msgstr ""
-
-msgid "Up"
-msgstr "Yukarı"
-
-msgid "Up-down"
-msgstr "Yukarı-aşağı"
 
 msgid "Use various animations as window effects"
 msgstr "Pencere efekti olarak değişik canlandırmalar kullan"
@@ -719,10 +469,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Whether the window should fly to taskbar when minimized with Airplane effect."
-msgstr ""
-
-msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
@@ -744,24 +490,10 @@ msgid ""
 "Folds effect."
 msgstr ""
 
-msgid "Window Grid Height"
-msgstr "Pencere Izgara Yüksekliği"
-
-msgid "Window Grid Width"
-msgstr "Pencere Izgara Genişliği"
-
-msgid "Window folding direction."
-msgstr ""
-
 msgid "Window that should animate with this effect when focused."
 msgstr ""
 
 msgid "Window that should animate with this effect when shaded."
-msgstr ""
-
-msgid ""
-"Window thickness in pixels. Setting this to larger than 0 will disable "
-"shadow, blur, and reflection during the animation."
 msgstr ""
 
 msgid "Zoom"
@@ -1718,6 +1450,13 @@ msgstr ""
 msgid "Toggle window fake ARGB."
 msgstr ""
 
+#, fuzzy
+msgid "Add Particle"
+msgstr "Ateş Parçacığı Ömrü"
+
+msgid "Adds a fire particle at position (x,y), where x and y are floats."
+msgstr ""
+
 msgid "Background brightness"
 msgstr "Arkaplan parlaklığı"
 
@@ -1734,6 +1473,33 @@ msgstr "Temizle (düğme)"
 # FIXME
 msgid "Clear (key)"
 msgstr "Temizle (tuş)"
+
+msgid "Fire Particle Color"
+msgstr "Ateş Rengi"
+
+msgid "Fire Particle Life"
+msgstr "Ateş Parçacığı Ömrü"
+
+msgid "Fire Particle Size"
+msgstr "Ateş Parçacığı Boyutu"
+
+msgid "Fire Particle Slowdown"
+msgstr "Alev Parçacığı Yavaşlaması"
+
+msgid "Fire particle color."
+msgstr "Ateş rengi."
+
+msgid "Fire particle life."
+msgstr "Ateş parçacığı ömrü."
+
+msgid "Fire particle size."
+msgstr "Ateş parçacığı boyutu."
+
+msgid "Fire particle slowdown."
+msgstr "Alev parçacığı yavaşlaması."
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr ""
 
 msgid "Initiate (button)"
 msgstr "Başlat (düğme)"
@@ -1755,6 +1521,9 @@ msgstr "Ekrana alev çiz"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "Ekrana alev ya da başka parçacıklar çiz"
+
+msgid "Randomly Colored Fire"
+msgstr "Rastgele Renklendirilmiş Alev"
 
 msgid "Cube Gears"
 msgstr "Küp Dişlileri"
@@ -3528,17 +3297,29 @@ msgstr "Masaüstünüze kolayca ulaşın"
 msgid "Direction of window movement"
 msgstr "Pencere taşıma yönü"
 
+msgid "Down"
+msgstr "Aşağı"
+
+msgid "Left"
+msgstr "Sol"
+
 msgid "Left/Right"
 msgstr "Sol/Sağ"
 
 msgid "Movement Direction"
 msgstr "Hareket Yönü"
 
+msgid "Right"
+msgstr "Sağ"
+
 msgid "Show desktop"
 msgstr "Masaüstünü göster"
 
 msgid "To Corners"
 msgstr "Köşelere"
+
+msgid "Up"
+msgstr "Yukarı"
 
 msgid "Up/Down"
 msgstr "Yukarı/Aşağı"
@@ -4918,6 +4699,14 @@ msgstr "Yükseklik değerleri"
 msgid "Matches"
 msgstr ""
 
+#, fuzzy
+msgid "Maximized"
+msgstr "Küçültülmüşleri Göster"
+
+#, fuzzy
+msgid "Maximized windows"
+msgstr "Büyütülemez pencereler"
+
 msgid "No ARGB visuals"
 msgstr "ARGB visuals Kullanma"
 
@@ -5071,6 +4860,160 @@ msgstr "Tüm masaüstlerindeki pencereler yapışkan olmalı"
 
 msgid "Workarounds"
 msgstr "Hızlı Çözümler"
+
+#~ msgid "Airplane"
+#~ msgstr "Kağıt Uçak"
+
+#~ msgid "Airplane Flying Path Length"
+#~ msgstr "Kağıt Uçağın Gideceği Yol Uzunluğu"
+
+#~ msgid "Automatic"
+#~ msgstr "Otomatik"
+
+#~ msgid "Beam"
+#~ msgstr "Işıma"
+
+# Vielleicht ein bisschen gewagt aber 'Teleportation' wäre die korrekte Übersetzung - zu lang?
+#~ msgid "Beam Color"
+#~ msgstr "Işıma Rengi"
+
+#~ msgid "Beam Life"
+#~ msgstr "Işıma Süresi"
+
+#~ msgid "Beam Slowdown"
+#~ msgstr "Işıma Yavaşlaması"
+
+#~ msgid "Beam Spacing"
+#~ msgstr "Işıma Aralığı"
+
+# Star-Trek-Referenz im Deutschen sowieso nicht machbar
+#~ msgid "Beam Up"
+#~ msgstr "Işıma"
+
+#~ msgid "Beam Width"
+#~ msgstr "Işıma Genişliği"
+
+#~ msgid "Beam color."
+#~ msgstr "Işıma rengi."
+
+#~ msgid "Beam life."
+#~ msgstr "Işıma süresi."
+
+#~ msgid "Beam slowdown."
+#~ msgstr "Işıma yavaşlaması."
+
+#~ msgid "Beam width."
+#~ msgstr "Işıma genişliği."
+
+# Da der Effekt im Original einen eigenen Namen, trifft's 'Verbrennen' besser als 'Feuer'
+#~ msgid "Burn"
+#~ msgstr "Alev"
+
+#~ msgid "Domino"
+#~ msgstr "Domino"
+
+#~ msgid "Domino Piece Falling Direction"
+#~ msgstr "Domino Taşlarının Düşme Yönü"
+
+#~ msgid "Explode"
+#~ msgstr "Patlama"
+
+#~ msgid "Falling direction for Domino pieces."
+#~ msgstr "Domino parçacıklarının düşme yönü."
+
+#~ msgid "Fire"
+#~ msgstr "Ateş"
+
+#~ msgid "Fire Smoke"
+#~ msgstr "Ateş Dumanı"
+
+#~ msgid "Fire constant speed"
+#~ msgstr "Ateş hızı"
+
+#~ msgid "Fire direction"
+#~ msgstr "Ateş yönü"
+
+#~ msgid "Fire direction."
+#~ msgstr "Ateş yönü."
+
+#~ msgid "Fire smoke."
+#~ msgstr "Ateş dumanı."
+
+#~ msgid "Fly to TaskBar on Minimize"
+#~ msgstr "Küçültme sırasında Görev Çubuğuna Uç"
+
+#~ msgid "Fold"
+#~ msgstr "Katlama"
+
+#~ msgid "Fold Direction"
+#~ msgstr "Katlama Yönü"
+
+#~ msgid "Hexagonal"
+#~ msgstr "Altıgen"
+
+# FIXME: Herein und Heraus sind noch nicht optimal
+#~ msgid "In"
+#~ msgstr "İç"
+
+#~ msgid "In-out"
+#~ msgstr "İç-dış"
+
+#~ msgid "Leaf Spread"
+#~ msgstr "Yaprak Yayılması"
+
+#~ msgid "Left-right"
+#~ msgstr "Sol-sağ"
+
+#~ msgid "Length of airplane's flying path."
+#~ msgstr "Uçağın uçuş yolunun uzunluğu."
+
+#~ msgid "Movement direction(s) for window pieces."
+#~ msgstr "Pencere parçaları için taşıma yönleri."
+
+#~ msgid "Number Of Fire Particles"
+#~ msgstr "Ateş Parçacıklarının Sayısı"
+
+#~ msgid "Number of fire particles."
+#~ msgstr "Alevin parçacık sayısı."
+
+#~ msgid "Out"
+#~ msgstr "Dış"
+
+#~ msgid "Rectangular"
+#~ msgstr "Dikdörtgen"
+
+#~ msgid "Rotation Angle"
+#~ msgstr "Döndürme Açısı"
+
+#~ msgid "Skewer"
+#~ msgstr "Şişeleme"
+
+#~ msgid "Skewer Direction"
+#~ msgstr "Şişeleme Yönü"
+
+#~ msgid "Spacing between beams."
+#~ msgstr "Işınlar arasındaki mesafe."
+
+#~ msgid "Tessellation Type"
+#~ msgstr "Mozaik Tipi"
+
+#~ msgid "Tessellation type for exploding window pieces."
+#~ msgstr "Patlayan pencere parçacıkları için mozaik tipi."
+
+#~ msgid "Tessellation type for window pieces."
+#~ msgstr "Pencere parçacıkları için mozaik tipi."
+
+#~ msgid "Thickness"
+#~ msgstr "Kalınlık"
+
+#~ msgid "Up-down"
+#~ msgstr "Yukarı-aşağı"
+
+#~ msgid "Window Grid Height"
+#~ msgstr "Pencere Izgara Yüksekliği"
+
+#~ msgid "Window Grid Width"
+#~ msgstr "Pencere Izgara Genişliği"
 
 #, fuzzy
 #~ msgid "Brightness Decrease"

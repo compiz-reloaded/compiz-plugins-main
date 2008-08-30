@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-07 11:28+0530\n"
-"PO-Revision-Date: 2008-07-25 13:46+0200\n"
+"POT-Creation-Date: 2008-08-30 11:42+0530\n"
+"PO-Revision-Date: 2008-08-15 11:09+0200\n"
 "Last-Translator: KAMI <kamihir@freemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -150,12 +150,6 @@ msgstr "Ablaktípusok"
 msgid "Window types that should be Opacified."
 msgstr "Átlátszatlan ablaktípusok."
 
-msgid "Airplane"
-msgstr "Repülőgép"
-
-msgid "Airplane Flying Path Length"
-msgstr "A repülőgép repülési útjának hossza"
-
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -172,9 +166,6 @@ msgstr "Animáció kiválasztása"
 
 msgid "Animation Time Step"
 msgstr "Animációs időköz"
-
-msgid "Animation Time Step For Intense Effects"
-msgstr "Teljesítményigényes effektusok animációs időköze"
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "Az animációs effektus időtartama az ablak bezárása esetén."
@@ -194,50 +185,11 @@ msgstr "Az animációs effektus időtartama az ablak felgördítése esetén."
 msgid "Animations"
 msgstr "Animációk"
 
-msgid "Automatic"
-msgstr "Automatikus"
-
 msgid "Away Angle"
 msgstr "Távoli szög"
 
 msgid "Away Position"
 msgstr "Távoli pozíció"
-
-msgid "Beam"
-msgstr "Fénysugár"
-
-msgid "Beam Color"
-msgstr "Fénysugár színe"
-
-msgid "Beam Life"
-msgstr "Fénysugár élettartama"
-
-msgid "Beam Slowdown"
-msgstr "Fénysugár lelassulása"
-
-msgid "Beam Spacing"
-msgstr "Fénysugár térköz"
-
-msgid "Beam Up"
-msgstr "Fénysugár"
-
-msgid "Beam Width"
-msgstr "Fénysugár vastagság"
-
-msgid "Beam color."
-msgstr "Fénysugár színe."
-
-msgid "Beam life."
-msgstr "Fénysugár élettartama."
-
-msgid "Beam slowdown."
-msgstr "Fénysugár lelassulása"
-
-msgid "Beam width."
-msgstr "Fénysugár vastagsága."
-
-msgid "Burn"
-msgstr "Leég"
 
 msgid "Close Animation"
 msgstr "Bezárási animáció"
@@ -262,24 +214,14 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Hajlított redők"
 
-#, fuzzy
 msgid "Curved Fold Amplitude Multiplier"
-msgstr "Hajlított redők amplitúdója"
+msgstr "Hajlított redők méretszorzója"
 
 msgid "Dodge"
 msgstr "Félreugrás"
 
 msgid "Dodge Gap Ratio"
 msgstr "Félreugrás helyköze"
-
-msgid "Domino"
-msgstr "Dominó"
-
-msgid "Domino Piece Falling Direction"
-msgstr "Dominók mozgásának iránya"
-
-msgid "Down"
-msgstr "Lefelé"
 
 msgid "Dream"
 msgstr "Álom"
@@ -290,62 +232,11 @@ msgstr "Időtartam"
 msgid "Effect Settings"
 msgstr "Effektus beállítások"
 
-msgid "Explode"
-msgstr "Felrobban"
-
 msgid "Fade"
 msgstr "Elhalványul"
 
-msgid "Falling direction for Domino pieces."
-msgstr "A dominók mozgásának iránya."
-
-msgid "Fire"
-msgstr "Tűzrajz"
-
-msgid "Fire Particle Color"
-msgstr "Lángnyelv szín"
-
-msgid "Fire Particle Life"
-msgstr "Lángnyelv élettartam"
-
-msgid "Fire Particle Size"
-msgstr "Lángnyelv méret"
-
-msgid "Fire Particle Slowdown"
-msgstr "Lángnyelv lassulás"
-
-msgid "Fire Smoke"
-msgstr "Tűz füstje"
-
-msgid "Fire constant speed"
-msgstr "Tűz állandó sebessége"
-
-msgid "Fire direction"
-msgstr "Tűz iránya"
-
-msgid "Fire direction."
-msgstr "Tűz iránya"
-
-msgid "Fire particle color."
-msgstr "Lángnyelvek színe."
-
-msgid "Fire particle life."
-msgstr "Lángnyelvek élettartama."
-
-msgid "Fire particle size."
-msgstr "Lángnyelvek mérete."
-
-msgid "Fire particle slowdown."
-msgstr "Lángnyelvek lassulása."
-
-msgid "Fire smoke."
-msgstr "Füst"
-
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Kötött ablaktartalom Felgördítés animáció közben."
-
-msgid "Fly to TaskBar on Minimize"
-msgstr "Repüljön a tálcára minimalizáláskor"
 
 msgid "Focus Animation"
 msgstr "Fókusz animáció"
@@ -353,19 +244,12 @@ msgstr "Fókusz animáció"
 msgid "Focus Effect"
 msgstr "Fókusz effekt"
 
-msgid "Fold"
-msgstr "Gyűrődés"
-
-msgid "Fold Direction"
-msgstr "Redő iránya"
-
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-msgid "Fold opening direction for pieces in Razr effect."
-msgstr "Véletlenszerű nyitási irány a Penge hatásnál."
+"A hajlított redők mérete össze lesz szorozva ezzel az értékkel. Negatív "
+"érték esetén a redők kifordulnak."
 
 msgid "Glide 1"
 msgstr "Siklás 1"
@@ -373,42 +257,17 @@ msgstr "Siklás 1"
 msgid "Glide 2"
 msgstr "Siklás 2"
 
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr "Legyen véletlenszerű a tűz hatás színe, más néven Misztikus tűz."
-
-msgid "Hexagonal"
-msgstr "Hatszögletű"
-
 msgid "Horizontal Folds"
 msgstr "Vízszintes redők"
 
-#, fuzzy
 msgid "Horizontal Folds Amplitude Multiplier"
-msgstr "Vízszintes redők amplitúdója"
+msgstr "Vízszintes redők méretszorzója"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr "Mennyire legyen rugó-szerű a Szenzáció animáció."
 
 msgid "How spring-like the Zoom animation should be."
 msgstr "Mennyire legyen rugó-szerű a Közelítés animáció."
-
-msgid "In"
-msgstr "Bent"
-
-msgid "In-out"
-msgstr "Bent és kint"
-
-msgid "Leaf Spread"
-msgstr "Lombtakaró"
-
-msgid "Left"
-msgstr "Balra"
-
-msgid "Left-right"
-msgstr "Balra-jobbra"
-
-msgid "Length of airplane's flying path."
-msgstr "A repülőgép repülési útjának hossza."
 
 msgid "Magic Lamp"
 msgstr "Csodalámpa"
@@ -431,9 +290,6 @@ msgstr "Csodalámpa megnyitása így történik"
 msgid "Magic Lamp Open/Close Moving End"
 msgstr "Csodalámpa végpontjának mozgatása megnyitáskor és bezáráskor"
 
-msgid "Make fire effect duration be dependent on window height."
-msgstr "A tűzeffektus időtartama az ablakmérettől függjön"
-
 msgid "Minimize Animation"
 msgstr "Minimalizálási animáció"
 
@@ -443,20 +299,11 @@ msgstr "Minimalizálási effekt"
 msgid "Minimize/Unminimize Only"
 msgstr "Csak minimalizáláskor és eredeti méretre visszaállításkor"
 
-msgid "Movement direction(s) for window pieces."
-msgstr "Az ablakdarabok mozgásirányai"
-
 msgid "None"
 msgstr "Nincs"
 
-msgid "Number Of Fire Particles"
-msgstr "Lángnyelvek száma"
-
 msgid "Number of Horizontal Folds"
 msgstr "Vízszintes redők száma"
-
-msgid "Number of fire particles."
-msgstr "Lángnyelvek száma"
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -492,15 +339,13 @@ msgstr "Megnyitás és bezárás esetén"
 msgid "Options"
 msgstr "Beállítások"
 
-msgid "Out"
-msgstr "Kint"
-
 msgid "Pool"
 msgstr "Gyűjtemény"
 
+#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to use all effects."
 msgstr ""
 "Véletlenszerű effektushasználat engedélyezése esetén a használandó effektus "
 "a gyűjteményből kerül kiválasztásra. Kattintson az Alapállapot gombra a "
@@ -515,35 +360,14 @@ msgstr "Véletlenszerű animáció minden esemény hatására"
 msgid "Random Effects"
 msgstr "Véletlenszerű effektusok"
 
-msgid "Randomly Colored Fire"
-msgstr "Véletlenszerű tűzszín"
-
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr "Félreugrás animáció indítása és a fókuszálás közötti időköz."
-
-msgid "Razr"
-msgstr "Penge"
-
-msgid "Razr Fold Opening Direction"
-msgstr "Penge nyitási iránya"
-
-msgid "Rectangular"
-msgstr "Négyszögletes"
-
-msgid "Right"
-msgstr "Jobbra"
 
 msgid "Roll Up"
 msgstr "Feltekeredik"
 
 msgid "Rollup Fixed Interior"
 msgstr "Felgördítésnél rögzített ablaktartalom"
-
-msgid "Rotation Angle"
-msgstr "Forgatás szöge"
-
-msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "Az animált ablakdarab forgatási szöge (fokban megadva)."
 
 msgid "Shade Animation"
 msgstr "Felgördítés animáció"
@@ -560,15 +384,6 @@ msgstr "Fordulatok száma"
 msgid "Sidekick Springiness"
 msgstr "Rugalmasság"
 
-msgid "Skewer"
-msgstr "Nyársaló"
-
-msgid "Skewer Direction"
-msgstr "Nyársalás iránya"
-
-msgid "Spacing between beams."
-msgstr "Fénysugarak közti távolság."
-
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
@@ -578,44 +393,12 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr "Nyitó és záró effektus szélessége a Vakum hatásnál."
 
-msgid "Tessellation Type"
-msgstr "Mozaik típus"
-
-msgid "Tessellation type for exploding window pieces."
-msgstr "Mozaik típusa a felrobbanó ablakdarabokhoz."
-
-msgid "Tessellation type for window pieces."
-msgstr "Mozaik típusa az ablakdarabokhoz."
-
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
 "Az animáció egyes fázisainak leképzése között eltelt idő ezredmásodpercben "
 "megadva. Nagyobb értéket megadva az animáció szaggatottá válhat."
-
-msgid ""
-"The amount of time in milliseconds between each render of the intense "
-"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
-"become."
-msgstr ""
-"A teljesítményigényes animáció (például: Leég, Fénysugár) egyes fázisainak "
-"leképzése között eltelt idő ezredmásodpercben megadva. Nagyobb értéket "
-"megadva az animáció szaggatottá válhat."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"Az animált ablak rács mentén darabokra lesz bontva. Adja meg a rácscellák "
-"számát az ablak magasságának függvényében."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"Az animált ablak rács mentén darabokra lesz bontva. Adja meg a rácscellák "
-"számát az ablak szélességének függvényében."
 
 msgid "The animation effect shown when closing a window."
 msgstr "Az animációs effektus alkalmazása az ablak bezárása esetén."
@@ -631,20 +414,6 @@ msgstr "Az animációs effektus alkalmazása az ablak minimalizálása esetén."
 
 msgid "The animation effect shown when shading a window."
 msgstr "Az animációs effektus alkalmazása az ablak felgördítése esetén."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"Az animált ablak rács mentén darabokra lesz bontva. Adja meg a rácscellák "
-"számát az ablak magasságának függvényében."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"Az animált ablak rács mentén darabokra lesz bontva. Adja meg a rácscellák "
-"számát az ablak szélességének függvényében."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr "Maximális kitérés (hullámok mérete) a Varázslámpa effektusnál."
@@ -664,27 +433,6 @@ msgstr "Hullámok maximális mérete arányosan az ablak magasságával."
 
 msgid "The windows that will be animated."
 msgstr "Animálandó ablakok"
-
-msgid "Thickness"
-msgstr "vastagság"
-
-msgid "Thickness of Animated Polygons"
-msgstr "Animált pontok vastagsága"
-
-msgid "Thickness of Exploding Polygons"
-msgstr "Felrobbanó pontok vastagsága"
-
-msgid "Thickness of animated window pieces (in pixels)."
-msgstr "Animált ablakdarabok vastagsága (képpontban)."
-
-msgid "Thickness of exploding window pieces (in pixels)."
-msgstr "Robbanó ablakdarabok vastagsága (képpontban)."
-
-msgid "Up"
-msgstr "Felfelé"
-
-msgid "Up-down"
-msgstr "Fel és le"
 
 msgid "Use various animations as window effects"
 msgstr "Különféle animációk használata ablakeffektusokhoz."
@@ -722,9 +470,8 @@ msgstr ""
 msgid "Wave"
 msgstr "Hullámzó"
 
-#, fuzzy
 msgid "Wave Amplitude Multiplier"
-msgstr "Hullám magassága"
+msgstr "Hullám magasságszorzója"
 
 msgid "Wave Width"
 msgstr "Hullám szélessége"
@@ -733,11 +480,8 @@ msgid ""
 "Wave amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-msgid ""
-"Whether the window should fly to taskbar when minimized with Airplane effect."
-msgstr ""
-"Minimalizálás során az ablak repüljön a tálcára a Repülőgép effektus esetén."
+"A hullám magassága össze lesz szorozva ezzel az értékkel. Negatív érték "
+"esetén a hullámok kifordulnak."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
@@ -771,27 +515,11 @@ msgstr ""
 "Minimalizálás során az ablak nagyításának célja a tálca legyen a Vízszintes "
 "redők effektus esetén."
 
-msgid "Window Grid Height"
-msgstr "Ablakrács magassága"
-
-msgid "Window Grid Width"
-msgstr "Ablakrács szélessége"
-
-msgid "Window folding direction."
-msgstr "Az ablakdarabok mozgásirányai"
-
 msgid "Window that should animate with this effect when focused."
 msgstr "Az ablakok aktiváláskor ezt az animációt használják."
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "Az ablakok tálcára helyezéskor ezt az animációt használják."
-
-msgid ""
-"Window thickness in pixels. Setting this to larger than 0 will disable "
-"shadow, blur, and reflection during the animation."
-msgstr ""
-"Ablak vastagsága képpontban. 0-tól magasabb érték kikapcsolja az árnyékot, "
-"elmosást, és a tükröződést animáció közben"
 
 msgid "Zoom"
 msgstr "Nagyító"
@@ -1739,6 +1467,13 @@ msgstr "Ablak ál ARGB alapján"
 msgid "Toggle window fake ARGB."
 msgstr "Ablak ál ARGB alapján."
 
+#, fuzzy
+msgid "Add Particle"
+msgstr "Részecske élettartam"
+
+msgid "Adds a fire particle at position (x,y), where x and y are floats."
+msgstr ""
+
 msgid "Background brightness"
 msgstr "Háttér fényereje"
 
@@ -1753,6 +1488,33 @@ msgstr "Törlés (gomb)"
 
 msgid "Clear (key)"
 msgstr "Törlés (billentyű)"
+
+msgid "Fire Particle Color"
+msgstr "Lángnyelv szín"
+
+msgid "Fire Particle Life"
+msgstr "Lángnyelv élettartam"
+
+msgid "Fire Particle Size"
+msgstr "Lángnyelv méret"
+
+msgid "Fire Particle Slowdown"
+msgstr "Lángnyelv lassulás"
+
+msgid "Fire particle color."
+msgstr "Lángnyelvek színe."
+
+msgid "Fire particle life."
+msgstr "Lángnyelvek élettartama."
+
+msgid "Fire particle size."
+msgstr "Lángnyelvek mérete."
+
+msgid "Fire particle slowdown."
+msgstr "Lángnyelvek lassulása."
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr "Legyen véletlenszerű a tűz hatás színe, más néven Misztikus tűz."
 
 msgid "Initiate (button)"
 msgstr "Indítás (gomb)"
@@ -1774,6 +1536,9 @@ msgstr "Tűz rajzolása képernyőre"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "Tűz vagy más részecskék rajzolása a képernyőre"
+
+msgid "Randomly Colored Fire"
+msgstr "Véletlenszerű tűzszín"
 
 msgid "Cube Gears"
 msgstr "Kocka fogaskerekek"
@@ -3594,17 +3359,29 @@ msgstr "Asztal könnyű elérése"
 msgid "Direction of window movement"
 msgstr "Ablak mozgásának iránya"
 
+msgid "Down"
+msgstr "Lefelé"
+
+msgid "Left"
+msgstr "Balra"
+
 msgid "Left/Right"
 msgstr "Balra/jobbra"
 
 msgid "Movement Direction"
 msgstr "Mozgatás iránya"
 
+msgid "Right"
+msgstr "Jobbra"
+
 msgid "Show desktop"
 msgstr "Asztal megjelenítése"
 
 msgid "To Corners"
 msgstr "Sarkokba"
+
+msgid "Up"
+msgstr "Felfelé"
 
 msgid "Up/Down"
 msgstr "Fel/le"
@@ -4962,6 +4739,14 @@ msgstr "Magasságértékek"
 msgid "Matches"
 msgstr "Összerendelések"
 
+#, fuzzy
+msgid "Maximized"
+msgstr "Maximalizálás"
+
+#, fuzzy
+msgid "Maximized windows"
+msgstr "Nem maximalizálható ablak"
+
 msgid "No ARGB visuals"
 msgstr "Hiányzó ARGB kiterjesztések "
 
@@ -5115,6 +4900,240 @@ msgstr "Az ablakok legyenek ragadósak az összes munkaasztalon"
 
 msgid "Workarounds"
 msgstr "Hibajavítások"
+
+#~ msgid "Airplane"
+#~ msgstr "Repülőgép"
+
+#~ msgid "Airplane Flying Path Length"
+#~ msgstr "A repülőgép repülési útjának hossza"
+
+#~ msgid "Animation Time Step For Intense Effects"
+#~ msgstr "Teljesítményigényes effektusok animációs időköze"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatikus"
+
+#~ msgid "Beam"
+#~ msgstr "Fénysugár"
+
+#~ msgid "Beam Color"
+#~ msgstr "Fénysugár színe"
+
+#~ msgid "Beam Life"
+#~ msgstr "Fénysugár élettartama"
+
+#~ msgid "Beam Slowdown"
+#~ msgstr "Fénysugár lelassulása"
+
+#~ msgid "Beam Spacing"
+#~ msgstr "Fénysugár térköz"
+
+#~ msgid "Beam Up"
+#~ msgstr "Fénysugár"
+
+#~ msgid "Beam Width"
+#~ msgstr "Fénysugár vastagság"
+
+#~ msgid "Beam color."
+#~ msgstr "Fénysugár színe."
+
+#~ msgid "Beam life."
+#~ msgstr "Fénysugár élettartama."
+
+#~ msgid "Beam slowdown."
+#~ msgstr "Fénysugár lelassulása"
+
+#~ msgid "Beam width."
+#~ msgstr "Fénysugár vastagsága."
+
+#~ msgid "Burn"
+#~ msgstr "Leég"
+
+#~ msgid "Domino"
+#~ msgstr "Dominó"
+
+#~ msgid "Domino Piece Falling Direction"
+#~ msgstr "Dominók mozgásának iránya"
+
+#~ msgid "Explode"
+#~ msgstr "Felrobban"
+
+#~ msgid "Falling direction for Domino pieces."
+#~ msgstr "A dominók mozgásának iránya."
+
+#~ msgid "Fire"
+#~ msgstr "Tűzrajz"
+
+#~ msgid "Fire Smoke"
+#~ msgstr "Tűz füstje"
+
+#~ msgid "Fire constant speed"
+#~ msgstr "Tűz állandó sebessége"
+
+#~ msgid "Fire direction"
+#~ msgstr "Tűz iránya"
+
+#~ msgid "Fire direction."
+#~ msgstr "Tűz iránya"
+
+#~ msgid "Fire smoke."
+#~ msgstr "Füst"
+
+#~ msgid "Fly to TaskBar on Minimize"
+#~ msgstr "Repüljön a tálcára minimalizáláskor"
+
+#~ msgid "Fold"
+#~ msgstr "Gyűrődés"
+
+#~ msgid "Fold Direction"
+#~ msgstr "Redő iránya"
+
+#~ msgid "Fold opening direction for pieces in Razr effect."
+#~ msgstr "Véletlenszerű nyitási irány a Penge hatásnál."
+
+#~ msgid "Hexagonal"
+#~ msgstr "Hatszögletű"
+
+#~ msgid "In"
+#~ msgstr "Bent"
+
+#~ msgid "In-out"
+#~ msgstr "Bent és kint"
+
+#~ msgid "Leaf Spread"
+#~ msgstr "Lombtakaró"
+
+#~ msgid "Left-right"
+#~ msgstr "Balra-jobbra"
+
+#~ msgid "Length of airplane's flying path."
+#~ msgstr "A repülőgép repülési útjának hossza."
+
+#~ msgid "Make fire effect duration be dependent on window height."
+#~ msgstr "A tűzeffektus időtartama az ablakmérettől függjön"
+
+#~ msgid "Movement direction(s) for window pieces."
+#~ msgstr "Az ablakdarabok mozgásirányai"
+
+#~ msgid "Number Of Fire Particles"
+#~ msgstr "Lángnyelvek száma"
+
+#~ msgid "Number of fire particles."
+#~ msgstr "Lángnyelvek száma"
+
+#~ msgid "Out"
+#~ msgstr "Kint"
+
+#~ msgid "Razr"
+#~ msgstr "Penge"
+
+#~ msgid "Razr Fold Opening Direction"
+#~ msgstr "Penge nyitási iránya"
+
+#~ msgid "Rectangular"
+#~ msgstr "Négyszögletes"
+
+#~ msgid "Rotation Angle"
+#~ msgstr "Forgatás szöge"
+
+#~ msgid "Rotation angle of animated window pieces (in degrees)."
+#~ msgstr "Az animált ablakdarab forgatási szöge (fokban megadva)."
+
+#~ msgid "Skewer"
+#~ msgstr "Nyársaló"
+
+#~ msgid "Skewer Direction"
+#~ msgstr "Nyársalás iránya"
+
+#~ msgid "Spacing between beams."
+#~ msgstr "Fénysugarak közti távolság."
+
+#~ msgid "Tessellation Type"
+#~ msgstr "Mozaik típus"
+
+#~ msgid "Tessellation type for exploding window pieces."
+#~ msgstr "Mozaik típusa a felrobbanó ablakdarabokhoz."
+
+#~ msgid "Tessellation type for window pieces."
+#~ msgstr "Mozaik típusa az ablakdarabokhoz."
+
+#~ msgid ""
+#~ "The amount of time in milliseconds between each render of the intense "
+#~ "animation (Ex. Burn, Beam). The higher the number, the jerkier the "
+#~ "movements become."
+#~ msgstr ""
+#~ "A teljesítményigényes animáció (például: Leég, Fénysugár) egyes "
+#~ "fázisainak leképzése között eltelt idő ezredmásodpercben megadva. Nagyobb "
+#~ "értéket megadva az animáció szaggatottá válhat."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "Az animált ablak rács mentén darabokra lesz bontva. Adja meg a rácscellák "
+#~ "számát az ablak magasságának függvényében."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "Az animált ablak rács mentén darabokra lesz bontva. Adja meg a rácscellák "
+#~ "számát az ablak szélességének függvényében."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "Az animált ablak rács mentén darabokra lesz bontva. Adja meg a rácscellák "
+#~ "számát az ablak magasságának függvényében."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "Az animált ablak rács mentén darabokra lesz bontva. Adja meg a rácscellák "
+#~ "számát az ablak szélességének függvényében."
+
+#~ msgid "Thickness"
+#~ msgstr "vastagság"
+
+#~ msgid "Thickness of Animated Polygons"
+#~ msgstr "Animált pontok vastagsága"
+
+#~ msgid "Thickness of Exploding Polygons"
+#~ msgstr "Felrobbanó pontok vastagsága"
+
+#~ msgid "Thickness of animated window pieces (in pixels)."
+#~ msgstr "Animált ablakdarabok vastagsága (képpontban)."
+
+#~ msgid "Thickness of exploding window pieces (in pixels)."
+#~ msgstr "Robbanó ablakdarabok vastagsága (képpontban)."
+
+#~ msgid "Up-down"
+#~ msgstr "Fel és le"
+
+#~ msgid ""
+#~ "Whether the window should fly to taskbar when minimized with Airplane "
+#~ "effect."
+#~ msgstr ""
+#~ "Minimalizálás során az ablak repüljön a tálcára a Repülőgép effektus "
+#~ "esetén."
+
+#~ msgid "Window Grid Height"
+#~ msgstr "Ablakrács magassága"
+
+#~ msgid "Window Grid Width"
+#~ msgstr "Ablakrács szélessége"
+
+#~ msgid "Window folding direction."
+#~ msgstr "Az ablakdarabok mozgásirányai"
+
+#~ msgid ""
+#~ "Window thickness in pixels. Setting this to larger than 0 will disable "
+#~ "shadow, blur, and reflection during the animation."
+#~ msgstr ""
+#~ "Ablak vastagsága képpontban. 0-tól magasabb érték kikapcsolja az "
+#~ "árnyékot, elmosást, és a tükröződést animáció közben"
 
 #~ msgid ""
 #~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "

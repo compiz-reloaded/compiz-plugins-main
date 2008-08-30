@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-07 11:27+0530\n"
+"POT-Creation-Date: 2008-08-30 11:41+0530\n"
 "PO-Revision-Date: 2008-07-25 21:06+0200\n"
 "Last-Translator: Philipp B. <philipp2812@gmail.com>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
@@ -160,12 +160,6 @@ msgstr "Fenstertypen"
 msgid "Window types that should be Opacified."
 msgstr "Fenstertypen, die sichtbar sein sollen"
 
-msgid "Airplane"
-msgstr "Papierflugzeug"
-
-msgid "Airplane Flying Path Length"
-msgstr "Länge des vom Flugzeug zurückgelegten Weges"
-
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -182,10 +176,6 @@ msgstr "Animationsauswahl"
 
 msgid "Animation Time Step"
 msgstr "Animations-Zeitschritt"
-
-# FIXED - Intense Effects == aufregende Effekte (analog zu OOo)
-msgid "Animation Time Step For Intense Effects"
-msgstr "Animations-Zeitschritt für aufregende Effekte"
 
 msgid "Animation duration in milliseconds for close effect."
 msgstr "Animationsdauer (in ms) für Effekt 'Fenster schließen'"
@@ -205,53 +195,11 @@ msgstr "Animationsdauer (in ms) für Effekt 'Fenster aufrollen'"
 msgid "Animations"
 msgstr "Animationen"
 
-msgid "Automatic"
-msgstr "Automatisch"
-
 msgid "Away Angle"
 msgstr ""
 
 msgid "Away Position"
 msgstr ""
-
-msgid "Beam"
-msgstr "Teleporter"
-
-# Vielleicht ein bisschen gewagt aber 'Teleportation' wäre die korrekte Übersetzung - zu lang?
-msgid "Beam Color"
-msgstr "Farbe der Teleportation"
-
-msgid "Beam Life"
-msgstr "Lebensdauer der Teleportation"
-
-msgid "Beam Slowdown"
-msgstr "Verlangsamung der Teleportations-Partikel"
-
-msgid "Beam Spacing"
-msgstr "Zwischenraum"
-
-# Star-Trek-Referenz im Deutschen sowieso nicht machbar
-msgid "Beam Up"
-msgstr "Teleporter"
-
-msgid "Beam Width"
-msgstr "Breite der Teleportation"
-
-msgid "Beam color."
-msgstr "Farbe der Teleportation."
-
-msgid "Beam life."
-msgstr "Lebensdauer der Teleportation."
-
-msgid "Beam slowdown."
-msgstr "Verlangsamung der Teleportations-Partikel."
-
-msgid "Beam width."
-msgstr "Breite der Teleportation."
-
-# Da der Effekt im Original einen eigenen Namen, trifft's 'Verbrennen' besser als 'Feuer'
-msgid "Burn"
-msgstr "Verbrennen"
 
 msgid "Close Animation"
 msgstr "Animation 'Schließen'"
@@ -292,15 +240,6 @@ msgstr "Ausweichen"
 msgid "Dodge Gap Ratio"
 msgstr "Zeitversetzung zwischen den Fenstern"
 
-msgid "Domino"
-msgstr "Domino"
-
-msgid "Domino Piece Falling Direction"
-msgstr "Fallrichtung der Dominosteine"
-
-msgid "Down"
-msgstr "Runter"
-
 msgid "Dream"
 msgstr "Traum"
 
@@ -310,63 +249,11 @@ msgstr "Dauer"
 msgid "Effect Settings"
 msgstr "Effekt-Einstellungen"
 
-msgid "Explode"
-msgstr "Explodieren"
-
 msgid "Fade"
 msgstr "Ein-/Ausblenden"
 
-msgid "Falling direction for Domino pieces."
-msgstr "Richtung, in die die Dominosteine fallen."
-
-msgid "Fire"
-msgstr "Feuer"
-
-msgid "Fire Particle Color"
-msgstr "Farbe der Feuerpartikel"
-
-msgid "Fire Particle Life"
-msgstr "Lebenszeit der Feuerparktikel"
-
-msgid "Fire Particle Size"
-msgstr "Größe der Feuerpartikel"
-
-msgid "Fire Particle Slowdown"
-msgstr "Verlangsamung der Feuerpartikel"
-
-msgid "Fire Smoke"
-msgstr "Feuerrauch"
-
-msgid "Fire constant speed"
-msgstr "Konstante Geschwindigkeit für Feuerpartikel"
-
-msgid "Fire direction"
-msgstr "Feuer-Richtung"
-
-msgid "Fire direction."
-msgstr "Feuer-Richtung"
-
-msgid "Fire particle color."
-msgstr "Farbe der Feuerparktikel."
-
-msgid "Fire particle life."
-msgstr "Lebenszeit der Feuerparktikel."
-
-msgid "Fire particle size."
-msgstr "Größe der Feuerpartikel."
-
-msgid "Fire particle slowdown."
-msgstr "Verlangsamung der Feuerpartikel."
-
-msgid "Fire smoke."
-msgstr "Fügt dem Feuer Rauch hinzu"
-
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Der Fensterinhalt bewegt sich beim einrollen nicht mit"
-
-#, fuzzy
-msgid "Fly to TaskBar on Minimize"
-msgstr "Beim Minimieren zur Taskleiste fliegen"
 
 msgid "Focus Animation"
 msgstr "Fokusanimation"
@@ -374,33 +261,16 @@ msgstr "Fokusanimation"
 msgid "Focus Effect"
 msgstr "Effekt für das Fokussieren von Fenstern"
 
-msgid "Fold"
-msgstr "Falten"
-
-msgid "Fold Direction"
-msgstr "Falt-Richtung"
-
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-# siehe 'Razr'
-msgid "Fold opening direction for pieces in Razr effect."
-msgstr "Ausrichtung des Razr-Effekts"
 
 msgid "Glide 1"
 msgstr "Gleiten 1"
 
 msgid "Glide 2"
 msgstr "Gleiten 2"
-
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr ""
-"Zufällige Farben für die Feuerpartikel, auch bekannt als Mystisches Feuer."
-
-msgid "Hexagonal"
-msgstr "Sechseckig"
 
 msgid "Horizontal Folds"
 msgstr "Horizontales Zusammenfalten"
@@ -415,25 +285,6 @@ msgstr "Stellt ein wie federnd die Sidekick Animation ist"
 
 msgid "How spring-like the Zoom animation should be."
 msgstr "Wie federnd die Zoom-Animation sein soll."
-
-# FIXME: Herein und Heraus sind noch nicht optimal
-msgid "In"
-msgstr "Herein"
-
-msgid "In-out"
-msgstr "Herein/Heraus"
-
-msgid "Leaf Spread"
-msgstr ""
-
-msgid "Left"
-msgstr "Links"
-
-msgid "Left-right"
-msgstr "Links/Rechts"
-
-msgid "Length of airplane's flying path."
-msgstr "Länge des vom Flugzeug zurückgelegten Weges"
 
 msgid "Magic Lamp"
 msgstr "Wunderlampe"
@@ -456,9 +307,6 @@ msgstr ""
 msgid "Magic Lamp Open/Close Moving End"
 msgstr ""
 
-msgid "Make fire effect duration be dependent on window height."
-msgstr "Dauer des Feuereffekts von der Fensterhöhe abhängig machen."
-
 msgid "Minimize Animation"
 msgstr "Animation 'Minimieren'"
 
@@ -468,21 +316,12 @@ msgstr "Effekt für das Minimieren von Fenstern"
 msgid "Minimize/Unminimize Only"
 msgstr "Nur bei Minimieren/Un-Minimieren"
 
-msgid "Movement direction(s) for window pieces."
-msgstr "Richtung, in die die Fensterteile fallen."
-
 msgid "None"
 msgstr "Nichts"
-
-msgid "Number Of Fire Particles"
-msgstr "Anzahl der Feuerpartikel"
 
 #, fuzzy
 msgid "Number of Horizontal Folds"
 msgstr "Anzahl der horizontalen Faltungen"
-
-msgid "Number of fire particles."
-msgstr "Anzahl der Feuerpartikel"
 
 #, fuzzy, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -513,9 +352,6 @@ msgstr "Nur bei Öffnen/Schließen"
 msgid "Options"
 msgstr "Optionen"
 
-msgid "Out"
-msgstr "Heraus"
-
 #, fuzzy
 msgid "Pool"
 msgstr "Effektsammlung"
@@ -523,7 +359,7 @@ msgstr "Effektsammlung"
 #, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to use all effects."
 msgstr "Effektsammlung, aus der gewählt wird, falls Zufällig aktiviert ist."
 
 msgid "Random"
@@ -535,37 +371,14 @@ msgstr "Zufällige Animationen für alle Ereignisse"
 msgid "Random Effects"
 msgstr "Zufällige Effekte"
 
-msgid "Randomly Colored Fire"
-msgstr "Zufällige Feuerfarbe"
-
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr ""
-
-# bei 'Razr' belassen oder 'Rasierklinge'?
-msgid "Razr"
-msgstr ""
-
-msgid "Razr Fold Opening Direction"
-msgstr ""
-
-msgid "Rectangular"
-msgstr "Rechteckig"
-
-msgid "Right"
-msgstr "Rechts"
 
 msgid "Roll Up"
 msgstr "Aufrollen"
 
 msgid "Rollup Fixed Interior"
 msgstr "Von unten aufrollen"
-
-msgid "Rotation Angle"
-msgstr "Rotationswinkel"
-
-# FIXME: besser Bruchstücke statt Teile?
-msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "Rotationswinkel für animierte Fensterteile (in Grad)."
 
 msgid "Shade Animation"
 msgstr "Animation 'Aufrollen'"
@@ -585,16 +398,6 @@ msgstr "Trudeln Anzahl der Drehungen"
 msgid "Sidekick Springiness"
 msgstr "Sidekick Federung"
 
-msgid "Skewer"
-msgstr ""
-
-#, fuzzy
-msgid "Skewer Direction"
-msgstr "Schnee-Richtung"
-
-msgid "Spacing between beams."
-msgstr "Der Abstand zwischen den Blitzen."
-
 #, fuzzy
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
@@ -609,44 +412,12 @@ msgstr ""
 "Anfangsbreite des 'Öffen' Effekts und Endbreite des 'Schließen' Effekts des "
 "Staubsauger-Effekts"
 
-msgid "Tessellation Type"
-msgstr "Tesselations-Typ"
-
-msgid "Tessellation type for exploding window pieces."
-msgstr "Tesselations-Typ für Explosions-Effekt"
-
-msgid "Tessellation type for window pieces."
-msgstr "Tesselations-Typ für Fensterteile"
-
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
 "Zeit in Millisekunden zwischen den einzelnen Berechungen der Animation. Je "
 "höher dieser Wert, desto abgehackter sind die Animationen."
-
-msgid ""
-"The amount of time in milliseconds between each render of the intense "
-"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
-"become."
-msgstr ""
-
-#, fuzzy
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in Pixeln an."
-
-#, fuzzy
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Breite der einzelnen Gitterzeilen in Pixeln "
-"an."
 
 msgid "The animation effect shown when closing a window."
 msgstr "Beim Schließen eines Fensters verwendete Animation"
@@ -662,22 +433,6 @@ msgstr "Beim Minimieren eines Fensters verwendete Animation"
 
 msgid "The animation effect shown when shading a window."
 msgstr "Beim Aufrollen eines Fensters verwendete Animation"
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Anzahl der Gitterzellen an, in die das "
-"Fenster vertikal zerlegt werden soll."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe eines "
-"Gitters erzeugt. Geben sie die Anzahl der einzelnen Gitterzeilen an, in die "
-"das Fenster vertikal zerlegt werden soll."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr "Maximaler Auschlag der Wellenbewegungen für den Wunderlampen-Effekt."
@@ -698,27 +453,6 @@ msgstr "Breite der Welle in Relation zur Fensterbreite"
 
 msgid "The windows that will be animated."
 msgstr "Fenster, die animiert werden sollen"
-
-msgid "Thickness"
-msgstr "Dicke"
-
-msgid "Thickness of Animated Polygons"
-msgstr "Dicke der animierten Polygone"
-
-msgid "Thickness of Exploding Polygons"
-msgstr "Dicke der explodierenden Polygone"
-
-msgid "Thickness of animated window pieces (in pixels)."
-msgstr "Dicke der bei der Animation entstehenden Fensterteile (in Pixeln)."
-
-msgid "Thickness of exploding window pieces (in pixels)."
-msgstr "Dicke der bei der Explosion entstehenden Fensterteile (in Pixeln)."
-
-msgid "Up"
-msgstr "Hoch"
-
-msgid "Up-down"
-msgstr "Hoch/Runter"
 
 msgid "Use various animations as window effects"
 msgstr "Verschiedene Animationen als Fenstereffekte verwenden"
@@ -771,12 +505,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Whether the window should fly to taskbar when minimized with Airplane effect."
-msgstr ""
-"Sollen die Fenster zur Taskleiste fliegen, falls beim Minimieren der Effekt "
-"Papierflugzeug benutzt wird?"
-
-msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
 "effect."
 msgstr ""
@@ -808,28 +536,11 @@ msgstr ""
 "Sollen die Fenster zur Taskleiste zoomen, falls beim Minimieren der Effekt "
 "Horizontales Zusammenfalten benutzt wird?"
 
-msgid "Window Grid Height"
-msgstr "Fenstergitterhöhe"
-
-msgid "Window Grid Width"
-msgstr "Fenstergitterbreite"
-
-#, fuzzy
-msgid "Window folding direction."
-msgstr "Fallrichtung der Dominosteine"
-
 msgid "Window that should animate with this effect when focused."
 msgstr "Fenster, für die dieser Effekt beim Fokussieren verwendet werden soll."
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "Fenster, für die dieser Effekt beim Aufrollen verwendet werden soll."
-
-msgid ""
-"Window thickness in pixels. Setting this to larger than 0 will disable "
-"shadow, blur, and reflection during the animation."
-msgstr ""
-"Fensterdicke in Pixel. Bei einer Einstellung über 0 wird der Schatten, die "
-"Unschärfe und die Reflektion während der Animation deaktiviert."
 
 msgid "Zoom"
 msgstr "Zoom"
@@ -1815,6 +1526,13 @@ msgstr "Aktiviere pseudo-ARGB für Fenster"
 msgid "Toggle window fake ARGB."
 msgstr "Aktiviere pseudo-ARGB für das momentan aktive Fenster."
 
+#, fuzzy
+msgid "Add Particle"
+msgstr "Lebenszeit der Feuerparktikel"
+
+msgid "Adds a fire particle at position (x,y), where x and y are floats."
+msgstr ""
+
 msgid "Background brightness"
 msgstr "Hintergrundhelligkeit"
 
@@ -1831,6 +1549,34 @@ msgstr "Reinigen (Maus)"
 # FIXME
 msgid "Clear (key)"
 msgstr "Reinigen (Tastatur)"
+
+msgid "Fire Particle Color"
+msgstr "Farbe der Feuerpartikel"
+
+msgid "Fire Particle Life"
+msgstr "Lebenszeit der Feuerparktikel"
+
+msgid "Fire Particle Size"
+msgstr "Größe der Feuerpartikel"
+
+msgid "Fire Particle Slowdown"
+msgstr "Verlangsamung der Feuerpartikel"
+
+msgid "Fire particle color."
+msgstr "Farbe der Feuerparktikel."
+
+msgid "Fire particle life."
+msgstr "Lebenszeit der Feuerparktikel."
+
+msgid "Fire particle size."
+msgstr "Größe der Feuerpartikel."
+
+msgid "Fire particle slowdown."
+msgstr "Verlangsamung der Feuerpartikel."
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr ""
+"Zufällige Farben für die Feuerpartikel, auch bekannt als Mystisches Feuer."
 
 #, fuzzy
 msgid "Initiate (button)"
@@ -1854,6 +1600,9 @@ msgstr "Zeichne Feuer auf den Bildschirm"
 
 msgid "Paint fire or other particles on the screen"
 msgstr "Zeichne Feuer oder andere Partikel auf den Bildschirm"
+
+msgid "Randomly Colored Fire"
+msgstr "Zufällige Feuerfarbe"
 
 msgid "Cube Gears"
 msgstr ""
@@ -3755,17 +3504,29 @@ msgstr "Zeige den Desktop"
 msgid "Direction of window movement"
 msgstr "Richtung der Fensterbewegungen"
 
+msgid "Down"
+msgstr "Runter"
+
+msgid "Left"
+msgstr "Links"
+
 msgid "Left/Right"
 msgstr "Links/Rechts"
 
 msgid "Movement Direction"
 msgstr "Richtung der Bewegung"
 
+msgid "Right"
+msgstr "Rechts"
+
 msgid "Show desktop"
 msgstr "Zeige Desktop"
 
 msgid "To Corners"
 msgstr "Zu den Ecken"
+
+msgid "Up"
+msgstr "Hoch"
 
 msgid "Up/Down"
 msgstr "Hoch/Runter"
@@ -5247,6 +5008,14 @@ msgstr "Werte für Fensterhöhe"
 msgid "Matches"
 msgstr "Fensterregeln"
 
+#, fuzzy
+msgid "Maximized"
+msgstr "Zeige minimierte Fenster an"
+
+#, fuzzy
+msgid "Maximized windows"
+msgstr "Nicht maximierbar"
+
 msgid "No ARGB visuals"
 msgstr ""
 
@@ -5402,6 +5171,235 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Abhilfen"
+
+#~ msgid "Airplane"
+#~ msgstr "Papierflugzeug"
+
+#~ msgid "Airplane Flying Path Length"
+#~ msgstr "Länge des vom Flugzeug zurückgelegten Weges"
+
+# FIXED - Intense Effects == aufregende Effekte (analog zu OOo)
+#~ msgid "Animation Time Step For Intense Effects"
+#~ msgstr "Animations-Zeitschritt für aufregende Effekte"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatisch"
+
+#~ msgid "Beam"
+#~ msgstr "Teleporter"
+
+# Vielleicht ein bisschen gewagt aber 'Teleportation' wäre die korrekte Übersetzung - zu lang?
+#~ msgid "Beam Color"
+#~ msgstr "Farbe der Teleportation"
+
+#~ msgid "Beam Life"
+#~ msgstr "Lebensdauer der Teleportation"
+
+#~ msgid "Beam Slowdown"
+#~ msgstr "Verlangsamung der Teleportations-Partikel"
+
+#~ msgid "Beam Spacing"
+#~ msgstr "Zwischenraum"
+
+# Star-Trek-Referenz im Deutschen sowieso nicht machbar
+#~ msgid "Beam Up"
+#~ msgstr "Teleporter"
+
+#~ msgid "Beam Width"
+#~ msgstr "Breite der Teleportation"
+
+#~ msgid "Beam color."
+#~ msgstr "Farbe der Teleportation."
+
+#~ msgid "Beam life."
+#~ msgstr "Lebensdauer der Teleportation."
+
+#~ msgid "Beam slowdown."
+#~ msgstr "Verlangsamung der Teleportations-Partikel."
+
+#~ msgid "Beam width."
+#~ msgstr "Breite der Teleportation."
+
+# Da der Effekt im Original einen eigenen Namen, trifft's 'Verbrennen' besser als 'Feuer'
+#~ msgid "Burn"
+#~ msgstr "Verbrennen"
+
+#~ msgid "Domino"
+#~ msgstr "Domino"
+
+#~ msgid "Domino Piece Falling Direction"
+#~ msgstr "Fallrichtung der Dominosteine"
+
+#~ msgid "Explode"
+#~ msgstr "Explodieren"
+
+#~ msgid "Falling direction for Domino pieces."
+#~ msgstr "Richtung, in die die Dominosteine fallen."
+
+#~ msgid "Fire"
+#~ msgstr "Feuer"
+
+#~ msgid "Fire Smoke"
+#~ msgstr "Feuerrauch"
+
+#~ msgid "Fire constant speed"
+#~ msgstr "Konstante Geschwindigkeit für Feuerpartikel"
+
+#~ msgid "Fire direction"
+#~ msgstr "Feuer-Richtung"
+
+#~ msgid "Fire direction."
+#~ msgstr "Feuer-Richtung"
+
+#~ msgid "Fire smoke."
+#~ msgstr "Fügt dem Feuer Rauch hinzu"
+
+#, fuzzy
+#~ msgid "Fly to TaskBar on Minimize"
+#~ msgstr "Beim Minimieren zur Taskleiste fliegen"
+
+#~ msgid "Fold"
+#~ msgstr "Falten"
+
+#~ msgid "Fold Direction"
+#~ msgstr "Falt-Richtung"
+
+# siehe 'Razr'
+#~ msgid "Fold opening direction for pieces in Razr effect."
+#~ msgstr "Ausrichtung des Razr-Effekts"
+
+#~ msgid "Hexagonal"
+#~ msgstr "Sechseckig"
+
+# FIXME: Herein und Heraus sind noch nicht optimal
+#~ msgid "In"
+#~ msgstr "Herein"
+
+#~ msgid "In-out"
+#~ msgstr "Herein/Heraus"
+
+#~ msgid "Left-right"
+#~ msgstr "Links/Rechts"
+
+#~ msgid "Length of airplane's flying path."
+#~ msgstr "Länge des vom Flugzeug zurückgelegten Weges"
+
+#~ msgid "Make fire effect duration be dependent on window height."
+#~ msgstr "Dauer des Feuereffekts von der Fensterhöhe abhängig machen."
+
+#~ msgid "Movement direction(s) for window pieces."
+#~ msgstr "Richtung, in die die Fensterteile fallen."
+
+#~ msgid "Number Of Fire Particles"
+#~ msgstr "Anzahl der Feuerpartikel"
+
+#~ msgid "Number of fire particles."
+#~ msgstr "Anzahl der Feuerpartikel"
+
+#~ msgid "Out"
+#~ msgstr "Heraus"
+
+#~ msgid "Rectangular"
+#~ msgstr "Rechteckig"
+
+#~ msgid "Rotation Angle"
+#~ msgstr "Rotationswinkel"
+
+# FIXME: besser Bruchstücke statt Teile?
+#~ msgid "Rotation angle of animated window pieces (in degrees)."
+#~ msgstr "Rotationswinkel für animierte Fensterteile (in Grad)."
+
+#, fuzzy
+#~ msgid "Skewer Direction"
+#~ msgstr "Schnee-Richtung"
+
+#~ msgid "Spacing between beams."
+#~ msgstr "Der Abstand zwischen den Blitzen."
+
+#~ msgid "Tessellation Type"
+#~ msgstr "Tesselations-Typ"
+
+#~ msgid "Tessellation type for exploding window pieces."
+#~ msgstr "Tesselations-Typ für Explosions-Effekt"
+
+#~ msgid "Tessellation type for window pieces."
+#~ msgstr "Tesselations-Typ für Fensterteile"
+
+#, fuzzy
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe "
+#~ "eines Gitters erzeugt. Geben sie die Höhe der einzelnen Gitterzeilen in "
+#~ "Pixeln an."
+
+#, fuzzy
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe "
+#~ "eines Gitters erzeugt. Geben sie die Breite der einzelnen Gitterzeilen in "
+#~ "Pixeln an."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe "
+#~ "eines Gitters erzeugt. Geben sie die Anzahl der Gitterzellen an, in die "
+#~ "das Fenster vertikal zerlegt werden soll."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "Die für den Explosions-Effekt verwendete Fensterteile werden mit Hilfe "
+#~ "eines Gitters erzeugt. Geben sie die Anzahl der einzelnen Gitterzeilen "
+#~ "an, in die das Fenster vertikal zerlegt werden soll."
+
+#~ msgid "Thickness"
+#~ msgstr "Dicke"
+
+#~ msgid "Thickness of Animated Polygons"
+#~ msgstr "Dicke der animierten Polygone"
+
+#~ msgid "Thickness of Exploding Polygons"
+#~ msgstr "Dicke der explodierenden Polygone"
+
+#~ msgid "Thickness of animated window pieces (in pixels)."
+#~ msgstr "Dicke der bei der Animation entstehenden Fensterteile (in Pixeln)."
+
+#~ msgid "Thickness of exploding window pieces (in pixels)."
+#~ msgstr "Dicke der bei der Explosion entstehenden Fensterteile (in Pixeln)."
+
+#~ msgid "Up-down"
+#~ msgstr "Hoch/Runter"
+
+#~ msgid ""
+#~ "Whether the window should fly to taskbar when minimized with Airplane "
+#~ "effect."
+#~ msgstr ""
+#~ "Sollen die Fenster zur Taskleiste fliegen, falls beim Minimieren der "
+#~ "Effekt Papierflugzeug benutzt wird?"
+
+#~ msgid "Window Grid Height"
+#~ msgstr "Fenstergitterhöhe"
+
+#~ msgid "Window Grid Width"
+#~ msgstr "Fenstergitterbreite"
+
+#, fuzzy
+#~ msgid "Window folding direction."
+#~ msgstr "Fallrichtung der Dominosteine"
+
+#~ msgid ""
+#~ "Window thickness in pixels. Setting this to larger than 0 will disable "
+#~ "shadow, blur, and reflection during the animation."
+#~ msgstr ""
+#~ "Fensterdicke in Pixel. Bei einer Einstellung über 0 wird der Schatten, "
+#~ "die Unschärfe und die Reflektion während der Animation deaktiviert."
 
 #, fuzzy
 #~ msgid ""

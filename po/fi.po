@@ -9,13 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-07 11:27+0530\n"
-"PO-Revision-Date: 2008-04-17 12:19+0200\n"
+"POT-Creation-Date: 2008-08-30 11:42+0530\n"
+"PO-Revision-Date: 2008-08-08 14:12+0200\n"
 "Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
@@ -119,10 +120,10 @@ msgid "Brightness of faded windows"
 msgstr "Häivyttyneiden ikkunoiden kirkkaus"
 
 msgid "Enable ADD Helper on start"
-msgstr ""
+msgstr "Ota ADD-avustin käyttöön käynnistettäessä"
 
 msgid "Enables ADD helper when it is first loaded."
-msgstr ""
+msgstr "Ottaa ADD-avustimen käyttöön kun se on ensin ladattu."
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -153,12 +154,6 @@ msgstr "Ikkunatyypit"
 msgid "Window types that should be Opacified."
 msgstr "Ikkunatyypit, joihin tulisi käyttää läpinäkyvyyttä"
 
-msgid "Airplane"
-msgstr "Lentokone"
-
-msgid "Airplane Flying Path Length"
-msgstr "Lentokoneen polun pituus"
-
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
@@ -175,12 +170,8 @@ msgstr "Animaation valinta"
 msgid "Animation Time Step"
 msgstr "Animaation aikaviive"
 
-msgid "Animation Time Step For Intense Effects"
-msgstr "Animaation aikaviive raskaille efekteille"
-
-#, fuzzy
 msgid "Animation duration in milliseconds for close effect."
-msgstr "Animaation kesto (ms) *"
+msgstr "Animaation kesto millisekunneissa sulkemistehosteelle."
 
 msgid "Animation duration in milliseconds for focus effect."
 msgstr "Animaation kesto (ms) tarkennus efektille"
@@ -197,50 +188,11 @@ msgstr "Animaation kesto (ms) varjostus efektille"
 msgid "Animations"
 msgstr "Animaatiot"
 
-msgid "Automatic"
-msgstr "Automaattinen"
-
 msgid "Away Angle"
 msgstr "Kulma poispäin"
 
 msgid "Away Position"
 msgstr "Poissa-asento"
-
-msgid "Beam"
-msgstr "Säde"
-
-msgid "Beam Color"
-msgstr "Säteen väri"
-
-msgid "Beam Life"
-msgstr "Säteen elinaika"
-
-msgid "Beam Slowdown"
-msgstr "Säteen hidastus"
-
-msgid "Beam Spacing"
-msgstr "Säteiden väli"
-
-msgid "Beam Up"
-msgstr "Säde ylös"
-
-msgid "Beam Width"
-msgstr "Säteen leveys"
-
-msgid "Beam color."
-msgstr "Säteen väri."
-
-msgid "Beam life."
-msgstr "Säteen elinaika."
-
-msgid "Beam slowdown."
-msgstr "Säteen hidastus."
-
-msgid "Beam width."
-msgstr "Säteen leveys."
-
-msgid "Burn"
-msgstr "Polta"
 
 msgid "Close Animation"
 msgstr "Sulkemisanimaatio"
@@ -266,24 +218,14 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Kaarevat taitokset"
 
-#, fuzzy
 msgid "Curved Fold Amplitude Multiplier"
-msgstr "Kaarevien taitosten amplitudi"
+msgstr "Kaarevien taitosten amplitudin kerroin"
 
 msgid "Dodge"
 msgstr "Värilisävalotus"
 
 msgid "Dodge Gap Ratio"
 msgstr "Väistöväli"
-
-msgid "Domino"
-msgstr "Domino"
-
-msgid "Domino Piece Falling Direction"
-msgstr "Dominopalikoiden putoamissuunta"
-
-msgid "Down"
-msgstr "Alas"
 
 msgid "Dream"
 msgstr "Uni"
@@ -294,62 +236,11 @@ msgstr "Kesto"
 msgid "Effect Settings"
 msgstr "Tehosteen asetukset"
 
-msgid "Explode"
-msgstr "Räjähdys"
-
 msgid "Fade"
 msgstr "Häivytys"
 
-msgid "Falling direction for Domino pieces."
-msgstr "Dominopalikoiden putoamissuunta"
-
-msgid "Fire"
-msgstr "Tuli"
-
-msgid "Fire Particle Color"
-msgstr "Tulipartikkelin väri"
-
-msgid "Fire Particle Life"
-msgstr "Tulipartikkelin elinikä"
-
-msgid "Fire Particle Size"
-msgstr "Tulipartikkelin koko"
-
-msgid "Fire Particle Slowdown"
-msgstr "Tulipartikkelin hidastuvuus"
-
-msgid "Fire Smoke"
-msgstr "Tulen savu"
-
-msgid "Fire constant speed"
-msgstr "Tulen vakionopeus"
-
-msgid "Fire direction"
-msgstr "Tulen suunta"
-
-msgid "Fire direction."
-msgstr "Tulen suunta."
-
-msgid "Fire particle color."
-msgstr "Tulipartikkelin väri."
-
-msgid "Fire particle life."
-msgstr "Tulipartikkelin elinikä."
-
-msgid "Fire particle size."
-msgstr "Tulipartikkelin koko."
-
-msgid "Fire particle slowdown."
-msgstr "Tulipartikkelin hidastuvuus."
-
-msgid "Fire smoke."
-msgstr "Tulen savu."
-
 msgid "Fixed window interior during the Rollup animation."
 msgstr "Korjattu ikkunan sisältö rullausanimaation aikana."
-
-msgid "Fly to TaskBar on Minimize"
-msgstr "Lennä tehtäväpalkkiin pienennettäessä"
 
 msgid "Focus Animation"
 msgstr "Kohdistusanimaatio"
@@ -357,19 +248,10 @@ msgstr "Kohdistusanimaatio"
 msgid "Focus Effect"
 msgstr "Kohdistustehoste"
 
-msgid "Fold"
-msgstr "Laskostus"
-
-msgid "Fold Direction"
-msgstr "Laskoksen suunta"
-
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-msgid "Fold opening direction for pieces in Razr effect."
-msgstr "Laskosten avautumissuunta Razr-tehosteen osille."
 
 msgid "Glide 1"
 msgstr "Liuku 1"
@@ -377,44 +259,17 @@ msgstr "Liuku 1"
 msgid "Glide 2"
 msgstr "Liuku 2"
 
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr ""
-"Käytä satunnaisia värejä tulitehosteessa (tunnetaan myös nimellä mystinen "
-"tuli: Mystical Fire)"
-
-msgid "Hexagonal"
-msgstr "Monikulmio"
-
 msgid "Horizontal Folds"
 msgstr "Vaakalaskokset"
 
-#, fuzzy
 msgid "Horizontal Folds Amplitude Multiplier"
-msgstr "Vaakalaskosten amplitudi"
+msgstr "Vaakalaskosten amplitudin kerroin"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr "Sidekick-animaation ponnahtavuus"
 
 msgid "How spring-like the Zoom animation should be."
 msgstr "Lähennysanimaation ponnahtavuus"
-
-msgid "In"
-msgstr "Sisällä"
-
-msgid "In-out"
-msgstr "Sisään-ulos"
-
-msgid "Leaf Spread"
-msgstr "Lehtien levittyneisyys"
-
-msgid "Left"
-msgstr "Vasen"
-
-msgid "Left-right"
-msgstr "Vasen-oikea"
-
-msgid "Length of airplane's flying path."
-msgstr "Lentokoneen lentoradan pituus."
 
 msgid "Magic Lamp"
 msgstr "Taikalamppu"
@@ -437,9 +292,6 @@ msgstr "Taikalampun aloitusleveys"
 msgid "Magic Lamp Open/Close Moving End"
 msgstr "Taikalampun liikkuva avaus/sulkemishäntä"
 
-msgid "Make fire effect duration be dependent on window height."
-msgstr "Aseta tulitehosteen kesto riippuvaiseksi ikkunan leveydestä."
-
 msgid "Minimize Animation"
 msgstr "Pienennysanimaatio"
 
@@ -449,20 +301,11 @@ msgstr "Pienennystehoste"
 msgid "Minimize/Unminimize Only"
 msgstr "Pienennä/palauta ainoastaan"
 
-msgid "Movement direction(s) for window pieces."
-msgstr "Ikkunan palasien liikesuunnat"
-
 msgid "None"
 msgstr "Ei mitään"
 
-msgid "Number Of Fire Particles"
-msgstr "Tulipartikkelien lukumäärä"
-
 msgid "Number of Horizontal Folds"
 msgstr "Vaakasuuntaisten laskosten lukumäärä"
-
-msgid "Number of fire particles."
-msgstr "Tulipartikkelien lukumäärä."
 
 #, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
@@ -492,15 +335,13 @@ msgstr "Ainoastaan avaa/sulje"
 msgid "Options"
 msgstr "Valinnat"
 
-msgid "Out"
-msgstr "Ulkopuolella"
-
 msgid "Pool"
 msgstr "Valikoima"
 
+#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
-"to restore full list."
+"to use all effects."
 msgstr ""
 "Käytettävä tehostevalikoima jos satunnaistehosteet on valittu. Valitse "
 "palauta oletukset palauttaaksesi täyden tehosteluettelon."
@@ -514,35 +355,14 @@ msgstr "Satunnaistehosteet kaikille tapahtumille"
 msgid "Random Effects"
 msgstr "Satunnaistehosteet"
 
-msgid "Randomly Colored Fire"
-msgstr "Satunnainen väri tulelle"
-
 msgid "Ratio of gaps between dodge start times to focus duration."
 msgstr "Välien suhde väistön aloituksesta kohdistamiseen."
-
-msgid "Razr"
-msgstr "Razr"
-
-msgid "Razr Fold Opening Direction"
-msgstr ""
-
-msgid "Rectangular"
-msgstr "Suorakulmainen"
-
-msgid "Right"
-msgstr "Oikea"
 
 msgid "Roll Up"
 msgstr "Rullaus"
 
 msgid "Rollup Fixed Interior"
 msgstr "Rullaa kiinteä sisältö"
-
-msgid "Rotation Angle"
-msgstr "Kiertokulma"
-
-msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "Animoitujen ikkunanpalasten kiertokulma"
 
 msgid "Shade Animation"
 msgstr "Varjoanimaatio"
@@ -559,15 +379,6 @@ msgstr "Sidekick -kierrosten lukumäärä"
 msgid "Sidekick Springiness"
 msgstr "Sidekick-ponnahtavuus"
 
-msgid "Skewer"
-msgstr "Vääristäjä"
-
-msgid "Skewer Direction"
-msgstr "Vääristyksen suunta"
-
-msgid "Spacing between beams."
-msgstr "Säteiden välimatka."
-
 msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
@@ -577,43 +388,12 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr "Tyhjiön avaus- ja sulkemistehosteen leveys"
 
-msgid "Tessellation Type"
-msgstr ""
-
-msgid "Tessellation type for exploding window pieces."
-msgstr ""
-
-msgid "Tessellation type for window pieces."
-msgstr ""
-
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
 "higher the number, the jerkier the movements become."
 msgstr ""
 "Animaatiojaksojen väliaika (ms). Mitä suurempi arvo, sitä nykivämmiksi "
 "liikkeet tulevat."
-
-msgid ""
-"The amount of time in milliseconds between each render of the intense "
-"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
-"become."
-msgstr ""
-"Vaativien (esim. tuli, säde) animaatiojaksojen väliaika (ms). Mitä suurempi "
-"arvo, sitä nykivämmiksi liikkeet tulevat."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"Animoitu ikkuna paloitellaan koordinaatistolla. Anna koordinaattien "
-"lukumäärä ikkunan korkeussuunnassa."
-
-msgid ""
-"The animated window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"Animoitu ikkuna paloitellaan koordinaatistolla. Anna koordinaattien "
-"lukumäärä ikkunan leveyssuunnassa."
 
 msgid "The animation effect shown when closing a window."
 msgstr "Näytettävä animaatiotehoste ikkunaa suljettaessa."
@@ -629,20 +409,6 @@ msgstr "Näytettävä animaatiotehoste ikkunaa pienennettäessä"
 
 msgid "The animation effect shown when shading a window."
 msgstr "Näytettävä animaatiotehoste ikkunaa varjostettaessa"
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the height of the window."
-msgstr ""
-"Räjähtävä ikkuna paloitellaan koordinaatistolla. Anna koordinaattien "
-"lukumäärä ikkunan korkeussuunnassa."
-
-msgid ""
-"The exploding window will be split into pieces along a grid. Specify the "
-"number of grid cells along the width of the window."
-msgstr ""
-"Räjähtävä ikkuna paloitellaan koordinaatistolla. Anna koordinaattien "
-"lukumäärä ikkunan leveyssuunnassa."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
 msgstr "Taikalampun laskosten enimmäiskoko."
@@ -662,27 +428,6 @@ msgstr "Aallonpituus suhteessa ikkunan korkeuteen"
 
 msgid "The windows that will be animated."
 msgstr "Animoitavat ikkunat."
-
-msgid "Thickness"
-msgstr "Paksuus"
-
-msgid "Thickness of Animated Polygons"
-msgstr "Animoitujen monikulmioiden paksuus"
-
-msgid "Thickness of Exploding Polygons"
-msgstr "Räjähtävien monikulmioiden paksuus"
-
-msgid "Thickness of animated window pieces (in pixels)."
-msgstr "Animoitujen ikkunanpalasten paksuus (kuvapisteinä)"
-
-msgid "Thickness of exploding window pieces (in pixels)."
-msgstr "Räjähtävien ikkunanpalasten paksuus (kuvapisteinä)"
-
-msgid "Up"
-msgstr "Ylös"
-
-msgid "Up-down"
-msgstr "Ylös-alas"
 
 msgid "Use various animations as window effects"
 msgstr "Käytä useita animaatioita ikkunatehosteina"
@@ -714,9 +459,8 @@ msgstr ""
 msgid "Wave"
 msgstr "Aalto"
 
-#, fuzzy
 msgid "Wave Amplitude Multiplier"
-msgstr "Aallonkorkeus"
+msgstr "Aallonkorkeuden kerroin"
 
 msgid "Wave Width"
 msgstr "Aaltojen leveys"
@@ -725,12 +469,8 @@ msgid ""
 "Wave amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
-
-msgid ""
-"Whether the window should fly to taskbar when minimized with Airplane effect."
-msgstr ""
-"Tuleeko ikkunan lentää tehtäväpalkkiin kun se pienennetään "
-"lentokonetehosteella."
+"Aallonkorkeus (koko) kerrotaan tällä numerolla. Negatiiviset arvot "
+"laskostuvat ulospäin."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
@@ -763,27 +503,11 @@ msgstr ""
 "Tuleeko ikkunan pienentyä tehtäväpalkkiin kun se pienennetään "
 "vaakalaskostehosteella."
 
-msgid "Window Grid Height"
-msgstr "Ikkunan koordinaatiston korkeus"
-
-msgid "Window Grid Width"
-msgstr "Ikkunan koordinaatiston leveys"
-
-msgid "Window folding direction."
-msgstr "Ikkunan laskostussuunta."
-
 msgid "Window that should animate with this effect when focused."
 msgstr "Kohdistettava ikkuna animoituu tällä tehosteella."
 
 msgid "Window that should animate with this effect when shaded."
 msgstr "Varjostettava ikkuna animoituu tällä tehosteella."
-
-msgid ""
-"Window thickness in pixels. Setting this to larger than 0 will disable "
-"shadow, blur, and reflection during the animation."
-msgstr ""
-"Ikkunan paksuus kuvapisteinä. Nollaa suuremmat arvot poistavat käytöstä "
-"varjot, sumennuksen ja heijasteet animaatiossa."
 
 msgid "Zoom"
 msgstr "Zoomaus"
@@ -807,58 +531,58 @@ msgid "Colors"
 msgstr "Värit"
 
 msgid "Cube Atlantis"
-msgstr ""
+msgstr "Kuutio-Atlantis"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Delfiinin koko"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Delfiinin koko."
 
 msgid "Enable colors"
-msgstr ""
+msgstr "Ota värit käyttöön"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Kalan koko"
 
 msgid "Number of fish"
-msgstr ""
+msgstr "Kalojen lukumäärä"
 
 msgid "Number of fish inside the cube"
-msgstr ""
+msgstr "Kuution sisällä olevien kalojen lukumäärä"
 
 msgid "Render some fish inside of the transparent cube"
-msgstr ""
+msgstr "Piirrä joitain kaloja läpinäkyvän kuution sisälle"
 
 msgid "Shark size"
-msgstr ""
+msgstr "Hain koko"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Valaan koko"
 
 msgid "Whale size."
-msgstr ""
+msgstr "Valaan koko."
 
 msgid "A simple benchmark plugin"
-msgstr ""
+msgstr "Yksinkertainen suorituskyvyn mittauksen liitännäinen"
 
 msgid "Benchmark"
-msgstr ""
+msgstr "Suorituskyvyn mittaus"
 
 msgid "Console Output"
-msgstr ""
+msgstr "Konsolituloste"
 
 msgid "Console output update time"
-msgstr ""
+msgstr "Konsolitulosteen päivitysaika"
 
 msgid "Disable Compiz integrated FPS limiter"
-msgstr ""
+msgstr "Ota Compizin sisäänrakennettu kehysnopeuden rajoitin pois päältä"
 
 msgid "Disable limiter"
-msgstr ""
+msgstr "Ota rajoitin pois käytöstä"
 
 msgid "Display FPS on screen"
-msgstr ""
+msgstr "Näytä kehysnopeus näytöllä"
 
 msgid "Enable"
 msgstr "Käytä"
@@ -893,12 +617,11 @@ msgstr ""
 msgid "Y position"
 msgstr "Y-sijainti"
 
-#, fuzzy
 msgid "Bicubic filter"
-msgstr "Vaihda suodatin"
+msgstr "Bicubic-suodatin"
 
 msgid "Bicubic texture filtering"
-msgstr ""
+msgstr "Bicubic-tekstuurisuodatin"
 
 msgid "Color filter"
 msgstr "Värisuodatin"
@@ -1016,7 +739,6 @@ msgstr ""
 msgid "Appearance"
 msgstr "Ulkoasu"
 
-#, fuzzy
 msgid "Aspect ratio"
 msgstr "Kuvasuhde"
 
@@ -1066,44 +788,40 @@ msgid "Color of top face of the cube"
 msgstr ""
 
 msgid "Compiz cube reflection and deformation"
-msgstr ""
+msgstr "Compizin kuution heijastus ja muodon käsittely"
 
 msgid "Cube Bottom Color"
-msgstr ""
+msgstr "Kuution pohjan väri"
 
-#, fuzzy
 msgid "Cube Reflection and Deformation"
-msgstr "Kuution heijastus"
+msgstr "Kuution heijastus ja muodon käsittely"
 
 msgid "Cube Top Color"
-msgstr ""
+msgstr "Kuution katon väri"
 
-#, fuzzy
 msgid "Cube caps"
 msgstr "Kuution kannet"
 
-#, fuzzy
 msgid "Cylinder"
-msgstr "Tyhjennä"
+msgstr "Sylinteri"
 
 msgid "Deform caps"
-msgstr ""
+msgstr "Muuta kansien muotoa"
 
 msgid "Deform cube caps."
-msgstr ""
+msgstr "Muuta kuution kansien muotoa."
 
-#, fuzzy
 msgid "Deform only on mouse rotate"
-msgstr "3D vain pyörittäessä hiirellä"
+msgstr "Muuta muotoa vain hiirellä pyöritettäessä"
 
 msgid "Deformation"
-msgstr ""
+msgstr "Muodon käsittely"
 
 msgid "Deformation in unfold cube mode."
 msgstr ""
 
 msgid "Deformation mode."
-msgstr ""
+msgstr "Muodon käsittelytapa."
 
 msgid "Distance"
 msgstr "Etäisyys"
@@ -1120,9 +838,8 @@ msgstr ""
 msgid "Draw top face of the cube"
 msgstr ""
 
-#, fuzzy
 msgid "Enabled"
-msgstr "Käytä"
+msgstr "Käytössä"
 
 msgid "Give cube a reflective ground."
 msgstr ""
@@ -1158,16 +875,14 @@ msgstr "Luettelo kuution pohjaan asetettavista PNG- ja SVG-tiedostoista"
 msgid "List of PNG and SVG files that should be rendered on top face of cube"
 msgstr "Luettelo kuution päälle asetettavista PNG- ja SVG-tiedostoista"
 
-#, fuzzy
 msgid "Maintain bottom aspect ratio"
-msgstr "Expotilan kuvasuhde"
+msgstr "Pidä pohjan kuvasuhde"
 
 msgid "Maintain bottom cap image aspect ratio."
 msgstr ""
 
-#, fuzzy
 msgid "Maintain top aspect ratio"
-msgstr "Expotilan kuvasuhde"
+msgstr "Pidä katon kuvasuhde"
 
 msgid "Maintain top cap image aspect ratio."
 msgstr ""
@@ -1214,9 +929,8 @@ msgstr ""
 msgid "Scale top image"
 msgstr ""
 
-#, fuzzy
 msgid "Sphere"
-msgstr "Nopeus"
+msgstr "Pallo"
 
 msgid "Top image files"
 msgstr ""
@@ -1230,20 +944,17 @@ msgstr ""
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr ""
 
-#, fuzzy
 msgid "Cube Caps"
 msgstr "Kuution kannet"
 
 msgid "Render images on top and bottom of the cube"
 msgstr ""
 
-#, fuzzy
 msgid "Compiz cube reflection"
-msgstr "Salli valinta hiirellä"
+msgstr "Compizin kuution heijastus"
 
-#, fuzzy
 msgid "Cube Reflection"
-msgstr "Heijastus"
+msgstr "Kuution heijastus"
 
 msgid "Animation used when switching to expo mode"
 msgstr "Expo-tilaan siirryttäessä käytettävät animaatiot"
@@ -1332,13 +1043,11 @@ msgstr "Piilota paneelit ja telakat expossa."
 msgid "Immediate moves"
 msgstr "Välittömät liikkeet"
 
-#, fuzzy
 msgid "Inactive viewport brightness."
-msgstr "Epäaktiivisen työtilan kirkkaus"
+msgstr "Epäaktiivisen työtilan kirkkaus."
 
-#, fuzzy
 msgid "Inactive viewport saturation."
-msgstr "Epäaktiivisen työtilan saturaatio"
+msgstr "Epäaktiivisen työtilan värikylläisyys."
 
 msgid "Mipmaps"
 msgstr "Mipmapit"
@@ -1409,7 +1118,7 @@ msgid "Activate next window which has the \"demands attention\" flag set."
 msgstr ""
 
 msgid "Extra WM Actions"
-msgstr ""
+msgstr "Ikkunanhallinan lisätoiminnot"
 
 msgid "Provides less commonly used WM actions"
 msgstr ""
@@ -1512,9 +1221,8 @@ msgstr "Piilota alkuperäinen kohdistin"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "Piilottaa alkuperäisen hiiren osoittimen zoomauksen aikana"
 
-#, fuzzy
 msgid "Minimum zoom factor"
-msgstr "Määritetty zoomauskerroin 1"
+msgstr "Pienin zoomauskerroin"
 
 msgid "Mouse Behaviour"
 msgstr "Hiiren käytös"
@@ -1630,9 +1338,8 @@ msgstr "Käytä tasasuodatusta zoomattaessa sisään"
 msgid "Zoom Area Movement"
 msgstr "Zoomausalueen liike"
 
-#, fuzzy
 msgid "Zoom Box"
-msgstr "Zoomaus"
+msgstr "Zoomauslaatikko"
 
 msgid "Zoom In"
 msgstr "Lähennä"
@@ -1698,13 +1405,13 @@ msgid "Fade Time"
 msgstr "Häivytysaika"
 
 msgid "Fade time (in ms)"
-msgstr ""
+msgstr "Häivytysaika (ms)"
 
 msgid "Fade to Desktop"
-msgstr ""
+msgstr "Työpöydälle häivytys"
 
 msgid "Windows that should be faded to desktop"
-msgstr ""
+msgstr "Ikkunat jotka häivytetään työpöydälle"
 
 msgid "Alter window opacity based on color."
 msgstr ""
@@ -1716,6 +1423,13 @@ msgid "Toggle Window Fake ARGB"
 msgstr ""
 
 msgid "Toggle window fake ARGB."
+msgstr ""
+
+#, fuzzy
+msgid "Add Particle"
+msgstr "Partikkelin elinikä"
+
+msgid "Adds a fire particle at position (x,y), where x and y are floats."
 msgstr ""
 
 msgid "Background brightness"
@@ -1732,6 +1446,35 @@ msgstr "Tyhjennä (painike)"
 
 msgid "Clear (key)"
 msgstr "Tyhjennä (näppäin)"
+
+msgid "Fire Particle Color"
+msgstr "Tulipartikkelin väri"
+
+msgid "Fire Particle Life"
+msgstr "Tulipartikkelin elinikä"
+
+msgid "Fire Particle Size"
+msgstr "Tulipartikkelin koko"
+
+msgid "Fire Particle Slowdown"
+msgstr "Tulipartikkelin hidastuvuus"
+
+msgid "Fire particle color."
+msgstr "Tulipartikkelin väri."
+
+msgid "Fire particle life."
+msgstr "Tulipartikkelin elinikä."
+
+msgid "Fire particle size."
+msgstr "Tulipartikkelin koko."
+
+msgid "Fire particle slowdown."
+msgstr "Tulipartikkelin hidastuvuus."
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr ""
+"Käytä satunnaisia värejä tulitehosteessa (tunnetaan myös nimellä mystinen "
+"tuli: Mystical Fire)"
 
 msgid "Initiate (button)"
 msgstr "Aloitus (painike)"
@@ -1754,11 +1497,14 @@ msgstr "Piirrä tulta näytölle"
 msgid "Paint fire or other particles on the screen"
 msgstr "Piirrä tulta tai muita partikkeleita näytölle"
 
+msgid "Randomly Colored Fire"
+msgstr "Satunnainen väri tulelle"
+
 msgid "Cube Gears"
-msgstr ""
+msgstr "Rattaat kuutiossa"
 
 msgid "Render gears inside of the transparent cube"
-msgstr ""
+msgstr "Piirtää rattaita läpinäkyvän kuution sisäpuolelle"
 
 msgid "Animation Options"
 msgstr "Animaation valinnat"
@@ -1875,7 +1621,7 @@ msgid "Group Windows"
 msgstr ""
 
 msgid "Group and Tab Windows"
-msgstr ""
+msgstr "Ikkunoiden ryhmittely ja välilehdet"
 
 msgid "Group the windows after selection"
 msgstr ""
@@ -2040,31 +1786,31 @@ msgid "Tab Border Color"
 msgstr ""
 
 msgid "Tab Group"
-msgstr ""
+msgstr "Tee ryhmästä välilehtiä"
 
 msgid "Tab Highlight Color"
 msgstr ""
 
 msgid "Tab Style"
-msgstr ""
+msgstr "Välilehtien tyyli"
 
 msgid "Tab bar visibility time after tab change"
 msgstr ""
 
 msgid "Tabbing"
-msgstr ""
+msgstr "Välilehtiin asettelu"
 
 msgid "Tabbing Speed"
-msgstr ""
+msgstr "Välilehtiin asettelun nopeus"
 
 msgid "Tabbing Timestep"
-msgstr ""
+msgstr "Välilehtiin asettelun aikaviive"
 
 msgid "Tabbing speed"
-msgstr ""
+msgstr "Välilehtiin asettelun nopeus"
 
 msgid "Tabbing timestep"
-msgstr ""
+msgstr "Välilehtiin asettelun aikaviive"
 
 msgid "The color of the window title in the tab bar"
 msgstr ""
@@ -2126,7 +1872,7 @@ msgid "The width of the tab bar outline"
 msgstr ""
 
 msgid "Thumb Size"
-msgstr ""
+msgstr "Pienoiskuvan koko"
 
 msgid "Time (in s) before the tab bar is shown after hovering the title bar"
 msgstr ""
@@ -2199,13 +1945,11 @@ msgstr ""
 msgid "Login"
 msgstr "Kirjautuminen"
 
-#, fuzzy
 msgid "Login Window Match"
-msgstr "Ikkunan syvyys"
+msgstr "Täsmäävä kirjautumisikkuna"
 
-#, fuzzy
 msgid "Login Window match"
-msgstr "Ikkunan syvyys"
+msgstr "Täsmäävä kirjautumisikkuna"
 
 msgid "Login/Logout"
 msgstr "Kirjautuminen/uloskirjautuminen"
@@ -2222,13 +1966,11 @@ msgstr ""
 msgid "Logout Window match"
 msgstr ""
 
-#, fuzzy
 msgid "Window opacity."
-msgstr "Ikkunan syvyys"
+msgstr "Ikkunan läpikuultamattomuus."
 
-#, fuzzy
 msgid "Border color"
-msgstr "Säteen väri"
+msgstr "Reunan väri"
 
 msgid "Border width"
 msgstr "Reunan leveys"
@@ -2312,10 +2054,10 @@ msgid "Ignore sticky windows in the calculations"
 msgstr ""
 
 msgid "Maximumize"
-msgstr ""
+msgstr "Ikkunoiden suurentaminen sovittaen"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
-msgstr ""
+msgstr "Suurentaa ikkunat sopimaan vapaana olevaan tilaan näytöllä"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2360,10 +2102,10 @@ msgid "Motion Blur strength."
 msgstr ""
 
 msgid "Motion blur"
-msgstr ""
+msgstr "Liikesumennus"
 
 msgid "Motion blur effect"
-msgstr ""
+msgstr "Liikesumennustehoste"
 
 msgid "Texture Copy"
 msgstr ""
@@ -2458,9 +2200,8 @@ msgstr "Ei käytössä näissä ikkunoissa"
 msgid "Neg Windows"
 msgstr ""
 
-#, fuzzy
 msgid "Negate Decorations"
-msgstr "Suodata ikkunasomisteet"
+msgstr "Poista somisteet"
 
 msgid "Negative"
 msgstr "Negatiivi"
@@ -2496,7 +2237,7 @@ msgid "Error"
 msgstr "Virhe"
 
 msgid "Error Notifications"
-msgstr ""
+msgstr "Virhehuomautukset"
 
 msgid "Fatal"
 msgstr ""
@@ -2553,7 +2294,7 @@ msgid ""
 msgstr ""
 
 msgid "Opacify"
-msgstr ""
+msgstr "Läpikuultamattomuus"
 
 msgid "Opacity Levels"
 msgstr "Läpinäkyvyysasteet"
@@ -3116,20 +2857,17 @@ msgstr "Ikkunan nimen näyttäminen"
 msgid "Windows that should be shown in ring"
 msgstr ""
 
-#, fuzzy
 msgid "All windows"
-msgstr "3D Ikkunat"
+msgstr "Kaikki ikkunat"
 
 msgid "Background color of the window title"
 msgstr "Ikkunan nimen taustaväri"
 
-#, fuzzy
 msgid "Close Window"
-msgstr "Seuraava ikkuna"
+msgstr "Sulje ikkuna"
 
-#, fuzzy
 msgid "Close window while in scale mode"
-msgstr "Nostaa ikkunoita kuutiota pyörittäessä"
+msgstr "Sulje ikkuna skaalaustilassa oltaessa"
 
 msgid "Close windows while in scale mode"
 msgstr ""
@@ -3178,16 +2916,15 @@ msgstr "Tavallinen"
 msgid "Organic - EXPERIMENTAL"
 msgstr "Orgaaninen - KOKEELLINEN"
 
-#, fuzzy
 msgid "Pull Window"
-msgstr "3D Ikkunat"
+msgstr "Vedä ikkuna esiin"
 
 #, fuzzy
 msgid "Pull window to current viewport while in scale mode"
 msgstr "Siirrä ikkuna ylempään työtilaan"
 
 msgid "Scale Addons"
-msgstr ""
+msgstr "Skaalauksen lisäosat"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr ""
@@ -3210,23 +2947,20 @@ msgstr "Ikkunan korostus"
 msgid "Window Layout Mode"
 msgstr ""
 
-#, fuzzy
 msgid "Window Pull"
-msgstr "Ikkunan säännöt"
+msgstr "Ikkunan esiinveto"
 
 msgid "Window Title"
 msgstr "Ikkunan otsikko"
 
-#, fuzzy
 msgid "Window Title Display"
-msgstr "Ikkunatyypit"
+msgstr "Ikkunan otsikon näyttö"
 
 msgid "Window title display in scale mode"
 msgstr ""
 
-#, fuzzy
 msgid "Zoom Window"
-msgstr "3D-ikkunat"
+msgstr "Ikkunan lähennys"
 
 msgid "Zoom window while in scale mode"
 msgstr ""
@@ -3238,7 +2972,7 @@ msgid "Filter Type Timeout"
 msgstr ""
 
 msgid "Scale Window Title Filter"
-msgstr ""
+msgstr "Ikkunan skaalauksen otsikkosuodatin"
 
 msgid "Show Filter Text"
 msgstr ""
@@ -3276,7 +3010,7 @@ msgid "Initiate screencasting"
 msgstr ""
 
 msgid "Put screenshot images in this directory"
-msgstr ""
+msgstr "Laita kuvakaappauskuvat tähän hakemistoon"
 
 msgid "ScreenCast plugin"
 msgstr ""
@@ -3332,10 +3066,10 @@ msgid ""
 msgstr ""
 
 msgid "Scale interval"
-msgstr ""
+msgstr "Skaalauksen aikaväli"
 
 msgid "Shelf"
-msgstr ""
+msgstr "Hylly"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
@@ -3440,22 +3174,22 @@ msgid ""
 msgstr ""
 
 msgid "Shift Switcher"
-msgstr ""
+msgstr "Selausvaihdin"
 
 msgid "Shift Switcher Plugin"
-msgstr ""
+msgstr "Selausvaihdinliitännäinen"
 
 msgid "Shift Windows"
-msgstr ""
+msgstr "Selaa ikkunoita"
 
 msgid "Shift animation speed"
-msgstr ""
+msgstr "Selausanimaation nopeus"
 
 msgid "Shift speed"
-msgstr ""
+msgstr "Selausnopeus"
 
 msgid "Shift timestep"
-msgstr ""
+msgstr "Selauksen aikaväli"
 
 msgid "Switcher mode"
 msgstr "Vaihtimen tila"
@@ -3470,13 +3204,19 @@ msgid "Terminate switcher."
 msgstr "Sulje vaihdin."
 
 msgid "Windows that should be shown in the shift switcher"
-msgstr ""
+msgstr "Ikkunat jotka näytetään selausvaihtimessa"
 
 msgid "Access your desktop easily"
-msgstr ""
+msgstr "Helppo pääsy työpöydälle"
 
 msgid "Direction of window movement"
 msgstr "Ikkunan liikkeen suunta"
+
+msgid "Down"
+msgstr "Alas"
+
+msgid "Left"
+msgstr "Vasen"
 
 msgid "Left/Right"
 msgstr "Vasen/oikea"
@@ -3484,26 +3224,32 @@ msgstr "Vasen/oikea"
 msgid "Movement Direction"
 msgstr "Liikkeen suunta"
 
+msgid "Right"
+msgstr "Oikea"
+
 msgid "Show desktop"
 msgstr "Näytä työpöytä"
 
 msgid "To Corners"
-msgstr ""
+msgstr "Kulmiin"
+
+msgid "Up"
+msgstr "Ylös"
 
 msgid "Up/Down"
 msgstr "Ylös/alas"
 
 msgid "Window Opacity"
-msgstr ""
+msgstr "Ikkunan läpikuultamattomuus"
 
 msgid "Window Part Size"
 msgstr ""
 
 msgid "Window movement speed"
-msgstr ""
+msgstr "Ikkunan liikkeen nopeus"
 
 msgid "Window movement timestep"
-msgstr ""
+msgstr "Ikkunan liikkeen aikaväli"
 
 msgid "Window opacity when showdesktop'd"
 msgstr ""
@@ -3551,9 +3297,8 @@ msgstr "Partikkelin väri"
 msgid "Particle Life"
 msgstr "Partikkelin elinikä"
 
-#, fuzzy
 msgid "Particle Options"
-msgstr "Sekalaiset valinnat"
+msgstr "Partikkelivalinnat"
 
 msgid "Particle Size"
 msgstr "Partikkelin koko"
@@ -3579,16 +3324,14 @@ msgstr ""
 msgid "Ring radius"
 msgstr ""
 
-#, fuzzy
 msgid "Rotation speed"
-msgstr "Animaation nopeus"
+msgstr "Kiertämisen nopeus"
 
-#, fuzzy
 msgid "Rotation speed."
-msgstr "Animaation nopeus"
+msgstr "Kiertämisen nopeus."
 
 msgid "Show mouse"
-msgstr ""
+msgstr "Näytä hiiri"
 
 msgid "Toggle the mouse pointer trail."
 msgstr ""
@@ -3639,7 +3382,7 @@ msgid "Snap to 'Screen Edges', 'Windows Edges' or 'Both'."
 msgstr ""
 
 msgid "Snapping Windows"
-msgstr ""
+msgstr "Tarttuvat ikkunat"
 
 msgid "The distance until edge attraction takes place."
 msgstr ""
@@ -3654,7 +3397,7 @@ msgid "Window edges"
 msgstr "Ikkunan reunat"
 
 msgid "Bottom to Top"
-msgstr ""
+msgstr "Alhaalta ylös"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
@@ -3662,16 +3405,18 @@ msgid ""
 msgstr ""
 
 msgid "Enable Blending"
-msgstr ""
+msgstr "Ota sekoittaminen käyttöön"
 
 msgid "Enable Textures"
-msgstr ""
+msgstr "Ota tekstuurit käyttöön"
 
 msgid "Enables alpha blending of snowflakes."
-msgstr ""
+msgstr "Ota lumihiutaleiden läpinäkyvyyssekoittaminen käyttöön."
 
 msgid "Enables textured snowflakes. If not selected, color gradients are used."
 msgstr ""
+"Ottaa käyttöön teksturoidut lumihiutaleet. Muussa tapauksessa käytetään "
+"väriliukuja."
 
 msgid "Flakes rotate if checked."
 msgstr ""
@@ -3685,82 +3430,82 @@ msgid ""
 msgstr ""
 
 msgid "Key Bindings"
-msgstr ""
+msgstr "Pikanäppäimet"
 
 msgid "Left to Right"
-msgstr ""
+msgstr "Vasemmalta oikealle"
 
 msgid "Number Of Snowflakes"
-msgstr ""
+msgstr "Lumihiutaleiden määrä"
 
 msgid "Number of snowflakes"
-msgstr ""
+msgstr "Lumihiutaleiden määrä"
 
 msgid "Right to Left"
-msgstr ""
+msgstr "Oikealta vasemmalle"
 
 msgid "Rotate Flakes"
-msgstr ""
+msgstr "Kierrä hiutaleita"
 
 msgid "Screen Boxing"
 msgstr ""
 
 msgid "Screen Depth"
-msgstr ""
+msgstr "Näytön syvyys"
 
 msgid "Select snow flake movement direction"
-msgstr ""
+msgstr "Valitse lumihiutaleiden liikkeen suunta"
 
 msgid "Settings"
 msgstr "Asetukset"
 
 msgid "Size Of Snowflakes"
-msgstr ""
+msgstr "Lumihiutaleiden koko"
 
 msgid "Size of snowflakes"
-msgstr ""
+msgstr "Lumihiutaleiden koko"
 
 msgid "Snow"
-msgstr ""
+msgstr "Lumi"
 
 msgid "Snow Direction"
-msgstr ""
+msgstr "Lumen suunta"
 
 msgid "Snow Over Windows"
-msgstr ""
+msgstr "Lunta ikkunoiden päällä"
 
 msgid "Snow Speed"
-msgstr ""
+msgstr "Lumen satamisen nopeus"
 
 msgid "Snow Textures"
-msgstr ""
+msgstr "Lumen tekstuurit"
 
 msgid "Snow Toggle"
-msgstr ""
+msgstr "Lumen käyttöönotto"
 
 msgid "Snow for Compiz"
-msgstr ""
+msgstr "Compizin lumiliitännäinen"
 
 msgid "Snow is drawn above windows"
-msgstr ""
+msgstr "Lunta piirretään ikkunoiden päälle"
 
 msgid "Snow textures"
-msgstr ""
+msgstr "Lumitekstuurit"
 
 msgid "Snow toggle key"
-msgstr ""
+msgstr "Lumen käyttöönoton näppäin"
 
 msgid "Speed of falling snow"
-msgstr ""
+msgstr "Satavan lumen nopeus"
 
 msgid "Textures"
-msgstr ""
+msgstr "Tekstuurit"
 
 msgid "Top to Bottom"
-msgstr ""
+msgstr "Ylhäältä alas"
 
 msgid "Update Delay"
-msgstr ""
+msgstr "Päivityksen viive"
 
 msgid "A simple splash plugin"
 msgstr ""
@@ -3813,7 +3558,6 @@ msgid ""
 "selected"
 msgstr "Läpinäkyvyys prosentteina epäaktiivisille ikkunoille renkaassa"
 
-#, fuzzy
 msgid "Behavior"
 msgstr "Toiminta"
 
@@ -3821,32 +3565,26 @@ msgstr "Toiminta"
 msgid "Darken background when showing the stack"
 msgstr "Tummenna taustakuva partikkelien alla"
 
-#, fuzzy
 msgid "On Thumbnail"
-msgstr "Esikatselukuvan leveys"
+msgstr "Pienoiskuvan päällä"
 
-#, fuzzy
 msgid "Rotate inactive windows"
-msgstr "Kylläisyys, ikkunat"
+msgstr "Kierrä inaktiivisia ikkunoita"
 
 msgid "Should not selected windows be rotated"
 msgstr ""
 
-#, fuzzy
 msgid "Stack Window Switcher"
-msgstr "Rengasvaihdin"
+msgstr "Pinoikkunavaihdin"
 
-#, fuzzy
 msgid "Tilt angle of the background."
-msgstr "Väri 1 liukuvärjätystä taustasta"
+msgstr "Taustakuvan kallistuskulma."
 
-#, fuzzy
 msgid "Windows"
-msgstr "3D-ikkunat"
+msgstr "Ikkunat"
 
-#, fuzzy
 msgid "Windows that should be shown in the switcher"
-msgstr "Ikkunat, joihin tulisi soveltaa 3D tekniikka"
+msgstr "Ikkunat, jotka näytetään vaihtimessa"
 
 msgid "Alignment for rows that are not fully filled"
 msgstr ""
@@ -3864,10 +3602,10 @@ msgid "Auto Change Viewport"
 msgstr ""
 
 msgid "Bring Selected To Front"
-msgstr ""
+msgstr "Tuo valitut eteen"
 
 msgid "Centered"
-msgstr ""
+msgstr "Keskitetty"
 
 msgid "Change to the viewport of the selected window while switching"
 msgstr ""
@@ -3884,21 +3622,18 @@ msgstr ""
 msgid "Generate mipmaps when possible for higher quality scaling"
 msgstr ""
 
-#, fuzzy
 msgid "Highlight Border Color"
-msgstr "Korostuksen väri"
+msgstr "Korostuksen reunan väri"
 
 #, fuzzy
 msgid "Highlight Border Inlay Color"
 msgstr "Korostuksen väri"
 
-#, fuzzy
 msgid "Highlight Mode"
-msgstr "Korostuksen väri"
+msgstr "Korostustapa"
 
-#, fuzzy
 msgid "Icon"
-msgstr "Sisällä"
+msgstr "Kuvake"
 
 #, fuzzy
 msgid "Minimized Window Highlight Rectangle"
@@ -3913,30 +3648,25 @@ msgid "Mode for highlighting the currently selected window"
 msgstr "Näytä valitun ikkunan otsikko."
 
 msgid "Next Panel"
-msgstr ""
+msgstr "Seuraava paneeli"
 
-#, fuzzy
 msgid "Next window"
 msgstr "Seuraava ikkuna"
 
-#, fuzzy
 msgid "Next window (All windows)"
-msgstr "Seuraava ikkuna (kaikki työtilat)"
+msgstr "Seuraava ikkuna (kaikki ikkunat)"
 
-#, fuzzy
 msgid "Next window (Group)"
 msgstr "Seuraava ikkuna (ryhmä)"
 
-#, fuzzy
 msgid "Next window (No popup)"
-msgstr "Seuraava ikkuna (ryhmä)"
+msgstr "Seuraava ikkuna (ei ponnahdusikkunaa)"
 
 msgid "Original Window Position"
 msgstr ""
 
-#, fuzzy
 msgid "Popup Window Delay"
-msgstr "3D Ikkunat"
+msgstr "Ponnahdusikkunan viive"
 
 #, fuzzy
 msgid "Popup switcher if not visible and select next window"
@@ -3968,23 +3698,19 @@ msgid ""
 msgstr "Näytä vaihdin ja valitse edellinen ikkuna kaikista ikkunoista."
 
 msgid "Prev Panel"
-msgstr ""
+msgstr "Edellinen paneeli"
 
-#, fuzzy
 msgid "Prev window"
 msgstr "Edellinen ikkuna"
 
-#, fuzzy
 msgid "Prev window (All windows)"
-msgstr "Edellinen ikkuna (kaikki työtilat)"
+msgstr "Edellinen ikkuna (kaikki ikkunat)"
 
-#, fuzzy
 msgid "Prev window (Group)"
 msgstr "Edellinen ikkuna (ryhmä)"
 
-#, fuzzy
 msgid "Prev window (No popup)"
-msgstr "Edellinen ikkuna (ryhmä)"
+msgstr "Edellinen ikkuna (ei ponnahdusikkunaa)"
 
 msgid "Row Alignment"
 msgstr ""
@@ -4001,35 +3727,29 @@ msgstr ""
 msgid "Select previous window without showing the popup window."
 msgstr ""
 
-#, fuzzy
 msgid "Selected Window Highlight"
-msgstr "Ikkunan korostus"
+msgstr "Valitun ikkunan korostus"
 
-#, fuzzy
 msgid "Show Rectangle"
-msgstr "Suorakulmainen"
+msgstr "Näytä suorakulmio"
 
 msgid "Show icon next to thumbnail"
-msgstr ""
+msgstr "Näytä kuvake pienoiskuvan vieressä"
 
-#, fuzzy
 msgid "Show minimized windows"
-msgstr "Ikkunat, joita ei voi pienentää"
+msgstr "Näytä piennetyt ikkunat"
 
 msgid "Static Application Switcher"
-msgstr ""
+msgstr "Staattinen sovelluksen vaihtaja"
 
-#, fuzzy
 msgid "Switcher speed"
-msgstr "Vaihtimen tila"
+msgstr "Vaihtimen nopeus"
 
-#, fuzzy
 msgid "Switcher timestep"
-msgstr "Vaihtimen tila"
+msgstr "Vaihtimen aikaviive"
 
-#, fuzzy
 msgid "Switcher windows"
-msgstr "Suodatetut ikkunat"
+msgstr "Vaihtimen ikkunat"
 
 #, fuzzy
 msgid "Taskbar Entry"
@@ -4041,18 +3761,17 @@ msgstr ""
 msgid "Where to draw highlight rectangle for minimized windows"
 msgstr ""
 
-#, fuzzy
 msgid "Windows that should be shown in switcher"
-msgstr "Ikkunat, joihin tulisi soveltaa 3D tekniikka"
+msgstr "Ikkunat, jotka näytetään vaihtimessa"
 
 msgid "Render text to texture"
-msgstr ""
+msgstr "Piirrä tekstiä tekstuuriin"
 
 msgid "Text"
 msgstr "Teksti"
 
 msgid "Enable Titles"
-msgstr ""
+msgstr "Ota käyttöön otsikot"
 
 msgid "Fade In/Out Duration"
 msgstr ""
@@ -4082,7 +3801,7 @@ msgid "Should be the window title Bold."
 msgstr ""
 
 msgid "Show Delay"
-msgstr ""
+msgstr "Näytä viive"
 
 msgid "Show Window Title in Thumbnail."
 msgstr ""
@@ -4118,10 +3837,10 @@ msgid "Time (in ms) before Thumbnail is shown."
 msgstr ""
 
 msgid "Window Previews"
-msgstr ""
+msgstr "Ikkunoiden esikatselut"
 
 msgid "Window thumbnails at the taskbar"
-msgstr ""
+msgstr "Pienoiskuvat ikkunoista tehtäväpalkissa"
 
 msgid "Window title"
 msgstr "Ikkunan otsikko"
@@ -4133,7 +3852,7 @@ msgid "Window title Font Size."
 msgstr ""
 
 msgid "Animation Duration"
-msgstr ""
+msgstr "Animaation kesto"
 
 msgid "Cascade"
 msgstr ""
@@ -4314,7 +4033,7 @@ msgid ""
 msgstr ""
 
 msgid "Trailfocus"
-msgstr ""
+msgstr "Kohdistusjälki"
 
 msgid "Window to Start Fading"
 msgstr ""
@@ -4356,10 +4075,10 @@ msgid "Move Left"
 msgstr "Siirry vasemmalle"
 
 msgid "Move Next"
-msgstr ""
+msgstr "Siirry seuraavaan"
 
 msgid "Move Prev"
-msgstr ""
+msgstr "Siirry edelliseen"
 
 msgid "Move Right"
 msgstr "Siirry oikealle"
@@ -4371,10 +4090,10 @@ msgid "Move down"
 msgstr "Siirrä alas"
 
 msgid "Move to the left"
-msgstr ""
+msgstr "Siirrä vasemmalle"
 
 msgid "Move to the next viewport"
-msgstr ""
+msgstr "Siirrä seuraavaan työtilaan"
 
 msgid "Move to the previous viewport"
 msgstr "Siirrä edelliseen työtilaan"
@@ -4665,7 +4384,7 @@ msgid "Switch Target Preview Visibility Time"
 msgstr ""
 
 msgid "Switch all"
-msgstr ""
+msgstr "Vaihda kaikki"
 
 msgid "Switch separately"
 msgstr ""
@@ -4689,64 +4408,64 @@ msgid "Width of the border between the previews"
 msgstr ""
 
 msgid "Background fill type."
-msgstr ""
+msgstr "Taustakuvan täyttötapa."
 
 msgid "Backgrounds"
-msgstr ""
+msgstr "Taustakuvat"
 
 msgid "Center Tiled"
-msgstr ""
+msgstr "Keskitetty vierekkäin"
 
 msgid "Color 1"
-msgstr ""
+msgstr "Väri 1"
 
 msgid "Color 2"
-msgstr ""
+msgstr "Väri 2"
 
 msgid "Draw the desktop wallpaper"
-msgstr ""
+msgstr "Piirrä työpöydän taustakuva"
 
 msgid "Fill or first gradient color."
-msgstr ""
+msgstr "Täyttö tai ensimmäinen väriliu'un väri"
 
 msgid "Fill type"
-msgstr ""
+msgstr "Täyttötapa"
 
 msgid "Horizontal gradient"
-msgstr ""
+msgstr "Vaakasuuntainen väriliuku"
 
 msgid "Image"
-msgstr ""
+msgstr "Kuva"
 
 msgid "Image file."
-msgstr ""
+msgstr "Kuvatiedosto"
 
 msgid "Image position."
-msgstr ""
+msgstr "Kuvan sijainti."
 
 msgid "Position"
-msgstr ""
+msgstr "Sijainti"
 
 msgid "Scale and Crop"
-msgstr ""
+msgstr "Skaalaus ja rajaus"
 
 msgid "Scaled"
-msgstr ""
+msgstr "Sovitettu"
 
 msgid "Second gradient color."
-msgstr ""
+msgstr "Toinen väriliu'un väri."
 
 msgid "Solid fill"
-msgstr ""
+msgstr "Kiinteä täyttö"
 
 msgid "Tiled"
-msgstr ""
+msgstr "Vierekkäin"
 
 msgid "Vertical gradient"
-msgstr ""
+msgstr "Pystysuuntainen väriliuku"
 
 msgid "Wallpaper"
-msgstr ""
+msgstr "Taustakuva"
 
 msgid "Background Brightness"
 msgstr "Taustakuvan kirkkaus"
@@ -4755,10 +4474,10 @@ msgid "Background Saturation"
 msgstr "Taustakuvan värikylläisyys"
 
 msgid "Background in Widget Mode"
-msgstr ""
+msgstr "Taustakuva säädintilassa"
 
 msgid "Brightness of non-widget windows in widget modes."
-msgstr ""
+msgstr "Muiden kuin säädinikkunoiden kirkkaus säädintiloissa."
 
 msgid "End Widget Mode on Click"
 msgstr ""
@@ -4788,13 +4507,13 @@ msgid "Toggle Widget Display"
 msgstr ""
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "Säädintaso"
 
 msgid "Widget Windows"
-msgstr ""
+msgstr "Säädinikkunat"
 
 msgid "Windows that always should be treated as widgets"
-msgstr ""
+msgstr "Ikkunat joita tulisi aina käsitellä säätiminä"
 
 msgid "Above others windows"
 msgstr "Muiden ikkunoiden päällä"
@@ -4818,13 +4537,21 @@ msgid "Fullscreen windows"
 msgstr "Koko näytön ikkunat"
 
 msgid "Height values"
-msgstr ""
+msgstr "Korkeusarvot"
 
 msgid "Matches"
 msgstr "Täsmää"
 
+#, fuzzy
+msgid "Maximized"
+msgstr "Ikkunoiden suurentaminen sovittaen"
+
+#, fuzzy
+msgid "Maximized windows"
+msgstr "Ikkunat, joita ei voi suurentaa"
+
 msgid "No ARGB visuals"
-msgstr ""
+msgstr "Ei ARGB-visuaaleja"
 
 msgid "No focus"
 msgstr "Ei kohdistusta"
@@ -4863,7 +4590,7 @@ msgid "Set windows rules"
 msgstr "Aseta ikkunan säännöt"
 
 msgid "Size rules"
-msgstr ""
+msgstr "Kokosäännöt"
 
 msgid "Sized Windows"
 msgstr ""
@@ -4881,7 +4608,7 @@ msgid "Sticky windows"
 msgstr "Tahmaiset ikkunat"
 
 msgid "Width values"
-msgstr ""
+msgstr "Leveysarvot"
 
 msgid "Window Rules"
 msgstr "Ikkunan säännöt"
@@ -4972,6 +4699,236 @@ msgstr ""
 
 msgid "Workarounds"
 msgstr "Kiertokeinot"
+
+#~ msgid "Airplane"
+#~ msgstr "Lentokone"
+
+#~ msgid "Airplane Flying Path Length"
+#~ msgstr "Lentokoneen polun pituus"
+
+#~ msgid "Animation Time Step For Intense Effects"
+#~ msgstr "Animaation aikaviive raskaille efekteille"
+
+#~ msgid "Automatic"
+#~ msgstr "Automaattinen"
+
+#~ msgid "Beam"
+#~ msgstr "Säde"
+
+#~ msgid "Beam Color"
+#~ msgstr "Säteen väri"
+
+#~ msgid "Beam Life"
+#~ msgstr "Säteen elinaika"
+
+#~ msgid "Beam Slowdown"
+#~ msgstr "Säteen hidastus"
+
+#~ msgid "Beam Spacing"
+#~ msgstr "Säteiden väli"
+
+#~ msgid "Beam Up"
+#~ msgstr "Säde ylös"
+
+#~ msgid "Beam Width"
+#~ msgstr "Säteen leveys"
+
+#~ msgid "Beam color."
+#~ msgstr "Säteen väri."
+
+#~ msgid "Beam life."
+#~ msgstr "Säteen elinaika."
+
+#~ msgid "Beam slowdown."
+#~ msgstr "Säteen hidastus."
+
+#~ msgid "Beam width."
+#~ msgstr "Säteen leveys."
+
+#~ msgid "Burn"
+#~ msgstr "Polta"
+
+#~ msgid "Domino"
+#~ msgstr "Domino"
+
+#~ msgid "Domino Piece Falling Direction"
+#~ msgstr "Dominopalikoiden putoamissuunta"
+
+#~ msgid "Explode"
+#~ msgstr "Räjähdys"
+
+#~ msgid "Falling direction for Domino pieces."
+#~ msgstr "Dominopalikoiden putoamissuunta"
+
+#~ msgid "Fire"
+#~ msgstr "Tuli"
+
+#~ msgid "Fire Smoke"
+#~ msgstr "Tulen savu"
+
+#~ msgid "Fire constant speed"
+#~ msgstr "Tulen vakionopeus"
+
+#~ msgid "Fire direction"
+#~ msgstr "Tulen suunta"
+
+#~ msgid "Fire direction."
+#~ msgstr "Tulen suunta."
+
+#~ msgid "Fire smoke."
+#~ msgstr "Tulen savu."
+
+#~ msgid "Fly to TaskBar on Minimize"
+#~ msgstr "Lennä tehtäväpalkkiin pienennettäessä"
+
+#~ msgid "Fold"
+#~ msgstr "Laskostus"
+
+#~ msgid "Fold Direction"
+#~ msgstr "Laskoksen suunta"
+
+#~ msgid "Fold opening direction for pieces in Razr effect."
+#~ msgstr "Laskosten avautumissuunta Razr-tehosteen osille."
+
+#~ msgid "Hexagonal"
+#~ msgstr "Monikulmio"
+
+#~ msgid "In"
+#~ msgstr "Sisällä"
+
+#~ msgid "In-out"
+#~ msgstr "Sisään-ulos"
+
+#~ msgid "Leaf Spread"
+#~ msgstr "Lehtien levittyneisyys"
+
+#~ msgid "Left-right"
+#~ msgstr "Vasen-oikea"
+
+#~ msgid "Length of airplane's flying path."
+#~ msgstr "Lentokoneen lentoradan pituus."
+
+#~ msgid "Make fire effect duration be dependent on window height."
+#~ msgstr "Aseta tulitehosteen kesto riippuvaiseksi ikkunan leveydestä."
+
+#~ msgid "Movement direction(s) for window pieces."
+#~ msgstr "Ikkunan palasien liikesuunnat"
+
+#~ msgid "Number Of Fire Particles"
+#~ msgstr "Tulipartikkelien lukumäärä"
+
+#~ msgid "Number of fire particles."
+#~ msgstr "Tulipartikkelien lukumäärä."
+
+#~ msgid "Out"
+#~ msgstr "Ulkopuolella"
+
+#~ msgid "Razr"
+#~ msgstr "Razr"
+
+#~ msgid "Rectangular"
+#~ msgstr "Suorakulmainen"
+
+#~ msgid "Rotation Angle"
+#~ msgstr "Kiertokulma"
+
+#~ msgid "Rotation angle of animated window pieces (in degrees)."
+#~ msgstr "Animoitujen ikkunanpalasten kiertokulma"
+
+#~ msgid "Skewer"
+#~ msgstr "Vääristäjä"
+
+#~ msgid "Skewer Direction"
+#~ msgstr "Vääristyksen suunta"
+
+#~ msgid "Spacing between beams."
+#~ msgstr "Säteiden välimatka."
+
+#~ msgid "Tessellation Type"
+#~ msgstr "Tesselaation tyyppi"
+
+#~ msgid "Tessellation type for exploding window pieces."
+#~ msgstr "Tesselaation tyyppi räjähtäville ikkunan kappaleille."
+
+#~ msgid "Tessellation type for window pieces."
+#~ msgstr "Tesselaation tyyppi ikkunan kappaleille."
+
+#~ msgid ""
+#~ "The amount of time in milliseconds between each render of the intense "
+#~ "animation (Ex. Burn, Beam). The higher the number, the jerkier the "
+#~ "movements become."
+#~ msgstr ""
+#~ "Vaativien (esim. tuli, säde) animaatiojaksojen väliaika (ms). Mitä "
+#~ "suurempi arvo, sitä nykivämmiksi liikkeet tulevat."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "Animoitu ikkuna paloitellaan koordinaatistolla. Anna koordinaattien "
+#~ "lukumäärä ikkunan korkeussuunnassa."
+
+#~ msgid ""
+#~ "The animated window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "Animoitu ikkuna paloitellaan koordinaatistolla. Anna koordinaattien "
+#~ "lukumäärä ikkunan leveyssuunnassa."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the height of the window."
+#~ msgstr ""
+#~ "Räjähtävä ikkuna paloitellaan koordinaatistolla. Anna koordinaattien "
+#~ "lukumäärä ikkunan korkeussuunnassa."
+
+#~ msgid ""
+#~ "The exploding window will be split into pieces along a grid. Specify the "
+#~ "number of grid cells along the width of the window."
+#~ msgstr ""
+#~ "Räjähtävä ikkuna paloitellaan koordinaatistolla. Anna koordinaattien "
+#~ "lukumäärä ikkunan leveyssuunnassa."
+
+#~ msgid "Thickness"
+#~ msgstr "Paksuus"
+
+#~ msgid "Thickness of Animated Polygons"
+#~ msgstr "Animoitujen monikulmioiden paksuus"
+
+#~ msgid "Thickness of Exploding Polygons"
+#~ msgstr "Räjähtävien monikulmioiden paksuus"
+
+#~ msgid "Thickness of animated window pieces (in pixels)."
+#~ msgstr "Animoitujen ikkunanpalasten paksuus (kuvapisteinä)"
+
+#~ msgid "Thickness of exploding window pieces (in pixels)."
+#~ msgstr "Räjähtävien ikkunanpalasten paksuus (kuvapisteinä)"
+
+#~ msgid "Up-down"
+#~ msgstr "Ylös-alas"
+
+#~ msgid ""
+#~ "Whether the window should fly to taskbar when minimized with Airplane "
+#~ "effect."
+#~ msgstr ""
+#~ "Tuleeko ikkunan lentää tehtäväpalkkiin kun se pienennetään "
+#~ "lentokonetehosteella."
+
+#~ msgid "Window Grid Height"
+#~ msgstr "Ikkunan koordinaatiston korkeus"
+
+#~ msgid "Window Grid Width"
+#~ msgstr "Ikkunan koordinaatiston leveys"
+
+#~ msgid "Window folding direction."
+#~ msgstr "Ikkunan laskostussuunta."
+
+#~ msgid ""
+#~ "Window thickness in pixels. Setting this to larger than 0 will disable "
+#~ "shadow, blur, and reflection during the animation."
+#~ msgstr ""
+#~ "Ikkunan paksuus kuvapisteinä. Nollaa suuremmat arvot poistavat käytöstä "
+#~ "varjot, sumennuksen ja heijasteet animaatiossa."
 
 #~ msgid ""
 #~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
