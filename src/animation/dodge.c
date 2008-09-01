@@ -162,7 +162,7 @@ fxDodgeAnimStep (CompWindow *w, float time)
     }
 
     if (!aw->isDodgeSubject && !aw->dodgeSubjectWin)
-	compLogMessage (w->screen->display, "animation", CompLogLevelError,
+	compLogMessage ("animation", CompLogLevelError,
 			"%s: %d: Dodge subject missing!",
 			__FILE__, __LINE__);
     if (!aw->isDodgeSubject &&
@@ -274,7 +274,7 @@ fxDodgePostPreparePaintScreen (CompWindow *w)
 		wDodgeChainAbove = aw->restackInfo->wOldAbove;
 
 	    if (!wDodgeChainAbove)
-		compLogMessage (w->screen->display, "animation", CompLogLevelError,
+		compLogMessage ("animation", CompLogLevelError,
 				"%s: error at line %d", __FILE__, __LINE__);
 	    else if (aw->winThisIsPaintedBefore !=
 		     wDodgeChainAbove) // w's host is changing

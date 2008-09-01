@@ -178,7 +178,7 @@ updateEventEffects (CompScreen *s,
     effectSet->effects = calloc (n, sizeof (AnimEffect));
     if (!effectSet->effects)
     {
-	compLogMessage (s->display, "animation", CompLogLevelError,
+	compLogMessage ("animation", CompLogLevelError,
 			"Not enough memory");
 	return;
     }
@@ -249,7 +249,7 @@ animAddExtension (CompScreen *s,
 		     sizeof (ExtensionPluginInfo *));
 	if (!newExtensionPlugins)
 	{
-	    compLogMessage (s->display, "animation", CompLogLevelError,
+	    compLogMessage ("animation", CompLogLevelError,
 			    "Not enough memory");
 	    return;
 	}
@@ -275,7 +275,7 @@ animAddExtension (CompScreen *s,
 			 newNum * sizeof (AnimEffect));
 	    if (!newEventEfffects)
 	    {
-		compLogMessage (s->display, "animation", CompLogLevelError,
+		compLogMessage ("animation", CompLogLevelError,
 				"Not enough memory");
 		return;
 	    }
@@ -327,16 +327,6 @@ animRemoveExtension (CompScreen *s,
 	pluginName = extensionPluginInfo->effects[0]->name;
 	pluginNameLen = strchr (pluginName, ':') - pluginName;
     }
-
-    // Stop all ongoing animations
-    CompWindow *w;
-    for (w = s->windows; w; w = w->next)
-    {
-	ANIM_WINDOW (w);
-	if (aw->com.curAnimEffect != AnimEffectNone)
-	    postAnimationCleanup (w);
-    }
-
     int p;
     for (p = 0; p < as->nExtensionPlugins; p++)
     {
@@ -483,10 +473,9 @@ getMatchingAnimSelection (CompWindow *w,
 	nRows != valDuration->list.nValue ||
 	nRows != valCustomOptions->list.nValue)
     {
-	compLogMessage
-	    (w->screen->display, "animation", CompLogLevelError,
-	     "Animation settings mismatch in \"Animation Selection\" "
-	     "list for %s event.", eventNames[e]);
+	compLogMessage ("animation", CompLogLevelError,
+			"Animation settings mismatch in \"Animation "
+			"Selection\" list for %s event.", eventNames[e]);
 	return AnimEffectNone;
     }
 
@@ -1408,7 +1397,7 @@ static Model *createModel(CompWindow * w,
     model = calloc(1, sizeof(Model));
     if (!model)
     {
-	compLogMessage (w->screen->display, "animation", CompLogLevelError,
+	compLogMessage ("animation", CompLogLevelError,
 			"Not enough memory");
 	return 0;
     }
@@ -1419,7 +1408,7 @@ static Model *createModel(CompWindow * w,
     model->objects = calloc(model->numObjects, sizeof(Object));
     if (!model->objects)
     {
-	compLogMessage (w->screen->display, "animation", CompLogLevelError,
+	compLogMessage ("animation", CompLogLevelError,
 			"Not enough memory");
 	free(model);
 	return 0;
@@ -4491,8 +4480,6 @@ static void animFiniDisplay(CompPlugin * p, CompDisplay * d)
     freeScreenPrivateIndex(d, ad->screenPrivateIndex);
 
     matchFini (&ad->neverAnimateMatch);
-
-    compFiniDisplayOptions (d, ad->opt, ANIM_DISPLAY_OPTION_NUM);
 
     UNWRAP(ad, d, handleCompizEvent);
     UNWRAP(ad, d, handleEvent);
