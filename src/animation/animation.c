@@ -178,7 +178,7 @@ updateEventEffects (CompScreen *s,
     effectSet->effects = calloc (n, sizeof (AnimEffect));
     if (!effectSet->effects)
     {
-	compLogMessage ("animation", CompLogLevelError,
+	compLogMessage (s->display, "animation", CompLogLevelError,
 			"Not enough memory");
 	return;
     }
@@ -249,7 +249,7 @@ animAddExtension (CompScreen *s,
 		     sizeof (ExtensionPluginInfo *));
 	if (!newExtensionPlugins)
 	{
-	    compLogMessage ("animation", CompLogLevelError,
+	    compLogMessage (s->display, "animation", CompLogLevelError,
 			    "Not enough memory");
 	    return;
 	}
@@ -275,7 +275,7 @@ animAddExtension (CompScreen *s,
 			 newNum * sizeof (AnimEffect));
 	    if (!newEventEfffects)
 	    {
-		compLogMessage ("animation", CompLogLevelError,
+		compLogMessage (s->display, "animation", CompLogLevelError,
 				"Not enough memory");
 		return;
 	    }
@@ -483,9 +483,10 @@ getMatchingAnimSelection (CompWindow *w,
 	nRows != valDuration->list.nValue ||
 	nRows != valCustomOptions->list.nValue)
     {
-	compLogMessage ("animation", CompLogLevelError,
-			"Animation settings mismatch in \"Animation "
-			"Selection\" list for %s event.", eventNames[e]);
+	compLogMessage
+	    (w->screen->display, "animation", CompLogLevelError,
+	     "Animation settings mismatch in \"Animation Selection\" "
+	     "list for %s event.", eventNames[e]);
 	return AnimEffectNone;
     }
 
@@ -732,9 +733,10 @@ defaultUpdateWindowTransform (CompWindow *w,
 	    Point center;
 	    getProgressAndCenter (w, &center);
 	
+	    ANIM_SCREEN (w->screen);
 	    CompTransform skewTransform;
 	    matrixGetIdentity (&skewTransform);
-	    applyPerspectiveSkew (w->screen, &skewTransform, &center);
+	    applyPerspectiveSkew (as->output, &skewTransform, &center);
 	    applyTransform (wTransform, &aw->com.transform);
 	    applyTransform (wTransform, &skewTransform);
 	}
@@ -895,7 +897,7 @@ modelUpdateBB (CompOutput *output,
 
 	    CompTransform fullTransform;
 	    memcpy (fullTransform.m, aw->com.transform.m, sizeof (float) * 16);
-	    applyPerspectiveSkew (w->screen, &fullTransform, &center);
+	    applyPerspectiveSkew (output, &fullTransform, &center);
 
 	    prepareTransform (w->screen, output, &wTransform, &fullTransform);
 
@@ -1407,7 +1409,7 @@ static Model *createModel(CompWindow * w,
     model = calloc(1, sizeof(Model));
     if (!model)
     {
-	compLogMessage ("animation", CompLogLevelError,
+	compLogMessage (w->screen->display, "animation", CompLogLevelError,
 			"Not enough memory");
 	return 0;
     }
@@ -1418,7 +1420,7 @@ static Model *createModel(CompWindow * w,
     model->objects = calloc(model->numObjects, sizeof(Object));
     if (!model->objects)
     {
-	compLogMessage ("animation", CompLogLevelError,
+	compLogMessage (w->screen->display, "animation", CompLogLevelError,
 			"Not enough memory");
 	free(model);
 	return 0;
@@ -2428,16 +2430,14 @@ perspectiveDistortAndResetZ (CompScreen *s,
 }
 
 void
-applyPerspectiveSkew (CompScreen *s,
+applyPerspectiveSkew (CompOutput *output,
 		      CompTransform *transform,
 		      Point *center)
 {
-    ANIM_SCREEN (s);
-
-    GLfloat skewx = -(((center->x - as->output->region.extents.x1) -
-		       as->output->width / 2) * 1.15);
-    GLfloat skewy = -(((center->y - as->output->region.extents.y1) -
-		       as->output->height / 2) * 1.15);
+    GLfloat skewx = -(((center->x - output->region.extents.x1) -
+		       output->width / 2) * 1.15);
+    GLfloat skewy = -(((center->y - output->region.extents.y1) -
+		       output->height / 2) * 1.15);
 
     /* transform = M * transform, where M is the skew matrix
 	{1,0,0,0,

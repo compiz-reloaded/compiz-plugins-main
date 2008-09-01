@@ -472,7 +472,7 @@ perspectiveDistortAndResetZ (CompScreen *s,
 			     CompTransform *wTransform);
 
 void
-applyPerspectiveSkew (CompScreen *s,
+applyPerspectiveSkew (CompOutput *output,
 		      CompTransform *transform,
 		      Point *center);
 

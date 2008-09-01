@@ -127,7 +127,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 	os->nPairs = 0;
 	free(optNamesValues);
 	free(nameTrimmed);
-	compLogMessage ("animation", CompLogLevelError,
+	compLogMessage (s->display, "animation", CompLogLevelError,
 			"Not enough memory");
 	return;
     }
@@ -232,7 +232,7 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 	    v.s = calloc (strlen(valueStr) + 1, 1); // TODO: not freed
 	    if (!v.s)
 	    {
-		compLogMessage ("animation", CompLogLevelError,
+		compLogMessage (s->display, "animation", CompLogLevelError,
 				"Not enough memory");
 		return;
 	    }
@@ -276,28 +276,28 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 	{
 	case -1:
 	case 2:
-	    compLogMessage ("animation", CompLogLevelError,
+	    compLogMessage (s->display, "animation", CompLogLevelError,
 			    "Option name missing in \"%s\"",
 			    optNamesValuesOrig);
 	    break;
 	case 1:
 	case 3:
-	    compLogMessage ("animation", CompLogLevelError,
+	    compLogMessage (s->display, "animation", CompLogLevelError,
 			    "Option value missing in \"%s\"",
 			    optNamesValuesOrig);
 	    break;
 	case 4:
-	    compLogMessage ("animation", CompLogLevelError,
+	    compLogMessage (s->display, "animation", CompLogLevelError,
 			    "Unknown option \"%s\" in \"%s\"",
 			    nameTrimmed, optNamesValuesOrig);
 	    break;
 	case 6:
-	    compLogMessage ("animation", CompLogLevelError,
+	    compLogMessage (s->display, "animation", CompLogLevelError,
 			    "Invalid value \"%s\" in \"%s\"",
 			    valueStr, optNamesValuesOrig);
 	    break;
 	case 7:
-	    compLogMessage ("animation", CompLogLevelError,
+	    compLogMessage (s->display, "animation", CompLogLevelError,
 			    "Value \"%s\" out of range in \"%s\"",
 			    valueStr, optNamesValuesOrig);
 	    break;
@@ -328,7 +328,7 @@ updateOptionSets (CompScreen *s,
     oss->sets = calloc(n, sizeof(OptionSet));
     if (!oss->sets)
     {
-	compLogMessage ("animation", CompLogLevelError,
+	compLogMessage (s->display, "animation", CompLogLevelError,
 			"Not enough memory");
 	return;
     }

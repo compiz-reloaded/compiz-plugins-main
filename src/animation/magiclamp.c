@@ -104,7 +104,7 @@ fxMagicLampInit (CompWindow * w)
 	    calloc(aw->magicLampWaveCount, sizeof(WaveParam));
 	if (!aw->magicLampWaves)
 	{
-	    compLogMessage ("animation", CompLogLevelError,
+	    compLogMessage (w->screen->display, "animation", CompLogLevelError,
 			    "Not enough memory");
 	    return FALSE;
 	}
