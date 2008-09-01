@@ -170,7 +170,7 @@ colorFilterSwitchFilter (CompScreen * s)
     /* % (count + 1) because of the cumulative filters mode */
     cfs->currentFilter = ++cfs->currentFilter % (cfs->filtersCount + 1);
     if (cfs->currentFilter == 0)
-	compLogMessage (s->display, "colorfilter", CompLogLevelInfo,
+	compLogMessage ("colorfilter", CompLogLevelInfo,
 			"Cumulative filters mode");
     else
     {
@@ -178,13 +178,13 @@ colorFilterSwitchFilter (CompScreen * s)
 	if (id)
 	{
 	    function = findFragmentFunction (s, id);
-	    compLogMessage (s->display, "colorfilter", CompLogLevelInfo,
+	    compLogMessage ("colorfilter", CompLogLevelInfo,
 			    "Single filter mode (using %s filter)",
 			    function->name);
 	}
 	else
 	{
-	    compLogMessage (s->display, "colorfilter", CompLogLevelInfo,
+	    compLogMessage ("colorfilter", CompLogLevelInfo,
 			    "Single filter mode (filter loading failure)");
 	}
     }
@@ -328,7 +328,7 @@ loadFilters (CompScreen *s, CompTexture *texture)
 	    free (name);
 	    continue;
 	}
-	compLogMessage (s->display, "colorfilter", CompLogLevelInfo,
+	compLogMessage ("colorfilter", CompLogLevelInfo,
 			"Loading filter %s (item %s).", name,
 			filters->value[i].s);
 	function = loadFragmentProgram (filters->value[i].s, name, s, target);
@@ -340,7 +340,7 @@ loadFilters (CompScreen *s, CompTexture *texture)
 
     /* Warn if there was at least one loading failure */
     if (loaded < count)
-	compLogMessage (s->display, "colorfilter", CompLogLevelWarn,
+	compLogMessage ("colorfilter", CompLogLevelWarn,
 			"Tried to load %d filter(s), %d succeeded.",
 			count, loaded);
 
@@ -609,7 +609,7 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
 
     if (!s->fragmentProgram)
     {
-	compLogMessage (s->display, "colorfilter", CompLogLevelFatal,
+	compLogMessage ("colorfilter", CompLogLevelFatal,
 			"Fragment program support missing.");
 	return TRUE;
     }
