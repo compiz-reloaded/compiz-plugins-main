@@ -133,7 +133,7 @@ setupCairoLayer (CompScreen *s,
     il->pixmap = XCreatePixmap (s->display->display, s->root, w, h, 32);
     if (!bindPixmapToTexture (s, &il->texture, il->pixmap, w, h, 32))
     {
-	compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
+	compLogMessage ("resizeinfo", CompLogLevelWarn,
 			"Bind Pixmap to Texture failure");
 	freeInfoLayer (s, il);
 	return;
@@ -145,7 +145,7 @@ setupCairoLayer (CompScreen *s,
 						       format, w, h);
     if (cairo_surface_status (il->surface) != CAIRO_STATUS_SUCCESS)
     {
-	compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
+	compLogMessage ("resizeinfo", CompLogLevelWarn,
 			"Could not create cairo layer surface,");
 	freeInfoLayer (s, il);
 	return;
@@ -154,7 +154,7 @@ setupCairoLayer (CompScreen *s,
     il->cr = cairo_create (il->surface);
     if (cairo_status (il->cr) != CAIRO_STATUS_SUCCESS)
     {
-	compLogMessage (s->display, "resizeinfo", CompLogLevelWarn,
+	compLogMessage ("resizeinfo", CompLogLevelWarn,
 			"Could not create cairo context");
 	freeInfoLayer (s, il);
 	return;
