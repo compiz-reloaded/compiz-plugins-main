@@ -2416,7 +2416,7 @@ shiftInitDisplay (CompPlugin  *p,
 
     sd->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
     if (!sd->textAvailable)
-	compLogMessage (d, "shift", CompLogLevelWarn,
+	compLogMessage ("shift", CompLogLevelWarn,
 			"No compatible text plugin loaded.");
 
     sd->leftKey  = XKeysymToKeycode (d->display, XStringToKeysym ("Left"));
