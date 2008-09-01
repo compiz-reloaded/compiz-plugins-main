@@ -202,7 +202,7 @@ textFileToImage (CompDisplay *d,
 
 	if (!screen)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't get screen for %d.",
 			    textAttrib->screen->screenNum);
 	    return FALSE;
@@ -211,7 +211,7 @@ textFileToImage (CompDisplay *d,
 	format = XRenderFindStandardFormat (dpy, PictStandardARGB32);
 	if (!format)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't get format.");
 	    return FALSE;
 	}
@@ -219,7 +219,7 @@ textFileToImage (CompDisplay *d,
 	pixmap = XCreatePixmap (dpy, textAttrib->screen->root, 1, 1, 32);
 	if (!pixmap)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't create pixmap.");
 	    return FALSE;
 	}
@@ -231,7 +231,7 @@ textFileToImage (CompDisplay *d,
 
 	if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't create surface.");
 	    XFreePixmap (dpy, pixmap);
 	    return FALSE;
@@ -240,7 +240,7 @@ textFileToImage (CompDisplay *d,
 	cr = cairo_create (surface);
 	if (cairo_status (cr) != CAIRO_STATUS_SUCCESS)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't create cairo context.");
 	    cairo_surface_destroy (surface);
 	    XFreePixmap (dpy, pixmap);
@@ -251,7 +251,7 @@ textFileToImage (CompDisplay *d,
 	layout = pango_cairo_create_layout (cr);
 	if (!layout)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't create pango layout.");
 	    cairo_destroy (cr);
 	    cairo_surface_destroy (surface);
@@ -262,7 +262,7 @@ textFileToImage (CompDisplay *d,
 	font = pango_font_description_new ();
 	if (!font)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't create font description.");
 	    g_object_unref (layout);
 	    cairo_destroy (cr);
@@ -369,7 +369,7 @@ textFileToImage (CompDisplay *d,
 
 	if (!pixmap)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't create %d x %d pixmap.", w, h);
 	    pango_font_description_free (font);
 	    g_object_unref (layout);
@@ -381,7 +381,7 @@ textFileToImage (CompDisplay *d,
 								 w, h);
 	if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't create surface.");
 	    pango_font_description_free (font);
 	    g_object_unref (layout);
@@ -392,7 +392,7 @@ textFileToImage (CompDisplay *d,
 	cr = cairo_create (surface);
 	if (cairo_status (cr) != CAIRO_STATUS_SUCCESS)
 	{
-	    compLogMessage (d, "text", CompLogLevelError,
+	    compLogMessage ("text", CompLogLevelError,
 			    "Couldn't create cairo context.");
 	    cairo_surface_destroy (surface);
 	    pango_font_description_free (font);
