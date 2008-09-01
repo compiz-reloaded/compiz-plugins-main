@@ -1146,7 +1146,7 @@ thumbInitDisplay (CompPlugin  *p,
 
     td->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
     if (!td->textAvailable)
-	compLogMessage (d, "thumbnail", CompLogLevelWarn,
+	compLogMessage ("thumbnail", CompLogLevelWarn,
 			"No compatible text plugin found.");
 
     td->mpFunc = d->base.privates[index].ptr;
