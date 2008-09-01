@@ -187,7 +187,7 @@ scaleaddonRenderWindowTitle (CompWindow *w)
 	if (!bindPixmapToTexture (s, &aw->textTexture, aw->textPixmap,
 	     			  aw->textWidth, aw->textHeight, 32))
 	{
-	    compLogMessage (s->display, "scaleaddon", CompLogLevelError,
+	    compLogMessage ("scaleaddon", CompLogLevelError,
 			    "Bind pixmap to texture failed.\n");
 	    XFreePixmap (s->display->display, aw->textPixmap);
 	    aw->textPixmap = None;
@@ -1303,7 +1303,7 @@ scaleaddonInitDisplay (CompPlugin  *p,
 
     ad->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
     if (!ad->textAvailable)
-	compLogMessage (d, "scaleaddon", CompLogLevelWarn,
+	compLogMessage ("scaleaddon", CompLogLevelWarn,
 			"No compatible text plugin found.");
 
     WRAP (ad, d, handleEvent, scaleaddonHandleEvent);
