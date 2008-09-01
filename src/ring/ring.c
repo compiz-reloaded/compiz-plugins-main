@@ -1579,7 +1579,7 @@ ringInitDisplay (CompPlugin  *p,
 
     rd->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
     if (!rd->textAvailable)
-	compLogMessage (d, "ring", CompLogLevelWarn,
+	compLogMessage ("ring", CompLogLevelWarn,
 			"No compatible text plugin found.");
 
     ringSetNextKeyInitiate (d, ringNext);
