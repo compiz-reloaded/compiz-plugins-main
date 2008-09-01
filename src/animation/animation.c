@@ -327,6 +327,16 @@ animRemoveExtension (CompScreen *s,
 	pluginName = extensionPluginInfo->effects[0]->name;
 	pluginNameLen = strchr (pluginName, ':') - pluginName;
     }
+
+    // Stop all ongoing animations
+    CompWindow *w;
+    for (w = s->windows; w; w = w->next)
+    {
+	ANIM_WINDOW (w);
+	if (aw->com.curAnimEffect != AnimEffectNone)
+	    postAnimationCleanup (w);
+    }
+
     int p;
     for (p = 0; p < as->nExtensionPlugins; p++)
     {
@@ -4480,6 +4490,8 @@ static void animFiniDisplay(CompPlugin * p, CompDisplay * d)
     freeScreenPrivateIndex(d, ad->screenPrivateIndex);
 
     matchFini (&ad->neverAnimateMatch);
+
+    compFiniDisplayOptions (d, ad->opt, ANIM_DISPLAY_OPTION_NUM);
 
     UNWRAP(ad, d, handleCompizEvent);
     UNWRAP(ad, d, handleEvent);
