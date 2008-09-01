@@ -138,7 +138,7 @@ dimWindow (CompWindow *w)
 
     if (os->passiveNum >= MAX_WINDOWS - 1)
     {
-	compLogMessage (w->screen->display, "opacify", CompLogLevelWarn,
+	compLogMessage ("opacify", CompLogLevelWarn,
 			"Trying to store information "
 			"about too many windows, or you hit a bug.\nIf "
 			"you don't have around %d windows blocking the "
