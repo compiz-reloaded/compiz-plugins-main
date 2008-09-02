@@ -786,6 +786,20 @@ panZoom (CompScreen *s, int xvalue, int yvalue)
     constrainZoomTranslate (s);
 }
 
+/* Enables polling of mouse position, and refreshes currently
+ * stored values.
+ */
+static void
+enableMousePolling (CompScreen *s)
+{
+    ZOOM_SCREEN (s);
+    ZOOM_DISPLAY (s->display);
+    zs->pollHandle = 
+	(*zd->mpFunc->addPositionPolling) (s, updateMouseInterval);
+    zs->lastChange = time(NULL);
+    (*zd->mpFunc->getCurrentPosition) (s, &zs->mouseX, &zs->mouseY);
+}
+
 /* Sets the zoom (or scale) level. 
  * Cleans up if we are suddenly zoomed out. 
  */
@@ -802,11 +816,7 @@ setScale (CompScreen *s, int out, float value)
     else
     {
 	if (!zs->pollHandle)
-	{
-	    ZOOM_DISPLAY (s->display);
-	    zs->pollHandle = 
-		(*zd->mpFunc->addPositionPolling) (s, updateMouseInterval);
-	}
+	    enableMousePolling (s);
 	zs->grabbed |= (1 << zs->zooms[out].output);
 	cursorZoomActive (s);
     }
