@@ -123,6 +123,8 @@ typedef enum _ZsOpt
     SOPT_FOCUS_FIT_WINDOW,
     SOPT_ALLWAYS_FOCUS_FIT_WINDOW,
     SOPT_SCALE_MOUSE,
+    SOPT_SCALE_MOUSE_DYNAMIC,
+    SOPT_SCALE_MOUSE_STATIC,
     SOPT_HIDE_ORIGINAL_MOUSE,
     SOPT_RESTRAIN_MOUSE,
     SOPT_RESTRAIN_MARGIN,
@@ -1247,6 +1249,7 @@ drawCursor (CompScreen          *s,
     if (zs->cursor.isSet)
     {
 	CompTransform sTransform = *transform;
+	float	      scaleFactor;
 	int           ax, ay, x, y;
 	
 	/* This is a hack because these transformations are wrong when
@@ -1265,8 +1268,12 @@ drawCursor (CompScreen          *s,
         glPushMatrix ();
 	glLoadMatrixf (sTransform.m);
 	glTranslatef ((float) ax, (float) ay, 0.0f);
-	glScalef (1.0f / zs->zooms[out].currentZoom,
-		  1.0f / zs->zooms[out].currentZoom,
+	if (zs->opt[SOPT_SCALE_MOUSE_DYNAMIC].value.b) 
+	    scaleFactor = 1.0f / zs->zooms[out].currentZoom;
+	else 
+	    scaleFactor = 1.0f / zs->opt[SOPT_SCALE_MOUSE_STATIC].value.f;
+	glScalef (scaleFactor,
+		  scaleFactor,
 		  1.0f);
 	x = -zs->cursor.hotX;
 	y = -zs->cursor.hotY;
@@ -2186,6 +2193,8 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "focus_fit_window", "bool", "<default>false</default>", 0, 0 },
     { "always_focus_fit_window", "bool", "<default>false</default>", 0, 0 },
     { "scale_mouse", "bool", "<default>false</default>", 0, 0 },
+    { "scale_mouse_dynamic", "bool", "<default>true</default>", 0, 0 },
+    { "scale_mouse_static", "float", "<default>0.8</default>", 0, 0 },
     { "hide_original_mouse", "bool", "<default>false</default>", 0, 0 },
     { "restrain_mouse", "bool", "<default>false</default>", 0, 0 },
     { "restrain_margin", "int", "<default>5</default>", 0, 0 },

@@ -170,6 +170,19 @@
 		    <_long>Enable this to get a gradually larger mouse pointer as you zoom in</_long>
 		    <default>false</default>
 		</option>
+		<option type="bool" name="scale_mouse_dynamic">
+		    <_short>Dynamic mouse pointer scale</_short>
+		    <_long>When scaling the mouse pointer, this option makes the scale adjust according to the current level of zoom.</_long>
+		    <default>true</default>
+		</option>
+		<option type="float" name="scale_mouse_static">
+		    <_short>Static mouse pointer scale</_short>
+		    <_long>When not using a dynamic mouse pointer scale, this is the scale factor for the mouse pointer.</_long>
+		    <default>0.2</default>
+		    <min>0.1</min>
+		    <max>1.0</max>
+		    <precision>0.01</precision>
+		</option>
 		<option type="bool" name="hide_original_mouse">
 		    <_short>Hide original mouse pointer</_short>
 		    <_long>Hides the original mouse pointer when zoomed in and scaling the mouse</_long>
