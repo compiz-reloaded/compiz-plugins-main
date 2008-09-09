@@ -113,6 +113,8 @@ typedef struct _WallScreen
 
     Window moveWindow;
 
+    Bool focusDefault;
+
     Bool              miniScreen;
     WindowPaintAttrib mSAttribs;
     float             mSzCamera;
@@ -617,7 +619,10 @@ wallActivateWindow (CompWindow *w)
 	dy -= s->y;
 	
 	if (dx || dy)
+	{
 	    wallMoveViewport (s, -dx, -dy, None);
+	    ws->focusDefault = FALSE;
+	}
     }
 
     UNWRAP (ws, s, activateWindow);
@@ -672,6 +677,7 @@ wallInitiate (CompScreen      *s,
 	action->state |= CompActionStateTermButton;
 
     ws->showPreview = TRUE;
+    ws->focusDefault = TRUE;
 
     return TRUE;
 }
@@ -1415,7 +1421,7 @@ wallPreparePaintScreen (CompScreen *s,
 
 	if (ws->moveWindow)
 	    wallReleaseMoveWindow (s);
-	else
+	else if (ws->focusDefault)
 	{
 	    int i;
 	    for (i = 0; i < s->maxGrab; i++)
@@ -1909,6 +1915,7 @@ wallInitScreen (CompPlugin *p,
     ws->timer = 0;
     ws->moving = FALSE;
     ws->showPreview = FALSE;
+    ws->focusDefault = TRUE;
     ws->moveWindow = None;
 
     memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
