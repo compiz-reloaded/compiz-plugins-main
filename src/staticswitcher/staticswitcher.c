@@ -94,7 +94,7 @@ typedef struct _SwitchScreen {
 #define BORDER 10
 
 #define SWITCH_DISPLAY(d) PLUGIN_DISPLAY(d, Switch, s)
-#define SWITCH_SCREEN(s) PLUGIN_SCREEN(s, Switch, s)
+#define SWITCH_SCREEN(screen) PLUGIN_SCREEN(screen, Switch, s)
 
 static void
 setSelectedWindowHint (CompScreen *s)
@@ -280,17 +280,19 @@ switchUpdatePopupWindow (CompScreen *s,
     ss->previewHeight = h;
     ss->previewBorder = b;
 
+    x = s->outputDev[s->currentOutputDev].region.extents.x1 +
+	s->outputDev[s->currentOutputDev].width / 2;
+    y = s->outputDev[s->currentOutputDev].region.extents.y1 +
+	s->outputDev[s->currentOutputDev].height / 2;
+
     xsh.flags       = PSize | PPosition | PWinGravity;
+    xsh.x           = x;
+    xsh.y           = y;
     xsh.width       = winWidth;
     xsh.height      = winHeight;
     xsh.win_gravity = StaticGravity;
 
     XSetWMNormalHints (s->display->display, ss->popupWindow, &xsh);
-
-    x = s->outputDev[s->currentOutputDev].region.extents.x1 +
-	s->outputDev[s->currentOutputDev].width / 2;
-    y = s->outputDev[s->currentOutputDev].region.extents.y1 +
-	s->outputDev[s->currentOutputDev].height / 2;
 
     XMoveResizeWindow (s->display->display, ss->popupWindow,
 		       x - winWidth / 2, y - winHeight / 2,
@@ -1061,6 +1063,7 @@ switchHandleEvent (CompDisplay *d,
 		   XEvent      *event)
 {
     CompWindow *w;
+
     SWITCH_DISPLAY (d);
 
     UNWRAP (sd, d, handleEvent);
@@ -1068,6 +1071,16 @@ switchHandleEvent (CompDisplay *d,
     WRAP (sd, d, handleEvent, switchHandleEvent);
 
     switch (event->type) {
+    case MapNotify:
+	w = findWindowAtDisplay (d, event->xmap.window);
+	if (w)
+	{
+	    SWITCH_SCREEN (w->screen);
+
+	    if (w->id == ss->popupWindow)
+		updateWindowAttributes (w, CompStackingUpdateModeNormal);
+	}
+	break;
     case UnmapNotify:
 	switchWindowRemove (d, event->xunmap.window);
 	break;
