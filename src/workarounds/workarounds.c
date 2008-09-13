@@ -779,16 +779,19 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 {
     WORKAROUNDS_WINDOW (w);
 
-    if (ww->adjustedWinType)
+    if (!w->destroyed)
     {
-	w->wmType = getWindowType (w->screen->display, w->id);
-	recalcWindowType (w);
-	recalcWindowActions (w);
-    }
+	if (ww->adjustedWinType)
+	{
+	    w->wmType = getWindowType (w->screen->display, w->id);
+	    recalcWindowType (w);
+	    recalcWindowActions (w);
+	}
 
-    if (w->state & CompWindowStateStickyMask && ww->madeSticky)
-	setWindowState (w->screen->display,
-			w->state & ~CompWindowStateStickyMask, w->id);
+	if (w->state & CompWindowStateStickyMask && ww->madeSticky)
+	    setWindowState (w->screen->display,
+			    w->state & ~CompWindowStateStickyMask, w->id);
+    }
 
     free (ww);
 }
