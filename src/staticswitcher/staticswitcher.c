@@ -94,7 +94,7 @@ typedef struct _SwitchScreen {
 #define BORDER 10
 
 #define SWITCH_DISPLAY(d) PLUGIN_DISPLAY(d, Switch, s)
-#define SWITCH_SCREEN(screen) PLUGIN_SCREEN(screen, Switch, s)
+#define SWITCH_SCREEN(s) PLUGIN_SCREEN(s, Switch, s)
 
 static void
 setSelectedWindowHint (CompScreen *s)
@@ -1063,7 +1063,6 @@ switchHandleEvent (CompDisplay *d,
 		   XEvent      *event)
 {
     CompWindow *w;
-
     SWITCH_DISPLAY (d);
 
     UNWRAP (sd, d, handleEvent);
@@ -1071,16 +1070,6 @@ switchHandleEvent (CompDisplay *d,
     WRAP (sd, d, handleEvent, switchHandleEvent);
 
     switch (event->type) {
-    case MapNotify:
-	w = findWindowAtDisplay (d, event->xmap.window);
-	if (w)
-	{
-	    SWITCH_SCREEN (w->screen);
-
-	    if (w->id == ss->popupWindow)
-		updateWindowAttributes (w, CompStackingUpdateModeNormal);
-	}
-	break;
     case UnmapNotify:
 	switchWindowRemove (d, event->xunmap.window);
 	break;
