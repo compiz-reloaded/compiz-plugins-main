@@ -932,11 +932,14 @@ thumbPreparePaintScreen (CompScreen *s,
 	    ts->thumb.win = NULL;
     }
 
-    ts->oldThumb.opacity = MAX (0.0, ts->oldThumb.opacity - val);
-    if (ts->oldThumb.opacity == 0.0)
+    if (ts->oldThumb.opacity > 0.0f)
     {
-	damageThumbRegion (s, &ts->oldThumb);
-	ts->oldThumb.win = NULL;
+	ts->oldThumb.opacity = MAX (0.0, ts->oldThumb.opacity - val);
+	if (ts->oldThumb.opacity == 0.0)
+	{
+	    damageThumbRegion (s, &ts->oldThumb);
+	    ts->oldThumb.win = NULL;
+	}
     }
 
     UNWRAP (ts, s, preparePaintScreen);
