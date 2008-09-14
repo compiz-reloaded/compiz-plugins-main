@@ -906,7 +906,7 @@ thumbPreparePaintScreen (CompScreen *s,
     val /= 1000;
     val /= thumbnailGetFadeSpeed (s);
 
-    if (otherScreenGrabExist (s, 0))
+    if (s->maxGrab)
     {
 	ts->dock = NULL;
 
