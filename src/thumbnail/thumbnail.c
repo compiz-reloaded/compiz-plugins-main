@@ -399,11 +399,13 @@ thumbShowThumbnail (void *vs)
 
     THUMB_SCREEN (s);
 
-    ts->showingThumb = TRUE;
+    ts->showingThumb   = TRUE;
+    ts->displayTimeout = 0;
+
     thumbUpdateThumbnail (s);
     damageThumbRegion (s, &ts->thumb);
 
-    return TRUE;
+    return FALSE;
 }
 
 static Bool
