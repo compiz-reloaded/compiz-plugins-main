@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-30 11:42+0530\n"
-"PO-Revision-Date: 2008-08-25 13:41+0200\n"
+"POT-Creation-Date: 2008-09-15 14:46+0530\n"
+"PO-Revision-Date: 2008-09-12 14:03+0200\n"
 "Last-Translator: Ander Elortondo <ander.elor@gmail.com>\n"
 "Language-Team: Euskara <eu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1185,6 +1185,10 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "Lerrokatu zentroan sagua"
 
+#, fuzzy
+msgid "Dynamic mouse pointer scale"
+msgstr "Eskalatu sagu erakuslea"
+
 msgid "Enable focus tracking"
 msgstr "Gaitu foku jarraipena"
 
@@ -1328,6 +1332,10 @@ msgstr "Zoom zehatzaren 3. faktorea"
 msgid "Speed"
 msgstr "Abiadura"
 
+#, fuzzy
+msgid "Static mouse pointer scale"
+msgstr "Eskalatu sagu erakuslea"
+
 msgid "Sync Mouse"
 msgstr "Sinkronizatu sagua"
 
@@ -1355,6 +1363,16 @@ msgstr ""
 
 msgid "Use linear filter when zoomed in"
 msgstr "Erabili iragazki lineala zooma gerturatzean"
+
+msgid ""
+"When not using a dynamic mouse pointer scale, this is the scale factor for "
+"the mouse pointer."
+msgstr ""
+
+msgid ""
+"When scaling the mouse pointer, this option makes the scale adjust according "
+"to the current level of zoom."
+msgstr ""
 
 msgid "Zoom Area Movement"
 msgstr "Zoom area mugimendua"
@@ -2897,52 +2915,50 @@ msgid "Show switcher if not visible and select previous window."
 msgstr ""
 
 msgid "Show window title of currently selected window."
-msgstr ""
+msgstr "Erakutsi hautatutako leihoaren leiho titulua"
 
 msgid "Show windows that are minimized, shaded or in show desktop mode."
 msgstr ""
+"Erakutsi txikitutako leihoak, itzaldurik edo mahaigain erakuste moduan."
 
 msgid "Text Placement"
-msgstr ""
+msgstr "Testu kokapena"
 
 msgid "Thumbnail Height"
-msgstr ""
+msgstr "Koadro txiki altura"
 
 msgid "Thumbnail Width"
-msgstr ""
+msgstr "Koadro txiki zabalera"
 
 msgid "Window title display"
-msgstr ""
+msgstr "Leiho titulua erakustea"
 
 msgid "Windows that should be shown in ring"
-msgstr ""
+msgstr "Biribilean erakutsiko diren leihoak"
 
-#, fuzzy
 msgid "All windows"
-msgstr "Baztertu leihoa"
+msgstr "Leiho guztiak"
 
 msgid "Background color of the window title"
-msgstr ""
+msgstr "Leiho tituluaren atzeko plano kolorea"
 
-#, fuzzy
 msgid "Close Window"
-msgstr "3D leihoak"
+msgstr "Leihoa itxi"
 
-#, fuzzy
 msgid "Close window while in scale mode"
-msgstr "leihoa altzatu kuboa biratzean"
+msgstr "Itxi leihoa eskalatze moduan dagoenean"
 
 msgid "Close windows while in scale mode"
-msgstr ""
+msgstr "Itxi leihoak eskalatze moduan daudenean"
 
 msgid "Color used for highlighting the hovered window"
-msgstr ""
+msgstr "Leihoa nabarmentzeko kolorea gainean jartzean"
 
 msgid "Constrain Pull To Screen"
 msgstr ""
 
 msgid "Draw Window Highlight"
-msgstr ""
+msgstr "Marraztu leiho nabarmentzea"
 
 msgid "Exit Scale On Pull"
 msgstr ""
@@ -2951,91 +2967,86 @@ msgid "Exit scale mode after a window has been pulled."
 msgstr ""
 
 msgid "Font color of the window title"
-msgstr ""
+msgstr "Leiho tituluaren testu kolorea"
 
 msgid "Font size for window title display"
-msgstr ""
+msgstr "Leiho tituluaren testu tamaina"
 
 msgid "Highlight Color"
-msgstr ""
+msgstr "Nabarmentze kolorea"
 
-#, fuzzy
 msgid "Highlighted window only"
-msgstr "Lehio iragaziak"
+msgstr "Nabarmendutako leihoa bakarrik"
 
 msgid "Highlights the hovered window with the given color"
-msgstr ""
+msgstr "Nabarmendu erakuslea leiho gainetik pasatzean emandako koloreaz"
 
 msgid ""
 "Make sure windows are fully visible after pulling them to another viewport"
 msgstr ""
 
 msgid "No display"
-msgstr ""
+msgstr "Ez erakutsi"
 
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 msgid "Organic - EXPERIMENTAL"
-msgstr ""
+msgstr "Organic - EXPERIMENTAL"
 
-#, fuzzy
 msgid "Pull Window"
-msgstr "Baztertu leihoa"
+msgstr ""
 
 msgid "Pull window to current viewport while in scale mode"
 msgstr ""
 
 msgid "Scale Addons"
-msgstr ""
+msgstr "Eskala gehigarriak"
 
 msgid "Selects the mode to layout the windows in scale mode"
-msgstr ""
+msgstr "Hautatu eskalatze moduan leihoak diseinatzeko modua"
 
 msgid "Size of the border around the window title"
-msgstr ""
+msgstr "Ertzaren tamaina leiho titulu inguruan"
 
 msgid "Some useful additions to the scale plugin"
-msgstr ""
+msgstr "Hainbat gehigarri erabilgarri eskalatze pluginerako"
 
 msgid "Title Border Size"
-msgstr ""
+msgstr "Tituluaren ertz tamaina"
 
 msgid "Use bold font for window title display"
-msgstr ""
+msgstr "Erabili letra lodia leiho titulua erakustean"
 
 msgid "Window Highlight"
-msgstr ""
+msgstr "Leiho nabarmentzea"
 
 msgid "Window Layout Mode"
-msgstr ""
+msgstr "Leihoak diseinatzeko modua"
 
-#, fuzzy
 msgid "Window Pull"
-msgstr "Leiho sakonera"
+msgstr ""
 
 msgid "Window Title"
-msgstr ""
+msgstr "Leiho titulua"
 
-#, fuzzy
 msgid "Window Title Display"
-msgstr "leiho motak"
+msgstr "Leiho titulua erakustea"
 
 msgid "Window title display in scale mode"
-msgstr ""
+msgstr "Leiho titulua erakustea eskalatze moduan"
 
-#, fuzzy
 msgid "Zoom Window"
-msgstr "3D leihoak"
+msgstr "Zoom leihoa"
 
 msgid "Zoom window while in scale mode"
-msgstr ""
+msgstr "Zoom leihoa eskalatze moduan"
 
 msgid "Filter Case Insensitive"
 msgstr ""
 
 msgid "Filter Type Timeout"
-msgstr ""
+msgstr "Iragazki mota denbora-muga"
 
 msgid "Scale Window Title Filter"
 msgstr ""
@@ -3064,24 +3075,22 @@ msgid "Scheme Interpreter"
 msgstr ""
 
 msgid "Toggle Prompt Visible"
-msgstr ""
+msgstr "Gaitu/ezgaitu prompt ikusgarri"
 
 msgid "Toggle prompt visible."
-msgstr ""
+msgstr "Gaitu/ezgaitu prompt ikusgarri."
 
-#, fuzzy
 msgid "Directory"
-msgstr "Toleste norabidea"
+msgstr "Direktorio"
 
 msgid "Initiate screencasting"
 msgstr ""
 
 msgid "Put screenshot images in this directory"
-msgstr ""
+msgstr "Pantaila argazki irudiak direktorio honetan jarri"
 
-#, fuzzy
 msgid "ScreenCast plugin"
-msgstr "Pantaila irteera"
+msgstr ""
 
 msgid "ScreenCasting"
 msgstr ""
@@ -3091,66 +3100,69 @@ msgid ""
 "management protocol. This setting only should be used in KDE, as only KDE's "
 "session manager also saves those applications."
 msgstr ""
+"Saiatu X sesio kudeaketa protokoloa onartzen ez duten aplikazio zaharrak "
+"gorde eta berreskuratzen. Ezarpen hau KDEn bakarrik erabili beharko "
+"litzateke, KDE sesio kudeatzaileak bezala aplikazio hauek gordez."
 
 msgid "Save Legacy Apps"
-msgstr ""
+msgstr "Aplikazio zaharrak gorde"
 
 msgid "Session Management"
-msgstr ""
+msgstr "Sesio kudeaketa"
 
 msgid "Talk to session manager and save/load window state"
-msgstr ""
+msgstr "Hitz-egin sesio kudeatzaileaz eta gorde/kargatu leiho egoera"
 
-#, fuzzy
 msgid "Animation duration"
-msgstr "Animazioak hautatu"
+msgstr "Animazio iraupena"
 
-#, fuzzy
 msgid "Duration of the animation in milliseconds."
-msgstr "Animazio iraupena milisegundutan irekitze efektuan."
+msgstr "Animazio iraupena milisegundotan."
 
 msgid "Increase the scale factor making the window bigger."
-msgstr ""
+msgstr "Handitu eskala faktorea, leihoa handiagoa eginez."
 
-#, fuzzy
 msgid "Make the window bigger"
-msgstr "Beste leiho kudetzaile bat abiarazi"
+msgstr "Leihoa handiagoa egin"
 
-#, fuzzy
 msgid "Make the window smaller"
-msgstr "Beste leiho kudetzaile bat abiarazi"
+msgstr "Leihoa txikiagoa egin"
 
 msgid "Reduces the scale factor making the window smaller."
-msgstr ""
+msgstr "Txikitu eskala faktorea, leihoa txikiagoa eginez."
 
 msgid "Reset the window to original size"
-msgstr ""
+msgstr "Berrezarri leihoa tamaina originalean"
 
 msgid "Resets the currently focused window to original size"
-msgstr ""
+msgstr "Berrezarri unean enfokatutako leihoa tamaina originalean"
 
 msgid "Scale a window down to a portion of it's size."
-msgstr ""
+msgstr "Leihoaren tamainaren proportzio baten txikitu eskala."
 
 msgid ""
 "Scale a window down to a ration of the screen size. Respectively half, a "
 "third or a sixth of the screen."
 msgstr ""
+"pantailaren tamainaren proportzio baten txikitu leiho eskala. Hurrenez "
+"hurren erdia, herena edo pantailaren seiren baten."
 
 msgid "Scale interval"
-msgstr ""
+msgstr "Eskala tartea"
 
 msgid "Shelf"
-msgstr ""
+msgstr "Apala"
 
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
 "(respectively) increasing and decreasing the scale level manually. Higher "
 "number means finer changes."
 msgstr ""
+"Zenbatetan zatitzen edo bidertzen den eskala faktorea, eskuz eskala maila "
+"handitzean edo txikitzean. Zenbaki handiek aldaketa finagoak dakarte."
 
 msgid "Trigger scale down"
-msgstr ""
+msgstr "Abiarazi eskala txikitzea"
 
 msgid "Trigger scale down to screen"
 msgstr ""
@@ -3159,18 +3171,20 @@ msgid ""
 "Visually scales a window down to allow easy monitoring without true/"
 "traditional resizing."
 msgstr ""
+"Eskala txikitu erakutsiz, tamaina aldaketa benetakoa/tradizionalaren "
+"jarraipena ahalbidetzeko."
 
 msgid "Background intensity"
-msgstr ""
+msgstr "Atzeko planoaren intentsitatea"
 
 msgid "Background intensity."
-msgstr ""
+msgstr "Atzeko planoaren intentsitatea."
 
 msgid "Below"
-msgstr ""
+msgstr "Azpian"
 
 msgid "Click duration"
-msgstr ""
+msgstr "Klik iraupena"
 
 msgid "Cover"
 msgstr ""
@@ -3182,68 +3196,68 @@ msgid "Cover offset"
 msgstr ""
 
 msgid "Disabled"
-msgstr ""
+msgstr "Ezgaitua"
 
 msgid "Fade in/out speed"
-msgstr ""
+msgstr "Agertze/desagertze abiadura"
 
 msgid "Fade speed"
-msgstr ""
+msgstr "Iraungitze abiadura"
 
 msgid "Flip"
-msgstr ""
+msgstr "Irauli"
 
 msgid "Flip angle"
-msgstr ""
+msgstr "Iraultze angelua"
 
 msgid "Generate mipmaps"
 msgstr "Sortu mipmaps"
 
 msgid "Hide all non Desktop windows during switching"
-msgstr ""
+msgstr "Gorde mahaigainekoak ez diren leihoak Aldatzen dabilenean"
 
 msgid "Hide non Desktop windows"
-msgstr ""
+msgstr "Gorde mahaigainekoak ez diren leihoak"
 
 msgid "Initiate (All Workspaces)"
-msgstr ""
+msgstr "Hasi (idazmahai guztiak)"
 
 msgid "Initiate switcher (All Workspaces)."
-msgstr ""
+msgstr "Hasi Aldatzailea (idazmahai guztiak)"
 
 msgid "Initiate switcher."
-msgstr ""
+msgstr "Hasi Aldatzailea."
 
 msgid "Max window size"
-msgstr ""
+msgstr "Leiho tamaina maximoa"
 
 msgid "Maximum click duration in miliseconds."
-msgstr ""
+msgstr "Klik iraupen maximoa milisegundotan."
 
 msgid "Maximum window size (in percent of the screen width)"
-msgstr ""
+msgstr "Leiho tamaina maximoa (Pantaila zabaleraren portzentaia)"
 
 msgid "Mouse movement speed"
-msgstr ""
+msgstr "Sagu mugimenduaren abiadura"
 
 msgid "Mouse speed"
-msgstr ""
+msgstr "Sagu abiadura"
 
 msgid "On activated output"
-msgstr ""
+msgstr "Aktibatutako irteeran"
 
 msgid "One big switcher"
-msgstr ""
+msgstr "Aldatzaile handi bat"
 
 msgid "Overlay an icon on windows in the shift switcher"
 msgstr ""
 
 msgid "Rotation angle of the flip animation"
-msgstr ""
+msgstr "Biratze angelua Irauli animazioan"
 
 msgid ""
 "Selects how the switcher is displayed if multiple output devices are used."
-msgstr ""
+msgstr "Aukeratu nola erakutsi aldatzailea hainbat irteera gailu erabiltzean."
 
 msgid "Shift Switcher"
 msgstr ""

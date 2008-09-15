@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-30 11:41+0530\n"
-"PO-Revision-Date: 2008-05-26 03:23+0200\n"
+"POT-Creation-Date: 2008-09-15 14:45+0530\n"
+"PO-Revision-Date: 2008-09-03 06:00+0200\n"
 "Last-Translator: Jim Dusis <jimdusis@yahoo.gr>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,9 +223,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Καμπυλωτή Πτυχή"
 
-#, fuzzy
 msgid "Curved Fold Amplitude Multiplier"
-msgstr "Έκταση Καμπυλωτής Πτυχής"
+msgstr "Πολλαπλασιαστής Εύρους Καμπυλωτής Πτυχής"
 
 msgid "Dodge"
 msgstr "Ελιγμός"
@@ -260,6 +259,8 @@ msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
+"Το εύρος της πτυχής (μέγεθος) πολλαπλασιάζεται με αυτόν τον αριθμό.Αρνητικές "
+"τιμές διπλώνουν προς τα έξω."
 
 msgid "Glide 1"
 msgstr "Ολίσθηση 1"
@@ -270,9 +271,8 @@ msgstr "Ολίσθηση 2"
 msgid "Horizontal Folds"
 msgstr "Οριζόντιες Πτυχές"
 
-#, fuzzy
 msgid "Horizontal Folds Amplitude Multiplier"
-msgstr "Έκταση Οριζόντιων Πτυχών"
+msgstr "Πολλαπλασιαστής Εύρους Οριζόντιων Πτυχών"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr "Πόσο θα πάλλεται η γραφική απεικόνηση Πλαινό Χτύπημα."
@@ -352,13 +352,12 @@ msgstr "Ιδιότητες"
 msgid "Pool"
 msgstr "Συγκέντρωση"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
 msgstr ""
 "Συγκέντρωση εφέ που θα επιλεγούν αν η Τυχαία Επιλογή εφέ εχει επιλεχθεί. "
-"Κάνοντας κλικ στο reset θα επανακτηθεί η πλήρης λίστα."
+"Κάνοντας κλικ στο reset θα επανακτηθεί η πλήρης λίστα των εφέ."
 
 msgid "Random"
 msgstr "Τυχαία Επιλογή"
@@ -496,9 +495,8 @@ msgstr ""
 msgid "Wave"
 msgstr "Κύμα"
 
-#, fuzzy
 msgid "Wave Amplitude Multiplier"
-msgstr "Έκταση Κύματος"
+msgstr "Πολλαπλασιαστής Εύρους Κύματος"
 
 msgid "Wave Width"
 msgstr "Πλάτος Κύματος"
@@ -507,6 +505,8 @@ msgid ""
 "Wave amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
+"Το εύρος (μέγεθος) κύματος πολλαπλασιάζεται με αυτόν τον αριθμό. Αρνητικές "
+"τίμες διπλώνουν προς τα έξω."
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
@@ -656,12 +656,11 @@ msgstr "Y Θέση του παραθύρου του τεστ απόδοσης"
 msgid "Y position"
 msgstr "Υ Θέση"
 
-#, fuzzy
 msgid "Bicubic filter"
-msgstr "Αλλαγή φίλτραρίσματος"
+msgstr "Φίλτρο Bicubic"
 
 msgid "Bicubic texture filtering"
-msgstr ""
+msgstr "Bicubic φιλτράρισμα υφών"
 
 msgid "Color filter"
 msgstr "Χρωματιστό φίλτράρισμα"
@@ -999,16 +998,14 @@ msgstr "Αυτόματο ζουμ out μόνο στο γύρισμα με το �
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Αυτόματο ζουμ out για να χορέσει ο κύβος στην οθόνη."
 
-#, fuzzy
 msgid "Cube Caps"
 msgstr "Καπάκια Κύβου"
 
 msgid "Render images on top and bottom of the cube"
 msgstr "Απεικόνιση εικόνων πάνω και κάτω του κύβου"
 
-#, fuzzy
 msgid "Compiz cube reflection"
-msgstr "Αντανάκλαση του Κύβου"
+msgstr "Αντανάκλαση Κύβου του Compiz"
 
 msgid "Cube Reflection"
 msgstr "Αντανάκλαση του Κύβου"
@@ -1236,6 +1233,10 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "Κεντράρισμα ποντικιού"
 
+#, fuzzy
+msgid "Dynamic mouse pointer scale"
+msgstr "Κλιμάκωση του δείκτη ποντικιού"
+
 msgid "Enable focus tracking"
 msgstr "Ενεργοποίηση εντοπισμού εστίασης"
 
@@ -1302,9 +1303,8 @@ msgstr ""
 "Αποκρύπτει τον πραγματικό δείκτη ποντικιού όταν ζουμάρεται μέσα και "
 "κλιμακώνει το ποντίκι"
 
-#, fuzzy
 msgid "Minimum zoom factor"
-msgstr "Ελάχιστος Συντελεστής Μεγέθους"
+msgstr "Ελάχιστος συντελεστής ζουμ"
 
 msgid "Mouse Behaviour"
 msgstr "Συμπεριφορά Ποντικιού"
@@ -1394,6 +1394,10 @@ msgstr "Εξειδικευμένο ζουμ παράγοντας 3"
 msgid "Speed"
 msgstr "Ταχύτητα"
 
+#, fuzzy
+msgid "Static mouse pointer scale"
+msgstr "Κλιμάκωση του δείκτη ποντικιού"
+
 msgid "Sync Mouse"
 msgstr "Συγχρονισμός Ποντικιού"
 
@@ -1404,6 +1408,8 @@ msgid ""
 "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
 "0.25 equals 4x zoom."
 msgstr ""
+"Ο ελάχιστος επιτρεπόμενος συντελεστής ζουμ. Μια τιμή στο 0.5 ισούται με 2x "
+"ζουμ, μια τιμή στο 0.25 ισούται με 4x ζουμ."
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
@@ -1423,6 +1429,16 @@ msgstr ""
 
 msgid "Use linear filter when zoomed in"
 msgstr "Χρήση γραμμικού φίλτραρίσματος όταν ζουμάρετε μέσα"
+
+msgid ""
+"When not using a dynamic mouse pointer scale, this is the scale factor for "
+"the mouse pointer."
+msgstr ""
+
+msgid ""
+"When scaling the mouse pointer, this option makes the scale adjust according "
+"to the current level of zoom."
+msgstr ""
 
 msgid "Zoom Area Movement"
 msgstr "Περιοχή Κίνησης Ζουμ"
@@ -1517,12 +1533,13 @@ msgstr "Εκκίνηση του Στοιχείου Ψεύτικα ARGB Παρα�
 msgid "Toggle window fake ARGB."
 msgstr "Εκκίνηση του στοιχείου ψεύτικα ARGB παραθύρου."
 
-#, fuzzy
 msgid "Add Particle"
-msgstr "Ζωή Στοιχείων"
+msgstr "Προσθήκη Στοιχείου"
 
 msgid "Adds a fire particle at position (x,y), where x and y are floats."
 msgstr ""
+"Προσθέτει ένα στοιχείο φωτιάς στη θέση (χ,ψ), όπου χ και ψ είναι "
+"συντεταγμένες."
 
 msgid "Background brightness"
 msgstr "Φωτεινότητα Φόντου"
@@ -3780,15 +3797,13 @@ msgstr "Αρχική Οθόνη"
 msgid "Start Splash."
 msgstr "Εκκίνηση Αρχικής Οθόνης."
 
-#, fuzzy
 msgid ""
 "Amount of opacity (in percent) for windows in the switcher which are not "
 "selected"
 msgstr ""
-"Ποσό αδιαφάνειας (σε ποσοστό) για τα παράθυρα στο δαχτυλίδι που δεν είναι "
+"Ποσό αδιαφάνειας (σε ποσοστό) για τα παράθυρα στον επιλογέα που δεν είναι "
 "επιλεγμένα"
 
-#, fuzzy
 msgid "Behavior"
 msgstr "Συμπεριφορά"
 

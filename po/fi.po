@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-30 11:42+0530\n"
-"PO-Revision-Date: 2008-08-08 14:12+0200\n"
+"POT-Creation-Date: 2008-09-15 14:46+0530\n"
+"PO-Revision-Date: 2008-09-05 08:41+0200\n"
 "Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
@@ -252,6 +252,8 @@ msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
+"Laskoksen amplitudi (koko) kerrotaan tällä numerolla. Negatiivisilla "
+"arvoilla laskostuminen ulospäin."
 
 msgid "Glide 1"
 msgstr "Liuku 1"
@@ -338,13 +340,12 @@ msgstr "Valinnat"
 msgid "Pool"
 msgstr "Valikoima"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
 msgstr ""
-"Käytettävä tehostevalikoima jos satunnaistehosteet on valittu. Valitse "
-"palauta oletukset palauttaaksesi täyden tehosteluettelon."
+"Käytettävä tehostevalikoima josta satunnaistehosteet valitaan. Napsauta "
+"Palauta oletukset käyttääksesi kaikkia tehosteita."
 
 msgid "Random"
 msgstr "Satunnainen"
@@ -591,28 +592,28 @@ msgid "Initiate"
 msgstr "Aloita"
 
 msgid "Main"
-msgstr ""
+msgstr "Pää"
 
 msgid "Print FPS to console"
 msgstr "Tulosta kehysnopeus konsoliin"
 
 msgid "Screen Output"
-msgstr ""
+msgstr "Tulostus näytölle"
 
 msgid "Start benchmark"
-msgstr ""
+msgstr "Käynnistä suorituskyvyn mittaus"
 
 msgid "Update time"
-msgstr ""
+msgstr "Päivitä aika"
 
 msgid "X Position of benchmark window"
-msgstr ""
+msgstr "Suorituskyvyn mittauksen ikkunan X-sijainti"
 
 msgid "X position"
 msgstr "X-sijainti"
 
 msgid "Y Position of benchmark window"
-msgstr ""
+msgstr "Suorituskyvyn mittauksen ikkunan Y-sijainti"
 
 msgid "Y position"
 msgstr "Y-sijainti"
@@ -686,10 +687,10 @@ msgid "Windows to exclude from filtering."
 msgstr "Ikkunat joita ei suodateta."
 
 msgid "Activate Crash Handler."
-msgstr ""
+msgstr "Aktivoi kaatumisten käsittelijä"
 
 msgid "Compiz crash handler plugin"
-msgstr ""
+msgstr "Compizin kaatumisen käsittelijäliitännäinen"
 
 msgid "Crash Dump Directory"
 msgstr ""
@@ -1167,6 +1168,10 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "Keskitä hiiri"
 
+#, fuzzy
+msgid "Dynamic mouse pointer scale"
+msgstr "Sovita kohdistin"
+
 msgid "Enable focus tracking"
 msgstr "Ota kohdistusseuranta käyttöön"
 
@@ -1309,6 +1314,10 @@ msgstr "Määritetty zoomauskerroin 3"
 msgid "Speed"
 msgstr "Nopeus"
 
+#, fuzzy
+msgid "Static mouse pointer scale"
+msgstr "Sovita kohdistin"
+
 msgid "Sync Mouse"
 msgstr "Synkronoi hiiri"
 
@@ -1334,6 +1343,16 @@ msgstr ""
 
 msgid "Use linear filter when zoomed in"
 msgstr "Käytä tasasuodatusta zoomattaessa sisään"
+
+msgid ""
+"When not using a dynamic mouse pointer scale, this is the scale factor for "
+"the mouse pointer."
+msgstr ""
+
+msgid ""
+"When scaling the mouse pointer, this option makes the scale adjust according "
+"to the current level of zoom."
+msgstr ""
 
 msgid "Zoom Area Movement"
 msgstr "Zoomausalueen liike"

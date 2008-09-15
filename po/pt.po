@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-30 11:43+0530\n"
-"PO-Revision-Date: 2008-08-13 18:01+0200\n"
+"POT-Creation-Date: 2008-09-15 14:47+0530\n"
+"PO-Revision-Date: 2008-09-01 20:23+0200\n"
 "Last-Translator: Nicolau Gonçalves <excentriko@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -347,13 +347,12 @@ msgstr "Opções"
 msgid "Pool"
 msgstr "Piscina"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
 msgstr ""
-"Piscina dos efeitos a ser escolhidos no caso de o efeito Aleatório estar "
-"seleccionado. Pressione restaurar para restaurar a lista completa."
+"Lista dos efeitos a ser escolhidos no caso de \"efeito Aleatório\" estar "
+"seleccionado. Pressione restaurar para usar todos os efeitos."
 
 msgid "Random"
 msgstr "Aleatório"
@@ -1219,6 +1218,10 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "Centrar o rato"
 
+#, fuzzy
+msgid "Dynamic mouse pointer scale"
+msgstr "Escalar o ponteiro do rato"
+
 msgid "Enable focus tracking"
 msgstr "Activar seguimento de foco"
 
@@ -1380,6 +1383,10 @@ msgstr "Factor de magnificação específico 3"
 msgid "Speed"
 msgstr "Velocidade"
 
+#, fuzzy
+msgid "Static mouse pointer scale"
+msgstr "Escalar o ponteiro do rato"
+
 msgid "Sync Mouse"
 msgstr "Sincronizar Rato"
 
@@ -1411,6 +1418,16 @@ msgstr ""
 
 msgid "Use linear filter when zoomed in"
 msgstr "Usar filtro linear quando magnificar"
+
+msgid ""
+"When not using a dynamic mouse pointer scale, this is the scale factor for "
+"the mouse pointer."
+msgstr ""
+
+msgid ""
+"When scaling the mouse pointer, this option makes the scale adjust according "
+"to the current level of zoom."
+msgstr ""
 
 msgid "Zoom Area Movement"
 msgstr "Movimento Zoom Área"
@@ -1507,12 +1524,11 @@ msgstr "Alternar ARGB falsos da janela"
 msgid "Toggle window fake ARGB."
 msgstr "Alternar ARGB falsos da janela."
 
-#, fuzzy
 msgid "Add Particle"
-msgstr "Vida Partículas"
+msgstr "Adicionar Partícula"
 
 msgid "Adds a fire particle at position (x,y), where x and y are floats."
-msgstr ""
+msgstr "Adiciona uma partícula de fogo na posição (x,y), onde x e y são floats"
 
 msgid "Background brightness"
 msgstr "Brilho do fundo"
@@ -4798,13 +4814,11 @@ msgstr "Valores de altura"
 msgid "Matches"
 msgstr "Coincidências"
 
-#, fuzzy
 msgid "Maximized"
-msgstr "Maximumização"
+msgstr "Maximizada"
 
-#, fuzzy
 msgid "Maximized windows"
-msgstr "Janelas não maximizáveis"
+msgstr "Janelas maximizadas"
 
 msgid "No ARGB visuals"
 msgstr "Sem visualização ARGB"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-30 11:43+0530\n"
-"PO-Revision-Date: 2008-08-07 14:46+0200\n"
+"POT-Creation-Date: 2008-09-15 14:47+0530\n"
+"PO-Revision-Date: 2008-08-30 18:17+0200\n"
 "Last-Translator: Lee June Hee <bugbear5@gmail.com>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
 "MIME-Version: 1.0\n"
@@ -333,13 +333,12 @@ msgstr "옵션"
 msgid "Pool"
 msgstr "목록"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
 msgstr ""
-"무작위 효과가 선택되었을 때 사용되는 효과 목록. 초기화 버튼을 클릭하면 목록 "
-"전체로 초기화됩니다."
+"무작위 효과가 선택되었을 때 사용되는 효과 목록. 초기화 버튼을 클릭하면 모든 "
+"효과를 사용합니다."
 
 msgid "Random"
 msgstr "무작위"
@@ -1169,6 +1168,10 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "마우스를 가운데로 옮김"
 
+#, fuzzy
+msgid "Dynamic mouse pointer scale"
+msgstr "마우스 포인터의 크기를 변경함"
+
 msgid "Enable focus tracking"
 msgstr "초점 추척 활성화"
 
@@ -1314,6 +1317,10 @@ msgstr "확대 수준 3"
 msgid "Speed"
 msgstr "속도"
 
+#, fuzzy
+msgid "Static mouse pointer scale"
+msgstr "마우스 포인터의 크기를 변경함"
+
 msgid "Sync Mouse"
 msgstr "마우스 동기화"
 
@@ -1340,6 +1347,16 @@ msgstr "확대 영역을 고정시켜서, 확대 영역이 이동되지 않도�
 
 msgid "Use linear filter when zoomed in"
 msgstr "확대할 때, 선형 필터 사용"
+
+msgid ""
+"When not using a dynamic mouse pointer scale, this is the scale factor for "
+"the mouse pointer."
+msgstr ""
+
+msgid ""
+"When scaling the mouse pointer, this option makes the scale adjust according "
+"to the current level of zoom."
+msgstr ""
 
 msgid "Zoom Area Movement"
 msgstr "확대 영역 이동"
@@ -1431,12 +1448,11 @@ msgstr "가짜 창 ARGB 기능 토글"
 msgid "Toggle window fake ARGB."
 msgstr "가짜 창 ARGB 기능 토글"
 
-#, fuzzy
 msgid "Add Particle"
-msgstr "입자의 수명"
+msgstr "입자 더하기"
 
 msgid "Adds a fire particle at position (x,y), where x and y are floats."
-msgstr ""
+msgstr "x 와 y 가 있는 위치 좌표 (x,y)에  불꽃을 더합니다."
 
 msgid "Background brightness"
 msgstr "배경 밝기"
@@ -4627,13 +4643,11 @@ msgstr "높이 값"
 msgid "Matches"
 msgstr "조건"
 
-#, fuzzy
 msgid "Maximized"
 msgstr "최대화"
 
-#, fuzzy
 msgid "Maximized windows"
-msgstr "최대화 되지 않는 창"
+msgstr "최대화 된 창"
 
 msgid "No ARGB visuals"
 msgstr "ARGB 비주얼 사용하지 않음"

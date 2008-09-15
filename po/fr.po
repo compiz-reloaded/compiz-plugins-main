@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-30 11:42+0530\n"
-"PO-Revision-Date: 2008-08-16 18:20+0200\n"
+"POT-Creation-Date: 2008-09-15 14:46+0530\n"
+"PO-Revision-Date: 2008-09-03 14:29+0200\n"
 "Last-Translator: Florent <cartman@igstaff.com>\n"
 "Language-Team: <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -346,13 +346,12 @@ msgstr "Options"
 msgid "Pool"
 msgstr "Sélection"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
 msgstr ""
 "Sélection d'effets à utiliser si l'effet aléatoire est sélectionné. Appuyez "
-"sur Restaurer pour remettre la liste complète."
+"sur Restaurer pour utiliser tous les effets."
 
 msgid "Random"
 msgstr "Aléatoire"
@@ -1221,6 +1220,10 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "Centrer le pointeur"
 
+#, fuzzy
+msgid "Dynamic mouse pointer scale"
+msgstr "Mettre le pointeur à l'échelle"
+
 msgid "Enable focus tracking"
 msgstr "Activer le suivi du focus"
 
@@ -1377,6 +1380,10 @@ msgstr "Facteur de zoom spécifique 3"
 msgid "Speed"
 msgstr "Vitesse"
 
+#, fuzzy
+msgid "Static mouse pointer scale"
+msgstr "Mettre le pointeur à l'échelle"
+
 msgid "Sync Mouse"
 msgstr "Souris synchronisée"
 
@@ -1406,6 +1413,16 @@ msgstr ""
 
 msgid "Use linear filter when zoomed in"
 msgstr "Utiliser un filtre linéaire lors du zoom"
+
+msgid ""
+"When not using a dynamic mouse pointer scale, this is the scale factor for "
+"the mouse pointer."
+msgstr ""
+
+msgid ""
+"When scaling the mouse pointer, this option makes the scale adjust according "
+"to the current level of zoom."
+msgstr ""
 
 msgid "Zoom Area Movement"
 msgstr "Mouvement de la zone de zoom"
@@ -1500,12 +1517,13 @@ msgstr "Basculer la fenêtre en faux ARGB"
 msgid "Toggle window fake ARGB."
 msgstr "Basculer la fenêtre en faux ARGB."
 
-#, fuzzy
 msgid "Add Particle"
-msgstr "Longévité des particules"
+msgstr "Ajouter des particules"
 
 msgid "Adds a fire particle at position (x,y), where x and y are floats."
 msgstr ""
+"Ajoute une particule de feu à la position (x,y), où x et y sont de type "
+"\"float\""
 
 msgid "Background brightness"
 msgstr "Luminosité du fond"
@@ -4822,13 +4840,11 @@ msgstr "Valeurs de hauteur"
 msgid "Matches"
 msgstr "Concordances"
 
-#, fuzzy
 msgid "Maximized"
-msgstr "Étaler"
+msgstr "Maximisé"
 
-#, fuzzy
 msgid "Maximized windows"
-msgstr "Fenêtres non maximisables"
+msgstr "Fenêtres maximisées"
 
 msgid "No ARGB visuals"
 msgstr "Pas de visuels ARGB"

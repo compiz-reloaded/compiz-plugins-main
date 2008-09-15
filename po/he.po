@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.7\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-30 11:42+0530\n"
-"PO-Revision-Date: 2008-08-08 18:47+0200\n"
+"POT-Creation-Date: 2008-09-15 14:46+0530\n"
+"PO-Revision-Date: 2008-09-07 05:46+0200\n"
 "Last-Translator: Yotam Benshalom <benshalom@gmail.com>\n"
 "Language-Team: Yotam Benshalom <benshalom@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -328,7 +328,6 @@ msgstr "אפשרויות"
 msgid "Pool"
 msgstr "מאגר"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
@@ -1160,6 +1159,10 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "מרכז את העכבר"
 
+#, fuzzy
+msgid "Dynamic mouse pointer scale"
+msgstr "התאם את גודל סמן העכבר"
+
 msgid "Enable focus tracking"
 msgstr "אפשר מעקב אחר מוקד"
 
@@ -1305,6 +1308,10 @@ msgstr "מקדם תקריב 3"
 msgid "Speed"
 msgstr "מהירות"
 
+#, fuzzy
+msgid "Static mouse pointer scale"
+msgstr "התאם את גודל סמן העכבר"
+
 msgid "Sync Mouse"
 msgstr "סנכרון עכבר"
 
@@ -1332,6 +1339,16 @@ msgstr "מפעיל או מנטרל את נעילת איזור התקריב, כך
 
 msgid "Use linear filter when zoomed in"
 msgstr "השתמש בפילטר לינארי בעת תקריב פנימה"
+
+msgid ""
+"When not using a dynamic mouse pointer scale, this is the scale factor for "
+"the mouse pointer."
+msgstr ""
+
+msgid ""
+"When scaling the mouse pointer, this option makes the scale adjust according "
+"to the current level of zoom."
+msgstr ""
 
 msgid "Zoom Area Movement"
 msgstr "תזוזת איזור תקריב"
@@ -1422,12 +1439,11 @@ msgstr "הפעל\\נטרל ARGB מזויף לחלון"
 msgid "Toggle window fake ARGB."
 msgstr "הפעל\\נטרל ARGB מזויף לחלון."
 
-#, fuzzy
 msgid "Add Particle"
-msgstr "אורך חיי חלקיקים"
+msgstr "הוסף חלקיק"
 
 msgid "Adds a fire particle at position (x,y), where x and y are floats."
-msgstr ""
+msgstr "מוסיף חלקיק אש במיקום (x, y), כאשר x ו-y הם מספרי נקודה צפה."
 
 msgid "Background brightness"
 msgstr "בהירות רקע"
@@ -4612,13 +4628,11 @@ msgstr "ערכי גובה"
 msgid "Matches"
 msgstr "התאמות"
 
-#, fuzzy
 msgid "Maximized"
-msgstr "התרחב בחלל הפנוי"
+msgstr "מוגדל למקסימום"
 
-#, fuzzy
 msgid "Maximized windows"
-msgstr "חלונות שלא ניתן להגדיל למקסימום"
+msgstr "חלונות שהוגדלו למקסימום"
 
 msgid "No ARGB visuals"
 msgstr "ללא הצגת ARGB"

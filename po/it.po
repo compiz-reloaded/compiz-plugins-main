@@ -47,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-08-30 11:42+0530\n"
-"PO-Revision-Date: 2008-08-15 22:15+0200\n"
+"POT-Creation-Date: 2008-09-15 14:47+0530\n"
+"PO-Revision-Date: 2008-09-08 21:23+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -392,13 +392,12 @@ msgstr "Opzioni"
 msgid "Pool"
 msgstr "Elenco effetti"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
 msgstr ""
 "Elenco degli effetti da cui scegliere se è selezionato l'effetto «Casuale». "
-"Fare clic sul pulsante di ripristino per ripristinare l'elenco."
+"Fare clic sul pulsante di ripristino per usare tutti gli effetti."
 
 msgid "Random"
 msgstr "Casuale"
@@ -1325,6 +1324,9 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "Mouse al centro"
 
+msgid "Dynamic mouse pointer scale"
+msgstr "Ridimensionare dinamicamente il puntatore del mouse"
+
 # (ndt) opzione
 msgid "Enable focus tracking"
 msgstr "Abilitare inseguimento del focus"
@@ -1507,6 +1509,9 @@ msgstr "Fattore di ingrandimento specifico 3"
 msgid "Speed"
 msgstr "Velocità"
 
+msgid "Static mouse pointer scale"
+msgstr "Ridimensionare staticamente il puntatore del mouse"
+
 # (ndt) opzione
 msgid "Sync Mouse"
 msgstr "Sincronizzare il mouse"
@@ -1543,6 +1548,20 @@ msgstr ""
 # (NdT) suggerimento
 msgid "Use linear filter when zoomed in"
 msgstr "Usa il filtro lineare nell'ingrandimento"
+
+msgid ""
+"When not using a dynamic mouse pointer scale, this is the scale factor for "
+"the mouse pointer."
+msgstr ""
+"Quando non viene usata il ridimensionamento dinamico del puntatore del "
+"mouse, questo è il fattore di scala per il puntatore."
+
+msgid ""
+"When scaling the mouse pointer, this option makes the scale adjust according "
+"to the current level of zoom."
+msgstr ""
+"Quando viene ridimensionato il puntatore del mouse, questa opzione regola la "
+"scala in base al livello di zoom attuale."
 
 msgid "Zoom Area Movement"
 msgstr "Movimento zoom"
@@ -5156,15 +5175,11 @@ msgstr "Valori di altezza"
 msgid "Matches"
 msgstr "Corrispondenze"
 
-# (ndt) questo effetto non massimizza la finestra
-# ma la allarga per occupare tutto lo spazio disponibile
-#, fuzzy
 msgid "Maximized"
-msgstr "Allarga"
+msgstr "Massimizzate"
 
-#, fuzzy
 msgid "Maximized windows"
-msgstr "Finestre non massimizzabili"
+msgstr "Finestre massimizzate"
 
 msgid "No ARGB visuals"
 msgstr "No ARGB visuale"
