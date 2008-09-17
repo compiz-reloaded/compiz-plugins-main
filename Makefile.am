@@ -5,18 +5,9 @@ EXTRA_DIST =               \
     VERSION                \
     compiz-animation.pc.in \
     compiz-mousepoll.pc.in \
-    compiz-text.pc.in      \
-    intltool-extract.in    \
-    intltool-merge.in      \
-    intltool-update.in     \
-    intltool-extract       \
-    intltool-merge         \
-    intltool-update 
+    compiz-text.pc.in
 
 DISTCLEANFILES =     \
-    intltool-extract \
-    intltool-merge   \
-    intltool-update  \
     po/stamp-it \
     po/.intltool-merge-cache
 
