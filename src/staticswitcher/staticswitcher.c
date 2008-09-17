@@ -1037,7 +1037,7 @@ updateForegroundColor (CompScreen *s)
 				 XA_INTEGER, &actual, &format,
 				 &n, &left, &propData);
 
-    if (result == Success && n && propData)
+    if (result == Success && propData)
     {
 	if (n == 3 || n == 4)
 	{
