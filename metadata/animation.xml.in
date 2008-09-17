@@ -622,122 +622,123 @@
 	</option>
       </group> 
 
-      <extension plugin="animation">
-	<option>open_effects</option>
-	<option>close_effects</option>
-	<option>minimize_effects</option>
-	<option>shade_effects</option>
-	<restriction>
-	  <value>animation:None</value>
-	  <_name>None</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Random</value>
-	  <_name>Random</_name>
-	</restriction>
-      </extension>
-
-      <extension plugin="animation">
-	<option>open_effects</option>
-	<option>open_random_effects</option>
-	<option>close_effects</option>
-	<option>close_random_effects</option>
-	<option>minimize_effects</option>
-	<option>minimize_random_effects</option>
-	<option>shade_effects</option>
-	<option>shade_random_effects</option>
-	<restriction>
-	  <value>animation:Curved Fold</value>
-	  <_name>Curved Fold</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Horizontal Folds</value>
-	  <_name>Horizontal Folds</_name>
-	</restriction>
-      </extension>
-
-      <extension plugin="animation">
-	<option>shade_effects</option>
-	<option>shade_random_effects</option>
-	<restriction>
-	  <value>animation:Roll Up</value>
-	  <_name>Roll Up</_name>
-	</restriction>
-      </extension>
-
-      <extension plugin="animation">
-	<option>open_effects</option>
-	<option>open_random_effects</option>
-	<option>close_effects</option>
-	<option>close_random_effects</option>
-	<option>minimize_effects</option>
-	<option>minimize_random_effects</option>
-	<restriction>
-	  <value>animation:Dream</value>
-	  <_name>Dream</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Fade</value>
-	  <_name>Fade</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Glide 1</value>
-	  <_name>Glide 1</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Glide 2</value>
-	  <_name>Glide 2</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Magic Lamp</value>
-	  <_name>Magic Lamp</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Sidekick</value>
-	  <_name>Sidekick</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Zoom</value>
-	  <_name>Zoom</_name>
-	</restriction>
-      </extension>
-
-      <extension plugin="animation">
-	<option>open_effects</option>
-	<option>open_random_effects</option>
-	<option>close_effects</option>
-	<option>close_random_effects</option>
-	<restriction>
-	  <value>animation:Vacuum</value>
-	  <_name>Vacuum</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Wave</value>
-	  <_name>Wave</_name>
-	</restriction>
-      </extension>
-
-      <extension plugin="animation">
-	<option>focus_effects</option>
-	<restriction>
-	  <value>animation:None</value>
-	  <_name>None</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Dodge</value>
-	  <_name>Dodge</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Focus Fade</value>
-	  <_name>Fade</_name>
-	</restriction>
-	<restriction>
-	  <value>animation:Wave</value>
-	  <_name>Wave</_name>
-	</restriction>
-      </extension>
-      
     </screen>
+
+    <extension base_plugin="animation" screen="true">
+      <base_option>open_effects</base_option>
+      <base_option>close_effects</base_option>
+      <base_option>minimize_effects</base_option>
+      <base_option>shade_effects</base_option>
+      <restriction>
+	<value>animation:None</value>
+	<_name>None</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Random</value>
+	<_name>Random</_name>
+      </restriction>
+    </extension>
+
+    <extension base_plugin="animation" screen="true">
+      <base_option>open_effects</base_option>
+      <base_option>open_random_effects</base_option>
+      <base_option>close_effects</base_option>
+      <base_option>close_random_effects</base_option>
+      <base_option>minimize_effects</base_option>
+      <base_option>minimize_random_effects</base_option>
+      <base_option>shade_effects</base_option>
+      <base_option>shade_random_effects</base_option>
+      <restriction>
+	<value>animation:Curved Fold</value>
+	<_name>Curved Fold</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Horizontal Folds</value>
+	<_name>Horizontal Folds</_name>
+      </restriction>
+    </extension>
+
+    <extension base_plugin="animation">
+      <base_option>shade_effects</base_option>
+      <base_option>shade_random_effects</base_option>
+      <restriction>
+	<value>animation:Roll Up</value>
+	<_name>Roll Up</_name>
+      </restriction>
+    </extension>
+
+    <extension base_plugin="animation">
+      <base_option>open_effects</base_option>
+      <base_option>open_random_effects</base_option>
+      <base_option>close_effects</base_option>
+      <base_option>close_random_effects</base_option>
+      <base_option>minimize_effects</base_option>
+      <base_option>minimize_random_effects</base_option>
+      <restriction>
+	<value>animation:Dream</value>
+	<_name>Dream</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Fade</value>
+	<_name>Fade</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Glide 1</value>
+	<_name>Glide 1</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Glide 2</value>
+	<_name>Glide 2</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Magic Lamp</value>
+	<_name>Magic Lamp</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Sidekick</value>
+	<_name>Sidekick</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Zoom</value>
+	<_name>Zoom</_name>
+      </restriction>
+    </extension>
+
+    <extension base_plugin="animation">
+      <base_option>open_effects</base_option>
+      <base_option>open_random_effects</base_option>
+      <base_option>close_effects</base_option>
+      <base_option>close_random_effects</base_option>
+      <restriction>
+	<value>animation:Vacuum</value>
+	<_name>Vacuum</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Wave</value>
+	<_name>Wave</_name>
+      </restriction>
+    </extension>
+
+    <extension base_plugin="animation">
+      <base_option>focus_effects</base_option>
+      <restriction>
+	<value>animation:None</value>
+	<_name>None</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Dodge</value>
+	<_name>Dodge</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Focus Fade</value>
+	<_name>Fade</_name>
+      </restriction>
+      <restriction>
+	<value>animation:Wave</value>
+	<_name>Wave</_name>
+      </restriction>
+    </extension>
+    
   </plugin>
 </compiz>
 
