@@ -3,7 +3,8 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libmag_la_LDFLAGS = $(PFLAGS)
 libmag_la_LIBADD = @COMPIZ_LIBS@
-libmag_la_SOURCES = mag_options.c mag_options.h mag.c
+nodist_libmag_la_SOURCES = mag_options.c mag_options.h
+dist_libmag_la_SOURCES = mag.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

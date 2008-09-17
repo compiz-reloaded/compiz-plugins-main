@@ -3,7 +3,8 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libring_la_LDFLAGS = $(PFLAGS)
 libring_la_LIBADD = @COMPIZ_LIBS@
-libring_la_SOURCES = ring_options.c ring_options.h ring.c
+nodist_libring_la_SOURCES = ring_options.c ring_options.h
+dist_libring_la_SOURCES = ring.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

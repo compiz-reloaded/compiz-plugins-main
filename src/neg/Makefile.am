@@ -3,7 +3,8 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libneg_la_LDFLAGS = $(PFLAGS)
 libneg_la_LIBADD = @COMPIZ_LIBS@
-libneg_la_SOURCES = neg_options.c neg_options.h neg.c
+nodist_libneg_la_SOURCES = neg_options.c neg_options.h
+dist_libneg_la_SOURCES = neg.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

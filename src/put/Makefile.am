@@ -3,7 +3,8 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libput_la_LDFLAGS = $(PFLAGS)
 libput_la_LIBADD = @COMPIZ_LIBS@
-libput_la_SOURCES = put_options.c put_options.h put.c
+nodist_libput_la_SOURCES = put_options.c put_options.h
+dist_libput_la_SOURCES = put.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

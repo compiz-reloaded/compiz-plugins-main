@@ -3,9 +3,9 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libworkarounds_la_LDFLAGS = $(PFLAGS)
 libworkarounds_la_LIBADD = @COMPIZ_LIBS@
-libworkarounds_la_SOURCES = workarounds_options.c \
-			    workarounds_options.h \
-			    workarounds.c
+nodist_libworkarounds_la_SOURCES = workarounds_options.c \
+			    workarounds_options.h
+dist_libworkarounds_la_SOURCES = workarounds.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

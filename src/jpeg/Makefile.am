@@ -4,7 +4,8 @@ PFLAGS=-module -avoid-version -no-undefined
 if JPEG_PLUGIN
 libimgjpeg_la_LDFLAGS = $(PFLAGS)
 libimgjpeg_la_LIBADD = @COMPIZ_LIBS@ -ljpeg
-libimgjpeg_la_SOURCES = imgjpeg_options.c imgjpeg_options.h imgjpeg.c
+nodist_libimgjpeg_la_SOURCES = imgjpeg_options.c imgjpeg_options.h
+dist_libimgjpeg_la_SOURCES = imgjpeg.c
 endif
 
 INCLUDES =                              \

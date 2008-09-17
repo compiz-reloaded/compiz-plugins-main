@@ -3,9 +3,9 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libstaticswitcher_la_LDFLAGS = $(PFLAGS)
 libstaticswitcher_la_LIBADD = @COMPIZ_LIBS@
-libstaticswitcher_la_SOURCES = staticswitcher_options.c \
+nodist_libstaticswitcher_la_SOURCES = staticswitcher_options.c \
 			       staticswitcher_options.h \
-			       staticswitcher.c
+dist_libstaticswitcher_la_SOURCES = staticswitcher.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

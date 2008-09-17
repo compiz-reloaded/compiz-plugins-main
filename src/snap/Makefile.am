@@ -3,7 +3,8 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libsnap_la_LDFLAGS = $(PFLAGS)
 libsnap_la_LIBADD = @COMPIZ_LIBS@
-libsnap_la_SOURCES = snap_options.c snap_options.h snap.c
+nodist_libsnap_la_SOURCES = snap_options.c snap_options.h
+dist_libsnap_la_SOURCES = snap.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

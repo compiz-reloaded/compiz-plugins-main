@@ -4,7 +4,8 @@ PFLAGS=-module -avoid-version -no-undefined
 if TEXT_PLUGIN
 libtext_la_LDFLAGS = $(PFLAGS)
 libtext_la_LIBADD = @COMPIZ_LIBS@ @PANGO_LIBS@
-libtext_la_SOURCES = text_options.c text_options.h text.c
+nodist_libtext_la_SOURCES = text_options.c text_options.h
+dist_libtext_la_SOURCES = text.c
 endif
 
 INCLUDES =                              \

@@ -4,7 +4,8 @@ PFLAGS=-module -avoid-version -no-undefined
 if SCALEADDON_PLUGIN
 libscaleaddon_la_LDFLAGS = $(PFLAGS)
 libscaleaddon_la_LIBADD = @COMPIZ_LIBS@ @SCALE_LIBS@
-libscaleaddon_la_SOURCES = scaleaddon_options.c scaleaddon_options.h scaleaddon.c
+nodist_libscaleaddon_la_SOURCES = scaleaddon_options.c scaleaddon_options.h
+dist_libscaleaddon_la_SOURCES = scaleaddon.c
 endif
 
 INCLUDES =                              \

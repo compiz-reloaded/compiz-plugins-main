@@ -3,7 +3,8 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libvpswitch_la_LDFLAGS = $(PFLAGS)
 libvpswitch_la_LIBADD = @COMPIZ_LIBS@
-libvpswitch_la_SOURCES = vpswitch_options.c vpswitch_options.h vpswitch.c
+nodist_libvpswitch_la_SOURCES = vpswitch_options.c vpswitch_options.h
+dist_libvpswitch_la_SOURCES = vpswitch.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

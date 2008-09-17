@@ -3,7 +3,8 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libshift_la_LDFLAGS = $(PFLAGS)
 libshift_la_LIBADD = @COMPIZ_LIBS@
-libshift_la_SOURCES = shift_options.c shift_options.h shift.c
+nodist_libshift_la_SOURCES = shift_options.c shift_options.h
+dist_libshift_la_SOURCES = shift.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \

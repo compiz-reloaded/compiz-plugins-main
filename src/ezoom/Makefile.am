@@ -3,7 +3,8 @@ PFLAGS=-module -avoid-version -no-undefined
 
 libezoom_la_LDFLAGS = $(PFLAGS)
 libezoom_la_LIBADD = @COMPIZ_LIBS@ -lGLU
-libezoom_la_SOURCES = ezoom_options.c ezoom_options.h ezoom.c
+nodist_libezoom_la_SOURCES = ezoom_options.c ezoom_options.h
+dist_libezoom_la_SOURCES = ezoom.c
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
