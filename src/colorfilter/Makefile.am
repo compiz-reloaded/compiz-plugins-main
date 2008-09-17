@@ -4,7 +4,7 @@ PFLAGS=-module -avoid-version -no-undefined
 libcolorfilter_la_LDFLAGS = $(PFLAGS)
 libcolorfilter_la_LIBADD = @COMPIZ_LIBS@
 nodist_libcolorfilter_la_SOURCES = colorfilter_options.c \
-			    colorfilter_options.h \
+			    colorfilter_options.h
 dist_libcolorfilter_la_SOURCES = colorfilter.c \
 			    parser.c              \
 			    parser.h
