@@ -67,7 +67,6 @@ endif
 endif
 
 EXTRA_DIST =		\
-	$(xml_files)    \
 	$(xml_in_files) \
 	$(schema_files)
 
