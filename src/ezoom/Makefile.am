@@ -21,10 +21,10 @@ module_LTLIBRARIES = libezoom.la
 
 CLEANFILES = *_options.c *_options.h
 
-ezoom_options.h: ../../metadata/ezoom.xml
+ezoom_options.h: ../../metadata/ezoom.xml.in
 		$(BCOP_BIN) --header $@ $<
 
-ezoom_options.c: ../../metadata/ezoom.xml ezoom_options.h
+ezoom_options.c: ../../metadata/ezoom.xml.in ezoom_options.h
 		$(BCOP_BIN) --source $@ $<
 
 ezoom.c: ezoom_options.c ezoom_options.h

@@ -21,10 +21,10 @@ module_LTLIBRARIES = libopacify.la
 
 CLEANFILES = *_options.c *_options.h
 
-opacify_options.h: ../../metadata/opacify.xml
+opacify_options.h: ../../metadata/opacify.xml.in
 		$(BCOP_BIN) --header $@ $<
 
-opacify_options.c: ../../metadata/opacify.xml opacify_options.h
+opacify_options.c: ../../metadata/opacify.xml.in opacify_options.h
 		$(BCOP_BIN) --source $@ $<
 
 opacify.c: opacify_options.c opacify_options.h

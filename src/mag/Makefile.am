@@ -20,10 +20,10 @@ module_LTLIBRARIES = libmag.la
 
 CLEANFILES = *_options.c *_options.h
 
-mag_options.h: ../../metadata/mag.xml
+mag_options.h: ../../metadata/mag.xml.in
 		$(BCOP_BIN) --header $@ $<
 
-mag_options.c: ../../metadata/mag.xml mag_options.h
+mag_options.c: ../../metadata/mag.xml.in mag_options.h
 		$(BCOP_BIN) --source $@ $<
 
 mag.c: mag_options.c mag_options.h

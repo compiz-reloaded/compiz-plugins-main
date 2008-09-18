@@ -21,10 +21,10 @@ module_LTLIBRARIES = libsnap.la
 
 CLEANFILES = *_options.c *_options.h
 
-snap_options.h: ../../metadata/snap.xml
+snap_options.h: ../../metadata/snap.xml.in
 		$(BCOP_BIN) --header $@ $<
 
-snap_options.c: ../../metadata/snap.xml snap_options.h
+snap_options.c: ../../metadata/snap.xml.in snap_options.h
 		$(BCOP_BIN) --source $@ $<
 
 snap.c: snap_options.c snap_options.h

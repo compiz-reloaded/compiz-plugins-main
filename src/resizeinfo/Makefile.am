@@ -26,10 +26,10 @@ endif
 
 CLEANFILES = *_options.c *_options.h
 
-resizeinfo_options.h: ../../metadata/resizeinfo.xml
+resizeinfo_options.h: ../../metadata/resizeinfo.xml.in
 		$(BCOP_BIN) --header $@ $<
 
-resizeinfo_options.c: ../../metadata/resizeinfo.xml resizeinfo_options.h
+resizeinfo_options.c: ../../metadata/resizeinfo.xml.in resizeinfo_options.h
 		$(BCOP_BIN) --source $@ $<
 
 resizeinfo.c: resizeinfo_options.c resizeinfo_options.h

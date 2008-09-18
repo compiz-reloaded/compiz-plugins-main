@@ -21,10 +21,10 @@ module_LTLIBRARIES = libworkarounds.la
 
 CLEANFILES = *_options.c *_options.h
 
-workarounds_options.h: ../../metadata/workarounds.xml
+workarounds_options.h: ../../metadata/workarounds.xml.in
 		$(BCOP_BIN) --header $@ $<
 
-workarounds_options.c: ../../metadata/workarounds.xml workarounds_options.h
+workarounds_options.c: ../../metadata/workarounds.xml.in workarounds_options.h
 		$(BCOP_BIN) --source $@ $<
 
 workarounds.c: workarounds_options.c workarounds_options.h

@@ -21,10 +21,10 @@ module_LTLIBRARIES = libvpswitch.la
 
 CLEANFILES = *_options.c *_options.h
 
-vpswitch_options.h: ../../metadata/vpswitch.xml
+vpswitch_options.h: ../../metadata/vpswitch.xml.in
 		$(BCOP_BIN) --header $@ $<
 
-vpswitch_options.c: ../../metadata/vpswitch.xml vpswitch_options.h
+vpswitch_options.c: ../../metadata/vpswitch.xml.in vpswitch_options.h
 		$(BCOP_BIN) --source $@ $<
 
 vpswitch.c: vpswitch_options.c vpswitch_options.h
