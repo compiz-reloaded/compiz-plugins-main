@@ -25,8 +25,10 @@ module_LTLIBRARIES = libcolorfilter.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+colorfilter_options.h: ../../metadata/colorfilter.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+colorfilter_options.c: ../../metadata/colorfilter.xml colorfilter_options.h
 		$(BCOP_BIN) --source $@ $<
+
+colorfilter.c: colorfilter_options.c colorfilter_options.h
