@@ -8,7 +8,7 @@ nodist_libimgjpeg_la_SOURCES = imgjpeg_options.c imgjpeg_options.h
 dist_libimgjpeg_la_SOURCES = imgjpeg.c
 endif
 
-BUILT_SOURCES = $(nodist_libjpeg_la_SOURCES)
+BUILT_SOURCES = $(nodist_libimgjpeg_la_SOURCES)
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
@@ -26,8 +26,8 @@ endif
 
 CLEANFILES = *_options.c *_options.h
 
-jpeg_options.h: ../../metadata/jpeg.xml.in
+imgjpeg_options.h: ../../metadata/imgjpeg.xml.in
 		$(BCOP_BIN) --header $@ $<
 
-jpeg_options.c: ../../metadata/jpeg.xml.in jpeg_options.h
+imgjpeg_options.c: ../../metadata/imgjpeg.xml.in imgjpeg_options.h
 		$(BCOP_BIN) --source $@ $<
