@@ -9,6 +9,8 @@ dist_libcolorfilter_la_SOURCES = colorfilter.c \
 			    parser.c              \
 			    parser.h
 
+BUILT_SOURCES = $(nodist_libcolorfilter_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include		\
 	@COMPIZ_CFLAGS@                  \
@@ -30,5 +32,3 @@ colorfilter_options.h: ../../metadata/colorfilter.xml.in
 
 colorfilter_options.c: ../../metadata/colorfilter.xml.in colorfilter_options.h
 		$(BCOP_BIN) --source $@ $<
-
-colorfilter.c: colorfilter_options.c colorfilter_options.h
