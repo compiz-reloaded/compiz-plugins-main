@@ -9,6 +9,8 @@ nodist_libresizeinfo_la_SOURCES = resizeinfo_options.c
 dist_libresizeinfo_la_SOURCES = resizeinfo.c
 endif
 
+BUILT_SOURCES = $(nodist_libresizeinfo_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -31,5 +33,3 @@ resizeinfo_options.h: ../../metadata/resizeinfo.xml.in
 
 resizeinfo_options.c: ../../metadata/resizeinfo.xml.in resizeinfo_options.h
 		$(BCOP_BIN) --source $@ $<
-
-resizeinfo.c: resizeinfo_options.c resizeinfo_options.h

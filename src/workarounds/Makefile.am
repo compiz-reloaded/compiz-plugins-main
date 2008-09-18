@@ -7,6 +7,8 @@ nodist_libworkarounds_la_SOURCES = workarounds_options.c \
 			    workarounds_options.h
 dist_libworkarounds_la_SOURCES = workarounds.c
 
+BUILT_SOURCES = $(nodist_libworkarounds_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ workarounds_options.h: ../../metadata/workarounds.xml.in
 
 workarounds_options.c: ../../metadata/workarounds.xml.in workarounds_options.h
 		$(BCOP_BIN) --source $@ $<
-
-workarounds.c: workarounds_options.c workarounds_options.h

@@ -6,6 +6,8 @@ libvpswitch_la_LIBADD = @COMPIZ_LIBS@
 nodist_libvpswitch_la_SOURCES = vpswitch_options.c vpswitch_options.h
 dist_libvpswitch_la_SOURCES = vpswitch.c
 
+BUILT_SOURCES = $(nodist_libvpswitch_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ vpswitch_options.h: ../../metadata/vpswitch.xml.in
 
 vpswitch_options.c: ../../metadata/vpswitch.xml.in vpswitch_options.h
 		$(BCOP_BIN) --source $@ $<
-
-vpswitch.c: vpswitch_options.c vpswitch_options.h

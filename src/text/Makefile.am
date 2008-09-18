@@ -8,6 +8,8 @@ nodist_libtext_la_SOURCES = text_options.c text_options.h
 dist_libtext_la_SOURCES = text.c
 endif
 
+BUILT_SOURCES = $(nodist_libtext_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -30,5 +32,3 @@ text_options.h: ../../metadata/text.xml.in
 
 text_options.c: ../../metadata/text.xml.in text_options.h
 		$(BCOP_BIN) --source $@ $<
-
-text.c: text_options.c text_options.h

@@ -6,6 +6,8 @@ libexpo_la_LIBADD = @COMPIZ_LIBS@ -lGLU
 nodist_libexpo_la_SOURCES = expo_options.c expo_options.h
 dist_libexpo_la_SOURCES = expo.c
 
+BUILT_SOURCES = $(nodist_libexpo_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,7 +28,3 @@ expo_options.h: ../../metadata/expo.xml.in
 
 expo_options.c: ../../metadata/expo.xml.in expo_options.h
 		$(BCOP_BIN) --source $@ $<
-
-expo.c: expo_options.c expo_options.h
-
-expo.c: expo_options.c expo_options.h

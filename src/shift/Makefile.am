@@ -6,6 +6,8 @@ libshift_la_LIBADD = @COMPIZ_LIBS@
 nodist_libshift_la_SOURCES = shift_options.c shift_options.h
 dist_libshift_la_SOURCES = shift.c
 
+BUILT_SOURCES = $(nodist_libshift_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ shift_options.h: ../../metadata/shift.xml.in
 
 shift_options.c: ../../metadata/shift.xml.in shift_options.h
 		$(BCOP_BIN) --source $@ $<
-
-shift.c: shift_options.c shift_options.h

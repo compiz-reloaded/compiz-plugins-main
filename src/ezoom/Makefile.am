@@ -6,6 +6,8 @@ libezoom_la_LIBADD = @COMPIZ_LIBS@ -lGLU
 nodist_libezoom_la_SOURCES = ezoom_options.c ezoom_options.h
 dist_libezoom_la_SOURCES = ezoom.c
 
+BUILT_SOURCES = $(nodist_libezoom_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ ezoom_options.h: ../../metadata/ezoom.xml.in
 
 ezoom_options.c: ../../metadata/ezoom.xml.in ezoom_options.h
 		$(BCOP_BIN) --source $@ $<
-
-ezoom.c: ezoom_options.c ezoom_options.h

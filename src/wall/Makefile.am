@@ -8,6 +8,8 @@ nodist_libwall_la_SOURCES = wall_options.c wall_options.h
 dist_libwall_la_SOURCES = wall.c
 endif
 
+BUILT_SOURCES = $(nodist_libwall_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -30,5 +32,3 @@ wall_options.h: ../../metadata/wall.xml.in
 
 wall_options.c: ../../metadata/wall.xml.in wall_options.h
 		$(BCOP_BIN) --source $@ $<
-
-wall.c: wall_options.c wall_options.h

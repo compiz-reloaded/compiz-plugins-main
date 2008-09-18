@@ -6,6 +6,8 @@ libsnap_la_LIBADD = @COMPIZ_LIBS@
 nodist_libsnap_la_SOURCES = snap_options.c snap_options.h
 dist_libsnap_la_SOURCES = snap.c
 
+BUILT_SOURCES = $(nodist_libsnap_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ snap_options.h: ../../metadata/snap.xml.in
 
 snap_options.c: ../../metadata/snap.xml.in snap_options.h
 		$(BCOP_BIN) --source $@ $<
-
-snap.c: snap_options.c snap_options.h

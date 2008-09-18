@@ -5,6 +5,8 @@ libwinrules_la_LDFLAGS = $(PFLAGS)
 libwinrules_la_LIBADD = @COMPIZ_LIBS@
 libwinrules_la_SOURCES = winrules.c
 
+BUILT_SOURCES = $(nodist_libwinrules_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -25,5 +27,3 @@ winrules_options.h: ../../metadata/winrules.xml.in
 
 winrules_options.c: ../../metadata/winrules.xml.in winrules_options.h
 		$(BCOP_BIN) --source $@ $<
-
-winrules.c: winrules_options.c winrules_options.h

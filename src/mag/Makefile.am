@@ -6,6 +6,8 @@ libmag_la_LIBADD = @COMPIZ_LIBS@
 nodist_libmag_la_SOURCES = mag_options.c mag_options.h
 dist_libmag_la_SOURCES = mag.c
 
+BUILT_SOURCES = $(nodist_libmag_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -25,5 +27,3 @@ mag_options.h: ../../metadata/mag.xml.in
 
 mag_options.c: ../../metadata/mag.xml.in mag_options.h
 		$(BCOP_BIN) --source $@ $<
-
-mag.c: mag_options.c mag_options.h

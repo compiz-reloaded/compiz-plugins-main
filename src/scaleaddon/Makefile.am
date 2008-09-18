@@ -8,6 +8,8 @@ nodist_libscaleaddon_la_SOURCES = scaleaddon_options.c scaleaddon_options.h
 dist_libscaleaddon_la_SOURCES = scaleaddon.c
 endif
 
+BUILT_SOURCES = $(nodist_libscaleaddon_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -30,5 +32,3 @@ scaleaddon_options.h: ../../metadata/scaleaddon.xml.in
 
 scaleaddon_options.c: ../../metadata/scaleaddon.xml.in scaleaddon_options.h
 		$(BCOP_BIN) --source $@ $<
-
-scaleaddon.c: scaleaddon_options.c scaleaddon_options.h

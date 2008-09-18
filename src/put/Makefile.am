@@ -6,6 +6,8 @@ libput_la_LIBADD = @COMPIZ_LIBS@
 nodist_libput_la_SOURCES = put_options.c put_options.h
 dist_libput_la_SOURCES = put.c
 
+BUILT_SOURCES = $(nodist_libput_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ put_options.h: ../../metadata/put.xml.in
 
 put_options.c: ../../metadata/put.xml.in put_options.h
 		$(BCOP_BIN) --source $@ $<
-
-put.c: put_options.c put_options.h

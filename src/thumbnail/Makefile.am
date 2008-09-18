@@ -8,6 +8,8 @@ nodist_libthumbnail_la_SOURCES = thumbnail_options.c \
 dist_libthumbnail_la_SOURCES = thumbnail.c \
 			  thumbnail_tex.h
 
+BUILT_SOURCES = $(nodist_libthumbnail_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -28,5 +30,3 @@ thumbnail_options.h: ../../metadata/thumbnail.xml.in
 
 thumbnail_options.c: ../../metadata/thumbnail.xml.in thumbnail_options.h
 		$(BCOP_BIN) --source $@ $<
-
-thumbnail.c: thumbnail_options.c thumbnail_options.h

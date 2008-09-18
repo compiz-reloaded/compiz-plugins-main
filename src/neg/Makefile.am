@@ -6,6 +6,8 @@ libneg_la_LIBADD = @COMPIZ_LIBS@
 nodist_libneg_la_SOURCES = neg_options.c neg_options.h
 dist_libneg_la_SOURCES = neg.c
 
+BUILT_SOURCES = $(nodist_libneg_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ neg_options.h: ../../metadata/neg.xml.in
 
 neg_options.c: ../../metadata/neg.xml.in neg_options.h
 		$(BCOP_BIN) --source $@ $<
-
-neg.c: neg_options.c neg_options.h

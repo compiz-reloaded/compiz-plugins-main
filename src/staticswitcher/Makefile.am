@@ -7,6 +7,8 @@ nodist_libstaticswitcher_la_SOURCES = staticswitcher_options.c \
 			       staticswitcher_options.h \
 dist_libstaticswitcher_la_SOURCES = staticswitcher.c
 
+BUILT_SOURCES = $(nodist_libstaticswitcher_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ staticswitcher_options.h: ../../metadata/staticswitcher.xml.in
 
 staticswitcher_options.c: ../../metadata/staticswitcher.xml.in staticswitcher_options.h
 		$(BCOP_BIN) --source $@ $<
-
-staticswitcher.c: staticswitcher_options.c staticswitcher_options.h

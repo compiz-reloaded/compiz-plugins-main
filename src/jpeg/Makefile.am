@@ -8,6 +8,8 @@ nodist_libimgjpeg_la_SOURCES = imgjpeg_options.c imgjpeg_options.h
 dist_libimgjpeg_la_SOURCES = imgjpeg.c
 endif
 
+BUILT_SOURCES = $(nodist_libjpeg_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -29,5 +31,3 @@ jpeg_options.h: ../../metadata/jpeg.xml.in
 
 jpeg_options.c: ../../metadata/jpeg.xml.in jpeg_options.h
 		$(BCOP_BIN) --source $@ $<
-
-jpeg.c: jpeg_options.c jpeg_options.h

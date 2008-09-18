@@ -6,6 +6,8 @@ libring_la_LIBADD = @COMPIZ_LIBS@
 nodist_libring_la_SOURCES = ring_options.c ring_options.h
 dist_libring_la_SOURCES = ring.c
 
+BUILT_SOURCES = $(nodist_libring_la_SOURCES)
+
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
@@ -26,5 +28,3 @@ ring_options.h: ../../metadata/ring.xml.in
 
 ring_options.c: ../../metadata/ring.xml.in ring_options.h
 		$(BCOP_BIN) --source $@ $<
-
-ring.c: ring_options.c ring_options.h
