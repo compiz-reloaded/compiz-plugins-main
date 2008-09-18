@@ -21,8 +21,10 @@ module_LTLIBRARIES = libput.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+put_options.h: ../../metadata/put.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+put_options.c: ../../metadata/put.xml put_options.h
 		$(BCOP_BIN) --source $@ $<
+
+put.c: put_options.c put_options.h

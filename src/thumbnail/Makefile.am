@@ -23,8 +23,10 @@ module_LTLIBRARIES = libthumbnail.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+thumbnail_options.h: ../../metadata/thumbnail.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+thumbnail_options.c: ../../metadata/thumbnail.xml thumbnail_options.h
 		$(BCOP_BIN) --source $@ $<
+
+thumbnail.c: thumbnail_options.c thumbnail_options.h

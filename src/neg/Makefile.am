@@ -21,8 +21,10 @@ module_LTLIBRARIES = libneg.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+neg_options.h: ../../metadata/neg.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+neg_options.c: ../../metadata/neg.xml neg_options.h
 		$(BCOP_BIN) --source $@ $<
+
+neg.c: neg_options.c neg_options.h

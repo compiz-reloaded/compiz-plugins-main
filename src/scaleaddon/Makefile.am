@@ -25,8 +25,10 @@ endif
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+scaleaddon_options.h: ../../metadata/scaleaddon.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+scaleaddon_options.c: ../../metadata/scaleaddon.xml scaleaddon_options.h
 		$(BCOP_BIN) --source $@ $<
+
+scaleaddon.c: scaleaddon_options.c scaleaddon_options.h

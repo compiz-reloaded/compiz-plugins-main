@@ -21,8 +21,10 @@ module_LTLIBRARIES = libring.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+ring_options.h: ../../metadata/ring.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+ring_options.c: ../../metadata/ring.xml ring_options.h
 		$(BCOP_BIN) --source $@ $<
+
+ring.c: ring_options.c ring_options.h

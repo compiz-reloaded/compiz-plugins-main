@@ -21,8 +21,12 @@ module_LTLIBRARIES = libexpo.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+expo_options.h: ../../metadata/expo.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+expo_options.c: ../../metadata/expo.xml expo_options.h
 		$(BCOP_BIN) --source $@ $<
+
+expo.c: expo_options.c expo_options.h
+
+expo.c: expo_options.c expo_options.h

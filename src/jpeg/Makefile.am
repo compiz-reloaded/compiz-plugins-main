@@ -24,8 +24,10 @@ endif
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+jpeg_options.h: ../../metadata/jpeg.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+jpeg_options.c: ../../metadata/jpeg.xml jpeg_options.h
 		$(BCOP_BIN) --source $@ $<
+
+jpeg.c: jpeg_options.c jpeg_options.h

@@ -20,8 +20,10 @@ module_LTLIBRARIES = libwinrules.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+winrules_options.h: ../../metadata/winrules.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+winrules_options.c: ../../metadata/winrules.xml winrules_options.h
 		$(BCOP_BIN) --source $@ $<
+
+winrules.c: winrules_options.c winrules_options.h

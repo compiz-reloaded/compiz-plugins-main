@@ -21,8 +21,10 @@ module_LTLIBRARIES = libstaticswitcher.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+staticswitcher_options.h: ../../metadata/staticswitcher.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+staticswitcher_options.c: ../../metadata/staticswitcher.xml staticswitcher_options.h
 		$(BCOP_BIN) --source $@ $<
+
+staticswitcher.c: staticswitcher_options.c staticswitcher_options.h

@@ -21,8 +21,10 @@ module_LTLIBRARIES = libshift.la
 
 CLEANFILES = *_options.c *_options.h
 
-%_options.h: ../../metadata/%.xml
+shift_options.h: ../../metadata/shift.xml
 		$(BCOP_BIN) --header $@ $<
 
-%_options.c: ../../metadata/%.xml %_options.h
+shift_options.c: ../../metadata/shift.xml shift_options.h
 		$(BCOP_BIN) --source $@ $<
+
+shift.c: shift_options.c shift_options.h
