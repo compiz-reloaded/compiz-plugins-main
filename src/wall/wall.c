@@ -1326,30 +1326,33 @@ wallPaintOutput (CompScreen              *s,
 	if (wallGetMiniscreen (s->display))
 	{
 	    int i, j;
+	    float mw, mh;
+
+	    mw = ws->viewportWidth;
+	    mh = ws->viewportHeight;
+
+	    ws->miniScreen = TRUE;
+	    ws->mSAttribs.xScale = mw / s->width;
+	    ws->mSAttribs.yScale = mh / s->height;
+	    ws->mSAttribs.opacity = OPAQUE * (1.0 + ws->mSzCamera);
+	    ws->mSAttribs.saturation = COLOR;
 
 	    for (j = 0; j < s->vsize; j++)
     	    {
 		for (i = 0; i < s->hsize; i++)
 		{
-		    float mx, my, mw, mh;
+		    float mx, my;
 		    unsigned int msMask;
 
-		    ws->miniScreen = TRUE;
 		    mx = ws->firstViewportX +
 			 (i * (ws->viewportWidth + ws->viewportBorder));
     		    my = ws->firstViewportY + 
 			 (j * (ws->viewportHeight + ws->viewportBorder));
-    		    mw = ws->viewportWidth;
-		    mh = ws->viewportHeight;
 
 		    ws->mSAttribs.xTranslate = mx / output->width;
 		    ws->mSAttribs.yTranslate = -my / output->height;
 
-		    ws->mSAttribs.xScale = mw / s->width;
-    		    ws->mSAttribs.yScale = mh / s->height;
-		    ws->mSAttribs.opacity = OPAQUE * (1.0 + ws->mSzCamera);
 		    ws->mSAttribs.brightness = 0.4f * BRIGHT;
-		    ws->mSAttribs.saturation = COLOR;
 
 		    if (i == s->x && j == s->y && ws->moving)
 			ws->mSAttribs.brightness = BRIGHT;
@@ -1367,10 +1370,10 @@ wallPaintOutput (CompScreen              *s,
 		    (*s->paintTransformedOutput) (s, sAttrib, transform,
 						  region, output, msMask);
 
-		    ws->miniScreen = FALSE;
 
 		}
 	    }
+	    ws->miniScreen = FALSE;
 	    setWindowPaintOffset (s, 0, 0);
 	}
     }
