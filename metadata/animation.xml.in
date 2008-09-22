@@ -61,7 +61,7 @@
 	    <default>
 	      <value>(type=Normal | Dialog | ModalDialog | Unknown) &amp; !(name=gnome-screensaver)</value>
 	      <value>(type=Menu | PopupMenu | DropdownMenu)</value>
-	      <value>(type=Tooltip | Notification | Utility) &amp; !(name=compiz)</value>
+	      <value>(type=Tooltip | Notification | Utility)</value>
 	    </default>
 	  </option>
 	  <option name="open_options" type="list">
@@ -127,7 +127,7 @@
 	    <default>
 	      <value>(type=Normal | Dialog | ModalDialog | Unknown) &amp; !(name=gnome-screensaver)</value>
 	      <value>(type=Menu | PopupMenu | DropdownMenu)</value>
-	      <value>(type=Tooltip | Notification | Utility) &amp; !(name=compiz)</value>
+	      <value>(type=Tooltip | Notification | Utility)</value>
 	    </default>
 	  </option>
 	  <option name="close_options" type="list">
@@ -302,7 +302,7 @@
 	    <_long>Window that should animate with this effect when focused.</_long>
 	    <type>match</type>
 	    <default>
-	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown) &amp; !(name=compiz)</value>
+	      <value>(type=Normal | Dialog | ModalDialog | Utility | Unknown)</value>
 	    </default>
 	  </option>
 	  <option name="focus_options" type="list">

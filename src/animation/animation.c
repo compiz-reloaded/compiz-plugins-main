@@ -1004,19 +1004,26 @@ damageBoundingBox (CompWindow * w)
 	return;
 
     // Find union of BB and lastBB
-    Box box;
-    box.x1 = MIN (aw->BB.x1, aw->lastBB.x1) - 1;
-    box.y1 = MIN (aw->BB.y1, aw->lastBB.y1) - 1;
-    box.x2 = MAX (aw->BB.x2, aw->lastBB.x2) + 1;
-    box.y2 = MAX (aw->BB.y2, aw->lastBB.y2) + 1;
-    // prevent occasional 1 pixel line artifact
+    Region regionToDamage = XCreateRegion();
+    XRectangle rect;
 
-    box.x1 -= w->attrib.x + w->attrib.border_width;
-    box.y1 -= w->attrib.y + w->attrib.border_width;
-    box.x2 -= w->attrib.x + w->attrib.border_width;
-    box.y2 -= w->attrib.y + w->attrib.border_width;
+    BoxPtr BB = &aw->BB;
+    BoxPtr lastBB = &aw->lastBB;
 
-    addWindowDamageRect(w, &box);
+    // Have a 1 pixel margin to prevent occasional 1 pixel line artifact
+    rect.x = BB->x1 - 1;
+    rect.y = BB->y1 - 1;
+    rect.width  = BB->x2 - BB->x1 + 2;
+    rect.height = BB->y2 - BB->y1 + 2;
+    XUnionRectWithRegion (&rect, &emptyRegion, regionToDamage);
+
+    rect.x = lastBB->x1 - 1;
+    rect.y = lastBB->y1 - 1;
+    rect.width  = lastBB->x2 - lastBB->x1 + 2;
+    rect.height = lastBB->y2 - lastBB->y1 + 2;
+    XUnionRectWithRegion (&rect, regionToDamage, regionToDamage);
+
+    damageScreenRegion (w->screen, regionToDamage);
 }
 
 Bool getMousePointerXY(CompScreen * s, short *x, short *y)
@@ -1041,7 +1048,6 @@ static int animGetWindowState(CompWindow * w)
     int result, format;
     unsigned long n, left;
     unsigned char *data;
-    int retval = WithdrawnState;
 
     result = XGetWindowProperty(w->screen->display->display, w->id,
 				w->screen->display->wmStateAtom, 0L,
@@ -1049,15 +1055,17 @@ static int animGetWindowState(CompWindow * w)
 				w->screen->display->wmStateAtom,
 				&actual, &format, &n, &left, &data);
 
-    if (result == Success && data)
+    if (result == Success && n && data)
     {
-	if (n)
-    	    memcpy(&retval, data, sizeof(int));
+	int state;
 
+	memcpy(&state, data, sizeof(int));
 	XFree((void *)data);
+
+	return state;
     }
 
-    return retval;
+    return WithdrawnState;
 }
 
 static Bool
