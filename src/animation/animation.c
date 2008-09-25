@@ -1663,11 +1663,13 @@ static void postAnimationCleanupCustom (CompWindow * w,
 
     if (!finishing)
     {
+	aw->ignoreDamage = TRUE;
 	while (aw->unmapCnt)
 	{
 	    unmapWindow(w);
 	    aw->unmapCnt--;
 	}
+	aw->ignoreDamage = FALSE;
     }
     while (aw->destroyCnt)
     {
@@ -3390,11 +3392,13 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    {
 		aw->state = aw->newState;
 	    }
+	    aw->ignoreDamage = TRUE;
 	    while (aw->unmapCnt)
 	    {
 		unmapWindow(w);
 		aw->unmapCnt--;
 	    }
+	    aw->ignoreDamage = FALSE;
 	}
 	break;
     case DestroyNotify:
@@ -3924,10 +3928,13 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
     Bool status;
 
     ANIM_SCREEN(w->screen);
+    ANIM_WINDOW(w);
+
+    if (aw->ignoreDamage)
+	return TRUE; // if doing the unmap at animation's end, ignore the damage
 
     if (initial)				// Unminimize or Open
     {
-	ANIM_WINDOW(w);
 	int duration = 200;
 	AnimEffect chosenEffect;
 

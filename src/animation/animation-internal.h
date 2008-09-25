@@ -282,6 +282,8 @@ typedef struct _AnimWindow
     int unmapCnt;
     int destroyCnt;
 
+    Bool ignoreDamage;
+
     CompTexture *curTexture;
     int curTextureFilter;
 
