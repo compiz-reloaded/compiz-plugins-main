@@ -236,6 +236,9 @@ ringRenderWindowTitle (CompScreen *s)
     if (!rd->textAvailable)
 	return;
 
+    if (!rs->selectedWindow)
+	return;
+
     if (!ringGetWindowTitle (s))
 	return;
 
@@ -1338,9 +1341,11 @@ ringPrevGroup (CompDisplay     *d,
 static void
 ringWindowSelectAt (CompScreen *s,
 		    int        x,
-		    int        y)
+		    int        y,
+		    Bool       terminate)
 {
-    int i;
+    int    i;
+    Window selected = None;
 
     RING_SCREEN (s);
 
@@ -1363,21 +1368,36 @@ ringWindowSelectAt (CompScreen *s,
 		(y <= (rw->ty + w->attrib.y + (w->attrib.height * rw->scale))))
 	    {
 		/* we have found one, select it */
-		rs->selectedWindow = w->id;
+		selected = w->id;
 		break;
 	    }
 	}
     }
 
-    if (i >= 0)
+    if (selected && terminate)
     {
 	CompOption o;
 
-    	o.type = CompOptionTypeInt;
-    	o.name = "root";
+	o.type = CompOptionTypeInt;
+	o.name = "root";
 	o.value.i = s->root;
 
+	rs->selectedWindow = selected;
+
 	ringTerminate (s->display, NULL, 0, &o, 1);
+    }
+    else if (!terminate && (selected != rs->selectedWindow || !rs->textPixmap))
+    {
+	if (!selected)
+	{
+	    ringFreeWindowTitle (s);
+	}
+	else
+	{
+	    rs->selectedWindow = selected;
+	    ringRenderWindowTitle (s);
+	}
+	damageScreen (s);
     }
 }
 
@@ -1461,6 +1481,8 @@ static void
 ringHandleEvent (CompDisplay *d,
 		 XEvent      *event)
 {
+    CompScreen *s;
+
     RING_DISPLAY (d);
 
     UNWRAP (rd, d, handleEvent);
@@ -1487,7 +1509,6 @@ ringHandleEvent (CompDisplay *d,
     case ButtonPress:
 	if (event->xbutton.button == Button1)
 	{
-	    CompScreen *s;
 	    s = findScreenAtDisplay (d, event->xbutton.root);
 	    if (s)
 	    {
@@ -1496,10 +1517,23 @@ ringHandleEvent (CompDisplay *d,
     		if (rs->grabIndex)
     		    ringWindowSelectAt (s, 
 					event->xbutton.x_root, 
-					event->xbutton.y_root);
+					event->xbutton.y_root,
+					TRUE);
 	    }
 	}
 	break;
+    case MotionNotify:
+	s = findScreenAtDisplay (d, event->xmotion.root);
+	if (s)
+	{
+	    RING_SCREEN (s);
+
+	    if (rs->grabIndex)
+		ringWindowSelectAt (s,
+				    event->xmotion.x_root,
+				    event->xmotion.y_root,
+				    FALSE);
+	}
     case UnmapNotify:
 	ringWindowRemove (d, event->xunmap.window);
 	break;
