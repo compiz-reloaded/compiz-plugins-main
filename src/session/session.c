@@ -593,6 +593,13 @@ sessionReadWindow (CompWindow *w)
 
 	    xwc.x = cur->geometry.x;
 	    xwc.y = cur->geometry.y;
+
+	    if (!windowOnAllViewports (w))
+	    {
+		xwc.x -= (w->screen->x * w->screen->width);
+		xwc.y -= (w->screen->y * w->screen->height);
+	    }
+
 	    if (cur->geometry.width != w->serverWidth)
 	    {
 		xwc.width = cur->geometry.width;
