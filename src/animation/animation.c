@@ -3499,7 +3499,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			damagePendingOnScreen (w->screen);
 		    }
 		}
-		else if (!w->invisible && w->iconGeometrySet)
+		else if (!w->invisible)
 		{
 		    // MINIMIZE event!
 
@@ -3507,8 +3507,27 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    // minimized.
 		    resetStackingInfo (w->screen);
 
-		    aw->com.icon     = w->iconGeometry;
 		    aw->newState = IconicState;
+
+		    if (w->iconGeometrySet)
+		    {
+			aw->com.icon = w->iconGeometry;
+		    }
+		    else
+		    {
+			// Minimize to mouse pointer if there is no
+			// window list or if the window skips taskbar
+			if (!getMousePointerXY (w->screen,
+						&aw->com.icon.x,
+						&aw->com.icon.y))
+			{
+			    // Use screen center if can't get mouse coords
+			    aw->com.icon.x = w->screen->width / 2;
+			    aw->com.icon.y = w->screen->height / 2;
+			}
+			aw->com.icon.width = FAKE_ICON_SIZE;
+			aw->com.icon.height = FAKE_ICON_SIZE;
+		    }
 
 		    chosenEffect =
 			getMatchingAnimSelection (w, AnimEventMinimize, &duration);
@@ -4006,17 +4025,24 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 		    if (animEnsureModel(w))
 		    {
-			if (!w->iconGeometrySet)
+			if (w->iconGeometrySet)
 			{
-			    // minimize to bottom-center if there is no window list
-			    aw->com.icon.x = w->screen->width / 2;
-			    aw->com.icon.y = w->screen->height;
-			    aw->com.icon.width = 100;
-			    aw->com.icon.height = 20;
+			    aw->com.icon = w->iconGeometry;
 			}
 			else
 			{
-			    aw->com.icon = w->iconGeometry;
+			    // Unminimize from mouse pointer if there is no
+			    // window list or if the window skips taskbar
+			    if (!getMousePointerXY (w->screen,
+						    &aw->com.icon.x,
+						    &aw->com.icon.y))
+			    {
+				// Use screen center if can't get mouse coords
+				aw->com.icon.x = w->screen->width / 2;
+				aw->com.icon.y = w->screen->height / 2;
+			    }
+			    aw->com.icon.width = FAKE_ICON_SIZE;
+			    aw->com.icon.height = FAKE_ICON_SIZE;
 			}
 
 			damagePendingOnScreen (w->screen);
