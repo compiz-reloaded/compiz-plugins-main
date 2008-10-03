@@ -355,17 +355,17 @@ typedef struct _AnimWindow
 
 // up, down, left, right
 #define DODGE_AMOUNT(w, dw, dir)			\
-    ((dir) == 0 ? WIN_Y(w) - (WIN_Y(dw) + WIN_H(dw)) :	\
-     (dir) == 1 ? (WIN_Y(w) + WIN_H(w)) - WIN_Y(dw) :	\
-     (dir) == 2 ? WIN_X(w) - (WIN_X(dw) + WIN_W(dw)) :	\
-     (WIN_X(w) + WIN_W(w)) - WIN_X(dw))
+    ((dir) == 0 ? BORDER_Y(w) - (BORDER_Y(dw) + BORDER_H(dw)) :	\
+     (dir) == 1 ? (BORDER_Y(w) + BORDER_H(w)) - BORDER_Y(dw) :	\
+     (dir) == 2 ? BORDER_X(w) - (BORDER_X(dw) + BORDER_W(dw)) :	\
+     (BORDER_X(w) + BORDER_W(w)) - BORDER_X(dw))
 
 // up, down, left, right
 #define DODGE_AMOUNT_BOX(box, dw, dir)				\
-    ((dir) == 0 ? (box).y - (WIN_Y(dw) + WIN_H(dw)) :		\
-     (dir) == 1 ? ((box).y + (box).height) - WIN_Y(dw) :	\
-     (dir) == 2 ? (box).x - (WIN_X(dw) + WIN_W(dw)) :		\
-     ((box).x + (box).width) - WIN_X(dw))
+    ((dir) == 0 ? (box).y - (BORDER_Y(dw) + BORDER_H(dw)) :		\
+     (dir) == 1 ? ((box).y + (box).height) - BORDER_Y(dw) :	\
+     (dir) == 2 ? (box).x - (BORDER_X(dw) + BORDER_W(dw)) :		\
+     ((box).x + (box).width) - BORDER_X(dw))
 
 // ratio of perceived length of animation compared to real duration
 // to make it appear to have the same speed with other animation effects
