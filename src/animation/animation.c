@@ -1820,10 +1820,10 @@ initiateFocusAnimation(CompWindow *w)
 	    int numDodgingWins = 0;
 
 	    // Compute subject win. region
-	    rect.x = WIN_X(w);
-	    rect.y = WIN_Y(w);
-	    rect.width = WIN_W(w);
-	    rect.height = WIN_H(w);
+	    rect.x = BORDER_X(w);
+	    rect.y = BORDER_Y(w);
+	    rect.width = BORDER_W(w);
+	    rect.height = BORDER_H(w);
 	    XUnionRectWithRegion(&rect, &emptyRegion, subjectWinRegion);
 
 	    CompWindow *dw; // Dodge or Focus fade candidate window
@@ -1850,10 +1850,10 @@ initiateFocusAnimation(CompWindow *w)
 		    nonMatching = TRUE;
 
 		// Compute intersection of this (dw) with subject
-		rect.x = WIN_X(dw);
-		rect.y = WIN_Y(dw);
-		rect.width = WIN_W(dw);
-		rect.height = WIN_H(dw);
+		rect.x = BORDER_X(dw);
+		rect.y = BORDER_Y(dw);
+		rect.width = BORDER_W(dw);
+		rect.height = BORDER_H(dw);
 		XUnionRectWithRegion(&rect, &emptyRegion, thisWinRegion);
 		XIntersectRegion(subjectWinRegion, thisWinRegion,
 				 thisAndSubjectIntersection);
