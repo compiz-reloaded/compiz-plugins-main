@@ -63,11 +63,10 @@ typedef struct _WorkaroundsScreen {
 CompScreen *currentScreen = NULL;
 
 typedef struct _WorkaroundsWindow {
-    Bool adjustedWinType;
-    Bool madeSticky;
-    Bool madeFullscreen;
-    Bool isFullscreen;
-    Bool madeDemandAttention;
+    unsigned int adjustedState;
+    Bool         adjustedWinType;
+    Bool         madeFullscreen;
+    Bool         isFullscreen;
 } WorkaroundsWindow;
 
 #define GET_WORKAROUNDS_DISPLAY(d) \
@@ -238,16 +237,6 @@ workaroundsGetWindowRoleAtom (CompWindow *w)
 }
 
 static void
-workaroundsRemoveSticky (CompWindow *w)
-{
-    WORKAROUNDS_WINDOW (w);
-
-    if (w->state & CompWindowStateStickyMask && ww->madeSticky)
-	changeWindowState (w, w->state & ~CompWindowStateStickyMask);
-    ww->madeSticky = FALSE;
-}
-
-static void
 workaroundsUpdateSticky (CompWindow *w)
 {
     WORKAROUNDS_WINDOW (w);
@@ -263,12 +252,41 @@ workaroundsUpdateSticky (CompWindow *w)
     {
 	if (!(w->state & CompWindowStateStickyMask))
 	{
-	    ww->madeSticky = TRUE;
+	    ww->adjustedState |= CompWindowStateStickyMask;
 	    changeWindowState (w, w->state | CompWindowStateStickyMask);
 	}
     }
-    else
-	workaroundsRemoveSticky (w);
+    else if (ww->adjustedState & CompWindowStateStickyMask)
+    {
+	ww->adjustedState &= ~CompWindowStateStickyMask;
+	changeWindowState (w, w->state & ~CompWindowStateStickyMask);
+    }
+}
+
+static void
+workaroundsCheckUtilityHandling (CompWindow *w)
+{
+    WORKAROUNDS_WINDOW (w);
+
+    if (!(w->wmType & CompWindowTypeUtilMask))
+	return;
+
+    if (workaroundsGetUtilitySkipTaskbar (w->screen->display))
+    {
+	ww->adjustedState |= CompWindowStateSkipTaskbarMask |
+			     CompWindowStateSkipPagerMask;
+	changeWindowState (w, w->state                       |
+			      CompWindowStateSkipTaskbarMask |
+			      CompWindowStateSkipPagerMask);
+    }
+    else if (ww->adjustedState & CompWindowStateSkipTaskbarMask)
+    {
+	ww->adjustedState &= ~(CompWindowStateSkipTaskbarMask |
+			       CompWindowStateSkipPagerMask);
+
+	changeWindowState (w, w->state & ~(CompWindowStateSkipTaskbarMask |
+					   CompWindowStateSkipPagerMask));
+    }
 }
 
 static void
@@ -290,12 +308,12 @@ updateUrgencyState (CompWindow *w)
 
     if (urgent)
     {
-	ww->madeDemandAttention = TRUE;
+	ww->adjustedState |= CompWindowStateDemandsAttentionMask;
 	changeWindowState (w, w->state | CompWindowStateDemandsAttentionMask);
     }
-    else if (ww->madeDemandAttention)
+    else if (ww->adjustedState & CompWindowStateDemandsAttentionMask)
     {
-	ww->madeDemandAttention = FALSE;
+	ww->adjustedState &= ~CompWindowStateDemandsAttentionMask;
 	changeWindowState (w, w->state & ~CompWindowStateDemandsAttentionMask);
     }
 }
@@ -535,7 +553,10 @@ workaroundsDisplayOptionChanged (CompDisplay               *d,
     {
 	ws = GET_WORKAROUNDS_SCREEN (s, GET_WORKAROUNDS_DISPLAY (d));
 	for (w = s->windows; w; w = w->next)
+	{
+	    workaroundsCheckUtilityHandling (w);
 	    workaroundsUpdateSticky (w);
+	}
 	workaroundsUpdateParameterFix (s);
 	if (workaroundsGetFglrxXglFix (d))
 	    s->copySubBuffer = NULL;
@@ -568,6 +589,7 @@ workaroundsHandleEvent (CompDisplay *d,
 	if (w)
 	{
 	    workaroundsUpdateSticky (w);
+	    workaroundsCheckUtilityHandling (w);
 	    workaroundsDoFixes (w);
 	    workaroundsFixupFullscreen (w);
 	}
@@ -763,11 +785,10 @@ workaroundsInitWindow (CompPlugin *plugin, CompWindow *w)
     if (!ww)
 	return FALSE;
 
-    ww->madeSticky = FALSE;
+    ww->adjustedState = 0;
     ww->adjustedWinType = FALSE;
     ww->isFullscreen = FALSE;
     ww->madeFullscreen = FALSE;
-    ww->madeDemandAttention = FALSE;
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
@@ -788,9 +809,13 @@ workaroundsFiniWindow (CompPlugin *plugin, CompWindow *w)
 	    recalcWindowActions (w);
 	}
 
-	if (w->state & CompWindowStateStickyMask && ww->madeSticky)
+	if (ww->adjustedState)
+	{
 	    setWindowState (w->screen->display,
-			    w->state & ~CompWindowStateStickyMask, w->id);
+			    w->state & ~ww->adjustedState, w->id);
+	    recalcWindowType (w);
+	    recalcWindowActions (w);
+	}
     }
 
     free (ww);
