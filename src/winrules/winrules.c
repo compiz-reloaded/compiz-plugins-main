@@ -23,13 +23,6 @@
 
 #include <X11/Xatom.h>
 
-#define WINRULES_TARGET_WINDOWS (CompWindowTypeNormalMask |	\
-				 CompWindowTypeDialogMask |	\
-				 CompWindowTypeModalDialogMask |\
-				 CompWindowTypeFullscreenMask |	\
-				 CompWindowTypeUnknownMask)
-
-
 #define WINRULES_SCREEN_OPTION_SKIPTASKBAR_MATCH  0
 #define WINRULES_SCREEN_OPTION_SKIPPAGER_MATCH	  1
 #define WINRULES_SCREEN_OPTION_ABOVE_MATCH	  2
@@ -125,13 +118,15 @@ isWinrulesWindow (CompWindow *w)
     if (w->attrib.override_redirect)
 	return FALSE;
 
-    if (!(w->type & WINRULES_TARGET_WINDOWS))
+    if (w->wmType & (CompWindowTypeDockMask | CompWindowTypeDesktopMask))
 	return FALSE;
 
     return TRUE;
 }
 
-/* FIXME? Directly set inputHint, not a problem for now */
+/* FIXME? Directly set inputHint, not a problem for now
+   --> better should wrap into focusWindow(), only problem is focus
+       on MapRequest */
 static void
 winrulesSetNoFocus (CompWindow *w,
 		    int        optNum)
@@ -467,42 +462,6 @@ winrulesSetScreenOption (CompPlugin *plugin,
     return FALSE;
 }
 
-static void
-winrulesHandleEvent (CompDisplay *d,
-                     XEvent      *event)
-{
-    CompWindow *w;
-
-    WINRULES_DISPLAY (d);
-
-    if (event->type == MapRequest)
-    {
-	w = findWindowAtDisplay (d, event->xmap.window);
-	if (w)
-	    winrulesSetNoFocus (w, WINRULES_SCREEN_OPTION_NOFOCUS_MATCH);
-    }
-
-    UNWRAP (wd, d, handleEvent);
-    (*d->handleEvent) (d, event);
-    WRAP (wd, d, handleEvent, winrulesHandleEvent);
-}
-
-static void
-winrulesGetAllowedActionsForWindow (CompWindow   *w,
-				    unsigned int *setActions,
-				    unsigned int *clearActions)
-{
-    WINRULES_SCREEN (w->screen);
-    WINRULES_WINDOW (w);
-
-    UNWRAP (ws, w->screen, getAllowedActionsForWindow);
-    (*w->screen->getAllowedActionsForWindow) (w, setActions, clearActions);
-    WRAP (ws, w->screen, getAllowedActionsForWindow,
-          winrulesGetAllowedActionsForWindow);
-
-    *clearActions |= ~ww->allowedActions;
-}
-
 static Bool
 winrulesApplyRules (void *closure)
 {
@@ -567,6 +526,44 @@ winrulesApplyRules (void *closure)
     return FALSE;
 }
 
+static void
+winrulesHandleEvent (CompDisplay *d,
+                     XEvent      *event)
+{
+    CompWindow *w;
+
+    WINRULES_DISPLAY (d);
+
+    if (event->type == MapRequest)
+    {
+	w = findWindowAtDisplay (d, event->xmap.window);
+	if (w)
+	{
+	    winrulesSetNoFocus (w, WINRULES_SCREEN_OPTION_NOFOCUS_MATCH);
+	    winrulesApplyRules (w);
+	}
+    }
+
+    UNWRAP (wd, d, handleEvent);
+    (*d->handleEvent) (d, event);
+    WRAP (wd, d, handleEvent, winrulesHandleEvent);
+}
+
+static void
+winrulesGetAllowedActionsForWindow (CompWindow   *w,
+				    unsigned int *setActions,
+				    unsigned int *clearActions)
+{
+    WINRULES_SCREEN (w->screen);
+    WINRULES_WINDOW (w);
+
+    UNWRAP (ws, w->screen, getAllowedActionsForWindow);
+    (*w->screen->getAllowedActionsForWindow) (w, setActions, clearActions);
+    WRAP (ws, w->screen, getAllowedActionsForWindow,
+          winrulesGetAllowedActionsForWindow);
+
+    *clearActions |= ~ww->allowedActions;
+}
 
 static void
 winrulesMatchExpHandlerChanged (CompDisplay *d)
@@ -738,6 +735,7 @@ winrulesInitWindow (CompPlugin *p,
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
+    /* FIXME: Wrap into objectAdd and remove this timer */
     compAddTimeout (0, 0, winrulesApplyRules, w);
 
     return TRUE;
