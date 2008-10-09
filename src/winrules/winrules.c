@@ -49,9 +49,10 @@ static int displayPrivateIndex;
 typedef struct _WinrulesWindow {
     unsigned int allowedActions;
     unsigned int stateSetMask;
+    unsigned int protocolSetMask;
 
+    Bool oldInputHint;
     Bool hasAlpha;
-    Bool noFocus;
 } WinrulesWindow;
 
 typedef struct _WinrulesDisplay {
@@ -64,10 +65,7 @@ typedef struct _WinrulesDisplay {
 
 typedef struct _WinrulesScreen {
     int windowPrivateIndex;
-
     GetAllowedActionsForWindowProc getAllowedActionsForWindow;
-    FocusWindowProc                focusWindow;
-
     CompOption opt[WINRULES_SCREEN_OPTION_NUM];
 } WinrulesScreen;
 
@@ -94,6 +92,26 @@ typedef struct _WinrulesScreen {
 
 #define NUM_OPTIONS(s) (sizeof ((s)->opt) / sizeof (CompOption))
 
+static void
+winrulesSetProtocols (CompDisplay  *display,
+		      unsigned int protocols,
+		      Window       id)
+{
+    Atom protocol[4];
+    int  count = 0;
+
+    if (protocols & CompWindowProtocolDeleteMask)
+	protocol[count++] = display->wmDeleteWindowAtom;
+    if (protocols & CompWindowProtocolTakeFocusMask)
+	protocol[count++] = display->wmTakeFocusAtom;
+    if (protocols & CompWindowProtocolPingMask)
+	protocol[count++] = display->wmPingAtom;
+    if (protocols & CompWindowProtocolSyncRequestMask)
+	protocol[count++] = display->wmSyncRequestAtom;
+
+    XSetWMProtocols (display->display, id, protocol, count);
+}
+
 static Bool
 isWinrulesWindow (CompWindow *w)
 {
@@ -106,32 +124,41 @@ isWinrulesWindow (CompWindow *w)
     return TRUE;
 }
 
-/* FIXME? Directly set inputHint, not a problem for now
-   --> better should wrap into focusWindow(), only problem is focus
-       on MapRequest */
-static Bool
-winrulesCheckNoFocus (CompWindow *w)
+/* FIXME? Directly set inputHint, not a problem for now */
+static void
+winrulesSetNoFocus (CompWindow *w,
+		    int        optNum)
 {
-    Bool      noFocus;
+    unsigned int newProtocol = w->protocols;
 
+    WINRULES_SCREEN (w->screen);
     WINRULES_WINDOW (w);
 
     if (!isWinrulesWindow (w))
+	return;
+
+    if (matchEval (&ws->opt[optNum].value.match, w))
     {
-	noFocus = FALSE;
+	if (w->protocols & CompWindowProtocolTakeFocusMask)
+	{
+	    ww->protocolSetMask |= (w->protocols &
+				    CompWindowProtocolTakeFocusMask);
+	    newProtocol = w->protocols & ~CompWindowProtocolTakeFocusMask;
+	    ww->oldInputHint = w->inputHint;
+	    w->inputHint = FALSE;
+	}
     }
-    else
+    else if (ww->oldInputHint ||
+	     (ww->protocolSetMask & CompWindowProtocolTakeFocusMask))
     {
-	int opt = WINRULES_SCREEN_OPTION_NOFOCUS_MATCH;
-	
-	WINRULES_SCREEN (w->screen);
-
-	noFocus = matchEval (&ws->opt[opt].value.match, w);
+	newProtocol = w->protocols |
+	              (ww->protocolSetMask & CompWindowProtocolTakeFocusMask);
+	ww->protocolSetMask &= ~CompWindowProtocolTakeFocusMask;
+	w->inputHint = ww->oldInputHint;
     }
 
-    ww->noFocus = noFocus;
-
-    return noFocus;
+   if (newProtocol != w->protocols)
+	winrulesSetProtocols (w->screen->display, newProtocol, w->id);
 }
 
 static void
@@ -388,7 +415,7 @@ winrulesSetScreenOption (CompPlugin *plugin,
 	    CompWindow *w;
 
 	    for (w = screen->windows; w; w = w->next)
-		winrulesCheckNoFocus (w);
+		winrulesSetNoFocus (w, WINRULES_SCREEN_OPTION_NOFOCUS_MATCH);
 
 	    return TRUE;
 	}
@@ -501,9 +528,7 @@ static void
 winrulesHandleEvent (CompDisplay *d,
                      XEvent      *event)
 {
-    CompWindow   *w;
-    Bool         inputHint;
-    unsigned int protocols;
+    CompWindow *w;
 
     WINRULES_DISPLAY (d);
 
@@ -512,16 +537,7 @@ winrulesHandleEvent (CompDisplay *d,
 	w = findWindowAtDisplay (d, event->xmap.window);
 	if (w)
 	{
-	    if (winrulesCheckNoFocus (w))
-	    {
-		/* make sure the core MapRequest handler doesn't give
-		   focus to the window */
-		inputHint = w->inputHint;
-		protocols = w->protocols;
-
-		w->inputHint = FALSE;
-		w->protocols &= ~CompWindowProtocolTakeFocusMask;
-	    }
+	    winrulesSetNoFocus (w, WINRULES_SCREEN_OPTION_NOFOCUS_MATCH);
 	    winrulesApplyRules (w);
 	}
     }
@@ -529,51 +545,20 @@ winrulesHandleEvent (CompDisplay *d,
     UNWRAP (wd, d, handleEvent);
     (*d->handleEvent) (d, event);
     WRAP (wd, d, handleEvent, winrulesHandleEvent);
-
-    if (w && event->type == MapRequest)
-    {
-	w->inputHint = inputHint;
-	w->protocols = protocols;
-    }
 }
 
-static Bool
-winrulesFocusWindow (CompWindow *w)
-{
-    CompScreen *s = w->screen;
-    Bool       status;
-
-    WINRULES_WINDOW (w);
-
-    if (ww->noFocus)
-    {
-	status = FALSE;
-    }
-    else
-    {
-	WINRULES_SCREEN (s);
-
-	UNWRAP (ws, s, focusWindow);
-	status = (*s->focusWindow) (w);
-	WRAP (ws, s, focusWindow, winrulesFocusWindow);
-    }
-
-    return status;
-}
 static void
 winrulesGetAllowedActionsForWindow (CompWindow   *w,
 				    unsigned int *setActions,
 				    unsigned int *clearActions)
 {
-    CompScreen *s = w->screen;
-
-    WINRULES_SCREEN (s);
+    WINRULES_SCREEN (w->screen);
     WINRULES_WINDOW (w);
 
-    UNWRAP (ws, s, getAllowedActionsForWindow);
-    (*s->getAllowedActionsForWindow) (w, setActions, clearActions);
-    WRAP (ws, s, getAllowedActionsForWindow,
-	  winrulesGetAllowedActionsForWindow);
+    UNWRAP (ws, w->screen, getAllowedActionsForWindow);
+    (*w->screen->getAllowedActionsForWindow) (w, setActions, clearActions);
+    WRAP (ws, w->screen, getAllowedActionsForWindow,
+          winrulesGetAllowedActionsForWindow);
 
     *clearActions |= ~ww->allowedActions;
 }
@@ -705,7 +690,6 @@ winrulesInitScreen (CompPlugin *p,
 
     WRAP (ws, s, getAllowedActionsForWindow,
 	  winrulesGetAllowedActionsForWindow);
-    WRAP (ws, s, focusWindow, winrulesFocusWindow);
 
     s->base.privates[wd->screenPrivateIndex].ptr = ws;
 
@@ -719,7 +703,6 @@ winrulesFiniScreen (CompPlugin *p,
     WINRULES_SCREEN (s);
 
     UNWRAP (ws, s, getAllowedActionsForWindow);
-    UNWRAP (ws, s, focusWindow);
 
     freeWindowPrivateIndex(s, ws->windowPrivateIndex);
 
@@ -740,15 +723,16 @@ winrulesInitWindow (CompPlugin *p,
     if (!ww)
         return FALSE;
 
-    ww->stateSetMask   = 0;
+    ww->stateSetMask    = 0;
+    ww->protocolSetMask = 0;
+
     ww->allowedActions = ~0;
 
-    ww->hasAlpha = w->alpha;
-    ww->noFocus  = FALSE;
+    ww->hasAlpha     = w->alpha;
+    ww->oldInputHint = w->inputHint;
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
-    /* FIXME: Wrap into objectAdd and remove this timer */
     compAddTimeout (0, 0, winrulesApplyRules, w);
 
     return TRUE;
