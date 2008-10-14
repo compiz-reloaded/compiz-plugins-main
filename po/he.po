@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.7\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-09-15 14:46+0530\n"
-"PO-Revision-Date: 2008-09-07 05:46+0200\n"
+"POT-Creation-Date: 2008-10-14 14:35+0530\n"
+"PO-Revision-Date: 2008-09-22 17:17+0200\n"
 "Last-Translator: Yotam Benshalom <benshalom@gmail.com>\n"
 "Language-Team: Yotam Benshalom <benshalom@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1159,9 +1159,8 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "מרכז את העכבר"
 
-#, fuzzy
 msgid "Dynamic mouse pointer scale"
-msgstr "התאם את גודל סמן העכבר"
+msgstr "התאמה דינמית של גודל סמן העכבר"
 
 msgid "Enable focus tracking"
 msgstr "אפשר מעקב אחר מוקד"
@@ -1308,9 +1307,8 @@ msgstr "מקדם תקריב 3"
 msgid "Speed"
 msgstr "מהירות"
 
-#, fuzzy
 msgid "Static mouse pointer scale"
-msgstr "התאם את גודל סמן העכבר"
+msgstr "התאמה סטטית של גודל סמן העכבר"
 
 msgid "Sync Mouse"
 msgstr "סנכרון עכבר"
@@ -1344,11 +1342,13 @@ msgid ""
 "When not using a dynamic mouse pointer scale, this is the scale factor for "
 "the mouse pointer."
 msgstr ""
+"מקדם שינוי הגודל עבור סמן העכבר כאשר לא נעשה שימוש בשינוי דינמי של הגודל "
+"במצב מבט על."
 
 msgid ""
 "When scaling the mouse pointer, this option makes the scale adjust according "
 "to the current level of zoom."
-msgstr ""
+msgstr "שנה את גודל סמן העכבר בעת מבט על בהתאם לרמת התקריב הנוכחית."
 
 msgid "Zoom Area Movement"
 msgstr "תזוזת איזור תקריב"
@@ -4571,12 +4571,6 @@ msgstr "צא ממצב ווידג'טים בהקלקה"
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "צא ממצב ווידג'טים בעת הקלקה על חלון שאינו ווידג'ט."
 
-msgid "Focus Widget Layer"
-msgstr "מיקוד שכבת ווידג'טים"
-
-msgid "Focus a window in the widget layer when activating the layer"
-msgstr "מקד חלון בשכבת הווידג'טים בעת הפעלת השכבה"
-
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "רווית חלונות שאינם ווידג'טים כאשר מצב ווידג'טים מופעל."
 
@@ -4742,6 +4736,9 @@ msgstr "תיקון לסוג החלון של חלונות ג'אווה שונים.
 msgid "Fix window type of various Qt windows."
 msgstr "תיקון לסוג החלון של חלונות Qt שונים."
 
+msgid "Hide Utility Windows From Taskbar"
+msgstr ""
+
 msgid "Java Window Fix"
 msgstr "תיקון לחלונות ג'אווה"
 
@@ -4760,6 +4757,9 @@ msgstr ""
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "ודא שחלון המוגדר כ-\"דחוף\" יוגדר גם כ-\"דורש תשומת לב\"."
+
+msgid "Make Utility windows not being shown in pagers and task bars."
+msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "הצג כראוי במסך מלא יישומים מיושנים ויישומי Wine."
@@ -4784,6 +4784,12 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 msgid "Workarounds"
 msgstr "מעקפים"
+
+#~ msgid "Focus Widget Layer"
+#~ msgstr "מיקוד שכבת ווידג'טים"
+
+#~ msgid "Focus a window in the widget layer when activating the layer"
+#~ msgstr "מקד חלון בשכבת הווידג'טים בעת הפעלת השכבה"
 
 #~ msgid "Airplane"
 #~ msgstr "אווירון"

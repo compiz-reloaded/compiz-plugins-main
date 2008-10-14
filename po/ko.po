@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-09-15 14:47+0530\n"
-"PO-Revision-Date: 2008-08-30 18:17+0200\n"
+"POT-Creation-Date: 2008-10-14 14:35+0530\n"
+"PO-Revision-Date: 2008-09-19 16:56+0200\n"
 "Last-Translator: Lee June Hee <bugbear5@gmail.com>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
 "MIME-Version: 1.0\n"
@@ -1168,9 +1168,8 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "마우스를 가운데로 옮김"
 
-#, fuzzy
 msgid "Dynamic mouse pointer scale"
-msgstr "마우스 포인터의 크기를 변경함"
+msgstr "가변적인 마우스 포인터 크기"
 
 msgid "Enable focus tracking"
 msgstr "초점 추척 활성화"
@@ -1317,9 +1316,8 @@ msgstr "확대 수준 3"
 msgid "Speed"
 msgstr "속도"
 
-#, fuzzy
 msgid "Static mouse pointer scale"
-msgstr "마우스 포인터의 크기를 변경함"
+msgstr "고정된 마우스 포인터 크기"
 
 msgid "Sync Mouse"
 msgstr "마우스 동기화"
@@ -1352,11 +1350,15 @@ msgid ""
 "When not using a dynamic mouse pointer scale, this is the scale factor for "
 "the mouse pointer."
 msgstr ""
+"가변적인 마우스 포인터 크기를 사용하지 않을 때, 이 값은 마우스 포인터의 크기 "
+"값이 됩니다."
 
 msgid ""
 "When scaling the mouse pointer, this option makes the scale adjust according "
 "to the current level of zoom."
 msgstr ""
+"마우스 포인터의 크기를 변경할 때, 이 옵션은 현재의 확대 수준에 따라 포인터의 "
+"크기를 정합니다."
 
 msgid "Zoom Area Movement"
 msgstr "확대 영역 이동"
@@ -4586,12 +4588,6 @@ msgstr "클릭하면 위젯 모드를 끝냄"
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "위젯이 아닌 창이 클릭되면 위젯 모드를 끝냄"
 
-msgid "Focus Widget Layer"
-msgstr "위젯 레이어 초점"
-
-msgid "Focus a window in the widget layer when activating the layer"
-msgstr "위젯레이어를 활성화 했을때 초점을 맞출 창"
-
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "위젯모드에서 위젯이 아닌창의 채도"
 
@@ -4757,6 +4753,9 @@ msgstr "다양한 Java 창의 창 분류 고침."
 msgid "Fix window type of various Qt windows."
 msgstr "다양한 Qt 창의 창 분류 고침."
 
+msgid "Hide Utility Windows From Taskbar"
+msgstr ""
+
 msgid "Java Window Fix"
 msgstr "Java 창 고침."
 
@@ -4775,6 +4774,9 @@ msgstr ""
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "\"긴급한\" 창을 \"주의 필요\"로 만듭니다."
+
+msgid "Make Utility windows not being shown in pagers and task bars."
+msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Wine이나 오래된 응용 프로그램의 전체 화면을 제대로 만들어줍니다."
@@ -4799,6 +4801,12 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 msgid "Workarounds"
 msgstr "문제 회피"
+
+#~ msgid "Focus Widget Layer"
+#~ msgstr "위젯 레이어 초점"
+
+#~ msgid "Focus a window in the widget layer when activating the layer"
+#~ msgstr "위젯레이어를 활성화 했을때 초점을 맞출 창"
 
 #~ msgid "Airplane"
 #~ msgstr "종이 비행기"

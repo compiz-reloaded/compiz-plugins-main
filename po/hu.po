@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-09-15 14:46+0530\n"
-"PO-Revision-Date: 2008-08-15 11:09+0200\n"
+"POT-Creation-Date: 2008-10-14 14:35+0530\n"
+"PO-Revision-Date: 2008-09-16 18:31+0200\n"
 "Last-Translator: KAMI <kamihir@freemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -342,7 +342,6 @@ msgstr "Beállítások"
 msgid "Pool"
 msgstr "Gyűjtemény"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
@@ -1196,9 +1195,8 @@ msgstr "Maradjon a nagyított kurzor látható ha elhagyja a nagyító területe
 msgid "Center the mouse"
 msgstr "Kurzor középre"
 
-#, fuzzy
 msgid "Dynamic mouse pointer scale"
-msgstr "Egérmutató méretezése"
+msgstr "Dinamikus egérmutató átméretezés"
 
 msgid "Enable focus tracking"
 msgstr "Fókuszkövetés engedélyezése"
@@ -1351,9 +1349,8 @@ msgstr "Megadott 3. nagyítási arány"
 msgid "Speed"
 msgstr "Sebesség"
 
-#, fuzzy
 msgid "Static mouse pointer scale"
-msgstr "Egérmutató méretezése"
+msgstr "Statikus egérmutató méretezés"
 
 msgid "Sync Mouse"
 msgstr "Egér szinkronizálása"
@@ -1387,11 +1384,15 @@ msgid ""
 "When not using a dynamic mouse pointer scale, this is the scale factor for "
 "the mouse pointer."
 msgstr ""
+"Amikor a dinamikus egérmutató átméretezés nincs használatban ez az "
+"egérmutató méretezési érték lesz érvényes.."
 
 msgid ""
 "When scaling the mouse pointer, this option makes the scale adjust according "
 "to the current level of zoom."
 msgstr ""
+"Az egérmutató átméretezésekor ez a beállítás adja meg az átméretezés "
+"mértékét, az aktuális nagyítás értékétől függően."
 
 msgid "Zoom Area Movement"
 msgstr "Nagyított terület mozgása"
@@ -1485,12 +1486,13 @@ msgstr "Ablak ál ARGB alapján"
 msgid "Toggle window fake ARGB."
 msgstr "Ablak ál ARGB alapján."
 
-#, fuzzy
 msgid "Add Particle"
-msgstr "Részecske élettartam"
+msgstr "Részecske hozzáadása"
 
 msgid "Adds a fire particle at position (x,y), where x and y are floats."
 msgstr ""
+"Tűzrészecske hozzáadása a megadott (x, y) pozícióban, ahol az x és az y "
+"értéke lebegőpontos szám."
 
 msgid "Background brightness"
 msgstr "Háttér fényereje"
@@ -4697,12 +4699,6 @@ msgstr "Egérkattintással kilépés a Szerkentyű módból"
 msgid "End widget mode when a non-widget window is clicked."
 msgstr "Kilépés a Szerkentyű módból, ha nem szerkentyű ablakra kattint."
 
-msgid "Focus Widget Layer"
-msgstr "Szerkentyű réteg fókuszálása"
-
-msgid "Focus a window in the widget layer when activating the layer"
-msgstr "Ablak fókuszálása a Szerkentyű rétegen a réteg aktiválásakor"
-
 msgid "Saturation of non-widget windows in widget modes."
 msgstr "Nem szerkentyű ablakok színtelítettsége Szerkentyű módban."
 
@@ -4757,13 +4753,11 @@ msgstr "Magasságértékek"
 msgid "Matches"
 msgstr "Összerendelések"
 
-#, fuzzy
 msgid "Maximized"
-msgstr "Maximalizálás"
+msgstr "Maximalizált"
 
-#, fuzzy
 msgid "Maximized windows"
-msgstr "Nem maximalizálható ablak"
+msgstr "Maximalizált ablakok"
 
 msgid "No ARGB visuals"
 msgstr "Hiányzó ARGB kiterjesztések "
@@ -4875,6 +4869,9 @@ msgstr "Ablaktípus javítás számos Java ablakfajtához."
 msgid "Fix window type of various Qt windows."
 msgstr "Ablaktípus javítás számos Qt ablakfajtához."
 
+msgid "Hide Utility Windows From Taskbar"
+msgstr ""
+
 msgid "Java Window Fix"
 msgstr "Java ablakok javítása"
 
@@ -4894,6 +4891,9 @@ msgstr ""
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr ""
 "A \"Sürgős\" jelölésű ablakot \"Figyelmet igényel\" jelölésűvé alakítja."
+
+msgid "Make Utility windows not being shown in pagers and task bars."
+msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Teljes képernyős Wine és örökölt alkalmazások helyes megjelenítése."
@@ -4918,6 +4918,12 @@ msgstr "Az ablakok legyenek ragadósak az összes munkaasztalon"
 
 msgid "Workarounds"
 msgstr "Hibajavítások"
+
+#~ msgid "Focus Widget Layer"
+#~ msgstr "Szerkentyű réteg fókuszálása"
+
+#~ msgid "Focus a window in the widget layer when activating the layer"
+#~ msgstr "Ablak fókuszálása a Szerkentyű rétegen a réteg aktiválásakor"
 
 #~ msgid "Airplane"
 #~ msgstr "Repülőgép"
