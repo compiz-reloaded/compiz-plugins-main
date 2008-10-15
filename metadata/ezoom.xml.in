@@ -232,6 +232,14 @@
 		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking.</_long>
 		    <default>false</default>
 		</option>
+		<option type="float" name="autoscale_min">
+		    <_short>Autoscale threshold</_short>
+		    <_long>Only change zoom level (scale) on focus change if the target value is higher than this. Prevents zooming too far in on small popups etc.</_long>
+		    <default>0.25</default>
+		    <min>0.000001</min>
+		    <max>0.999999</max>
+		    <precision>0.0001</precision>
+		</option>
 		<option type="bool" name="always_focus_fit_window">
 		    <_short>Always fit to window on focus track</_short>
 		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking. Even when not initially zoomed in. </_long>

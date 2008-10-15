@@ -130,6 +130,7 @@ typedef enum _ZsOpt
     SOPT_RESTRAIN_MARGIN,
     SOPT_MOUSE_PAN,
     SOPT_MINIMUM_ZOOM,
+    SOPT_AUTOSCALE_MIN,
     SOPT_NUM
 } ZoomScreenOptions;
 
@@ -2108,10 +2109,10 @@ focusTrack (CompDisplay *d,
     {
 	int width = w->width + w->input.left + w->input.right;
 	int height = w->height + w->input.top + w->input.bottom;
-	
-	setScaleBigger (w->screen, out,
-			(float) width / w->screen->outputDev[out].width,
-			(float)  height/w->screen->outputDev[out].height);
+	float scale = MAX ((float) width/w->screen->outputDev[out].width, 
+			   (float) height/w->screen->outputDev[out].height);
+	if (scale > zs->opt[SOPT_AUTOSCALE_MIN].value.f) 
+		setScale (w->screen, out, scale);
     }
     zoomAreaToWindow (w);
 }
@@ -2209,7 +2210,8 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "restrain_mouse", "bool", "<default>false</default>", 0, 0 },
     { "restrain_margin", "int", "<default>5</default>", 0, 0 },
     { "mouse_pan", "bool", "<default>false</default>", 0, 0 },
-    { "minimum_zoom", "float", "<max>1.00</max>", 0, 0 }
+    { "minimum_zoom", "float", "<max>1.00</max>", 0, 0 },
+    { "autoscale_min", "float", "<max>1.00</max>", 0, 0 }
 };
 
 static CompOption *
