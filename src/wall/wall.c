@@ -552,6 +552,7 @@ wallMoveViewport (CompScreen *s,
     moveScreenViewport (s, x, y, TRUE);
 
     ws->moving = TRUE;
+    ws->focusDefault = TRUE;
     ws->boxOutputDevice = outputDeviceForPoint (s, pointerX, pointerY);
 
     if (wallGetShowSwitcher (s->display))
@@ -677,7 +678,6 @@ wallInitiate (CompScreen      *s,
 	action->state |= CompActionStateTermButton;
 
     ws->showPreview = TRUE;
-    ws->focusDefault = TRUE;
 
     return TRUE;
 }
