@@ -329,6 +329,7 @@ textFileToImage (CompDisplay *d,
 
 	if (text)
 	{
+	    pango_layout_set_auto_dir (layout, FALSE);
 	    pango_layout_set_text (layout, text, -1);
 	    free (text);
 	}
