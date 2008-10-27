@@ -118,7 +118,7 @@ isWinrulesWindow (CompWindow *w)
     if (w->attrib.override_redirect)
 	return FALSE;
 
-    if (w->wmType & (CompWindowTypeDockMask | CompWindowTypeDesktopMask))
+    if (w->wmType & CompWindowTypeDesktopMask)
 	return FALSE;
 
     return TRUE;
