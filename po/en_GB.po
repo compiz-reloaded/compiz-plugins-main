@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion 0.7.2\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:33+0530\n"
+"POT-Creation-Date: 2008-11-04 12:29+0530\n"
 "PO-Revision-Date: 2008-05-26 15:47+0200\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: en_GB <dave@cirt.net>\n"
@@ -1184,6 +1184,9 @@ msgstr ""
 "Attempt to keep the zoomed mouse visible by warping it when it is moved "
 "outside the zoom area."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "Centre the mouse"
 
@@ -1278,6 +1281,11 @@ msgid ""
 msgstr ""
 "Only attempt to centre newly focused windows if the mouse hasn't moved in "
 "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "Pan (move) the zoom area down"
@@ -4865,9 +4873,6 @@ msgstr "Fix window type of various Java windows."
 msgid "Fix window type of various Qt windows."
 msgstr "Fix window type of various Qt windows."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Java Window Fix"
 
@@ -4887,9 +4892,6 @@ msgstr ""
 #, fuzzy
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "Activate next window which has the \"demands attention\" flag set."
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Make Wine and legacy applications fullscreen properly."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:36+0530\n"
+"POT-Creation-Date: 2008-11-04 12:31+0530\n"
 "PO-Revision-Date: 2008-09-26 14:52+0200\n"
 "Last-Translator: Nicolau Gonçalves <excentriko@gmail.com>\n"
 "Language-Team: \n"
@@ -1215,6 +1215,9 @@ msgstr ""
 "Tentar manter o cursor do rato visível ao teleportá-lo quando o cursor tenta "
 "sair da área magnificada."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "Centrar o rato"
 
@@ -1315,6 +1318,11 @@ msgstr ""
 "Apenas tentar centrar novas janelas focadas se o rato não se mexeu durante "
 "estes segundos. Use esta opção para evitar saltos quando estiver a usar foco "
 "desajeitado."
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "Percorrer (mover) a área magnificada para baixo"
@@ -4925,9 +4933,6 @@ msgstr "Corrigir tipos de janela para várias janelas Java."
 msgid "Fix window type of various Qt windows."
 msgstr "Corrigir tipos de janela para várias janelas Qt."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Correcções para Janelas Java"
 
@@ -4947,9 +4952,6 @@ msgstr ""
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "Tornar janelas \"urgentes\" também  \"a necessitar atenção\"."
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""

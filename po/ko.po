@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:35+0530\n"
+"POT-Creation-Date: 2008-11-04 12:30+0530\n"
 "PO-Revision-Date: 2008-09-19 16:56+0200\n"
 "Last-Translator: Lee June Hee <bugbear5@gmail.com>\n"
 "Language-Team: Korean <jeongseungwon@hanmail.net>\n"
@@ -1165,6 +1165,9 @@ msgstr ""
 "마우스가 확대 영역 밖으로 빠져나가면, 이동시켜 확대된 마우스가 보이도록 합니"
 "다."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "마우스를 가운데로 옮김"
 
@@ -1255,6 +1258,11 @@ msgstr ""
 "마우스가 설정된 시간만큼 움직이지 않는다면 새롭게 초점을 받는 창을 중앙으로 "
 "위치하도록 합니다. 조잡한 초점을 사용할때 점프하는 것을 피하려면 이것을 사용 "
 "하십시오."
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "확대 영역을 아래로 이동"
@@ -4753,9 +4761,6 @@ msgstr "다양한 Java 창의 창 분류 고침."
 msgid "Fix window type of various Qt windows."
 msgstr "다양한 Qt 창의 창 분류 고침."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Java 창 고침."
 
@@ -4774,9 +4779,6 @@ msgstr ""
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "\"긴급한\" 창을 \"주의 필요\"로 만듭니다."
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Wine이나 오래된 응용 프로그램의 전체 화면을 제대로 만들어줍니다."

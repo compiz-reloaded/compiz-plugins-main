@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.7\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:35+0530\n"
-"PO-Revision-Date: 2008-09-22 17:17+0200\n"
+"POT-Creation-Date: 2008-11-04 12:30+0530\n"
+"PO-Revision-Date: 2008-11-02 22:52+0100\n"
 "Last-Translator: Yotam Benshalom <benshalom@gmail.com>\n"
 "Language-Team: Yotam Benshalom <benshalom@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1156,6 +1156,9 @@ msgstr ""
 "נסה לדאוג לכך שסמן העכבר תמיד ייראה לעין בזמן תקריב על ידי הקפצתו חזרה במידה "
 "שהוא מוסט אל מחוץ לאיזור התקריב."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "מרכז את העכבר"
 
@@ -1246,6 +1249,11 @@ msgstr ""
 "נסה להתמרכז על חלונות חדשים רק אם העכבר לא זז במשך מספר זה של שניות. אפשרות "
 "זו מונעת קפיצות בעת שימוש במיקוד רשלני (העברת המוקד באמצעות הזזת סמן העכבר "
 "מעל החלון ללא הקלקה)."
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "הפנה (הזז) את איזור התקריב מטה"
@@ -4736,9 +4744,6 @@ msgstr "תיקון לסוג החלון של חלונות ג'אווה שונים.
 msgid "Fix window type of various Qt windows."
 msgstr "תיקון לסוג החלון של חלונות Qt שונים."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "תיקון לחלונות ג'אווה"
 
@@ -4757,9 +4762,6 @@ msgstr ""
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "ודא שחלון המוגדר כ-\"דחוף\" יוגדר גם כ-\"דורש תשומת לב\"."
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "הצג כראוי במסך מלא יישומים מיושנים ויישומי Wine."
@@ -4784,6 +4786,12 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 msgid "Workarounds"
 msgstr "מעקפים"
+
+#~ msgid "Hide Utility Windows From Taskbar"
+#~ msgstr "הסתר חלונות עזר בשורת המשימות"
+
+#~ msgid "Make Utility windows not being shown in pagers and task bars."
+#~ msgstr "הסתר חלונות עזר בפייג'רים ובשורות משימות."
 
 #~ msgid "Focus Widget Layer"
 #~ msgstr "מיקוד שכבת ווידג'טים"

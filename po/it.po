@@ -47,7 +47,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:35+0530\n"
+"POT-Creation-Date: 2008-11-04 12:30+0530\n"
 "PO-Revision-Date: 2008-09-08 21:23+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -1321,6 +1321,9 @@ msgstr ""
 "Cerca di mantenere il mouse visibile facendolo rientrare quando si sposta al "
 "di fuori dell'area ingrandita."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "Mouse al centro"
 
@@ -1432,6 +1435,11 @@ msgid ""
 msgstr ""
 "Cerca di centrare la nuova finestra col focus se il mouse non si è mosso per "
 "questi secondi. Usare questo per evitare di saltare con il focus lento."
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "Muovi l'area di ingrandimento verso il basso"
@@ -5282,9 +5290,6 @@ msgstr "Corregge il tipo di finestra di diverse finestre Java."
 msgid "Fix window type of various Qt windows."
 msgstr "Corregge il tipo di finestra di diverse finestre Qt."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Correzione finestra Java"
 
@@ -5305,9 +5310,6 @@ msgstr ""
 # (ndt) traduzione precedente: flag richiesta attenzione
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "Rende le finestre \"urgent\" anche \"demand attention\"."
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""

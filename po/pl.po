@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:36+0530\n"
-"PO-Revision-Date: 2008-06-19 15:21+0200\n"
+"POT-Creation-Date: 2008-11-04 12:31+0530\n"
+"PO-Revision-Date: 2008-10-26 23:44+0100\n"
 "Last-Translator: Michal Kaluzniak <the_hooltay@o2.pl>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -217,9 +217,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "Zakrzywione składanie"
 
-#, fuzzy
 msgid "Curved Fold Amplitude Multiplier"
-msgstr "Amplituda zakrzywionego składania"
+msgstr "Mnożnik amplitudy zakrzywionego składania"
 
 msgid "Dodge"
 msgstr "Uskakiwanie"
@@ -252,6 +251,8 @@ msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
+"Amplituda składania (wielkość) jest mnożona przez tą liczbę. Wartości ujemne "
+"składają na zewnątrz"
 
 msgid "Glide 1"
 msgstr "Ślizg 1"
@@ -262,9 +263,8 @@ msgstr "Ślizg 2"
 msgid "Horizontal Folds"
 msgstr "Poziome zginanie"
 
-#, fuzzy
 msgid "Horizontal Folds Amplitude Multiplier"
-msgstr "Amplituda poziomych zginań"
+msgstr "Mnożnik amplitudy poziomych zginań"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr "Jak bardzo sprężyste ma być Kopnięcie"
@@ -343,13 +343,12 @@ msgstr "Opcje"
 msgid "Pool"
 msgstr "Pula"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
 msgstr ""
-"Pula efektów, z której będą losowane animacje po włączeniu losowych efektów. "
-"Kliknij \"przywróć\", by przywrócić pełną listę."
+"Pula efektów, z której będą wybierane animacje po włączeniu losowych "
+"efektów. Kliknij \"resetuj\", by używać wszystkich efektów."
 
 msgid "Random"
 msgstr "Losowe"
@@ -480,9 +479,8 @@ msgstr ""
 msgid "Wave"
 msgstr "Fala"
 
-#, fuzzy
 msgid "Wave Amplitude Multiplier"
-msgstr "Amplituda Fali"
+msgstr "Mnożnik amplitudy Fali"
 
 msgid "Wave Width"
 msgstr "Długość Fali"
@@ -490,7 +488,7 @@ msgstr "Długość Fali"
 msgid ""
 "Wave amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
-msgstr ""
+msgstr "Amplituda Fali (wielkość) jest mnożona przez tą liczbę"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
@@ -894,6 +892,8 @@ msgstr "Kolor bliskiego tła"
 
 msgid "Initiates cube cylinder deformation only if rotation is mouse driven."
 msgstr ""
+"Inicjuje deformację cylindrycznej kostki tylko jeśli obrót jest wywołany "
+"myszą"
 
 msgid "Intensity"
 msgstr "Intensywność"
@@ -983,14 +983,12 @@ msgstr "Oddala kostkę automatycznie tylko podczas obrotu myszą."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Oddala kostkę automatycznie aby dopasować ją do ekranu."
 
-#, fuzzy
 msgid "Cube Caps"
 msgstr "Obrazki na ściankach kostki"
 
 msgid "Render images on top and bottom of the cube"
 msgstr "Wyświetla obrazki na górnej i dolnej ścianie kostki"
 
-#, fuzzy
 msgid "Compiz cube reflection"
 msgstr "Odbicie kostki"
 
@@ -1215,12 +1213,15 @@ msgstr ""
 "Próbuj utrzymać powiększony wskaźnik widoczny wykrzywiając go, gdy wyjdzie "
 "poza powiększany obszar"
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "Wyśrodkuj mysz"
 
 #, fuzzy
 msgid "Dynamic mouse pointer scale"
-msgstr "Skaluj kursor myszy"
+msgstr "Dynamiczne skalowanie wskaźnika myszy"
 
 msgid "Enable focus tracking"
 msgstr "Włącz śledzenie myszy"
@@ -1230,7 +1231,6 @@ msgstr ""
 "Włącz tą opcję by uzyskać powiększenie wskaźnika myszy wraz z powiększaniem "
 "obszaru"
 
-#, fuzzy
 msgid ""
 "Enable this to target the focused window when jumping to a specific zoom "
 "level. Disable to target mouse."
@@ -1267,7 +1267,6 @@ msgstr ""
 "Dopasuj powiększany obszar do okna kiedy powiększany obszar przesuwa się w "
 "wyniku ruchów myszą. Nawet jeśli obraz nie był powiększony na początku"
 
-#, fuzzy
 msgid "Fit zoom level to window on focus change"
 msgstr "Dopasuj poziom przybliżenia do okna podczas zmiany miejsca skupienia"
 
@@ -1291,9 +1290,8 @@ msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr ""
 "Ukrywa oryginalny wskaźnik myszy podczas przybliżania i skalowania myszą"
 
-#, fuzzy
 msgid "Minimum zoom factor"
-msgstr "Minimalny współczynnik rozmiaru"
+msgstr "Minimalny współczynnik powiększenia"
 
 msgid "Mouse Behaviour"
 msgstr "Zachowanie myszy"
@@ -1320,6 +1318,11 @@ msgstr ""
 "Próbuj wycentrować świeżo wybrane okna tylko jeśli mysz nie przeniosła sie "
 "tam w ciągu kilku sekund. Użyj tej opcji by uniknąć skoku podczas "
 "nieuważnego zaznaczenia"
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "Przesuń powiększany obszar w dół"
@@ -1386,9 +1389,8 @@ msgstr "Określony współczynnik przybliżenia 3"
 msgid "Speed"
 msgstr "Szybkość"
 
-#, fuzzy
 msgid "Static mouse pointer scale"
-msgstr "Skaluj kursor myszy"
+msgstr "Skalowanie nieruchomego wskaźnika myszy"
 
 msgid "Sync Mouse"
 msgstr "Synchronizuj Mysz"
@@ -1401,6 +1403,8 @@ msgid ""
 "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
 "0.25 equals 4x zoom."
 msgstr ""
+"Minimalny dopuszczalny współczynnik powiększenia. Wartość 0.5 oznacza 2x "
+"zoom, wartość 0.25 oznacza 4x zoom "
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Wielkość marginesu do dodania podczas próby powstrzymania myszy"
@@ -1423,11 +1427,15 @@ msgid ""
 "When not using a dynamic mouse pointer scale, this is the scale factor for "
 "the mouse pointer."
 msgstr ""
+"Współczynnik skalowania wskaźnika myszy gdy nie używa się dynamicznego "
+"skalowania"
 
 msgid ""
 "When scaling the mouse pointer, this option makes the scale adjust according "
 "to the current level of zoom."
 msgstr ""
+"Ta opcja powoduje jednakowe skalowanie kursora myszy z aktualnym poziomem "
+"zoomu "
 
 msgid "Zoom Area Movement"
 msgstr "Ruchy przybliżanego obszaru"
@@ -1525,12 +1533,11 @@ msgstr "Przełącz fałszywy ARGB okien"
 msgid "Toggle window fake ARGB."
 msgstr "Przełącza fałszywy ARGB okien."
 
-#, fuzzy
 msgid "Add Particle"
-msgstr "Czas życia cząsteczki"
+msgstr "Dodaj cząsteczki"
 
 msgid "Adds a fire particle at position (x,y), where x and y are floats."
-msgstr ""
+msgstr "Dodaje cząsteczkę ognia w pozycji (x,y)"
 
 msgid "Background brightness"
 msgstr "Jasność tła"
@@ -2119,13 +2126,12 @@ msgstr "Grubość obramowania"
 msgid "Border widtht."
 msgstr "Grubość obramowania"
 
-#, fuzzy
 msgid "Box height."
 msgstr "Wysokość przycisku"
 
 #, fuzzy
 msgid "Box width."
-msgstr "Grubość przycisku"
+msgstr "Szerokość przycisku"
 
 #, fuzzy
 msgid "Clip mask"
@@ -2190,14 +2196,12 @@ msgstr "Wyrównanie Y kursora"
 msgid "Y offset of the cursor."
 msgstr "Wyrównanie Y kursora"
 
-#, fuzzy
 msgid "Zoom factor for keyboard initiated magnifier."
-msgstr "Czynnik powiększenia dla lupy wywołanej z klawiatury"
+msgstr "Współczynnik powiększenia dla lupy wywołanej z klawiatury"
 
 msgid "Ignore already overlapping windows in the calculations"
 msgstr "Ignoruj w kalkulacjach już nałożone na siebie okna"
 
-#, fuzzy
 msgid "Ignore sticky windows in the calculations"
 msgstr "Ignoruj w kalkulacjach przyklejone okna "
 
@@ -2468,9 +2472,8 @@ msgstr "Nieprzezroczystość"
 msgid "Opacity Levels"
 msgstr "Poziom nieprzezroczystości"
 
-#, fuzzy
 msgid "Passive Opacity"
-msgstr "Przezroczystość"
+msgstr "Nieprzezroczystość nieaktywnego okna"
 
 msgid "Reset opacity to original values when toggling"
 msgstr ""
@@ -3203,7 +3206,6 @@ msgid "Time (in ms) after which the filter typing is automatically ended"
 msgstr ""
 "Czas (w milisekundach) po jakim wpisywanie filtra jest automatycznie kończone"
 
-#, fuzzy
 msgid "Use case insensitive string matching when filtering."
 msgstr "Używaj filtra, który nie zwraca uwagi na wielkość liter."
 
@@ -4999,9 +5001,6 @@ msgstr "Napraw typ okna różnych aplikacji Java"
 msgid "Fix window type of various Qt windows."
 msgstr "Napraw typ okna różnych aplikacji Qt"
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Poprawka dla okien programów w Javie"
 
@@ -5022,9 +5021,6 @@ msgstr ""
 #, fuzzy
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "Aktywuj następne okno, które jest oznaczone jako \"wymagające uwagi\""
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""

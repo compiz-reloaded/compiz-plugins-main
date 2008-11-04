@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fusion-plugins 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:35+0530\n"
+"POT-Creation-Date: 2008-11-04 12:30+0530\n"
 "PO-Revision-Date: 2008-03-16 19:01+0100\n"
 "Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <ketil.w.aanensen@gmail.com>\n"
@@ -1205,6 +1205,9 @@ msgstr ""
 "Prøv å holde den forstørrede musen synlig ved å kaste den tilbake når den "
 "beveges utenfor det forstørrede området."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "Sentrer musen"
 
@@ -1303,6 +1306,11 @@ msgstr ""
 "Prøv kun å sentrere nylig fokuserte vinduer hvis musen ikke har beveget seg "
 "i løpet av så mange sekunder. Bruk dette for å unngå hopping når du bruker "
 "slurvete fokus."
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "Panorer (flytt) det forstørrede området nedover"
@@ -4920,9 +4928,6 @@ msgstr "Korriger vindustype for diverse Java-vinduer."
 msgid "Fix window type of various Qt windows."
 msgstr "Korriger vindustype for diverse Qt-vinduer."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Rettelse for Java-vindu"
 
@@ -4940,9 +4945,6 @@ msgstr ""
 "synlige på alle arbeidsområder."
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr ""
-
-msgid "Make Utility windows not being shown in pagers and task bars."
 msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."

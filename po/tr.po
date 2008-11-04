@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins-new\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:36+0530\n"
-"PO-Revision-Date: 2007-12-31 01:40+0100\n"
-"Last-Translator: Gürkan Gür <seqizz@gmail.com>\n"
+"POT-Creation-Date: 2008-11-04 12:31+0530\n"
+"PO-Revision-Date: 2008-10-28 12:10+0100\n"
+"Last-Translator: Emre KURNAZ <kurnaz@yeacon.com.tr>\n"
 "Language-Team: <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
 msgstr "Sadece Fare ile Döndürüldüğünde 3D"
@@ -58,7 +58,7 @@ msgstr ""
 "yüzdesine göre)."
 
 msgid "Color of an inactive window's depth"
-msgstr ""
+msgstr "Etkin olmayan pencerenin derinliğinin rengi"
 
 #, fuzzy
 msgid "Color of the active window's depth"
@@ -91,7 +91,7 @@ msgid "Window Color (Active)"
 msgstr "Pencere başlığı"
 
 msgid "Window Color (Inactive)"
-msgstr ""
+msgstr "Pencere Rengi (Etkin Olmayan)"
 
 msgid "Window Depth"
 msgstr "Pencere Derinliği"
@@ -506,13 +506,13 @@ msgid "Zoom from Center"
 msgstr "Merkezden Büyüt"
 
 msgid "Zoom from center when playing the Sidekick animation."
-msgstr ""
+msgstr "Yardımcı canlandırması oynatıldığında merkezden büyüt"
 
 msgid "Zoom from center when playing the Zoom animation."
-msgstr ""
+msgstr "Büyütme canlandırması oynatıldığında merkezden büyüt"
 
 msgid "Zoom to TaskBar on Minimize"
-msgstr ""
+msgstr "Aşağı almada görev çubuğuna kaydır"
 
 msgid "Colors"
 msgstr "Renkler"
@@ -522,10 +522,10 @@ msgid "Cube Atlantis"
 msgstr "Küp Kapakları"
 
 msgid "Dolphin size"
-msgstr ""
+msgstr "Yunus boyutu"
 
 msgid "Dolphin size."
-msgstr ""
+msgstr "Yunus boyutu."
 
 # FIXME -- we need a better word for 'glow'
 #, fuzzy
@@ -533,7 +533,7 @@ msgid "Enable colors"
 msgstr "Parlamayı Etkinleştir"
 
 msgid "Fish size"
-msgstr ""
+msgstr "Balık boyutu"
 
 #, fuzzy
 msgid "Number of fish"
@@ -544,13 +544,13 @@ msgid "Number of fish inside the cube"
 msgstr "Alevin parçacık sayısı."
 
 msgid "Render some fish inside of the transparent cube"
-msgstr ""
+msgstr "Saydam küpün içinde balıklar göster"
 
 msgid "Shark size"
-msgstr ""
+msgstr "Köpekbalığı boyutu"
 
 msgid "Whale size"
-msgstr ""
+msgstr "Balina boyutu"
 
 #, fuzzy
 msgid "Whale size."
@@ -611,12 +611,11 @@ msgstr "Karşılaştırma penceresinin dikey konumu"
 msgid "Y position"
 msgstr "Y-Konumu"
 
-#, fuzzy
 msgid "Bicubic filter"
-msgstr "Filtreyi seç"
+msgstr "Çift kübik süzgeci"
 
 msgid "Bicubic texture filtering"
-msgstr ""
+msgstr "Çift kübik doku süzgeci"
 
 msgid "Color filter"
 msgstr "Renk Filtreleyicisi"
@@ -727,9 +726,8 @@ msgstr ""
 msgid "Appearance"
 msgstr "Görünüm"
 
-#, fuzzy
 msgid "Aspect ratio"
-msgstr "Görünüm Oranı"
+msgstr "Bakış açısı oranı"
 
 msgid "Aspect ratio of the deformed cube"
 msgstr ""
@@ -1184,6 +1182,9 @@ msgid ""
 "outside the zoom area."
 msgstr ""
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr ""
 
@@ -1270,6 +1271,11 @@ msgstr ""
 msgid ""
 "Only attempt to center newly focused windows if the mouse hasn't moved in "
 "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgstr ""
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
 msgstr ""
 
 msgid "Pan (move) the zoom area down"
@@ -4826,9 +4832,6 @@ msgstr "Çeşitli Java pencerelerini onar"
 msgid "Fix window type of various Qt windows."
 msgstr "Çeşitli Qt pencerelerini onar."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Java Pencere Hatasının Çözümü"
 
@@ -4846,9 +4849,6 @@ msgstr ""
 "masaüstlerinde görünebilirdir."
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr ""
-
-msgid "Make Utility windows not being shown in pagers and task bars."
 msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
@@ -4876,6 +4876,9 @@ msgstr "Tüm masaüstlerindeki pencereler yapışkan olmalı"
 
 msgid "Workarounds"
 msgstr "Hızlı Çözümler"
+
+#~ msgid "Hide Utility Windows From Taskbar"
+#~ msgstr "Araç Pencerelerini Görev Çubuğundan Gizle"
 
 #~ msgid "Airplane"
 #~ msgstr "Kağıt Uçak"

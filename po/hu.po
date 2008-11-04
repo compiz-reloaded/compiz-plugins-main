@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:35+0530\n"
-"PO-Revision-Date: 2008-09-16 18:31+0200\n"
+"POT-Creation-Date: 2008-11-04 12:30+0530\n"
+"PO-Revision-Date: 2008-10-20 08:24+0200\n"
 "Last-Translator: KAMI <kamihir@freemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1192,6 +1192,9 @@ msgid ""
 "outside the zoom area."
 msgstr "Maradjon a nagyított kurzor látható ha elhagyja a nagyító területet."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "Kurzor középre"
 
@@ -1286,6 +1289,11 @@ msgid ""
 msgstr ""
 "Csak akkor állítsa középre az új fókuszban lévő ablakot ha ennyi másodpercig "
 "az egér nem mozog. Használd, hogy elkerüld az ugrálást azonnali fókusznál."
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "Kövesse (mozgassa) a nagyított területet lefelé"
@@ -3602,7 +3610,7 @@ msgstr ""
 "mielőtt eltávolításra kerülnének. Erre a FOV miatt van szükség."
 
 msgid "Key Bindings"
-msgstr "Összerendelések"
+msgstr "Billentyűk"
 
 msgid "Left to Right"
 msgstr "Balról jobbra"
@@ -4869,9 +4877,6 @@ msgstr "Ablaktípus javítás számos Java ablakfajtához."
 msgid "Fix window type of various Qt windows."
 msgstr "Ablaktípus javítás számos Qt ablakfajtához."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Java ablakok javítása"
 
@@ -4891,9 +4896,6 @@ msgstr ""
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr ""
 "A \"Sürgős\" jelölésű ablakot \"Figyelmet igényel\" jelölésűvé alakítja."
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Teljes képernyős Wine és örökölt alkalmazások helyes megjelenítése."
@@ -4918,6 +4920,13 @@ msgstr "Az ablakok legyenek ragadósak az összes munkaasztalon"
 
 msgid "Workarounds"
 msgstr "Hibajavítások"
+
+#~ msgid "Hide Utility Windows From Taskbar"
+#~ msgstr "Segédprogram ablakainak elrejtése a tálcáról"
+
+#~ msgid "Make Utility windows not being shown in pagers and task bars."
+#~ msgstr ""
+#~ "Ne jelenítse meg a segédprogram ablakait az előnézetekben és a tálcán."
 
 #~ msgid "Focus Widget Layer"
 #~ msgstr "Szerkentyű réteg fókuszálása"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:35+0530\n"
-"PO-Revision-Date: 2008-05-31 19:51+0900\n"
+"POT-Creation-Date: 2008-11-04 12:30+0530\n"
+"PO-Revision-Date: 2008-10-31 21:13+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -216,9 +216,8 @@ msgstr ""
 msgid "Curved Fold"
 msgstr "折り曲げ"
 
-#, fuzzy
 msgid "Curved Fold Amplitude Multiplier"
-msgstr "折り曲げの振幅"
+msgstr "折り曲げの振幅の乗数"
 
 msgid "Dodge"
 msgstr "回避"
@@ -251,7 +250,7 @@ msgstr "フォーカス時の効果"
 msgid ""
 "Fold amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
-msgstr ""
+msgstr "折りの振幅（大きさ）に乗じる数値。負の値の場合は、逆方向に折られます。"
 
 msgid "Glide 1"
 msgstr "滑空 1"
@@ -262,9 +261,8 @@ msgstr "滑空 2"
 msgid "Horizontal Folds"
 msgstr "水平の折りたたみ"
 
-#, fuzzy
 msgid "Horizontal Folds Amplitude Multiplier"
-msgstr "水平折りたたみの振幅"
+msgstr "水平折りたたみの振幅の乗数"
 
 msgid "How spring-like the Sidekick animation should be."
 msgstr "サイドキックアニメーションのバネ効果"
@@ -339,12 +337,12 @@ msgstr "オプション"
 msgid "Pool"
 msgstr "候補群"
 
-#, fuzzy
 msgid ""
 "Pool of effects to be chosen from if Random effect is selected. Click reset "
 "to use all effects."
 msgstr ""
-"ランダム効果選択の場合の選択候補群。フルリストに戻すにはリセットをクリック。"
+"ランダム効果使用の場合の選択候補群。すべての効果を選択候補にするにはリセット"
+"をクリック。"
 
 msgid "Random"
 msgstr "ランダム"
@@ -465,9 +463,8 @@ msgstr ""
 msgid "Wave"
 msgstr "ウェーブ"
 
-#, fuzzy
 msgid "Wave Amplitude Multiplier"
-msgstr "ウェーブの振幅"
+msgstr "ウェーブの振幅の乗数"
 
 msgid "Wave Width"
 msgstr "ウェーブの幅"
@@ -476,6 +473,7 @@ msgid ""
 "Wave amplitude (size) is multiplied by this number. Negative values fold "
 "outward."
 msgstr ""
+"ウェーブの振幅（大きさ）に乗じる数値。負の値の場合は、奥方向に波立ちます。"
 
 msgid ""
 "Whether the window should zoom to taskbar when minimized with Curved Fold "
@@ -951,13 +949,11 @@ msgstr "マウス回転時のみ自動的なズームアウト"
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "キューブを画面に合わせるための自動的なズームアウト"
 
-#, fuzzy
 msgid "Cube Caps"
 msgstr "キューブのふた"
 
-#, fuzzy
 msgid "Render images on top and bottom of the cube"
-msgstr "キューブ下面の次の画像に進む"
+msgstr "キューブの上面と下面に画像を描画"
 
 msgid "Compiz cube reflection"
 msgstr "Compiz キューブの反射"
@@ -1179,12 +1175,14 @@ msgstr ""
 "拡大されたマウスがズーム域外へ移動したときはワープさせて、常に見えるようにす"
 "る。"
 
+msgid "Autoscale threshold"
+msgstr "自動ズーム率調整のしきい値"
+
 msgid "Center the mouse"
 msgstr "マウスを中央に"
 
-#, fuzzy
 msgid "Dynamic mouse pointer scale"
-msgstr "マウスポインタを拡大"
+msgstr "変動型のマウスポインタ拡大"
 
 msgid "Enable focus tracking"
 msgstr "フォーカス追従を有効化"
@@ -1246,9 +1244,8 @@ msgstr "元マウスポインタを隠す"
 msgid "Hides the original mouse pointer when zoomed in and scaling the mouse"
 msgstr "ズームイン時に元マウスポインタを隠してマウスを拡大"
 
-#, fuzzy
 msgid "Minimum zoom factor"
-msgstr "縮尺率の最小値"
+msgstr "最低ズーム係数"
 
 msgid "Mouse Behaviour"
 msgstr "マウス動作"
@@ -1273,6 +1270,13 @@ msgstr ""
 "この指定秒数の間マウスが動かない場合にのみ、新しくフォーカスされたウィンドウ"
 "を画面中央に表示。スロッピー・フォーカス使用時に画面がジャンプしがちになるの"
 "を避けるため利用してください。"
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
+"ターゲットの値がこの設定値よりも高い場合、フォーカス変更時にズーム率のみを変"
+"更。小さなポップアップ等にズームインしすぎるのを防ぎます。"
 
 msgid "Pan (move) the zoom area down"
 msgstr "ズーム域を下に移動"
@@ -1334,9 +1338,8 @@ msgstr "指定ズーム係数 3"
 msgid "Speed"
 msgstr "速度"
 
-#, fuzzy
 msgid "Static mouse pointer scale"
-msgstr "マウスポインタを拡大"
+msgstr "固定型のマウスポインタ拡大"
 
 msgid "Sync Mouse"
 msgstr "マウスに追従"
@@ -1348,6 +1351,7 @@ msgid ""
 "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
 "0.25 equals 4x zoom."
 msgstr ""
+"最低許容ズーム率。値 0.5 は 2 倍ズーム、0.25 は 4 倍ズームになります。 "
 
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "マウスを制限している場合の制限域のマージンの大きさ"
@@ -1370,11 +1374,15 @@ msgid ""
 "When not using a dynamic mouse pointer scale, this is the scale factor for "
 "the mouse pointer."
 msgstr ""
+"変動型のマウスポインタ拡大を使用しない場合、この値がマウスポインタの拡大率に"
+"なります。"
 
 msgid ""
 "When scaling the mouse pointer, this option makes the scale adjust according "
 "to the current level of zoom."
 msgstr ""
+"マウスポインタの拡大を有効にした場合、このオプションは現在のズーム率に合わせ"
+"てポインタ拡大率を調整します。"
 
 msgid "Zoom Area Movement"
 msgstr "ズーム域の移動"
@@ -1467,12 +1475,11 @@ msgstr "ウィンドウの色(透過)の切り替え"
 msgid "Toggle window fake ARGB."
 msgstr "ウィンドウの色(透過)の切り替え"
 
-#, fuzzy
 msgid "Add Particle"
-msgstr "粒子の寿命"
+msgstr "粒子を追描"
 
 msgid "Adds a fire particle at position (x,y), where x and y are floats."
-msgstr ""
+msgstr "炎の粒子を指定位置（x,y）に追加的に描画"
 
 msgid "Background brightness"
 msgstr "背景の明度"
@@ -3678,45 +3685,35 @@ msgstr "スプラッシュ"
 msgid "Start Splash."
 msgstr "スプラッシュ開始"
 
-#, fuzzy
 msgid ""
 "Amount of opacity (in percent) for windows in the switcher which are not "
 "selected"
-msgstr "リングの非選択ウィンドウに適用する不透明度（％単位）"
+msgstr "スイッチャーの非選択ウィンドウに適用する不透明度（％単位）"
 
-#, fuzzy
 msgid "Behavior"
 msgstr "動作"
 
-#, fuzzy
 msgid "Darken background when showing the stack"
-msgstr "リングを表示する際に背景を暗くする"
+msgstr "スタックの表示時に背景を暗くする"
 
-#, fuzzy
 msgid "On Thumbnail"
-msgstr "サムネイルの幅"
+msgstr "サムネイル上"
 
-#, fuzzy
 msgid "Rotate inactive windows"
-msgstr "該当ウィンドウのアクティブ化"
+msgstr "非選択ウィンドウを傾ける"
 
-#, fuzzy
 msgid "Should not selected windows be rotated"
-msgstr "選択ウィンドウを手前に提示"
+msgstr "選択ウィンドウを傾けない"
 
-#, fuzzy
 msgid "Stack Window Switcher"
-msgstr "不動型アプリケーション・スイッチャー"
+msgstr "スタック・ウィンドウ・スイッチャー"
 
-#, fuzzy
 msgid "Tilt angle of the background."
-msgstr "グラデーション背景の色 1"
+msgstr "背景の傾斜角度"
 
-#, fuzzy
 msgid "Windows"
-msgstr "3D ウィンドウ"
+msgstr "ウィンドウ"
 
-#, fuzzy
 msgid "Windows that should be shown in the switcher"
 msgstr "スイッチャーに表示する対象ウィンドウ"
 
@@ -3735,9 +3732,8 @@ msgstr "彩度の割合"
 msgid "Auto Change Viewport"
 msgstr "ビューポート自動切り替え"
 
-#, fuzzy
 msgid "Bring Selected To Front"
-msgstr "手前に提示"
+msgstr "選択ウィンドウを手前に提示"
 
 msgid "Centered"
 msgstr "中央"
@@ -3745,44 +3741,38 @@ msgstr "中央"
 msgid "Change to the viewport of the selected window while switching"
 msgstr "スイッチ中に選択ウィンドウが存在するビューポートに切り替え"
 
-#, fuzzy
 msgid "Color of highlight rectangle"
-msgstr "選択矩形の塗り色"
+msgstr "矩形の強調表示色"
 
 msgid "Color of highlight rectangle border"
-msgstr ""
+msgstr "矩形型強調の境界線の色"
 
 msgid "Color of inlay in highlight rectangle border"
-msgstr ""
+msgstr "矩形型強調の境界線の塗り色"
 
 msgid "Generate mipmaps when possible for higher quality scaling"
 msgstr "より高質のスケールが可能なときはミップマップを生成"
 
-#, fuzzy
 msgid "Highlight Border Color"
-msgstr "強調表示色"
+msgstr "矩形型強調の境界線の色"
 
-#, fuzzy
 msgid "Highlight Border Inlay Color"
-msgstr "強調表示色"
+msgstr "矩形型強調の境界線の塗り色"
 
-#, fuzzy
 msgid "Highlight Mode"
-msgstr "強調表示色"
+msgstr "強調モード"
 
 msgid "Icon"
 msgstr "アイコン"
 
-#, fuzzy
 msgid "Minimized Window Highlight Rectangle"
-msgstr "ウィンドウの強調表示"
+msgstr "最小化ウィンドウの矩形型の強調表示"
 
 msgid "Mipmap"
 msgstr "ミップマップ"
 
-#, fuzzy
 msgid "Mode for highlighting the currently selected window"
-msgstr "マウスが置かれているウィンドウの強調に使用する色"
+msgstr "現在選択中のウィンドウの強調表示に使用するモード"
 
 msgid "Next Panel"
 msgstr "次のパネル"
@@ -3800,7 +3790,7 @@ msgid "Next window (No popup)"
 msgstr "次のウィンドウ（ポップアップなし）"
 
 msgid "Original Window Position"
-msgstr ""
+msgstr "最小化前の元のウィンドウ位置"
 
 msgid "Popup Window Delay"
 msgstr "ポップアップ・ウィンドウの遅延時間"
@@ -3866,13 +3856,11 @@ msgstr "前のパネルタイプ・ウィンドウを選択"
 msgid "Select previous window without showing the popup window."
 msgstr "ポップアップ・ウィンドウの表示なしに前のウィンドウを選択"
 
-#, fuzzy
 msgid "Selected Window Highlight"
-msgstr "ウィンドウの強調表示"
+msgstr "選択ウィンドウの強調表示"
 
-#, fuzzy
 msgid "Show Rectangle"
-msgstr "矩形"
+msgstr "矩形を表示"
 
 msgid "Show icon next to thumbnail"
 msgstr "サムネイルの隣にアイコンを表示"
@@ -3892,15 +3880,14 @@ msgstr "スイッチャー描画の刻み時間"
 msgid "Switcher windows"
 msgstr "スイッチャー対象ウィンドウ"
 
-#, fuzzy
 msgid "Taskbar Entry"
-msgstr "タスクバー"
+msgstr "タスクバー・エントリ"
 
 msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "ポップアップ・ウィンドウが表示されるまでの遅延時間（秒単位）"
 
 msgid "Where to draw highlight rectangle for minimized windows"
-msgstr ""
+msgstr "最小化ウィンドウの矩形型強調表示の描画先"
 
 msgid "Windows that should be shown in switcher"
 msgstr "スイッチャーに表示する対象ウィンドウ"
@@ -4715,13 +4702,11 @@ msgstr "高さの値"
 msgid "Matches"
 msgstr "マッチ"
 
-#, fuzzy
 msgid "Maximized"
 msgstr "最大化"
 
-#, fuzzy
 msgid "Maximized windows"
-msgstr "最大化不可ウィンドウ"
+msgstr "最大化状態で開くように設定するウィンドウ"
 
 msgid "No ARGB visuals"
 msgstr "ARGB ビジュアル不可"
@@ -4802,7 +4787,7 @@ msgid "AIGLX Fragment Parameter Fix"
 msgstr "AIGLX フラグメント・パラメータの修正"
 
 msgid "Convert Urgency to Demands Attention"
-msgstr ""
+msgstr "緊急フラグを注意要求に変換"
 
 msgid "Firefox Menu Fix"
 msgstr "FireFox のメニュー修正"
@@ -4831,9 +4816,6 @@ msgstr "様々な Java ウィンドウのウィンドウタイプの修正"
 msgid "Fix window type of various Qt windows."
 msgstr "様々な Qt ウィンドウのウィンドウタイプの修正"
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Java ウィンドウの修正"
 
@@ -4850,13 +4832,9 @@ msgstr ""
 "\"全てのデスクトップに配置\"ウィンドウに貼り付け（スティッキー）属性を与え、"
 "貼り付けウィンドウをすべてのビューポートで見られるようにする"
 
-#, fuzzy
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr ""
-"\"demands attention\" フラグセットを持つ次のウィンドウをアクティブにする"
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
+"緊急（urgent）フラグのウィンドウに注意要求（demand attention）フラグも付ける"
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Wine とレガシーアプリケーションを全画面表示で起動するときの設定"
@@ -4884,12 +4862,6 @@ msgstr ""
 msgid "Workarounds"
 msgstr "次善策"
 
-#~ msgid "Focus Widget Layer"
-#~ msgstr "ウィジェット・レイヤにフォーカス"
-
-#~ msgid "Focus a window in the widget layer when activating the layer"
-#~ msgstr "ウィジェット・レイヤ表示時にレイヤにあるウィンドウにフォーカス"
-
 #~ msgid "Airplane"
 #~ msgstr "飛行機"
 
@@ -4898,6 +4870,9 @@ msgstr "次善策"
 
 #~ msgid "Animation Time Step For Intense Effects"
 #~ msgstr "アニメーション刻み時間（激しい効果の）"
+
+#~ msgid "Animations Add-On"
+#~ msgstr "アニメーションのアドオン"
 
 #~ msgid "Automatic"
 #~ msgstr "自動"
@@ -4917,7 +4892,6 @@ msgstr "次善策"
 #~ msgid "Beam Spacing"
 #~ msgstr "ビームの間隔"
 
-# スタートレック
 #~ msgid "Beam Up"
 #~ msgstr "転送ビーム"
 
@@ -4948,11 +4922,11 @@ msgstr "次善策"
 #~ msgid "Explode"
 #~ msgstr "爆発"
 
+#~ msgid "Extra window animations and animation engines"
+#~ msgstr "追加的なウィンドウ・アニメーションとアニメーション・エンジン"
+
 #~ msgid "Falling direction for Domino pieces."
 #~ msgstr "ドミノ片が落下する方向"
-
-#~ msgid "Fire"
-#~ msgstr "炎"
 
 #~ msgid "Fire Smoke"
 #~ msgstr "炎の煙"
@@ -4980,6 +4954,9 @@ msgstr "次善策"
 
 #~ msgid "Fold opening direction for pieces in Razr effect."
 #~ msgstr "カミソリ効果における断片の展開方向"
+
+#~ msgid "Glide 3"
+#~ msgstr "滑空 3"
 
 #~ msgid "Hexagonal"
 #~ msgstr "六角形"
@@ -5028,6 +5005,12 @@ msgstr "次善策"
 
 #~ msgid "Rotation angle of animated window pieces (in degrees)."
 #~ msgstr "ウィンドウ片の回転角度"
+
+#~ msgid "Shatter Number of Spokes"
+#~ msgstr "放射方向の分割数"
+
+#~ msgid "Shatter Number of Tiers"
+#~ msgstr "同心円方向の分割数"
 
 #~ msgid "Skewer"
 #~ msgstr "破砕"
@@ -5083,6 +5066,22 @@ msgstr "次善策"
 #~ "爆発するウィンドウは格子に沿って分割されます。ウィンドウの幅に沿った格子の"
 #~ "マス目数を指定してください。"
 
+#~ msgid ""
+#~ "The exploding window will be split into pieces along concentric circles. "
+#~ "Specify the number of concentric circles the shatter tessellation will "
+#~ "have."
+#~ msgstr ""
+#~ "蜘蛛の巣状に爆発するウィンドウは同心円に沿って分割されます。タイヤのように"
+#~ "同心円状に分割する数を指定してください。"
+
+#~ msgid ""
+#~ "The exploding window with the shatter animation will be split into pieces "
+#~ "radially from the center. Specify the number of radial spokes the "
+#~ "animation will have."
+#~ msgstr ""
+#~ "蜘蛛の巣状に砕け散るアニメーションを伴う爆発するウィンドウは、その中心から"
+#~ "放射状に分割されます。そのスポークのように分割する数を指定してください。"
+
 #~ msgid "Thickness"
 #~ msgstr "厚さ"
 
@@ -5099,7 +5098,7 @@ msgstr "次善策"
 #~ msgstr "爆発ウィンドウ片の厚さ（ピクセル）"
 
 #~ msgid "Up-down"
-#~ msgstr "上と下"
+#~ msgstr "上下"
 
 #~ msgid ""
 #~ "Whether the window should fly to taskbar when minimized with Airplane "
@@ -5123,92 +5122,8 @@ msgstr "次善策"
 #~ "ウィンドウの厚さ（ピクセル）。0 より大きく設定すると、アニメーション中の影"
 #~ "やブラー、反射が無効になります。"
 
-#~ msgid ""
-#~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
-#~ "relative to the window width. Negative values fold outward."
-#~ msgstr ""
-#~ "ウィンドウ幅に相対する水平折りたたみの振幅(折りたたみの波の大きさ)、負の値"
-#~ "では外側に広がる"
+#~ msgid "Focus Widget Layer"
+#~ msgstr "ウィジェット・レイヤにフォーカス"
 
-#~ msgid ""
-#~ "Amplitude (size of the waves in the fold) of the curved fold relative to "
-#~ "window width. Negative values fold outward."
-#~ msgstr ""
-#~ "ウィンドウ幅に相対する曲がりの振幅(折り曲げの波の大きさ)、負の値では外側に"
-#~ "広がる"
-
-#~ msgid ""
-#~ "The wave amplitude (size of the waves) relative to the window height."
-#~ msgstr "ウィンドウの高さに相対する波揺れの振幅（波揺れの大きさ）"
-
-#~ msgid "Brightness Decrease"
-#~ msgstr "明度を下げる"
-
-#~ msgid "Brightness Increase"
-#~ msgstr "明度を上げる"
-
-#~ msgid "Brightness Step"
-#~ msgstr "明度の変更刻み"
-
-#~ msgid "Brightness and Saturation"
-#~ msgstr "明度と彩度"
-
-#~ msgid "Brightness and Saturation adjustments"
-#~ msgstr "明度と彩度の調節"
-
-#~ msgid "Brightness settings"
-#~ msgstr "明度の設定"
-
-#~ msgid "Brightness values for windows"
-#~ msgstr "ウィンドウに割り当てる明度"
-
-#~ msgid "Brightness window values"
-#~ msgstr "指定ウィンドウの明度"
-
-#~ msgid "Brightness windows"
-#~ msgstr "明度指定ウィンドウ"
-
-#~ msgid "Saturation Decrease"
-#~ msgstr "彩度を下げる"
-
-#~ msgid "Saturation Increase"
-#~ msgstr "彩度を上げる"
-
-#~ msgid "Saturation Step"
-#~ msgstr "彩度の変更刻み"
-
-#~ msgid "Saturation settings"
-#~ msgstr "彩度の設定"
-
-#~ msgid "Saturation values for windows"
-#~ msgstr "ウィンドウに割り当てる彩度"
-
-#~ msgid "Saturation window values"
-#~ msgstr "指定ウィンドウの彩度"
-
-#~ msgid "Saturation windows"
-#~ msgstr "彩度指定ウィンドウ"
-
-#~ msgid "Window specific"
-#~ msgstr "特定ウィンドウ"
-
-#~ msgid "Windows that should have a different brightness by default"
-#~ msgstr "デフォルトで他とは異なる明度を持たせるウィンドウ"
-
-#~ msgid "Windows that should have a different saturation by default"
-#~ msgstr "デフォルトで他とは異なる彩度を持たせるウィンドウ"
-
-#~ msgid "Intensity."
-#~ msgstr "輝度"
-
-#~ msgid "Show repaint"
-#~ msgstr "再描画表示"
-
-#~ msgid "Show repainted regions in different colors"
-#~ msgstr "再描画域を異なる色で表示"
-
-#~ msgid "Toggle showing of repainted regions."
-#~ msgstr "再描画域の表示のオンオフ"
-
-#~ msgid "Close Windows In Scale"
-#~ msgstr "スケールのウィンドウを閉じる"
+#~ msgid "Focus a window in the widget layer when activating the layer"
+#~ msgstr "ウィジェット・レイヤ表示時にレイヤにあるウィンドウにフォーカス"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:34+0530\n"
+"POT-Creation-Date: 2008-11-04 12:29+0530\n"
 "PO-Revision-Date: 2008-10-08 10:01+0200\n"
 "Last-Translator: Jonathan Ernst <jonathan@ernstfamily.ch>\n"
 "Language-Team: <fr@li.org>\n"
@@ -1218,6 +1218,9 @@ msgstr ""
 "Essayer de garder le pointeur zoomé visible, en se déplacant vers lui quand "
 "il est déplacé en dehors de la zone de zoom."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "Centrer le pointeur"
 
@@ -1316,6 +1319,11 @@ msgstr ""
 "Tenter seulement de centrer les fenêtres venant d'avoir le focus, si la "
 "souris n'a pas bougé pendant cette durée (en secondes). Utilisez cela pour "
 "éviter les sauts du focus."
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "Déplacer la zone de zoom vers le bas"
@@ -4953,9 +4961,6 @@ msgstr "Corriger les fenêtres des applications Java."
 msgid "Fix window type of various Qt windows."
 msgstr "Corriger les fenêtres des applications Qt."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Correction des Fenêtres Java"
 
@@ -4976,9 +4981,6 @@ msgstr ""
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr "Rendre \"urgente\", les fenêtres \"Demande d'attention\"."
-
-msgid "Make Utility windows not being shown in pagers and task bars."
-msgstr ""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr "Rendre correctement les applications Wine et natives en plein écran."

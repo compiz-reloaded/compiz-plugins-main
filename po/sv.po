@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-10-14 14:36+0530\n"
+"POT-Creation-Date: 2008-11-04 12:31+0530\n"
 "PO-Revision-Date: 2008-10-07 23:40+0200\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Compiz Fusion Translators <i18n@lists.compiz-fusion.org>\n"
@@ -1193,6 +1193,9 @@ msgstr ""
 "Försök att hålla den zoomade musen synlig genom att dra tillbaka den när den "
 "lämnar det inzoomade området."
 
+msgid "Autoscale threshold"
+msgstr ""
+
 msgid "Center the mouse"
 msgstr "Centrera musen"
 
@@ -1287,6 +1290,11 @@ msgstr ""
 "Försök att endast centrera fönster som fokuserats nyligen om musen inte har "
 "rört sig under så här många sekunder. Använd detta för att unvika hoppande "
 "med slö fokus"
+
+msgid ""
+"Only change zoom level (scale) on focus change if the target value is higher "
+"than this. Prevents zooming too far in on small popups etc."
+msgstr ""
 
 msgid "Pan (move) the zoom area down"
 msgstr "Panorera (flytta) det zoomade området nedåt"
@@ -4943,9 +4951,6 @@ msgstr "Korrigera fönstertyper för diverse Java-fönster."
 msgid "Fix window type of various Qt windows."
 msgstr "Korrigera fönstertyp för diverse Qt-fönster."
 
-msgid "Hide Utility Windows From Taskbar"
-msgstr ""
-
 msgid "Java Window Fix"
 msgstr "Korrigering av Java-fönster"
 
@@ -4963,9 +4968,6 @@ msgstr ""
 "alla skrivbordsytor"
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr ""
-
-msgid "Make Utility windows not being shown in pagers and task bars."
 msgstr ""
 
 # "korrekt" är nog mer lämpligt än "ordentligt"
