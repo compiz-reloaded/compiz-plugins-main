@@ -1024,6 +1024,8 @@ damageBoundingBox (CompWindow * w)
     XUnionRectWithRegion (&rect, regionToDamage, regionToDamage);
 
     damageScreenRegion (w->screen, regionToDamage);
+
+    XDestroyRegion (regionToDamage);
 }
 
 Bool getMousePointerXY(CompScreen * s, short *x, short *y)
