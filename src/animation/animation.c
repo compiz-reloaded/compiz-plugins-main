@@ -1535,7 +1535,10 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	aw->com.curAnimEffect == AnimEffectMagicLamp ||
 	aw->com.curAnimEffect == AnimEffectVacuum ||
 	// make sure dodging windows get one last damage
-	aw->com.curAnimEffect == AnimEffectDodge)
+	aw->com.curAnimEffect == AnimEffectDodge ||
+	// make sure non-animated closing windows get a damage
+	(aw->com.curWindowEvent == WindowEventClose &&
+	 aw->com.curAnimEffect == AnimEffectNone))
     {
 	updateBBWindow (NULL, w, &aw->BB);
     }
