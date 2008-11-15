@@ -23,15 +23,15 @@
  *
  *
  * Author(s):
- *	- Original zoom plugin; David Reveman <davidr@novell.com>
+ *	- Original zoom plug-in; David Reveman <davidr@novell.com>
  *	- Most features beyond basic zoom;
  *	  Kristian Lyngstol <kristian@bohemians.org>
  *
  * Description:
  *
- * This plugin offers zoom functionality with focus tracking,
+ * This plug-in offers zoom functionality with focus tracking,
  * fit-to-window actions, mouse panning, zoom area locking. Without
- * disabeling input.
+ * disabling input.
  *
  * Note on actual zoom process
  *
@@ -42,13 +42,13 @@
  *
  * Note on input
  *
- * We can not redirect input yet, but this plugin offers two fundamentally
+ * We can not redirect input yet, but this plug-in offers two fundamentally
  * different approaches to achieve input enabled zoom:
  *
  * 1.
  * Always have the zoomed area be in sync with the mouse cursor. This binds
  * the zoom area to the mouse position at any given time. It allows using
- * the original mouse cursor drawn by X, and is techincally very safe.
+ * the original mouse cursor drawn by X, and is technically very safe.
  * First used in Beryl's inputzoom.
  *
  * 2.
@@ -59,13 +59,13 @@
  *
  * This second method has one huge issue, which is bugged XFixes. After
  * hiding the cursor once with XFixes, some mouse cursors will simply be
- * invisible. The firefox loading cursor being one of them. 
+ * invisible. The Firefox loading cursor being one of them. 
  *
- * An other minor annoynance is that mouse sensitivity seems to increase as
+ * An other minor annoyance is that mouse sensitivity seems to increase as
  * you zoom in, since the mouse isn't really zoomed at all.
  *
  * Todo:
- *  - Different multihead modes
+ *  - Different multi head modes
  */
 
 #include <stdio.h>
@@ -352,7 +352,7 @@ updateActualTranslates (ZoomArea *za)
 
 /* Returns true if the head in question is currently moving.
  * Since we don't always bother resetting everything when
- * canceling zoom, we check for the condition of being completly
+ * canceling zoom, we check for the condition of being completely
  * zoomed out and not zooming in/out first.
  */
 static Bool
@@ -478,7 +478,7 @@ adjustXYVelocity (CompScreen *s, int out, float chunk)
 	(zs->zooms[out].yVelocity * chunk) / s->redrawTime;
 }
 
-/* Animate the movement (if any) in preperation of a paint screen.  */
+/* Animate the movement (if any) in preparation of a paint screen.  */
 static void
 zoomPreparePaintScreen (CompScreen *s,
 			int	   msSinceLastPaint)
@@ -673,16 +673,16 @@ constrainZoomTranslate (CompScreen *s)
 }
 
 /* Functions for adjusting the zoomed area.
- * These are the core of the zoom plugin; Anything wanting
+ * These are the core of the zoom plug-in; Anything wanting
  * to adjust the zoomed area must use setCenter or setZoomArea
- * and setScale or frontends to them.  */
+ * and setScale or front ends to them.  */
 
 /* Sets the center of the zoom area to X,Y.
  * We have to be able to warp the pointer here: If we are moved by
  * anything except mouse movement, we have to sync the
- * mouse pointer. This is to allow input, and is NOT necesarry
+ * mouse pointer. This is to allow input, and is NOT necessary
  * when input redirection is available to us or if we're cheating
- * and using a scaled mouse cursor to immitate IR.
+ * and using a scaled mouse cursor to imitate IR.
  * The center is not the center of the screen. This is the target-center;
  * that is, it's the point that's the same regardless of zoom level.
  */
@@ -766,7 +766,7 @@ zoomAreaToWindow (CompWindow *w)
     setZoomArea (w->screen, left, top, width, height, FALSE);
 }
 
-/* Pans the zoomed area vertically/horisontaly by * value * zs->panFactor
+/* Pans the zoomed area vertically/horizontally by * value * zs->panFactor
  * TODO: Fix output. */
 static void
 panZoom (CompScreen *s, int xvalue, int yvalue)
@@ -837,7 +837,7 @@ setScale (CompScreen *s, int out, float value)
 }
 
 /* Sets the zoom factor to the bigger of the two floats supplied. 
- * Convenince function for setting the scale factor for an area.
+ * Convenience function for setting the scale factor for an area.
  */
 static inline void
 setScaleBigger (CompScreen *s, int out, float x, float y)
@@ -940,7 +940,7 @@ convertToZoomedTarget (CompScreen *s,
 }
 
 /* Make sure the given point + margin is visible;
- * Translate to make it visible if necesarry.
+ * Translate to make it visible if necessary.
  * Returns false if the point isn't on a actively zoomed head
  * or the area is locked. */
 static Bool
@@ -1310,7 +1310,7 @@ drawCursor (CompScreen          *s,
     }
 }
 
-/* Create (if necessarry) a texture to store the cursor,
+/* Create (if necessary) a texture to store the cursor,
  * fetch the cursor with XFixes. Store it.  */
 static void
 zoomUpdateCursor (CompScreen * s, CursorTexture * cursor)
@@ -1355,7 +1355,7 @@ zoomUpdateCursor (CompScreen * s, CursorTexture * cursor)
 
     XFixesCursorImage *ci = XFixesGetCursorImage(dpy);
     /* Hack to avoid changing to an invisible (bugged)cursor image.
-     * Example: The animated firefox cursors.
+     * Example: The animated Firefox cursors.
      */
     if (ci->width <= 1 && ci->height <= 1)
     {
@@ -1455,7 +1455,7 @@ cursorZoomActive (CompScreen *s)
 
 /* Set the zoom area
  * This is an interface for scripting. 
- * int32:x1: left x coordiante
+ * int32:x1: left x coordinate
  * int32:y1: top y coordinate
  * int32:x2: right x
  * int32:y2: bottom y 
@@ -1520,7 +1520,7 @@ setZoomAreaAction (CompDisplay     *d,
  * int:x2: right X Coordinate
  * int:y1: top Y coordinate
  * int:y2: bottom Y coordinate
- * bool:scale: zoom out if necesarry to ensure visibility
+ * bool:scale: zoom out if necessary to ensure visibility
  * bool:restrain: Restrain the mouse cursor
  * int:margin: The margin to use (default: 0)
  * if x2/y2 is omitted, it is ignored.
@@ -1699,7 +1699,7 @@ lockZoomAction (CompDisplay     *d,
 }
 
 /* Zoom to a specific level.
- * taget defines the target zoom level.
+ * target defines the target zoom level.
  * First set the scale level and mark the display as grabbed internally (to
  * catch the FocusIn event). Either target the focused window or the mouse,
  * depending on settings.
@@ -2060,11 +2060,11 @@ zoomTerminate (CompDisplay     *d,
     return FALSE;
 }
 
-/* Focus-track related event handeling.
+/* Focus-track related event handling.
  * The lastMapped is a hack to ensure that newly mapped windows are
  * caught even if the grab that (possibly) triggered them affected
- * the mode. Windows created by a keybind (like creating a terminal
- * on a keybind) tends to trigger FocusIn events with mode other than
+ * the mode. Windows created by a key binding (like creating a terminal
+ * on a key binding) tends to trigger FocusIn events with mode other than
  * Normal. This works around this problem.
  * FIXME: Cleanup.
  * TODO: Avoid maximized windows.
@@ -2165,7 +2165,7 @@ zoomHandleEvent (CompDisplay *d,
     WRAP (zd, d, handleEvent, zoomHandleEvent);
 }
 
-/* Settings etc, boring stuff */
+/* Settings etc., boring stuff */
 static const CompMetadataOptionInfo zoomDisplayOptionInfo[] = {
     { "initiate", "key", 0, zoomInitiate, zoomTerminate },
     { "zoom_in", "button", 0, zoomIn, 0 },
