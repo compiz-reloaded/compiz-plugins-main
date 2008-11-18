@@ -594,7 +594,7 @@ thumbHandleEvent (CompDisplay * d,
 	    THUMB_SCREEN (s);
 	    THUMB_DISPLAY (w->screen->display);
 
-	    if (w->type & CompWindowTypeDockMask)
+	    if (w->wmType & CompWindowTypeDockMask)
 	    {
 		if (ts->dock != w)
 		{
@@ -644,7 +644,7 @@ thumbHandleEvent (CompDisplay * d,
 	    THUMB_SCREEN (w->screen);
 	    THUMB_DISPLAY (w->screen->display);
 
-	    if (w->type & CompWindowTypeDockMask)
+	    if (w->wmType & CompWindowTypeDockMask)
 	    {
 		ts->dock = NULL;
 
