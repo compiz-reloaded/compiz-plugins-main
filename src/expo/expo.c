@@ -1571,10 +1571,6 @@ expoDonePaintScreen (CompScreen * s)
 			continue;
 		}
 
-		if (!(w->type & (CompWindowTypeNormalMask |
-				 CompWindowTypeFullscreenMask)))
-		    continue;
-
 		xOffset = s->hsize * s->width;
 		yOffset = s->vsize * s->height;
 
@@ -1596,6 +1592,18 @@ expoDonePaintScreen (CompScreen * s)
 		if (!inWindow)
 		    continue;
 
+		/* make sure we never move windows we're not allowed to move */
+		if (!w->managed)
+		    w = NULL;
+		else if (!(w->actions & CompWindowActionMoveMask))
+		    w = NULL;
+		else if (w->type & (CompWindowTypeDockMask |
+				    CompWindowTypeDesktopMask))
+		    w = NULL;
+
+		if (!w)
+		    break;
+
 		es->dndState  = DnDDuring;
 		es->dndWindow = w;
 
@@ -1612,7 +1620,7 @@ expoDonePaintScreen (CompScreen * s)
 	    }
 	    else
 	    {
-		/* no window was hovered */
+		/* no (movable) window was hovered */
 		es->dndState = DnDNone;
 	    }
 
