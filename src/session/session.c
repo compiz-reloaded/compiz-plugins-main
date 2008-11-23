@@ -38,8 +38,9 @@
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 
-#define SESSION_DISPLAY_OPTION_SAVE_LEGACY 0
-#define SESSION_DISPLAY_OPTION_NUM         1
+#define SESSION_DISPLAY_OPTION_SAVE_LEGACY  0
+#define SESSION_DISPLAY_OPTION_IGNORE_MATCH 1
+#define SESSION_DISPLAY_OPTION_NUM          2
 
 typedef struct _SessionWindowList
 {
@@ -344,6 +345,11 @@ isSessionWindow (CompWindow *w)
     if (sessionGetIsEmbedded (w->screen->display, w->id))
 	return FALSE;
 
+    SESSION_DISPLAY (w->screen->display);
+
+    if (matchEval (&sd->opt[SESSION_DISPLAY_OPTION_IGNORE_MATCH].value.match, w))
+	return FALSE;
+
     return TRUE;
 }
 
@@ -516,7 +522,7 @@ sessionMatchWindowClass (CompWindow        *w,
     return TRUE;
 }
 
-static void
+static Bool
 sessionReadWindow (CompWindow *w)
 {
     CompDisplay        *d = w->screen->display;
@@ -531,14 +537,14 @@ sessionReadWindow (CompWindow *w)
     /* optimization: don't mess around with getting X properties
        if there is nothing to match */
     if (!sc->windowList)
-	return;
+	return FALSE;
 
     if (!isSessionWindow (w))
-	return;
+	return FALSE;
 
     clientId = sessionGetClientLeaderProperty (w, sd->clientIdAtom);
     if (!clientId && !sd->opt[SESSION_DISPLAY_OPTION_SAVE_LEGACY].value.b)
-	return;
+	return FALSE;
 
     command  = sessionGetClientLeaderProperty (w, sd->commandAtom);
     title    = sessionGetWindowTitle (w);
@@ -584,55 +590,57 @@ sessionReadWindow (CompWindow *w)
     if (role)
 	free (role);
 
-    if (cur)
+    if (!cur)
+	return FALSE;
+
+    /* found a window */
+    if (cur->geometryValid)
     {
-	/* found a window */
-	if (cur->geometryValid)
+	xwcm = CWX | CWY;
+
+	xwc.x = cur->geometry.x;
+	xwc.y = cur->geometry.y;
+
+	if (!windowOnAllViewports (w))
 	{
-	    xwcm = CWX | CWY;
-
-	    xwc.x = cur->geometry.x;
-	    xwc.y = cur->geometry.y;
-
-	    if (!windowOnAllViewports (w))
-	    {
-		xwc.x -= (w->screen->x * w->screen->width);
-		xwc.y -= (w->screen->y * w->screen->height);
-	    }
-
-	    if (cur->geometry.width != w->serverWidth)
-	    {
-		xwc.width = cur->geometry.width;
-		xwcm |= CWWidth;
-	    }
-	    if (cur->geometry.height != w->serverHeight)
-	    {
-		xwc.height = cur->geometry.height;
-		xwcm |= CWHeight;
-	    }
-
-	    if (w->mapNum && (xwcm & (CWWidth | CWHeight)))
-		sendSyncRequest (w);
-
-	    configureXWindow (w, xwcm, &xwc);
-	    w->placed = TRUE;
+	    xwc.x -= (w->screen->x * w->screen->width);
+	    xwc.y -= (w->screen->y * w->screen->height);
 	}
 
-	if (cur->minimized)
-	    minimizeWindow (w);
-
-	if (cur->workspace != -1)
-	    setDesktopForWindow (w, cur->workspace);
-
-	if (cur->state)
+	if (cur->geometry.width != w->serverWidth)
 	{
-	    changeWindowState (w, w->state | cur->state);
-	    updateWindowAttributes (w, CompStackingUpdateModeNone);
+	    xwc.width = cur->geometry.width;
+	    xwcm |= CWWidth;
+	}
+	if (cur->geometry.height != w->serverHeight)
+	{
+	    xwc.height = cur->geometry.height;
+	    xwcm |= CWHeight;
 	}
 
-	/* remove item from list */
-	sessionRemoveWindowListItem (cur);
+	if (w->mapNum && (xwcm & (CWWidth | CWHeight)))
+	    sendSyncRequest (w);
+
+	configureXWindow (w, xwcm, &xwc);
+	w->placed = TRUE;
     }
+
+    if (cur->minimized)
+	minimizeWindow (w);
+
+    if (cur->workspace != -1)
+	setDesktopForWindow (w, cur->workspace);
+
+    if (cur->state)
+    {
+	changeWindowState (w, w->state | cur->state);
+	updateWindowAttributes (w, CompStackingUpdateModeNone);
+    }
+
+    /* remove item from list */
+    sessionRemoveWindowListItem (cur);
+
+    return TRUE;
 }
 
 static void
@@ -760,15 +768,19 @@ static void
 sessionHandleEvent (CompDisplay *d,
 		    XEvent      *event)
 {
+    CompWindow   *w;
+    unsigned int state;
+
     SESSION_DISPLAY (d);
 
     switch (event->type) {
     case MapRequest:
+	w = findWindowAtDisplay (d, event->xmaprequest.window);
+	if (w)
 	{
-	    CompWindow *w;
-	    w = findWindowAtDisplay (d, event->xmaprequest.window);
-	    if (w)
-		sessionReadWindow (w);
+	    state = w->state;
+	    if (!sessionReadWindow (w))
+		w = NULL;
 	}
 	break;
     }
@@ -776,6 +788,16 @@ sessionHandleEvent (CompDisplay *d,
     UNWRAP (sd, d, handleEvent);
     (*d->handleEvent) (d, event);
     WRAP (sd, d, handleEvent, sessionHandleEvent);
+
+    switch (event->type) {
+    case MapRequest:
+	if (w && !(state & CompWindowStateDemandsAttentionMask))
+	{
+	    state = w->state & ~CompWindowStateDemandsAttentionMask;
+	    changeWindowState (w, state);
+	}
+	break;
+    }
 }
 
 static void
@@ -926,7 +948,8 @@ sessionSetObjectOption (CompPlugin      *plugin,
 }
 
 static const CompMetadataOptionInfo sessionDisplayOptionInfo[] = {
-    { "save_legacy", "bool", 0, 0, 0 }
+    { "save_legacy", "bool", 0, 0, 0 },
+    { "ignore_match", "match", 0, 0, 0 }
 };
 
 static int

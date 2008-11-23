@@ -14,6 +14,11 @@
 		<_long>Also try to save and restore legacy apps that don't support the X session management protocol. This setting only should be used in KDE, as only KDE's session manager also saves those applications.</_long>
 		<default>false</default>
 	    </option>
+	    <option name="ignore_match" type="match">
+	    	<_short>Windows to ignore</_short>
+	    	<_long>Matching windows will not be handled by the session plugin</_long>
+    		<default/>
+            </option>
 	</display>
     </plugin>
 </compiz>
