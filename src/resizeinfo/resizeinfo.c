@@ -392,7 +392,7 @@ infoWindowGrabNotify (CompWindow   *w,
 
     INFO_SCREEN (s);
 
-    if (!is->pWindow && !(w->state & MAXIMIZE_STATE))
+    if ((!is->pWindow || !is->drawing) && !(w->state & MAXIMIZE_STATE))
     {
 	Bool showInfo;
 	showInfo = ((w->sizeHints.width_inc != 1) && 
@@ -403,7 +403,7 @@ infoWindowGrabNotify (CompWindow   *w,
 	{
 	    is->pWindow  = w;
 	    is->drawing  = TRUE;
-	    is->fadeTime = resizeinfoGetFadeTime (s->display);
+	    is->fadeTime = resizeinfoGetFadeTime (s->display) - is->fadeTime;
 
 	    is->resizeGeometry.x      = w->attrib.x;
 	    is->resizeGeometry.y      = w->attrib.y;
@@ -427,7 +427,7 @@ infoWindowUngrabNotify (CompWindow *w)
     if (w == is->pWindow)
     {
 	is->drawing = FALSE;
-	is->fadeTime = resizeinfoGetFadeTime (s->display);
+	is->fadeTime = resizeinfoGetFadeTime (s->display) - is->fadeTime;
 	damageScreen (s);
     }
 	
