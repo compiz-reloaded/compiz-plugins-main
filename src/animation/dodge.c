@@ -115,6 +115,8 @@ fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
 	fxDodgeProcessSubject(wCur, wRegion, dodgeRegion,
 			      wCur == aw->dodgeSubjectWin);
 	awCur = GET_ANIM_WINDOW(wCur, as);
+	if (!awCur)
+	    break;
     }
 
     AnimWindow *awSubj = GET_ANIM_WINDOW(aw->dodgeSubjectWin, as);
@@ -123,6 +125,8 @@ fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
     {
 	fxDodgeProcessSubject(wCur, wRegion, dodgeRegion, FALSE);
 	awCur = GET_ANIM_WINDOW(wCur, as);
+	if (!awCur)
+	    break;
     }
 
     XClipBox(dodgeRegion, dodgeBox);
