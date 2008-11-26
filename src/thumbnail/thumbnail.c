@@ -413,22 +413,13 @@ checkPosition (CompWindow *w)
 {
     if (thumbnailGetCurrentViewport (w->screen))
     {
-	/* TODO: We need a faster calculation here */
-	Bool   onViewport = FALSE;
-	Region reg = XCreateRegion ();
-	
-	if (!reg)
+	if (w->serverX >= w->screen->width    ||
+	    w->serverX + w->serverWidth <= 0  ||
+	    w->serverY >= w->screen->height   ||
+	    w->serverY + w->serverHeight <= 0)
+	{
 	    return FALSE;
-
-	XIntersectRegion (w->region, &w->screen->region, reg);
-
-	if (reg->numRects)
-	    onViewport = TRUE;
-
-	XDestroyRegion (reg);
-
-	if (!onViewport)
-	    return FALSE;
+	}
     }
 
     return TRUE;
