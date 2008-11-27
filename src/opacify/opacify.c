@@ -273,9 +273,8 @@ checkScreenSwitch (CompScreen *s)
     return TRUE;
 }
 
-/* Decides what to do after a timeout occured. 
- * Either we reset the opacity because we just toggled,
- * or we handle the event.
+/* Timeout-time! Unset the timeout handler, make sure we're on the same
+ * screen, handle the event.
  */
 static Bool
 handleTimeout (void *data)
@@ -287,12 +286,6 @@ handleTimeout (void *data)
 
     od->timeoutHandle = 0;
     checkScreenSwitch (s);
-    if (!od->toggle)
-    {
-	clearPassive (s);
-	resetOpacity (s, os->active);
-	os->active = 0;
-    }
 
     opacifyHandleEnter (s, os->newActive);
 
@@ -366,8 +359,6 @@ opacifyPaintWindow (CompWindow              *w,
  * If a window was entered: call upon handle_timeout after od->timeout 
  * micro seconds, or directly if od->timeout is 0 (no delay).
  *
- * FIXME: In the perfect world, toggle-resetting is done in the action
- * handler that does the actual toggling.
  */
 static void
 opacifyHandleEvent (CompDisplay *d,
@@ -381,7 +372,7 @@ opacifyHandleEvent (CompDisplay *d,
     (*d->handleEvent) (d, event);
     WRAP (od, d, handleEvent, opacifyHandleEvent);
 
-    if (!od->toggle && !opacifyGetToggleReset (d))
+    if (!od->toggle)
 	return;
 
     switch (event->type) {
@@ -392,9 +383,6 @@ opacifyHandleEvent (CompDisplay *d,
 	    Window id;
 
     	    OPACIFY_SCREEN (s);
-
-    	    if (!od->toggle && !os->active)
-		return;
 
 	    id = event->xcrossing.window;
 	    os->newActive = findTopLevelWindowAtScreen (s, id);
@@ -436,9 +424,9 @@ opacifyHandleEvent (CompDisplay *d,
     }
 }
 
-
-/* Configuration, initialization, boring stuff. ----------------------- */
-
+/* Toggle opacify on/off. We are in Display-context, make sure we handle all
+ * screens. 
+ */
 static Bool
 opacifyToggle (CompDisplay     *d,
 	       CompAction      *action,
@@ -449,9 +437,25 @@ opacifyToggle (CompDisplay     *d,
     OPACIFY_DISPLAY (d);
 
     od->toggle = !od->toggle;
+    if (!od->toggle && opacifyGetToggleReset (d))
+    {
+	CompScreen *s;
+	for (s = d->screens; s; s = s->next)
+	{
+	    OPACIFY_SCREEN (s);
+	    if (os->active)
+	    {
+		clearPassive (s);
+		resetOpacity (s, os->active);
+		os->active = 0;
+	    }
+	}
+    }
 
     return TRUE;
 }
+
+/* Configuration, initialization, boring stuff. ----------------------- */
 
 static void
 opacifyDisplayOptionChanged (CompDisplay           *d,
