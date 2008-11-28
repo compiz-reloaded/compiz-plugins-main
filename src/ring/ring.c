@@ -34,7 +34,6 @@
 #include <sys/time.h>
 
 #include <X11/Xatom.h>
-#include <X11/cursorfont.h>
 
 #include <compiz-core.h>
 #include <compiz-text.h>
@@ -94,8 +93,6 @@ typedef struct _RingScreen {
     int     rotTarget;
     int     rotAdjust;
     GLfloat rVelocity;
-
-    Cursor cursor;
 
     /* only used for sorting */
     CompWindow   **windows;
@@ -1192,7 +1189,7 @@ ringInitiate (CompScreen      *s,
     if (!rs->grabIndex)
     {
 	if (ringGetSelectWithMouse (s))
-	    rs->grabIndex = pushScreenGrab (s, rs->cursor, "ring");
+	    rs->grabIndex = pushScreenGrab (s, s->normalCursor, "ring");
 	else
 	    rs->grabIndex = pushScreenGrab (s, s->invisibleCursor, "ring");
     }
@@ -1709,8 +1706,6 @@ ringInitScreen (CompPlugin *p,
     WRAP (rs, s, paintWindow, ringPaintWindow);
     WRAP (rs, s, damageWindowRect, ringDamageWindowRect);
 
-    rs->cursor = XCreateFontCursor (s->display->display, XC_left_ptr);
-
     s->base.privates[rd->screenPrivateIndex].ptr = rs;
 
     return TRUE;
@@ -1733,9 +1728,6 @@ ringFiniScreen (CompPlugin *p,
     matchFini (&rs->match);
 
     ringFreeWindowTitle (s);
-
-    if (rs->cursor)
-	XFreeCursor (s->display->display, rs->cursor);
 
     if (rs->windows)
 	free (rs->windows);
