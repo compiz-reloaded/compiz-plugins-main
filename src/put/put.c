@@ -326,6 +326,21 @@ putInitiateCommon (CompDisplay     *d,
 
 	PUT_SCREEN (s);
 
+	/* we don't want to do anything with override redirect windows */
+	if (w->attrib.override_redirect)
+	    return FALSE;
+
+	/* we don't want to be moving the desktop, docks,
+	   or fullscreen windows */
+	if (w->type & (CompWindowTypeDesktopMask |
+		       CompWindowTypeDockMask    |
+		       CompWindowTypeFullscreenMask))
+	    return FALSE;
+
+	/* don't move windows without move action */
+	if (!(w->actions & CompWindowActionMoveMask))
+	    return FALSE;
+
 	if (!ps->grabIndex)
 	{
 	    /* this will keep put from working while something
@@ -348,19 +363,6 @@ putInitiateCommon (CompDisplay     *d,
 
 	    px = getIntOptionNamed (option, nOption, "x", 0);
 	    py = getIntOptionNamed (option, nOption, "y", 0);
-
-	    /* we don't want to do anything with override redirect windows */
-	    if (w->attrib.override_redirect)
-		return FALSE;
-
-	    /* we don't want to be moving the desktop, docks,
-	       or fullscreen windows */
-	    if (w->type & CompWindowTypeDesktopMask ||
-		w->type & CompWindowTypeDockMask ||
-		w->type & CompWindowTypeFullscreenMask)
-	    {
-		return FALSE;
-	    }
 
 	    /* get the Xinerama head from the options list */
 	    head = getIntOptionNamed(option, nOption, "head", -1);
