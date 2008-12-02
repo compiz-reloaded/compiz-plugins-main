@@ -23,10 +23,6 @@
  *
  */
 
-/* TODO list for this plugin
- * - is there a way to get icons larger than 96x96?
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -128,6 +124,7 @@ typedef struct _RingWindow {
 
 #define PI 3.1415926
 #define DIST_ROT (3600 / rs->nWindows)
+#define ICON_SIZE 64
 
 #define GET_RING_DISPLAY(d)				      \
     ((RingDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
@@ -457,7 +454,7 @@ ringPaintWindow (CompWindow		 *w,
 	{
 	    CompIcon *icon;
 
-	    icon = getWindowIcon (w, 96, 96);
+	    icon = getWindowIcon (w, 256, 256);
 	    if (!icon)
 		icon = w->screen->defaultIcon;
 
@@ -483,6 +480,9 @@ ringPaintWindow (CompWindow		 *w,
     		case OverlayIconNone:
 		case OverlayIconEmblem:
 		    scale = (rw->slot) ? rw->slot->depthScale : 1.0f;
+		    if (icon->width > ICON_SIZE || icon->height > ICON_SIZE)
+			scale = MIN ((scale * ICON_SIZE / icon->width),
+				     (scale * ICON_SIZE / icon->height));
 		    break;
 		case OverlayIconBig:
 		default:
