@@ -337,35 +337,6 @@ scaleaddonCheckWindowHighlight (CompScreen *s)
     }
 }
 
-static CompWindow*
-scaleaddonCheckForWindowAt (CompScreen *s,
-			    int        x,
-			    int        y)
-{
-    float      x1, y1, x2, y2;
-    CompWindow *w;
-
-    for (w = s->reverseWindows; w; w = w->prev)
-    {
-        SCALE_WINDOW (w);
-
-        if (sw->slot)
-	{
-	    x1 = sw->tx + w->attrib.x - w->input.left * sw->scale;
-            y1 = sw->ty + w->attrib.y - w->input.top * sw->scale;
-            x2 = sw->tx + w->attrib.x +
-		 (w->width + w->input.right) * sw->scale;
-            y2 = sw->ty + w->attrib.y +
-		 (w->height + w->input.bottom) * sw->scale;
-
-            if (x1 <= x && y1 <= y && x2 > x && y2 > y)
-                return w;
-        }
-    }
-
-    return NULL;
-}
-
 static Bool
 scaleaddonCloseWindow (CompDisplay     *d,
 	               CompAction      *action,
@@ -384,18 +355,12 @@ scaleaddonCloseWindow (CompDisplay     *d,
 	CompWindow *w;
 
 	SCALE_SCREEN (s);
+	ADDON_DISPLAY (d);
 
 	if (!ss->grabIndex)
 	    return FALSE;
 
-	if (state & CompActionStateInitKey)
-	{
-	    SCALE_DISPLAY (d);
-	    w = findWindowAtDisplay (d, sd->hoveredWindow);
-	}
-	else
-	    w = scaleaddonCheckForWindowAt (s, pointerX, pointerY);
-
+	w = findWindowAtDisplay (d, ad->highlightedWindow);
         if (w)
 	{
 	    closeWindow (w, getCurrentTimeFromDisplay (d));
@@ -424,18 +389,12 @@ scaleaddonPullWindow  (CompDisplay     *d,
 	CompWindow *w;
 
 	SCALE_SCREEN (s);
+	ADDON_DISPLAY (d);
 
 	if (!ss->grabIndex)
 	    return FALSE;
 
-	if (state & CompActionStateInitKey)
-	{
-	    SCALE_DISPLAY (d);
-	    w = findWindowAtDisplay (d, sd->hoveredWindow);
-	}
-	else
-	    w = scaleaddonCheckForWindowAt (s, pointerX, pointerY);
-
+	w = findWindowAtDisplay (d, ad->highlightedWindow);
         if (w)
 	{
 	    int x, y, vx, vy;
@@ -539,18 +498,12 @@ scaleaddonZoomWindow (CompDisplay     *d,
 	CompWindow *w;
 
 	SCALE_SCREEN (s);
+	ADDON_DISPLAY (d);
 
 	if (!ss->grabIndex)
 	    return FALSE;
 
-	if (state & CompActionStateInitKey)
-	{
-	    SCALE_DISPLAY (d);
-	    w = findWindowAtDisplay (d, sd->hoveredWindow);
-	}
-	else
-	    w = scaleaddonCheckForWindowAt (s, pointerX, pointerY);
-
+	w = findWindowAtDisplay (d, ad->highlightedWindow);
         if (w)
 	{
 	    SCALE_WINDOW (w);
