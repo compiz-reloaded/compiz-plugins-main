@@ -104,6 +104,7 @@ typedef struct _WallScreen
     float curPosY;
     int   gotoX;
     int   gotoY;
+    int   lastAngle;
 
     int boxTimeout;
     int boxOutputDevice;
@@ -585,7 +586,7 @@ wallHandleEvent (CompDisplay *d,
 	    if (!s)
 		break;
 
-	    if (otherScreenGrabExist (s, "switcher", 0))
+	    if (otherScreenGrabExist (s, "switcher", "wall", 0))
 		break;
 
     	    dx = event->xclient.data.l[0] / s->width - s->x;
@@ -677,7 +678,7 @@ wallInitiate (CompScreen      *s,
     if (state & CompActionStateInitButton)
 	action->state |= CompActionStateTermButton;
 
-    ws->showPreview = TRUE;
+    ws->showPreview = wallGetShowSwitcher (s->display);
 
     return TRUE;
 }
@@ -1030,6 +1031,53 @@ wallDrawQuad (CompMatrix *matrix, BOX *box)
     glVertex2i (box->x1, box->y1);
 }
 
+static int
+wallGetMovementAngle (CompScreen *s)
+{
+    int angle;
+    float dx, dy;
+
+    WALL_SCREEN (s);
+
+    dx = ws->gotoX - ws->curPosX;
+    dy = ws->gotoY - ws->curPosY;
+
+    if (dx > 0 && dy == 0)
+    {
+	angle = 90;
+    }
+    else if (dx < 0 && dy == 0)
+    {
+	angle = 270;
+    }
+    else if (dy > 0)
+    {
+	angle = 180;
+
+	if (dx < 0)
+	    angle += 45;
+	else if (dx > 0)
+	    angle -= 45;
+    }
+    else if (dy < 0)
+    {
+	angle = 0;
+
+	if (dx < 0)
+	    angle = -45;
+	else if (dx > 0)
+	    angle = 45;
+    }
+    else
+    {
+	angle = ws->lastAngle;
+    }
+
+    ws->lastAngle = angle;
+
+    return angle;
+}
+
 static void
 wallDrawCairoTextureOnScreen (CompScreen *s)
 {
@@ -1063,9 +1111,10 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 
     if (!ws->moving)
     {
-	double left;
-	left = (float)ws->boxTimeout /
-	       (wallGetPreviewTimeout (s->display) * 1000.0f);
+	double left, timeout;
+
+	timeout = wallGetPreviewTimeout (s->display) * 1000.0f;
+	left    = (timeout > 0) ? (float) ws->boxTimeout / timeout : 1.0f;
 
 	if (left < 0)
     	    left = 0.0f;
@@ -1131,12 +1180,10 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
     glEnd ();
     disableTexture (s, &ws->thumbContext.texture);
 
-    if (ws->moving)
+    if (ws->moving || ws->showPreview)
     {
 	/* draw highlight */
-	float angle = 0.0f;
-	float dx, dy;
-	int   aW, aH;
+	int   aW, aH, angle;
 
 	box.x1 = s->x * (width + border) + topLeftX + border;
 	box.x2 = box.x1 + width;
@@ -1157,32 +1204,10 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	/* draw arrow */
 	enableTexture (s, &ws->arrowContext.texture, COMP_TEXTURE_FILTER_GOOD);
 
-	dx = ws->gotoX - ws->curPosX;
-	dy = ws->gotoY - ws->curPosY;
-
-	if (dx > 0 && dy == 0)
-	    angle = 90.0f;
-	else if (dx < 0 && dy == 0)
-	    angle = 270.0f;
-	else if (dy > 0)
-	{
-	    angle = 180.0f;
-
-	    if (dx < 0)
-		angle += 45.0f;
-	    else if (dx > 0)
-		angle -= 45.0f;
-	}
-	else if (dy < 0)
-	{
-	    if (dx < 0)
-		angle = -45.0f;
-	    else if (dx > 0)
-		angle = 45.0f;
-	}
-
 	aW = ws->arrowContext.width;
 	aH = ws->arrowContext.height;
+
+	angle = wallGetMovementAngle (s);
 
 	/* if we have a viewport preview we just paint the
 	   arrow outside the switcher */
@@ -1191,7 +1216,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	    width  = (float) ws->switcherContext.width;
 	    height = (float) ws->switcherContext.height;
 
-	    switch ((int)angle)
+	    switch (angle)
 	    {
 	    /* top left */
 	    case -45:
@@ -1309,7 +1334,8 @@ wallPaintOutput (CompScreen              *s,
     status = (*s->paintOutput) (s, sAttrib, transform, region, output, mask);
     WRAP (ws, s, paintOutput, wallPaintOutput);
 
-    if ((ws->moving || ws->boxTimeout) && wallGetShowSwitcher(s->display) &&
+    if (wallGetShowSwitcher (s->display) &&
+	(ws->moving || ws->showPreview || ws->boxTimeout) &&
 	(output->id == ws->boxOutputDevice || output == &s->fullscreenOutput))
     {
 	CompTransform sTransform = *transform;
@@ -1357,8 +1383,8 @@ wallPaintOutput (CompScreen              *s,
 		    if (i == s->x && j == s->y && ws->moving)
 			ws->mSAttribs.brightness = BRIGHT;
 
-		    if (ws->boxTimeout && !ws->moving &&
-			i == s->x && j == s->y)
+		    if ((ws->boxTimeout || ws->showPreview) &&
+			!ws->moving && i == s->x && j == s->y)
 		    {
 			ws->mSAttribs.brightness = BRIGHT;
 		    }
@@ -1633,7 +1659,7 @@ wallDonePaintScreen (CompScreen *s)
 {
     WALL_SCREEN (s);
 
-    if (ws->moving || ws->boxTimeout)
+    if (ws->moving || ws->showPreview || ws->boxTimeout)
     {
 	ws->boxTimeout = MAX (0, ws->boxTimeout);
 	damageScreen (s);
@@ -1920,6 +1946,7 @@ wallInitScreen (CompPlugin *p,
     ws->showPreview = FALSE;
     ws->focusDefault = TRUE;
     ws->moveWindow = None;
+    ws->lastAngle = 0;
 
     memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
     memset (&ws->thumbContext, 0, sizeof (WallCairoContext));
