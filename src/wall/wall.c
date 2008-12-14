@@ -104,7 +104,7 @@ typedef struct _WallScreen
     float curPosY;
     int   gotoX;
     int   gotoY;
-    int   lastAngle;
+    int   direction; /* >= 0 : direction arrow angle, < 0 : no direction */
 
     int boxTimeout;
     int boxOutputDevice;
@@ -500,6 +500,33 @@ wallComputeTranslation (CompScreen *s,
     *y = dy;
 }
 
+/* movement remainder that gets ignored for direction calculation */
+#define IGNORE_REMAINDER 0.05
+
+static void
+wallDetermineMovementAngle (CompScreen *s)
+{
+    int angle;
+    float dx, dy;
+
+    WALL_SCREEN (s);
+
+    dx = ws->gotoX - ws->curPosX;
+    dy = ws->gotoY - ws->curPosY;
+
+    if (dy > IGNORE_REMAINDER)
+	angle = (dx > IGNORE_REMAINDER) ? 135 :
+	        (dx < -IGNORE_REMAINDER) ? 225 : 180;
+    else if (dy < -IGNORE_REMAINDER)
+	angle = (dx > IGNORE_REMAINDER) ? 45 :
+	        (dx < -IGNORE_REMAINDER) ? 315 : 0;
+    else
+	angle = (dx > IGNORE_REMAINDER) ? 90 :
+	        (dx < -IGNORE_REMAINDER) ? 270 : -1;
+
+    ws->direction = angle;
+}
+
 static Bool
 wallMoveViewport (CompScreen *s,
 		  int        x,
@@ -546,6 +573,8 @@ wallMoveViewport (CompScreen *s,
     }
     ws->gotoX = s->x - x;
     ws->gotoY = s->y - y;
+
+    wallDetermineMovementAngle (s);
 
     if (!ws->grabIndex)
 	ws->grabIndex = pushScreenGrab (s, s->invisibleCursor, "wall");
@@ -1031,53 +1060,6 @@ wallDrawQuad (CompMatrix *matrix, BOX *box)
     glVertex2i (box->x1, box->y1);
 }
 
-static int
-wallGetMovementAngle (CompScreen *s)
-{
-    int angle;
-    float dx, dy;
-
-    WALL_SCREEN (s);
-
-    dx = ws->gotoX - ws->curPosX;
-    dy = ws->gotoY - ws->curPosY;
-
-    if (dx > 0 && dy == 0)
-    {
-	angle = 90;
-    }
-    else if (dx < 0 && dy == 0)
-    {
-	angle = 270;
-    }
-    else if (dy > 0)
-    {
-	angle = 180;
-
-	if (dx < 0)
-	    angle += 45;
-	else if (dx > 0)
-	    angle -= 45;
-    }
-    else if (dy < 0)
-    {
-	angle = 0;
-
-	if (dx < 0)
-	    angle = -45;
-	else if (dx > 0)
-	    angle = 45;
-    }
-    else
-    {
-	angle = ws->lastAngle;
-    }
-
-    ws->lastAngle = angle;
-
-    return angle;
-}
-
 static void
 wallDrawCairoTextureOnScreen (CompScreen *s)
 {
@@ -1183,7 +1165,7 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
     if (ws->moving || ws->showPreview)
     {
 	/* draw highlight */
-	int   aW, aH, angle;
+	int   aW, aH;
 
 	box.x1 = s->x * (width + border) + topLeftX + border;
 	box.x2 = box.x1 + width;
@@ -1202,91 +1184,93 @@ wallDrawCairoTextureOnScreen (CompScreen *s)
 	disableTexture (s, &ws->highlightContext.texture);
 
 	/* draw arrow */
-	enableTexture (s, &ws->arrowContext.texture, COMP_TEXTURE_FILTER_GOOD);
-
-	aW = ws->arrowContext.width;
-	aH = ws->arrowContext.height;
-
-	angle = wallGetMovementAngle (s);
-
-	/* if we have a viewport preview we just paint the
-	   arrow outside the switcher */
-	if (wallGetMiniscreen (s->display))
+	if (ws->direction >= 0)
 	{
-	    width  = (float) ws->switcherContext.width;
-	    height = (float) ws->switcherContext.height;
+	    enableTexture (s, &ws->arrowContext.texture,
+			   COMP_TEXTURE_FILTER_GOOD);
 
-	    switch (angle)
+	    aW = ws->arrowContext.width;
+	    aH = ws->arrowContext.height;
+
+	    /* if we have a viewport preview we just paint the
+	       arrow outside the switcher */
+	    if (wallGetMiniscreen (s->display))
 	    {
-	    /* top left */
-	    case -45:
-		box.x1 = topLeftX - aW - border;
-		box.y1 = topLeftY - aH - border;
-		break;
-	    /* up */
-    	    case 0:
-		box.x1 = topLeftX + width / 2.0f - aW / 2.0f;
-		box.y1 = topLeftY - aH - border;
-		break;
-	    /* top right */
-	    case 45:
-		box.x1 = topLeftX + width + border;
-		box.y1 = topLeftY - aH - border;
-		break;
-	    /* right */
-	    case 90:
-		box.x1 = topLeftX + width + border;
-		box.y1 = topLeftY + height / 2.0f - aH / 2.0f;
-		break;
-	    /* bottom right */
-	    case 135:
-		box.x1 = topLeftX + width + border;
-		box.y1 = topLeftY + height + border;
-		break;
-	    /* down */
-	    case 180:
-		box.x1 = topLeftX + width / 2.0f - aW / 2.0f;
-		box.y1 = topLeftY + height + border;
-		break;
-	    /* bottom left */
-	    case 225:
-		box.x1 = topLeftX - aW - border;
-		box.y1 = topLeftY + height + border;
-		break;
-	    /* left */
-	    case 270:
-		box.x1 = topLeftX - aW - border;
-		box.y1 = topLeftY + height / 2.0f - aH / 2.0f;
-		break;
-	    default:
-		break;
+		width  = (float) ws->switcherContext.width;
+		height = (float) ws->switcherContext.height;
+
+		switch (ws->direction)
+		{
+		    /* top left */
+		    case 315:
+			box.x1 = topLeftX - aW - border;
+			box.y1 = topLeftY - aH - border;
+			break;
+			/* up */
+		    case 0:
+			box.x1 = topLeftX + width / 2.0f - aW / 2.0f;
+			box.y1 = topLeftY - aH - border;
+			break;
+			/* top right */
+		    case 45:
+			box.x1 = topLeftX + width + border;
+			box.y1 = topLeftY - aH - border;
+			break;
+			/* right */
+		    case 90:
+			box.x1 = topLeftX + width + border;
+			box.y1 = topLeftY + height / 2.0f - aH / 2.0f;
+			break;
+			/* bottom right */
+		    case 135:
+			box.x1 = topLeftX + width + border;
+			box.y1 = topLeftY + height + border;
+			break;
+			/* down */
+		    case 180:
+			box.x1 = topLeftX + width / 2.0f - aW / 2.0f;
+			box.y1 = topLeftY + height + border;
+			break;
+			/* bottom left */
+		    case 225:
+			box.x1 = topLeftX - aW - border;
+			box.y1 = topLeftY + height + border;
+			break;
+			/* left */
+		    case 270:
+			box.x1 = topLeftX - aW - border;
+			box.y1 = topLeftY + height / 2.0f - aH / 2.0f;
+			break;
+		    default:
+			break;
+		}
 	    }
+	    else
+	    {
+		/* arrow is visible (no preview is painted over it) */
+		box.x1 = s->x * (width + border) + topLeftX + border;
+		box.x1 += width / 2 - aW / 2;
+		box.y1 = s->y * (height + border) + topLeftY + border;
+		box.y1 += height / 2 - aH / 2;
+	    }
+
+	    box.x2 = box.x1 + aW;
+	    box.y2 = box.y1 + aH;
+
+	    glTranslatef (box.x1 + aW / 2, box.y1 + aH / 2, 0.0f);
+	    glRotatef (ws->direction, 0.0f, 0.0f, 1.0f);
+	    glTranslatef (-box.x1 - aW / 2, -box.y1 - aH / 2, 0.0f);
+
+	    matrix = ws->arrowContext.texture.matrix;
+	    matrix.x0 -= box.x1 * matrix.xx;
+	    matrix.y0 -= box.y1 * matrix.yy;
+
+	    glBegin (GL_QUADS);
+	    wallDrawQuad (&matrix, &box);
+	    glEnd ();
+
+	    disableTexture (s, &ws->arrowContext.texture);
 	}
-	else
-	{
-	    /* arrow is visible (no preview is painted over it) */
-	    box.x1 = s->x * (width + border) + topLeftX + border;
-	    box.x1 += width / 2 - aW / 2;
-	    box.y1 = s->y * (height + border) + topLeftY + border;
-	    box.y1 += height / 2 - aH / 2;
-	}
-
-	box.x2 = box.x1 + aW;
-	box.y2 = box.y1 + aH;
-
-	glTranslatef (box.x1 + aW / 2, box.y1 + aH / 2, 0.0f);
-	glRotatef (angle, 0.0f, 0.0f, 1.0f);
-	glTranslatef (-box.x1 - aW / 2, -box.y1 - aH / 2, 0.0f);
-
-	matrix = ws->arrowContext.texture.matrix;
-	matrix.x0 -= box.x1 * matrix.xx;
-	matrix.y0 -= box.y1 * matrix.yy;
-
-	glBegin (GL_QUADS);
-	wallDrawQuad (&matrix, &box);
-	glEnd ();
-
-	disableTexture (s, &ws->arrowContext.texture);
     }
 
     glDisable (GL_BLEND);
@@ -1946,7 +1930,7 @@ wallInitScreen (CompPlugin *p,
     ws->showPreview = FALSE;
     ws->focusDefault = TRUE;
     ws->moveWindow = None;
-    ws->lastAngle = 0;
+    ws->direction = -1;
 
     memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
     memset (&ws->thumbContext, 0, sizeof (WallCairoContext));
