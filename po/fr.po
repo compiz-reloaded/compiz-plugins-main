@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-11-04 12:29+0530\n"
+"POT-Creation-Date: 2008-12-15 15:25+0530\n"
 "PO-Revision-Date: 2008-10-08 10:01+0200\n"
 "Last-Translator: Jonathan Ernst <jonathan@ernstfamily.ch>\n"
 "Language-Team: <fr@li.org>\n"
@@ -2186,19 +2186,183 @@ msgstr "Décalage Y du curseur."
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Facteur de zoom pour le grossiseur lancé à partir du clavier."
 
+#, fuzzy
+msgid "Down-only maximumize"
+msgstr "Étaler"
+
+msgid "Down-only minimumize"
+msgstr ""
+
+msgid "Grow lower left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow lower right corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow the window downwards as much as possible."
+msgstr ""
+
+msgid "Grow the window horizontally as much as possible."
+msgstr ""
+
+msgid "Grow the window leftwards as much as possible."
+msgstr ""
+
+msgid "Grow the window rightwards as much as possible."
+msgstr ""
+
+msgid "Grow the window upwards as much as possible."
+msgstr ""
+
+msgid "Grow the window vertically as much as possible."
+msgstr ""
+
+msgid "Grow upper left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow upper right corner of a window as much as possible."
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal-only maximumize"
+msgstr "Avancement Horizontal"
+
+msgid "Horizontal-only minimumize"
+msgstr ""
+
 msgid "Ignore already overlapping windows in the calculations"
 msgstr "Ignorer les fenêtres déjà recoupées dans les calculs"
 
 msgid "Ignore sticky windows in the calculations"
 msgstr "Ignorer les fenêtres adhésives dans les calculs"
 
+#, fuzzy
+msgid "Left-only maximumize"
+msgstr "Activer Étaler"
+
+msgid "Left-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower left maximumize"
+msgstr "Activer Étaler"
+
+msgid "Lower left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower right maximumize"
+msgstr "Activer Étaler"
+
+#, fuzzy
+msgid "Lower right minimumize"
+msgstr "Activer Étaler"
+
 msgid "Maximumize"
+msgstr "Étaler"
+
+#, fuzzy
+msgid "Maximumize Bindings"
+msgstr "Fenêtres maximisées"
+
+#, fuzzy
+msgid "Maximumize to down."
+msgstr "Étaler"
+
+#, fuzzy
+msgid "Maximumize to left."
+msgstr "Étaler"
+
+#, fuzzy
+msgid "Maximumize to right."
+msgstr "Étaler"
+
+#, fuzzy
+msgid "Maximumize to up."
 msgstr "Étaler"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr ""
 "Agrandir les fenêtres de manière à prendre toute l'espace disponible sur "
 "l'écran"
+
+#, fuzzy
+msgid "Minimumize"
+msgstr "Étaler"
+
+#, fuzzy
+msgid "Minimumize Bindings"
+msgstr "Animation de réduction"
+
+#, fuzzy
+msgid "Permit windows to shrink during maximumize"
+msgstr "Rendre la fenêtre non maximisable"
+
+#, fuzzy
+msgid "Right-only maximumize"
+msgstr "Activer Étaler"
+
+msgid "Right-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Shrink lower left corner of a the window."
+msgstr "Placer le pointeur en utilisant le centre de la fenêtre"
+
+#, fuzzy
+msgid "Shrink lower right corner of a the window."
+msgstr "Placer le pointeur en utilisant le centre de la fenêtre"
+
+msgid "Shrink the window downwards."
+msgstr ""
+
+#, fuzzy
+msgid "Shrink the window horizontally."
+msgstr "Ranger les fenêtre horizontalement"
+
+#, fuzzy
+msgid "Shrink the window leftwards."
+msgstr "Rendre la fenêtre plus petite"
+
+#, fuzzy
+msgid "Shrink the window rightwards."
+msgstr "Rendre la fenêtre plus grosse"
+
+#, fuzzy
+msgid "Shrink the window upwards."
+msgstr "Sélecteur de fenêtre"
+
+#, fuzzy
+msgid "Shrink the window vertically."
+msgstr "Ranger les fenêtres verticalement"
+
+#, fuzzy
+msgid "Shrink upper left corner of a the window."
+msgstr "Placer le pointeur en utilisant le centre de la fenêtre"
+
+#, fuzzy
+msgid "Shrink upper right corner of a the window."
+msgstr "Placer le pointeur en utilisant le centre de la fenêtre"
+
+msgid ""
+"This allows a window to change it's shape to fit in an area even when the "
+"new shape might be smaller than it's current size with regards to area"
+msgstr ""
+
+#, fuzzy
+msgid "Top left maximumize"
+msgstr "Activer Étaler"
+
+msgid "Top left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Top right maximumize"
+msgstr "Activer Étaler"
+
+#, fuzzy
+msgid "Top right minimumize"
+msgstr "Activer Étaler"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2222,8 +2386,38 @@ msgstr ""
 "Activer un redimensionnement de la fenêtre ayant le focus pour qu'elle un "
 "maximum de place sur l'espace disponible à l'écran."
 
-msgid "Trigger maximumize"
+#, fuzzy
+msgid ""
+"Trigger a resize of the window currently focused so it resizes to 1/4 size."
+msgstr ""
+"Activer un redimensionnement de la fenêtre ayant le focus pour qu'elle un "
+"maximum de place sur l'espace disponible à l'écran."
+
+#, fuzzy
+msgid "Up-only maximumize"
+msgstr "Étaler"
+
+msgid "Up-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Vertical-only maximumize"
 msgstr "Activer Étaler"
+
+msgid "Vertical-only minimumize"
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow downwards."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the left."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the right."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow upwards."
+msgstr ""
 
 msgid "Accumulation buffer"
 msgstr "Buffer d'accumulation"
@@ -3241,6 +3435,9 @@ msgstr ""
 "n'être utilisé qu'avec KDE, car seules le gestionnaire de session de KDE "
 "sauvegarde aussi ces applications."
 
+msgid "Matching windows will not be handled by the session plugin"
+msgstr ""
+
 msgid "Save Legacy Apps"
 msgstr "Sauvegarder les Applications Héritées"
 
@@ -3250,6 +3447,10 @@ msgstr "Gestion de Session"
 msgid "Talk to session manager and save/load window state"
 msgstr ""
 "Ouvrir le gestionnaire de session et sauvegarder/charger l'état des fenêtres."
+
+#, fuzzy
+msgid "Windows to ignore"
+msgstr "Titre de la fenêtre"
 
 msgid "Animation duration"
 msgstr "Durée de l'animation"

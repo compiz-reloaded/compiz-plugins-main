@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-11-04 12:31+0530\n"
-"PO-Revision-Date: 2008-10-30 09:24+0100\n"
+"POT-Creation-Date: 2008-12-15 15:28+0530\n"
+"PO-Revision-Date: 2008-12-02 14:18+0800\n"
 "Last-Translator: JING Cheng <jingcheng01@gmail.com>\n"
 "Language-Team: Chinese\n"
 "MIME-Version: 1.0\n"
@@ -550,31 +550,31 @@ msgid "Benchmark"
 msgstr "基准测试"
 
 msgid "Console Output"
-msgstr "终端输出"
+msgstr "控制台输出"
 
 msgid "Console output update time"
 msgstr "控制台输出的更新时间"
 
 msgid "Disable Compiz integrated FPS limiter"
-msgstr "禁用 Compiz 内置 FPS 限制器"
+msgstr "禁用Compiz内置的FPS限制器"
 
 msgid "Disable limiter"
 msgstr "禁用限制器"
 
 msgid "Display FPS on screen"
-msgstr "在屏幕上显示 FPS（每秒帧数）"
+msgstr "在屏幕上显示FPS"
 
 msgid "Enable"
 msgstr "启用"
 
 msgid "Initiate"
-msgstr "起始"
+msgstr "启动"
 
 msgid "Main"
 msgstr "主要设置"
 
 msgid "Print FPS to console"
-msgstr "输出FPS到控制台"
+msgstr "打印FPS到控制台"
 
 msgid "Screen Output"
 msgstr "屏幕输出"
@@ -631,7 +631,7 @@ msgid ""
 "one specific filter (triggering this action switches filters one by one and "
 "eventually comes back to the \"all filters\" mode)."
 msgstr ""
-"在滤镜列表中选择要使用的滤镜：要么应用所有的滤镜要么仅应用一个指定的滤镜(触发"
+"在滤镜列表中选择要使用的滤镜：要么应用所有的滤镜要么仅应用一个指定的滤镜(切换"
 "这个动作逐个切换滤镜并最终返回到“全部滤镜”模式)。"
 
 msgid "Switch filter"
@@ -1144,7 +1144,7 @@ msgid ""
 msgstr "尽力保持被缩放的鼠标始终可见，当其被移动到缩放区域之外时弯曲之。"
 
 msgid "Autoscale threshold"
-msgstr ""
+msgstr "自动比例阀值"
 
 msgid "Center the mouse"
 msgstr "鼠标居中"
@@ -1237,6 +1237,8 @@ msgid ""
 "Only change zoom level (scale) on focus change if the target value is higher "
 "than this. Prevents zooming too far in on small popups etc."
 msgstr ""
+"如果目标值比此值高则在焦点发生变化时仅改变缩放级别(比例)。防止将较小的弹出窗"
+"口等缩放得过小。"
 
 msgid "Pan (move) the zoom area down"
 msgstr "向下摇动(移动)对准缩放区域的镜头"
@@ -1319,10 +1321,10 @@ msgid "Timestep"
 msgstr "时间步长"
 
 msgid "Toggle zoom area lock"
-msgstr "触发缩放区域锁定"
+msgstr "切换缩放区域锁定"
 
 msgid "Toggles a lock on the zoom area so it doesn't change on various events"
-msgstr "触发对缩放区域的锁定以使其不会因各类事件而改变"
+msgstr "切换对缩放区域的锁定以使其不会因各类事件而改变"
 
 msgid "Use linear filter when zoomed in"
 msgstr "放大时使用线性过滤"
@@ -1377,13 +1379,13 @@ msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "根据此因子放大/缩小。更高的值代表更快的缩放。"
 
 msgid "Zoom level to go to when triggering hotkey 1"
-msgstr "触发热键1时的缩放级别"
+msgstr "切换热键1时的缩放级别"
 
 msgid "Zoom level to go to when triggering hotkey 2"
-msgstr "触发热键2时的缩放级别"
+msgstr "切换热键2时的缩放级别"
 
 msgid "Zoom level to go to when triggering hotkey 3"
-msgstr "触发热键3时的缩放级别"
+msgstr "切换热键3时的缩放级别"
 
 msgid "Zoom to the specific zoom level 1"
 msgstr "缩放至指定的缩放级别1"
@@ -1508,13 +1510,13 @@ msgid "Animation Options"
 msgstr "动画选项"
 
 msgid "Autotab windows on creation"
-msgstr "自动窗口标签创建"
+msgstr "窗口创建时自动标签"
 
 msgid "Autotab windows with themselves on window creation"
-msgstr "窗口创建时自动使用标签"
+msgstr "窗口创建时对自己自动使用标签"
 
 msgid "Border Radius"
-msgstr "边框投影"
+msgstr "边框半径"
 
 msgid "Border Width"
 msgstr "边框宽度"
@@ -1523,7 +1525,7 @@ msgid "Border color of the tab bar"
 msgstr "标签栏边框颜色"
 
 msgid "Brightness of selected windows"
-msgstr "选定窗口的亮度级别"
+msgstr "选定窗口的亮度"
 
 msgid "Change Tab Left"
 msgstr "转到左标签"
@@ -1547,13 +1549,15 @@ msgid ""
 "Distance (in pixels) between the tab bar and the dragged slot for applying "
 "the spring model. If the distance is larger than that value, the model isn't "
 "applied."
-msgstr "拖拽缝隙和标签栏的距离(像素)。如果距离大于这个值，则不使用弹性模型。"
+msgstr ""
+"应用弹性模型时拖拽缝隙和标签栏的距离(像素)。如果距离大于这个值，则不使用弹性"
+"模型。"
 
 msgid "Duration (in s) of the animation that happens when changing tabs"
-msgstr "改变标签动画时长(秒)"
+msgstr "转换标签时的动画时长(秒)"
 
 msgid "Duration (in s) of the tab bar fading animation when showing/hiding it"
-msgstr "显示/隐藏标签栏淡入淡出动画时长(秒)"
+msgstr "显示/隐藏标签栏时的淡入淡出动画时长(秒)"
 
 msgid "Duration (in s) of the tab bar pulse animation"
 msgstr "标签栏脉动动画时长(秒)"
@@ -1562,7 +1566,7 @@ msgid "Duration (in s) of the tab bar reflex animation"
 msgstr "标签栏反射动画时长(秒)"
 
 msgid "Duration (in s) of the text fading animation when showing/hiding it"
-msgstr "显示/隐藏文本淡入淡出动画时长(秒)"
+msgstr "显示/隐藏文本时的淡入淡出动画时长(秒)"
 
 msgid "Enable Glow"
 msgstr "启用光晕"
@@ -1571,16 +1575,16 @@ msgid "Enable grouped window glowing"
 msgstr "启用窗口组合光晕"
 
 msgid "Fade time for tab bar animations"
-msgstr "标签栏动画淡出时间"
+msgstr "标签栏动画淡入淡出时间"
 
 msgid "Fade time for text animations"
-msgstr "文本动画淡出时间"
+msgstr "文本动画淡入淡出时间"
 
 msgid "Fill color of the selection rectangle"
-msgstr "选取方框填充色"
+msgstr "选取方框的填充色"
 
 msgid "Fill color of the tab bar"
-msgstr "标签填充色"
+msgstr "标签栏的填充色"
 
 msgid "Font Color"
 msgstr "字体颜色"
@@ -1619,10 +1623,10 @@ msgid "Group Windows"
 msgstr "组合窗口"
 
 msgid "Group and Tab Windows"
-msgstr "窗口标签与组合"
+msgstr "窗口组合与标签"
 
 msgid "Group the windows after selection"
-msgstr "选取窗口自动组合"
+msgstr "选取后组合窗口"
 
 msgid "Grouping"
 msgstr "组合"
@@ -1634,45 +1638,47 @@ msgid ""
 "If one window in the group is (un)maximized, all other group windows are (un)"
 "maximized as well."
 msgstr ""
-"如果组合中一个窗口被最大化/取消最大化，其它窗口也一起被最大化/取消最大化。"
+"如果组合中的一个窗口被最大化/取消最大化，则其它窗口也一起被最大化/取消最大"
+"化。"
 
 msgid ""
 "If one window in the group is (un)minimized, all other group windows are (un)"
 "minimized as well."
 msgstr ""
-"如果组合中一个窗口被最小化/取消最小化，其它窗口也一起被最小化/取消最小化。"
+"如果组合中的一个窗口被最小化/取消最小化，则其它窗口也一起被最小化/取消最小"
+"化。"
 
 msgid ""
 "If one window in the group is (un)shaded, all other group windows are (un)"
 "shaded as well."
-msgstr "如果组合中一个窗口被卷起/展开，其它窗口也一起被卷起/展开。"
+msgstr "如果组合中的一个窗口被收起/展开，则其它窗口也一起被收起/展开。"
 
 msgid ""
 "If one window in the group is activated, all other group windows are raised "
 "as well."
-msgstr "如果组合中一个窗口被激活，其它窗口也一起浮起。"
+msgstr "如果组合中的一个窗口被激活，则其它窗口也一起浮起。"
 
 msgid ""
 "If one window in the group is moved, all other group windows are moved as "
 "well."
-msgstr "如果组合中一个窗口被移动，其它窗口也一起浮起。"
+msgstr "如果移动组合中的一个窗口，则其它窗口也一起移动。"
 
 msgid ""
 "If one window in the group is resized, all other group windows are resized "
 "as well."
-msgstr "如果组合中一个窗口被调整大小，其它窗口也一起浮起。"
+msgstr "如果组合中的一个窗口被调整大小，其它窗口也一起被调整大小。"
 
 msgid "If there is only 1 window left in the group, it will be ungrouped."
-msgstr "仅剩一窗口则取消自动组合。"
+msgstr "组合中仅剩一窗口时则取消组合。"
 
 msgid ""
 "If you don't like the current glow color, you can change it with this key."
-msgstr "如果你不喜欢当前光晕颜色，按下这个键修改。"
+msgstr "如果你不喜欢当前的光晕颜色，用此键修改之。"
 
 msgid ""
 "If you have selected some windows, this automatically groups them (Doesn't "
 "work with selection mode 'Normal')."
-msgstr "自动组合你选取的众多窗口(与'正常'模式不兼容)。"
+msgstr "如果你已经选定了多个窗口，则自动组合它们(与'正常'选取模式不兼容)。"
 
 msgid "Ignore Group"
 msgstr "忽略组合"
@@ -1681,13 +1687,13 @@ msgid "Key bindings"
 msgstr "按键绑定"
 
 msgid "Line Color"
-msgstr "线条颜色"
+msgstr "边线颜色"
 
 msgid "Line color of the selection rectangle"
 msgstr "选取方框的边线颜色"
 
 msgid "Maximize/unmaximize with group"
-msgstr "组合统一最大化/最小化"
+msgstr "组合统一最大化/取消最大化"
 
 msgid "Metal"
 msgstr "金属"
@@ -1697,20 +1703,20 @@ msgstr "组合统一最小化"
 
 msgid ""
 "Mouse pointer movement speed limit (in pixels/second) for the spring model"
-msgstr "鼠标指针速度极限(像素/秒)，用于弹性模型"
+msgstr "弹性模型中的鼠标指针速度限制(像素/秒)"
 
 msgid "Move every window in the group"
-msgstr "将每个窗口移入组合"
+msgstr "组合统一移动"
 
 # Murrina是意大利的水晶品牌 by sephinroth
 msgid "Murrina"
 msgstr "Murrina水晶"
 
 msgid "Opacity of selected windows"
-msgstr "选定窗口的不透明级别"
+msgstr "被选定窗口的不透明度"
 
 msgid "Play animations on the tab bar e.g. on fade in."
-msgstr "在标签栏播放动画，如淡入"
+msgstr "为标签栏播放动画，如淡入淡出。"
 
 msgid "Precision"
 msgstr "精度"
@@ -1718,7 +1724,7 @@ msgstr "精度"
 msgid ""
 "Precision of the selection (percentage of the visible window area which must "
 "be selected for the selection to be recognized)."
-msgstr "精度（选择窗口时，选框必须超过可视窗口域的百分比才能确认窗口被选择）"
+msgstr "选取精度(选框必须超过可视窗口域一定的百分比才能被识别。)"
 
 msgid "Raise every window in the group"
 msgstr "组合窗口统一浮起"
@@ -1730,16 +1736,16 @@ msgid "Remove Group Window"
 msgstr "移除组合窗口"
 
 msgid "Remove window from group after dropping it outside a tab bar"
-msgstr "窗口拖出标签栏即从组合中移除"
+msgstr "窗口被拖出标签栏即从组合中移除"
 
 msgid "Resize every window in the group"
 msgstr "组合窗口统一调整大小"
 
 msgid "Saturation of selected windows"
-msgstr "选定窗口的饱和度"
+msgstr "被选中窗口的饱和度"
 
 msgid "Select"
-msgstr "选择"
+msgstr "选取"
 
 msgid "Select Single Window"
 msgstr "选取单个窗口"
@@ -1751,13 +1757,13 @@ msgid "Selection Color"
 msgstr "选区颜色"
 
 msgid "Shade with group"
-msgstr "窗口组合统一卷起"
+msgstr "组合统一收起"
 
 msgid "Simple"
-msgstr "大小"
+msgstr "简洁"
 
 msgid "Slot Drag Spring K"
-msgstr "缝隙拖拽弹性常量 K"
+msgstr "缝隙拖拽弹性常量K"
 
 msgid "Slot Dragging"
 msgstr "缝隙拖拽"
@@ -1769,7 +1775,7 @@ msgid "Space"
 msgstr "间距"
 
 msgid "Speed limit for spring model"
-msgstr "弹性模型速度限制"
+msgstr "弹性模型的速度限制"
 
 msgid "Spring Konstant used for slot dragging"
 msgstr "缝隙拖拽的弹性常量"
@@ -1781,7 +1787,7 @@ msgid "Tab Bar Show Delay"
 msgstr "标签栏显示延迟"
 
 msgid "Tab Base Color"
-msgstr "标签栏基颜色"
+msgstr "标签基底颜色"
 
 msgid "Tab Border Color"
 msgstr "标签边框颜色"
@@ -1796,7 +1802,7 @@ msgid "Tab Style"
 msgstr "标签风格"
 
 msgid "Tab bar visibility time after tab change"
-msgstr "标签变动后，标签栏可见时间"
+msgstr "标签改变后标签栏的可见时间"
 
 msgid "Tabbing"
 msgstr "标签"
@@ -1805,60 +1811,60 @@ msgid "Tabbing Speed"
 msgstr "标签速度"
 
 msgid "Tabbing Timestep"
-msgstr "标签步长"
+msgstr "标签时间步长"
 
 msgid "Tabbing speed"
 msgstr "标签速度"
 
 msgid "Tabbing timestep"
-msgstr "标签步长"
+msgstr "标签的时间步长"
 
 msgid "The color of the window title in the tab bar"
-msgstr "标签栏中窗口标题颜色"
+msgstr "标签栏中的窗口标题颜色"
 
 msgid "The key for closing all windows in the group."
-msgstr "关闭组合中所有窗口的键。"
+msgstr "关闭组合中所有窗口的按键。"
 
 msgid "The key for grouping windows."
-msgstr "组合窗口的快捷键。"
+msgstr "组合窗口的按键。"
 
 msgid ""
 "The key for ignoring the group. If this key is pressed, you can do actions "
 "for a single window in the group only."
-msgstr "忽略组合的键。按下此键，可以对组合中单个窗口操作不影响组合中其它窗口。"
+msgstr "忽略组合的按键。按下此键可以仅对组合中的单个窗口进行操作。"
 
 msgid "The key for removing the selected window from its group."
-msgstr "从组合中移除窗口的键"
+msgstr "从组合中移除选定窗口的按键。"
 
 msgid "The key for selecting the current window."
-msgstr "选取当前窗口的键"
+msgstr "选取当前窗口的按键。"
 
 msgid "The key for starting selecting windows."
-msgstr "开始选取窗口的键"
+msgstr "开始选取窗口的按键。"
 
 msgid "The key for switching to the tab left of the current one."
-msgstr "切换到当前标签左面标签的键"
+msgstr "切换到当前标签左侧的按键。"
 
 msgid "The key for switching to the tab right of the current one."
-msgstr "切换到当前标签右面标签的键"
+msgstr "切换到当前标签右侧的按键。"
 
 msgid "The key for toggling the tab mode for the current group."
-msgstr "开关当前组合标签模式的键。"
+msgstr "切换当前组合标签模式的按键。"
 
 msgid "The key for ungrouping the current group."
-msgstr "取消当前组合的键。"
+msgstr "取消当前组合的按键。"
 
 msgid "The radius for the tab bar edges"
-msgstr "标题栏边缘辐射半径"
+msgstr "标题栏边缘半径"
 
 msgid "The size of the grouped window glow"
-msgstr "组合窗口光晕大小"
+msgstr "组合窗口光晕的大小"
 
 msgid "The size of the window thumbs in the task bar"
-msgstr "在任务栏中的窗口缩略图大小"
+msgstr "任务栏中的窗口缩略图大小"
 
 msgid "The size of the window title font in the tab bar"
-msgstr "标签栏中窗口标题字体大小"
+msgstr "标签栏中的窗口标题字体大小"
 
 msgid "The space between the thumbs"
 msgstr "缩略图间距"
@@ -1876,10 +1882,10 @@ msgid "Thumb Size"
 msgstr "缩略图大小"
 
 msgid "Time (in s) before the tab bar is shown after hovering the title bar"
-msgstr "鼠标悬停于标签栏位置，标签栏出现时滞(秒)"
+msgstr "鼠标悬停于标题栏时，标签栏出现前的时滞(秒)"
 
 msgid "Time (in s) the tab bar is visibly after a tab change"
-msgstr "标签改变后，标签栏可见时长(秒)"
+msgstr "标签改变后标签栏的可见时长(秒)"
 
 msgid "Time for tab bar pulse animation"
 msgstr "标签栏脉动动画时长"
@@ -1890,19 +1896,20 @@ msgstr "标签栏反射动画时长"
 msgid ""
 "Timespan (in s) after which a grouped window is activated if a window of "
 "another group is dragged over it"
-msgstr "如果另一个组合的窗口拖某组合窗口之上，该组合窗口被激活的延迟时长(秒)"
+msgstr ""
+"如果另一个组合的窗口被拖至该组合窗口之上，该组合窗口被激活的延迟时长(秒)"
 
 msgid "Ungroup Windows"
 msgstr "取消窗口组合"
 
 msgid "Ungroup the windows if only one window is left"
-msgstr "单个窗口离开则取消组合"
+msgstr "如果组合中仅剩一个窗口则取消组合"
 
 msgid "Untab the group when closing the top tab window instead of changing tab"
-msgstr "关闭顶标签窗口则取消组合，而不是改变标签取消组合"
+msgstr "关闭顶标签窗口则取消标签，而不是改变标签"
 
 msgid "Untab when closing top tab"
-msgstr "关闭顶标签后取消组合"
+msgstr "关闭顶标签则取消标签"
 
 msgid "Use tab bar animations"
 msgstr "使用标签栏动画"
@@ -1914,10 +1921,10 @@ msgid "Windows that should be allowed to be grouped"
 msgstr "允许加入组合的窗口"
 
 msgid "With this plugin you can group and tab windows"
-msgstr "这个插件实现窗口组合管理和标签功能"
+msgstr "用此插件你可以组合和标签窗口"
 
 msgid "Y distance for spring model"
-msgstr "弹性模型的距离 Y"
+msgstr "弹性模型的Y距离"
 
 msgid "Compression Quality"
 msgstr "压缩质量"
@@ -2048,17 +2055,181 @@ msgstr "光标的Y轴位移。"
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "由键盘启动的放大镜的放大因子。"
 
+#, fuzzy
+msgid "Down-only maximumize"
+msgstr "最大化"
+
+msgid "Down-only minimumize"
+msgstr ""
+
+msgid "Grow lower left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow lower right corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow the window downwards as much as possible."
+msgstr ""
+
+msgid "Grow the window horizontally as much as possible."
+msgstr ""
+
+msgid "Grow the window leftwards as much as possible."
+msgstr ""
+
+msgid "Grow the window rightwards as much as possible."
+msgstr ""
+
+msgid "Grow the window upwards as much as possible."
+msgstr ""
+
+msgid "Grow the window vertically as much as possible."
+msgstr ""
+
+msgid "Grow upper left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow upper right corner of a window as much as possible."
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal-only maximumize"
+msgstr "水平渐变"
+
+msgid "Horizontal-only minimumize"
+msgstr ""
+
 msgid "Ignore already overlapping windows in the calculations"
 msgstr "计算时忽略已被覆盖的窗口"
 
 msgid "Ignore sticky windows in the calculations"
 msgstr "计算时忽略粘着窗口"
 
+#, fuzzy
+msgid "Left-only maximumize"
+msgstr "切换最大化"
+
+msgid "Left-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower left maximumize"
+msgstr "切换最大化"
+
+msgid "Lower left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower right maximumize"
+msgstr "切换最大化"
+
+#, fuzzy
+msgid "Lower right minimumize"
+msgstr "切换最大化"
+
 msgid "Maximumize"
+msgstr "最大化"
+
+#, fuzzy
+msgid "Maximumize Bindings"
+msgstr "最大化的窗口"
+
+#, fuzzy
+msgid "Maximumize to down."
+msgstr "最大化"
+
+#, fuzzy
+msgid "Maximumize to left."
+msgstr "最大化"
+
+#, fuzzy
+msgid "Maximumize to right."
+msgstr "最大化"
+
+#, fuzzy
+msgid "Maximumize to up."
 msgstr "最大化"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr "最大化窗口(重新调整窗口大小以适应屏幕空间)。"
+
+#, fuzzy
+msgid "Minimumize"
+msgstr "最大化"
+
+#, fuzzy
+msgid "Minimumize Bindings"
+msgstr "最小化动画"
+
+#, fuzzy
+msgid "Permit windows to shrink during maximumize"
+msgstr "设置窗口为不可最大化"
+
+#, fuzzy
+msgid "Right-only maximumize"
+msgstr "切换最大化"
+
+msgid "Right-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Shrink lower left corner of a the window."
+msgstr "安放指针功能使用窗口的中央"
+
+#, fuzzy
+msgid "Shrink lower right corner of a the window."
+msgstr "安放指针功能使用窗口的中央"
+
+msgid "Shrink the window downwards."
+msgstr ""
+
+#, fuzzy
+msgid "Shrink the window horizontally."
+msgstr "横向平铺窗口"
+
+#, fuzzy
+msgid "Shrink the window leftwards."
+msgstr "使窗口更小"
+
+#, fuzzy
+msgid "Shrink the window rightwards."
+msgstr "使窗口更大"
+
+#, fuzzy
+msgid "Shrink the window upwards."
+msgstr "切换条窗口"
+
+#, fuzzy
+msgid "Shrink the window vertically."
+msgstr "纵向平铺窗口"
+
+#, fuzzy
+msgid "Shrink upper left corner of a the window."
+msgstr "安放指针功能使用窗口的中央"
+
+#, fuzzy
+msgid "Shrink upper right corner of a the window."
+msgstr "安放指针功能使用窗口的中央"
+
+msgid ""
+"This allows a window to change it's shape to fit in an area even when the "
+"new shape might be smaller than it's current size with regards to area"
+msgstr ""
+
+#, fuzzy
+msgid "Top left maximumize"
+msgstr "切换最大化"
+
+msgid "Top left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Top right maximumize"
+msgstr "切换最大化"
+
+#, fuzzy
+msgid "Top right minimumize"
+msgstr "切换最大化"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2073,10 +2244,38 @@ msgstr "计算最大化窗口所占用的空间时将已经被当前窗口覆盖
 msgid ""
 "Trigger a resize of the window currently focused so it fits as much of the "
 "available screenspae as possible."
-msgstr "触发重新调整当前聚焦的窗口的大小以使它尽量适应屏幕空间。"
+msgstr "切换重新调整当前聚焦的窗口的大小以使它尽量适应屏幕空间。"
 
-msgid "Trigger maximumize"
-msgstr "触发最大化"
+#, fuzzy
+msgid ""
+"Trigger a resize of the window currently focused so it resizes to 1/4 size."
+msgstr "切换重新调整当前聚焦的窗口的大小以使它尽量适应屏幕空间。"
+
+#, fuzzy
+msgid "Up-only maximumize"
+msgstr "最大化"
+
+msgid "Up-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Vertical-only maximumize"
+msgstr "切换最大化"
+
+msgid "Vertical-only minimumize"
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow downwards."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the left."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the right."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow upwards."
+msgstr ""
 
 msgid "Accumulation buffer"
 msgstr "加速缓存"
@@ -2112,10 +2311,10 @@ msgid "Texture Copy"
 msgstr "纹理复制"
 
 msgid "Toggle Motion Blur"
-msgstr "触发运动朦胧"
+msgstr "切换运动朦胧"
 
 msgid "Toggle motion Blur effect."
-msgstr "触发运动朦胧效果。"
+msgstr "切换运动朦胧效果。"
 
 msgid "Visibility/Performance"
 msgstr "可视性/性能"
@@ -3007,10 +3206,10 @@ msgid "Scheme Interpreter"
 msgstr "Scheme解释器"
 
 msgid "Toggle Prompt Visible"
-msgstr "触发可见提示"
+msgstr "切换可见提示"
 
 msgid "Toggle prompt visible."
-msgstr "触发可见提示。"
+msgstr "切换可见提示。"
 
 msgid "Directory"
 msgstr "目录"
@@ -3035,6 +3234,9 @@ msgstr ""
 "亦尝试保存并恢复那些不支持X会话管理器协议的旧式应用程序。本设定仅应用于KDE，"
 "因为也只有KDE的会话管理器保存这些应用程序。"
 
+msgid "Matching windows will not be handled by the session plugin"
+msgstr ""
+
 msgid "Save Legacy Apps"
 msgstr "保存旧式的应用程序"
 
@@ -3043,6 +3245,10 @@ msgstr "会话管理"
 
 msgid "Talk to session manager and save/load window state"
 msgstr "与会话管理器交流并保存/载入窗口状态"
+
+#, fuzzy
+msgid "Windows to ignore"
+msgstr "窗口标题"
 
 msgid "Animation duration"
 msgstr "动画时长"
@@ -3405,7 +3611,7 @@ msgstr "使边缘吸引生效的距离。"
 
 # 边缘排斥？
 #
-# 应该是边缘抵抗-抗拒窗口从离开边缘的力 - by sephinroth
+# 应该是边缘抵抗-抗拒窗口离开边缘的力 - by sephinroth
 msgid "The distance until edge resistance takes place."
 msgstr "使边缘抵抗生效的距离。"
 
@@ -3422,7 +3628,7 @@ msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
 "fall more smoothly, but will also increase CPU usage."
 msgstr ""
-"屏幕刷新延迟(微秒)。减小这个值可以让飞雪动画更加平滑，但会增加 CPU 占用。"
+"屏幕刷新延迟(微秒)。减小此值可使雪下得更加平滑，但同时会增加CPU占用率。"
 
 msgid "Enable Blending"
 msgstr "启用混合"
@@ -3431,21 +3637,21 @@ msgid "Enable Textures"
 msgstr "启用纹理"
 
 msgid "Enables alpha blending of snowflakes."
-msgstr "启用雪花 alpha 混合"
+msgstr "启用雪花alpha混合。"
 
 msgid "Enables textured snowflakes. If not selected, color gradients are used."
-msgstr "对雪花使用纹理。如果不选，将会使用颜色渐变。"
+msgstr "对雪花启用纹理。如不选则使用颜色渐变。"
 
 msgid "Flakes rotate if checked."
-msgstr "如果钩选则雪花旋转。"
+msgstr "如选上则雪花会旋转。"
 
 msgid "How deep into the screen snowflakes can be drawn before being removed"
-msgstr "雪花在被移除前能触及的屏幕深度"
+msgstr "雪花被移除前在屏幕上的积雪厚度"
 
 msgid ""
 "How far outside the screen resolution snow flakes can be before being "
 "removed. Needed because of FOV."
-msgstr "雪花在被移除前能在屏幕分辨率之外能够存在的距离。FOV 需要。"
+msgstr "雪花被移除前能存在于屏幕分辨率之外的距离。出于视野原因需要本选项。"
 
 msgid "Key Bindings"
 msgstr "按键组合"
@@ -3457,7 +3663,7 @@ msgid "Number Of Snowflakes"
 msgstr "雪花数量"
 
 msgid "Number of snowflakes"
-msgstr "雪花数量"
+msgstr "雪花的数量"
 
 msgid "Right to Left"
 msgstr "从右至左"
@@ -3469,19 +3675,19 @@ msgid "Screen Boxing"
 msgstr "屏幕广度"
 
 msgid "Screen Depth"
-msgstr "屏幕深度"
+msgstr "屏幕厚度"
 
 msgid "Select snow flake movement direction"
-msgstr "选择飞雪运动方向"
+msgstr "选择雪花运动方向"
 
 msgid "Settings"
 msgstr "设置"
 
 msgid "Size Of Snowflakes"
-msgstr "飞雪颗粒大小"
+msgstr "雪花尺寸"
 
 msgid "Size of snowflakes"
-msgstr "飞雪颗粒大小"
+msgstr "雪花的大小"
 
 msgid "Snow"
 msgstr "飞雪"
@@ -3499,10 +3705,10 @@ msgid "Snow Textures"
 msgstr "飞雪纹理"
 
 msgid "Snow Toggle"
-msgstr "飞雪开关"
+msgstr "飞雪切换"
 
 msgid "Snow for Compiz"
-msgstr "Compiz 飞雪"
+msgstr "Compiz的飞雪特效"
 
 msgid "Snow is drawn above windows"
 msgstr "在窗口之上绘制飞雪"
@@ -3511,10 +3717,10 @@ msgid "Snow textures"
 msgstr "飞雪纹理"
 
 msgid "Snow toggle key"
-msgstr "飞雪开关按键"
+msgstr "飞雪切换按键"
 
 msgid "Speed of falling snow"
-msgstr "雪落速度"
+msgstr "降雪速度"
 
 msgid "Textures"
 msgstr "纹理"
@@ -3526,7 +3732,7 @@ msgid "Update Delay"
 msgstr "更新延迟"
 
 msgid "A simple splash plugin"
-msgstr "简单的闪屏插件"
+msgstr "一个简单的闪屏插件"
 
 msgid "Background File"
 msgstr "背景文件"
@@ -3541,7 +3747,7 @@ msgid "Background saturation."
 msgstr "背景饱和度。"
 
 msgid "Display In/Out Time."
-msgstr "进入／退出显示时间。"
+msgstr "进入/退出显示时间。"
 
 msgid "Display Time"
 msgstr "显示时长"
@@ -3550,19 +3756,19 @@ msgid "Images"
 msgstr "图像"
 
 msgid "Initiate Splash"
-msgstr "初始化闪屏"
+msgstr "启动闪屏"
 
 msgid "Logo File"
-msgstr "Logo 文件"
+msgstr "Logo文件"
 
 msgid "Logo image File."
-msgstr "Logo 图像文件。"
+msgstr "Logo图像文件。"
 
 msgid "Show on first start"
 msgstr "首次启动显示"
 
 msgid "Show splash on first start."
-msgstr "首次启动显示闪屏。"
+msgstr "首次启动时显示闪屏。"
 
 msgid "Splash"
 msgstr "闪屏"
@@ -3933,48 +4139,48 @@ msgid "Slide"
 msgstr "幻灯"
 
 msgid "Tile"
-msgstr "窗口排列"
+msgstr "平铺"
 
 msgid "Tile Horizontally"
-msgstr "纵向排列"
+msgstr "横向平铺"
 
 msgid "Tile Vertically"
-msgstr "纵向排列"
+msgstr "纵向平铺"
 
 msgid "Tile Windows"
-msgstr "排列窗口"
+msgstr "平铺窗口"
 
 msgid "Tile Windows Horizontally"
-msgstr "横向排列窗口"
+msgstr "横向平铺窗口"
 
 msgid "Tile Windows Vertically"
-msgstr "纵向排列窗口"
+msgstr "纵向平铺窗口"
 
 msgid "Tile windows"
-msgstr "窗口排列"
+msgstr "平铺窗口"
 
 msgid "Tiling Animation Type"
-msgstr "排列动画类型"
+msgstr "平铺动画类型"
 
 msgid "Tiling Method For Toggle"
-msgstr "开关排列方式"
+msgstr "切换平铺方式"
 
 msgid "Toggle Tiling"
-msgstr "开关窗口排列"
+msgstr "切换平铺"
 
 msgid "Toggle between tile and restore"
-msgstr "开关窗口排列和恢复"
+msgstr "在平铺和恢复间切换"
 
 msgid ""
 "Tries to join the windows together when horizontal, vertical or left tiling "
 "is enabled so that when you resize a window surrounding windows resize "
 "accordingly. This may cause problems if you dont leave them enough space."
 msgstr ""
-"当垂直／水平对齐或左对齐时，试图合并窗口。如果你改变一个窗口的大小相关窗口会"
-"做对应的变化。如果没有足够空间，这个功能可能导致一些问题。"
+"当启用横向、纵向或左平铺时，尝试将窗口连在一起。这样当调整一个窗口的大小时，"
+"周围的窗口也会做对应的调整。如果没有给窗口留足够空间则可能导致一些问题。"
 
 msgid "Windows which should be excluded from tiling"
-msgstr "不参与排列的窗口"
+msgstr "不参与平铺的窗口"
 
 msgid ""
 "Adjust the opacity, saturation and brightness of windows based on when they "
@@ -4513,7 +4719,7 @@ msgid "Time (in s) for fading into/out of the widget layer."
 msgstr "淡入/淡出控件层的时间(秒)。"
 
 msgid "Toggle Widget Display"
-msgstr "触发控件显示"
+msgstr "切换控件显示"
 
 msgid "Widget Layer"
 msgstr "控件层"
@@ -4557,26 +4763,27 @@ msgstr "最大化"
 msgid "Maximized windows"
 msgstr "最大化的窗口"
 
+# 不确定怎么翻译ARGB visuals - by sephinroth
 msgid "No ARGB visuals"
-msgstr "ARGB visual对其不可见"
+msgstr "无ARGB visuals"
 
 msgid "No focus"
 msgstr "无焦点"
 
 msgid "Non closable windows"
-msgstr "非可关闭的窗口"
+msgstr "不可关闭的窗口"
 
 msgid "Non maximizable windows"
-msgstr "非可最大化的窗口"
+msgstr "不可最大化的窗口"
 
 msgid "Non minimizable windows"
-msgstr "非可最小化的窗口"
+msgstr "不可最小化的窗口"
 
 msgid "Non movable windows"
-msgstr "非可移动的窗口"
+msgstr "不可移动的窗口"
 
 msgid "Non resizable windows"
-msgstr "非可调大小的窗口"
+msgstr "不可调整大小的窗口"
 
 msgid "Set window as non closable"
 msgstr "设置窗口为不可关闭"
@@ -4603,16 +4810,16 @@ msgid "Sized Windows"
 msgstr "固定大小的窗口"
 
 msgid "Skip pager"
-msgstr "跳过页面调度程序"
+msgstr "忽略页面调度程序"
 
 msgid "Skip taskbar"
-msgstr "跳过任务栏"
+msgstr "忽略任务栏"
 
 msgid "Sticky"
-msgstr "所有桌面"
+msgstr "仅在此工作区"
 
 msgid "Sticky windows"
-msgstr "显示在所有桌面的窗口"
+msgstr "使窗口仅在此工作区"
 
 msgid "Width values"
 msgstr "宽度值"
@@ -4621,10 +4828,10 @@ msgid "Window Rules"
 msgstr "窗口规则"
 
 msgid "Windows that should be resized by default"
-msgstr "默认需要改变大小的窗口"
+msgstr "默认需要调整大小的窗口"
 
 msgid "Windows that should be treated as not supporting transparency"
-msgstr "需要被视为不支持透明的窗口"
+msgstr "应被视为不支持透明的窗口"
 
 msgid "Windows will not have focus"
 msgstr "不会获得焦点的窗口"

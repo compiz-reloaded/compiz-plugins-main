@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-11-04 12:30+0530\n"
-"PO-Revision-Date: 2008-10-31 21:13+0900\n"
+"POT-Creation-Date: 2008-12-15 15:26+0530\n"
+"PO-Revision-Date: 2008-12-01 22:52+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "ヘルパーの追加を読み込んだ時点で即利用可能にする
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
-msgstr "アクティブ・ウィンドウ以外を暗くして若干集中しやすくする"
+msgstr "アクティブ・ウィンドウ以外を暗くして集中しやすくする"
 
 msgid "Opacity"
 msgstr "不透明度"
@@ -644,8 +644,8 @@ msgid ""
 "List of plain text filter files that should be applied when filtering "
 "windows or screen."
 msgstr ""
-"ウィンドウや画面をフィルタする際に適用する平文テキストで記述されたフィルタ・"
-"ファイルのリスト"
+"ウィンドウや画面をフィルタする際に適用する、平文テキストで記述されたフィル"
+"タ・ファイルのリスト"
 
 msgid ""
 "Select filter to use from filters list : either apply all filters or only "
@@ -654,16 +654,16 @@ msgid ""
 msgstr ""
 "フィルタ・リストからフィルタを選択 : すべてのフィルタ、または特定のフィルタを"
 "1つだけ適用（このアクションを呼び出すたびにフィルタが1つずつ切り替わってい"
-"き、最終的に\"すべてのフィルタ\"モードに戻ります）。"
+"き、最終的に「すべてのフィルタ」モードに戻ります）。"
 
 msgid "Switch filter"
 msgstr "フィルタの切り替え"
 
 msgid "Toggle filtering for currently focused window."
-msgstr "現在フォーカスされているウィンドウのフィルタのオンオフ"
+msgstr "現在フォーカスされているウィンドウに対するフィルタのオンオフ"
 
 msgid "Toggle filtering for every window on the screen."
-msgstr "画面上のすべてのウィンドウのフィルタのオンオフ"
+msgstr "画面上のすべてのウィンドウに対するフィルタのオンオフ"
 
 msgid "Toggle screen filtering"
 msgstr "画面対象フィルタのオンオフ"
@@ -868,10 +868,10 @@ msgid "Intensity"
 msgstr "輝度"
 
 msgid "Jumpy"
-msgstr "飛び跳ね"
+msgstr "バウンド"
 
 msgid "Jumpy reflection"
-msgstr "反射側の飛び跳ね"
+msgstr "反射側のバウンド"
 
 msgid ""
 "List of PNG and SVG files that should be rendered on bottom face of cube"
@@ -2070,7 +2070,7 @@ msgid "Height"
 msgstr "高さ"
 
 msgid "Image overlay"
-msgstr "画像重ね"
+msgstr "画像の重ね描画"
 
 msgid "Keep fully on screen"
 msgstr "常に全体を画面上に"
@@ -2120,17 +2120,156 @@ msgstr "マウスカーソルの Y 軸方向のオフセット"
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "拡大鏡がキーボードにより開始されたときのズーム係数"
 
+msgid "Down-only maximumize"
+msgstr "下方向のみ最大化"
+
+msgid "Down-only minimumize"
+msgstr "下方向のみ最小化"
+
+msgid "Grow lower left corner of a window as much as possible."
+msgstr "ウィンドウの左下角を出来る限り引き伸ばす"
+
+msgid "Grow lower right corner of a window as much as possible."
+msgstr "ウィンドウの右下角を出来る限り引き伸ばす"
+
+msgid "Grow the window downwards as much as possible."
+msgstr "ウィンドウを下方向に出来る限り引き伸ばす"
+
+msgid "Grow the window horizontally as much as possible."
+msgstr "ウィンドウを水平方向に出来る限り引き伸ばす"
+
+msgid "Grow the window leftwards as much as possible."
+msgstr "ウィンドウを左方向に出来る限り引き伸ばす"
+
+msgid "Grow the window rightwards as much as possible."
+msgstr "ウィンドウを右方向に出来る限り引き伸ばす"
+
+msgid "Grow the window upwards as much as possible."
+msgstr "ウィンドウを上方向に出来る限り引き伸ばす"
+
+msgid "Grow the window vertically as much as possible."
+msgstr "ウィンドウを垂直方向に出来る限り引き伸ばす"
+
+msgid "Grow upper left corner of a window as much as possible."
+msgstr "ウィンドウの左上角を出来る限り引き伸ばす"
+
+msgid "Grow upper right corner of a window as much as possible."
+msgstr "ウィンドウの右上角を出来る限り引き伸ばす"
+
+msgid "Horizontal-only maximumize"
+msgstr "水平方向のみ最大化"
+
+msgid "Horizontal-only minimumize"
+msgstr "水平方向のみ最小化"
+
 msgid "Ignore already overlapping windows in the calculations"
 msgstr "すでに部分的に重なっているウィンドウは計算時に無視"
 
 msgid "Ignore sticky windows in the calculations"
 msgstr "計算時にスティッキー・ウィンドウを無視"
 
+msgid "Left-only maximumize"
+msgstr "左方向のみ最大化"
+
+msgid "Left-only minimumize"
+msgstr "左方向のみ最小化"
+
+msgid "Lower left maximumize"
+msgstr "左下の最大化"
+
+msgid "Lower left minimumize"
+msgstr "左下の最小化"
+
+msgid "Lower right maximumize"
+msgstr "右下の最大化"
+
+msgid "Lower right minimumize"
+msgstr "右下の最小化"
+
 msgid "Maximumize"
 msgstr "最大化"
 
+msgid "Maximumize Bindings"
+msgstr "最大化の割り当て"
+
+msgid "Maximumize to down."
+msgstr "下方向に最大化"
+
+msgid "Maximumize to left."
+msgstr "左方向に最大化"
+
+msgid "Maximumize to right."
+msgstr "右方向に最大化"
+
+msgid "Maximumize to up."
+msgstr "上方向に最大化"
+
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr "ウィンドウの最大化（画面の空きスペースの範囲内で最大限にサイズ変更）"
+
+msgid "Minimumize"
+msgstr "最小化"
+
+msgid "Minimumize Bindings"
+msgstr "最小化の割り当て"
+
+msgid "Permit windows to shrink during maximumize"
+msgstr "最大化時にウィンドウが縮むことを許可"
+
+msgid "Right-only maximumize"
+msgstr "右方向のみ最小化"
+
+msgid "Right-only minimumize"
+msgstr "右方向のみ最小化"
+
+msgid "Shrink lower left corner of a the window."
+msgstr "ウィンドウの左下角を縮める"
+
+msgid "Shrink lower right corner of a the window."
+msgstr "ウィンドウの右下角を縮める"
+
+msgid "Shrink the window downwards."
+msgstr "ウィンドウを下方向に縮める"
+
+msgid "Shrink the window horizontally."
+msgstr "ウィンドウを水平方向に縮める"
+
+msgid "Shrink the window leftwards."
+msgstr "ウィンドウを左方向に縮める"
+
+msgid "Shrink the window rightwards."
+msgstr "ウィンドウを右方向に縮める"
+
+msgid "Shrink the window upwards."
+msgstr "ウィンドウを上方向に縮める"
+
+msgid "Shrink the window vertically."
+msgstr "ウィンドウを垂直方向に縮める"
+
+msgid "Shrink upper left corner of a the window."
+msgstr "ウィンドウの左上角を縮める"
+
+msgid "Shrink upper right corner of a the window."
+msgstr "ウィンドウの右上角を縮める"
+
+msgid ""
+"This allows a window to change it's shape to fit in an area even when the "
+"new shape might be smaller than it's current size with regards to area"
+msgstr ""
+"現在のサイズより小さくなる可能性があるときでも、領域にフィットするようにウィ"
+"ンドウの形を変更することを許可"
+
+msgid "Top left maximumize"
+msgstr "左上の最大化"
+
+msgid "Top left minimumize"
+msgstr "左上の最小化"
+
+msgid "Top right maximumize"
+msgstr "右上の最大化"
+
+msgid "Top right minimumize"
+msgstr "右上の最小化"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2153,8 +2292,33 @@ msgstr ""
 "現在フォーカスのあるウィンドウを利用可能な画面スペースに最大限合わせるサイズ"
 "変更のオンオフ"
 
-msgid "Trigger maximumize"
-msgstr "最大化のオンオフ"
+msgid ""
+"Trigger a resize of the window currently focused so it resizes to 1/4 size."
+msgstr "現在フォーカスのあるウィンドウを 1/4 サイズに変更"
+
+msgid "Up-only maximumize"
+msgstr "上方向のみ最大化"
+
+msgid "Up-only minimumize"
+msgstr "上方向のみ最小化"
+
+msgid "Vertical-only maximumize"
+msgstr "垂直方向のみ最大化"
+
+msgid "Vertical-only minimumize"
+msgstr "垂直方向のみ最小化"
+
+msgid "When maximumizing, allow the window to grow downwards."
+msgstr "最大化時、ウィンドウを下方向に引き伸ばすことを許可"
+
+msgid "When maximumizing, allow the window to grow to the left."
+msgstr "最大化時、ウィンドウを左方向に引き伸ばすことを許可"
+
+msgid "When maximumizing, allow the window to grow to the right."
+msgstr "最大化時、ウィンドウを右方向に引き伸ばすことを許可"
+
+msgid "When maximumizing, allow the window to grow upwards."
+msgstr "最大化時、ウィンドウを上方向に引き伸ばすことを許可"
 
 msgid "Accumulation buffer"
 msgstr "蓄積バッファ"
@@ -2352,8 +2516,8 @@ msgid ""
 "Bypass delay when Opacify is reducing the opacity on one or more windows "
 "already."
 msgstr ""
-"’半透明’がすでに１つ以上のウィンドウの不透明度を減少させているときは遅延を無"
-"視"
+"「半透明」がすでに１つ以上のウィンドウの不透明度を減少させているときは遅延を"
+"無視"
 
 msgid "Bypass delay when the new active window is the focused window."
 msgstr "新しいアクティブ・ウィンドウがフォーカスされたときは遅延を無視"
@@ -2367,8 +2531,8 @@ msgid ""
 "you are not using 'Click to Focus'."
 msgstr ""
 "マウスを置いているウィンドウがフォーカス・ウィンドウの場合は遅延をなくし、直"
-"ちにフォーカス・ウィンドウを見えるようにします。'クリックでフォーカス' を使用"
-"している場合は無効にするほうがよいかもしれません。"
+"ちにフォーカス・ウィンドウを見えるようにします。「クリックでフォーカス」を使"
+"用している場合は無効にするほうがよいかもしれません。"
 
 msgid "Make windows easily visible by hovering the mouse over them"
 msgstr "ウィンドウをマウスのホバーで見やすくする"
@@ -2399,15 +2563,15 @@ msgid ""
 "Reset the opacity of all windows modified by opacify when toggling Opacify "
 "with the defined key-combination."
 msgstr ""
-"定義されたキー組み合わせで’半透明’のオンオフが切り替えられたとき、’半透明’で"
-"変更されたすべてのウィンドウの不透明度をリセット"
+"定義されたキー組み合わせで「半透明」のオンオフが切り替えられたとき、「半透"
+"明」で変更されたすべてのウィンドウの不透明度をリセット"
 
 msgid ""
 "The delay (in ms) before Opacify changes opacity after the active window has "
 "changed."
 msgstr ""
-"アクティブ・ウィンドウが変更された後（別のウィンドウにマウスを置いた後）、’半"
-"透明’が不透明度を変更するまでの遅延時間（ミリ秒）"
+"アクティブ・ウィンドウが変更された後（別のウィンドウにマウスを置いた後）、"
+"「半透明」が不透明度を変更するまでの遅延時間（ミリ秒）"
 
 msgid ""
 "The maximum opacity percentage a window blocking the current targeted window "
@@ -2434,8 +2598,8 @@ msgid ""
 "while looking through layers of hidden windows."
 msgstr ""
 "有効にすると、すでに1つ以上のウィンドウを半透明にしているとき、新しいウィンド"
-"ウに’半透明’による不透明度を直ちに適用します。半透明で隠したウィンドウ層を通"
-"して見ながら素早い動作ができます。"
+"ウに「半透明」による不透明度を直ちに適用します。半透明で隠したウィンドウ層を"
+"通して見ながら素早い動作ができます。"
 
 msgid "Toggle Opacify"
 msgstr "半透明のオンオフ"
@@ -2447,18 +2611,18 @@ msgid ""
 "Use this to enable/disable Opacify on the fly. Previously opacified windows "
 "will not be reset once you disable it like this."
 msgstr ""
-"これを使用して’半透明’の即時オンオフ。すでに不透明度が変更されたウィンドウ"
-"は、この方法で ’半透明’をオフにしただけでは、リセットされません。"
+"これを使用して「半透明」の即時オンオフ。すでに不透明度が変更されたウィンドウ"
+"は、この方法で「半透明」をオフにしただけではリセットされません。"
 
 msgid "Windows that should be opacified."
-msgstr "’半透明’が対象にするウィンドウ"
+msgstr "「半透明」が対象にするウィンドウ"
 
 msgid ""
 "With this enabled, opacify will be on when you load Opacify, which is "
 "usually when you start Compiz."
 msgstr ""
-"有効にすると、Compiz のスタートなどで’半透明’が読み込まれた時点で’半透明’がオ"
-"ンに"
+"有効にすると、Compiz のスタートなどで「半透明」が読み込まれた時点で「半透明」"
+"がオンに"
 
 msgid "Animation speed"
 msgstr "アニメーションの速度"
@@ -2660,7 +2824,7 @@ msgid "Put Top Right"
 msgstr "右上に移動"
 
 msgid "Put pointer uses the center of the window"
-msgstr "’ポインタに移動’ 時にウィンドウの隅の代わりに中心を使用"
+msgstr "「ポインタに移動」時にウィンドウの隅の代わりに中心を使用"
 
 msgid "Put to adjacent viewport"
 msgstr "隣接ビューポートに移動"
@@ -2867,7 +3031,7 @@ msgid "Next Window (Group)"
 msgstr "次のウィンドウ(グループから)"
 
 msgid "Overlay Icon"
-msgstr "重ね表示アイコン"
+msgstr "アイコンの重ね表示"
 
 msgid "Overlay an icon on windows in the ring"
 msgstr "リングのウィンドウ上に重ね表示するアイコン"
@@ -2962,7 +3126,7 @@ msgstr "現在選択しているウィンドウのウィンドウタイトルを
 
 msgid "Show windows that are minimized, shaded or in show desktop mode."
 msgstr ""
-"最小化やシェードされた、または”デスクトップの表示”モードのウィンドウを表示"
+"最小化やシェードされた、または「デスクトップの表示」モードのウィンドウを表示"
 
 msgid "Text Placement"
 msgstr "テキスト配置"
@@ -3151,6 +3315,9 @@ msgstr ""
 "保存や復元も試みます。これは KDE でのみ使用されるべき設定です。KDE のセッショ"
 "ン・マネージャだけがそうしたアプリケーションの保存も行うからです。"
 
+msgid "Matching windows will not be handled by the session plugin"
+msgstr "セッション・プラグインによる取扱いの対象外にするウィンドウの指定"
+
 msgid "Save Legacy Apps"
 msgstr "レガシー・アプリの保存"
 
@@ -3159,6 +3326,9 @@ msgstr "セッション・マネジメント"
 
 msgid "Talk to session manager and save/load window state"
 msgstr "セッション・マネージャと対話してウィンドウの状態を保存/読み込み"
+
+msgid "Windows to ignore"
+msgstr "無視対象ウィンドウ"
 
 msgid "Animation duration"
 msgstr "アニメーション持続時間"
@@ -3302,7 +3472,7 @@ msgstr "フリップアニメーションの循環角度"
 
 msgid ""
 "Selects how the switcher is displayed if multiple output devices are used."
-msgstr "複数のデバイスを使用しているときのスイッチャーを表示する方法の選択"
+msgstr "複数の出力デバイスを使用しているときのスイッチャーを表示する方法の選択"
 
 msgid "Shift Switcher"
 msgstr "シフト・スイッチャー"
@@ -3465,7 +3635,7 @@ msgid "Show mouse"
 msgstr "マウス表示"
 
 msgid "Toggle the mouse pointer trail."
-msgstr "マウスポインタのたなびきのオンオフ"
+msgstr "マウスポインタの軌跡のオンオフ"
 
 msgid "Alt"
 msgstr "Alt"
@@ -3474,7 +3644,7 @@ msgid "Avoid Snap Modifier"
 msgstr "スナップ回避修飾キー"
 
 msgid "Choose 'Resistance', 'Attraction' or 'Full Mode'."
-msgstr "’抵抗力’や’引力’ないしは’フルモード’を選択"
+msgstr "「抵抗力」や「引力」ないしは「フルモード」を選択"
 
 msgid "Control"
 msgstr "Control"
@@ -3510,7 +3680,7 @@ msgid "Snap Type"
 msgstr "スナップの種類"
 
 msgid "Snap to 'Screen Edges', 'Windows Edges' or 'Both'."
-msgstr "’スクリーンエッジ’や’ウィンドウエッジ’ないしは’両方’にスナップ"
+msgstr "「スクリーンエッジ」や「ウィンドウエッジ」ないしは「両方」にスナップ"
 
 msgid "Snapping Windows"
 msgstr "ウィンドウのスナップ"
@@ -3984,19 +4154,19 @@ msgid "Animation Duration"
 msgstr "アニメーション持続時間"
 
 msgid "Cascade"
-msgstr "重ね整列"
+msgstr "カスケード"
 
 msgid "Cascade Delta"
-msgstr "重ね整列のずらし間隔"
+msgstr "カスケードのずらし間隔"
 
 msgid "Cascade Windows"
-msgstr "ウィンドウを重ね整列"
+msgstr "ウィンドウをカスケード"
 
 msgid "Choose the tiling type you want when using toggle."
 msgstr "オンオフ切り替えを使用したときに適用する整列形式の選択"
 
 msgid "Distance between windows when using cascade"
-msgstr "重ね整列を使用したときのウィンドウ間のずらし間隔"
+msgstr "カスケードを使用したときのウィンドウ間のずらし間隔"
 
 msgid "Drop From Top"
 msgstr "上から落とす"
@@ -4143,8 +4313,8 @@ msgid ""
 "amount of windows ago or more will be considered completly unfocused."
 msgstr ""
 "フォーカス追跡がフォーカス移動の順番を追跡するウィンドウの数。フォーカスが外"
-"れて以降、この数以上の他ウィンドウにフォーカスが渡されたウィンドウは、完全に"
-"フォーカスがないものとされます。"
+"れて以降、この数以上の他ウィンドウにフォーカスが渡されたウィンドウは、「完全"
+"に」フォーカスがないものとされます。"
 
 msgid "Opacity Level of Focused Windows"
 msgstr "フォーカス・ウィンドウの不透明度"
@@ -4190,9 +4360,9 @@ msgid ""
 "This defines when Trailfocus will start fading windows. This lets you set up "
 "trailfocus to treat the N first Windows as fully focused."
 msgstr ""
-"フォーカス追跡がいつウィンドウのフェードを開始するかをこの値で定義します。最"
-"初のこの数のウィンドウまでが、完全にフォーカスされているものとして扱われま"
-"す。"
+"フォーカス追跡がいつウィンドウのフェードを開始するかをこの値で定義します。一"
+"番新しいフォーカス・ウィンドウから数えて最初のこの数のウィンドウまでが、「完"
+"全に」フォーカスされているものとして扱われます。"
 
 msgid "Trailfocus"
 msgstr "フォーカス追跡"
@@ -4380,22 +4550,22 @@ msgid ""
 msgstr "切り替え後も切り替え先プレビューを表示しておく継続時間(秒)"
 
 msgid "Edge Flip DnD"
-msgstr "エッジへのドラッグ＆ドロップでめくる"
+msgstr "エッジへのドラッグ＆ドロップでフリップ"
 
 msgid "Edge Flip Move"
-msgstr "エッジへの移動でめくる"
+msgstr "エッジへの移動でフリップ"
 
 msgid "Edge Flip Pointer"
-msgstr "エッジへのポインタ移動でめくる"
+msgstr "エッジへのポインタ移動でフリップ"
 
 msgid "Edge Flipping"
-msgstr "エッジめくり"
+msgstr "エッジ・フリップ"
 
 msgid "Edge Radius"
 msgstr "四隅の丸み"
 
 msgid "Edge flipping"
-msgstr "エッジめくり"
+msgstr "エッジ・フリップ"
 
 msgid "First color for the background gradient of the switcher window."
 msgstr "スイッチャー・ウィンドウの背景グラデーションの1番目の色"
@@ -4411,37 +4581,37 @@ msgid "First color of the arrow of the switcher window."
 msgstr "スイッチャー・ウィンドウの矢印の1番目の色"
 
 msgid "Flip Down"
-msgstr "下にめくる"
+msgstr "下にフリップ"
 
 msgid "Flip Left"
-msgstr "左にめくる"
+msgstr "左にフリップ"
 
 msgid "Flip Right"
-msgstr "右にめくる"
+msgstr "右にフリップ"
 
 msgid "Flip Up"
-msgstr "上にめくる"
+msgstr "上にフリップ"
 
 msgid "Flip down"
-msgstr "下にめくる"
+msgstr "下にフリップ"
 
 msgid "Flip left"
-msgstr "左にめくる"
+msgstr "左にフリップ"
 
 msgid "Flip right"
-msgstr "右にめくる"
+msgstr "右にフリップ"
 
 msgid "Flip up"
-msgstr "上にめくる"
+msgstr "上にフリップ"
 
 msgid "Flip viewport when dragging an object to a screen edge"
-msgstr "オブジェクトを画面の端にドラッグしたときビューポートをめくる"
+msgstr "オブジェクトを画面の端にドラッグしたときビューポートをフリップ"
 
 msgid "Flip viewport when moving a window to a screen edge"
-msgstr "ウィンドウが画面の端にきたときビューポートをめくる"
+msgstr "ウィンドウが画面の端にきたときビューポートをフリップ"
 
 msgid "Flip viewport when moving the pointer to a screen edge"
-msgstr "ポインタが画面の端にきたときビューポートをめくる"
+msgstr "ポインタが画面の端にきたときビューポートをフリップ"
 
 msgid "Highlight Gradient"
 msgstr "強調表示のグラデーション"
@@ -4760,10 +4930,10 @@ msgid "Skip taskbar"
 msgstr "タスクバー省略"
 
 msgid "Sticky"
-msgstr "貼り付け（スティッキー）"
+msgstr "スティッキー"
 
 msgid "Sticky windows"
-msgstr "貼り付け（スティッキー）するウィンドウ"
+msgstr "スティッキーに設定するウィンドウ"
 
 msgid "Width values"
 msgstr "幅の値"
@@ -4781,7 +4951,7 @@ msgid "Windows will not have focus"
 msgstr "フォーカスが渡されないようにするウィンドウ"
 
 msgid "\"On all desktops\" sticky match"
-msgstr "\"全てのデスクトップに\"貼り付けの適用対象"
+msgstr "スティッキー適用対象の「全てのデスクトップに配置」ウィンドウ"
 
 msgid "AIGLX Fragment Parameter Fix"
 msgstr "AIGLX フラグメント・パラメータの修正"
@@ -4823,14 +4993,14 @@ msgid "Legacy Fullscreen Support"
 msgstr "レガシーな全画面表示のサポート"
 
 msgid "Make \"on all desktops\" windows \"sticky\""
-msgstr "\"全てのデスクトップに配置\"ウィンドウに\"貼り付け\"属性を与える"
+msgstr "「全てのデスクトップに配置」ウィンドウにスティッキー属性を与える"
 
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
 "viewports."
 msgstr ""
-"\"全てのデスクトップに配置\"ウィンドウに貼り付け（スティッキー）属性を与え、"
-"貼り付けウィンドウをすべてのビューポートで見られるようにする"
+"「全てのデスクトップに配置」ウィンドウにスティッキー属性を与え、スティッ"
+"キー・ウィンドウを全ての「ビューポート」で見られるようにする"
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
 msgstr ""
@@ -4852,12 +5022,10 @@ msgid "Qt Window Fix"
 msgstr "Qt ウィンドウの修正"
 
 msgid "Window stickyness"
-msgstr "ウィンドウの貼り付け（スティッキー）属性"
+msgstr "ウィンドウのスティッキー属性"
 
 msgid "Windows on all desktops that should be made sticky"
-msgstr ""
-"貼り付け（スティッキー）属性を与える ’全てのデスクトップに配置’ するウィンド"
-"ウ"
+msgstr "スティッキー属性を与える「全てのデスクトップに配置」属性ウィンドウ"
 
 msgid "Workarounds"
 msgstr "次善策"

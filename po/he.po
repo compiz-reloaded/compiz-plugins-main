@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.7.7\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-11-04 12:30+0530\n"
-"PO-Revision-Date: 2008-11-02 22:52+0100\n"
+"POT-Creation-Date: 2008-12-15 15:26+0530\n"
+"PO-Revision-Date: 2008-11-17 02:22+0100\n"
 "Last-Translator: Yotam Benshalom <benshalom@gmail.com>\n"
 "Language-Team: Yotam Benshalom <benshalom@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -602,10 +602,10 @@ msgid "Y position"
 msgstr "מיקום Y"
 
 msgid "Bicubic filter"
-msgstr "מסנן דו-קובייתי"
+msgstr "מסנן דו-מעוקב"
 
 msgid "Bicubic texture filtering"
-msgstr "מסנן טקסטורות דו-קובייתי"
+msgstr "מסנן טקסטורות דו-מעוקב"
 
 msgid "Color filter"
 msgstr "מסנן צבע"
@@ -1157,7 +1157,7 @@ msgstr ""
 "שהוא מוסט אל מחוץ לאיזור התקריב."
 
 msgid "Autoscale threshold"
-msgstr ""
+msgstr "סף התאמת גודל אוטומטית"
 
 msgid "Center the mouse"
 msgstr "מרכז את העכבר"
@@ -1254,6 +1254,8 @@ msgid ""
 "Only change zoom level (scale) on focus change if the target value is higher "
 "than this. Prevents zooming too far in on small popups etc."
 msgstr ""
+"שנה את רמת התקריב (גודל) בעת העברת מוקד רק אם ערך היעד גבוה מערך זה. כך ניתן "
+"למנוע, למשל, תקריב מוגזם על חלונות קופצים קטנים."
 
 msgid "Pan (move) the zoom area down"
 msgstr "הפנה (הזז) את איזור התקריב מטה"
@@ -2082,18 +2084,182 @@ msgstr "הסטת Y של הסמן."
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "מקדם תקריב עבור זכוכית מגדלת המופעלת בעזרת המקלדת."
 
+#, fuzzy
+msgid "Down-only maximumize"
+msgstr "התרחב בחלל הפנוי"
+
+msgid "Down-only minimumize"
+msgstr ""
+
+msgid "Grow lower left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow lower right corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow the window downwards as much as possible."
+msgstr ""
+
+msgid "Grow the window horizontally as much as possible."
+msgstr ""
+
+msgid "Grow the window leftwards as much as possible."
+msgstr ""
+
+msgid "Grow the window rightwards as much as possible."
+msgstr ""
+
+msgid "Grow the window upwards as much as possible."
+msgstr ""
+
+msgid "Grow the window vertically as much as possible."
+msgstr ""
+
+msgid "Grow upper left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow upper right corner of a window as much as possible."
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal-only maximumize"
+msgstr "צבע מדורג אופקי"
+
+msgid "Horizontal-only minimumize"
+msgstr ""
+
 msgid "Ignore already overlapping windows in the calculations"
 msgstr "התעלם מחלונות חופפים לצורך החישובים"
 
 msgid "Ignore sticky windows in the calculations"
 msgstr "התעלם מחלונות דביקים לצורך החישובים"
 
+#, fuzzy
+msgid "Left-only maximumize"
+msgstr "הרחב לחלל הפנוי"
+
+msgid "Left-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower left maximumize"
+msgstr "הרחב לחלל הפנוי"
+
+msgid "Lower left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower right maximumize"
+msgstr "הרחב לחלל הפנוי"
+
+#, fuzzy
+msgid "Lower right minimumize"
+msgstr "הרחב לחלל הפנוי"
+
 msgid "Maximumize"
+msgstr "התרחב בחלל הפנוי"
+
+#, fuzzy
+msgid "Maximumize Bindings"
+msgstr "חלונות שהוגדלו למקסימום"
+
+#, fuzzy
+msgid "Maximumize to down."
+msgstr "התרחב בחלל הפנוי"
+
+#, fuzzy
+msgid "Maximumize to left."
+msgstr "התרחב בחלל הפנוי"
+
+#, fuzzy
+msgid "Maximumize to right."
+msgstr "התרחב בחלל הפנוי"
+
+#, fuzzy
+msgid "Maximumize to up."
 msgstr "התרחב בחלל הפנוי"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr ""
 "מרחיב את החלונות בחלל הפנוי (משנה את גודלם כדי שיתאימו למשטח המסך הזמין)."
+
+#, fuzzy
+msgid "Minimumize"
+msgstr "התרחב בחלל הפנוי"
+
+#, fuzzy
+msgid "Minimumize Bindings"
+msgstr "אנימצית מזעור"
+
+#, fuzzy
+msgid "Permit windows to shrink during maximumize"
+msgstr "קבע שחלון הוא בלתי ניתן להגדלה למקסימום"
+
+#, fuzzy
+msgid "Right-only maximumize"
+msgstr "הרחב לחלל הפנוי"
+
+msgid "Right-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Shrink lower left corner of a the window."
+msgstr "הצבה על הסמן מוגדרת על פי מרכז החלון"
+
+#, fuzzy
+msgid "Shrink lower right corner of a the window."
+msgstr "הצבה על הסמן מוגדרת על פי מרכז החלון"
+
+msgid "Shrink the window downwards."
+msgstr ""
+
+#, fuzzy
+msgid "Shrink the window horizontally."
+msgstr "ריצוף חלונות במאוזן"
+
+#, fuzzy
+msgid "Shrink the window leftwards."
+msgstr "הקטן את החלון"
+
+#, fuzzy
+msgid "Shrink the window rightwards."
+msgstr "הגדל את החלון"
+
+#, fuzzy
+msgid "Shrink the window upwards."
+msgstr "חלונות המעביר"
+
+#, fuzzy
+msgid "Shrink the window vertically."
+msgstr "ריצוף חלונות במאונך"
+
+#, fuzzy
+msgid "Shrink upper left corner of a the window."
+msgstr "הצבה על הסמן מוגדרת על פי מרכז החלון"
+
+#, fuzzy
+msgid "Shrink upper right corner of a the window."
+msgstr "הצבה על הסמן מוגדרת על פי מרכז החלון"
+
+msgid ""
+"This allows a window to change it's shape to fit in an area even when the "
+"new shape might be smaller than it's current size with regards to area"
+msgstr ""
+
+#, fuzzy
+msgid "Top left maximumize"
+msgstr "הרחב לחלל הפנוי"
+
+msgid "Top left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Top right maximumize"
+msgstr "הרחב לחלל הפנוי"
+
+#, fuzzy
+msgid "Top right minimumize"
+msgstr "הרחב לחלל הפנוי"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2114,8 +2280,36 @@ msgid ""
 "available screenspae as possible."
 msgstr "משנה את גודל החלון הפעיל כדי להתאים לכמה שיותר מן החלל הפנוי על המסך."
 
-msgid "Trigger maximumize"
+#, fuzzy
+msgid ""
+"Trigger a resize of the window currently focused so it resizes to 1/4 size."
+msgstr "משנה את גודל החלון הפעיל כדי להתאים לכמה שיותר מן החלל הפנוי על המסך."
+
+#, fuzzy
+msgid "Up-only maximumize"
+msgstr "התרחב בחלל הפנוי"
+
+msgid "Up-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Vertical-only maximumize"
 msgstr "הרחב לחלל הפנוי"
+
+msgid "Vertical-only minimumize"
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow downwards."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the left."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the right."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow upwards."
+msgstr ""
 
 msgid "Accumulation buffer"
 msgstr "חוצץ צבירה"
@@ -3091,6 +3285,9 @@ msgstr ""
 "X. יש להשתמש בהגדרה זו רק תחת KDE, משום שרק מנהל ההפעלות של KDE שומר גם את "
 "היישומים האלה."
 
+msgid "Matching windows will not be handled by the session plugin"
+msgstr ""
+
 msgid "Save Legacy Apps"
 msgstr "שמור יישומים מיושנים"
 
@@ -3099,6 +3296,10 @@ msgstr "ניהול הפעלות"
 
 msgid "Talk to session manager and save/load window state"
 msgstr "דבר עם מנהל ההפעלות ושמור\\טען את מצב החלון"
+
+#, fuzzy
+msgid "Windows to ignore"
+msgstr "כותרת החלון"
 
 msgid "Animation duration"
 msgstr "משך אנימציה"

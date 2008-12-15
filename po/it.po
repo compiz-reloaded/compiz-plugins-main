@@ -47,7 +47,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-11-04 12:30+0530\n"
+"POT-Creation-Date: 2008-12-15 15:26+0530\n"
 "PO-Revision-Date: 2008-09-08 21:23+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -2376,6 +2376,52 @@ msgstr "L'offset Y del cursore."
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Fattore di zoom per la lente d'ingrandimento avviata da tastiera."
 
+# (ndt) questo effetto non massimizza la finestra
+# ma la allarga per occupare tutto lo spazio disponibile
+#, fuzzy
+msgid "Down-only maximumize"
+msgstr "Allarga"
+
+msgid "Down-only minimumize"
+msgstr ""
+
+msgid "Grow lower left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow lower right corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow the window downwards as much as possible."
+msgstr ""
+
+msgid "Grow the window horizontally as much as possible."
+msgstr ""
+
+msgid "Grow the window leftwards as much as possible."
+msgstr ""
+
+msgid "Grow the window rightwards as much as possible."
+msgstr ""
+
+msgid "Grow the window upwards as much as possible."
+msgstr ""
+
+msgid "Grow the window vertically as much as possible."
+msgstr ""
+
+msgid "Grow upper left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow upper right corner of a window as much as possible."
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal-only maximumize"
+msgstr "Gradiente orizzontale"
+
+msgid "Horizontal-only minimumize"
+msgstr ""
+
 # (ndt) opzione
 msgid "Ignore already overlapping windows in the calculations"
 msgstr "Ignorare finestre sovrapposte nei calcoli"
@@ -2384,14 +2430,144 @@ msgstr "Ignorare finestre sovrapposte nei calcoli"
 msgid "Ignore sticky windows in the calculations"
 msgstr "Ignorare finestre adesive nei calcoli"
 
+#, fuzzy
+msgid "Left-only maximumize"
+msgstr "Avvia l'allargamento"
+
+msgid "Left-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower left maximumize"
+msgstr "Avvia l'allargamento"
+
+msgid "Lower left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower right maximumize"
+msgstr "Avvia l'allargamento"
+
+#, fuzzy
+msgid "Lower right minimumize"
+msgstr "Avvia l'allargamento"
+
 # (ndt) questo effetto non massimizza la finestra
 # ma la allarga per occupare tutto lo spazio disponibile
 msgid "Maximumize"
 msgstr "Allarga"
 
+#, fuzzy
+msgid "Maximumize Bindings"
+msgstr "Finestre massimizzate"
+
+# (ndt) questo effetto non massimizza la finestra
+# ma la allarga per occupare tutto lo spazio disponibile
+#, fuzzy
+msgid "Maximumize to down."
+msgstr "Allarga"
+
+# (ndt) questo effetto non massimizza la finestra
+# ma la allarga per occupare tutto lo spazio disponibile
+#, fuzzy
+msgid "Maximumize to left."
+msgstr "Allarga"
+
+# (ndt) questo effetto non massimizza la finestra
+# ma la allarga per occupare tutto lo spazio disponibile
+#, fuzzy
+msgid "Maximumize to right."
+msgstr "Allarga"
+
+# (ndt) questo effetto non massimizza la finestra
+# ma la allarga per occupare tutto lo spazio disponibile
+#, fuzzy
+msgid "Maximumize to up."
+msgstr "Allarga"
+
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr ""
 "Allarga le finestre (le ridimensiona per occupare lo spazio disponibile)."
+
+# (ndt) questo effetto non massimizza la finestra
+# ma la allarga per occupare tutto lo spazio disponibile
+#, fuzzy
+msgid "Minimumize"
+msgstr "Allarga"
+
+#, fuzzy
+msgid "Minimumize Bindings"
+msgstr "Animazione di minimizzazione"
+
+#, fuzzy
+msgid "Permit windows to shrink during maximumize"
+msgstr "Imposta finestra come non massimizzabile"
+
+#, fuzzy
+msgid "Right-only maximumize"
+msgstr "Avvia l'allargamento"
+
+msgid "Right-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Shrink lower left corner of a the window."
+msgstr "La posizione al puntatore utilizza il centro della finestra"
+
+#, fuzzy
+msgid "Shrink lower right corner of a the window."
+msgstr "La posizione al puntatore utilizza il centro della finestra"
+
+msgid "Shrink the window downwards."
+msgstr ""
+
+#, fuzzy
+msgid "Shrink the window horizontally."
+msgstr "Accosta finestre orizzontalmente"
+
+#, fuzzy
+msgid "Shrink the window leftwards."
+msgstr "Rimpicciolisci finestra"
+
+#, fuzzy
+msgid "Shrink the window rightwards."
+msgstr "Ingrandisci finestra"
+
+#, fuzzy
+msgid "Shrink the window upwards."
+msgstr "Finestre da selezionare"
+
+#, fuzzy
+msgid "Shrink the window vertically."
+msgstr "Accosta finestre verticalmente"
+
+#, fuzzy
+msgid "Shrink upper left corner of a the window."
+msgstr "La posizione al puntatore utilizza il centro della finestra"
+
+#, fuzzy
+msgid "Shrink upper right corner of a the window."
+msgstr "La posizione al puntatore utilizza il centro della finestra"
+
+msgid ""
+"This allows a window to change it's shape to fit in an area even when the "
+"new shape might be smaller than it's current size with regards to area"
+msgstr ""
+
+#, fuzzy
+msgid "Top left maximumize"
+msgstr "Avvia l'allargamento"
+
+msgid "Top left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Top right maximumize"
+msgstr "Avvia l'allargamento"
+
+#, fuzzy
+msgid "Top right minimumize"
+msgstr "Avvia l'allargamento"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2414,8 +2590,40 @@ msgstr ""
 "Avvia un ridimensionamento della finestra col focus in modo che occupi lo "
 "spazio su schermo disponibile."
 
-msgid "Trigger maximumize"
+#, fuzzy
+msgid ""
+"Trigger a resize of the window currently focused so it resizes to 1/4 size."
+msgstr ""
+"Avvia un ridimensionamento della finestra col focus in modo che occupi lo "
+"spazio su schermo disponibile."
+
+# (ndt) questo effetto non massimizza la finestra
+# ma la allarga per occupare tutto lo spazio disponibile
+#, fuzzy
+msgid "Up-only maximumize"
+msgstr "Allarga"
+
+msgid "Up-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Vertical-only maximumize"
 msgstr "Avvia l'allargamento"
+
+msgid "Vertical-only minimumize"
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow downwards."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the left."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the right."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow upwards."
+msgstr ""
 
 msgid "Accumulation buffer"
 msgstr "Buffer d'accumulo"
@@ -3501,6 +3709,9 @@ msgstr ""
 "usata solamente in KDE, dato che solo il gestore di sessione di KDE salva "
 "queste applicazioni."
 
+msgid "Matching windows will not be handled by the session plugin"
+msgstr ""
+
 msgid "Save Legacy Apps"
 msgstr "Salvare applicazioni datate"
 
@@ -3510,6 +3721,10 @@ msgstr "Gestione sessione"
 msgid "Talk to session manager and save/load window state"
 msgstr ""
 "Interagisce col gestore di sessione e salva/carica lo stato della finestra"
+
+#, fuzzy
+msgid "Windows to ignore"
+msgstr "Titolo finestra"
 
 msgid "Animation duration"
 msgstr "Durata animazione"

@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-11-04 12:29+0530\n"
-"PO-Revision-Date: 2008-10-31 17:47+0100\n"
-"Last-Translator: Birunthan Mohanathas <legace@inbox.com>\n"
+"POT-Creation-Date: 2008-12-15 15:25+0530\n"
+"PO-Revision-Date: 2008-11-24 20:26+0100\n"
+"Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1187,7 +1187,7 @@ msgstr ""
 "häipyessä zoomatusta alueesta."
 
 msgid "Autoscale threshold"
-msgstr ""
+msgstr "Automaattiskaalauksen kynnysarvo"
 
 msgid "Center the mouse"
 msgstr "Keskitä hiiri"
@@ -1286,6 +1286,9 @@ msgid ""
 "Only change zoom level (scale) on focus change if the target value is higher "
 "than this. Prevents zooming too far in on small popups etc."
 msgstr ""
+"Vaihda suurennustasoa (skaalausta) kohdistuksen vaihtuessa jos kohdearvo on "
+"tätä suurempi. Estää liian suuren suurennuksen pienille ponnahdusikkunoille "
+"jne."
 
 msgid "Pan (move) the zoom area down"
 msgstr "Panoroi (siirrä) zoomausaluetta alas"
@@ -1609,6 +1612,9 @@ msgid ""
 "the spring model. If the distance is larger than that value, the model isn't "
 "applied."
 msgstr ""
+"Etäisyys (pikseleissä) välilehtipalkin ja raahatun paikan välillä "
+"jousimallin toteuttamista varten. Jos etäisyys on arvoa suurempi, mallia ei "
+"toteuteta."
 
 msgid "Duration (in s) of the animation that happens when changing tabs"
 msgstr "Välilehteä vaihtaessa esiintyvän animaation kesto (sekunneissa)"
@@ -1689,7 +1695,7 @@ msgid "Grouping"
 msgstr "Ryhmittely"
 
 msgid "Hover time for slot dragging"
-msgstr ""
+msgstr "Osoittimen kohdistusaika paikan raahaukselle"
 
 msgid ""
 "If one window in the group is (un)maximized, all other group windows are (un)"
@@ -1834,13 +1840,13 @@ msgid "Simple"
 msgstr "Yksinkertainen"
 
 msgid "Slot Drag Spring K"
-msgstr ""
+msgstr "Paikan raahauksen jousen K-arvo (jousivakio)"
 
 msgid "Slot Dragging"
-msgstr ""
+msgstr "Paikan raahaus"
 
 msgid "Slot drag friction"
-msgstr ""
+msgstr "Paikan raahauksen kitka"
 
 msgid "Space"
 msgstr "Väli"
@@ -1849,10 +1855,10 @@ msgid "Speed limit for spring model"
 msgstr "Jousimallin nopeusrajoitus"
 
 msgid "Spring Konstant used for slot dragging"
-msgstr ""
+msgstr "Paikan raahaukseen käytettävä jousivakio"
 
 msgid "Spring friction for slot dragging"
-msgstr ""
+msgstr "Paikan raahauksen jousen kitka"
 
 msgid "Tab Bar Show Delay"
 msgstr "Viive välilehtipalkin näyttämiseen"
@@ -2134,6 +2140,50 @@ msgstr "Kursorin pystypoikkeutus."
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Zoomauskerroin näppäimistöltä käynnistettävälle suurentimelle."
 
+#, fuzzy
+msgid "Down-only maximumize"
+msgstr "Suurenna sovittaen"
+
+msgid "Down-only minimumize"
+msgstr ""
+
+msgid "Grow lower left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow lower right corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow the window downwards as much as possible."
+msgstr ""
+
+msgid "Grow the window horizontally as much as possible."
+msgstr ""
+
+msgid "Grow the window leftwards as much as possible."
+msgstr ""
+
+msgid "Grow the window rightwards as much as possible."
+msgstr ""
+
+msgid "Grow the window upwards as much as possible."
+msgstr ""
+
+msgid "Grow the window vertically as much as possible."
+msgstr ""
+
+msgid "Grow upper left corner of a window as much as possible."
+msgstr ""
+
+msgid "Grow upper right corner of a window as much as possible."
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal-only maximumize"
+msgstr "Vaakasuuntainen väriliuku"
+
+msgid "Horizontal-only minimumize"
+msgstr ""
+
 msgid "Ignore already overlapping windows in the calculations"
 msgstr ""
 "Jätä ikkunat, jotka ovat päällekkäin jo nyt, huomioimatta laskutoimituksissa"
@@ -2141,11 +2191,131 @@ msgstr ""
 msgid "Ignore sticky windows in the calculations"
 msgstr "Jätä tarttuvat ikkunat humioimatta laskutoimituksissa"
 
+#, fuzzy
+msgid "Left-only maximumize"
+msgstr "Aloita suurenna sovittaen"
+
+msgid "Left-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower left maximumize"
+msgstr "Aloita suurenna sovittaen"
+
+msgid "Lower left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Lower right maximumize"
+msgstr "Aloita suurenna sovittaen"
+
+#, fuzzy
+msgid "Lower right minimumize"
+msgstr "Aloita suurenna sovittaen"
+
 msgid "Maximumize"
+msgstr "Suurenna sovittaen"
+
+#, fuzzy
+msgid "Maximumize Bindings"
+msgstr "Suurennetut ikkunat"
+
+#, fuzzy
+msgid "Maximumize to down."
+msgstr "Suurenna sovittaen"
+
+#, fuzzy
+msgid "Maximumize to left."
+msgstr "Suurenna sovittaen"
+
+#, fuzzy
+msgid "Maximumize to right."
+msgstr "Suurenna sovittaen"
+
+#, fuzzy
+msgid "Maximumize to up."
 msgstr "Suurenna sovittaen"
 
 msgid "Maximumizes windows (resize them to fit the available screenspace)."
 msgstr "Suurentaa ikkunat sopimaan vapaana olevaan tilaan näytöllä"
+
+#, fuzzy
+msgid "Minimumize"
+msgstr "Suurenna sovittaen"
+
+#, fuzzy
+msgid "Minimumize Bindings"
+msgstr "Pienennysanimaatio"
+
+#, fuzzy
+msgid "Permit windows to shrink during maximumize"
+msgstr "Ikkunaa ei voi suurentaa"
+
+#, fuzzy
+msgid "Right-only maximumize"
+msgstr "Aloita suurenna sovittaen"
+
+msgid "Right-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Shrink lower left corner of a the window."
+msgstr "Osoittimen asetus käyttää ikkunan keskipistettä"
+
+#, fuzzy
+msgid "Shrink lower right corner of a the window."
+msgstr "Osoittimen asetus käyttää ikkunan keskipistettä"
+
+msgid "Shrink the window downwards."
+msgstr ""
+
+#, fuzzy
+msgid "Shrink the window horizontally."
+msgstr "Pitäisikö ikkunan otsikko olla lihavoitu."
+
+#, fuzzy
+msgid "Shrink the window leftwards."
+msgstr "Tee ikkunasta pienempi"
+
+#, fuzzy
+msgid "Shrink the window rightwards."
+msgstr "Tee ikkunasta suurempi"
+
+#, fuzzy
+msgid "Shrink the window upwards."
+msgstr "Vaihtimen ikkunat"
+
+#, fuzzy
+msgid "Shrink the window vertically."
+msgstr "Pitäisikö ikkunan otsikko olla lihavoitu."
+
+#, fuzzy
+msgid "Shrink upper left corner of a the window."
+msgstr "Osoittimen asetus käyttää ikkunan keskipistettä"
+
+#, fuzzy
+msgid "Shrink upper right corner of a the window."
+msgstr "Osoittimen asetus käyttää ikkunan keskipistettä"
+
+msgid ""
+"This allows a window to change it's shape to fit in an area even when the "
+"new shape might be smaller than it's current size with regards to area"
+msgstr ""
+
+#, fuzzy
+msgid "Top left maximumize"
+msgstr "Aloita suurenna sovittaen"
+
+msgid "Top left minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Top right maximumize"
+msgstr "Aloita suurenna sovittaen"
+
+#, fuzzy
+msgid "Top right minimumize"
+msgstr "Aloita suurenna sovittaen"
 
 msgid ""
 "Treat sticky windows as non-existant when calculating space to use for the "
@@ -2168,8 +2338,38 @@ msgstr ""
 "Aloita tällä hetkellä kohdistetun ikkunan koon muutos, jotta se saa "
 "mahdollisimman paljon näyttötilaa."
 
-msgid "Trigger maximumize"
+#, fuzzy
+msgid ""
+"Trigger a resize of the window currently focused so it resizes to 1/4 size."
+msgstr ""
+"Aloita tällä hetkellä kohdistetun ikkunan koon muutos, jotta se saa "
+"mahdollisimman paljon näyttötilaa."
+
+#, fuzzy
+msgid "Up-only maximumize"
+msgstr "Suurenna sovittaen"
+
+msgid "Up-only minimumize"
+msgstr ""
+
+#, fuzzy
+msgid "Vertical-only maximumize"
 msgstr "Aloita suurenna sovittaen"
+
+msgid "Vertical-only minimumize"
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow downwards."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the left."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow to the right."
+msgstr ""
+
+msgid "When maximumizing, allow the window to grow upwards."
+msgstr ""
 
 msgid "Accumulation buffer"
 msgstr "Akkumulaatiopuskuri"
@@ -2294,7 +2494,7 @@ msgid "Exclude Windows"
 msgstr "Ei käytössä näissä ikkunoissa"
 
 msgid "Neg Windows"
-msgstr ""
+msgstr "Negatiivi-ikkunat"
 
 msgid "Negate Decorations"
 msgstr "Poista somisteet"
@@ -2379,6 +2579,10 @@ msgid ""
 "us to instantly see the focused window. You probably want to disable this if "
 "you are not using 'Click to Focus'."
 msgstr ""
+"Älä odota että osoittimen alla olevasta ikkunasta tulee kohdistettu ikkuna. "
+"Tämä mahdollistaa kohdistetun ikkunan välittömän näkemisen. Haluat "
+"luultavasti ottaa tämän pois käytöstä, jos et käytä \"Napsauta kohdistaaksesi"
+"\" -valintaa."
 
 msgid "Make windows easily visible by hovering the mouse over them"
 msgstr "Tee ikkunat hyvin näkyviksi siirtämällä hiiri niiden päälle"
@@ -2478,7 +2682,7 @@ msgid "Avoids putting window borders offscreen"
 msgstr "Vältä ikkunoiden reunojen meneminen näytön reunan yli"
 
 msgid "Move window arbitrarily by passing x, y and type."
-msgstr ""
+msgstr "Siirrä ikkunaa mielivaltaisesti antamalla x, y ja tyyppi."
 
 msgid "Move window to a certain viewport"
 msgstr "Siirrä ikkuna toiseen työtilaan"
@@ -2567,12 +2771,17 @@ msgstr "Siirrä ikkuna työtilaan 9"
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
 msgstr ""
+"Pikselien lukumäärä alareunasta laskien, jonka jälkeen ikkuna jää paikalleen"
 
 msgid "Number of pixels from the left edge where the window will come to rest"
 msgstr ""
+"Pikselien lukumäärä vasemmasta reunasta laskien, jonka jälkeen ikkuna jää "
+"paikalleen"
 
 msgid "Number of pixels from the right edge where the window will come to rest"
 msgstr ""
+"Pikselien lukumäärä oikeasta reunasta laskien, jonka jälkeen ikkuna jää "
+"paikalleen"
 
 msgid "Number of pixels from the top edge where the window will come to rest"
 msgstr ""
@@ -2650,7 +2859,7 @@ msgid "Put On Viewport 9"
 msgstr "Laita työtilaan 9"
 
 msgid "Put Pointer"
-msgstr ""
+msgstr "Aseta osoitin"
 
 msgid "Put Right"
 msgstr "Laita oikealle"
@@ -2665,7 +2874,7 @@ msgid "Put Top Right"
 msgstr "Laita ylös oikealle"
 
 msgid "Put pointer uses the center of the window"
-msgstr ""
+msgstr "Osoittimen asetus käyttää ikkunan keskipistettä"
 
 msgid "Put to adjacent viewport"
 msgstr "Laita vierekkäiseen työtilaan"
@@ -3137,6 +3346,9 @@ msgid ""
 "session manager also saves those applications."
 msgstr ""
 
+msgid "Matching windows will not be handled by the session plugin"
+msgstr ""
+
 msgid "Save Legacy Apps"
 msgstr ""
 
@@ -3145,6 +3357,10 @@ msgstr "Istunnon hallinta"
 
 msgid "Talk to session manager and save/load window state"
 msgstr ""
+
+#, fuzzy
+msgid "Windows to ignore"
+msgstr "Ikkunan otsikko"
 
 msgid "Animation duration"
 msgstr "Animaation kesto"
