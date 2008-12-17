@@ -1466,6 +1466,15 @@ wallPreparePaintScreen (CompScreen *s,
     WRAP (ws, s, preparePaintScreen, wallPreparePaintScreen);
 }
 
+static inline int
+roundVal (float value)
+{
+    if (value < 0)
+	return (int) (value - 0.5);
+    else
+	return (int) (value + 0.5);
+}
+
 static void
 wallPaintTransformedOutput (CompScreen              *s,
 	     		    const ScreenPaintAttrib *sAttrib,
@@ -1533,6 +1542,7 @@ wallPaintTransformedOutput (CompScreen              *s,
 	float                xTranslate, yTranslate;
 	float                px, py;
 	int                  tx, ty;
+	Bool                 movingX, movingY;
 
 	if (clear)
 	    clearTargetOutput (s->display, GL_COLOR_BUFFER_BIT);
@@ -1542,19 +1552,22 @@ wallPaintTransformedOutput (CompScreen              *s,
 	px = ws->curPosX;
 	py = ws->curPosY;
 
-	if (floor (py) != ceil (py))
+	movingX = ((int) floor (px)) != ((int) ceil (px));
+	movingY = ((int) floor (py)) != ((int) ceil (py));
+
+	if (movingY)
 	{
 	    ty = ceil (py) - s->y;
 	    yTranslate = fmod (py, 1) - 1;
-	    ws->yTranslate = yTranslate * -output->height;
+	    ws->yTranslate = roundVal (yTranslate * -output->height);
 
 	    matrixTranslate (&sTransform, 0.0f, yTranslate, 0.0f);
 
-	    if (floor (px) != ceil (px))
+	    if (movingX)
 	    {
 		tx = ceil (px) - s->x;
 		xTranslate = 1 - fmod (px, 1);
-		ws->xTranslate = xTranslate * output->width;
+		ws->xTranslate = roundVal (xTranslate * output->width);
 
 		setWindowPaintOffset (s, (s->x - ceil(px)) * s->width,
 				      (s->y - ceil(py)) * s->height);
@@ -1569,7 +1582,7 @@ wallPaintTransformedOutput (CompScreen              *s,
 
 	    tx = floor (px) - s->x;
 	    xTranslate = -fmod (px, 1);
-	    ws->xTranslate = xTranslate * output->width;
+	    ws->xTranslate = roundVal (xTranslate * output->width);
 
 	    setWindowPaintOffset (s, (s->x - floor(px)) * s->width,
 				  (s->y - ceil(py)) * s->height);
@@ -1583,15 +1596,15 @@ wallPaintTransformedOutput (CompScreen              *s,
 
 	ty = floor (py) - s->y;
 	yTranslate = fmod (py, 1);
-	ws->yTranslate = yTranslate * -output->height;
+	ws->yTranslate = roundVal (yTranslate * -output->height);
 
 	matrixTranslate (&sTransform, 0.0f, yTranslate, 0.0f);
 
-	if (floor (px) != ceil (px))
+	if (movingX)
 	{
 	    tx = ceil (px) - s->x;
 	    xTranslate = 1 - fmod (px, 1);
-	    ws->xTranslate = xTranslate * output->width;
+	    ws->xTranslate = (xTranslate * output->width) + 0.5;
 
 	    setWindowPaintOffset (s, (s->x - ceil(px)) * s->width,
 				  (s->y - floor(py)) * s->height);
@@ -1606,11 +1619,11 @@ wallPaintTransformedOutput (CompScreen              *s,
 
 	tx = floor (px) - s->x;
 	xTranslate = -fmod (px, 1);
-	ws->xTranslate = xTranslate * output->width;
+	ws->xTranslate = roundVal (xTranslate * output->width);
 
 	setWindowPaintOffset (s, (s->x - floor(px)) * s->width,
 			      (s->y - floor(py)) * s->height);
-	
+
 	matrixTranslate (&sTransform, xTranslate, 0.0f, 0.0f);
 	(*s->paintTransformedOutput) (s, sAttrib, &sTransform,
 				      &output->region, output, mask);
