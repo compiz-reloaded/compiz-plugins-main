@@ -37,7 +37,7 @@
 #include <cairo.h>
 
 #define PI 3.14159265359f
-#define VIEWPORT_SWITCHER_SIZE   100
+#define VIEWPORT_SWITCHER_SIZE 100
 #define ARROW_SIZE 33
 
 #define WIN_X(w) ((w)->attrib.x - (w)->input.left)
@@ -481,6 +481,7 @@ wallReleaseMoveWindow (CompScreen *s)
     w = findWindowAtScreen (s, ws->moveWindow);
     if (w)
 	syncWindowPosition (w);
+
     ws->moveWindow = 0;
 }
 
@@ -593,8 +594,8 @@ wallMoveViewport (CompScreen *s,
 
     moveScreenViewport (s, x, y, TRUE);
 
-    ws->moving = TRUE;
-    ws->focusDefault = TRUE;
+    ws->moving          = TRUE;
+    ws->focusDefault    = TRUE;
     ws->boxOutputDevice = outputDeviceForPoint (s, pointerX, pointerY);
 
     if (wallGetShowSwitcher (s->display))
@@ -615,8 +616,7 @@ wallHandleEvent (CompDisplay *d,
 {
     WALL_DISPLAY (d);
 
-    switch (event->type)
-    {
+    switch (event->type) {
     case ClientMessage:
 	if (event->xclient.message_type == d->desktopViewportAtom)
 	{
@@ -784,8 +784,7 @@ wallInitiateFlip (CompScreen *s,
     else if (!wallGetEdgeflipPointer (s))
 	return FALSE;
 
-    switch (direction)
-    {
+    switch (direction) {
     case Left:
 	dx = -1; dy = 0;
 	break;
@@ -1348,7 +1347,7 @@ wallPaintOutput (CompScreen              *s,
 
 	if (wallGetMiniscreen (s->display))
 	{
-	    int i, j;
+	    int  i, j;
 	    float mw, mh;
 
 	    mw = ws->viewportWidth;
@@ -1364,7 +1363,7 @@ wallPaintOutput (CompScreen              *s,
     	    {
 		for (i = 0; i < s->hsize; i++)
 		{
-		    float mx, my;
+		    float        mx, my;
 		    unsigned int msMask;
 
 		    mx = ws->firstViewportX +
@@ -1651,11 +1650,12 @@ wallPaintWindow (CompWindow              *w,
     {
 	WindowPaintAttrib pA = *attrib;
 
-	pA.opacity = attrib->opacity * ((float)ws->mSAttribs.opacity / OPAQUE);
+	pA.opacity    = attrib->opacity *
+			((float) ws->mSAttribs.opacity / OPAQUE);
 	pA.brightness = attrib->brightness *
-	                ((float)ws->mSAttribs.brightness / BRIGHT);
+			((float) ws->mSAttribs.brightness / BRIGHT);
 	pA.saturation = attrib->saturation *
-			((float)ws->mSAttribs.saturation / COLOR);
+			((float) ws->mSAttribs.saturation / COLOR);
 
 	if (!pA.opacity || !pA.brightness)
 	    mask |= PAINT_WINDOW_NO_CORE_INSTANCE_MASK;
@@ -1722,11 +1722,16 @@ wallCreateCairoContexts (CompScreen *s,
 
     WALL_SCREEN (s);
 
-    ws->viewportWidth = VIEWPORT_SWITCHER_SIZE * (float)wallGetPreviewScale(s->display) / 100.0f;
-    ws->viewportHeight = ws->viewportWidth * (float)s->height / (float)s->width;
-    ws->viewportBorder = wallGetBorderWidth(s->display);
-    width = s->hsize * (ws->viewportWidth + ws->viewportBorder) + ws->viewportBorder;
-    height = s->vsize * (ws->viewportHeight + ws->viewportBorder) + ws->viewportBorder;
+    ws->viewportWidth = VIEWPORT_SWITCHER_SIZE *
+			(float) wallGetPreviewScale (s->display) / 100.0f;
+    ws->viewportHeight = ws->viewportWidth *
+			 (float) s->height / (float) s->width;
+    ws->viewportBorder = wallGetBorderWidth (s->display);
+
+    width  = s->hsize * (ws->viewportWidth + ws->viewportBorder) +
+	     ws->viewportBorder;
+    height = s->vsize * (ws->viewportHeight + ws->viewportBorder) +
+	     ws->viewportBorder;
 
     wallDestroyCairoContext (s, &ws->switcherContext);
     ws->switcherContext.width = width;
@@ -2072,17 +2077,19 @@ wallInitScreen (CompPlugin *p,
  	return FALSE;
     }
 
+    ws->timer      = 0;
     ws->boxTimeout = 0;
-    ws->grabIndex = 0;
-    ws->timer = 0;
-    ws->moving = FALSE;
-    ws->showPreview = FALSE;
+    ws->grabIndex  = 0;
+
+    ws->moving       = FALSE;
+    ws->showPreview  = FALSE;
     ws->focusDefault = TRUE;
-    ws->moveWindow = None;
-    ws->transform = NoTransformation;
+    ws->moveWindow   = None;
+
+    ws->transform  = NoTransformation;
     ws->xTranslate = 0;
     ws->yTranslate = 0;
-    ws->direction = -1;
+    ws->direction  = -1;
 
     memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
     memset (&ws->thumbContext, 0, sizeof (WallCairoContext));
