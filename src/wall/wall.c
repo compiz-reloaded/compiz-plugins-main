@@ -112,9 +112,6 @@ typedef struct _WallScreen
     Bool moving; /* Used to track miniview movement */
     Bool showPreview;
 
-    int xTranslate;
-    int yTranslate;
-
     float curPosX;
     float curPosY;
     int   gotoX;
@@ -132,6 +129,7 @@ typedef struct _WallScreen
     Bool focusDefault;
 
     ScreenTransformation transform;
+    CompOutput           *currOutput;
 
     WindowPaintAttrib mSAttribs;
     float             mSzCamera;
@@ -1465,15 +1463,6 @@ wallPreparePaintScreen (CompScreen *s,
     WRAP (ws, s, preparePaintScreen, wallPreparePaintScreen);
 }
 
-static inline int
-roundVal (float value)
-{
-    if (value < 0)
-	return (int) (value - 0.5);
-    else
-	return (int) (value + 0.5);
-}
-
 static void
 wallPaintTransformedOutput (CompScreen              *s,
 	     		    const ScreenPaintAttrib *sAttrib,
@@ -1546,7 +1535,8 @@ wallPaintTransformedOutput (CompScreen              *s,
 	if (clear)
 	    clearTargetOutput (s->display, GL_COLOR_BUFFER_BIT);
 
-	ws->transform = Sliding;
+	ws->transform  = Sliding;
+	ws->currOutput = output;
 
 	px = ws->curPosX;
 	py = ws->curPosY;
@@ -1558,7 +1548,6 @@ wallPaintTransformedOutput (CompScreen              *s,
 	{
 	    ty = ceil (py) - s->y;
 	    yTranslate = fmod (py, 1) - 1;
-	    ws->yTranslate = roundVal (yTranslate * -output->height);
 
 	    matrixTranslate (&sTransform, 0.0f, yTranslate, 0.0f);
 
@@ -1566,7 +1555,6 @@ wallPaintTransformedOutput (CompScreen              *s,
 	    {
 		tx = ceil (px) - s->x;
 		xTranslate = 1 - fmod (px, 1);
-		ws->xTranslate = roundVal (xTranslate * output->width);
 
 		setWindowPaintOffset (s, (s->x - ceil(px)) * s->width,
 				      (s->y - ceil(py)) * s->height);
@@ -1581,7 +1569,6 @@ wallPaintTransformedOutput (CompScreen              *s,
 
 	    tx = floor (px) - s->x;
 	    xTranslate = -fmod (px, 1);
-	    ws->xTranslate = roundVal (xTranslate * output->width);
 
 	    setWindowPaintOffset (s, (s->x - floor(px)) * s->width,
 				  (s->y - ceil(py)) * s->height);
@@ -1595,7 +1582,6 @@ wallPaintTransformedOutput (CompScreen              *s,
 
 	ty = floor (py) - s->y;
 	yTranslate = fmod (py, 1);
-	ws->yTranslate = roundVal (yTranslate * -output->height);
 
 	matrixTranslate (&sTransform, 0.0f, yTranslate, 0.0f);
 
@@ -1603,7 +1589,6 @@ wallPaintTransformedOutput (CompScreen              *s,
 	{
 	    tx = ceil (px) - s->x;
 	    xTranslate = 1 - fmod (px, 1);
-	    ws->xTranslate = (xTranslate * output->width) + 0.5;
 
 	    setWindowPaintOffset (s, (s->x - ceil(px)) * s->width,
 				  (s->y - floor(py)) * s->height);
@@ -1618,7 +1603,6 @@ wallPaintTransformedOutput (CompScreen              *s,
 
 	tx = floor (px) - s->x;
 	xTranslate = -fmod (px, 1);
-	ws->xTranslate = roundVal (xTranslate * output->width);
 
 	setWindowPaintOffset (s, (s->x - floor(px)) * s->width,
 			      (s->y - floor(py)) * s->height);
@@ -1666,15 +1650,20 @@ wallPaintWindow (CompWindow              *w,
     }
     else if (ws->transform == Sliding)
     {
-	CompTransform wTransform = *transform;
+	CompTransform wTransform;
 
 	WALL_WINDOW (w);
 
 	if (!ww->isSliding)
 	{
-	    matrixTranslate (&wTransform,
-			     -ws->xTranslate, -ws->yTranslate, 0.0f);
+	    matrixGetIdentity (&wTransform);
+	    transformToScreenSpace (s, ws->currOutput, -DEFAULT_Z_CAMERA,
+				    &wTransform);
 	    mask |= PAINT_WINDOW_TRANSFORMED_MASK;
+	}
+	else
+	{
+	    wTransform = *transform;
 	}
 
 	UNWRAP (ws, s, paintWindow);
@@ -2087,8 +2076,6 @@ wallInitScreen (CompPlugin *p,
     ws->moveWindow   = None;
 
     ws->transform  = NoTransformation;
-    ws->xTranslate = 0;
-    ws->yTranslate = 0;
     ws->direction  = -1;
 
     memset (&ws->switcherContext, 0, sizeof (WallCairoContext));
