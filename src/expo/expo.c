@@ -1555,12 +1555,15 @@ expoDonePaintScreen (CompScreen * s)
     case DnDStart:
 	{
 	    CompWindow *w;
+	    int        xOffset, yOffset;
+
+	    xOffset = s->hsize * s->width;
+	    yOffset = s->vsize * s->height;
 
 	    for (w = s->reverseWindows; w; w = w->prev)
 	    {
 		Bool inWindow;
-		int xOffset, yOffset;
-		int nx,ny;
+		int  nx, ny;
 
 		if (w->destroyed)
 		    continue;
@@ -1571,23 +1574,26 @@ expoDonePaintScreen (CompScreen * s)
 			continue;
 		}
 
-		xOffset = s->hsize * s->width;
-		yOffset = s->vsize * s->height;
+		if (windowOnAllViewports (w))
+		{
+		    nx = (es->newCursorX + xOffset) % s->width;
+		    ny = (es->newCursorY + yOffset) % s->height;
+		}
+		else
+		{
+		    nx = es->newCursorX - (s->x * s->width);
+		    ny = es->newCursorY - (s->y * s->height);
+		}
 
-		nx = es->newCursorX - (s->x * s->width);
-		ny = es->newCursorY - (s->y * s->height);
-		
 		inWindow = ((nx >= WIN_X (w)) &&
 			    (nx <= WIN_X (w) + WIN_W (w))) ||
 		           ((nx >= (WIN_X (w) + xOffset)) &&
-			    (nx <= (WIN_X (w) + WIN_W (w) +
-						xOffset)));
+			    (nx <= (WIN_X (w) + WIN_W (w) + xOffset)));
 
 		inWindow &= ((ny >= WIN_Y (w)) &&
 			     (ny <= WIN_Y (w) + WIN_H (w))) ||
 		            ((ny >= (WIN_Y (w) + yOffset)) &&
-		    	     (ny <= (WIN_Y (w) + WIN_H (w) +
-						 yOffset)));
+		    	     (ny <= (WIN_Y (w) + WIN_H (w) + yOffset)));
 
 		if (!inWindow)
 		    continue;
