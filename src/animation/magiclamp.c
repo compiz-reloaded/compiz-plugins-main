@@ -152,7 +152,7 @@ fxMagicLampModelStep (CompWindow *w, float time)
 
     ANIM_WINDOW(w);
 
-    Model *model = aw->model;
+    Model *model = aw->com.model;
     XRectangle *icon = &aw->com.icon;
 
     if ((aw->com.curWindowEvent == WindowEventOpen ||

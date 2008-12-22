@@ -14,36 +14,6 @@ typedef struct _WaveParam
     float pos;
 } WaveParam;
 
-typedef struct _Object
-{
-    Point gridPosition;		// position on window in [0,1] range
-    Point3d position;		// position on screen
-
-    // Texture x, y coordinates will be offset by given amounts
-    // for quads that fall after and before this object in x and y directions.
-    // Currently only y offset can be used.
-    Point offsetTexCoordForQuadBefore;
-    Point offsetTexCoordForQuadAfter;
-} Object;
-
-typedef struct _Model
-{
-    Object *objects;
-    int numObjects;
-    int gridWidth;
-    int gridHeight;
-
-    int winWidth;		// keeps win. size when model was created
-    int winHeight;
-
-    Vector scale;
-    Point scaleOrigin;
-
-    WindowEvent forWindowEvent;
-    float topHeight;
-    float bottomHeight;
-} Model;
-
 typedef enum
 {
     ZoomFromCenterOff = 0,
@@ -328,9 +298,6 @@ typedef struct _AnimWindow
     CompWindow *dodgeChainNext;	// for dodging windows
     Bool walkerOverNewCopy;     // whether walker is on the copy at the new pos.
     unsigned int walkerVisitCount; // how many times walker has visited this window
-
-    // for grid engine
-    Model *model;
 } AnimWindow;
 
 #define GET_ANIM_DISPLAY(d)						\

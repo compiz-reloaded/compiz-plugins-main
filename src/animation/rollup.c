@@ -125,7 +125,7 @@ fxRollUpModelStep (CompWindow *w, float time)
 
     ANIM_WINDOW(w);
 
-    Model *model = aw->model;
+    Model *model = aw->com.model;
 
     float forwardProgress = sigmoidAnimProgress (w);
     Bool fixedInterior = animGetB (w, ANIM_SCREEN_OPTION_ROLLUP_FIXED_INTERIOR);

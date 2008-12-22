@@ -670,7 +670,7 @@ getProgressAndCenter (CompWindow *w,
 		float origCenterY = WIN_Y (w) + WIN_H (w) / 2.0;
 		center->y =
 		    (1 - forwardProgress) * origCenterY +
-		    forwardProgress * (WIN_Y (w) + aw->model->topHeight);
+		    forwardProgress * (WIN_Y (w) + aw->com.model->topHeight);
 	    }
 	    else // i.e. (un)minimizing without zooming
 	    {
@@ -873,7 +873,7 @@ modelUpdateBB (CompOutput *output,
 
     ANIM_WINDOW (w);
 
-    Model *model = aw->model;
+    Model *model = aw->com.model;
     if (!model)
 	return;
 
@@ -1451,13 +1451,13 @@ static Model *createModel(CompWindow * w,
 static void
 animFreeModel(AnimWindow *aw)
 {
-    if (!aw->model)
+    if (!aw->com.model)
 	return;
 
-    if (aw->model->objects)
-	free(aw->model->objects);
-    free(aw->model);
-    aw->model = NULL;
+    if (aw->com.model->objects)
+	free(aw->com.model->objects);
+    free(aw->com.model);
+    aw->com.model = NULL;
 }
 
 static Bool
@@ -1478,20 +1478,20 @@ animEnsureModel(CompWindow * w)
 	(forWindowEvent == WindowEventShade ||
 	 forWindowEvent == WindowEventUnshade);
 
-    Bool wasShadeUnshadeEvent = aw->model &&
-	(aw->model->forWindowEvent == WindowEventShade ||
-	 aw->model->forWindowEvent == WindowEventUnshade);
+    Bool wasShadeUnshadeEvent = aw->com.model &&
+	(aw->com.model->forWindowEvent == WindowEventShade ||
+	 aw->com.model->forWindowEvent == WindowEventUnshade);
 
-    if (!aw->model ||
-	gridWidth != aw->model->gridWidth ||
-	gridHeight != aw->model->gridHeight ||
+    if (!aw->com.model ||
+	gridWidth != aw->com.model->gridWidth ||
+	gridHeight != aw->com.model->gridHeight ||
 	(isShadeUnshadeEvent != wasShadeUnshadeEvent) ||
-	aw->model->winWidth != WIN_W(w) || aw->model->winHeight != WIN_H(w))
+	aw->com.model->winWidth != WIN_W(w) || aw->com.model->winHeight != WIN_H(w))
     {
 	animFreeModel(aw);
-	aw->model = createModel(w, forWindowEvent, forAnimEffect,
+	aw->com.model = createModel(w, forWindowEvent, forAnimEffect,
 				gridWidth, gridHeight);
-	if (!aw->model)
+	if (!aw->com.model)
 	    return FALSE;
     }
 
@@ -2318,9 +2318,9 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 		    }
 		}
 
-		if (aw->model &&
-		    (aw->model->winWidth != WIN_W(w) ||
-		     aw->model->winHeight != WIN_H(w)))
+		if (aw->com.model &&
+		    (aw->com.model->winWidth != WIN_W(w) ||
+		     aw->com.model->winHeight != WIN_H(w)))
 		{
 		    // model needs update
 		    // re-create model
@@ -2469,7 +2469,7 @@ animAddWindowGeometry(CompWindow * w,
     ANIM_SCREEN(w->screen);
 
     // if window is being animated
-    if (aw->com.animRemainingTime > 0 && aw->model &&
+    if (aw->com.animRemainingTime > 0 && aw->com.model &&
 	!(aw->com.curAnimEffect->properties.letOthersDrawGeomsFunc &&
 	  aw->com.curAnimEffect->properties.letOthersDrawGeomsFunc (w)))
     {
@@ -2488,7 +2488,7 @@ animAddWindowGeometry(CompWindow * w,
 	float gridW, gridH, x, y;
 	Bool rect = TRUE;
 	Bool useTextureQ = FALSE;
-	Model *model = aw->model;
+	Model *model = aw->com.model;
 	Region awRegion = NULL;
 
 	Bool notUsing3dCoords =
@@ -4256,9 +4256,9 @@ static void animWindowResizeNotify(CompWindow * w, int dx, int dy, int dwidth, i
 	}
     }
 
-    if (aw->model)
+    if (aw->com.model)
     {
-	modelInitObjects(aw->model, 
+	modelInitObjects(aw->com.model, 
 			 WIN_X(w), WIN_Y(w), 
 			 WIN_W(w), WIN_H(w));
     }
@@ -4310,15 +4310,15 @@ animWindowMoveNotify(CompWindow * w, int dx, int dy, Bool immediate)
 		postAnimationCleanup (w);
 	    }
 
-	    if (aw->model)
+	    if (aw->com.model)
 	    {
-		modelInitObjects(aw->model, WIN_X(w), WIN_Y(w), WIN_W(w),
+		modelInitObjects(aw->com.model, WIN_X(w), WIN_Y(w), WIN_W(w),
 				 WIN_H(w));
 	    }
 	}
     }
-    else if (aw->model)
-	modelMove (aw->model, dx, dy);
+    else if (aw->com.model)
+	modelMove (aw->com.model, dx, dy);
 
     UNWRAP(as, w->screen, windowMoveNotify);
     (*w->screen->windowMoveNotify) (w, dx, dy, immediate);
@@ -4458,8 +4458,11 @@ AnimBaseFunctions animBaseFunctions =
     .getMousePointerXY		= getMousePointerXY,
     .defaultAnimInit		= defaultAnimInit,
     .defaultAnimStep		= defaultAnimStep,
+    .defaultUpdateWindowTransform = defaultUpdateWindowTransform,
+    .getProgressAndCenter	= getProgressAndCenter,
     .defaultAnimProgress	= defaultAnimProgress,
     .sigmoidAnimProgress	= sigmoidAnimProgress,
+    .decelerateProgressCustom	= decelerateProgressCustom,
     .decelerateProgress		= decelerateProgress,
     .updateBBScreen		= updateBBScreen,
     .updateBBWindow		= updateBBWindow,
@@ -4471,7 +4474,8 @@ AnimBaseFunctions animBaseFunctions =
     .prepareTransform		= prepareTransform,
     .getAnimWindowCommon	= getAnimWindowCommon,
     .returnTrue			= returnTrue,
-    .postAnimationCleanup	= postAnimationCleanup
+    .postAnimationCleanup	= postAnimationCleanup,
+    .fxZoomUpdateWindowAttrib	= fxZoomUpdateWindowAttrib
 };
 
 static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
@@ -4833,7 +4837,7 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
     if (!aw)
 	return FALSE;
 
-    aw->model = 0;
+    aw->com.model = 0;
     aw->com.animRemainingTime = 0;
     aw->animInitialized = FALSE;
     aw->com.curAnimEffect = AnimEffectNone;

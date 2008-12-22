@@ -1,7 +1,7 @@
 #ifndef _COMPIZ_ANIMATION_H
 #define _COMPIZ_ANIMATION_H
 
-#define ANIMATION_ABIVERSION 20080824
+#define ANIMATION_ABIVERSION 20081221
 
 typedef enum
 {
@@ -79,6 +79,51 @@ typedef struct _ExtensionPluginInfo
     void (*prePaintOutputFunc) (CompScreen *s, CompOutput *output);
 } ExtensionPluginInfo;
 
+typedef struct _xy_pair
+{
+    float x, y;
+} Point, Vector;
+
+typedef struct
+{
+    float x1, x2, y1, y2;
+} Boxf;
+
+typedef struct _xyz_tuple
+{
+    float x, y, z;
+} Point3d, Vector3d;
+
+typedef struct _Object
+{
+    Point gridPosition;		// position on window in [0,1] range
+    Point3d position;		// position on screen
+
+    // Texture x, y coordinates will be offset by given amounts
+    // for quads that fall after and before this object in x and y directions.
+    // Currently only y offset can be used.
+    Point offsetTexCoordForQuadBefore;
+    Point offsetTexCoordForQuadAfter;
+} Object;
+
+typedef struct _Model
+{
+    Object *objects;
+    int numObjects;
+    int gridWidth;
+    int gridHeight;
+
+    int winWidth;		// keeps win. size when model was created
+    int winHeight;
+
+    Vector scale;
+    Point scaleOrigin;
+
+    WindowEvent forWindowEvent;
+    float topHeight;
+    float bottomHeight;
+} Model;
+
 // Window properties common to multiple animation effects
 typedef struct _AnimWindowCommon
 {
@@ -105,6 +150,8 @@ typedef struct _AnimWindowCommon
 
     float transformStartProgress;
     float transformProgress;
+
+    Model *model;   // for grid engine
 } AnimWindowCommon;
 
 typedef enum
@@ -138,8 +185,16 @@ typedef struct _AnimBaseFunctions {
     UpdateBBProc	compTransformUpdateBB;
     Bool (*defaultAnimInit) (CompWindow * w);
     void (*defaultAnimStep) (CompWindow * w, float time);
+    void (*defaultUpdateWindowTransform) (CompWindow *w,
+					  CompTransform *wTransform);
+    float (*getProgressAndCenter) (CompWindow *w,
+				   Point *center);
+
     float (*defaultAnimProgress) (CompWindow *w);
     float (*sigmoidAnimProgress) (CompWindow *w);
+    float (*decelerateProgressCustom) (float progress,
+				       float minx,
+				       float maxx);
     float (*decelerateProgress) (float progress);
     AnimDirection (*getActualAnimDirection) (CompWindow * w,
 					     AnimDirection dir,
@@ -153,6 +208,8 @@ typedef struct _AnimBaseFunctions {
     AnimWindowCommon * (*getAnimWindowCommon) (CompWindow *w);
     Bool (*returnTrue) (CompWindow *w);
     void (*postAnimationCleanup) (CompWindow *w);
+    void (*fxZoomUpdateWindowAttrib) (CompWindow * w,
+				      WindowPaintAttrib * wAttrib);
 } AnimBaseFunctions;
 
 
@@ -249,21 +306,6 @@ animGetC (CompWindow *w,			\
 #define NONSPRINGY_ZOOM_PERCEIVED_T 0.6f
 #define ZOOM_PERCEIVED_T 0.75f
 
-
-typedef struct _xy_pair
-{
-    float x, y;
-} Point, Vector;
-
-typedef struct
-{
-    float x1, x2, y1, y2;
-} Boxf;
-
-typedef struct _xyz_tuple
-{
-    float x, y, z;
-} Point3d, Vector3d;
 
 #endif
 

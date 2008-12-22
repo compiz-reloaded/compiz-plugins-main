@@ -134,7 +134,7 @@ fxCurvedFoldModelStep (CompWindow *w, float time)
 
     ANIM_WINDOW(w);
 
-    Model *model = aw->model;
+    Model *model = aw->com.model;
 
     float forwardProgress = getProgressAndCenter (w, NULL);
 
