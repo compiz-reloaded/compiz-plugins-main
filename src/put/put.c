@@ -572,8 +572,8 @@ putGetDistance (CompWindow *w,
     {
 	/* avoids window borders offscreen, but allow full
 	   viewport movements */
-	int inDx, dxBefore;
-	int inDy, dyBefore;
+	int               inDx, dxBefore;
+	int               inDy, dyBefore;
 	CompWindowExtents extents, area;
 
 	inDx = dxBefore = dx % s->width;
