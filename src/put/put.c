@@ -156,14 +156,13 @@ adjustPutVelocity (CompWindow *w)
 static void
 putFinishWindowMovement (CompWindow *w)
 {
-    XWindowChanges xwc;
-
     PUT_WINDOW (w);
 
-    xwc.x = pw->targetX;
-    xwc.y = pw->targetY;
-
-    configureXWindow (w, CWX | CWY, &xwc);
+    moveWindow (w,
+		pw->targetX - w->attrib.x,
+		pw->targetY - w->attrib.y,
+		TRUE, TRUE);
+    syncWindowPosition (w);
 
     if (w->state & (MAXIMIZE_STATE | CompWindowStateFullscreenMask))
 	updateWindowAttributes (w, CompStackingUpdateModeNone);
