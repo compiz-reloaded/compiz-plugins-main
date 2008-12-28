@@ -301,6 +301,316 @@ putPaintWindow (CompWindow              *w,
     return status;
 }
 
+static Bool
+putGetDistance (CompWindow *w,
+		PutType    type,
+		CompOption *option,
+		int        nOption,
+		int        *distX,
+		int        *distY)
+{
+    CompScreen *s = w->screen;
+    int        x, y, dx, dy, posX, posY;
+    int        viewport, output;
+    XRectangle workArea;
+
+    PUT_DISPLAY (s->display);
+    PUT_WINDOW (w);
+
+    posX = getIntOptionNamed (option, nOption, "x", 0);
+    posY = getIntOptionNamed (option, nOption, "y", 0);
+
+    /* get the output device number from the options list */
+    output = getIntOptionNamed (option, nOption, "output", -1);
+    /* no output in options list -> use the current output */
+    if (output == -1)
+    {
+	/* no output given, so use the current output if
+	   this wasn't a double tap */
+
+	if (pd->lastType != type || pd->lastWindow != w->id)
+	{
+	    if (pw->adjust)
+	    {
+		/* outputDeviceForWindow uses the server geometry,
+		   so specialcase a running animation, which didn't
+		   apply the server geometry yet */
+		output = outputDeviceForGeometry (s,
+						  w->attrib.x + pw->tx,
+						  w->attrib.y + pw->ty,
+						  w->attrib.width,
+						  w->attrib.height,
+						  w->attrib.border_width);
+	    }
+	    else
+	    {
+		output = outputDeviceForWindow (w);
+	    }
+	}
+    }
+    else
+    {
+	/* make sure the output number is not out of bounds */
+	output = MIN (output, s->nOutputDev - 1);
+    }
+
+    if (output == -1)
+    {
+	/* user double-tapped the key, so use the screen work area */
+	workArea = s->workArea;
+	/* set the type to unknown to have a toggle-type behaviour
+	   between 'use output work area' and 'use screen work area' */
+	pd->lastType = PutUnknown;
+    }
+    else
+    {
+	/* single tap or output provided via options list,
+	   use the output work area */
+	getWorkareaForOutput (s, output, &workArea);
+	pd->lastType = type;
+    }
+
+    /* the windows location */
+    x = w->attrib.x + pw->tx;
+    y = w->attrib.y + pw->ty;
+
+    switch (type) {
+    case PutCenter:
+	/* center of the screen */
+	dx = (workArea.width / 2) - (w->serverWidth / 2) - (x - workArea.x);
+	dy = (workArea.height / 2) - (w->serverHeight / 2) - (y - workArea.y);
+	break;
+    case PutLeft:
+	/* center of the left edge */
+	dx = -(x - workArea.x) + w->input.left + putGetPadLeft (s);
+	dy = (workArea.height / 2) - (w->serverHeight / 2) - (y - workArea.y);
+	break;
+    case PutTopLeft:
+	/* top left corner */
+	dx = -(x - workArea.x) + w->input.left + putGetPadLeft (s);
+	dy = -(y - workArea.y) + w->input.top + putGetPadTop (s);
+	break;
+    case PutTop:
+	/* center of top edge */
+	dx = (workArea.width / 2) - (w->serverWidth / 2) - (x - workArea.x);
+	dy = -(y - workArea.y) + w->input.top + putGetPadTop (s);
+	break;
+    case PutTopRight:
+	/* top right corner */
+	dx = workArea.width - w->serverWidth - (x - workArea.x) -
+	    w->input.right - putGetPadRight (s);
+	dy = -(y - workArea.y) + w->input.top + putGetPadTop (s);
+	break;
+    case PutRight:
+	/* center of right edge */
+	dx = workArea.width - w->serverWidth - (x - workArea.x) -
+	    w->input.right - putGetPadRight (s);
+	dy = (workArea.height / 2) - (w->serverHeight / 2) - (y - workArea.y);
+	break;
+    case PutBottomRight:
+	/* bottom right corner */
+	dx = workArea.width - w->serverWidth - (x - workArea.x) -
+	    w->input.right - putGetPadRight (s);
+	dy = workArea.height - w->serverHeight - (y - workArea.y) -
+	    w->input.bottom - putGetPadBottom (s);
+	break;
+    case PutBottom:
+	/* center of bottom edge */
+	dx = (workArea.width / 2) - (w->serverWidth / 2) - (x - workArea.x);
+	dy = workArea.height - w->serverHeight - (y - workArea.y) -
+	     w->input.bottom - putGetPadBottom (s);
+	break;
+    case PutBottomLeft:
+	/* bottom left corner */
+	dx = -(x - workArea.x) + w->input.left + putGetPadLeft (s);
+	dy = workArea.height - w->serverHeight - (y - workArea.y) -
+	     w->input.bottom - putGetPadBottom (s);
+	break;
+    case PutRestore:
+	/* back to last position */
+	dx = pw->lastX - x;
+	dy = pw->lastY - y;
+	break;
+    case PutViewport:
+	{
+	    int vpX, vpY, hDirection, vDirection;
+
+	    /* get the viewport to move to from the options list */
+	    viewport = getIntOptionNamed (option, nOption, "viewport", -1);
+
+	    /* if viewport wasn't supplied, bail out */
+	    if (viewport < 0)
+		return FALSE;
+
+	    /* split 1D viewport value into 2D x and y viewport */
+	    vpX = viewport % s->hsize;
+	    vpY = viewport / s->hsize;
+	    if (vpY > s->vsize)
+		vpY = s->vsize - 1;
+
+	    /* take the shortest horizontal path to the destination viewport */
+	    hDirection = (vpX - s->x);
+	    if (hDirection > s->hsize / 2)
+		hDirection = (hDirection - s->hsize);
+	    else if (hDirection < -s->hsize / 2)
+		hDirection = (hDirection + s->hsize);
+
+	    /* we need to do this for the vertical destination viewport too */
+	    vDirection = (vpY - s->y);
+	    if (vDirection > s->vsize / 2)
+		vDirection = (vDirection - s->vsize);
+	    else if (vDirection < -s->hsize / 2)
+		vDirection = (vDirection + s->vsize);
+
+	    dx = s->width * hDirection;
+	    dy = s->height * vDirection;
+	    break;
+	}
+    case PutViewportLeft:
+	/* move to the viewport on the left */
+	dx = -s->width;
+	dy = 0;
+	break;
+    case PutViewportRight:
+	/* move to the viewport on the right */
+	dx = s->width;
+	dy = 0;
+	break;
+    case PutViewportUp:
+	/* move to the viewport above */
+	dx = 0;
+	dy = -s->height;
+	break;
+    case PutViewportDown:
+	/* move to the viewport below */
+	dx = 0;
+	dy = s->height;
+	break;
+    case PutAbsolute:
+	/* move the window to an exact position */
+	if (posX < 0)
+	    /* account for a specified negative position,
+	       like geometry without (-0) */
+	    dx = posX + s->width - w->serverWidth - x - w->input.right;
+	else
+	    dx = posX - x + w->input.left;
+
+	if (posY < 0)
+	    /* account for a specified negative position,
+	       like geometry without (-0) */
+	    dy = posY + s->height - w->height - y - w->input.bottom;
+	else
+	    dy = posY - y + w->input.top;
+	break;
+    case PutRelative:
+	/* move window by offset */
+	dx = posX;
+	dy = posY;
+	break;
+    case PutPointer:
+	{
+	    /* move the window to the pointers position
+	     * using the current quad of the screen to determine
+	     * which corner to move to the pointer
+	     */
+	    int          rx, ry;
+	    Window       root, child;
+	    int          winX, winY;
+	    unsigned int pMask;
+
+	    /* get the pointers position from the X server */
+	    if (XQueryPointer (s->display->display, w->id, &root, &child,
+			       &rx, &ry, &winX, &winY, &pMask)) 
+	    {
+		if (putGetWindowCenter (s))
+		{
+		    /* window center */
+		    dx = rx - (w->serverWidth / 2) - x;
+		    dy = ry - (w->serverHeight / 2) - y;
+		}
+		else if (rx < s->workArea.width / 2 &&
+			 ry < s->workArea.height / 2)
+		{
+		    /* top left quad */
+		    dx = rx - x + w->input.left;
+		    dy = ry - y + w->input.top;
+		}
+		else if (rx < s->workArea.width / 2 &&
+			 ry >= s->workArea.height / 2)
+		{
+		    /* bottom left quad */
+		    dx = rx - x + w->input.left;
+		    dy = ry - w->height - y - w->input.bottom;
+		}
+		else if (rx >= s->workArea.width / 2 &&
+			 ry < s->workArea.height / 2)
+		{
+		    /* top right quad */
+		    dx = rx - w->width - x - w->input.right;
+		    dy = ry - y + w->input.top;
+		}
+		else
+		{
+		    /* bottom right quad */
+		    dx = rx - w->width - x - w->input.right;
+		    dy = ry - w->height - y - w->input.bottom;
+		}
+	    }
+	    else
+	    {
+		dx = dy = 0;
+	    }
+	}
+	break;
+    default:
+	/* if an unknown type is specified, do nothing */
+	dx = dy = 0;
+	break;
+    }
+
+    if ((dx || dy) && putGetAvoidOffscreen (s))
+    {
+	/* avoids window borders offscreen, but allow full
+	   viewport movements */
+	int inDx, dxBefore;
+	int inDy, dyBefore;
+	CompWindowExtents extents, area;
+
+	inDx = dxBefore = dx % s->width;
+	inDy = dyBefore = dy % s->height;
+
+	extents.left   = x + inDx - w->input.left;
+	extents.top    = y + inDy - w->input.top;
+	extents.right  = x + inDx + w->serverWidth + w->input.right;
+	extents.bottom = y + inDy + w->serverHeight + w->input.bottom;
+
+	area.left   = workArea.x + putGetPadLeft (s);
+	area.top    = workArea.y + putGetPadTop (s);
+	area.right  = workArea.x + workArea.width - putGetPadRight (s);
+	area.bottom = workArea.y + workArea.height - putGetPadBottom (s);
+
+	if (extents.left < area.left)
+	    inDx += area.left - extents.left;
+	else if (w->serverWidth <= workArea.width && extents.right > area.right)
+	    inDx += area.right - extents.right;
+
+	if (extents.top < area.top)
+	    inDy += area.top - extents.top;
+	else if (w->serverHeight <= workArea.height &&
+		 extents.bottom > area.bottom)
+	    inDy += area.bottom - extents.bottom;
+
+	/* apply the change */
+	dx += inDx - dxBefore;
+	dy += inDy - dyBefore;
+    }
+
+    *distX = dx;
+    *distY = dy;
+
+    return TRUE;
+}
+
 /*
  * initiate action callback
  */
@@ -354,314 +664,22 @@ putInitiateCommon (CompDisplay     *d,
 
 	if (ps->grabIndex)
 	{
-	    int        px, py, x, y, dx, dy;
-	    int        head, width, height, hx, hy;
-	    XRectangle workArea;
+	    int        dx, dy;
 
 	    PUT_DISPLAY (d);
 	    PUT_WINDOW (w);
 
-	    px = getIntOptionNamed (option, nOption, "x", 0);
-	    py = getIntOptionNamed (option, nOption, "y", 0);
-
-	    /* get the Xinerama head from the options list */
-	    head = getIntOptionNamed(option, nOption, "head", -1);
-	    /* no head in options list so we use the current head */
-	    if (head == -1)
-	    {
-		/* no head given, so use the current head if this wasn't
-		   a double tap */
-		if (pd->lastType != type || pd->lastWindow != w->id)
-		{
-		    if (pw->adjust)
-		    {
-			/* outputDeviceForWindow uses the server geometry,
-			   so specialcase a running animation, which didn't
-			   apply the server geometry yet */
-			head = outputDeviceForGeometry (s,
-							w->attrib.x + pw->tx,
-							w->attrib.y + pw->ty,
-							w->attrib.width,
-							w->attrib.height,
-							w->attrib.border_width);
-		    }
-		    else
-			head = outputDeviceForWindow (w);
-		}
-	    }
-	    else
-	    {
-		/* make sure the head number is not out of bounds */
-		head = MIN (head, s->nOutputDev - 1);
-	    }
-
-	    if (head == -1)
-	    {
-		/* user double-tapped the key, so use the screen work area */
-		workArea = s->workArea;
-		/* set the type to unknown to have a toggle-type behaviour
-		   between 'use head's work area' and 'use screen work area' */
-		pd->lastType = PutUnknown;
-	    }
-	    else
-	    {
-		/* single tap or head provided via options list,
-		   use the head's work area */
-		getWorkareaForOutput (s, head, &workArea);
-		pd->lastType = type;
-	    }
-
-	    width  = workArea.width;
-	    height = workArea.height;
-	    hx     = workArea.x;
-	    hy     = workArea.y;
-
 	    pd->lastWindow = w->id;
-
-    	    /* the windows location */
-	    x = w->attrib.x + pw->tx;
-	    y = w->attrib.y + pw->ty;
 
 	    /*
 	     * handle the put types
 	     */
-	    switch (type)
-	    {
-	    case PutCenter:
-		/* center of the screen */
-		dx = (width / 2) - (w->width / 2) - (x - hx);
-		dy = (height / 2) - (w->height / 2) - (y - hy);
-		break;
-	    case PutLeft:
-		/* center of the left edge */
-		dx = -(x - hx) + w->input.left + putGetPadLeft (s);
-		dy = (height / 2) - (w->height / 2) - (y - hy);
-		break;
-	    case PutTopLeft:
-		/* top left corner */
-		dx = -(x - hx) + w->input.left + putGetPadLeft (s);
-		dy = -(y - hy) + w->input.top + putGetPadTop (s);
-		break;
-	    case PutTop:
-		/* center of top edge */
-		dx = (width / 2) - (w->width / 2) - (x - hx);
-		dy = -(y - hy) + w->input.top + putGetPadTop (s);
-		break;
-	    case PutTopRight:
-		/* top right corner */
-		dx = width - w->width - (x - hx) -
-		     w->input.right - putGetPadRight (s);
-		dy = -(y - hy) + w->input.top + putGetPadTop (s);
-		break;
-	    case PutRight:
-		/* center of right edge */
-		dx = width - w->width - (x - hx) -
-		     w->input.right - putGetPadRight (s);
-		dy = (height / 2) - (w->height / 2) - (y - hy);
-		break;
-	    case PutBottomRight:
-		/* bottom right corner */
-		dx = width - w->width - (x - hx) -
-		     w->input.right - putGetPadRight (s);
-		dy = height - w->height - (y - hy) -
-		     w->input.bottom - putGetPadBottom (s);
-		break;
-	    case PutBottom:
-		/* center of bottom edge */
-		dx = (width / 2) - (w->width / 2) - (x - hx);
-		dy = height - w->height - (y - hy) -
-		     w->input.bottom - putGetPadBottom (s);
-		break;
-	    case PutBottomLeft:
-		/* bottom left corner */
-		dx = -(x - hx) + w->input.left + putGetPadLeft (s);
-		dy = height - w->height - (y - hy) -
-		     w->input.bottom - putGetPadBottom (s);
-		break;
-	    case PutRestore:
-		/* back to last position */
-		dx = pw->lastX - x;
-		dy = pw->lastY - y;
-		break;
-	    case PutViewport:
-		{
-		    int face, faceX, faceY, hDirection, vDirection;
-
-		    /* get the face to move to from the options list */
-		    face = getIntOptionNamed(option, nOption, "face", -1);
-
-		    /* if it wasn't supplied, bail out */
-		    if (face < 0)
-			return FALSE;
-
-		    /* split 1D face value into 2D x and y face */
-		    faceX = face % s->hsize;
-		    faceY = face / s->hsize;
-		    if (faceY > s->vsize)
-			faceY = s->vsize - 1;
-
-	    	    /* take the shortest horizontal path to the
-		       destination viewport */
-    		    hDirection = (faceX - s->x);
-		    if (hDirection > s->hsize / 2)
-			hDirection = (hDirection - s->hsize);
-		    else if (hDirection < -s->hsize / 2)
-			hDirection = (hDirection + s->hsize);
-
-		    /* we need to do this for the vertical
-		       destination viewport too */
-    		    vDirection = (faceY - s->y);
-		    if (vDirection > s->vsize / 2)
-			vDirection = (vDirection - s->vsize);
-		    else if (vDirection < -s->hsize / 2)
-			vDirection = (vDirection + s->vsize);
-
-		    dx = s->width * hDirection;
-	    	    dy = s->height * vDirection;
-    		    break;
-		}
-	    case PutViewportLeft:
-		/* move to the viewport on the left */
-		dx = -s->width;
-		dy = 0;
-		break;
-	    case PutViewportRight:
-		/* move to the viewport on the right */
-		dx = s->width;
-		dy = 0;
-		break;
-	    case PutViewportUp:
-		/* move to the viewport above */
-		dx = 0;
-		dy = -s->height;
-		break;
-	    case PutViewportDown:
-		/* move to the viewport below */
-		dx = 0;
-		dy = s->height;
-		break;
-	    case PutAbsolute:
-		/* move the window to an exact position */
-		if (px < 0)
-		    /* account for a specified negative position,
-		       like geometry without (-0) */
-		    dx = px + s->width - w->width - x - w->input.right;
-		else
-		    dx = px - x + w->input.left;
-
-		if (py < 0)
-		    /* account for a specified negative position,
-		       like geometry without (-0) */
-		    dy = py + s->height - w->height - y - w->input.bottom;
-		else
-		    dy = py - y + w->input.top;
-		break;
-	    case PutRelative:
-		/* move window by offset */
-		dx = px;
-		dy = py;
-		break;
-	    case PutPointer:
-		{
-		    /* move the window to the pointers position
-		     * using the current quad of the screen to determine
-		     * which corner to move to the pointer
-		     */
-		    int          rx, ry;
-		    Window       root, child;
-		    int          winX, winY;
-		    unsigned int pMask;
-
-		    /* get the pointers position from the X server */
-    		    if (XQueryPointer (d->display, w->id, &root, &child,
-				       &rx, &ry, &winX, &winY, &pMask)) 
-		    {
-		        if (putGetWindowCenter (s))
-			{
-			        /* window center */
-			        dx = rx - (w->width / 2) - x;
-				dy = ry - (w->height / 2) - y;
-			}
-			else if (rx < s->workArea.width / 2 &&
-				ry < s->workArea.height / 2)
-			{
-			        /* top left quad */
-			        dx = rx - x + w->input.left;
-				dy = ry - y + w->input.top;
-			}
-			else if (rx < s->workArea.width / 2 &&
-				ry >= s->workArea.height / 2)
-			{
-			        /* bottom left quad */
-			        dx = rx - x + w->input.left;
-				dy = ry - w->height - y - w->input.bottom;
-			}
-			else if (rx >= s->workArea.width / 2 &&
-				ry < s->workArea.height / 2)
-			{
-			        /* top right quad */
-			        dx = rx - w->width - x - w->input.right;
-				dy = ry - y + w->input.top;
-			}
-			else
-			{
-			        /* bottom right quad */
-			        dx = rx - w->width - x - w->input.right;
-				dy = ry - w->height - y - w->input.bottom;
-			}
-		    }
-		    else
-		    {
-		        dx = dy = 0;
-		    }
-		}
-		break;
-	    default:
-		/* if an unknown type is specified, do nothing */
-		dx = dy = 0;
-		break;
-	    }
+	    if (!putGetDistance (w, type, option, nOption, &dx, &dy))
+		return FALSE;
 
 	    /* don't do anything if there is nothing to do */
-	    if (dx != 0 || dy != 0)
+	    if (dx || dy)
 	    {
-		if (putGetAvoidOffscreen (s))
-		{
-		    /* avoids window borders offscreen, but allow full
-		       viewport movements */
-		    int inDx, dxBefore;
-		    int inDy, dyBefore;
-
-		    inDx = dxBefore = dx % s->width;
-		    inDy = dyBefore = dy % s->height;
-
-		    if ((-(x - hx) + w->input.left + putGetPadLeft (s)) > inDx)
-		    {
-			inDx = -(x - hx) + w->input.left + putGetPadLeft (s);
-		    }
-		    else if ((width - w->width - (x - hx) -
-			      w->input.right - putGetPadRight (s)) < inDx)
-		    {
-			inDx = width - w->width - (x - hx) -
-			       w->input.right - putGetPadRight (s);
-		    }
-
-		    if ((-(y - hy) + w->input.top + putGetPadTop (s)) > inDy)
-		    {
-			inDy = -(y - hy) + w->input.top + putGetPadTop (s);
-		    }
-		    else if ((height - w->height - (y - hy) - w->input.bottom -
-			      putGetPadBottom (s)) < inDy)
-		    {
-			inDy = height - w->height - (y - hy) -
-			       w->input.bottom - putGetPadBottom (s);
-		    }
-
-		    /* apply the change */
-		    dx += inDx - dxBefore;
-		    dy += inDy - dyBefore;
-		}
-
 		/* save the windows position in the saveMask
 		 * this is used when unmaximizing the window
 		 */
@@ -673,11 +691,11 @@ putInitiateCommon (CompDisplay     *d,
 
 		/* Make sure everyting starts out at the windows
 		   current position */
-		pw->lastX = x;
-		pw->lastY = y;
+		pw->lastX = w->attrib.x + pw->tx;
+		pw->lastY = w->attrib.y + pw->ty;
 
-		pw->targetX = x + dx;
-		pw->targetY = y + dy;
+		pw->targetX = pw->lastX + dx;
+		pw->targetY = pw->lastY + dy;
 
 		/* mark for animation */
 		pw->adjust = TRUE;
@@ -694,7 +712,7 @@ putInitiateCommon (CompDisplay     *d,
 }
 
 static PutType
-putTypeFromString (char *type)
+putTypeFromString (const char *type)
 {
     if (strcasecmp (type, "absolute") == 0)
 	return PutAbsolute;
@@ -743,14 +761,14 @@ putToViewport (CompDisplay     *d,
 	       CompOption      *option,
 	       int             nOption)
 {
-    int        face;
+    int        viewport;
     CompOption o[4];
 
-    /* get the face option */
-    face = getIntOptionNamed (option, nOption, "face", -1);
+    /* get the viewport option */
+    viewport = getIntOptionNamed (option, nOption, "viewport", -1);
 
     /* if it's not supplied, lets figure it out */
-    if (face < 0)
+    if (viewport < 0)
     {
 	PutDisplayOptions i;
 	CompOption        *opt;
@@ -762,14 +780,14 @@ putToViewport (CompDisplay     *d,
 	    opt = putGetDisplayOption (d, i);
 	    if (&opt->value.action == action)
 	    {
-		face = i - PutDisplayOptionPutViewport1Key;
+		viewport = i - PutDisplayOptionPutViewport1Key;
 		break;
 	    }
 	    i++;
 	}
     }
 
-    if (face < 0)
+    if (viewport < 0)
 	return FALSE;
 
     /* setup the options for putInitiate */
@@ -782,8 +800,8 @@ putToViewport (CompDisplay     *d,
     o[1].value.i = getIntOptionNamed (option, nOption, "y", 0);
 
     o[2].type    = CompOptionTypeInt;
-    o[2].name    = "face";
-    o[2].value.i = face;
+    o[2].name    = "viewport";
+    o[2].value.i = viewport;
 
     o[3].type    = CompOptionTypeInt;
     o[3].name    = "window";
@@ -1003,9 +1021,9 @@ putHandleEvent (CompDisplay *d,
 		 * and the data is
 		 * l[0] = x position - unused (for future PutExact)
 		 * l[1] = y position - unused (for future PutExact)
-		 * l[2] = face number
+		 * l[2] = viewport number
 		 * l[3] = put type, int value from enum
-		 * l[4] = Xinerama head number
+		 * l[4] = output number
 		 */
 		CompOption opt[5];
 
@@ -1022,14 +1040,14 @@ putHandleEvent (CompDisplay *d,
 		opt[2].value.i = event->xclient.data.l[1];
 
 		opt[3].type    = CompOptionTypeInt;
-		opt[3].name    = "face";
+		opt[3].name    = "viewport";
 		opt[3].value.i = event->xclient.data.l[2];
 
 		opt[4].type    = CompOptionTypeInt;
-		opt[4].name    = "head";
+		opt[4].name    = "output";
 		opt[4].value.i = event->xclient.data.l[4];
 
-		putInitiateCommon (w->screen->display, NULL, 0, opt, 5,
+		putInitiateCommon (d, NULL, 0, opt, 5,
 				   event->xclient.data.l[3]);
 	    }
 	}
