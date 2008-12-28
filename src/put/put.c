@@ -459,7 +459,7 @@ putGetDistance (CompWindow *w,
 	    vDirection = (vpY - s->y);
 	    if (vDirection > s->vsize / 2)
 		vDirection = (vDirection - s->vsize);
-	    else if (vDirection < -s->hsize / 2)
+	    else if (vDirection < -s->vsize / 2)
 		vDirection = (vDirection + s->vsize);
 
 	    dx = s->width * hDirection;
