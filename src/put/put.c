@@ -615,7 +615,8 @@ putGetDistance (CompWindow *w,
 	break;
     }
 
-    if ((dx || dy) && putGetAvoidOffscreen (s))
+    if ((dx || dy) && putGetAvoidOffscreen (s) &&
+	!(w->type & CompWindowTypeFullscreenMask))
     {
 	/* avoids window borders offscreen, but allow full
 	   viewport movements */
