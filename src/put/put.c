@@ -317,6 +317,25 @@ putPaintWindow (CompWindow              *w,
     return status;
 }
 
+static unsigned int
+putGetOutputForWindow (CompWindow *w)
+{
+    PUT_WINDOW (w);
+
+    if (!pw->adjust)
+	return outputDeviceForWindow (w);
+
+    /* outputDeviceForWindow uses the server geometry,
+       so specialcase a running animation, which didn't
+       apply the server geometry yet */
+    return outputDeviceForGeometry (w->screen,
+				    w->attrib.x + pw->tx,
+				    w->attrib.y + pw->ty,
+				    w->attrib.width,
+				    w->attrib.height,
+				    w->attrib.border_width);
+}
+
 static Bool
 putGetDistance (CompWindow *w,
 		PutType    type,
@@ -345,24 +364,7 @@ putGetDistance (CompWindow *w,
 	   this wasn't a double tap */
 
 	if (pd->lastType != type || pd->lastWindow != w->id)
-	{
-	    if (pw->adjust)
-	    {
-		/* outputDeviceForWindow uses the server geometry,
-		   so specialcase a running animation, which didn't
-		   apply the server geometry yet */
-		output = outputDeviceForGeometry (s,
-						  w->attrib.x + pw->tx,
-						  w->attrib.y + pw->ty,
-						  w->attrib.width,
-						  w->attrib.height,
-						  w->attrib.border_width);
-	    }
-	    else
-	    {
-		output = outputDeviceForWindow (w);
-	    }
-	}
+	    output = putGetOutputForWindow (w);
     }
     else
     {
@@ -510,7 +512,7 @@ putGetDistance (CompWindow *w,
 	    if (s->nOutputDev < 2)
 		return FALSE;
 
-	    currentNum = outputDeviceForWindow (w);
+	    currentNum = putGetOutputForWindow (w);
 	    outputNum  = (currentNum + 1) % s->nOutputDev;
 	    outputNum  = getIntOptionNamed (option, nOption,
 					    "output", outputNum);
