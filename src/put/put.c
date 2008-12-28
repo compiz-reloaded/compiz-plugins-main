@@ -694,15 +694,15 @@ putInitiateCommon (CompDisplay     *d,
 		       CompWindowTypeDockMask))
 	    return FALSE;
 
-	/* only allow movement of fullscreen windows to next output */
-	if (type != PutNextOutput)
-	{
-	    if (w->type & CompWindowTypeFullscreenMask)
-		return FALSE;
+	/* don't move windows without move action */
+	if (!(w->actions & CompWindowActionMoveMask))
+	    return FALSE;
 
-	    /* don't move windows without move action */
-	    if (!(w->actions & CompWindowActionMoveMask))
-		return FALSE;
+	/* only allow movement of fullscreen windows to next output */
+	if (type != PutNextOutput &&
+	    (w->type & CompWindowTypeFullscreenMask))
+	{
+	    return FALSE;
 	}
 
 	/*
