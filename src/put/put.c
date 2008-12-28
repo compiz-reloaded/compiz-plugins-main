@@ -152,6 +152,20 @@ adjustPutVelocity (CompWindow *w)
     return 1;
 }
 
+static void
+putFinishWindowMovement (CompWindow *w)
+{
+    XWindowChanges xwc;
+
+    xwc.x = pw->targetX;
+    xwc.y = pw->targetY;
+
+    configureXWindow (w, CWX | CWY, &xwc);
+
+    if (w->state & (MAXIMIZE_STATE | CompWindowStateFullscreenMask))
+	updateWindowAttributes (w, CompStackingUpdateModeNone);
+}
+
 /*
  * setup for paint screen
  */
@@ -193,10 +207,8 @@ putPreparePaintScreen (CompScreen *s,
 		    if (!pw->adjust)
 		    {
 			/* animation done */
-			moveWindow (w, pw->targetX - w->attrib.x,
-				    pw->targetY - w->attrib.y, TRUE, TRUE);
-			syncWindowPosition (w);
-			updateWindowAttributes (w, CompStackingUpdateModeNone);
+			putFinishWindowMovement (w);
+
 			endAnimationWindow = w->id;
 			pw->tx = pw->ty = 0;
 		    }
