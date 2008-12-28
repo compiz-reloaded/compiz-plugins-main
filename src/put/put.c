@@ -65,7 +65,8 @@ typedef enum
     PutPointer = 15,
     PutViewportUp = 16,
     PutViewportDown = 17,
-    PutRelative = 18
+    PutRelative = 18,
+    PutNextOutput = 19,
 } PutType;
 
 typedef struct _PutDisplay
@@ -156,6 +157,8 @@ static void
 putFinishWindowMovement (CompWindow *w)
 {
     XWindowChanges xwc;
+
+    PUT_WINDOW (w);
 
     xwc.x = pw->targetX;
     xwc.y = pw->targetY;
@@ -498,6 +501,35 @@ putGetDistance (CompWindow *w,
 	dx = 0;
 	dy = s->height;
 	break;
+    case PutNextOutput:
+	{
+	    int        outputNum, currentNum;
+	    CompOutput *currentOutput, *newOutput;
+
+	    if (s->nOutputDev < 2)
+		return FALSE;
+
+	    currentNum = outputDeviceForWindow (w);
+	    outputNum  = (currentNum + 1) % s->nOutputDev;
+	    outputNum  = getIntOptionNamed (option, nOption,
+					    "output", outputNum);
+
+	    if (outputNum >= s->nOutputDev)
+		return FALSE;
+
+	    currentOutput = &s->outputDev[currentNum];
+	    newOutput     = &s->outputDev[outputNum];
+
+	    /* move by the distance of the output center points */
+	    dx = (newOutput->region.extents.x1 + newOutput->width / 2) -
+		 (currentOutput->region.extents.x1 + currentOutput->width / 2);
+	    dy = (newOutput->region.extents.y1 + newOutput->height / 2) -
+		 (currentOutput->region.extents.y1 + currentOutput->height / 2);
+
+	    /* update work area for new output */
+	    workArea = newOutput->workArea;
+	}
+	break;
     case PutAbsolute:
 	/* move the window to an exact position */
 	if (posX < 0)
@@ -645,6 +677,7 @@ putInitiateCommon (CompDisplay     *d,
     if (w)
     {
 	CompScreen *s = w->screen;
+	int        dx, dy;
 
 	PUT_SCREEN (s);
 
@@ -652,16 +685,31 @@ putInitiateCommon (CompDisplay     *d,
 	if (w->attrib.override_redirect)
 	    return FALSE;
 
-	/* we don't want to be moving the desktop, docks,
-	   or fullscreen windows */
+	/* we don't want to be moving the desktop and docks */
 	if (w->type & (CompWindowTypeDesktopMask |
-		       CompWindowTypeDockMask    |
-		       CompWindowTypeFullscreenMask))
+		       CompWindowTypeDockMask))
 	    return FALSE;
 
-	/* don't move windows without move action */
-	if (!(w->actions & CompWindowActionMoveMask))
+	/* only allow movement of fullscreen windows to next output */
+	if (type != PutNextOutput)
+	{
+	    if (w->type & CompWindowTypeFullscreenMask)
+		return FALSE;
+
+	    /* don't move windows without move action */
+	    if (!(w->actions & CompWindowActionMoveMask))
+		return FALSE;
+	}
+
+	/*
+	 * handle the put types
+	 */
+	if (!putGetDistance (w, type, option, nOption, &dx, &dy))
 	    return FALSE;
+
+	/* don't do anything if there is nothing to do */
+	if (!dx && !dy)
+	    return TRUE;
 
 	if (!ps->grabIndex)
 	{
@@ -676,46 +724,34 @@ putInitiateCommon (CompDisplay     *d,
 
 	if (ps->grabIndex)
 	{
-	    int        dx, dy;
-
 	    PUT_DISPLAY (d);
 	    PUT_WINDOW (w);
 
 	    pd->lastWindow = w->id;
 
-	    /*
-	     * handle the put types
+	    /* save the windows position in the saveMask
+	     * this is used when unmaximizing the window
 	     */
-	    if (!putGetDistance (w, type, option, nOption, &dx, &dy))
-		return FALSE;
+	    if (w->saveMask & CWX)
+		w->saveWc.x += dx;
 
-	    /* don't do anything if there is nothing to do */
-	    if (dx || dy)
-	    {
-		/* save the windows position in the saveMask
-		 * this is used when unmaximizing the window
-		 */
-		if (w->saveMask & CWX)
-		    w->saveWc.x += dx;
+	    if (w->saveMask & CWY)
+		w->saveWc.y += dy;
 
-		if (w->saveMask & CWY)
-		    w->saveWc.y += dy;
+	    /* Make sure everyting starts out at the windows
+	       current position */
+	    pw->lastX = w->attrib.x + pw->tx;
+	    pw->lastY = w->attrib.y + pw->ty;
 
-		/* Make sure everyting starts out at the windows
-		   current position */
-		pw->lastX = w->attrib.x + pw->tx;
-		pw->lastY = w->attrib.y + pw->ty;
+	    pw->targetX = pw->lastX + dx;
+	    pw->targetY = pw->lastY + dy;
 
-		pw->targetX = pw->lastX + dx;
-		pw->targetY = pw->lastY + dy;
+	    /* mark for animation */
+	    pw->adjust = TRUE;
+	    ps->moreAdjust = TRUE;
 
-		/* mark for animation */
-		pw->adjust = TRUE;
-		ps->moreAdjust = TRUE;
-
-		/* cause repainting */
-		addWindowDamage (w);
-	    }
+	    /* cause repainting */
+	    addWindowDamage (w);
 	}
     }
 
@@ -742,6 +778,8 @@ putTypeFromString (const char *type)
 	return PutViewportUp;
     else if (strcasecmp (type, "viewportdown") == 0)
 	return PutViewportDown;
+    else if (strcasecmp (type, "nextoutput") == 0)
+	return PutNextOutput;
     else if (strcasecmp (type, "restore") == 0)
 	return PutRestore;
     else if (strcasecmp (type, "bottomleft") == 0)
@@ -884,6 +922,17 @@ putViewportDown (CompDisplay     *d,
 {
     return putInitiateCommon (d, action, state,
 			      option, nOption, PutViewportDown);
+}
+
+static Bool
+putNextOutput (CompDisplay     *d,
+	       CompAction      *action,
+	       CompActionState state,
+	       CompOption      *option,
+	       int             nOption)
+{
+    return putInitiateCommon (d, action, state,
+			      option, nOption, PutNextOutput);
 }
 
 static Bool
@@ -1117,6 +1166,8 @@ putInitDisplay (CompPlugin  *p,
     putSetPutViewportRightKeyInitiate (d, putViewportRight);
     putSetPutViewportUpKeyInitiate (d, putViewportUp);
     putSetPutViewportDownKeyInitiate (d, putViewportDown);
+    putSetPutNextOutputKeyInitiate (d, putNextOutput);
+    putSetPutNextOutputButtonInitiate (d, putNextOutput);
     putSetPutRestoreKeyInitiate (d, restore);
     putSetPutPointerKeyInitiate (d, putPointer);
     putSetPutRestoreButtonInitiate (d, restore);
