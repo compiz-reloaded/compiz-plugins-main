@@ -211,7 +211,9 @@ putPreparePaintScreen (CompScreen *s,
 			/* animation done */
 			putFinishWindowMovement (w);
 
-			endAnimationWindow = w->id;
+			if (w->id == s->display->activeWindow)
+			    endAnimationWindow = w->id;
+
 			pw->tx = pw->ty = 0;
 		    }
 		}
