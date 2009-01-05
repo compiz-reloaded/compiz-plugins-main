@@ -2399,6 +2399,9 @@ zoomFiniScreen (CompPlugin *p,
     if (zs->pollHandle)
 	    (*zd->mpFunc->removePositionPolling) (s, zs->pollHandle);
 
+    if (zs->zooms)
+	free (zs->zooms);
+
     damageScreen (s); // If we are unloaded and zoomed in.
     cursorZoomInactive (s);
     compFiniScreenOptions (s, zs->opt, SOPT_NUM);
