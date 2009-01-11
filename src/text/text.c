@@ -420,8 +420,15 @@ textRenderText (CompScreen           *s,
 	    if (retval->texture)
 	    {
 		initTexture (s, retval->texture);
-		bindPixmapToTexture (s, retval->texture, retval->pixmap,
-				     retval->width, retval->height, 32);
+		if (!bindPixmapToTexture (s, retval->texture, retval->pixmap,
+					  retval->width, retval->height, 32))
+		{
+		    compLogMessage ("text", CompLogLevelError,
+				    "Failed to bind text pixmap to texture.");
+		    free (retval->texture);
+		    free (retval);
+		    retval = NULL;
+		}
 	    }
 	}
     }
