@@ -486,7 +486,8 @@ static void
 textDrawText (CompScreen         *s,
 	      const CompTextData *data,
 	      float              x,
-	      float              y)
+	      float              y,
+	      float              alpha)
 {
     GLboolean  wasBlend;
     GLint      oldBlendSrc, oldBlendDst;
@@ -506,7 +507,7 @@ textDrawText (CompScreen         *s,
     glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
     glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glColor4f (1.0, 1.0, 1.0, 1.0);
+    glColor4f (alpha, alpha, alpha, alpha);
 
     enableTexture (s, data->texture, COMP_TEXTURE_FILTER_GOOD);
 

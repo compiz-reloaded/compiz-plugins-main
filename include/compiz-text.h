@@ -65,7 +65,8 @@ typedef CompTextData *
 typedef void (*DrawTextProc) (CompScreen         *s,
 			      const CompTextData *data,
 			      float              x,
-			      float              y);
+			      float              y,
+			      float              alpha);
 
 typedef void (*FiniTextDataProc) (CompScreen   *s,
 				  CompTextData *data);
