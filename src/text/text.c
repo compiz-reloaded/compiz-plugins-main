@@ -210,7 +210,7 @@ textInitCairo (CompScreen      *s,
 
     data->surface = cairo_xlib_surface_create_with_xrender_format (dpy,
 								   data->pixmap,
-  								   data->screen,
+								   data->screen,
 								   data->format,
 								   width,
 								   height);
@@ -595,7 +595,7 @@ textInit (CompPlugin *p)
 	compFiniMetadata (&textMetadata);
 	return FALSE;
     }
-    
+
     compAddMetadataFromFile (&textMetadata, p->vTable->name);
 
     return TRUE;
