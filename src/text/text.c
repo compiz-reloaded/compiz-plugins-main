@@ -291,10 +291,10 @@ textUpdateSurface (CompScreen      *s,
 }
 
 static Bool
-textDrawText (CompScreen           *s,
-	      const char           *text,
-	      TextSurfaceData      *data,
-	      const CompTextAttrib *attrib)
+textRenderTextToSurface (CompScreen           *s,
+			 const char           *text,
+			 TextSurfaceData      *data,
+			 const CompTextAttrib *attrib)
 {
     int width, height, layoutWidth;
 
@@ -398,7 +398,7 @@ textRenderText (CompScreen           *s,
     memset (&surface, 0, sizeof (TextSurfaceData));
 
     if (textInitSurface (s, &surface) &&
-	textDrawText (s, text, &surface, attrib))
+	textRenderTextToSurface (s, text, &surface, attrib))
     {
 	retval = calloc (1, sizeof (CompTextData));
 	if (retval && !(attrib->flags & CompTextFlagNoAutoBinding))
@@ -483,6 +483,59 @@ textRenderWindowTitle (CompScreen           *s,
 }
 
 static void
+textDrawText (CompScreen         *s,
+	      const CompTextData *data,
+	      float              x,
+	      float              y)
+{
+    GLboolean  wasBlend;
+    GLint      oldBlendSrc, oldBlendDst;
+    CompMatrix *m;
+    float      width, height;
+
+    if (!data->texture)
+	return;
+
+    glGetIntegerv (GL_BLEND_SRC, &oldBlendSrc);
+    glGetIntegerv (GL_BLEND_DST, &oldBlendDst);
+
+    wasBlend = glIsEnabled (GL_BLEND);
+    if (!wasBlend)
+	glEnable (GL_BLEND);
+
+    glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glColor4f (1.0, 1.0, 1.0, 1.0);
+
+    enableTexture (s, data->texture, COMP_TEXTURE_FILTER_GOOD);
+
+    m      = &data->texture->matrix;
+    width  = data->width;
+    height = data->height;
+
+    glBegin (GL_QUADS);
+
+    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, 0));
+    glVertex2f (x, y - height);
+    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, height));
+    glVertex2f (x, y);
+    glTexCoord2f (COMP_TEX_COORD_X (m, width), COMP_TEX_COORD_Y (m, height));
+    glVertex2f (x + width, y);
+    glTexCoord2f (COMP_TEX_COORD_X (m, width), COMP_TEX_COORD_Y (m, 0));
+    glVertex2f (x + width, y - height);
+
+    glEnd ();
+
+    disableTexture (s, data->texture);
+    glColor4usv (defaultColor);
+
+    if (!wasBlend)
+	glDisable (GL_BLEND);
+    glBlendFunc (oldBlendSrc, oldBlendDst);
+}
+
+static void
 textFiniTextData (CompScreen   *s,
 		  CompTextData *data)
 {
@@ -501,6 +554,7 @@ static TextFunc textFunctions =
 {
     .renderText        = textRenderText,
     .renderWindowTitle = textRenderWindowTitle,
+    .drawText          = textDrawText,
     .finiTextData      = textFiniTextData
 };
 static const CompMetadataOptionInfo textDisplayOptionInfo[] = {

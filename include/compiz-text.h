@@ -62,12 +62,18 @@ typedef CompTextData *
 			  Bool                 withViewportNumber,
 			  const CompTextAttrib *attrib);
 
+typedef void (*DrawTextProc) (CompScreen         *s,
+			      const CompTextData *data,
+			      float              x,
+			      float              y);
+
 typedef void (*FiniTextDataProc) (CompScreen   *s,
 				  CompTextData *data);
 
 typedef struct _TextFunc {
     RenderTextProc        renderText;
     RenderWindowTitleProc renderWindowTitle;
+    DrawTextProc          drawText;
     FiniTextDataProc      finiTextData;
 } TextFunc;
 
