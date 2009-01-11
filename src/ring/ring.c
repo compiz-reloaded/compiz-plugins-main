@@ -65,7 +65,7 @@ typedef struct _RingDrawSlot {
 typedef struct _RingDisplay {
     int		    screenPrivateIndex;
     HandleEventProc handleEvent;
-    Bool            textAvailable;
+    TextFunc        *textFunc;
 } RingDisplay;
 
 typedef struct _RingScreen {
@@ -100,10 +100,7 @@ typedef struct _RingScreen {
     Window selectedWindow;
 
     /* text display support */
-    CompTexture textTexture;
-    Pixmap      textPixmap;
-    int         textWidth;
-    int         textHeight;
+    CompTextData *textData;
 
     CompMatch match;
     CompMatch *currentMatch;
@@ -203,23 +200,20 @@ isRingWin (CompWindow *w)
 static void 
 ringFreeWindowTitle (CompScreen *s)
 {
-    RING_SCREEN(s);
+    RING_SCREEN (s);
+    RING_DISPLAY (s->display);
 
-    if (!rs->textPixmap)
+    if (!rs->textData)
 	return;
 
-    releasePixmapFromTexture (s, &rs->textTexture);
-    initTexture (s, &rs->textTexture);
-    XFreePixmap (s->display->display, rs->textPixmap);
-    rs->textPixmap = None;
+    (rd->textFunc->finiTextData) (s, rs->textData);
+    rs->textData = NULL;
 }
 
 static void 
 ringRenderWindowTitle (CompScreen *s)
 {
-    CompTextAttrib tA;
-    int            stride;
-    void           *data;
+    CompTextAttrib attrib;
     int            ox1, ox2, oy1, oy2;
 
     RING_SCREEN (s);
@@ -227,7 +221,7 @@ ringRenderWindowTitle (CompScreen *s)
 
     ringFreeWindowTitle (s);
 
-    if (!rd->textAvailable)
+    if (!rd->textFunc)
 	return;
 
     if (!rs->selectedWindow)
@@ -239,74 +233,49 @@ ringRenderWindowTitle (CompScreen *s)
     getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
     /* 75% of the output device as maximum width */
-    tA.maxWidth = (ox2 - ox1) * 3 / 4;
-    tA.maxHeight = 100;
-    tA.screen = s;
-    tA.size = ringGetTitleFontSize (s);
-    tA.color[0] = ringGetTitleFontColorRed (s);
-    tA.color[1] = ringGetTitleFontColorGreen (s);
-    tA.color[2] = ringGetTitleFontColorBlue (s);
-    tA.color[3] = ringGetTitleFontColorAlpha (s);
-    tA.style = (ringGetTitleFontBold (s)) ?
-	       TEXT_STYLE_BOLD : TEXT_STYLE_NORMAL;
-    tA.style |= TEXT_STYLE_BACKGROUND;
-    tA.family = "Sans";
-    tA.ellipsize = TRUE;
-    tA.backgroundHMargin = 15;
-    tA.backgroundVMargin = 15;
-    tA.backgroundColor[0] = ringGetTitleBackColorRed (s);
-    tA.backgroundColor[1] = ringGetTitleBackColorGreen (s);
-    tA.backgroundColor[2] = ringGetTitleBackColorBlue (s);
-    tA.backgroundColor[3] = ringGetTitleBackColorAlpha (s);
+    attrib.maxWidth = (ox2 - ox1) * 3 / 4;
+    attrib.maxHeight = 100;
 
-    if (rs->type == RingTypeAll)
-	tA.renderMode = TextRenderWindowTitleWithViewport;
-    else
-	tA.renderMode = TextRenderWindowTitle;
+    attrib.size = ringGetTitleFontSize (s);
+    attrib.color[0] = ringGetTitleFontColorRed (s);
+    attrib.color[1] = ringGetTitleFontColorGreen (s);
+    attrib.color[2] = ringGetTitleFontColorBlue (s);
+    attrib.color[3] = ringGetTitleFontColorAlpha (s);
+    attrib.flags = CompTextFlagWithBackground | CompTextFlagEllipsized;
+    if (ringGetTitleFontBold (s))
+	attrib.flags |= CompTextFlagStyleBold;
+    attrib.family = "Sans";
+    attrib.bgHMargin = 15;
+    attrib.bgVMargin = 15;
+    attrib.bgColor[0] = ringGetTitleBackColorRed (s);
+    attrib.bgColor[1] = ringGetTitleBackColorGreen (s);
+    attrib.bgColor[2] = ringGetTitleBackColorBlue (s);
+    attrib.bgColor[3] = ringGetTitleBackColorAlpha (s);
 
-    tA.data = (void*)rs->selectedWindow;
 
-    initTexture (s, &rs->textTexture);
-
-    if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *)&tA,
-			 	    &rs->textWidth, &rs->textHeight,
-				    &stride, &data))
-    {
-	rs->textPixmap = (Pixmap)data;
-	bindPixmapToTexture (s, &rs->textTexture, rs->textPixmap,
-			     rs->textWidth, rs->textHeight, 32);
-    }
-    else 
-    {
-	rs->textPixmap = None;
-	rs->textWidth  = 0;
-	rs->textHeight = 0;
-    }
+    rs->textData = (rd->textFunc->renderWindowTitle) (s, rs->selectedWindow,
+						      rs->type == RingTypeAll,
+						      &attrib);
 }
 
 static void
 ringDrawWindowTitle (CompScreen *s)
 {
-    GLboolean  wasBlend;
-    GLint      oldBlendSrc, oldBlendDst;
-    float      x, y, width, height;
+    float      x, y;
     int        ox1, ox2, oy1, oy2;
-    CompMatrix *m;
 
     RING_SCREEN (s);
-
-    width = rs->textWidth;
-    height = rs->textHeight;
+    RING_DISPLAY (s->display);
 
     getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
-    x = ox1 + ((ox2 - ox1) / 2) - (rs->textWidth / 2);
+    x = ox1 + ((ox2 - ox1) / 2) - (rs->textData->width / 2);
 
     /* assign y (for the lower corner!) according to the setting */
     switch (ringGetTitleTextPlacement (s))
     {
 	case TitleTextPlacementCenteredOnScreen:
-	    y = oy1 + ((oy2 - oy1) / 2) + (height / 2);
+	    y = oy1 + ((oy2 - oy1) / 2) + (rs->textData->height / 2);
 	    break;
 	case TitleTextPlacementAboveRing:
 	case TitleTextPlacementBelowRing:
@@ -316,7 +285,7 @@ ringDrawWindowTitle (CompScreen *s)
 
 	    	if (ringGetTitleTextPlacement (s) ==
 		    TitleTextPlacementAboveRing)
-    		    y = oy1 + workArea.y + height;
+    		    y = oy1 + workArea.y + rs->textData->height;
 		else
 		    y = oy1 + workArea.y + workArea.height;
 	    }
@@ -326,44 +295,7 @@ ringDrawWindowTitle (CompScreen *s)
 	    break;
     }
 
-    x = floor (x);
-    y = floor (y);
-
-    glGetIntegerv (GL_BLEND_SRC, &oldBlendSrc);
-    glGetIntegerv (GL_BLEND_DST, &oldBlendDst);
-
-    wasBlend = glIsEnabled (GL_BLEND);
-    if (!wasBlend)
-	glEnable (GL_BLEND);
-
-    glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
-    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glColor4f (1.0, 1.0, 1.0, 1.0);
-
-    enableTexture (s, &rs->textTexture,COMP_TEXTURE_FILTER_GOOD);
-
-    m = &rs->textTexture.matrix;
-
-    glBegin (GL_QUADS);
-
-    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m ,0));
-    glVertex2f (x, y - height);
-    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, height));
-    glVertex2f (x, y);
-    glTexCoord2f (COMP_TEX_COORD_X (m, width), COMP_TEX_COORD_Y (m, height));
-    glVertex2f (x + width, y);
-    glTexCoord2f (COMP_TEX_COORD_X (m, width), COMP_TEX_COORD_Y (m, 0));
-    glVertex2f (x + width, y - height);
-
-    glEnd ();
-
-    disableTexture (s, &rs->textTexture);
-    glColor4usv (defaultColor);
-
-    if (!wasBlend)
-	glDisable (GL_BLEND);
-    glBlendFunc (oldBlendSrc, oldBlendDst);
+    (rd->textFunc->drawText) (s, rs->textData, floor (x), floor (y), 1.0f);
 }
 
 static Bool
@@ -995,7 +927,7 @@ ringPaintOutput (CompScreen		  *s,
 
 	rs->paintingSwitcher = FALSE;
 
-	if (rs->textPixmap && (rs->state != RingStateIn))
+	if (rs->textData && rs->state != RingStateIn)
 	    ringDrawWindowTitle (s);
 	
 	glPopMatrix ();
@@ -1383,7 +1315,7 @@ ringWindowSelectAt (CompScreen *s,
 
 	ringTerminate (s->display, NULL, 0, &o, 1);
     }
-    else if (!terminate && (selected != rs->selectedWindow || !rs->textPixmap))
+    else if (!terminate && (selected != rs->selectedWindow || !rs->textData))
     {
 	if (!selected)
 	{
@@ -1593,6 +1525,7 @@ ringInitDisplay (CompPlugin  *p,
 		 CompDisplay *d)
 {
     RingDisplay *rd;
+    int         index;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION))
 	return FALSE;
@@ -1608,10 +1541,17 @@ ringInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    rd->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
-    if (!rd->textAvailable)
+    if (checkPluginABI ("text", TEXT_ABIVERSION) &&
+	getPluginDisplayIndex (d, "text", &index))
+    {
+	rd->textFunc = d->base.privates[index].ptr;
+    }
+    else
+    {
 	compLogMessage ("ring", CompLogLevelWarn,
 			"No compatible text plugin found.");
+	rd->textFunc = NULL;
+    }
 
     ringSetNextKeyInitiate (d, ringNext);
     ringSetNextKeyTerminate (d, ringTerminate);
@@ -1696,7 +1636,7 @@ ringInitScreen (CompPlugin *p,
     rs->rotAdjust = 0;
     rs->rVelocity = 0;
 
-    rs->textPixmap = None;
+    rs->textData = NULL;
 
     matchInit (&rs->match);
 
