@@ -66,9 +66,8 @@ typedef struct _ThumbDisplay
 
     HandleEventProc handleEvent;
 
-    Bool textAvailable;
-
     MousePollFunc *mpFunc;
+    TextFunc      *textFunc;
 } ThumbDisplay;
 
 typedef struct _Thumbnail
@@ -84,11 +83,7 @@ typedef struct _Thumbnail
     CompWindow *win;
     CompWindow *dock;
 
-    CompTexture textTexture;
-    Pixmap      textPixmap;
-
-    int tWidth;
-    int tHeight;
+    CompTextData *textData;
 } Thumbnail;
 
 typedef struct _ThumbScreen
@@ -124,16 +119,13 @@ static void
 freeThumbText (CompScreen *s,
 	       Thumbnail  *t)
 {
-    if (!t->textPixmap)
+    THUMB_DISPLAY (s->display);
+
+    if (!t->textData)
 	return;
 
-    releasePixmapFromTexture (s, &t->textTexture);
-
-    initTexture (s, &t->textTexture);
-
-    XFreePixmap (s->display->display, t->textPixmap);
-
-    t->textPixmap = None;
+    (td->textFunc->finiTextData) (s, t->textData);
+    t->textData = NULL;
 }
 
 static void
@@ -141,8 +133,6 @@ renderThumbText (CompScreen *s,
 		 Thumbnail  *t,
 		 Bool       freeThumb)
 {
-    int            stride;
-    void           *data;
     CompTextAttrib tA;
 
     THUMB_DISPLAY (s->display);
@@ -150,39 +140,23 @@ renderThumbText (CompScreen *s,
     if (freeThumb)
 	freeThumbText (s, t);
 
-    if (!td->textAvailable)
+    if (!td->textFunc)
 	return;
 
     tA.maxWidth   = t->width;
     tA.maxHeight  = 100;
-    tA.screen     = s;
+
     tA.size       = thumbnailGetFontSize (s);
     tA.color[0]   = thumbnailGetFontColorRed (s);
     tA.color[1]   = thumbnailGetFontColorGreen (s);
     tA.color[2]   = thumbnailGetFontColorBlue (s);
     tA.color[3]   = thumbnailGetFontColorAlpha (s);
-    tA.style      = (thumbnailGetFontBold (s)) ?
-		    TEXT_STYLE_BOLD : TEXT_STYLE_NORMAL;
+    tA.flags      = CompTextFlagEllipsized;
+    if (thumbnailGetFontBold (s))
+	tA.flags |= CompTextFlagStyleBold;
     tA.family     = "Sans";
-    tA.ellipsize  = TRUE;
-    tA.renderMode = TextRenderWindowTitle;
-    tA.data       = (void *) (t->win->id);
 
-    initTexture (s, &t->textTexture);
-
-    if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *) &tA,
-				    &t->tWidth, &t->tHeight, &stride, &data))
-    {
-	t->textPixmap = (Pixmap) data;
-	bindPixmapToTexture (s, &t->textTexture, t->textPixmap,
-			     t->tWidth, t->tHeight, 32);
-    }
-    else
-    {
-	t->textPixmap = None;
-	t->tWidth = 0;
-	t->tHeight = 0;
-    }
+    t->textData = (td->textFunc->renderWindowTitle) (s, t->win->id, FALSE, &tA);
 }
 
 static void
@@ -196,8 +170,8 @@ damageThumbRegion (CompScreen *s,
     region.extents.x2 = region.extents.x1 + t->width + (t->offset * 2);
     region.extents.y2 = region.extents.y1 + t->height + (t->offset * 2);
 
-    if (t->textPixmap)
-	region.extents.y2 += t->tHeight + TEXT_DISTANCE;
+    if (t->textData)
+	region.extents.y2 += t->textData->height + TEXT_DISTANCE;
 
     region.rects    = &region.extents;
     region.numRects = region.size = 1;
@@ -295,8 +269,8 @@ thumbUpdateThumbnail (CompScreen *s)
     }
 
     tHeight = ts->thumb.height;
-    if (ts->thumb.textPixmap)
-	tHeight += ts->thumb.tHeight + TEXT_DISTANCE;
+    if (ts->thumb.textData)
+	tHeight += ts->thumb.textData->height + TEXT_DISTANCE;
 
     // failsave position
     tPos[0] = igMidPoint[0] - (ts->thumb.width / 2.0);
@@ -686,8 +660,8 @@ thumbPaintThumb (CompScreen          *s,
 
     sAttrib = w->paint;
 
-    if (t->textPixmap)
-	height += t->tHeight + TEXT_DISTANCE;
+    if (t->textData)
+	height += t->textData->height + TEXT_DISTANCE;
 
     /* Wrap drawWindowGeometry to make sure the general
        drawWindowGeometry function is used */
@@ -816,38 +790,17 @@ thumbPaintThumb (CompScreen          *s,
 
 	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-	if (t->textPixmap)
+	if (t->textData)
 	{
 	    float ox = 0.0;
-	    float w,h;
 
-	    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	    glColor4f (1.0, 1.0, 1.0, t->opacity);
+	    THUMB_DISPLAY (s->display);
 
-	    enableTexture (s, &t->textTexture, COMP_TEXTURE_FILTER_GOOD);
+	    if (t->textData->width < width)
+		ox = (width - t->textData->width) / 2.0;
 
-	    CompMatrix *m = &t->textTexture.matrix;
-
-	    if (t->tWidth < width)
-		ox = (width - t->tWidth) / 2.0;
-
-	    w = MIN (width, t->tWidth);
-	    h = t->tHeight;
-
-	    glBegin (GL_QUADS);
-	    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, 0));
-	    glVertex2f (wx + ox, wy + height - h);
-	    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, h));
-	    glVertex2f (wx + ox, wy + height);
-	    glTexCoord2f (COMP_TEX_COORD_X (m, w), COMP_TEX_COORD_Y (m, h));
-	    glVertex2f (wx + ox + w, wy + height);
-	    glTexCoord2f (COMP_TEX_COORD_X (m, w), COMP_TEX_COORD_Y (m, 0));
-	    glVertex2f (wx + ox + w, wy + height - h);
-	    glEnd ();
-
-	    disableTexture (s, &t->textTexture);
-
-	    glColor4usv (defaultColor);
+	    (td->textFunc->drawText) (s, t->textData, wx + ox,
+				      wy + height, t->opacity);
 	}
 
 	glEnableClientState (GL_TEXTURE_COORD_ARRAY);
@@ -1143,12 +1096,19 @@ thumbInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    td->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
-    if (!td->textAvailable)
+    td->mpFunc = d->base.privates[index].ptr;
+
+    if (checkPluginABI ("text", TEXT_ABIVERSION) &&
+	getPluginDisplayIndex (d, "text", &index))
+    {
+	td->textFunc = d->base.privates[index].ptr;
+    }
+    else
+    {
 	compLogMessage ("thumbnail", CompLogLevelWarn,
 			"No compatible text plugin found.");
-
-    td->mpFunc = d->base.privates[index].ptr;
+	td->textFunc = NULL;
+    }
 
     WRAP (td, d, handleEvent, thumbHandleEvent);
 
@@ -1230,8 +1190,8 @@ thumbInitScreen (CompPlugin *p,
     imageDataToTexture (s, &ts->windowTexture, windowTex, 32, 32,
 			GL_RGBA, GL_UNSIGNED_BYTE);
 
-    ts->thumb.textPixmap    = None;
-    ts->oldThumb.textPixmap = None;
+    ts->thumb.textData    = NULL;
+    ts->oldThumb.textData = NULL;
 
     return TRUE;
 }
