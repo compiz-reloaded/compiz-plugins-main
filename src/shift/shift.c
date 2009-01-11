@@ -86,7 +86,7 @@ typedef struct _ShiftDisplay {
     int		    screenPrivateIndex;
     HandleEventProc handleEvent;
 
-    Bool textAvailable;
+    TextFunc *textFunc;
 
     KeyCode leftKey;
     KeyCode rightKey;
@@ -133,10 +133,7 @@ typedef struct _ShiftScreen {
     Window selectedWindow;
 
     /* text display support */
-    CompTexture textTexture;
-    Pixmap      textPixmap;
-    int         textWidth;
-    int         textHeight;
+    CompTextData *textData;
 
     CompMatch match;
     CompMatch *currentMatch;
@@ -266,39 +263,35 @@ isShiftWin (CompWindow *w)
     return TRUE;
 }
 
-static void 
+static void
 shiftFreeWindowTitle (CompScreen *s)
 {
-    SHIFT_SCREEN(s);
+    SHIFT_SCREEN (s);
+    SHIFT_DISPLAY (s->display);
 
-    if (!ss->textPixmap)
+    if (!ss->textData)
 	return;
 
-    releasePixmapFromTexture (s, &ss->textTexture);
-    initTexture (s, &ss->textTexture);
-    XFreePixmap (s->display->display, ss->textPixmap);
-    ss->textPixmap = None;
+    (sd->textFunc->finiTextData) (s, ss->textData);
+    ss->textData = NULL;
 }
 
 static void 
 shiftRenderWindowTitle (CompScreen *s)
 {
     CompTextAttrib tA;
-    int            stride;
-    void           *data;
+    int            ox1, ox2, oy1, oy2;
 
     SHIFT_SCREEN (s);
     SHIFT_DISPLAY (s->display);
 
     shiftFreeWindowTitle (s);
 
-    if (!sd->textAvailable)
+    if (!sd->textFunc)
 	return;
 
     if (!shiftGetWindowTitle (s))
 	return;
-
-    int ox1, ox2, oy1, oy2;
 
     if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
     {
@@ -312,62 +305,41 @@ shiftRenderWindowTitle (CompScreen *s)
     /* 75% of the output device as maximum width */
     tA.maxWidth = (ox2 - ox1) * 3 / 4;
     tA.maxHeight = 100;
-    tA.screen = s;
+
+    tA.family = "Sans";
     tA.size = shiftGetTitleFontSize (s);
     tA.color[0] = shiftGetTitleFontColorRed (s);
     tA.color[1] = shiftGetTitleFontColorGreen (s);
     tA.color[2] = shiftGetTitleFontColorBlue (s);
     tA.color[3] = shiftGetTitleFontColorAlpha (s);
-    tA.style = (shiftGetTitleFontBold (s)) ?
-	       TEXT_STYLE_BOLD : TEXT_STYLE_NORMAL;
-    tA.style |= TEXT_STYLE_BACKGROUND;
-    tA.family = "Sans";
-    tA.ellipsize = TRUE;
-    tA.backgroundHMargin = 15;
-    tA.backgroundVMargin = 15;
-    tA.backgroundColor[0] = shiftGetTitleBackColorRed (s);
-    tA.backgroundColor[1] = shiftGetTitleBackColorGreen (s);
-    tA.backgroundColor[2] = shiftGetTitleBackColorBlue (s);
-    tA.backgroundColor[3] = shiftGetTitleBackColorAlpha (s);
 
+    tA.flags = CompTextFlagWithBackground | CompTextFlagEllipsized;
+    if (shiftGetTitleFontBold (s))
+	tA.flags |= CompTextFlagStyleBold;
 
-    if (ss->type == ShiftTypeAll)
-	tA.renderMode = TextRenderWindowTitleWithViewport;
-    else
-	tA.renderMode = TextRenderWindowTitle;
+    tA.bgHMargin = 15;
+    tA.bgVMargin = 15;
+    tA.bgColor[0] = shiftGetTitleBackColorRed (s);
+    tA.bgColor[1] = shiftGetTitleBackColorGreen (s);
+    tA.bgColor[2] = shiftGetTitleBackColorBlue (s);
+    tA.bgColor[3] = shiftGetTitleBackColorAlpha (s);
 
-    tA.data = (void*)ss->selectedWindow;
-
-    initTexture (s, &ss->textTexture);
-
-    if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *)&tA,
-				    &ss->textWidth, &ss->textHeight,
-				    &stride, &data))
-    {
-	ss->textPixmap = (Pixmap)data;
-	bindPixmapToTexture (s, &ss->textTexture, ss->textPixmap,
-			     ss->textWidth, ss->textHeight, 32);
-    }
-    else 
-    {
-	ss->textPixmap = None;
-	ss->textWidth  = 0;
-	ss->textHeight = 0;
-    }
+    ss->textData = (sd->textFunc->renderWindowTitle) (s, ss->selectedWindow,
+						      ss->type == ShiftTypeAll,
+						      &tA);
 }
 
 static void
 shiftDrawWindowTitle (CompScreen *s)
 {
-    SHIFT_SCREEN(s);
-    GLboolean wasBlend;
-    GLint oldBlendSrc, oldBlendDst;
-
-    float width = ss->textWidth;
-    float height = ss->textHeight;
-    float border = 10.0f;
-
+    float width, height, border = 10.0f;
     int ox1, ox2, oy1, oy2;
+
+    SHIFT_SCREEN (s);
+    SHIFT_DISPLAY (s->display);
+
+    width = ss->textData->width;
+    height = ss->textData->height;
 
     if (shiftGetMultioutputMode (s) == MultioutputModeOneBigSwitcher)
     {
@@ -383,7 +355,7 @@ shiftDrawWindowTitle (CompScreen *s)
         oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
     }
 
-    float x = ox1 + ((ox2 - ox1) / 2) - (ss->textWidth / 2);
+    float x = ox1 + ((ox2 - ox1) / 2) - (ss->textData->width / 2);
     float y;
 
     /* assign y (for the lower corner!) according to the setting */
@@ -409,43 +381,7 @@ shiftDrawWindowTitle (CompScreen *s)
 	return;
     }
 
-    x = floor (x);
-    y = floor (y);
-
-    glGetIntegerv (GL_BLEND_SRC, &oldBlendSrc);
-    glGetIntegerv (GL_BLEND_DST, &oldBlendDst);
-    wasBlend = glIsEnabled (GL_BLEND);
-
-    if (!wasBlend)
-	glEnable (GL_BLEND);
-    glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
-    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glColor4f (1.0, 1.0, 1.0, 1.0);
-
-    enableTexture (s, &ss->textTexture,COMP_TEXTURE_FILTER_GOOD);
-
-    CompMatrix *m = &ss->textTexture.matrix;
-
-    glBegin (GL_QUADS);
-
-    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m ,0));
-    glVertex2f (x, y - height);
-    glTexCoord2f (COMP_TEX_COORD_X (m, 0), COMP_TEX_COORD_Y (m, height));
-    glVertex2f (x, y);
-    glTexCoord2f (COMP_TEX_COORD_X (m, width), COMP_TEX_COORD_Y (m, height));
-    glVertex2f (x + width, y);
-    glTexCoord2f (COMP_TEX_COORD_X (m, width), COMP_TEX_COORD_Y (m, 0));
-    glVertex2f (x + width, y - height);
-
-    glEnd ();
-
-    disableTexture (s, &ss->textTexture);
-    glColor4usv (defaultColor);
-
-    if (!wasBlend)
-	glDisable (GL_BLEND);
-    glBlendFunc (oldBlendSrc, oldBlendDst);
+    (sd->textFunc->drawText) (s, ss->textData, floor (x), floor (y), 1.0f);
 }
 
 static Bool
@@ -1530,7 +1466,7 @@ shiftPaintOutput (CompScreen		  *s,
 
 	s->display->textureFilter = oldFilter;
 
-	if (ss->textPixmap && (ss->state != ShiftStateIn))
+	if (ss->textData && (ss->state != ShiftStateIn))
 	    shiftDrawWindowTitle (s);
 
 	if (ss->state == ShiftStateIn || ss->state == ShiftStateOut)
@@ -2348,6 +2284,7 @@ shiftHandleEvent (CompDisplay *d,
 
 	    }
 	}
+	break;
     }
 }
 
@@ -2399,6 +2336,7 @@ shiftInitDisplay (CompPlugin  *p,
 		 CompDisplay *d)
 {
     ShiftDisplay *sd;
+    int          index;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION))
 	return FALSE;
@@ -2414,10 +2352,17 @@ shiftInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    sd->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
-    if (!sd->textAvailable)
+    if (checkPluginABI ("text", TEXT_ABIVERSION) &&
+	getPluginDisplayIndex (d, "text", &index))
+    {
+	sd->textFunc = d->base.privates[index].ptr;
+    }
+    else
+    {
 	compLogMessage ("shift", CompLogLevelWarn,
 			"No compatible text plugin loaded.");
+	sd->textFunc = NULL;
+    }
 
     sd->leftKey  = XKeysymToKeycode (d->display, XStringToKeysym ("Left"));
     sd->rightKey = XKeysymToKeycode (d->display, XStringToKeysym ("Right"));
@@ -2527,7 +2472,7 @@ shiftInitScreen (CompPlugin *p,
     ss->mvTarget = 0;
     ss->invert = FALSE;
 
-    ss->textPixmap = None;
+    ss->textData = NULL;
 
     ss->anim         = 0.0;
     ss->animVelocity = 0.0;
