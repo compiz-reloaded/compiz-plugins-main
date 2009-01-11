@@ -21,38 +21,48 @@
 #ifndef _COMPIZ_TEXT_H
 #define _COMPIZ_TEXT_H
 
-#define TEXT_ABIVERSION 20080421
+#define TEXT_ABIVERSION 20090103
 
-#define TEXT_ID "TextToPixmap"
-
-#define TEXT_STYLE_NORMAL		(1 << 0)
-#define TEXT_STYLE_BOLD			(1 << 1)
-#define TEXT_STYLE_ITALIC		(1 << 2)
-#define TEXT_STYLE_BACKGROUND		(1 << 3)
-
-typedef enum {
-    TextRenderNormal = 0,
-    TextRenderWindowTitle,
-    TextRenderWindowTitleWithViewport
-} TextRenderMode;
+#define CompTextStyleBold           (1 << 0)
+#define CompTextStyleItalic         (1 << 1)
+#define CompTextStyleEllipsized     (1 << 2)
+#define CompTextStyleWithBackground (1 << 3)
 
 typedef struct _CompTextAttrib {
-    TextRenderMode renderMode;
-
-    void *data;
-
-    CompScreen *screen;
-    int        maxWidth;
-    int        maxHeight;
-
     char           *family;
     int            size;
     unsigned short color[4];
-    unsigned int   style;
-    Bool           ellipsize;
-    int            backgroundHMargin;
-    int            backgroundVMargin;
-    unsigned short backgroundColor[4];
+
+    unsigned int   flags;
+
+    int            maxWidth;
+    int            maxHeight;
+
+    int            bgHMargin;
+    int            bgVMargin;
+    unsigned short bgColor[4];
 } CompTextAttrib;
+
+typedef struct _CompTextData {
+    Pixmap       pixmap;
+    unsigned int width;
+    unsigned int height;
+} CompTextData;
+
+typedef Bool (*RenderTextProc) (CompScreen           *s,
+				const char           *text,
+				const CompTextAttrib *attrib,
+				CompTextData         *data);
+
+typedef Bool (*RenderWindowTitleProc) (CompScreen           *s,
+				       Window               window,
+				       Bool                 withViewportNumber,
+				       const CompTextAttrib *attrib,
+				       CompTextData         *data);
+
+typedef struct _TextFunc {
+    RenderTextProc        renderText;
+    RenderWindowTitleProc renderWindowTitle;
+} TextFunc;
 
 #endif

@@ -39,17 +39,22 @@
 
 #include <compiz-core.h>
 #include "compiz-text.h"
-#include "text_options.h"
 
 #define PI 3.14159265359f
 
+static CompMetadata textMetadata;
+
 static int displayPrivateIndex;
+static int functionsPrivateIndex;
 
-typedef struct _TextDisplay
-{
-    FileToImageProc fileToImage;
+#define TEXT_DISPLAY_OPTION_ABI    0
+#define TEXT_DISPLAY_OPTION_INDEX  1
+#define TEXT_DISPLAY_OPTION_NUM    2
 
+typedef struct _TextDisplay {
     Atom visibleNameAtom;
+
+    CompOption opt[TEXT_DISPLAY_OPTION_NUM];
 } TextDisplay;
 
 #define GET_TEXT_DISPLAY(d)				    \
@@ -58,46 +63,55 @@ typedef struct _TextDisplay
 #define TEXT_DISPLAY(d)			 \
     TextDisplay *td = GET_TEXT_DISPLAY (d)
 
-static char*
+#define NUM_OPTIONS(d) (sizeof ((d)->opt) / sizeof (CompOption))
+
+typedef struct _TextSurfaceData {
+    int                  width;
+    int                  height;
+
+    cairo_t              *cr;
+    cairo_surface_t      *surface;
+    PangoLayout          *layout;
+    Pixmap               pixmap;
+    XRenderPictFormat    *format;
+    PangoFontDescription *font;
+    Screen               *screen;
+} TextSurfaceData;
+
+static char *
 textGetUtf8Property (CompDisplay *d,
 		     Window      id,
 		     Atom        atom)
 {
     Atom          type;
-    int           format;
-    unsigned long nitems;
-    unsigned long bytesAfter;
-    char          *val;
-    int           result;
-    char          *retval;
+    int           result, format;
+    unsigned long nItems, bytesAfter;
+    char          *val, *retval = NULL;
 
     result = XGetWindowProperty (d->display, id, atom, 0L, 65536, False,
-				 d->utf8StringAtom, &type, &format, &nitems,
-				 &bytesAfter, (unsigned char **)&val);
+				 d->utf8StringAtom, &type, &format, &nItems,
+				 &bytesAfter, (unsigned char **) &val);
 
     if (result != Success)
 	return NULL;
 
-    if (type != d->utf8StringAtom || format != 8 || nitems == 0)
+    if (type == d->utf8StringAtom && format == 8 && val && nItems > 0)
     {
-	if (val)
-	    XFree (val);
-	return NULL;
+	retval = malloc (sizeof (char) * (nItems + 1));
+	if (retval)
+	{
+	    strncpy (retval, val, nItems);
+	    retval[nItems] = 0;
+	}
     }
 
-    retval = malloc (sizeof (char) * (nitems + 1));
-    if (retval)
-    {
-	strncpy (retval, val, nitems);
-	retval[nitems] = 0;
-    }
-
-    XFree (val);
+    if (val)
+	XFree (val);
 
     return retval;
 }
 
-static char*
+static char *
 textGetTextProperty (CompDisplay *d,
 		     Window      id,
 		     Atom        atom)
@@ -124,7 +138,7 @@ textGetTextProperty (CompDisplay *d,
     return retval;
 }
 
-static char*
+static char *
 textGetWindowName (CompDisplay *d,
 		   Window      id)
 {
@@ -135,7 +149,7 @@ textGetWindowName (CompDisplay *d,
     name = textGetUtf8Property (d, id, td->visibleNameAtom);
 
     if (!name)
-	name = textGetUtf8Property(d, id, d->wmNameAtom);
+	name = textGetUtf8Property (d, id, d->wmNameAtom);
 
     if (!name)
 	name = textGetTextProperty (d, id, XA_WM_NAME);
@@ -147,8 +161,12 @@ textGetWindowName (CompDisplay *d,
  * Draw a rounded rectangle path
  */
 static void
-textDrawTextBackground (cairo_t *cr, int x, int y, int width, int height,
-			int radius)
+textDrawTextBackground (cairo_t *cr,
+			int     x,
+			int     y,
+			int     width,
+			int     height,
+			int     radius)
 {
     int x0, y0, x1, y1;
 
@@ -168,287 +186,304 @@ textDrawTextBackground (cairo_t *cr, int x, int y, int width, int height,
     cairo_close_path (cr);
 }
 
-
 static Bool
-textFileToImage (CompDisplay *d,
-      		 const char  *path,
-		 const char  *name,
-		 int         *width,
-		 int         *height,
-		 int         *stride,
-		 void        **data)
+textInitCairo (CompScreen      *s,
+	       TextSurfaceData *data,
+	       int             width,
+	       int             height)
 {
-    Bool status = FALSE;
+    Display *dpy = s->display->display;
 
-    TEXT_DISPLAY (d);
+    data->pixmap = None;
+    if (width > 0 && height > 0)
+	data->pixmap = XCreatePixmap (dpy, s->root, width, height, 32);
 
-    if (path && name && strcmp(path, TEXT_ID) == 0)
+    data->width  = width;
+    data->height = height;
+
+    if (!data->pixmap)
     {
-	cairo_t              *cr;
-	cairo_surface_t      *surface;
-	PangoLayout          *layout;
-	Pixmap               pixmap;
-	XRenderPictFormat    *format;
-	PangoFontDescription *font;
-	CompTextAttrib       *textAttrib;
-	Display              *dpy = d->display;
-	Screen               *screen;
-	int                  w, h;
-	int		    layoutWidth;
-	char                 *text = NULL;
-	
-	textAttrib = (CompTextAttrib*) name; /* get it through the name */
-	screen = ScreenOfDisplay (dpy, textAttrib->screen->screenNum);
-
-	if (!screen)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't get screen for %d.",
-			    textAttrib->screen->screenNum);
-	    return FALSE;
-	}
-
-	format = XRenderFindStandardFormat (dpy, PictStandardARGB32);
-	if (!format)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't get format.");
-	    return FALSE;
-	}
-
-	pixmap = XCreatePixmap (dpy, textAttrib->screen->root, 1, 1, 32);
-	if (!pixmap)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't create pixmap.");
-	    return FALSE;
-	}
-
-	surface = cairo_xlib_surface_create_with_xrender_format (dpy,
-								 pixmap,
-								 screen,
-								 format, 1, 1);
-
-	if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't create surface.");
-	    XFreePixmap (dpy, pixmap);
-	    return FALSE;
-	}
-
-	cr = cairo_create (surface);
-	if (cairo_status (cr) != CAIRO_STATUS_SUCCESS)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't create cairo context.");
-	    cairo_surface_destroy (surface);
-	    XFreePixmap (dpy, pixmap);
-	    return FALSE;
-	}
-
-	/* init pango */
-	layout = pango_cairo_create_layout (cr);
-	if (!layout)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't create pango layout.");
-	    cairo_destroy (cr);
-	    cairo_surface_destroy (surface);
-	    XFreePixmap (dpy, pixmap);
-	    return FALSE;
-	}
-
-	font = pango_font_description_new ();
-	if (!font)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't create font description.");
-	    g_object_unref (layout);
-	    cairo_destroy (cr);
-	    cairo_surface_destroy (surface);
-	    XFreePixmap (dpy, pixmap);
-	    return FALSE;
-	}
-
-	pango_font_description_set_family (font, textAttrib->family);
-	pango_font_description_set_absolute_size (font,
-						  textAttrib->size *
-						  PANGO_SCALE);
-
-	pango_font_description_set_style (font, PANGO_STYLE_NORMAL);
-
-	if (textAttrib->style & TEXT_STYLE_BOLD)
-	    pango_font_description_set_weight (font, PANGO_WEIGHT_BOLD);
-
-	if (textAttrib->style & TEXT_STYLE_ITALIC)
-    	    pango_font_description_set_style (font, PANGO_STYLE_ITALIC);
-
-	pango_layout_set_font_description (layout, font);
-
-	if (textAttrib->ellipsize)
-    	    pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
-
-	switch (textAttrib->renderMode) {
-	case TextRenderNormal:
-	    text = strdup ((char*) textAttrib->data);
-	    break;
-	case TextRenderWindowTitle:
-	    {
-		Window xid = (Window) textAttrib->data;
-		text = textGetWindowName (d, xid);
-	    }
-	    break;
-	case TextRenderWindowTitleWithViewport:
-	    {
-		Window xid = (Window) textAttrib->data;
-		char *title = textGetWindowName (d, xid);
-
-		if (title)
-		{
-		    CompWindow *w;
-
-		    w = findWindowAtDisplay (d, xid);
-		    if (w)
-		    {
-			int vx, vy, viewport;
-
-			defaultViewportForWindow (w, &vx, &vy);
-			viewport = vy * w->screen->hsize + vx + 1;
-			asprintf (&text, "%s -[%d]-", title, viewport);
-			free (title);
-		    }
-		    else
-			text = title;
-		}
-	    }
-	    break;
-	default:
-	    break;
-	}
-
-	if (text)
-	{
-	    pango_layout_set_auto_dir (layout, FALSE);
-	    pango_layout_set_text (layout, text, -1);
-	    free (text);
-	}
-	else
-	{
-	    pango_font_description_free (font);
-	    g_object_unref (layout);
-	    cairo_destroy (cr);
-	    cairo_surface_destroy (surface);
-	    XFreePixmap (dpy, pixmap);
-	    return FALSE;
-	}
-
-	pango_layout_get_pixel_size (layout, &w, &h);
-
-	if (textAttrib->style & TEXT_STYLE_BACKGROUND)
-	{
-	    w += 2 * textAttrib->backgroundHMargin;
-	    h += 2 * textAttrib->backgroundVMargin;
-	}
-
-	w = MIN (textAttrib->maxWidth, w);
-	h = MIN (textAttrib->maxHeight, h);
-
-	/* update the size of the pango layout */
-	layoutWidth = textAttrib->maxWidth;
-	if (textAttrib->style & TEXT_STYLE_BACKGROUND)
-	    layoutWidth -= 2 * textAttrib->backgroundHMargin;
-	pango_layout_set_width (layout, layoutWidth * PANGO_SCALE);
-
-	cairo_surface_destroy (surface);
-	cairo_destroy (cr);
-	XFreePixmap (dpy, pixmap);
-	pixmap = None;
-
-	if (w > 0 && h > 0)
-	    pixmap = XCreatePixmap (dpy, textAttrib->screen->root, w, h, 32);
-
-	if (!pixmap)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't create %d x %d pixmap.", w, h);
-	    pango_font_description_free (font);
-	    g_object_unref (layout);
-	    return FALSE;
-	}
-
-	surface = cairo_xlib_surface_create_with_xrender_format (dpy, pixmap,
-								 screen, format,
-								 w, h);
-	if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't create surface.");
-	    pango_font_description_free (font);
-	    g_object_unref (layout);
-	    XFreePixmap (dpy, pixmap);
-	    return FALSE;
-	}
-
-	cr = cairo_create (surface);
-	if (cairo_status (cr) != CAIRO_STATUS_SUCCESS)
-	{
-	    compLogMessage ("text", CompLogLevelError,
-			    "Couldn't create cairo context.");
-	    cairo_surface_destroy (surface);
-	    pango_font_description_free (font);
-	    g_object_unref (layout);
-	    XFreePixmap (dpy, pixmap);
-	    return FALSE;
-	}
-
-	pango_cairo_update_layout (cr, layout);
-
-	cairo_save (cr);
-	cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
-	cairo_paint (cr);
-	cairo_restore (cr);
-
-	cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-
-	if (textAttrib->style & TEXT_STYLE_BACKGROUND)
-	{
-	    textDrawTextBackground (cr, 0, 0, w, h,
-				    MIN (textAttrib->backgroundHMargin,
-					 textAttrib->backgroundVMargin));
-	    cairo_set_source_rgba (cr,
-				   textAttrib->backgroundColor[0] / 65535.0,
-				   textAttrib->backgroundColor[1] / 65535.0,
-				   textAttrib->backgroundColor[2] / 65535.0,
-				   textAttrib->backgroundColor[3] / 65535.0);
-	    cairo_fill (cr);
-	    cairo_move_to (cr, textAttrib->backgroundHMargin,
-			   textAttrib->backgroundVMargin);
-	}
-	cairo_set_source_rgba (cr,
-			       textAttrib->color[0] / 65535.0,
-     			       textAttrib->color[1] / 65535.0,
-			       textAttrib->color[2] / 65535.0,
-			       textAttrib->color[3] / 65535.0);
-	pango_cairo_show_layout (cr, layout);
-
-	g_object_unref (layout);
-	cairo_surface_destroy (surface);
-	cairo_destroy (cr);
-	pango_font_description_free (font);
-
-	*width  = w;
-	*height = h;
-	*data   = (void *)pixmap;
-
-	return TRUE;
+	compLogMessage ("text", CompLogLevelError,
+			"Couldn't create %d x %d pixmap.", width, height);
+	return FALSE;
     }
 
-    UNWRAP (td, d, fileToImage);
-    status = (*d->fileToImage) (d, path, name, width, height, stride, data);
-    WRAP (td, d, fileToImage, textFileToImage);
+    data->surface = cairo_xlib_surface_create_with_xrender_format (dpy,
+								   data->pixmap,
+  								   data->screen,
+								   data->format,
+								   width,
+								   height);
+    if (cairo_surface_status (data->surface) != CAIRO_STATUS_SUCCESS)
+    {
+	compLogMessage ("text", CompLogLevelError, "Couldn't create surface.");
+	return FALSE;
+    }
 
-    return status;
+    data->cr = cairo_create (data->surface);
+    if (cairo_status (data->cr) != CAIRO_STATUS_SUCCESS)
+    {
+	compLogMessage ("text", CompLogLevelError,
+			"Couldn't create cairo context.");
+	return FALSE;
+    }
+
+    return TRUE;
+}
+
+static Bool
+textInitSurface (CompScreen      *s,
+		 TextSurfaceData *data)
+{
+    Display *dpy = s->display->display;
+
+    data->screen = ScreenOfDisplay (dpy, s->screenNum);
+    if (!data->screen)
+    {
+	compLogMessage ("text", CompLogLevelError,
+			"Couldn't get screen for %d.", s->screenNum);
+	return FALSE;
+    }
+
+    data->format = XRenderFindStandardFormat (dpy, PictStandardARGB32);
+    if (!data->format)
+    {
+	compLogMessage ("text", CompLogLevelError, "Couldn't get format.");
+	return FALSE;
+    }
+
+    if (!textInitCairo (s, data, 1, 1))
+	return FALSE;
+
+    /* init pango */
+    data->layout = pango_cairo_create_layout (data->cr);
+    if (!data->layout)
+    {
+	compLogMessage ("text", CompLogLevelError,
+			"Couldn't create pango layout.");
+	return FALSE;
+    }
+
+    data->font = pango_font_description_new ();
+    if (!data->font)
+    {
+	compLogMessage ("text", CompLogLevelError,
+			"Couldn't create font description.");
+	return FALSE;
+    }
+
+    return TRUE;
+}
+
+static Bool
+textUpdateSurface (CompScreen      *s,
+		   TextSurfaceData *data,
+		   int             width,
+		   int             height)
+{
+    Display *dpy = s->display->display;
+
+    cairo_surface_destroy (data->surface);
+    cairo_destroy (data->cr);
+    XFreePixmap (dpy, data->pixmap);
+
+    return textInitCairo (s, data, width, height);
+}
+
+static Bool
+textDrawText (CompScreen           *s,
+	      const char           *text,
+	      TextSurfaceData      *data,
+	      const CompTextAttrib *attrib)
+{
+    int width, height, layoutWidth;
+
+    pango_font_description_set_family (data->font, attrib->family);
+    pango_font_description_set_absolute_size (data->font,
+					      attrib->size * PANGO_SCALE);
+    pango_font_description_set_style (data->font, PANGO_STYLE_NORMAL);
+
+    if (attrib->flags & CompTextStyleBold)
+	pango_font_description_set_weight (data->font, PANGO_WEIGHT_BOLD);
+
+    if (attrib->flags & CompTextStyleItalic)
+	pango_font_description_set_style (data->font, PANGO_STYLE_ITALIC);
+
+    pango_layout_set_font_description (data->layout, data->font);
+
+    if (attrib->flags & CompTextStyleEllipsized)
+	pango_layout_set_ellipsize (data->layout, PANGO_ELLIPSIZE_END);
+
+    pango_layout_set_auto_dir (data->layout, FALSE);
+    pango_layout_set_text (data->layout, text, -1);
+
+    pango_layout_get_pixel_size (data->layout, &width, &height);
+
+    if (attrib->flags & CompTextStyleWithBackground)
+    {
+	width  += 2 * attrib->bgHMargin;
+	height += 2 * attrib->bgVMargin;
+    }
+
+    width  = MIN (attrib->maxWidth, width);
+    height = MIN (attrib->maxHeight, height);
+
+    /* update the size of the pango layout */
+    layoutWidth = attrib->maxWidth;
+    if (attrib->flags & CompTextStyleWithBackground)
+	layoutWidth -= 2 * attrib->bgHMargin;
+
+    pango_layout_set_width (data->layout, layoutWidth * PANGO_SCALE);
+
+    if (!textUpdateSurface (s, data, width, height))
+	return FALSE;
+
+    pango_cairo_update_layout (data->cr, data->layout);
+
+    cairo_save (data->cr);
+    cairo_set_operator (data->cr, CAIRO_OPERATOR_CLEAR);
+    cairo_paint (data->cr);
+    cairo_restore (data->cr);
+
+    cairo_set_operator (data->cr, CAIRO_OPERATOR_OVER);
+
+    if (attrib->flags & CompTextStyleWithBackground)
+    {
+	textDrawTextBackground (data->cr, 0, 0, width, height,
+				MIN (attrib->bgHMargin, attrib->bgVMargin));
+	cairo_set_source_rgba (data->cr,
+			       attrib->bgColor[0] / 65535.0,
+			       attrib->bgColor[1] / 65535.0,
+			       attrib->bgColor[2] / 65535.0,
+			       attrib->bgColor[3] / 65535.0);
+	cairo_fill (data->cr);
+	cairo_move_to (data->cr, attrib->bgHMargin, attrib->bgVMargin);
+    }
+
+    cairo_set_source_rgba (data->cr,
+			   attrib->color[0] / 65535.0,
+			   attrib->color[1] / 65535.0,
+			   attrib->color[2] / 65535.0,
+			   attrib->color[3] / 65535.0);
+
+    pango_cairo_show_layout (data->cr, data->layout);
+
+    return TRUE;
+}
+
+static void
+textCleanupSurface (TextSurfaceData *data)
+{
+    if (data->layout)
+	g_object_unref (data->layout);
+    if (data->surface)
+	cairo_surface_destroy (data->surface);
+    if (data->cr)
+	cairo_destroy (data->cr);
+    if (data->font)
+	pango_font_description_free (data->font);
+}
+
+static Bool
+textRenderText (CompScreen           *s,
+		const char           *text,
+		const CompTextAttrib *attrib,
+		CompTextData         *data)
+{
+    TextSurfaceData surface;
+    Bool            retval = FALSE;
+
+    if (!text)
+	return FALSE;
+
+    memset (&surface, 0, sizeof (TextSurfaceData));
+
+    if (textInitSurface (s, &surface) &&
+	textDrawText (s, text, &surface, attrib))
+    {
+	data->pixmap = surface.pixmap;
+	data->width  = surface.width;
+	data->height = surface.height;
+
+	retval = TRUE;
+    }
+
+    if (!retval && surface.pixmap)
+	XFreePixmap (s->display->display, surface.pixmap);
+
+    textCleanupSurface (&surface);
+
+    return retval;
+}
+
+static Bool
+textRenderWindowTitle (CompScreen           *s,
+		       Window               window,
+		       Bool                 withViewportNumber,
+		       const CompTextAttrib *attrib,
+		       CompTextData         *data)
+{
+    char *text;
+    Bool retval;
+
+    if (withViewportNumber)
+    {
+	char *title;
+	
+	title = textGetWindowName (s->display, window);
+	if (title)
+	{
+	    CompWindow *w;
+
+	    w = findWindowAtDisplay (s->display, window);
+	    if (w)
+	    {
+		int vx, vy, viewport;
+
+		defaultViewportForWindow (w, &vx, &vy);
+		viewport = vy * w->screen->hsize + vx + 1;
+		asprintf (&text, "%s -[%d]-", title, viewport);
+		free (title);
+	    }
+	    else
+	    {
+		text = title;
+	    }
+	}
+    }
+    else
+    {
+	text = textGetWindowName (s->display, window);
+    }
+
+    if (!text)
+	return FALSE;
+
+    retval = textRenderText (s, text, attrib, data);
+    free (text);
+
+    return retval;
+}
+
+static TextFunc textFunctions =
+{
+    .renderText        = textRenderText,
+    .renderWindowTitle = textRenderWindowTitle
+};
+static const CompMetadataOptionInfo textDisplayOptionInfo[] = {
+    { "abi", "int", 0, 0, 0 },
+    { "index", "int", 0, 0, 0 }
+};
+
+static CompOption *
+textGetDisplayOptions (CompPlugin  *plugin,
+		       CompDisplay *display,
+		       int         *count)
+{
+    TEXT_DISPLAY (display);
+
+    *count = NUM_OPTIONS (td);
+    return td->opt;
 }
 
 static Bool
@@ -456,7 +491,6 @@ textInitDisplay (CompPlugin  *p,
 		 CompDisplay *d)
 {
     TextDisplay *td;
-    CompOption  *o;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION))
 	return FALSE;
@@ -465,15 +499,24 @@ textInitDisplay (CompPlugin  *p,
     if (!td)
 	return FALSE;
 
+    if (!compInitDisplayOptionsFromMetadata (d,
+					     &textMetadata,
+					     textDisplayOptionInfo,
+					     td->opt,
+					     TEXT_DISPLAY_OPTION_NUM))
+    {
+	free (td);
+	return FALSE;
+    }
+
     td->visibleNameAtom = XInternAtom (d->display,
 				       "_NET_WM_VISIBLE_NAME", 0);
 
-    WRAP (td, d, fileToImage, textFileToImage);
+    td->opt[TEXT_DISPLAY_OPTION_ABI].value.i   = TEXT_ABIVERSION;
+    td->opt[TEXT_DISPLAY_OPTION_INDEX].value.i = functionsPrivateIndex;
 
-    d->base.privates[displayPrivateIndex].ptr = td;
-
-    o = textGetAbiOption (d);
-    o->value.i = TEXT_ABIVERSION;
+    d->base.privates[displayPrivateIndex].ptr   = td;
+    d->base.privates[functionsPrivateIndex].ptr = &textFunctions;
 
     return TRUE;
 }
@@ -484,7 +527,7 @@ textFiniDisplay (CompPlugin  *p,
 {
     TEXT_DISPLAY (d);
 
-    UNWRAP (td, d, fileToImage);
+    compFiniDisplayOptions (d, td->opt, TEXT_DISPLAY_OPTION_NUM);
 
     free (td);
 }
@@ -513,12 +556,47 @@ textFiniObject (CompPlugin *p,
     DISPATCH (o, dispTab, ARRAY_SIZE (dispTab), (p, o));
 }
 
+static CompOption *
+textGetObjectOptions (CompPlugin *plugin,
+		      CompObject *object,
+		      int        *count)
+{
+    static GetPluginObjectOptionsProc dispTab[] = {
+	(GetPluginObjectOptionsProc) 0, /* GetCoreOptions */
+	(GetPluginObjectOptionsProc) textGetDisplayOptions
+    };
+
+    RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab),
+		     (void *) (*count = 0), (plugin, object, count));
+}
+
+
 static Bool
 textInit (CompPlugin *p)
 {
+    if (!compInitPluginMetadataFromInfo (&textMetadata,
+					 p->vTable->name,
+					 textDisplayOptionInfo,
+					 TEXT_DISPLAY_OPTION_NUM,
+					 NULL, 0))
+	return FALSE;
+
     displayPrivateIndex = allocateDisplayPrivateIndex ();
     if (displayPrivateIndex < 0)
+    {
+	compFiniMetadata (&textMetadata);
 	return FALSE;
+    }
+
+    functionsPrivateIndex = allocateDisplayPrivateIndex ();
+    if (functionsPrivateIndex < 0)
+    {
+	freeDisplayPrivateIndex (displayPrivateIndex);
+	compFiniMetadata (&textMetadata);
+	return FALSE;
+    }
+    
+    compAddMetadataFromFile (&textMetadata, p->vTable->name);
 
     return TRUE;
 }
@@ -526,22 +604,30 @@ textInit (CompPlugin *p)
 static void
 textFini (CompPlugin *p)
 {
-    freeDisplayPrivateIndex(displayPrivateIndex);
+    freeDisplayPrivateIndex (displayPrivateIndex);
+    freeDisplayPrivateIndex (functionsPrivateIndex);
+    compFiniMetadata (&textMetadata);
+}
+
+static CompMetadata *
+textGetMetadata (CompPlugin *p)
+{
+    return &textMetadata;
 }
 
 CompPluginVTable textVTable = {
     "text",
-    0,
+    textGetMetadata,
     textInit,
     textFini,
     textInitObject,
     textFiniObject,
-    0,
+    textGetObjectOptions,
     0
 };
 
-CompPluginVTable*
-getCompPluginInfo (void)
+CompPluginVTable *
+getCompPluginInfo20070830 (void)
 {
     return &textVTable;
 }
