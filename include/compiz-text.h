@@ -49,20 +49,24 @@ typedef struct _CompTextData {
     unsigned int height;
 } CompTextData;
 
-typedef Bool (*RenderTextProc) (CompScreen           *s,
-				const char           *text,
-				const CompTextAttrib *attrib,
-				CompTextData         *data);
+typedef CompTextData *
+(*RenderTextProc) (CompScreen           *s,
+		   const char           *text,
+		   const CompTextAttrib *attrib);
 
-typedef Bool (*RenderWindowTitleProc) (CompScreen           *s,
-				       Window               window,
-				       Bool                 withViewportNumber,
-				       const CompTextAttrib *attrib,
-				       CompTextData         *data);
+typedef CompTextData *
+(*RenderWindowTitleProc) (CompScreen           *s,
+			  Window               window,
+			  Bool                 withViewportNumber,
+			  const CompTextAttrib *attrib);
+
+typedef void (*FiniTextDataProc) (CompScreen   *s,
+				  CompTextData *data);
 
 typedef struct _TextFunc {
     RenderTextProc        renderText;
     RenderWindowTitleProc renderWindowTitle;
+    FiniTextDataProc      finiTextData;
 } TextFunc;
 
 #endif

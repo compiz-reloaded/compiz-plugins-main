@@ -384,28 +384,29 @@ textCleanupSurface (TextSurfaceData *data)
 	pango_font_description_free (data->font);
 }
 
-static Bool
+static CompTextData *
 textRenderText (CompScreen           *s,
 		const char           *text,
-		const CompTextAttrib *attrib,
-		CompTextData         *data)
+		const CompTextAttrib *attrib)
 {
     TextSurfaceData surface;
-    Bool            retval = FALSE;
+    CompTextData    *retval = NULL;
 
     if (!text)
-	return FALSE;
+	return NULL;
 
     memset (&surface, 0, sizeof (TextSurfaceData));
 
     if (textInitSurface (s, &surface) &&
 	textDrawText (s, text, &surface, attrib))
     {
-	data->pixmap = surface.pixmap;
-	data->width  = surface.width;
-	data->height = surface.height;
-
-	retval = TRUE;
+	retval = calloc (1, sizeof (CompTextData));
+	if (retval)
+	{
+	    retval->pixmap = surface.pixmap;
+	    retval->width  = surface.width;
+	    retval->height = surface.height;
+	}
     }
 
     if (!retval && surface.pixmap)
@@ -416,15 +417,14 @@ textRenderText (CompScreen           *s,
     return retval;
 }
 
-static Bool
+static CompTextData *
 textRenderWindowTitle (CompScreen           *s,
 		       Window               window,
 		       Bool                 withViewportNumber,
-		       const CompTextAttrib *attrib,
-		       CompTextData         *data)
+		       const CompTextAttrib *attrib)
 {
-    char *text;
-    Bool retval;
+    char         *text;
+    CompTextData *retval;
 
     if (withViewportNumber)
     {
@@ -457,18 +457,28 @@ textRenderWindowTitle (CompScreen           *s,
     }
 
     if (!text)
-	return FALSE;
+	return NULL;
 
-    retval = textRenderText (s, text, attrib, data);
+    retval = textRenderText (s, text, attrib);
     free (text);
 
     return retval;
 }
 
+static void
+textFiniTextData (CompScreen   *s,
+		  CompTextData *data)
+{
+    XFreePixmap (s->display->display, data->pixmap);
+
+    free (data);
+}
+
 static TextFunc textFunctions =
 {
     .renderText        = textRenderText,
-    .renderWindowTitle = textRenderWindowTitle
+    .renderWindowTitle = textRenderWindowTitle,
+    .finiTextData      = textFiniTextData
 };
 static const CompMetadataOptionInfo textDisplayOptionInfo[] = {
     { "abi", "int", 0, 0, 0 },
