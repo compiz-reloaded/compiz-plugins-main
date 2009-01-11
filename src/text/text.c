@@ -303,15 +303,15 @@ textDrawText (CompScreen           *s,
 					      attrib->size * PANGO_SCALE);
     pango_font_description_set_style (data->font, PANGO_STYLE_NORMAL);
 
-    if (attrib->flags & CompTextStyleBold)
+    if (attrib->flags & CompTextFlagStyleBold)
 	pango_font_description_set_weight (data->font, PANGO_WEIGHT_BOLD);
 
-    if (attrib->flags & CompTextStyleItalic)
+    if (attrib->flags & CompTextFlagStyleItalic)
 	pango_font_description_set_style (data->font, PANGO_STYLE_ITALIC);
 
     pango_layout_set_font_description (data->layout, data->font);
 
-    if (attrib->flags & CompTextStyleEllipsized)
+    if (attrib->flags & CompTextFlagEllipsized)
 	pango_layout_set_ellipsize (data->layout, PANGO_ELLIPSIZE_END);
 
     pango_layout_set_auto_dir (data->layout, FALSE);
@@ -319,7 +319,7 @@ textDrawText (CompScreen           *s,
 
     pango_layout_get_pixel_size (data->layout, &width, &height);
 
-    if (attrib->flags & CompTextStyleWithBackground)
+    if (attrib->flags & CompTextFlagWithBackground)
     {
 	width  += 2 * attrib->bgHMargin;
 	height += 2 * attrib->bgVMargin;
@@ -330,7 +330,7 @@ textDrawText (CompScreen           *s,
 
     /* update the size of the pango layout */
     layoutWidth = attrib->maxWidth;
-    if (attrib->flags & CompTextStyleWithBackground)
+    if (attrib->flags & CompTextFlagWithBackground)
 	layoutWidth -= 2 * attrib->bgHMargin;
 
     pango_layout_set_width (data->layout, layoutWidth * PANGO_SCALE);
@@ -347,7 +347,7 @@ textDrawText (CompScreen           *s,
 
     cairo_set_operator (data->cr, CAIRO_OPERATOR_OVER);
 
-    if (attrib->flags & CompTextStyleWithBackground)
+    if (attrib->flags & CompTextFlagWithBackground)
     {
 	textDrawTextBackground (data->cr, 0, 0, width, height,
 				MIN (attrib->bgHMargin, attrib->bgVMargin));
@@ -401,11 +401,28 @@ textRenderText (CompScreen           *s,
 	textDrawText (s, text, &surface, attrib))
     {
 	retval = calloc (1, sizeof (CompTextData));
+	if (retval && !(attrib->flags & CompTextFlagNoAutoBinding))
+	{
+	    retval->texture = malloc (sizeof (CompTexture));
+	    if (!retval->texture)
+	    {
+		free (retval);
+		retval = NULL;
+	    }
+	}
+
 	if (retval)
 	{
 	    retval->pixmap = surface.pixmap;
 	    retval->width  = surface.width;
 	    retval->height = surface.height;
+
+	    if (retval->texture)
+	    {
+		initTexture (s, retval->texture);
+		bindPixmapToTexture (s, retval->texture, retval->pixmap,
+				     retval->width, retval->height, 32);
+	    }
 	}
     }
 
@@ -469,6 +486,12 @@ static void
 textFiniTextData (CompScreen   *s,
 		  CompTextData *data)
 {
+    if (data->texture)
+    {
+	finiTexture (s, data->texture);
+	free (data->texture);
+    }
+
     XFreePixmap (s->display->display, data->pixmap);
 
     free (data);

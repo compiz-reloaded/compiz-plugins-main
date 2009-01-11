@@ -23,10 +23,11 @@
 
 #define TEXT_ABIVERSION 20090103
 
-#define CompTextStyleBold           (1 << 0)
-#define CompTextStyleItalic         (1 << 1)
-#define CompTextStyleEllipsized     (1 << 2)
-#define CompTextStyleWithBackground (1 << 3)
+#define CompTextFlagStyleBold      (1 << 0)
+#define CompTextFlagStyleItalic    (1 << 1)
+#define CompTextFlagEllipsized     (1 << 2)
+#define CompTextFlagWithBackground (1 << 3)
+#define CompTextFlagNoAutoBinding  (1 << 4)
 
 typedef struct _CompTextAttrib {
     char           *family;
@@ -44,6 +45,7 @@ typedef struct _CompTextAttrib {
 } CompTextAttrib;
 
 typedef struct _CompTextData {
+    CompTexture  *texture;
     Pixmap       pixmap;
     unsigned int width;
     unsigned int height;
