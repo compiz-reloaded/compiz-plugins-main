@@ -48,7 +48,7 @@ typedef struct _ScaleAddonDisplay {
     HandleEventProc       handleEvent;
     HandleCompizEventProc handleCompizEvent;
 
-    Bool textAvailable;
+    TextFunc *textFunc;
 
     Window highlightedWindow;
     Window lastHighlightedWindow;
@@ -70,11 +70,7 @@ typedef struct _ScaleAddonScreen {
 typedef struct _ScaleAddonWindow {
     ScaleSlot origSlot;
 
-    Pixmap      textPixmap;
-    CompTexture textTexture;
-
-    int textWidth;
-    int textHeight;
+    CompTextData *textData;
 
     Bool rescaled;
 
@@ -108,23 +104,20 @@ scaleaddonFreeWindowTitle (CompWindow *w)
     CompScreen *s = w->screen;
 
     ADDON_WINDOW (w);
+    ADDON_DISPLAY (s->display);
 
-    if (!aw->textPixmap)
+    if (!aw->textData)
 	return;
 
-    releasePixmapFromTexture (s, &aw->textTexture);
-    initTexture (s, &aw->textTexture);
-    XFreePixmap (s->display->display, aw->textPixmap);
-    aw->textPixmap = None;
+    (ad->textFunc->finiTextData) (s, aw->textData);
+    aw->textData = NULL;
 }
 
 static void
 scaleaddonRenderWindowTitle (CompWindow *w)
 {
-    CompTextAttrib            tA;
+    CompTextAttrib            attrib;
     float                     scale;
-    int                       stride;
-    void                      *data;
     CompScreen                *s = w->screen;
     ScaleaddonWindowTitleEnum winTitleMode;
 
@@ -135,7 +128,7 @@ scaleaddonRenderWindowTitle (CompWindow *w)
 
     scaleaddonFreeWindowTitle (w);
 
-    if (!ad->textAvailable)
+    if (!ad->textFunc)
 	return;
 
     if (!sw->slot)
@@ -152,113 +145,49 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     }
 
     scale = sw->slot->scale;
-    tA.maxWidth = w->attrib.width * scale;
-    tA.maxHeight = w->attrib.height * scale;
-    tA.screen = s;
-    tA.size = scaleaddonGetTitleSize (s);
-    tA.color[0] = scaleaddonGetFontColorRed (s);
-    tA.color[1] = scaleaddonGetFontColorGreen (s);
-    tA.color[2] = scaleaddonGetFontColorBlue (s);
-    tA.color[3] = scaleaddonGetFontColorAlpha (s);
-    tA.style = (scaleaddonGetTitleBold (s)) ?
-	       TEXT_STYLE_BOLD : TEXT_STYLE_NORMAL;
-    tA.style |= TEXT_STYLE_BACKGROUND;
-    tA.family = "Sans";
-    tA.ellipsize = TRUE;
-    tA.backgroundHMargin = scaleaddonGetBorderSize (s);
-    tA.backgroundVMargin = scaleaddonGetBorderSize (s);
-    tA.backgroundColor[0] = scaleaddonGetBackColorRed (s);
-    tA.backgroundColor[1] = scaleaddonGetBackColorGreen (s);
-    tA.backgroundColor[2] = scaleaddonGetBackColorBlue (s);
-    tA.backgroundColor[3] = scaleaddonGetBackColorAlpha (s);
+    attrib.maxWidth = w->attrib.width * scale;
+    attrib.maxHeight = w->attrib.height * scale;
 
-    if (ss->type == ScaleTypeAll)
-	tA.renderMode = TextRenderWindowTitleWithViewport;
-    else
-	tA.renderMode = TextRenderWindowTitle;
+    attrib.family = "Sans";
+    attrib.size = scaleaddonGetTitleSize (s);
+    attrib.color[0] = scaleaddonGetFontColorRed (s);
+    attrib.color[1] = scaleaddonGetFontColorGreen (s);
+    attrib.color[2] = scaleaddonGetFontColorBlue (s);
+    attrib.color[3] = scaleaddonGetFontColorAlpha (s);
 
-    tA.data = (void*)w->id;
+    attrib.flags = CompTextFlagWithBackground | CompTextFlagEllipsized;
+    if (scaleaddonGetTitleBold (s))
+	attrib.flags |= CompTextFlagStyleBold;
 
-    if ((*s->display->fileToImage) (s->display, TEXT_ID, (char *)&tA,
-				    &aw->textWidth, &aw->textHeight,
-				    &stride, &data))
-    {
-	aw->textPixmap = (Pixmap)data;
-	if (!bindPixmapToTexture (s, &aw->textTexture, aw->textPixmap,
-	     			  aw->textWidth, aw->textHeight, 32))
-	{
-	    compLogMessage ("scaleaddon", CompLogLevelError,
-			    "Bind pixmap to texture failed.\n");
-	    XFreePixmap (s->display->display, aw->textPixmap);
-	    aw->textPixmap = None;
-	    aw->textWidth = 0;
-	    aw->textHeight = 0;
-	}
-    }
-    else
-    {
-	aw->textPixmap = None;
-	aw->textWidth = 0;
-	aw->textHeight = 0;
-    }
+    attrib.bgHMargin = scaleaddonGetBorderSize (s);
+    attrib.bgVMargin = scaleaddonGetBorderSize (s);
+    attrib.bgColor[0] = scaleaddonGetBackColorRed (s);
+    attrib.bgColor[1] = scaleaddonGetBackColorGreen (s);
+    attrib.bgColor[2] = scaleaddonGetBackColorBlue (s);
+    attrib.bgColor[3] = scaleaddonGetBackColorAlpha (s);
+
+    aw->textData = (ad->textFunc->renderWindowTitle) (s, w->id,
+						      ss->type == ScaleTypeAll,
+						      &attrib);
 }
 
 static void
 scaleaddonDrawWindowTitle (CompWindow *w)
 {
-    GLboolean  wasBlend;
-    GLint      oldBlendSrc, oldBlendDst;
     float      x, y, width, height;
     CompScreen *s = w->screen;
-    CompMatrix *m;
 
     SCALE_WINDOW (w);
     ADDON_WINDOW (w);
+    ADDON_DISPLAY (s->display);
 
-    width = aw->textWidth;
-    height = aw->textHeight;
+    width = aw->textData->width;
+    height = aw->textData->height;
 
     x = sw->tx + w->attrib.x + ((WIN_W (w) * sw->scale) / 2) - (width / 2);
     y = sw->ty + w->attrib.y + ((WIN_H (w) * sw->scale) / 2) - (height / 2);
 
-    x = floor (x);
-    y = floor (y);
-	
-    wasBlend = glIsEnabled (GL_BLEND);
-    glGetIntegerv (GL_BLEND_SRC, &oldBlendSrc);
-    glGetIntegerv (GL_BLEND_DST, &oldBlendDst);
-
-    if (!wasBlend)
-	glEnable (GL_BLEND);
-
-    glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
-    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glColor4f (1.0, 1.0, 1.0, 1.0);
-
-    enableTexture (s, &aw->textTexture, COMP_TEXTURE_FILTER_GOOD);
-
-    m = &aw->textTexture.matrix;
-
-    glBegin (GL_QUADS);
-
-    glTexCoord2f (COMP_TEX_COORD_X (m, 0),COMP_TEX_COORD_Y (m ,0));
-    glVertex2f (x, y - height);
-    glTexCoord2f (COMP_TEX_COORD_X (m, 0),COMP_TEX_COORD_Y (m, height));
-    glVertex2f (x, y);
-    glTexCoord2f (COMP_TEX_COORD_X (m, width),COMP_TEX_COORD_Y (m, height));
-    glVertex2f (x + width, y);
-    glTexCoord2f (COMP_TEX_COORD_X (m, width),COMP_TEX_COORD_Y (m, 0));
-    glVertex2f (x + width, y - height);
-
-    glEnd ();
-
-    disableTexture (s, &aw->textTexture);
-    glColor4usv (defaultColor);
-
-    if (!wasBlend)
-	glDisable (GL_BLEND);
-    glBlendFunc (oldBlendSrc, oldBlendDst);
+    (ad->textFunc->drawText) (s, aw->textData, floor (x), floor (y), 1.0f);
 }
 
 static void
@@ -651,7 +580,7 @@ scaleaddonScalePaintDecoration (CompWindow              *w,
 		scaleaddonDrawWindowHighlight (w);
 	}
 
-	if (aw->textPixmap)
+	if (aw->textData)
 	    scaleaddonDrawWindowTitle (w);
     }
 }
@@ -1218,7 +1147,7 @@ scaleaddonScreenOptionChanged (CompScreen              *s,
 		{
 		    ADDON_WINDOW (w);
 
-		    if (aw->textPixmap)
+		    if (aw->textData)
 			scaleaddonRenderWindowTitle (w);
 		}
 	    }
@@ -1233,6 +1162,7 @@ scaleaddonInitDisplay (CompPlugin  *p,
 	      	       CompDisplay *d)
 {
     ScaleAddonDisplay *ad;
+    int               index;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION))
 	return FALSE;
@@ -1254,10 +1184,17 @@ scaleaddonInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    ad->textAvailable = checkPluginABI ("text", TEXT_ABIVERSION);
-    if (!ad->textAvailable)
+    if (checkPluginABI ("text", TEXT_ABIVERSION) &&
+	getPluginDisplayIndex (d, "text", &index))
+    {
+	ad->textFunc = d->base.privates[index].ptr;
+    }
+    else
+    {
 	compLogMessage ("scaleaddon", CompLogLevelWarn,
 			"No compatible text plugin found.");
+	ad->textFunc = NULL;
+    }
 
     WRAP (ad, d, handleEvent, scaleaddonHandleEvent);
     WRAP (ad, d, handleCompizEvent, scaleaddonHandleCompizEvent);
@@ -1364,10 +1301,7 @@ scaleaddonInitWindow (CompPlugin *p,
 
     w->base.privates[as->windowPrivateIndex].ptr = aw;
 
-    aw->textPixmap = None;
-    initTexture (w->screen, &aw->textTexture);
-    aw->textWidth  = 0;
-    aw->textHeight = 0;
+    aw->textData = NULL;
 
     return TRUE;
 }
