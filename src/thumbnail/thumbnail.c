@@ -208,9 +208,10 @@ thumbUpdateThumbnail (CompScreen *s)
 
     freeThumbText (s, &ts->oldThumb);
 
-    ts->oldThumb   = ts->thumb;
-    ts->thumb.win  = ts->pointedWin;
-    ts->thumb.dock = ts->dock;
+    ts->oldThumb       = ts->thumb;
+    ts->thumb.textData = NULL;
+    ts->thumb.win      = ts->pointedWin;
+    ts->thumb.dock     = ts->dock;
 
     if (!ts->thumb.win || !ts->dock)
     {
@@ -884,6 +885,7 @@ thumbPreparePaintScreen (CompScreen *s,
 	if (ts->oldThumb.opacity == 0.0)
 	{
 	    damageThumbRegion (s, &ts->oldThumb);
+	    freeThumbText (s, &ts->oldThumb);
 	    ts->oldThumb.win = NULL;
 	}
     }
