@@ -85,6 +85,8 @@ typedef struct _SwitchScreen {
 
     SwitchWindowSelection selection;
 
+    Bool mouseSelect;
+
     unsigned int fgColor[4];
 } SwitchScreen;
 
@@ -568,12 +570,23 @@ switchShowPopup (void *closure)
     return FALSE;
 }
 
+static inline Cursor
+switchGetCursor (CompScreen *s,
+		 Bool       mouseSelect)
+{
+    if (mouseSelect)
+	return s->normalCursor;
+
+    return s->invisibleCursor;
+}
+
 static void
 switchInitiate (CompScreen            *s,
 		SwitchWindowSelection selection,
 		Bool	              showPopup)
 {
-    int count;
+    int  count;
+    Bool mouseSelect;
 
     SWITCH_SCREEN (s);
 
@@ -643,8 +656,16 @@ switchInitiate (CompScreen            *s,
 	setSelectedWindowHint (s);
     }
 
+    mouseSelect = staticswitcherGetMouseSelect (s) &&
+                  selection != Panels && showPopup;
+
     if (!ss->grabIndex)
-	ss->grabIndex = pushScreenGrab (s, s->invisibleCursor, "switcher");
+	ss->grabIndex = pushScreenGrab (s, switchGetCursor (s, mouseSelect),
+					"switcher");
+    else if (mouseSelect != ss->mouseSelect)
+	updateScreenGrab (s, ss->grabIndex, switchGetCursor (s, mouseSelect));
+
+    ss->mouseSelect = mouseSelect;
 
     if (ss->grabIndex)
     {
@@ -1063,11 +1084,95 @@ updateForegroundColor (CompScreen *s)
     }
 }
 
+static inline int
+switchGetRowXOffset (CompScreen   *s,
+		     SwitchScreen *ss,
+		     int          y)
+{
+    int retval = 0;
+
+    if (ss->nWindows - (y * ss->xCount) >= ss->xCount)
+	return 0;
+
+    switch (staticswitcherGetRowAlign (s)) {
+    case RowAlignLeft:
+	break;
+    case RowAlignCentered:
+	retval = (ss->xCount - ss->nWindows + (y * ss->xCount)) *
+	         (ss->previewWidth + ss->previewBorder) / 2;
+	break;
+    case RowAlignRight:
+	retval = (ss->xCount - ss->nWindows + (y * ss->xCount)) *
+	         (ss->previewWidth + ss->previewBorder);
+	break;
+    }
+
+    return retval;
+}
+
+static void
+switchGetWindowPosition (CompScreen   *s,
+			 unsigned int index,
+			 int          *x,
+			 int          *y)
+{
+    int row, column;
+
+    SWITCH_SCREEN (s);
+
+    if (index >= ss->nWindows)
+	return;
+
+    column = index % ss->xCount;
+    row    = index / ss->xCount;
+
+    *x = column * ss->previewWidth + (column + 1) * ss->previewBorder;
+    *x += switchGetRowXOffset (s, ss, row);
+
+    *y = row * ss->previewHeight + (row + 1) * ss->previewBorder;
+}
+
+static Window
+switchFindWindowAt (CompScreen *s,
+		    int        x,
+		    int        y)
+{
+    CompWindow *popup;
+
+    SWITCH_SCREEN (s);
+
+    popup = findWindowAtScreen (s, ss->popupWindow);
+    if (popup)
+    {
+	int   i;
+	
+	for (i = 0; i < ss->nWindows; i++)
+	{
+	    int x1, x2, y1, y2;
+
+	    switchGetWindowPosition (s, i, &x1, &y1);
+
+	    x1 += popup->attrib.x;
+	    y1 += popup->attrib.y;
+
+	    x2 = x1 + ss->previewWidth;
+	    y2 = y1 + ss->previewHeight;
+
+	    if (x >= x1 && x < x2 && y >= y1 && y < y2)
+		return ss->windows[i]->id;
+	}
+    }
+
+    return None;
+}
+
 static void
 switchHandleEvent (CompDisplay *d,
 		   XEvent      *event)
 {
+    CompScreen *s;
     CompWindow *w;
+
     SWITCH_DISPLAY (d);
 
     switch (event->type) {
@@ -1105,15 +1210,41 @@ switchHandleEvent (CompDisplay *d,
             w = findWindowAtDisplay (d, event->xproperty.window);
             if (w)
             {
-		CompScreen *s = w->screen;
-
-		SWITCH_SCREEN (s);
+		SWITCH_SCREEN (w->screen);
 
 		if (event->xproperty.window == ss->popupWindow)
-		    updateForegroundColor (s);
+		    updateForegroundColor (w->screen);
             }
         }
+	break;
+    case ButtonPress:
+	s = findScreenAtDisplay (d, event->xbutton.root);
+	if (s)
+	{
+	    SWITCH_SCREEN (s);
 
+	    if (ss->grabIndex && ss->mouseSelect)
+	    {
+		Window selected;
+
+		selected = switchFindWindowAt (s,
+					       event->xbutton.x_root,
+					       event->xbutton.y_root);
+		if (selected)
+		{
+		    CompOption o;
+
+		    ss->selectedWindow = selected;
+
+		    o.type    = CompOptionTypeInt;
+		    o.name    = "root";
+		    o.value.i = s->root;
+
+		    switchTerminate (d, NULL, CompActionStateTermButton, &o, 1);
+		}
+	    }
+	}
+	break;
     default:
 	break;
     }
@@ -1635,32 +1766,6 @@ switchPaintSelectionRect (SwitchScreen *ss,
     glDisable (GL_BLEND);
 }
 
-static inline int
-switchGetRowXOffset (CompScreen   *s,
-		     SwitchScreen *ss,
-		     int          y)
-{
-    int retval = 0;
-
-    if (ss->nWindows - (y * ss->xCount) >= ss->xCount)
-	return 0;
-
-    switch (staticswitcherGetRowAlign (s)) {
-    case RowAlignLeft:
-	break;
-    case RowAlignCentered:
-	retval = (ss->xCount - ss->nWindows + (y * ss->xCount)) *
-	         (ss->previewWidth + ss->previewBorder) / 2;
-	break;
-    case RowAlignRight:
-	retval = (ss->xCount - ss->nWindows + (y * ss->xCount)) *
-	         (ss->previewWidth + ss->previewBorder);
-	break;
-    }
-
-    return retval;
-}
-
 static Bool
 switchPaintWindow (CompWindow		   *w,
 		   const WindowPaintAttrib *attrib,
@@ -1701,17 +1806,9 @@ switchPaintWindow (CompWindow		   *w,
 
 	for (i = 0; i < ss->nWindows; i++)
 	{
-	    x = i % ss->xCount;
-	    y = i / ss->xCount;
-
-	    if (x == 0)
-		offX = switchGetRowXOffset (s, ss, y);
-
-	    x = x * ss->previewWidth + (x + 1) * ss->previewBorder;
-	    y = y * ss->previewHeight + (y + 1) * ss->previewBorder;
-
+	    switchGetWindowPosition (s, i, &x, &y);
 	    switchPaintThumb (ss->windows[i], &w->lastPaint, transform,
-			      mask, offX + x + w->attrib.x, y + w->attrib.y);
+			      mask, x + w->attrib.x, y + w->attrib.y);
 	}
 
 	s->display->textureFilter = filter;
@@ -1939,7 +2036,8 @@ switchInitScreen (CompPlugin *p,
     ss->moreAdjust = 0;
     ss->mVelocity  = 0.0f;
 
-    ss->selection = CurrentViewport;
+    ss->selection   = CurrentViewport;
+    ss->mouseSelect = FALSE;
 
     ss->fgColor[0] = 0;
     ss->fgColor[1] = 0;
