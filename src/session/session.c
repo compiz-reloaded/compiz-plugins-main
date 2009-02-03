@@ -413,6 +413,9 @@ sessionWriteWindow (CompWindow *w,
 	y += w->screen->y * w->screen->height;
     }
 
+    x -= w->input.left;
+    y -= w->input.top;
+
     fprintf (outfile,
 	     "    <geometry x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\"/>\n",
 	     x, y,
@@ -598,8 +601,8 @@ sessionReadWindow (CompWindow *w)
     {
 	xwcm = CWX | CWY;
 
-	xwc.x = cur->geometry.x;
-	xwc.y = cur->geometry.y;
+	xwc.x = cur->geometry.x + w->input.left;
+	xwc.y = cur->geometry.y + w->input.top;
 
 	if (!windowOnAllViewports (w))
 	{
