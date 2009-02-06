@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fusion-plugins 0.6\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2008-12-26 12:43+0530\n"
+"POT-Creation-Date: 2009-02-06 11:31+0530\n"
 "PO-Revision-Date: 2008-03-16 19:01+0100\n"
 "Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <ketil.w.aanensen@gmail.com>\n"
@@ -148,15 +148,343 @@ msgstr "Vindustyper"
 msgid "Window types that should be Opacified."
 msgstr "Vindustyper som skal tones ut."
 
+msgid "Airplane"
+msgstr "Fly"
+
+msgid "Airplane Flying Path Length"
+msgstr "Svevelengde for fly"
+
+msgid "Angle of window at the end of the animation."
+msgstr "Vinduets vinkel når animasjonen slutter."
+
+msgid "Animation Time Step For Intense Effects"
+msgstr "Tidsskritt for animasjon ved intense effekter"
+
+#, fuzzy
+msgid "Animations Add-On"
+msgstr "Animasjoner"
+
+msgid "Automatic"
+msgstr "Automatisk"
+
+msgid "Away Angle"
+msgstr "Vinkel ved bortglidning"
+
+msgid "Away Position"
+msgstr "Posisjon ved bortglidning"
+
+msgid "Beam"
+msgstr "Strål"
+
+msgid "Beam Color"
+msgstr "Strålefarge"
+
+msgid "Beam Life"
+msgstr "Levetid for stråle"
+
+msgid "Beam Slowdown"
+msgstr "Nedbremsing for stråle"
+
+msgid "Beam Spacing"
+msgstr "Stråleavstand"
+
+msgid "Beam Up"
+msgstr "Strål opp"
+
+msgid "Beam Width"
+msgstr "Strålebredde"
+
+msgid "Beam color."
+msgstr "Strålefarge."
+
+msgid "Beam life."
+msgstr "Levetid for stråle."
+
+msgid "Beam slowdown."
+msgstr "Nedbremsing for stråle."
+
+msgid "Beam width."
+msgstr "Strålebredde."
+
+msgid "Burn"
+msgstr "Brenn"
+
+msgid ""
+"Closeness of window to camera at the end of the animation (1.0: Close to "
+"camera, -2.0: Away from camera)."
+msgstr ""
+"Vinduets nærhet til kameraet ved animasjonens slutt (1.0: Nært kamera, -2.0: "
+"Borte fra kamera)."
+
+msgid "Domino"
+msgstr "Domino"
+
+msgid "Domino Piece Falling Direction"
+msgstr "Dominobrikkes fallretning"
+
+msgid "Down"
+msgstr "Nedover"
+
+msgid "Effect Settings"
+msgstr "Effektinnstillinger"
+
+msgid "Explode"
+msgstr "Eksploder"
+
+msgid "Extra window animations and animation engines"
+msgstr ""
+
+msgid "Falling direction for Domino pieces."
+msgstr "Fallretning for dominobrikker."
+
+msgid "Fire Particle Color"
+msgstr "Brannpartikkels farge"
+
+msgid "Fire Particle Life"
+msgstr "Brannpartikkels levetid"
+
+msgid "Fire Particle Size"
+msgstr "Brannpartikkels størrelse"
+
+msgid "Fire Particle Slowdown"
+msgstr "Brannpartikkelse nedbremsing"
+
+msgid "Fire Smoke"
+msgstr "Røyk"
+
+msgid "Fire constant speed"
+msgstr "Konstanthastighet for brann"
+
+msgid "Fire direction"
+msgstr "Brannretning"
+
+msgid "Fire direction."
+msgstr "Brannretning."
+
+msgid "Fire particle color."
+msgstr "Farge for brannpartikkel."
+
+msgid "Fire particle life."
+msgstr "Levetid for brannpartikkel."
+
+msgid "Fire particle size."
+msgstr "Størrelse for brannpartikkel."
+
+msgid "Fire particle slowdown."
+msgstr "Nedbremsing for brannpartikkel."
+
+msgid "Fire smoke."
+msgstr "Brannen ryker."
+
+msgid "Fly to TaskBar on Minimize"
+msgstr "Fly til oppgavelinje ved minimer"
+
+msgid "Fold"
+msgstr "Brett"
+
+msgid "Fold Direction"
+msgstr "Bretteretning"
+
+msgid "Fold opening direction for pieces in Razr effect."
+msgstr "Begynnende bretteretning for deler i \"Razr\"-effekten."
+
+msgid "Glass"
+msgstr "Glass"
+
+#, fuzzy
+msgid "Glide 3"
+msgstr "Glide 1"
+
+msgid "Have random colors for the fire effect, also known as Mystical Fire."
+msgstr "Ha tilfeldige farger for branneffekten, også kjent som mystisk brann"
+
+msgid "Hexagonal"
+msgstr "Sekskantet"
+
+msgid "In"
+msgstr "Inn"
+
+msgid "In-out"
+msgstr "Inn-ut"
+
+msgid "Leaf Spread"
+msgstr "Løvspredning"
+
+msgid "Left"
+msgstr "Venstre"
+
+msgid "Left-right"
+msgstr "Venstre-høyre"
+
+msgid "Length of airplane's flying path."
+msgstr "Lengde på flyets svevelengde"
+
+msgid "Make fire effect duration be dependent on window height."
+msgstr "Gjør varigheten på brann-effekten avhengig av vindushøyde."
+
+msgid "Movement direction(s) for window pieces."
+msgstr "Bevegelsesretning(er) for vindusbiter."
+
+msgid "Number Of Fire Particles"
+msgstr "Antall brannpartikler"
+
+msgid "Number of fire particles."
+msgstr "Antall brannpartikler."
+
+msgid "Out"
+msgstr "Ut"
+
+msgid "Random"
+msgstr "Tilfeldig"
+
+msgid "Randomly Colored Fire"
+msgstr "Tilfeldig farget brann"
+
+msgid "Razr"
+msgstr "Razr"
+
+msgid "Razr Fold Opening Direction"
+msgstr "Retning for bretteåpning"
+
+msgid "Rectangular"
+msgstr "Rektangulær"
+
+msgid "Right"
+msgstr "Høyre"
+
+msgid "Rotation Angle"
+msgstr "Rotasjonsvinkel"
+
+msgid "Rotation angle of animated window pieces (in degrees)."
+msgstr "Rotasjonsvinkel for animerte vindusbiter (i grader)."
+
+#, fuzzy
+msgid "Shatter Number of Spokes"
+msgstr "Antall snøfnugg"
+
+#, fuzzy
+msgid "Shatter Number of Tiers"
+msgstr "Antall fisk"
+
+msgid "Skewer"
+msgstr "Skjevhet"
+
+msgid "Skewer Direction"
+msgstr "Skjevhetsretning"
+
+msgid "Spacing between beams."
+msgstr "Mellomrom mellom stråler"
+
+msgid "Tessellation Type"
+msgstr "Tesseleringstype"
+
+msgid "Tessellation type for exploding window pieces."
+msgstr "Tesseleringstype for eksploderende vindusbiter."
+
+msgid "Tessellation type for window pieces."
+msgstr "Tesseleringstype for vindusbiter."
+
+msgid ""
+"The amount of time in milliseconds between each render of the intense "
+"animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
+"become."
+msgstr ""
+"Antall millisekunder mellom hver gjengivelse av den intense animasjonen (f."
+"eks, brenn, strål). Jo høyere antall, jo mer hakkete blir bevegelsene."
+
+msgid ""
+"The animated window will be split into pieces along a grid. Specify the "
+"number of grid cells along the height of the window."
+msgstr ""
+"Det animerte vinduet vil bli delt i biter langs et rutenett. Spesifiser "
+"antall celler i rutenettet langs vindushøyden."
+
+msgid ""
+"The animated window will be split into pieces along a grid. Specify the "
+"number of grid cells along the width of the window."
+msgstr ""
+"Det animerte vinduet vil bli delt i biter langs et rutenett. Spesifiser "
+"antall celler i rutenettet langs vindusbredden."
+
+msgid ""
+"The exploding window will be split into pieces along a grid. Specify the "
+"number of grid cells along the height of the window."
+msgstr ""
+"Det eksploderende vinduet vil bli delt i biter langs et rutenett. Spesifiser "
+"antall celler i rutenettet langs vindushøyden."
+
+msgid ""
+"The exploding window will be split into pieces along a grid. Specify the "
+"number of grid cells along the width of the window."
+msgstr ""
+"Det eksploderende vinduet vil bli delt i biter langs et rutenett. Spesifiser "
+"antall celler i rutenettet langs vindusbredden."
+
+#, fuzzy
+msgid ""
+"The exploding window will be split into pieces along concentric circles. "
+"Specify the number of concentric circles the shatter tessellation will have."
+msgstr ""
+"Det eksploderende vinduet vil bli delt i biter langs et rutenett. Spesifiser "
+"antall celler i rutenettet langs vindushøyden."
+
+#, fuzzy
+msgid ""
+"The exploding window with the shatter animation will be split into pieces "
+"radially from the center. Specify the number of radial spokes the animation "
+"will have."
+msgstr ""
+"Det eksploderende vinduet vil bli delt i biter langs et rutenett. Spesifiser "
+"antall celler i rutenettet langs vindusbredden."
+
+msgid "Thickness"
+msgstr "Tykkelse"
+
+msgid "Thickness of Animated Polygons"
+msgstr "Tykkelse på animerte polygoner"
+
+msgid "Thickness of Exploding Polygons"
+msgstr "Tykkelse på eksploderende polygoner"
+
+msgid "Thickness of animated window pieces (in pixels)."
+msgstr "Tykkelse på animerte vindusbiter (i piksler)."
+
+msgid "Thickness of exploding window pieces (in pixels)."
+msgstr "Tykkelse på eksploderende vindusbiter (i piksler)."
+
+msgid "Up"
+msgstr "Opp"
+
+msgid "Up-down"
+msgstr "Opp-ned"
+
+msgid ""
+"Whether the window should fly to taskbar when minimized with Airplane effect."
+msgstr ""
+"Om vinduet skal fly til oppgavelinjen når det blir minimert med effekten fly."
+
+msgid "Window Grid Height"
+msgstr "Høyde for rutenenett for vindu"
+
+msgid "Window Grid Width"
+msgstr "Bredde for rutenett for vindu"
+
+msgid "Window folding direction."
+msgstr "Bretteretning for vindu"
+
+msgid ""
+"Window thickness in pixels. Setting this to larger than 0 will disable "
+"shadow, blur, and reflection during the animation."
+msgstr ""
+"Vindustykkelse i piksler. Å sette denne til en større verdi enn 0 vil slå av "
+"skygge, utydeliggjør og speiling gjennom animasjonen."
+
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
 "selected for an event, that event won't be animated."
 msgstr ""
 "Alle effekter blir valgt tilfeldig, og ignorerer den valgte effekten. Hvis "
 "Ingen er valgt for en hendelse blir ikke hendelsen animert."
-
-msgid "Angle of window at the end of the animation."
-msgstr "Vinduets vinkel når animasjonen slutter."
 
 msgid "Animation Selection"
 msgstr "Animasjonsvalg"
@@ -182,24 +510,11 @@ msgstr "Animasjonsvarighet i millisekunder for skyggelegg-effekt."
 msgid "Animations"
 msgstr "Animasjoner"
 
-msgid "Away Angle"
-msgstr "Vinkel ved bortglidning"
-
-msgid "Away Position"
-msgstr "Posisjon ved bortglidning"
-
 msgid "Close Animation"
 msgstr "Lukk-animasjon"
 
 msgid "Close Effect"
 msgstr "Lukkeeffekt"
-
-msgid ""
-"Closeness of window to camera at the end of the animation (1.0: Close to "
-"camera, -2.0: Away from camera)."
-msgstr ""
-"Vinduets nærhet til kameraet ved animasjonens slutt (1.0: Nært kamera, -2.0: "
-"Borte fra kamera)."
 
 msgid ""
 "Comma separated list of option value assignments to override effect "
@@ -226,9 +541,6 @@ msgstr "Drøm"
 
 msgid "Duration"
 msgstr "Varighet"
-
-msgid "Effect Settings"
-msgstr "Effektinnstillinger"
 
 msgid "Fade"
 msgstr "Ton ut/inn"
@@ -341,9 +653,6 @@ msgid ""
 msgstr ""
 "Utvalg av effekter til å velge fra hvis tilfeldig effekt er valgt. Klikk "
 "tilbakestill for å gjenopprette full liste."
-
-msgid "Random"
-msgstr "Tilfeldig"
 
 msgid "Random Animations For All Events"
 msgstr "Tilfeldige animasjoner for alle hendelser"
@@ -940,19 +1249,213 @@ msgstr "Forminsk automatisk kun ved muserotering."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Forminsk automatisk for å få kuben til å passe til skjermen."
 
+msgid "Allow rotation of this element"
+msgstr ""
+
+msgid "Autumn"
+msgstr ""
+
+msgid "Background Color"
+msgstr "Bakgrunnsfarge"
+
+msgid "Background color for the window title"
+msgstr "Bakgrunnsfarge for vindustittelen"
+
+msgid "Bold Font"
+msgstr "Fet skrift"
+
+msgid "Bubbles"
+msgstr ""
+
+msgid ""
+"Delay (in ms) between screen updates. Decreasing this value may make snow "
+"fall more smoothly, but will also increase CPU usage."
+msgstr ""
+"Forinkelse (in ms) mellom skjermoppdateringer. Reduksjon av denne verdien "
+"kan gjøre at snøen faller jevnere, men øker også CPU-bruk."
+
+msgid "Display Time"
+msgstr "Visningsvarighet"
+
 #, fuzzy
-msgid "Cube Caps"
-msgstr "Kubeluer"
-
-msgid "Render images on top and bottom of the cube"
-msgstr "Gjengi bilder på toppen og bunnen av kuben"
+msgid "Draw Over Windows"
+msgstr "Snø over vinduer"
 
 #, fuzzy
-msgid "Compiz cube reflection"
-msgstr "Kuberefleksjon"
+msgid "Draw elements on screen"
+msgstr "Sentrert på skjermen"
 
-msgid "Cube Reflection"
-msgstr "Kuberefleksjon"
+#, fuzzy
+msgid "Element Image"
+msgstr "Speilingsbilde"
+
+msgid "Element Iter"
+msgstr ""
+
+msgid "Element Movement Type"
+msgstr ""
+
+#, fuzzy
+msgid "Element Title Display"
+msgstr "Vindustittelvisning"
+
+msgid "Element Type"
+msgstr ""
+
+#, fuzzy
+msgid "Element rotation"
+msgstr "Bevegelsesretning"
+
+#, fuzzy
+msgid "Element size"
+msgstr "Hvalstørrelse"
+
+#, fuzzy
+msgid "Element speed"
+msgstr "Hastighet for musebevegelse"
+
+msgid "Elements"
+msgstr ""
+
+msgid "Elements List"
+msgstr ""
+
+#, fuzzy
+msgid "Elements drawn above windows"
+msgstr "Snø tegnes over vinduer"
+
+#, fuzzy
+msgid "Fireflies"
+msgstr "Filterfiler"
+
+msgid "Font Color"
+msgstr "Skriftfarge"
+
+msgid "Font Size"
+msgstr "Skriftstørrelse"
+
+msgid "Font color for the window title"
+msgstr "Skriftfarge for vindustittelen"
+
+msgid "Font size for the window title"
+msgstr "Skriftstørrelse for vindustittelen"
+
+msgid "General"
+msgstr "Generelt"
+
+msgid "How deep into the screen snowflakes can be drawn before being removed"
+msgstr "Hvor dypt inne i skjermen snøfnugg kan tegnes før de blir fjernet"
+
+#, fuzzy
+msgid "How far from the screen snowflakes can be drawn before being removed"
+msgstr "Hvor dypt inne i skjermen snøfnugg kan tegnes før de blir fjernet"
+
+msgid "How long to display the title (in ms)"
+msgstr ""
+
+msgid "Image file for this Element"
+msgstr ""
+
+#, fuzzy
+msgid "Next Element"
+msgstr "Tekstplassering"
+
+#, fuzzy
+msgid "Number of elements"
+msgstr "Antall partikler"
+
+#, fuzzy
+msgid "Previous Element"
+msgstr "Forrige arbeidsområde"
+
+msgid "Screen Boxing"
+msgstr "Skjermboksing"
+
+msgid "Screen Depth"
+msgstr "Skjermdybde"
+
+msgid "Select snow flake movement direction"
+msgstr "Velg bevegelsesretning for snøfnugg"
+
+msgid "Select the Next Element in the list"
+msgstr ""
+
+msgid ""
+"Settings for one particular element configuration. Separate element "
+"definitions have different iters. This is a workaround to have multiple-"
+"textures per element until we can get cascading options"
+msgstr ""
+
+#, fuzzy
+msgid "Show Title on Toggle"
+msgstr "Slå av/på snø"
+
+msgid "Show the element type when toggling the currently selected element"
+msgstr ""
+
+msgid "Side-to-side movement of Snow."
+msgstr ""
+
+#, fuzzy
+msgid "Size of these elements"
+msgstr "Snøfnuggenes størrelse"
+
+msgid "Snow"
+msgstr "Snø"
+
+msgid "Snow Direction"
+msgstr "Snøretning"
+
+#, fuzzy
+msgid "Snow sway"
+msgstr "Visningsforsinkelse"
+
+#, fuzzy
+msgid "Speed of falling leaves"
+msgstr "Hastighet for fallende snø"
+
+msgid "Speed of these elements"
+msgstr ""
+
+msgid "Star X Offset"
+msgstr ""
+
+msgid "Star Y Offset"
+msgstr ""
+
+msgid "Stars"
+msgstr ""
+
+msgid "Sway Of leaves"
+msgstr ""
+
+msgid "The X point on the screen where stars should start"
+msgstr ""
+
+msgid "The Y point on the screen where stars should start"
+msgstr ""
+
+#, fuzzy
+msgid "Toggle Selected Element"
+msgstr "Skru av/på fullskjerm"
+
+msgid "Total number of allowed element"
+msgstr ""
+
+msgid "Update Delay"
+msgstr "Oppdateringsforsinkelse"
+
+msgid "Use a bold font"
+msgstr ""
+
+msgid "Viscosity of liquid"
+msgstr ""
+
+msgid "Y Sway Gravity"
+msgstr ""
+
+msgid "sway of leaves"
+msgstr ""
 
 msgid "Animation used when switching to expo mode"
 msgstr "Animasjon som brukes ved bytte til ekspo-modus"
@@ -1498,33 +2001,6 @@ msgstr "Rens (knapp)"
 msgid "Clear (key)"
 msgstr "Rens (tast)"
 
-msgid "Fire Particle Color"
-msgstr "Brannpartikkels farge"
-
-msgid "Fire Particle Life"
-msgstr "Brannpartikkels levetid"
-
-msgid "Fire Particle Size"
-msgstr "Brannpartikkels størrelse"
-
-msgid "Fire Particle Slowdown"
-msgstr "Brannpartikkelse nedbremsing"
-
-msgid "Fire particle color."
-msgstr "Farge for brannpartikkel."
-
-msgid "Fire particle life."
-msgstr "Levetid for brannpartikkel."
-
-msgid "Fire particle size."
-msgstr "Størrelse for brannpartikkel."
-
-msgid "Fire particle slowdown."
-msgstr "Nedbremsing for brannpartikkel."
-
-msgid "Have random colors for the fire effect, also known as Mystical Fire."
-msgstr "Ha tilfeldige farger for branneffekten, også kjent som mystisk brann"
-
 msgid "Initiate (button)"
 msgstr "Start (knapp)"
 
@@ -1546,14 +2022,71 @@ msgstr "Mal brann på skjermen"
 msgid "Paint fire or other particles on the screen"
 msgstr "Mal brann eller andre partikler på skjermen"
 
-msgid "Randomly Colored Fire"
-msgstr "Tilfeldig farget brann"
-
 msgid "Cube Gears"
 msgstr "Kube-tannhjul"
 
 msgid "Render gears inside of the transparent cube"
 msgstr "Gjengir tannhjul på innsiden av den gjennomsiktige kuben"
+
+msgid "Grid"
+msgstr ""
+
+msgid "Move window to the bottom edge"
+msgstr "Flytt vindu til nederste kant"
+
+msgid "Move window to the bottom left corner"
+msgstr "Flytt vindu til nederste venstre hjørne"
+
+msgid "Move window to the bottom right corner"
+msgstr "Flytt vindu til nederste høyre hjørne"
+
+msgid "Move window to the center"
+msgstr "Flytt vindu til midten"
+
+msgid "Move window to the left edge"
+msgstr "Flytt vindu til venstre kant"
+
+msgid "Move window to the right edge"
+msgstr "Flytt vindu ti høyre kant"
+
+msgid "Move window to the top edge"
+msgstr "Flytt vindu til øverste kant"
+
+msgid "Move window to the top left corner"
+msgstr "Flytt vindu til øverste venstre hjørne"
+
+msgid "Move window to the top right corner"
+msgstr "Flytt vindu til øverste høyre hjørne"
+
+msgid "Put Bottom"
+msgstr "Plasser bunn"
+
+msgid "Put Bottom Left"
+msgstr "Plasser bunn, venstre"
+
+msgid "Put Bottom Right"
+msgstr "Plasser bunn, høyre"
+
+msgid "Put Center"
+msgstr "Plasser i midten"
+
+msgid "Put Left"
+msgstr "Plasser venstre"
+
+msgid "Put Right"
+msgstr "Plasser høyre"
+
+msgid "Put Top"
+msgstr "Plasser øverst"
+
+msgid "Put Top Left"
+msgstr "Plasser øverst, venstre"
+
+msgid "Put Top Right"
+msgstr "Plasser øverst, høyre"
+
+msgid "Warp and resize windows to fit an imaginary grid."
+msgstr ""
 
 msgid "Animation Options"
 msgstr "Animasjonsvalg"
@@ -1640,18 +2173,6 @@ msgstr "Fyllfarge for utvalgsrektangelet"
 
 msgid "Fill color of the tab bar"
 msgstr "Fyllfarge for fanelinjen"
-
-msgid "Font Color"
-msgstr "Skriftfarge"
-
-msgid "Font Size"
-msgstr "Skriftstørrelse"
-
-msgid "General"
-msgstr "Generelt"
-
-msgid "Glass"
-msgstr "Glass"
 
 msgid "Glow"
 msgstr "Glød"
@@ -2682,38 +3203,15 @@ msgstr "Flytt vinduer tilfeldig ved å sende x, y og type."
 msgid "Move window to a certain viewport"
 msgstr "Flytt vindu til et spesifikt arbeidsområde"
 
-msgid "Move window to the bottom edge"
-msgstr "Flytt vindu til nederste kant"
-
-msgid "Move window to the bottom left corner"
-msgstr "Flytt vindu til nederste venstre hjørne"
-
-msgid "Move window to the bottom right corner"
-msgstr "Flytt vindu til nederste høyre hjørne"
-
-msgid "Move window to the center"
-msgstr "Flytt vindu til midten"
-
 msgid "Move window to the last position"
 msgstr "Flytt vindu til siste posisjon"
 
-msgid "Move window to the left edge"
-msgstr "Flytt vindu til venstre kant"
+#, fuzzy
+msgid "Move window to the next output device"
+msgstr "Flytt vindu til øverste kant"
 
 msgid "Move window to the pointer position"
 msgstr "Flytt vindu til musepekers posisjon"
-
-msgid "Move window to the right edge"
-msgstr "Flytt vindu ti høyre kant"
-
-msgid "Move window to the top edge"
-msgstr "Flytt vindu til øverste kant"
-
-msgid "Move window to the top left corner"
-msgstr "Flytt vindu til øverste venstre hjørne"
-
-msgid "Move window to the top right corner"
-msgstr "Flytt vindu til øverste høyre hjørne"
 
 msgid "Move window to the viewport on the bottom"
 msgstr "Flytt vindu til nederste arbeidsområde"
@@ -2794,21 +3292,6 @@ msgstr "Fyll"
 msgid "Put"
 msgstr "Plasser"
 
-msgid "Put Bottom"
-msgstr "Plasser bunn"
-
-msgid "Put Bottom Left"
-msgstr "Plasser bunn, venstre"
-
-msgid "Put Bottom Right"
-msgstr "Plasser bunn, høyre"
-
-msgid "Put Center"
-msgstr "Plasser i midten"
-
-msgid "Put Left"
-msgstr "Plasser venstre"
-
 msgid "Put On Viewport"
 msgstr "Plasser på arbeidsområde"
 
@@ -2851,17 +3334,9 @@ msgstr "Plasser på arbeidsområde 9"
 msgid "Put Pointer"
 msgstr "Plasser musepeker"
 
-msgid "Put Right"
-msgstr "Plasser høyre"
-
-msgid "Put Top"
-msgstr "Plasser øverst"
-
-msgid "Put Top Left"
+#, fuzzy
+msgid "Put To Next Output"
 msgstr "Plasser øverst, venstre"
-
-msgid "Put Top Right"
-msgstr "Plasser øverst, høyre"
 
 msgid "Put pointer uses the center of the window"
 msgstr "Plasser musepeker bruker midten av vinduet"
@@ -3000,20 +3475,11 @@ msgid ""
 "Amount of opacity (in percent) for windows in the ring which are not selected"
 msgstr "Dekkevne (i prosent) for vinduer i i ringen, som ikke er valgt"
 
-msgid "Background Color"
-msgstr "Bakgrunnsfarge"
-
-msgid "Background color for the window title"
-msgstr "Bakgrunnsfarge for vindustittelen"
-
 msgid "Below ring"
 msgstr "Under ring"
 
 msgid "Big"
 msgstr "Stor"
-
-msgid "Bold Font"
-msgstr "Fet skrift"
 
 msgid "Centered on screen"
 msgstr "Sentrert på skjermen"
@@ -3040,12 +3506,6 @@ msgstr "Gjør bakgrunnen mørkere når ringen vises"
 
 msgid "Emblem"
 msgstr "Emblem"
-
-msgid "Font color for the window title"
-msgstr "Skriftfarge for vindustittelen"
-
-msgid "Font size for the window title"
-msgstr "Skriftstørrelse for vindustittelen"
 
 msgid "Inactive Window Opacity"
 msgstr "Dekkevne for inaktivt vindu"
@@ -3318,37 +3778,6 @@ msgid "Window title filter facility for the scale plugin"
 msgstr "Filter som filtrerer vindustittel for Skaler-tillegget"
 
 msgid ""
-"Embeds a Guile scheme interpreter and provides bindings for meaningful "
-"Compiz integration."
-msgstr ""
-"Legger inn en tolker for Guile-skjema, og sørger for bindinger for "
-"meningsfylt Compiz-integrasjon."
-
-msgid "Scheme Interpreter"
-msgstr "Skjematolker"
-
-msgid "Toggle Prompt Visible"
-msgstr "Synlig slå av/på-spørsmål"
-
-msgid "Toggle prompt visible."
-msgstr "Synlig spørsmål som lar deg slå av/på."
-
-msgid "Directory"
-msgstr "Katalog"
-
-msgid "Initiate screencasting"
-msgstr "Start skjermopptak"
-
-msgid "Put screenshot images in this directory"
-msgstr "Legg skjermbilder i denne katalogen"
-
-msgid "ScreenCast plugin"
-msgstr "Skjermopptak-tillegg"
-
-msgid "ScreenCasting"
-msgstr "Skjermopptak"
-
-msgid ""
 "Also try to save and restore legacy apps that don't support the X session "
 "management protocol. This setting only should be used in KDE, as only KDE's "
 "session manager also saves those applications."
@@ -3559,29 +3988,17 @@ msgstr "Få rask tilgang til skrivebordet ditt"
 msgid "Direction of window movement"
 msgstr "Retning for vindusbevegelse"
 
-msgid "Down"
-msgstr "Nedover"
-
-msgid "Left"
-msgstr "Venstre"
-
 msgid "Left/Right"
 msgstr "Venstre/høyre"
 
 msgid "Movement Direction"
 msgstr "Bevegelsesretning"
 
-msgid "Right"
-msgstr "Høyre"
-
 msgid "Show desktop"
 msgstr "Vis skrivebord"
 
 msgid "To Corners"
 msgstr "Til hjørner"
-
-msgid "Up"
-msgstr "Opp"
 
 msgid "Up/Down"
 msgstr "Opp/ned"
@@ -3684,6 +4101,21 @@ msgstr "Vis mus"
 msgid "Toggle the mouse pointer trail."
 msgstr "Slå av/på musepeker-sporet."
 
+#, fuzzy
+msgid "Intensity."
+msgstr "Intensitet"
+
+#, fuzzy
+msgid "Show repaint"
+msgstr "Visningsforsinkelse"
+
+msgid "Show repainted regions in different colors"
+msgstr ""
+
+#, fuzzy
+msgid "Toggle showing of repainted regions."
+msgstr "Skru av/på vindusfiltrering"
+
 msgid "Alt"
 msgstr "Alt"
 
@@ -3747,13 +4179,6 @@ msgstr "Vinduskanter"
 msgid "Bottom to Top"
 msgstr "Nederst til øverst"
 
-msgid ""
-"Delay (in ms) between screen updates. Decreasing this value may make snow "
-"fall more smoothly, but will also increase CPU usage."
-msgstr ""
-"Forinkelse (in ms) mellom skjermoppdateringer. Reduksjon av denne verdien "
-"kan gjøre at snøen faller jevnere, men øker også CPU-bruk."
-
 msgid "Enable Blending"
 msgstr "Slå på blanding"
 
@@ -3768,9 +4193,6 @@ msgstr "Slår på tekstur-snøfnugg. Hvis ikke valgt blir fargeoverganger brukt.
 
 msgid "Flakes rotate if checked."
 msgstr "Snøfnugg roterer hvis avkrysset"
-
-msgid "How deep into the screen snowflakes can be drawn before being removed"
-msgstr "Hvor dypt inne i skjermen snøfnugg kan tegnes før de blir fjernet"
 
 msgid ""
 "How far outside the screen resolution snow flakes can be before being "
@@ -3797,15 +4219,6 @@ msgstr "Høyre til venstre"
 msgid "Rotate Flakes"
 msgstr "Roter snøfnugg"
 
-msgid "Screen Boxing"
-msgstr "Skjermboksing"
-
-msgid "Screen Depth"
-msgstr "Skjermdybde"
-
-msgid "Select snow flake movement direction"
-msgstr "Velg bevegelsesretning for snøfnugg"
-
 msgid "Settings"
 msgstr "Innstillinger"
 
@@ -3814,12 +4227,6 @@ msgstr "Snøfnuggenes størrelse"
 
 msgid "Size of snowflakes"
 msgstr "Snøfnuggenes størrelse"
-
-msgid "Snow"
-msgstr "Snø"
-
-msgid "Snow Direction"
-msgstr "Snøretning"
 
 msgid "Snow Over Windows"
 msgstr "Snø over vinduer"
@@ -3854,9 +4261,6 @@ msgstr "Teksturer"
 msgid "Top to Bottom"
 msgstr "Øverst til nederst"
 
-msgid "Update Delay"
-msgstr "Oppdateringsforsinkelse"
-
 msgid "A simple splash plugin"
 msgstr "Et enkel Plask-tillegg"
 
@@ -3874,9 +4278,6 @@ msgstr "Bakgrunnsmetning"
 
 msgid "Display In/Out Time."
 msgstr "Visningens inn-/ut-varighet."
-
-msgid "Display Time"
-msgstr "Visningsvarighet"
 
 msgid "Images"
 msgstr "Bilder"
@@ -3946,6 +4347,11 @@ msgstr "Vinduer som skal bli vist i Bytt-skifteren"
 
 msgid "Alignment for rows that are not fully filled"
 msgstr ""
+
+#, fuzzy
+msgid "Allow selection of windows from the switcher window with the mouse"
+msgstr ""
+"Tillat utvalg av vinduer ved kun å klikke på dem mens skifteren er aktiv"
 
 #, fuzzy
 msgid "Amount of brightness in percent"
@@ -5148,6 +5554,51 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 msgid "Workarounds"
 msgstr "Omveier"
 
+#, fuzzy
+#~ msgid "Cube Caps"
+#~ msgstr "Kubeluer"
+
+#~ msgid "Render images on top and bottom of the cube"
+#~ msgstr "Gjengi bilder på toppen og bunnen av kuben"
+
+#, fuzzy
+#~ msgid "Compiz cube reflection"
+#~ msgstr "Kuberefleksjon"
+
+#~ msgid "Cube Reflection"
+#~ msgstr "Kuberefleksjon"
+
+#~ msgid ""
+#~ "Embeds a Guile scheme interpreter and provides bindings for meaningful "
+#~ "Compiz integration."
+#~ msgstr ""
+#~ "Legger inn en tolker for Guile-skjema, og sørger for bindinger for "
+#~ "meningsfylt Compiz-integrasjon."
+
+#~ msgid "Scheme Interpreter"
+#~ msgstr "Skjematolker"
+
+#~ msgid "Toggle Prompt Visible"
+#~ msgstr "Synlig slå av/på-spørsmål"
+
+#~ msgid "Toggle prompt visible."
+#~ msgstr "Synlig spørsmål som lar deg slå av/på."
+
+#~ msgid "Directory"
+#~ msgstr "Katalog"
+
+#~ msgid "Initiate screencasting"
+#~ msgstr "Start skjermopptak"
+
+#~ msgid "Put screenshot images in this directory"
+#~ msgstr "Legg skjermbilder i denne katalogen"
+
+#~ msgid "ScreenCast plugin"
+#~ msgstr "Skjermopptak-tillegg"
+
+#~ msgid "ScreenCasting"
+#~ msgstr "Skjermopptak"
+
 #~ msgid "Cube Atlantis"
 #~ msgstr "Atlantiskube"
 
@@ -5163,9 +5614,6 @@ msgstr "Omveier"
 #~ msgid "Fish size"
 #~ msgstr "Fiskstørrelse"
 
-#~ msgid "Number of fish"
-#~ msgstr "Antall fisk"
-
 #~ msgid "Number of fish inside the cube"
 #~ msgstr "Antall fisk inne i kuben"
 
@@ -5175,9 +5623,6 @@ msgstr "Omveier"
 #~ msgid "Shark size"
 #~ msgstr "Haistørrelse"
 
-#~ msgid "Whale size"
-#~ msgstr "Hvalstørrelse"
-
 #~ msgid "Whale size."
 #~ msgstr "Hvalstørrelse."
 
@@ -5185,238 +5630,8 @@ msgstr "Omveier"
 #~ msgid "Focus Widget Layer"
 #~ msgstr "Miniprogram-lag"
 
-#~ msgid "Airplane"
-#~ msgstr "Fly"
-
-#~ msgid "Airplane Flying Path Length"
-#~ msgstr "Svevelengde for fly"
-
-#~ msgid "Animation Time Step For Intense Effects"
-#~ msgstr "Tidsskritt for animasjon ved intense effekter"
-
-#~ msgid "Automatic"
-#~ msgstr "Automatisk"
-
-#~ msgid "Beam"
-#~ msgstr "Strål"
-
-#~ msgid "Beam Color"
-#~ msgstr "Strålefarge"
-
-#~ msgid "Beam Life"
-#~ msgstr "Levetid for stråle"
-
-#~ msgid "Beam Slowdown"
-#~ msgstr "Nedbremsing for stråle"
-
-#~ msgid "Beam Spacing"
-#~ msgstr "Stråleavstand"
-
-#~ msgid "Beam Up"
-#~ msgstr "Strål opp"
-
-#~ msgid "Beam Width"
-#~ msgstr "Strålebredde"
-
-#~ msgid "Beam color."
-#~ msgstr "Strålefarge."
-
-#~ msgid "Beam life."
-#~ msgstr "Levetid for stråle."
-
-#~ msgid "Beam slowdown."
-#~ msgstr "Nedbremsing for stråle."
-
-#~ msgid "Beam width."
-#~ msgstr "Strålebredde."
-
-#~ msgid "Burn"
-#~ msgstr "Brenn"
-
-#~ msgid "Domino"
-#~ msgstr "Domino"
-
-#~ msgid "Domino Piece Falling Direction"
-#~ msgstr "Dominobrikkes fallretning"
-
-#~ msgid "Explode"
-#~ msgstr "Eksploder"
-
-#~ msgid "Falling direction for Domino pieces."
-#~ msgstr "Fallretning for dominobrikker."
-
 #~ msgid "Fire"
 #~ msgstr "Brann"
-
-#~ msgid "Fire Smoke"
-#~ msgstr "Røyk"
-
-#~ msgid "Fire constant speed"
-#~ msgstr "Konstanthastighet for brann"
-
-#~ msgid "Fire direction"
-#~ msgstr "Brannretning"
-
-#~ msgid "Fire direction."
-#~ msgstr "Brannretning."
-
-#~ msgid "Fire smoke."
-#~ msgstr "Brannen ryker."
-
-#~ msgid "Fly to TaskBar on Minimize"
-#~ msgstr "Fly til oppgavelinje ved minimer"
-
-#~ msgid "Fold"
-#~ msgstr "Brett"
-
-#~ msgid "Fold Direction"
-#~ msgstr "Bretteretning"
-
-#~ msgid "Fold opening direction for pieces in Razr effect."
-#~ msgstr "Begynnende bretteretning for deler i \"Razr\"-effekten."
-
-#~ msgid "Hexagonal"
-#~ msgstr "Sekskantet"
-
-#~ msgid "In"
-#~ msgstr "Inn"
-
-#~ msgid "In-out"
-#~ msgstr "Inn-ut"
-
-#~ msgid "Leaf Spread"
-#~ msgstr "Løvspredning"
-
-#~ msgid "Left-right"
-#~ msgstr "Venstre-høyre"
-
-#~ msgid "Length of airplane's flying path."
-#~ msgstr "Lengde på flyets svevelengde"
-
-#~ msgid "Make fire effect duration be dependent on window height."
-#~ msgstr "Gjør varigheten på brann-effekten avhengig av vindushøyde."
-
-#~ msgid "Movement direction(s) for window pieces."
-#~ msgstr "Bevegelsesretning(er) for vindusbiter."
-
-#~ msgid "Number Of Fire Particles"
-#~ msgstr "Antall brannpartikler"
-
-#~ msgid "Number of fire particles."
-#~ msgstr "Antall brannpartikler."
-
-#~ msgid "Out"
-#~ msgstr "Ut"
-
-#~ msgid "Razr"
-#~ msgstr "Razr"
-
-#~ msgid "Razr Fold Opening Direction"
-#~ msgstr "Retning for bretteåpning"
-
-#~ msgid "Rectangular"
-#~ msgstr "Rektangulær"
-
-#~ msgid "Rotation Angle"
-#~ msgstr "Rotasjonsvinkel"
-
-#~ msgid "Rotation angle of animated window pieces (in degrees)."
-#~ msgstr "Rotasjonsvinkel for animerte vindusbiter (i grader)."
-
-#~ msgid "Skewer"
-#~ msgstr "Skjevhet"
-
-#~ msgid "Skewer Direction"
-#~ msgstr "Skjevhetsretning"
-
-#~ msgid "Spacing between beams."
-#~ msgstr "Mellomrom mellom stråler"
-
-#~ msgid "Tessellation Type"
-#~ msgstr "Tesseleringstype"
-
-#~ msgid "Tessellation type for exploding window pieces."
-#~ msgstr "Tesseleringstype for eksploderende vindusbiter."
-
-#~ msgid "Tessellation type for window pieces."
-#~ msgstr "Tesseleringstype for vindusbiter."
-
-#~ msgid ""
-#~ "The amount of time in milliseconds between each render of the intense "
-#~ "animation (Ex. Burn, Beam). The higher the number, the jerkier the "
-#~ "movements become."
-#~ msgstr ""
-#~ "Antall millisekunder mellom hver gjengivelse av den intense animasjonen "
-#~ "(f.eks, brenn, strål). Jo høyere antall, jo mer hakkete blir bevegelsene."
-
-#~ msgid ""
-#~ "The animated window will be split into pieces along a grid. Specify the "
-#~ "number of grid cells along the height of the window."
-#~ msgstr ""
-#~ "Det animerte vinduet vil bli delt i biter langs et rutenett. Spesifiser "
-#~ "antall celler i rutenettet langs vindushøyden."
-
-#~ msgid ""
-#~ "The animated window will be split into pieces along a grid. Specify the "
-#~ "number of grid cells along the width of the window."
-#~ msgstr ""
-#~ "Det animerte vinduet vil bli delt i biter langs et rutenett. Spesifiser "
-#~ "antall celler i rutenettet langs vindusbredden."
-
-#~ msgid ""
-#~ "The exploding window will be split into pieces along a grid. Specify the "
-#~ "number of grid cells along the height of the window."
-#~ msgstr ""
-#~ "Det eksploderende vinduet vil bli delt i biter langs et rutenett. "
-#~ "Spesifiser antall celler i rutenettet langs vindushøyden."
-
-#~ msgid ""
-#~ "The exploding window will be split into pieces along a grid. Specify the "
-#~ "number of grid cells along the width of the window."
-#~ msgstr ""
-#~ "Det eksploderende vinduet vil bli delt i biter langs et rutenett. "
-#~ "Spesifiser antall celler i rutenettet langs vindusbredden."
-
-#~ msgid "Thickness"
-#~ msgstr "Tykkelse"
-
-#~ msgid "Thickness of Animated Polygons"
-#~ msgstr "Tykkelse på animerte polygoner"
-
-#~ msgid "Thickness of Exploding Polygons"
-#~ msgstr "Tykkelse på eksploderende polygoner"
-
-#~ msgid "Thickness of animated window pieces (in pixels)."
-#~ msgstr "Tykkelse på animerte vindusbiter (i piksler)."
-
-#~ msgid "Thickness of exploding window pieces (in pixels)."
-#~ msgstr "Tykkelse på eksploderende vindusbiter (i piksler)."
-
-#~ msgid "Up-down"
-#~ msgstr "Opp-ned"
-
-#~ msgid ""
-#~ "Whether the window should fly to taskbar when minimized with Airplane "
-#~ "effect."
-#~ msgstr ""
-#~ "Om vinduet skal fly til oppgavelinjen når det blir minimert med effekten "
-#~ "fly."
-
-#~ msgid "Window Grid Height"
-#~ msgstr "Høyde for rutenenett for vindu"
-
-#~ msgid "Window Grid Width"
-#~ msgstr "Bredde for rutenett for vindu"
-
-#~ msgid "Window folding direction."
-#~ msgstr "Bretteretning for vindu"
-
-#~ msgid ""
-#~ "Window thickness in pixels. Setting this to larger than 0 will disable "
-#~ "shadow, blur, and reflection during the animation."
-#~ msgstr ""
-#~ "Vindustykkelse i piksler. Å sette denne til en større verdi enn 0 vil slå "
-#~ "av skygge, utydeliggjør og speiling gjennom animasjonen."
 
 #~ msgid ""
 #~ "Amplitude (size of the waves in the fold) of the Horizontal Folds "
