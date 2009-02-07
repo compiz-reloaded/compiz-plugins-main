@@ -11,12 +11,12 @@
             <option type="bool" name="legacy_fullscreen">
                 <_short>Legacy Fullscreen Support</_short>
                 <_long>Make Wine and legacy applications fullscreen properly.</_long>
-                <default>true</default>
+                <default>false</default>
             </option>
             <option type="bool" name="firefox_menu_fix">
                 <_short>Firefox Menu Fix</_short>
                 <_long>Fix window type of Firefox and Thunderbird menus.</_long>
-                <default>true</default>
+                <default>false</default>
             </option>
             <option type="bool" name="ooo_menu_fix">
                 <_short>OpenOffice.org Menu Fix</_short>
@@ -26,7 +26,7 @@
             <option type="bool" name="notification_daemon_fix">
                 <_short>Notification Daemon Fix</_short>
                 <_long>Fix window type of notification daemon windows.</_long>
-                <default>true</default>
+                <default>false</default>
             </option>
             <option type="bool" name="java_fix">
                 <_short>Java Window Fix</_short>
@@ -36,7 +36,7 @@
             <option type="bool" name="qt_fix">
                 <_short>Qt Window Fix</_short>
                 <_long>Fix window type of various Qt windows.</_long>
-                <default>true</default>
+                <default>false</default>
 	    </option>
 	    <option type="bool" name="convert_urgency">
 		<_short>Convert Urgency to Demands Attention</_short>
