@@ -144,9 +144,9 @@ winrulesSetNoFocus (CompWindow *w,
 	    ww->protocolSetMask |= (w->protocols &
 				    CompWindowProtocolTakeFocusMask);
 	    newProtocol = w->protocols & ~CompWindowProtocolTakeFocusMask;
-	    ww->oldInputHint = w->inputHint;
-	    w->inputHint = FALSE;
 	}
+	ww->oldInputHint = w->inputHint;
+	w->inputHint = FALSE;
     }
     else if (ww->oldInputHint ||
 	     (ww->protocolSetMask & CompWindowProtocolTakeFocusMask))
@@ -157,8 +157,11 @@ winrulesSetNoFocus (CompWindow *w,
 	w->inputHint = ww->oldInputHint;
     }
 
-   if (newProtocol != w->protocols)
+    if (newProtocol != w->protocols)
+    {
 	winrulesSetProtocols (w->screen->display, newProtocol, w->id);
+	w->protocols = newProtocol;
+    }
 }
 
 static void
@@ -787,7 +790,7 @@ winrulesGetObjectOptions (CompPlugin *plugin,
     };
 
     RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab),
-		     (void *) (*count = 0), (plugin, object, count));
+		     0, (plugin, object, count));
 }
 
 static CompBool
