@@ -2930,7 +2930,6 @@ animDrawWindowTexture(CompWindow * w, CompTexture * texture,
 
     if (aw->com.animRemainingTime > 0)	// if animation in progress, store texture
     {
-	aw->curTexture = texture;
 	aw->com.curPaintAttrib = *attrib;
     }
 
@@ -3035,19 +3034,6 @@ animPaintWindow(CompWindow * w,
 	    // Otherwise polygon effects show fully unsaturated colors
 	    // in that case.
 	    wAttrib.brightness = MAX (0, wAttrib.brightness - 1);
-
-	    if (mask & PAINT_WINDOW_TRANSFORMED_MASK)
-	    {
-		aw->curTextureFilter = w->screen->filter[WINDOW_TRANS_FILTER];
-	    }
-	    else if (mask & PAINT_WINDOW_ON_TRANSFORMED_SCREEN_MASK)
-	    {
-		aw->curTextureFilter = w->screen->filter[SCREEN_TRANS_FILTER];
-	    }
-	    else
-	    {
-		aw->curTextureFilter = w->screen->filter[NOTHING_TRANS_FILTER];
-	    }
 	}
 	w->indexCount = 0;
 

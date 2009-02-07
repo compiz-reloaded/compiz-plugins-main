@@ -239,10 +239,6 @@ typedef struct _AnimWindow
     unsigned int state;
     unsigned int newState;
 
-    float mvm[16];
-
-    XRectangle origWindowRect;
-
     Bool animInitialized;	// whether the animation effect (not the window) is initialized
     float remainderSteps;
 
@@ -253,9 +249,6 @@ typedef struct _AnimWindow
     int destroyCnt;
 
     Bool ignoreDamage;
-
-    CompTexture *curTexture;
-    int curTextureFilter;
 
     int curAnimSelectionRow;
     int prevAnimSelectionRow;	// For the case when one event interrupts another
