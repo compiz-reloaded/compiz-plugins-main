@@ -53,6 +53,8 @@ typedef struct _WinrulesWindow {
 
     Bool oldInputHint;
     Bool hasAlpha;
+
+    CompTimeoutHandle handle;
 } WinrulesWindow;
 
 typedef struct _WinrulesDisplay {
@@ -464,9 +466,8 @@ winrulesSetScreenOption (CompPlugin *plugin,
 }
 
 static Bool
-winrulesApplyRules (void *closure)
+winrulesApplyRules (CompWindow *w)
 {
-    CompWindow *w = (CompWindow *) closure;
     int        width, height;
 
     winrulesUpdateState (w,
@@ -525,6 +526,17 @@ winrulesApplyRules (void *closure)
 	winrulesUpdateWindowSize (w, width, height);
 
     return FALSE;
+}
+
+static Bool
+winrulesApplyRulesTimeout (void *closure)
+{
+    CompWindow *w = (CompWindow *) closure;
+
+    WINRULES_WINDOW (w);
+    ww->handle = 0;
+
+    return winrulesApplyRules (w);
 }
 
 static void
@@ -736,7 +748,7 @@ winrulesInitWindow (CompPlugin *p,
 
     w->base.privates[ws->windowPrivateIndex].ptr = ww;
 
-    compAddTimeout (0, 0, winrulesApplyRules, w);
+    ww->handle = compAddTimeout (0, 0, winrulesApplyRulesTimeout, w);
 
     return TRUE;
 }
@@ -746,6 +758,9 @@ winrulesFiniWindow (CompPlugin *p,
                     CompWindow *w)
 {
     WINRULES_WINDOW (w);
+
+    if (ww->handle)
+	compRemoveTimeout (ww->handle);
 
     free (ww);
 }
