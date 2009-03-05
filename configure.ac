@@ -2,7 +2,7 @@ AC_PREREQ(2.57)
 
 m4_define([plugins_main_version], [esyscmd(. ./VERSION;echo -n $VERSION)])
 
-AC_INIT([compiz-fusion-plugins-main], [plugins_main_version], [maniac@opencompositing.org])
+AC_INIT([compiz-plugins-main], [plugins_main_version], [maniac@opencompositing.org])
 
 #AC_CONFIG_AUX_DIR(config)
 
@@ -19,7 +19,7 @@ AC_CHECK_HEADERS([stdlib.h sys/time.h unistd.h])
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=compiz-fusion-plugins-main
+GETTEXT_PACKAGE=compiz-plugins-main
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
 
