@@ -24,4 +24,4 @@ cf_install_plugin_data_files (images)
 cf_install_plugin_data_files (data)
 cf_print_plugin_configure_results (src)
 
-cf_add_package_generation ("Compiz Fusion Plugins Main")
+cf_add_package_generation ("Compiz Plugins Main")
