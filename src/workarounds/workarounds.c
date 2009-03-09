@@ -198,6 +198,9 @@ workaroundsPaintScreen (CompScreen   *s,
 
     currentScreen = s;
 
+    if (workaroundsGetForceGlxSync (s->display))
+	glXWaitX ();
+
     UNWRAP (ws, s, paintScreen);
     (*s->paintScreen) (s, outputs, numOutputs, mask);
     WRAP (ws, s, paintScreen, workaroundsPaintScreen);
