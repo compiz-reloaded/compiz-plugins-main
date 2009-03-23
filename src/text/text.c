@@ -447,7 +447,7 @@ textRenderWindowTitle (CompScreen           *s,
 		       Bool                 withViewportNumber,
 		       const CompTextAttrib *attrib)
 {
-    char         *text;
+    char         *text = NULL;
     CompTextData *retval;
 
     if (withViewportNumber)
