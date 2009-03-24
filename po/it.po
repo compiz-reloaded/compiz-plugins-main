@@ -1,22 +1,18 @@
 # compiz-fusion-plugins Italian translation.
-# Copyright (C) 2007 opencompositing.org
+# Copyright (C) 2007, 2008, 2009 The Free Software Foundation, Inc.
 # This file is distributed under the same license as the compiz-fusion package.
-#
 # Marco Trevisan (Treviño) <trevi55@gmail.com>, 2007.
 # Matteo Suppo (Triex) <alpha3ex@gmail.com>, 2007.
 # Danilo Saruis (DDany) <ddany83@gmail.com>, 2007.
 # Fabio Fiorentini (Ahren / FaBBio) <fabio.fiorentini@gmail.com>, 2007.
 # Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>, 2007.
 # Emiliano Perulli <emiliano.perulli@alice.it>, 2007.
-# Milo Casagrande <milo@ubuntu.com>, 2007-2008
-#
+# Milo Casagrande <milo@ubuntu.com>, 2007-2009
 #
 # **** Glossario ****
 #
-#
 # enable       -> usato sempre come 'abilitare'
-# viewport     -> area di lavoro (fino a quando non sia effettivamente una 
-#                 concezione diversa)
+# viewport     -> area visibile
 # bevel, to    -> smussare
 # workaround   -> alternativa
 # sticky       -> adesivo
@@ -34,10 +30,10 @@
 # blur         -> sfocato
 # hotkey       -> tasto di scelta rapida
 # flip         -> scorrere
-# Scale        -> Scala finestre (nome del plug-in), scala o scalare, ridimensionare
+# Scale        -> Scala finestre (nome del plugin), scala o scalare, ridimensionare
 #                 per immagini
 # glow         -> bagliore
-# Opacify      -> Opacizza (anche nome del plug-in); opacizzare
+# Opacify      -> Opacizza (anche nome del plugin); opacizzare
 # opacity      -> opacità (non è la trasparenza!)
 # tilt         -> inclinato/a, usato per la visualizzazione delle aree di lavoro
 # sloppy       -> lento (trovato solo una volta... ma potrebbe venir usato ancora)
@@ -50,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fusion i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2009-02-06 11:30+0530\n"
-"PO-Revision-Date: 2009-01-10 11:38+0100\n"
+"POT-Creation-Date: 2009-03-24 12:14+0530\n"
+"PO-Revision-Date: 2009-02-18 23:29+0100\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -149,13 +145,13 @@ msgstr "Profondità delle finestre"
 msgid "Windows that should be handled by 3D"
 msgstr "Finestre da gestire col 3D"
 
-# (ndt) nome del plug-in
+# (ndt) nome del plugin
 # ADD: Attention Deficit Disorder (sindrome da deficit di attenzione)
 msgid "ADD Helper"
 msgstr "Aiuto concentrazione (ADD)"
 
 msgid "Bindings"
-msgstr "Scorciatoie"
+msgstr "Associazioni"
 
 msgid "Brightness"
 msgstr "Luminosità"
@@ -202,24 +198,22 @@ msgid "Window types that should be Opacified."
 msgstr "Tipi di finestre da opacizzare."
 
 msgid "Airplane"
-msgstr ""
+msgstr "Aeroplano"
 
 msgid "Airplane Flying Path Length"
-msgstr ""
+msgstr "Lunghezza percorso aeroplano"
 
 msgid "Angle of window at the end of the animation."
 msgstr "Angolo della finestra alla fine dell'animazione."
 
-#, fuzzy
 msgid "Animation Time Step For Intense Effects"
-msgstr "Intervallo animazione"
+msgstr "Intervallo animazione per gli effetti intensi"
 
-#, fuzzy
 msgid "Animations Add-On"
-msgstr "Animazioni"
+msgstr "Addon animazioni"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Automatico"
 
 msgid "Away Angle"
 msgstr "Angolo lontano"
@@ -227,48 +221,41 @@ msgstr "Angolo lontano"
 msgid "Away Position"
 msgstr "Posizione lontana"
 
-#, fuzzy
 msgid "Beam"
-msgstr "Sogno"
+msgstr "Fascio di luce"
 
-#, fuzzy
 msgid "Beam Color"
-msgstr "Colore base"
+msgstr "Colore fascio di luce"
 
 msgid "Beam Life"
-msgstr ""
+msgstr "Durata fascio di luce"
 
-#, fuzzy
 msgid "Beam Slowdown"
-msgstr "Rallentamento particella"
+msgstr "Rallentamento fascio di luce"
 
 msgid "Beam Spacing"
-msgstr ""
+msgstr "Spaziatura fasci di luce"
 
 msgid "Beam Up"
-msgstr ""
+msgstr "Fascio di luce"
 
-#, fuzzy
 msgid "Beam Width"
-msgstr "Larghezza bordo"
+msgstr "Larghezza fascio di luce"
 
-#, fuzzy
 msgid "Beam color."
-msgstr "Colore del testo"
+msgstr "Colore del fascio di luce"
 
 msgid "Beam life."
-msgstr ""
+msgstr "Durata del fascio di luce"
 
-#, fuzzy
 msgid "Beam slowdown."
-msgstr "Rallentamento della particella."
+msgstr "Rallentamento del fascio di luce"
 
-#, fuzzy
 msgid "Beam width."
-msgstr "Larghezza del riquadro."
+msgstr "Larghezza del fascio di luce"
 
 msgid "Burn"
-msgstr ""
+msgstr "Brucia"
 
 msgid ""
 "Closeness of window to camera at the end of the animation (1.0: Close to "
@@ -277,12 +264,11 @@ msgstr ""
 "Vicinanza della finestra alla fotocamera alla fine dell'animazione (1.0: "
 "vicino alla fotocamera; -2.0: lontano dalla fotocamera)"
 
-#, fuzzy
 msgid "Domino"
-msgstr "Giù"
+msgstr "Domino"
 
 msgid "Domino Piece Falling Direction"
-msgstr ""
+msgstr "Direzione caduta pezzi del domino"
 
 msgid "Down"
 msgstr "Giù"
@@ -290,15 +276,14 @@ msgstr "Giù"
 msgid "Effect Settings"
 msgstr "Impostazioni effetto"
 
-#, fuzzy
 msgid "Explode"
-msgstr "Bordo Expo"
+msgstr "Esplodi"
 
 msgid "Extra window animations and animation engines"
-msgstr ""
+msgstr "Animazioni e motori per animazioni aggiuntivi"
 
 msgid "Falling direction for Domino pieces."
-msgstr ""
+msgstr "Direzione di caduta dei pezzi di «Domino»"
 
 msgid "Fire Particle Color"
 msgstr "Colore fiamme"
@@ -313,20 +298,16 @@ msgid "Fire Particle Slowdown"
 msgstr "Velocità fiamme"
 
 msgid "Fire Smoke"
-msgstr ""
+msgstr "Fuoco e fumo"
 
-# (ndt) suggerimento
-#, fuzzy
 msgid "Fire constant speed"
-msgstr "Velocità della dissolvenza dell'effetto"
+msgstr "Velocità costante del fuoco"
 
-#, fuzzy
 msgid "Fire direction"
-msgstr "Direzione neve"
+msgstr "Direzione del fuoco"
 
-#, fuzzy
 msgid "Fire direction."
-msgstr "Direzione neve"
+msgstr "Direzione del fuoco"
 
 msgid "Fire particle color."
 msgstr "Colore delle fiamme."
@@ -341,28 +322,25 @@ msgid "Fire particle slowdown."
 msgstr "Velocità di evoluzione delle fiamme."
 
 msgid "Fire smoke."
-msgstr ""
+msgstr "Aggiungi il fumo al fuoco."
 
-#, fuzzy
 msgid "Fly to TaskBar on Minimize"
-msgstr "Zoom sulla barra delle applicazioni alla minimizzazione"
+msgstr "Vola nella barra delle applicazioni alla minimizzazione"
 
 msgid "Fold"
-msgstr ""
+msgstr "Ripiegatura"
 
-#, fuzzy
 msgid "Fold Direction"
-msgstr "Direzione neve"
+msgstr "Direzione pieghe"
 
 msgid "Fold opening direction for pieces in Razr effect."
-msgstr ""
+msgstr "Direzione di apertura dei pezzi nell'effetto «Rasoio»"
 
 msgid "Glass"
 msgstr "Vetro"
 
-#, fuzzy
 msgid "Glide 3"
-msgstr "Planata 1"
+msgstr "Planata 3"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
@@ -370,48 +348,41 @@ msgstr ""
 "mistico»."
 
 msgid "Hexagonal"
-msgstr ""
+msgstr "Esagonale"
 
-#, fuzzy
 msgid "In"
-msgstr "Informazioni"
+msgstr "Dentro"
 
-#, fuzzy
 msgid "In-out"
-msgstr "Informazioni"
+msgstr "Dentro/Fuori"
 
 msgid "Leaf Spread"
-msgstr ""
+msgstr "Caduta foglie"
 
 msgid "Left"
 msgstr "Sinistra"
 
-#, fuzzy
 msgid "Left-right"
 msgstr "Sinistra/Destra"
 
 msgid "Length of airplane's flying path."
-msgstr ""
+msgstr "Lunghezza del percorso di volo dell'aeroplano"
 
 msgid "Make fire effect duration be dependent on window height."
 msgstr ""
+"Rende la durata dell'effetto del fuoco dipendente dall'altezza della finestra"
 
-# (ndt) suggerimento
-#, fuzzy
 msgid "Movement direction(s) for window pieces."
-msgstr "Muove il riflesso al movimento della finestra."
+msgstr "Direzione dei pezzi della finestra"
 
-#, fuzzy
 msgid "Number Of Fire Particles"
 msgstr "Numero di particelle"
 
-#, fuzzy
 msgid "Number of fire particles."
-msgstr "Numero di particelle."
+msgstr "Numero di particelle del fuoco."
 
-#, fuzzy
 msgid "Out"
-msgstr "Posizione"
+msgstr "Out"
 
 msgid "Random"
 msgstr "Casuale"
@@ -420,140 +391,145 @@ msgid "Randomly Colored Fire"
 msgstr "Fuoco mistico"
 
 msgid "Razr"
-msgstr ""
+msgstr "Rasoio"
 
 msgid "Razr Fold Opening Direction"
-msgstr ""
+msgstr "Direzione apertura"
 
-#, fuzzy
 msgid "Rectangular"
-msgstr "Bagliore rettangolare"
+msgstr "Rettangolare"
 
 msgid "Right"
 msgstr "Destra"
 
-#, fuzzy
 msgid "Rotation Angle"
-msgstr "Velocità rotazione"
+msgstr "Angolo rotazione"
 
-#, fuzzy
 msgid "Rotation angle of animated window pieces (in degrees)."
-msgstr "Saturazione delle finestre non-widget in modalità widget."
+msgstr "Angolo di rotazione dei pezzi animanti della finestra (in gradi)."
 
-#, fuzzy
+# (ndt) tolto lo shatter, tanto è proprio di questa
+# animazione e secondo me è inutile (animazione compresa)
+# oltre a essere una parola di non facile resa...
+# ma farle più semplici?
 msgid "Shatter Number of Spokes"
-msgstr "Numero fiocchi di neve"
+msgstr "Numero di raggi"
 
-#, fuzzy
 msgid "Shatter Number of Tiers"
-msgstr "Numero di fiamme"
+msgstr "Numero di livelli"
 
 msgid "Skewer"
-msgstr ""
+msgstr "Distorsione"
 
-#, fuzzy
 msgid "Skewer Direction"
-msgstr "Direzione neve"
+msgstr "Direzione distorsione"
 
-#, fuzzy
 msgid "Spacing between beams."
-msgstr "Lo spazio fra le anteprime"
+msgstr "Spazio tra i fasci di luce"
 
-#, fuzzy
 msgid "Tessellation Type"
-msgstr "Tipo animazione accostamento"
+msgstr "Tassellatura"
 
 msgid "Tessellation type for exploding window pieces."
-msgstr ""
+msgstr "Tipo di tassellatura per i pezzi dell'esplosione."
 
 msgid "Tessellation type for window pieces."
-msgstr ""
+msgstr "Tipo di tassellatura per i pezzi della finestra."
 
-#, fuzzy
 msgid ""
 "The amount of time in milliseconds between each render of the intense "
 "animation (Ex. Burn, Beam). The higher the number, the jerkier the movements "
 "become."
 msgstr ""
-"Tempo in millisecondi tra ogni aggiornamento dell'animazione. Più alto il "
-"valore, più l'animazione va a scatti."
+"Tempo in millisecondi tra ogni aggiornamento dell'animazione (come «Brucia», "
+"«Raggio luminoso»). Più il valore, più scattosa l'animazione."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
+"La finestra animata sarà divisa in pezzi lungo una griglia. Specifica il "
+"numero di celle per l'altezza della finestra."
 
 msgid ""
 "The animated window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
+"La finestra animata sarà divisa in pezzi lungo una griglia. Specifica il "
+"numero di celle per la larghezza della finestra."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the height of the window."
 msgstr ""
+"La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica il "
+"numero di celle per l'altezza della finestra."
 
 msgid ""
 "The exploding window will be split into pieces along a grid. Specify the "
 "number of grid cells along the width of the window."
 msgstr ""
+"La finestra che esplode sarà divisa in pezzi lungo una griglia. Specifica il "
+"numero di celle per la larghezza della finestra."
 
 msgid ""
 "The exploding window will be split into pieces along concentric circles. "
 "Specify the number of concentric circles the shatter tessellation will have."
 msgstr ""
+"La finestra che esplode sarà divisa in pezzi concentrici. Specifica il "
+"numero di cerchi concentrici."
 
 msgid ""
 "The exploding window with the shatter animation will be split into pieces "
 "radially from the center. Specify the number of radial spokes the animation "
 "will have."
 msgstr ""
+"La finestra che esplode sarà divisa in pezzi radialmente partendo dal "
+"centro. Specifica il numero di raggi."
 
 msgid "Thickness"
-msgstr ""
+msgstr "Spessore"
 
 msgid "Thickness of Animated Polygons"
-msgstr ""
+msgstr "Spessore dei poligoni animati"
 
 msgid "Thickness of Exploding Polygons"
-msgstr ""
+msgstr "Spessore dei poligoni dell'esplosione"
 
 msgid "Thickness of animated window pieces (in pixels)."
-msgstr ""
+msgstr "Spessore dei pezzi della finestra animata (in pixel)."
 
 msgid "Thickness of exploding window pieces (in pixels)."
-msgstr ""
+msgstr "Spessore dei pezzi della finestra che esplode (in pixel)."
 
 msgid "Up"
 msgstr "Su"
 
-#, fuzzy
 msgid "Up-down"
 msgstr "Su/Giù"
 
-#, fuzzy
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
 msgstr ""
-"Indica se la finestra deve essere ingrandita verso la barra dei programmi "
-"quando viene minimizzata con l'effetto «Sogno»."
+"Indica se la finestra deve volare nella barra delle applicazioni quando "
+"minimizzata con l'effetto «Aeroplano»."
 
-#, fuzzy
 msgid "Window Grid Height"
-msgstr "Evidenziazione finestra"
+msgstr "Altezza griglia finestra"
 
-#, fuzzy
 msgid "Window Grid Width"
-msgstr "Profondità delle finestre"
+msgstr "Larghezza griglia finestra"
 
-#, fuzzy
 msgid "Window folding direction."
-msgstr "Direzione neve"
+msgstr "Direzione ripiegatura finestra."
 
 msgid ""
 "Window thickness in pixels. Setting this to larger than 0 will disable "
 "shadow, blur, and reflection during the animation."
 msgstr ""
+"Spessore delle finestre in pixel. Impostando questo parametro a un valore "
+"maggiore di 0 disabiliterà le ombre, la sfocatura e i riflessi durante le "
+"animzazioni."
 
 msgid ""
 "All effects are chosen randomly, ignoring the selected effect. If None is "
@@ -759,7 +735,7 @@ msgstr "Animazione sfumatura"
 msgid "Shade Effect"
 msgstr "Effetto sfumatura"
 
-# (ndt) nome del plug-in
+# (ndt) nome del plugin
 # Tradotto con vortice perché l'effetto che fa
 # è quello di prendere una finestra e farla girare o su se stessa
 # o in qualche altro modo strano... ricorda un po' un vortice.
@@ -945,8 +921,206 @@ msgstr "Zoom dal centro durante l'animazione «Zoom»."
 msgid "Zoom to TaskBar on Minimize"
 msgstr "Zoom sulla barra delle applicazioni alla minimizzazione"
 
+msgid "Ambient light"
+msgstr "Luce ambientale"
+
+msgid "Amplitude of small water waves on the bigger ones."
+msgstr "Ampiezza delle onde d'acqua piccole in quelle grandi."
+
+msgid "Amplitude of water waves."
+msgstr "Ampizza onde"
+
+msgid "Color"
+msgstr "Colore"
+
+msgid "Color of ground in the cube."
+msgstr "Colore della base del cubo"
+
+msgid "Color of water in the cube."
+msgstr "Colore dell'acqua nel cubo"
+
+msgid "Component of light coming from all directions equally."
+msgstr "Componente della luce in arrivo da tutte le direzioni allo stesso modo"
+
+msgid "Creature Selection"
+msgstr "Selezione creatura"
+
+msgid "Cube Atlantis"
+msgstr "Atlantide"
+
+msgid "Display"
+msgstr "Visualizzazione"
+
+msgid "Fish in different groups, but of the same type, swim together."
+msgstr "Pesci dello stsso gruppo, ma dello stesso tipo, nuotano assieme"
+
+msgid "Frequency of small water waves on the bigger ones."
+msgstr "Frequenza delle onde piccole in quelle grandi"
+
+msgid "Frequency of water waves."
+msgstr "Frequenza delle onde"
+
+msgid "Ground color"
+msgstr "Colore della base"
+
+msgid "Height of water surface in the cube."
+msgstr "Altezza della superfice dell'acqua nel cubo"
+
+msgid "Light inclination"
+msgstr "Inclinazione luce"
+
+msgid "Lighting"
+msgstr "Illuminazione"
+
+msgid "Low detail models"
+msgstr "Modelli a basso dettaglio"
+
+msgid "Miscellaneous Selection"
+msgstr "Selezione varia"
+
+msgid "Multiply the speed of the fish by this factor."
+msgstr "Moltiplica la velocità dei pesci per questo fattore"
+
+msgid "Number"
+msgstr "Numero"
+
+msgid "Number of subdivisions that create a finer grid."
+msgstr "Nunero di suddivisione per creare una grigla più fine"
+
+msgid "Preserve light direction when rotating the cube."
+msgstr "Preserva la direzione della luce alla rotazione del cubo"
+
+# (ndt) opzione
+msgid "Render ground"
+msgstr "Visualizzare il fondo"
+
+msgid "Render ground inside the cube."
+msgstr "Visualizza il fondo all'interno del cubo"
+
+msgid "Render some sea animals inside of the transparent cube"
+msgstr "Visualizza alcuni animali marini all'interno del cubo trasparente"
+
+msgid "Render water"
+msgstr "Visalizzare l'acqua"
+
+msgid "Render water inside the cube."
+msgstr "Visualizzare l'acqua all'interno del cubo"
+
+msgid "Render water waves inside the cube."
+msgstr "Visualizza le onde dell'acqua all'interno del cubo"
+
+msgid "Render water wireframe"
+msgstr ""
+
+msgid "Render water wireframe inside the cube."
+msgstr ""
+
+msgid "Render waves"
+msgstr "Visualizzare le onde"
+
+msgid ""
+"Rescale along the sides of the cube by the ratio of screen width to height."
+msgstr ""
+"Ridimensiona lungo i lati del cubo in base al rapporto larghezza/altezza."
+
+msgid "Rescale for screen ratio"
+msgstr "Ridimensionare per proporzioni video"
+
+msgid "Ripple effect"
+msgstr "Effetto increspatura"
+
+msgid "Rotate lighting"
+msgstr "Ruotare la luce"
+
+# (ndt) qui siamo alla frutta...
+msgid "School similar groups"
+msgstr "Ammaestrare i gruppi simili"
+
+# (ndt) non ne sono sicuro, ma fa schifo in originale
+msgid "Semi-randomize light scattering off water waves."
+msgstr "Semi-casualità della luce che si dirama dalle onde."
+
+msgid "Size"
+msgstr "Dimensione"
+
+msgid "Small wave amplitude"
+msgstr "Ampiezza onde piccole"
+
+msgid "Small wave frequency"
+msgstr "Frequeza onde piccole"
+
+msgid "Speed factor"
+msgstr "Fattore velocità"
+
+msgid "Start crabs on bottom"
+msgstr "Avviare i granchi sul fondo"
+
+msgid "Start crabs on the bottom of the cube."
+msgstr "Avvia i granchi sul fondo del cubo"
+
+msgid ""
+"The angle of light rays from the horizon in degrees (0 is from the viewer's "
+"perspective, 90 is from on top). Only has effect when Rotate Lighting is "
+"false."
+msgstr ""
+"L'angolo dei raggi di luce (in gradi) dall'orizzonte (0 per la prospettiva "
+"dell'utente, 90 dall'alto). Ha effetto solamente se «Ruotare la luce» è "
+"impostata a FALSO."
+
+msgid "The color of the sea creature."
+msgstr "Il colore della creatura marina"
+
+# (ndt) suggerimento
+msgid "The color of the sea plant."
+msgstr "Il colore della pianta marina"
+
+msgid "The number of the sea creature."
+msgstr "Il numero delle creature marine"
+
+msgid "The number of the sea plants."
+msgstr "Il numero delle piante marine"
+
+msgid "The size of the sea creature."
+msgstr "La dimensione delle creature marine"
+
+msgid "The size of the sea plant."
+msgstr "La dimensione delle piante marine"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Type of sea creature."
+msgstr "Tipo della creatura marina"
+
+msgid "Type of sea plant."
+msgstr "Tipo della pianta marina"
+
+msgid "Use less detailed models for increased performance."
+msgstr "Usare modelli meno dettagliati per avere maggiori prestazioni"
+
+msgid "Water / Ground"
+msgstr "Acqua / Fondo"
+
+msgid "Water color"
+msgstr "Colore acqua"
+
+msgid "Water surface height"
+msgstr "Altezza superfice dell'acqua"
+
+msgid "Water/Ground grid smoothness"
+msgstr "Precisione griglia acqua/fondo"
+
+msgid "Wave amplitude"
+msgstr "Ampiezza onde"
+
+msgid "Wave frequency"
+msgstr "Frequenza onde"
+
+msgid "Waves"
+msgstr "Onde"
+
 msgid "A simple benchmark plugin"
-msgstr "Un semplice plug-in per effettuare benchmark"
+msgstr "Un semplice plugin per effettuare benchmark"
 
 msgid "Benchmark"
 msgstr "Benchmark"
@@ -1014,7 +1188,7 @@ msgstr "Filtro bicubico"
 msgid "Bicubic texture filtering"
 msgstr "Filtro texture bicubico"
 
-# (NdT) nome del plug-in
+# (NdT) nome del plugin
 msgid "Color filter"
 msgstr "Filtro colore"
 
@@ -1085,7 +1259,7 @@ msgid "Activate Crash Handler."
 msgstr "Attiva il gestore dei crash."
 
 msgid "Compiz crash handler plugin"
-msgstr "Plug-in per la gestione dei crash di Compiz"
+msgstr "Plugin per la gestione dei crash di Compiz"
 
 msgid "Crash Dump Directory"
 msgstr "Directory dei dump dei crash"
@@ -1377,11 +1551,125 @@ msgstr "Esegue lo zoom automatico solo alla rotazione col mouse."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Esegue lo zoom automatico per mostrare tutto il cubo sullo schermo."
 
-msgid "Allow rotation of this element"
+msgid "3D Models"
+msgstr "Modelli 3D"
+
+msgid "Ambient light intensity"
+msgstr "Intensità luce ambientale"
+
+msgid ""
+"Component of light coming from the direction set by inclination or from the "
+"viewer if Rotate Lighting is true."
+msgstr ""
+"Componente della luce che proviene dalla direzione indicata "
+"dall'inclinazione o dall'utente se «Ruotare la luce» è impostata a VERO."
+
+msgid "Cube 3D Models"
+msgstr "Modelli «Cubo 3D»"
+
+msgid "Diffuse light intensity"
+msgstr "Intensità luce diffusa"
+
+msgid "Framerate (per second) for the animated series of obj files."
+msgstr "Tasso dei frame (al secondo) della serie animata di oggetti."
+
+msgid "Frames per second"
+msgstr "Frame al secondo"
+
+msgid "Full path to 3D wavefront (.obj) model file."
+msgstr "Percorso al file del modello (.obj)."
+
+msgid ""
+"Highly directional component of light coming from the direction set by "
+"inclination or from the viewer if Rotate Lighting is true."
+msgstr ""
+"Componene della luce che proviene dalla direzione impostata "
+"dall'inclinazione o dal punto di vista di chi vede se «Ruotare la luce» è "
+"impostata a VERO."
+
+msgid "Loading"
+msgstr "Caricamento"
+
+msgid "Model"
+msgstr "Modello"
+
+msgid "Model type"
+msgstr "Tipo di modello"
+
+msgid "Plane of rotation for the 3D model."
+msgstr "Piano di rotazione per il modello 3D"
+
+msgid "Rate of rotation of 3D model (in rotations per second)."
+msgstr "Tasso della rotazione del modello 3D (in rotazioni al secondo)"
+
+msgid "Render front and back sides"
+msgstr "Visualizzare fronte e retro"
+
+msgid "Render still/animated 3D mesh models inside of the transparent cube"
 msgstr ""
 
-msgid "Autumn"
+msgid ""
+"Renders the front surface and then the back surface. This can be useful for "
+"models which show black spots but can cause a performance hit."
 msgstr ""
+
+msgid "Rotation plane"
+msgstr "Piano di rotazione"
+
+msgid "Rotation rate"
+msgstr "Tasso rotazione"
+
+msgid "Scale all factor"
+msgstr "Fattore di scala"
+
+msgid "Scale all the 3D models by this factor."
+msgstr "Scala tutti i modelli 3D di questo fattore"
+
+msgid "Scale factor"
+msgstr "Fattore di scala"
+
+msgid "Scale the 3D model by this factor."
+msgstr "Scala il modello 3D di questo fattore"
+
+msgid "Specular light intensity"
+msgstr "Intensità luce speculare"
+
+msgid "Type of 3D model (still or animated)."
+msgstr "Tipo del modello 3D (immobile o animato)"
+
+msgid "Use separate threads"
+msgstr "Usare thread separati"
+
+msgid ""
+"Use separate threads to load each model faster and allow other interaction "
+"whilst loading."
+msgstr ""
+"Usa thread separati per caricare più velocemente i modelli e consentire "
+"altre interazioni."
+
+msgid "X"
+msgstr "X"
+
+msgid "X coordinate offset from the centre of the cube."
+msgstr "Coordinata X dal centro del cubo"
+
+msgid "Y"
+msgstr "Y"
+
+msgid "Y coordinate offset from the centre of the cube."
+msgstr "Coordinata Y dal centro del cubo"
+
+msgid "Z"
+msgstr "Z"
+
+msgid "Z coordinate offset from the centre of the cube."
+msgstr "Coordinata Z dal centro del cubo"
+
+msgid "Allow rotation of this element"
+msgstr "Consentire la rotazione di questo elemento"
+
+msgid "Autumn"
+msgstr "Autunno"
 
 msgid "Background Color"
 msgstr "Colore di sfondo"
@@ -1393,7 +1681,7 @@ msgid "Bold Font"
 msgstr "Carattere grassetto"
 
 msgid "Bubbles"
-msgstr ""
+msgstr "Bolle"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
@@ -1406,56 +1694,47 @@ msgstr ""
 msgid "Display Time"
 msgstr "Durata visualizzazione"
 
-#, fuzzy
 msgid "Draw Over Windows"
-msgstr "Neve sulle finestre"
+msgstr "Disegnare sopra le finestra"
 
-#, fuzzy
 msgid "Draw elements on screen"
-msgstr "Centrato sullo schermo"
+msgstr "Disegnare gli elementi sullo schermo"
 
-#, fuzzy
 msgid "Element Image"
-msgstr "Immagine riflesso"
+msgstr "Immagine elemento"
 
 msgid "Element Iter"
-msgstr ""
+msgstr "Iterazione elemento"
 
 msgid "Element Movement Type"
-msgstr ""
+msgstr "Movimento elemento"
 
-#, fuzzy
 msgid "Element Title Display"
-msgstr "Visualizzazione titolo finestra"
+msgstr "Visualizzazione titolo elemento"
 
 msgid "Element Type"
-msgstr ""
+msgstr "Tipo elemento"
 
-#, fuzzy
 msgid "Element rotation"
-msgstr "Direzione movimento"
+msgstr "Rotazione elemento"
 
 msgid "Element size"
-msgstr ""
+msgstr "Dimesione elemento"
 
-# (ndt) suggerimento
-#, fuzzy
 msgid "Element speed"
-msgstr "Velocità movimento del mouse"
+msgstr "Velocità elemento"
 
 msgid "Elements"
-msgstr ""
+msgstr "Elementi"
 
 msgid "Elements List"
-msgstr ""
+msgstr "Elenco elementi"
 
-#, fuzzy
 msgid "Elements drawn above windows"
-msgstr "La neve è disegnata sopra le finestre"
+msgstr "Elementi disegnati sopra le finestre"
 
-#, fuzzy
 msgid "Fireflies"
-msgstr "Filtri"
+msgstr "Lucciole"
 
 msgid "Font Color"
 msgstr "Colore carattere"
@@ -1477,29 +1756,25 @@ msgstr ""
 "Profondità dello schermo alla quale i fiocchi di neve possono essere "
 "visualizzati prima di essere rimossi"
 
-#, fuzzy
 msgid "How far from the screen snowflakes can be drawn before being removed"
 msgstr ""
 "Profondità dello schermo alla quale i fiocchi di neve possono essere "
 "visualizzati prima di essere rimossi"
 
 msgid "How long to display the title (in ms)"
-msgstr ""
+msgstr "Per quanto tempo visualizzare il titolo (in millisecondi)"
 
 msgid "Image file for this Element"
-msgstr ""
+msgstr "File immagine per questo elemento"
 
-#, fuzzy
 msgid "Next Element"
-msgstr "Posizione del testo"
+msgstr "Elemento successivo"
 
-#, fuzzy
 msgid "Number of elements"
-msgstr "Numero di fiamme"
+msgstr "Numero di elementi"
 
-#, fuzzy
 msgid "Previous Element"
-msgstr "Area di lavoro precedente"
+msgstr "Elemento precedente"
 
 msgid "Screen Boxing"
 msgstr "Inscatola schermo"
@@ -1511,17 +1786,16 @@ msgid "Select snow flake movement direction"
 msgstr "Seleziona la direzione del movimento dei fiocchi di neve"
 
 msgid "Select the Next Element in the list"
-msgstr ""
+msgstr "Seleziona l'elemento successivo nell'elenco"
 
 msgid ""
 "Settings for one particular element configuration. Separate element "
 "definitions have different iters. This is a workaround to have multiple-"
-"textures per element until we can get cascading options"
+"textures per element until we can get cascading lists"
 msgstr ""
 
-#, fuzzy
 msgid "Show Title on Toggle"
-msgstr "Commuta neve"
+msgstr "Mostrare il titolo all'attivazione"
 
 msgid "Show the element type when toggling the currently selected element"
 msgstr ""
@@ -1529,9 +1803,8 @@ msgstr ""
 msgid "Side-to-side movement of Snow."
 msgstr ""
 
-#, fuzzy
 msgid "Size of these elements"
-msgstr "Dimensione anteprima in %"
+msgstr "Dimensione di questi elementi"
 
 msgid "Snow"
 msgstr "Neve"
@@ -1539,58 +1812,53 @@ msgstr "Neve"
 msgid "Snow Direction"
 msgstr "Direzione neve"
 
-# (ndt) è ralativo al tempo di ritardo con cui
-# viene mostrata l'anteprima della finestra
-#, fuzzy
 msgid "Snow sway"
-msgstr "Ritardo anteprima"
+msgstr "Ritardo neve"
 
-#, fuzzy
 msgid "Speed of falling leaves"
-msgstr "Velocità di caduta della neve"
+msgstr "Velocità di caduta della foglie"
 
 msgid "Speed of these elements"
-msgstr ""
+msgstr "Velocità di questi elementi"
 
 msgid "Star X Offset"
-msgstr ""
+msgstr "Offset X stella"
 
 msgid "Star Y Offset"
-msgstr ""
+msgstr "Offset Y stella"
 
 msgid "Stars"
-msgstr ""
+msgstr "Stelle"
 
 msgid "Sway Of leaves"
-msgstr ""
+msgstr "Oscillazione delle foglie"
 
 msgid "The X point on the screen where stars should start"
-msgstr ""
+msgstr "La coordinata X sullo schermo dove dovrebbero avere inizio le stelle"
 
 msgid "The Y point on the screen where stars should start"
-msgstr ""
+msgstr "La coordinata Y sullo schermo dove dovrebbero avere inizio le stelle"
 
-#, fuzzy
 msgid "Toggle Selected Element"
-msgstr "Commuta schermo intero"
+msgstr "Commuta elemento selezionato"
 
 msgid "Total number of allowed element"
-msgstr ""
+msgstr "Numero totale di elementi consentiti"
 
 msgid "Update Delay"
 msgstr "Ritardo aggiornamento"
 
 msgid "Use a bold font"
-msgstr ""
+msgstr "Usare un carattere grassetto"
 
 msgid "Viscosity of liquid"
-msgstr ""
+msgstr "Viscosità del liquido"
 
 msgid "Y Sway Gravity"
-msgstr ""
+msgstr "Gravità dell'oscillazione"
 
 msgid "sway of leaves"
-msgstr ""
+msgstr "Oscillazione delle foglie"
 
 msgid "Animation used when switching to expo mode"
 msgstr "Animazione da usare nel passaggio alla modalità «Expo»"
@@ -1606,7 +1874,7 @@ msgstr "Associazione pulsante per uscire dalla modalità Expo"
 
 msgid "Button binding to switch to next viewport in expo"
 msgstr ""
-"Associazione pulsante per passare all'area di lavoro successiva nella "
+"Associazione pulsante per passare all'area visibile successiva nella "
 "modalità Expo"
 
 msgid "Curve"
@@ -1619,7 +1887,7 @@ msgid "Deformation of the expo wall"
 msgstr "Deformazione del muro «Expo»"
 
 msgid "Distance between viewports"
-msgstr "Distanza tra le aree di lavoro"
+msgstr "Distanza tra le aree visibili"
 
 msgid "Distance of the expo wall"
 msgstr "Distanza del muro «Expo»"
@@ -1652,7 +1920,7 @@ msgid "Expo Animation"
 msgstr "Animazione Expo"
 
 msgid "Expo Plugin"
-msgstr "Plug-in Expo"
+msgstr "Plugin Expo"
 
 msgid "Expo button"
 msgstr "Pulsante Expo"
@@ -1686,10 +1954,10 @@ msgid "Immediate moves"
 msgstr "Movimenti immediati"
 
 msgid "Inactive viewport brightness."
-msgstr "Luminosità area di lavoro inattiva."
+msgstr "Luminosità area visibile inattiva."
 
 msgid "Inactive viewport saturation."
-msgstr "Saturazione area di lavoro inattiva."
+msgstr "Saturazione area visibile inattiva."
 
 msgid "Mipmaps"
 msgstr "Mipmap"
@@ -1698,7 +1966,7 @@ msgid "Multi Output Mode"
 msgstr "Modalità multi-output"
 
 msgid "Next viewport"
-msgstr "Area di lavoro successiva"
+msgstr "Area visibile successiva"
 
 msgid "One big wall"
 msgstr "Una grande muraglia"
@@ -1707,7 +1975,7 @@ msgid "One wall per output"
 msgstr "Una muraglia per output"
 
 msgid "Previous viewport"
-msgstr "Area di lavoro precedente"
+msgstr "Area visibile precedente"
 
 msgid "Reflection Scale"
 msgstr "Scala riflesso"
@@ -1731,7 +1999,7 @@ msgstr ""
 "finestre"
 
 msgid "Show a reflection of the viewports on the ground"
-msgstr "Mostra il riflesso delle aree di lavoro sulla base"
+msgstr "Mostra il riflesso delle aree visibili sulla base"
 
 msgid "Strength of the deformation in curve mode"
 msgstr "Forza della deformazione nella modalità «Curva»"
@@ -1743,7 +2011,7 @@ msgid "Timeframe to execute a double click"
 msgstr "Arco di tempo per eseguire un doppio clic"
 
 msgid "Viewport distance"
-msgstr "Distanza area di lavoro"
+msgstr "Distanza area visibile"
 
 # (NdT) è diverso dal Vortice usato per Sidekick,
 # ma l'effetto è simile...
@@ -2223,7 +2491,7 @@ msgid "Render gears inside of the transparent cube"
 msgstr "Presenta degli ingranaggi all'interno del cubo trasparente"
 
 msgid "Grid"
-msgstr ""
+msgstr "Griglia"
 
 msgid "Move window to the bottom edge"
 msgstr "Muove la finestra al bordo inferiore"
@@ -2281,6 +2549,7 @@ msgstr "Posiziona in alto a destra"
 
 msgid "Warp and resize windows to fit an imaginary grid."
 msgstr ""
+"Ruota e ridimensiona le finestra per adattarle a una griglia immaginaria."
 
 msgid "Animation Options"
 msgstr "Opzioni animazione"
@@ -2762,7 +3031,7 @@ msgstr "Finestre che possono essere raggruppate"
 
 msgid "With this plugin you can group and tab windows"
 msgstr ""
-"Con questo plug-in è possibile raggruppare e disporre in schede le finestre"
+"Con questo plugin è possibile raggruppare e disporre in schede le finestre"
 
 msgid "Y distance for spring model"
 msgstr "Distanza Y per la molla"
@@ -2774,7 +3043,7 @@ msgid "JPEG"
 msgstr "JPEG"
 
 msgid "JPEG image format plugin"
-msgstr "Plug-in per il formato di immagine JPEG"
+msgstr "Plugin per il formato di immagine JPEG"
 
 msgid "Quality of compression when saving JPEG images"
 msgstr "Qualità della compressione nel salvare immagini JPEG"
@@ -3195,10 +3464,10 @@ msgid "Mousegestures"
 msgstr "Gesti del mouse"
 
 msgid "Plugin"
-msgstr "Plug-in"
+msgstr "Plugin"
 
 msgid "Plugin the action belongs to."
-msgstr "Plug-in a cui è associata un'azione."
+msgstr "Plugin a cui è associata un'azione."
 
 msgid "Start gesture"
 msgstr "Inizia gesto"
@@ -3232,7 +3501,7 @@ msgid "Mouse switch"
 msgstr "Cambia area di lavoro con i gesti del mouse"
 
 msgid "Switch viewport in response to mouse gesture"
-msgstr "Cambia area di lavoro con un gesto del mouse"
+msgstr "Cambia area visibile con un gesto del mouse"
 
 msgid "Also negate window decorations, not only the window contents."
 msgstr ""
@@ -3454,7 +3723,7 @@ msgid "Move window arbitrarily by passing x, y and type."
 msgstr "Muove la finestra arbitrariamente passando x, y e il tipo."
 
 msgid "Move window to a certain viewport"
-msgstr "Muove la finestra su un'area di lavoro specifica"
+msgstr "Muove la finestra su un'area visibile specifica"
 
 msgid "Move window to the last position"
 msgstr "Muove la finestra all'ultima posizione"
@@ -3466,52 +3735,52 @@ msgid "Move window to the pointer position"
 msgstr "Muove la finestra alla posizione del puntatore"
 
 msgid "Move window to the viewport on the bottom"
-msgstr "Muove la finestra nell'area di lavoro in basso"
+msgstr "Muove la finestra nell'area visibile in basso"
 
 msgid "Move window to the viewport on the left"
-msgstr "Muove la finestra nell'area di lavoro a sinistra"
+msgstr "Muove la finestra nell'area visibile a sinistra"
 
 msgid "Move window to the viewport on the right"
-msgstr "Muove la finestra nell'area di lavoro a destra"
+msgstr "Muove la finestra nell'area visibile a destra"
 
 msgid "Move window to the viewport on the top"
-msgstr "Muove la finestra nell'area di lavoro in alto"
+msgstr "Muove la finestra nell'area visibile in alto"
 
 msgid "Move window to viewport 1"
-msgstr "Muove la finestra nell'area di lavoro 1"
+msgstr "Muove la finestra nell'area visibile 1"
 
 msgid "Move window to viewport 10"
-msgstr "Muove la finestra nell'area di lavoro 10"
+msgstr "Muove la finestra nell'area visibile 10"
 
 msgid "Move window to viewport 11"
-msgstr "Muove la finestra nell'area di lavoro 11"
+msgstr "Muove la finestra nell'area visibile 11"
 
 msgid "Move window to viewport 12"
-msgstr "Muove la finestra nell'area di lavoro 12"
+msgstr "Muove la finestra nell'area visibile 12"
 
 msgid "Move window to viewport 2"
-msgstr "Muove la finestra nell'area di lavoro 2"
+msgstr "Muove la finestra nell'area visibile 2"
 
 msgid "Move window to viewport 3"
-msgstr "Muove la finestra nell'area di lavoro 3"
+msgstr "Muove la finestra nell'area visibile 3"
 
 msgid "Move window to viewport 4"
-msgstr "Muove la finestra nell'area di lavoro 4"
+msgstr "Muove la finestra nell'area visibile 4"
 
 msgid "Move window to viewport 5"
-msgstr "Muove la finestra nell'area di lavoro 5"
+msgstr "Muove la finestra nell'area visibile 5"
 
 msgid "Move window to viewport 6"
-msgstr "Muove la finestra nell'area di lavoro 6"
+msgstr "Muove la finestra nell'area visibile 6"
 
 msgid "Move window to viewport 7"
-msgstr "Muove la finestra nell'area di lavoro 7"
+msgstr "Muove la finestra nell'area visibile 7"
 
 msgid "Move window to viewport 8"
-msgstr "Muove la finestra nell'area di lavoro 8"
+msgstr "Muove la finestra nell'area visibile 8"
 
 msgid "Move window to viewport 9"
-msgstr "Muove la finestra nell'area di lavoro 9"
+msgstr "Muove la finestra nell'area visibile 9"
 
 msgid ""
 "Number of pixels from the bottom edge where the window will come to rest"
@@ -3545,43 +3814,43 @@ msgid "Put"
 msgstr "Posizione"
 
 msgid "Put On Viewport"
-msgstr "Posiziona nell'area di lavoro"
+msgstr "Posiziona nell'area visibile"
 
 msgid "Put On Viewport 1"
-msgstr "Posiziona nell'area di lavoro 1"
+msgstr "Posiziona nell'area visibile 1"
 
 msgid "Put On Viewport 10"
-msgstr "Posiziona nell'area di lavoro 10"
+msgstr "Posiziona nell'area visibile 10"
 
 msgid "Put On Viewport 11"
-msgstr "Posiziona nell'area di lavoro 11"
+msgstr "Posiziona nell'area visibile 11"
 
 msgid "Put On Viewport 12"
-msgstr "Posiziona nell'area di lavoro 12"
+msgstr "Posiziona nell'area visibile 12"
 
 msgid "Put On Viewport 2"
-msgstr "Posiziona nell'area di lavoro 2"
+msgstr "Posiziona nell'area visibile 2"
 
 msgid "Put On Viewport 3"
-msgstr "Posiziona nell'area di lavoro 3"
+msgstr "Posiziona nell'area visibile 3"
 
 msgid "Put On Viewport 4"
-msgstr "Posiziona nell'area di lavoro 4"
+msgstr "Posiziona nell'area visibile 4"
 
 msgid "Put On Viewport 5"
-msgstr "Posiziona nell'area di lavoro 5"
+msgstr "Posiziona nell'area visibile 5"
 
 msgid "Put On Viewport 6"
-msgstr "Posiziona nell'area di lavoro 6"
+msgstr "Posiziona nell'area visibile 6"
 
 msgid "Put On Viewport 7"
-msgstr "Posiziona nell'area di lavoro 7"
+msgstr "Posiziona nell'area visibile 7"
 
 msgid "Put On Viewport 8"
-msgstr "Posiziona nell'area di lavoro 8"
+msgstr "Posiziona nell'area visibile 8"
 
 msgid "Put On Viewport 9"
-msgstr "Posiziona nell'area di lavoro 9"
+msgstr "Posiziona nell'area visibile 9"
 
 msgid "Put Pointer"
 msgstr "Posiziona al puntatore"
@@ -3593,16 +3862,16 @@ msgid "Put pointer uses the center of the window"
 msgstr "La posizione al puntatore utilizza il centro della finestra"
 
 msgid "Put to adjacent viewport"
-msgstr "Posiziona nell'area di lavoro adiacente"
+msgstr "Posiziona nell'area visibile adiacente"
 
 msgid "Put to arbitrary viewport"
-msgstr "Posiziona in un'area di lavoro qualunque"
+msgstr "Posiziona in un'area visibile qualunque"
 
 msgid "Put window"
 msgstr "Posiziona finestra"
 
 msgid "Put within viewport"
-msgstr "Posiziona nell'area di lavoro"
+msgstr "Posiziona nell'area visibile"
 
 msgid "Restore Position"
 msgstr "Ripristina posizione"
@@ -3613,19 +3882,19 @@ msgstr "Togliere il focus alla finestra"
 
 # (ndt) suggerimento
 msgid "Unfocus windows that are moved off the viewport"
-msgstr "Toglie il focus alle finestre spostate al di fuori dall'area di lavoro"
+msgstr "Toglie il focus alle finestre spostate al di fuori dall'area visibile"
 
 msgid "Viewport Bottom"
-msgstr "Area di lavoro in basso"
+msgstr "Area visibile in basso"
 
 msgid "Viewport Left"
-msgstr "Area di lavoro a sinistra"
+msgstr "Area visibile a sinistra"
 
 msgid "Viewport Right"
-msgstr "Area di lavoro a destra"
+msgstr "Area visibile a destra"
 
 msgid "Viewport Top"
-msgstr "Area di lavoro in alto"
+msgstr "Area visibile in alto"
 
 msgid "Window Center"
 msgstr "Centro della finestra"
@@ -3992,7 +4261,7 @@ msgid ""
 "Make sure windows are fully visible after pulling them to another viewport"
 msgstr ""
 "Rende le finestre completamente visibili dopo averle tirate in un'altra area "
-"di lavoro"
+"visibile"
 
 msgid "No display"
 msgstr "Nessuna visualizzazione"
@@ -4009,8 +4278,7 @@ msgstr "Tira la finestra"
 
 msgid "Pull window to current viewport while in scale mode"
 msgstr ""
-"Tira la finestra nell'area di lavoro attuale quando in modalità Scala "
-"finestre"
+"Tira la finestra nell'area visibile attuale quando in modalità Scala finestre"
 
 msgid "Scale Addons"
 msgstr "Proprietà aggiuntive di «Scala finestre»"
@@ -4025,7 +4293,7 @@ msgid "Size of the border around the window title"
 msgstr "Dimensione del bordo del titolo della finestra"
 
 msgid "Some useful additions to the scale plugin"
-msgstr "Alcune aggiunte utili al plug-in «Scala finestre»"
+msgstr "Alcune aggiunte utili al plugin «Scala finestre»"
 
 msgid "Title Border Size"
 msgstr "Dimensione bordo titolo"
@@ -4089,8 +4357,7 @@ msgstr "Non fa differenza tra maiuscole e minuscole nel filtraggio."
 
 msgid "Window title filter facility for the scale plugin"
 msgstr ""
-"Sistema di filtraggio sul titolo delle finestre per il plug-in «Scala "
-"finestre»"
+"Sistema di filtraggio sul titolo delle finestre per il plugin «Scala finestre»"
 
 msgid ""
 "Also try to save and restore legacy apps that don't support the X session "
@@ -4104,7 +4371,7 @@ msgstr ""
 
 msgid "Matching windows will not be handled by the session plugin"
 msgstr ""
-"Le finestre corrispondenti non saranno gestite dal plug-in della sessione"
+"Le finestre corrispondenti non saranno gestite dal plugin della sessione"
 
 msgid "Save Legacy Apps"
 msgstr "Salvare applicazioni datate"
@@ -4283,13 +4550,13 @@ msgstr ""
 "Indica come viene visualizzato il selettore se sono in uso dispositivi di "
 "output multipli."
 
-# (ndt) nome del plug-in...
+# (ndt) nome del plugin...
 # non mi viene niente di meglio...
 msgid "Shift Switcher"
 msgstr "Selettore a scorrimento"
 
 msgid "Shift Switcher Plugin"
-msgstr "Plug-in «Selettore a scorrimento»"
+msgstr "Plugin «Selettore a scorrimento»"
 
 msgid "Shift Windows"
 msgstr "Finestre da scorrere"
@@ -4334,7 +4601,7 @@ msgstr "Sinistra/Destra"
 msgid "Movement Direction"
 msgstr "Direzione movimento"
 
-# (ndt) nome del plug-in
+# (ndt) nome del plugin
 msgid "Show desktop"
 msgstr "Mostra scrivania"
 
@@ -4394,7 +4661,7 @@ msgstr "Emettitori"
 msgid "Have random colors for the particles"
 msgstr "Colori casuali per le particelle"
 
-# (ndt) descrizione del plug-in
+# (ndt) descrizione del plugin
 msgid "Increases the visibility of the mouse pointer"
 msgstr "Aumenta la visibilità del puntatore del mouse"
 
@@ -4454,22 +4721,17 @@ msgstr "Mostra il mouse"
 msgid "Toggle the mouse pointer trail."
 msgstr "Commuta la traccia del puntatore del mouse."
 
-#, fuzzy
 msgid "Intensity."
 msgstr "Intensità"
 
-# (ndt) è ralativo al tempo di ritardo con cui
-# viene mostrata l'anteprima della finestra
-#, fuzzy
 msgid "Show repaint"
-msgstr "Ritardo anteprima"
+msgstr "Mostrare ricolorazione"
 
 msgid "Show repainted regions in different colors"
-msgstr ""
+msgstr "Visualizza le regioni ricolorate con diversi colori"
 
-#, fuzzy
 msgid "Toggle showing of repainted regions."
-msgstr "Commuta filtraggio finestra"
+msgstr "Commuta la visualizzazione delle regioni ricolorate"
 
 msgid "Alt"
 msgstr "Alt"
@@ -4626,7 +4888,7 @@ msgid "Top to Bottom"
 msgstr "Dall'alto al basso"
 
 msgid "A simple splash plugin"
-msgstr "Plug-in per generare un semplice splash"
+msgstr "Plugin per generare un semplice splash"
 
 msgid "Background File"
 msgstr "Immagine di sfondo"
@@ -4708,11 +4970,8 @@ msgstr "Finestre da mostrare nel selettore"
 msgid "Alignment for rows that are not fully filled"
 msgstr "Allineamento per le righe non completamente piene"
 
-#, fuzzy
 msgid "Allow selection of windows from the switcher window with the mouse"
-msgstr ""
-"Permette la selezione delle finestre semplicemente facendo clic su esse "
-"quando il selettore è attivo."
+msgstr "Permette la selezione delle finestre col mouse"
 
 msgid "Amount of brightness in percent"
 msgstr "Luminosità in percentuale"
@@ -4724,7 +4983,7 @@ msgid "Amount of saturation in percent"
 msgstr "Saturazione in percentuale"
 
 msgid "Auto Change Viewport"
-msgstr "Cambiamento automatico area di lavoro"
+msgstr "Cambiamento automatico area visibile"
 
 msgid "Bring Selected To Front"
 msgstr "Portare la selezione in primo piano"
@@ -4734,7 +4993,7 @@ msgstr "Centrato"
 
 msgid "Change to the viewport of the selected window while switching"
 msgstr ""
-"Passa all'area di lavoro della finestra selezionata durante la selezione"
+"Passa all'area visibile della finestra selezionata durante la selezione"
 
 msgid "Color of highlight rectangle"
 msgstr "Colore del rettangolo di evidenziazione"
@@ -4931,8 +5190,8 @@ msgstr "Colora le finestre come lo sfondo invece che con un bagliore."
 # (ndt) suggerimento
 msgid "Set it if the Taskbar shows only Windows of Current Viewport."
 msgstr ""
-"Indica se la barra delle applicazioni mostra solo le finestre dell'area di "
-"lavoro corrente."
+"Indica se la barra delle applicazioni mostra solo le finestre dell'area "
+"visibile corrente."
 
 # (ndt) suggerimento
 msgid "Should be the window title Bold."
@@ -4957,7 +5216,7 @@ msgstr "Barra delle applicazioni"
 # (ndt) opzione
 # È presente solo nelle opzioni della barra delle applicazioni, quindi lo tolgo
 msgid "Taskbar Shows Only Windows of Current Viewport"
-msgstr "Mostrare solo le finestre dell'area di lavoro corrente"
+msgstr "Mostrare solo le finestre dell'area visibile corrente"
 
 # (ndt) suggerimento
 msgid "Thumbnail Background and Border Glow Color."
@@ -4983,7 +5242,7 @@ msgstr "Anteprime sempre in primo piano"
 msgid "Time (in ms) before Thumbnail is shown."
 msgstr "Tempo (in millisecondi) prima di mostrare l'anteprima."
 
-# (ndt) nome del plug-in
+# (ndt) nome del plugin
 msgid "Window Previews"
 msgstr "Anteprima finestre"
 
@@ -5238,25 +5497,25 @@ msgid "Action name for initiate/terminate"
 msgstr "Nome azione per inizia/termina"
 
 msgid "Begin Viewport Switch"
-msgstr "Inizia selettore area di lavoro"
+msgstr "Inizia selettore area visibile"
 
 msgid "Begin entering viewport number"
-msgstr "Inizia inserimento numero area di lavoro"
+msgstr "Inizia inserimento numero area visibile"
 
 msgid "Desktop-based Viewport Switching"
-msgstr "Selezione area di lavoro in base alla scrivania"
+msgstr "Selezione area visibile in base alla scrivania"
 
 msgid "Go to specific viewport"
-msgstr "Vai a un'area di lavoro specifica"
+msgstr "Vai a un'area visibile specifica"
 
 msgid "Initiate plugin action"
-msgstr "Azione inizializzazione plug-in"
+msgstr "Azione inizializzazione plugin"
 
 msgid "Initiate viewport changes through several events"
-msgstr "Inizializza cambio area di lavoro attraverso diversi eventi"
+msgstr "Inizializza cambio area visibile attraverso diversi eventi"
 
 msgid "Initiate/Terminate the selected plugin action"
-msgstr "Inizializza/Termina l'azione del plug-in selezionato"
+msgstr "Inizializza/Termina l'azione del plugin selezionato"
 
 msgid "Move Down"
 msgstr "Muovi giù"
@@ -5283,10 +5542,10 @@ msgid "Move to the left"
 msgstr "Muove verso sinistra"
 
 msgid "Move to the next viewport"
-msgstr "Muove all'area di lavoro successiva"
+msgstr "Muove all'area visibile successiva"
 
 msgid "Move to the previous viewport"
-msgstr "Muove all'area di lavoro precedente"
+msgstr "Muove all'area visibile precedente"
 
 msgid "Move to the right"
 msgstr "Muove a sinistra"
@@ -5295,88 +5554,88 @@ msgid "Move up"
 msgstr "Muove in alto"
 
 msgid "Number-Based Viewport Switching"
-msgstr "Selezione area di lavoro in base al numero"
+msgstr "Selezione area visibile in base al numero"
 
 msgid "Plugin for initiate action"
-msgstr "Plug-in per azione inizializzazione"
+msgstr "Plugin per azione inizializzazione"
 
 msgid "Plugin for initiate/action action"
-msgstr "Plug-in per attivare l'azione"
+msgstr "Plugin per attivare l'azione"
 
 msgid "Switch to Viewport 1"
-msgstr "Passa all'area di lavoro 1"
+msgstr "Passa all'area visibile 1"
 
 msgid "Switch to Viewport 10"
-msgstr "Passa all'area di lavoro 10"
+msgstr "Passa all'area visibile 10"
 
 msgid "Switch to Viewport 11"
-msgstr "Passa all'area di lavoro 11"
+msgstr "Passa all'area visibile 11"
 
 msgid "Switch to Viewport 12"
-msgstr "Passa all'area di lavoro 12"
+msgstr "Passa all'area visibile 12"
 
 msgid "Switch to Viewport 2"
-msgstr "Passa all'area di lavoro 2"
+msgstr "Passa all'area visibile 2"
 
 msgid "Switch to Viewport 3"
-msgstr "Passa all'area di lavoro 3"
+msgstr "Passa all'area visibile 3"
 
 msgid "Switch to Viewport 4"
-msgstr "Passa all'area di lavoro 4"
+msgstr "Passa all'area visibile 4"
 
 msgid "Switch to Viewport 5"
-msgstr "Passa all'area di lavoro 5"
+msgstr "Passa all'area visibile 5"
 
 msgid "Switch to Viewport 6"
-msgstr "Passa all'area di lavoro 6"
+msgstr "Passa all'area visibile 6"
 
 msgid "Switch to Viewport 7"
-msgstr "Passa all'area di lavoro 7"
+msgstr "Passa all'area visibile 7"
 
 msgid "Switch to Viewport 8"
-msgstr "Passa all'area di lavoro 8"
+msgstr "Passa all'area visibile 8"
 
 msgid "Switch to Viewport 9"
-msgstr "Passa all'area di lavoro 9"
+msgstr "Passa all'area visibile 9"
 
 msgid "Switch to viewport 1"
-msgstr "Passa all'area di lavoro 1"
+msgstr "Passa all'area visibile 1"
 
 msgid "Switch to viewport 10"
-msgstr "Passa all'area di lavoro 10"
+msgstr "Passa all'area visibile 10"
 
 msgid "Switch to viewport 11"
-msgstr "Passa all'area di lavoro 11"
+msgstr "Passa all'area visibile 11"
 
 msgid "Switch to viewport 12"
-msgstr "Passa all'area di lavoro 12"
+msgstr "Passa all'area visibile 12"
 
 msgid "Switch to viewport 2"
-msgstr "Passa all'area di lavoro 2"
+msgstr "Passa all'area visibile 2"
 
 msgid "Switch to viewport 3"
-msgstr "Passa all'area di lavoro 3"
+msgstr "Passa all'area visibile 3"
 
 msgid "Switch to viewport 4"
-msgstr "Passa all'area di lavoro 4"
+msgstr "Passa all'area visibile 4"
 
 msgid "Switch to viewport 5"
-msgstr "Passa all'area di lavoro 5"
+msgstr "Passa all'area visibile 5"
 
 msgid "Switch to viewport 6"
-msgstr "Passa all'area di lavoro 6"
+msgstr "Passa all'area visibile 6"
 
 msgid "Switch to viewport 7"
-msgstr "Passa all'area di lavoro 7"
+msgstr "Passa all'area visibile 7"
 
 msgid "Switch to viewport 8"
-msgstr "Passa all'area di lavoro 8"
+msgstr "Passa all'area visibile 8"
 
 msgid "Switch to viewport 9"
-msgstr "Passa all'area di lavoro 9"
+msgstr "Passa all'area visibile 9"
 
 msgid "Viewport Switcher"
-msgstr "Selettore area di lavoro"
+msgstr "Selettore area visbile"
 
 # (ndt) opzione
 # la traduzione però non è molto corretta...
@@ -5402,7 +5661,7 @@ msgid "Desktop Wall"
 msgstr "Muraglia di desktop"
 
 msgid "Desktop Wall Plugin"
-msgstr "Plug-in «Muraglia di desktop»"
+msgstr "Plugin «Muraglia di desktop»"
 
 # (ndt) suggerimento
 # durata totale dell'animazione
@@ -5479,17 +5738,17 @@ msgstr "Scorre in alto"
 
 msgid "Flip viewport when dragging an object to a screen edge"
 msgstr ""
-"Scorre l'area di lavoro quando si trascina un oggetto su un bordo dello "
+"Scorre l'area visibile quando si trascina un oggetto su un bordo dello "
 "schermo"
 
 msgid "Flip viewport when moving a window to a screen edge"
 msgstr ""
-"Scorre l'area di lavoro quando si sposta una finestra su un bordo dello "
+"Scorre l'area visibile quando si sposta una finestra su un bordo dello "
 "schermo"
 
 msgid "Flip viewport when moving the pointer to a screen edge"
 msgstr ""
-"Scorre l'area di lavoro quando si sposta il puntatore del mouse su un bordo "
+"Scorre l'area visibile quando si sposta il puntatore del mouse su un bordo "
 "dello schermo"
 
 msgid "Highlight Gradient"
@@ -5517,10 +5776,10 @@ msgid "Move along the wall to the left"
 msgstr "Muove verso la sinistra della muraglia"
 
 msgid "Move along the wall to the next viewport"
-msgstr "Muove verso la prossima area di lavoro nella muraglia"
+msgstr "Muove verso la prossima area visibile nella muraglia"
 
 msgid "Move along the wall to the previous viewport"
-msgstr "Muove verso la precedente area di lavoro nella muraglia"
+msgstr "Muove verso la precedente area visibile nella muraglia"
 
 msgid "Move along the wall to the right"
 msgstr "Muove verso la destra della muraglia"
@@ -5584,11 +5843,11 @@ msgstr "Colore ombra"
 
 # (ndt) opzione
 msgid "Show Live Viewport Previews"
-msgstr "Mostrare anteprima in tempo reale delle aree di lavoro"
+msgstr "Mostrare anteprima in tempo reale dell'area visibile"
 
 # (ndt) opzione
 msgid "Show Viewport Switcher Preview"
-msgstr "Mostrare anteprima selezionatore aree di lavoro"
+msgstr "Mostrare anteprima selezionatore area visibile"
 
 # (ndt) suggerimento
 msgid "Show live viewport previews in switcher window"
@@ -5596,7 +5855,7 @@ msgstr "Mostra anteprime reali nella finestra del selettore"
 
 # (ndt) suggerimento
 msgid "Show switcher window while switching viewports"
-msgstr "Mostra la finestra del selettore mentre si cambia area di lavoro"
+msgstr "Mostra la finestra del selettore mentre si cambia area visibile"
 
 #, no-c-format
 msgid "Size of the preview in %"
@@ -5621,10 +5880,10 @@ msgid "Thumb Gradient"
 msgstr "Gradiente anteprima"
 
 msgid "Viewport Switch Preview"
-msgstr "Anteprima cambio area di lavoro"
+msgstr "Anteprima cambio area visibile"
 
 msgid "Viewport Switching"
-msgstr "Selezione area di lavoro"
+msgstr "Selezione area visibile"
 
 msgid "Wall Sliding Duration"
 msgstr "Durata scorrimento muraglia"
@@ -5881,6 +6140,15 @@ msgstr "Corregge il tipo di finestra di diverse finestre Java."
 msgid "Fix window type of various Qt windows."
 msgstr "Corregge il tipo di finestra di diverse finestre Qt."
 
+msgid "Force synchronization between X and GLX"
+msgstr ""
+
+msgid ""
+"Force synchronization between X and GLX, which may help for window parts not "
+"redrawing correctly when using Nvidia drivers, but also may decrease "
+"performance."
+msgstr ""
+
 msgid "Java Window Fix"
 msgstr "Correzione finestra Java"
 
@@ -5896,7 +6164,7 @@ msgid ""
 "viewports."
 msgstr ""
 "Rende le finestre adesive su tutte le scrivanie. Le finestre adesive sono "
-"visibili in tutte le aree di lavoro."
+"visibili in tutte le aree visibili."
 
 # (ndt) traduzione precedente: flag richiesta attenzione
 msgid "Make \"urgent\" windows also \"demand attention\"."
@@ -5931,13 +6199,7 @@ msgstr "Alternative"
 #~ msgid "Cube Caps"
 #~ msgstr "Capi del cubo"
 
-#~ msgid "Render images on top and bottom of the cube"
-#~ msgstr "Applica delle immagini alle facce superiore e inferiore del cubo"
-
 #~ msgid "Compiz cube reflection"
-#~ msgstr "Riflesso del cubo"
-
-#~ msgid "Cube Reflection"
 #~ msgstr "Riflesso del cubo"
 
 #~ msgid "Move Window To Next Output"
@@ -5976,7 +6238,7 @@ msgstr "Alternative"
 #~ msgstr "Mettere le schermate in questa directory"
 
 #~ msgid "ScreenCast plugin"
-#~ msgstr "Plug-in di cattura video"
+#~ msgstr "Plugin di cattura video"
 
 #~ msgid "ScreenCasting"
 #~ msgstr "Video"
