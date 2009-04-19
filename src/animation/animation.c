@@ -3490,7 +3490,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 			damagePendingOnScreen (w->screen);
 		    }
 		}
-		else if (!w->invisible)
+		else if (!w->invisible && !w->hidden)
 		{
 		    // MINIMIZE event!
 
@@ -3955,7 +3955,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 	    // UNMINIMIZE event!
 
-	    if (!w->invisible &&
+	    if (!w->invisible && !w->hidden &&
 		chosenEffect != AnimEffectNone &&
 		!as->pluginActive[3]) // fadedesktop
 	    {
