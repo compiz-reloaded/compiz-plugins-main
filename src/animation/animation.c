@@ -1524,7 +1524,10 @@ static void postAnimationCleanupCustom (CompWindow * w,
 
     if (// make sure window shadows (which are not drawn by polygon engine)
 	// are damaged
-	(aw->com.curAnimEffect->properties.addCustomGeometryFunc &&
+	(aw->com.curAnimEffect &&
+	 aw->com.curAnimEffect != AnimEffectNone &&
+	 aw->com.curAnimEffect != AnimEffectRandom &&
+	 aw->com.curAnimEffect->properties.addCustomGeometryFunc &&
 	 (aw->com.curWindowEvent == WindowEventOpen ||
 	  aw->com.curWindowEvent == WindowEventUnminimize ||
 	  aw->com.curWindowEvent == WindowEventUnshade ||
@@ -1564,7 +1567,10 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	as->walkerAnimCount--;
     }
 
-    if (aw->com.curAnimEffect->properties.cleanupFunc)
+    if (aw->com.curAnimEffect &&
+	aw->com.curAnimEffect != AnimEffectNone &&
+	aw->com.curAnimEffect != AnimEffectRandom &&
+	aw->com.curAnimEffect->properties.cleanupFunc)
 	aw->com.curAnimEffect->properties.cleanupFunc (w);
 
     aw->com.curWindowEvent = WindowEventNone;
@@ -2299,7 +2305,14 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 	{
 	    aw = GET_ANIM_WINDOW(w, as);
 
-	    if (aw->com.animRemainingTime > 0)
+	    if (aw->com.animRemainingTime > 0 &&
+		(!aw->com.curAnimEffect ||
+		 aw->com.curAnimEffect == AnimEffectNone ||
+		 aw->com.curAnimEffect == AnimEffectRandom))
+	    {
+	    	postAnimationCleanup (w);
+	    }
+	    else if (aw->com.animRemainingTime > 0)
 	    {
 		if (aw->com.curAnimEffect->properties.prePrepPaintScreenFunc &&
 		    aw->com.curAnimEffect->properties.prePrepPaintScreenFunc
@@ -2386,8 +2399,11 @@ static void animPreparePaintScreen(CompScreen * s, int msSinceLastPaint)
 	for (w = s->windows; w; w = w->next)
 	{
 	    aw = GET_ANIM_WINDOW(w, as);
-	    if (aw && aw->com.curAnimEffect->properties.
-		postPrepPaintScreenFunc)
+	    if (aw &&
+		aw->com.curAnimEffect &&
+		aw->com.curAnimEffect != AnimEffectNone &&
+		aw->com.curAnimEffect != AnimEffectRandom &&
+		aw->com.curAnimEffect->properties.postPrepPaintScreenFunc)
 	    {
 		aw->com.curAnimEffect->properties.postPrepPaintScreenFunc (w);
 	    }
