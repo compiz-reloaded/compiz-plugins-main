@@ -978,20 +978,27 @@ layoutThumbsFlip (CompScreen *s)
 static Bool
 layoutThumbs (CompScreen *s)
 {
+    Bool result = FALSE;
+
     SHIFT_SCREEN (s);
 
-    if ((ss->state == ShiftStateNone) || (ss->state == ShiftStateIn))
+    if (ss->state == ShiftStateNone)
 	return FALSE;
 
     switch (shiftGetMode (s))
     {
     case ModeCover:
-	return layoutThumbsCover (s);
+	result = layoutThumbsCover (s);
+	break;
     case ModeFlip:
-	return layoutThumbsFlip (s);
+    	result = layoutThumbsFlip (s);
+    	break;
     }
 
-    return FALSE;
+    if (ss->state == ShiftStateIn)
+    	return FALSE;
+
+    return result;
 }
 
 
@@ -2067,7 +2074,9 @@ shiftWindowRemove (CompDisplay * d,
 	    return;
 	}
 
-	if (!ss->grabIndex)
+	// Let the window list be updated to avoid crash
+	// when a window is closed while ending shift (ShiftStateIn).
+	if (!ss->grabIndex && ss->state != ShiftStateIn)
 	    return;
 
 	if (shiftUpdateWindowList (w->screen))
