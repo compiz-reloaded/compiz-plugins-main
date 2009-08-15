@@ -50,17 +50,26 @@ fxDodgeProcessSubject (CompWindow *wCur,
     rect.width = WIN_W(wCur);
     rect.height = WIN_H(wCur);
     Region wCurRegion = XCreateRegion();
+    if (!wCurRegion)
+	return;
+
     XUnionRectWithRegion(&rect, &emptyRegion, wCurRegion);
     if (!alwaysInclude)
     {
 	Region intersectionRegion = XCreateRegion();
-	XIntersectRegion(wRegion, wCurRegion,
-			 intersectionRegion);
-	if (!XEmptyRegion(intersectionRegion))
-	    XUnionRegion(dodgeRegion, wCurRegion, dodgeRegion);
+	if (intersectionRegion)
+	{
+	    XIntersectRegion(wRegion, wCurRegion,
+			     intersectionRegion);
+	    if (!XEmptyRegion(intersectionRegion))
+		XUnionRegion(dodgeRegion, wCurRegion, dodgeRegion);
+	    XDestroyRegion (intersectionRegion);
+	}
     }
     else
 	XUnionRegion(dodgeRegion, wCurRegion, dodgeRegion);
+
+    XDestroyRegion (wCurRegion);
 }
 
 static void
@@ -75,7 +84,15 @@ fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
     // Then this would be a bounding box of the subject windows
     // intersecting with dodger.
     Region wRegion = XCreateRegion();
+    if (!wRegion)
+	return;
+
     Region dodgeRegion = XCreateRegion();
+    if (!dodgeRegion)
+    {
+	XDestroyRegion (wRegion);
+	return;
+    }
 
     XRectangle rect;
     rect.x = WIN_X(w);
@@ -130,6 +147,9 @@ fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
     }
 
     XClipBox(dodgeRegion, dodgeBox);
+
+    XDestroyRegion (wRegion);
+    XDestroyRegion (dodgeRegion);
 }
 
 static void

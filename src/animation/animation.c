@@ -1005,6 +1005,9 @@ damageBoundingBox (CompWindow * w)
 
     // Find union of BB and lastBB
     Region regionToDamage = XCreateRegion();
+    if (!regionToDamage)
+	return;
+
     XRectangle rect;
 
     BoxPtr BB = &aw->BB;
