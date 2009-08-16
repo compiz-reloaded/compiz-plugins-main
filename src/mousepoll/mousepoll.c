@@ -372,6 +372,9 @@ mousepollFiniScreen (CompPlugin *p,
 {
     MOUSEPOLL_SCREEN (s);
 
+    if (ms->updateHandle)
+	compRemoveTimeout (ms->updateHandle);
+
     free (ms);
 }
 

@@ -1213,6 +1213,9 @@ thumbFiniScreen (CompPlugin *p,
     UNWRAP (ts, s, windowResizeNotify);
     UNWRAP (ts, s, paintTransformedOutput);
 
+    if (ts->displayTimeout)
+	compRemoveTimeout (ts->displayTimeout);
+
     if (ts->pollHandle)
     {
 	THUMB_DISPLAY (s->display);
