@@ -66,7 +66,7 @@ base_name (char *str)
     if (!current)
 	return NULL;
     /* Trim terminating '/' if needed */
-    if (current[(length - 1)] == '/')
+    if (length > 0 && current[(length - 1)] == '/')
 	current[(length - 1)] = 0;
     return current;
 }

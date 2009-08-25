@@ -323,11 +323,15 @@ loadFilters (CompScreen *s, CompTexture *texture)
     for (i = 0; i < count; i++)
     {
 	name = base_name (filters->value[i].s);
-	if (!strlen (name))
+	if (!name || !strlen (name))
 	{
-	    free (name);
+	    if (name)
+		free (name);
+
+	    cfs->filtersFunctions[i] = 0;
 	    continue;
 	}
+
 	compLogMessage ("colorfilter", CompLogLevelInfo,
 			"Loading filter %s (item %s).", name,
 			filters->value[i].s);
