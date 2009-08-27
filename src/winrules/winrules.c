@@ -575,7 +575,8 @@ winrulesGetAllowedActionsForWindow (CompWindow   *w,
     WRAP (ws, w->screen, getAllowedActionsForWindow,
           winrulesGetAllowedActionsForWindow);
 
-    *clearActions |= ~ww->allowedActions;
+    if (ww)
+	*clearActions |= ~ww->allowedActions;
 }
 
 static void
@@ -763,6 +764,9 @@ winrulesFiniWindow (CompPlugin *p,
 	compRemoveTimeout (ww->handle);
 
     free (ww);
+
+    WINRULES_SCREEN (w->screen);
+    w->base.privates[ws->windowPrivateIndex].ptr = NULL;
 }
 
 static CompBool
