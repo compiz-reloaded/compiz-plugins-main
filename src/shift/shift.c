@@ -1753,7 +1753,7 @@ shiftInitiateScreen (CompScreen      *s,
 
     SHIFT_SCREEN (s);
 
-    if (otherScreenGrabExist (s, "shift", 0))
+    if (otherScreenGrabExist (s, "shift", NULL))
 	return FALSE;
 	   
     ss->currentMatch = shiftGetWindowMatch (s);

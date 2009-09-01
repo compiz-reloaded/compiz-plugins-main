@@ -350,7 +350,7 @@ expoExpo (CompDisplay     *d,
     {
 	EXPO_SCREEN (s);
 
-	if (otherScreenGrabExist (s, "expo", 0))
+	if (otherScreenGrabExist (s, "expo", NULL))
 	    return FALSE;
 
 	if (!es->expoMode)

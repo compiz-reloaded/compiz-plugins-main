@@ -1096,7 +1096,7 @@ ringInitiate (CompScreen      *s,
 
     RING_SCREEN (s);
 
-    if (otherScreenGrabExist (s, "ring", 0))
+    if (otherScreenGrabExist (s, "ring", NULL))
 	return FALSE;
 	   
     rs->currentMatch = ringGetWindowMatch (s);

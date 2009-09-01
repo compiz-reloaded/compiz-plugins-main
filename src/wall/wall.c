@@ -549,7 +549,7 @@ wallMoveViewport (CompScreen *s,
     if (!x && !y)
 	return FALSE;
 
-    if (otherScreenGrabExist (s, "move", "switcher", "group-drag", "wall", 0))
+    if (otherScreenGrabExist (s, "move", "switcher", "group-drag", "wall", NULL))
 	return FALSE;
 
     if (!wallCheckDestination (s, x, y))
@@ -625,7 +625,7 @@ wallHandleEvent (CompDisplay *d,
 	    if (!s)
 		break;
 
-	    if (otherScreenGrabExist (s, "switcher", "wall", 0))
+	    if (otherScreenGrabExist (s, "switcher", "wall", NULL))
 		break;
 
     	    dx = event->xclient.data.l[0] / s->width - s->x;
@@ -651,7 +651,7 @@ wallActivateWindow (CompWindow *w)
 
     WALL_SCREEN (s);
 
-    if (w->placed && !otherScreenGrabExist (s, "wall", "switcher", 0))
+    if (w->placed && !otherScreenGrabExist (s, "wall", "switcher", NULL))
     {
 	int dx, dy;
 
@@ -756,7 +756,7 @@ wallInitiateFlip (CompScreen *s,
     int dx, dy;
     int amountX, amountY;
 
-    if (otherScreenGrabExist (s, "wall", "move", "group-drag", 0))
+    if (otherScreenGrabExist (s, "wall", "move", "group-drag", NULL))
 	return FALSE;
 
     if (dnd)
@@ -764,16 +764,16 @@ wallInitiateFlip (CompScreen *s,
 	if (!wallGetEdgeflipDnd (s))
 	    return FALSE;
 
-	if (otherScreenGrabExist (s, "wall", 0))
+	if (otherScreenGrabExist (s, "wall", NULL))
 	    return FALSE;
     }
-    else if (otherScreenGrabExist (s, "wall", "group-drag", 0))
+    else if (otherScreenGrabExist (s, "wall", "group-drag", NULL))
     {
 	/* not wall or group means move */
 	if (!wallGetEdgeflipMove (s))
 	    return FALSE;
     }
-    else if (otherScreenGrabExist (s, "wall", 0))
+    else if (otherScreenGrabExist (s, "wall", NULL))
     {
 	/* move was ruled out before, so we have group */
 	if (!wallGetEdgeflipDnd (s))

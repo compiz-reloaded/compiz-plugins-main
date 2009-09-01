@@ -719,7 +719,7 @@ putInitiateCommon (CompDisplay     *d,
 	{
 	    /* this will keep put from working while something
 	       else has a screen grab */
-	    if (otherScreenGrabExist (s, "put", 0))
+	    if (otherScreenGrabExist (s, "put", NULL))
 		return FALSE;
 
 	    /* we are ok, so grab the screen */

@@ -208,9 +208,9 @@ opacifyHandleEnter (CompScreen *s,
 {
     OPACIFY_SCREEN (s);
 
-    if (otherScreenGrabExist (s, 0))
+    if (otherScreenGrabExist (s, NULL))
     {
-	if (!otherScreenGrabExist (s, "move", 0))
+	if (!otherScreenGrabExist (s, "move", NULL))
 	{
 	    os->justMoved = TRUE;
 	    return;

@@ -1729,7 +1729,7 @@ zoomSpecific (CompDisplay     *d,
 
 	if (target == 1.0f && zs->zooms[out].newZoom == 1.0f)
 	    return FALSE;
-	if (otherScreenGrabExist (s, 0))
+	if (otherScreenGrabExist (s, NULL))
 	    return FALSE;
 
 	setScale (s, out, target);

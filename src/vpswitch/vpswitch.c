@@ -66,7 +66,7 @@ typedef struct _VpSwitchDisplay
     s = findScreenAtDisplay (d, xid); \
     if (!s) \
 	return FALSE; \
-    if (otherScreenGrabExist (s, "rotate", "wall", "plane", 0)) \
+    if (otherScreenGrabExist (s, "rotate", "wall", "plane", NULL)) \
 	return FALSE; \
     xid = getIntOptionNamed (option, nOption, "window", 0); \
     if (xid == s->grabWindow) \
