@@ -669,8 +669,8 @@ thumbPaintThumb (CompScreen          *s,
 
     /* Wrap drawWindowGeometry to make sure the general
        drawWindowGeometry function is used */
-    oldAddWindowGeometry = w->screen->addWindowGeometry;
-    w->screen->addWindowGeometry = addWindowGeometry;
+    oldAddWindowGeometry = s->addWindowGeometry;
+    s->addWindowGeometry = addWindowGeometry;
 
     if (w->texture->pixmap)
     {
@@ -835,14 +835,13 @@ thumbPaintThumb (CompScreen          *s,
 
 	glPushMatrix ();
 	glLoadMatrixf (wTransform.m);
-	(*w->screen->drawWindow) (w, &wTransform, &fragment,
-				  &infiniteRegion, mask);
+	(*s->drawWindow) (w, &wTransform, &fragment, &infiniteRegion, mask);
 	glPopMatrix ();
 
 	s->display->textureFilter = filter;
     }
 
-    w->screen->addWindowGeometry = oldAddWindowGeometry;
+    s->addWindowGeometry = oldAddWindowGeometry;
 }
 
 static void
