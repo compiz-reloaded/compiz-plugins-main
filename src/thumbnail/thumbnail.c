@@ -412,6 +412,9 @@ positionUpdate (CompScreen *s,
 
     for (; cw && !found; cw = cw->next)
     {
+	if (cw->destroyed)
+	    continue;
+
 	if (!cw->iconGeometrySet)
 	    continue;
 
@@ -1152,6 +1155,9 @@ thumbFiniWindow (CompPlugin *p,
 	ts->oldThumb.win = NULL;
 	ts->oldThumb.opacity = 0;
     }
+
+    if (ts->pointedWin == w)
+	ts->pointedWin = NULL;
 }
 
 static Bool
