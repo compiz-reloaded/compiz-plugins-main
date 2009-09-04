@@ -284,8 +284,13 @@ textUpdateSurface (CompScreen      *s,
     Display *dpy = s->display->display;
 
     cairo_surface_destroy (data->surface);
+    data->surface = NULL;
+
     cairo_destroy (data->cr);
+    data->cr = NULL;
+
     XFreePixmap (dpy, data->pixmap);
+    data->pixmap = None;
 
     return textInitCairo (s, data, width, height);
 }
@@ -392,7 +397,7 @@ textRenderText (CompScreen           *s,
     TextSurfaceData surface;
     CompTextData    *retval = NULL;
 
-    if (!text)
+    if (!text || !strlen (text))
 	return NULL;
 
     memset (&surface, 0, sizeof (TextSurfaceData));
@@ -480,11 +485,10 @@ textRenderWindowTitle (CompScreen           *s,
 	text = textGetWindowName (s->display, window);
     }
 
-    if (!text)
-	return NULL;
-
     retval = textRenderText (s, text, attrib);
-    free (text);
+
+    if (text)
+	free (text);
 
     return retval;
 }
