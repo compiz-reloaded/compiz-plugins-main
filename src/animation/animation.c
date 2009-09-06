@@ -4133,7 +4133,7 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 		}
 	    }
 	}
-	else if (!w->invisible)
+	else if (!w->invisible && as->startCountdown == 0)
 	{
 	    AnimEffect chosenEffect;
 	    int duration = 200;
@@ -4391,9 +4391,10 @@ animPaintOutput(CompScreen * s,
     {
 	as->aWinWasRestackedJustNow = FALSE;
     }
-    if (as->markAllWinCreatedCountdown > 0)
+    if (as->startCountdown > 0)
     {
-	if (as->markAllWinCreatedCountdown == 1)
+	as->startCountdown--;
+	if (as->startCountdown == 0)
 	{
 	    // Mark all windows as "created"
 	    for (w = s->windows; w; w = w->next)
@@ -4402,7 +4403,6 @@ animPaintOutput(CompScreen * s,
 		aw->created = TRUE;
 	    }
 	}
-	as->markAllWinCreatedCountdown--;
     }
 
     return status;
@@ -4793,7 +4793,7 @@ static Bool animInitScreen(CompPlugin * p, CompScreen * s)
     WRAP(as, s, windowUngrabNotify, animWindowUngrabNotify);
     WRAP(as, s, initWindowWalker, animInitWindowWalker);
 
-    as->markAllWinCreatedCountdown = 5; // start countdown
+    as->startCountdown = 20; // start the countdown
 
     return TRUE;
 }

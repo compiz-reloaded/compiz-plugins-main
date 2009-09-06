@@ -203,9 +203,10 @@ typedef struct _AnimScreen
 
     Window *lastClientListStacking; // to store last known stacking order
     int nLastClientListStacking;
-    int markAllWinCreatedCountdown;
+    int startCountdown;
     // to mark windows as "created" if they were opened before compiz
-    // was started
+    // was started and to prevent open animation happening for existing windows
+    // at compiz startup
 
     Bool animInProgress;
 
