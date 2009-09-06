@@ -445,7 +445,7 @@ mousepollGetObjectOptions (CompPlugin *plugin,
 
     *count = 0;
     RETURN_DISPATCH (object, dispTab, ARRAY_SIZE (dispTab),
-		     (void *) count, (plugin, object, count));
+		     NULL, (plugin, object, count));
 }
 
 static CompBool
