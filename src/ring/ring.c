@@ -521,6 +521,23 @@ ringLinearInterpolation (float valX,
     return (minY + (factor * (valX - minX)));
 }
 
+static void
+switchActivateEvent (CompScreen *s,
+		     Bool	activating)
+{
+    CompOption o[2];
+
+    o[0].type = CompOptionTypeInt;
+    o[0].name = "root";
+    o[0].value.i = s->root;
+
+    o[1].type = CompOptionTypeBool;
+    o[1].name = "active";
+    o[1].value.b = activating;
+
+    (*s->display->handleCompizEvent) (s->display, "switcher", "activate", o, 2);
+}
+
 static int
 compareWindows (const void *elem1,
 		const void *elem2)
@@ -985,7 +1002,10 @@ ringPreparePaintScreen (CompScreen *s,
 	    }
 
 	    if (!rs->moreAdjust && !rs->rotateAdjust)
+	    {
+		switchActivateEvent (s, FALSE);
 		break;
+	    }
 	}
     }
 
@@ -1139,6 +1159,8 @@ ringInitiate (CompScreen      *s,
 
     	rs->moreAdjust = TRUE;
 	damageScreen (s);
+
+	switchActivateEvent (s, TRUE);
     }
 
     return TRUE;
