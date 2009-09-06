@@ -269,13 +269,13 @@ ringDrawWindowTitle (CompScreen *s)
 
     getCurrentOutputExtents (s, &ox1, &oy1, &ox2, &oy2);
 
-    x = ox1 + ((ox2 - ox1) / 2) - (rs->textData->width / 2);
+    x = ox1 + ((ox2 - ox1) / 2) - ((int)rs->textData->width / 2);
 
     /* assign y (for the lower corner!) according to the setting */
     switch (ringGetTitleTextPlacement (s))
     {
 	case TitleTextPlacementCenteredOnScreen:
-	    y = oy1 + ((oy2 - oy1) / 2) + (rs->textData->height / 2);
+	    y = oy1 + ((oy2 - oy1) / 2) + ((int)rs->textData->height / 2);
 	    break;
 	case TitleTextPlacementAboveRing:
 	case TitleTextPlacementBelowRing:
@@ -285,7 +285,7 @@ ringDrawWindowTitle (CompScreen *s)
 
 	    	if (ringGetTitleTextPlacement (s) ==
 		    TitleTextPlacementAboveRing)
-    		    y = oy1 + workArea.y + rs->textData->height;
+    		    y = oy1 + workArea.y + (int)rs->textData->height;
 		else
 		    y = oy1 + workArea.y + workArea.height;
 	    }

@@ -801,7 +801,7 @@ thumbPaintThumb (CompScreen          *s,
 	    THUMB_DISPLAY (s->display);
 
 	    if (t->textData->width < width)
-		ox = (width - t->textData->width) / 2.0;
+		ox = (width - (int)t->textData->width) / 2.0;
 
 	    (td->textFunc->drawText) (s, t->textData, wx + ox,
 				      wy + height, t->opacity);

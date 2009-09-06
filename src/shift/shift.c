@@ -355,7 +355,7 @@ shiftDrawWindowTitle (CompScreen *s)
         oy2 = s->outputDev[ss->usedOutput].region.extents.y2;
     }
 
-    float x = ox1 + ((ox2 - ox1) / 2) - (ss->textData->width / 2);
+    float x = ox1 + ((ox2 - ox1) / 2) - ((int)ss->textData->width / 2);
     float y;
 
     /* assign y (for the lower corner!) according to the setting */
