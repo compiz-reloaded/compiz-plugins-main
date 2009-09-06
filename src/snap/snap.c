@@ -177,14 +177,7 @@ static void snapScreenGetOutputDevRect(CompScreen * s, int outputDev, XRectangle
 	if (outputDev >= s->nOutputDev)
 		outputDev = 0;
 
-	outputRect->x = s->outputDev[outputDev].region.extents.x1;
-	outputRect->y = s->outputDev[outputDev].region.extents.y1;
-	outputRect->width =
-			s->outputDev[outputDev].region.extents.x2 -
-			s->outputDev[outputDev].region.extents.x1;
-	outputRect->height =
-			s->outputDev[outputDev].region.extents.y2 -
-			s->outputDev[outputDev].region.extents.y1;
+	*outputRect = s->outputDev[outputDev].workArea;
 }
 
 /*
