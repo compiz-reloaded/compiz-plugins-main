@@ -157,6 +157,9 @@ typedef struct _ShiftScreen {
     Bool  paintingAbove;
 
     Bool  canceled;
+
+    int   maxThumbWidth;
+    int   maxThumbHeight;
 } ShiftScreen;
 
 typedef struct _ShiftWindow {
@@ -171,6 +174,8 @@ typedef struct _ShiftWindow {
 } ShiftWindow;
 
 #define PI 3.1415926
+#define ICON_SIZE 64
+#define MAX_ICON_SIZE 256
 
 #define GET_SHIFT_DISPLAY(d)				      \
     ((ShiftDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
@@ -503,7 +508,7 @@ shiftPaintWindow (CompWindow		 *w,
 	{
 	    CompIcon *icon;
 
-	    icon = getWindowIcon (w, 96, 96);
+	    icon = getWindowIcon (w, MAX_ICON_SIZE, MAX_ICON_SIZE);
 	    if (!icon)
 		icon = w->screen->defaultIcon;
 
@@ -540,16 +545,25 @@ shiftPaintWindow (CompWindow		 *w,
 		{
 		case OverlayIconNone:
 		case OverlayIconEmblem:
-		    scale = 1.0f;
+		    scale = MIN (((float) ICON_SIZE / icon->width),
+				 ((float) ICON_SIZE / icon->height));
 		    break;
 		case OverlayIconBig:
 		default:
-		    /* only change opacity if not painting an
-		       icon for a minimized window */
 		    if (w->texture->pixmap)
+		    {
+			/* only change opacity if not painting an
+			   icon for a minimized window */
 			sAttrib.opacity /= 3;
-		    scale = MIN (((float) scaledWinWidth / icon->width),
-				 ((float) scaledWinHeight / icon->height));
+			scale = MIN (((float) scaledWinWidth / icon->width),
+				     ((float) scaledWinHeight / icon->height));
+		    }
+		    else
+		    {
+			scale =
+			    0.8f * MIN (((float) ss->maxThumbWidth / icon->width),
+					((float) ss->maxThumbHeight / icon->height));
+		    }
 		    break;
 		}
 
@@ -566,16 +580,14 @@ shiftPaintWindow (CompWindow		 *w,
 		case OverlayIconBig:
 		default:
 		    x = scaledWinWidth / 2 - width / 2;
-		    y = scaledWinHeight / 2 - height / 2;
+		    if (w->texture->pixmap)
+			y = scaledWinHeight / 2 - height / 2;
+		    else
+			y = scaledWinHeight - height;
 		    break;
 		}
 
-		mask |= PAINT_WINDOW_BLEND_MASK;
-		
-		/* if we paint the icon for a minimized window, we need
-		   to force the usage of a good texture filter */
-		if (!w->texture->pixmap)
-		    mask |= PAINT_WINDOW_TRANSFORMED_MASK;
+		mask |= PAINT_WINDOW_BLEND_MASK | PAINT_WINDOW_TRANSFORMED_MASK;
 
 		iconReg.rects    = &iconReg.extents;
 		iconReg.numRects = 1;
@@ -755,8 +767,8 @@ layoutThumbsCover (CompScreen *s)
     int centerX = ox1 + (ox2 - ox1) / 2;
     int centerY = oy1 + (oy2 - oy1) / 2;
 
-    int maxThumbWidth  = (ox2 - ox1) * shiftGetSize(s) / 100;
-    int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
+    ss->maxThumbWidth  = (ox2 - ox1) * shiftGetSize(s) / 100;
+    ss->maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
     
     for (index = 0; index < ss->nWindows; index++)
     {
@@ -766,13 +778,13 @@ layoutThumbsCover (CompScreen *s)
 	ww = w->attrib.width  + w->input.left + w->input.right;
 	wh = w->attrib.height + w->input.top  + w->input.bottom;
 
-	if (ww > maxThumbWidth)
-	    xScale = (float)(maxThumbWidth) / (float)ww;
+	if (ww > ss->maxThumbWidth)
+	    xScale = (float)(ss->maxThumbWidth) / (float)ww;
 	else
 	    xScale = 1.0f;
 
-	if (wh > maxThumbHeight)
-	    yScale = (float)(maxThumbHeight) / (float)wh;
+	if (wh > ss->maxThumbHeight)
+	    yScale = (float)(ss->maxThumbHeight) / (float)wh;
 	else
 	    yScale = 1.0f;
 
@@ -780,7 +792,7 @@ layoutThumbsCover (CompScreen *s)
 	float val1 = floor((float)ss->nWindows / 2.0);
 
 	float pos;
-	float space = maxThumbWidth / 2;
+	float space = ss->maxThumbWidth / 2;
 	space *= cos (sin (PI / 4) * PI / 3);
 	space *= 2;
 	//space += (space / sin (PI / 4)) - space;
@@ -809,7 +821,7 @@ layoutThumbsCover (CompScreen *s)
 				       MAX (0.0, fabs(distance) - val1));
 		sw->slots[i].scale   = MIN (xScale, yScale);
 		
-		sw->slots[i].y = centerY + (maxThumbHeight / 2.0) -
+		sw->slots[i].y = centerY + (ss->maxThumbHeight / 2.0) -
 				 (((w->attrib.height / 2.0) + w->input.bottom) *
 				 sw->slots[i].scale);
 
@@ -817,7 +829,7 @@ layoutThumbsCover (CompScreen *s)
 		{
 		    sw->slots[i].x  = centerX + (sin(pos * PI * 0.5) * space);
 		    sw->slots[i].z  = fabs (distance);
-		    sw->slots[i].z *= -(maxThumbWidth / (2.0 * (ox2 - ox1)));
+		    sw->slots[i].z *= -(ss->maxThumbWidth / (2.0 * (ox2 - ox1)));
 
 		    sw->slots[i].rotation = sin(pos * PI * 0.5) * -60;
 		}
@@ -835,7 +847,7 @@ layoutThumbsCover (CompScreen *s)
 		    sw->slots[i].rotation -= fabs(ang) * 180.0 / PI;
 		    sw->slots[i].rotation *= -pos;
 
-		    sw->slots[i].z  = -(maxThumbWidth / (2.0 * (ox2 - ox1)));
+		    sw->slots[i].z  = -(ss->maxThumbWidth / (2.0 * (ox2 - ox1)));
 		    sw->slots[i].z += -(cos(PI / 6.0) * rad);
 		    sw->slots[i].z += (cos(ang) * rad);
 		}
@@ -902,8 +914,8 @@ layoutThumbsFlip (CompScreen *s)
     int centerX = ox1 + (ox2 - ox1) / 2;
     int centerY = oy1 + (oy2 - oy1) / 2;
 
-    int maxThumbWidth  = (ox2 - ox1) * shiftGetSize(s) / 100;
-    int maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
+    ss->maxThumbWidth  = (ox2 - ox1) * shiftGetSize(s) / 100;
+    ss->maxThumbHeight = (oy2 - oy1) * shiftGetSize(s) / 100;
 
     slotNum = 0;
     
@@ -915,13 +927,13 @@ layoutThumbsFlip (CompScreen *s)
 	ww = w->attrib.width  + w->input.left + w->input.right;
 	wh = w->attrib.height + w->input.top  + w->input.bottom;
 
-	if (ww > maxThumbWidth)
-	    xScale = (float)(maxThumbWidth) / (float)ww;
+	if (ww > ss->maxThumbWidth)
+	    xScale = (float)(ss->maxThumbWidth) / (float)ww;
 	else
 	    xScale = 1.0f;
 
-	if (wh > maxThumbHeight)
-	    yScale = (float)(maxThumbHeight) / (float)wh;
+	if (wh > ss->maxThumbHeight)
+	    yScale = (float)(ss->maxThumbHeight) / (float)wh;
 	else
 	    yScale = 1.0f;
 
@@ -958,11 +970,11 @@ layoutThumbsFlip (CompScreen *s)
 
 		sw->slots[i].scale   = MIN (xScale, yScale);
 		
-		sw->slots[i].y = centerY + (maxThumbHeight / 2.0) -
+		sw->slots[i].y = centerY + (ss->maxThumbHeight / 2.0) -
 				 (((w->attrib.height / 2.0) + w->input.bottom) *
 				 sw->slots[i].scale);
 
-		sw->slots[i].x  = sin(angle) * distance * (maxThumbWidth / 2);
+		sw->slots[i].x  = sin(angle) * distance * (ss->maxThumbWidth / 2);
 		if (distance > 0 && FALSE)
 		    sw->slots[i].x *= 1.5;
 		sw->slots[i].x += centerX;
@@ -970,7 +982,7 @@ layoutThumbsFlip (CompScreen *s)
 		sw->slots[i].z  = cos(angle) * distance;
 		if (distance > 0)
 		    sw->slots[i].z *= 1.5;
-		sw->slots[i].z *= (maxThumbWidth / (2.0 * (ox2 - ox1)));
+		sw->slots[i].z *= (ss->maxThumbWidth / (2.0 * (ox2 - ox1)));
 
 		sw->slots[i].rotation = shiftGetFlipRotation (s);
 
