@@ -122,6 +122,7 @@ typedef struct _RingWindow {
 #define PI 3.1415926
 #define DIST_ROT (3600 / rs->nWindows)
 #define ICON_SIZE 64
+#define MAX_ICON_SIZE 256
 
 #define GET_RING_DISPLAY(d)				      \
     ((RingDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
@@ -386,7 +387,7 @@ ringPaintWindow (CompWindow		 *w,
 	{
 	    CompIcon *icon;
 
-	    icon = getWindowIcon (w, 256, 256);
+	    icon = getWindowIcon (w, MAX_ICON_SIZE, MAX_ICON_SIZE);
 	    if (!icon)
 		icon = w->screen->defaultIcon;
 
@@ -412,18 +413,28 @@ ringPaintWindow (CompWindow		 *w,
     		case OverlayIconNone:
 		case OverlayIconEmblem:
 		    scale = (rw->slot) ? rw->slot->depthScale : 1.0f;
-		    if (icon->width > ICON_SIZE || icon->height > ICON_SIZE)
-			scale = MIN ((scale * ICON_SIZE / icon->width),
-				     (scale * ICON_SIZE / icon->height));
+		    scale = MIN ((scale * ICON_SIZE / icon->width),
+				 (scale * ICON_SIZE / icon->height));
 		    break;
 		case OverlayIconBig:
 		default:
-		    /* only change opacity if not painting an
-		       icon for a minimized window */
 		    if (w->texture->pixmap)
+		    {
+			/* only change opacity if not painting an
+			   icon for a minimized window */
 			sAttrib.opacity /= 3;
-		    scale = MIN (((float) scaledWinWidth / icon->width),
-				 ((float) scaledWinHeight / icon->height));
+			scale = MIN (((float) scaledWinWidth / icon->width),
+				     ((float) scaledWinHeight / icon->height));
+		    }
+		    else
+		    {
+			scale =
+			    0.8f * ((rw->slot) ? rw->slot->depthScale : 1.0f);
+			scale = MIN ((scale * ringGetThumbWidth (s) /
+				      icon->width),
+				     (scale * ringGetThumbHeight (s) /
+				      icon->height));
+		    }
 		    break;
 		}
 
@@ -446,12 +457,8 @@ ringPaintWindow (CompWindow		 *w,
 		x += rw->tx;
 		y += rw->ty;
 
-		mask |= PAINT_WINDOW_BLEND_MASK;
-		
-		/* if we paint the icon for a minimized window, we need
-		   to force the usage of a good texture filter */
-		if (!w->texture->pixmap)
-		    mask |= PAINT_WINDOW_TRANSFORMED_MASK;
+		mask |=
+		    PAINT_WINDOW_BLEND_MASK | PAINT_WINDOW_TRANSFORMED_MASK;
 
 		iconReg.rects    = &iconReg.extents;
 		iconReg.numRects = 1;
