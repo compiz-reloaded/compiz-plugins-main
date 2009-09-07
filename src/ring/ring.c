@@ -1009,10 +1009,7 @@ ringPreparePaintScreen (CompScreen *s,
 	    }
 
 	    if (!rs->moreAdjust && !rs->rotateAdjust)
-	    {
-		switchActivateEvent (s, FALSE);
 		break;
-	    }
 	}
     }
 
@@ -1042,6 +1039,9 @@ ringDonePaintScreen (CompScreen *s)
 	    else if (rs->state == RingStateOut)
 		rs->state = RingStateSwitching;
 	}
+
+	if (rs->state == RingStateNone)
+	    switchActivateEvent (s, FALSE);
     }
 
     UNWRAP (rs, s, donePaintScreen);

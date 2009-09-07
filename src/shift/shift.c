@@ -1618,10 +1618,7 @@ shiftPreparePaintScreen (CompScreen *s,
 	    }
 
 	    if (!ss->moreAdjust)
-	    {
-		switchActivateEvent (s, FALSE);
 		break;
-	    }
 	}
     }
 
@@ -1708,6 +1705,8 @@ shiftDonePaintScreen (CompScreen *s)
 		}
 	    }
 	}
+	if (ss->state == ShiftStateNone)
+	    switchActivateEvent (s, FALSE);
     }
 
     UNWRAP (ss, s, donePaintScreen);
