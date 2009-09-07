@@ -609,7 +609,7 @@ shiftPaintWindow (CompWindow		 *w,
 		    if (!w->texture->pixmap)
 			sAttrib.opacity = w->paint.opacity;
 
-		    initFragmentAttrib (&fragment, attrib);
+		    initFragmentAttrib (&fragment, &sAttrib);
 
 		    fragment.opacity = (float)fragment.opacity * sopacity;
 		    fragment.brightness = (float)fragment.brightness *
