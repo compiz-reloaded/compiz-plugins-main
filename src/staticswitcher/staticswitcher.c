@@ -1527,6 +1527,7 @@ switchPaintThumb (CompWindow		  *w,
 	FragmentAttrib	      fragment;
 	CompTransform	      wTransform = *transform;
 	int		      ww, wh;
+	GLenum                filter;
 
 	width  = ss->previewWidth;
 	height = ss->previewHeight;
@@ -1581,6 +1582,11 @@ switchPaintThumb (CompWindow		  *w,
 	glPushMatrix ();
 	glLoadMatrixf (wTransform.m);
 
+	filter = s->display->textureFilter;
+
+	if (staticswitcherGetMipmap (s))
+	    s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
+
 	/* XXX: replacing the addWindowGeometry function like this is
 	   very ugly but necessary until the vertex stage has been made
 	   fully pluggable. */
@@ -1589,6 +1595,8 @@ switchPaintThumb (CompWindow		  *w,
 	(w->screen->drawWindow) (w, &wTransform, &fragment, &infiniteRegion,
 				 mask);
 	w->screen->addWindowGeometry = oldAddWindowGeometry;
+
+	s->display->textureFilter = filter;
 
 	glPopMatrix ();
 
@@ -1765,7 +1773,6 @@ switchPaintWindow (CompWindow		   *w,
 
     if (w->id == ss->popupWindow)
     {
-	GLenum         filter;
 	int            x, y, offX, i;
 	float          px, py, pos;
 
@@ -1779,11 +1786,6 @@ switchPaintWindow (CompWindow		   *w,
 	if (!(mask & PAINT_WINDOW_TRANSFORMED_MASK) && region->numRects == 0)
 	    return TRUE;
 
-	filter = s->display->textureFilter;
-
-	if (staticswitcherGetMipmap (s))
-	    s->display->textureFilter = GL_LINEAR_MIPMAP_LINEAR;
-
 	glPushAttrib (GL_SCISSOR_BIT);
 
 	glEnable (GL_SCISSOR_TEST);
@@ -1795,8 +1797,6 @@ switchPaintWindow (CompWindow		   *w,
 	    switchPaintThumb (ss->windows[i], &w->lastPaint, transform,
 			      mask, x + w->attrib.x, y + w->attrib.y);
 	}
-
-	s->display->textureFilter = filter;
 
 	pos = fmod (ss->pos, ss->nWindows);
 	px  = fmod (pos, ss->xCount);
