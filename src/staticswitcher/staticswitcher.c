@@ -90,7 +90,7 @@ typedef struct _SwitchScreen {
     unsigned int fgColor[4];
 } SwitchScreen;
 
-#define ICON_SIZE 64
+#define ICON_SIZE 48
 #define MAX_ICON_SIZE 256
 
 #define PREVIEWSIZE 150
@@ -1599,8 +1599,8 @@ switchPaintThumb (CompWindow		  *w,
 	    {
 		float xScale, yScale;
 
-		xScale = (icon->width > ICON_SIZE) ? (float) ICON_SIZE / icon->width : 1.0;
-		yScale = (icon->height > ICON_SIZE) ? (float) ICON_SIZE / icon->height : 1.0;
+		xScale = (float) ICON_SIZE / icon->width;
+		yScale = (float) ICON_SIZE / icon->height;
 
 		if (xScale < yScale)
 		    yScale = xScale;
@@ -1620,30 +1620,15 @@ switchPaintThumb (CompWindow		  *w,
 	width  = ss->previewWidth * 3 / 4;
 	height = ss->previewHeight * 3 / 4;
 
-	/* try to get a matching icon first */
-	icon = getWindowIcon (w, width, height);
-	/* if none found, try a large one */
-	if (!icon)
-	    icon = getWindowIcon (w, MAX_ICON_SIZE, MAX_ICON_SIZE);
+	/* try to get the largest icon */
+	icon = getWindowIcon (w, MAX_ICON_SIZE, MAX_ICON_SIZE);
 	if (!icon)
 	    icon = w->screen->defaultIcon;
 
 	if (icon)
 	{
-	    float iw, ih;
-
-	    iw = width;
-	    ih = height;
-
-	    if (icon->width < (iw / 2) || icon->width > iw)
-		sAttrib.xScale = (iw / icon->width);
-	    else
-		sAttrib.xScale = 1.0f;
-
-	    if (icon->height < (ih / 2) || icon->height > ih)
-		sAttrib.yScale = (ih / icon->height);
-	    else
-		sAttrib.yScale = 1.0f;
+	    sAttrib.xScale = (width / icon->width);
+	    sAttrib.yScale = (height / icon->height);
 
 	    if (sAttrib.xScale < sAttrib.yScale)
 		sAttrib.yScale = sAttrib.xScale;
