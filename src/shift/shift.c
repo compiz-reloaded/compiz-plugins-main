@@ -130,7 +130,8 @@ typedef struct _ShiftScreen {
     ShiftDrawSlot *activeSlot;
     
     Window clientLeader;
-    Window selectedWindow;
+
+    CompWindow *selectedWindow;
 
     /* text display support */
     CompTextData *textData;
@@ -218,6 +219,9 @@ static Bool
 isShiftWin (CompWindow *w)
 {
     SHIFT_SCREEN (w->screen);
+
+    if (w->destroyed)
+	return FALSE;
 
     if (w->attrib.override_redirect)
 	return FALSE;
@@ -329,7 +333,10 @@ shiftRenderWindowTitle (CompScreen *s)
     tA.bgColor[2] = shiftGetTitleBackColorBlue (s);
     tA.bgColor[3] = shiftGetTitleBackColorAlpha (s);
 
-    ss->textData = (sd->textFunc->renderWindowTitle) (s, ss->selectedWindow,
+    ss->textData = (sd->textFunc->renderWindowTitle) (s,
+						      (ss->selectedWindow ?
+						       ss->selectedWindow->id :
+						       None),
 						      ss->type == ShiftTypeAll,
 						      &tA);
 }
@@ -962,7 +969,7 @@ layoutThumbsFlip (CompScreen *s)
 			sw->slots[i].opacity = 1.0;
 		}
 
-		if (distance > 0.0 && w->id != ss->selectedWindow)
+		if (distance > 0.0 && w != ss->selectedWindow)
 		    sw->slots[i].primary = FALSE;
 		else
 		    sw->slots[i].primary = TRUE;
@@ -1078,7 +1085,7 @@ shiftUpdateWindowList (CompScreen *s)
     ss->mvVelocity = 0;
     for (i = 0; i < ss->nWindows; i++)
     {
-	if (ss->windows[i]->id == ss->selectedWindow)
+	if (ss->windows[i] == ss->selectedWindow)
 	    break;
 
 	ss->mvTarget++;
@@ -1145,7 +1152,7 @@ switchToWindow (CompScreen *s,
 
     for (cur = 0; cur < ss->nWindows; cur++)
     {
-	if (ss->windows[cur]->id == ss->selectedWindow)
+	if (ss->windows[cur] == ss->selectedWindow)
 	    break;
     }
 
@@ -1159,10 +1166,10 @@ switchToWindow (CompScreen *s,
 
     if (w)
     {
-	Window old = ss->selectedWindow;
-	ss->selectedWindow = w->id;
+	CompWindow *old = ss->selectedWindow;
+	ss->selectedWindow = w;
 
-	if (old != w->id)
+	if (old != w)
 	{
 	    if (toNext)
 		ss->mvAdjust += 1;
@@ -1511,9 +1518,7 @@ shiftPaintOutput (CompScreen		  *s,
 	    Bool found;
 	    ss->paintingAbove = TRUE;
 
-	    w = findWindowAtScreen (s, ss->selectedWindow);
-	    
-	    for (; w; w = w->next)
+	    for (w = ss->selectedWindow; w; w = w->next)
 	    {
 		if (w->destroyed)
 		    continue;
@@ -1697,11 +1702,10 @@ shiftDonePaintScreen (CompScreen *s)
 		    }
 		}
 
-		if (!ss->canceled && ss->selectedWindow)
+		if (!ss->canceled && ss->selectedWindow &&
+		    !ss->selectedWindow->destroyed)
 		{
-		    w = findWindowAtScreen (s, ss->selectedWindow);
-		    if (w)
-			sendWindowActivationRequest (s, w->id);
+		    sendWindowActivationRequest (s, ss->selectedWindow->id);
 		}
 	    }
 	}
@@ -1819,7 +1823,7 @@ shiftInitiateScreen (CompScreen      *s,
 	if (!shiftCreateWindowList (s))
 	    return FALSE;
 
-    	ss->selectedWindow = ss->windows[0]->id;
+	ss->selectedWindow = ss->windows[0];
 	shiftRenderWindowTitle (s);
 	ss->mvTarget = 0;
 	ss->mvAdjust = 0;
@@ -2046,16 +2050,13 @@ shiftPrevGroup (CompDisplay     *d,
 
 static void 
 shiftWindowRemove (CompDisplay * d,
-		  Window id)
+		   CompWindow  *w)
 {
-    CompWindow *w;
-
-    w = findWindowAtDisplay (d, id);
     if (w)
     {
 	Bool inList = FALSE;
 	int j, i = 0;
-	Window selected;
+	CompWindow *selected;
 
 	SHIFT_SCREEN(w->screen);
 
@@ -2069,18 +2070,19 @@ shiftWindowRemove (CompDisplay * d,
 
 	while (i < ss->nWindows)
 	{
-    	    if (w->id == ss->windows[i]->id)
+	    if (w == ss->windows[i])
 	    {
 		inList = TRUE;
 
-		if (w->id == selected)
+		if (w == selected)
 		{
 		    if (i < (ss->nWindows - 1))
-			selected = ss->windows[i + 1]->id;
-    		    else
-			selected = ss->windows[0]->id;
+			selected = ss->windows[i + 1];
+		    else
+			selected = ss->windows[0];
 
 		    ss->selectedWindow = selected;
+		    shiftRenderWindowTitle (w->screen);
 		}
 
 		ss->nWindows--;
@@ -2128,6 +2130,17 @@ shiftHandleEvent (CompDisplay *d,
 {
     SHIFT_DISPLAY (d);
     CompScreen *s;
+    CompWindow *w = NULL;
+
+    switch (event->type) {
+    case DestroyNotify:
+	/* We need to get the CompWindow * for event->xdestroywindow.window
+	   here because in the (*d->handleEvent) call below, that CompWindow's
+	   id will become 1, so findWindowAtDisplay won't be able to find the
+	   CompWindow after that. */
+	w = findWindowAtDisplay (d, event->xdestroywindow.window);
+	break;
+    }
 
     UNWRAP (sd, d, handleEvent);
     (*d->handleEvent) (d, event);
@@ -2137,12 +2150,11 @@ shiftHandleEvent (CompDisplay *d,
     case PropertyNotify:
 	if (event->xproperty.atom == XA_WM_NAME)
 	{
-	    CompWindow *w;
 	    w = findWindowAtDisplay (d, event->xproperty.window);
 	    if (w)
 	    {
     		SHIFT_SCREEN (w->screen);
-    		if (ss->grabIndex && (w->id == ss->selectedWindow))
+    		if (ss->grabIndex && (w == ss->selectedWindow))
     		{
     		    shiftRenderWindowTitle (w->screen);
     		    damageScreen (w->screen);
@@ -2151,10 +2163,11 @@ shiftHandleEvent (CompDisplay *d,
 	}
 	break;
     case UnmapNotify:
-	shiftWindowRemove (d, event->xunmap.window);
+	w = findWindowAtDisplay (d, event->xunmap.window);
+	shiftWindowRemove (d, w);
 	break;
     case DestroyNotify:
-	shiftWindowRemove (d, event->xdestroywindow.window);
+	shiftWindowRemove (d, w);
 	break;
     case KeyPress:
 	s = findScreenAtDisplay (d, event->xkey.root);
@@ -2235,7 +2248,7 @@ shiftHandleEvent (CompDisplay *d,
 			new += ss->nWindows;
 		    new = new % ss->nWindows;
 		    
-		    ss->selectedWindow = ss->windows[new]->id;
+		    ss->selectedWindow = ss->windows[new];
 
 		    shiftRenderWindowTitle (s);
 		    ss->moveAdjust = TRUE;
@@ -2301,9 +2314,9 @@ shiftHandleEvent (CompDisplay *d,
 			new += ss->nWindows;
 		    new = new % ss->nWindows;
 
-		    if (ss->selectedWindow != ss->windows[new]->id)
+		    if (ss->selectedWindow != ss->windows[new])
 		    {
-		    	ss->selectedWindow = ss->windows[new]->id;
+			ss->selectedWindow = ss->windows[new];
 			shiftRenderWindowTitle (s);
 		    }
 
@@ -2504,7 +2517,7 @@ shiftInitScreen (CompPlugin *p,
 
     ss->activeSlot = NULL;
 
-    ss->selectedWindow = None;
+    ss->selectedWindow = NULL;
 
     ss->moreAdjust   = FALSE;
 

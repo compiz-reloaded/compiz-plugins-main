@@ -97,7 +97,7 @@ typedef struct _RingScreen {
     int          nWindows;
 
     Window clientLeader;
-    Window selectedWindow;
+    CompWindow *selectedWindow;
 
     /* text display support */
     CompTextData *textData;
@@ -148,6 +148,9 @@ static Bool
 isRingWin (CompWindow *w)
 {
     RING_SCREEN (w->screen);
+
+    if (w->destroyed)
+	return FALSE;
 
     if (w->attrib.override_redirect)
 	return FALSE;
@@ -254,7 +257,10 @@ ringRenderWindowTitle (CompScreen *s)
     attrib.bgColor[3] = ringGetTitleBackColorAlpha (s);
 
 
-    rs->textData = (rd->textFunc->renderWindowTitle) (s, rs->selectedWindow,
+    rs->textData = (rd->textFunc->renderWindowTitle) (s,
+						      (rs->selectedWindow ?
+						       rs->selectedWindow->id :
+						       None),
 						      rs->type == RingTypeAll,
 						      &attrib);
 }
@@ -357,7 +363,7 @@ ringPaintWindow (CompWindow		 *w,
     		fragment.brightness = (float) fragment.brightness * 
 		                      rw->slot->depthBrightness;
 
-		if (w->id != rs->selectedWindow)
+		if (w != rs->selectedWindow)
 		    fragment.opacity = (float)fragment.opacity *
 			               ringGetInactiveOpacity (s) / 100;
 	    }
@@ -702,7 +708,7 @@ ringUpdateWindowList (CompScreen *s)
     rs->rotTarget = 0;
     for (i = 0; i < rs->nWindows; i++)
     {
-	if (rs->windows[i]->id == rs->selectedWindow)
+	if (rs->windows[i] == rs->selectedWindow)
 	    break;
 
 	rs->rotTarget += DIST_ROT;
@@ -748,7 +754,7 @@ switchToWindow (CompScreen *s,
 
     for (cur = 0; cur < rs->nWindows; cur++)
     {
-	if (rs->windows[cur]->id == rs->selectedWindow)
+	if (rs->windows[cur] == rs->selectedWindow)
 	    break;
     }
 
@@ -762,10 +768,10 @@ switchToWindow (CompScreen *s,
 
     if (w)
     {
-	Window old = rs->selectedWindow;
+	CompWindow *old = rs->selectedWindow;
 
-	rs->selectedWindow = w->id;
-	if (old != w->id)
+	rs->selectedWindow = w;
+	if (old != w)
 	{
 	    if (toNext)
 		rs->rotAdjust += DIST_ROT;
@@ -1094,11 +1100,10 @@ ringTerminate (CompDisplay     *d,
     	    rs->state = RingStateIn;
     	    damageScreen (s);
 
-	    if (!(state & CompActionStateCancel) && rs->selectedWindow)
+	    if (!(state & CompActionStateCancel) &&
+		rs->selectedWindow && !rs->selectedWindow->destroyed)
 	    {
-		w = findWindowAtScreen (s, rs->selectedWindow);
-		if (w)
-		    sendWindowActivationRequest (s, w->id);
+		sendWindowActivationRequest (s, rs->selectedWindow->id);
 	    }
 	}
     }
@@ -1160,7 +1165,7 @@ ringInitiate (CompScreen      *s,
 	if (!ringCreateWindowList (s))
 	    return FALSE;
 
-    	rs->selectedWindow = rs->windows[0]->id;
+	rs->selectedWindow = rs->windows[0];
 	ringRenderWindowTitle (s);
 	rs->rotTarget = 0;
 
@@ -1303,7 +1308,7 @@ ringWindowSelectAt (CompScreen *s,
 		    Bool       terminate)
 {
     int    i;
-    Window selected = None;
+    CompWindow *selected = NULL;
 
     RING_SCREEN (s);
 
@@ -1326,7 +1331,7 @@ ringWindowSelectAt (CompScreen *s,
 		(y <= (rw->ty + w->attrib.y + (w->attrib.height * rw->scale))))
 	    {
 		/* we have found one, select it */
-		selected = w->id;
+		selected = w;
 		break;
 	    }
 	}
@@ -1361,16 +1366,13 @@ ringWindowSelectAt (CompScreen *s,
 
 static void 
 ringWindowRemove (CompDisplay *d, 
-		  Window      id)
+		  CompWindow  *w)
 {
-    CompWindow *w;
-
-    w = findWindowAtDisplay (d, id);
     if (w)
     {
 	Bool   inList = FALSE;
 	int    j, i = 0;
-	Window selected;
+	CompWindow *selected;
 
 	RING_SCREEN (w->screen);
 
@@ -1384,18 +1386,19 @@ ringWindowRemove (CompDisplay *d,
 
 	while (i < rs->nWindows)
 	{
-    	    if (w->id == rs->windows[i]->id)
+	    if (w == rs->windows[i])
 	    {
 		inList = TRUE;
 
-		if (w->id == selected)
+		if (w == selected)
 		{
 		    if (i < (rs->nWindows - 1))
-			selected = rs->windows[i + 1]->id;
-    		    else
-			selected = rs->windows[0]->id;
+			selected = rs->windows[i + 1];
+		    else
+			selected = rs->windows[0];
 
 		    rs->selectedWindow = selected;
+		    ringRenderWindowTitle (w->screen);
 		}
 
 		rs->nWindows--;
@@ -1423,7 +1426,9 @@ ringWindowRemove (CompDisplay *d,
 	    return;
 	}
 
-	if (!rs->grabIndex)
+	// Let the window list be updated to avoid crash
+	// when a window is closed while ending (RingStateIn).
+	if (!rs->grabIndex && rs->state != RingStateIn)
 	    return;
 
 	if (ringUpdateWindowList (w->screen))
@@ -1440,6 +1445,17 @@ ringHandleEvent (CompDisplay *d,
 		 XEvent      *event)
 {
     CompScreen *s;
+    CompWindow *w = NULL;
+
+    switch (event->type) {
+    case DestroyNotify:
+	/* We need to get the CompWindow * for event->xdestroywindow.window
+	   here because in the (*d->handleEvent) call below, that CompWindow's
+	   id will become 1, so findWindowAtDisplay won't be able to find the
+	   CompWindow after that. */
+	w = findWindowAtDisplay (d, event->xdestroywindow.window);
+	break;
+    }
 
     RING_DISPLAY (d);
 
@@ -1456,7 +1472,7 @@ ringHandleEvent (CompDisplay *d,
 	    if (w)
 	    {
     		RING_SCREEN (w->screen);
-    		if (rs->grabIndex && (w->id == rs->selectedWindow))
+    		if (rs->grabIndex && (w == rs->selectedWindow))
     		{
     		    ringRenderWindowTitle (w->screen);
     		    damageScreen (w->screen);
@@ -1493,10 +1509,11 @@ ringHandleEvent (CompDisplay *d,
 				    FALSE);
 	}
     case UnmapNotify:
-	ringWindowRemove (d, event->xunmap.window);
+	w = findWindowAtDisplay (d, event->xunmap.window);
+	ringWindowRemove (d, w);
 	break;
     case DestroyNotify:
-	ringWindowRemove (d, event->xdestroywindow.window);
+	ringWindowRemove (d, w);
 	break;
     }
 }
@@ -1657,7 +1674,7 @@ ringInitScreen (CompPlugin *p,
 
     rs->paintingSwitcher = FALSE;
 
-    rs->selectedWindow = None;
+    rs->selectedWindow = NULL;
 
     rs->moreAdjust   = FALSE;
     rs->rotateAdjust = FALSE;

@@ -62,7 +62,8 @@ typedef struct _SwitchScreen {
     Window            popupWindow;
     CompTimeoutHandle popupDelayHandle;
 
-    Window selectedWindow;
+    CompWindow *selectedWindow;
+
     Window clientLeader;
 
     unsigned int previewWidth;
@@ -105,9 +106,12 @@ setSelectedWindowHint (CompScreen *s)
     SWITCH_DISPLAY (s->display);
     SWITCH_SCREEN (s);
 
+    Window selectedWindowId =
+	ss->selectedWindow && !ss->selectedWindow->destroyed ?
+	ss->selectedWindow->id : None;
     XChangeProperty (s->display->display, ss->popupWindow, sd->selectWinAtom,
 		     XA_WINDOW, 32, PropModeReplace,
-		     (unsigned char *) &ss->selectedWindow, 1);
+		     (unsigned char *) &selectedWindowId, 1);
 }
 
 static Bool
@@ -116,6 +120,9 @@ isSwitchWin (CompWindow *w)
     CompScreen *s = w->screen;
 
     SWITCH_SCREEN (s);
+
+    if (w->destroyed)
+	return FALSE;
 
     if (!w->mapNum || w->attrib.map_state != IsViewable)
     {
@@ -312,7 +319,7 @@ switchUpdateWindowList (CompScreen *s,
     ss->pos  = 0.0;
     ss->move = 0.0;
 
-    ss->selectedWindow = ss->windows[0]->id;
+    ss->selectedWindow = ss->windows[0];
 
     if (ss->popupWindow)
 	switchUpdatePopupWindow (s, count);
@@ -419,7 +426,7 @@ switchToWindow (CompScreen *s,
 
     for (cur = 0; cur < ss->nWindows; cur++)
     {
-	if (ss->windows[cur]->id == ss->selectedWindow)
+	if (ss->windows[cur] == ss->selectedWindow)
 	    break;
     }
 
@@ -435,7 +442,7 @@ switchToWindow (CompScreen *s,
 
     if (w)
     {
-	Window old = ss->selectedWindow;
+	CompWindow *old = ss->selectedWindow;
 
 	if (ss->selection == AllViewports && staticswitcherGetAutoChangeVp (s))
 	{
@@ -462,9 +469,9 @@ switchToWindow (CompScreen *s,
 			&xev);
 	}
 
-	ss->selectedWindow = w->id;
+	ss->selectedWindow = w;
 
-	if (old != w->id)
+	if (old != w)
 	{
 	    ss->move = nextIdx;
 
@@ -484,12 +491,8 @@ switchToWindow (CompScreen *s,
 
 	switchDoWindowDamage (w);
 
-	if (old)
-	{
-	    w = findWindowAtScreen (s, old);
-	    if (w)
-		switchDoWindowDamage (w);
-	}
+	if (old && !old->destroyed)
+	    switchDoWindowDamage (old);
     }
 }
 
@@ -595,7 +598,7 @@ switchInitiate (CompScreen            *s,
 	return;
 
     ss->selection      = selection;
-    ss->selectedWindow = None;
+    ss->selectedWindow = NULL;
 
     count = switchCountWindows (s);
     if (count < 1)
@@ -750,19 +753,15 @@ switchTerminate (CompDisplay     *d,
 	    ss->switching = FALSE;
 
 	    if (state & CompActionStateCancel)
-		ss->selectedWindow = None;
+		ss->selectedWindow = NULL;
 
-	    if (state && ss->selectedWindow)
-	    {
-		w = findWindowAtScreen (s, ss->selectedWindow);
-		if (w)
-		    sendWindowActivationRequest (w->screen, w->id);
-	    }
+	    if (state && ss->selectedWindow && !ss->selectedWindow->destroyed)
+		sendWindowActivationRequest (w->screen, ss->selectedWindow->id);
 
 	    removeScreenGrab (s, ss->grabIndex, 0);
 	    ss->grabIndex = 0;
 
-	    ss->selectedWindow = None;
+	    ss->selectedWindow = NULL;
 
 	    switchActivateEvent (s, FALSE);
 	    setSelectedWindowHint (s);
@@ -942,16 +941,14 @@ switchPrevPanel (CompDisplay     *d,
 
 static void
 switchWindowRemove (CompDisplay *d,
-		    Window	id)
+		    CompWindow  *w)
 {
-    CompWindow *w;
-
-    w = findWindowAtDisplay (d, id);
     if (w)
     {
 	Bool   inList = FALSE;
 	int    count, j, i = 0;
-	Window selected, old;
+	CompWindow *selected;
+	CompWindow *old;
 	CompScreen *s = w->screen;
 
 	SWITCH_SCREEN (s);
@@ -967,12 +964,12 @@ switchWindowRemove (CompDisplay *d,
 	    {
 		inList = TRUE;
 
-		if (w->id == selected)
+		if (w == selected)
 		{
 		    if (i + 1 < ss->nWindows)
-			selected = ss->windows[i + 1]->id;
+			selected = ss->windows[i + 1];
 		    else
-			selected = ss->windows[0]->id;
+			selected = ss->windows[0];
 		}
 
 		ss->nWindows--;
@@ -1009,7 +1006,7 @@ switchWindowRemove (CompDisplay *d,
 
 	for (i = 0; i < ss->nWindows; i++)
 	{
-	    ss->selectedWindow = ss->windows[i]->id;
+	    ss->selectedWindow = ss->windows[i];
 	    ss->move = ss->pos = i;
 
 	    if (ss->selectedWindow == selected)
@@ -1029,11 +1026,11 @@ switchWindowRemove (CompDisplay *d,
 
 	if (old != ss->selectedWindow)
 	{
+	    switchDoWindowDamage (ss->selectedWindow);
 	    switchDoWindowDamage (w);
 
-	    w = findWindowAtScreen (w->screen, old);
-	    if (w)
-		switchDoWindowDamage (w);
+	    if (old && !old->destroyed)
+		switchDoWindowDamage (old);
 
 	    ss->moreAdjust = 1;
 	}
@@ -1133,7 +1130,7 @@ switchGetWindowPosition (CompScreen   *s,
     *y = row * ss->previewHeight + (row + 1) * ss->previewBorder;
 }
 
-static Window
+static CompWindow *
 switchFindWindowAt (CompScreen *s,
 		    int        x,
 		    int        y)
@@ -1160,11 +1157,11 @@ switchFindWindowAt (CompScreen *s,
 	    y2 = y1 + ss->previewHeight;
 
 	    if (x >= x1 && x < x2 && y >= y1 && y < y2)
-		return ss->windows[i]->id;
+		return ss->windows[i];
 	}
     }
 
-    return None;
+    return NULL;
 }
 
 static void
@@ -1172,7 +1169,7 @@ switchHandleEvent (CompDisplay *d,
 		   XEvent      *event)
 {
     CompScreen *s;
-    CompWindow *w;
+    CompWindow *w = NULL;
 
     SWITCH_DISPLAY (d);
 
@@ -1192,6 +1189,13 @@ switchHandleEvent (CompDisplay *d,
 	    }
 	}
 	break;
+    case DestroyNotify:
+	/* We need to get the CompWindow * for event->xdestroywindow.window
+	   here because in the (*d->handleEvent) call below, that CompWindow's
+	   id will become 1, so findWindowAtDisplay won't be able to find the
+	   CompWindow after that. */
+	w = findWindowAtDisplay (d, event->xdestroywindow.window);
+	break;
     }
 
     UNWRAP (sd, d, handleEvent);
@@ -1200,10 +1204,11 @@ switchHandleEvent (CompDisplay *d,
 
     switch (event->type) {
     case UnmapNotify:
-	switchWindowRemove (d, event->xunmap.window);
+	w = findWindowAtDisplay (d, event->xunmap.window);
+	switchWindowRemove (d, w);
 	break;
     case DestroyNotify:
-	switchWindowRemove (d, event->xdestroywindow.window);
+	switchWindowRemove (d, w);
 	break;
     case PropertyNotify:
 	if (event->xproperty.atom == sd->selectFgColorAtom)
@@ -1226,7 +1231,7 @@ switchHandleEvent (CompDisplay *d,
 
 	    if (ss->grabIndex && ss->mouseSelect)
 	    {
-		Window selected;
+		CompWindow *selected;
 
 		selected = switchFindWindowAt (s,
 					       event->xbutton.x_root,
@@ -1367,12 +1372,13 @@ switchPaintOutput (CompScreen		   *s,
 
 	if (mode == HighlightModeBringSelectedToFront)
 	{
-	    zoomed = findWindowAtScreen (s, ss->selectedWindow);
-	    if (zoomed)
+	    zoomed = ss->selectedWindow;
+	    if (zoomed && !zoomed->destroyed)
 	    {
 		CompWindow *w;
 
-		for (w = zoomed->prev; w && w->id <= 1; w = w->prev);
+		for (w = zoomed->prev; w && w->id <= 1; w = w->prev)
+		    ;
 		zoomedAbove = (w) ? w->id : None;
 
 		unhookWindowFromScreen (s, zoomed);
@@ -1411,7 +1417,7 @@ switchPaintOutput (CompScreen		   *s,
 		if (zoomed)
 		    w = zoomed;
 		else
-		    w = findWindowAtScreen (s, ss->selectedWindow);
+		    w = ss->selectedWindow;
 
 		if (w)
 		{
@@ -1558,7 +1564,7 @@ switchPaintThumb (CompWindow		  *w,
 	wy = y + (ss->previewHeight / 2) - (height / 2);
 
 #if 0
-	if (w->id != ss->selectedWindow)
+	if (w != ss->selectedWindow)
 	{
 	    sAttrib.brightness /= 2;
 	    sAttrib.saturation /= 2;
@@ -1836,7 +1842,7 @@ switchPaintWindow (CompWindow		   *w,
 	glPopAttrib ();
     }
     else if (ss->switching && !ss->popupDelayHandle &&
-	     (w->id != ss->selectedWindow))
+	     (w != ss->selectedWindow))
     {
 	WindowPaintAttrib sAttrib = *attrib;
 	GLuint            value;
@@ -2006,7 +2012,7 @@ switchInitScreen (CompPlugin *p,
     ss->popupWindow      = None;
     ss->popupDelayHandle = 0;
 
-    ss->selectedWindow = None;
+    ss->selectedWindow = NULL;
     ss->clientLeader   = None;
 
     ss->windows     = 0;
