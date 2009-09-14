@@ -105,7 +105,9 @@ typedef struct _PluginEventInfo
     char *activateEventName;
 } PluginEventInfo;
 
-#define NUM_WATCHED_PLUGINS 5
+
+#define NUM_SWITCHERS 6
+#define NUM_WATCHED_PLUGINS (NUM_SWITCHERS + 2)
 
 typedef enum
 {

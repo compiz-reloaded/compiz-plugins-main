@@ -1740,6 +1740,29 @@ animActivateEvent (CompScreen *s,
     (*s->display->handleCompizEvent) (s->display, "animation", "activate", o, 2);
 }
 
+static const PluginEventInfo watchedPlugins[] =
+{
+    {"switcher", "activate"},
+    {"staticswitcher", "activate"},
+    {"ring", "activate"},
+    {"shift", "activate"},
+    {"stackswitch", "activate"},
+    {"scale", "activate"},
+    // the above ones are the switchers
+    {"group", "tabChangeActivate"},
+    {"fadedesktop", "activate"},
+};
+
+static Bool
+otherPluginsActive(AnimScreen *as)
+{
+    int i;
+    for (i = 0; i < NUM_WATCHED_PLUGINS; i++)
+	if (as->pluginActive[i])
+	    return TRUE;
+    return FALSE;
+}
+
 static inline Bool
 isWinVisible(CompWindow *w)
 {
@@ -1757,16 +1780,6 @@ getHostedOnWin (AnimScreen *as,
     AnimWindow *awHost = GET_ANIM_WINDOW(wHost, as);
     awHost->winToBePaintedBeforeThis = w;
     aw->winThisIsPaintedBefore = wHost;
-}
-
-static Bool
-otherPluginsActive(AnimScreen *as)
-{
-    int i;
-    for (i = 0; i < NUM_WATCHED_PLUGINS; i++)
-	if (as->pluginActive[i])
-	    return TRUE;
-    return FALSE;
 }
 
 static void
@@ -3293,15 +3306,6 @@ animInitWindowWalker (CompScreen *s,
     }
 }
 
-static const PluginEventInfo watchedPlugins[] =
-{
-    {"switcher", "activate"},
-    {"scale", "activate"},
-    {"group", "tabChangeActivate"},
-    {"fadedesktop", "activate"},
-    {"shift", "activate"},
-};
-
 static void animHandleCompizEvent(CompDisplay * d, const char *pluginName,
 				  const char *eventName, CompOption * option,
 				  int nOption)
@@ -3326,7 +3330,7 @@ static void animHandleCompizEvent(CompDisplay * d, const char *pluginName,
 		    ANIM_SCREEN(s);
 		    as->pluginActive[i] =
 			getBoolOptionNamed(option, nOption, "active", FALSE);
-		    if (i == 0)
+		    if (i < NUM_SWITCHERS) // if it's a switcher plugin
 		    {
 			if (!as->pluginActive[i])
 			    switcherPostWait = 1;
@@ -3616,7 +3620,8 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		// Always reset stacking related info when a window is closed.
 		resetStackingInfo (w->screen);
 
-		if (shouldIgnoreForAnim (w, TRUE))
+		if (shouldIgnoreForAnim (w, TRUE) ||
+		    otherPluginsActive (as))
 		    break;
 
 		AnimEffect chosenEffect =
@@ -4145,7 +4150,8 @@ static Bool animDamageWindowRect(CompWindow * w, Bool initial, BoxPtr rect)
 
 	    // OPEN event!
 
-	    if (!shouldIgnoreForAnim (w, FALSE) &&
+	    if (!otherPluginsActive (as) &&
+		!shouldIgnoreForAnim (w, FALSE) &&
 		AnimEffectNone !=
 		(chosenEffect =
 		 getMatchingAnimSelection (w, AnimEventOpen, &duration)) &&
