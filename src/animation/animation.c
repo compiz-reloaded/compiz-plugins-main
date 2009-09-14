@@ -3412,7 +3412,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	}
 	break;
     case DestroyNotify:
-	w = findWindowAtDisplay(d, event->xunmap.window);
+	w = findWindowAtDisplay(d, event->xdestroywindow.window);
 	if (w)
 	{
 	    ANIM_WINDOW(w);
