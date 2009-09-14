@@ -542,7 +542,7 @@ switchActivateEvent (CompScreen *s,
     o[1].name = "active";
     o[1].value.b = activating;
 
-    (*s->display->handleCompizEvent) (s->display, "switcher", "activate", o, 2);
+    (*s->display->handleCompizEvent) (s->display, "ring", "activate", o, 2);
 }
 
 static int
