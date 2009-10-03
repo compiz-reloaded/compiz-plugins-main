@@ -488,3 +488,4 @@ getCompPluginInfo (void)
 {
     return &titleinfoVTable;
 }
+
