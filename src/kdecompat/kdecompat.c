@@ -578,3 +578,4 @@ getCompPluginInfo (void)
 {
     return &kdecompatVTable;
 }
+
