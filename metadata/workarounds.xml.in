@@ -56,7 +56,7 @@
             <option type="bool" name="force_glx_sync">
                 <_short>Force synchronization between X and GLX</_short>
                 <_long>Force synchronization between X and GLX, which may help for window parts not redrawing correctly when using Nvidia drivers, but also may decrease performance.</_long>
-                <default>false</default>
+                <default>true</default>
             </option>
             <subgroup>
                 <_short>Window stickyness</_short>
