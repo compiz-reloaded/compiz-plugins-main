@@ -25,6 +25,7 @@ xml_in_files = 	         \
 	colorfilter.xml.in    \
 	expo.xml.in           \
 	ezoom.xml.in          \
+	kdecompat.xml.in      \
 	mag.xml.in            \
 	mousepoll.xml.in      \
 	neg.xml.in            \
@@ -36,6 +37,7 @@ xml_in_files = 	         \
 	snap.xml.in           \
 	staticswitcher.xml.in \
 	thumbnail.xml.in      \
+	titleinfo.xml.in      \
 	vpswitch.xml.in       \
 	winrules.xml.in       \
 	workarounds.xml.in    \

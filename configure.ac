@@ -201,6 +201,7 @@ src/colorfilter/Makefile
 src/expo/Makefile
 src/ezoom/Makefile
 src/jpeg/Makefile
+src/kdecompat/Makefile
 src/mag/Makefile
 src/mousepoll/Makefile
 src/neg/Makefile
@@ -215,6 +216,7 @@ src/snap/Makefile
 src/staticswitcher/Makefile
 src/text/Makefile
 src/thumbnail/Makefile
+src/titleinfo/Makefile
 src/vpswitch/Makefile
 src/wall/Makefile
 src/winrules/Makefile

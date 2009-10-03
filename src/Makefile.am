@@ -5,6 +5,7 @@ SUBDIRS = \
     expo           \
     ezoom          \
     jpeg           \
+    kdecompat      \
     mag            \
     mousepoll      \
     neg            \
@@ -19,6 +20,7 @@ SUBDIRS = \
     staticswitcher \
     text           \
     thumbnail      \
+    titleinfo      \
     vpswitch       \
     wall           \
     winrules       \
