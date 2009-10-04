@@ -6,7 +6,7 @@ libkdecompat_la_LIBADD = @COMPIZ_LIBS@
 nodist_libkdecompat_la_SOURCES = kdecompat_options.c kdecompat_options.h
 dist_libkdecompat_la_SOURCES = kdecompat.c
 
-BUILT_SOURCES = $(nodist_kdecompat_la_SOURCES)
+BUILT_SOURCES = $(nodist_libkdecompat_la_SOURCES)
 
 INCLUDES =                              \
 	-I$(top_srcdir)/include         \
