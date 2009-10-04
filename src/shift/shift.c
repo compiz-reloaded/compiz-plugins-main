@@ -567,9 +567,8 @@ shiftPaintWindow (CompWindow		 *w,
 		    }
 		    else
 		    {
-			scale =
-			    0.8f * MIN (((float) ss->maxThumbWidth / icon->width),
-					((float) ss->maxThumbHeight / icon->height));
+			scale = MIN (((float) 128 / icon->width),
+				     ((float) 128 / icon->height));
 		    }
 		    break;
 		}
@@ -1729,7 +1728,9 @@ shiftTerm (CompScreen *s, Bool cancel)
         ss->grabIndex = 0;
     }
 
-    if (ss->state != ShiftStateNone)
+    if (ss->state != ShiftStateNone &&
+    	ss->state != ShiftStateFinish &&
+    	ss->state != ShiftStateIn)
     {
 
 	if (cancel && ss->mvTarget != 0)
