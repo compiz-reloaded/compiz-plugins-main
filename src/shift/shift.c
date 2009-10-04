@@ -1675,39 +1675,39 @@ shiftDonePaintScreen (CompScreen *s)
 		ss->state = ShiftStateSwitching;
 
 	    if (ss->moveAdjust)
-	    {
 		damageScreen (s);
+	}
+
+	if (ss->state == ShiftStateFinish)
+	{
+	    CompWindow *w;
+
+	    CompWindow *pw = NULL;
+	    int i;
+	    
+	    ss->state = ShiftStateIn;
+	    ss->moreAdjust = TRUE;
+	    damageScreen (s);
+
+	    if (!ss->canceled && ss->mvTarget != 0)
+	    for (i = 0; i < ss->nSlots; i++)
+	    {
+		w = ss->drawSlots[i].w;
+		if (ss->drawSlots[i].slot->primary && canStackRelativeTo (w))
+		{
+		    if (pw)
+			restackWindowAbove (w,pw);
+		    pw = w;
+		}
 	    }
-	    else if (ss->state == ShiftStateFinish)
+
+	    if (!ss->canceled && ss->selectedWindow &&
+		!ss->selectedWindow->destroyed)
 	    {
-		CompWindow *w;
-
-		CompWindow *pw = NULL;
-		int i;
-		
-		ss->state = ShiftStateIn;
-		ss->moreAdjust = TRUE;
-		damageScreen (s);
-
-		if (!ss->canceled && ss->mvTarget != 0)
-		for (i = 0; i < ss->nSlots; i++)
-		{
-		    w = ss->drawSlots[i].w;
-		    if (ss->drawSlots[i].slot->primary && canStackRelativeTo (w))
-		    {
-			if (pw)
-			    restackWindowAbove (w,pw);
-			pw = w;
-		    }
-		}
-
-		if (!ss->canceled && ss->selectedWindow &&
-		    !ss->selectedWindow->destroyed)
-		{
-		    sendWindowActivationRequest (s, ss->selectedWindow->id);
-		}
+		sendWindowActivationRequest (s, ss->selectedWindow->id);
 	    }
 	}
+
 	if (ss->state == ShiftStateNone)
 	    switchActivateEvent (s, FALSE);
     }
