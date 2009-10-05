@@ -116,6 +116,9 @@ kdecompatPaintWindow (CompWindow		 *w,
 	float        xScale = 1.0f, yScale = 1.0f, xTranslate, yTranslate;
 	CompIcon     *icon = NULL;
 
+	if (!tw)
+	    continue;
+
 	xTranslate = rect->x + w->attrib.x - tw->attrib.x;
 	yTranslate = rect->y + w->attrib.y - tw->attrib.y;
 
