@@ -1517,6 +1517,75 @@ static void cleanUpParentChildChainItem(AnimScreen *as, AnimWindow *aw)
     aw->skipPostPrepareScreen = FALSE;
 }
 
+// Update this window's dodgers so that they no longer point
+// to this window as their subject
+static void
+clearDodgersSubject (AnimScreen *as, CompWindow *w)
+{
+    CompWindow *dw;
+    AnimWindow *adw;
+
+    ANIM_WINDOW (w);
+
+    for (dw = aw->dodgeChainStart; dw; dw = adw->dodgeChainNext)
+    {
+	adw = GET_ANIM_WINDOW(dw, as);
+	if (!adw)
+	    break;
+	if (adw->dodgeSubjectWin == w)
+	    adw->dodgeSubjectWin = NULL;
+    }
+}
+
+// Remove this dodger window from the dodge chain
+static void
+removeFromDodgeChain (AnimScreen *as, CompWindow *dw)
+{
+    AnimWindow *adw = GET_ANIM_WINDOW(dw, as);
+    if (!adw)
+	return;
+
+    if (adw->dodgeSubjectWin)
+    {
+	AnimWindow *awSubject = GET_ANIM_WINDOW (adw->dodgeSubjectWin, as);
+
+	// if dw is the starting window in the dodge chain
+	if (awSubject && awSubject->dodgeChainStart == dw)
+	{
+	    if (adw->dodgeChainNext)
+	    {
+		// Subject is being raised and there is a next dodger.
+		awSubject->dodgeChainStart = adw->dodgeChainNext;
+	    }
+	    else
+	    {
+		// Subject is being lowered or there is no next dodger.
+		// In either case, we can point chain start to prev. in chain,
+		// which can be NULL.
+		awSubject->dodgeChainStart = adw->dodgeChainPrev;
+	    }
+	}
+    }
+
+    if (adw->dodgeChainNext)
+    {
+	AnimWindow *awNext = GET_ANIM_WINDOW (adw->dodgeChainNext, as);
+
+	// Point adw->next's prev. to adw->prev.
+	if (awNext)
+	    awNext->dodgeChainPrev = adw->dodgeChainPrev;
+    }
+
+    if (adw->dodgeChainPrev)
+    {
+	AnimWindow *awPrev = GET_ANIM_WINDOW (adw->dodgeChainPrev, as);
+
+	// Point adw->prev.'s next to adw->next
+	if (awPrev)
+	    awPrev->dodgeChainNext = adw->dodgeChainNext;
+    }
+}
+
 static void postAnimationCleanupCustom (CompWindow * w,
 					Bool closing,
 					Bool finishing,
@@ -1576,6 +1645,11 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	aw->com.curAnimEffect->properties.cleanupFunc)
 	aw->com.curAnimEffect->properties.cleanupFunc (w);
 
+    if (aw->isDodgeSubject)
+	clearDodgersSubject (as, w);
+    else if (aw->com.curAnimEffect == AnimEffectDodge)
+	removeFromDodgeChain (as, w);
+
     aw->com.curWindowEvent = WindowEventNone;
     aw->com.curAnimEffect = AnimEffectNone;
     aw->com.animOverrideProgressDir = 0;
@@ -1634,6 +1708,8 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	while (wCur)
 	{
 	    AnimWindow *awCur = GET_ANIM_WINDOW(wCur, as);
+	    if (awCur->isDodgeSubject)
+		clearDodgersSubject (as, wCur);
 	    wCur = awCur->moreToBePaintedNext;
 	    cleanUpParentChildChainItem(as, awCur);
 	}
@@ -1641,6 +1717,8 @@ static void postAnimationCleanupCustom (CompWindow * w,
 	while (wCur)
 	{
 	    AnimWindow *awCur = GET_ANIM_WINDOW(wCur, as);
+	    if (awCur->isDodgeSubject)
+		clearDodgersSubject (as, wCur);
 	    wCur = awCur->moreToBePaintedPrev;
 	    cleanUpParentChildChainItem(as, awCur);
 	}
@@ -2050,7 +2128,7 @@ initiateFocusAnimation(CompWindow *w)
 		    aw->dodgeMaxAmount = 0;
 
 		// if subject is being lowered,
-		// point chain-start to the topmost doding window
+		// point chain-start to the topmost dodging window
 		if (!raised)
 		{
 		    aw->dodgeChainStart = wDodgeChainLastVisited;
@@ -3697,7 +3775,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 
 		    if (!animEnsureModel(w))
 		    {
-			postAnimationCleanup (w);
+			postAnimationCleanupCustom (w, TRUE, FALSE, TRUE);
 		    }
 		    else if (getMousePointerXY
 			     (w->screen, &aw->com.icon.x, &aw->com.icon.y))
@@ -3733,7 +3811,7 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 		    if ((aw->com.curWindowEvent != WindowEventNone) &&
 			(aw->com.curWindowEvent != WindowEventClose))
 		    {
-			postAnimationCleanup (w);
+			postAnimationCleanupCustom (w, TRUE, FALSE, TRUE);
 		    }
 		    // set some properties to make sure this window will use the
 		    // correct open effect the next time it's "opened"
@@ -4892,6 +4970,7 @@ static Bool animInitWindow(CompPlugin * p, CompWindow * w)
 
 static void animFiniWindow(CompPlugin * p, CompWindow * w)
 {
+    ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
 
     postAnimationCleanupCustom (w, FALSE, TRUE, TRUE);
@@ -4899,6 +4978,7 @@ static void animFiniWindow(CompPlugin * p, CompWindow * w)
     animFreeModel(aw);
 
     free(aw);
+    w->base.privates[as->windowPrivateIndex].ptr = NULL;
 }
 
 static CompBool

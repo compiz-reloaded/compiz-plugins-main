@@ -72,11 +72,16 @@ fxDodgeProcessSubject (CompWindow *wCur,
     XDestroyRegion (wCurRegion);
 }
 
-static void
+// Returns FALSE if the subject is destroyed or if there was an error when
+// calculating the dodge box
+static Bool
 fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
 {
     ANIM_SCREEN(w->screen);
     ANIM_WINDOW(w);
+
+    if (!aw->dodgeSubjectWin)  // if the subject is destroyed
+	return FALSE;
 
     // Find the box to be dodged, it can contain multiple windows
     // when there are dialog/utility windows of subject windows
@@ -85,13 +90,13 @@ fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
     // intersecting with dodger.
     Region wRegion = XCreateRegion();
     if (!wRegion)
-	return;
+	return FALSE;
 
     Region dodgeRegion = XCreateRegion();
     if (!dodgeRegion)
     {
 	XDestroyRegion (wRegion);
-	return;
+	return FALSE;
     }
 
     XRectangle rect;
@@ -150,6 +155,8 @@ fxDodgeFindDodgeBox (CompWindow *w, XRectangle *dodgeBox)
 
     XDestroyRegion (wRegion);
     XDestroyRegion (dodgeRegion);
+
+    return TRUE;
 }
 
 static void
@@ -171,6 +178,8 @@ applyDodgeTransform (CompWindow * w, CompTransform *transform)
 void
 fxDodgeAnimStep (CompWindow *w, float time)
 {
+    XRectangle dodgeBox;
+
     defaultAnimStep (w, time);
 
     ANIM_WINDOW(w);
@@ -185,18 +194,11 @@ fxDodgeAnimStep (CompWindow *w, float time)
 	    (1 - aw->com.transformStartProgress);
     }
 
-    if (!aw->isDodgeSubject && !aw->dodgeSubjectWin)
-	compLogMessage ("animation", CompLogLevelError,
-			"%s: %d: Dodge subject missing!",
-			__FILE__, __LINE__);
     if (!aw->isDodgeSubject &&
-	aw->dodgeSubjectWin &&
-	aw->com.transformProgress <= 0.5f)
+	aw->com.transformProgress <= 0.5f &&
+	fxDodgeFindDodgeBox (w, &dodgeBox))
     {
-	XRectangle dodgeBox;
-	fxDodgeFindDodgeBox (w, &dodgeBox);
-
-	// Update dodge amount if subject window is moved during dodge
+	// Update dodge amount if subject window has moved during dodge
 	float newDodgeAmount =
 	    DODGE_AMOUNT_BOX(dodgeBox, w, aw->dodgeDirection);
 
