@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr-compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2009-03-24 12:51+0530\n"
-"PO-Revision-Date: 2009-03-15 13:59+0100\n"
+"POT-Creation-Date: 2009-03-24 08:10+0100\n"
+"PO-Revision-Date: 2009-06-24 17:59+0200\n"
 "Last-Translator: Alvin Meimoun <alvin.meimoun@laposte.net>\n"
 "Language-Team: <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -123,12 +123,12 @@ msgstr "Luminosité des fenêtres ombrées"
 # Faut-il traduire ADD Helper par aide à la concentration ?
 #, fuzzy
 msgid "Enable ADD Helper on start"
-msgstr "Activer \"ADD Help\" au démarrage"
+msgstr "Activer \"Aide à la concentration\" au démarrage"
 
 # Faut-il traduire ADD helper?
 #, fuzzy
 msgid "Enables ADD helper when it is first loaded."
-msgstr "Active \"ADD Help\" au premier chargement"
+msgstr "Active \"Aide à la concentration\" au premier chargement"
 
 msgid ""
 "Make it slightly easier to concentrate by dimming all but the active window."
@@ -868,28 +868,26 @@ msgid "Zoom to TaskBar on Minimize"
 msgstr "Zoomer vers la barre de tâches quand la fenêtre est réduite"
 
 msgid "Ambient light"
-msgstr ""
+msgstr "Lumière ambiante"
 
 msgid "Amplitude of small water waves on the bigger ones."
-msgstr ""
+msgstr "Amplitude des petites vagues sur les plus grandes"
 
 msgid "Amplitude of water waves."
-msgstr ""
+msgstr "Amplitudes des vagues d'eau."
 
-#, fuzzy
 msgid "Color"
-msgstr "Couleurs"
+msgstr "Couleur"
 
-#, fuzzy
 msgid "Color of ground in the cube."
-msgstr "Couleur de la face supérieure du cube."
+msgstr "Couleur du sol dans le cube."
+
+msgid "Color of water in the cube."
+msgstr "Couleur de l'eau dans le cube."
 
 #, fuzzy
-msgid "Color of water in the cube."
-msgstr "Couleur de la face supérieure du cube."
-
 msgid "Component of light coming from all directions equally."
-msgstr ""
+msgstr "Composition de lumière venant de toutes les directions identiquement"
 
 #, fuzzy
 msgid "Creature Selection"
@@ -902,86 +900,89 @@ msgstr "Cube Atlantis"
 msgid "Display"
 msgstr "Durée d'affichage"
 
+#, fuzzy
 msgid "Fish in different groups, but of the same type, swim together."
-msgstr ""
+msgstr "Poissons dans différents groupes mais du même type nageant ensembles"
 
 msgid "Frequency of small water waves on the bigger ones."
-msgstr ""
+msgstr "Fréquence des petites vagues par rapport aux plus grandes."
 
 msgid "Frequency of water waves."
-msgstr ""
+msgstr "Fréquence des vagues."
 
-#, fuzzy
 msgid "Ground color"
-msgstr "Couleur de la surface (loin)"
+msgstr "Couleur du sol"
 
 #, fuzzy
 msgid "Height of water surface in the cube."
 msgstr "Couleur de la face supérieure du cube."
 
 msgid "Light inclination"
-msgstr ""
+msgstr "Inclinaison de la lumière"
 
 #, fuzzy
 msgid "Lighting"
 msgstr "Ajustement"
 
+#, fuzzy
 msgid "Low detail models"
-msgstr ""
+msgstr "Bas modèles de détails"
 
 #, fuzzy
 msgid "Miscellaneous Selection"
 msgstr "Permettre la sélection à la souris"
 
 msgid "Multiply the speed of the fish by this factor."
-msgstr ""
+msgstr "Multiplier la vitesse des poissons par ce facteur."
 
 msgid "Number"
-msgstr ""
+msgstr "Nombre"
 
 msgid "Number of subdivisions that create a finer grid."
-msgstr ""
+msgstr "Nombres de sous-divisions qui créent une grille plus fine"
 
-#, fuzzy
 msgid "Preserve light direction when rotating the cube."
-msgstr "Surélever les fenêtres lors de la rotation"
+msgstr "Conserver la direction de la lumière pendant la rotation du cube."
 
 #, fuzzy
 msgid "Render ground"
-msgstr "Arrière-plan assombri"
+msgstr "Afficher le sol"
 
 #, fuzzy
 msgid "Render ground inside the cube."
-msgstr "Afficher des rouages à l'intérieur du cube transparent"
+msgstr "Afficher le sol à l'intérieur du cube."
 
-#, fuzzy
 msgid "Render some sea animals inside of the transparent cube"
 msgstr "Afficher des poissons à l'intérieur du cube transparent"
 
 msgid "Render water"
-msgstr ""
+msgstr "Afficher de l'eau"
 
 #, fuzzy
 msgid "Render water inside the cube."
-msgstr "Afficher des rouages à l'intérieur du cube transparent"
+msgstr "Afficher de l'eau à l'intérieur du cube transparent"
 
 #, fuzzy
 msgid "Render water waves inside the cube."
-msgstr "Afficher des rouages à l'intérieur du cube transparent"
+msgstr "Afficher des vagues à l'intérieur du cube"
 
+#, fuzzy
 msgid "Render water wireframe"
-msgstr ""
+msgstr "Afficher des rouages"
 
 #, fuzzy
 msgid "Render water wireframe inside the cube."
 msgstr "Afficher des rouages à l'intérieur du cube transparent"
 
 msgid "Render waves"
-msgstr ""
+msgstr "Afficher des vagues"
 
+#, fuzzy
 msgid ""
 "Rescale along the sides of the cube by the ratio of screen width to height."
 msgstr ""
+"Réflexion le long des côtés du cube selon le rapport de la largeur d'écran à "
+"la hauteur d'écran"
 
 #, fuzzy
 msgid "Rescale for screen ratio"
@@ -991,14 +992,16 @@ msgstr "Réflexion pour les décorations"
 msgid "Ripple effect"
 msgstr "Effet d'ouverture"
 
+#, fuzzy
 msgid "Rotate lighting"
-msgstr ""
+msgstr "Tourner l'éclairage"
 
 msgid "School similar groups"
 msgstr ""
 
+#, fuzzy
 msgid "Semi-randomize light scattering off water waves."
-msgstr ""
+msgstr "Dispersion semi-aléatoire de la lumière outre des vagues."
 
 #, fuzzy
 msgid "Size"
@@ -1006,17 +1009,19 @@ msgstr "Diapositive"
 
 #, fuzzy
 msgid "Small wave amplitude"
-msgstr "Amplitude maximale des vagues de la Lampe Magique"
+msgstr "Petite amplitude des vagues de la Lampe Magique"
 
+#, fuzzy
 msgid "Small wave frequency"
-msgstr ""
+msgstr "Petite fréquence des vagues"
 
 #, fuzzy
 msgid "Speed factor"
 msgstr "Facteur de zoom"
 
+#, fuzzy
 msgid "Start crabs on bottom"
-msgstr ""
+msgstr "Dessiner les images au dessus"
 
 #, fuzzy
 msgid "Start crabs on the bottom of the cube."
@@ -1056,24 +1061,28 @@ msgstr "Le style de la barre d'onglets"
 msgid "Type"
 msgstr "Type de lueur"
 
+#, fuzzy
 msgid "Type of sea creature."
-msgstr ""
+msgstr "Type de créature aquatique"
 
+#, fuzzy
 msgid "Type of sea plant."
-msgstr ""
+msgstr "Type de végétation aquatique"
 
 msgid "Use less detailed models for increased performance."
-msgstr ""
+msgstr "Utiliser des détails moins bon pour une meilleure performance"
 
+#, fuzzy
 msgid "Water / Ground"
-msgstr ""
+msgstr "Fond de l'eau"
 
 #, fuzzy
 msgid "Water color"
 msgstr "Couleur de la bordure"
 
+#, fuzzy
 msgid "Water surface height"
-msgstr ""
+msgstr "Hauteur de l'eau"
 
 msgid "Water/Ground grid smoothness"
 msgstr ""
@@ -1083,9 +1092,8 @@ msgid "Wave amplitude"
 msgstr "Facteur Amplitude de la Vague"
 
 msgid "Wave frequency"
-msgstr ""
+msgstr "Fréquence des vagues"
 
-#, fuzzy
 msgid "Waves"
 msgstr "Vague"
 
@@ -1505,8 +1513,9 @@ msgid ""
 "viewer if Rotate Lighting is true."
 msgstr ""
 
+#, fuzzy
 msgid "Cube 3D Models"
-msgstr ""
+msgstr "Mode du Cube 3D"
 
 #, fuzzy
 msgid "Diffuse light intensity"
@@ -1516,7 +1525,7 @@ msgid "Framerate (per second) for the animated series of obj files."
 msgstr ""
 
 msgid "Frames per second"
-msgstr ""
+msgstr "Images par seconde"
 
 msgid "Full path to 3D wavefront (.obj) model file."
 msgstr ""
@@ -1593,14 +1602,14 @@ msgid ""
 msgstr ""
 
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #, fuzzy
 msgid "X coordinate offset from the centre of the cube."
 msgstr "Placer le pointeur en utilisant le centre de la fenêtre"
 
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #, fuzzy
 msgid "Y coordinate offset from the centre of the cube."

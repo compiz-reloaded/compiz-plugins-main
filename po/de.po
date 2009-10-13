@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugins 0.0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2009-03-24 12:50+0530\n"
-"PO-Revision-Date: 2008-07-25 21:06+0200\n"
-"Last-Translator: Philipp B. <philipp2812@gmail.com>\n"
+"POT-Creation-Date: 2009-03-24 08:10+0100\n"
+"PO-Revision-Date: 2009-06-27 00:47+0200\n"
+"Last-Translator: Claudia Mechtler <claudia.mechtler.sj@gmx.net>\n"
 "Language-Team: Compiz Fusion translators <i18n@lists.compiz-fusion.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,9 +53,7 @@ msgstr "Ecke oben rechts abrunden"
 #, fuzzy
 msgid ""
 "Change the amount of space between the windows (in percent of the cube size)."
-msgstr ""
-"Verändert den Abstand zwischen den Fenstern (prozentual auf Würfelgröße "
-"bezogen)."
+msgstr "Ändert den Abstand zwischen den Fenstern (in Prozent der Würfelgröße)."
 
 # ist mit 'window's depth' hier der schatten gemeint? oder geht es um tiefenwirkung innerhalb des fensters?
 msgid "Color of an inactive window's depth"
@@ -161,7 +159,7 @@ msgid "Window types that should be Opacified."
 msgstr "Fenstertypen, die sichtbar sein sollen"
 
 msgid "Airplane"
-msgstr "Papierflugzeug"
+msgstr "Flugzeug"
 
 msgid "Airplane Flying Path Length"
 msgstr "Länge des vom Flugzeug zurückgelegten Weges"
@@ -175,7 +173,7 @@ msgstr "Animations-Zeitschritt für aufregende Effekte"
 
 #, fuzzy
 msgid "Animations Add-On"
-msgstr "Animationen"
+msgstr "Animationen Erweiterung"
 
 msgid "Automatic"
 msgstr "Automatisch"
@@ -184,7 +182,7 @@ msgid "Away Angle"
 msgstr ""
 
 msgid "Away Position"
-msgstr ""
+msgstr "Abwesenheitsposition"
 
 msgid "Beam"
 msgstr "Teleporter"
@@ -5597,10 +5595,10 @@ msgid "Edge flipping"
 msgstr "Umschaltung an Desktoprand"
 
 msgid "First color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Erste Farbe des Hintergrundverlaufes des Switcher Fensters"
 
 msgid "First color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "Erste Farbe des Thumbnailverlaufes des Switcher Fensters"
 
 #, fuzzy
 msgid "First color for the thumb highlight gradient of the switcher window."
@@ -5647,12 +5645,11 @@ msgstr ""
 
 #, fuzzy
 msgid "Highlight Gradient"
-msgstr "Hervorhebungsfarbe"
+msgstr "Highlightverlauf"
 
 #, fuzzy
 msgid "How should a multimonitor configuration be handled"
-msgstr ""
-"Wählt aus, wie eine Multi-Monitor-Konfiguration gehandhabt werden soll."
+msgstr "Wie soll eine Multimonitor-Konfiguration gehandhabt werden"
 
 msgid "Move Down With Window"
 msgstr "Mit Fenster nach unten bewegen"
@@ -5709,36 +5706,37 @@ msgstr "Verhalten bei mehreren Monitoren"
 
 #, fuzzy
 msgid "Non Sliding Windows"
-msgstr "Fenster im Ring"
+msgstr "Nicht \"slidende\" Fenster"
 
 msgid "Outline Color"
 msgstr "Rahmenfarbe"
 
 #, fuzzy
 msgid "Outline color of the switcher window."
-msgstr "Farbe des Fenstertitels"
+msgstr "Aussenlinie des Switcher Fensters"
 
 msgid "Preview Scale"
-msgstr ""
+msgstr "Vorschaugröße"
 
 msgid "Radius of the rounded edge"
 msgstr "Radius der abgerundeten Ecken"
 
 #, fuzzy
 msgid "Second color for the background gradient of the switcher window."
-msgstr "Farbe, die zum Hervorheben des aktuellen Fensters verwendet wird"
+msgstr "Zweite Farbe des Hintergrundverlaufes des Switcher Fensters"
 
 #, fuzzy
 msgid "Second color for the thumb gradient of the switcher window."
-msgstr "Farbe, die zum Hervorheben des aktuellen Fensters verwendet wird"
+msgstr "Zweite Farbe des Thumbnailverlaufes des Switcher Fensters"
 
 #, fuzzy
 msgid "Second color for the thumb highlight gradient of the switcher window."
-msgstr "Farbe, die zum Hervorheben des aktuellen Fensters verwendet wird"
+msgstr ""
+"Zweite Farbe des Highlightverlaufes von Thumbnails des Switcher Fensters"
 
 #, fuzzy
 msgid "Second color of the arrow of the switcher window."
-msgstr "Hintergrundfarbe für Fenstertitel"
+msgstr "Zweite Farbe des Peiles des Switcher Fensters"
 
 msgid "Shadow Color"
 msgstr "Schattenfarbe"
@@ -5758,7 +5756,7 @@ msgstr "Zeigt ein Vorschaufenster beim Umschalten von Arbeitsflächen an."
 
 #, no-c-format
 msgid "Size of the preview in %"
-msgstr ""
+msgstr "Größe der Vorschau in Prozent"
 
 msgid "Switch Target Preview Visibility Time"
 msgstr "Anzeigedauer für Vorschaufenster"
@@ -5786,15 +5784,15 @@ msgid "Wall Sliding Duration"
 msgstr "Animationsdauer"
 
 msgid "Width of the border between the previews"
-msgstr ""
+msgstr "Breite der Rahmen zwischen den Vorschaubildern"
 
 #, fuzzy
 msgid "Windows that should not slide during the slide animation"
-msgstr "Fenster, die im Umschalter angezeigt werden sollen"
+msgstr "Fenster, die von der \"Slide\" Animation, ausgenommen weden"
 
 #, fuzzy
 msgid "Background fill type."
-msgstr "Hintergrundbild"
+msgstr "Art der Hintergrundfüllung"
 
 msgid "Backgrounds"
 msgstr "Hintergrundbild"
@@ -5804,42 +5802,42 @@ msgstr ""
 
 #, fuzzy
 msgid "Color 1"
-msgstr "Farben"
+msgstr "Erste Farbe"
 
 #, fuzzy
 msgid "Color 2"
-msgstr "Farben"
+msgstr "Zweite Farbe"
 
 msgid "Draw the desktop wallpaper"
-msgstr ""
+msgstr "Zeichne den Desktophintergrund"
 
 #, fuzzy
 msgid "Fill or first gradient color."
-msgstr "Farbe der Feuerparktikel."
+msgstr "Füllungs- oder Verlaufsfarbe"
 
 #, fuzzy
 msgid "Fill type"
-msgstr "Gefüllter Rahmen"
+msgstr "Art der Füllung"
 
 #, fuzzy
 msgid "Horizontal gradient"
-msgstr "Horizontales Zusammenfalten"
+msgstr "Horizontaler Verlauf"
 
 #, fuzzy
 msgid "Image"
-msgstr "Bilder"
+msgstr "Bild"
 
 #, fuzzy
 msgid "Image file."
-msgstr "Logo-Datei."
+msgstr "Bilddatei."
 
 #, fuzzy
 msgid "Image position."
-msgstr "X-Position"
+msgstr "Bildposition"
 
 #, fuzzy
 msgid "Position"
-msgstr "X-Position"
+msgstr "Position"
 
 #, fuzzy
 msgid "Scale and Crop"
@@ -5851,17 +5849,17 @@ msgstr "Scale-Erweiterungen"
 
 #, fuzzy
 msgid "Second gradient color."
-msgstr "Farbe 1 für Farbverlauf"
+msgstr "Zweiter Farbverlauf"
 
 msgid "Solid fill"
-msgstr ""
+msgstr "Deckende Füllung"
 
 #, fuzzy
 msgid "Tiled"
 msgstr "Kacheln"
 
 msgid "Vertical gradient"
-msgstr ""
+msgstr "Vertikaler Verlauf"
 
 msgid "Wallpaper"
 msgstr "Hintergrundbild"
@@ -5876,46 +5874,46 @@ msgstr "Hintergundsättigung"
 
 #, fuzzy
 msgid "Background in Widget Mode"
-msgstr "Hintergrundbild-Datei"
+msgstr "Hintergrund im Widget Modus"
 
 #, fuzzy
 msgid "Brightness of non-widget windows in widget modes."
-msgstr "Helligkeit von verblassten Fenstern"
+msgstr "Helligkeit von \"nicht-Widget\" Fenstern im Widget Modus"
 
 msgid "End Widget Mode on Click"
-msgstr ""
+msgstr "Beenden des Widget Modus durch einen Mausklick"
 
 msgid "End widget mode when a non-widget window is clicked."
-msgstr ""
+msgstr "Beenden des Widget Modus durch klicken eines \"nicht-Widget\" Fensters"
 
 #, fuzzy
 msgid "Saturation of non-widget windows in widget modes."
-msgstr "Sättigung von verblassten Fenstern"
+msgstr "Sättigung von \"nicht-Widget\" Fenstern im Widget Modus"
 
 #, fuzzy
 msgid "Show or hide widget windows"
-msgstr "Wenn ausgewählt, werden auch minimierte Fenster angezeigt."
+msgstr "Zeige oder verstecke Widgets"
 
 msgid "Show widget windows on a separate layer"
-msgstr ""
+msgstr "Zeige Widgets auf einer eigenen Ebene"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr ""
+msgstr "Zeit (in Sekunden) für Ein-/Ausblendeffekte der Widget Ebene"
 
 #, fuzzy
 msgid "Toggle Widget Display"
-msgstr "Negierung des aktuellen Fensters umschalten."
+msgstr "Umschatlen der Widget Darstellung"
 
 msgid "Widget Layer"
-msgstr ""
+msgstr "Widget Ebene"
 
 #, fuzzy
 msgid "Widget Windows"
-msgstr "Fenster im Ring"
+msgstr "Widget Fenster"
 
 #, fuzzy
 msgid "Windows that always should be treated as widgets"
-msgstr "Fenster, denen beim Öffnen eine bestimmte Größe zugewiesen werden soll"
+msgstr "Fenster die immer als Widget behandelt werden sollen"
 
 msgid "Above others windows"
 msgstr "Fenster, die immer über anderen Fenstern angeordnet werden sollen"
@@ -6028,7 +6026,7 @@ msgid "Windows will not have focus"
 msgstr "Fenster, die niemals Fokus erhalten können sollen"
 
 msgid "\"On all desktops\" sticky match"
-msgstr ""
+msgstr "Auf allen Desktops zeigen."
 
 msgid "AIGLX Fragment Parameter Fix"
 msgstr ""
@@ -6064,13 +6062,16 @@ msgid "Fix window type of various Qt windows."
 msgstr ""
 
 msgid "Force synchronization between X and GLX"
-msgstr ""
+msgstr "Force Synchronisation zwischen X und GLX"
 
 msgid ""
 "Force synchronization between X and GLX, which may help for window parts not "
 "redrawing correctly when using Nvidia drivers, but also may decrease "
 "performance."
 msgstr ""
+"Force Synchronisation zwischen X und GLX, was bei fehlerhafter \"Umzeichnung\" "
+"und Verwendung von Nvidia-Treibern, helfen könnte, aber auch die "
+"Performance verringert."
 
 msgid "Java Window Fix"
 msgstr "Workaround für Java-Fenster"
@@ -6089,10 +6090,10 @@ msgstr ""
 "sind auf allen Darstellungsfeldern sichtbar."
 
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr ""
+msgstr "Dringliche Fenster sollen sich bemerkbar machen."
 
 msgid "Make Wine and legacy applications fullscreen properly."
-msgstr ""
+msgstr "Wine und Legacy Anwendungen im Vollbildmodus betreiben."
 
 msgid "Metacity-like workarounds."
 msgstr "Workarounds wie Metacity"

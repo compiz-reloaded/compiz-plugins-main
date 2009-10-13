@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2009-03-24 12:52+0530\n"
-"PO-Revision-Date: 2009-03-14 13:40+0200\n"
-"Last-Translator: Dimitriy Ryazantcev <DJm00n@mail.ru>\n"
+"POT-Creation-Date: 2009-03-24 08:11+0100\n"
+"PO-Revision-Date: 2009-10-05 18:47+0200\n"
+"Last-Translator: Shnatsel <shnatsel@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 1.1.0\n"
 
 msgid "3D Only On Mouse Rotate"
@@ -162,7 +162,7 @@ msgid "Animation Time Step For Intense Effects"
 msgstr "Скорость анимации для сложных эффектов"
 
 msgid "Animations Add-On"
-msgstr "Дополнение анимаций"
+msgstr "Дополнительные анимации"
 
 msgid "Automatic"
 msgstr "Автоматически"
@@ -293,7 +293,7 @@ msgid "Glass"
 msgstr "Стекло"
 
 msgid "Glide 3"
-msgstr "Скольжение 3"
+msgstr "Эффект скольжения 3"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr ""
@@ -340,9 +340,8 @@ msgstr "Уменьшить"
 msgid "Random"
 msgstr "Случайный"
 
-#, fuzzy
 msgid "Randomly Colored Fire"
-msgstr "Случайные цвета эффекта Пламени"
+msgstr "Случайные цвета Пламени"
 
 msgid "Razr"
 msgstr "Эффект Бритва"
@@ -353,7 +352,7 @@ msgstr "Направление свёртывания"
 
 #, fuzzy
 msgid "Rectangular"
-msgstr "Rectangular"
+msgstr "Прямоугольно"
 
 msgid "Right"
 msgstr "Справа"
@@ -373,11 +372,10 @@ msgid "Shatter Number of Tiers"
 msgstr "<b>Число страниц</b>"
 
 msgid "Skewer"
-msgstr "Скос"
+msgstr "Вертел"
 
-#, fuzzy
 msgid "Skewer Direction"
-msgstr "Направление текста"
+msgstr "Направление вертела"
 
 msgid "Spacing between beams."
 msgstr "Расстояние между лучами."
@@ -705,10 +703,14 @@ msgid ""
 "Starting width of open effect and ending width of close effect for Magic "
 "Lamp."
 msgstr ""
+"Начальная ширина эффекта открытия и конечная ширина эффекта закрытия для "
+"Магической Лампы."
 
 msgid ""
 "Starting width of open effect and ending width of close effect for Vacuum."
 msgstr ""
+"Начальная ширина эффекта открытия и конечная ширина эффекта закрытия для "
+"Вакуума."
 
 msgid ""
 "The amount of time in milliseconds between each render of the animation. The "
@@ -716,28 +718,29 @@ msgid ""
 msgstr ""
 
 msgid "The animation effect shown when closing a window."
-msgstr ""
+msgstr "Эффект анимации, показываемый при закрытии окна."
 
 msgid "The animation effect shown when creating a window."
-msgstr ""
+msgstr "Эффект анимации, показываемый при создании окна."
 
 msgid "The animation effect shown when focusing a window."
-msgstr ""
+msgstr "Эффект анимации, показываемый при фокусировании окна."
 
 msgid "The animation effect shown when minimizing a window."
-msgstr ""
+msgstr "Эффект анимации, показываемый при минимизации окна."
 
+#, fuzzy
 msgid "The animation effect shown when shading a window."
-msgstr ""
+msgstr "Эффект анимации, показываемый при \"затенении\" окна."
 
 msgid "The maximum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
+msgstr "Максимальная амплитуда (размер волн) которая будет у Магической лампы."
 
 msgid "The maximum number of waves for Magic Lamp."
-msgstr ""
+msgstr "Максимальное число волн для Магической лампы."
 
 msgid "The minimum amplitude (size of the waves) Magic Lamp will have."
-msgstr ""
+msgstr "Минимальная амплитуда (размер волн) которая будет у Магической лампы."
 
 msgid ""
 "The number of horizontal folds that occur in the Horizontal Fold animation."
@@ -746,15 +749,14 @@ msgstr ""
 msgid "The width of the wave relative to the window height."
 msgstr ""
 
-#, fuzzy
 msgid "The windows that will be animated."
-msgstr "Окна, которым будут проанимированны."
+msgstr "Окна, которым будут анимированны."
 
 msgid "Use various animations as window effects"
 msgstr ""
 
 msgid "Vacuum"
-msgstr ""
+msgstr "Вакуум"
 
 #, fuzzy
 msgid "Vacuum Grid Y Resolution"
@@ -816,10 +818,11 @@ msgid ""
 msgstr ""
 
 msgid "Window that should animate with this effect when focused."
-msgstr ""
+msgstr "Окно, которое должно анимироваться этим эффектом при фокусировке."
 
+#, fuzzy
 msgid "Window that should animate with this effect when shaded."
-msgstr ""
+msgstr "Окно, которое должно анимироваться этим эффектом при \"оттенении\"."
 
 msgid "Zoom"
 msgstr "Масштаб"
@@ -840,7 +843,7 @@ msgid "Zoom to TaskBar on Minimize"
 msgstr ""
 
 msgid "Ambient light"
-msgstr ""
+msgstr "Рассеянный свет"
 
 msgid "Amplitude of small water waves on the bigger ones."
 msgstr ""
@@ -848,17 +851,14 @@ msgstr ""
 msgid "Amplitude of water waves."
 msgstr ""
 
-#, fuzzy
 msgid "Color"
-msgstr "Цвета"
+msgstr "Цвет"
 
-#, fuzzy
 msgid "Color of ground in the cube."
-msgstr "Привязка вращения куба к верхней грани"
+msgstr "Цвет основания в кубе."
 
-#, fuzzy
 msgid "Color of water in the cube."
-msgstr "Привязка вращения куба к верхней грани"
+msgstr "Цвет воды в кубе."
 
 msgid "Component of light coming from all directions equally."
 msgstr ""
@@ -876,80 +876,73 @@ msgid "Display"
 msgstr "Время показа"
 
 msgid "Fish in different groups, but of the same type, swim together."
-msgstr ""
+msgstr "Рыбы в различных группах, но одного типа, плавают вместе."
 
 msgid "Frequency of small water waves on the bigger ones."
-msgstr ""
+msgstr "Частота маленьких водных волн на больших."
 
 msgid "Frequency of water waves."
-msgstr ""
+msgstr "Частота водных волн."
 
-#, fuzzy
 msgid "Ground color"
-msgstr "Степень непрозрачности фонового цвета"
+msgstr "Цвет дна"
 
-#, fuzzy
 msgid "Height of water surface in the cube."
-msgstr "Привязка вращения куба к верхней грани"
+msgstr "Высота уровня воды в кубе."
 
 msgid "Light inclination"
-msgstr ""
+msgstr "Отклонение света"
 
-#, fuzzy
 msgid "Lighting"
-msgstr "Настройки"
+msgstr "Освещение"
 
 msgid "Low detail models"
-msgstr ""
+msgstr "Низкодетальные модели"
 
 #, fuzzy
 msgid "Miscellaneous Selection"
 msgstr "В строчные буквы"
 
 msgid "Multiply the speed of the fish by this factor."
-msgstr ""
+msgstr "Умножать скорость рыбы этим фактором."
 
 msgid "Number"
-msgstr ""
+msgstr "Число"
 
 msgid "Number of subdivisions that create a finer grid."
 msgstr ""
 
-#, fuzzy
 msgid "Preserve light direction when rotating the cube."
-msgstr "Поднимает окна при вращении куба"
+msgstr "Сохранять направление света при вращении куба."
 
-#, fuzzy
 msgid "Render ground"
-msgstr "Затемнить фон"
+msgstr "Показывать дно"
 
-#, fuzzy
 msgid "Render ground inside the cube."
-msgstr "число совпавших издателей: %d\n"
+msgstr "Показывать дно внутри куба."
 
 msgid "Render some sea animals inside of the transparent cube"
-msgstr ""
+msgstr "Показывать некоторых морских животных внутри прозрачного куба"
 
 msgid "Render water"
-msgstr ""
+msgstr "Показывать воду"
 
-#, fuzzy
 msgid "Render water inside the cube."
-msgstr "число совпавших издателей: %d\n"
+msgstr "Показывать воду внутри куба."
+
+msgid "Render water waves inside the cube."
+msgstr "Показывать водные волны внутри куба."
 
 #, fuzzy
-msgid "Render water waves inside the cube."
-msgstr "число совпавших издателей: %d\n"
-
 msgid "Render water wireframe"
-msgstr ""
+msgstr "Показывать каркас воды"
 
 #, fuzzy
 msgid "Render water wireframe inside the cube."
-msgstr "число совпавших издателей: %d\n"
+msgstr "Показывать каркас воды внутри куба."
 
 msgid "Render waves"
-msgstr ""
+msgstr "Показывать волны"
 
 msgid ""
 "Rescale along the sides of the cube by the ratio of screen width to height."
@@ -957,14 +950,14 @@ msgstr ""
 
 #, fuzzy
 msgid "Rescale for screen ratio"
-msgstr "Пароль к документу %s"
+msgstr "Изменять масштаб к соотношению экрана"
 
 #, fuzzy
 msgid "Ripple effect"
 msgstr "Эффект открытия"
 
 msgid "Rotate lighting"
-msgstr ""
+msgstr "Вращать освещение"
 
 msgid "School similar groups"
 msgstr ""
@@ -972,27 +965,23 @@ msgstr ""
 msgid "Semi-randomize light scattering off water waves."
 msgstr ""
 
-#, fuzzy
 msgid "Size"
-msgstr "Следующий слайд"
+msgstr "Размер"
 
-#, fuzzy
 msgid "Small wave amplitude"
-msgstr "Максимальная амплитуда волн Магической лампы"
+msgstr "Амплитуда маленьких волн"
 
 msgid "Small wave frequency"
-msgstr ""
+msgstr "Частота маленьких волн"
 
-#, fuzzy
 msgid "Speed factor"
-msgstr "Коэффициент масштабирования"
+msgstr "Фактор скорости"
 
 msgid "Start crabs on bottom"
-msgstr ""
+msgstr "Запустить крабов на дне"
 
-#, fuzzy
 msgid "Start crabs on the bottom of the cube."
-msgstr "Масштабировать изображения для покрытия верхней грани куба"
+msgstr "Запустить крабов на дне куба."
 
 msgid ""
 "The angle of light rays from the horizon in degrees (0 is from the viewer's "
@@ -1000,86 +989,76 @@ msgid ""
 "false."
 msgstr ""
 
-#, fuzzy
 msgid "The color of the sea creature."
-msgstr "Всегда показывать ярлыки вкладок"
+msgstr "Цвет морских созданий."
 
-#, fuzzy
 msgid "The color of the sea plant."
-msgstr "Всегда показывать ярлыки вкладок"
+msgstr "Цвет морских растений."
 
-#, fuzzy
 msgid "The number of the sea creature."
-msgstr "Стиль панели _инструментов"
+msgstr "Количество морских созданий."
 
-#, fuzzy
 msgid "The number of the sea plants."
-msgstr "Стиль панели _инструментов"
+msgstr "Количество морских растений."
 
-#, fuzzy
 msgid "The size of the sea creature."
-msgstr "Стиль панели _инструментов"
+msgstr "Размер морских созданий."
 
-#, fuzzy
 msgid "The size of the sea plant."
-msgstr "Стиль панели _инструментов"
+msgstr "Размер морских растений."
 
-#, fuzzy
 msgid "Type"
-msgstr "Type 1 (CID)"
+msgstr "Тип"
 
 msgid "Type of sea creature."
-msgstr ""
+msgstr "Тип морских созданий."
 
 msgid "Type of sea plant."
-msgstr ""
+msgstr "Тип морских растений."
 
 msgid "Use less detailed models for increased performance."
 msgstr ""
+"Использовать менее детализированные модели для увеличения "
+"производительности."
 
 msgid "Water / Ground"
-msgstr ""
+msgstr "Вода / Дно"
 
-#, fuzzy
 msgid "Water color"
-msgstr "Горизонтальная граница вкладки"
+msgstr "Цвет воды"
 
 msgid "Water surface height"
-msgstr ""
+msgstr "Высота уровня воды"
 
 msgid "Water/Ground grid smoothness"
 msgstr ""
 
-#, fuzzy
 msgid "Wave amplitude"
-msgstr "Множитель высоты волны"
+msgstr "Амплитуда волн"
 
 msgid "Wave frequency"
-msgstr ""
+msgstr "Частота волн"
 
-#, fuzzy
 msgid "Waves"
-msgstr "Волна"
+msgstr "Волны"
 
 msgid "A simple benchmark plugin"
 msgstr "Простой модуль тестирования производительности"
 
 msgid "Benchmark"
-msgstr "Рейтинг производительности"
+msgstr "Оценка производительности"
 
-#, fuzzy
 msgid "Console Output"
-msgstr "стандартный вывод"
+msgstr "Вывод в консоль"
 
 msgid "Console output update time"
-msgstr "Период обновления вывода на консоль"
+msgstr "Период обновления вывода в консоль"
 
 msgid "Disable Compiz integrated FPS limiter"
-msgstr "Отключить встроенный в Compiz лимит частоты кадров"
+msgstr "Отключить встроенное в Compiz ограничение частоты кадров"
 
-#, fuzzy
 msgid "Disable limiter"
-msgstr "отключить ключ"
+msgstr "Отключить ограничитель"
 
 msgid "Display FPS on screen"
 msgstr "Отображать FPS на экране"
@@ -1088,9 +1067,8 @@ msgstr "Отображать FPS на экране"
 msgid "Enable"
 msgstr "Включено"
 
-#, fuzzy
 msgid "Initiate"
-msgstr "Инициировать"
+msgstr "Вызов"
 
 #, fuzzy
 msgid "Main"
@@ -1106,9 +1084,8 @@ msgstr "стандартный вывод"
 msgid "Start benchmark"
 msgstr "Запустить тест производительности"
 
-#, fuzzy
 msgid "Update time"
-msgstr "Время (мс)"
+msgstr "Время обновления"
 
 msgid "X Position of benchmark window"
 msgstr "Позиция по X окна тестирования производительности"
@@ -1322,9 +1299,8 @@ msgstr "Вращение куба рабочего стола"
 msgid "Cube Bottom Color"
 msgstr "Степень непрозрачности фонового цвета"
 
-#, fuzzy
 msgid "Cube Reflection and Deformation"
-msgstr "Пароль к документу %s"
+msgstr "Отражение и деформация куба"
 
 #, fuzzy
 msgid "Cube Top Color"
@@ -2092,9 +2068,8 @@ msgid ""
 "level. Disable to target mouse."
 msgstr ""
 
-#, fuzzy
 msgid "Enhanced Zoom Desktop"
-msgstr "Изменение масштаба и сдвига куба рабочего стола"
+msgstr "Увеличитель, следующий за мышью"
 
 msgid "Enhanced zoom functions for the visually impaired and other users"
 msgstr ""
@@ -2229,7 +2204,7 @@ msgstr "Отражение при курсоре на краю"
 
 #, fuzzy
 msgid "Specific Zoom"
-msgstr "Значение \"%s\" не является допустимым масштабом\n"
+msgstr "Специфичное изменение масштаба"
 
 #, fuzzy
 msgid "Specific zoom factor 1"
@@ -2417,13 +2392,12 @@ msgstr ""
 msgid "Clear"
 msgstr "Очистить"
 
-#, fuzzy
 msgid "Clear (button)"
-msgstr "кнопку мыши)\n"
+msgstr "Очистить (кнопка)"
 
 #, fuzzy
 msgid "Clear (key)"
-msgstr "               ключом %s с ID %s\n"
+msgstr "Очистить (ключ)"
 
 #, fuzzy
 msgid "Initiate (button)"
@@ -2433,24 +2407,20 @@ msgstr "кнопку мыши)\n"
 msgid "Initiate (key)"
 msgstr "               ключом %s с ID %s\n"
 
-#, fuzzy
 msgid "Initiate fire drawing"
-msgstr "рисунок формата Corel Draw"
+msgstr "Инициализировать рисование огнем"
 
-#, fuzzy
 msgid "Maximum number of active particles"
-msgstr "Количество имён не может превышать %d\n"
+msgstr "Максимальное число активных частиц"
 
-#, fuzzy
 msgid "Number of particles"
-msgstr "<b>Число страниц</b>"
+msgstr "Число частиц"
 
-#, fuzzy
 msgid "Paint fire on the screen"
-msgstr "Блокировать экран при переходе в спящий режим"
+msgstr "Рисовать огнем на экране"
 
 msgid "Paint fire or other particles on the screen"
-msgstr ""
+msgstr "Рисовать огнем или другими частицами на экране"
 
 #, fuzzy
 msgid "Cube Gears"
@@ -3103,10 +3073,10 @@ msgid "Keep fully on screen."
 msgstr "Отображать FPS на экране"
 
 msgid "Magnifier"
-msgstr ""
+msgstr "Лупа"
 
 msgid "Magnifier box"
-msgstr ""
+msgstr "Лупа, следующая за мышью"
 
 msgid "Magnifier image"
 msgstr ""
@@ -3820,12 +3790,7 @@ msgstr "Указатель фабрики"
 
 #, fuzzy
 msgid "Put To Next Output"
-msgstr ""
-"Поля:\n"
-" левое: %s %s\n"
-" правое: %s %s\n"
-" верхнее: %s %s\n"
-" нижнее: %s %s"
+msgstr "Поместить на следующий вывод"
 
 msgid "Put pointer uses the center of the window"
 msgstr ""
@@ -4163,14 +4128,13 @@ msgid "Show switcher if not visible and select previous window."
 msgstr "Отображение переключателя (если он невидим) и выбор предыдущего окна"
 
 msgid "Show window title of currently selected window."
-msgstr ""
+msgstr "Отображение заголовка текущего окна."
 
 msgid "Show windows that are minimized, shaded or in show desktop mode."
 msgstr ""
 
-#, fuzzy
 msgid "Text Placement"
-msgstr "Расположение бесед"
+msgstr "Замена текста"
 
 #, fuzzy
 msgid "Thumbnail Height"
@@ -4180,24 +4144,20 @@ msgstr "Высота окна"
 msgid "Thumbnail Width"
 msgstr "По ширине страницы"
 
-#, fuzzy
 msgid "Window title display"
-msgstr "Показать главное окно"
+msgstr "Показывать текст заголовка окна"
 
 msgid "Windows that should be shown in ring"
 msgstr ""
 
-#, fuzzy
 msgid "All windows"
-msgstr "Сеть Windows"
+msgstr "Все окна"
 
-#, fuzzy
 msgid "Background color of the window title"
-msgstr "Тут будет заголовок окна"
+msgstr "Фон заголовка окна"
 
-#, fuzzy
 msgid "Close Window"
-msgstr "Сеть Windows"
+msgstr "Закрыть окно"
 
 #, fuzzy
 msgid "Close window while in scale mode"
@@ -4389,9 +4349,8 @@ msgstr "Размер окна текстового диалога"
 msgid "Reduces the scale factor making the window smaller."
 msgstr ""
 
-#, fuzzy
 msgid "Reset the window to original size"
-msgstr "Невозможно установить канал как неблокирующий: %s"
+msgstr "Сброс окна к оригинальному размеру"
 
 msgid "Resets the currently focused window to original size"
 msgstr ""
@@ -4663,81 +4622,66 @@ msgstr ""
 msgid "Increases the visibility of the mouse pointer"
 msgstr "Отражение при курсоре на краю"
 
-#, fuzzy
 msgid "Number Of Particles"
-msgstr "<b>Число страниц</b>"
+msgstr "Число частиц"
 
 #, fuzzy
 msgid "Number of particle emiters."
 msgstr "<b>Число страниц</b>"
 
-#, fuzzy
 msgid "Number of particles."
-msgstr "<b>Число страниц</b>"
+msgstr "Число частиц."
 
-#, fuzzy
 msgid "Particle Color"
-msgstr "Степень непрозрачности фонового цвета"
+msgstr "Цвет частицы"
 
-#, fuzzy
 msgid "Particle Life"
-msgstr "В реальной жизни: "
+msgstr "Время жизни частицы"
 
-#, fuzzy
 msgid "Particle Options"
-msgstr "Разные опции"
+msgstr "Опции частицы"
 
-#, fuzzy
 msgid "Particle Size"
-msgstr "Размер окна текстового диалога"
+msgstr "Размер частицы"
 
 #, fuzzy
 msgid "Particle Slowdown"
 msgstr "Вспышка не сработала"
 
-#, fuzzy
 msgid "Particle color."
-msgstr "Степень непрозрачности фонового цвета"
+msgstr "Цвет частицы."
 
-#, fuzzy
 msgid "Particle life."
-msgstr "В реальной жизни: "
+msgstr "Время жизни частицы."
 
-#, fuzzy
 msgid "Particle size."
-msgstr "Размер окна текстового диалога"
+msgstr "Размер частицы."
 
 #, fuzzy
 msgid "Particle slowdown."
 msgstr "Вспышка не сработала"
 
-#, fuzzy
 msgid "Randomly Colored Particles"
-msgstr "Вспышка не сработала"
+msgstr "Случайно раскрашенные частицы"
 
 #, fuzzy
 msgid "Ring radius"
 msgstr "Радиус размытия"
 
-#, fuzzy
 msgid "Rotation speed"
-msgstr "Скорость анимации"
+msgstr "Скорость вращения"
 
-#, fuzzy
 msgid "Rotation speed."
-msgstr "Скорость анимации"
+msgstr "Скорость вращения."
 
-#, fuzzy
 msgid "Show mouse"
-msgstr "команда мыши"
+msgstr "Показывать мышь"
 
-#, fuzzy
 msgid "Toggle the mouse pointer trail."
-msgstr "Отражение при курсоре на краю"
+msgstr "Переключить след указателя мыши."
 
-#, fuzzy
 msgid "Intensity."
-msgstr "Интенсивность эффекта:"
+msgstr "Интенсивность."
 
 #, fuzzy
 msgid "Show repaint"
@@ -4791,7 +4735,6 @@ msgstr ""
 msgid "Meta"
 msgstr "Meta"
 
-#, fuzzy
 msgid "Screen edges"
 msgstr "Края экрана"
 
@@ -5481,15 +5424,19 @@ msgid ""
 "Brightness of the currently focused window. Windows will get brightness "
 "levels between the focused and minimum."
 msgstr ""
+"Яркость окна, находящегося в фокусе. Значения яркости для окон будут "
+"выбираться между яркостью окна в фокусе и минимальной яркостью."
 
 msgid ""
 "Brightness of the least focused window. Windows will get brightness levels "
 "between the focused and minimum."
 msgstr ""
+"Минимальная допустимая яркость. Значения яркости для окон будут выбираться "
+"между яркостью окна в фокусе и минимальной яркостью."
 
 #, fuzzy
 msgid "Number of Windows to Track"
-msgstr "Соо&бщать номер дорожки программам для незрячих"
+msgstr "Количество отслеживаемых окон"
 
 msgid ""
 "Number of windows Trailfocus will keep track of. Windows that had focus this "
@@ -5753,16 +5700,16 @@ msgid "Edge flipping"
 msgstr "Перелистывание у края"
 
 msgid "First color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Первый цвет фона градиента переключателя окон"
 
 msgid "First color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "Первый цвет пальца градиента переключателя окон"
 
 msgid "First color for the thumb highlight gradient of the switcher window."
-msgstr ""
+msgstr "Первый цвет пальца контрастного градиента переключателя окон"
 
 msgid "First color of the arrow of the switcher window."
-msgstr ""
+msgstr "Пнрвый цвет стрелки переключателя окон"
 
 msgid "Flip Down"
 msgstr "Перелистывание вниз"
@@ -5806,7 +5753,7 @@ msgid "Highlight Gradient"
 msgstr "Градиент события"
 
 msgid "How should a multimonitor configuration be handled"
-msgstr ""
+msgstr "Как должно обрабатываться многоэкранное поведение"
 
 #, fuzzy
 msgid "Move Down With Window"
@@ -5871,14 +5818,14 @@ msgstr "Общие"
 
 #, fuzzy
 msgid "Non Sliding Windows"
-msgstr "Сеть Windows"
+msgstr "Не раздвижные окна"
 
 #, fuzzy
 msgid "Outline Color"
-msgstr "Текущий цвет"
+msgstr "Цвет контура"
 
 msgid "Outline color of the switcher window."
-msgstr ""
+msgstr "цвет контура переключателя окон"
 
 msgid "Preview Scale"
 msgstr "Масштаб предварительного просмотра"
@@ -5888,51 +5835,51 @@ msgid "Radius of the rounded edge"
 msgstr "Нижняя краевая панель"
 
 msgid "Second color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Второй цвет для фона градиента переключателя окон"
 
 msgid "Second color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "Второй цвет для пальца градиента переключателя окон"
 
 msgid "Second color for the thumb highlight gradient of the switcher window."
 msgstr ""
 
 msgid "Second color of the arrow of the switcher window."
-msgstr ""
+msgstr "Второй цвет стрелки переключателя окон."
 
 #, fuzzy
 msgid "Shadow Color"
 msgstr "Цвет тени"
 
 msgid "Show Live Viewport Previews"
-msgstr ""
+msgstr "Показать живое окно просмотра"
 
 #, fuzzy
 msgid "Show Viewport Switcher Preview"
-msgstr "Показать окно просмотра контакта"
+msgstr "Показать окно просмотра переключателя"
 
 msgid "Show live viewport previews in switcher window"
-msgstr ""
+msgstr "Показать живые просмотры окон в окне переключателя"
 
 msgid "Show switcher window while switching viewports"
-msgstr ""
+msgstr "Показать онко переключателя пока переключается окно"
 
 #, no-c-format
 msgid "Size of the preview in %"
 msgstr "Размер вида в %"
 
 msgid "Switch Target Preview Visibility Time"
-msgstr ""
+msgstr "Переключить Цель Предпросмота Видимости Времени"
 
 #, fuzzy
 msgid "Switch all"
-msgstr "Все документы"
+msgstr "Переключить всё"
 
 #, fuzzy
 msgid "Switch separately"
 msgstr "Переключить раздельно"
 
 msgid "Third color for the background gradient of the switcher window."
-msgstr ""
+msgstr "Третий цвет для фона градиента окна переключателя."
 
 #, fuzzy
 msgid "Thumb Gradient"
@@ -6066,13 +6013,11 @@ msgstr "Сеть Windows"
 msgid "Windows that always should be treated as widgets"
 msgstr "Окна, прозрачные по умолчанию"
 
-#, fuzzy
 msgid "Above others windows"
-msgstr "Пповерх всех окон"
+msgstr "Над другими окнами"
 
-#, fuzzy
 msgid "Below others windows"
-msgstr "Поместить окно под другими окнами"
+msgstr "Под другими окнами"
 
 #, fuzzy
 msgid "Don't show application in pager"
@@ -6095,9 +6040,8 @@ msgstr "Полноэкранные окна"
 msgid "Height values"
 msgstr "Встроенные значения"
 
-#, fuzzy
 msgid "Matches"
-msgstr "Совпадения: %d"
+msgstr "Совпадения"
 
 #, fuzzy
 msgid "Maximized"
@@ -6111,47 +6055,47 @@ msgid "No ARGB visuals"
 msgstr "Нет поддержки ARGB visuals"
 
 msgid "No focus"
-msgstr "Не фокуса"
+msgstr "Без фокуса"
 
 #, fuzzy
 msgid "Non closable windows"
-msgstr "<b>Восстановление минимизированных окон</b>"
+msgstr "Нескрываемое окно"
 
 #, fuzzy
 msgid "Non maximizable windows"
-msgstr "<b>Восстановление минимизированных окон</b>"
+msgstr "Немаксимизирующееся окно"
 
 #, fuzzy
 msgid "Non minimizable windows"
-msgstr "<b>Восстановление минимизированных окон</b>"
+msgstr "Неминимизируемое окно"
 
 #, fuzzy
 msgid "Non movable windows"
-msgstr "<b>Восстановление минимизированных окон</b>"
+msgstr "Неподвижное окно"
 
 #, fuzzy
 msgid "Non resizable windows"
-msgstr "<b>Восстановление минимизированных окон</b>"
+msgstr "Неизменное в размерах окно"
 
 #, fuzzy
 msgid "Set window as non closable"
-msgstr "Невозможно установить канал как неблокирующий: %s"
+msgstr "Установить окно нескрываемым"
 
 #, fuzzy
 msgid "Set window as non maximizable"
-msgstr "Невозможно установить канал как неблокирующий: %s"
+msgstr "Установить окно не максимизирующимся"
 
 #, fuzzy
 msgid "Set window as non minimizable"
-msgstr "Невозможно установить канал как неблокирующий: %s"
+msgstr "Установить окно неминимизирующимся"
 
 #, fuzzy
 msgid "Set window as non movable"
-msgstr "Невозможно установить канал как неблокирующий: %s"
+msgstr "Установить окно неподвижным"
 
 #, fuzzy
 msgid "Set window as non resizable"
-msgstr "Невозможно установить канал как неблокирующий: %s"
+msgstr "Установить окно неизменным к размеру"
 
 msgid "Set windows rules"
 msgstr "Установить правила окон"
@@ -6227,13 +6171,16 @@ msgid "Fix window type of various Qt windows."
 msgstr "Исправить типы окон для различных Qt окон."
 
 msgid "Force synchronization between X and GLX"
-msgstr ""
+msgstr "Усилить синхронизацию между X и GLX"
 
 msgid ""
 "Force synchronization between X and GLX, which may help for window parts not "
 "redrawing correctly when using Nvidia drivers, but also may decrease "
 "performance."
 msgstr ""
+"Усилить синхронизацию между X и GLX, которая может помочь частям окон "
+"корректно не перерисовывать при использовании драйверов Nvidia, но также "
+"может снизить эффективность."
 
 msgid "Java Window Fix"
 msgstr "Исправление окон Java"
