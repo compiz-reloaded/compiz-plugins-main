@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2009-03-24 12:52+0530\n"
-"PO-Revision-Date: 2008-10-26 23:44+0100\n"
-"Last-Translator: Michal Kaluzniak <the_hooltay@o2.pl>\n"
+"POT-Creation-Date: 2009-03-24 08:11+0100\n"
+"PO-Revision-Date: 2009-07-22 12:39+0200\n"
+"Last-Translator: Piotrek <piotrekp90@gmail.com>\n"
 "Language-Team: pl_PL <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,9 +165,8 @@ msgstr "Kąt okna na końcu animacji"
 msgid "Animation Time Step For Intense Effects"
 msgstr "Interwał czasowy animacji dla intensywnych efektów"
 
-#, fuzzy
 msgid "Animations Add-On"
-msgstr "Animacje"
+msgstr "Dodatki do Animacji"
 
 msgid "Automatic"
 msgstr "Automatyczny"
@@ -237,7 +236,7 @@ msgid "Explode"
 msgstr "Eksplozja"
 
 msgid "Extra window animations and animation engines"
-msgstr ""
+msgstr "Dodatkowe animacje okien i opcje animacji"
 
 msgid "Falling direction for Domino pieces."
 msgstr "Kierunek spadania klocków domina."
@@ -246,7 +245,7 @@ msgid "Fire Particle Color"
 msgstr "Kolor cząsteczki ognia"
 
 msgid "Fire Particle Life"
-msgstr "Czas życia cząsteczki ognia"
+msgstr "Czas wyświetlania cząsteczki ognia"
 
 msgid "Fire Particle Size"
 msgstr "Wielkość cząsteczki ognia"
@@ -270,7 +269,7 @@ msgid "Fire particle color."
 msgstr "Kolor cząsteczki ognia."
 
 msgid "Fire particle life."
-msgstr "Czas życia cząsteczki ognia."
+msgstr "Czas, przez jaki wyświetlana jest jedna cząsteczka ognia."
 
 msgid "Fire particle size."
 msgstr "Rozmiar cząsteczki ognia."
@@ -296,9 +295,8 @@ msgstr "Kierunek otwierania zagięcia dla części w efekcie Razr"
 msgid "Glass"
 msgstr "Szkło"
 
-#, fuzzy
 msgid "Glide 3"
-msgstr "Ślizg 1"
+msgstr "Ślizg 3"
 
 msgid "Have random colors for the fire effect, also known as Mystical Fire."
 msgstr "Losowy kolor efektu ognia, znany również jako Mistyczny Płomień."
@@ -363,13 +361,11 @@ msgstr "Kąt Obrotu"
 msgid "Rotation angle of animated window pieces (in degrees)."
 msgstr "Kąt obrotu animowanych części okna (w stopniach)."
 
-#, fuzzy
 msgid "Shatter Number of Spokes"
-msgstr "Liczba płatków śniegu"
+msgstr "Liczba linii podczas roztrzaskania"
 
-#, fuzzy
 msgid "Shatter Number of Tiers"
-msgstr "Ilość ryb"
+msgstr "Liczba warstw podczas roztrzaskania"
 
 msgid "Skewer"
 msgstr "Rożen"
@@ -427,22 +423,20 @@ msgstr ""
 "Eksplodujące okno będzie podzielone na części wzdłuż siatki. Określ liczbę "
 "kwadratów siatki wzdłuż szerokości okna."
 
-#, fuzzy
 msgid ""
 "The exploding window will be split into pieces along concentric circles. "
 "Specify the number of concentric circles the shatter tessellation will have."
 msgstr ""
-"Eksplodujące okno będzie podzielone na części wzdłuż siatki. Określ liczbę "
-"kwadratów siatki wzdłuż wysokości okna."
+"Eksplodujące okno będzie podzielone na części wzdłuż współśrodkowych kół. "
+"Określ liczbę kół z jakich będzie korzystać tesselacja rozbijania."
 
-#, fuzzy
 msgid ""
 "The exploding window with the shatter animation will be split into pieces "
 "radially from the center. Specify the number of radial spokes the animation "
 "will have."
 msgstr ""
-"Eksplodujące okno będzie podzielone na części wzdłuż siatki. Określ liczbę "
-"kwadratów siatki wzdłuż szerokości okna."
+"Eksplodujące okno będzie podzielone na części promieniście, zaczynając od "
+"środka. Określ liczbę promieni, z których będzie korzystać animacja."
 
 msgid "Thickness"
 msgstr "Grubość"
@@ -576,7 +570,7 @@ msgid "Glide 2"
 msgstr "Ślizg 2"
 
 msgid "Horizontal Folds"
-msgstr "Poziome zginanie"
+msgstr "Zginanie w poziomie"
 
 msgid "Horizontal Folds Amplitude Multiplier"
 msgstr "Mnożnik amplitudy poziomych zginań"
@@ -683,7 +677,7 @@ msgid "Rollup Fixed Interior"
 msgstr "Nieruchome wnętrze okna podczas animacji zwijania do góry"
 
 msgid "Shade Animation"
-msgstr "Animacja Zacieniania"
+msgstr "Animacja Zwijania"
 
 msgid "Shade Effect"
 msgstr "Efekt zacienienia"
@@ -861,226 +855,201 @@ msgid "Zoom to TaskBar on Minimize"
 msgstr "Przybliżaj do paska zadań podczas minimalizowania"
 
 msgid "Ambient light"
-msgstr ""
+msgstr "Otaczające oświetlenie"
 
 msgid "Amplitude of small water waves on the bigger ones."
-msgstr ""
+msgstr "Amplituda małych fal wodnych na większych."
 
 msgid "Amplitude of water waves."
-msgstr ""
+msgstr "Amplituda fal wodnych."
 
-#, fuzzy
 msgid "Color"
-msgstr "Kolory"
+msgstr "Kolor"
 
-#, fuzzy
 msgid "Color of ground in the cube."
-msgstr "Kolor górnej ściany kostki"
+msgstr "Kolor podłoża wewnątrz kostki."
 
-#, fuzzy
 msgid "Color of water in the cube."
-msgstr "Kolor górnej ściany kostki"
+msgstr "Kolor wody wewnątrz kostki."
 
 msgid "Component of light coming from all directions equally."
-msgstr ""
+msgstr "Część światła dochodzącego jednakowo ze wszystkich stron."
 
-#, fuzzy
 msgid "Creature Selection"
-msgstr "Odbicie kostki"
+msgstr "Wybór stworzeń"
 
 msgid "Cube Atlantis"
 msgstr "Kostka Atlantis"
 
-#, fuzzy
 msgid "Display"
-msgstr "Czas wyświetlania"
+msgstr "Wyświetlanie"
 
 msgid "Fish in different groups, but of the same type, swim together."
-msgstr ""
+msgstr "Ryby tego samego typu pływają razem w grupach."
 
 msgid "Frequency of small water waves on the bigger ones."
-msgstr ""
+msgstr "Częstotliwość mniejszych fal wodnych pomiędzy większymi"
 
 msgid "Frequency of water waves."
-msgstr ""
+msgstr "Częstotliwość fal wodnych"
 
-#, fuzzy
 msgid "Ground color"
-msgstr "Kolor dalekiego tła"
+msgstr "Kolor podłoża"
 
-#, fuzzy
 msgid "Height of water surface in the cube."
-msgstr "Kolor górnej ściany kostki"
+msgstr "Wysokość powierzchni wody wewnątrz kostki"
 
 msgid "Light inclination"
-msgstr ""
+msgstr "Nachylenie światła"
 
-#, fuzzy
 msgid "Lighting"
-msgstr "Dopasowywanie"
+msgstr "Oświetlenie"
 
 msgid "Low detail models"
-msgstr ""
+msgstr "Modele o niskich detalach"
 
-#, fuzzy
 msgid "Miscellaneous Selection"
-msgstr "Pozwól na wybór kursorem"
+msgstr "Zróżnicowany wybór"
 
 msgid "Multiply the speed of the fish by this factor."
-msgstr ""
+msgstr "Pomnóż prędkość ryb przez ten mnożnik."
 
 msgid "Number"
-msgstr ""
+msgstr "Numer"
 
 msgid "Number of subdivisions that create a finer grid."
 msgstr ""
+"Liczba fragmentów tworzących siatkę powierzchni (im więcej, tym gładsza)."
 
-#, fuzzy
 msgid "Preserve light direction when rotating the cube."
-msgstr "Podnosi okna podczas obracania kostki"
+msgstr "Zachowaj kierunek światła podczas obracania kostki"
 
-#, fuzzy
 msgid "Render ground"
-msgstr "Zaciemniaj tło"
+msgstr "Wyświetlaj podłoże"
 
-#, fuzzy
 msgid "Render ground inside the cube."
-msgstr "Renderuj mechanizm w środku przezroczystej kostki"
+msgstr "Wyświetla podłoże wewnątrz kostki."
 
-#, fuzzy
 msgid "Render some sea animals inside of the transparent cube"
-msgstr "Wyświetla niektóre ryby wewnątrz przezroczystej kostki."
+msgstr "Wyświetla zwierzęta wodne wewnątrz przezroczystej kostki."
 
 msgid "Render water"
-msgstr ""
+msgstr "Wyświetlaj wodę"
 
-#, fuzzy
 msgid "Render water inside the cube."
-msgstr "Renderuj mechanizm w środku przezroczystej kostki"
+msgstr "Wyświetla wodę wewnątrz kostki."
 
-#, fuzzy
 msgid "Render water waves inside the cube."
-msgstr "Renderuj mechanizm w środku przezroczystej kostki"
+msgstr "Wyświetlaj fale wodne wewnątrz kostki."
 
 msgid "Render water wireframe"
-msgstr ""
+msgstr "Wyświetlaj siatkę szkieletową wody"
 
-#, fuzzy
 msgid "Render water wireframe inside the cube."
-msgstr "Renderuj mechanizm w środku przezroczystej kostki"
+msgstr "Wyświetla siatkę szkieletową wody wewnątrz kostki."
 
 msgid "Render waves"
-msgstr ""
+msgstr "Wyświetlaj fale"
 
 msgid ""
 "Rescale along the sides of the cube by the ratio of screen width to height."
 msgstr ""
+"Skaluje obraz wzdłuż ścian kostki by uzyskać proporcje ekranu zgodne z "
+"formatem komputerowego wyświetlacza."
 
-#, fuzzy
 msgid "Rescale for screen ratio"
-msgstr "Odbicia dekoracji"
+msgstr "Skaluj do formatu ekranu"
 
-#, fuzzy
 msgid "Ripple effect"
-msgstr "Efekt otwierania"
+msgstr "Efekt falowania"
 
 msgid "Rotate lighting"
-msgstr ""
+msgstr "Obracaj oświetlenie"
 
+# School of fish -> Ławica ryb
 msgid "School similar groups"
-msgstr ""
+msgstr "Łącz podobne grupy w ławice"
 
 msgid "Semi-randomize light scattering off water waves."
-msgstr ""
+msgstr "Połowicznie losowe obliczanie rozproszenia światła na falach wodnych."
 
-#, fuzzy
 msgid "Size"
-msgstr "Wsuwanie"
+msgstr "Rozmiar"
 
-#, fuzzy
 msgid "Small wave amplitude"
-msgstr "Maksymalna amplituda fali magicznej lampy"
+msgstr "Amplituda małych fal"
 
 msgid "Small wave frequency"
-msgstr ""
+msgstr "Częstotliwość małych fal"
 
-#, fuzzy
 msgid "Speed factor"
-msgstr "Współczynnik zbliżenia"
+msgstr "Współczynnik szybkości"
 
 msgid "Start crabs on bottom"
-msgstr ""
+msgstr "Wyświetlaj kraby na dnie"
 
-#, fuzzy
 msgid "Start crabs on the bottom of the cube."
-msgstr "Wyświetla obrazki na górnej i dolnej ścianie kostki"
+msgstr "Wyświetla kraby na dnie kostki."
 
 msgid ""
 "The angle of light rays from the horizon in degrees (0 is from the viewer's "
 "perspective, 90 is from on top). Only has effect when Rotate Lighting is "
 "false."
 msgstr ""
+"Nachylenie promieni świetlnych w stopniach (0° - z perspektywy oglądającego, "
+"90° - z góry). Jest stosowane wyłącznie, gdy opcja \"Obracaj oświetlenie\" "
+"jest wyłączona."
 
-#, fuzzy
 msgid "The color of the sea creature."
-msgstr "Kolor obramowania okna zakładek"
+msgstr "Kolor stworzeń morskich."
 
-#, fuzzy
 msgid "The color of the sea plant."
-msgstr "Kolor obramowania okna zakładek"
+msgstr "Kolor roślin morskich."
 
-#, fuzzy
 msgid "The number of the sea creature."
-msgstr "Styl okna zakładek"
+msgstr "Liczba stworzeń morskich."
 
-#, fuzzy
 msgid "The number of the sea plants."
-msgstr "Styl okna zakładek"
+msgstr "Liczba roślin morskich."
 
-#, fuzzy
 msgid "The size of the sea creature."
-msgstr "Styl okna zakładek"
+msgstr "Rozmiar roślin morskich."
 
-#, fuzzy
 msgid "The size of the sea plant."
-msgstr "Styl okna zakładek"
+msgstr "Rozmiar roślin morskich."
 
-#, fuzzy
 msgid "Type"
-msgstr "Typ poświaty"
+msgstr "Typ"
 
 msgid "Type of sea creature."
-msgstr ""
+msgstr "Typ stworzeń morskich."
 
 msgid "Type of sea plant."
-msgstr ""
+msgstr "Typ roślin morskich."
 
 msgid "Use less detailed models for increased performance."
-msgstr ""
+msgstr "Używaj mniej dokładnych modeli, by zwiększyć wydajność."
 
 msgid "Water / Ground"
-msgstr ""
+msgstr "Woda / Podłoże"
 
-#, fuzzy
 msgid "Water color"
-msgstr "Kolor obramowania"
+msgstr "Kolor wody"
 
 msgid "Water surface height"
-msgstr ""
+msgstr "Wysokość powierzchni wody"
 
 msgid "Water/Ground grid smoothness"
-msgstr ""
+msgstr "Gładkość powierzchni wody i podłoża"
 
-#, fuzzy
 msgid "Wave amplitude"
-msgstr "Mnożnik amplitudy Fali"
+msgstr "Amplituda fali"
 
 msgid "Wave frequency"
-msgstr ""
+msgstr "Częstotliwość fali"
 
-#, fuzzy
 msgid "Waves"
-msgstr "Fala"
+msgstr "Fale"
 
 msgid "A simple benchmark plugin"
 msgstr "Wtyczka prostego benchmarku"
@@ -1137,15 +1106,14 @@ msgstr "Pozycja okna benchmarku w pionie (w pikselach od góry ekranu)"
 msgid "Y position"
 msgstr "Pozycja w pionie"
 
-#, fuzzy
 msgid "Bicubic filter"
-msgstr "Zmień filtr"
+msgstr "Filtr interpolacji bikubicznej"
 
 msgid "Bicubic texture filtering"
-msgstr ""
+msgstr "Filtrowanie tekstur z zastosowaniem interpolacji bikubicznej"
 
 msgid "Color filter"
-msgstr "Kolor filtru"
+msgstr "Filtr kolorów"
 
 msgid "Exclude windows"
 msgstr "Wykluczone okna"
@@ -1348,7 +1316,6 @@ msgstr "Deformacje tylko podczas obrotu myszką"
 msgid "Deformation"
 msgstr "Zniekształcenie"
 
-#, fuzzy
 msgid "Deformation in unfold cube mode."
 msgstr "Deformacje w trybie rozłożonej kostki"
 
@@ -1471,7 +1438,6 @@ msgstr "Kula"
 msgid "Top image files"
 msgstr "Pliki górnego obrazka"
 
-#, fuzzy
 msgid "Unfold cube deformation"
 msgstr "Deformacje rozłożonej kostki"
 
@@ -1481,132 +1447,127 @@ msgstr "Oddala kostkę automatycznie tylko podczas obrotu myszą."
 msgid "Zoom out automatically to make the cube fit to the screen."
 msgstr "Oddala kostkę automatycznie aby dopasować ją do ekranu."
 
-#, fuzzy
 msgid "3D Models"
-msgstr "Tryb"
+msgstr "Modele 3D"
 
-#, fuzzy
 msgid "Ambient light intensity"
-msgstr "Intensywność odbicia"
+msgstr "Intensywność otaczającego oświetlenia"
 
 msgid ""
 "Component of light coming from the direction set by inclination or from the "
 "viewer if Rotate Lighting is true."
 msgstr ""
+"Część światła pochodzącego z kierunku wyznaczonego przez nachylenie albo od "
+"patrzącego, jeśli funkcja Obracaj oświetlenie jest aktywowana."
 
 msgid "Cube 3D Models"
-msgstr ""
+msgstr "Modele 3D wewnątrz kostki"
 
-#, fuzzy
 msgid "Diffuse light intensity"
-msgstr "Intensywność odbicia"
+msgstr "Intensywność rozproszonego światła"
 
 msgid "Framerate (per second) for the animated series of obj files."
-msgstr ""
+msgstr "Szybkość (w klatkach na sekundę) dla zestawów animowanych modeli 3D."
 
 msgid "Frames per second"
-msgstr ""
+msgstr "Klatki na sekundę"
 
 msgid "Full path to 3D wavefront (.obj) model file."
-msgstr ""
+msgstr "Pełna ścieżka dostępu do pliku z modelem 3D (.obj)"
 
 msgid ""
 "Highly directional component of light coming from the direction set by "
 "inclination or from the viewer if Rotate Lighting is true."
 msgstr ""
+"Część światła posiadającego wyraźnie ukierunkowane źródło, wyznaczonego "
+"przez nachylenie albo od patrzącego, jeśli funkcja Obracaj oświetlenie jest "
+"aktywowana."
 
-#, fuzzy
 msgid "Loading"
-msgstr "Odległość od krawędzi ekranu (w pikselach)"
+msgstr "Ładowanie"
 
-#, fuzzy
 msgid "Model"
-msgstr "Tryb"
+msgstr "Model"
 
-#, fuzzy
 msgid "Model type"
-msgstr "Typ wypełnienia"
+msgstr "Typ modelu"
 
 msgid "Plane of rotation for the 3D model."
-msgstr ""
+msgstr "Płaszczyzna obrotu dla modelu 3D."
 
 msgid "Rate of rotation of 3D model (in rotations per second)."
-msgstr ""
+msgstr "Prędkość obrotów modelu 3D (w obrotach na sekundę)"
 
 msgid "Render front and back sides"
-msgstr ""
+msgstr "Wyświetlaj przednią i tylną powierzchnię"
 
-#, fuzzy
 msgid "Render still/animated 3D mesh models inside of the transparent cube"
-msgstr "Wyświetla niektóre ryby wewnątrz przezroczystej kostki."
+msgstr "Wyświetla nieruchome/animowane modele 3D wewnątrz przezroczystej kostki"
 
 msgid ""
 "Renders the front surface and then the back surface. This can be useful for "
 "models which show black spots but can cause a performance hit."
 msgstr ""
+"Wyświetla przednią, a potem tylną powierzchnię. Może to być przydatne dla "
+"modeli które posiadają czarne punkty, ale może spowodować spadek wydajności."
 
-#, fuzzy
 msgid "Rotation plane"
-msgstr "Kąt Obrotu"
+msgstr "Powierzchnia obrotu"
 
-#, fuzzy
 msgid "Rotation rate"
-msgstr "Kąt Obrotu"
+msgstr "Prędkość obrotu"
 
-#, fuzzy
 msgid "Scale all factor"
-msgstr "Minimalny współczynnik rozmiaru"
+msgstr "Wspólny współczynnik rozmiaru"
 
 msgid "Scale all the 3D models by this factor."
-msgstr ""
+msgstr "Mnoży rozmiar wszystkich obiektów 3D przez ten współczynnik."
 
-#, fuzzy
 msgid "Scale factor"
-msgstr "Minimalny współczynnik rozmiaru"
+msgstr "Współczynnik rozmiaru"
 
 msgid "Scale the 3D model by this factor."
-msgstr ""
+msgstr "Mnoży rozmiar obiektu 3D przez ten współczynnik."
 
 msgid "Specular light intensity"
-msgstr ""
+msgstr "Intensywność światła kierowanego"
 
 msgid "Type of 3D model (still or animated)."
-msgstr ""
+msgstr "Typ modelu (nieruchomy lub animowany)"
 
 msgid "Use separate threads"
-msgstr ""
+msgstr "Używaj oddzielnych wątków"
 
 msgid ""
 "Use separate threads to load each model faster and allow other interaction "
 "whilst loading."
 msgstr ""
+"Używa oddzielnych wątków, by umożliwić ładować każdy model szybciej i "
+"pozwolić innym oddziaływać podczas ładowania."
 
 msgid "X"
-msgstr ""
+msgstr "X"
 
-#, fuzzy
 msgid "X coordinate offset from the centre of the cube."
-msgstr "Środek okna pokrywa się z kursorem"
+msgstr "Odległość w osi x od środka kostki"
 
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
-#, fuzzy
 msgid "Y coordinate offset from the centre of the cube."
-msgstr "Środek okna pokrywa się z kursorem"
+msgstr "Odległość w osi y od środka kostki"
 
 msgid "Z"
-msgstr ""
+msgstr "Z"
 
-#, fuzzy
 msgid "Z coordinate offset from the centre of the cube."
-msgstr "Środek okna pokrywa się z kursorem"
+msgstr "Odległość w osi z od środka kostki"
 
 msgid "Allow rotation of this element"
-msgstr ""
+msgstr "Pozwól na obrót tego elementu"
 
 msgid "Autumn"
-msgstr ""
+msgstr "Jesień"
 
 msgid "Background Color"
 msgstr "Kolor tła"
@@ -1618,7 +1579,7 @@ msgid "Bold Font"
 msgstr "Pogrubiona czcionka"
 
 msgid "Bubbles"
-msgstr ""
+msgstr "Bąbelki"
 
 msgid ""
 "Delay (in ms) between screen updates. Decreasing this value may make snow "
@@ -1631,56 +1592,47 @@ msgstr ""
 msgid "Display Time"
 msgstr "Czas wyświetlania"
 
-#, fuzzy
 msgid "Draw Over Windows"
-msgstr "Śnieg ponad okanmi"
+msgstr "Wyświetlaj ponad oknami"
 
-#, fuzzy
 msgid "Draw elements on screen"
-msgstr "Na środku ekranu"
+msgstr "Wyświetla elementy na ekranie"
 
-#, fuzzy
 msgid "Element Image"
-msgstr "Obraz odbicia"
+msgstr "Obraz elementu"
 
 msgid "Element Iter"
 msgstr ""
 
 msgid "Element Movement Type"
-msgstr ""
+msgstr "Typ ruchu elementu"
 
-#, fuzzy
 msgid "Element Title Display"
-msgstr "Pokazuj tytuł okna"
+msgstr "Pokazuj nazwę elementów"
 
 msgid "Element Type"
-msgstr ""
+msgstr "Typ elementu"
 
-#, fuzzy
 msgid "Element rotation"
-msgstr "Kierunek ruchu"
+msgstr "Obrót elementów"
 
-#, fuzzy
 msgid "Element size"
-msgstr "Rozmiar wielorybów"
+msgstr "Rozmiar elementów"
 
-#, fuzzy
 msgid "Element speed"
-msgstr "Szybkośc ruchu kursora"
+msgstr "Szybkość elementów"
 
 msgid "Elements"
-msgstr ""
+msgstr "Elementy"
 
 msgid "Elements List"
-msgstr ""
+msgstr "Lista elementów"
 
-#, fuzzy
 msgid "Elements drawn above windows"
-msgstr "Rysowanie śniegu przed oknam"
+msgstr "Wyświetlanie elementów nad oknami"
 
-#, fuzzy
 msgid "Fireflies"
-msgstr "Filtry plików"
+msgstr "Świetliki"
 
 msgid "Font Color"
 msgstr "Kolor czcionki"
@@ -1698,29 +1650,29 @@ msgid "General"
 msgstr "Ogólne"
 
 msgid "How deep into the screen snowflakes can be drawn before being removed"
-msgstr "Jak głęboko w ekran mogą spadać płatki śniegu przed usunięciem"
+msgstr ""
+"Jak daleko od ekranu (w dal) mogą przemieszczać się elementy, nim zostaną "
+"usunięte"
 
-#, fuzzy
 msgid "How far from the screen snowflakes can be drawn before being removed"
-msgstr "Jak głęboko w ekran mogą spadać płatki śniegu przed usunięciem"
+msgstr ""
+"Jak daleko od ekranu (na boki) mogą przemieszczać się elementy, nim zostaną "
+"usunięte"
 
 msgid "How long to display the title (in ms)"
-msgstr ""
+msgstr "Jak długo pokazywać tytuł (w ms)"
 
 msgid "Image file for this Element"
-msgstr ""
+msgstr "Plik obrazu dla tego elementu"
 
-#, fuzzy
 msgid "Next Element"
-msgstr "Położenie tekstu"
+msgstr "Następny element"
 
-#, fuzzy
 msgid "Number of elements"
-msgstr "Ilość cząsteczek"
+msgstr "Liczba elementów"
 
-#, fuzzy
 msgid "Previous Element"
-msgstr "Poprzedni pulpit"
+msgstr "Poprzedni element"
 
 msgid "Screen Boxing"
 msgstr "Rozmiar wirtualnego ekranu"
@@ -1731,8 +1683,9 @@ msgstr "Głębokośc spadania"
 msgid "Select snow flake movement direction"
 msgstr "Wybór kierunku ruchu płatków śniegu"
 
+#, fuzzy
 msgid "Select the Next Element in the list"
-msgstr ""
+msgstr "Wybierz elementy z listy"
 
 msgid ""
 "Settings for one particular element configuration. Separate element "
@@ -1742,7 +1695,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Show Title on Toggle"
-msgstr "Przełącz śnieg"
+msgstr "Pokaż tytuł podczas przełączania"
 
 msgid "Show the element type when toggling the currently selected element"
 msgstr ""
@@ -1778,29 +1731,32 @@ msgid "Star Y Offset"
 msgstr ""
 
 msgid "Stars"
-msgstr ""
+msgstr "Gwiazdy"
 
 msgid "Sway Of leaves"
 msgstr ""
 
+#, fuzzy
 msgid "The X point on the screen where stars should start"
-msgstr ""
+msgstr "Współrzędna X ekranu z której gwiazdy mają zacząć spadać"
 
+#, fuzzy
 msgid "The Y point on the screen where stars should start"
-msgstr ""
+msgstr "Współrzędna Y ekranu z której gwiazdy mają zacząć spadać"
 
 #, fuzzy
 msgid "Toggle Selected Element"
-msgstr "Włącz tryb pełnoekranowy"
+msgstr "Przełącz wybrane elementy"
 
+#, fuzzy
 msgid "Total number of allowed element"
-msgstr ""
+msgstr "Liczba wybranych elementów"
 
 msgid "Update Delay"
 msgstr "Opóżnienie odświeżania"
 
 msgid "Use a bold font"
-msgstr ""
+msgstr "Użyj pogrubionej czcionki"
 
 msgid "Viscosity of liquid"
 msgstr ""
@@ -2005,7 +1961,6 @@ msgstr "Przełącza przekierowywanie okna"
 msgid "Toggle window stickyness"
 msgstr "Przełącza lepkość okna"
 
-#, fuzzy
 msgid "Always fit to window on focus track"
 msgstr "Zawsze dopasowuj do okna podczas ruchów wskaźnika"
 
@@ -2015,9 +1970,9 @@ msgid ""
 "pointer. The zoomed area will move as you move your mouse."
 msgstr ""
 "Zawsze synchronizuj powiększany obszar z miejscem obecności wskaźnika myszy "
-"i vice versa. Używaj tej opcji jeśłi nie zamierzasz przy okazji zmieniać "
-"proporcji ani chować wskaźnika myszy. Powiększany obszar będzie się "
-"przesuwał wraz z ruchem myszy."
+"i vice versa. Używaj tej opcji jeśli nie zamierzasz przy okazji zmieniać "
+"proporcji ani chować kursora. Powiększany obszar będzie się przesuwał wraz z "
+"ruchem myszy."
 
 msgid "Animation"
 msgstr "Animacja"
@@ -2035,9 +1990,8 @@ msgstr ""
 msgid "Center the mouse"
 msgstr "Wyśrodkuj mysz"
 
-#, fuzzy
 msgid "Dynamic mouse pointer scale"
-msgstr "Dynamiczne skalowanie wskaźnika myszy"
+msgstr "Dynamiczne skalowanie kursora"
 
 msgid "Enable focus tracking"
 msgstr "Włącz śledzenie myszy"
@@ -2395,7 +2349,7 @@ msgid "Cube Gears"
 msgstr "Mechanizm kostki"
 
 msgid "Render gears inside of the transparent cube"
-msgstr "Renderuj mechanizm w środku przezroczystej kostki"
+msgstr "Wyświetla mechanizm w środku przezroczystej kostki"
 
 msgid "Grid"
 msgstr ""
@@ -2504,7 +2458,7 @@ msgid ""
 "the spring model. If the distance is larger than that value, the model isn't "
 "applied."
 msgstr ""
-"Odległość (w pixelach) między oknem zakładek i slotem dla którego "
+"Odległość (w pikselach) między oknem zakładek i grupą okien dla której "
 "zastosowany zostanie model sprężynowania. Jeśli odległość jest większa niż "
 "ustawiona wartość, wtedy model ten nie jest stosowany."
 
@@ -2579,7 +2533,6 @@ msgstr "Grupuj okna po wybraniu"
 msgid "Grouping"
 msgstr "Grupowanie"
 
-#, fuzzy
 msgid "Hover time for slot dragging"
 msgstr "Czas oczekiwania podczas przenoszenia"
 
@@ -2666,8 +2619,8 @@ msgstr "Minimalizuj z grupą"
 msgid ""
 "Mouse pointer movement speed limit (in pixels/second) for the spring model"
 msgstr ""
-"Ograniczenie prędkości poruszania wskaźnika myszy (w pixelach/sekundy) dla "
-"modelu sprężynowania"
+"Ograniczenie prędkości poruszania wskaźnika myszy (w pikselach na sekundę) "
+"dla modelu sprężynowania"
 
 msgid "Move every window in the group"
 msgstr "Przenoś wszystkie okna w grupie"
@@ -2728,13 +2681,13 @@ msgid "Simple"
 msgstr "Prosty"
 
 msgid "Slot Drag Spring K"
-msgstr ""
+msgstr "Stała sprężystości "
 
 msgid "Slot Dragging"
-msgstr "Przeciąganie slota"
+msgstr "Przeciąganie grupy okien"
 
 msgid "Slot drag friction"
-msgstr "Opór przy przeciąganiu slota"
+msgstr "Opór przy przeciąganiu grupy okien"
 
 msgid "Space"
 msgstr "Przestrzeń"
@@ -2742,9 +2695,8 @@ msgstr "Przestrzeń"
 msgid "Speed limit for spring model"
 msgstr "Ograniczenie prędkości dla modelu sprężynowania"
 
-#, fuzzy
 msgid "Spring Konstant used for slot dragging"
-msgstr "Stała sprężyny używana do przeciągania slotów"
+msgstr "Stała wartość sprężystości stosowana przy przenoszeniu grupy okien"
 
 msgid "Spring friction for slot dragging"
 msgstr "Opór sprężyny przy przeciąganiu slota"
@@ -4115,7 +4067,7 @@ msgid "Pull window to current viewport while in scale mode"
 msgstr "Przesuń okno na wybrany pulpit w trybie skalowania"
 
 msgid "Scale Addons"
-msgstr "Dodatki do skalowania"
+msgstr "Dodatki do Szybkiego Wyboru"
 
 msgid "Selects the mode to layout the windows in scale mode"
 msgstr "Wybór trybu rozmieszczenia okien w trybie skalowania"
@@ -4163,8 +4115,9 @@ msgstr "Filtr nie zwraca uwagi na wielkość liter"
 msgid "Filter Type Timeout"
 msgstr ""
 
+# Skoro Skalowanie zostało nazwane Szybkim Wyborem, trzymajmy się tej wersji.
 msgid "Scale Window Title Filter"
-msgstr "Filtr tytułów okna podczas Skalowania"
+msgstr "Filtr tytułów okna podczas Szybkiego Wyboru"
 
 msgid "Show Filter Text"
 msgstr "Pokazuj tekst filtra"
@@ -4655,7 +4608,7 @@ msgid "Snow Toggle"
 msgstr "Przełącz śnieg"
 
 msgid "Snow for Compiz"
-msgstr "Śnieg Compiz-a"
+msgstr "Śnieg w Compizie"
 
 msgid "Snow is drawn above windows"
 msgstr "Rysowanie śniegu przed oknam"
@@ -4841,7 +4794,6 @@ msgstr ""
 msgid "Next window"
 msgstr "Następne okno"
 
-#, fuzzy
 msgid "Next window (All windows)"
 msgstr "Następne okno (wszystkie pulpity)"
 
@@ -4954,7 +4906,7 @@ msgid "Show minimized windows"
 msgstr "Pokazuj zminimalizowane okna"
 
 msgid "Static Application Switcher"
-msgstr ""
+msgstr "Statyczny Przełącznik Aplikacji"
 
 #, fuzzy
 msgid "Switcher speed"
@@ -5203,7 +5155,7 @@ msgid ""
 "Adjust the opacity, saturation and brightness of windows based on when they "
 "last had focus."
 msgstr ""
-"Ustawoa przezroczystość, nasycenie i jasność okien na podstawie czasu ich "
+"Ustawia przezroczystość, nasycenie i jasność okien na podstawie czasu ich "
 "ostatniego używania."
 
 msgid "Brightness Level of Focused Windows"
@@ -5266,7 +5218,7 @@ msgid ""
 "Saturation of the currently focused window. Windows will get saturation "
 "levels between the focused and minimum."
 msgstr ""
-"Nasycenie aktualnie używanego okna. Okna będą stopniowo zanikaćaż od tego "
+"Nasycenie aktualnie używanego okna. Okna będą stopniowo zanikać aż od tego "
 "stopnia."
 
 msgid ""
@@ -5280,14 +5232,14 @@ msgid ""
 "This defines when Trailfocus will start fading windows. This lets you set up "
 "trailfocus to treat the N first Windows as fully focused."
 msgstr ""
-"Definiuje kiedy Tropiciel ma wygaszać okna. Pozwala Ci na ustawienie X "
-"pierwszych okien jako w pełni aktywnych."
+"Definiuje ile okien ma być aktywnych, zanim następne zaczną być wygaszane. "
+"Pozwala Ci na ustawienie X pierwszych okien jako w pełni aktywnych."
 
 msgid "Trailfocus"
 msgstr "Tropiciel aktywności"
 
 msgid "Window to Start Fading"
-msgstr "Okna, które będą wygasać"
+msgstr "Liczba okien, które nie będą wygasać"
 
 msgid "Window types that should be handled by Trailfocus"
 msgstr "Typy okien obługiwane przez Tropiciela"
@@ -5496,8 +5448,9 @@ msgstr "Przewracanie krawędzi kostki"
 msgid "First color for the background gradient of the switcher window."
 msgstr "Pierwszy kolor dla gradientu tła przełączanego okna"
 
+#, fuzzy
 msgid "First color for the thumb gradient of the switcher window."
-msgstr ""
+msgstr "Pierwszy kolor gradientu przełącznika okien"
 
 msgid "First color for the thumb highlight gradient of the switcher window."
 msgstr ""
@@ -5684,8 +5637,9 @@ msgstr "Rodzaj wypełnienia tła"
 msgid "Backgrounds"
 msgstr "Tła"
 
+#, fuzzy
 msgid "Center Tiled"
-msgstr ""
+msgstr "Sąsiadujący ze środkiem"
 
 msgid "Color 1"
 msgstr "Kolor 1"
@@ -5744,41 +5698,53 @@ msgstr "Jasność tła"
 msgid "Background Saturation"
 msgstr "Nasycenie tła"
 
+# Tak powinno być napisane.
+# 
+# http://pl.wikipedia.org/wiki/Wid%C5%BCet
 msgid "Background in Widget Mode"
-msgstr "Tło w trybie widgetów"
+msgstr "Tło w trybie widżetów"
 
+# Tak powinno być napisane.
+# 
+# http://pl.wikipedia.org/wiki/Wid%C5%BCet
 msgid "Brightness of non-widget windows in widget modes."
-msgstr "Jasność okien nie będących widgetami w trybie widgetów."
+msgstr "Jasność okien nie będących widgetami w trybie widżetów."
 
+# Tak powinno być napisane.
+# 
+# http://pl.wikipedia.org/wiki/Wid%C5%BCet
 msgid "End Widget Mode on Click"
-msgstr "Zakończ tryb widgetów kliknięciem"
+msgstr "Zakończ tryb widżetów kliknięciem"
 
+# Tak powinno być napisane.
+# 
+# http://pl.wikipedia.org/wiki/Wid%C5%BCet
 msgid "End widget mode when a non-widget window is clicked."
-msgstr "Zakończ tryb widgetów kliknięciem w okno nie będące widgetem."
+msgstr "Zakończ tryb widżetów kliknięciem na okno nie będące widżetem."
 
 msgid "Saturation of non-widget windows in widget modes."
-msgstr "Nasycenie okien nie będących widgetami w trybie widgetów"
+msgstr "Nasycenie okien nie będących widżetami w trybie widżetów"
 
 msgid "Show or hide widget windows"
 msgstr "Pokazuj lub ukrywaj okna widgetów"
 
 msgid "Show widget windows on a separate layer"
-msgstr "Pokaż okna widgetów na osobnej warstwie"
+msgstr "Pokaż okna widżetów na osobnej warstwie"
 
 msgid "Time (in s) for fading into/out of the widget layer."
-msgstr "Czas (w sekundach) zanikania do/z warstwy widgetów"
+msgstr "Czas (w sekundach) zanikania do/z warstwy widżetów"
 
 msgid "Toggle Widget Display"
-msgstr "Przełącza pokazywanie widgetów"
+msgstr "Przełącza pokazywanie widżetów"
 
 msgid "Widget Layer"
-msgstr "Warstwa widgetów"
+msgstr "Warstwa widżetów"
 
 msgid "Widget Windows"
-msgstr "Okna - widgety"
+msgstr "Okna - widżety"
 
 msgid "Windows that always should be treated as widgets"
-msgstr "Okna, które mają być zawsze traktowane jako widgety"
+msgstr "Okna, które mają być zawsze traktowane jako widżety"
 
 msgid "Above others windows"
 msgstr "Nad innymi oknami"
@@ -5812,9 +5778,8 @@ msgstr "Wybory"
 msgid "Maximized"
 msgstr "Maksymalizacja"
 
-#, fuzzy
 msgid "Maximized windows"
-msgstr "Okna nie do zmaksymalizowania"
+msgstr "Okna zmaksymalizowane"
 
 #, fuzzy
 msgid "No ARGB visuals"
@@ -5861,10 +5826,10 @@ msgid "Size rules"
 msgstr "Reguły wielkości"
 
 msgid "Sized Windows"
-msgstr ""
+msgstr "Okna o dopasowanym rozmiarze"
 
 msgid "Skip pager"
-msgstr ""
+msgstr "Pomiń terminal konsoli"
 
 msgid "Skip taskbar"
 msgstr "Pomiń pasek zadań"
@@ -5930,13 +5895,16 @@ msgid "Fix window type of various Qt windows."
 msgstr "Napraw typ okna różnych aplikacji Qt"
 
 msgid "Force synchronization between X and GLX"
-msgstr ""
+msgstr "Wymuś synchronizację pomiędzy serwerem X i GLX"
 
 msgid ""
 "Force synchronization between X and GLX, which may help for window parts not "
 "redrawing correctly when using Nvidia drivers, but also may decrease "
 "performance."
 msgstr ""
+"Wymusza synchronizację pomiędzy serwerem X i GLX, co może zaradzić problemom "
+"związanymi z niewłaściwym odświeżaniem części okien na kartach Nvidia, a "
+"także zwiększyć wydajność."
 
 msgid "Java Window Fix"
 msgstr "Poprawka dla okien programów w Javie"
@@ -5944,9 +5912,8 @@ msgstr "Poprawka dla okien programów w Javie"
 msgid "Legacy Fullscreen Support"
 msgstr "Obsługa trybu pełnoekranowego w starszych aplikacjach."
 
-#, fuzzy
 msgid "Make \"on all desktops\" windows \"sticky\""
-msgstr "Zrób \"lepkie\" okna \"na wszystkich ekranach\""
+msgstr "Ustaw okna o typie \"na wszystkich pulpitach\" na typ \"lepkie\""
 
 msgid ""
 "Make \"on all desktops\" windows sticky. Sticky windows are visible on all "
@@ -5955,9 +5922,8 @@ msgstr ""
 "Zrób \"lepkie\" okna na wszystkich ekranach. Lepkie okna są widoczne na "
 "wszystkich wirtualnych pulpitach"
 
-#, fuzzy
 msgid "Make \"urgent\" windows also \"demand attention\"."
-msgstr "Aktywuj następne okno, które jest oznaczone jako \"wymagające uwagi\""
+msgstr "Dodaj typ \"wymaga uwagi\" dla typu okien \"pilne\""
 
 msgid "Make Wine and legacy applications fullscreen properly."
 msgstr ""

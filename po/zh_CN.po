@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: compiz-fusion-plugins\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2009-03-24 12:16+0530\n"
-"PO-Revision-Date: 2009-02-20 03:04+0100\n"
-"Last-Translator: JING Cheng <jingcheng01@gmail.com>\n"
+"POT-Creation-Date: 2009-03-24 08:12+0100\n"
+"PO-Revision-Date: 2009-09-27 11:32+0200\n"
+"Last-Translator: jack kang <jack.kang@live.com>\n"
 "Language-Team: Chinese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,11 +302,9 @@ msgstr "六边形"
 msgid "In"
 msgstr "进"
 
-# 这翻译有点汗
 msgid "In-out"
 msgstr "进出"
 
-# 野战？ 我面壁去
 msgid "Leaf Spread"
 msgstr "叶展"
 
@@ -444,9 +442,8 @@ msgstr "爆炸窗口动画的厚度（以点为单位）"
 msgid "Up"
 msgstr "上"
 
-#, fuzzy
 msgid "Up-down"
-msgstr "上/下"
+msgstr "上下"
 
 msgid ""
 "Whether the window should fly to taskbar when minimized with Airplane effect."
@@ -573,7 +570,6 @@ msgstr "神灯特效的Y轴网格分辨率"
 msgid "Magic Lamp Max Wave Amplitude"
 msgstr "神灯特效的最大波幅"
 
-# 邪恶
 msgid "Magic Lamp Max Waves"
 msgstr "神灯特效的最大波动"
 
@@ -815,24 +811,20 @@ msgstr ""
 msgid "Amplitude of water waves."
 msgstr ""
 
-#, fuzzy
 msgid "Color"
 msgstr "颜色"
 
-#, fuzzy
 msgid "Color of ground in the cube."
-msgstr "立方体顶面颜色"
+msgstr "立方体内底面的颜色。"
 
-#, fuzzy
 msgid "Color of water in the cube."
-msgstr "立方体顶面颜色"
+msgstr "立方体内水的颜色。"
 
 msgid "Component of light coming from all directions equally."
 msgstr ""
 
-#, fuzzy
 msgid "Creature Selection"
-msgstr "立方体倒映"
+msgstr "选择生物"
 
 msgid "Cube Atlantis"
 msgstr "亚特兰蒂斯之盒"
@@ -1422,7 +1414,7 @@ msgid ""
 msgstr ""
 
 msgid "Cube 3D Models"
-msgstr ""
+msgstr "立方体3D模型"
 
 #, fuzzy
 msgid "Diffuse light intensity"
@@ -1530,10 +1522,10 @@ msgid "Z coordinate offset from the centre of the cube."
 msgstr "安放指针功能使用窗口的中央"
 
 msgid "Allow rotation of this element"
-msgstr ""
+msgstr "允许此元素旋转"
 
 msgid "Autumn"
-msgstr ""
+msgstr "秋天"
 
 msgid "Background Color"
 msgstr "背景颜色"
@@ -1562,17 +1554,17 @@ msgstr "飞雪漫窗"
 
 #, fuzzy
 msgid "Draw elements on screen"
-msgstr "屏幕中央"
+msgstr "在屏幕上绘制各种元素"
 
 #, fuzzy
 msgid "Element Image"
-msgstr "倒影图像"
+msgstr "元素图像"
 
 msgid "Element Iter"
 msgstr ""
 
 msgid "Element Movement Type"
-msgstr ""
+msgstr "元素移动类型"
 
 #, fuzzy
 msgid "Element Title Display"
@@ -1594,7 +1586,7 @@ msgid "Element speed"
 msgstr "鼠标移动速度"
 
 msgid "Elements"
-msgstr ""
+msgstr "元素"
 
 msgid "Elements List"
 msgstr ""
@@ -4018,17 +4010,18 @@ msgid "Scale interval"
 msgstr "比例间隔"
 
 # Please improve this translation since it is not appropriate enough in Chinese.
+# Please provide a better translation - by Sephinroth
 msgid "Shelf"
-msgstr "抽屉"
+msgstr "货架"
 
 # Need to improve for the second sentence.
+# Done for the second one. Any new suggestion? - by Sephinroth
 msgid ""
 "The number to divide the scale factor by or multiply it with when "
 "(respectively) increasing and decreasing the scale level manually. Higher "
 "number means finer changes."
 msgstr ""
-"当手工增加或是减少比例级别时用来乘以或除以比例因子的数值。数值越大代表改变越"
-"好。"
+"当手工增减比例级别时用来除或乘比例因子的数值。数值越大代表改变越精细。"
 
 msgid "Trigger scale down"
 msgstr "切换比例缩小"
@@ -5596,7 +5589,7 @@ msgid ""
 "Force synchronization between X and GLX, which may help for window parts not "
 "redrawing correctly when using Nvidia drivers, but also may decrease "
 "performance."
-msgstr ""
+msgstr "强制 X 和 GLX 之间的同步，在使用 Nvidia 显卡时，这个特性有助于改进不正确的窗口重画，但也可能降低性能。"
 
 msgid "Java Window Fix"
 msgstr "Java窗口修正"

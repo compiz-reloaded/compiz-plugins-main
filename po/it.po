@@ -7,7 +7,6 @@
 # Fabio Fiorentini (Ahren / FaBBio) <fabio.fiorentini@gmail.com>, 2007.
 # Andrea De Iacovo (Firstbit) <andrea.de.iacovo@gmail.com>, 2007.
 # Emiliano Perulli <emiliano.perulli@alice.it>, 2007.
-# Milo Casagrande <milo@ubuntu.com>, 2007-2009
 #
 # **** Glossario ****
 #
@@ -42,12 +41,13 @@
 # outline      -> sagoma (nella modalità di ridimensionamento delle finestre)
 # blend        -> trasformazione/trasformare (ne ho parlato con un Flame Artist)
 #
+# Milo Casagrande <milo@ubuntu.com>, 2007-2009, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: fusion i18n\n"
 "Report-Msgid-Bugs-To: http://bugs.opencompositing.org\n"
-"POT-Creation-Date: 2009-03-24 12:51+0530\n"
-"PO-Revision-Date: 2009-02-18 23:29+0100\n"
+"POT-Creation-Date: 2009-08-15 19:06+0200\n"
+"PO-Revision-Date: 2009-08-15 19:05+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -210,7 +210,7 @@ msgid "Animation Time Step For Intense Effects"
 msgstr "Intervallo animazione per gli effetti intensi"
 
 msgid "Animations Add-On"
-msgstr "Addon animazioni"
+msgstr "Animazioni aggiuntive"
 
 msgid "Automatic"
 msgstr "Automatico"
@@ -585,7 +585,7 @@ msgid "Dodge"
 msgstr "Balzo"
 
 msgid "Dodge Gap Ratio"
-msgstr "Rapporto balzo"
+msgstr "Rapporto"
 
 msgid "Dream"
 msgstr "Sogno"
@@ -907,7 +907,7 @@ msgid "Zoom"
 msgstr "Zoom"
 
 msgid "Zoom Springiness"
-msgstr "Elasticità zoom"
+msgstr "Elasticità"
 
 msgid "Zoom from Center"
 msgstr "Zoom dal centro"
@@ -1010,10 +1010,10 @@ msgid "Render water waves inside the cube."
 msgstr "Visualizza le onde dell'acqua all'interno del cubo"
 
 msgid "Render water wireframe"
-msgstr ""
+msgstr "Visualizza il wireframe dell'acqua"
 
 msgid "Render water wireframe inside the cube."
-msgstr ""
+msgstr "Visualizza il wireframe dell'acqua all'interno del cubo"
 
 msgid "Render waves"
 msgstr "Visualizzare le onde"
@@ -1607,11 +1607,14 @@ msgstr "Visualizzare fronte e retro"
 
 msgid "Render still/animated 3D mesh models inside of the transparent cube"
 msgstr ""
+"Visualizzare i modelli 3D statici/animati all'interno del cubo trasparente"
 
 msgid ""
 "Renders the front surface and then the back surface. This can be useful for "
 "models which show black spots but can cause a performance hit."
 msgstr ""
+"Visualizza la superficie frontale e poi quella posteriore. Può essere utile "
+"per i modelli che mostrano dei punti neri, ma può diminure le prestazioni."
 
 msgid "Rotation plane"
 msgstr "Piano di rotazione"
@@ -1793,15 +1796,20 @@ msgid ""
 "definitions have different iters. This is a workaround to have multiple-"
 "textures per element until we can get cascading lists"
 msgstr ""
+"Impostazioni per un particolare elemento di configurazione. Definizioni di "
+"elementi separati hanno diverse procedure. Questo è un espediente per avere "
+"texture multiple per ogni elemento finché non saranno implementate le "
+"cascading list."
 
 msgid "Show Title on Toggle"
 msgstr "Mostrare il titolo all'attivazione"
 
 msgid "Show the element type when toggling the currently selected element"
 msgstr ""
+"Mostrare il tipo dell'elemento quando viene commutato quello selezionato"
 
 msgid "Side-to-side movement of Snow."
-msgstr ""
+msgstr "Movimento fianco-a-fianco della neve."
 
 msgid "Size of these elements"
 msgstr "Dimensione di questi elementi"
@@ -3102,11 +3110,12 @@ msgstr "Altezza del riquadro."
 msgid "Box width."
 msgstr "Larghezza del riquadro."
 
+# (ndt) finché non viene qualche cosa di buono per clip
 msgid "Clip mask"
-msgstr "Taglia maschera"
+msgstr "Maschera"
 
 msgid "Clip mask."
-msgstr "Taglia la maschera."
+msgstr "Maschera."
 
 msgid "Fisheye"
 msgstr "Grandangolo"
@@ -4070,7 +4079,7 @@ msgid "Next Window"
 msgstr "Finestra successiva"
 
 msgid "Next Window (All Workspaces)"
-msgstr "Finestra successiva (tutte le aree di lavoro)"
+msgstr "Finestra successiva (tutti gli spazi di lavoro)"
 
 msgid "Next Window (Group)"
 msgstr "Finestra successiva (gruppo)"
@@ -4087,7 +4096,7 @@ msgid "Previous Window"
 msgstr "Finestra precedente"
 
 msgid "Previous Window (All Workspaces)"
-msgstr "Finestra precedente (tutte le aree di lavoro)"
+msgstr "Finestra precedente (tutti gli spazi di lavoro)"
 
 msgid "Previous Window (Group)"
 msgstr "Finestra precedente (gruppo)"
@@ -4504,10 +4513,10 @@ msgid "Hide non Desktop windows"
 msgstr "Nascondere le finestre non sulla scrivania"
 
 msgid "Initiate (All Workspaces)"
-msgstr "Inizializza (tutte le aree di lavoro)"
+msgstr "Inizializza (tutti gli spazi di lavoro)"
 
 msgid "Initiate switcher (All Workspaces)."
-msgstr "Inizializza il selettore (tutte le aree di lavoro)."
+msgstr "Inizializza il selettore (tutti gli spazi di lavoro)."
 
 msgid "Initiate switcher."
 msgstr "Inizializza il selettore."
@@ -4725,7 +4734,7 @@ msgid "Intensity."
 msgstr "Intensità"
 
 msgid "Show repaint"
-msgstr "Mostrare ricolorazione"
+msgstr "Mostra colorazione"
 
 msgid "Show repainted regions in different colors"
 msgstr "Visualizza le regioni ricolorate con diversi colori"
@@ -5803,7 +5812,7 @@ msgid "Move with window within wall"
 msgstr "Muove, con la finestra, all'interno della muraglia"
 
 msgid "Move within wall"
-msgstr "Muovi all'interno della muraglia"
+msgstr "Muove all'interno della muraglia"
 
 msgid "Multimonitor behavior"
 msgstr "Comportamento multi-monitor"
@@ -5952,7 +5961,7 @@ msgid "Vertical gradient"
 msgstr "Gradiente verticale"
 
 msgid "Wallpaper"
-msgstr "Rivestimento"
+msgstr "Sfondo"
 
 msgid "Background Brightness"
 msgstr "Luminosità dello sfondo"
@@ -5966,8 +5975,9 @@ msgstr "Sfondo in modalità widget"
 msgid "Brightness of non-widget windows in widget modes."
 msgstr "Luminosità delle finestre non-widget in modalità widget."
 
+# (ndt) opzione in ccsm
 msgid "End Widget Mode on Click"
-msgstr "Termina modalità widget con un clic"
+msgstr "Terminare modalità widget con un clic"
 
 msgid "End widget mode when a non-widget window is clicked."
 msgstr ""
@@ -6141,13 +6151,16 @@ msgid "Fix window type of various Qt windows."
 msgstr "Corregge il tipo di finestra di diverse finestre Qt."
 
 msgid "Force synchronization between X and GLX"
-msgstr ""
+msgstr "Forzare la sincronizzazione tra X e GLX"
 
 msgid ""
 "Force synchronization between X and GLX, which may help for window parts not "
 "redrawing correctly when using Nvidia drivers, but also may decrease "
 "performance."
 msgstr ""
+"Forza la sincronizzazione tra X e GLX, utile per le parti di una finestra "
+"che non vengono ridisegnate correttamente quando sono in uso i driver "
+"nVidia. Potrebbe diminuire le prestazioni."
 
 msgid "Java Window Fix"
 msgstr "Correzione finestra Java"
@@ -6195,6 +6208,57 @@ msgstr "Finestre da rendere adesive su tutte le scrivanie"
 
 msgid "Workarounds"
 msgstr "Alternative"
+
+# (ndt) da rivedere
+#~ msgid "All Moving"
+#~ msgstr "Tutte in movimento"
+
+#~ msgid "Amplitude Multiplier"
+#~ msgstr "Moltiplicatore ampiezza"
+
+#~ msgid "Fixed Clicked Window"
+#~ msgstr "Finestre a dimensione fissa con clic"
+
+#~ msgid ""
+#~ "Fixed Clicked Window: The window that is clicked on will stay fixed. All "
+#~ "Moving: The clicked window will do a dodging action as well."
+#~ msgstr ""
+#~ "Finestre a dimensione fissa con clic: le finestre su cui viene fatto clic "
+#~ "restano fisse. Tutte in movimento: le finestre su cui è stato fatto clic "
+#~ "eseguiranno anche un balzo."
+
+#~ msgid "Magic Lamp Wavy"
+#~ msgstr "Lampada magica fluttuante"
+
+#~ msgid "Max Wave Amplitude"
+#~ msgstr "Ampiezza massima delle onde"
+
+#~ msgid "Max Waves"
+#~ msgstr "Onde massime"
+
+#~ msgid "Min Wave Amplitude"
+#~ msgstr "Ampiezza minima delle onde"
+
+#~ msgid ""
+#~ "Starting width of open effect and ending width of close effect for Magic "
+#~ "Lamp Wavy."
+#~ msgstr ""
+#~ "Larghezza iniziale alla creazione e larghezza finale al concludersi "
+#~ "dell'effetto «Lampada magica fluttuante»."
+
+#~ msgid ""
+#~ "Vertex grid resolution for Magic Lamp Wavy (Y dimension only). This is "
+#~ "the number of points used to define the curves. The higher the number, "
+#~ "the smoother the curves. However there will be a loss of performance (CPU "
+#~ "usage increases)."
+#~ msgstr ""
+#~ "Risoluzione per la griglia vertex per l'effetto «Lampada magica "
+#~ "fluttuante» (solo dimensione Y). Rappresenta il numero di punti "
+#~ "utilizzati per definire le curve. Più alto il numero, migliori le curve. "
+#~ "Ci sarà, tuttavia, una perdita di prestazioni (aumenta l'uso della CPU)."
+
+#~ msgid "Toggle"
+#~ msgstr "Attiva/Disattiva"
 
 #~ msgid "Cube Caps"
 #~ msgstr "Capi del cubo"
