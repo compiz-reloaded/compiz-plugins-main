@@ -107,6 +107,8 @@ typedef struct _WallScreen
     PreparePaintScreenProc       preparePaintScreen;
     PaintTransformedOutputProc   paintTransformedOutput;
     PaintWindowProc              paintWindow;
+    WindowGrabNotifyProc         windowGrabNotify;
+    WindowUngrabNotifyProc       windowUngrabNotify;
     ActivateWindowProc           activateWindow;
 
     Bool moving; /* Used to track miniview movement */
@@ -125,6 +127,8 @@ typedef struct _WallScreen
     int timer;
 
     Window moveWindow;
+
+    CompWindow *grabWindow;
 
     Bool focusDefault;
 
@@ -771,6 +775,15 @@ wallInitiateFlip (CompScreen *s,
     {
 	/* not wall or group means move */
 	if (!wallGetEdgeflipMove (s))
+	    return FALSE;
+
+	WALL_SCREEN (s);
+
+	if (!ws->grabWindow)
+	    return FALSE;
+
+	/* bail out if window is sticky */
+	if (ws->grabWindow->state & CompWindowStateStickyMask)
 	    return FALSE;
     }
     else if (otherScreenGrabExist (s, "wall", NULL))
@@ -1884,6 +1897,36 @@ wallMatchPropertyChanged (CompDisplay *d,
 }
 
 static void
+wallWindowGrabNotify (CompWindow   *w,
+		      int	     x,
+		      int	     y,
+		      unsigned int state,
+		      unsigned int mask)
+{
+    WALL_SCREEN (w->screen);
+
+    if (!ws->grabWindow)
+	ws->grabWindow = w;
+
+    UNWRAP (ws, w->screen, windowGrabNotify);
+    (*w->screen->windowGrabNotify) (w, x, y, state, mask);
+    WRAP (ws, w->screen, windowGrabNotify, wallWindowGrabNotify);
+}
+
+static void
+wallWindowUngrabNotify (CompWindow *w)
+{
+    WALL_SCREEN (w->screen);
+
+    if (w == ws->grabWindow)
+	ws->grabWindow = NULL;
+
+    UNWRAP (ws, w->screen, windowUngrabNotify);
+    (*w->screen->windowUngrabNotify) (w);
+    WRAP (ws, w->screen, windowUngrabNotify, wallWindowUngrabNotify);
+}
+
+static void
 wallWindowAdd (CompScreen *s,
 	       CompWindow *w)
 {
@@ -2074,6 +2117,7 @@ wallInitScreen (CompPlugin *p,
     ws->showPreview  = FALSE;
     ws->focusDefault = TRUE;
     ws->moveWindow   = None;
+    ws->grabWindow   = NULL;
 
     ws->transform  = NoTransformation;
     ws->direction  = -1;
@@ -2089,6 +2133,8 @@ wallInitScreen (CompPlugin *p,
     WRAP (ws, s, paintTransformedOutput, wallPaintTransformedOutput);
     WRAP (ws, s, preparePaintScreen, wallPreparePaintScreen);
     WRAP (ws, s, paintWindow, wallPaintWindow);
+    WRAP (ws, s, windowGrabNotify, wallWindowGrabNotify);
+    WRAP (ws, s, windowUngrabNotify, wallWindowUngrabNotify);
     WRAP (ws, s, activateWindow, wallActivateWindow);
 
     s->base.privates[wd->screenPrivateIndex].ptr = ws;
@@ -2118,6 +2164,8 @@ wallFiniScreen (CompPlugin *p,
     UNWRAP (ws, s, paintTransformedOutput);
     UNWRAP (ws, s, preparePaintScreen);
     UNWRAP (ws, s, paintWindow);
+    UNWRAP (ws, s, windowGrabNotify);
+    UNWRAP (ws, s, windowUngrabNotify);
     UNWRAP (ws, s, activateWindow);
     
     freeWindowPrivateIndex (s, ws->windowPrivateIndex);
