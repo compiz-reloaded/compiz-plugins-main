@@ -246,8 +246,8 @@ kdecompatUpdatePreviews (CompWindow *w)
     {
 	if (format == 32 && actual == kd->kdePreviewAtom)
 	{
-	    int *data    = (int *) propData;
-	    int nPreview = *data++;
+	    long *data    = (long *) propData;
+	    int  nPreview = *data++;
 
 	    if (n == (6 * nPreview + 1))
 	    {
