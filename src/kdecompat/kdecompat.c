@@ -41,13 +41,19 @@ typedef struct _KdeCompatDisplay {
     HandleEventProc handleEvent;
 
     Atom kdePreviewAtom;
+    Atom kdeSlideAtom;
 } KdeCompatDisplay;
 
 typedef struct _KdeCompatScreen {
     int windowPrivateIndex;
 
-    PaintWindowProc      paintWindow;
-    DamageWindowRectProc damageWindowRect;
+    Bool hasSlidingPopups;
+
+    PreparePaintScreenProc preparePaintScreen;
+    PaintOutputProc        paintOutput;
+    DonePaintScreenProc    donePaintScreen;
+    PaintWindowProc        paintWindow;
+    DamageWindowRectProc   damageWindowRect;
 } KdeCompatScreen;
 
 typedef struct _Thumb {
@@ -55,10 +61,30 @@ typedef struct _Thumb {
     XRectangle thumb;
 } Thumb;
 
+typedef enum {
+    West  = 0,
+    North = 1,
+    East  = 2,
+    South = 3
+} SlidePosition;
+
+typedef struct {
+    SlidePosition position;
+    int           start;
+    Bool          appearing;
+    int           remaining;
+    int           duration;
+} SlideData;
+
 typedef struct _KdeCompatWindow {
     Thumb        *previews;
     unsigned int nPreviews;
     Bool         isPreview;
+
+    SlideData *slideData;
+
+    int destroyCnt;
+    int unmapCnt;
 } KdeCompatWindow;
 
 #define GET_KDECOMPAT_DISPLAY(d)				      \
@@ -82,9 +108,165 @@ typedef struct _KdeCompatWindow {
 			  GET_KDECOMPAT_SCREEN  (w->screen,	       \
 			  GET_KDECOMPAT_DISPLAY (w->screen->display)))
 
+static void
+kdecompatStopCloseAnimation (CompWindow *w)
+{
+    KDECOMPAT_WINDOW (w);
+
+    while (kw->unmapCnt)
+    {
+	unmapWindow (w);
+	kw->unmapCnt--;
+    }
+
+    while (kw->destroyCnt)
+    {
+	destroyWindow (w);
+	kw->destroyCnt--;
+    }
+}
+
+static void
+kdecompatSendSlideEvent (CompWindow *w,
+			 Bool       start)
+{
+    CompOption  o[2];
+    CompDisplay *d = w->screen->display;
+
+    o[0].type    = CompOptionTypeInt;
+    o[0].name    = "window";
+    o[0].value.i = w->id;
+
+    o[1].type    = CompOptionTypeBool;
+    o[1].name    = "active";
+    o[1].value.b = start;
+
+    (*d->handleCompizEvent) (d, "kdecompat", "slide", o, 2);
+}
+
+static void
+kdecompatStartSlideAnimation (CompWindow *w,
+			      Bool       appearing)
+{
+    KDECOMPAT_WINDOW (w);
+
+    if (kw->slideData)
+    {
+	SlideData *data = kw->slideData;
+
+	KDECOMPAT_SCREEN (w->screen);
+
+	if (appearing)
+	    data->duration = kdecompatGetSlideInDuration (w->screen);
+	else
+	    data->duration = kdecompatGetSlideOutDuration (w->screen);
+
+	if (data->remaining > data->duration)
+	    data->remaining = data->duration;
+	else
+	    data->remaining = data->duration - data->remaining;
+
+	data->appearing      = appearing;
+	ks->hasSlidingPopups = TRUE;
+	addWindowDamage (w);
+	kdecompatSendSlideEvent (w, TRUE);
+    }
+}
+
+static void
+kdecompatEndSlideAnimation (CompWindow *w)
+{
+    KDECOMPAT_WINDOW (w);
+
+    if (kw->slideData)
+    {
+	kw->slideData->remaining = 0;
+	kdecompatStopCloseAnimation (w);
+	kdecompatSendSlideEvent (w, FALSE);
+    }
+}
+
+static void
+kdecompatPreparePaintScreen (CompScreen *s,
+			     int        msSinceLastPaint)
+{
+    KDECOMPAT_SCREEN (s);
+
+    if (ks->hasSlidingPopups)
+    {
+	CompWindow *w;
+
+	for (w = s->windows; w; w = w->next)
+	{
+	    KdeCompatWindow *kw = GET_KDECOMPAT_WINDOW (w, ks);
+
+	    if (!kw->slideData)
+		continue;
+
+	    kw->slideData->remaining -= msSinceLastPaint;
+	    if (kw->slideData->remaining <= 0)
+		kdecompatEndSlideAnimation (w);
+	}
+    }
+
+    UNWRAP (ks, s, preparePaintScreen);
+    (*s->preparePaintScreen) (s, msSinceLastPaint);
+    WRAP (ks, s, preparePaintScreen, kdecompatPreparePaintScreen);
+}
+
+static Bool
+kdecompatPaintOutput (CompScreen              *s,
+		      const ScreenPaintAttrib *attrib,
+		      const CompTransform     *transform,
+		      Region                  region,
+		      CompOutput              *output,
+		      unsigned int            mask)
+{
+    Bool status;
+
+    KDECOMPAT_SCREEN (s);
+
+    if (ks->hasSlidingPopups)
+	mask |= PAINT_SCREEN_WITH_TRANSFORMED_WINDOWS_MASK;
+
+    UNWRAP (ks, s, paintOutput);
+    status = (*s->paintOutput) (s, attrib, transform, region, output, mask);
+    WRAP (ks, s, paintOutput, kdecompatPaintOutput);
+
+    return status;
+}
+
+static void
+kdecompatDonePaintScreen (CompScreen *s)
+{
+    KDECOMPAT_SCREEN (s);
+
+    if (ks->hasSlidingPopups)
+    {
+	CompWindow *w;
+
+	ks->hasSlidingPopups = FALSE;
+
+	for (w = s->windows; w; w = w->next)
+	{
+	    KdeCompatWindow *kw = GET_KDECOMPAT_WINDOW (w, ks);
+
+	    if (kw->slideData && kw->slideData->remaining)
+	    {
+		addWindowDamage (w);
+		ks->hasSlidingPopups = TRUE;
+	    }
+	}
+    }
+
+    UNWRAP (ks, s, donePaintScreen);
+    (*s->donePaintScreen) (s);
+    WRAP (ks, s, donePaintScreen, kdecompatDonePaintScreen);
+}
+
 static Bool
 kdecompatPaintWindow (CompWindow		 *w,
-		      const WindowPaintAttrib *attrib,
+		      const WindowPaintAttrib	 *attrib,
 		      const CompTransform	 *transform,
 		      Region		         region,
 		      unsigned int		 mask)
@@ -96,11 +278,83 @@ kdecompatPaintWindow (CompWindow		 *w,
     KDECOMPAT_SCREEN (s);
     KDECOMPAT_WINDOW (w);
 
-    UNWRAP (ks, s, paintWindow);
-    status = (*s->paintWindow) (w, attrib, transform, region, mask);
-    WRAP (ks, s, paintWindow, kdecompatPaintWindow);
+    if (kw->slideData && kw->slideData->remaining)
+    {
+	FragmentAttrib fragment;
+	CompTransform  wTransform = *transform;
+	SlideData      *data = kw->slideData;
+	float          xTranslate = 0, yTranslate = 0, remainder;
+	BOX            clipBox;
 
-    if (!kdecompatGetPlasmaThumbnails (s) ||
+	if (mask & PAINT_WINDOW_OCCLUSION_DETECTION_MASK)
+	    return FALSE;
+
+	remainder = (float) data->remaining / data->duration;
+	if (!data->appearing)
+	    remainder = 1.0 - remainder;
+
+	clipBox.x1 = w->attrib.x;
+	clipBox.y1 = w->attrib.y;
+	clipBox.x2 = clipBox.x1 + w->attrib.width;
+	clipBox.y2 = clipBox.y1 + w->attrib.height;
+
+	switch (data->position) {
+	case East:
+	    xTranslate = (data->start - w->attrib.x) * remainder;
+	    clipBox.x2 = data->start;
+	    break;
+	case West:
+	    xTranslate = (data->start - w->attrib.width) * remainder;
+	    clipBox.x1 = data->start;
+	    break;
+	case North:
+	    yTranslate = (data->start - w->attrib.height) * remainder;
+	    clipBox.y1 = data->start;
+	    break;
+	case South:
+	default:
+	    yTranslate = (data->start - w->attrib.y) * remainder;
+	    clipBox.y2 = data->start;
+	    break;
+	}
+
+	UNWRAP (ks, s, paintWindow);
+	status = (*s->paintWindow) (w, attrib, transform, region,
+				    mask | PAINT_WINDOW_NO_CORE_INSTANCE_MASK);
+	WRAP (ks, s, paintWindow, kdecompatPaintWindow);
+
+	initFragmentAttrib (&fragment, &w->lastPaint);
+
+	if (w->alpha || fragment.opacity != OPAQUE)
+	    mask |= PAINT_WINDOW_TRANSLUCENT_MASK;
+
+	matrixTranslate (&wTransform, xTranslate, yTranslate, 0.0f);
+
+	glPushMatrix ();
+	glLoadMatrixf (wTransform.m);
+
+	glPushAttrib (GL_SCISSOR_BIT);
+	glEnable (GL_SCISSOR_TEST);
+
+	glScissor (clipBox.x1, s->height - clipBox.y2,
+		   clipBox.x2 - clipBox.x1, clipBox.y2 - clipBox.y1);
+
+	(*s->drawWindow) (w, &wTransform, &fragment, region,
+			  mask | PAINT_WINDOW_TRANSFORMED_MASK);
+
+	glDisable (GL_SCISSOR_TEST);
+	glPopAttrib ();
+	glPopMatrix ();
+    }
+    else
+    {
+	UNWRAP (ks, s, paintWindow);
+	status = (*s->paintWindow) (w, attrib, transform, region, mask);
+	WRAP (ks, s, paintWindow, kdecompatPaintWindow);
+    }
+
+    if (!status                           ||
+	!kdecompatGetPlasmaThumbnails (s) ||
 	!kw->nPreviews                    ||
 	!w->mapNum                        ||
 	(mask & PAINT_WINDOW_OCCLUSION_DETECTION_MASK))
@@ -224,13 +478,13 @@ kdecompatPaintWindow (CompWindow		 *w,
 static void
 kdecompatUpdatePreviews (CompWindow *w)
 {
-    CompWindow      *cw;
-    CompScreen      *s = w->screen;
-    CompDisplay     *d = s->display;
-    Atom	    actual;
-    int		    result, format;
-    unsigned long   n, left;
-    unsigned char   *propData;
+    CompWindow    *cw;
+    CompScreen    *s = w->screen;
+    CompDisplay   *d = s->display;
+    Atom          actual;
+    int           result, format;
+    unsigned long n, left;
+    unsigned char *propData;
 
     KDECOMPAT_DISPLAY (d);
     KDECOMPAT_SCREEN (s);
@@ -303,10 +557,95 @@ kdecompatUpdatePreviews (CompWindow *w)
 }
 
 static void
+kdecompatUpdateSlidePosition (CompWindow *w)
+{
+    CompDisplay   *d = w->screen->display;
+    Atom	  actual;
+    int		  result, format;
+    unsigned long n, left;
+    unsigned char *propData;
+
+    KDECOMPAT_DISPLAY (d);
+    KDECOMPAT_WINDOW (w);
+
+    if (kw->slideData)
+    {
+	free (kw->slideData);
+	kw->slideData = NULL;
+    }
+
+    result = XGetWindowProperty (d->display, w->id, kd->kdeSlideAtom, 0,
+				 32768, FALSE, AnyPropertyType, &actual,
+				 &format, &n, &left, &propData);
+
+    if (result == Success && propData)
+    {
+	if (format == 32 && actual == kd->kdeSlideAtom && n == 2)
+	{
+	    long *data = (long *) propData;
+
+	    kw->slideData = malloc (sizeof (SlideData));
+	    if (kw->slideData)
+	    {
+		kw->slideData->remaining = 0;
+		kw->slideData->start     = data[0];
+		kw->slideData->position  = data[1];
+	    }
+	}
+
+	XFree (propData);
+    }
+}
+
+static void
+kdecompatHandleWindowClose (CompWindow *w,
+			    Bool       destroy)
+{
+    KDECOMPAT_WINDOW (w);
+
+    if (kw->slideData && kdecompatGetSlidingPopups (w->screen))
+    {
+	if (destroy)
+	{
+	    kw->destroyCnt++;
+	    w->destroyRefCnt++;
+	}
+	else
+	{
+	    kw->unmapCnt++;
+	    w->unmapRefCnt++;
+	}
+
+	if (kw->slideData->appearing || !kw->slideData->remaining)
+	    kdecompatStartSlideAnimation (w, FALSE);
+    }
+}
+
+static void
 kdecompatHandleEvent (CompDisplay *d,
 		      XEvent      *event)
 {
+    CompWindow *w;
+
     KDECOMPAT_DISPLAY (d);
+
+    switch (event->type) {
+    case DestroyNotify:
+	w = findWindowAtDisplay (d, event->xdestroywindow.window);
+	if (w)
+	    kdecompatHandleWindowClose (w, TRUE);
+	break;
+    case UnmapNotify:
+	w = findWindowAtDisplay (d, event->xunmap.window);
+	if (w && !w->pendingUnmaps)
+	    kdecompatHandleWindowClose (w, FALSE);
+	break;
+    case MapNotify:
+	w = findWindowAtDisplay (d, event->xmap.window);
+	if (w)
+	    kdecompatStopCloseAnimation (w);
+	break;
+    }
 
     UNWRAP (kd, d, handleEvent);
     (*d->handleEvent) (d, event);
@@ -316,11 +655,15 @@ kdecompatHandleEvent (CompDisplay *d,
     case PropertyNotify:
 	if (event->xproperty.atom == kd->kdePreviewAtom)
 	{
-	    CompWindow *w;
-
 	    w = findWindowAtDisplay (d, event->xproperty.window);
 	    if (w)
 		kdecompatUpdatePreviews (w);
+	}
+	else if (event->xproperty.atom == kd->kdeSlideAtom)
+	{
+	    w = findWindowAtDisplay (d, event->xproperty.window);
+	    if (w)
+		kdecompatUpdateSlidePosition (w);
 	}
 	break;
     }
@@ -365,6 +708,9 @@ kdecompatDamageWindowRect (CompWindow *w,
 	}
     }
 
+    if (initial && kdecompatGetSlidingPopups (s))
+	kdecompatStartSlideAnimation (w, TRUE);
+
     UNWRAP (ks, s, damageWindowRect);
     status = (*s->damageWindowRect) (w, initial, rect);
     WRAP (ks, s, damageWindowRect, kdecompatDamageWindowRect);
@@ -373,21 +719,20 @@ kdecompatDamageWindowRect (CompWindow *w,
 }
 
 static void
-kdecompatAdvertiseThumbSupport (CompScreen *s,
-				Bool       supportThumbs)
+kdecompatAdvertiseSupport (CompScreen *s,
+			   Atom       atom,
+			   Bool       enable)
 {
-    KDECOMPAT_DISPLAY (s->display);
-
-    if (supportThumbs)
+    if (enable)
     {
 	unsigned char value = 0;
 
-	XChangeProperty (s->display->display, s->root, kd->kdePreviewAtom,
-			 kd->kdePreviewAtom, 8, PropModeReplace, &value, 1);
+	XChangeProperty (s->display->display, s->root, atom, atom,
+			 8, PropModeReplace, &value, 1);
     }
     else
     {
-	XDeleteProperty (s->display->display, s->root, kd->kdePreviewAtom);
+	XDeleteProperty (s->display->display, s->root, atom);
     }
 }
 
@@ -396,8 +741,12 @@ kdecompatScreenOptionChanged (CompScreen             *s,
 			      CompOption             *opt,
 			      KdecompatScreenOptions num)
 {
+    KDECOMPAT_DISPLAY (s->display);
+
     if (num == KdecompatScreenOptionPlasmaThumbnails)
-	kdecompatAdvertiseThumbSupport (s, opt->value.b);
+	kdecompatAdvertiseSupport (s, kd->kdePreviewAtom, opt->value.b);
+    else if (num == KdecompatScreenOptionSlidingPopups)
+	kdecompatAdvertiseSupport (s, kd->kdeSlideAtom, opt->value.b);
 }
 
 static Bool
@@ -421,6 +770,7 @@ kdecompatInitDisplay (CompPlugin  *p,
     }
 
     kd->kdePreviewAtom = XInternAtom (d->display, "_KDE_WINDOW_PREVIEW", 0);
+    kd->kdeSlideAtom = XInternAtom (d->display, "_KDE_SLIDE", 0);
 
     WRAP (kd, d, handleEvent, kdecompatHandleEvent);
 
@@ -461,9 +811,18 @@ kdecompatInitScreen (CompPlugin *p,
 	return FALSE;
     }
 
-    kdecompatAdvertiseThumbSupport (s, kdecompatGetPlasmaThumbnails (s));
-    kdecompatSetPlasmaThumbnailsNotify (s, kdecompatScreenOptionChanged);
+    ks->hasSlidingPopups = FALSE;
 
+    kdecompatAdvertiseSupport (s, kd->kdePreviewAtom,
+			       kdecompatGetPlasmaThumbnails (s));
+    kdecompatAdvertiseSupport (s, kd->kdeSlideAtom,
+			       kdecompatGetSlidingPopups (s));
+    kdecompatSetPlasmaThumbnailsNotify (s, kdecompatScreenOptionChanged);
+    kdecompatSetSlidingPopupsNotify (s, kdecompatScreenOptionChanged);
+
+    WRAP (ks, s, preparePaintScreen, kdecompatPreparePaintScreen);
+    WRAP (ks, s, paintOutput, kdecompatPaintOutput);
+    WRAP (ks, s, donePaintScreen, kdecompatDonePaintScreen);
     WRAP (ks, s, paintWindow, kdecompatPaintWindow);
     WRAP (ks, s, damageWindowRect, kdecompatDamageWindowRect);
 
@@ -477,11 +836,16 @@ kdecompatFiniScreen (CompPlugin *p,
 		     CompScreen *s)
 {
     KDECOMPAT_SCREEN (s);
+    KDECOMPAT_DISPLAY (s->display);
 
     freeWindowPrivateIndex (s, ks->windowPrivateIndex);
 
-    kdecompatAdvertiseThumbSupport (s, FALSE);
+    kdecompatAdvertiseSupport (s, kd->kdePreviewAtom, FALSE);
+    kdecompatAdvertiseSupport (s, kd->kdeSlideAtom, FALSE);
 
+    UNWRAP (ks, s, preparePaintScreen);
+    UNWRAP (ks, s, paintOutput);
+    UNWRAP (ks, s, donePaintScreen);
     UNWRAP (ks, s, paintWindow);
     UNWRAP (ks, s, damageWindowRect);
 
@@ -504,6 +868,11 @@ kdecompatInitWindow (CompPlugin *p,
     kw->nPreviews = 0;
     kw->isPreview = FALSE;
 
+    kw->slideData = NULL;
+
+    kw->unmapCnt   = 0;
+    kw->destroyCnt = 0;
+
     w->base.privates[ks->windowPrivateIndex].ptr = kw;
 
     return TRUE;
@@ -515,8 +884,13 @@ kdecompatFiniWindow (CompPlugin *p,
 {
     KDECOMPAT_WINDOW (w);
 
+    kdecompatStopCloseAnimation (w);
+
     if (kw->previews)
 	free (kw->previews);
+
+    if (kw->slideData)
+	free (kw->slideData);
 
     free (kw);
 }
