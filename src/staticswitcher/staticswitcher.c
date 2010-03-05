@@ -1184,6 +1184,9 @@ switchHandleEvent (CompDisplay *d,
 
 	    if (w->id == ss->popupWindow)
 	    {
+		/* we don't get a MapRequest for internal window creations,
+		   so we need to set the internals ourselves */
+		w->managed = TRUE;
 		w->wmType = getWindowType (d, w->id);
 		recalcWindowType (w);
 		recalcWindowActions (w);
