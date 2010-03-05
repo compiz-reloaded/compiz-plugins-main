@@ -311,8 +311,8 @@ kdecompatPaintWindow (CompWindow		 *w,
 
 	clipBox.x1 = w->attrib.x;
 	clipBox.y1 = w->attrib.y;
-	clipBox.x2 = clipBox.x1 + w->attrib.width;
-	clipBox.y2 = clipBox.y1 + w->attrib.height;
+	clipBox.x2 = clipBox.x1 + w->width;
+	clipBox.y2 = clipBox.y1 + w->height;
 
 	switch (data->position) {
 	case East:
@@ -320,11 +320,11 @@ kdecompatPaintWindow (CompWindow		 *w,
 	    clipBox.x2 = data->start;
 	    break;
 	case West:
-	    xTranslate = (data->start - w->attrib.width) * remainder;
+	    xTranslate = (data->start - w->width) * remainder;
 	    clipBox.x1 = data->start;
 	    break;
 	case North:
-	    yTranslate = (data->start - w->attrib.height) * remainder;
+	    yTranslate = (data->start - w->height) * remainder;
 	    clipBox.y1 = data->start;
 	    break;
 	case South:
