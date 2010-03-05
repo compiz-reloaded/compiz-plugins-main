@@ -37,11 +37,18 @@
 static int displayPrivateIndex;
 
 typedef struct _KdeCompatDisplay {
-    int		    screenPrivateIndex;
-    HandleEventProc handleEvent;
+    int screenPrivateIndex;
+
+    HandleEventProc       handleEvent;
+    HandleCompizEventProc handleCompizEvent;
+
+    CompPlugin        *scaleHandle;
+    Bool              scaleActive;
+    CompTimeoutHandle scaleTimeout;
 
     Atom kdePreviewAtom;
     Atom kdeSlideAtom;
+    Atom kdePresentGroupAtom;
 } KdeCompatDisplay;
 
 typedef struct _KdeCompatScreen {
@@ -54,7 +61,16 @@ typedef struct _KdeCompatScreen {
     DonePaintScreenProc    donePaintScreen;
     PaintWindowProc        paintWindow;
     DamageWindowRectProc   damageWindowRect;
+
+    CompWindow *presentWindow;
 } KdeCompatScreen;
+
+typedef struct {
+   CompScreen *s;
+   Window     manager;
+   int        nWindows;
+   Window     windows[0];
+} PresentWindowData;
 
 typedef struct _Thumb {
     Window     id;
@@ -621,6 +637,229 @@ kdecompatHandleWindowClose (CompWindow *w,
     }
 }
 
+static CompAction *
+kdecompatGetScaleAction (CompDisplay *d,
+			 const char  *name)
+{
+    CompObject *object;
+    CompOption *option;
+    int        nOption;
+    CompPlugin *p;
+
+    KDECOMPAT_DISPLAY (d);
+
+    p = kd->scaleHandle;
+    if (!p || !p->vTable->getObjectOptions)
+	return NULL;
+
+    object = compObjectFind (&core.base, COMP_OBJECT_TYPE_DISPLAY, NULL);
+    if (!object)
+	return NULL;
+
+    option = (*p->vTable->getObjectOptions) (p, object, &nOption);
+    while (nOption--)
+    {
+	if (option->type == CompOptionTypeAction ||
+	    option->type == CompOptionTypeButton ||
+	    option->type == CompOptionTypeKey)
+	{
+	    if (strcmp (option->name, name) == 0)
+	    {
+		return &option->value.action;
+	    }
+	}
+
+	option++;
+    }
+
+    return NULL;
+}
+
+static Bool
+kdecompatScaleActivate (void *closure)
+{
+    PresentWindowData *data = (PresentWindowData *) closure;
+    CompScreen        *s = data->s;
+    CompDisplay       *d = s->display;
+    CompWindow        *w;
+
+    KDECOMPAT_DISPLAY (d);
+
+    w = findWindowAtScreen (s, data->manager);
+    if (w && !kd->scaleActive)
+    {
+	CompOption   o[2];
+	unsigned int i;
+	char         buffer[20];
+	CompMatch    *windowMatch = &o[1].value.match;
+	CompAction   *action;
+
+	KDECOMPAT_SCREEN (s);
+
+	o[0].name    = "root";
+	o[0].type    = CompOptionTypeInt;
+	o[0].value.i = s->root;
+
+	o[1].name = "match";
+	o[1].type = CompOptionTypeMatch;
+
+	ks->presentWindow = w;
+
+	matchInit (windowMatch);
+
+	for (i = 0; i < data->nWindows; i++)
+	{
+	    snprintf (buffer, sizeof (buffer), "xid=%ld", data->windows[i]);
+	    matchAddExp (windowMatch, 0, buffer);
+	}
+
+	matchUpdate (d, windowMatch);
+
+	action = kdecompatGetScaleAction (d, "initiate_all_key");
+	if (action && action->initiate)
+	    (action->initiate) (d, action, 0, o, 2);
+
+	matchFini (windowMatch);
+    }
+
+    free (data);
+
+    return FALSE;
+}
+
+static void
+kdecompatFreeScaleTimeout (KdeCompatDisplay *kd)
+{
+    PresentWindowData *data = NULL;
+
+    if (kd->scaleTimeout)
+	data = compRemoveTimeout (kd->scaleTimeout);
+    if (data)
+	free (data);
+
+    kd->scaleTimeout = 0;
+}
+
+static void
+kdecompatPresentWindowGroup (CompWindow *w)
+{
+    CompScreen    *s = w->screen;
+    CompDisplay   *d = s->display;
+    Atom          actual;
+    int           result, format;
+    unsigned long n, left;
+    unsigned char *propData;
+
+
+    KDECOMPAT_DISPLAY (d);
+
+    if (!kdecompatGetPresentWindows (s))
+	return;
+
+    if (!kd->scaleHandle)
+    {
+	compLogMessage ("kdecompat", CompLogLevelWarn,
+			"Scale plugin not loaded, present windows "
+			"effect not available!");
+	return;
+    }
+
+    result = XGetWindowProperty (d->display, w->id, kd->kdePresentGroupAtom, 0,
+				 32768, FALSE, AnyPropertyType, &actual,
+				 &format, &n, &left, &propData);
+
+    if (result == Success && propData)
+    {
+	if (format == 32 && actual == kd->kdePresentGroupAtom)
+	{
+	    long *property = (long *) propData;
+
+	    if (!n || !property[0])
+	    {
+		CompOption o;
+		CompAction *action;
+
+		/* end scale */
+
+		o.name    = "root";
+		o.type    = CompOptionTypeInt;
+		o.value.i = s->root;
+
+		action = kdecompatGetScaleAction (d, "initiate_all_key");
+		if (action && action->terminate)
+		    (action->terminate) (d, action,
+					 CompActionStateCancel,  &o, 1);
+
+	    }
+	    else
+	    {
+		PresentWindowData *data;
+
+		/* Activate scale using a timeout - Rationale:
+		 * At the time we get the property notify event, Plasma
+		 * most likely holds a pointer grab due to the action being
+		 * initiated by a button click. As scale also wants to get
+		 * a pointer grab, we need to delay the activation a bit so
+		 * Plasma can release its grab.
+		 */
+
+		kdecompatFreeScaleTimeout (kd);
+
+		data = malloc (sizeof (PresentWindowData) + n * sizeof (Window));
+		if (data)
+		{
+		    unsigned int i;
+
+		    data->s        = s;
+		    data->manager  = w->id;
+		    data->nWindows = n;
+		    for (i = 0; i < n; i++)
+			data->windows[i] = property[i];
+
+		    kd->scaleTimeout = compAddTimeout (100, 200,
+						       kdecompatScaleActivate,
+						       data);
+		}
+	    }
+	}
+
+	XFree (propData);
+    }
+}
+
+static void
+kdecompatHandleCompizEvent (CompDisplay *d,
+			    const char  *pluginName,
+			    const char  *eventName,
+			    CompOption  *option,
+			    int         nOption)
+{
+    KDECOMPAT_DISPLAY (d);
+
+    UNWRAP (kd, d, handleCompizEvent);
+    (*d->handleCompizEvent) (d, pluginName, eventName, option, nOption);
+    WRAP (kd, d, handleCompizEvent, kdecompatHandleCompizEvent);
+
+    if (kd->scaleHandle                   &&
+	strcmp (pluginName, "scale") == 0 &&
+	strcmp (eventName, "activate") == 0)
+    {
+	Window     xid = getIntOptionNamed (option, nOption, "root", 0);
+	CompScreen *s  = findScreenAtDisplay (d, xid);
+
+	kd->scaleActive = getBoolOptionNamed (option, nOption, "active", FALSE);
+
+	if (!kd->scaleActive && s)
+	{
+	    KDECOMPAT_SCREEN (s);
+
+	    if (ks->presentWindow)
+		XDeleteProperty (d->display, ks->presentWindow->id,
+				 kd->kdePresentGroupAtom);
+	}
+    }
+}
+
 static void
 kdecompatHandleEvent (CompDisplay *d,
 		      XEvent      *event)
@@ -664,6 +903,12 @@ kdecompatHandleEvent (CompDisplay *d,
 	    w = findWindowAtDisplay (d, event->xproperty.window);
 	    if (w)
 		kdecompatUpdateSlidePosition (w);
+	}
+	else if (event->xproperty.atom == kd->kdePresentGroupAtom)
+	{
+	    w = findWindowAtDisplay (d, event->xproperty.window);
+	    if (w)
+		kdecompatPresentWindowGroup (w);
 	}
 	break;
     }
@@ -747,6 +992,9 @@ kdecompatScreenOptionChanged (CompScreen             *s,
 	kdecompatAdvertiseSupport (s, kd->kdePreviewAtom, opt->value.b);
     else if (num == KdecompatScreenOptionSlidingPopups)
 	kdecompatAdvertiseSupport (s, kd->kdeSlideAtom, opt->value.b);
+    else if (num == KdecompatScreenOptionPresentWindows)
+	kdecompatAdvertiseSupport (s, kd->kdePresentGroupAtom,
+				   opt->value.b && kd->scaleHandle);
 }
 
 static Bool
@@ -771,8 +1019,15 @@ kdecompatInitDisplay (CompPlugin  *p,
 
     kd->kdePreviewAtom = XInternAtom (d->display, "_KDE_WINDOW_PREVIEW", 0);
     kd->kdeSlideAtom = XInternAtom (d->display, "_KDE_SLIDE", 0);
+    kd->kdePresentGroupAtom = XInternAtom (d->display,
+					   "_KDE_PRESENT_WINDOWS_GROUP", 0);
+
+    kd->scaleHandle  = findActivePlugin ("scale");
+    kd->scaleActive  = FALSE;
+    kd->scaleTimeout = 0;
 
     WRAP (kd, d, handleEvent, kdecompatHandleEvent);
+    WRAP (kd, d, handleCompizEvent, kdecompatHandleCompizEvent);
 
     d->base.privates[displayPrivateIndex].ptr = kd;
 
@@ -785,9 +1040,12 @@ kdecompatFiniDisplay (CompPlugin  *p,
 {
     KDECOMPAT_DISPLAY (d);
 
+    kdecompatFreeScaleTimeout (kd);
+
     freeScreenPrivateIndex (d, kd->screenPrivateIndex);
 
     UNWRAP (kd, d, handleEvent);
+    UNWRAP (kd, d, handleCompizEvent);
 
     free (kd);
 }
@@ -812,11 +1070,16 @@ kdecompatInitScreen (CompPlugin *p,
     }
 
     ks->hasSlidingPopups = FALSE;
+    ks->presentWindow    = NULL;
 
     kdecompatAdvertiseSupport (s, kd->kdePreviewAtom,
 			       kdecompatGetPlasmaThumbnails (s));
     kdecompatAdvertiseSupport (s, kd->kdeSlideAtom,
 			       kdecompatGetSlidingPopups (s));
+    kdecompatAdvertiseSupport (s, kd->kdePresentGroupAtom,
+			       kdecompatGetPresentWindows (s) &&
+			       kd->scaleHandle);
+
     kdecompatSetPlasmaThumbnailsNotify (s, kdecompatScreenOptionChanged);
     kdecompatSetSlidingPopupsNotify (s, kdecompatScreenOptionChanged);
 
@@ -842,6 +1105,7 @@ kdecompatFiniScreen (CompPlugin *p,
 
     kdecompatAdvertiseSupport (s, kd->kdePreviewAtom, FALSE);
     kdecompatAdvertiseSupport (s, kd->kdeSlideAtom, FALSE);
+    kdecompatAdvertiseSupport (s, kd->kdePresentGroupAtom, FALSE);
 
     UNWRAP (ks, s, preparePaintScreen);
     UNWRAP (ks, s, paintOutput);
@@ -883,6 +1147,10 @@ kdecompatFiniWindow (CompPlugin *p,
 		     CompWindow *w)
 {
     KDECOMPAT_WINDOW (w);
+    KDECOMPAT_SCREEN (w->screen);
+
+    if (ks->presentWindow == w)
+	ks->presentWindow = NULL;
 
     kdecompatStopCloseAnimation (w);
 
