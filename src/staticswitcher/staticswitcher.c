@@ -41,6 +41,8 @@ typedef struct _SwitchDisplay {
     int		    screenPrivateIndex;
     HandleEventProc handleEvent;
 
+    Window lastActiveWindow;
+
     Atom selectWinAtom;
     Atom selectFgColorAtom;
 } SwitchDisplay;
@@ -192,7 +194,8 @@ static void
 switchActivateEvent (CompScreen *s,
 		     Bool	activating)
 {
-    CompOption o[2];
+    CompOption  o[2];
+    CompDisplay *d = s->display;
 
     o[0].type = CompOptionTypeInt;
     o[0].name = "root";
@@ -202,8 +205,7 @@ switchActivateEvent (CompScreen *s,
     o[1].name = "active";
     o[1].value.b = activating;
 
-    (*s->display->handleCompizEvent) (s->display, "staticswitcher", "activate",
-    				      o, 2);
+    (*d->handleCompizEvent) (s->display, "staticswitcher", "activate", o, 2);
 }
 
 static int
@@ -472,6 +474,7 @@ switchToWindow (CompScreen *s,
 	}
 
 	ss->selectedWindow = w;
+	moveInputFocusToWindow (w);
 
 	if (old != w)
 	{
@@ -591,10 +594,12 @@ switchInitiate (CompScreen            *s,
 		SwitchWindowSelection selection,
 		Bool	              showPopup)
 {
-    int  count;
-    Bool mouseSelect;
+    CompDisplay *d = s->display;
+    int         count;
+    Bool        mouseSelect;
 
     SWITCH_SCREEN (s);
+    SWITCH_DISPLAY (d);
 
     if (otherScreenGrabExist (s, "cube", NULL))
 	return;
@@ -699,6 +704,7 @@ switchInitiate (CompScreen            *s,
 		}
 	    }
 
+	    sd->lastActiveWindow = d->activeWindow;
 	    switchActivateEvent (s, TRUE);
 	}
 
@@ -724,6 +730,7 @@ switchTerminate (CompDisplay     *d,
     for (s = d->screens; s; s = s->next)
     {
 	SWITCH_SCREEN (s);
+	SWITCH_DISPLAY (d);
 
 	if (xid && s->root != xid)
 	    continue;
@@ -755,7 +762,15 @@ switchTerminate (CompDisplay     *d,
 	    ss->switching = FALSE;
 
 	    if (state & CompActionStateCancel)
+	    {
 		ss->selectedWindow = NULL;
+		if (d->activeWindow != sd->lastActiveWindow)
+		{
+		    w = findWindowAtDisplay (d, sd->lastActiveWindow);
+		    if (w)
+			moveInputFocusToWindow (w);
+		}
+	    }
 
 	    if (state && ss->selectedWindow && !ss->selectedWindow->destroyed)
 		sendWindowActivationRequest (s, ss->selectedWindow->id);
@@ -1981,6 +1996,8 @@ switchInitDisplay (CompPlugin  *p,
 					 DECOR_SWITCH_WINDOW_ATOM_NAME, 0);
     sd->selectFgColorAtom =
 	XInternAtom (d->display, DECOR_SWITCH_FOREGROUND_COLOR_ATOM_NAME, 0);
+
+    sd->lastActiveWindow = None;
 
     WRAP (sd, d, handleEvent, switchHandleEvent);
 

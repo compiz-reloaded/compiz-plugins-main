@@ -622,6 +622,20 @@ workaroundsHandleEvent (CompDisplay *d,
 		    updateUrgencyState (w);
 	    }
 	}
+	else if (event->xproperty.atom == d->clientListAtom)
+	{
+	    if (workaroundsGetJavaTaskbarFix (d))
+	    {
+		CompScreen *s = findScreenAtDisplay (d,
+						     event->xproperty.window);
+		if (s)
+		{
+		    for (w = s->windows; w; w = w->next)
+			if (w->managed)
+			    setWindowState(d, w->state, w->id);
+		}
+	    }
+	}
 	break;
     default:
 	break;

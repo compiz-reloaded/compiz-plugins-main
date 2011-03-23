@@ -37,6 +37,7 @@
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
+#include <libxml/xmlsave.h>
 
 #define SESSION_DISPLAY_OPTION_SAVE_LEGACY  0
 #define SESSION_DISPLAY_OPTION_IGNORE_MATCH 1
@@ -150,23 +151,21 @@ sessionRemoveWindowListItem (SessionWindowList *item)
 
     SESSION_CORE (&core);
 
-    if (!sc->windowList)
-	return;
-
     if (sc->windowList == item)
 	sc->windowList = item->next;
     else
     {
-	for (run = sc->windowList; run->next; run = run->next)
+	for (run = sc->windowList; run && run->next; run = run->next)
 	{
 	    if (run->next == item)
 	    {
 		run->next = item->next;
-		sessionFreeWindowListItem (item);
 		break;
 	    }
 	}
     }
+
+    sessionFreeWindowListItem (item);
 }
 
 static char*
@@ -267,7 +266,7 @@ sessionGetIsEmbedded (CompDisplay *d,
     return (nitems > 1);
 }
 
-static char*
+static char *
 sessionGetClientLeaderProperty (CompWindow *w,
 				Atom       atom)
 {
@@ -354,11 +353,25 @@ isSessionWindow (CompWindow *w)
 }
 
 static void
-sessionWriteWindow (CompWindow *w,
-		    FILE       *outfile)
+addIntegerPropToNode (xmlNodePtr node,
+		      const char *name,
+		      int        value)
 {
-    char *string, *clientId, *command;
-    int  x, y;
+    xmlChar *string = xmlXPathCastNumberToString (value);
+
+    if (!string)
+	return;
+
+    xmlNewProp (node, BAD_CAST name, string);
+    xmlFree (string);
+}
+
+static void
+sessionAddWindowNode (CompWindow *w,
+		      xmlNodePtr rootNode)
+{
+    xmlNodePtr node, childNode;
+    char       *string, *clientId, *command;
 
     SESSION_DISPLAY (w->screen->display);
 
@@ -371,93 +384,107 @@ sessionWriteWindow (CompWindow *w,
     if (!clientId && !command)
 	return;
 
-    fprintf (outfile, "  <window ");
+    node = xmlNewChild (rootNode, NULL, BAD_CAST "window", NULL);
+    if (!node)
+	return;
+
     if (clientId)
     {
-	fprintf (outfile, "id=\"%s\"", clientId);
+	xmlNewProp (node, BAD_CAST "id", BAD_CAST clientId);
 	free (clientId);
     }
 
     string = sessionGetWindowTitle (w);
     if (string)
     {
-	fprintf (outfile, " title=\"%s\"", string);
+	xmlNewProp (node, BAD_CAST "title", BAD_CAST string);
 	free (string);
     }
 
     if (w->resClass)
-	fprintf (outfile, " class=\"%s\"", w->resClass);
+	xmlNewProp (node, BAD_CAST "class", BAD_CAST w->resClass);
     if (w->resName)
-	fprintf (outfile, " name=\"%s\"", w->resName);
+	xmlNewProp (node, BAD_CAST "name", BAD_CAST w->resName);
 
     string = sessionGetTextProperty (w->screen->display, w->id, sd->roleAtom);
     if (string)
     {
-	fprintf (outfile, " role=\"%s\"", string);
+	xmlNewProp (node, BAD_CAST "role", BAD_CAST string);
 	free (string);
     }
 
     if (command)
     {
-	fprintf (outfile, " command=\"%s\"", command);
+	xmlNewProp (node, BAD_CAST "command", BAD_CAST command);
 	free (command);
     }
-    fprintf (outfile, ">\n");
 
     /* save geometry, relative to viewport 0, 0 */
-    x = (w->saveMask & CWX) ? w->saveWc.x : w->serverX;
-    y = (w->saveMask & CWY) ? w->saveWc.y : w->serverY;
-    if (!windowOnAllViewports (w))
+    childNode = xmlNewChild (node, NULL, BAD_CAST "geometry", NULL);
+    if (childNode)
     {
-	x += w->screen->x * w->screen->width;
-	y += w->screen->y * w->screen->height;
+	int x, y, width, height;
+
+	x = (w->saveMask & CWX) ? w->saveWc.x : w->serverX;
+	y = (w->saveMask & CWY) ? w->saveWc.y : w->serverY;
+	if (!windowOnAllViewports (w))
+	{
+	    x += w->screen->x * w->screen->width;
+	    y += w->screen->y * w->screen->height;
+	}
+
+	x -= w->input.left;
+	y -= w->input.top;
+
+	width  = (w->saveMask & CWWidth) ? w->saveWc.width : w->serverWidth;
+	height = (w->saveMask & CWHeight) ? w->saveWc.height : w->serverHeight;
+
+	addIntegerPropToNode (childNode, "x", x);
+	addIntegerPropToNode (childNode, "y", y);
+	addIntegerPropToNode (childNode, "width", width);
+	addIntegerPropToNode (childNode, "height", height);
     }
-
-    x -= w->input.left;
-    y -= w->input.top;
-
-    fprintf (outfile,
-	     "    <geometry x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\"/>\n",
-	     x, y,
-	     (w->saveMask & CWWidth) ? w->saveWc.width : w->serverWidth,
-	     (w->saveMask & CWHeight) ? w->saveWc.height : w->serverHeight);
 
     /* save various window states */
     if (w->state & CompWindowStateShadedMask)
-	fprintf (outfile, "    <shaded/>\n");
+	xmlNewChild (node, NULL, BAD_CAST "shaded", NULL);
     if (w->state & CompWindowStateStickyMask)
-	fprintf (outfile, "    <sticky/>\n");
+	xmlNewChild (node, NULL, BAD_CAST "sticky", NULL);
     if (w->state & CompWindowStateFullscreenMask)
-	fprintf (outfile, "    <fullscreen/>\n");
+	xmlNewChild (node, NULL, BAD_CAST "fullscreen", NULL);
     if (w->minimized)
-	fprintf (outfile, "    <minimized/>\n");
+	xmlNewChild (node, NULL, BAD_CAST "minimized", NULL);
     if (w->state & MAXIMIZE_STATE)
     {
-	fprintf (outfile, "    <maximized ");
-	if (w->state & CompWindowStateMaximizedVertMask)
-	    fprintf (outfile, "vert=\"yes\" ");
-	if (w->state & CompWindowStateMaximizedHorzMask)
-	    fprintf (outfile, "horiz=\"yes\"");
-	fprintf (outfile, "/>\n");
+	childNode = xmlNewChild (node, NULL, BAD_CAST "maximized", NULL);
+	if (childNode)
+	{
+	    if (w->state & CompWindowStateMaximizedVertMask)
+		xmlNewProp (childNode, BAD_CAST "vert", BAD_CAST "yes");
+	    if (w->state & CompWindowStateMaximizedHorzMask)
+		xmlNewProp (childNode, BAD_CAST "horiz", BAD_CAST "yes");
+	}
     }
 
     /* save workspace */
     if (!(w->type & CompWindowTypeDesktopMask ||
 	  w->type & CompWindowTypeDockMask))
-	    fprintf (outfile, "    <workspace index=\"%d\"/>\n",
-		     w->desktop);
-
-    fprintf (outfile, "  </window>\n");
+    {
+	childNode = xmlNewChild (node, NULL, BAD_CAST "workspace", NULL);
+	if (childNode)
+	    addIntegerPropToNode (childNode, "index", w->desktop);
+    }
 }
 
 static void
 saveState (CompDisplay *d,
 	   const char  *clientId)
 {
-    char          *filename;
-    FILE          *outfile = NULL;
-    struct passwd *p = getpwuid (geteuid ());
-    CompScreen    *s;
+    char           *filename;
+    struct passwd  *p = getpwuid (geteuid ());
+    xmlDocPtr      doc = NULL;
+    xmlSaveCtxtPtr ctx = NULL;
+    CompScreen     *s;
 
     /* setup filename and create directories as needed */
     filename = malloc (sizeof (char) *
@@ -474,36 +501,48 @@ saveState (CompDisplay *d,
 	{
 	    strcat (filename, "/");
 	    strcat (filename, clientId);
-	    outfile = fopen (filename, "w");
+	    ctx = xmlSaveToFilename (filename, NULL, XML_SAVE_FORMAT);
 	}
     }
 
     free (filename);
-    if (!outfile)
+    if (!ctx)
 	return;
 
-    fprintf (outfile, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-    fprintf (outfile, "<compiz_session id=\"%s\">\n", clientId);
-
-    /* write out all windows on this display */
-    for (s = d->screens; s; s = s->next)
+    doc = xmlNewDoc (BAD_CAST "1.0");
+    if (doc)
     {
-	CompWindow *w;
-
-	for (w = s->windows; w; w = w->next)
+	xmlNodePtr rootNode;
+	rootNode = xmlNewNode (NULL, BAD_CAST "compiz_session");
+	if (rootNode)
 	{
-	    if (!isSessionWindow (w))
-		continue;
+	    xmlNewProp (rootNode, BAD_CAST "id", BAD_CAST clientId);
+	    xmlDocSetRootElement (doc, rootNode);
 
-	    if (!w->managed)
-		continue;
+	    /* write out all windows on this display */
+	    for (s = d->screens; s; s = s->next)
+	    {
+		CompWindow *w;
 
-	    sessionWriteWindow (w, outfile);
+		for (w = s->windows; w; w = w->next)
+		{
+		    if (!isSessionWindow (w))
+			continue;
+
+		    if (!w->managed)
+			continue;
+
+		    sessionAddWindowNode (w, rootNode);
+		}
+	    }
+
+	    xmlSaveDoc (ctx, doc);
 	}
+
+	xmlFreeDoc (doc);
     }
 
-    fprintf (outfile, "</compiz_session>\n");
-    fclose (outfile);
+    xmlSaveClose (ctx);
 }
 
 static Bool
@@ -764,7 +803,7 @@ sessionWindowAdd (CompScreen *s,
 		  CompWindow *w)
 {
     if (!w->attrib.override_redirect && w->attrib.map_state == IsViewable)
-    	sessionReadWindow (w);
+	sessionReadWindow (w);
 }
 
 static void
