@@ -4030,6 +4030,14 @@ static void animHandleEvent(CompDisplay * d, XEvent * event)
 	    }
 	}
 	break;
+    case MapRequest:
+	w = findWindowAtDisplay (d, event->xmaprequest.window);
+	if (w && w->hints && w->hints->initial_state == IconicState)
+	{
+	    ANIM_WINDOW (w);
+	    aw->state = aw->newState = IconicState;
+	}
+	break;
     default:
 	break;
     }
