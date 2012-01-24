@@ -474,7 +474,7 @@ switchToWindow (CompScreen *s,
 	}
 
 	ss->selectedWindow = w;
-	moveInputFocusToWindow (w);
+	s->display->activeWindow = w->id;
 
 	if (old != w)
 	{
@@ -760,20 +760,11 @@ switchTerminate (CompDisplay     *d,
 	    }
 
 	    ss->switching = FALSE;
+	    d->activeWindow = sd->lastActiveWindow;
 
-	    if (state & CompActionStateCancel)
-	    {
-		ss->selectedWindow = NULL;
-		if (d->activeWindow != sd->lastActiveWindow)
-		{
-		    w = findWindowAtDisplay (d, sd->lastActiveWindow);
-		    if (w)
-			moveInputFocusToWindow (w);
-		}
-	    }
-
-	    if (state && ss->selectedWindow && !ss->selectedWindow->destroyed)
-		sendWindowActivationRequest (s, ss->selectedWindow->id);
+	    if (state && !(state & CompActionStateCancel))
+		if (ss->selectedWindow && !ss->selectedWindow->destroyed)
+		    sendWindowActivationRequest (s, ss->selectedWindow->id);
 
 	    removeScreenGrab (s, ss->grabIndex, 0);
 	    ss->grabIndex = 0;
