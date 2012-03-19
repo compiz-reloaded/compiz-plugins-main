@@ -178,7 +178,6 @@ kdecompatStartSlideAnimation (CompWindow *w,
     if (kw->slideData)
     {
 	SlideData *data = kw->slideData;
-	int       inTime, outTime;
 
 	KDECOMPAT_SCREEN (w->screen);
 
@@ -632,6 +631,32 @@ kdecompatUpdateSlidePosition (CompWindow *w)
 		kw->slideData->remaining = 0;
 		kw->slideData->start     = data[0];
 		kw->slideData->position  = data[1];
+
+		if (kw->slideData->start < 0)
+		{
+		    int	       output = outputDeviceForWindow (w);
+		    XRectangle rect;
+
+		    getWorkareaForOutput (w->screen, output, &rect);
+
+		    switch (kw->slideData->position)
+		    {
+			case West:
+			    kw->slideData->start = rect.x;
+			    break;
+			case North:
+			    kw->slideData->start = rect.y;
+			    break;
+			case East:
+			    kw->slideData->start = rect.x + rect.width;
+			    break;
+			case South:
+			default:
+			    kw->slideData->start = rect.y + rect.height;
+			    break;
+		    }
+		}
+
 		if (n >= 3)
 		{
 		    kw->slideData->slideInTime = data[2];
