@@ -35,7 +35,12 @@
 #include <decoration.h>
 #include "kdecompat_options.h"
 
+static int corePrivateIndex;
 static int displayPrivateIndex;
+
+typedef struct _KdeCompatCore {
+    SetOptionForPluginProc setOptionForPlugin;
+} KdeCompatCore;
 
 typedef struct _KdeCompatDisplay {
     int screenPrivateIndex;
@@ -54,6 +59,7 @@ typedef struct _KdeCompatDisplay {
     Atom kdePresentGroupAtom;
     Atom kdeBlurBehindRegionAtom;
     Atom compizWindowBlurAtom;
+    Atom desktopLayoutAtom;
 } KdeCompatDisplay;
 
 typedef struct _KdeCompatScreen {
@@ -111,6 +117,12 @@ typedef struct _KdeCompatWindow {
     int destroyCnt;
     int unmapCnt;
 } KdeCompatWindow;
+
+#define GET_KDECOMPAT_CORE(c)				      \
+    ((KdeCompatCore *) (c)->base.privates[corePrivateIndex].ptr)
+
+#define KDECOMPAT_CORE(c)		     \
+    KdeCompatCore *kc = GET_KDECOMPAT_CORE (c)
 
 #define GET_KDECOMPAT_DISPLAY(d)				      \
     ((KdeCompatDisplay *) (d)->base.privates[displayPrivateIndex].ptr)
@@ -922,6 +934,53 @@ kdecompatHandleCompizEvent (CompDisplay *d,
 }
 
 static void
+kdecompatUpdateDesktopLayoutFromViewports (CompScreen *s)
+{
+    CompDisplay   *d = s->display;
+    unsigned long data[4];
+
+    KDECOMPAT_DISPLAY (d);
+
+    data[0] = 0;        /* horizontal */
+    data[1] = s->hsize; /* columns */
+    data[2] = s->vsize; /* rows */
+    data[3] = 0;        /* start at top-left corner */
+
+    XChangeProperty (d->display, s->root, kd->desktopLayoutAtom,
+		     XA_CARDINAL, 32, PropModeReplace,
+		     (unsigned char *) data, 4);
+}
+
+static CompBool
+kdecompatSetOptionForPlugin (CompObject      *object,
+			     const char      *plugin,
+			     const char      *name,
+			     CompOptionValue *value)
+{
+    CompBool status;
+
+    KDECOMPAT_CORE (&core);
+
+    UNWRAP (kc, &core, setOptionForPlugin);
+    status = (*core.setOptionForPlugin) (object, plugin, name, value);
+    WRAP (kc, &core, setOptionForPlugin, kdecompatSetOptionForPlugin);
+
+    if (status && object->type == COMP_OBJECT_TYPE_SCREEN)
+    {
+	if (strcmp (plugin, "core") == 0)
+	{
+	    if (strcmp (name, "hsize") == 0 || strcmp (name, "vsize") == 0)
+	    {
+		CompScreen *s = (CompScreen *) object;
+		kdecompatUpdateDesktopLayoutFromViewports (s);
+	    }
+	}
+    }
+
+    return status;
+}
+
+static void
 kdecompatUpdateBlurProperty (CompWindow *w)
 {
     CompScreen  *s = w->screen;
@@ -1151,13 +1210,50 @@ kdecompatScreenOptionChanged (CompScreen             *s,
 }
 
 static Bool
+kdecompatInitCore (CompPlugin *p,
+		   CompCore   *c)
+{
+    KdeCompatCore *kc;
+
+    if (!checkPluginABI ("core", CORE_ABIVERSION))
+	return FALSE;
+
+    kc = malloc (sizeof (KdeCompatCore));
+    if (!kc)
+	return FALSE;
+
+    displayPrivateIndex = allocateDisplayPrivateIndex ();
+    if (displayPrivateIndex < 0)
+    {
+	free (kc);
+	return FALSE;
+    }
+
+    WRAP (kc, c, setOptionForPlugin, kdecompatSetOptionForPlugin);
+
+    c->base.privates[corePrivateIndex].ptr = kc;
+
+    return TRUE;
+}
+
+static void
+kdecompatFiniCore (CompPlugin *p,
+		   CompCore   *c)
+{
+    KDECOMPAT_CORE (c);
+
+    freeDisplayPrivateIndex (displayPrivateIndex);
+
+    UNWRAP (kc, c, setOptionForPlugin);
+
+    free (kc);
+}
+
+static Bool
 kdecompatInitDisplay (CompPlugin  *p,
 		      CompDisplay *d)
 {
     KdeCompatDisplay *kd;
-
-    if (!checkPluginABI ("core", CORE_ABIVERSION))
-	return FALSE;
 
     kd = malloc (sizeof (KdeCompatDisplay));
     if (!kd)
@@ -1179,6 +1275,8 @@ kdecompatInitDisplay (CompPlugin  *p,
 					       0);
     kd->compizWindowBlurAtom = XInternAtom (d->display,
 					    "_COMPIZ_WM_WINDOW_BLUR", 0);
+    kd->desktopLayoutAtom = XInternAtom (d->display,
+					 "_NET_DESKTOP_LAYOUT", 0);
 
     kd->blurLoaded = findActivePlugin ("blur") != NULL;
 
@@ -1241,6 +1339,8 @@ kdecompatInitScreen (CompPlugin *p,
 			       kd->scaleHandle);
     kdecompatAdvertiseSupport (s, kd->kdeBlurBehindRegionAtom,
 			       kdecompatGetWindowBlur (s) && kd->blurLoaded);
+
+    kdecompatUpdateDesktopLayoutFromViewports (s);
 
     kdecompatSetPlasmaThumbnailsNotify (s, kdecompatScreenOptionChanged);
     kdecompatSetSlidingPopupsNotify (s, kdecompatScreenOptionChanged);
@@ -1342,7 +1442,7 @@ kdecompatInitObject (CompPlugin *p,
 		     CompObject *o)
 {
     static InitPluginObjectProc dispTab[] = {
-	(InitPluginObjectProc) 0, /* InitCore */
+	(InitPluginObjectProc) kdecompatInitCore,
 	(InitPluginObjectProc) kdecompatInitDisplay,
 	(InitPluginObjectProc) kdecompatInitScreen,
 	(InitPluginObjectProc) kdecompatInitWindow
@@ -1356,7 +1456,7 @@ kdecompatFiniObject (CompPlugin *p,
 		     CompObject *o)
 {
     static FiniPluginObjectProc dispTab[] = {
-	(FiniPluginObjectProc) 0, /* FiniCore */
+	(FiniPluginObjectProc) kdecompatFiniCore,
 	(FiniPluginObjectProc) kdecompatFiniDisplay,
 	(FiniPluginObjectProc) kdecompatFiniScreen,
 	(FiniPluginObjectProc) kdecompatFiniWindow
@@ -1368,8 +1468,8 @@ kdecompatFiniObject (CompPlugin *p,
 static Bool
 kdecompatInit (CompPlugin *p)
 {
-    displayPrivateIndex = allocateDisplayPrivateIndex ();
-    if (displayPrivateIndex < 0)
+    corePrivateIndex = allocateCorePrivateIndex ();
+    if (corePrivateIndex < 0)
 	return FALSE;
 
     return TRUE;
@@ -1378,7 +1478,7 @@ kdecompatInit (CompPlugin *p)
 static void
 kdecompatFini (CompPlugin *p)
 {
-    freeDisplayPrivateIndex (displayPrivateIndex);
+    freeCorePrivateIndex (corePrivateIndex);
 }
 
 CompPluginVTable kdecompatVTable = {
