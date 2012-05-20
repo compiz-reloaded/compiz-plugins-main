@@ -869,9 +869,9 @@ syncCenterToMouse (CompScreen *s)
     if (!isInMovement (s, out))
 	return;
 
-    x = (int) ((zs->zooms[out].realXTranslate * s->width) +
+    x = (int) ((zs->zooms[out].realXTranslate * o->width) +
 	       (o->width / 2) + o->region.extents.x1);
-    y = (int) ((zs->zooms[out].realYTranslate * s->height) +
+    y = (int) ((zs->zooms[out].realYTranslate * o->height) +
 	       (o->height / 2) + o->region.extents.y1);
 
     if ((x != zs->mouseX || y != zs->mouseY)
