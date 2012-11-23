@@ -98,6 +98,14 @@ typedef struct _SessionDisplay
 
 #define NUM_OPTIONS(x) (sizeof ((x)->opt) / sizeof (CompOption))
 
+/* window state flags we're actively trying to save and restore */
+#define SAVED_WINDOW_STATE              \
+    (CompWindowStateShadedMask        | \
+     CompWindowStateStickyMask        | \
+     CompWindowStateFullscreenMask    | \
+     CompWindowStateMaximizedHorzMask | \
+     CompWindowStateMaximizedVertMask)
+
 static int corePrivateIndex;
 static int displayPrivateIndex;
 
@@ -335,6 +343,21 @@ sessionGetStringForProp (xmlNodePtr node,
 }
 
 static Bool
+sessionWindowIsOnAllViewports (CompWindow *w)
+{
+    /* core's windowOnAllViewports function also returns TRUE for
+       non-viewable windows, which is why we have to duplicate the
+       window type/state check here */
+    if (w->type & (CompWindowTypeDockMask | CompWindowTypeDesktopMask))
+	return TRUE;
+
+    if (w->state & CompWindowStateStickyMask)
+	return TRUE;
+
+    return FALSE;
+}
+
+static Bool
 isSessionWindow (CompWindow *w)
 {
     if (w->attrib.override_redirect)
@@ -379,14 +402,20 @@ sessionAddWindowNode (CompWindow *w,
     if (!clientId && !sd->opt[SESSION_DISPLAY_OPTION_SAVE_LEGACY].value.b)
 	return;
 
-    command  = sessionGetClientLeaderProperty (w, sd->commandAtom);
-
+    command = sessionGetClientLeaderProperty (w, sd->commandAtom);
     if (!clientId && !command)
 	return;
 
     node = xmlNewChild (rootNode, NULL, BAD_CAST "window", NULL);
     if (!node)
+    {
+	if (clientId)
+	    free (clientId);
+	if (command)
+	    free (command);
+
 	return;
+    }
 
     if (clientId)
     {
@@ -427,7 +456,7 @@ sessionAddWindowNode (CompWindow *w,
 
 	x = (w->saveMask & CWX) ? w->saveWc.x : w->serverX;
 	y = (w->saveMask & CWY) ? w->saveWc.y : w->serverY;
-	if (!windowOnAllViewports (w))
+	if (!sessionWindowIsOnAllViewports (w))
 	{
 	    x += w->screen->x * w->screen->width;
 	    y += w->screen->y * w->screen->height;
@@ -636,6 +665,9 @@ sessionReadWindow (CompWindow *w)
 	return FALSE;
 
     /* found a window */
+
+    changeWindowState (w, (w->state & ~SAVED_WINDOW_STATE) | cur->state);
+
     if (cur->geometryValid)
     {
 	xwcm = CWX | CWY;
@@ -643,7 +675,7 @@ sessionReadWindow (CompWindow *w)
 	xwc.x = cur->geometry.x + w->input.left;
 	xwc.y = cur->geometry.y + w->input.top;
 
-	if (!windowOnAllViewports (w))
+	if (!sessionWindowIsOnAllViewports (w))
 	{
 	    xwc.x -= (w->screen->x * w->screen->width);
 	    xwc.y -= (w->screen->y * w->screen->height);
@@ -673,11 +705,7 @@ sessionReadWindow (CompWindow *w)
     if (cur->workspace != -1)
 	setDesktopForWindow (w, cur->workspace);
 
-    if (cur->state)
-    {
-	changeWindowState (w, w->state | cur->state);
-	updateWindowAttributes (w, CompStackingUpdateModeNone);
-    }
+    updateWindowAttributes (w, CompStackingUpdateModeNone);
 
     /* remove item from list */
     sessionRemoveWindowListItem (cur);
@@ -865,11 +893,23 @@ sessionSessionEvent (CompCore         *c,
 					   SmInteractStyleNone);
 	fast = getBoolOptionNamed (arguments, nArguments, "fast", FALSE);
 
-	/* ignore saveYourself after registering for the first time
-	   (SM specification 7.2) */
-	saveSession = shutdown || fast                      ||
-	              (saveType != SmSaveLocal)             ||
-		      (interactStyle != SmInteractStyleNone);
+	if (saveType == SmSaveGlobal)
+	{
+	    /* ignore global saves, which are used only to make e.g. word
+	       processors show a 'do you want to save' dialog on session
+	       shutdown */
+	    saveSession = FALSE;
+	} else if (!shutdown && !fast && saveType == SmSaveLocal &&
+		   interactStyle == SmInteractStyleNone)
+	{
+	    /* ignore saveYourself after registering for the first time
+	       (SM specification 7.2) */
+	    saveSession = FALSE;
+	}
+	else
+	{
+	    saveSession = TRUE;
+	}
 
 	clientId = getSessionClientId (CompSessionClientId);
 
