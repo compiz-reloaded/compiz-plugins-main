@@ -1,1 +1,1 @@
-SUBDIRS = Oxygen Gnome
+SUBDIRS = Oxygen Default

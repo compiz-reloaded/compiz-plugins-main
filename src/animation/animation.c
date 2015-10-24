@@ -4607,7 +4607,7 @@ static Bool animInitDisplay(CompPlugin * p, CompDisplay * d)
     matchInit (&ad->neverAnimateMatch);
     matchAddExp (&ad->neverAnimateMatch, 0, "title=gksu");
     matchAddExp (&ad->neverAnimateMatch, 0, "title=x-session-manager");
-    matchAddExp (&ad->neverAnimateMatch, 0, "title=gnome-session");
+    matchAddExp (&ad->neverAnimateMatch, 0, "title=mate-session");
     matchUpdate (d, &ad->neverAnimateMatch);
 
     WRAP(ad, d, handleEvent, animHandleEvent);

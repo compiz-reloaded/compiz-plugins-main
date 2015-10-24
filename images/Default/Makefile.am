@@ -1,4 +1,4 @@
-imagesdir = $(imagedir)/Gnome
+imagesdir = $(imagedir)/Default
 images_DATA =	       \
 	overlay.png \
 	mask.png

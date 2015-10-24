@@ -191,7 +191,7 @@ data/Makefile
 data/filters/Makefile
 images/Makefile
 images/Oxygen/Makefile
-images/Gnome/Makefile
+images/Default/Makefile
 Makefile
 metadata/Makefile
 include/Makefile
