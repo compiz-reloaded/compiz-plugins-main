@@ -157,32 +157,6 @@ if test "$use_jpeg" = yes; then
   AC_DEFINE(USE_JPEG, 1, [Build jpeg plugin])
 fi
 
-AC_ARG_ENABLE(schemas,
-  [  --enable-schemas         Build gconf schemas],
-  [use_schemas=$enableval], [use_schemas=no])
-
-if test x"$use_schemas" = x"yes"; then
-  AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
-  PKG_CHECK_MODULES(SCHEMAS, compiz-gconf, [use_schemas=yes], [use_schemas=no])
-  if test x"$GCONFTOOL" = xno; then
-    AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
-  fi
-  AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
-  if test x"$PKG_CONFIG" = xno ; then
-    AC_MSG_ERROR([pkg-config executable not found in your path, unable to determine schema directory])
-  fi
-  xsltdir=`$PKG_CONFIG --variable=xsltdir compiz-gconf`
-  AC_SUBST(xsltdir)
-fi
-
-AM_GCONF_SOURCE_2
-
-
-AM_CONDITIONAL(USE_SCHEMAS, test "x$use_schemas" = "xyes")
-if test "$use_schemas" = yes; then
-  AC_DEFINE(USE_SCHEMAS, 1, [Build gconf schemas])
-fi
-
 AC_OUTPUT([
 compiz-text.pc
 compiz-mousepoll.pc
