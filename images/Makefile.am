@@ -1,1 +1,1 @@
-SUBDIRS = Oxygen Default
+SUBDIRS = Default

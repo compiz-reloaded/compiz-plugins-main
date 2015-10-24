@@ -5,7 +5,6 @@ SUBDIRS = \
     expo           \
     ezoom          \
     jpeg           \
-    kdecompat      \
     mag            \
     mousepoll      \
     neg            \

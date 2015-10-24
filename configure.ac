@@ -190,7 +190,6 @@ compiz-animation.pc
 data/Makefile
 data/filters/Makefile
 images/Makefile
-images/Oxygen/Makefile
 images/Default/Makefile
 Makefile
 metadata/Makefile
@@ -201,7 +200,6 @@ src/colorfilter/Makefile
 src/expo/Makefile
 src/ezoom/Makefile
 src/jpeg/Makefile
-src/kdecompat/Makefile
 src/mag/Makefile
 src/mousepoll/Makefile
 src/neg/Makefile
