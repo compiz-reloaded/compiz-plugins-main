@@ -5,7 +5,7 @@ libsession_la_LDFLAGS = $(PFLAGS)
 libsession_la_LIBADD = @COMPIZ_LIBS@
 libsession_la_SOURCES = session.c
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

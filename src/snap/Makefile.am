@@ -8,7 +8,7 @@ dist_libsnap_la_SOURCES = snap.c
 
 BUILT_SOURCES = $(nodist_libsnap_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

@@ -11,7 +11,7 @@ endif
 
 BUILT_SOURCES = $(nodist_libresizeinfo_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	@PANGO_CFLAGS@		\

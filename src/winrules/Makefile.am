@@ -7,7 +7,7 @@ libwinrules_la_SOURCES = winrules.c
 
 BUILT_SOURCES = $(nodist_libwinrules_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

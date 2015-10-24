@@ -8,7 +8,7 @@ dist_libneg_la_SOURCES = neg.c
 
 BUILT_SOURCES = $(nodist_libneg_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

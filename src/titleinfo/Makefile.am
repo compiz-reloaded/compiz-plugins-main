@@ -8,7 +8,7 @@ dist_libtitleinfo_la_SOURCES = titleinfo.c
 
 BUILT_SOURCES = $(nodist_libtitleinfo_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

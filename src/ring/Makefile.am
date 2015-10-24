@@ -8,7 +8,7 @@ dist_libring_la_SOURCES = ring.c
 
 BUILT_SOURCES = $(nodist_libring_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

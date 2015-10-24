@@ -8,7 +8,7 @@ dist_libopacify_la_SOURCES = opacify.c
 
 BUILT_SOURCES = $(nodist_libopacify_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

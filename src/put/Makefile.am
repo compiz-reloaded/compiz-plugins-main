@@ -8,7 +8,7 @@ dist_libput_la_SOURCES = put.c
 
 BUILT_SOURCES = $(nodist_libput_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

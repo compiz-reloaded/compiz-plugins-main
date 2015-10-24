@@ -17,7 +17,7 @@ libanimation_la_SOURCES = animation.c \
 			  wave.c \
 			  zoomside.c
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include             \
 	@COMPIZ_CFLAGS@                     \
 	-DDATADIR='"$(compdatadir)"'        \

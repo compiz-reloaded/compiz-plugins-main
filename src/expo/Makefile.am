@@ -8,7 +8,7 @@ dist_libexpo_la_SOURCES = expo.c
 
 BUILT_SOURCES = $(nodist_libexpo_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include         \
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'        \

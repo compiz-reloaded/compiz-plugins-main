@@ -13,7 +13,7 @@ BUILT_SOURCES = $(nodist_libcolorfilter_la_SOURCES)
 
 BUILT_SOURCES = $(nodist_libcolorfilter_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include		\
 	@COMPIZ_CFLAGS@                  \
 	-DDATADIR='"$(compdatadir)"'       \
