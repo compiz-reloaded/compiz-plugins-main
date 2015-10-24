@@ -126,7 +126,6 @@ AC_SUBST(GL_CFLAGS)
 AC_SUBST(GL_LIBS)
 
 PKG_CHECK_MODULES(SCALE, compiz-scale, [have_compiz_scale=yes], [have_compiz_scale=no])
-PKG_CHECK_MODULES(CAIRO, cairo-xlib-xrender cairo >= 1.0, [have_cairo=yes], [have_cairo=no])
 PKG_CHECK_MODULES(PANGO, cairo-xlib-xrender pangocairo cairo >= 1.0, [have_pango=yes], [have_pango=no])
 
 AM_CONDITIONAL(TEXT_PLUGIN, test "x$have_pango" = "xyes")
@@ -139,8 +138,16 @@ if test "x$have_pango" = "xyes"; then
   AC_DEFINE(USE_RESIZEINFO, 1, [Build resizeinfo plugin])
 fi
 
-AM_CONDITIONAL(WALL_PLUGIN, test "x$have_cairo" = "xyes")
-if test "x$have_cairo" = "xyes"; then
+AC_ARG_ENABLE(wall,
+  [  --enable-wall       Enable wall plugin],
+  [use_wall=$enableval], [use_wall=no])
+
+if test "x$use_wall" = "xyes"; then
+  PKG_CHECK_MODULES(CAIRO, [cairo-xlib-xrender cairo >= 1.0], [use_wall=yes], [use_wall=no])
+fi
+
+AM_CONDITIONAL(WALL_PLUGIN, test "x$use_wall" = "xyes")
+if test "x$use_wall" = "xyes"; then
   AC_DEFINE(USE_WALL, 1, [Build wall plugin])
 fi
 
@@ -196,3 +203,9 @@ src/winrules/Makefile
 src/workarounds/Makefile
 po/Makefile.in
 ])
+
+echo ""
+echo "the following optional plugins will be compiled:"
+echo "  jpeg:      $use_jpeg"
+echo "  wall:      $use_wall"
+echo ""
