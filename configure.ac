@@ -1,12 +1,7 @@
 AC_PREREQ(2.57)
 
-m4_define([plugins_main_version], [esyscmd(. ./VERSION;echo -n $VERSION)])
-
-AC_INIT([compiz-plugins-main], [plugins_main_version], [maniac@opencompositing.org])
-
-#AC_CONFIG_AUX_DIR(config)
-
-AM_INIT_AUTOMAKE([1.9 dist-bzip2])
+AC_INIT([compiz-plugins-main], [0.8.9], [maniac@opencompositing.org])
+AM_INIT_AUTOMAKE([1.9 tar-ustar dist-xz no-dist-gzip check-news])
 AC_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE
 
