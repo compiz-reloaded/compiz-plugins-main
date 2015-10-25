@@ -742,7 +742,7 @@ defaultUpdateWindowTransform (CompWindow *w,
 }
 
 // Apply transform to wTransform
-inline void
+extern inline void
 applyTransform (CompTransform *wTransform,
 		CompTransform *transform)
 {

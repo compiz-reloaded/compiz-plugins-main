@@ -303,7 +303,7 @@ getZoomCenterScaleFull (CompWindow *w,
 	*pRotateProgress = rotateProgress;
 }
 
-inline void
+extern inline void
 getZoomCenterScale (CompWindow *w,
 		    Point *pCurCenter, Point *pCurScale)
 {
