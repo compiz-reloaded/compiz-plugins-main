@@ -333,7 +333,7 @@ programParseSource (CompFunctionData *data,
 		    int target, char *source)
 {
     char *line, *next, *current;
-    char *strtok_ptr;
+    char *strtok_ptr = NULL;
     int   length, oplength, type;
     FragmentOffset *offsets = NULL;
 
