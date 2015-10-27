@@ -1609,9 +1609,6 @@ zoomBoxDeactivate (CompDisplay     *d,
 		   int	           nOption)
 {
     CompScreen *s;
-    int        xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
 
     for (s = d->screens; s; s = s->next)
     {
