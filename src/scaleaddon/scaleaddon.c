@@ -148,7 +148,7 @@ scaleaddonRenderWindowTitle (CompWindow *w)
     attrib.maxWidth = w->attrib.width * scale;
     attrib.maxHeight = w->attrib.height * scale;
 
-    attrib.family = "Sans";
+    attrib.family = scaleaddonGetTitleFont(s);
     attrib.size = scaleaddonGetTitleSize (s);
     attrib.color[0] = scaleaddonGetFontColorRed (s);
     attrib.color[1] = scaleaddonGetFontColorGreen (s);
@@ -1135,6 +1135,7 @@ scaleaddonScreenOptionChanged (CompScreen              *s,
     switch (num)
     {
 	case ScaleaddonScreenOptionWindowTitle:
+	case ScaleaddonScreenOptionTitleFont:
 	case ScaleaddonScreenOptionTitleBold:
 	case ScaleaddonScreenOptionTitleSize:
 	case ScaleaddonScreenOptionBorderSize:
@@ -1258,6 +1259,7 @@ scaleaddonInitScreen (CompPlugin *p,
 	  scaleaddonLayoutSlotsAndAssignWindows);
 
     scaleaddonSetWindowTitleNotify (s, scaleaddonScreenOptionChanged);
+    scaleaddonSetTitleFontNotify (s, scaleaddonScreenOptionChanged);
     scaleaddonSetTitleBoldNotify (s, scaleaddonScreenOptionChanged);
     scaleaddonSetTitleSizeNotify (s, scaleaddonScreenOptionChanged);
     scaleaddonSetBorderSizeNotify (s, scaleaddonScreenOptionChanged);

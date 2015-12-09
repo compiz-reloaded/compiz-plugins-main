@@ -154,7 +154,7 @@ renderThumbText (CompScreen *s,
     tA.flags      = CompTextFlagEllipsized;
     if (thumbnailGetFontBold (s))
 	tA.flags |= CompTextFlagStyleBold;
-    tA.family     = "Sans";
+    tA.family     = thumbnailGetFontFamily(s);
 
     t->textData = (td->textFunc->renderWindowTitle) (s, t->win->id, FALSE, &tA);
 }

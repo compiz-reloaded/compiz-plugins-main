@@ -315,7 +315,7 @@ shiftRenderWindowTitle (CompScreen *s)
     tA.maxWidth = (ox2 - ox1) * 3 / 4;
     tA.maxHeight = 100;
 
-    tA.family = "Sans";
+    tA.family = shiftGetTitleFontFamily(s);
     tA.size = shiftGetTitleFontSize (s);
     tA.color[0] = shiftGetTitleFontColorRed (s);
     tA.color[1] = shiftGetTitleFontColorGreen (s);

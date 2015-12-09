@@ -248,7 +248,7 @@ ringRenderWindowTitle (CompScreen *s)
     attrib.flags = CompTextFlagWithBackground | CompTextFlagEllipsized;
     if (ringGetTitleFontBold (s))
 	attrib.flags |= CompTextFlagStyleBold;
-    attrib.family = "Sans";
+    attrib.family = ringGetTitleFont(s);
     attrib.bgHMargin = 15;
     attrib.bgVMargin = 15;
     attrib.bgColor[0] = ringGetTitleBackColorRed (s);

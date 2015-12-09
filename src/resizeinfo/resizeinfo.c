@@ -209,7 +209,7 @@ updateTextLayer (CompScreen *s)
     font = pango_font_description_new ();
     layout = pango_cairo_create_layout (is->textLayer.cr);
   
-    pango_font_description_set_family (font,"Sans");
+    pango_font_description_set_family (font, resizeinfoGetTextFamily(s->display));
     pango_font_description_set_absolute_size (font, 12 * PANGO_SCALE);
     pango_font_description_set_style (font, PANGO_STYLE_NORMAL);
     pango_font_description_set_weight (font, PANGO_WEIGHT_BOLD);
