@@ -429,7 +429,7 @@ applyPerspectiveSkew (CompOutput *output,
 		      CompTransform *transform,
 		      Point *center);
 
-inline void
+void
 applyTransform (CompTransform *wTransform,
 		CompTransform *transform);
 

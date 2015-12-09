@@ -260,23 +260,23 @@ animGetC (CompWindow *w,			\
 
 #define OPTION_GETTERS_HDR			\
 						\
-inline Bool					\
+extern Bool					\
 animGetB (CompWindow *w,			\
 	  int optionId);			\
 						\
-inline int					\
+extern int					\
 animGetI (CompWindow *w,			\
 	  int optionId);			\
 						\
-inline float					\
+extern float					\
 animGetF (CompWindow *w,			\
 	  int optionId);			\
 						\
-inline char *					\
+extern char *					\
 animGetS (CompWindow *w,			\
 	  int optionId);			\
 						\
-inline unsigned short *				\
+extern unsigned short *				\
 animGetC (CompWindow *w,			\
 	  int optionId);
 
