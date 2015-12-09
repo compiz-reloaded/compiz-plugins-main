@@ -276,16 +276,16 @@ drawCairoBackground (CompScreen *s)
     a = resizeinfoGetGradient1Alpha (s->display) / (float)0xffff;
     cairo_pattern_add_color_stop_rgba (pattern, 0.00f, r, g, b, a);
 
-    r = resizeinfoGetGradient1Red (s->display) / (float)0xffff;
-    g = resizeinfoGetGradient1Green (s->display) / (float)0xffff;
-    b = resizeinfoGetGradient1Blue (s->display) / (float)0xffff;
-    a = resizeinfoGetGradient1Alpha (s->display) / (float)0xffff;
+    r = resizeinfoGetGradient2Red (s->display) / (float)0xffff;
+    g = resizeinfoGetGradient2Green (s->display) / (float)0xffff;
+    b = resizeinfoGetGradient2Blue (s->display) / (float)0xffff;
+    a = resizeinfoGetGradient2Alpha (s->display) / (float)0xffff;
     cairo_pattern_add_color_stop_rgba (pattern, 0.65f, r, g, b, a);
 
-    r = resizeinfoGetGradient1Red (s->display) / (float)0xffff;
-    g = resizeinfoGetGradient1Green (s->display) / (float)0xffff;
-    b = resizeinfoGetGradient1Blue (s->display) / (float)0xffff;
-    a = resizeinfoGetGradient1Alpha (s->display) / (float)0xffff;
+    r = resizeinfoGetGradient3Red (s->display) / (float)0xffff;
+    g = resizeinfoGetGradient3Green (s->display) / (float)0xffff;
+    b = resizeinfoGetGradient3Blue (s->display) / (float)0xffff;
+    a = resizeinfoGetGradient3Alpha (s->display) / (float)0xffff;
     cairo_pattern_add_color_stop_rgba (pattern, 0.85f, r, g, b, a);
     cairo_set_source (cr, pattern);
 	
@@ -299,7 +299,11 @@ drawCairoBackground (CompScreen *s)
     cairo_fill_preserve (cr);
 	
     /* Outline */
-    cairo_set_source_rgba (cr, 0.9f, 0.9f, 0.9f, 1.0f);
+    r = resizeinfoGetBorderColorRed (s->display) / (float)0xffff;
+    g = resizeinfoGetBorderColorGreen (s->display) / (float)0xffff;
+    b = resizeinfoGetBorderColorBlue (s->display) / (float)0xffff;
+    a = resizeinfoGetBorderColorAlpha (s->display) / (float)0xffff;
+    cairo_set_source_rgba (cr, r, b, g, a);
     cairo_stroke (cr);
 	
     cairo_pattern_destroy (pattern);
@@ -596,6 +600,7 @@ infoInitDisplay (CompPlugin  *p,
     resizeinfoSetGradient1Notify (d, gradientChanged);
     resizeinfoSetGradient2Notify (d, gradientChanged);
     resizeinfoSetGradient3Notify (d, gradientChanged);
+    resizeinfoSetBorderColorNotify (d, gradientChanged);
 
     id->resizeNotifyAtom = XInternAtom (d->display, "_COMPIZ_RESIZE_NOTIFY", 0);
 
