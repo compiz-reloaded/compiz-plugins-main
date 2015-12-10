@@ -1253,7 +1253,7 @@ static const CompMetadataOptionInfo animScreenOptionInfo[] = {
     { "horizontal_folds_zoom_to_taskbar", "bool", 0, 0, 0 },
     { "magic_lamp_moving_end", "bool", 0, 0, 0 },
     { "magic_lamp_grid_res", "int", "<min>4</min>", 0, 0 },
-    { "magic_lamp_max_waves", "int", "<min>3</min>", 0, 0 },
+    { "magic_lamp_max_waves", "int", "<min>0</min>", 0, 0 },
     { "magic_lamp_amp_min", "float", "<min>200</min>", 0, 0 },
     { "magic_lamp_amp_max", "float", "<min>200</min>", 0, 0 },
     { "magic_lamp_open_start_width", "int", "<min>0</min>", 0, 0 },
