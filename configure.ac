@@ -1,7 +1,7 @@
 AC_PREREQ(2.57)
 
 AC_INIT([compiz-plugins-main], [0.8.9], [maniac@opencompositing.org])
-AM_INIT_AUTOMAKE([1.9 tar-ustar dist-xz no-dist-gzip check-news])
+AM_INIT_AUTOMAKE([1.9 foreign dist-xz no-dist-gzip])
 AC_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE
 

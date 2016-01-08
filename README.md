@@ -1,1 +1,1 @@
-compiz-plugins-main 0.8.s series
+compiz-plugins-main 0.8.x series
