@@ -133,19 +133,6 @@ if test "x$have_pango" = "xyes"; then
   AC_DEFINE(USE_RESIZEINFO, 1, [Build resizeinfo plugin])
 fi
 
-AC_ARG_ENABLE(wall,
-  [  --enable-wall       Enable wall plugin],
-  [use_wall=$enableval], [use_wall=no])
-
-if test "x$use_wall" = "xyes"; then
-  PKG_CHECK_MODULES(CAIRO, [cairo-xlib-xrender cairo >= 1.0], [use_wall=yes], [use_wall=no])
-fi
-
-AM_CONDITIONAL(WALL_PLUGIN, test "x$use_wall" = "xyes")
-if test "x$use_wall" = "xyes"; then
-  AC_DEFINE(USE_WALL, 1, [Build wall plugin])
-fi
-
 AM_CONDITIONAL(SCALEADDON_PLUGIN, test "x$have_compiz_scale" = "xyes")
 if test "x$have_compiz_scale" = "xyes"; then
   AC_DEFINE(USE_SCALEADDON, 1, [Build scaleaddon plugin])
@@ -193,7 +180,6 @@ src/text/Makefile
 src/thumbnail/Makefile
 src/titleinfo/Makefile
 src/vpswitch/Makefile
-src/wall/Makefile
 src/winrules/Makefile
 src/workarounds/Makefile
 po/Makefile.in
@@ -202,5 +188,4 @@ po/Makefile.in
 echo ""
 echo "the following optional plugins will be compiled:"
 echo "  jpeg:      $use_jpeg"
-echo "  wall:      $use_wall"
 echo ""

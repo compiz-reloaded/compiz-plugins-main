@@ -21,6 +21,5 @@ SUBDIRS = \
     thumbnail      \
     titleinfo      \
     vpswitch       \
-    wall           \
     winrules       \
     workarounds
