@@ -1,5 +1,19 @@
-Release 0.8.12.0
-==================================================================
+Release 0.8.12 (2016-02-12 Sorokin Alexei <sor.alexei@meowr.ru>)
+================================================================
+COMPIZ-RELOADED
+
+Add font family configuration in Resize info, Ring switcher,
+Scale addon, Shift switcher, and Thumbnail plugins.
+
+Resize info plugin:
+ - Do not ignore gradient colors 2 and 3 in Resize info plugin.
+ - Border for size info was fixed with white instead of being some
+   other color the user might like better.
+ - Enable 'always_show' option by default.
+
+Change minimum and default amount of waves to 0 for Magic Lamp.
+
+Move Desktop Wall plugin to compiz-core project.
 
 Release 0.8.9 (2015-11-06 Wolfgang Ulbrich <chat-to-me@raveit.de>)
 ==================================================================
