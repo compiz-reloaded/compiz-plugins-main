@@ -215,7 +215,7 @@ typedef struct _AnimBaseFunctions {
 
 #define OPTION_GETTERS(extensionBaseFunctions,				\
 		       extensionPluginInfo, firstEffectOption)		\
-extern inline CompOptionValue *						\
+static inline CompOptionValue *						\
 animGetOptVal (CompWindow *w,						\
 	       int optionId)						\
 {									\
@@ -223,35 +223,35 @@ animGetOptVal (CompWindow *w,						\
     	(w, (extensionPluginInfo), optionId - (firstEffectOption));	\
 }						\
 						\
-extern inline Bool				\
+inline Bool					\
 animGetB (CompWindow *w,			\
 	  int optionId)				\
 {						\
     return animGetOptVal (w, optionId)->b;	\
 }						\
 						\
-extern inline int				\
+inline int					\
 animGetI (CompWindow *w,			\
 	  int optionId)				\
 {						\
     return animGetOptVal (w, optionId)->i;	\
 }						\
 						\
-extern inline float				\
+inline float					\
 animGetF (CompWindow *w,			\
 	  int optionId)				\
 {						\
     return animGetOptVal (w, optionId)->f;	\
 }						\
 						\
-extern inline char *				\
+inline char *					\
 animGetS (CompWindow *w,			\
 	  int optionId)				\
 {						\
     return animGetOptVal (w, optionId)->s;	\
 }						\
 						\
-extern inline unsigned short *			\
+inline unsigned short *				\
 animGetC (CompWindow *w,			\
 	  int optionId)				\
 {						\
@@ -260,23 +260,23 @@ animGetC (CompWindow *w,			\
 
 #define OPTION_GETTERS_HDR			\
 						\
-extern inline Bool				\
+inline Bool					\
 animGetB (CompWindow *w,			\
 	  int optionId);			\
 						\
-extern inline int				\
+inline int					\
 animGetI (CompWindow *w,			\
 	  int optionId);			\
 						\
-extern inline float				\
+inline float					\
 animGetF (CompWindow *w,			\
 	  int optionId);			\
 						\
-extern inline char *				\
+inline char *					\
 animGetS (CompWindow *w,			\
 	  int optionId);			\
 						\
-extern inline unsigned short *			\
+inline unsigned short *				\
 animGetC (CompWindow *w,			\
 	  int optionId);
 

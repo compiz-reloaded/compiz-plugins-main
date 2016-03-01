@@ -429,7 +429,7 @@ applyPerspectiveSkew (CompOutput *output,
 		      CompTransform *transform,
 		      Point *center);
 
-extern inline void
+inline void
 applyTransform (CompTransform *wTransform,
 		CompTransform *transform);
 
@@ -616,7 +616,7 @@ fxZoomInit (CompWindow * w);
 void
 applyZoomTransform (CompWindow * w);
 
-extern inline void
+void
 getZoomCenterScale (CompWindow *w,
 		    Point *pCurCenter, Point *pCurScale);
 
