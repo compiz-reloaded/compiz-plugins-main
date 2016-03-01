@@ -1,18 +1,21 @@
-## Process this file with automake to produce Makefile.in
-
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS = metadata src po include data images
 
-EXTRA_DIST =               \
-    VERSION                \
-    compiz-animation.pc.in \
-    compiz-mousepoll.pc.in \
-    compiz-text.pc.in
+EXTRA_DIST =		       \
+	AUTHORS		       \
+	COPYING		       \
+	NEWS		       \
+	README.md	       \
+	VERSION		       \
+	autogen.sh	       \
+	compiz-animation.pc.in \
+	compiz-mousepoll.pc.in \
+	compiz-text.pc.in
 
-DISTCLEANFILES =     \
-    po/stamp-it \
-    po/.intltool-merge-cache
+DISTCLEANFILES =		 \
+	po/stamp-it		 \
+	po/.intltool-merge-cache
 
 if TEXT_PLUGIN
 textdata = compiz-text.pc
