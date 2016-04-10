@@ -2,7 +2,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS = metadata src po include data images
 
-EXTRA_DIST =		       \
+EXTRA_DIST =		      \
 	AUTHORS		       \
 	COPYING		       \
 	NEWS		       \
@@ -11,10 +11,16 @@ EXTRA_DIST =		       \
 	autogen.sh	       \
 	compiz-animation.pc.in \
 	compiz-mousepoll.pc.in \
-	compiz-text.pc.in
+	compiz-text.pc.in      \
+	intltool-extract.in    \
+	intltool-merge.in      \
+	intltool-update.in
 
-DISTCLEANFILES =		 \
+DISTCLEANFILES =		\
 	po/stamp-it		 \
+	intltool-extract	 \
+	intltool-merge		 \
+	intltool-update		 \
 	po/.intltool-merge-cache
 
 if TEXT_PLUGIN
