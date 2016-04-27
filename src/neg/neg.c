@@ -196,7 +196,7 @@ getNegFragmentFunction (CompScreen  *s,
 	if (alpha)
 	    ok &= addDataOpToFunctionData (data,
 			"MUL output.rgb, output.a, output;");
-		
+
 	ok &= addColorOpToFunctionData (data, "output", "output");
 	if (!ok)
 	{
@@ -549,11 +549,9 @@ static void
 NEGWindowAdd (CompScreen *s,
 	      CompWindow *w)
 {
-    NEG_SCREEN (s);
-
     /* nw->isNeg is initialized to FALSE in InitWindow, so we only
        have to toggle it to TRUE if necessary */
-    if (ns->isNeg && matchEval (negGetNegMatch (s), w))
+    if (matchEval (negGetNegMatch (s), w))
 	NEGToggle (w);
 }
 
@@ -830,5 +828,4 @@ getCompPluginInfo(void)
 {
     return &NEGVTable;
 }
-
 
