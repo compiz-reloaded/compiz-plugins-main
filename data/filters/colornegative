@@ -1,0 +1,55 @@
+!!ARBfp1.0
+# Compiz Color Filter, negative but preserve colors v0.1
+# Based on various ideas and examples.
+# author of portions: jopka1@gmail.com, www.bdyssh.ru
+# (select 'Ruby' in `gedit` for proper text highlight and show of keywords and comments)
+
+TEMP temp, lightness, diff, saturation, delta, grayness;
+TEX temp, fragment.texcoord[0], texture[0], RECT;
+
+# saturation 0...1 - show how rich the colour.
+#  i calculate it as max difference between r, g, b parts of colour.
+#  it is linear operation, so it's incorrect for half-tones, see HSL color model.
+# grayness = 1 - saturation. (it is 'anti-saturation').
+
+MOV saturation, 0;
+SUB delta, temp.r, temp.g;
+MAX saturation, saturation, delta;
+SUB delta, temp.g, temp.r;
+MAX saturation, saturation, delta;
+
+SUB delta, temp.r, temp.b;
+MAX saturation, saturation, delta;
+SUB delta, temp.b, temp.r;
+MAX saturation, saturation, delta;
+
+SUB delta, temp.g, temp.b;
+MAX saturation, saturation, delta;
+SUB delta, temp.b, temp.g;
+MAX saturation, saturation, delta;
+
+# simple method used... Not sure if it is precisely correct.
+MUL lightness, temp.r, 0.333;
+MAD lightness, temp.g, 0.333, lightness;
+MAD lightness, temp.b, 0.333, lightness;
+
+# -0.5 to 0.5 range and inverse
+ADD lightness, -lightness, 0.5;
+
+# -1 to 1 range
+MUL lightness, lightness, 2.0; 
+
+# inverse slope - calculate grayness, 1 = not coloured pixel, 0 = full saturation
+SUB grayness, 1, saturation;
+
+# here we invert pixels, and amount of inversion is inverse relative of saturation.
+# so, black colour become white, white turns to black, but red remains red.
+MUL diff, lightness, grayness;
+
+ADD_SAT temp.r, temp.r, diff;
+ADD_SAT temp.g, temp.g, diff;
+ADD_SAT temp.b, temp.b, diff;
+
+MUL temp, fragment.color, temp;
+MOV result.color, temp;
+END
