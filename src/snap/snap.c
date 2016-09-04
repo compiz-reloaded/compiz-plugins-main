@@ -790,6 +790,10 @@ static void snapDisplayOptionChanged(CompDisplay *d, CompOption *opt, SnapDispla
 				sd->avoidSnapMask |= ControlMask;
 			if (mask & AvoidSnapMetaMask)
 				sd->avoidSnapMask |= CompMetaMask;
+			if (mask & AvoidSnapSuperMask)
+				sd->avoidSnapMask |= CompSuperMask;
+			if (mask & AvoidSnapHyperMask)
+				sd->avoidSnapMask |= CompHyperMask;
 		}
 
 		default:
