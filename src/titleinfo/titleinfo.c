@@ -84,10 +84,15 @@ titleinfoUpdateVisibleName (CompWindow *w)
     }
 
     if (machine)
-	asprintf (&text, "%s%s (@%s)", root, title, machine);
+    {
+	if (asprintf (&text, "%s%s (@%s)", root, title, machine) == -1)
+		return;
+	}
     else if (root[0])
-	asprintf (&text, "%s%s", root, title);
-
+    {
+	if (asprintf (&text, "%s%s", root, title) == -1)
+		return;
+	}
     if (text)
     {
 	XChangeProperty (d->display, w->id, td->visibleNameAtom,
