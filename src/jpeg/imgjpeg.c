@@ -270,11 +270,18 @@ createFilename (const char *path,
     char *filename = NULL;
 
     if (path && !name)
-	asprintf (&filename, "%s", path);
+    {
+	if (asprintf (&filename, "%s", path) == -1)
+		return NULL;
+	}
     else if (!path && name)
-	asprintf (&filename, "%s", name);
+	{
+	if (asprintf (&filename, "%s", name) == -1)
+		return NULL;
+	}
     else
-	asprintf (&filename, "%s/%s", path, name);
+	if (asprintf (&filename, "%s/%s", path, name) == -1)
+		return NULL;
 
     return filename;
 }
