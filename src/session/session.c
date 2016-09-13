@@ -843,6 +843,9 @@ sessionHandleEvent (CompDisplay *d,
 
     SESSION_DISPLAY (d);
 
+    w = NULL;
+    state = 0;
+
     switch (event->type) {
     case MapRequest:
 	w = findWindowAtDisplay (d, event->xmaprequest.window);
@@ -932,26 +935,6 @@ sessionSessionEvent (CompCore         *c,
     UNWRAP (sc, c, sessionEvent);
     (*c->sessionEvent) (c, event, arguments, nArguments);
     WRAP (sc, c, sessionEvent, sessionSessionEvent);
-}
-
-static void
-sessionObjectAdd (CompObject *parent,
-		  CompObject *object)
-{
-    static ObjectAddProc dispTab[] = {
-	(ObjectAddProc) 0, /* CoreAdd */
-	(ObjectAddProc) 0, /* DisplayAdd */
-	(ObjectAddProc) 0, /* ScreenAdd */
-	(ObjectAddProc) sessionWindowAdd
-    };
-
-    SESSION_CORE (&core);
-
-    UNWRAP (sc, &core, objectAdd);
-    (*core.objectAdd) (parent, object);
-    WRAP (sc, &core, objectAdd, sessionObjectAdd);
-	
-    DISPATCH (object, dispTab, ARRAY_SIZE (dispTab), (parent, object));
 }
 
 static Bool
