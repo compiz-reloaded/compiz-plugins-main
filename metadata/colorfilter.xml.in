@@ -52,12 +52,10 @@
         <_long>Windows to be filtered by default.</_long>
         <default>any</default>
       </option>
-    </screen>
-    <screen>
       <option name="exclude_match" type="match">
         <_short>Exclude windows</_short>
         <_long>Windows to exclude from filtering.</_long>
-        <default>type=Desktop</default>
+        <default>Dock | type=Desktop</default>
       </option>
     </screen>
   </plugin>
