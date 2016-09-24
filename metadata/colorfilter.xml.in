@@ -32,13 +32,24 @@
         <_long>List of plain text filter files that should be applied when filtering windows or screen.</_long>
         <type>string</type>
         <default>
+	    <value>blackandwhite</value>
+	    <value>blueish-filter</value>
+	    <value>colornegative</value>
+	    <value>contrast</value>
+	    <value>deuteranopia</value>
+	    <value>grayscale</value>
 	    <value>negative</value>
 	    <value>negative-green</value>
-	    <value>blueish-filter</value>
+	    <value>nightmode</value>
+	    <value>nightmodeb</value>
+	    <value>nightmodec</value>
+	    <value>nightmoded</value>
+	    <value>protanopia</value>
 	    <value>sepia</value>
-	    <value>grayscale</value>
-	    <value>deuteranopia</value>
-	    <value>protonopia</value>
+	    <value>swap-green-blue</value>
+	    <value>swap-red-blue</value>
+	    <value>swap-red-green</value>
+	    <value>swap-hue</value>
 	</default>
         <hints>file;</hints>
       </option>
