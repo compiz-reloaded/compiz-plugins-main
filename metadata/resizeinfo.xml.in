@@ -30,6 +30,18 @@
 	  <hints>family;</hints>
 	  <default>Sans</default>
 	</option>
+    <option name="title_size" type="int">
+      <_short>Font Size</_short>
+      <_long>Font size for resize info display</_long>
+      <min>6</min>
+      <max>48</max>
+      <default>12</default>
+    </option>
+    <option name="title_bold" type="bool">
+      <_short>Bold Font</_short>
+      <_long>Use bold font for window title display</_long>
+      <default>true</default>
+    </option>
 	<option name="text_color" type="color">
 	  <_short> Text color. </_short>
 	  <_long> Color of text on resize popup. </_long>
