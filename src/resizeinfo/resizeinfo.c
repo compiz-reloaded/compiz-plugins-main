@@ -210,9 +210,10 @@ updateTextLayer (CompScreen *s)
     layout = pango_cairo_create_layout (is->textLayer.cr);
   
     pango_font_description_set_family (font, resizeinfoGetTextFamily(s->display));
-    pango_font_description_set_absolute_size (font, 12 * PANGO_SCALE);
+    pango_font_description_set_absolute_size (font, resizeinfoGetTitleSize(s->display) * PANGO_SCALE);
     pango_font_description_set_style (font, PANGO_STYLE_NORMAL);
-    pango_font_description_set_weight (font, PANGO_WEIGHT_BOLD);
+    if (resizeinfoGetTitleBold(s->display))
+      pango_font_description_set_weight (font, PANGO_WEIGHT_BOLD);
  
     pango_layout_set_font_description (layout, font);
     pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
