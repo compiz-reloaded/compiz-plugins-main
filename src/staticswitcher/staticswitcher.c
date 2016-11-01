@@ -248,7 +248,9 @@ switchUpdatePopupWindow (CompScreen *s,
     unsigned int xCount, yCount;
     float        aspect;
     double       dCount = count;
-    unsigned int w = staticswitcherGetPopupPreviewSize (s), h = staticswitcherGetPopupPreviewSize (s), b = staticswitcherGetPopupBorderSize (s);
+    unsigned int w = staticswitcherGetPopupPreviewSize (s);
+    unsigned int h = staticswitcherGetPopupPreviewSize (s);
+    unsigned int b = staticswitcherGetPopupBorderSize (s);
     XSizeHints xsh;
     int x, y;
 
