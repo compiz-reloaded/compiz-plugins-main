@@ -143,6 +143,24 @@
 		    <max>2.0</max>
 		    <precision>0.05</precision>
 		</option>
+		<option name="highlight_delay" type="float">
+		    <_short>Window Highlight Delay</_short>
+		    <_long>Time (in s) the to wait before highlighting the current window</_long>
+		    <default>0.0</default>
+		    <min>0.0</min>
+		    <max>2.0</max>
+		    <precision>0.05</precision>
+		</option>
+		<option name="draw_popup" type="bool">
+		    <_short>Draw Popup</_short>
+		    <_long>Whether to draw the popup window</_long>
+		    <default>true</default>
+		</option>
+		<option name="highlight_delay_inherit" type="bool">
+		    <_short>Inherit Highlight Delay</_short>
+		    <_long>When enabled, use the popup delay for the window highlight</_long>
+		    <default>true</default>
+		</option>
 		<option name="mouse_select" type="bool">
 		    <_short>Allow Mouse Selection</_short>
 		    <_long>Allow selection of windows from the switcher window with the mouse</_long>
@@ -272,6 +290,24 @@
 			</default>
 		    </option>
 		</subgroup>
+		<option name="popup_preview_size" type="int">
+		    <_short>Popup Preview Size</_short>
+		    <_long>Size of the previews in the popup</_long>
+		    <default>150</default>
+		    <min>0</min>
+		</option>
+		<option name="popup_border_size" type="int">
+		    <_short>Popup Border Size</_short>
+		    <_long>Size of the border of the popup</_long>
+		    <default>10</default>
+		    <min>0</min>
+		</option>
+		<option name="popup_icon_size" type="int">
+		    <_short>Icon Size</_short>
+		    <_long>Size of the icon overlays</_long>
+		    <default>48</default>
+		    <min>0</min>
+		</option>
 	    </group>
 	</screen>
     </plugin>
