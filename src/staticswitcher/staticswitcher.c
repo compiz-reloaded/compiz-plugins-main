@@ -573,6 +573,7 @@ switchShowPopup (void *closure)
     }
 
     damageScreen (s);
+
     ss->popupDelayHandle = 0;
 
     return FALSE;
@@ -1407,9 +1408,9 @@ switchPaintOutput (CompScreen		   *s,
 
 	Bool highlightDelayPassed;
 	if ( staticswitcherGetHighlightDelayInherit (s) )
-	    highlightDelayPassed=!ss->popupDelayHandle;
+	    highlightDelayPassed = !ss->popupDelayHandle;
 	else
-	    highlightDelayPassed=!ss->highlightDelayHandle;
+	    highlightDelayPassed = !ss->highlightDelayHandle;
 	if ( highlightDelayPassed )
 	    mode = staticswitcherGetHighlightMode (s);
 	else
