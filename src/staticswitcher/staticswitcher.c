@@ -1440,7 +1440,7 @@ switchPaintOutput (CompScreen		   *s,
 	else
 	    mode = HighlightModeNone;
 
-	if (staticswitcherGetHighlightFocuses (s))
+	if (staticswitcherGetHighlightActivates (s))
 	{
 	    removeScreenGrab (s, ss->grabIndex, 0);
 	    ss->grabIndex = 0;
