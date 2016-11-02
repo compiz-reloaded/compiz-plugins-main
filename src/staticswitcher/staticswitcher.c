@@ -1183,6 +1183,7 @@ switchFindWindowAt (CompScreen *s,
     if (popup)
     {
 	int   i;
+	
 	for (i = 0; i < ss->nWindows; i++)
 	{
 	    int x1, x2, y1, y2;
