@@ -130,6 +130,11 @@
 		    <_long>Show minimized windows</_long>
 		    <default>true</default>
 		</option>
+		<option name="minimized_when_popup_hidden" type="bool">
+		    <_short>Include Minimized even if Popup Disabled</_short>
+		    <_long>If Show Minimize is selected, include minimized windows even when the popup is disabled</_long>
+		    <default>false</default>
+		</option>
 		<option name="auto_change_vp" type="bool">
 		    <_short>Auto Change Viewport</_short>
 		    <_long>Change to the viewport of the selected window while switching</_long>
@@ -164,6 +169,16 @@
 		<option name="mouse_select" type="bool">
 		    <_short>Allow Mouse Selection</_short>
 		    <_long>Allow selection of windows from the switcher window with the mouse</_long>
+		    <default>false</default>
+		</option>
+        <option name="mouse_close" type="bool">
+		    <_short>Allow Mouse Close</_short>
+		    <_long>Close window on clicking its preview in the popup with the middle button</_long>
+		    <default>false</default>
+		</option>
+		<option name="highlight_focuses" type="bool">
+		    <_short>Focus Highlighted Window</_short>
+		    <_long>When enabled, the highlighted window has focus.</_long>
 		    <default>false</default>
 		</option>
 	    </group>
