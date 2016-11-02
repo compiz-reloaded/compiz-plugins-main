@@ -767,12 +767,12 @@ switchTerminate (CompDisplay     *d,
 
         d->activeWindow = sd->lastActiveWindow;
 
+	    removeScreenGrab (s, ss->grabIndex, 0);
+	    ss->grabIndex = 0;
+
 	    if (state && !(state & CompActionStateCancel))
 		if (ss->selectedWindow && !ss->selectedWindow->destroyed)
 		    sendWindowActivationRequest (s, ss->selectedWindow->id);
-
-	    removeScreenGrab (s, ss->grabIndex, 0);
-	    ss->grabIndex = 0;
 
 	    ss->selectedWindow = NULL;
 
