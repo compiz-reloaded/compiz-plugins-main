@@ -831,7 +831,7 @@ switchTerminate (CompDisplay     *d,
 
 	    if ( (getWindowState (d, chosenWindowID)) != primaryWindowState )
 	    {
-		    changeWindowState (ss->selectedWindow, ~windowStateFromString("above"));
+		    changeWindowState (chosenWindowID, ~windowStateFromString("above"));
 	    }
 
 	    damageScreen (s);
