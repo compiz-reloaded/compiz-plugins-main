@@ -27,6 +27,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <X11/Xatom.h>
@@ -763,9 +764,39 @@ switchTerminate (CompDisplay     *d,
 
 	if (ss->grabIndex)
 	{
+	    removeScreenGrab (s, ss->grabIndex, 0);
+	    ss->grabIndex = 0;
+	    sendWindowActivationRequest (s, ss->selectedWindow->id);
+	    damageScreen (s);
+	    Bool mouseSelect;
+	    mouseSelect = staticswitcherGetMouseSelect (s) &&
+						ss->selection != Panels;
+
+	    if (!ss->grabIndex)
+		    ss->grabIndex = pushScreenGrab (s, switchGetCursor (s, mouseSelect),
+						"switcher");
+	    else if (mouseSelect != ss->mouseSelect)
+		    updateScreenGrab (s, ss->grabIndex, switchGetCursor (s, mouseSelect));
+
+	    ss->mouseSelect = mouseSelect;
+        
+        //In case the window didn't activate soon enough, wait up to 3/10 of a second for it to get ready
+        struct timespec tim, tim2;
+        tim.tv_sec = 1;
+        tim.tv_nsec = 10000000L;
+        int waited;
+        waited = 0;
+        while ( (!ss->selectedWindow->id == (int) d->activeWindow) && (waited < 300) )
+        {
+            compLogMessage ("staticswitcher", CompLogLevelWarn,
+        			"Window wasn't ready in time");
+            nanosleep (&tim, &tim2);
+            waited = waited+1;
+        }
+
 	    CompWindow *w;
 
-        d->activeWindow = sd->lastActiveWindow;
+	    d->activeWindow = sd->lastActiveWindow;
 
 	    removeScreenGrab (s, ss->grabIndex, 0);
 	    ss->grabIndex = 0;
@@ -1446,15 +1477,15 @@ switchPaintOutput (CompScreen		   *s,
 	    ss->grabIndex = 0;
 	    sendWindowActivationRequest (s, ss->selectedWindow->id);
 	    damageScreen (s);
-        Bool mouseSelect;
+	    Bool mouseSelect;
 	    mouseSelect = staticswitcherGetMouseSelect (s) &&
 						ss->selection != Panels;
 
 	    if (!ss->grabIndex)
-	    ss->grabIndex = pushScreenGrab (s, switchGetCursor (s, mouseSelect),
+		    ss->grabIndex = pushScreenGrab (s, switchGetCursor (s, mouseSelect),
 						"switcher");
 	    else if (mouseSelect != ss->mouseSelect)
-	    updateScreenGrab (s, ss->grabIndex, switchGetCursor (s, mouseSelect));
+		    updateScreenGrab (s, ss->grabIndex, switchGetCursor (s, mouseSelect));
 
 	    ss->mouseSelect = mouseSelect;
 	}
