@@ -27,7 +27,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <X11/Xatom.h>
@@ -764,6 +763,10 @@ switchTerminate (CompDisplay     *d,
 
 	if (ss->grabIndex)
 	{
+	    unsigned int primaryWindowState;
+	    primaryWindowState = getWindowState (d, ss->selectedWindow->id);
+	    changeWindowState (ss->selectedWindow,windowStateFromString("above"));
+
 	    removeScreenGrab (s, ss->grabIndex, 0);
 	    ss->grabIndex = 0;
 	    sendWindowActivationRequest (s, ss->selectedWindow->id);
@@ -779,20 +782,6 @@ switchTerminate (CompDisplay     *d,
 		    updateScreenGrab (s, ss->grabIndex, switchGetCursor (s, mouseSelect));
 
 	    ss->mouseSelect = mouseSelect;
-        
-        //In case the window didn't activate soon enough, wait up to 3/10 of a second for it to get ready
-        struct timespec tim, tim2;
-        tim.tv_sec = 1;
-        tim.tv_nsec = 10000000L;
-        int waited;
-        waited = 0;
-        while ( (!ss->selectedWindow->id == (int) d->activeWindow) && (waited < 300) )
-        {
-            compLogMessage ("staticswitcher", CompLogLevelWarn,
-        			"Window wasn't ready in time");
-            nanosleep (&tim, &tim2);
-            waited = waited+1;
-        }
 
 	    CompWindow *w;
 
@@ -837,6 +826,11 @@ switchTerminate (CompDisplay     *d,
 	    }
 
 	    ss->switching = FALSE;
+	    if ( (getWindowState (d, ss->selectedWindow->id)) != primaryWindowState )
+	    {
+		    changeWindowState (ss->selectedWindow,~windowStateFromString("above"));
+	    }
+
 	    damageScreen (s);
 	}
     }
