@@ -764,7 +764,9 @@ switchTerminate (CompDisplay     *d,
 	if (ss->grabIndex)
 	{
 	    unsigned int primaryWindowState;
-	    primaryWindowState = getWindowState (d, ss->selectedWindow->id);
+        unsigned int chosenWindowID;
+        chosenWindowID = ss->selectedWindow->id;
+	    primaryWindowState = getWindowState (d, chosenWindowID);
 	    changeWindowState (ss->selectedWindow,windowStateFromString("above"));
 
 	    removeScreenGrab (s, ss->grabIndex, 0);
@@ -826,9 +828,10 @@ switchTerminate (CompDisplay     *d,
 	    }
 
 	    ss->switching = FALSE;
-	    if ( (getWindowState (d, ss->selectedWindow->id)) != primaryWindowState )
+
+	    if ( (getWindowState (d, chosenWindowID)) != primaryWindowState )
 	    {
-		    changeWindowState (ss->selectedWindow,~windowStateFromString("above"));
+		    changeWindowState (ss->selectedWindow, ~windowStateFromString("above"));
 	    }
 
 	    damageScreen (s);
