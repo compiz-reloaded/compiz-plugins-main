@@ -814,6 +814,11 @@ switchTerminate (CompDisplay     *d,
 	action->state &= ~(CompActionStateTermKey | CompActionStateTermButton);
 
     return FALSE;
+    if (ss->grabIndex)
+	{
+	    removeScreenGrab (s, ss->grabIndex, 0);
+	    ss->grabIndex = 0;
+    }
 }
 
 static Bool
