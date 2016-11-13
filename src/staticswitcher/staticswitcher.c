@@ -131,7 +131,7 @@ isSwitchWin (CompWindow *w)
 		( !staticswitcherGetDrawPopup (s) &&
 			staticswitcherGetMinimizedWhenPopupHidden (s) ) ||
 		( staticswitcherGetDrawPopup (s) )
-		) )
+	) )
 	{
 	    if (!w->minimized && !w->inShowDesktopMode && !w->shaded)
 		return FALSE;
