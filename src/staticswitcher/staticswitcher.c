@@ -127,7 +127,11 @@ isSwitchWin (CompWindow *w)
 
     if (!w->mapNum || w->attrib.map_state != IsViewable)
     {
-	if ( staticswitcherGetMinimized (s) && ( (!(staticswitcherGetDrawPopup (s)) && staticswitcherGetMinimizedWhenPopupHidden (s)) || (staticswitcherGetDrawPopup (s)) ) )
+	if ( staticswitcherGetMinimized (s) && (
+		( !staticswitcherGetDrawPopup (s) &&
+			staticswitcherGetMinimizedWhenPopupHidden (s) ) ||
+		( staticswitcherGetDrawPopup (s) )
+		) )
 	{
 	    if (!w->minimized && !w->inShowDesktopMode && !w->shaded)
 		return FALSE;
@@ -814,11 +818,6 @@ switchTerminate (CompDisplay     *d,
 	action->state &= ~(CompActionStateTermKey | CompActionStateTermButton);
 
     return FALSE;
-    if (ss->grabIndex)
-	{
-	    removeScreenGrab (s, ss->grabIndex, 0);
-	    ss->grabIndex = 0;
-    }
 }
 
 static Bool
@@ -1709,16 +1708,22 @@ switchPaintThumb (CompWindow		  *w,
 	    {
 		float xScale, yScale;
 
-		xScale = (float) staticswitcherGetPopupIconSize (s) / icon->width;
-		yScale = (float) staticswitcherGetPopupIconSize (s) / icon->height;
+		int iconSize;
+		iconSize = staticswitcherGetPopupIconSize (s);
+
+		xScale = (float) iconSize / icon->width;
+		yScale = (float) iconSize / icon->height;
 
 		if (xScale < yScale)
 		    yScale = xScale;
 		else
 		    xScale = yScale;
 
-		sAttrib.xScale = (float) ss->previewWidth * xScale / staticswitcherGetPopupPreviewSize (s);
-		sAttrib.yScale = (float) ss->previewWidth * yScale / staticswitcherGetPopupPreviewSize (s);
+		int previewSize;
+		previewSize = staticswitcherGetPopupPreviewSize (s);
+
+		sAttrib.xScale = (float) ss->previewWidth * xScale / previewSize;
+		sAttrib.yScale = (float) ss->previewWidth * yScale / previewSize;
 
 		wx = x + ss->previewWidth - (sAttrib.xScale * icon->width);
 		wy = y + ss->previewHeight - (sAttrib.yScale * icon->height);
