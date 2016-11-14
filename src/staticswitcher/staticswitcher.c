@@ -1302,19 +1302,19 @@ switchHandleEvent (CompDisplay *d,
 			CompWindow *selected;
 
 			selected = switchFindWindowAt (s,
-						       event->xbutton.x_root,
-						       event->xbutton.y_root);
+							event->xbutton.x_root,
+							event->xbutton.y_root);
 			if (selected)
 			{
-			    CompOption o;
+				CompOption o;
 
-			    ss->selectedWindow = selected;
+				ss->selectedWindow = selected;
 
-			    o.type    = CompOptionTypeInt;
-			    o.name    = "root";
-			    o.value.i = s->root;
+				o.type    = CompOptionTypeInt;
+				o.name    = "root";
+				o.value.i = s->root;
 
-			    switchTerminate (d, NULL, CompActionStateTermButton, &o, 1);
+				switchTerminate (d, NULL, CompActionStateTermButton, &o, 1);
 			}
 		    }
 	    }
