@@ -1302,8 +1302,8 @@ switchHandleEvent (CompDisplay *d,
 			CompWindow *selected;
 
 			selected = switchFindWindowAt (s,
-							event->xbutton.x_root,
-							event->xbutton.y_root);
+								   event->xbutton.x_root,
+								   event->xbutton.y_root);
 			if (selected)
 			{
 				CompOption o;
