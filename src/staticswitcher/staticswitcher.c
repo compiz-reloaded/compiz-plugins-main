@@ -1444,25 +1444,6 @@ switchPaintOutput (CompScreen		   *s,
 	else
 	    mode = HighlightModeNone;
 
-	if (staticswitcherGetHighlightActivates (s))
-	{
-	    removeScreenGrab (s, ss->grabIndex, 0);
-	    ss->grabIndex = 0;
-	    sendWindowActivationRequest (s, ss->selectedWindow->id);
-	    damageScreen (s);
-	    Bool mouseSelect;
-	    mouseSelect = staticswitcherGetMouseSelect (s) &&
-						ss->selection != Panels;
-
-	    if (!ss->grabIndex)
-		    ss->grabIndex = pushScreenGrab (s, switchGetCursor (s, mouseSelect),
-						"switcher");
-	    else if (mouseSelect != ss->mouseSelect)
-		    updateScreenGrab (s, ss->grabIndex, switchGetCursor (s, mouseSelect));
-
-	    ss->mouseSelect = mouseSelect;
-	}
-
 	if (mode == HighlightModeBringSelectedToFront)
 	{
 	    zoomed = ss->selectedWindow;
