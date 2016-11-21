@@ -188,8 +188,31 @@ updateOptionSet(CompScreen *s, OptionSet *os, char *optNamesValuesOrig)
 	if (!matched)
 	{
 	    errorNo = 4;
+	    {
+			CompOption *co = &s->display->opt[COMP_DISPLAY_OPTION_ACTIVE_PLUGINS];
+			extensionPluginInfo = as->extensionPlugins[as->nExtensionPlugins - 1];
+			AnimEffect e = extensionPluginInfo->effects[extensionPluginInfo->nEffects - 1];
+			char *plugin_name = strdup(e->name);
+
+			for (k = 0; plugin_name[k] != ':'; k++);
+			plugin_name[k] = '\0';
+			for (k = 0; i < co->value.list.nValue; k++) {
+				if (!strcmp(plugin_name, co->value.list.value[k].s)) {
+					k++;
+					for (; k < co->value.list.nValue; k++)
+						if (!strncmp("animation", co->value.list.value[k].s, strlen("animation"))) {
+							// Found potential future match, squelching error message
+							errorNo = 0;
+							break;
+						}
+					break;
+				}
+			}
+			free(plugin_name);
+		}
 	    break;
 	}
+
 	CompOptionValue v;
 
 	pair->pluginInfo = extensionPluginInfo;

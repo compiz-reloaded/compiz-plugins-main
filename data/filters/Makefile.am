@@ -16,6 +16,7 @@ filters_DATA = 		\
        sepia           \
        swap-green-blue \
        swap-red-blue   \
-       swap-red-green
+       swap-red-green  \
+       swap-hue
 
 EXTRA_DIST = $(filters_DATA)

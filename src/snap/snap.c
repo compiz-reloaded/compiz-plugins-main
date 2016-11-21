@@ -192,17 +192,6 @@ static void snapMoveWindow(CompWindow * w, int dx, int dy)
 	sw->skipNotify = FALSE;
 }
 
-static void snapResizeWindow(CompWindow * w, int dx, int dy, int dw, int dh)
-{
-	SNAP_WINDOW(w);
-	//fprintf (stderr, "Resizing: %d, %d, %d, %d\n", dx, dy, dw, dh);
-	sw->skipNotify = TRUE;
-	resizeWindow(w, w->attrib.x + dx, w->attrib.y + dy,
-				 w->attrib.width + dw, w->attrib.height + dh,
-				 w->attrib.border_width);
-	sw->skipNotify = FALSE;
-}
-
 static void snapFreeEdges(CompWindow * w)
 {
 	SNAP_WINDOW(w);
@@ -622,104 +611,6 @@ static void snapMoveCheckEdges(CompWindow * w)
 							 FALSE, TopEdge, VerticalSnap);
 }
 
-// Edges checking functions (resize) -------------------------------------------
-
-/*
- * Similar function for Snap on Resize
- */
-static void
-snapResizeCheckNearestEdge(CompWindow * w, int position, int start, int end,
-						   Bool before, EdgeType type, int snapDirection)
-{
-	//SNAP_SCREEN(w->screen);
-	SNAP_WINDOW(w);
-	Edge *current = sw->edges;
-	Edge *edge = current;
-	int dist, min = 65535;
-
-	while (current)
-	{
-		// Skip wrong type or outbound edges
-		if (current->type != type
-			|| current->end < start || current->start > end)
-		{
-			current = current->next;
-			continue;
-		}
-		// Compute distance
-		dist = before ? position - current->position
-				: current->position - position;
-		// Update minimum distance if needed
-		if (dist < min && dist >= 0)
-		{
-			min = dist;
-			edge = current;
-		}
-		// 0-dist edge, just break
-		if (dist == 0)
-			break;
-		// Unsnap edges that aren't snapped anymore
-		if (current->snapped && dist > snapGetResistanceDistance(w->screen))
-			current->snapped = FALSE;
-		current = current->next;
-	}
-	// We found a 0-dist edge, or we have a snapping candidate
-	if (min == 0 || (min <= snapGetAttractionDistance(w->screen)
-					 && snapGetSnapTypeMask(w->screen) & SnapTypeEdgeAttractionMask))
-	{
-		// Update snapping data
-		if (snapGetSnapTypeMask(w->screen) & SnapTypeEdgeResistanceMask)
-		{
-			sw->snapped = TRUE;
-			sw->snapDirection |= snapDirection;
-		}
-		// FIXME : this needs resize-specific code.
-		// Attract the window if needed, moving it of the correct dist
-		if (min != 0 && !edge->snapped)
-		{
-			edge->snapped = TRUE;
-			switch (type)
-			{
-			case LeftEdge:
-				snapResizeWindow(w, min, 0, 0, 0);
-				break;
-			case RightEdge:
-				snapResizeWindow(w, -min, 0, 0, 0);
-				break;
-			case TopEdge:
-				snapResizeWindow(w, 0, min, 0, 0);
-				break;
-			case BottomEdge:
-				snapResizeWindow(w, 0, -min, 0, 0);
-				break;
-			default:
-				break;
-			}
-		}
-	}
-}
-
-/*
- * Call the previous function for each of the 4 sides of the window
- */
-static void snapResizeCheckEdges(CompWindow * w, int dx, int dy, int dw, int dh)
-{
-	int x, y, width, height;
-	x =  WIN_W(w);
-	y =  WIN_Y(w);
-	width = WIN_W(w);
-	height = WIN_H(w);
-
-	snapResizeCheckNearestEdge(w, x, y, y + height, TRUE, RightEdge,
-							   HorizontalSnap);
-	snapResizeCheckNearestEdge(w, x + width, y, y + height, FALSE, LeftEdge,
-							   HorizontalSnap);
-	snapResizeCheckNearestEdge(w, y, x, x + width, TRUE, BottomEdge,
-							   VerticalSnap);
-	snapResizeCheckNearestEdge(w, y + height, x, x + width, FALSE, TopEdge,
-							   VerticalSnap);
-}
-
 // avoidSnap functions ---------------------------------------------------------
 
 static Bool
@@ -769,103 +660,6 @@ static void snapHandleEvent(CompDisplay * d, XEvent * event)
 	UNWRAP(sd, d, handleEvent);
 	(*d->handleEvent) (d, event);
 	WRAP(sd, d, handleEvent, snapHandleEvent);
-}
-
-// Events notifications --------------------------------------------------------
-
-static void
-snapWindowResizeNotify(CompWindow * w, int dx, int dy, int dw, int dh)
-{
-	SNAP_DISPLAY (w->screen->display);
-	SNAP_SCREEN(w->screen);
-	SNAP_WINDOW (w);
-
-	UNWRAP(ss, w->screen, windowResizeNotify);
-	(*w->screen->windowResizeNotify) (w, dx, dy, dw, dh);
-	WRAP(ss, w->screen, windowResizeNotify, snapWindowResizeNotify);
-
-	// avoid-infinite-notify-loop mode/not grabbed
-	if (sw->skipNotify || !(sw->grabbed & ResizeGrab))
-		return;
-
-	// we have to avoid snapping but there's still some buffered moving
-	if (!sd->snapping && (sw->dx || sw->dy || sw->dw || sw->dh))
-	{
-		snapResizeWindow(w, sw->dx, sw->dy, sw->dw, sw->dh);
-		sw->dx = sw->dy = sw->dw = sw->dh = 0;
-		return;
-	}
-
-	// avoiding snap, nothing buffered
-	if (!sd->snapping)
-		return;
-
-	// apply edge resistance
-	if (snapGetSnapTypeMask(w->screen) & SnapTypeEdgeResistanceMask)
-	{
-		// If there's horizontal snapping, add dx to current buffered
-		// dx and resist (move by -dx) or release the window and move
-		// by buffered dx - dx, same for dh
-		if (sw->snapped && sw->snapDirection & HorizontalSnap)
-		{
-			sw->dx += dx;
-			if (sw->dx < snapGetResistanceDistance(w->screen)
-				&& sw->dx > -snapGetResistanceDistance(w->screen))
-				snapResizeWindow(w, -dx, 0, 0, 0);
-			else
-			{
-				snapResizeWindow(w, sw->dx - dx, 0, 0, 0);
-				sw->dx = 0;
-				if (!sw->dw)
-					sw->snapDirection &= VerticalSnap;
-			}
-			sw->dw += dw;
-			if (sw->dw < snapGetResistanceDistance(w->screen)
-				&& sw->dw > -snapGetResistanceDistance(w->screen))
-				snapResizeWindow(w, 0, 0, -dw, 0);
-			else
-			{
-				snapResizeWindow(w, 0, 0, sw->dw - dw, 0);
-				sw->dw = 0;
-				if (!sw->dx)
-					sw->snapDirection &= VerticalSnap;
-			}
-		}
-		// Same for vertical snapping and dy/dh
-		if (sw->snapped && sw->snapDirection & VerticalSnap)
-		{
-			sw->dy += dy;
-			if (sw->dy < snapGetResistanceDistance(w->screen)
-				&& sw->dy > -snapGetResistanceDistance(w->screen))
-				snapResizeWindow(w, 0, -dy, 0, 0);
-			else
-			{
-				snapResizeWindow(w, 0, sw->dy - dy, 0, 0);
-				sw->dy = 0;
-				if (!sw->dh)
-					sw->snapDirection &= HorizontalSnap;
-			}
-			sw->dh += dh;
-			if (sw->dh < snapGetResistanceDistance(w->screen)
-				&& sw->dh > -snapGetResistanceDistance(w->screen))
-				snapResizeWindow(w, 0, 0, 0, -dh);
-			else
-			{
-				snapResizeWindow(w, 0, 0, 0, sw->dh - dh);
-				sw->dh = 0;
-				if (!sw->dy)
-					sw->snapDirection &= HorizontalSnap;
-			}
-		}
-		// If we are no longer snapping in any direction, reset snapped
-		if (sw->snapped && !sw->snapDirection)
-			sw->snapped = FALSE;
-	}
-
-	// If we don't already snap vertically and horizontally,
-	// check edges status
-	if (sw->snapDirection != (VerticalSnap | HorizontalSnap))
-		snapResizeCheckEdges(w, dx, dy, dw, dh);
 }
 
 static void
@@ -996,6 +790,10 @@ static void snapDisplayOptionChanged(CompDisplay *d, CompOption *opt, SnapDispla
 				sd->avoidSnapMask |= ControlMask;
 			if (mask & AvoidSnapMetaMask)
 				sd->avoidSnapMask |= CompMetaMask;
+			if (mask & AvoidSnapSuperMask)
+				sd->avoidSnapMask |= CompSuperMask;
+			if (mask & AvoidSnapHyperMask)
+				sd->avoidSnapMask |= CompHyperMask;
 		}
 
 		default:

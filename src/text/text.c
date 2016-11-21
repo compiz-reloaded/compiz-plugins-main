@@ -471,7 +471,11 @@ textRenderWindowTitle (CompScreen           *s,
 
 		defaultViewportForWindow (w, &vx, &vy);
 		viewport = vy * w->screen->hsize + vx + 1;
-		asprintf (&text, "%s -[%d]-", title, viewport);
+		if (asprintf (&text, "%s -[%d]-", title, viewport) == -1)
+		{
+			free (title);
+			return textRenderText (s, "Error: textRenderWindowTitle", attrib);
+		}
 		free (title);
 	    }
 	    else

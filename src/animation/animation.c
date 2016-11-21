@@ -307,6 +307,9 @@ animAddExtension (CompScreen *s,
 	    if (e != AnimEventFocus)
 		updateEventEffects (s, e, TRUE);
 	}
+
+	for (e = 0; e < AnimEventNum; e++)
+		updateOptionSets (s, e);
 }
 
 static void

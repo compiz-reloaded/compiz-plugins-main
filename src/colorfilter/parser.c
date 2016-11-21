@@ -121,7 +121,8 @@ programReadSource (char *fname)
     /* If failed, try as user filter file (in ~/.compiz/data/filters) */
     if (!fp && home && strlen (home))
     {
-	asprintf (&path, "%s/.compiz/data/filters/%s", home, fname);
+	if (asprintf (&path, "%s/.compiz/data/filters/%s", home, fname) == -1)
+		return NULL;
 	fp = fopen (path, "r");
 	free (path);
     }
@@ -130,7 +131,8 @@ programReadSource (char *fname)
      * (in PREFIX/share/compiz/filters) */
     if (!fp)
     {
-	asprintf (&path, "%s/filters/%s", DATADIR, fname);
+	if (asprintf (&path, "%s/filters/%s", DATADIR, fname) == -1)
+		return NULL;
 	fp = fopen (path, "r");
 	free (path);
     }
@@ -153,7 +155,7 @@ programReadSource (char *fname)
     }
 
     /* Read file */
-    fread (data, length, 1, fp);
+    if (fread (data, length, 1, fp));
 
     data[length] = 0;
 
@@ -426,8 +428,8 @@ programParseSource (CompFunctionData *data,
 	{
 	    /* Data op : just copy paste the whole instruction plus a ";" */
 	    case DataOp:
-		asprintf (&arg1, "%s;", current);
-		addDataOpToFunctionData (data, arg1);
+		if (asprintf (&arg1, "%s;", current) != -1)
+			addDataOpToFunctionData (data, arg1);
 		free (arg1);
 		break;
 	    /* Parse arguments one by one */
