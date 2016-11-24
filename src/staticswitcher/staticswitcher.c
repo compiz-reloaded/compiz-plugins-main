@@ -63,6 +63,7 @@ typedef struct _SwitchScreen {
 
     Window            popupWindow;
     CompTimeoutHandle popupDelayHandle;
+    CompTimeoutHandle highlightDelayHandle;
 
     CompWindow *selectedWindow;
 
@@ -93,11 +94,7 @@ typedef struct _SwitchScreen {
     unsigned int fgColor[4];
 } SwitchScreen;
 
-#define ICON_SIZE 48
 #define MAX_ICON_SIZE 256
-
-#define PREVIEWSIZE 150
-#define BORDER 10
 
 #define SWITCH_DISPLAY(d) PLUGIN_DISPLAY(d, Switch, s)
 #define SWITCH_SCREEN(screen) PLUGIN_SCREEN(screen, Switch, s)
@@ -130,7 +127,7 @@ isSwitchWin (CompWindow *w)
 
     if (!w->mapNum || w->attrib.map_state != IsViewable)
     {
-	if (staticswitcherGetMinimized (s))
+	if ( staticswitcherGetMinimized (s) )
 	{
 	    if (!w->minimized && !w->inShowDesktopMode && !w->shaded)
 		return FALSE;
@@ -251,7 +248,9 @@ switchUpdatePopupWindow (CompScreen *s,
     unsigned int xCount, yCount;
     float        aspect;
     double       dCount = count;
-    unsigned int w = PREVIEWSIZE, h = PREVIEWSIZE, b = BORDER;
+    unsigned int w = staticswitcherGetPopupPreviewSize (s);
+    unsigned int h = staticswitcherGetPopupPreviewSize (s);
+    unsigned int b = staticswitcherGetPopupBorderSize (s);
     XSizeHints xsh;
     int x, y;
 
@@ -561,21 +560,33 @@ switchShowPopup (void *closure)
 
     SWITCH_SCREEN (s);
 
-    w = findWindowAtScreen (s, ss->popupWindow);
-    if (w && (w->state & CompWindowStateHiddenMask))
+    if (staticswitcherGetDrawPopup (s))
     {
-	w->hidden = FALSE;
-	showWindow (w);
-    }
-    else
-    {
-	XMapWindow (s->display->display, ss->popupWindow);
+        w = findWindowAtScreen (s, ss->popupWindow);
+        if (w && (w->state & CompWindowStateHiddenMask))
+        {
+		w->hidden = FALSE;
+		showWindow (w);
+        }
+        else
+        {
+		XMapWindow (s->display->display, ss->popupWindow);
+        }
     }
 
     damageScreen (s);
 
     ss->popupDelayHandle = 0;
 
+    return FALSE;
+}
+
+static Bool
+switchShowHighlight (void *closure)
+{
+    CompScreen *s = (CompScreen *) closure;
+    SWITCH_SCREEN (s);
+    ss->highlightDelayHandle = 0;
     return FALSE;
 }
 
@@ -702,6 +713,21 @@ switchInitiate (CompScreen            *s,
 		{
 		    switchShowPopup (s);
 		}
+
+		delay = staticswitcherGetHighlightDelay (s) * 1000;
+		if (delay)
+		{
+		    if (ss->highlightDelayHandle)
+			compRemoveTimeout (ss->highlightDelayHandle);
+
+		    ss->highlightDelayHandle = compAddTimeout (delay,
+							   (float) delay * 1.2,
+							   switchShowHighlight, s);
+		}
+		else
+		{
+		    switchShowHighlight (s);
+		}
 	    }
 
 	    sd->lastActiveWindow = d->activeWindow;
@@ -739,10 +765,30 @@ switchTerminate (CompDisplay     *d,
 	{
 	    CompWindow *w;
 
+	    d->activeWindow = sd->lastActiveWindow;
+
+	    removeScreenGrab (s, ss->grabIndex, 0);
+	    ss->grabIndex = 0;
+
+	    if (state && !(state & CompActionStateCancel))
+		if (ss->selectedWindow && !ss->selectedWindow->destroyed)
+		    sendWindowActivationRequest (s, ss->selectedWindow->id);
+
+	    ss->selectedWindow = NULL;
+
+	    switchActivateEvent (s, FALSE);
+	    setSelectedWindowHint (s);
+
 	    if (ss->popupDelayHandle)
 	    {
 		compRemoveTimeout (ss->popupDelayHandle);
 		ss->popupDelayHandle = 0;
+	    }
+
+	    if (ss->highlightDelayHandle)
+	    {
+		compRemoveTimeout (ss->highlightDelayHandle);
+		ss->highlightDelayHandle = 0;
 	    }
 
 	    if (ss->popupWindow)
@@ -760,20 +806,6 @@ switchTerminate (CompDisplay     *d,
 	    }
 
 	    ss->switching = FALSE;
-	    d->activeWindow = sd->lastActiveWindow;
-
-	    if (state && !(state & CompActionStateCancel))
-		if (ss->selectedWindow && !ss->selectedWindow->destroyed)
-		    sendWindowActivationRequest (s, ss->selectedWindow->id);
-
-	    removeScreenGrab (s, ss->grabIndex, 0);
-	    ss->grabIndex = 0;
-
-	    ss->selectedWindow = NULL;
-
-	    switchActivateEvent (s, FALSE);
-	    setSelectedWindowHint (s);
-
 	    damageScreen (s);
 	}
     }
@@ -1240,25 +1272,47 @@ switchHandleEvent (CompDisplay *d,
 	{
 	    SWITCH_SCREEN (s);
 
-	    if (ss->grabIndex && ss->mouseSelect)
+	    if ((event->xbutton.button == Button2) && staticswitcherGetMouseClose (s))
 	    {
-		CompWindow *selected;
+			if (ss->grabIndex && ss->mouseSelect)
+			{
+				CompWindow *selected;
 
-		selected = switchFindWindowAt (s,
-					       event->xbutton.x_root,
-					       event->xbutton.y_root);
-		if (selected)
-		{
-		    CompOption o;
+				selected = switchFindWindowAt (s,
+								   event->xbutton.x_root,
+								   event->xbutton.y_root);
+				if (selected)
+				{
+					closeWindow (selected, getCurrentTimeFromDisplay (d));
+					if (selected)
+					{
+						switchWindowRemove (d, w);
+					}
+				}
+			}
+	    }
+	    else
+	    {
+		    if (ss->grabIndex && ss->mouseSelect)
+		    {
+				CompWindow *selected;
 
-		    ss->selectedWindow = selected;
+				selected = switchFindWindowAt (s,
+								   event->xbutton.x_root,
+								   event->xbutton.y_root);
+				if (selected)
+				{
+					CompOption o;
 
-		    o.type    = CompOptionTypeInt;
-		    o.name    = "root";
-		    o.value.i = s->root;
+					ss->selectedWindow = selected;
 
-		    switchTerminate (d, NULL, CompActionStateTermButton, &o, 1);
-		}
+					o.type    = CompOptionTypeInt;
+					o.name    = "root";
+					o.value.i = s->root;
+
+					switchTerminate (d, NULL, CompActionStateTermButton, &o, 1);
+				}
+		    }
 	    }
 	}
 	break;
@@ -1376,7 +1430,12 @@ switchPaintOutput (CompScreen		   *s,
 	    switcher->destroyed = TRUE;
 	}
 
-	if (!ss->popupDelayHandle)
+	Bool highlightDelayPassed;
+	if (staticswitcherGetHighlightDelayInherit (s))
+	    highlightDelayPassed = !ss->popupDelayHandle;
+	else
+	    highlightDelayPassed = !ss->highlightDelayHandle;
+	if (highlightDelayPassed)
 	    mode = staticswitcherGetHighlightMode (s);
 	else
 	    mode = HighlightModeNone;
@@ -1394,6 +1453,7 @@ switchPaintOutput (CompScreen		   *s,
 
 		unhookWindowFromScreen (s, zoomed);
 		insertWindowIntoScreen (s, zoomed, s->reverseWindows->id);
+		addWindowDamage(w);
 	    }
 	}
 	else
@@ -1625,16 +1685,22 @@ switchPaintThumb (CompWindow		  *w,
 	    {
 		float xScale, yScale;
 
-		xScale = (float) ICON_SIZE / icon->width;
-		yScale = (float) ICON_SIZE / icon->height;
+		int iconSize;
+		iconSize = staticswitcherGetPopupIconSize (s);
+
+		xScale = (float) iconSize / icon->width;
+		yScale = (float) iconSize / icon->height;
 
 		if (xScale < yScale)
 		    yScale = xScale;
 		else
 		    xScale = yScale;
 
-		sAttrib.xScale = (float) ss->previewWidth * xScale / PREVIEWSIZE;
-		sAttrib.yScale = (float) ss->previewWidth * yScale / PREVIEWSIZE;
+		int previewSize;
+		previewSize = staticswitcherGetPopupPreviewSize (s);
+
+		sAttrib.xScale = (float) ss->previewWidth * xScale / previewSize;
+		sAttrib.yScale = (float) ss->previewWidth * yScale / previewSize;
 
 		wx = x + ss->previewWidth - (sAttrib.xScale * icon->width);
 		wy = y + ss->previewHeight - (sAttrib.yScale * icon->height);
@@ -2024,6 +2090,7 @@ switchInitScreen (CompPlugin *p,
 
     ss->popupWindow      = None;
     ss->popupDelayHandle = 0;
+    ss->highlightDelayHandle = 0;
 
     ss->selectedWindow = NULL;
     ss->clientLeader   = None;
@@ -2074,6 +2141,9 @@ switchFiniScreen (CompPlugin *p,
 
     if (ss->popupDelayHandle)
 	compRemoveTimeout (ss->popupDelayHandle);
+
+    if (ss->highlightDelayHandle)
+	compRemoveTimeout (ss->highlightDelayHandle);
 
     if (ss->popupWindow)
 	XDestroyWindow (s->display->display, ss->popupWindow);
