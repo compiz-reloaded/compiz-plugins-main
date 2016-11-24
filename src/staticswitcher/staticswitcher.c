@@ -127,11 +127,7 @@ isSwitchWin (CompWindow *w)
 
     if (!w->mapNum || w->attrib.map_state != IsViewable)
     {
-	if ( staticswitcherGetMinimized (s) && (
-		( !staticswitcherGetDrawPopup (s) &&
-			staticswitcherGetMinimizedWhenPopupHidden (s) ) ||
-		( staticswitcherGetDrawPopup (s) )
-	) )
+	if ( staticswitcherGetMinimized (s) )
 	{
 	    if (!w->minimized && !w->inShowDesktopMode && !w->shaded)
 		return FALSE;

@@ -126,14 +126,9 @@
 		    <default>Normal | Dialog | Toolbar | Utility | Unknown</default>
 		</option>
 		<option name="minimized" type="bool">
-		    <_short>Show Minimized</_short>
-		    <_long>Show minimized windows</_long>
+		    <_short>Include Minimized</_short>
+		    <_long>Include minimized windows</_long>
 		    <default>true</default>
-		</option>
-		<option name="minimized_when_popup_hidden" type="bool">
-		    <_short>Include Minimized even if Popup Disabled</_short>
-		    <_long>If Show Minimize is selected, include minimized windows even when the popup is disabled</_long>
-		    <default>false</default>
 		</option>
 		<option name="auto_change_vp" type="bool">
 		    <_short>Auto Change Viewport</_short>
