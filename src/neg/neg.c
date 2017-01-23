@@ -551,7 +551,7 @@ NEGWindowAdd (CompScreen *s,
 {
     /* nw->isNeg is initialized to FALSE in InitWindow, so we only
        have to toggle it to TRUE if necessary */
-    if (matchEval (negGetNegMatch (s), w))
+    if (matchEval (negGetNegMatch (s), w)) || negGetDefaultEnabled(s)
 	NEGToggle (w);
 }
 
@@ -564,6 +564,7 @@ NEGScreenOptionChanged (CompScreen       *s,
     {
     case NegScreenOptionNegMatch:
     case NegScreenOptionExcludeMatch:
+    case NegScreenOptionDefaultEnabled:
 	{
 	    CompWindow *w;
 	    NEG_SCREEN (s);
@@ -713,6 +714,7 @@ NEGInitScreen (CompPlugin *p,
 
     negSetNegMatchNotify (s, NEGScreenOptionChanged);
     negSetExcludeMatchNotify (s, NEGScreenOptionChanged);
+    negSetDefaultEnabledNotify (s, NEGScreenOptionChanged);
 
     /* wrap overloaded functions */
     WRAP (ns, s, drawWindowTexture, NEGDrawWindowTexture);
