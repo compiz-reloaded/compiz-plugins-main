@@ -551,7 +551,7 @@ NEGWindowAdd (CompScreen *s,
 {
     /* nw->isNeg is initialized to FALSE in InitWindow, so we only
        have to toggle it to TRUE if necessary */
-    if ( (matchEval (negGetNegMatch (s), w)) || negGetDefaultEnabled(s) )
+    if (matchEval (negGetNegMatch (s), w))
 	NEGToggle (w);
 }
 
@@ -573,8 +573,8 @@ NEGScreenOptionChanged (CompScreen       *s,
 	    {
 		Bool isNeg;
 		NEG_WINDOW (w);
-
 		isNeg = matchEval (negGetNegMatch (s), w);
+		isNeg = isNeg || negGetDefaultEnabled(s);
 		isNeg = isNeg && !matchEval (negGetExcludeMatch (s), w);
 
 		if (isNeg && ns->isNeg && !nw->isNeg)
