@@ -573,8 +573,9 @@ NEGScreenOptionChanged (CompScreen       *s,
 	    {
 		Bool isNeg;
 		NEG_WINDOW (w);
+
 		isNeg = matchEval (negGetNegMatch (s), w);
-		isNeg = isNeg || negGetDefaultEnabled(s);
+		isNeg = isNeg || negGetDefaultEnabled (s);
 		isNeg = isNeg && !matchEval (negGetExcludeMatch (s), w);
 
 		if (isNeg && ns->isNeg && !nw->isNeg)
