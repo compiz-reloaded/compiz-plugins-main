@@ -23,19 +23,14 @@
 		</display>
 		<screen>
 			<option name="neg_match" type="match">
-				<_short>Auto-toggle windows</_short>
-				<_long>Windows to be made negative when opened</_long>
+				<_short>Always-negative windows</_short>
+				<_long>Windows to always start out negative</_long>
 				<default></default>
 			</option>
 			<option name="exclude_match" type="match">
 				<_short>Exclude windows</_short>
 				<_long>Windows to exclude from negating</_long>
 				<default>type=Desktop</default>
-			</option>
-			<option name="default_enabled" type="bool">
-				<_short>Enable by default</_short>
-				<_long>Enable full-screen negative automatically</_long>
-				<default>false</default>
 			</option>
 		</screen>
 	</plugin>
