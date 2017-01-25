@@ -578,6 +578,8 @@ NEGScreenOptionChanged (CompScreen       *s,
 
 		m = matchEval (negGetNegMatch (s), w);
 		e = matchEval (negGetExcludeMatch (s), w);
+		f = ns->isNeg;
+		t = nw->isNeg;
 
 		// Look at the current state and decide whether to negate the window
 		if (
