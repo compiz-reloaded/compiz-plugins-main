@@ -580,13 +580,15 @@ NEGScreenOptionChanged (CompScreen       *s,
 		e = matchEval (negGetExcludeMatch (s), w);
 
 		// Look at the current state and decide whether to negate the window
-		if (t && !(m || e || f)) ||
-		   (f && !(m || e || t)) ||
-		   (m && !(f || e || t)) ||
-		   (e && t && !(m || f)) ||
-		   (m && f && t && !(e)) ||
-		   (m && e && t && !(f)) ||
-		   (m && e && f && t)
+		if (
+			(t && !(m || e || f)) ||
+			(f && !(m || e || t)) ||
+			(m && !(f || e || t)) ||
+			(e && t && !(m || f)) ||
+			(m && f && t && !(e)) ||
+			(m && e && t && !(f)) ||
+			(m && e && f && t)
+		   )
 		{
 		    NEGToggle (w);
 		}
