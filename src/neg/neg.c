@@ -706,7 +706,7 @@ NEGInitScreen (CompPlugin *p,
     /* initialize the screen variables
      * you know what happens if you don't
      */
-    ns->isNeg = FALSE;
+    ns->isNeg = TRUE;
 
     ns->negFunction      = 0;
     ns->negAlphaFunction = 0;
