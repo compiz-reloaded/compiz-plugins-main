@@ -85,6 +85,10 @@ NEGToggle (CompWindow *w)
     /* toggle window negative flag */
     nw->isNeg = !nw->isNeg;
 
+    /* check include list */
+    if (!matchEval (negGetNegMatch (w->screen), w))
+	nw->isNeg = FALSE;
+
     /* check exclude list */
     if (matchEval (negGetExcludeMatch (w->screen), w))
 	nw->isNeg = FALSE;
