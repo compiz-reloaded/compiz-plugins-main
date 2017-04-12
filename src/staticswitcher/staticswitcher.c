@@ -1077,6 +1077,44 @@ switchWindowRemove (CompDisplay *d,
     }
 }
 
+static Bool
+switchCloseCurrentWindow (CompDisplay     *d,
+                          CompAction      *action,
+                          CompActionState  state,
+                          CompOption      *option,
+                          int              nOption)
+{
+    CompWindow *selected;
+    Window xid;
+    CompScreen *s;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s = findScreenAtDisplay (d, xid);
+    SWITCH_SCREEN (s);
+    if (ss->switching)
+    {
+	if (s)
+	{
+	    selected = ss->selectedWindow;
+	}
+    }
+    else
+    {
+	/* Switcher is not currently in use, so close the current display's active window instead */
+	xid = getIntOptionNamed (option, nOption, "window", 0);
+	selected = findWindowAtDisplay (d, xid);
+    }
+    if (selected)
+    {
+	closeWindow (selected, getCurrentTimeFromDisplay (d));
+	if (selected)
+	{
+	    switchWindowRemove (d, selected);
+	}
+    }
+    return TRUE;
+}
+
 static void
 updateForegroundColor (CompScreen *s)
 {
@@ -2048,6 +2086,7 @@ switchInitDisplay (CompPlugin  *p,
     staticswitcherSetPrevPanelButtonTerminate (d, switchTerminate);
     staticswitcherSetPrevPanelKeyInitiate (d, switchPrevPanel);
     staticswitcherSetPrevPanelKeyTerminate (d, switchTerminate);
+    staticswitcherSetCloseHighlightedKeyInitiate (d, switchCloseCurrentWindow);
 
     sd->selectWinAtom     = XInternAtom (d->display,
 					 DECOR_SWITCH_WINDOW_ATOM_NAME, 0);
