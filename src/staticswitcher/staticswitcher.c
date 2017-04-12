@@ -1286,7 +1286,7 @@ switchHandleEvent (CompDisplay *d,
 					closeWindow (selected, getCurrentTimeFromDisplay (d));
 					if (selected)
 					{
-						switchWindowRemove (d, w);
+						switchWindowRemove (d, selected);
 					}
 				}
 			}

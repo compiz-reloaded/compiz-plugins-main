@@ -166,7 +166,7 @@
 		    <_long>Allow selection of windows from the switcher window with the mouse</_long>
 		    <default>false</default>
 		</option>
-        <option name="mouse_close" type="bool">
+		<option name="mouse_close" type="bool">
 		    <_short>Allow Mouse Close</_short>
 		    <_long>Close window on clicking its preview in the popup with the middle button</_long>
 		    <default>false</default>
@@ -223,6 +223,24 @@
 			<value>2</value>
 			<_name>Right</_name>
 		    </desc>
+		</option>
+		<option name="popup_preview_size" type="int">
+		    <_short>Popup Preview Size</_short>
+		    <_long>Size of the previews in the popup</_long>
+		    <default>150</default>
+		    <min>0</min>
+		</option>
+		<option name="popup_border_size" type="int">
+		    <_short>Popup Border Size</_short>
+		    <_long>Size of the border of the popup</_long>
+		    <default>10</default>
+		    <min>0</min>
+		</option>
+		<option name="popup_icon_size" type="int">
+		    <_short>Icon Size</_short>
+		    <_long>Size of the icon overlays</_long>
+		    <default>48</default>
+		    <min>0</min>
 		</option>
 		<subgroup>
 		    <_short>Selected Window Highlight</_short>
@@ -295,24 +313,6 @@
 			</default>
 		    </option>
 		</subgroup>
-		<option name="popup_preview_size" type="int">
-		    <_short>Popup Preview Size</_short>
-		    <_long>Size of the previews in the popup</_long>
-		    <default>150</default>
-		    <min>0</min>
-		</option>
-		<option name="popup_border_size" type="int">
-		    <_short>Popup Border Size</_short>
-		    <_long>Size of the border of the popup</_long>
-		    <default>10</default>
-		    <min>0</min>
-		</option>
-		<option name="popup_icon_size" type="int">
-		    <_short>Icon Size</_short>
-		    <_long>Size of the icon overlays</_long>
-		    <default>48</default>
-		    <min>0</min>
-		</option>
 	    </group>
 	</screen>
     </plugin>
