@@ -22,15 +22,15 @@
 			</option>
 		</display>
 		<screen>
+			<option name="toggle_by_default" type="bool">
+				<_short>Auto-Toggle Matched Windows</_short>
+				<_long>Automatically toggle windows in the match list by default</_long>
+				<default>false</default>
+			</option>
 			<option name="neg_match" type="match">
 				<_short>Negative Windows</_short>
-				<_long>Windows to be negative by default</_long>
-				<default>any</default>
-			</option>
-			<option name="exclude_match" type="match">
-				<_short>Exclude Windows</_short>
-				<_long>Windows to exclude from negating</_long>
-				<default>type=Desktop</default>
+				<_long>Windows to affect when negating</_long>
+				<default>!(type=Desktop)</default>
 			</option>
 		</screen>
 	</plugin>
