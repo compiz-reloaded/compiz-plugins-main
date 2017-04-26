@@ -550,10 +550,13 @@ NEGWindowAdd (CompScreen *s,
 	      CompWindow *w)
 {
 	NEG_SCREEN (s);
+	NEG_WINDOW (w);
+
+	nw->matched = matchEval (negGetNegMatch (s), w);
 
 	/* nw->isNeg is initialized to FALSE in InitWindow, so we only
 	have to toggle it to TRUE if necessary */
-	if (ns->isNeg && matchEval (negGetNegMatch (s), w))
+	if (ns->isNeg && nw->matched)
 		NEGUpdateState (w);
 }
 
@@ -780,7 +783,7 @@ NEGInitWindow (CompPlugin *p,
 	return FALSE;
 
     nw->isNeg       = FALSE;
-    nw->matched     = matchEval (negGetNegMatch (w->screen), w);
+    nw->matched     = FALSE;
 
     w->base.privates[ns->windowPrivateIndex].ptr = nw;
 
