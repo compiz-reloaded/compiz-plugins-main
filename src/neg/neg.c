@@ -600,16 +600,15 @@ NEGScreenOptionChanged (CompScreen       *s,
 	    {
 			NEG_WINDOW (w);
 
-			Bool matchChanged = nw->matched != matchEval (negGetNegMatch (w->screen), w);
 			nw->matched = matchEval (negGetNegMatch (w->screen), w);
 
-			if (matchChanged)
+			if (nw->matched)
 			{
 				if ((ns->isNeg || negGetToggleByDefault (s)) && !nw->isNeg)
 					NEGUpdateState (w);
-				else if (!matchEval (negGetNegMatch (w->screen), w) && nw->isNeg)
-					NEGUpdateState (w);
 			}
+			else if (nw->isNeg)
+				NEGUpdateState (w);
 	    }
 	}
 	break;
