@@ -155,6 +155,30 @@ negToggleAll (CompDisplay     *d,
     return TRUE;
 }
 
+static Bool
+negToggleMatched (CompDisplay     *d,
+	      CompAction      *action,
+	      CompActionState state,
+	      CompOption      *option,
+	      int             nOption)
+{
+    CompScreen *s;
+    Window     xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s = findScreenAtDisplay (d, xid);
+
+    if (s)
+	for (w = s->windows; w; w = w->next)
+	{
+		NEG_WINDOW (w);
+		nw->isNeg = !nw->isNeg;
+		NEGUpdateState (w);
+	}
+
+    return TRUE;
+}
+
 static int
 getNegFragmentFunction (CompScreen  *s,
 			CompTexture *texture,
@@ -704,6 +728,7 @@ NEGInitDisplay (CompPlugin  *p,
 
     negSetWindowToggleKeyInitiate (d, negToggle);
     negSetScreenToggleKeyInitiate (d, negToggleAll);
+    negSetMatchedToggleKeyInitiate (d, negToggleMatched);
 
     d->base.privates[displayPrivateIndex].ptr = nd;
 
@@ -866,4 +891,3 @@ getCompPluginInfo(void)
 {
     return &NEGVTable;
 }
-
