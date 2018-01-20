@@ -56,7 +56,6 @@ typedef struct _NEGScreen
 typedef struct _NEGWindow
 {
     Bool isNeg; /* negative window flag */
-    Bool matched;
     Bool key_toggled; /* window has been individually toggled */
 } NEGWindow;
 
@@ -613,10 +612,7 @@ static void
 NEGWindowAdd (CompScreen *s,
 	      CompWindow *w)
 {
-	NEG_SCREEN (s);
 	NEG_WINDOW (w);
-
-	nw->matched = matchEval (negGetNegMatch (s), w);
 
 	/* Run matching logic on this window */
 	NEGUpdateState (w);
@@ -786,7 +782,8 @@ NEGInitScreen (CompPlugin *p,
     /* initialize the screen variables
      * you know what happens if you don't
      */
-    ns->isNeg = FALSE;
+    ns->isNeg    = FALSE;
+    ns->matchNeg = FALSE;
 
     ns->negFunction      = 0;
     ns->negAlphaFunction = 0;
@@ -836,7 +833,7 @@ NEGInitWindow (CompPlugin *p,
 	return FALSE;
 
     nw->isNeg       = FALSE;
-    nw->matched     = FALSE;
+    nw->key_toggled = FALSE;
 
     w->base.privates[ns->windowPrivateIndex].ptr = nw;
 
