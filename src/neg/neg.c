@@ -48,6 +48,7 @@ typedef struct _NEGScreen
 
     Bool isNeg; /* negative screen flag */
     Bool matchNeg; /* match group is toggled */
+    Bool keyNegToggled; /* screen has been individually toggled */
 
     int negFunction;
     int negAlphaFunction;
@@ -56,7 +57,7 @@ typedef struct _NEGScreen
 typedef struct _NEGWindow
 {
     Bool isNeg; /* negative window flag */
-    Bool key_toggled; /* window has been individually toggled */
+    Bool keyNegToggled; /* window has been individually toggled */
 } NEGWindow;
 
 #define GET_NEG_CORE(c) \
@@ -95,10 +96,13 @@ NEGUpdateState (CompWindow *w)
     else
 	windowState = FALSE;
 
+    if (matchEval (negGetNegMatch (w->screen), w) && ns->keyNegToggled)
+	windowState = !windowState;
+
     if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
 	windowState = !windowState;
 
-    if ( ( ! negGetPreserveToggled (w->screen) ) && nw->key_toggled)
+    if ( ( ! negGetPreserveToggled (w->screen) ) && nw->keyNegToggled)
 	windowState = !windowState;
 
     /* Now that we know what this window's state should be, push the value to
@@ -107,18 +111,6 @@ NEGUpdateState (CompWindow *w)
 
     /* cause repainting */
     addWindowDamage (w);
-}
-
-static void
-NEGToggleWindow (CompWindow *w)
-{
-    NEG_WINDOW (w);
-
-    nw->isNeg = TRUE;
-    nw->key_toggled = !nw->key_toggled;
-
-    /* cause repainting */
-    NEGUpdateState (w);
 }
 
 static void
@@ -133,12 +125,23 @@ NEGUpdateScreen (CompScreen *s)
 }
 
 static void
+NEGToggleWindow (CompWindow *w)
+{
+    NEG_WINDOW (w);
+
+    nw->keyNegToggled = !nw->keyNegToggled;
+
+    /* cause repainting */
+    NEGUpdateState (w);
+}
+
+static void
 NEGToggleScreen (CompScreen *s)
 {
     NEG_SCREEN (s);
 
     /* toggle screen negative flag */
-    ns->isNeg = !ns->isNeg;
+    ns->keyNegToggled = !ns->keyNegToggled;
 
     NEGUpdateScreen (s);
 }
@@ -781,8 +784,9 @@ NEGInitScreen (CompPlugin *p,
     /* initialize the screen variables
      * you know what happens if you don't
      */
-    ns->isNeg    = FALSE;
-    ns->matchNeg = FALSE;
+    ns->isNeg         = FALSE;
+    ns->matchNeg      = FALSE;
+    ns->keyNegToggled = FALSE;
 
     ns->negFunction      = 0;
     ns->negAlphaFunction = 0;
@@ -831,8 +835,8 @@ NEGInitWindow (CompPlugin *p,
     if (!nw)
 	return FALSE;
 
-    nw->isNeg       = FALSE;
-    nw->key_toggled = FALSE;
+    nw->isNeg         = FALSE;
+    nw->keyNegToggled = FALSE;
 
     w->base.privates[ns->windowPrivateIndex].ptr = nw;
 
