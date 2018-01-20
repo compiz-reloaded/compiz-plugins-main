@@ -30,12 +30,12 @@
 			<option name="toggle_by_default" type="bool">
 				<_short>Auto-Toggle Matched Windows</_short>
 				<_long>Automatically toggle windows in the &quot;Matched Windows&quot; list by default</_long>
-				<default>true</default>
+				<default>false</default>
 			</option>
 			<option name="neg_match" type="match">
 				<_short>Matched Windows</_short>
 				<_long>Windows to affect when toggling only matched windows</_long>
-				<default></default>
+				<default>!(type=Desktop | type=Dock)</default>
 			</option>
 			<option name="toggle_screen_by_default" type="bool">
 				<_short>Auto-Toggle Screen</_short>
@@ -50,7 +50,7 @@
 			<option name="preserve_toggled" type="bool">
 				<_short>Preserve Toggled Windows</_short>
 				<_long>When windows have been toggled by themselves or as part of the &quot;Matched Windows&quot; list, preserve their state when toggling the screen</_long>
-				<default>true</default>
+				<default>false</default>
 			</option>
 		</screen>
 	</plugin>
