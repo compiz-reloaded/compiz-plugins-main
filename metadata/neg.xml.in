@@ -20,6 +20,11 @@
 				<_long>Toggle screen negative</_long>
 				<default>&lt;Super&gt;m</default>
 			</option>
+			<option name="matched_toggle_key" type="key">
+				<_short>Toggle Matched Windows Negative</_short>
+				<_long>Toggles windows matched by the &quot;Negative Windows&quot; match field negative</_long>
+				<default></default>
+			</option>
 		</display>
 		<screen>
 			<option name="toggle_by_default" type="bool">
@@ -29,7 +34,7 @@
 			</option>
 			<option name="neg_match" type="match">
 				<_short>Negative Windows</_short>
-				<_long>Windows to affect when negating</_long>
+				<_long>Windows to affect when negating. Use &quot;all&quot; in this field, combined with the &quot;Auto-Toggle Matched Windows&quot; option to have the screen's default state be fully negated.</_long>
 				<default>!(type=Desktop)</default>
 			</option>
 		</screen>
