@@ -152,7 +152,7 @@ NEGToggleScreen (CompScreen *s)
 
     /* update toggle state for relevant windows */
     for (w = s->windows; w; w = w->next)
-	if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s)))
+	if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
 	    NEGWindowUpdateKeyToggle (w);
 
     /* toggle screen negative flag */
@@ -169,7 +169,7 @@ NEGToggleMatches (CompScreen *s)
 
     /* update toggle state for relevant windows */
     for (w = s->windows; w; w = w->next)
-	if (w && negGetPreserveToggled (s) && matchEval (negGetNegMatch (s)))
+	if (w && negGetPreserveToggled (s) && matchEval (negGetNegMatch (s), w))
 	    NEGWindowUpdateKeyToggle (w);
 
     /* toggle match negative flag */
