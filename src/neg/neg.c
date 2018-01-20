@@ -103,7 +103,7 @@ NEGUpdateState (CompWindow *w)
     /* Decide whether the given window should be negative or not, depending on
        the various parameters that can affect this, and set windowState thus */
 
-	windowState = FALSE;
+    windowState = FALSE;
 
     /* Whole screen toggle state */
     if (! matchEval (negGetExcludeMatch (w->screen), w)) {
