@@ -62,6 +62,9 @@ typedef struct _NEGWindow
     Bool isNeg; /* negative window flag: controlled by NEGUpdateState function */
     Bool keyNegToggled; /* window has been individually toggled using the
                            "Toggle Window Negative" keybinding */
+    Bool keyNegPreserved; /* window has been individually toggled using the
+                           "Toggle Window Negative" keybinding, but it is not
+                           active at the moment */
 } NEGWindow;
 
 #define GET_NEG_CORE(c) \
@@ -132,6 +135,10 @@ NEGWindowUpdateKeyToggle (CompWindow *w)
 
     if (negGetPreserveToggled (w->screen) && nw->keyNegToggled)
 	nw->keyNegToggled = FALSE;
+	nw->keyNegPreserved = TRUE;
+    if (negGetPreserveToggled (w->screen) && nw->keyNegPreserved)
+	nw->keyNegToggled = TRUE;
+    nw->keyNegPreserved = FALSE;
 }
 
 static void
@@ -856,8 +863,9 @@ NEGInitWindow (CompPlugin *p,
     if (!nw)
 	return FALSE;
 
-    nw->isNeg         = FALSE;
-    nw->keyNegToggled = FALSE;
+    nw->isNeg           = FALSE;
+    nw->keyNegToggled   = FALSE;
+    nw->keyNegPreserved = FALSE;
 
     w->base.privates[ns->windowPrivateIndex].ptr = nw;
 
@@ -933,4 +941,3 @@ getCompPluginInfo(void)
 {
     return &NEGVTable;
 }
-
