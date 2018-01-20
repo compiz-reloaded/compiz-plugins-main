@@ -607,8 +607,8 @@ NEGScreenOptionChanged (CompScreen       *s,
 {
     switch (num)
     {
-    case NegScreenOptionToggleByDefault:
-    {
+    case NegScreenOptionToggleMatchByDefault:
+	{
 		CompWindow *w;
 
 		NEG_SCREEN (s);
@@ -630,8 +630,53 @@ NEGScreenOptionChanged (CompScreen       *s,
 			}
 		}
 	}
-    break;
+	break;
+    case NegScreenOptionToggleByDefault:
+	{
+		CompWindow *w;
+
+		NEG_SCREEN (s);
+
+		ns->isNeg = opt[NegScreenOptionToggleByDefault].value.b;
+
+		for (w = s->windows; w; w = w->next)
+		{
+			NEG_WINDOW (w);
+			if (ns->isNeg)
+			{
+				if (!nw->isNeg)
+					NEGUpdateState (w);
+			}
+			else
+			{
+				if (nw->isNeg)
+					NEGUpdateState (w);
+			}
+		}
+	}
+	break;
     case NegScreenOptionNegMatch:
+	{
+	    CompWindow *w;
+	    NEG_SCREEN (s);
+
+	    for (w = s->windows; w; w = w->next)
+	    {
+			NEG_WINDOW (w);
+
+			nw->matched = matchEval (negGetNegMatch (w->screen), w);
+
+			if (nw->matched)
+			{
+				if ((ns->isNeg || negGetToggleByDefault (s)) && !nw->isNeg)
+					NEGUpdateState (w);
+			}
+			else if (nw->isNeg)
+				NEGUpdateState (w);
+	    }
+	}
+	break;
+    case NegScreenOptionExcludeMatch:
 	{
 	    CompWindow *w;
 	    NEG_SCREEN (s);
