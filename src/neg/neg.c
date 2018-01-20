@@ -171,40 +171,6 @@ NEGToggleWindow (CompWindow *w)
 }
 
 static void
-NEGToggleScreen (CompScreen *s)
-{
-    NEG_SCREEN (s);
-    CompWindow *w;
-
-    /* update toggle state for relevant windows */
-    for (w = s->windows; w; w = w->next)
-	if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
-	    NEGWindowUpdateKeyToggle (w);
-
-    /* toggle screen negative flag */
-    ns->keyNegToggled = !ns->keyNegToggled;
-
-    NEGUpdateScreen (s);
-}
-
-static void
-NEGToggleMatches (CompScreen *s)
-{
-    NEG_SCREEN (s);
-    CompWindow *w;
-
-    /* update toggle state for relevant windows */
-    for (w = s->windows; w; w = w->next)
-	if (w && negGetPreserveToggled (s) && matchEval (negGetNegMatch (s), w))
-	    NEGWindowUpdateKeyToggle (w);
-
-    /* toggle match negative flag */
-    ns->keyMatchToggled = !ns->keyMatchToggled;
-
-    NEGUpdateScreen (s);
-}
-
-static void
 NEGScreenClearToggled (CompScreen *s)
 {
     CompWindow *w;
@@ -222,6 +188,26 @@ NEGScreenClearToggled (CompScreen *s)
 }
 
 static void
+NEGToggleScreen (CompScreen *s)
+{
+    NEG_SCREEN (s);
+    CompWindow *w;
+
+    /* update toggle state for relevant windows */
+    for (w = s->windows; w; w = w->next)
+	if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
+	    NEGWindowUpdateKeyToggle (w);
+
+    /* Clear toggled window state if the Auto-Clear config option is set */
+    NEGScreenClearToggled(s);
+
+    /* toggle screen negative flag */
+    ns->keyNegToggled = !ns->keyNegToggled;
+
+    NEGUpdateScreen (s);
+}
+
+static void
 NEGMatchClearToggled (CompScreen *s)
 {
     CompWindow *w;
@@ -236,6 +222,26 @@ NEGMatchClearToggled (CompScreen *s)
 	    }
 	}
     }
+}
+
+static void
+NEGToggleMatches (CompScreen *s)
+{
+    NEG_SCREEN (s);
+    CompWindow *w;
+
+    /* update toggle state for relevant windows */
+    for (w = s->windows; w; w = w->next)
+	if (w && negGetPreserveToggled (s) && matchEval (negGetNegMatch (s), w))
+	    NEGWindowUpdateKeyToggle (w);
+
+    /* Clear toggled window state if the Auto-Clear config option is set */
+    NEGMatchClearToggled(s);
+
+    /* toggle match negative flag */
+    ns->keyMatchToggled = !ns->keyMatchToggled;
+
+    NEGUpdateScreen (s);
 }
 
 static Bool
@@ -270,10 +276,8 @@ negToggleAll (CompDisplay     *d,
     xid = getIntOptionNamed (option, nOption, "root", 0);
     s = findScreenAtDisplay (d, xid);
 
-    if (s) {
-	NEGScreenClearToggled(s);
+    if (s)
 	NEGToggleScreen (s);
-    }
 
     return TRUE;
 }
@@ -291,10 +295,8 @@ negToggleMatched (CompDisplay     *d,
     xid = getIntOptionNamed (option, nOption, "root", 0);
     s = findScreenAtDisplay (d, xid);
 
-    if (s) {
-	NEGMatchClearToggled(s);
+    if (s)
 	NEGToggleMatches (s);
-    }
 
     return TRUE;
 }
