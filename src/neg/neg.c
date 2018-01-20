@@ -672,7 +672,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    ns->matchNeg = !ns->matchNeg;
+	    ns->matchNeg = opt[NegScreenOptionToggleByDefault].value.b;
 
 	    NEGUpdateScreen (s);
 	}
