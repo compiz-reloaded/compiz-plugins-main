@@ -103,9 +103,9 @@ NEGUpdateState (CompWindow *w)
        the various parameters that can affect this, and set windowState thus */
 
     if ( ( ! matchEval (negGetExcludeMatch (w->screen), w) ) && ns->isNeg)
-	windowState = true;
+	windowState = TRUE;
     else
-	windowState = false;
+	windowState = FALSE;
 
     if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
 	windowState = !windowState;
