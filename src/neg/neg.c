@@ -132,17 +132,6 @@ NEGWindowUpdateKeyToggle (CompWindow *w)
 }
 
 static void
-NEGScreenUpdateKeyToggles (CompScreen *s)
-{
-    CompWindow *w;
-
-    /* update every window */
-    for (w = s->windows; w; w = w->next)
-	if (w)
-	    NEGWindowUpdateKeyToggle (w);
-}
-
-static void
 NEGToggleWindow (CompWindow *w)
 {
     NEG_WINDOW (w);
@@ -158,7 +147,10 @@ NEGToggleScreen (CompScreen *s)
 {
     NEG_SCREEN (s);
 
-    NEGScreenUpdateKeyToggles (s);
+    /* update toggle state for relevant windows */
+    for (w = s->windows; w; w = w->next)
+	if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (w))
+	    NEGWindowUpdateKeyToggle (w);
 
     /* toggle screen negative flag */
     ns->keyNegToggled = !ns->keyNegToggled;
@@ -170,6 +162,11 @@ static void
 NEGToggleMatches (CompScreen *s)
 {
     NEG_SCREEN (s);
+
+    /* update toggle state for relevant windows */
+    for (w = s->windows; w; w = w->next)
+	if (w && negGetPreserveToggled (s) && matchEval (negGetNegMatch (w))
+	    NEGWindowUpdateKeyToggle (w);
 
     /* toggle match negative flag */
     ns->matchNeg = !ns->matchNeg;
