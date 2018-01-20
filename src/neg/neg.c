@@ -91,21 +91,18 @@ NEGUpdateState (CompWindow *w)
     /* Decide whether the given window should be negative or not, depending on
        the various parameters that can affect this, and set windowState thus */
 
-    if ( ( ! matchEval (negGetExcludeMatch (w->screen), w) ) && ns->isNeg)
+    if ((! matchEval (negGetExcludeMatch (w->screen), w)) && ns->isNeg)
 	windowState = TRUE;
     else
 	windowState = FALSE;
 
-    if ( ( ! matchEval (negGetExcludeMatch (w->screen), w) ) && ns->keyNegToggled)
+    if ((! matchEval (negGetExcludeMatch (w->screen), w)) && ns->keyNegToggled)
 	windowState = !windowState;
 
     if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
 	windowState = !windowState;
 
-    if ( ( ! negGetPreserveToggled (w->screen) ) && nw->keyNegToggled)
-	windowState = !windowState;
-
-    if ( negGetPreserveToggled (w->screen) && nw->isNeg )
+    if (nw->keyNegToggled)
 	windowState = !windowState;
 
     /* Now that we know what this window's state should be, push the value to
@@ -132,7 +129,7 @@ NEGWindowUpdateKeyToggle (CompWindow *w)
 {
     NEG_WINDOW (w);
 
-    if ( negGetPreserveToggled (w->screen) )
+    if (negGetPreserveToggled (w->screen) && nw->keyNegToggled)
 	nw->keyNegToggled = FALSE;
 }
 
