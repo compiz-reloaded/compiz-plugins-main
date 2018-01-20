@@ -678,7 +678,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    ns->matchNeg = opt[NegScreenOptionToggleByDefault].value.b;
+	    ns->matchNeg = negGetToggleByDefault (s);
 
 	    NEGUpdateScreen (s);
 	}
@@ -692,7 +692,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    ns->isNeg = !ns->isNeg;
+	    ns->isNeg = negGetToggleScreenByDefault (s);
 
 	    NEGUpdateScreen (s);
 	}
@@ -847,6 +847,7 @@ NEGInitScreen (CompPlugin *p,
     negSetToggleScreenByDefaultNotify (s, NEGScreenOptionChanged);
     negSetExcludeMatchNotify (s, NEGScreenOptionChanged);
     negSetPreserveToggledNotify (s, NEGScreenOptionChanged);
+    negSetClearToggledNotify (s, NEGScreenOptionChanged);
 
     /* wrap overloaded functions */
     WRAP (ns, s, drawWindowTexture, NEGDrawWindowTexture);

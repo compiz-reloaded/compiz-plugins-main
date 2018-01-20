@@ -52,6 +52,11 @@
 				<_long>When windows have been toggled using the &quot;Toggle Windows Negative&quot; keybinding, preserve their state when toggling the screen. Note that toggled windows' state will not be preserved between Compiz restarts.</_long>
 				<default>false</default>
 			</option>
+			<option name="clear_toggled" type="bool">
+				<_short>Auto-Clear Toggled Window State</_short>
+				<_long>A window that has been toggled using the &quot;Toggle Windows Negative&quot; keybinding will have its state discarded when toggling a match group that includes that window.</_long>
+				<default>false</default>
+			</option>
 		</screen>
 	</plugin>
 </compiz>
