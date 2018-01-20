@@ -102,12 +102,23 @@ NEGUpdateState (CompWindow *w)
 
 	windowState = FALSE;
 
-    if ((! matchEval (negGetExcludeMatch (w->screen), w)) && ns->isNeg)
-	windowState = !windowState;
+    /* Whole screen toggle state */
+    if (! matchEval (negGetExcludeMatch (w->screen), w)) {
+	if (ns->isNeg)
+	    windowState = !windowState;
+	if (ns->keyNegToggled)
+	    windowState = !windowState;
+    }
 
-    if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
-	windowState = !windowState;
+    /* Matched set toggle state */
+    if (matchEval (negGetNegMatch (w->screen), w)) {
+	if (ns->matchNeg)
+	    windowState = !windowState;
+	if (ns->keyMatchToggled)
+	    windowState = !windowState;
+    }
 
+    /* Individual window state */
     if (nw->keyNegToggled)
 	windowState = !windowState;
 
