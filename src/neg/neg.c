@@ -47,6 +47,7 @@ typedef struct _NEGScreen
     DrawWindowTextureProc drawWindowTexture;
 
     Bool isNeg; /* negative screen flag */
+    Bool matchNeg; /* match group is toggled */
 
     int negFunction;
     int negAlphaFunction;
@@ -93,6 +94,7 @@ NEGToggleWindow (CompWindow *w)
 static void
 NEGUpdateState (CompWindow *w)
 {
+    NEG_SCREEN(s);
     NEG_WINDOW (w);
 
     /* cause repainting */
@@ -100,14 +102,9 @@ NEGUpdateState (CompWindow *w)
 }
 
 static void
-NEGToggleScreen (CompScreen *s)
+NEGUpdateScreen (CompScreen *s)
 {
     CompWindow *w;
-
-    NEG_SCREEN(s);
-
-    /* toggle screen negative flag */
-    ns->isNeg = !ns->isNeg;
 
     /* update every window */
     for (w = s->windows; w; w = w->next)
@@ -116,16 +113,25 @@ NEGToggleScreen (CompScreen *s)
 }
 
 static void
-NEGToggleMatches (CompScreen *s)
+NEGToggleScreen (CompScreen *s)
 {
-    CompWindow *w;
-
     NEG_SCREEN(s);
 
-    /* update every window */
-    for (w = s->windows; w; w = w->next)
-	if (w)
-	    NEGUpdateState (w);
+    /* toggle screen negative flag */
+    ns->isNeg = !ns->isNeg;
+
+    NEGUpdateScreen (s);
+}
+
+static void
+NEGToggleMatches (CompScreen *s)
+{
+    NEG_SCREEN(s);
+
+    /* toggle match negative flag */
+    ns->matchNeg = !ns->matchNeg;
+
+    NEGUpdateScreen (s);
 }
 
 static Bool
@@ -592,10 +598,8 @@ NEGWindowAdd (CompScreen *s,
 
 	nw->matched = matchEval (negGetNegMatch (s), w);
 
-	/* nw->isNeg is initialized to FALSE in InitWindow, so we only
-	have to toggle it to TRUE if necessary */
-	if (ns->isNeg && nw->matched)
-		NEGUpdateState (w);
+	/* Run matching logic on this window */
+	NEGUpdateState (w);
 }
 
 static void
@@ -607,92 +611,27 @@ NEGScreenOptionChanged (CompScreen       *s,
     {
     case NegScreenOptionToggleMatchByDefault:
 	{
-		CompWindow *w;
-
-		NEG_SCREEN (s);
-
-		ns->isNeg = opt[NegScreenOptionToggleByDefault].value.b;
-
-		for (w = s->windows; w; w = w->next)
-		{
-			NEG_WINDOW (w);
-			if (ns->isNeg)
-			{
-				if (!nw->isNeg)
-					NEGUpdateState (w);
-			}
-			else
-			{
-				if (nw->isNeg)
-					NEGUpdateState (w);
-			}
-		}
-	}
-	break;
-    case NegScreenOptionToggleByDefault:
-	{
-		CompWindow *w;
-
-		NEG_SCREEN (s);
-
-		ns->isNeg = opt[NegScreenOptionToggleByDefault].value.b;
-
-		for (w = s->windows; w; w = w->next)
-		{
-			NEG_WINDOW (w);
-			if (ns->isNeg)
-			{
-				if (!nw->isNeg)
-					NEGUpdateState (w);
-			}
-			else
-			{
-				if (nw->isNeg)
-					NEGUpdateState (w);
-			}
-		}
+	    NEGUpdateScreen(s);
 	}
 	break;
     case NegScreenOptionNegMatch:
 	{
-	    CompWindow *w;
-	    NEG_SCREEN (s);
-
-	    for (w = s->windows; w; w = w->next)
-	    {
-			NEG_WINDOW (w);
-
-			nw->matched = matchEval (negGetNegMatch (w->screen), w);
-
-			if (nw->matched)
-			{
-				if ((ns->isNeg || negGetToggleByDefault (s)) && !nw->isNeg)
-					NEGUpdateState (w);
-			}
-			else if (nw->isNeg)
-				NEGUpdateState (w);
-	    }
+	    NEGUpdateScreen(s);
+	}
+	break;
+    case NegScreenOptionToggleByDefault:
+	{
+	    NEGUpdateScreen(s);
 	}
 	break;
     case NegScreenOptionExcludeMatch:
 	{
-	    CompWindow *w;
-	    NEG_SCREEN (s);
-
-	    for (w = s->windows; w; w = w->next)
-	    {
-			NEG_WINDOW (w);
-
-			nw->matched = matchEval (negGetNegMatch (w->screen), w);
-
-			if (nw->matched)
-			{
-				if ((ns->isNeg || negGetToggleByDefault (s)) && !nw->isNeg)
-					NEGUpdateState (w);
-			}
-			else if (nw->isNeg)
-				NEGUpdateState (w);
-	    }
+	    NEGUpdateScreen(s);
+	}
+	break;
+    case NegScreenOptionPreserveToggled:
+	{
+	    NEGUpdateScreen(s);
 	}
 	break;
     default:
