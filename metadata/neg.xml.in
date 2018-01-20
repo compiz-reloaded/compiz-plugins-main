@@ -47,7 +47,7 @@
 				<_long>Windows to exclude when toggling the screen.</_long>
 				<default>!(type=Desktop || type=Dock)</default>
 			</option>
-			<option name="toggle_match_by_default" type="bool">
+			<option name="preserve_toggled" type="bool">
 				<_short>Preserve Toggled Windows</_short>
 				<_long>When windows have been toggled by themselves or as part of the &quot;Matched Windows&quot; list, preserve their state when toggling the screen</_long>
 				<default>false</default>

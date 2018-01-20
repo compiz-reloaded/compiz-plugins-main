@@ -781,8 +781,11 @@ NEGInitScreen (CompPlugin *p,
     ns->negFunction      = 0;
     ns->negAlphaFunction = 0;
 
-    negSetToggleByDefaultNotify (s, NEGScreenOptionChanged);
+    negSetToggleMatchByDefaultNotify (s, NEGScreenOptionChanged);
     negSetNegMatchNotify (s, NEGScreenOptionChanged);
+    negSetToggleByDefaultNotify (s, NEGScreenOptionChanged);
+    negSetExcludeMatchNotify (s, NEGScreenOptionChanged);
+    negSetPreserveToggledNotify (s, NEGScreenOptionChanged);
 
     /* wrap overloaded functions */
     WRAP (ns, s, drawWindowTexture, NEGDrawWindowTexture);
