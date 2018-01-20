@@ -204,6 +204,40 @@ NEGToggleMatches (CompScreen *s)
     NEGUpdateScreen (s);
 }
 
+static void
+NEGScreenClearToggled (CompScreen *s)
+{
+    CompWindow *w;
+
+    if (negGetClearToggled (s)) {
+	for (w = s->windows; w; w = w->next)
+	{
+	    if (! matchEval (negGetExcludeMatch (w->screen), w)) {
+		NEG_WINDOW (w);
+		nw->keyNegToggled = FALSE;
+		nw->keyNegPreserved = FALSE;
+	    }
+	}
+    }
+}
+
+static void
+NEGMatchClearToggled (CompScreen *s)
+{
+    CompWindow *w;
+
+    if (negGetClearToggled (s)) {
+	for (w = s->windows; w; w = w->next)
+	{
+	    if (matchEval (negGetNegMatch (w->screen), w)) {
+		NEG_WINDOW (w);
+		nw->keyNegToggled = FALSE;
+		nw->keyNegPreserved = FALSE;
+	    }
+	}
+    }
+}
+
 static Bool
 negToggle (CompDisplay     *d,
 	   CompAction      *action,
@@ -236,8 +270,10 @@ negToggleAll (CompDisplay     *d,
     xid = getIntOptionNamed (option, nOption, "root", 0);
     s = findScreenAtDisplay (d, xid);
 
-    if (s)
+    if (s) {
+	NEGScreenClearToggled(s);
 	NEGToggleScreen (s);
+    }
 
     return TRUE;
 }
@@ -255,8 +291,10 @@ negToggleMatched (CompDisplay     *d,
     xid = getIntOptionNamed (option, nOption, "root", 0);
     s = findScreenAtDisplay (d, xid);
 
-    if (s)
+    if (s) {
+	NEGMatchClearToggled(s);
 	NEGToggleMatches (s);
+    }
 
     return TRUE;
 }
@@ -677,19 +715,8 @@ NEGScreenOptionChanged (CompScreen       *s,
     case NegScreenOptionToggleByDefault:
 	{
 	    NEG_SCREEN (s);
-	    CompWindow *w;
 
-	    if (negGetClearToggled (s)) {
-		for (w = s->windows; w; w = w->next)
-		{
-		    if (matchEval (negGetNegMatch (w->screen), w)) {
-			NEG_WINDOW (w);
-			nw->keyNegToggled = FALSE;
-			nw->keyNegPreserved = FALSE;
-		    }
-		}
-	    }
-
+	    NEGMatchClearToggled(s);
 	    ns->matchNeg = negGetToggleByDefault (s);
 
 	    NEGUpdateScreen (s);
@@ -703,19 +730,8 @@ NEGScreenOptionChanged (CompScreen       *s,
     case NegScreenOptionToggleScreenByDefault:
 	{
 	    NEG_SCREEN (s);
-	    CompWindow *w;
 
-	    if (negGetClearToggled (s)) {
-		for (w = s->windows; w; w = w->next)
-		{
-		    if (! matchEval (negGetExcludeMatch (w->screen), w)) {
-			NEG_WINDOW (w);
-			nw->keyNegToggled = FALSE;
-			nw->keyNegPreserved = FALSE;
-		    }
-		}
-	    }
-
+	    NEGScreenClearToggled(s);
 	    ns->isNeg = negGetToggleScreenByDefault (s);
 
 	    NEGUpdateScreen (s);
