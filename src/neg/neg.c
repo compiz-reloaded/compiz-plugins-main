@@ -46,9 +46,13 @@ typedef struct _NEGScreen
 
     DrawWindowTextureProc drawWindowTexture;
 
-    Bool isNeg; /* negative screen flag */
-    Bool matchNeg; /* match group is toggled */
-    Bool keyNegToggled; /* screen has been individually toggled */
+    Bool isNeg; /* negative screen flag: controlled by "Auto-Toggle Screen"
+                   checkbox */
+    Bool matchNeg; /* match group is toggled: controlled by "Auto-Toggle
+                      Matched Windows" checkbox, or toggled using the "Toggle
+                      Matched Windows Negative keybinding" */
+    Bool keyNegToggled; /* screen has been individually toggled using the
+                           "Toggle Screen Negative" keybinding */
 
     int negFunction;
     int negAlphaFunction;
@@ -56,8 +60,9 @@ typedef struct _NEGScreen
 
 typedef struct _NEGWindow
 {
-    Bool isNeg; /* negative window flag */
-    Bool keyNegToggled; /* window has been individually toggled */
+    Bool isNeg; /* negative window flag: controlled by NEGUpdateState function */
+    Bool keyNegToggled; /* window has been individually toggled using the
+                           "Toggle Window Negative" keybinding */
 } NEGWindow;
 
 #define GET_NEG_CORE(c) \
@@ -91,10 +96,10 @@ NEGUpdateState (CompWindow *w)
     /* Decide whether the given window should be negative or not, depending on
        the various parameters that can affect this, and set windowState thus */
 
-    if ((! matchEval (negGetExcludeMatch (w->screen), w)) && ns->isNeg)
-	windowState = TRUE;
-    else
 	windowState = FALSE;
+
+    if ((! matchEval (negGetExcludeMatch (w->screen), w)) && ns->isNeg)
+	windowState = !windowState;
 
     if ((! matchEval (negGetExcludeMatch (w->screen), w)) && ns->keyNegToggled)
 	windowState = !windowState;
