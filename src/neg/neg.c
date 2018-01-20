@@ -57,7 +57,7 @@ typedef struct _NEGWindow
 {
     Bool isNeg; /* negative window flag */
     Bool matched;
-    Bool toggled; /* window has been individually toggled */
+    Bool key_toggled; /* window has been individually toggled */
 } NEGWindow;
 
 #define GET_NEG_CORE(c) \
@@ -85,7 +85,7 @@ NEGToggleWindow (CompWindow *w)
 {
     NEG_WINDOW (w);
 
-	nw->toggled = !nw->toggled;
+	nw->key_toggled = !nw->key_toggled;
 
     /* cause repainting */
     NEGUpdateState (w);
@@ -102,7 +102,16 @@ NEGUpdateState (CompWindow *w)
     /* Decide whether the given window should be negative or not, depending on
        the various parameters that can affect this, and set windowState thus */
 
-    windowState = ns->isNeg;
+    if ( ( ! matchEval (negGetExcludeMatch (w->screen), w) ) && ns->isNeg)
+	windowState = true;
+    else
+	windowState = false;
+
+    if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
+	windowState = !windowState;
+
+    if (negGetPreserveToggled (s) && nw->key_toggled)
+	windowState = !windowState;
 
     /* Now that we know what this window's state should be, push the value to
        its nw->isNeg. */
@@ -622,6 +631,10 @@ NEGScreenOptionChanged (CompScreen       *s,
     {
     case NegScreenOptionToggleMatchByDefault:
 	{
+	    NEG_SCREEN (s);
+
+	    ns->matchNeg = TRUE;
+
 	    NEGUpdateScreen (s);
 	}
 	break;
@@ -632,6 +645,10 @@ NEGScreenOptionChanged (CompScreen       *s,
 	break;
     case NegScreenOptionToggleByDefault:
 	{
+	    NEG_SCREEN (s);
+
+	    ns->isNeg = TRUE;
+
 	    NEGUpdateScreen (s);
 	}
 	break;
