@@ -686,7 +686,12 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    ns->isNeg = !ns->isNeg;
+	    /* update toggle state for relevant windows */
+	    for (w = s->windows; w; w = w->next)
+		if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
+		    NEGWindowUpdateKeyToggle (w);
+
+	    ns->isNeg = opt[NegScreenOptionToggleScreenByDefault].value.b;
 
 	    NEGUpdateScreen (s);
 	}
