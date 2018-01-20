@@ -17,29 +17,29 @@
 			</option>
 			<option name="screen_toggle_key" type="key">
 				<_short>Toggle Screen Negative</_short>
-				<_long>Toggle all windows negative, except for windows in the Screen Exclusions match list</_long>
+				<_long>Toggle all windows negative, except for windows in the &quot;Screen Exclusions&quot; list</_long>
 				<default>&lt;Super&gt;m</default>
 			</option>
 			<option name="matched_toggle_key" type="key">
 				<_short>Toggle Matched Windows Negative</_short>
-				<_long>Toggles the windows negative matched by the &quot;Negative Windows&quot; match list</_long>
+				<_long>Toggles the windows negative matched by the &quot;Negative Windows&quot; list</_long>
 				<default></default>
 			</option>
 		</display>
 		<screen>
 			<option name="toggle_match_by_default" type="bool">
 				<_short>Auto-Toggle Matched Windows</_short>
-				<_long>Automatically toggle windows in the &quot;Matched Windows&quot; list by default.</_long>
+				<_long>Automatically toggle windows in the &quot;Matched Windows&quot; list by default</_long>
 				<default>true</default>
 			</option>
 			<option name="neg_match" type="match">
 				<_short>Matched Windows</_short>
-				<_long>Windows to affect when negating only matched windows.</_long>
+				<_long>Windows to affect when negating only matched windows</_long>
 				<default></default>
 			</option>
 			<option name="toggle_by_default" type="bool">
 				<_short>Auto-Toggle Screen</_short>
-				<_long>Automatically toggle all windows by default, except for those in the &quot;Screen Exclusions&quot; list.</_long>
+				<_long>Automatically toggle all windows by default, except for those in the &quot;Screen Exclusions&quot; list</_long>
 				<default>false</default>
 			</option>
 			<option name="exclude_match" type="match">
@@ -49,7 +49,7 @@
 			</option>
 			<option name="toggle_match_by_default" type="bool">
 				<_short>Preserve Toggled Windows</_short>
-				<_long>When windows have been toggled by themselves or as part of the &quot;Matched Windows&quot; set, preserve their state when toggling the screen.</_long>
+				<_long>When windows have been toggled by themselves or as part of the &quot;Matched Windows&quot; list, preserve their state when toggling the screen</_long>
 				<default>false</default>
 			</option>
 		</screen>
