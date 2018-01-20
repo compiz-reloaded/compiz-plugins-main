@@ -79,18 +79,26 @@ typedef struct _NEGWindow
 
 
 static void
+NEGToggleWindow (CompWindow *w)
+{
+    NEG_WINDOW (w);
+
+	nw->isNeg = !nw->isNeg;
+
+    /* cause repainting */
+    addWindowDamage (w);
+}
+
+static void
 NEGUpdateState (CompWindow *w)
 {
     NEG_WINDOW (w);
 
     /* check include list */
     if (matchEval (negGetNegMatch (w->screen), w))
-		nw->isNeg = !nw->isNeg;
+		NEGToggleWindow(w);
 	else
 		nw->isNeg = FALSE;
-
-    /* cause repainting */
-    addWindowDamage (w);
 }
 
 static void
@@ -106,7 +114,7 @@ NEGToggleScreen (CompScreen *s)
     /* toggle every window */
     for (w = s->windows; w; w = w->next)
 	if (w)
-	    NEGUpdateState (w);
+	    NEGToggleWindow (w);
 }
 
 static Bool
@@ -123,7 +131,7 @@ negToggle (CompDisplay     *d,
     w = findWindowAtDisplay (d, xid);
 
     if (w)
-	NEGUpdateState (w);
+	NEGToggleWindow (w);
 
     return TRUE;
 }
