@@ -129,7 +129,7 @@ NEGWindowUpdateKeyToggle (CompWindow *w)
 {
     NEG_WINDOW (w);
 
-    if ( negGetPreserveToggled (w->screen))
+    if ( negGetPreserveToggled (w->screen) )
 	nw->keyNegToggled = FALSE;
 }
 
@@ -138,7 +138,8 @@ NEGToggleWindow (CompWindow *w)
 {
     NEG_WINDOW (w);
 
-    nw->keyNegToggled = !nw->keyNegToggled;
+    if ( ! negGetPreserveToggled (w->screen) )
+	nw->keyNegToggled = !nw->keyNegToggled;
 
     /* cause repainting */
     NEGUpdateState (w);
