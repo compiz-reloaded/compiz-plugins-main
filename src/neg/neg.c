@@ -97,8 +97,16 @@ NEGUpdateState (CompWindow *w)
     NEG_SCREEN (s);
     NEG_WINDOW (w);
 
+    Bool windowState;
+
     /* Decide whether the given window should be negative or not, depending on
-       the various parameters that can affect this, and set nw->isNeg thus */
+       the various parameters that can affect this, and set windowState thus */
+
+    windowState = ns->isNeg;
+
+    /* Now that we know what this window's state should be, push the value to
+       its nw->isNeg. */
+    nw->isNeg = windowState;
 
     /* cause repainting */
     addWindowDamage (w);
