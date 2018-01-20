@@ -67,9 +67,9 @@ typedef struct _NEGWindow
                            when Preserve Toggled Windows means the window
                            should be using its previous state) */
     Bool keyNegPreserved; /* window has been individually toggled using the
-                           "Toggle Window Negative" keybinding. This preserves
-                           the window state between screen toggles for Preserve
-                           Toggled Windows. */
+                             "Toggle Window Negative" keybinding. This preserves
+                             the window state between screen toggles for Preserve
+                             Toggled Windows. */
 } NEGWindow;
 
 #define GET_NEG_CORE(c) \
