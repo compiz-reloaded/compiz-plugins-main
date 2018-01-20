@@ -96,7 +96,7 @@ NEGUpdateState (CompWindow *w)
     else
 	windowState = FALSE;
 
-    if (matchEval (negGetNegMatch (w->screen), w) && ns->keyNegToggled)
+    if (matchEval (negGetExcludeMatch (w->screen), w) && ns->keyNegToggled)
 	windowState = !windowState;
 
     if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
