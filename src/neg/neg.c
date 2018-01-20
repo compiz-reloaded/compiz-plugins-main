@@ -164,8 +164,9 @@ NEGToggleScreen (CompScreen *s)
 	if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
 	    NEGWindowUpdateKeyToggle (w);
 
-    /* toggle screen negative flag */
+    /* toggle screen negative flags */
     ns->isNeg = !ns->isNeg;
+    ns->keyNegToggled = !ns->keyNegToggled;
 
     NEGUpdateScreen (s);
 }
@@ -181,8 +182,9 @@ NEGToggleMatches (CompScreen *s)
 	if (w && negGetPreserveToggled (s) && matchEval (negGetNegMatch (s), w))
 	    NEGWindowUpdateKeyToggle (w);
 
-    /* toggle match negative flag */
+    /* toggle match negative flags */
     ns->matchNeg = !ns->matchNeg;
+    ns->keyMatchToggled = !ns->keyMatchToggled;
 
     NEGUpdateScreen (s);
 }
@@ -661,7 +663,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    ns->matchNeg = !ns->matchNeg;
+	    ns->matchNeg = opt[NegScreenOptionToggleByDefault].value.b;
 
 	    NEGUpdateScreen (s);
 	}
@@ -675,7 +677,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    ns->isNeg = !ns->isNeg;
+	    ns->isNeg = opt[NegScreenOptionToggleScreenByDefault].value.b;
 
 	    NEGUpdateScreen (s);
 	}
@@ -814,9 +816,12 @@ NEGInitScreen (CompPlugin *p,
     /* initialize the screen variables
      * you know what happens if you don't
      */
-    ns->isNeg           = FALSE;
+    ns->isNeg           = FALSE; /* Keep in sync with default
+                                    toggle_screen_by_default value from
+                                    neg.xml.in */
     ns->keyNegToggled   = FALSE;
-    ns->matchNeg        = FALSE;
+    ns->matchNeg        = FALSE; /* Keep in sync with default toggle_by_default
+                                    value from neg.xml.in */
     ns->keyMatchToggled = FALSE;
 
     ns->negFunction      = 0;
