@@ -81,17 +81,6 @@ typedef struct _NEGWindow
 
 
 static void
-NEGToggleWindow (CompWindow *w)
-{
-    NEG_WINDOW (w);
-
-	nw->key_toggled = !nw->key_toggled;
-
-    /* cause repainting */
-    NEGUpdateState (w);
-}
-
-static void
 NEGUpdateState (CompWindow *w)
 {
     NEG_SCREEN (w->screen);
@@ -110,7 +99,7 @@ NEGUpdateState (CompWindow *w)
     if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
 	windowState = !windowState;
 
-    if (negGetPreserveToggled (s) && nw->key_toggled)
+    if (negGetPreserveToggled (w->screen) && nw->key_toggled)
 	windowState = !windowState;
 
     /* Now that we know what this window's state should be, push the value to
@@ -119,6 +108,17 @@ NEGUpdateState (CompWindow *w)
 
     /* cause repainting */
     addWindowDamage (w);
+}
+
+static void
+NEGToggleWindow (CompWindow *w)
+{
+    NEG_WINDOW (w);
+
+	nw->key_toggled = !nw->key_toggled;
+
+    /* cause repainting */
+    NEGUpdateState (w);
 }
 
 static void
