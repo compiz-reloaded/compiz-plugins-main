@@ -94,7 +94,7 @@ NEGToggleWindow (CompWindow *w)
 static void
 NEGUpdateState (CompWindow *w)
 {
-    NEG_SCREEN (s);
+    NEG_SCREEN (w->screen);
     NEG_WINDOW (w);
 
     Bool windowState;
