@@ -30,7 +30,7 @@
 			<option name="toggle_by_default" type="bool">
 				<_short>Auto-Toggle Matched Windows</_short>
 				<_long>Automatically toggle windows in the &quot;Matched Windows&quot; list by default</_long>
-				<default>false</default><!-- This default must be kept in sync with the initialization of ns->matchNeg in neg.c. -->
+				<default>false</default>
 			</option>
 			<option name="neg_match" type="match">
 				<_short>Matched Windows</_short>
@@ -40,7 +40,7 @@
 			<option name="toggle_screen_by_default" type="bool">
 				<_short>Auto-Toggle Screen</_short>
 				<_long>Automatically toggle all windows by default, except for those in the &quot;Screen Exclusions&quot; list</_long>
-				<default>false</default><!-- This default must be kept in sync with the initialization of ns->isNeg in neg.c. -->
+				<default>false</default>
 			</option>
 			<option name="exclude_match" type="match">
 				<_short>Screen Exclusions</_short>
