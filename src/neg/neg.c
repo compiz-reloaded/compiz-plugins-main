@@ -85,7 +85,7 @@ NEGToggleWindow (CompWindow *w)
 {
     NEG_WINDOW (w);
 
-	nw->isNeg = !nw->isNeg;
+	nw->toggled = !nw->toggled;
 
     /* cause repainting */
     NEGUpdateState (w);
@@ -94,8 +94,11 @@ NEGToggleWindow (CompWindow *w)
 static void
 NEGUpdateState (CompWindow *w)
 {
-    NEG_SCREEN(s);
+    NEG_SCREEN (s);
     NEG_WINDOW (w);
+
+    /* Decide whether the given window should be negative or not, depending on
+       the various parameters that can affect this, and set nw->isNeg thus */
 
     /* cause repainting */
     addWindowDamage (w);
@@ -115,7 +118,7 @@ NEGUpdateScreen (CompScreen *s)
 static void
 NEGToggleScreen (CompScreen *s)
 {
-    NEG_SCREEN(s);
+    NEG_SCREEN (s);
 
     /* toggle screen negative flag */
     ns->isNeg = !ns->isNeg;
@@ -126,7 +129,7 @@ NEGToggleScreen (CompScreen *s)
 static void
 NEGToggleMatches (CompScreen *s)
 {
-    NEG_SCREEN(s);
+    NEG_SCREEN (s);
 
     /* toggle match negative flag */
     ns->matchNeg = !ns->matchNeg;
@@ -611,27 +614,27 @@ NEGScreenOptionChanged (CompScreen       *s,
     {
     case NegScreenOptionToggleMatchByDefault:
 	{
-	    NEGUpdateScreen(s);
+	    NEGUpdateScreen (s);
 	}
 	break;
     case NegScreenOptionNegMatch:
 	{
-	    NEGUpdateScreen(s);
+	    NEGUpdateScreen (s);
 	}
 	break;
     case NegScreenOptionToggleByDefault:
 	{
-	    NEGUpdateScreen(s);
+	    NEGUpdateScreen (s);
 	}
 	break;
     case NegScreenOptionExcludeMatch:
 	{
-	    NEGUpdateScreen(s);
+	    NEGUpdateScreen (s);
 	}
 	break;
     case NegScreenOptionPreserveToggled:
 	{
-	    NEGUpdateScreen(s);
+	    NEGUpdateScreen (s);
 	}
 	break;
     default:
