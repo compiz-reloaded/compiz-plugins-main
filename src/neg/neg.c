@@ -649,7 +649,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 {
     switch (num)
     {
-    case NegScreenOptionToggleMatchByDefault:
+    case NegScreenOptionToggleByDefault:
 	{
 	    NEG_SCREEN (s);
 
@@ -663,7 +663,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	    NEGUpdateScreen (s);
 	}
 	break;
-    case NegScreenOptionToggleByDefault:
+    case NegScreenOptionToggleScreenByDefault:
 	{
 	    NEG_SCREEN (s);
 
@@ -812,9 +812,9 @@ NEGInitScreen (CompPlugin *p,
     ns->negFunction      = 0;
     ns->negAlphaFunction = 0;
 
-    negSetToggleMatchByDefaultNotify (s, NEGScreenOptionChanged);
-    negSetNegMatchNotify (s, NEGScreenOptionChanged);
     negSetToggleByDefaultNotify (s, NEGScreenOptionChanged);
+    negSetNegMatchNotify (s, NEGScreenOptionChanged);
+    negSetToggleScreenByDefaultNotify (s, NEGScreenOptionChanged);
     negSetExcludeMatchNotify (s, NEGScreenOptionChanged);
     negSetPreserveToggledNotify (s, NEGScreenOptionChanged);
 
