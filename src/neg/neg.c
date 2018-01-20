@@ -884,9 +884,9 @@ NEGInitScreen (CompPlugin *p,
     /* initialize the screen variables
      * you know what happens if you don't
      */
-    ns->isNeg           = FALSE;
+    ns->isNeg           = negGetToggleScreenByDefault (s);
     ns->keyNegToggled   = FALSE;
-    ns->matchNeg        = FALSE;
+    ns->matchNeg        = negGetToggleByDefault (s);
     ns->keyMatchToggled = FALSE;
 
     ns->negFunction      = 0;
