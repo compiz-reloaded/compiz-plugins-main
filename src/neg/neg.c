@@ -98,7 +98,7 @@ NEGUpdateState (CompWindow *w)
     if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
 	windowState = !windowState;
 
-    if (negGetPreserveToggled (w->screen) && nw->key_toggled)
+    if ( ( ! negGetPreserveToggled (w->screen) ) && nw->key_toggled)
 	windowState = !windowState;
 
     /* Now that we know what this window's state should be, push the value to
@@ -114,7 +114,8 @@ NEGToggleWindow (CompWindow *w)
 {
     NEG_WINDOW (w);
 
-	nw->key_toggled = !nw->key_toggled;
+    nw->isNeg = TRUE;
+    nw->key_toggled = !nw->key_toggled;
 
     /* cause repainting */
     NEGUpdateState (w);

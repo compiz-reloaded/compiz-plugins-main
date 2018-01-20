@@ -45,7 +45,7 @@
 			<option name="exclude_match" type="match">
 				<_short>Screen Exclusions</_short>
 				<_long>Windows to exclude when toggling the screen.</_long>
-				<default>!(type=Desktop || type=Dock)</default>
+				<default>type=Desktop || type=Dock</default>
 			</option>
 			<option name="preserve_toggled" type="bool">
 				<_short>Preserve Toggled Windows</_short>
