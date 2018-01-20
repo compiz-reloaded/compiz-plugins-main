@@ -672,7 +672,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    ns->matchNeg = opt[NegScreenOptionToggleByDefault].value.b;
+	    ns->matchNeg = !ns->matchNeg;
 
 	    NEGUpdateScreen (s);
 	}
@@ -686,7 +686,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    ns->isNeg = opt[NegScreenOptionToggleScreenByDefault].value.b;
+	    ns->isNeg = !ns->isNeg;
 
 	    NEGUpdateScreen (s);
 	}
