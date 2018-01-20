@@ -63,10 +63,13 @@ typedef struct _NEGWindow
 {
     Bool isNeg; /* negative window flag: controlled by NEGUpdateState function */
     Bool keyNegToggled; /* window has been individually toggled using the
-                           "Toggle Window Negative" keybinding */
+                           "Toggle Window Negative" keybinding (will be unset
+                           when Preserve Toggled Windows means the window
+                           should be using its previous state) */
     Bool keyNegPreserved; /* window has been individually toggled using the
-                           "Toggle Window Negative" keybinding, but it is not
-                           active at the moment */
+                           "Toggle Window Negative" keybinding. This preserves
+                           the window state between screen toggles for Preserve
+                           Toggled Windows. */
 } NEGWindow;
 
 #define GET_NEG_CORE(c) \
@@ -685,6 +688,8 @@ NEGScreenOptionChanged (CompScreen       *s,
     case NegScreenOptionToggleScreenByDefault:
 	{
 	    NEG_SCREEN (s);
+
+	    CompWindow *w;
 
 	    /* update toggle state for relevant windows */
 	    for (w = s->windows; w; w = w->next)
