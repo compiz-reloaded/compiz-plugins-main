@@ -149,9 +149,12 @@ NEGWindowUpdateKeyToggle (CompWindow *w)
 {
     NEG_WINDOW (w);
 
-    if (negGetPreserveToggled (w->screen) && nw->keyNegToggled)
+    if (!negGetPreserveToggled (w->screen))
+	return;
+
+    if (nw->keyNegToggled)
 	nw->keyNegToggled = FALSE;
-    else if (negGetPreserveToggled (w->screen) && nw->keyNegPreserved)
+    else if (nw->keyNegPreserved)
 	nw->keyNegToggled = TRUE;
 }
 
@@ -689,14 +692,7 @@ NEGScreenOptionChanged (CompScreen       *s,
 	{
 	    NEG_SCREEN (s);
 
-	    CompWindow *w;
-
-	    /* update toggle state for relevant windows */
-	    for (w = s->windows; w; w = w->next)
-		if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
-		    NEGWindowUpdateKeyToggle (w);
-
-	    ns->isNeg = opt[NegScreenOptionToggleScreenByDefault].value.b;
+	    ns->isNeg = !ns->isNeg;
 
 	    NEGUpdateScreen (s);
 	}
