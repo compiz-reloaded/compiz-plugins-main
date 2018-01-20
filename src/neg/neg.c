@@ -703,6 +703,7 @@ NEGScreenOptionChanged (CompScreen       *s,
     case NegScreenOptionToggleScreenByDefault:
 	{
 	    NEG_SCREEN (s);
+	    CompWindow *w;
 
 	    if (negGetClearToggled (s)) {
 		for (w = s->windows; w; w = w->next)
