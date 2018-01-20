@@ -47,12 +47,11 @@ typedef struct _NEGScreen
     DrawWindowTextureProc drawWindowTexture;
 
     Bool isNeg; /* negative screen flag: controlled by "Auto-Toggle Screen"
-                   checkbox */
+                   checkbox, or toggled using the "Toggle Screen Negative"
+                   keybinding */
     Bool matchNeg; /* match group is toggled: controlled by "Auto-Toggle
                       Matched Windows" checkbox, or toggled using the "Toggle
                       Matched Windows Negative keybinding" */
-    Bool keyNegToggled; /* screen has been individually toggled using the
-                           "Toggle Screen Negative" keybinding */
 
     int negFunction;
     int negAlphaFunction;
@@ -99,9 +98,6 @@ NEGUpdateState (CompWindow *w)
 	windowState = FALSE;
 
     if ((! matchEval (negGetExcludeMatch (w->screen), w)) && ns->isNeg)
-	windowState = !windowState;
-
-    if ((! matchEval (negGetExcludeMatch (w->screen), w)) && ns->keyNegToggled)
 	windowState = !windowState;
 
     if (matchEval (negGetNegMatch (w->screen), w) && ns->matchNeg)
@@ -161,7 +157,7 @@ NEGToggleScreen (CompScreen *s)
 	    NEGWindowUpdateKeyToggle (w);
 
     /* toggle screen negative flag */
-    ns->keyNegToggled = !ns->keyNegToggled;
+    ns->isNeg = !ns->isNeg;
 
     NEGUpdateScreen (s);
 }
@@ -810,9 +806,8 @@ NEGInitScreen (CompPlugin *p,
     /* initialize the screen variables
      * you know what happens if you don't
      */
-    ns->isNeg         = FALSE;
-    ns->matchNeg      = FALSE;
-    ns->keyNegToggled = FALSE;
+    ns->isNeg    = FALSE;
+    ns->matchNeg = FALSE;
 
     ns->negFunction      = 0;
     ns->negAlphaFunction = 0;
