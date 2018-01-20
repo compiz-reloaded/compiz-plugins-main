@@ -117,6 +117,19 @@ NEGToggleScreen (CompScreen *s)
 	    NEGToggleWindow (w);
 }
 
+static void
+NEGToggleMatches (CompScreen *s)
+{
+    CompWindow *w;
+
+    NEG_SCREEN(s);
+
+    /* toggle matched windows */
+    for (w = s->windows; w; w = w->next)
+	if (w)
+	    NEGUpdateState (w);
+}
+
 static Bool
 negToggle (CompDisplay     *d,
 	   CompAction      *action,
@@ -169,12 +182,7 @@ negToggleMatched (CompDisplay     *d,
     s = findScreenAtDisplay (d, xid);
 
     if (s)
-	for (w = s->windows; w; w = w->next)
-	{
-		NEG_WINDOW (w);
-		nw->isNeg = !nw->isNeg;
-		NEGUpdateState (w);
-	}
+	NEGToggleMatches (s);
 
     return TRUE;
 }
