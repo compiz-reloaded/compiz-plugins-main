@@ -56,6 +56,7 @@ typedef struct _NEGWindow
 {
     Bool isNeg; /* negative window flag */
     Bool matched;
+    Bool toggled; /* window has been individually toggled */
 } NEGWindow;
 
 #define GET_NEG_CORE(c) \
@@ -86,7 +87,7 @@ NEGToggleWindow (CompWindow *w)
 	nw->isNeg = !nw->isNeg;
 
     /* cause repainting */
-    addWindowDamage (w);
+    NEGUpdateState (w);
 }
 
 static void
@@ -94,11 +95,8 @@ NEGUpdateState (CompWindow *w)
 {
     NEG_WINDOW (w);
 
-    /* check include list */
-    if (matchEval (negGetNegMatch (w->screen), w))
-		NEGToggleWindow(w);
-	else
-		nw->isNeg = FALSE;
+    /* cause repainting */
+    addWindowDamage (w);
 }
 
 static void
@@ -111,10 +109,10 @@ NEGToggleScreen (CompScreen *s)
     /* toggle screen negative flag */
     ns->isNeg = !ns->isNeg;
 
-    /* toggle every window */
+    /* update every window */
     for (w = s->windows; w; w = w->next)
 	if (w)
-	    NEGToggleWindow (w);
+	    NEGUpdateState (w);
 }
 
 static void
@@ -124,7 +122,7 @@ NEGToggleMatches (CompScreen *s)
 
     NEG_SCREEN(s);
 
-    /* toggle matched windows */
+    /* update every window */
     for (w = s->windows; w; w = w->next)
 	if (w)
 	    NEGUpdateState (w);
