@@ -175,8 +175,7 @@ NEGToggleScreen (CompScreen *s)
 	if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
 	    NEGWindowUpdateKeyToggle (w);
 
-    /* toggle screen negative flags */
-    ns->isNeg = !ns->isNeg;
+    /* toggle screen negative flag */
     ns->keyNegToggled = !ns->keyNegToggled;
 
     NEGUpdateScreen (s);
@@ -193,8 +192,7 @@ NEGToggleMatches (CompScreen *s)
 	if (w && negGetPreserveToggled (s) && matchEval (negGetNegMatch (s), w))
 	    NEGWindowUpdateKeyToggle (w);
 
-    /* toggle match negative flags */
-    ns->matchNeg = !ns->matchNeg;
+    /* toggle match negative flag */
     ns->keyMatchToggled = !ns->keyMatchToggled;
 
     NEGUpdateScreen (s);
