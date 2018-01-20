@@ -677,6 +677,18 @@ NEGScreenOptionChanged (CompScreen       *s,
     case NegScreenOptionToggleByDefault:
 	{
 	    NEG_SCREEN (s);
+	    CompWindow *w;
+
+	    if (negGetClearToggled (s)) {
+		for (w = s->windows; w; w = w->next)
+		{
+		    if (matchEval (negGetNegMatch (w->screen), w)) {
+			NEG_WINDOW (w);
+			nw->keyNegToggled = FALSE;
+			nw->keyNegPreserved = FALSE;
+		    }
+		}
+	    }
 
 	    ns->matchNeg = negGetToggleByDefault (s);
 
@@ -691,6 +703,17 @@ NEGScreenOptionChanged (CompScreen       *s,
     case NegScreenOptionToggleScreenByDefault:
 	{
 	    NEG_SCREEN (s);
+
+	    if (negGetClearToggled (s)) {
+		for (w = s->windows; w; w = w->next)
+		{
+		    if (! matchEval (negGetExcludeMatch (w->screen), w)) {
+			NEG_WINDOW (w);
+			nw->keyNegToggled = FALSE;
+			nw->keyNegPreserved = FALSE;
+		    }
+		}
+	    }
 
 	    ns->isNeg = negGetToggleScreenByDefault (s);
 
