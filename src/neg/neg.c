@@ -612,9 +612,7 @@ static void
 NEGWindowAdd (CompScreen *s,
 	      CompWindow *w)
 {
-	NEG_WINDOW (w);
-
-	/* Run matching logic on this window */
+	/* Run matching logic on the new window */
 	NEGUpdateState (w);
 }
 
