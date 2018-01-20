@@ -47,11 +47,13 @@ typedef struct _NEGScreen
     DrawWindowTextureProc drawWindowTexture;
 
     Bool isNeg; /* negative screen flag: controlled by "Auto-Toggle Screen"
-                   checkbox, or toggled using the "Toggle Screen Negative"
-                   keybinding */
+                   checkbox */
+    Bool keyNegToggled; /* screen is toggled using the "Toggle Screen Negative"
+                           keybinding */
     Bool matchNeg; /* match group is toggled: controlled by "Auto-Toggle
-                      Matched Windows" checkbox, or toggled using the "Toggle
-                      Matched Windows Negative keybinding" */
+                      Matched Windows" checkbox */
+    Bool keyMatchToggled; /* match group is toggled using the "Toggle Matched
+                             Windows Negative" keybinding */
 
     int negFunction;
     int negAlphaFunction;
@@ -812,8 +814,10 @@ NEGInitScreen (CompPlugin *p,
     /* initialize the screen variables
      * you know what happens if you don't
      */
-    ns->isNeg    = FALSE;
-    ns->matchNeg = FALSE;
+    ns->isNeg           = FALSE;
+    ns->keyNegToggled   = FALSE;
+    ns->matchNeg        = FALSE;
+    ns->keyMatchToggled = FALSE;
 
     ns->negFunction      = 0;
     ns->negAlphaFunction = 0;
