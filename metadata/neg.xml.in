@@ -34,7 +34,7 @@
 			</option>
 			<option name="neg_match" type="match">
 				<_short>Matched Windows</_short>
-				<_long>Windows to affect when toggling only matched windows</_long>
+				<_long>Windows to affect when using the &quot;Toggle Matched Windows Negative&quot; keybinding or &quot;Auto-Toggle Matched Windows&quot;</_long>
 				<default>!(type=Desktop)</default>
 			</option>
 			<option name="toggle_screen_by_default" type="bool">
@@ -49,7 +49,7 @@
 			</option>
 			<option name="preserve_toggled" type="bool">
 				<_short>Preserve Toggled Windows</_short>
-				<_long>When windows have been toggled by themselves or as part of the &quot;Matched Windows&quot; list, preserve their state when toggling the screen</_long>
+				<_long>When windows have been toggled using the &quot;Toggle Windows Negative&quot; keybinding, preserve their state when toggling the screen</_long>
 				<default>false</default>
 			</option>
 		</screen>
