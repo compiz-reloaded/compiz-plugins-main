@@ -140,8 +140,7 @@ NEGUpdateScreen (CompScreen *s)
 
     /* update every window */
     for (w = s->windows; w; w = w->next)
-	if (w)
-	    NEGUpdateState (w);
+	NEGUpdateState (w);
 }
 
 static void
