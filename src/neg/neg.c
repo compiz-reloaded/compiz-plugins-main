@@ -842,8 +842,8 @@ NEGInitDisplay (CompPlugin  *p,
     }
 
     negSetWindowToggleKeyInitiate  (d, negToggle);
-    negSetNewScreenToggleKeyInitiate  (d, negToggleAll); /* "Toggle Screen Negative" in CCSM */
-    negSetScreenToggleKeyInitiate (d, negToggleMatched); /* "Toggle Matched Windows Negative" in CCSM */
+    negSetNewScreenToggleKeyInitiate  (d, negToggleAll);
+    negSetScreenToggleKeyInitiate (d, negToggleMatched);
 
     d->base.privates[displayPrivateIndex].ptr = nd;
 
