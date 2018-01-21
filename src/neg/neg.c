@@ -471,20 +471,20 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 
-    		    constant[0] = 0.5f + 0.5f * RED_SATURATION_WEIGHT;
+		    constant[0] = 0.5f + 0.5f * RED_SATURATION_WEIGHT;
 		    constant[1] = 0.5f + 0.5f * GREEN_SATURATION_WEIGHT;
 		    constant[2] = 0.5f + 0.5f * BLUE_SATURATION_WEIGHT;
 		    constant[3] = 1.0;
 
 		    glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, constant);
 
-    		    /* mark another texture active */
+		    /* mark another texture active */
 		    (*w->screen->activeTexture) (GL_TEXTURE2_ARB);
 
 		    /* enable that texture */
-    		    enableTexture (w->screen, texture, filter);
+		    enableTexture (w->screen, texture, filter);
 
-	    	    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_INTERPOLATE);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE0);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PREVIOUS);
@@ -571,7 +571,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    /* disable the current texture */
 		    disableTexture (w->screen, texture);
 
-	    	    /* set the texture mode back to replace */
+		    /* set the texture mode back to replace */
 		    glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 		    /* re-activate last texture */
@@ -582,12 +582,12 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    /* fully saturated or fully unsaturated */
 
 		    glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
-    		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
+		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_CONSTANT);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
 
-    		    /* color constant */
+		    /* color constant */
 		    constant[3] = attrib->opacity / 65535.0f;
 		    constant[0] = constant[1] = constant[2] =
 				  constant[3] * attrib->brightness / 65535.0f;
@@ -601,7 +601,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 
 		    glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, constant);
 
-    		    /* draw the window geometry */
+		    /* draw the window geometry */
 		    (*w->drawWindowGeometry) (w);
 		}
 
@@ -651,7 +651,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    /* enable blending */
 		    glEnable (GL_BLEND);
 
-    		    /* color constant */
+		    /* color constant */
 		    constant[3] = attrib->opacity / 65535.0f;
 		    constant[0] = constant[3] * attrib->brightness / 65535.0f;
 		    constant[1] = constant[3] * attrib->brightness / 65535.0f;
@@ -675,7 +675,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
 
-    		    /* draw the window geometry */
+		    /* draw the window geometry */
 		    (*w->drawWindowGeometry) (w);
 
 		    /* disable blending */
