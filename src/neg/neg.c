@@ -201,7 +201,7 @@ NEGToggleScreen (CompScreen *s)
 
     /* update toggle state for relevant windows */
     for (w = s->windows; w; w = w->next)
-	if (w && negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
+	if (negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
 	    NEGWindowUpdateKeyToggle (w);
 
     /* Clear toggled window state if the Auto-Clear config option is set */
@@ -238,7 +238,7 @@ NEGToggleMatches (CompScreen *s)
 
     /* update toggle state for relevant windows */
     for (w = s->windows; w; w = w->next)
-	if (w && negGetPreserveToggled (s) && matchEval (negGetNegMatch (s), w))
+	if (negGetPreserveToggled (s) && matchEval (negGetNegMatch (s), w))
 	    NEGWindowUpdateKeyToggle (w);
 
     /* Clear toggled window state if the Auto-Clear config option is set */
