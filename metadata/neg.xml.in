@@ -20,7 +20,7 @@
 				<_long>Toggle all windows negative, except for windows in the &quot;Screen Exclusions&quot; list</_long>
 				<default>&lt;Super&gt;m</default>
 			</option>
-			<option name="screen_toggle_key" type="key">
+			<option name="screen_toggle_key" type="key"><!-- This option inherits the previous "Toggle Screen Negative"'s behavior when updating from previous configurations, so the name "screen_toggle_key" is used to inherit the keybinding correctly. -->
 				<_short>Toggle Matched Windows Negative</_short>
 				<_long>Toggles the windows negative matched by the &quot;Negative Windows&quot; list</_long>
 				<default></default>
