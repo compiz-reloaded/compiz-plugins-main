@@ -179,17 +179,17 @@ NEGScreenClearToggled (CompScreen *s)
        (not matched by Screen Exclusions) if the Auto-Clear config option is
        set. */
 
+    CompWindow *w;
+
     if (!negGetClearToggled (s))
 	return;
-
-    CompWindow *w;
 
     for (w = s->windows; w; w = w->next)
     {
 	if (! matchEval (negGetExcludeMatch (w->screen), w)) {
-    	NEG_WINDOW (w);
-    	nw->keyNegToggled = FALSE;
-    	nw->keyNegPreserved = FALSE;
+	    NEG_WINDOW (w);
+	    nw->keyNegToggled = FALSE;
+	    nw->keyNegPreserved = FALSE;
 	}
     }
 }
@@ -219,14 +219,15 @@ NEGMatchClearToggled (CompScreen *s)
 {
     CompWindow *w;
 
-    if (negGetClearToggled (s)) {
-	for (w = s->windows; w; w = w->next)
-	{
-	    if (matchEval (negGetNegMatch (w->screen), w)) {
-		NEG_WINDOW (w);
-		nw->keyNegToggled = FALSE;
-		nw->keyNegPreserved = FALSE;
-	    }
+    if (!negGetClearToggled (s))
+	return;
+
+    for (w = s->windows; w; w = w->next)
+    {
+	if (matchEval (negGetNegMatch (w->screen), w)) {
+	    NEG_WINDOW (w);
+	    nw->keyNegToggled = FALSE;
+	    nw->keyNegPreserved = FALSE;
 	}
     }
 }
@@ -501,12 +502,12 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 
-    		    /* color constant */
+		    /* color constant */
 		    constant[3] = attrib->saturation / 65535.0f;
 
 		    glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, constant);
 
-    		    /* if we are not opaque or not fully bright */
+		    /* if we are not opaque or not fully bright */
 		    if (attrib->opacity < OPAQUE ||
 			attrib->brightness != BRIGHT)
 		    {
