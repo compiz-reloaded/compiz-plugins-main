@@ -143,12 +143,12 @@ NEGUpdateScreen (CompScreen *s)
 	NEGUpdateState (w);
 }
 
+/* NEGWindowUpdateKeyToggle: This function updates the window-toggled state
+   bools for a given window if needed for the Preserve Toggled Windows
+   option. */
 static void
 NEGWindowUpdateKeyToggle (CompWindow *w)
 {
-    /* This function updates the window-toggled state bools for a given window
-       if needed for the Preserve Toggled Windows option. */
-
     NEG_WINDOW (w);
 
     if (!negGetPreserveToggled (w->screen))
@@ -172,13 +172,12 @@ NEGToggleWindow (CompWindow *w)
     NEGUpdateState (w);
 }
 
+/* NEGScreenClearToggled: This function clears toggled window state for windows
+   in the Screen set (not matched by Screen Exclusions) if the Auto-Clear config
+   option is set. */
 static void
 NEGScreenClearToggled (CompScreen *s)
 {
-    /* This function clears toggled window state for windows in the Screen set
-       (not matched by Screen Exclusions) if the Auto-Clear config option is
-       set. */
-
     CompWindow *w;
 
     if (!negGetClearToggled (s))
