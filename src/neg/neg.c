@@ -179,16 +179,17 @@ NEGScreenClearToggled (CompScreen *s)
        (not matched by Screen Exclusions) if the Auto-Clear config option is
        set. */
 
+    if (!negGetClearToggled (s))
+	return;
+
     CompWindow *w;
 
-    if (negGetClearToggled (s)) {
-	for (w = s->windows; w; w = w->next)
-	{
-	    if (! matchEval (negGetExcludeMatch (w->screen), w)) {
-		NEG_WINDOW (w);
-		nw->keyNegToggled = FALSE;
-		nw->keyNegPreserved = FALSE;
-	    }
+    for (w = s->windows; w; w = w->next)
+    {
+	if (! matchEval (negGetExcludeMatch (w->screen), w)) {
+    	NEG_WINDOW (w);
+    	nw->keyNegToggled = FALSE;
+    	nw->keyNegPreserved = FALSE;
 	}
     }
 }
@@ -842,8 +843,8 @@ NEGInitDisplay (CompPlugin  *p,
     }
 
     negSetWindowToggleKeyInitiate  (d, negToggle);
-    negSetScreenToggleKeyInitiate  (d, negToggleAll);
-    negSetMatchedToggleKeyInitiate (d, negToggleMatched);
+    negSetNewScreenToggleKeyInitiate  (d, negToggleAll);
+    negSetScreenToggleKeyInitiate (d, negToggleMatched);
 
     d->base.privates[displayPrivateIndex].ptr = nd;
 
