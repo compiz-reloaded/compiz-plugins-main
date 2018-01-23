@@ -46,7 +46,14 @@ typedef struct _NEGScreen
 
     DrawWindowTextureProc drawWindowTexture;
 
-    Bool isNeg; /* negative screen flag */
+    Bool isNeg; /* negative screen flag: controlled by "Auto-Toggle Screen"
+                   checkbox */
+    Bool keyNegToggled; /* screen is toggled using the "Toggle Screen Negative"
+                           keybinding */
+    Bool matchNeg; /* match group is toggled: controlled by "Auto-Toggle
+                      Matched Windows" checkbox */
+    Bool keyMatchToggled; /* match group is toggled using the "Toggle Matched
+                             Windows Negative" keybinding */
 
     int negFunction;
     int negAlphaFunction;
@@ -54,8 +61,15 @@ typedef struct _NEGScreen
 
 typedef struct _NEGWindow
 {
-    Bool isNeg; /* negative window flag */
-    Bool matched;
+    Bool isNeg; /* negative window flag: controlled by NEGUpdateState function */
+    Bool keyNegToggled; /* window has been individually toggled using the
+                           "Toggle Window Negative" keybinding (will be unset
+                           when Preserve Toggled Windows means the window
+                           should be using its previous state) */
+    Bool keyNegPreserved; /* window has been individually toggled using the
+                             "Toggle Window Negative" keybinding. This preserves
+                             the window state between screen toggles for Preserve
+                             Toggled Windows. */
 } NEGWindow;
 
 #define GET_NEG_CORE(c) \
@@ -81,32 +95,160 @@ typedef struct _NEGWindow
 static void
 NEGUpdateState (CompWindow *w)
 {
+    NEG_SCREEN (w->screen);
     NEG_WINDOW (w);
 
-    /* check include list */
-    if (matchEval (negGetNegMatch (w->screen), w))
-		nw->isNeg = !nw->isNeg;
-	else
-		nw->isNeg = FALSE;
+    Bool windowState;
+
+    /* Decide whether the given window should be negative or not, depending on
+       the various parameters that can affect this, and set windowState thus */
+
+    windowState = FALSE;
+
+    /* Whole screen toggle state */
+    if (! matchEval (negGetExcludeMatch (w->screen), w)) {
+	if (ns->isNeg)
+	    windowState = !windowState;
+	if (ns->keyNegToggled)
+	    windowState = !windowState;
+    }
+
+    /* Matched set toggle state */
+    if (matchEval (negGetNegMatch (w->screen), w)) {
+	if (ns->matchNeg)
+	    windowState = !windowState;
+	if (ns->keyMatchToggled)
+	    windowState = !windowState;
+    }
+
+    /* Individual window state */
+    if (nw->keyNegToggled)
+	windowState = !windowState;
+
+    /* Now that we know what this window's state should be, push the value to
+       its nw->isNeg. */
+    nw->isNeg = windowState;
 
     /* cause repainting */
     addWindowDamage (w);
 }
 
 static void
-NEGToggleScreen (CompScreen *s)
+NEGUpdateScreen (CompScreen *s)
 {
     CompWindow *w;
 
-    NEG_SCREEN(s);
+    /* update every window */
+    for (w = s->windows; w; w = w->next)
+	NEGUpdateState (w);
+}
+
+/* NEGWindowUpdateKeyToggle: This function updates the window-toggled state
+   bools for a given window if needed for the Preserve Toggled Windows
+   option. */
+static void
+NEGWindowUpdateKeyToggle (CompWindow *w)
+{
+    NEG_WINDOW (w);
+
+    if (!negGetPreserveToggled (w->screen))
+	return;
+
+    if (nw->keyNegToggled)
+	nw->keyNegToggled = FALSE;
+    else if (nw->keyNegPreserved)
+	nw->keyNegToggled = TRUE;
+}
+
+static void
+NEGToggleWindow (CompWindow *w)
+{
+    NEG_WINDOW (w);
+
+    nw->keyNegToggled = !nw->keyNegToggled;
+    nw->keyNegPreserved = !nw->keyNegPreserved;
+
+    /* cause repainting */
+    NEGUpdateState (w);
+}
+
+/* NEGScreenClearToggled: This function clears toggled window state for windows
+   in the Screen set (not matched by Screen Exclusions) if the Auto-Clear config
+   option is set. */
+static void
+NEGScreenClearToggled (CompScreen *s)
+{
+    CompWindow *w;
+
+    if (!negGetClearToggled (s))
+	return;
+
+    for (w = s->windows; w; w = w->next)
+    {
+	if (! matchEval (negGetExcludeMatch (w->screen), w)) {
+	    NEG_WINDOW (w);
+	    nw->keyNegToggled = FALSE;
+	    nw->keyNegPreserved = FALSE;
+	}
+    }
+}
+
+static void
+NEGToggleScreen (CompScreen *s)
+{
+    NEG_SCREEN (s);
+    CompWindow *w;
+
+    /* update toggle state for relevant windows */
+    for (w = s->windows; w; w = w->next)
+	if (negGetPreserveToggled (s) && ! matchEval (negGetExcludeMatch (s), w))
+	    NEGWindowUpdateKeyToggle (w);
+
+    /* Clear toggled window state if the Auto-Clear config option is set */
+    NEGScreenClearToggled(s);
 
     /* toggle screen negative flag */
-    ns->isNeg = !ns->isNeg;
+    ns->keyNegToggled = !ns->keyNegToggled;
 
-    /* toggle every window */
+    NEGUpdateScreen (s);
+}
+
+static void
+NEGMatchClearToggled (CompScreen *s)
+{
+    CompWindow *w;
+
+    if (!negGetClearToggled (s))
+	return;
+
     for (w = s->windows; w; w = w->next)
-	if (w)
-	    NEGUpdateState (w);
+    {
+	if (matchEval (negGetNegMatch (w->screen), w)) {
+	    NEG_WINDOW (w);
+	    nw->keyNegToggled = FALSE;
+	    nw->keyNegPreserved = FALSE;
+	}
+    }
+}
+
+static void
+NEGToggleMatches (CompScreen *s)
+{
+    NEG_SCREEN (s);
+    CompWindow *w;
+
+    /* update toggle state for relevant windows */
+    for (w = s->windows; w; w = w->next)
+	if (negGetPreserveToggled (s) && matchEval (negGetNegMatch (s), w))
+	    NEGWindowUpdateKeyToggle (w);
+
+    /* Clear toggled window state if the Auto-Clear config option is set */
+    NEGMatchClearToggled(s);
+
+    /* toggle match negative flag */
+    ns->keyMatchToggled = !ns->keyMatchToggled;
+
+    NEGUpdateScreen (s);
 }
 
 static Bool
@@ -123,7 +265,7 @@ negToggle (CompDisplay     *d,
     w = findWindowAtDisplay (d, xid);
 
     if (w)
-	NEGUpdateState (w);
+	NEGToggleWindow (w);
 
     return TRUE;
 }
@@ -143,6 +285,25 @@ negToggleAll (CompDisplay     *d,
 
     if (s)
 	NEGToggleScreen (s);
+
+    return TRUE;
+}
+
+static Bool
+negToggleMatched (CompDisplay     *d,
+	      CompAction      *action,
+	      CompActionState state,
+	      CompOption      *option,
+	      int             nOption)
+{
+    CompScreen *s;
+    Window     xid;
+
+    xid = getIntOptionNamed (option, nOption, "root", 0);
+    s = findScreenAtDisplay (d, xid);
+
+    if (s)
+	NEGToggleMatches (s);
 
     return TRUE;
 }
@@ -310,20 +471,20 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 
-    		    constant[0] = 0.5f + 0.5f * RED_SATURATION_WEIGHT;
+		    constant[0] = 0.5f + 0.5f * RED_SATURATION_WEIGHT;
 		    constant[1] = 0.5f + 0.5f * GREEN_SATURATION_WEIGHT;
 		    constant[2] = 0.5f + 0.5f * BLUE_SATURATION_WEIGHT;
 		    constant[3] = 1.0;
 
 		    glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, constant);
 
-    		    /* mark another texture active */
+		    /* mark another texture active */
 		    (*w->screen->activeTexture) (GL_TEXTURE2_ARB);
 
 		    /* enable that texture */
-    		    enableTexture (w->screen, texture, filter);
+		    enableTexture (w->screen, texture, filter);
 
-	    	    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		    glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_INTERPOLATE);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE0);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PREVIOUS);
@@ -340,12 +501,12 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 
-    		    /* color constant */
+		    /* color constant */
 		    constant[3] = attrib->saturation / 65535.0f;
 
 		    glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, constant);
 
-    		    /* if we are not opaque or not fully bright */
+		    /* if we are not opaque or not fully bright */
 		    if (attrib->opacity < OPAQUE ||
 			attrib->brightness != BRIGHT)
 		    {
@@ -410,7 +571,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    /* disable the current texture */
 		    disableTexture (w->screen, texture);
 
-	    	    /* set the texture mode back to replace */
+		    /* set the texture mode back to replace */
 		    glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 		    /* re-activate last texture */
@@ -421,12 +582,12 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    /* fully saturated or fully unsaturated */
 
 		    glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
-    		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
+		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_CONSTANT);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
 
-    		    /* color constant */
+		    /* color constant */
 		    constant[3] = attrib->opacity / 65535.0f;
 		    constant[0] = constant[1] = constant[2] =
 				  constant[3] * attrib->brightness / 65535.0f;
@@ -440,7 +601,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 
 		    glTexEnvfv (GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, constant);
 
-    		    /* draw the window geometry */
+		    /* draw the window geometry */
 		    (*w->drawWindowGeometry) (w);
 		}
 
@@ -490,7 +651,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    /* enable blending */
 		    glEnable (GL_BLEND);
 
-    		    /* color constant */
+		    /* color constant */
 		    constant[3] = attrib->opacity / 65535.0f;
 		    constant[0] = constant[3] * attrib->brightness / 65535.0f;
 		    constant[1] = constant[3] * attrib->brightness / 65535.0f;
@@ -514,7 +675,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 		    glTexEnvf (GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
 
-    		    /* draw the window geometry */
+		    /* draw the window geometry */
 		    (*w->drawWindowGeometry) (w);
 
 		    /* disable blending */
@@ -549,15 +710,8 @@ static void
 NEGWindowAdd (CompScreen *s,
 	      CompWindow *w)
 {
-	NEG_SCREEN (s);
-	NEG_WINDOW (w);
-
-	nw->matched = matchEval (negGetNegMatch (s), w);
-
-	/* nw->isNeg is initialized to FALSE in InitWindow, so we only
-	have to toggle it to TRUE if necessary */
-	if (ns->isNeg && nw->matched)
-		NEGUpdateState (w);
+	/* Run matching logic on the new window */
+	NEGUpdateState (w);
 }
 
 static void
@@ -568,48 +722,42 @@ NEGScreenOptionChanged (CompScreen       *s,
     switch (num)
     {
     case NegScreenOptionToggleByDefault:
-    {
-		CompWindow *w;
-
-		NEG_SCREEN (s);
-
-		ns->isNeg = opt[NegScreenOptionToggleByDefault].value.b;
-
-		for (w = s->windows; w; w = w->next)
-		{
-			NEG_WINDOW (w);
-			if (ns->isNeg)
-			{
-				if (!nw->isNeg)
-					NEGUpdateState (w);
-			}
-			else
-			{
-				if (nw->isNeg)
-					NEGUpdateState (w);
-			}
-		}
-	}
-    break;
-    case NegScreenOptionNegMatch:
 	{
-	    CompWindow *w;
 	    NEG_SCREEN (s);
 
-	    for (w = s->windows; w; w = w->next)
-	    {
-			NEG_WINDOW (w);
+	    /* Clear toggled window state if the Auto-Clear config option is set */
+	    NEGMatchClearToggled(s);
 
-			nw->matched = matchEval (negGetNegMatch (w->screen), w);
+	    ns->matchNeg = negGetToggleByDefault (s);
 
-			if (nw->matched)
-			{
-				if ((ns->isNeg || negGetToggleByDefault (s)) && !nw->isNeg)
-					NEGUpdateState (w);
-			}
-			else if (nw->isNeg)
-				NEGUpdateState (w);
-	    }
+	    NEGUpdateScreen (s);
+	}
+	break;
+    case NegScreenOptionNegMatch:
+	{
+	    NEGUpdateScreen (s);
+	}
+	break;
+    case NegScreenOptionToggleScreenByDefault:
+	{
+	    NEG_SCREEN (s);
+
+	    /* Clear toggled window state if the Auto-Clear config option is set */
+	    NEGScreenClearToggled(s);
+
+	    ns->isNeg = negGetToggleScreenByDefault (s);
+
+	    NEGUpdateScreen (s);
+	}
+	break;
+    case NegScreenOptionExcludeMatch:
+	{
+	    NEGUpdateScreen (s);
+	}
+	break;
+    case NegScreenOptionPreserveToggled:
+	{
+	    NEGUpdateScreen (s);
 	}
 	break;
     default:
@@ -694,8 +842,9 @@ NEGInitDisplay (CompPlugin  *p,
 	return FALSE;
     }
 
-    negSetWindowToggleKeyInitiate (d, negToggle);
-    negSetScreenToggleKeyInitiate (d, negToggleAll);
+    negSetWindowToggleKeyInitiate  (d, negToggle);
+    negSetScreenToggleKeyInitiate  (d, negToggleAll);
+    negSetMatchedToggleKeyInitiate (d, negToggleMatched);
 
     d->base.privates[displayPrivateIndex].ptr = nd;
 
@@ -735,13 +884,19 @@ NEGInitScreen (CompPlugin *p,
     /* initialize the screen variables
      * you know what happens if you don't
      */
-    ns->isNeg = FALSE;
+    ns->isNeg           = negGetToggleScreenByDefault (s);
+    ns->keyNegToggled   = FALSE;
+    ns->matchNeg        = negGetToggleByDefault (s);
+    ns->keyMatchToggled = FALSE;
 
     ns->negFunction      = 0;
     ns->negAlphaFunction = 0;
 
     negSetToggleByDefaultNotify (s, NEGScreenOptionChanged);
     negSetNegMatchNotify (s, NEGScreenOptionChanged);
+    negSetToggleScreenByDefaultNotify (s, NEGScreenOptionChanged);
+    negSetExcludeMatchNotify (s, NEGScreenOptionChanged);
+    negSetPreserveToggledNotify (s, NEGScreenOptionChanged);
 
     /* wrap overloaded functions */
     WRAP (ns, s, drawWindowTexture, NEGDrawWindowTexture);
@@ -781,8 +936,9 @@ NEGInitWindow (CompPlugin *p,
     if (!nw)
 	return FALSE;
 
-    nw->isNeg       = FALSE;
-    nw->matched     = FALSE;
+    nw->isNeg           = FALSE;
+    nw->keyNegToggled   = FALSE;
+    nw->keyNegPreserved = FALSE;
 
     w->base.privates[ns->windowPrivateIndex].ptr = nw;
 
@@ -858,4 +1014,3 @@ getCompPluginInfo(void)
 {
     return &NEGVTable;
 }
-
