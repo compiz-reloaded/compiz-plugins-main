@@ -394,7 +394,8 @@ NEGDrawWindowTexture (CompWindow           *w,
 
     /* only negate window contents; that's the only case
        where w->texture->name == texture->name */
-    if (!nw->isNeg || !(texture->name == w->texture->name) ||
+    if (!nw->isNeg || !((texture->name == w->texture->name) ||
+		(w->type & CompWindowTypeDesktopMask)) ||
 		!(w->screen->fragmentProgram))
 	{
 		/* not negative */
