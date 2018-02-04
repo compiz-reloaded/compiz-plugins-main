@@ -125,12 +125,16 @@ NEGUpdateState (CompWindow *w)
     if (nw->keyNegToggled)
 	windowState = !windowState;
 
-    /* Now that we know what this window's state should be, push the value to
-       its nw->isNeg. */
-    nw->isNeg = windowState;
+    if (nw->isNeg != windowState)
+    {
+		/* Now that we know what this window's state should be,
+		 * push the value to its nw->isNeg.
+		 */
+		nw->isNeg = windowState;
 
-    /* cause repainting */
-    addWindowDamage (w);
+		/* cause repainting */
+		addWindowDamage (w);
+	}
 }
 
 static void
