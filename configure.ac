@@ -82,6 +82,9 @@ AC_SUBST(metadatadir)
 compdatadir=$datadir/compiz
 AC_SUBST(compdatadir)
 
+pluginiconsdir=$datadir/compiz/icons
+AC_SUBST(pluginiconsdir)
+
 dnl ============================================================
 dnl Check for the pkg-config path.
 if test x"$PKG_CONFIG_PATH" = x; then
@@ -156,6 +159,7 @@ data/filters/Makefile
 images/Makefile
 images/Default/Makefile
 Makefile
+icons/Makefile
 metadata/Makefile
 include/Makefile
 src/Makefile

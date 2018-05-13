@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = metadata src po include data images
+SUBDIRS = metadata src po include data images icons
 
 EXTRA_DIST =		      \
 	AUTHORS		       \
