@@ -82,7 +82,7 @@ AC_SUBST(metadatadir)
 compdatadir=$datadir/compiz
 AC_SUBST(compdatadir)
 
-pluginiconsdir=$datadir/compiz/icons
+pluginiconsdir=$datadir/compiz/icons/hicolor
 AC_SUBST(pluginiconsdir)
 
 dnl ============================================================
