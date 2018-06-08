@@ -5,7 +5,7 @@
  * session.c
  *
  * Copyright (c) 2008 Travis Watkins <amaranth@ubuntu.com>
- * Copyright (c) 2008 Danny Baumann <maniac@opencompositing.org>
+ * Copyright (c) 2008 Danny Baumann <dannybaumann@web.de>
  * Copyright (c) 2006 Patrick Niklaus
  *
  *

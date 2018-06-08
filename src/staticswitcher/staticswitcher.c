@@ -5,7 +5,7 @@
  * staticswitcher.c
  *
  * Copyright : (C) 2008 by Danny Baumann
- * E-mail    : maniac@compiz-fusion.org
+ * E-mail    : dannybaumann@web.de
  *
  * Based on switcher.c:
  * Copyright : (C) 2007 David Reveman

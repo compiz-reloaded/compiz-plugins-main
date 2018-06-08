@@ -1,10 +1,10 @@
 /*
  * Beryl Snap Plugin
  * Author : Guillaume "iXce" Seguin
- * Email  : ixce@beryl-project.org
+ * Email  : guillaume@segu.in
  *
  * Ported by : Patrick "marex" Niklaus
- * Email     : marex@beryl-project.org
+ * Email     : patrick.niklaus@student.kit.edu
  *
  * Copyright (C) 2007 Guillaume Seguin
  *

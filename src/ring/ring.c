@@ -5,7 +5,7 @@
  * ring.c
  *
  * Copyright : (C) 2007 by Danny Baumann
- * E-mail    : maniac@opencompositing.org
+ * E-mail    : dannybaumann@web.de
  *
  * Based on scale.c and switcher.c:
  * Copyright : (C) 2007 David Reveman

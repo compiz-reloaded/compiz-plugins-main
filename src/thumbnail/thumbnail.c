@@ -5,7 +5,7 @@
  * thumbnail.c
  *
  * Copyright : (C) 2007 by Dennis Kasprzyk
- * E-mail    : onestone@beryl-project.org
+ * E-mail    : onestone@compiz.org
  *
  * Based on thumbnail.c:
  * Copyright : (C) 2007 Stjepan Glavina

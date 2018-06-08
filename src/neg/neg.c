@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2006 Darryll Truchan <moppsy@comcast.net>
  *
- * Pixel shader negating by Dennis Kasprzyk <onestone@beryl-project.org>
- * Usage of matches by Danny Baumann <maniac@beryl-project.org>
+ * Pixel shader negating by Dennis Kasprzyk <onestone@compiz.org>
+ * Usage of matches by Danny Baumann <dannybaumann@web.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

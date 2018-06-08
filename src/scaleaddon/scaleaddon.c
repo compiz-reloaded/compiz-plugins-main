@@ -5,7 +5,7 @@
  * scaleaddon.c
  *
  * Copyright : (C) 2007 by Danny Baumann
- * E-mail    : maniac@opencompositing.org
+ * E-mail    : dannybaumann@web.de
  *
  * Organic scale mode taken from Beryl's scale.c, written by
  * Copyright : (C) 2006 Diogo Ferreira

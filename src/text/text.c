@@ -6,8 +6,8 @@
  *
  * Copyright: (C) 2006-2007 Patrick Niklaus, Danny Baumann, Dennis Kasprzyk
  * Authors: Patrick Niklaus <marex@opencompsiting.org>
- *	    Danny Baumann   <maniac@opencompositing.org>
- *	    Dennis Kasprzyk <onestone@opencompositing.org>
+ *	    Danny Baumann   <dannybaumann@web.de>
+ *	    Dennis Kasprzyk <onestone@compiz.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

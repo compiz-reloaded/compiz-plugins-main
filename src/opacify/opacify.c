@@ -1,8 +1,8 @@
 /**
  * Compiz Opacify 
  *
- * Copyright (c) 2006 Kristian Lyngstøl <kristian@beryl-project.org>
- * Ported to Compiz and BCOP usage by Danny Baumann <maniac@beryl-project.org>
+ * Copyright (c) 2006 Kristian Lyngstøl <kristian@bohemians.org>
+ * Ported to Compiz and BCOP usage by Danny Baumann <dannybaumann@web.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

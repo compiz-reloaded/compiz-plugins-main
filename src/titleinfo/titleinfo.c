@@ -5,7 +5,7 @@
  * titleinfo.c
  *
  * Copyright : (C) 2009 by Danny Baumann
- * E-mail    : maniac@compiz.org
+ * E-mail    : dannybaumann@web.de
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

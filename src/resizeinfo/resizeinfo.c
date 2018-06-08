@@ -4,10 +4,10 @@
  *
  * resizeinfo.c
  *
- * Copyright (c) 2007 Robert Carr <racarr@opencompositing.org>
+ * Copyright (c) 2007 Robert Carr <racarr@canonical.com>
  *
  * Compiz resize atom usage and general cleanups by
- * Copyright (c) 2007 Danny Baumann <maniac@opencompositing.org>
+ * Copyright (c) 2007 Danny Baumann <dannybaumann@web.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

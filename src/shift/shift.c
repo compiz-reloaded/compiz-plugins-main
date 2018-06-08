@@ -5,12 +5,12 @@
  * shift.c
  *
  * Copyright : (C) 2007 by Dennis Kasprzyk
- * E-mail    : onestone@opencompositing.org
+ * E-mail    : onestone@compiz.org
  *
  *
  * Based on ring.c:
  * Copyright : (C) 2007 by Danny Baumann
- * E-mail    : maniac@opencompositing.org
+ * E-mail    : dannybaumann@web.de
  *
  * Based on scale.c and switcher.c:
  * Copyright : (C) 2007 David Reveman
@@ -18,7 +18,7 @@
  *
  * Rounded corner drawing taken from wall.c:
  * Copyright : (C) 2007 Robert Carr
- * E-mail    : racarr@beryl-project.org
+ * E-mail    : racarr@canonical.com
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

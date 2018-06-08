@@ -24,7 +24,7 @@
  * E-mail                       : mikeslegeir@mail.utexas.edu>
  *
  * Particle system added by : (C) 2006 Dennis Kasprzyk
- * E-mail                   : onestone@beryl-project.org
+ * E-mail                   : onestone@compiz.org
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

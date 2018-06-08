@@ -3,12 +3,12 @@
  *
  * vpswitch.c
  *
- * Copyright (c) 2007 Dennis Kasprzyk <onestone@opencompositing.org>
+ * Copyright (c) 2007 Dennis Kasprzyk <onestone@compiz.org>
  *
  * Go-to-numbered-viewport functionality by
  * 
- * Copyright (c) 2007 Robert Carr <racarr@opencompositing.org>
- *           (c) 2007 Danny Baumann <maniac@opencompositing.org>
+ * Copyright (c) 2007 Robert Carr <racarr@canonical.com>
+ *           (c) 2007 Danny Baumann <dannybaumann@web.de>
  *
  * Go-to-specific-viewport functionality by
  *
