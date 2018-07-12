@@ -25,5 +25,6 @@ icons_DATA =				\
 	plugin-workarounds.svg
 
 install-data-hook:
-	$(shell which gtk-update-icon-cache &> /dev/null &&	\
-	gtk-update-icon-cache -f -t $(DESTDIR)$(pluginiconsdir))
+	if test x$(DESTDIR) = x; then \
+		$(UPDATE_ICON_CACHE) -f -t $(pluginiconsdir); \
+	fi

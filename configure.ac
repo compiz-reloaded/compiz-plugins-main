@@ -150,6 +150,8 @@ if test "$use_jpeg" = yes; then
   AC_DEFINE(USE_JPEG, 1, [Build jpeg plugin])
 fi
 
+AC_PATH_PROG(UPDATE_ICON_CACHE, gtk-update-icon-cache)
+
 AC_OUTPUT([
 compiz-text.pc
 compiz-mousepoll.pc
