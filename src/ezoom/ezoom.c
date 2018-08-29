@@ -129,7 +129,7 @@ typedef enum _ZsOpt
     SOPT_RESTRAIN_MOUSE,
     SOPT_RESTRAIN_MARGIN,
     SOPT_MOUSE_PAN,
-    SOPT_MINIMUM_ZOOM,
+    SOPT_MAXIMUM_ZOOM,
     SOPT_AUTOSCALE_MIN,
     SOPT_NUM
 } ZoomScreenOptions;
@@ -829,8 +829,8 @@ setScale (CompScreen *s, int out, float value)
 	cursorZoomInactive (s);
     }
 
-    if (value < zs->opt[SOPT_MINIMUM_ZOOM].value.f)
-	value = zs->opt[SOPT_MINIMUM_ZOOM].value.f;
+    if (value < 1.0f / zs->opt[SOPT_MAXIMUM_ZOOM].value.i)
+	value = 1.0f / zs->opt[SOPT_MAXIMUM_ZOOM].value.i;
 
     zs->zooms[out].newZoom = value;
     damageScreen(s);
@@ -1757,7 +1757,7 @@ zoomSpecific1 (CompDisplay     *d,
     ZOOM_DISPLAY (d);
 
     return zoomSpecific (d, action, state, option, nOption,
-			 zd->opt[DOPT_SPECIFIC_LEVEL_1].value.f);
+			 1.0f / zd->opt[DOPT_SPECIFIC_LEVEL_1].value.f);
 }
 
 static Bool
@@ -1770,7 +1770,7 @@ zoomSpecific2 (CompDisplay     *d,
     ZOOM_DISPLAY (d);
 
     return zoomSpecific (d, action, state, option, nOption,
-			 zd->opt[DOPT_SPECIFIC_LEVEL_2].value.f);
+			 1.0f / zd->opt[DOPT_SPECIFIC_LEVEL_2].value.f);
 }
 
 static Bool
@@ -1783,7 +1783,7 @@ zoomSpecific3 (CompDisplay     *d,
     ZOOM_DISPLAY (d);
 
     return zoomSpecific (d, action, state, option, nOption,
-			 zd->opt[DOPT_SPECIFIC_LEVEL_3].value.f);
+			 1.0f / zd->opt[DOPT_SPECIFIC_LEVEL_3].value.f);
 }
 
 /* Zooms to fit the active window to the screen without cutting
@@ -2108,7 +2108,7 @@ focusTrack (CompDisplay *d,
 	int height = w->height + w->input.top + w->input.bottom;
 	float scale = MAX ((float) width/w->screen->outputDev[out].width, 
 			   (float) height/w->screen->outputDev[out].height);
-	if (scale > zs->opt[SOPT_AUTOSCALE_MIN].value.f) 
+	if (scale > 1.0f / zs->opt[SOPT_AUTOSCALE_MIN].value.i)
 		setScale (w->screen, out, scale);
     }
     zoomAreaToWindow (w);
@@ -2172,9 +2172,9 @@ static const CompMetadataOptionInfo zoomDisplayOptionInfo[] = {
     { "zoom_specific_1_key", "key", 0, zoomSpecific1, 0 },
     { "zoom_specific_2_key", "key", 0, zoomSpecific2, 0 },
     { "zoom_specific_3_key", "key", 0, zoomSpecific3, 0 },
-    { "zoom_spec1", "float", "<min>0.1</min><max>1.0</max><default>1.0</default>", 0, 0 },
-    { "zoom_spec2", "float", "<min>0.1</min><max>1.0</max><default>0.5</default>", 0, 0 },
-    { "zoom_spec3", "float", "<min>0.1</min><max>1.0</max><default>0.2</default>", 0, 0 },
+    { "zoom_spec1", "float", "<min>1.0</min><max>10.0</max><default>1.0</default>", 0, 0 },
+    { "zoom_spec2", "float", "<min>1.0</min><max>10.0</max><default>2.0</default>", 0, 0 },
+    { "zoom_spec3", "float", "<min>1.0</min><max>10.0</max><default>5.0</default>", 0, 0 },
     { "spec_target_focus", "bool", "<default>true</default>", 0, 0 },
     { "pan_left_key", "key", 0, zoomPanLeft, 0 },
     { "pan_right_key", "key", 0, zoomPanRight, 0 },
@@ -2207,8 +2207,8 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "restrain_mouse", "bool", "<default>false</default>", 0, 0 },
     { "restrain_margin", "int", "<default>5</default>", 0, 0 },
     { "mouse_pan", "bool", "<default>false</default>", 0, 0 },
-    { "minimum_zoom", "float", "<max>1.00</max>", 0, 0 },
-    { "autoscale_min", "float", "<max>1.00</max>", 0, 0 }
+    { "maximum_zoom", "int", "<max>50</max>", 0, 0 },
+    { "autoscale_min", "int", "<max>50</max>", 0, 0 }
 };
 
 static CompOption *

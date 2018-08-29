@@ -63,9 +63,9 @@
 		    <_short>Specific zoom factor 1</_short>
 		    <_long>Zoom level to go to when triggering hotkey 1</_long>
 		    <default>1.0</default>
-		    <min>0.1</min>
-		    <max>1.0</max>
-		    <precision>0.01</precision>
+		    <min>1.0</min>
+		    <max>10.0</max>
+		    <precision>0.1</precision>
 		</option>
 		<option type="key" name="zoom_specific_2_key">
 		    <_short>Zoom Specific Level 2</_short>
@@ -75,10 +75,10 @@
 		<option type="float" name="zoom_spec2">
 		    <_short>Specific zoom factor 2</_short>
 		    <_long>Zoom level to go to when triggering hotkey 2</_long>
-		    <default>0.5</default>
-		    <min>0.1</min>
-		    <max>1.0</max>
-		    <precision>0.01</precision>
+		    <default>2</default>
+		    <min>1.0</min>
+		    <max>10.0</max>
+		    <precision>0.1</precision>
 		</option>
 		<option type="key" name="zoom_specific_3_key">
 		    <_short>Zoom Specific Level 3</_short>
@@ -88,10 +88,10 @@
 		<option type="float" name="zoom_spec3">
 		    <_short>Specific zoom factor 3</_short>
 		    <_long>Zoom level to go to when triggering hotkey 3</_long>
-		    <default>0.2</default>
-		    <min>0.1</min>
-		    <max>1.0</max>
-		    <precision>0.01</precision>
+		    <default>5</default>
+		    <min>1.0</min>
+		    <max>10.0</max>
+		    <precision>0.1</precision>
 		</option>
 		<option type="bool" name="spec_target_focus">
 		    <_short>Target Focused Window on Specific level</_short>
@@ -151,13 +151,12 @@
 		    <max>3</max>
 		    <precision>0.01</precision>
 		</option>
-		<option type="float" name="minimum_zoom">
-		    <_short>Minimum zoom factor</_short>
-		    <_long>The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of 0.25 equals 4x zoom.</_long>
-		    <default>0.125</default>
-		    <min>0.000001</min>
-		    <max>0.999999</max>
-		    <precision>0.0001</precision>
+		<option type="int" name="maximum_zoom">
+		    <_short>Maximum zoom factor</_short>
+		    <_long>The maximum allowed zoom factor. Zoom will not go further than this value eg: 8x.</_long>
+		    <default>15</default>
+		    <min>2</min>
+		    <max>50</max>
 		</option>
 	    </group>
 	    <group>
@@ -234,12 +233,12 @@
 		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking.</_long>
 		    <default>false</default>
 		</option>
-		<option type="float" name="autoscale_min">
+		<option type="int" name="autoscale_min">
 		    <_short>Autoscale threshold</_short>
-		    <_long>Only change zoom level (scale) on focus change if the target value is higher than this. Prevents zooming too far in on small popups etc.</_long>
-		    <default>0.25</default>
-		    <min>0.000001</min>
-		    <max>0.999999</max>
+		    <_long>Only change zoom level (scale) on focus change if we don't zoom more than that value. Prevents zooming too far in on small popups etc.</_long>
+		    <default>4</default>
+		    <min>2</min>
+		    <max>50</max>
 		    <precision>0.0001</precision>
 		</option>
 		<option type="bool" name="always_focus_fit_window">
