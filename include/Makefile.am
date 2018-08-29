@@ -7,4 +7,5 @@ endif
 compizinclude_HEADERS = \
 	compiz-animation.h \
 	compiz-mousepoll.h \
+	compiz-focuspoll.h \
 	$(textinclude)
