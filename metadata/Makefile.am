@@ -21,6 +21,7 @@ xml_in_files = 	         \
 	colorfilter.xml.in    \
 	expo.xml.in           \
 	ezoom.xml.in          \
+	focuspoll.xml.in      \
 	mag.xml.in            \
 	mousepoll.xml.in      \
 	neg.xml.in            \

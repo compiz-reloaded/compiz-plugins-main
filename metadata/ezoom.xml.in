@@ -5,6 +5,7 @@
 	    <relation type="after">
 		<plugin>expo</plugin>
 		<plugin>mousepoll</plugin>
+		<plugin>focuspoll</plugin>
 		<plugin>showmouse</plugin>
 	    </relation>
 	    <relation type="before">
@@ -13,6 +14,7 @@
 	    </relation>
 	    <requirement>
 		<plugin>mousepoll</plugin>
+		<plugin>focuspoll</plugin>
 	    </requirement>
 	</deps>
 	<_short>Enhanced Zoom Desktop</_short>
@@ -226,12 +228,17 @@
 		<_short>Focus Tracking</_short>
 		<option type="bool" name="follow_focus">
 		    <_short>Enable focus tracking</_short>
-		    <_long>Move the zoom area when focus changes.</_long>
-		    <default>true</default>
+		    <_long>Move the zoom area when focus changes. You may see the mousepoll and focuspoll modules options for more</_long>
+		    <default>false</default>
+		</option>
+		<option type="bool" name="follow_window_focus">
+		    <_short>Enable focus tracking when switching windows</_short>
+		    <_long>Move the zoom area to the center of a newly switched window.</_long>
+		    <default>false</default>
 		</option>
 		<option type="bool" name="focus_fit_window">
-		    <_short>Fit zoom level to window on focus change</_short>
-		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking.</_long>
+		    <_short>Fit zoom level to newly switched window</_short>
+		    <_long>Fit the zoomed area to the window when it switches.</_long>
 		    <default>false</default>
 		</option>
 		<option type="int" name="autoscale_min">
@@ -244,15 +251,39 @@
 		</option>
 		<option type="bool" name="always_focus_fit_window">
 		    <_short>Always fit to window on focus track</_short>
-		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking. Even when not initially zoomed in. </_long>
+		    <_long>Fit the zoomed area to the window when the zoomed area moves as a result of focus tracking, even when not initially zoomed in. </_long>
 		    <default>false</default>
 		</option>
-		<option type="int" name="follow_focus_delay">
-		    <_short>Follow Focus Delay</_short>
-		    <_long>Only attempt to center newly focused windows if the mouse hasn't moved in this amount of seconds. Use this to avoid jumping when using sloppy focus.</_long>
+		<option type="float" name="follow_focus_delay">
+		    <_short>Tracking delay from mouse to focus mode</_short>
+		    <_long>Only attempt to follow focus if the mouse hasn't moved in this amount of seconds. Use this to avoid zoom jumping everywhere on the screen due to external events while trying to use the mouse.</_long>
 		    <default>1</default>
 		    <min>0</min>
-		    <max>15</max>
+		    <max>5</max>
+		    <precision>0.1</precision>
+		</option>
+		<option type="float" name="follow_mouse_delay">
+		    <_short>Tracking delay from focus to mouse mode</_short>
+		    <_long>Only attempt to follow mouse if the focus hasn't moved in this amount of seconds. Use this to avoid jumping only due to small accidental mouse movements. This does not have effect if the mouse warp option is enabled.</_long>
+		    <default>0.1</default>
+		    <min>0</min>
+		    <max>5</max>
+		    <precision>0.1</precision>
+		</option>
+		<option type="bool" name="always_center_mouse">
+		    <_short>Keep Mouse centered inside zoom area</_short>
+		    <_long>If activated, the mouse will always be centered when in mouse sync mode, if not, it will move around the zoom area</_long>
+		    <default>false</default>
+		</option>
+		<option type="bool" name="restrain_zoom_to_screen">
+		    <_short>Restrain the zoom area inside the screen</_short>
+		    <_long>If enabled, zoom area will stay inside the screen, if not, zoom area can go over screen borders (it will show empty black space)</_long>
+		    <default>true</default>
+		</option>
+		<option type="bool" name="warp_mouse_to_focus">
+		    <_short>When switching focus back to mouse, warp mouse inside the zoomed area</_short>
+		    <_long>When following a keyboard focus, one can want the mouse to come back into the field of vision before moving it. avoids jumping to another part of the screen when switching mouse/keyboard focus.</_long>
+		    <default>true</default>
 		</option>
 	    </group>
 	    <group>
@@ -262,7 +293,7 @@
 		    <_long>Zoom Change Speed</_long>
 		    <default>25</default>
 		    <min>0.1</min>
-		    <max>100</max>
+		    <max>500</max>
 		    <precision>0.1</precision>
 		</option>
 		<option type="float" name="timestep">
@@ -277,6 +308,11 @@
 		    <_short>Filter Linear</_short>
 		    <_long>Use linear filter when zoomed in</_long>
 		    <default>true</default>
+		</option>
+		<option type="bool" name="instant_pan">
+		    <_short>Move the zoom area instantly</_short>
+		    <_long>When enabled, zoom area is warped instantly to focus position. When disabled, zoom area makes a smooth move to the focus position</_long>
+		    <default>false</default>
 		</option>
 	    </group>
 	</screen>

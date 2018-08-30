@@ -10,6 +10,7 @@ EXTRA_DIST =		      \
 	autogen.sh	       \
 	compiz-animation.pc.in \
 	compiz-mousepoll.pc.in \
+	compiz-focuspoll.pc.in \
 	compiz-text.pc.in      \
 	intltool-extract.in    \
 	intltool-merge.in      \
@@ -27,7 +28,7 @@ textdata = compiz-text.pc
 endif
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = $(textdata) compiz-animation.pc compiz-mousepoll.pc
+pkgconfig_DATA = $(textdata) compiz-animation.pc compiz-mousepoll.pc compiz-focuspoll.pc
 
 # Build ChangeLog from GIT  history
 ChangeLog:

@@ -4,6 +4,7 @@ SUBDIRS = \
     colorfilter    \
     expo           \
     ezoom          \
+    focuspoll      \
     jpeg           \
     mag            \
     mousepoll      \

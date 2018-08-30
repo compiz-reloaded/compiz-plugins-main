@@ -77,7 +77,14 @@
 
 #include <compiz-core.h>
 #include <compiz-mousepoll.h>
- 
+#include <compiz-focuspoll.h>
+
+// Some Users wish to see better the edges of the screen. Without this, mouse
+// reaches the border of the zoomarea around screen edges, and mouse can become
+// invisible (especially around bottom/right). Zooming out a bit allows to see
+// both the edge and the mouse reaching the edge.
+#define EZOOM_SCREEN_BORDER_OFFSET 0.92
+
 static CompMetadata zoomMetadata;
 
 static int displayPrivateIndex;
@@ -113,12 +120,18 @@ typedef enum _ZdOpt
 typedef enum _ZsOpt
 {
     SOPT_FOLLOW_FOCUS = 0,
+    SOPT_FOLLOW_WINDOW_FOCUS,
     SOPT_SPEED,
     SOPT_TIMESTEP,
     SOPT_ZOOM_FACTOR,
     SOPT_FILTER_LINEAR,
+    SOPT_INSTANT_PAN,
     SOPT_SYNC_MOUSE,
     SOPT_FOCUS_DELAY,
+    SOPT_MOUSE_DELAY,
+    SOPT_ALWAYS_CENTER_MOUSE,
+    SOPT_RESTRAIN_ZOOM_TO_SCREEN,
+    SOPT_WARP_MOUSE_TO_FOCUS,
     SOPT_PAN_FACTOR,
     SOPT_FOCUS_FIT_WINDOW,
     SOPT_ALLWAYS_FOCUS_FIT_WINDOW,
@@ -163,6 +176,7 @@ typedef struct _CursorTexture
 typedef struct _ZoomDisplay {
     HandleEventProc handleEvent;
     MousePollFunc   *mpFunc;
+    FocusPollFunc   *fpFunc;
 
     int		    screenPrivateIndex;
     Bool            fixesSupported;
@@ -207,16 +221,21 @@ typedef struct _ZoomScreen {
     PreparePaintScreenProc preparePaintScreen;
     DonePaintScreenProc	   donePaintScreen;
     PaintOutputProc	   paintOutput;
-    PositionPollingHandle  pollHandle;
+    PositionPollingHandle  pollMouseHandle;
+    PositionPollingHandle  pollFocusHandle;
     CompOption             opt[SOPT_NUM];
     ZoomArea               *zooms;
     int                    nZooms;
     int                    mouseX;
     int                    mouseY;
+    int                    focusX;
+    int                    focusY;
     unsigned long int      grabbed;
     int	                   grabIndex; // for zoomBox
-    time_t                 lastChange;
+    double                 lastMouseChange;
+    double                 lastFocusChange;
     CursorTexture          cursor;
+    Bool		   nonMouseFocusTracking;
     Bool                   cursorInfoSelected;
     Bool                   cursorHidden;
     Box			   box;
@@ -224,6 +243,7 @@ typedef struct _ZoomScreen {
 
 static void syncCenterToMouse (CompScreen *s);
 static void updateMouseInterval (CompScreen *s, int x, int y);
+static void updateFocusInterval (CompScreen *s, int x, int y, int width, int height);
 static void cursorZoomActive (CompScreen *s);
 static void cursorZoomInactive (CompScreen *s);
 static void restrainCursor (CompScreen *s, int out);
@@ -319,6 +339,39 @@ isZoomed (CompScreen *s, int out)
     return FALSE;
 }
 
+/* Return current time in seconds */
+static inline double
+getTime (void)
+{
+    struct timespec tp;
+    clock_gettime (CLOCK_MONOTONIC, &tp);
+    return tp.tv_sec + tp.tv_nsec / 1e9;
+}
+
+/* This returns the proper translation correction depending on the desired
+ * centering (exact center, small overflow, or exact screen fit) */
+static float
+getTranslateCorrection (ZoomScreen *zs, float zoom)
+{
+    if (zs->opt[SOPT_ALWAYS_CENTER_MOUSE].value.b)
+    {
+	// Bring to X,Y position the exact zoom center instead of
+	// fitting screen
+	return 1.0;
+    }
+    else if (!zs->opt[SOPT_RESTRAIN_ZOOM_TO_SCREEN].value.b)
+    {
+	// Overflow a bit beyond screen so we can clearly see the corner and the
+	// mouse
+	return (1.0f - zoom) / EZOOM_SCREEN_BORDER_OFFSET;
+    }
+    else
+    {
+	// Keep an exact fit to screen
+	return 1.0f - zoom;
+    }
+}
+
 /* Returns the distance to the defined edge in zoomed pixels.  */
 static int
 distanceToEdge (CompScreen *s, int out, ZoomEdge edge)
@@ -344,10 +397,26 @@ distanceToEdge (CompScreen *s, int out, ZoomEdge edge)
 
 /* Update/set translations based on zoom level and real translate.  */
 static void
-updateActualTranslates (ZoomArea *za)
+updateActualTranslates (ZoomScreen *zs, ZoomArea *za)
 {
-    za->xtrans = -za->realXTranslate * (1.0f - za->currentZoom);
-    za->ytrans = za->realYTranslate * (1.0f - za->currentZoom);
+    float translateCorrection;
+    float limit = 0.5 * (1.0f - za->currentZoom);
+
+    translateCorrection = getTranslateCorrection(zs, za->currentZoom);
+
+    za->xtrans = -za->realXTranslate * translateCorrection;
+    za->ytrans =  za->realYTranslate * translateCorrection;
+
+    if (zs->opt[SOPT_RESTRAIN_ZOOM_TO_SCREEN].value.b) {
+	if (za->xtrans < -limit)
+	    za->xtrans = -limit;
+	if (za->xtrans > limit)
+	    za->xtrans = limit;
+	if (za->ytrans < -limit)
+	    za->ytrans = -limit;
+	if (za->ytrans > limit)
+	    za->ytrans = limit;
+    }
 }
 
 /* Returns true if the head in question is currently moving.
@@ -390,7 +459,6 @@ initialiseZoomArea (ZoomArea *za, int out)
     za->realYTranslate = 0.0f;
     za->viewport = ~0;
     za->locked = FALSE;
-    updateActualTranslates (za);
 }
 
 /* Adjust the velocity in the z-direction.  */
@@ -505,7 +573,7 @@ zoomPreparePaintScreen (CompScreen *s,
 
 		adjustXYVelocity (s, out, chunk);
 		adjustZoomVelocity (s, out, chunk);
-		updateActualTranslates (&zs->zooms[out]);
+		updateActualTranslates (zs, &zs->zooms[out]);
 		if (!isZoomed (s, out))
 		{
 		    zs->zooms[out].xVelocity = zs->zooms[out].yVelocity =
@@ -683,8 +751,6 @@ constrainZoomTranslate (CompScreen *s)
  * mouse pointer. This is to allow input, and is NOT necessary
  * when input redirection is available to us or if we're cheating
  * and using a scaled mouse cursor to imitate IR.
- * The center is not the center of the screen. This is the target-center;
- * that is, it's the point that's the same regardless of zoom level.
  */
 static void
 setCenter (CompScreen *s, int x, int y, Bool instant)
@@ -701,13 +767,13 @@ setCenter (CompScreen *s, int x, int y, Bool instant)
     zs->zooms[out].yTranslate = (float)
 	((y - o->region.extents.y1) - o->height / 2) / (o->height);
 
-    if (instant)
+    if (instant || zs->opt[SOPT_INSTANT_PAN].value.b)
     {
 	zs->zooms[out].realXTranslate = zs->zooms[out].xTranslate;
 	zs->zooms[out].realYTranslate = zs->zooms[out].yTranslate;
 	zs->zooms[out].yVelocity = 0.0f;
 	zs->zooms[out].xVelocity = 0.0f;
-	updateActualTranslates (&zs->zooms[out]);
+	updateActualTranslates (zs, &zs->zooms[out]);
     }
 
     if (zs->opt[SOPT_MOUSE_PAN].value.b)
@@ -747,7 +813,7 @@ setZoomArea (CompScreen *s,
     {
 	zs->zooms[out].realXTranslate = zs->zooms[out].xTranslate;
 	zs->zooms[out].realYTranslate = zs->zooms[out].yTranslate;
-	updateActualTranslates (&zs->zooms[out]);
+	updateActualTranslates (zs, &zs->zooms[out]);
     }
 
     if (zs->opt[SOPT_MOUSE_PAN].value.b)
@@ -795,10 +861,25 @@ enableMousePolling (CompScreen *s)
 {
     ZOOM_SCREEN (s);
     ZOOM_DISPLAY (s->display);
-    zs->pollHandle = 
+    zs->pollMouseHandle =
 	(*zd->mpFunc->addPositionPolling) (s, updateMouseInterval);
-    zs->lastChange = time(NULL);
+    zs->lastMouseChange = getTime ();
     (*zd->mpFunc->getCurrentPosition) (s, &zs->mouseX, &zs->mouseY);
+}
+
+/* Enables polling of focus position */
+static void
+enableFocusPolling (CompScreen *s)
+{
+    ZOOM_SCREEN (s);
+    ZOOM_DISPLAY (s->display);
+    if (!zs->opt[SOPT_FOLLOW_FOCUS].value.b)
+	return;
+    if (!zd->fpFunc)
+	return;
+    zs->pollFocusHandle =
+	(*zd->fpFunc->addFocusPolling) (s, updateFocusInterval);
+    zs->lastFocusChange = getTime ();
 }
 
 /* Sets the zoom (or scale) level. 
@@ -816,8 +897,10 @@ setScale (CompScreen *s, int out, float value)
 	value = 1.0f;
     else
     {
-	if (!zs->pollHandle)
+	if (!zs->pollMouseHandle)
 	    enableMousePolling (s);
+	if (!zs->pollFocusHandle)
+	    enableFocusPolling (s);
 	zs->grabbed |= (1 << zs->zooms[out].output);
 	cursorZoomActive (s);
     }
@@ -866,7 +949,7 @@ syncCenterToMouse (CompScreen *s)
     out = outputDeviceForPoint (s, zs->mouseX, zs->mouseY);
     o = &s->outputDev[out];
 
-    if (!isInMovement (s, out))
+    if (!isInMovement (s, out) || zs->nonMouseFocusTracking)
 	return;
 
     x = (int) ((zs->zooms[out].realXTranslate * o->width) +
@@ -897,15 +980,30 @@ convertToZoomed (CompScreen *s,
     ZOOM_SCREEN (s);
 
     za = &zs->zooms[out];
+
+    float translateCorrection = getTranslateCorrection (zs, za->currentZoom);
+    float xTranslate  = za->realXTranslate * translateCorrection ;
+    float yTranslate  = za->realYTranslate * translateCorrection ;
+    float limit       = 0.5 * (1.0 - za->currentZoom);
+
+    if (zs->opt[SOPT_RESTRAIN_ZOOM_TO_SCREEN].value.b) {
+	if (xTranslate < -limit)
+	    xTranslate = -limit;
+	if (xTranslate > limit)
+	    xTranslate = limit;
+	if (yTranslate < -limit)
+	    yTranslate = -limit;
+	if (yTranslate > limit)
+	    yTranslate = limit;
+    }
+
     x -= o->region.extents.x1;
     y -= o->region.extents.y1;
-    *resultX = x - (za->realXTranslate *
-		    (1.0f - za->currentZoom) * o->width) - o->width/2;
+    *resultX = x - (xTranslate * o->width) - o->width/2;
     *resultX /= za->currentZoom;
     *resultX += o->width/2;
     *resultX += o->region.extents.x1;
-    *resultY = y - (za->realYTranslate *
-		    (1.0f - za->currentZoom) * o->height) - o->height/2;
+    *resultY = y - (yTranslate * o->height) - o->height/2;
     *resultY /= za->currentZoom;
     *resultY += o->height/2;
     *resultY += o->region.extents.y1;
@@ -1127,7 +1225,7 @@ restrainCursor (CompScreen *s, int out)
 
     if (zs->zooms[out].currentZoom == 1.0f)
     {
-	zs->lastChange = time(NULL);
+	zs->lastMouseChange = getTime ();
 	(*zd->mpFunc->getCurrentPosition) (s, &zs->mouseX, &zs->mouseY);
     }
 
@@ -1204,15 +1302,89 @@ cursorMoved (CompScreen *s)
 static void
 updateMousePosition (CompScreen *s, int x, int y)
 {
+    double localTime = getTime ();
     ZOOM_SCREEN(s);
     int out; 
     zs->mouseX = x;
     zs->mouseY = y;
     out = outputDeviceForPoint (s, zs->mouseX, zs->mouseY);
-    zs->lastChange = time(NULL);
-    if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out))
-	setCenter (s, zs->mouseX, zs->mouseY, TRUE);
+
+    if (zs->opt[SOPT_SYNC_MOUSE].value.b)
+    {
+	if (zs->opt[SOPT_WARP_MOUSE_TO_FOCUS].value.b) {
+	    CompOutput *o = &s->outputDev[out];
+	    int        zoomedMouseX, zoomedMouseY;
+	    Bool       pointerInZoom;
+
+	    convertToZoomed (s, out, zs->mouseX, zs->mouseY,
+			     &zoomedMouseX, &zoomedMouseY);
+	    pointerInZoom = zoomedMouseX >= o->region.extents.x1
+			 && zoomedMouseX <  o->region.extents.x1 + o->width
+			 && zoomedMouseY >= o->region.extents.y1
+			 && zoomedMouseY <  o->region.extents.y1 + o->height;
+
+	    if (zs->lastMouseChange <= zs->lastFocusChange &&
+		zs->nonMouseFocusTracking && !pointerInZoom)
+	    {
+		// Mouse taking back control of focus, but is out of zoom, wrap
+		// it back to focus
+		// FocusTracking is always centered
+		warpPointer (s,
+		    zs->zooms[out].realXTranslate * o->width
+			+ o->width / 2 + o->region.extents.x1 - pointerX,
+		    zs->zooms[out].realYTranslate * o->height
+			+ o->height / 2 + o->region.extents.y1 - pointerY);
+		setCenter (s, pointerX, pointerY, TRUE);
+	    }
+	    else
+	    {
+	        if (!isInMovement (s, out))
+		{
+		    setCenter (s, zs->mouseX, zs->mouseY, TRUE);
+		}
+	    }
+	    zs->lastMouseChange = localTime;
+	}
+	// respect a timing in case user has merely grazed his mouse
+	else if (localTime - zs->lastFocusChange > zs->opt[SOPT_MOUSE_DELAY].value.f && !isInMovement (s, out))
+	{
+	    setCenter (s, zs->mouseX, zs->mouseY, TRUE);
+	    zs->lastMouseChange = localTime;
+	}
+	zs->nonMouseFocusTracking = FALSE;
+    }
     cursorMoved (s);
+    damageScreen (s);
+}
+
+static void
+updateFocusPosition (CompScreen *s, int x, int y, int width, int height)
+{
+    double localTime = getTime ();
+    ZOOM_SCREEN(s);
+    int out = outputDeviceForPoint (s, x, y);
+    if (localTime - zs->lastMouseChange > zs->opt[SOPT_FOCUS_DELAY].value.f)
+    {
+	int zoomAreaWidth  = s->outputDev[out].width  * zs->zooms[out].newZoom;
+	int zoomAreaHeight = s->outputDev[out].height * zs->zooms[out].newZoom;
+	int posX = x + width / 2;
+	int posY = y + height / 2;
+	if (width > zoomAreaWidth)
+	{
+	    // target rectangle is too big for the zoom area, aim at
+	    // the top-left corner of the target
+	    posX -= (width - zoomAreaWidth) / 2;
+	}
+	if (height > zoomAreaHeight)
+	{
+	    posY -= (height - zoomAreaHeight) / 2;
+	}
+	setCenter (s, posX, posY, FALSE);
+	zs->focusX = posX;
+	zs->focusY = posY;
+	zs->nonMouseFocusTracking = TRUE;
+	zs->lastFocusChange = localTime;
+    }
     damageScreen (s);
 }
 
@@ -1228,10 +1400,27 @@ updateMouseInterval (CompScreen *s, int x, int y)
     if (!zs->grabbed)
     {
 	ZOOM_DISPLAY (s->display);
-	if (zs->pollHandle)
-		(*zd->mpFunc->removePositionPolling) (s, zs->pollHandle);
-	zs->pollHandle = 0;
+	if (zs->pollMouseHandle)
+		(*zd->mpFunc->removePositionPolling) (s, zs->pollMouseHandle);
+	zs->pollMouseHandle = 0;
 	cursorMoved (s);
+    }
+}
+
+/* Timeout handler to focusPoll. */
+static void
+updateFocusInterval (CompScreen *s, int x, int y, int width, int height)
+{
+    ZOOM_SCREEN (s);
+
+    updateFocusPosition (s, x, y, width, height);
+
+    if (!zs->grabbed)
+    {
+	ZOOM_DISPLAY (s->display);
+	if (zs->pollFocusHandle)
+		(*zd->fpFunc->removeFocusPolling) (s, zs->pollFocusHandle);
+	zs->pollFocusHandle = 0;
     }
 }
 
@@ -1661,7 +1850,8 @@ zoomIn (CompDisplay     *d,
 	int out = outputDeviceForPoint (s, pointerX, pointerY);
 	ZOOM_SCREEN (s);
 
-	if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out))
+	if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out)
+	    && !zs->nonMouseFocusTracking)
 	    setCenter (s, pointerX, pointerY, TRUE);
 
 	setScale (s, out,
@@ -2094,8 +2284,8 @@ focusTrack (CompDisplay *d,
 
     zs = GET_ZOOM_SCREEN (w->screen, GET_ZOOM_DISPLAY (d));
  
-    if (time(NULL) - zs->lastChange < zs->opt[SOPT_FOCUS_DELAY].value.i ||
-	!zs->opt[SOPT_FOLLOW_FOCUS].value.b)
+    if (getTime () - zs->lastMouseChange < zs->opt[SOPT_FOCUS_DELAY].value.f ||
+	!zs->opt[SOPT_FOLLOW_WINDOW_FOCUS].value.b)
 	return;
 
     out = outputDeviceForWindow (w);
@@ -2191,12 +2381,18 @@ static const CompMetadataOptionInfo zoomDisplayOptionInfo[] = {
 
 static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "follow_focus", "bool", 0, 0, 0 },
+    { "follow_window_focus", "bool", 0, 0, 0 },
     { "speed", "float", "<min>0.01</min>", 0, 0 },
     { "timestep", "float", "<min>0.1</min>", 0, 0 },
     { "zoom_factor", "float", "<min>1.01</min>", 0, 0 },
     { "filter_linear", "bool", 0, 0, 0 },
+    { "instant_pan", "bool", 0, 0, 0 },
     { "sync_mouse", "bool", 0, 0, 0 },
-    { "follow_focus_delay", "int", "<min>0</min>", 0, 0 },
+    { "follow_focus_delay", "float", "<min>0</min>", 0, 0 },
+    { "follow_mouse_delay", "float", "<min>0</min>", 0, 0 },
+    { "always_center_mouse", "bool", 0, 0, 0 },
+    { "restrain_zoom_to_screen", "bool", 0, 0, 0 },
+    { "warp_mouse_to_focus", "bool", 0, 0, 0 },
     { "pan_factor", "float", "<min>0.001</min><default>0.1</default>", 0, 0 },
     { "focus_fit_window", "bool", "<default>false</default>", 0, 0 },
     { "always_focus_fit_window", "bool", "<default>false</default>", 0, 0 },
@@ -2273,7 +2469,7 @@ zoomInitDisplay (CompPlugin  *p,
 		 CompDisplay *d)
 {
     int         minor, major;
-    int		index;
+    int		index, indexfocus;
     ZoomDisplay *zd;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION))
@@ -2299,6 +2495,14 @@ zoomInitDisplay (CompPlugin  *p,
     }
 
     zd->mpFunc = d->base.privates[index].ptr;
+
+    if (getPluginABI ("focuspoll") &&
+	checkPluginABI ("focuspoll", FOCUSPOLL_ABIVERSION) &&
+        getPluginDisplayIndex (d, "focuspoll", &indexfocus))
+	zd->fpFunc = d->base.privates[indexfocus].ptr;
+    else
+	zd->fpFunc = NULL;
+
     zd->screenPrivateIndex = allocateScreenPrivateIndex (d);
     if (zd->screenPrivateIndex < 0)
     {
@@ -2366,14 +2570,17 @@ zoomInitScreen (CompPlugin *p,
 	    break;
 	initialiseZoomArea (&zs->zooms[i], i);
     }
-    zs->lastChange = 0;
+    zs->lastMouseChange = 0;
+    zs->lastFocusChange = 0;
+    zs->nonMouseFocusTracking = FALSE;
     zs->grabbed = 0;
     zs->mouseX = -1;
     zs->mouseY = -1;
     zs->cursorInfoSelected = FALSE;
     zs->cursor.isSet = FALSE;
     zs->cursorHidden = FALSE;
-    zs->pollHandle = 0;
+    zs->pollMouseHandle = 0;
+    zs->pollFocusHandle = 0;
 
     WRAP (zs, s, preparePaintScreen, zoomPreparePaintScreen);
     WRAP (zs, s, donePaintScreen, zoomDonePaintScreen);
@@ -2393,8 +2600,10 @@ zoomFiniScreen (CompPlugin *p,
     UNWRAP (zs, s, preparePaintScreen);
     UNWRAP (zs, s, donePaintScreen);
     UNWRAP (zs, s, paintOutput);
-    if (zs->pollHandle)
-	    (*zd->mpFunc->removePositionPolling) (s, zs->pollHandle);
+    if (zs->pollMouseHandle)
+	    (*zd->mpFunc->removePositionPolling) (s, zs->pollMouseHandle);
+    if (zs->pollFocusHandle)
+	    (*zd->fpFunc->removeFocusPolling) (s, zs->pollFocusHandle);
 
     if (zs->zooms)
 	free (zs->zooms);

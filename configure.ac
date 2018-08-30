@@ -8,6 +8,7 @@ AM_MAINTAINER_MODE
 AC_ISC_POSIX
 AC_PROG_CC
 AC_PROG_CPP
+AC_PROG_CXX
 LT_INIT
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdlib.h sys/time.h unistd.h])
@@ -123,8 +124,14 @@ AC_MSG_RESULT($GL_LIBS)
 AC_SUBST(GL_CFLAGS)
 AC_SUBST(GL_LIBS)
 
+PKG_CHECK_MODULES(ATSPI2, atspi-2, [have_atspi2=yes], [have_atspi2=no])
 PKG_CHECK_MODULES(SCALE, compiz-scale, [have_compiz_scale=yes], [have_compiz_scale=no])
 PKG_CHECK_MODULES(PANGO, cairo-xlib-xrender pangocairo cairo >= 1.0, [have_pango=yes], [have_pango=no])
+
+AM_CONDITIONAL(FOCUSPOLL_PLUGIN, test "x$have_atspi2" = "xyes")
+if test "x$have_atspi2" = "xyes"; then
+  AC_DEFINE(USE_FOCUSPOLL, 1, [Build focuspoll plugin])
+fi
 
 AM_CONDITIONAL(TEXT_PLUGIN, test "x$have_pango" = "xyes")
 if test "x$have_pango" = "xyes"; then
@@ -155,6 +162,7 @@ AC_PATH_PROG(UPDATE_ICON_CACHE, gtk-update-icon-cache)
 AC_OUTPUT([
 compiz-text.pc
 compiz-mousepoll.pc
+compiz-focuspoll.pc
 compiz-animation.pc
 data/Makefile
 data/filters/Makefile
@@ -172,6 +180,7 @@ src/ezoom/Makefile
 src/jpeg/Makefile
 src/mag/Makefile
 src/mousepoll/Makefile
+src/focuspoll/Makefile
 src/neg/Makefile
 src/opacify/Makefile
 src/put/Makefile
