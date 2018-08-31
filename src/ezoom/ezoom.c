@@ -1851,7 +1851,8 @@ zoomIn (CompDisplay     *d,
 	ZOOM_SCREEN (s);
 
 	if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out)
-	    && !zs->nonMouseFocusTracking)
+	    && (!zs->nonMouseFocusTracking
+	        || zs->zooms[out].currentZoom == 1.0f))
 	    setCenter (s, pointerX, pointerY, TRUE);
 
 	setScale (s, out,
