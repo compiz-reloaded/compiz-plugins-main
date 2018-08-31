@@ -144,6 +144,7 @@ typedef enum _ZsOpt
     SOPT_MOUSE_PAN,
     SOPT_MAXIMUM_ZOOM,
     SOPT_AUTOSCALE_MIN,
+    SOPT_SPEC_STARTUP,
     SOPT_NUM
 } ZoomScreenOptions;
 
@@ -2404,7 +2405,8 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "restrain_margin", "int", "<default>5</default>", 0, 0 },
     { "mouse_pan", "bool", "<default>false</default>", 0, 0 },
     { "maximum_zoom", "int", "<max>50</max>", 0, 0 },
-    { "autoscale_min", "int", "<max>50</max>", 0, 0 }
+    { "autoscale_min", "int", "<max>50</max>", 0, 0 },
+    { "zoom_spec_startup", "int", 0, 0, 0},
 };
 
 static CompOption *
@@ -2425,7 +2427,7 @@ zoomSetScreenOption (CompPlugin      *plugin,
 		     CompOptionValue *value)
 {
     CompOption *o;
-    int	       index;
+    int	       index, i;
 
     ZOOM_SCREEN (screen);
 
@@ -2433,7 +2435,13 @@ zoomSetScreenOption (CompPlugin      *plugin,
     if (!o)
 	return FALSE;
 
-    return compSetScreenOption (screen, o, value);
+    Bool ret = compSetScreenOption (screen, o, value);
+
+    if (index == SOPT_SPEC_STARTUP)
+	for (i = 0; i < zs->nZooms; i ++ )
+	    setScale(screen, i, 1.0f / zs->opt[SOPT_SPEC_STARTUP].value.i);
+
+    return ret;
 }
 
 static CompOption *
