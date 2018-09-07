@@ -211,6 +211,16 @@
 		</option>
 	    </group>
 	    <group>
+		<_short>Specific Zoom</_short>
+		<option type="int" name="zoom_spec_startup">
+		    <_short>Startup specific zoom factor</_short>
+		    <_long>Zoom level to use when starting ezoom</_long>
+		    <default>1</default>
+		    <min>1</min>
+		    <max>50</max>
+		</option>
+	    </group>
+	    <group>
 		<_short>Zoom Area Movement</_short>
 		<subgroup>
 		    <_short>Panning</_short>
