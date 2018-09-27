@@ -2479,6 +2479,7 @@ zoomInitDisplay (CompPlugin  *p,
 {
     int         minor, major;
     int		index, indexfocus;
+    int		i;
     ZoomDisplay *zd;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION))
@@ -2501,6 +2502,13 @@ zoomInitDisplay (CompPlugin  *p,
     {
 	free (zd);
 	return FALSE;
+    }
+
+    for (i = 0; i < NUM_OPTIONS (zd); i++)
+    {
+	CompOption *opt = &zd->opt[i];
+	if (isActionOption(opt))
+	    opt->value.action.ignoreGrabs = TRUE;
     }
 
     zd->mpFunc = d->base.privates[index].ptr;
