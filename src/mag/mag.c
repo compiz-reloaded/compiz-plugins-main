@@ -1197,6 +1197,7 @@ magInitDisplay (CompPlugin  *p,
     /* Generate a mag display */
     MagDisplay *md;
     int        index;
+    int        i;
 
     if (!checkPluginABI ("core", CORE_ABIVERSION) ||
         !checkPluginABI ("mousepoll", MOUSEPOLL_ABIVERSION))
@@ -1227,6 +1228,13 @@ magInitDisplay (CompPlugin  *p,
 
     magSetZoomInButtonInitiate (d, magZoomIn);
     magSetZoomOutButtonInitiate (d, magZoomOut);
+
+    for (i = 0; i < MagDisplayOptionNum; i++)
+    {
+	CompOption *opt = magGetDisplayOption (d, i);
+	if (isActionOption (opt))
+	    opt->value.action.ignoreGrabs = TRUE;
+    }
 
     /* Record the display */
     d->base.privates[displayPrivateIndex].ptr = md;
