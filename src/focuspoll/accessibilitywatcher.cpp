@@ -260,7 +260,13 @@ AccessibilityWatcher::registerEvent (const AtspiEvent *event, const gchar *type)
 		    }
 		}
 	    }
-	    parent = unique_gobject (atspi_accessible_get_parent (parent.get (), NULL));
+	    auto child = unique_gobject (atspi_accessible_get_parent (parent.get (), NULL));
+	    if (child.get () == parent.get ())
+	    {
+		// parent loop !? escape this trap...
+		break;
+	    }
+	    parent = unique_gobject (child.get ());
 	}
     }
 
