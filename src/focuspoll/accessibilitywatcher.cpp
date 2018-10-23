@@ -49,6 +49,17 @@ namespace {
  * auto x = unique_gobject (atspi_... ());;
  * atspi_... (x.get ());
  *
+ * And instead of
+ *
+ * AtspiFoo x = event->source;
+ * g_object_ref (x);
+ * atspi_... (x);
+ * g_object_unref (x);
+ *
+ * use
+ *
+ * auto x = unique_gobject_ref (event->source);;
+ * atspi_... (x.get ());
  * */
 
 struct unique_gobject_deleter {
@@ -64,6 +75,15 @@ std::unique_ptr <T, unique_gobject_deleter>
 unique_gobject (T* ptr)
 {
 
+    return std::unique_ptr <T, unique_gobject_deleter> (ptr);
+}
+
+template <typename T>
+std::unique_ptr <T, unique_gobject_deleter>
+unique_gobject_ref (T* ptr)
+{
+    if (ptr)
+	g_object_ref (ptr);
     return std::unique_ptr <T, unique_gobject_deleter> (ptr);
 }
 
@@ -266,11 +286,11 @@ AccessibilityWatcher::registerEvent (const AtspiEvent *event, const gchar *type)
 		// parent loop !? escape this trap...
 		break;
 	    }
-	    parent = unique_gobject (child.get ());
+	    parent = unique_gobject_ref (child.get ());
 	}
     }
 
-    auto component_target = unique_gobject (event->source);
+    auto component_target = unique_gobject_ref (event->source);
 
     if (strcmp (res->type, "active-descendant-changed") == 0)
     {
@@ -315,7 +335,7 @@ AccessibilityWatcher::registerEvent (const AtspiEvent *event, const gchar *type)
 	}
 
 	if (sub_target.get ())
-	    component_target = unique_gobject (sub_target.get ());
+	    component_target = unique_gobject_ref (sub_target.get ());
     }
 
     auto component = unique_gobject (atspi_accessible_get_component (component_target.get ()));
