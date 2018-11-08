@@ -4,7 +4,7 @@ PFLAGS=-module -avoid-version -no-undefined
 if FOCUSPOLL_PLUGIN
 libfocuspoll_la_LDFLAGS = $(PFLAGS)
 libfocuspoll_la_LIBADD = @COMPIZ_LIBS@ @ATSPI2_LIBS@
-libfocuspoll_la_SOURCES = focuspoll.cpp accessibilitywatcher.cpp focusinfo.cpp
+libfocuspoll_la_SOURCES = focuspoll.cpp accessibilitywatcher.h accessibilitywatcher.cpp focusinfo.h focusinfo.cpp
 endif
 
 AM_CPPFLAGS =                              \
