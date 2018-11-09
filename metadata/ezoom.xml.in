@@ -267,7 +267,7 @@
 		<option type="float" name="follow_focus_delay">
 		    <_short>Tracking delay from mouse to focus mode</_short>
 		    <_long>Only attempt to follow focus if the mouse hasn't moved in this amount of seconds. Use this to avoid zoom jumping everywhere on the screen due to external events while trying to use the mouse.</_long>
-		    <default>0.2</default>
+		    <default>1</default>
 		    <min>0</min>
 		    <max>5</max>
 		    <precision>0.1</precision>
