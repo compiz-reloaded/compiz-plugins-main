@@ -14,8 +14,9 @@ AM_CPPFLAGS =                              \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
-	-DIMAGEDIR='"$(imagedir)"'          \
-	-std=c++11
+	-DIMAGEDIR='"$(imagedir)"'
+
+AM_CXXFLAGS = -std=c++11
 
 moduledir = $(plugindir)
 
