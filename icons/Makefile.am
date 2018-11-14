@@ -4,6 +4,7 @@ icons_DATA =				\
 	plugin-colorfilter.svg		\
 	plugin-expo.svg			\
 	plugin-ezoom.svg		\
+	plugin-focuspoll.svg		\
 	plugin-imgjpeg.svg		\
 	plugin-mag.svg			\
 	plugin-mousepoll.svg		\
