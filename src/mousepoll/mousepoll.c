@@ -61,6 +61,7 @@ typedef struct _MousepollScreen {
     CompTimeoutHandle updateHandle;
     int posX;
     int posY;
+    unsigned int buttons;
 
 } MousepollScreen;
 
@@ -86,6 +87,7 @@ getMousePosition (CompScreen *s)
     int          rootX, rootY;
     int          winX, winY;
     unsigned int maskReturn;
+    unsigned int newButtons;
     Bool         status;
 
     MOUSEPOLL_SCREEN (s);
@@ -98,12 +100,26 @@ getMousePosition (CompScreen *s)
 	s->root != root_return)
 	return FALSE;
 
+    newButtons = maskReturn &
+		   (Button1Mask |
+		    Button2Mask |
+		    Button3Mask |
+		    Button4Mask |
+		    Button5Mask);
+
     if ((rootX != ms->posX || rootY != ms->posY))
     {
 	ms->posX = rootX;
 	ms->posY = rootY;
 	return TRUE;
     }
+
+    if (newButtons != ms->buttons)
+    {
+	ms->buttons = newButtons;
+	return TRUE;
+    }
+
     return FALSE;
 }
 
@@ -356,6 +372,8 @@ mousepollInitScreen (CompPlugin *p,
 
     ms->posX = 0;
     ms->posY = 0;
+
+    ms->buttons = 0;
 
     ms->clients = NULL;
     ms->freeId  = 1;
