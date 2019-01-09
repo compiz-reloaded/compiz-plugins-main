@@ -285,6 +285,28 @@ convertToZoomed (CompScreen *s,
  * See comments in drawCursor.
  */
 
+static inline CompOutput *
+outputDev (CompScreen *screen, unsigned int id)
+{
+    if (id == screen->fullscreenOutput.id)
+	return &screen->fullscreenOutput;
+    else
+	return &screen->outputDev[id];
+}
+
+/* return the zoom area if the output is valid, NULL otherwise */
+static inline ZoomArea *
+outputZoomArea (const CompScreen *s, int out)
+{
+    ZOOM_SCREEN (s);
+
+    if (out == (int) s->fullscreenOutput.id)
+	return &zs->zooms[0]; /* Use ZoomArea 0 for fullscreen output */
+    if (out >= 0 && out < zs->nZooms)
+	return &zs->zooms[out];
+    return NULL;
+}
+
 static inline Bool 
 dontuseScreengrabExist (CompScreen * s, char * grab)
 {
@@ -295,26 +317,14 @@ dontuseScreengrabExist (CompScreen * s, char * grab)
     return FALSE;
 }
 
-/* Check if the output is valid */
-static inline Bool
-outputIsZoomArea (CompScreen *s, int out)
-{
-    ZOOM_SCREEN (s);
-
-    if (out < 0 || out >= zs->nZooms)
-	return FALSE;
-    return TRUE;
-}
-
 /* Check if zoom is active on the output specified */
 static inline Bool
 isActive (CompScreen *s, int out)
 {
+    const ZoomArea *za = outputZoomArea (s, out);
     ZOOM_SCREEN (s);
 
-    if (!outputIsZoomArea (s, out))
-	return FALSE;
-    if (zs->grabbed & (1 << zs->zooms[out].output))
+    if (za && zs->grabbed & (1 << za->output))
 	return TRUE;
     return FALSE;
 }
@@ -325,16 +335,15 @@ isActive (CompScreen *s, int out)
 static inline Bool
 isZoomed (CompScreen *s, int out)
 {
-    ZOOM_SCREEN (s);
+    const ZoomArea *za = outputZoomArea (s, out);
 
-    if (!outputIsZoomArea (s, out))
+    if (!za)
 	return FALSE;
 
-    if (zs->zooms[out].currentZoom != 1.0f 
-	|| zs->zooms[out].newZoom != 1.0f)
+    if (za->currentZoom != 1.0f || za->newZoom != 1.0f)
 	return TRUE;
 
-    if (zs->zooms[out].zVelocity != 0.0f)
+    if (za->zVelocity != 0.0f)
 	return TRUE;
 
     return FALSE;
@@ -378,7 +387,7 @@ static int
 distanceToEdge (CompScreen *s, int out, ZoomEdge edge)
 {
     int        x1,y1,x2,y2;
-    CompOutput *o = &s->outputDev[out];
+    CompOutput *o = outputDev (s, out);
 
     if (!isActive (s, out))
 	return 0;
@@ -428,18 +437,18 @@ updateActualTranslates (ZoomScreen *zs, ZoomArea *za)
 static Bool
 isInMovement (CompScreen *s, int out)
 {
-    ZOOM_SCREEN (s);
+    const ZoomArea *za = outputZoomArea (s, out);
 
-    if (zs->zooms[out].currentZoom == 1.0f &&
-	zs->zooms[out].newZoom == 1.0f &&
-	zs->zooms[out].zVelocity == 0.0f)
+    if (za->currentZoom == 1.0f &&
+	za->newZoom == 1.0f &&
+	za->zVelocity == 0.0f)
 	return FALSE;
-    if (zs->zooms[out].currentZoom != zs->zooms[out].newZoom ||
-	zs->zooms[out].xVelocity || zs->zooms[out].yVelocity ||
-	zs->zooms[out].zVelocity)
+    if (za->currentZoom != za->newZoom ||
+	za->xVelocity || za->yVelocity ||
+	za->zVelocity)
 	return TRUE;
-    if (zs->zooms[out].xTranslate != zs->zooms[out].realXTranslate ||
-	zs->zooms[out].yTranslate != zs->zooms[out].realYTranslate)
+    if (za->xTranslate != za->realXTranslate ||
+	za->yTranslate != za->realYTranslate)
 	return TRUE;
     return FALSE;
 }
@@ -467,9 +476,9 @@ static void
 adjustZoomVelocity (CompScreen *s, int out, float chunk)
 {
     float d, adjust, amount;
-    ZOOM_SCREEN (s);
+    ZoomArea *za = outputZoomArea (s, out);
 
-    d = (zs->zooms[out].newZoom - zs->zooms[out].currentZoom) * 75.0f;
+    d = (za->newZoom - za->currentZoom) * 75.0f;
 
     adjust = d * 0.002f;
     amount = fabs (d);
@@ -478,18 +487,16 @@ adjustZoomVelocity (CompScreen *s, int out, float chunk)
     else if (amount > 5.0f)
 	amount = 5.0f;
 
-    zs->zooms[out].zVelocity =
-	(amount * zs->zooms[out].zVelocity + adjust) / (amount + 1.0f);
+    za->zVelocity = (amount * za->zVelocity + adjust) / (amount + 1.0f);
 
-    if (fabs (d) < 0.1f && fabs (zs->zooms[out].zVelocity) < 0.005f)
+    if (fabs (d) < 0.1f && fabs (za->zVelocity) < 0.005f)
     {
-	zs->zooms[out].currentZoom = zs->zooms[out].newZoom;
-	zs->zooms[out].zVelocity = 0.0f;
+	za->currentZoom = za->newZoom;
+	za->zVelocity = 0.0f;
     }
     else
     {
-	zs->zooms[out].currentZoom += (zs->zooms[out].zVelocity * chunk) /
-	    s->redrawTime;
+	za->currentZoom += (za->zVelocity * chunk) / s->redrawTime;
     }
 }
 
@@ -501,16 +508,12 @@ adjustXYVelocity (CompScreen *s, int out, float chunk)
     float xdiff, ydiff;
     float xadjust, yadjust;
     float xamount, yamount;
-    ZOOM_SCREEN (s);
+    ZoomArea *za = outputZoomArea (s, out);
 
-    zs->zooms[out].xVelocity /= 1.25f;
-    zs->zooms[out].yVelocity /= 1.25f;
-    xdiff =
-	(zs->zooms[out].xTranslate - zs->zooms[out].realXTranslate) *
-	75.0f;
-    ydiff =
-	(zs->zooms[out].yTranslate - zs->zooms[out].realYTranslate) *
-	75.0f;
+    za->xVelocity /= 1.25f;
+    za->yVelocity /= 1.25f;
+    xdiff = (za->xTranslate - za->realXTranslate) * 75.0f;
+    ydiff = (za->yTranslate - za->realYTranslate) * 75.0f;
     xadjust = xdiff * 0.002f;
     yadjust = ydiff * 0.002f;
     xamount = fabs (xdiff);
@@ -526,25 +529,21 @@ adjustXYVelocity (CompScreen *s, int out, float chunk)
     else if (yamount > 5.0) 
 	    yamount = 5.0f;
 
-    zs->zooms[out].xVelocity =
-	(xamount * zs->zooms[out].xVelocity + xadjust) / (xamount + 1.0f);
-    zs->zooms[out].yVelocity =
-	(yamount * zs->zooms[out].yVelocity + yadjust) / (yamount + 1.0f);
+    za->xVelocity = (xamount * za->xVelocity + xadjust) / (xamount + 1.0f);
+    za->yVelocity = (yamount * za->yVelocity + yadjust) / (yamount + 1.0f);
 
-    if ((fabs(xdiff) < 0.1f && fabs (zs->zooms[out].xVelocity) < 0.005f) &&
-	(fabs(ydiff) < 0.1f && fabs (zs->zooms[out].yVelocity) < 0.005f))
+    if ((fabs(xdiff) < 0.1f && fabs (za->xVelocity) < 0.005f) &&
+	(fabs(ydiff) < 0.1f && fabs (za->yVelocity) < 0.005f))
     {
-	zs->zooms[out].realXTranslate = zs->zooms[out].xTranslate;
-	zs->zooms[out].realYTranslate = zs->zooms[out].yTranslate;
-	zs->zooms[out].xVelocity = 0.0f;
-	zs->zooms[out].yVelocity = 0.0f;
+	za->realXTranslate = za->xTranslate;
+	za->realYTranslate = za->yTranslate;
+	za->xVelocity = 0.0f;
+	za->yVelocity = 0.0f;
 	return;
     }
 
-    zs->zooms[out].realXTranslate +=
-	(zs->zooms[out].xVelocity * chunk) / s->redrawTime;
-    zs->zooms[out].realYTranslate +=
-	(zs->zooms[out].yVelocity * chunk) / s->redrawTime;
+    za->realXTranslate += (za->xVelocity * chunk) / s->redrawTime;
+    za->realYTranslate += (za->yVelocity * chunk) / s->redrawTime;
 }
 
 /* Animate the movement (if any) in preparation of a paint screen.  */
@@ -569,17 +568,18 @@ zoomPreparePaintScreen (CompScreen *s,
 	    int out;
 	    for (out = 0; out < zs->nZooms; out++)
 	    {
+		ZoomArea *za = &zs->zooms[out];
+
 		if (!isInMovement (s, out) || !isActive (s, out))
 		    continue;
 
 		adjustXYVelocity (s, out, chunk);
 		adjustZoomVelocity (s, out, chunk);
-		updateActualTranslates (zs, &zs->zooms[out]);
+		updateActualTranslates (zs, za);
 		if (!isZoomed (s, out))
 		{
-		    zs->zooms[out].xVelocity = zs->zooms[out].yVelocity =
-			0.0f;
-		    zs->grabbed &= ~(1 << zs->zooms[out].output);
+		    za->xVelocity = za->yVelocity = 0.0f;
+		    zs->grabbed &= ~(1 << za->output);
 		}
 	    }
 	}
@@ -669,6 +669,7 @@ zoomPaintOutput (CompScreen		 *s,
 
     if (isActive (s, out))
     {
+	const ZoomArea   *za = outputZoomArea (s, out);
 	ScreenPaintAttrib sa = *sAttrib;
 	int		  saveFilter;
 	CompTransform     zTransform = *transform;
@@ -677,12 +678,12 @@ zoomPaintOutput (CompScreen		 *s,
 	mask |= PAINT_SCREEN_CLEAR_MASK;
 
 	matrixScale (&zTransform,
-		     1.0f / zs->zooms[out].currentZoom,
-		     1.0f / zs->zooms[out].currentZoom,
+		     1.0f / za->currentZoom,
+		     1.0f / za->currentZoom,
 		     1.0f);
 	matrixTranslate (&zTransform, 
-			 zs->zooms[out].xtrans,
-			 zs->zooms[out].ytrans,
+			 za->xtrans,
+			 za->ytrans,
 			 0); 
 
 	mask |= PAINT_SCREEN_TRANSFORMED_MASK;
@@ -729,15 +730,17 @@ constrainZoomTranslate (CompScreen *s)
 
     for (out = 0; out < zs->nZooms; out++)
     {
-	if (zs->zooms[out].xTranslate > 0.5f)
-	    zs->zooms[out].xTranslate = 0.5f;
-	else if (zs->zooms[out].xTranslate < -0.5f)
-	    zs->zooms[out].xTranslate = -0.5f;
+	ZoomArea *za = &zs->zooms[out];
 
-	if (zs->zooms[out].yTranslate > 0.5f)
-	    zs->zooms[out].yTranslate = 0.5f;
-	else if (zs->zooms[out].yTranslate < -0.5f)
-	    zs->zooms[out].yTranslate = -0.5f;
+	if (za->xTranslate > 0.5f)
+	    za->xTranslate = 0.5f;
+	else if (za->xTranslate < -0.5f)
+	    za->xTranslate = -0.5f;
+
+	if (za->yTranslate > 0.5f)
+	    za->yTranslate = 0.5f;
+	else if (za->yTranslate < -0.5f)
+	    za->yTranslate = -0.5f;
     }
 }
 
@@ -757,24 +760,25 @@ static void
 setCenter (CompScreen *s, int x, int y, Bool instant)
 {
     int         out = outputDeviceForPoint (s, x,y);
-    CompOutput  *o = &s->outputDev[out];
+    CompOutput  *o = outputDev (s, out);
+    ZoomArea    *za = outputZoomArea (s, out);
     ZOOM_SCREEN (s);
 
-    if (zs->zooms[out].locked)
+    if (za->locked)
 	return;
 
-    zs->zooms[out].xTranslate = (float)
+    za->xTranslate = (float)
 	((x - o->region.extents.x1) - o->width  / 2) / (o->width);
-    zs->zooms[out].yTranslate = (float)
+    za->yTranslate = (float)
 	((y - o->region.extents.y1) - o->height / 2) / (o->height);
 
     if (instant || zs->opt[SOPT_INSTANT_PAN].value.b)
     {
-	zs->zooms[out].realXTranslate = zs->zooms[out].xTranslate;
-	zs->zooms[out].realYTranslate = zs->zooms[out].yTranslate;
-	zs->zooms[out].yVelocity = 0.0f;
-	zs->zooms[out].xVelocity = 0.0f;
-	updateActualTranslates (zs, &zs->zooms[out]);
+	za->realXTranslate = za->xTranslate;
+	za->realYTranslate = za->yTranslate;
+	za->yVelocity = 0.0f;
+	za->xVelocity = 0.0f;
+	updateActualTranslates (zs, za);
     }
 
     if (zs->opt[SOPT_MOUSE_PAN].value.b)
@@ -792,29 +796,30 @@ setZoomArea (CompScreen *s,
 	     Bool       instant)
 {
     int         out = outputDeviceForGeometry (s, x, y, width, height, 0);
-    CompOutput  *o = &s->outputDev[out];
+    CompOutput  *o = outputDev (s, out);
+    ZoomArea    *za = outputZoomArea (s, out);
     ZOOM_SCREEN (s);
 
-    if (zs->zooms[out].newZoom == 1.0f)
+    if (za->newZoom == 1.0f)
 	return;
 
-    if (zs->zooms[out].locked)
+    if (za->locked)
 	return;
-    zs->zooms[out].xTranslate =
+    za->xTranslate =
 	 (float) -((o->width/2) - (x + (width/2) - o->region.extents.x1))
 	/ (o->width);
-    zs->zooms[out].xTranslate /= (1.0f - zs->zooms[out].newZoom);
-    zs->zooms[out].yTranslate =
+    za->xTranslate /= (1.0f - za->newZoom);
+    za->yTranslate =
 	(float) -((o->height/2) - (y + (height/2) - o->region.extents.y1))
 	/ (o->height);
-    zs->zooms[out].yTranslate /= (1.0f - zs->zooms[out].newZoom);
+    za->yTranslate /= (1.0f - za->newZoom);
     constrainZoomTranslate (s);
 
     if (instant)
     {
-	zs->zooms[out].realXTranslate = zs->zooms[out].xTranslate;
-	zs->zooms[out].realYTranslate = zs->zooms[out].yTranslate;
-	updateActualTranslates (zs, &zs->zooms[out]);
+	za->realXTranslate = za->xTranslate;
+	za->realYTranslate = za->yTranslate;
+	updateActualTranslates (zs, za);
     }
 
     if (zs->opt[SOPT_MOUSE_PAN].value.b)
@@ -889,9 +894,10 @@ enableFocusPolling (CompScreen *s)
 static void
 setScale (CompScreen *s, int out, float value)
 {
+    ZoomArea *za = outputZoomArea (s, out);
     ZOOM_SCREEN(s);
 
-    if (zs->zooms[out].locked)
+    if (za->locked)
 	return;
 
     if (value >= 1.0f)
@@ -902,21 +908,21 @@ setScale (CompScreen *s, int out, float value)
 	    enableMousePolling (s);
 	if (!zs->pollFocusHandle)
 	    enableFocusPolling (s);
-	zs->grabbed |= (1 << zs->zooms[out].output);
+	zs->grabbed |= (1 << za->output);
 	cursorZoomActive (s);
     }
 
     if (value == 1.0f)
     {
-	zs->zooms[out].xTranslate = 0.0f;
-	zs->zooms[out].yTranslate = 0.0f;
+	za->xTranslate = 0.0f;
+	za->yTranslate = 0.0f;
 	cursorZoomInactive (s);
     }
 
     if (value < 1.0f / zs->opt[SOPT_MAXIMUM_ZOOM].value.i)
 	value = 1.0f / zs->opt[SOPT_MAXIMUM_ZOOM].value.i;
 
-    zs->zooms[out].newZoom = value;
+    za->newZoom = value;
     damageScreen(s);
 }
 
@@ -945,21 +951,24 @@ syncCenterToMouse (CompScreen *s)
     int         x, y;
     int         out; 
     CompOutput  *o;
+    const ZoomArea *za;
     ZOOM_SCREEN (s);
 
     out = outputDeviceForPoint (s, zs->mouseX, zs->mouseY);
-    o = &s->outputDev[out];
+    o = outputDev (s, out);
 
     if (!isInMovement (s, out) || zs->nonMouseFocusTracking)
 	return;
 
-    x = (int) ((zs->zooms[out].realXTranslate * o->width) +
+    za = outputZoomArea (s, out);
+
+    x = (int) ((za->realXTranslate * o->width) +
 	       (o->width / 2) + o->region.extents.x1);
-    y = (int) ((zs->zooms[out].realYTranslate * o->height) +
+    y = (int) ((za->realYTranslate * o->height) +
 	       (o->height / 2) + o->region.extents.y1);
 
     if ((x != zs->mouseX || y != zs->mouseY)
-	&& zs->grabbed && zs->zooms[out].newZoom != 1.0f)
+	&& zs->grabbed && za->newZoom != 1.0f)
     {
 	warpPointer (s, x - pointerX , y - pointerY );
 	zs->mouseX = x;
@@ -976,11 +985,9 @@ convertToZoomed (CompScreen *s,
 		 int        *resultX, 
 		 int        *resultY)
 {
-    CompOutput  *o = &s->outputDev[out];
-    ZoomArea    *za; 
+    CompOutput  *o = outputDev (s, out);
+    ZoomArea    *za = outputZoomArea (s, out);
     ZOOM_SCREEN (s);
-
-    za = &zs->zooms[out];
 
     float translateCorrection = getTranslateCorrection (zs, za->currentZoom);
     float xTranslate  = za->realXTranslate * translateCorrection ;
@@ -1019,11 +1026,9 @@ convertToZoomedTarget (CompScreen *s,
 		       int	  *resultX,
 		       int	  *resultY)
 {
-    CompOutput  *o = &s->outputDev[out];
-    ZoomArea    *za;
-    ZOOM_SCREEN (s);
+    CompOutput  *o = outputDev (s, out);
+    ZoomArea    *za = outputZoomArea (s, out);
 
-    za = &zs->zooms[out];
     x -= o->region.extents.x1;
     y -= o->region.extents.y1;
     *resultX = x - (za->xTranslate *
@@ -1048,15 +1053,14 @@ ensureVisibility (CompScreen *s, int x, int y, int margin)
     int         zoomX, zoomY;
     int         out;
     CompOutput  *o;
-    ZOOM_SCREEN (s);
 
     out = outputDeviceForPoint (s, x, y);
     if (!isActive (s, out))
 	return FALSE;
 
-    o = &s->outputDev[out];
+    o = outputDev (s, out);
     convertToZoomedTarget (s, out, x, y, &zoomX, &zoomY);
-    ZoomArea *za = &zs->zooms[out];
+    ZoomArea *za = outputZoomArea (s, out);
     if (za->locked)
 	return FALSE;
 
@@ -1104,13 +1108,14 @@ ensureVisibilityArea (CompScreen  *s,
     int        targetX, targetY, targetW, targetH;
     int        out; 
     CompOutput *o; 
-    ZOOM_SCREEN (s);
+    const ZoomArea *za;
     
     out = outputDeviceForPoint (s, x1 + (x2-x1/2), y1 + (y2-y1/2));
-    o = &s->outputDev[out];
+    o = outputDev (s, out);
+    za = outputZoomArea (s, out);
 
-#define WIDTHOK (float)(x2-x1) / (float)o->width < zs->zooms[out].newZoom
-#define HEIGHTOK (float)(y2-y1) / (float)o->height < zs->zooms[out].newZoom
+#define WIDTHOK (float)(x2-x1) / (float)o->width < za->newZoom
+#define HEIGHTOK (float)(y2-y1) / (float)o->height < za->newZoom
 
     if (WIDTHOK &&
 	HEIGHTOK) {
@@ -1127,11 +1132,11 @@ ensureVisibilityArea (CompScreen  *s,
 	    if (WIDTHOK) 
 		targetW = x2 - x1;
 	    else 
-		targetW = o->width * zs->zooms[out].newZoom;
+		targetW = o->width * za->newZoom;
 	    if (HEIGHTOK) 
 		targetH = y2 - y1;
 	    else 
-		targetH = o->height * zs->zooms[out].newZoom;
+		targetH = o->height * za->newZoom;
 	    break;
 	case NORTHEAST:
 	    targetY = y1;
@@ -1142,21 +1147,21 @@ ensureVisibilityArea (CompScreen  *s,
 	    } 
 	    else
 	    {
-		targetX = x2 - o->width * zs->zooms[out].newZoom;
-		targetW = o->width * zs->zooms[out].newZoom;
+		targetX = x2 - o->width * za->newZoom;
+		targetW = o->width * za->newZoom;
 	    }
 
 	    if (HEIGHTOK)
 		targetH = y2-y1;
 	    else 
-		targetH = o->height * zs->zooms[out].newZoom;
+		targetH = o->height * za->newZoom;
 	    break;
 	case SOUTHWEST:
 	    targetX = x1;
 	    if (WIDTHOK)
 		targetW = x2-x1;
 	    else
-		targetW = o->width * zs->zooms[out].newZoom;
+		targetW = o->width * za->newZoom;
 	    if (HEIGHTOK)
 	    {
 		targetY = y1;
@@ -1164,8 +1169,8 @@ ensureVisibilityArea (CompScreen  *s,
 	    } 
 	    else
 	    {
-		targetY = y2 - (o->width * zs->zooms[out].newZoom);
-		targetH = o->width * zs->zooms[out].newZoom;
+		targetY = y2 - (o->width * za->newZoom);
+		targetH = o->width * za->newZoom;
 	    }
 	    break;
 	case SOUTHEAST:
@@ -1176,7 +1181,7 @@ ensureVisibilityArea (CompScreen  *s,
 	    } 
 	    else 
 	    {
-		targetW = o->width * zs->zooms[out].newZoom;
+		targetW = o->width * za->newZoom;
 		targetX = x2 - targetW;
 	    }
 	    
@@ -1187,7 +1192,7 @@ ensureVisibilityArea (CompScreen  *s,
 	    }
 	    else
 	    {
-		targetH = o->height * zs->zooms[out].newZoom;
+		targetH = o->height * za->newZoom;
 		targetY = y2 - targetH;
 	    }
 	    break;
@@ -1213,18 +1218,19 @@ restrainCursor (CompScreen *s, int out)
     int         diffX = 0, diffY = 0;
     int         north, south, east, west;
     float       z;
-    CompOutput  *o = &s->outputDev[out];
+    CompOutput  *o = outputDev (s, out);
+    const ZoomArea *za = outputZoomArea (s, out);
     ZOOM_SCREEN (s);
     ZOOM_DISPLAY (s->display);
 
-    z = zs->zooms[out].newZoom;
+    z = za->newZoom;
     margin = zs->opt[SOPT_RESTRAIN_MARGIN].value.i;
     north = distanceToEdge (s, out, NORTH);
     south = distanceToEdge (s, out, SOUTH);
     east = distanceToEdge (s, out, EAST);
     west = distanceToEdge (s, out, WEST);
 
-    if (zs->zooms[out].currentZoom == 1.0f)
+    if (za->currentZoom == 1.0f)
     {
 	zs->lastMouseChange = getTime ();
 	(*zd->mpFunc->getCurrentPosition) (s, &zs->mouseX, &zs->mouseY);
@@ -1313,7 +1319,7 @@ updateMousePosition (CompScreen *s, int x, int y)
     if (zs->opt[SOPT_SYNC_MOUSE].value.b)
     {
 	if (zs->opt[SOPT_WARP_MOUSE_TO_FOCUS].value.b) {
-	    CompOutput *o = &s->outputDev[out];
+	    CompOutput *o = outputDev (s, out);
 	    int        zoomedMouseX, zoomedMouseY;
 	    Bool       pointerInZoom;
 
@@ -1327,13 +1333,15 @@ updateMousePosition (CompScreen *s, int x, int y)
 	    if (zs->lastMouseChange <= zs->lastFocusChange &&
 		zs->nonMouseFocusTracking && !pointerInZoom)
 	    {
+		const ZoomArea *za = outputZoomArea (s, out);
+
 		// Mouse taking back control of focus, but is out of zoom, wrap
 		// it back to focus
 		// FocusTracking is always centered
 		warpPointer (s,
-		    zs->zooms[out].realXTranslate * o->width
+		    za->realXTranslate * o->width
 			+ o->width / 2 + o->region.extents.x1 - pointerX,
-		    zs->zooms[out].realYTranslate * o->height
+		    za->realYTranslate * o->height
 			+ o->height / 2 + o->region.extents.y1 - pointerY);
 		setCenter (s, pointerX, pointerY, TRUE);
 	    }
@@ -1366,8 +1374,10 @@ updateFocusPosition (CompScreen *s, int x, int y, int width, int height)
     int out = outputDeviceForPoint (s, x, y);
     if (localTime - zs->lastMouseChange > zs->opt[SOPT_FOCUS_DELAY].value.f)
     {
-	int zoomAreaWidth  = s->outputDev[out].width  * zs->zooms[out].newZoom;
-	int zoomAreaHeight = s->outputDev[out].height * zs->zooms[out].newZoom;
+	const CompOutput *o = outputDev (s, out);
+	const ZoomArea *za = outputZoomArea (s, out);
+	int zoomAreaWidth  = o->width  * za->newZoom;
+	int zoomAreaHeight = o->height * za->newZoom;
 	int posX = x + width / 2;
 	int posY = y + height / 2;
 	if (width > zoomAreaWidth)
@@ -1470,7 +1480,7 @@ drawCursor (CompScreen          *s,
 	glLoadMatrixf (sTransform.m);
 	glTranslatef ((float) ax, (float) ay, 0.0f);
 	if (zs->opt[SOPT_SCALE_MOUSE_DYNAMIC].value.b) 
-	    scaleFactor = 1.0f / zs->zooms[out].currentZoom;
+	    scaleFactor = 1.0f / outputZoomArea (s, out)->currentZoom;
 	else 
 	    scaleFactor = 1.0f / zs->opt[SOPT_SCALE_MOUSE_STATIC].value.f;
 	glScalef (scaleFactor,
@@ -1693,7 +1703,7 @@ setZoomAreaAction (CompDisplay     *d,
 #define WIDTH (x2 - x1)
 #define HEIGHT (y2 - y1)
 	setZoomArea (s, x1, y1, WIDTH, HEIGHT, FALSE);
-	o = &s->outputDev[out];
+	o = outputDev (s, out);
 	if (scale && WIDTH && HEIGHT)
 	    setScaleBigger (s, out, (float) WIDTH/o->width, 
 			    (float) HEIGHT/o->height);
@@ -1749,7 +1759,7 @@ ensureVisibilityAction (CompDisplay     *d,
 	ensureVisibility (s, x1, y1, margin);
 	if (x2 >= 0 && y2 >= 0)
 	    ensureVisibility (s, x2, y2, margin);
-	o = &s->outputDev[out];
+	o = outputDev (s, out);
 #define WIDTH (x2 - x1)
 #define HEIGHT (y2 - y1)
 	if (scale && WIDTH && HEIGHT)
@@ -1822,7 +1832,7 @@ zoomBoxDeactivate (CompDisplay     *d,
 	    height = MAX (zs->box.y1, zs->box.y2) - y;
 
 	    out = outputDeviceForGeometry (s, x,y,width,height,0);
-	    o = &s->outputDev[out];
+	    o = outputDev (s, out);
 	    setScaleBigger (s, out, (float) width/o->width, (float)
 			    height/o->height);
 	    setZoomArea (s, x,y,width,height,FALSE);
@@ -1849,16 +1859,16 @@ zoomIn (CompDisplay     *d,
     if (s)
     {
 	int out = outputDeviceForPoint (s, pointerX, pointerY);
+	const ZoomArea *za = outputZoomArea (s, out);
 	ZOOM_SCREEN (s);
 
 	if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out)
 	    && (!zs->nonMouseFocusTracking
-	        || zs->zooms[out].currentZoom == 1.0f))
+	        || za->currentZoom == 1.0f))
 	    setCenter (s, pointerX, pointerY, TRUE);
 
 	setScale (s, out,
-		  zs->zooms[out].newZoom /
-		  zs->opt[SOPT_ZOOM_FACTOR].value.f);
+		  za->newZoom / zs->opt[SOPT_ZOOM_FACTOR].value.f);
     }
     return TRUE;
 }
@@ -1881,8 +1891,8 @@ lockZoomAction (CompDisplay     *d,
     if (s)
     {
 	int out = outputDeviceForPoint (s, pointerX, pointerY);
-	ZOOM_SCREEN (s);
-	zs->zooms[out].locked = !zs->zooms[out].locked;
+	ZoomArea *za = outputZoomArea (s, out);
+	za->locked = !za->locked;
     }
     return TRUE;
 }
@@ -1914,9 +1924,8 @@ zoomSpecific (CompDisplay     *d,
 	int          out = outputDeviceForPoint (s, pointerX, pointerY);
 	CompWindow   *w;
 	ZOOM_DISPLAY (d);
-	ZOOM_SCREEN  (s);
 
-	if (target == 1.0f && zs->zooms[out].newZoom == 1.0f)
+	if (target == 1.0f && outputZoomArea (s, out)->newZoom == 1.0f)
 	    return FALSE;
 	if (otherScreenGrabExist (s, NULL))
 	    return FALSE;
@@ -2007,7 +2016,7 @@ zoomToWindow (CompDisplay     *d,
     width = w->width + w->input.left + w->input.right;
     height = w->height + w->input.top + w->input.bottom;
     out = outputDeviceForWindow (w);
-    o = &s->outputDev[out];
+    o = outputDev (s, out);
     setScaleBigger (s, out, (float) width/o->width, 
 		    (float) height/o->height);
     zoomAreaToWindow (w);
@@ -2097,24 +2106,26 @@ zoomCenterMouse (CompDisplay     *d,
     int        out;
     CompScreen *s;
     Window     xid;
-    ZoomScreen *zs;
+    const CompOutput *o;
+    const ZoomArea *za;
 
     xid = getIntOptionNamed (option, nOption, "root", 0);
     s = findScreenAtDisplay (d, xid);
     if (!s)
 	return TRUE;
 
-    zs = GET_ZOOM_SCREEN (s, GET_ZOOM_DISPLAY (d));
     out = outputDeviceForPoint (s, pointerX, pointerY);
+    o = outputDev (s, out);
+    za = outputZoomArea (s, out);
     warpPointer (s,
-		 (int) (s->outputDev[out].width/2 +
-			s->outputDev[out].region.extents.x1 - pointerX)
-		 + ((float) s->outputDev[out].width *
-			-zs->zooms[out].xtrans),
-		 (int) (s->outputDev[out].height/2 +
-			s->outputDev[out].region.extents.y1 - pointerY)
-		 + ((float) s->outputDev[out].height *
-			zs->zooms[out].ytrans));
+		 (int) (o->width/2 +
+			o->region.extents.x1 - pointerX)
+		 + ((float) o->width *
+			-za->xtrans),
+		 (int) (o->height/2 +
+			o->region.extents.y1 - pointerY)
+		 + ((float) o->height *
+			za->ytrans));
     return TRUE;
 }
 
@@ -2136,7 +2147,8 @@ zoomFitWindowToZoom (CompDisplay     *d,
     CompScreen     *s;
     XWindowChanges xwc;
     CompWindow     *w;
-    ZoomScreen     *zs;
+    ZoomArea       *za;
+    const CompOutput *o;
 
     xid = getIntOptionNamed (option, nOption, "window", 0);
     w = findWindowAtDisplay (d, xid);
@@ -2145,14 +2157,13 @@ zoomFitWindowToZoom (CompDisplay     *d,
 
     s = w->screen;
     out = outputDeviceForWindow (w);
-    zs = GET_ZOOM_SCREEN (s, GET_ZOOM_DISPLAY (d));
+    o = outputDev (s, out);
+    za = outputZoomArea (s, out);
     xwc.x = w->serverX;
     xwc.y = w->serverY;
-    xwc.width = (int) (s->outputDev[out].width *
-		       zs->zooms[out].currentZoom -
+    xwc.width = (int) (o->width * za->currentZoom -
 		       (int) ((w->input.left + w->input.right)));
-    xwc.height = (int) (s->outputDev[out].height *
-			zs->zooms[out].currentZoom -
+    xwc.height = (int) (o->height * za->currentZoom -
 			(int) ((w->input.top + w->input.bottom)));
 
     constrainNewWindowSize (w, 
@@ -2210,7 +2221,7 @@ zoomOut (CompDisplay     *d,
 	ZOOM_SCREEN (s);
 
 	setScale (s, out,
-		  zs->zooms[out].newZoom *
+		  outputZoomArea (s, out)->newZoom *
 		  zs->opt[SOPT_ZOOM_FACTOR].value.f);
     }
 
@@ -2241,7 +2252,7 @@ zoomTerminate (CompDisplay     *d,
 
 	if (zs->grabbed)
 	{
-	    zs->zooms[out].newZoom = 1.0f;
+	    outputZoomArea (s, out)->newZoom = 1.0f;
 	    damageScreen (s);
 	}
     }
@@ -2296,10 +2307,11 @@ focusTrack (CompDisplay *d,
 	return;
     if (zs->opt[SOPT_FOCUS_FIT_WINDOW].value.b)
     {
+	const CompOutput *o = outputDev (w->screen, out);
 	int width = w->width + w->input.left + w->input.right;
 	int height = w->height + w->input.top + w->input.bottom;
-	float scale = MAX ((float) width/w->screen->outputDev[out].width, 
-			   (float) height/w->screen->outputDev[out].height);
+	float scale = MAX ((float) width/o->width,
+			   (float) height/o->height);
 	if (scale > 1.0f / zs->opt[SOPT_AUTOSCALE_MIN].value.i)
 		setScale (w->screen, out, scale);
     }
