@@ -543,6 +543,7 @@ NEGInitDisplay (CompPlugin  *p,
 		CompDisplay *d)
 {
     NEGDisplay *nd;
+    int i;
 
     nd = malloc (sizeof (NEGDisplay));
     if (!nd)
@@ -558,6 +559,13 @@ NEGInitDisplay (CompPlugin  *p,
     negSetWindowToggleKeyInitiate  (d, negToggle);
     negSetScreenToggleKeyInitiate  (d, negToggleAll);
     negSetMatchedToggleKeyInitiate (d, negToggleMatched);
+
+    for (i = 0; i < NegDisplayOptionNum; i++)
+    {
+	CompOption *opt = negGetDisplayOption (d, i);
+	if (isActionOption(opt))
+	    opt->value.action.ignoreGrabs = TRUE;
+    }
 
     d->base.privates[displayPrivateIndex].ptr = nd;
 

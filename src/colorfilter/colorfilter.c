@@ -575,6 +575,7 @@ static Bool
 colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
 {
     ColorFilterDisplay *cfd;
+    int i;
 
     cfd = malloc (sizeof (ColorFilterDisplay));
     if (!cfd)
@@ -590,6 +591,13 @@ colorFilterInitDisplay (CompPlugin * p, CompDisplay * d)
     colorfilterSetToggleWindowKeyInitiate (d, colorFilterToggle);
     colorfilterSetToggleScreenKeyInitiate (d, colorFilterToggleAll);
     colorfilterSetSwitchFilterKeyInitiate (d, colorFilterSwitch);
+
+    for (i = 0; i < ColorfilterDisplayOptionNum; i++)
+    {
+	CompOption *opt = colorfilterGetDisplayOption (d, i);
+	if (isActionOption(opt))
+	    opt->value.action.ignoreGrabs = TRUE;
+    }
 
     d->base.privates[displayPrivateIndex].ptr = cfd;
 
