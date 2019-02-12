@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 Auboyneau Vincent <ksamak@riseup.net>
- * Copyright (C) 2018 Samuel Thibault <sthibault@hypra.fr>
+ * Copyright (C) 2018-2019 Samuel Thibault <sthibault@hypra.fr>
  *
  *   This file is part of compiz.
  *
@@ -255,6 +255,15 @@ AccessibilityWatcher::registerEvent (const AtspiEvent *event, const gchar *type)
 		   getLabel (event->source),
 		   atspi_accessible_get_role_name (event->source, NULL),
 		   atspi_accessible_get_name (application.get (), NULL));
+
+    auto stateSet0 = unique_gobject (atspi_accessible_get_state_set (event->source));
+    if (!atspi_state_set_contains (stateSet0.get (), ATSPI_STATE_SHOWING) ||
+        !atspi_state_set_contains (stateSet0.get (), ATSPI_STATE_VISIBLE))
+    {
+	/* This is not actually on-screen, its coordinates will not mean anything */
+	delete (res);
+	return;
+    }
 
     if (!res->active)
     {
