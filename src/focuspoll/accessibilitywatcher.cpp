@@ -168,6 +168,71 @@ onDescendantChanged (const AtspiEvent *event, void *data)
     watcher->registerEvent (event, "active-descendant-changed");
 }
 
+static void
+enableA11y (void)
+{
+    // Set org.a11y.Status.IsEnabled to true, otherwise e.g. mozilla
+    // applications would not expose at-spi
+
+    DBusConnection *bus = dbus_bus_get (DBUS_BUS_SESSION, NULL);
+    const char *iface = "org.a11y.Status";
+    const char *property = "IsEnabled";
+    dbus_bool_t b = TRUE;
+
+    DBusMessage *m = dbus_message_new_method_call ("org.a11y.Bus",
+	"/org/a11y/bus", "org.freedesktop.DBus.Properties", "Set");
+    if (!m)
+    {
+	fprintf(stderr,"Enabling accessibility: could not get a message\n");
+	goto outbus;
+    }
+
+    if (!dbus_message_append_args (m,
+	    DBUS_TYPE_STRING, &iface,
+	    DBUS_TYPE_STRING, &property,
+	    DBUS_TYPE_INVALID))
+    {
+	fprintf(stderr,"Enabling accessibility: could not set parameters\n");
+	goto outmessage;
+    }
+
+    DBusMessageIter args_iter, var_iter;
+
+    dbus_message_iter_init_append (m, &args_iter);
+    if (!dbus_message_iter_open_container (&args_iter,
+	    DBUS_TYPE_VARIANT, "b", &var_iter) ||
+	!dbus_message_iter_append_basic (&var_iter,
+	    DBUS_TYPE_BOOLEAN, &b) ||
+	!dbus_message_iter_close_container (&args_iter, &var_iter))
+    {
+	fprintf(stderr,"Enabling accessibility: could not set value\n");
+	goto outmessage;
+    }
+
+    DBusError error;
+    DBusMessage *reply;
+
+    dbus_error_init (&error);
+    reply = dbus_connection_send_with_reply_and_block(bus, m, 1000, &error);
+    if (!reply)
+    {
+	fprintf(stderr,"Enabling accessibility: no dbus reply after 1s:"
+		"%s %s\n", error.name, error.message);
+	goto outmessage;
+    }
+    if (dbus_message_get_type (reply) == DBUS_MESSAGE_TYPE_ERROR) {
+	fprintf(stderr,"Enabling accessibility: error message\n");
+	goto outreply;
+    }
+
+outreply:
+    dbus_message_unref (reply);
+outmessage:
+    dbus_message_unref (m);
+outbus:
+    dbus_connection_unref (bus);
+}
+
 AccessibilityWatcher::AccessibilityWatcher () :
     mActive (false),
     screenWidth (0),
@@ -179,6 +244,7 @@ AccessibilityWatcher::AccessibilityWatcher () :
 {
     atspi_init ();
     atspi_set_main_context (g_main_context_default ());
+    enableA11y ();
 
     focusListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onFocus), this, NULL);
     caretMoveListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onCaretMove), this, NULL);
