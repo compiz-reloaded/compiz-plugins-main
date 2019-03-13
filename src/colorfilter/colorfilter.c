@@ -511,6 +511,19 @@ colorFilterDamageDecorations (CompScreen *s, CompOption *opt,
     damageScreen (s);
 }
 
+/*
+ * Enable filtering if "Activate at Startup" setting got enabled
+ */
+static void
+colorFilterActivateAtStartupChanged (CompScreen *s, CompOption *opt,
+				     ColorfilterScreenOptions num)
+{
+    FILTER_SCREEN (s);
+
+    if (opt->value.b && !cfs->isFiltered && s->fragmentProgram)
+	colorFilterToggleScreen (s);
+}
+
 static void
 colorFilterObjectAdd (CompObject *parent,
 		      CompObject *object)
@@ -648,6 +661,13 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     colorfilterSetExcludeMatchNotify (s, colorFilterExcludeMatchsChanged);
     colorfilterSetFiltersNotify (s, colorFiltersChanged);
     colorfilterSetFilterDecorationsNotify (s, colorFilterDamageDecorations);
+    colorfilterSetActivateAtStartupNotify (s, colorFilterActivateAtStartupChanged);
+
+    /* This is not really useful yet because options are not loaded yet and the
+     * default is false.  Keep it in case the default is changed. */
+    colorFilterActivateAtStartupChanged (s,
+					 colorfilterGetActivateAtStartupOption (s),
+					 ColorfilterScreenOptionActivateAtStartup);
 
     WRAP (cfs, s, drawWindowTexture, colorFilterDrawWindowTexture);
 
