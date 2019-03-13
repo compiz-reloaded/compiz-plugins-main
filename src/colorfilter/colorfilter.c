@@ -169,9 +169,16 @@ colorFilterSwitchFilter (CompScreen * s)
 
     /* % (count + 1) because of the cumulative filters mode */
     cfs->currentFilter = (cfs->currentFilter + 1) % (cfs->filtersCount + 1);
+    if (cfs->currentFilter == 0 && !colorfilterGetCumulativeEnable (s))
+	cfs->currentFilter = (cfs->currentFilter + 1) % (cfs->filtersCount + 1);
+
     if (cfs->currentFilter == 0)
-	compLogMessage ("colorfilter", CompLogLevelInfo,
-			"Cumulative filters mode");
+    {
+	/* avoid the message if no filter is loaded and cumulative mode is disabled */
+	if (colorfilterGetCumulativeEnable (s))
+	    compLogMessage ("colorfilter", CompLogLevelInfo,
+			    "Cumulative filters mode");
+    }
     else
     {
 	id = cfs->filtersFunctions[cfs->currentFilter - 1];
@@ -350,6 +357,8 @@ loadFilters (CompScreen *s, CompTexture *texture)
 
     if (!loaded)
 	cfs->filtersCount = 0;
+    else if (cfs->currentFilter == 0 && !colorfilterGetCumulativeEnable (s))
+	colorFilterSwitchFilter (s);
 
     /* Damage currently filtered windows */
     for (w = s->windows; w; w = w->next)
@@ -512,6 +521,19 @@ colorFilterDamageDecorations (CompScreen *s, CompOption *opt,
 }
 
 /*
+ * Cumulative mode enable updated callback
+ */
+static void
+colorFilterCumulativeEnableChanged (CompScreen *s, CompOption *opt,
+				    ColorfilterScreenOptions num)
+{
+    FILTER_SCREEN (s);
+
+    if (cfs->currentFilter == 0 && !colorfilterGetCumulativeEnable (s))
+	colorFilterSwitchFilter (s);
+}
+
+/*
  * Enable filtering if "Activate at Startup" setting got enabled
  */
 static void
@@ -661,6 +683,7 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     colorfilterSetExcludeMatchNotify (s, colorFilterExcludeMatchsChanged);
     colorfilterSetFiltersNotify (s, colorFiltersChanged);
     colorfilterSetFilterDecorationsNotify (s, colorFilterDamageDecorations);
+    colorfilterSetCumulativeEnableNotify (s, colorFilterCumulativeEnableChanged);
     colorfilterSetActivateAtStartupNotify (s, colorFilterActivateAtStartupChanged);
 
     /* This is not really useful yet because options are not loaded yet and the
