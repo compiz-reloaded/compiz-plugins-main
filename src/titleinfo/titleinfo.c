@@ -72,9 +72,6 @@ titleinfoUpdateVisibleName (CompWindow *w)
 
     title = tw->title ? tw->title : "";
 
-    if (titleinfoGetShowRoot (w->screen) && tw->owner == 0)
-	root = "ROOT: ";
-
     if (titleinfoGetShowRemoteMachine (w->screen) && tw->remoteMachine)
     {
 	char hostname[256];
@@ -82,6 +79,9 @@ titleinfoUpdateVisibleName (CompWindow *w)
 	if (gethostname (hostname, 256) || strcmp (hostname, tw->remoteMachine))
 	    machine = tw->remoteMachine;
     }
+
+    if (!machine && titleinfoGetShowRoot (w->screen) && tw->owner == 0)
+	root = "ROOT: ";
 
     if (machine)
     {
