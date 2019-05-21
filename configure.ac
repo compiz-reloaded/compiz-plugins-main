@@ -131,6 +131,10 @@ PKG_CHECK_MODULES(PANGO, cairo-xlib-xrender pangocairo cairo >= 1.0, [have_pango
 AM_CONDITIONAL(FOCUSPOLL_PLUGIN, test "x$have_atspi2" = "xyes")
 if test "x$have_atspi2" = "xyes"; then
   AC_DEFINE(USE_FOCUSPOLL, 1, [Build focuspoll plugin])
+  _save_cflags="$CFLAGS"
+  CFLAGS="$CFLAGS $ATSPI2_CFLAGS"
+  AC_CHECK_MEMBERS([AtspiEvent.sender], , , [#include <atspi/atspi-types.h>])
+  CFLAGS="$_save_cflags"
 fi
 
 AM_CONDITIONAL(TEXT_PLUGIN, test "x$have_pango" = "xyes")
