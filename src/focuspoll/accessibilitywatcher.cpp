@@ -233,6 +233,89 @@ outbus:
     dbus_connection_unref (bus);
 }
 
+static DBusHandlerResult
+handle_root (DBusConnection *bus, DBusMessage *message, void *data)
+{
+    const gint   type      = dbus_message_get_type (message);
+    const gchar *interface = dbus_message_get_interface (message);
+    const gchar *member    = dbus_message_get_member (message);
+
+    DBusError error;
+    DBusMessageIter iter;
+    DBusMessageIter variant;
+    DBusMessage *reply = NULL;
+
+    dbus_error_init (&error);
+
+    if (type != DBUS_MESSAGE_TYPE_METHOD_CALL || !interface || !member)
+	return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+
+    if (!strcmp (interface, "org.a11y.atspi.Accessible"))
+    {
+	if (!strcmp (member, "GetRole"))
+	{
+	    dbus_uint32_t role = ATSPI_ROLE_APPLICATION;
+	    reply = dbus_message_new_method_return (message);
+	    dbus_message_append_args (reply,
+				      DBUS_TYPE_UINT32, &role,
+				      DBUS_TYPE_INVALID);
+	}
+    }
+    if (!strcmp (interface, "org.freedesktop.DBus.Properties"))
+    {
+	if (!strcmp (member, "Get"))
+	{
+	    const gchar *prop_interface;
+	    const gchar *prop_member;
+
+	    if (!dbus_message_get_args (message, &error,
+				   DBUS_TYPE_STRING, &prop_interface,
+				   DBUS_TYPE_STRING, &prop_member,
+				   DBUS_TYPE_INVALID))
+	    {
+		reply = dbus_message_new_error (message, DBUS_ERROR_FAILED,
+						"Invalid Get request");
+	    }
+	    else
+	    {
+		if (!strcmp (prop_interface, "org.a11y.atspi.Accessible"))
+		{
+		    if (!strcmp (prop_member, "Name"))
+		    {
+			const gchar *name = "compiz";
+			reply = dbus_message_new_method_return (message);
+			dbus_message_iter_init_append (reply, &iter);
+			dbus_message_iter_open_container (&iter,
+							  DBUS_TYPE_VARIANT,
+							  "s", &variant);
+			dbus_message_iter_append_basic (&variant,
+							DBUS_TYPE_STRING,
+							&name);
+			dbus_message_iter_close_container (&iter, &variant);
+		    }
+		}
+		if (!reply)
+		    reply = dbus_message_new_error (message, DBUS_ERROR_FAILED,
+						    "Unsupported property");
+	    }
+	}
+    }
+
+    if (reply)
+    {
+	dbus_connection_send (bus, reply, NULL);
+	dbus_message_unref(reply);
+	return DBUS_HANDLER_RESULT_HANDLED;
+    }
+
+    return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+static DBusObjectPathVTable root_vtable =
+{
+    NULL, &handle_root, NULL, NULL, NULL, NULL
+};
+
 AccessibilityWatcher::AccessibilityWatcher () :
     mActive (false),
     screenWidth (0),
@@ -245,6 +328,9 @@ AccessibilityWatcher::AccessibilityWatcher () :
     atspi_init ();
     atspi_set_main_context (g_main_context_default ());
     enableA11y ();
+
+    DBusConnection *dbus = atspi_get_a11y_bus ();
+    dbus_connection_register_object_path (dbus, "/org/a11y/atspi/accessible/root", &root_vtable, NULL);
 
     focusListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onFocus), this, NULL);
     caretMoveListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onCaretMove), this, NULL);
