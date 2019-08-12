@@ -561,6 +561,7 @@ AccessibilityWatcher::registerEvent (const AtspiEvent *event, const gchar *type)
 	    (strcmp (event->type, "object:text-changed:insert") == 0 ||
 	     strcmp (event->type, "object:text-changed:removed") == 0 ||
 	     strcmp (event->type, "object:text-caret-moved") == 0)) {
+	    getAlternativeCaret (res, event);
 	    res->x = res->xAlt;
 	    res->y = res->yAlt;
 	    res->w = res->wAlt;
@@ -662,7 +663,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	    {
 		getAlternativeCaret (focus, event);
 		focus->x = focus->xAlt;
-		focus->y = focus->yAlt + focus->hAlt;
+		focus->y = focus->yAlt;
 		focus->w = focus->wAlt;
 		focus->h = focus->hAlt;
 	    }
@@ -712,7 +713,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	if (strcmp (focus->type, "caret") == 0 && !(focus->xAlt == 0 && focus->yAlt == 0))
 	{
 	    focus->x = focus->xAlt;
-	    focus->y = focus->yAlt + focus->hAlt;
+	    focus->y = focus->yAlt;
 	    focus->w = focus->wAlt;
 	    focus->h = focus->hAlt;
 	    focusList.push_back (focus);
@@ -802,7 +803,9 @@ AccessibilityWatcher::getAlternativeCaret (FocusInfo *focus, const AtspiEvent* e
     auto string = unique_gmem (atspi_text_get_string_at_offset (text.get (), offset, ATSPI_TEXT_GRANULARITY_CHAR, NULL));
     gchar caretChar = string.get ()->content[0];
 
-    // if we're at a newline, sometimes at-spi isn't giving us a caret position. unknown bug in some apps.
+    // When caret is on an empty line, firefox/thunderbird return an empty extent.
+    // Fix this by looking for the previous beginning of line.
+    // XXX: this can't work is there is no non-empty line above.
     if (caretChar == '\n' || caretChar == '\0')
     {
 	// gives the last empty line the right focus.
@@ -823,7 +826,7 @@ AccessibilityWatcher::getAlternativeCaret (FocusInfo *focus, const AtspiEvent* e
 		{
 		    charExtentsFound = true; // first character of upper line has been found
 		}
-		else if (offset - charIndex -1 == 0)
+		else if (offset - charIndex == 0)
 		{
 		    size = unique_gmem (atspi_text_get_character_extents (text.get (), 0, ATSPI_COORD_TYPE_SCREEN, NULL));
 		    // first character of upper line has been found
@@ -836,10 +839,18 @@ AccessibilityWatcher::getAlternativeCaret (FocusInfo *focus, const AtspiEvent* e
 	    }
 	    ++charIndex;
 	}
-	focus->xAlt = size.get ()->x;
-	focus->yAlt = size.get ()->y + (lines-1) * size.get ()->height;
-	focus->wAlt = size.get ()->width;
-	focus->hAlt = size.get ()->height;
+	if (charExtentsFound) {
+	    focus->xAlt = size.get ()->x;
+	    focus->yAlt = size.get ()->y + lines * size.get ()->height;
+	    focus->wAlt = size.get ()->width;
+	    focus->hAlt = size.get ()->height;
+	} else {
+	    size = unique_gmem (atspi_text_get_character_extents (text.get (), offset, ATSPI_COORD_TYPE_SCREEN, NULL));
+	    focus->xAlt = size.get ()->x;
+	    focus->yAlt = size.get ()->y;
+	    focus->wAlt = size.get ()->width;
+	    focus->hAlt = size.get ()->height;
+	}
     }
 }
 
