@@ -44,7 +44,8 @@ class AccessibilityWatcher
 	void resetFocusQueue (void);
 	bool returnToPrevMenu (void);
 
-	void registerEvent (const AtspiEvent *event, const gchar *type);
+	void activityEvent (const AtspiEvent *event, const gchar *type);
+	void readingEvent (const AtspiEvent *event, const gchar *type);
 
     private:
 	bool mActive;
@@ -58,6 +59,7 @@ class AccessibilityWatcher
 	AtspiEventListener *caretMoveListener;
 	AtspiEventListener *selectedListener;
 	AtspiEventListener *descendantChangedListener;
+	AtspiEventListener *readingListener;
 
 	void addWatches (void);
 	void removeWatches (void);

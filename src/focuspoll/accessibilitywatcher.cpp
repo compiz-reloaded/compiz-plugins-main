@@ -139,14 +139,14 @@ static void
 onCaretMove (const AtspiEvent *event, void *data)
 {
     AccessibilityWatcher *watcher = (AccessibilityWatcher *) data;
-    watcher->registerEvent (event, "caret");
+    watcher->activityEvent (event, "caret");
 }
 
 static void
 onSelectedChange (const AtspiEvent *event, void *data)
 {
     AccessibilityWatcher *watcher = (AccessibilityWatcher *) data;
-    watcher->registerEvent (event, "state-changed:selected");
+    watcher->activityEvent (event, "state-changed:selected");
 }
 
 static void
@@ -158,14 +158,21 @@ onFocus (const AtspiEvent *event, void *data)
 	return;
 
     AccessibilityWatcher *watcher = (AccessibilityWatcher *) data;
-    watcher->registerEvent (event, "focus");
+    watcher->activityEvent (event, "focus");
 }
 
 static void
 onDescendantChanged (const AtspiEvent *event, void *data)
 {
     AccessibilityWatcher *watcher = (AccessibilityWatcher *) data;
-    watcher->registerEvent (event, "active-descendant-changed");
+    watcher->activityEvent (event, "active-descendant-changed");
+}
+
+static void
+onReading (const AtspiEvent *event, void *data)
+{
+    AccessibilityWatcher *watcher = (AccessibilityWatcher *) data;
+    watcher->readingEvent (event, "region-changed");
 }
 
 static void
@@ -323,7 +330,8 @@ AccessibilityWatcher::AccessibilityWatcher () :
     focusListener (NULL),
     caretMoveListener (NULL),
     selectedListener (NULL),
-    descendantChangedListener (NULL)
+    descendantChangedListener (NULL),
+    readingListener (NULL)
 {
     atspi_init ();
     atspi_set_main_context (g_main_context_default ());
@@ -336,6 +344,7 @@ AccessibilityWatcher::AccessibilityWatcher () :
     caretMoveListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onCaretMove), this, NULL);
     selectedListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onSelectedChange), this, NULL);
     descendantChangedListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onDescendantChanged), this, NULL);
+    readingListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onReading), this, NULL);
 
     addWatches ();
 }
@@ -347,6 +356,7 @@ AccessibilityWatcher::~AccessibilityWatcher ()
     g_object_unref (caretMoveListener);
     g_object_unref (selectedListener);
     g_object_unref (descendantChangedListener);
+    g_object_unref (readingListener);
 };
 
 static gchar *
@@ -398,7 +408,7 @@ AccessibilityWatcher::getScreenHeight ()
 }
 
 void
-AccessibilityWatcher::registerEvent (const AtspiEvent *event, const gchar *type)
+AccessibilityWatcher::activityEvent (const AtspiEvent *event, const gchar *type)
 {
     // type is registered from filter on calling event
     auto application = unique_gobject (atspi_accessible_get_application (event->source, NULL));
@@ -854,6 +864,72 @@ AccessibilityWatcher::getAlternativeCaret (FocusInfo *focus, const AtspiEvent* e
     }
 }
 
+void
+AccessibilityWatcher::readingEvent (const AtspiEvent *event, const gchar *type)
+{
+    // type is registered from filter on calling event
+#ifdef HAVE_ATSPIEVENT_SENDER
+    AtspiAccessible *sender = event->sender;
+    AtspiObject *sender_obj = ATSPI_OBJECT (sender);
+    DBusConnection *dbus = atspi_get_a11y_bus ();
+    if (!strcmp (dbus_bus_get_unique_name (dbus), sender_obj->app->bus_name))
+    {
+	// It's ourself
+	return;
+    }
+#endif
+    auto application = unique_gobject (atspi_accessible_get_application (event->source, NULL));
+    FocusInfo *res = new FocusInfo (type,
+		   atspi_accessible_get_name (event->source, NULL),
+		   getLabel (event->source),
+		   atspi_accessible_get_role_name (event->source, NULL),
+		   atspi_accessible_get_name (application.get (), NULL));
+
+    auto text = unique_gobject (atspi_accessible_get_text (event->source));
+    if (!text.get ())
+    {
+	delete (res);
+	return;
+    }
+    int start = event->detail1, end = event->detail2;
+
+    /* Avoid empty selections */
+    if (start == end) {
+	if (start == 0)
+	    end += 1;
+	else
+	    start -= 1;
+    }
+
+    auto rect = unique_gmem (atspi_text_get_range_extents (text.get(), start, end, ATSPI_COORD_TYPE_SCREEN, NULL));
+    if (!rect.get ())
+    {
+	delete (res);
+	return;
+    }
+
+    res->active = true;
+    res->focused = true;
+    res->x = rect.get ()->x;
+    res->y = rect.get ()->y;
+    res->w = rect.get ()->width;
+    res->h = rect.get ()->height;
+
+    if (filterBadEvents(res))
+    {
+	delete (res);
+	return;
+    }
+
+    while (focusList.size () >= 5) { // don't keep the whole history
+       auto iter = focusList.begin ();
+       auto info = *iter;
+       focusList.erase (iter);
+       delete (info);
+    }
+    focusList.push_back (res);
+}
+
 
 /* Register to events */
 void
@@ -865,6 +941,7 @@ AccessibilityWatcher::addWatches ()
     atspi_event_listener_register (caretMoveListener, "object:text-changed:removed", NULL);
     atspi_event_listener_register (selectedListener, "object:state-changed:selected", NULL);
     atspi_event_listener_register (descendantChangedListener, "object:active-descendant-changed", NULL);
+    atspi_event_listener_register (readingListener, "screen-reader:region-changed", NULL);
     mActive = true;
 }
 
@@ -877,6 +954,7 @@ AccessibilityWatcher::removeWatches ()
     atspi_event_listener_deregister (caretMoveListener, "object:text-changed:removed", NULL);
     atspi_event_listener_deregister (selectedListener, "object:state-changed:selected", NULL);
     atspi_event_listener_deregister (descendantChangedListener, "object:active-descendant-changed", NULL);
+    atspi_event_listener_deregister (readingListener, "screen-reader:region-changed", NULL);
     mActive = false;
 }
 
