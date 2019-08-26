@@ -1005,16 +1005,21 @@ convertToZoomed (CompScreen *s,
 	    yTranslate = limit;
     }
 
+    float retX, retY;
+
     x -= o->region.extents.x1;
     y -= o->region.extents.y1;
-    *resultX = x - (xTranslate * o->width) - o->width/2;
-    *resultX /= za->currentZoom;
-    *resultX += o->width/2;
-    *resultX += o->region.extents.x1;
-    *resultY = y - (yTranslate * o->height) - o->height/2;
-    *resultY /= za->currentZoom;
-    *resultY += o->height/2;
-    *resultY += o->region.extents.y1;
+    retX = x - (xTranslate * o->width) - o->width/2;
+    retX /= za->currentZoom;
+    retX += o->width/2;
+    retX += o->region.extents.x1;
+    retY = y - (yTranslate * o->height) - o->height/2;
+    retY /= za->currentZoom;
+    retY += o->height/2;
+    retY += o->region.extents.y1;
+
+    *resultX = retX;
+    *resultY = retY;
 }
 
 /* Same but use targeted translation, not real */
@@ -1031,16 +1036,22 @@ convertToZoomedTarget (CompScreen *s,
 
     x -= o->region.extents.x1;
     y -= o->region.extents.y1;
-    *resultX = x - (za->xTranslate *
+
+    float retX, retY;
+
+    retX = x - (za->xTranslate *
 		    (1.0f - za->newZoom) * o->width) - o->width/2;
-    *resultX /= za->newZoom;
-    *resultX += o->width/2;
-    *resultX += o->region.extents.x1;
-    *resultY = y - (za->yTranslate *
+    retX /= za->newZoom;
+    retX += o->width/2;
+    retX += o->region.extents.x1;
+    retY = y - (za->yTranslate *
 		    (1.0f - za->newZoom) * o->height) - o->height/2;
-    *resultY /= za->newZoom;
-    *resultY += o->height/2;
-    *resultY += o->region.extents.y1;
+    retY /= za->newZoom;
+    retY += o->height/2;
+    retY += o->region.extents.y1;
+
+    *resultX = retX;
+    *resultY = retY;
 }
 
 /* Make sure the given point + margin is visible;
