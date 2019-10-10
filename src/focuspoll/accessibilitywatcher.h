@@ -58,6 +58,7 @@ class AccessibilityWatcher
 	AtspiEventListener *focusListener;
 	AtspiEventListener *caretMoveListener;
 	AtspiEventListener *selectedListener;
+	AtspiEventListener *windowCreateListener;
 	AtspiEventListener *descendantChangedListener;
 	AtspiEventListener *readingListener;
 
