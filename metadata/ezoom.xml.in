@@ -325,6 +325,30 @@
 		    <default>false</default>
 		</option>
 	    </group>
+	    <group>
+		<_short>Notifications</_short>
+		<option type="bool" name="notifications_enabled">
+		    <_short>Track notifications</_short>
+		    <_long>Follow notifications like focus change</_long>
+		    <default>true</default>
+		</option>
+		<option type="float" name="notifications_min_delay">
+		    <_short>Minimum notification showing time</_short>
+		    <_long>The minimum amount of time a notification is shown regadless of other focus events</_long>
+		    <default>2</default>
+		    <min>0</min>
+		    <max>60</max>
+		    <precision>0.1</precision>
+		</option>
+		<option type="float" name="notifications_max_delay">
+		    <_short>Maximum notification showing time</_short>
+		    <_long>The maximum amount of time a notification is shown for even if it is still on screen</_long>
+		    <default>7.0</default>
+		    <min>0.1</min>
+		    <max>60</max>
+		    <precision>0.1</precision>
+		</option>
+	    </group>
 	</screen>
     </plugin>
 </compiz>
