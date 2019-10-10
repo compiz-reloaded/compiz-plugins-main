@@ -992,11 +992,17 @@ AccessibilityWatcher::setActive (bool activate)
 
 void
 AccessibilityWatcher::queueFocus (FocusInfo *inf) {
-    while (focusList.size () >= 5) { // don't keep the whole history
-	auto iter = focusList.begin ();
-	auto info = *iter;
-	focusList.erase (iter);
-	delete (info);
+    if (strcmp (inf->type, "notification") != 0) {
+	for (auto it = focusList.begin(); it != focusList.end(); ) {
+	    auto it_info = *it;
+	    if (strcmp (it_info->type, "notification") == 0)
+		it++;
+	    else
+	    {
+		it = focusList.erase(it);
+		delete (it_info);
+	    }
+	}
     }
     focusList.push_back (inf);
 }

@@ -100,9 +100,10 @@ updatePosition (void *c)
 
     FOCUSPOLL_SCREEN (s);
 
-    if (!fs->a11ywatcher->getFocusQueue ().empty ())
+    auto queue = fs->a11ywatcher->getFocusQueue ();
+    for (auto fit = queue.begin(); fit != queue.end(); ++fit)
     {
-	auto info = fs->a11ywatcher->getFocusQueue ().back ();
+	auto info = *fit;
 	CompRect focusRect = info->getBBox ();
 	FocuspollClient *next;
 	for (fc = fs->clients; fc; fc = next)
