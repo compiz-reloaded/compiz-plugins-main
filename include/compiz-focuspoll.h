@@ -21,11 +21,12 @@
 #ifndef _COMPIZ_FOCUSPOLL_H
 #define _COMPIZ_FOCUSPOLL_H
 
-#define FOCUSPOLL_ABIVERSION 20080116
+#define FOCUSPOLL_ABIVERSION 20191010
 
 typedef int FocusPollingHandle;
 
 typedef void (*FocusUpdateProc) (CompScreen *s,
+				 const char *eventType,
 				 int        x,
 				 int        y,
 				 int        with,

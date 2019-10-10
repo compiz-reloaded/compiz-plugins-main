@@ -244,7 +244,8 @@ typedef struct _ZoomScreen {
 
 static void syncCenterToMouse (CompScreen *s);
 static void updateMouseInterval (CompScreen *s, int x, int y);
-static void updateFocusInterval (CompScreen *s, int x, int y, int width, int height);
+static void updateFocusInterval (CompScreen *s, const char *eventType,
+				 int x, int y, int width, int height);
 static void cursorZoomActive (CompScreen *s);
 static void cursorZoomInactive (CompScreen *s);
 static void restrainCursor (CompScreen *s, int out);
@@ -1431,7 +1432,8 @@ updateMouseInterval (CompScreen *s, int x, int y)
 
 /* Timeout handler to focusPoll. */
 static void
-updateFocusInterval (CompScreen *s, int x, int y, int width, int height)
+updateFocusInterval (CompScreen *s, const char *eventType,
+		     int x, int y, int width, int height)
 {
     ZOOM_SCREEN (s);
 
