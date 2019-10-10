@@ -641,13 +641,7 @@ AccessibilityWatcher::activityEvent (const AtspiEvent *event, const gchar *type)
 	delete (res);
 	return;
     }
-    while (focusList.size () >= 5) { // don't keep the whole history
-       auto iter = focusList.begin ();
-       auto info = *iter;
-       focusList.erase (iter);
-       delete (info);
-    }
-    focusList.push_back (res);
+    queueFocus (res);
 }
 
 bool
@@ -703,7 +697,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	    }
 	    if (!(focus->x == 0 && focus->y == 0))
 	    { // prevents compose window loss of tracking in HTML mode (active flag ok, but no focused flag)
-		focusList.push_back (focus);
+		queueFocus (focus);
 		return true;
 	    }
 	    auto component = unique_gobject (atspi_accessible_get_component (event->source));
@@ -714,7 +708,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 		focus->y = size.get ()->y;
 		focus->w = 7;
 		focus->h = size.get ()->height;
-		focusList.push_back (focus);
+		queueFocus (focus);
 		return true;
 	    }
 	}
@@ -740,7 +734,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	}
 	if (strcmp (focus->type, "caret") == 0 && !(focus->x == 0 && focus->y == 0))
 	{
-	    focusList.push_back (focus);
+	    queueFocus (focus);
 	    return true;
 	}
 	getAlternativeCaret (focus, event);
@@ -750,7 +744,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	    focus->y = focus->yAlt;
 	    focus->w = focus->wAlt;
 	    focus->h = focus->hAlt;
-	    focusList.push_back (focus);
+	    queueFocus (focus);
 	    return true;
 	}
     }
@@ -821,7 +815,7 @@ AccessibilityWatcher::returnToPrevMenu ()
     {
 	previouslyActiveMenus.pop_back ();
 	FocusInfo *dup = new FocusInfo (*previouslyActiveMenus.back ());
-	focusList.push_back (dup);
+	queueFocus (dup);
 	return true;
     }
     return false;
@@ -950,13 +944,7 @@ AccessibilityWatcher::readingEvent (const AtspiEvent *event, const gchar *type)
 	return;
     }
 
-    while (focusList.size () >= 5) { // don't keep the whole history
-       auto iter = focusList.begin ();
-       auto info = *iter;
-       focusList.erase (iter);
-       delete (info);
-    }
-    focusList.push_back (res);
+    queueFocus (res);
 }
 
 
@@ -1000,6 +988,17 @@ AccessibilityWatcher::setActive (bool activate)
     {
 	addWatches ();
     }
+}
+
+void
+AccessibilityWatcher::queueFocus (FocusInfo *inf) {
+    while (focusList.size () >= 5) { // don't keep the whole history
+	auto iter = focusList.begin ();
+	auto info = *iter;
+	focusList.erase (iter);
+	delete (info);
+    }
+    focusList.push_back (inf);
 }
 
 std::deque <FocusInfo *>

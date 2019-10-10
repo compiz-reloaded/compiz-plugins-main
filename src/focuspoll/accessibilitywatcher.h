@@ -40,6 +40,7 @@ class AccessibilityWatcher
 	int getScreenWidth (void);
 	int getScreenHeight (void);
 
+	void queueFocus (FocusInfo *);
 	std::deque<FocusInfo *> getFocusQueue (void);
 	void resetFocusQueue (void);
 	bool returnToPrevMenu (void);
