@@ -150,6 +150,27 @@ onSelectedChange (const AtspiEvent *event, void *data)
 }
 
 static void
+onWindowCreate (const AtspiEvent *event, void *data)
+{
+    AtspiAccessible *app = atspi_accessible_get_application (event->source, NULL);
+    gchar *appName;
+
+    if (!app)
+	return;
+
+    appName = atspi_accessible_get_name (app, NULL);
+    if (!appName || !*appName)
+	return;
+
+    if (strcmp (appName, "notification-daemon") == 0 ||
+        strcmp (appName, "mate-notification-daemon") == 0)
+    {
+	AccessibilityWatcher *watcher = (AccessibilityWatcher *) data;
+	watcher->activityEvent (event, "notification");
+    }
+}
+
+static void
 onFocus (const AtspiEvent *event, void *data)
 {
     /* We only care about focus/selection gain
@@ -330,6 +351,7 @@ AccessibilityWatcher::AccessibilityWatcher () :
     focusListener (NULL),
     caretMoveListener (NULL),
     selectedListener (NULL),
+    windowCreateListener (NULL),
     descendantChangedListener (NULL),
     readingListener (NULL)
 {
@@ -343,6 +365,7 @@ AccessibilityWatcher::AccessibilityWatcher () :
     focusListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onFocus), this, NULL);
     caretMoveListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onCaretMove), this, NULL);
     selectedListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onSelectedChange), this, NULL);
+    windowCreateListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onWindowCreate), this, NULL);
     descendantChangedListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onDescendantChanged), this, NULL);
     readingListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onReading), this, NULL);
 
@@ -355,6 +378,7 @@ AccessibilityWatcher::~AccessibilityWatcher ()
     g_object_unref (focusListener);
     g_object_unref (caretMoveListener);
     g_object_unref (selectedListener);
+    g_object_unref (windowCreateListener);
     g_object_unref (descendantChangedListener);
     g_object_unref (readingListener);
 };
@@ -617,13 +641,7 @@ AccessibilityWatcher::activityEvent (const AtspiEvent *event, const gchar *type)
 	delete (res);
 	return;
     }
-    while (focusList.size () >= 5) { // don't keep the whole history
-       auto iter = focusList.begin ();
-       auto info = *iter;
-       focusList.erase (iter);
-       delete (info);
-    }
-    focusList.push_back (res);
+    queueFocus (res);
 }
 
 bool
@@ -679,7 +697,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	    }
 	    if (!(focus->x == 0 && focus->y == 0))
 	    { // prevents compose window loss of tracking in HTML mode (active flag ok, but no focused flag)
-		focusList.push_back (focus);
+		queueFocus (focus);
 		return true;
 	    }
 	    auto component = unique_gobject (atspi_accessible_get_component (event->source));
@@ -690,7 +708,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 		focus->y = size.get ()->y;
 		focus->w = 7;
 		focus->h = size.get ()->height;
-		focusList.push_back (focus);
+		queueFocus (focus);
 		return true;
 	    }
 	}
@@ -716,7 +734,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	}
 	if (strcmp (focus->type, "caret") == 0 && !(focus->x == 0 && focus->y == 0))
 	{
-	    focusList.push_back (focus);
+	    queueFocus (focus);
 	    return true;
 	}
 	getAlternativeCaret (focus, event);
@@ -726,7 +744,7 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	    focus->y = focus->yAlt;
 	    focus->w = focus->wAlt;
 	    focus->h = focus->hAlt;
-	    focusList.push_back (focus);
+	    queueFocus (focus);
 	    return true;
 	}
     }
@@ -741,6 +759,11 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 bool
 AccessibilityWatcher::filterBadEvents (const FocusInfo *event)
 {
+    if (strcmp (event->type, "notification") == 0)
+    {
+       // notifications don't have to be focused
+       return false;
+    }
     if (strcmp (event->type, "caret") == 0 && event->x ==0 && event->y == 0)
     {
 	return true;
@@ -792,7 +815,7 @@ AccessibilityWatcher::returnToPrevMenu ()
     {
 	previouslyActiveMenus.pop_back ();
 	FocusInfo *dup = new FocusInfo (*previouslyActiveMenus.back ());
-	focusList.push_back (dup);
+	queueFocus (dup);
 	return true;
     }
     return false;
@@ -921,13 +944,7 @@ AccessibilityWatcher::readingEvent (const AtspiEvent *event, const gchar *type)
 	return;
     }
 
-    while (focusList.size () >= 5) { // don't keep the whole history
-       auto iter = focusList.begin ();
-       auto info = *iter;
-       focusList.erase (iter);
-       delete (info);
-    }
-    focusList.push_back (res);
+    queueFocus (res);
 }
 
 
@@ -940,6 +957,7 @@ AccessibilityWatcher::addWatches ()
     atspi_event_listener_register (caretMoveListener, "object:text-changed:inserted", NULL);
     atspi_event_listener_register (caretMoveListener, "object:text-changed:removed", NULL);
     atspi_event_listener_register (selectedListener, "object:state-changed:selected", NULL);
+    atspi_event_listener_register (windowCreateListener, "window:create", NULL);
     atspi_event_listener_register (descendantChangedListener, "object:active-descendant-changed", NULL);
     atspi_event_listener_register (readingListener, "screen-reader:region-changed", NULL);
     mActive = true;
@@ -953,6 +971,7 @@ AccessibilityWatcher::removeWatches ()
     atspi_event_listener_deregister (caretMoveListener, "object:text-changed:inserted", NULL);
     atspi_event_listener_deregister (caretMoveListener, "object:text-changed:removed", NULL);
     atspi_event_listener_deregister (selectedListener, "object:state-changed:selected", NULL);
+    atspi_event_listener_deregister (windowCreateListener, "window:create", NULL);
     atspi_event_listener_deregister (descendantChangedListener, "object:active-descendant-changed", NULL);
     atspi_event_listener_deregister (readingListener, "screen-reader:region-changed", NULL);
     mActive = false;
@@ -969,6 +988,23 @@ AccessibilityWatcher::setActive (bool activate)
     {
 	addWatches ();
     }
+}
+
+void
+AccessibilityWatcher::queueFocus (FocusInfo *inf) {
+    if (strcmp (inf->type, "notification") != 0) {
+	for (auto it = focusList.begin(); it != focusList.end(); ) {
+	    auto it_info = *it;
+	    if (strcmp (it_info->type, "notification") == 0)
+		it++;
+	    else
+	    {
+		it = focusList.erase(it);
+		delete (it_info);
+	    }
+	}
+    }
+    focusList.push_back (inf);
 }
 
 std::deque <FocusInfo *>

@@ -100,15 +100,17 @@ updatePosition (void *c)
 
     FOCUSPOLL_SCREEN (s);
 
-    if (!fs->a11ywatcher->getFocusQueue ().empty ())
+    auto queue = fs->a11ywatcher->getFocusQueue ();
+    for (auto fit = queue.begin(); fit != queue.end(); ++fit)
     {
-	CompRect focusRect = fs->a11ywatcher->getFocusQueue ().back ()->getBBox ();
+	auto info = *fit;
+	CompRect focusRect = info->getBBox ();
 	FocuspollClient *next;
 	for (fc = fs->clients; fc; fc = next)
 	{
 	    next = fc->next;
 	    if (fc->update)
-		(*fc->update) (s, focusRect.x, focusRect.y, focusRect.width, focusRect.height);
+		(*fc->update) (s, info->type, focusRect.x, focusRect.y, focusRect.width, focusRect.height);
 	}
     }
     fs->a11ywatcher->resetFocusQueue ();

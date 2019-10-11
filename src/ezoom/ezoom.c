@@ -145,6 +145,9 @@ typedef enum _ZsOpt
     SOPT_MAXIMUM_ZOOM,
     SOPT_AUTOSCALE_MIN,
     SOPT_SPEC_STARTUP,
+    SOPT_NOTIF_ENABLED,
+    SOPT_NOTIF_MIN_DELAY,
+    SOPT_NOTIF_MAX_DELAY,
     SOPT_NUM
 } ZoomScreenOptions;
 
@@ -224,6 +227,7 @@ typedef struct _ZoomScreen {
     PaintOutputProc	   paintOutput;
     PositionPollingHandle  pollMouseHandle;
     PositionPollingHandle  pollFocusHandle;
+    CompTimeoutHandle      notificationTimeoutHandle;
     CompOption             opt[SOPT_NUM];
     ZoomArea               *zooms;
     int                    nZooms;
@@ -235,6 +239,9 @@ typedef struct _ZoomScreen {
     int	                   grabIndex; // for zoomBox
     double                 lastMouseChange;
     double                 lastFocusChange;
+    double                 lastNotificationChange;
+    int                    beforeNotificationX;
+    int                    beforeNotificationY;
     CursorTexture          cursor;
     Bool		   nonMouseFocusTracking;
     Bool                   cursorInfoSelected;
@@ -244,7 +251,8 @@ typedef struct _ZoomScreen {
 
 static void syncCenterToMouse (CompScreen *s);
 static void updateMouseInterval (CompScreen *s, int x, int y);
-static void updateFocusInterval (CompScreen *s, int x, int y, int width, int height);
+static void updateFocusInterval (CompScreen *s, const char *eventType,
+				 int x, int y, int width, int height);
 static void cursorZoomActive (CompScreen *s);
 static void cursorZoomInactive (CompScreen *s);
 static void restrainCursor (CompScreen *s, int out);
@@ -785,6 +793,16 @@ setCenter (CompScreen *s, int x, int y, Bool instant)
 	restrainCursor (s, out);
 }
 
+static void
+getCenter (CompScreen *s, int out, int *x, int *y)
+{
+    CompOutput  *o = outputDev (s, out);
+    ZoomArea    *za = outputZoomArea (s, out);
+
+    *x = (int) (za->xTranslate * o->width + o->width / 2 + o->region.extents.x1);
+    *y = (int) (za->yTranslate * o->height + o->height / 2 + o->region.extents.y1);
+}
+
 /* Zooms the area described.
  * The math could probably be cleaned up, but should be correct now. */
 static void
@@ -1323,6 +1341,15 @@ updateMousePosition (CompScreen *s, int x, int y)
     double localTime = getTime ();
     ZOOM_SCREEN(s);
     int out; 
+
+    if (localTime - zs->lastNotificationChange <= zs->opt[SOPT_NOTIF_MIN_DELAY].value.f)
+	return;
+    else if (zs->notificationTimeoutHandle)
+    {
+	compRemoveTimeout (zs->notificationTimeoutHandle);
+	zs->notificationTimeoutHandle = 0;
+    }
+
     zs->mouseX = x;
     zs->mouseY = y;
     out = outputDeviceForPoint (s, zs->mouseX, zs->mouseY);
@@ -1382,6 +1409,15 @@ updateFocusPosition (CompScreen *s, int x, int y, int width, int height)
 {
     double localTime = getTime ();
     ZOOM_SCREEN(s);
+
+    if (localTime - zs->lastNotificationChange <= zs->opt[SOPT_NOTIF_MIN_DELAY].value.f)
+	return;
+    else if (zs->notificationTimeoutHandle)
+    {
+	compRemoveTimeout (zs->notificationTimeoutHandle);
+	zs->notificationTimeoutHandle = 0;
+    }
+
     int out = outputDeviceForPoint (s, x, y);
     if (localTime - zs->lastMouseChange > zs->opt[SOPT_FOCUS_DELAY].value.f)
     {
@@ -1410,6 +1446,58 @@ updateFocusPosition (CompScreen *s, int x, int y, int width, int height)
     damageScreen (s);
 }
 
+static CompBool
+restoreLastNonNotificationPosition (void *data)
+{
+    CompScreen *s = data;
+    ZOOM_SCREEN(s);
+    setCenter (s, zs->beforeNotificationX, zs->beforeNotificationY, FALSE);
+    zs->notificationTimeoutHandle = 0;
+    return FALSE;
+}
+
+static void
+updateNotificationPosition (CompScreen *s, int x, int y, int width, int height)
+{
+    ZOOM_SCREEN(s);
+    int out = outputDeviceForPoint (s, x, y);
+
+    if (zs->notificationTimeoutHandle)
+    {
+	compRemoveTimeout (zs->notificationTimeoutHandle);
+	zs->notificationTimeoutHandle = 0;
+    }
+    else
+	getCenter (s, out, &zs->beforeNotificationX, &zs->beforeNotificationY);
+
+    const CompOutput *o = outputDev (s, out);
+    const ZoomArea *za = outputZoomArea (s, out);
+    int zoomAreaWidth  = o->width  * za->newZoom;
+    int zoomAreaHeight = o->height * za->newZoom;
+    int posX = x + width / 2;
+    int posY = y + height / 2;
+    if (width > zoomAreaWidth)
+    {
+	// target rectangle is too big for the zoom area, aim at
+	// the top-left corner of the target
+	posX -= (width - zoomAreaWidth) / 2;
+    }
+    if (height > zoomAreaHeight)
+    {
+	posY -= (height - zoomAreaHeight) / 2;
+    }
+    setCenter (s, posX, posY, FALSE);
+    zs->nonMouseFocusTracking = TRUE;
+
+    zs->lastNotificationChange = getTime ();
+    zs->notificationTimeoutHandle = compAddTimeout (zs->opt[SOPT_NOTIF_MAX_DELAY].value.f * 1000,
+						    zs->opt[SOPT_NOTIF_MAX_DELAY].value.f * 1000 + 500,
+						    restoreLastNonNotificationPosition,
+						    s);
+
+    damageScreen (s);
+}
+
 /* Timeout handler to poll the mouse. Returns false (and thereby does not
  * get re-added to the queue) when zoom is not active. */
 static void
@@ -1431,11 +1519,18 @@ updateMouseInterval (CompScreen *s, int x, int y)
 
 /* Timeout handler to focusPoll. */
 static void
-updateFocusInterval (CompScreen *s, int x, int y, int width, int height)
+updateFocusInterval (CompScreen *s, const char *eventType,
+		     int x, int y, int width, int height)
 {
     ZOOM_SCREEN (s);
 
-    updateFocusPosition (s, x, y, width, height);
+    if (strcmp (eventType, "notification") == 0)
+    {
+	if (zs->opt[SOPT_NOTIF_ENABLED].value.b)
+	    updateNotificationPosition (s, x, y, width, height);
+    }
+    else
+	updateFocusPosition (s, x, y, width, height);
 
     if (!zs->grabbed)
     {
@@ -2431,6 +2526,11 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "maximum_zoom", "int", "<max>50</max>", 0, 0 },
     { "autoscale_min", "int", "<max>50</max>", 0, 0 },
     { "zoom_spec_startup", "int", 0, 0, 0},
+    { "notifications_enabled", "bool", 0, 0, 0 },
+    { "notifications_min_delay", "float",
+      "<default>2</default><min>0</min><max>60</max><precision>0.1</precision>", 0, 0 },
+    { "notifications_max_delay", "float",
+      "<default>7</default><min>0.1</min><max>60</max><precision>0.1</precision>", 0, 0 },
 };
 
 static CompOption *
@@ -2612,6 +2712,7 @@ zoomInitScreen (CompPlugin *p,
     }
     zs->lastMouseChange = 0;
     zs->lastFocusChange = 0;
+    zs->lastNotificationChange = 0;
     zs->nonMouseFocusTracking = FALSE;
     zs->grabbed = 0;
     zs->mouseX = -1;
@@ -2621,6 +2722,9 @@ zoomInitScreen (CompPlugin *p,
     zs->cursorHidden = FALSE;
     zs->pollMouseHandle = 0;
     zs->pollFocusHandle = 0;
+    zs->notificationTimeoutHandle = 0;
+    zs->beforeNotificationX = 0;
+    zs->beforeNotificationY = 0;
 
     WRAP (zs, s, preparePaintScreen, zoomPreparePaintScreen);
     WRAP (zs, s, donePaintScreen, zoomDonePaintScreen);
@@ -2644,6 +2748,8 @@ zoomFiniScreen (CompPlugin *p,
 	    (*zd->mpFunc->removePositionPolling) (s, zs->pollMouseHandle);
     if (zs->pollFocusHandle)
 	    (*zd->fpFunc->removeFocusPolling) (s, zs->pollFocusHandle);
+    if (zs->notificationTimeoutHandle)
+	compRemoveTimeout (zs->notificationTimeoutHandle);
 
     if (zs->zooms)
 	free (zs->zooms);
