@@ -42,6 +42,16 @@
         <_long>Windows to exclude from filtering.</_long>
         <default>Dock | type=Desktop</default>
       </option>
+      <option name="activate_at_startup" type="bool">
+        <_short>Enable color filter at startup</_short>
+        <_long>Filter every window at startup.</_long>
+        <default>false</default>
+      </option>
+      <option name="cumulative_enable" type="bool">
+        <_short>Enable cumulative filters mode</_short>
+        <_long>Whether a mode applying all filters at once is enabled and can be cycled through with the "Switch filter" binding.</_long>
+        <default>false</default>
+      </option>
       <option name="filters" type="list">
         <_short>Filters files</_short>
         <_long>List of plain text filter files that should be applied when filtering windows or screen.</_long>
