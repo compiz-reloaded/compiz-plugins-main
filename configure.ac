@@ -127,6 +127,10 @@ AC_SUBST(GL_LIBS)
 PKG_CHECK_MODULES(ATSPI2, atspi-2, [have_atspi2=yes], [have_atspi2=no])
 PKG_CHECK_MODULES(SCALE, compiz-scale, [have_compiz_scale=yes], [have_compiz_scale=no])
 PKG_CHECK_MODULES(PANGO, cairo-xlib-xrender pangocairo cairo >= 1.0, [have_pango=yes], [have_pango=no])
+PKG_CHECK_MODULES(LIBNOTIFY, libnotify >= 0.6.1,
+                  [have_libnotify=yes
+                   AC_DEFINE(HAVE_LIBNOTIFY, 1, [libnotify is available])],
+                  [have_libnotify=no])
 
 AM_CONDITIONAL(FOCUSPOLL_PLUGIN, test "x$have_atspi2" = "xyes")
 if test "x$have_atspi2" = "xyes"; then
