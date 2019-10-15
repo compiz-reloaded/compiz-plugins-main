@@ -952,6 +952,10 @@ AccessibilityWatcher::readingEvent (const AtspiEvent *event, const gchar *type)
     res->w = rect.get ()->width;
     res->h = rect.get ()->height;
 
+    /* restore the null-width */
+    if (event->detail1 == event->detail2)
+	res->w = 0;
+
     if (filterBadEvents(res))
     {
 	delete (res);
@@ -1006,16 +1010,15 @@ AccessibilityWatcher::setActive (bool activate)
 
 void
 AccessibilityWatcher::queueFocus (FocusInfo *inf) {
-    if (strcmp (inf->type, "notification") != 0) {
-	for (auto it = focusList.begin(); it != focusList.end(); ) {
-	    auto it_info = *it;
-	    if (strcmp (it_info->type, "notification") == 0)
-		it++;
-	    else
-	    {
-		it = focusList.erase(it);
-		delete (it_info);
-	    }
+    /* dedup events on a per-type basis */
+    for (auto it = focusList.begin(); it != focusList.end(); ) {
+	auto it_info = *it;
+	if (strcmp (it_info->type, inf->getType()) == 0) {
+	    it = focusList.erase(it);
+	    delete (it_info);
+	    break;
+	} else {
+	    it++;
 	}
     }
     focusList.push_back (inf);
