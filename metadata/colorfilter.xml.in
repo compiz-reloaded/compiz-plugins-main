@@ -42,6 +42,11 @@
         <_long>Windows to exclude from filtering.</_long>
         <default>Dock | type=Desktop</default>
       </option>
+      <option name="notifications_enable" type="bool">
+        <_short>Enable notifications upon filter change</_short>
+        <_long>Whether to show a notification when switching filter. This requires for the plugin to have been built with libnotify support.</_long>
+        <default>true</default>
+      </option>
       <option name="activate_at_startup" type="bool">
         <_short>Enable color filter at startup</_short>
         <_long>Filter every window at startup.</_long>

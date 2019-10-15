@@ -21,13 +21,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <config.h>
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdarg.h>
+
+#ifdef HAVE_LIBNOTIFY
+#include <libnotify/notify.h>
+#endif
 
 #include <compiz-core.h>
 #include "parser.h"
 #include "colorfilter_options.h"
+
+#include <libintl.h>
+#include <locale.h>
+#define _(x) dgettext (GETTEXT_PACKAGE, x)
+
+#define NOTIFICATION_ICON ICONSDIR "/scalable/apps/plugin-colorfilter.svg"
 
 static int displayPrivateIndex;
 static int corePrivateIndex;
@@ -58,6 +71,10 @@ typedef struct _ColorFilterScreen
     Bool		    filtersLoaded;
     int			    *filtersFunctions;
     int			    filtersCount;
+
+#ifdef HAVE_LIBNOTIFY
+    NotifyNotification	    *notification;
+#endif
 } ColorFilterScreen;
 
 typedef struct _ColorFilterWindow
@@ -156,11 +173,39 @@ colorFilterToggleScreen (CompScreen * s)
 	    colorFilterToggleWindow (w);
 }
 
+static void
+colorFilterLogFilterChange (CompScreen *s, CompBool notify,
+			    const char *fmt, ...)
+{
+    va_list ap;
+    char message[2048];
+#ifdef HAVE_LIBNOTIFY
+    FILTER_SCREEN (s);
+#endif
+
+    va_start (ap, fmt);
+    vsnprintf (message, sizeof (message) / sizeof (message[0]), fmt, ap);
+    va_end (ap);
+
+    compLogMessage ("colorfilter", CompLogLevelInfo,
+		    "Filter change: %s", message);
+#ifdef HAVE_LIBNOTIFY
+    if (notify && colorfilterGetNotificationsEnable (s) && cfs->notification)
+    {
+	notify_notification_update (cfs->notification,
+				    _("Color filter change"),
+				    message, NOTIFICATION_ICON);
+
+	notify_notification_show (cfs->notification, NULL);
+    }
+#endif
+}
+
 /*
  * Switch current filter
  */
 static void
-colorFilterSwitchFilter (CompScreen * s)
+colorFilterSwitchFilter (CompScreen * s, CompBool userAction)
 {
     int id;
     CompFunction *function;
@@ -176,8 +221,8 @@ colorFilterSwitchFilter (CompScreen * s)
     {
 	/* avoid the message if no filter is loaded and cumulative mode is disabled */
 	if (colorfilterGetCumulativeEnable (s))
-	    compLogMessage ("colorfilter", CompLogLevelInfo,
-			    "Cumulative filters mode");
+	    colorFilterLogFilterChange (s, userAction,
+					_("Cumulative filters mode"));
     }
     else
     {
@@ -185,14 +230,13 @@ colorFilterSwitchFilter (CompScreen * s)
 	if (id)
 	{
 	    function = findFragmentFunction (s, id);
-	    compLogMessage ("colorfilter", CompLogLevelInfo,
-			    "Single filter mode (using %s filter)",
-			    function->name);
+	    colorFilterLogFilterChange (s, userAction,
+					_("Using %s filter"), function->name);
 	}
 	else
 	{
-	    compLogMessage ("colorfilter", CompLogLevelInfo,
-			    "Single filter mode (filter loading failure)");
+	    colorFilterLogFilterChange (s, userAction,
+					_("Filter loading failure"));
 	}
     }
 
@@ -260,7 +304,7 @@ colorFilterSwitch (CompDisplay * d, CompAction * action,
     s = findScreenAtDisplay(d, xid);
 
     if (s && s->fragmentProgram)
-	colorFilterSwitchFilter (s);
+	colorFilterSwitchFilter (s, TRUE);
 
     return TRUE;
 }
@@ -358,7 +402,7 @@ loadFilters (CompScreen *s, CompTexture *texture)
     if (!loaded)
 	cfs->filtersCount = 0;
     else if (cfs->currentFilter == 0 && !colorfilterGetCumulativeEnable (s))
-	colorFilterSwitchFilter (s);
+	colorFilterSwitchFilter (s, FALSE);
 
     /* Damage currently filtered windows */
     for (w = s->windows; w; w = w->next)
@@ -530,7 +574,7 @@ colorFilterCumulativeEnableChanged (CompScreen *s, CompOption *opt,
     FILTER_SCREEN (s);
 
     if (cfs->currentFilter == 0 && !colorfilterGetCumulativeEnable (s))
-	colorFilterSwitchFilter (s);
+	colorFilterSwitchFilter (s, FALSE);
 }
 
 /*
@@ -545,6 +589,15 @@ colorFilterActivateAtStartupChanged (CompScreen *s, CompOption *opt,
     if (opt->value.b && !cfs->isFiltered && s->fragmentProgram)
 	colorFilterToggleScreen (s);
 }
+
+#ifdef HAVE_LIBNOTIFY
+static void
+colorFilterNotificationAction (NotifyNotification *notification,
+			       char *action, gpointer user_data)
+{
+    colorFilterSwitchFilter (user_data, TRUE);
+}
+#endif
 
 static void
 colorFilterObjectAdd (CompObject *parent,
@@ -586,6 +639,15 @@ colorFilterInitCore (CompPlugin *p,
         return FALSE;
     }
 
+    setlocale (LC_ALL, "");
+    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
+#ifdef HAVE_LIBNOTIFY
+    if (!notify_is_initted ())
+	notify_init ("compiz colorfilter plugin");
+#endif
+
     WRAP (fc, c, objectAdd, colorFilterObjectAdd);
 
     c->base.privates[corePrivateIndex].ptr = fc;
@@ -598,6 +660,12 @@ colorFilterFiniCore (CompPlugin *p,
 		     CompCore   *c)
 {
     FILTER_CORE (c);
+
+#ifdef HAVE_LIBNOTIFY
+    if (notify_is_initted () && strcmp (notify_get_app_name (),
+					"compiz colorfilter plugin") == 0)
+	notify_uninit ();
+#endif
 
     freeDisplayPrivateIndex (displayPrivateIndex);
 
@@ -679,6 +747,21 @@ colorFilterInitScreen (CompPlugin * p, CompScreen * s)
     cfs->filtersFunctions = NULL;
     cfs->filtersCount = 0;
 
+#ifdef HAVE_LIBNOTIFY
+    cfs->notification = NULL;
+    if (notify_is_initted ())
+    {
+	cfs->notification = notify_notification_new (_("Color filter change"),
+						     NULL, NOTIFICATION_ICON);
+	notify_notification_set_urgency (cfs->notification,
+					 NOTIFY_URGENCY_NORMAL);
+	notify_notification_add_action (cfs->notification, "switch-filter",
+					_("Next Filter"),
+					colorFilterNotificationAction, s,
+					NULL);
+    }
+#endif
+
     colorfilterSetFilterMatchNotify (s, colorFilterMatchsChanged);
     colorfilterSetExcludeMatchNotify (s, colorFilterExcludeMatchsChanged);
     colorfilterSetFiltersNotify (s, colorFiltersChanged);
@@ -708,6 +791,11 @@ colorFilterFiniScreen (CompPlugin * p, CompScreen * s)
     UNWRAP (cfs, s, drawWindowTexture);
 
     unloadFilters (s);
+
+#ifdef HAVE_LIBNOTIFY
+    if (cfs->notification)
+	g_object_unref (cfs->notification);
+#endif
 
     free (cfs);
 }

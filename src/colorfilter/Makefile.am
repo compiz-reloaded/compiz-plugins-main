@@ -2,7 +2,7 @@
 PFLAGS=-module -avoid-version -no-undefined
 
 libcolorfilter_la_LDFLAGS = $(PFLAGS)
-libcolorfilter_la_LIBADD = @COMPIZ_LIBS@
+libcolorfilter_la_LIBADD = @COMPIZ_LIBS@ @LIBNOTIFY_LIBS@
 nodist_libcolorfilter_la_SOURCES = colorfilter_options.c \
 			    colorfilter_options.h
 dist_libcolorfilter_la_SOURCES = colorfilter.c \
@@ -14,10 +14,12 @@ BUILT_SOURCES = $(nodist_libcolorfilter_la_SOURCES)
 AM_CPPFLAGS =                              \
 	-I$(top_srcdir)/include		\
 	@COMPIZ_CFLAGS@                  \
+	@LIBNOTIFY_CFLAGS@               \
 	-DDATADIR='"$(compdatadir)"'       \
 	-DPREFIX='"$(prefix)"'             \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
+	-DICONSDIR='"$(pluginiconsdir)"'    \
 	-DIMAGEDIR='"$(imagedir)"'          
 
 moduledir = $(plugindir)
