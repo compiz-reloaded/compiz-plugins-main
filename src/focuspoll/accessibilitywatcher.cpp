@@ -543,10 +543,15 @@ AccessibilityWatcher::activityEvent (const AtspiEvent *event, const gchar *type)
 	res->w = size.get ()->width;
 	res->h = size.get ()->height;
     }
+
+    // getting the states on event
+    auto stateSet = unique_gobject (atspi_accessible_get_state_set (event->source));
+
+    auto text = unique_gobject (atspi_accessible_get_text (event->source));
     // let's get the caret offset, and then its position for a caret event
-    if (strcmp (type, "caret") == 0)
+    if (strcmp (type, "caret") == 0 ||
+	(text.get () && atspi_state_set_contains (stateSet.get (), ATSPI_STATE_EDITABLE)))
     {
-	auto text = unique_gobject (atspi_accessible_get_text (event->source));
 	if (!text.get ())
 	{
 	    delete (res);
@@ -555,7 +560,7 @@ AccessibilityWatcher::activityEvent (const AtspiEvent *event, const gchar *type)
 	auto offset = atspi_text_get_caret_offset (text.get (), NULL);
 	// if we are not at the beginning of the text, take the extent of the character under caret
 	// otherwise keep the whole widget
-	if (event->detail1)
+	if (offset)
 	{
 	    auto size = unique_gmem (atspi_text_get_character_extents (text.get (), offset, ATSPI_COORD_TYPE_SCREEN, NULL));
 	    res->x = size.get ()->x;
@@ -576,14 +581,15 @@ AccessibilityWatcher::activityEvent (const AtspiEvent *event, const gchar *type)
 	    res->h = size.get ()->height;
 	}
 	// when result is obviously not a caret size
-	if (strcmp (event->type, "object:text-caret-moved") == 0 && (res->w > A11YWATCHER_MAX_CARET_WIDTH || res->h > A11YWATCHER_MAX_CARET_HEIGHT))
+	if ((strcmp (event->type, "object:text-caret-moved") == 0 || strcmp (type, "caret") != 0) &&
+	    (res->w > A11YWATCHER_MAX_CARET_WIDTH || res->h > A11YWATCHER_MAX_CARET_HEIGHT))
 	{
 	    auto size = unique_gmem (atspi_text_get_character_extents (text.get (), offset, ATSPI_COORD_TYPE_SCREEN, NULL));
 	    res->x = size.get ()->x;
 	    res->y = size.get ()->y;
 	    res->w = size.get ()->width;
 	    res->h = size.get ()->height;
-	    if (strcmp (type, "caret") == 0 && strcmp (event->type, "object:text-caret-moved") == 0 && (res->w > A11YWATCHER_MAX_CARET_WIDTH || res->h > A11YWATCHER_MAX_CARET_HEIGHT))
+	    if (res->w > A11YWATCHER_MAX_CARET_WIDTH || res->h > A11YWATCHER_MAX_CARET_HEIGHT)
 	    {
 		res->x = 0;
 		res->y = 0;
@@ -594,7 +600,8 @@ AccessibilityWatcher::activityEvent (const AtspiEvent *event, const gchar *type)
 	if (res->x == 0 && res->y == 0 &&
 	    (strcmp (event->type, "object:text-changed:insert") == 0 ||
 	     strcmp (event->type, "object:text-changed:removed") == 0 ||
-	     strcmp (event->type, "object:text-caret-moved") == 0)) {
+	     strcmp (event->type, "object:text-caret-moved") == 0 ||
+	     strcmp (type, "caret") != 0)) {
 	    getAlternativeCaret (res, event);
 	    res->x = res->xAlt;
 	    res->y = res->yAlt;
@@ -603,8 +610,6 @@ AccessibilityWatcher::activityEvent (const AtspiEvent *event, const gchar *type)
 	}
     }
 
-    // getting the states on event
-    auto stateSet = unique_gobject (atspi_accessible_get_state_set (event->source));
     if (atspi_state_set_contains (stateSet.get (), ATSPI_STATE_FOCUSED))
     {
 	res->focused = true;
@@ -732,13 +737,22 @@ AccessibilityWatcher::appSpecificFilter (FocusInfo *focus, const AtspiEvent* eve
 	    delete (focus);
 	    return true;
 	}
-	if (strcmp (focus->type, "caret") == 0 && !(focus->x == 0 && focus->y == 0))
+	auto text = unique_gobject (atspi_accessible_get_text (event->source));
+	bool isEditableText = false;
+	if (text.get ())
+	{
+	    auto stateSet = unique_gobject (atspi_accessible_get_state_set (event->source));
+	    isEditableText = atspi_state_set_contains (stateSet.get (), ATSPI_STATE_EDITABLE);
+	}
+	if ((strcmp (focus->type, "caret") == 0 || isEditableText) &&
+	    !(focus->x == 0 && focus->y == 0))
 	{
 	    queueFocus (focus);
 	    return true;
 	}
 	getAlternativeCaret (focus, event);
-	if (strcmp (focus->type, "caret") == 0 && !(focus->xAlt == 0 && focus->yAlt == 0))
+	if ((strcmp (focus->type, "caret") == 0 || isEditableText) &&
+	    !(focus->xAlt == 0 && focus->yAlt == 0))
 	{
 	    focus->x = focus->xAlt;
 	    focus->y = focus->yAlt;
