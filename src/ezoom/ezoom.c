@@ -515,7 +515,7 @@ adjustXYVelocity (CompScreen *s, int out, float chunk)
 {
     float xdiff, ydiff;
     float xadjust, yadjust;
-    float xamount, yamount;
+    float amount;
     ZoomArea *za = outputZoomArea (s, out);
 
     za->xVelocity /= 1.25f;
@@ -524,21 +524,15 @@ adjustXYVelocity (CompScreen *s, int out, float chunk)
     ydiff = (za->yTranslate - za->realYTranslate) * 75.0f;
     xadjust = xdiff * 0.002f;
     yadjust = ydiff * 0.002f;
-    xamount = fabs (xdiff);
-    yamount = fabs (ydiff);
+    amount = sqrtf (xdiff * xdiff + ydiff * ydiff);
 
-    if (xamount < 1.0f)
-	    xamount = 1.0f;
-    else if (xamount > 5.0) 
-	    xamount = 5.0f;
-    
-    if (yamount < 1.0f) 
-	    yamount = 1.0f;
-    else if (yamount > 5.0) 
-	    yamount = 5.0f;
+    if (amount < 1.0f)
+	amount = 1.0f;
+    else if (amount > 5.0)
+	amount = 5.0f;
 
-    za->xVelocity = (xamount * za->xVelocity + xadjust) / (xamount + 1.0f);
-    za->yVelocity = (yamount * za->yVelocity + yadjust) / (yamount + 1.0f);
+    za->xVelocity = (amount * za->xVelocity + xadjust) / (amount + 1.0f);
+    za->yVelocity = (amount * za->yVelocity + yadjust) / (amount + 1.0f);
 
     if ((fabs(xdiff) < 0.1f && fabs (za->xVelocity) < 0.005f) &&
 	(fabs(ydiff) < 0.1f && fabs (za->yVelocity) < 0.005f))
