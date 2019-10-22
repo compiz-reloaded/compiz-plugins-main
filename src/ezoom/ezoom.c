@@ -91,8 +91,7 @@ static int displayPrivateIndex;
 
 typedef enum _ZdOpt
 {
-    DOPT_INITIATE = 0,
-    DOPT_IN,
+    DOPT_IN = 0,
     DOPT_OUT,
     DOPT_IN_KEY,
     DOPT_OUT_KEY,
@@ -2292,24 +2291,6 @@ zoomFitWindowToZoom (CompDisplay     *d,
 }
 
 static Bool
-zoomInitiate (CompDisplay     *d,
-	      CompAction      *action,
-	      CompActionState state,
-	      CompOption      *option,
-	      int	      nOption)
-{
-    zoomIn (d, action, state, option, nOption);
-
-    if (state & CompActionStateInitKey)
-	action->state |= CompActionStateTermKey;
-
-    if (state & CompActionStateInitButton)
-	action->state |= CompActionStateTermButton;
-
-    return TRUE;
-}
-
-static Bool
 zoomOut (CompDisplay     *d,
 	 CompAction      *action,
 	 CompActionState state,
@@ -2334,37 +2315,6 @@ zoomOut (CompDisplay     *d,
     return TRUE;
 }
 
-static Bool
-zoomTerminate (CompDisplay     *d,
-	       CompAction      *action,
-	       CompActionState state,
-	       CompOption      *option,
-	       int	       nOption)
-{
-    CompScreen *s;
-    Window     xid;
-
-    xid = getIntOptionNamed (option, nOption, "root", 0);
-
-    for (s = d->screens; s; s = s->next)
-    {
-	int out;
-	ZOOM_SCREEN (s);
-
-	if (xid && s->root != xid)
-	    continue;
-	
-	out = outputDeviceForPoint (s, pointerX, pointerY);
-
-	if (zs->grabbed)
-	{
-	    outputZoomArea (s, out)->newZoom = 1.0f;
-	    damageScreen (s);
-	}
-    }
-    action->state &= ~(CompActionStateTermKey | CompActionStateTermButton);
-    return FALSE;
-}
 
 /* Focus-track related event handling.
  * The lastMapped is a hack to ensure that newly mapped windows are
@@ -2474,7 +2424,6 @@ zoomHandleEvent (CompDisplay *d,
 
 /* Settings etc., boring stuff */
 static const CompMetadataOptionInfo zoomDisplayOptionInfo[] = {
-    { "initiate", "key", 0, zoomInitiate, zoomTerminate },
     { "zoom_in_button", "button", 0, zoomIn, 0 },
     { "zoom_out_button", "button", 0, zoomOut, 0 },
     { "zoom_in_key", "key", 0, zoomIn, 0 },
