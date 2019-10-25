@@ -57,6 +57,11 @@
 				<_long>A window that has been toggled using the &quot;Toggle Windows Negative&quot; keybinding will have its state discarded when toggling a match group that includes that window. This will clear window states even if &quot;Preserve Toggled Windows&quot; is selected.</_long>
 				<default>true</default>
 			</option>
+			<option name="neg_decorations" type="bool">
+					<_short>Negate Decorations</_short>
+					<_long>Also negate window decorations, not only the window contents.</_long>
+					<default>false</default>
+			</option>
 		</screen>
 	</plugin>
 </compiz>
