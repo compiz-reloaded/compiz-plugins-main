@@ -396,9 +396,9 @@ NEGDrawWindowTexture (CompWindow           *w,
 	NEG_SCREEN (w->screen);
 	NEG_WINDOW (w);
 
-    /* only negate window contents; that's the only case
-       where w->texture->name == texture->name */
-    if (!nw->isNeg || !((texture->name == w->texture->name) ||
+    /* negate window contents (only case where w->texture->name == texture->name)
+     * or also window decorations if option is checked */
+    if (!nw->isNeg || !((texture->name == w->texture->name) || negGetNegDecorations (w->screen) ||
 		(w->type & CompWindowTypeDesktopMask)) ||
 		!(w->screen->fragmentProgram))
 	{
@@ -410,7 +410,7 @@ NEGDrawWindowTexture (CompWindow           *w,
 		return;
 	}
 
-	function = getNegFragmentFunction (w->screen, texture, w->alpha);
+	function = getNegFragmentFunction (w->screen, texture, negGetNegDecorations (w->screen) ? TRUE : w->alpha);
 	if (function)
 		addFragmentFunction (&fa, function);
 
@@ -471,6 +471,11 @@ NEGScreenOptionChanged (CompScreen       *s,
     case NegScreenOptionPreserveToggled:
 	{
 	    NEGUpdateScreen (s);
+	}
+	break;
+    case NegScreenOptionNegDecorations:
+	{
+	    damageScreen (s);
 	}
 	break;
     default:
@@ -618,6 +623,7 @@ NEGInitScreen (CompPlugin *p,
     negSetToggleScreenByDefaultNotify (s, NEGScreenOptionChanged);
     negSetExcludeMatchNotify (s, NEGScreenOptionChanged);
     negSetPreserveToggledNotify (s, NEGScreenOptionChanged);
+    negSetNegDecorationsNotify (s, NEGScreenOptionChanged);
 
     /* wrap overloaded functions */
     WRAP (ns, s, drawWindowTexture, NEGDrawWindowTexture);
