@@ -103,23 +103,12 @@ NEGUpdateState (CompWindow *w)
     /* Decide whether the given window should be negative or not, depending on
        the various parameters that can affect this, and set windowState thus */
 
-    windowState = FALSE;
-
-    /* Whole screen toggle state */
-    if (! matchEval (negGetExcludeMatch (w->screen), w)) {
-	if (ns->isNeg)
-	    windowState = !windowState;
-	if (ns->keyNegToggled)
-	    windowState = !windowState;
-    }
-
-    /* Matched set toggle state */
-    if (matchEval (negGetNegMatch (w->screen), w)) {
-	if (ns->matchNeg)
-	    windowState = !windowState;
-	if (ns->keyMatchToggled)
-	    windowState = !windowState;
-    }
+    windowState =
+       ((ns->keyMatchToggled &&   matchEval (negGetNegMatch (w->screen), w)) ^
+	(ns->matchNeg        &&   matchEval (negGetNegMatch (w->screen), w)))
+	||
+        ((ns->keyNegToggled  && ! matchEval (negGetExcludeMatch (w->screen), w)) ^
+	(ns->isNeg           && ! matchEval (negGetExcludeMatch (w->screen), w)));
 
     /* Individual window state */
     if (nw->keyNegToggled)
@@ -442,6 +431,10 @@ NEGScreenOptionChanged (CompScreen       *s,
 	    NEGMatchClearToggled(s);
 
 	    ns->matchNeg = negGetToggleByDefault (s);
+	    if (ns->matchNeg)
+	      ns->keyMatchToggled = FALSE;
+	    else
+	      ns->keyMatchToggled = !ns->keyMatchToggled;
 
 	    NEGUpdateScreen (s);
 	}
@@ -459,6 +452,10 @@ NEGScreenOptionChanged (CompScreen       *s,
 	    NEGScreenClearToggled(s);
 
 	    ns->isNeg = negGetToggleScreenByDefault (s);
+	    if (ns->isNeg)
+	      ns->keyNegToggled = FALSE;
+	    else
+	      ns->keyNegToggled = !ns->keyNegToggled;
 
 	    NEGUpdateScreen (s);
 	}
