@@ -250,8 +250,7 @@ typedef struct _ZoomScreen {
 
 static void syncCenterToMouse (CompScreen *s);
 static void updateMouseInterval (CompScreen *s, int x, int y);
-static void updateFocusInterval (CompScreen *s, const char *eventType,
-				 int x, int y, int width, int height);
+static void updateFocusInterval (CompScreen *s, FocusEventNode *list);
 static void cursorZoomActive (CompScreen *s);
 static void cursorZoomInactive (CompScreen *s);
 static void restrainCursor (CompScreen *s, int out);
@@ -1512,19 +1511,24 @@ updateMouseInterval (CompScreen *s, int x, int y)
 
 /* Timeout handler to focusPoll. */
 static void
-updateFocusInterval (CompScreen *s, const char *eventType,
-		     int x, int y, int width, int height)
+updateFocusInterval (CompScreen *s, FocusEventNode *list)
 {
-    ZOOM_SCREEN (s);
-
-    if (strcmp (eventType, "notification") == 0)
+    FocusEventNode *nonnotif = NULL;
+    for (FocusEventNode *cur = list; cur; cur = cur->next)
     {
-	if (zs->opt[SOPT_NOTIF_ENABLED].value.b)
-	    updateNotificationPosition (s, x, y, width, height);
+	ZOOM_SCREEN (s);
+	if (strcmp (cur->type, "notification") == 0)
+	{
+	    if (zs->opt[SOPT_NOTIF_ENABLED].value.b)
+		updateNotificationPosition (s, cur->x, cur->y, cur->width, cur->height);
+	} else {
+	    nonnotif = cur;
+	}
     }
-    else
-	updateFocusPosition (s, x, y, width, height);
+    if (nonnotif)
+	updateFocusPosition (s, nonnotif->x, nonnotif->y, nonnotif->width, nonnotif->height);
 
+    ZOOM_SCREEN (s);
     if (!zs->grabbed)
     {
 	ZOOM_DISPLAY (s->display);

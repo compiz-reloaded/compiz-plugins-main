@@ -21,16 +21,21 @@
 #ifndef _COMPIZ_FOCUSPOLL_H
 #define _COMPIZ_FOCUSPOLL_H
 
-#define FOCUSPOLL_ABIVERSION 20191010
+#define FOCUSPOLL_ABIVERSION 20191015
 
 typedef int FocusPollingHandle;
 
+typedef struct _FocusEventNode {
+  struct _FocusEventNode *next;
+  const char     *type;
+  int            x;
+  int            y;
+  int            width;
+  int            height;
+} FocusEventNode;
+
 typedef void (*FocusUpdateProc) (CompScreen *s,
-				 const char *eventType,
-				 int        x,
-				 int        y,
-				 int        with,
-				 int        height);
+				 FocusEventNode *first);
 
 typedef FocusPollingHandle
 (*AddFocusPollingProc) (CompScreen         *s,
