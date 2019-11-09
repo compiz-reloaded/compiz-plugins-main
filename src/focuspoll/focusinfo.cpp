@@ -60,7 +60,7 @@ FocusInfo::FocusInfo (const FocusInfo &dup)
     yAlt = dup.yAlt;
     wAlt = dup.wAlt;
     hAlt = dup.hAlt;
-    type = type;
+    type = dup.type;
     name = strdup(dup.name);
     label = strdup(dup.label);
     role = strdup(dup.role);
