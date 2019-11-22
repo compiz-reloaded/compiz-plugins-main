@@ -212,12 +212,13 @@
 	    </group>
 	    <group>
 		<_short>Specific Zoom</_short>
-		<option type="int" name="zoom_spec_startup">
+		<option type="float" name="zoom_spec_startup">
 		    <_short>Startup specific zoom factor</_short>
 		    <_long>Zoom level to use when starting ezoom</_long>
-		    <default>1</default>
-		    <min>1</min>
-		    <max>50</max>
+		    <default>1.0</default>
+		    <min>1.0</min>
+		    <max>50.0</max>
+		    <precision>0.1</precision>
 		</option>
 	    </group>
 	    <group>
