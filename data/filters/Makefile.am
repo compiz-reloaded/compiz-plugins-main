@@ -8,6 +8,7 @@ filters_DATA = 		\
        grayscale       \
        negative        \
        negative-green  \
+       negative-lightness  \
        nightmode       \
        nightmodeb      \
        nightmodec      \
