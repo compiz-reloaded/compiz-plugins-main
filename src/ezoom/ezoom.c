@@ -2472,7 +2472,7 @@ static const CompMetadataOptionInfo zoomScreenOptionInfo[] = {
     { "mouse_pan", "bool", "<default>false</default>", 0, 0 },
     { "maximum_zoom", "int", "<max>50</max>", 0, 0 },
     { "autoscale_min", "int", "<max>50</max>", 0, 0 },
-    { "zoom_spec_startup", "int", 0, 0, 0},
+    { "zoom_spec_startup", "float", 0, 0, 0},
     { "notifications_enabled", "bool", 0, 0, 0 },
     { "notifications_min_delay", "float",
       "<default>2</default><min>0</min><max>60</max><precision>0.1</precision>", 0, 0 },
@@ -2510,7 +2510,7 @@ zoomSetScreenOption (CompPlugin      *plugin,
 
     if (index == SOPT_SPEC_STARTUP)
 	for (i = 0; i < zs->nZooms; i ++ )
-	    setScale(screen, i, 1.0f / zs->opt[SOPT_SPEC_STARTUP].value.i);
+	    setScale(screen, i, 1.0f / zs->opt[SOPT_SPEC_STARTUP].value.f);
 
     return ret;
 }
