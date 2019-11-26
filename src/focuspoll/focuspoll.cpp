@@ -263,7 +263,11 @@ focuspollSetDisplayOption (CompPlugin      *plugin,
     case FP_DISPLAY_OPTION_INDEX:
         break;
     case FP_DISPLAY_OPTION_IGNORE_LINKS:
-	fs->a11ywatcher->setIgnoreLinks (fd->opt[FP_DISPLAY_OPTION_IGNORE_LINKS].value.b);
+	for (s = display->screens; s; s = s->next)
+	{
+	    fs = GET_FOCUSPOLL_SCREEN (s, fd);
+	    fs->a11ywatcher->setIgnoreLinks (fd->opt[FP_DISPLAY_OPTION_IGNORE_LINKS].value.b);
+	}
 	break;
     case FP_DISPLAY_OPTION_FOCUS_POLL_INTERVAL:
 	status = compSetDisplayOption (display, o, value);
