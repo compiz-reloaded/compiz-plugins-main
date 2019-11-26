@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <compiz>
-    <plugin name="focuspoll" useBcop="true">
+    <plugin name="focuspoll">
 	<deps>
 	    <relation type="after">
 		<plugin>opengl</plugin>
@@ -12,7 +12,8 @@
 	<_short>Focus position polling</_short>
 	<_long>Updates the focus pointer position from the accessibility library AT-SPI through dbus</_long>
 	<category>Utility</category>
-	<options>
+	<display>
+	<group>
 	    <_short>Misc</_short>
 		<option type="bool" name="ignore_links">
 		    <_short>Ignores link focuses</_short>
@@ -26,6 +27,7 @@
 		    <min>1</min>
 		    <max>500</max>
 		</option>
-	</options>
+	</group>
+	</display>
     </plugin>
 </compiz>
