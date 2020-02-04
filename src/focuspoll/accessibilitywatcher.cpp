@@ -1021,7 +1021,7 @@ AccessibilityWatcher::queueFocus (FocusInfo *inf) {
 	    it++;
 	}
     }
-    focusList.push_back (inf);
+    focusList.push_front (inf); /* fits the way the list is built in focuspoll.cpp */
 }
 
 std::deque <FocusInfo *>
