@@ -12,16 +12,7 @@ EXTRA_DIST =		      \
 	compiz-mousepoll.pc.in \
 	compiz-focuspoll.pc.in \
 	compiz-text.pc.in      \
-	intltool-extract.in    \
-	intltool-merge.in      \
-	intltool-update.in
-
-DISTCLEANFILES =		\
-	po/stamp-it		 \
-	intltool-extract	 \
-	intltool-merge		 \
-	intltool-update		 \
-	po/.intltool-merge-cache
+	gettext
 
 if TEXT_PLUGIN
 textdata = compiz-text.pc
@@ -30,7 +21,7 @@ endif
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = $(textdata) compiz-animation.pc compiz-mousepoll.pc compiz-focuspoll.pc
 
-# Build ChangeLog from GIT  history
+# Build ChangeLog from GIT history
 ChangeLog:
 	$(AM_V_GEN) if test -d $(top_srcdir)/.git; then \
 		GIT_DIR="$(top_srcdir)/.git" git log --stat > $@; \
