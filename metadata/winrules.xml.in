@@ -2,100 +2,100 @@
 <compiz>
 	<!-- winrules metadata -->
 	<plugin name="winrules">
-		<_short>Window Rules</_short>
-		<_long>Set rules to apply to windows</_long>
+		<short>Window Rules</short>
+		<long>Set rules to apply to windows</long>
 		<category>Window Management</category>
 		<screen>
 			<group>
-				<_short>Matches</_short>
+				<short>Matches</short>
 				<option name="skiptaskbar_match" type="match">
-					<_short>Skip taskbar</_short>
-					<_long>Don't show application in taskbar</_long>
+					<short>Skip taskbar</short>
+					<long>Don't show application in taskbar</long>
 					<default/>
 				</option>
 				<option name="skippager_match" type="match">
-					<_short>Skip pager</_short>
-					<_long>Don't show application in pager</_long>
+					<short>Skip pager</short>
+					<long>Don't show application in pager</long>
 					<default/>
 				</option>
 				<option name="above_match" type="match">
-				<_short>Above</_short>
-					<_long>Above other windows</_long>
+				<short>Above</short>
+					<long>Above other windows</long>
 					<default/>
 				</option>
 				<option name="below_match" type="match">
-					<_short>Below</_short>
-					<_long>Below other windows</_long>
+					<short>Below</short>
+					<long>Below other windows</long>
 					<default/>
 				</option>
 				<option name="sticky_match" type="match">
-					<_short>Sticky</_short>
-					<_long>Sticky windows</_long>
+					<short>Sticky</short>
+					<long>Sticky windows</long>
 					<default/>
 				</option>
 				<option name="fullscreen_match" type="match">
-					<_short>Fullscreen</_short>
-					<_long>Fullscreen windows</_long>
+					<short>Fullscreen</short>
+					<long>Fullscreen windows</long>
 					<default/>
 				    </option>
 				<option name="maximize_match" type="match">
-					<_short>Maximized</_short>
-					<_long>Maximized windows</_long>
+					<short>Maximized</short>
+					<long>Maximized windows</long>
 				    <default/>
 				</option>
 				<option name="no_argb_match" type="match">
-					<_short>No ARGB visuals</_short>
-					<_long>Windows that should be treated as not supporting transparency</_long>
+					<short>No ARGB visuals</short>
+					<long>Windows that should be treated as not supporting transparency</long>
 					<default/>
 				</option>
 				<option name="no_move_match" type="match">
-					<_short>Non-movable windows</_short>
-					<_long>Set window as non-movable</_long>
+					<short>Non-movable windows</short>
+					<long>Set window as non-movable</long>
 					<default/>
 				</option>
 				<option name="no_resize_match" type="match">
-					<_short>Non-resizable windows</_short>
-					<_long>Set window as non-resizable</_long>
+					<short>Non-resizable windows</short>
+					<long>Set window as non-resizable</long>
 					<default/>
 				</option>
 				<option name="no_minimize_match" type="match">
-					<_short>Non-minimizable windows</_short>
-					<_long>Set window as non-minimizable</_long>
+					<short>Non-minimizable windows</short>
+					<long>Set window as non-minimizable</long>
 					<default/>
 				</option>
 				<option name="no_maximize_match" type="match">
-					<_short>Non-maximizable windows</_short>
-					<_long>Set window as non-maximizable</_long>
+					<short>Non-maximizable windows</short>
+					<long>Set window as non-maximizable</long>
 					<default/>
 				</option>
 				<option name="no_close_match" type="match">
-					<_short>Non-closable windows</_short>
-					<_long>Set window as non-closable</_long>
+					<short>Non-closable windows</short>
+					<long>Set window as non-closable</long>
 					<default/>
 				</option>
 				<option name="no_focus_match" type="match">
-					<_short>No focus</_short>
-					<_long>Windows that should not have focus</_long>
+					<short>No focus</short>
+					<long>Windows that should not have focus</long>
 					<default/>
 				</option>
 			</group>
 			<group>
-				<_short>Size rules</_short>
+				<short>Size rules</short>
 				<subgroup>
-					<_short>Fixed Size Windows</_short>
+					<short>Fixed Size Windows</short>
 					<option name="size_matches" type="list">
-						<_short>Sized Windows</_short>
-						<_long>Windows that should be resized by default</_long>
+						<short>Sized Windows</short>
+						<long>Windows that should be resized by default</long>
 						<type>match</type>
 					</option>
 					<option name="size_width_values" type="list">
-						<_short>Width</_short>
-						<_long>Width values</_long>
+						<short>Width</short>
+						<long>Width values</long>
 						<type>int</type>
 					</option>
 					<option name="size_height_values" type="list">
-						<_short>Height</_short>
-						<_long>Height values</_long>
+						<short>Height</short>
+						<long>Height values</long>
 						<type>int</type>
 					</option>
 				</subgroup>

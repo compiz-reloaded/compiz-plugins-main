@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <compiz>
   <plugin name="colorfilter" useBcop="true">
-    <_short>Color filter</_short>
-    <_long>Filter colors for accessibility purposes</_long>
+    <short>Color filter</short>
+    <long>Filter colors for accessibility purposes</long>
     <category>Accessibility</category>
     <deps>
       <relation type="after">
@@ -11,55 +11,55 @@
     </deps>
     <display>
       <option name="toggle_window_key" type="key">
-        <_short>Toggle window filtering</_short>
-        <_long>Toggle filtering for currently focused window.</_long>
+        <short>Toggle window filtering</short>
+        <long>Toggle filtering for currently focused window.</long>
         <default>&lt;Super&gt;&lt;Alt&gt;f</default>
       </option>
       <option name="toggle_screen_key" type="key">
-        <_short>Toggle screen filtering</_short>
-        <_long>Toggle filtering for every window on the screen.</_long>
+        <short>Toggle screen filtering</short>
+        <long>Toggle filtering for every window on the screen.</long>
         <default>&lt;Super&gt;&lt;Alt&gt;d</default>
       </option>
       <option name="switch_filter_key" type="key">
-        <_short>Switch filter</_short>
-        <_long>Select filter to use from filters list : either apply all filters or only one specific filter (triggering this action switches filters one by one and eventually comes back to the "all filters" mode).</_long>
+        <short>Switch filter</short>
+        <long>Select filter to use from filters list : either apply all filters or only one specific filter (triggering this action switches filters one by one and eventually comes back to the "all filters" mode).</long>
         <default>&lt;Super&gt;&lt;Alt&gt;s</default>
       </option>
     </display>
     <screen>
       <option name="filter_decorations" type="bool">
-        <_short>Filter window decorations</_short>
-        <_long>Window decorations (borders and titlebar) will be filtered as well as window contents if enabled.</_long>
+        <short>Filter window decorations</short>
+        <long>Window decorations (borders and titlebar) will be filtered as well as window contents if enabled.</long>
         <default>false</default>
       </option>
       <option name="filter_match" type="match">
-        <_short>Filtered windows</_short>
-        <_long>Windows to be filtered by default.</_long>
+        <short>Filtered windows</short>
+        <long>Windows to be filtered by default.</long>
         <default>any</default>
       </option>
       <option name="exclude_match" type="match">
-        <_short>Exclude windows</_short>
-        <_long>Windows to exclude from filtering.</_long>
+        <short>Exclude windows</short>
+        <long>Windows to exclude from filtering.</long>
         <default>Dock | type=Desktop</default>
       </option>
       <option name="notifications_enable" type="bool">
-        <_short>Enable notifications upon filter change</_short>
-        <_long>Whether to show a notification when switching filter. This requires for the plugin to have been built with libnotify support.</_long>
+        <short>Enable notifications upon filter change</short>
+        <long>Whether to show a notification when switching filter. This requires for the plugin to have been built with libnotify support.</long>
         <default>true</default>
       </option>
       <option name="activate_at_startup" type="bool">
-        <_short>Enable color filter at startup</_short>
-        <_long>Filter every window at startup.</_long>
+        <short>Enable color filter at startup</short>
+        <long>Filter every window at startup.</long>
         <default>false</default>
       </option>
       <option name="cumulative_enable" type="bool">
-        <_short>Enable cumulative filters mode</_short>
-        <_long>Whether a mode applying all filters at once is enabled and can be cycled through with the "Switch filter" binding.</_long>
+        <short>Enable cumulative filters mode</short>
+        <long>Whether a mode applying all filters at once is enabled and can be cycled through with the "Switch filter" binding.</long>
         <default>false</default>
       </option>
       <option name="filters" type="list">
-        <_short>Filters files</_short>
-        <_long>List of plain text filter files that should be applied when filtering windows or screen.</_long>
+        <short>Filters files</short>
+        <long>List of plain text filter files that should be applied when filtering windows or screen.</long>
         <type>string</type>
         <default>
 	    <value>blackandwhite</value>
