@@ -1,6 +1,7 @@
 AC_PREREQ(2.57)
 
-AC_INIT([compiz-plugins-main], [0.8.18], [chat-to-me@raveit.de])
+AC_INIT([compiz-plugins-main], [0.8.18], [chat-to-me@raveit.de],
+        [compiz-plugins-main], [https://gitlab.com/compiz/compiz-plugins-main])
 AM_INIT_AUTOMAKE([1.9 foreign dist-xz no-dist-gzip check-news])
 AC_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE
