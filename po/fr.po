@@ -1,16 +1,25 @@
 # French translation for compiz-plugins-main
 # Copyright (C) 2007 launchpad.net/compiz
 # This file is distributed under the same license as the compiz-plugins-main package.
-# Guillaume Seguin <guillaume@segu.in>, 2007.
-# Tristan RABLAT <tristan.rablat@gmail.com>, 2007, 2008.
+# Sylvain Debray <sylvain.debray@wanadoo.fr>, 2007.
+# Carl Garand <carlgarand@hotmail.com>, 2007.
+# Pierre Tacchi <tacchi.pierre@gmail.com>, 2007.
+# Tristan Rablat <tristan.rablat@gmail.com>, 2007-2008.
+# Guillaume Seguin <guillaume@segu.in>, 2007-2009.
+# altadeos <altadeos@hotmail.com>, 2008.
+# Florent <cartman@igstaff.com>, 2008.
+# Jonathan Ernst <jonathan@ernstfamily.ch>, 2008.
+# Alvin Meimoun <alvin.meimoun@laposte.net>, 2009.
+# Colomban Wendling <cwendling@hypra.fr>, 2019.
+# Jonathan Michalon <jonathan@michalon.eu>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
-"POT-Creation-Date: 2020-06-21 22:23+0200\n"
-"PO-Revision-Date: 2019-10-16 16:43+0200\n"
-"Last-Translator: Colomban Wendling <cwendling@hypra.fr>\n"
+"POT-Creation-Date: 2020-06-21 19:40+0200\n"
+"PO-Revision-Date: 2020-06-21 23:14+0200\n"
+"Last-Translator: Samy Mahmoudi <samy.mahmoudi@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -654,10 +663,8 @@ msgstr "Un seul grand chemin"
 msgid "One wall per output"
 msgstr "Un chemin par sortie"
 
-#, fuzzy
-#| msgid "Inactive viewport brightness."
 msgid "Inactive viewports"
-msgstr "Luminosité des Bureaux inactifs."
+msgstr "Bureaux inactifs"
 
 msgid "Brightness"
 msgstr "Luminosité"
@@ -1275,10 +1282,6 @@ msgstr "Basculer la fenêtre active en négatif"
 msgid "Toggle Screen Negative"
 msgstr "Basculer l'écran en négatif"
 
-#, fuzzy
-#| msgid ""
-#| "Toggle all windows negative, except for windows in the &quot;Screen "
-#| "Exclusions&quot; list"
 msgid ""
 "Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
 "list"
@@ -1289,10 +1292,6 @@ msgstr ""
 msgid "Toggle Matched Windows Negative"
 msgstr "Basculer en négatif les fenêtres en correspondance"
 
-#, fuzzy
-#| msgid ""
-#| "Toggles the windows negative matched by the &quot;Matched Windows&quot; "
-#| "list"
 msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
 msgstr ""
 "Bascule les fenêtres qui correspondent à la liste « Correspondance de "
@@ -1301,10 +1300,6 @@ msgstr ""
 msgid "Auto-Toggle Matched Windows"
 msgstr "Basculer automatiquement les fenêtres en correspondance"
 
-#, fuzzy
-#| msgid ""
-#| "Automatically toggle windows in the &quot;Matched Windows&quot; list by "
-#| "default"
 msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
 msgstr ""
 "Basculer automatiquement les fenêtres qui correspondent à la liste "
@@ -1313,10 +1308,6 @@ msgstr ""
 msgid "Matched Windows"
 msgstr "Correspondance de fenêtres"
 
-#, fuzzy
-#| msgid ""
-#| "Windows to affect when using the &quot;Toggle Matched Windows "
-#| "Negative&quot; keybinding or &quot;Auto-Toggle Matched Windows&quot;"
 msgid ""
 "Windows to affect when using the \"Toggle Matched Windows Negative\" "
 "keybinding or \"Auto-Toggle Matched Windows\""
@@ -1328,10 +1319,6 @@ msgstr ""
 msgid "Auto-Toggle Screen"
 msgstr "Basculer automatiquement l'écran"
 
-#, fuzzy
-#| msgid ""
-#| "Automatically toggle all windows by default, except for those in the "
-#| "&quot;Screen Exclusions&quot; list"
 msgid ""
 "Automatically toggle all windows by default, except for those in the "
 "\"Screen Exclusions\" list"
@@ -1348,13 +1335,6 @@ msgstr "Fenêtres à exclure lors du basculement de l'écran."
 msgid "Preserve Toggled Windows"
 msgstr "Préserver les fenêtres basculées"
 
-#, fuzzy
-#| msgid ""
-#| "When windows have been toggled using the &quot;Toggle Windows "
-#| "Negative&quot; keybinding, preserve their state when toggling the screen. "
-#| "Note that toggled windows' state will not be preserved between Compiz "
-#| "restarts. To use this option, disable &quot;Auto-Clear Toggled Window "
-#| "State&quot;."
 msgid ""
 "When windows have been toggled using the \"Toggle Windows Negative\" "
 "keybinding, preserve their state when toggling the screen. Note that toggled "
@@ -1370,12 +1350,6 @@ msgstr ""
 msgid "Auto-Clear Toggled Window State"
 msgstr "Effacer automatiquement l'état basculé des fenêtres"
 
-#, fuzzy
-#| msgid ""
-#| "A window that has been toggled using the &quot;Toggle Windows "
-#| "Negative&quot; keybinding will have its state discarded when toggling a "
-#| "match group that includes that window. This will clear window states even "
-#| "if &quot;Preserve Toggled Windows&quot; is selected."
 msgid ""
 "A window that has been toggled using the \"Toggle Windows Negative\" "
 "keybinding will have its state discarded when toggling a match group that "
@@ -3046,9 +3020,14 @@ msgstr "Valeur de la largeur"
 msgid "Height values"
 msgstr "Valeurs de hauteur"
 
+# http://www.academie-francaise.fr/solutions-alternatives
+#, fuzzy
 msgid "Workarounds"
 msgstr "Solutions alternatives"
 
+# http://www.academie-francaise.fr/solutions-alternatives
+# similaires/semblables à Marco ?
+#, fuzzy
 msgid "Marco-like workarounds."
 msgstr "Solutions alternatives Marco-like"
 
