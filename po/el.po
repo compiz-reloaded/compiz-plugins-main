@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-04-20 02:46+0200\n"
 "Last-Translator: Jim Dusis <jimdusis@yahoo.gr>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -310,7 +309,6 @@ msgstr "Πλαινό Χτύπημα"
 msgid "Sidekick Number of Rotations"
 msgstr "Αριθμός Στροφών του Πλαινού Χτυπήματος"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
 "Αριθμός περιστροφών για το Πλαινό Χτύπημα (συν ή πλην 10% για τυχαιοποίηση)."
@@ -487,6 +485,32 @@ msgstr "Αποκλεισμός παραθύρων"
 msgid "Windows to exclude from filtering."
 msgstr "Παράθυρα για αποκλείσμό απ'το φιλτράρισμα."
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable ADD Helper on start"
+msgid "Enable color filter at startup"
+msgstr "Ενεργοποίηση του Βοηθού στην εκκίνηση"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "Σήκωσε κάθε παράράθυρο στην ομάδα"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "Φιλτράρισμα αρχείων"
 
@@ -649,6 +673,11 @@ msgstr "Ενας μεγάλος τοίχος"
 
 msgid "One wall per output"
 msgstr "Ενας τοίχος για κάθε οθόνη"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "Φωτεινότητα ανενεργής εικονικής επιφάνειας εργασίας."
 
 msgid "Brightness"
 msgstr "Φωτεινότητα"
@@ -837,15 +866,15 @@ msgstr ""
 "Ζουμάρισμα μέσα/έξω βάση αυτού του παράγοντα. Υψηλότερη τιμή σημαίνει "
 "γρηγορότερο ζουμάρισμα."
 
-msgid "Minimum zoom factor"
+#, fuzzy
+#| msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "Ελάχιστος συντελεστής ζουμ"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
-"Ο ελάχιστος επιτρεπόμενος συντελεστής ζουμ. Μια τιμή στο 0.5 ισούται με 2x "
-"ζουμ, μια τιμή στο 0.25 ισούται με 4x ζουμ."
 
 msgid "Sync Mouse"
 msgstr "Συγχρονισμός Ποντικιού"
@@ -922,6 +951,16 @@ msgstr ""
 "Το μέγεθος του ορίου που προστείθεται όταν επιχειρείται συγκράτηση του "
 "ποντικιού."
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "Εξειδικευμένο ζουμ παράγοντας 1"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "Χρήση επιπέδου ζουμ όταν ενεργοποιείται το hotkey 1"
+
 msgid "Pan Factor"
 msgstr "Παράγοντας Pan"
 
@@ -937,25 +976,41 @@ msgstr "Εντοπισμός Εστίασης"
 msgid "Enable focus tracking"
 msgstr "Ενεργοποίηση εντοπισμού εστίασης"
 
-msgid "Move the zoom area when focus changes."
-msgstr "Μετακίνηση της ζουμαρισμένης περιοχής στις αλλαγές εστίασης."
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "Ενεργοποίηση εντοπισμού εστίασης"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "Πρώτο χρώμα του βέλους του επιλογέα παραθύρου"
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "Ταίριαγμα επίπεδου ζουμ στο παράθυρο σε αλλαγή εστίασης"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr ""
-"Ταίριαγμα της ζουμαρισμένης περιοχής στο παράθυρο όταν η ζουμαρισμένη "
-"περιοχή κινείται σαν αποτέλεσμα του εντοπισμού εστίασης."
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "Ταίριαγμα ζουμαρισμένης περιοχής στο παράθυρο"
 
 msgid "Autoscale threshold"
 msgstr "Κατώφλι αυτόματης κλιμάκωσης"
 
+#, fuzzy
+#| msgid ""
+#| "Only change zoom level (scale) on focus change if the target value is "
+#| "higher than this. Prevents zooming too far in on small popups etc."
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 "Αλλαγή επιπέδου ζουμ (κλιμάκωση) σε αλλαγή εστίασης μόνο αν η επιθυμητή τιμή "
 "είναι υψηλότερη από αυτήν. Αποτρέπει το ζουμάρισμα πολύ μακριά σε μικρά "
@@ -964,24 +1019,76 @@ msgstr ""
 msgid "Always fit to window on focus track"
 msgstr "Πάντα ταίριαγμα στο παράθυρο κατα το καθάρισμα εστίασης"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "Ταίριαγμα της ζουμαρισμένης περιοχής στο παράθυρο όταν η ζουμαρισμένη "
 "περιοχή κινείται σαν αποτέλεσμα του εντοπισμού εστίασης. Ακόμη κ όταν δεν "
 "ζουμάρεται μέσα αρχικά."
 
-msgid "Follow Focus Delay"
-msgstr "Ακολούθηση Καθυστέρησης Εστίασης"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "Μόνο προσπάθεια για κεντράρισμα των νέων εστιασμένων παραθύρων αν το ποντίκι "
 "δεν εχει μετακινηθεί για αυτό το ποσό δευτερολέπτων. Χρησιμοποιήστε το για "
 "να αποφευχθεί το πήδημα όταν χρησιμοποιείται η ατιμέλητη εστίαση."
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"Μόνο προσπάθεια για κεντράρισμα των νέων εστιασμένων παραθύρων αν το ποντίκι "
+"δεν εχει μετακινηθεί για αυτό το ποσό δευτερολέπτων. Χρησιμοποιήστε το για "
+"να αποφευχθεί το πήδημα όταν χρησιμοποιείται η ατιμέλητη εστίαση."
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "Γράψτε με φωτιά στην οθόνη"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "Γραφική Απεικόνιση"
@@ -989,13 +1096,17 @@ msgstr "Γραφική Απεικόνιση"
 msgid "Speed"
 msgstr "Ταχύτητα"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "Ταχύτητα Ζουμ"
 
 msgid "Timestep"
 msgstr "Χρονικό Βήμα"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "Χρονικό Βήμα Ζουμ"
 
 msgid "Filter Linear"
@@ -1003,6 +1114,83 @@ msgstr "Γραμμικό Φιλτράρισμα"
 
 msgid "Use linear filter when zoomed in"
 msgstr "Χρήση γραμμικού φίλτραρίσματος όταν ζουμάρετε μέσα"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "Μετακίνηση της ζουμαρισμένης περιοχής στις αλλαγές εστίασης."
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "Ειδοποιήσεις Σφαλμάτων"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "Ειδοποιήσεις Σφαλμάτων"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "Λήψη θέσης ποντικιού"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "Ενημερώνει την θέση του δείκτη του ποντικιού απο τον xserver"
+
+msgid "Misc"
+msgstr "Λοιπά"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "Χρονικό Διάστημα Συμψηφισμού Ποντικιού"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"Πόσο συχνά να συμψηφίζεται η θέση του ποντικιού, σε χιλιοστά δευτερολέπτου. "
+"Μειώστε το για να μειωθούν τα κοψίματα."
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -1046,6 +1234,12 @@ msgstr "Μάτι ψαριού"
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
 "Παράγοντας ζουμ για τον εκκινούμενο απο το πληκτρολόγιο μεγεθυντικό φακό."
+
+msgid "Zoom Speed"
+msgstr "Ταχύτητα Ζουμ"
+
+msgid "Zoom Timestep"
+msgstr "Χρονικό Βήμα Ζουμ"
 
 msgid "Keep fully on screen"
 msgstr "Διατήρηση εντελώς μέσα στην οθόνη"
@@ -1110,9 +1304,6 @@ msgstr "Λήψη θέσης ποντικιού"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "Ενημερώνει την θέση του δείκτη του ποντικιού απο τον xserver"
 
-msgid "Misc"
-msgstr "Λοιπά"
-
 msgid "Mouse Poll Interval"
 msgstr "Χρονικό Διάστημα Συμψηφισμού Ποντικιού"
 
@@ -1138,20 +1329,86 @@ msgstr "Εκκίνηση-Σταμάτημα ενεργού αρνητικού π
 msgid "Toggle Screen Negative"
 msgstr "Εκκίνηση-Σταμάτημα Αρνητικής Οθόνης"
 
-msgid "Toggle screen negative"
-msgstr "Εκκίνηση-Σταμάτημα αρνητικής οθόνης"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "Μετατροπή Παραθύρων σε Αρνητικά"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "Εκκίνηση-Σταμάτημα Αρνητικού Παραθύρου"
 
-msgid "Windows to be negative by default"
-msgstr "Παράθυρα που θα είναι αρνητικά απο προεπιλογή"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "Αποκλεισμός Παραθύρων"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "Παράθυρα αποκλείονται απ'το να γίνουν αρνητικά"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "Τοποθέτηση Παραθύρων σαν Καταρράκτη"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "Εκκίνηση-Σταμάτημα Πλήρους Οθόνης"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "Κυβοποίηση Οθόνης"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "Παράθυρα για αποκλείσμό απ'το φιλτράρισμα."
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "Επανάκτηση Παραθύρων"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "Εκκίνηση-Σταμάτημα Αρνητικού Παραθύρου"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+msgid "Negate Decorations"
+msgstr "Αρνητικές Διακοσμίσεις"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
+"Κάνει επίσης αρνητικές και τις διακοσμίσεις παραθύρων, όχι μόνο τα "
+"περιεχόμενά τους."
 
 msgid "Opacify"
 msgstr "Εφαρμογή Αδιαφάνειας"
@@ -1547,6 +1804,21 @@ msgstr "Μέγεθος Γραμματοσειράς"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "Μέγεθος Γραμματοσειράς"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "Χρώμα γραμματοσειράς εμφάνισης του τίτλου παραθύρου"
+
+msgid "Bold Font"
+msgstr "Έντονη Γραμματοσειρά"
+
+msgid "Use bold font for window title display"
+msgstr ""
+"Χρησιμοποίηση έντονης γραμματοσειράς για την εμφάνιση του τίτλου παραθύρου"
+
 msgid "Text color."
 msgstr "Χρώμα Κειμένου."
 
@@ -1759,15 +2031,9 @@ msgstr "Εμφάνιση τίτλου παραθύρου για το τρέχω�
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "Έντονη Γραμματοσειρά"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr ""
 "Επιλέγει αν η γραμματοσειρά του τίτλου παραθύρου θα είναι έντονη ή οχι."
-
-msgid "Font Size"
-msgstr "Μέγεθος Γραμματοσειράς"
 
 msgid "Font size for the window title"
 msgstr "Μέγεθος γραμματοσειράς για τον τίτλο παραθύρου"
@@ -1845,10 +2111,6 @@ msgstr "Τονισμένο παράθυρο μόνο"
 
 msgid "All windows"
 msgstr "Όλα τα παράθυρα"
-
-msgid "Use bold font for window title display"
-msgstr ""
-"Χρησιμοποίηση έντονης γραμματοσειράς για την εμφάνιση του τίτλου παραθύρου"
 
 msgid "Font size for window title display"
 msgstr "Χρώμα γραμματοσειράς εμφάνισης του τίτλου παραθύρου"
@@ -2211,6 +2473,16 @@ msgstr "Προηγούμενο Πάνελ"
 msgid "Select previous panel type window."
 msgstr "Επιλογή είδους προηγούμενου πάνελ παραθύρου."
 
+#, fuzzy
+#| msgid "Color of highlight rectangle"
+msgid "Close highlighted"
+msgstr "Χρώμα του τονισμένου ορθογωνίου"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
 msgid "Switcher speed"
 msgstr "Επιλογέας ταχύτητας"
 
@@ -2223,7 +2495,14 @@ msgstr "Επιλογέας παραθύρων"
 msgid "Windows that should be shown in switcher"
 msgstr "Παράθυρα που πρέπει να εμφανίζονται στον επιλογέα"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "Εμφάνιση Ελαχιστοποιημένου"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "Εμφάνιση ελαχιστοποιημένων παραθύρων"
 
 msgid "Auto Change Viewport"
@@ -2241,9 +2520,44 @@ msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr ""
 "Χρόνος (σε δευτερόλεπτα) καθυστέρησης εμφάνισης του αναδυώμενου παραθύρου "
 
+#, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "Τονισμός Παραθύρου"
+
+#, fuzzy
+#| msgid "Mode for highlighting the currently selected window"
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "Κατάσταση τονισμού του τρέχοντος επιλεγμένου παραθύρου"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "Ζωγράφισε πάνω όψη"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "Πλάτος του κύματος σε σχέση με το ύψος του παραθύρου."
+
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr ""
 "Να επιτρέπεται η επιλογή παραθύρων απ' τον επιλογέα παραθύρων με το ποντίκι"
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "Επιτρέπεται η Επιλογή με το Ποντίκι"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 msgid "Amount of saturation in percent"
 msgstr "Ποσό κορεσμού επι τοις εκατό"
@@ -2283,6 +2597,36 @@ msgstr "Κεντραρισμένο"
 
 msgid "Right"
 msgstr "Δεξιά"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "Προεπισκόπιση Κλιμάκωσης"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "Μέγεθος της προεπισκόπισης σε %"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "Μέγεθος Ορίου Τίτλου"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "Μέγεθος του ορίου γύρω απ τον τίτλο παραθύρου"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "Μέγεθος Γραμματοσειράς"
+
+#, fuzzy
+#| msgid "Size of these elements"
+msgid "Size of the icon overlays"
+msgstr "Μέγεθος αυτών των στοιχείων"
 
 msgid "Selected Window Highlight"
 msgstr "Τονισμός Επιλεγμένου Παραθύρου"
@@ -2592,8 +2936,10 @@ msgstr "Όνομα ενέργειας για εκκίνηση/τερματισμ
 msgid "Window Rules"
 msgstr "Κανόνες Παραθύρων"
 
-msgid "Set windows rules"
-msgstr "Θέσε κανόνες παραθύρων"
+#, fuzzy
+#| msgid "Saturation values for windows"
+msgid "Set rules to apply to windows"
+msgstr "Τιμές κορεσμού για παράθυρα"
 
 msgid "Matches"
 msgstr "Ταιριάσματα"
@@ -2610,10 +2956,14 @@ msgstr "Αγνόηση του pager"
 msgid "Don't show application in pager"
 msgstr "Μη εμφάνιση εφαρμογής στο pager"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "Πάνω απο όλα τα άλλα παράθυρα"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "Κάτω απο όλα τα άλλα παράθυρα"
 
 msgid "Sticky"
@@ -2640,40 +2990,62 @@ msgstr "Μη ARGB οπτικά"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "Παράθυρα που πρέπει να χειρίζονται ως μη υποστηρίζοντα διαφάνεια"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "Μη μετακινούμενα παράθυρα"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "Θέσε παράθυρο ως μη μετακινούμενο"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "Μη μορφοποιούμενα παράθυρα"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "Θέσε παράθυρο ως μη μορφοποιούμενο"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "Μη ελαχιστοποιούμενα παράθυρα"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "Θέσε παράθυρο ως μη ελαχιστοποιούμενο"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "Μη μεγιστοποιούμενα παράθυρα"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "Θέσε παράθυρο ως μη μεγιστοποιούμενο"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "Μη κλεινόμενα παράθυρα"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "Θέσε παράθυρο ως μη κλεινόμενο"
 
 msgid "No focus"
 msgstr "Μη εστίαση"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "Παράθυρα που δεν θα έχουν εστίαση"
 
 msgid "Size rules"
@@ -2794,6 +3166,63 @@ msgid "Windows on all desktops that should be made sticky"
 msgstr ""
 "Παράθυρα σε όλες τις επιφάνειες εργασίας που πρέπει να γίνουν καρφιτσωμένα"
 
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "Χρωματιστό φίλτράρισμα"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "Γραμμικό Φιλτράρισμα"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "Επόμενη εικονική επιφάνεια εργασίας"
+
+#~ msgid ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+#~ msgstr ""
+#~ "Ο ελάχιστος επιτρεπόμενος συντελεστής ζουμ. Μια τιμή στο 0.5 ισούται με "
+#~ "2x ζουμ, μια τιμή στο 0.25 ισούται με 4x ζουμ."
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr ""
+#~ "Ταίριαγμα της ζουμαρισμένης περιοχής στο παράθυρο όταν η ζουμαρισμένη "
+#~ "περιοχή κινείται σαν αποτέλεσμα του εντοπισμού εστίασης."
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "Ακολούθηση Καθυστέρησης Εστίασης"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "Εκκίνηση-Σταμάτημα αρνητικής οθόνης"
+
+#~ msgid "Neg Windows"
+#~ msgstr "Μετατροπή Παραθύρων σε Αρνητικά"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "Παράθυρα που θα είναι αρνητικά απο προεπιλογή"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "Αποκλεισμός Παραθύρων"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "Παράθυρα αποκλείονται απ'το να γίνουν αρνητικά"
+
+#~ msgid "Set windows rules"
+#~ msgstr "Θέσε κανόνες παραθύρων"
+
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "Τρισδιάστατη Περιστροφή Μόνο Με το Ποντίκι"
 
@@ -2883,9 +3312,6 @@ msgstr ""
 
 #~ msgid "Brightness of faded windows"
 #~ msgstr "Φωτεινότητα των ξεθωριασμένων παραθύρων"
-
-#~ msgid "Enable ADD Helper on start"
-#~ msgstr "Ενεργοποίηση του Βοηθού στην εκκίνηση"
 
 #~ msgid "Enables ADD helper when it is first loaded."
 #~ msgstr "Ενεργοποιεί τον Βοηθό στην πρώτη φόρτωση"
@@ -3614,9 +4040,6 @@ msgstr ""
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "Ζωγράφισε κάτω όψη του κύβου"
 
-#~ msgid "Draw top face"
-#~ msgstr "Ζωγράφισε πάνω όψη"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "Ζωγράφισε πάνω όψη του κύβου"
 
@@ -3920,9 +4343,6 @@ msgstr ""
 #~ msgid "Previous Element"
 #~ msgstr "Προηγούμενο Στοιχείο"
 
-#~ msgid "Screen Boxing"
-#~ msgstr "Κυβοποίηση Οθόνης"
-
 #~ msgid "Screen Depth"
 #~ msgstr "Βάθος Οθόνης"
 
@@ -3952,9 +4372,6 @@ msgstr ""
 
 #~ msgid "Side-to-side movement of Snow."
 #~ msgstr "Πλάι-πλάι κίνηση του Χιονιού."
-
-#~ msgid "Size of these elements"
-#~ msgstr "Μέγεθος αυτών των στοιχείων"
 
 #~ msgid "Snow"
 #~ msgstr "Χιόνι"
@@ -4032,9 +4449,6 @@ msgstr ""
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "Εκκίνηση-Σταμάτημα του Πάντα-Απο-Πάνω"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "Εκκίνηση-Σταμάτημα Πλήρους Οθόνης"
 
 #~ msgid "Toggle Redirect"
 #~ msgstr "Εκκίνηση-Σταμάτημα Επαναδιεύθυνσης"
@@ -4116,9 +4530,6 @@ msgstr ""
 
 #~ msgid "Number of particles"
 #~ msgstr "Αριθμός στοχείων"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "Γράψτε με φωτιά στην οθόνη"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "Γράψτε με φωτια σε αλλα στοιχεία στην οθόνη"
@@ -4368,9 +4779,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Ακρίβεια της επιλογής (ποσοστό της ορατής επιφάνειας παραθύρου που πρέπει "
 #~ "να επιλεγεί για να αναγνωριστεί η επιλογή)."
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "Σήκωσε κάθε παράράθυρο στην ομάδα"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "Τετράγωνη λάμψη"
@@ -4938,14 +5346,6 @@ msgstr ""
 #~ "Αλλαγή εικονικής επιφάνειας εργασίας ανταποκρινόμενη στο νεύμα του "
 #~ "ποντικιού"
 
-#~ msgid "Also negate window decorations, not only the window contents."
-#~ msgstr ""
-#~ "Κάνει επίσης αρνητικές και τις διακοσμίσεις παραθύρων, όχι μόνο τα "
-#~ "περιεχόμενά τους."
-
-#~ msgid "Negate Decorations"
-#~ msgstr "Αρνητικές Διακοσμίσεις"
-
 #~ msgid "Debug"
 #~ msgstr "Αποσφαλμάτωση"
 
@@ -4954,9 +5354,6 @@ msgstr ""
 
 #~ msgid "Error"
 #~ msgstr "Σφάλμα"
-
-#~ msgid "Error Notifications"
-#~ msgstr "Ειδοποιήσεις Σφαλμάτων"
 
 #~ msgid "Fatal"
 #~ msgstr "Μοιραίο"
@@ -5412,9 +5809,6 @@ msgstr ""
 #~ msgid "Cascade Delta"
 #~ msgstr "Καταρράκτης Δέλτα"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "Τοποθέτηση Παραθύρων σαν Καταρράκτη"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr "Επιλογή είδους πλακιδιών όταν χρησιμοποιηθεί εκκίνηση-σταμάτημα."
 
@@ -5475,9 +5869,6 @@ msgstr ""
 #~ "Ποσοστό που καταλαμβάνει το παράθυρο που τοποθετείται αριστερα. Αυτός ο "
 #~ "αριθμός είναι ποσοστό του πλάτους οθόνης, που το ενεργό παράθυρο θα έχει "
 #~ "για πλάτος όταν γίνει πλακίδιο."
-
-#~ msgid "Restore Windows"
-#~ msgstr "Επανάκτηση Παραθύρων"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr ""
@@ -5699,9 +6090,6 @@ msgstr ""
 #~ "Πρώτο χρώμα για την διαβάθμιση τονισμού μικρογραφιών του επιλογέα "
 #~ "παραθύρου."
 
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "Πρώτο χρώμα του βέλους του επιλογέα παραθύρου"
-
 #~ msgid "Flip Down"
 #~ msgstr "Γύρισμα Κάτω"
 
@@ -5810,9 +6198,6 @@ msgstr ""
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "Χρώμα περιγράμματος του επιλογέα παραθύρου"
 
-#~ msgid "Preview Scale"
-#~ msgstr "Προεπισκόπιση Κλιμάκωσης"
-
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "Ακτίνα της στρογγυλεμένης άκρης"
 
@@ -5849,9 +6234,6 @@ msgstr ""
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr ""
 #~ "Εμφάνιση παραθύρου αλλαγής καθώς αλλάζουν οι εικονικές επιφάνειες εργασίας"
-
-#~ msgid "Size of the preview in %"
-#~ msgstr "Μέγεθος της προεπισκόπισης σε %"
 
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "Αλλαγή του Χρόνου που θα είναι Ορατή η Προεπισκόπιση του Στόχου"
@@ -6113,9 +6495,6 @@ msgstr ""
 
 #~ msgid "Saturation settings"
 #~ msgstr "Ρυθμίσεις κορεσμού"
-
-#~ msgid "Saturation values for windows"
-#~ msgstr "Τιμές κορεσμού για παράθυρα"
 
 #~ msgid "Saturation window values"
 #~ msgstr "Τιμές κορεσμού παραθύρων"

@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2008-05-26 15:47+0200\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
@@ -284,7 +283,6 @@ msgstr "Sidekick"
 msgid "Sidekick Number of Rotations"
 msgstr "Sidekick Number of Rotations"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 
@@ -453,6 +451,30 @@ msgstr "Exclude windows"
 msgid "Windows to exclude from filtering."
 msgstr "Windows to exclude from filtering."
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+msgid "Enable color filter at startup"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filtered windows"
+msgid "Filter every window at startup."
+msgstr "Filtered windows"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "Filters files"
 
@@ -612,6 +634,11 @@ msgstr "One big wall"
 
 msgid "One wall per output"
 msgstr "One wall per output"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "Inactive viewport brightness."
 
 msgid "Brightness"
 msgstr "Brightness"
@@ -795,15 +822,15 @@ msgstr "Zoom factor"
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "Zoom in/out by this factor. Higher value means quicker zooming."
 
-msgid "Minimum zoom factor"
+#, fuzzy
+#| msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "Minimum zoom factor"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
 
 msgid "Sync Mouse"
 msgstr "Synchronise Mouse"
@@ -872,6 +899,16 @@ msgstr "Mouse Restrain Margin"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "The size of the margin to add when attempting to restrain the mouse."
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "Specific zoom factor 1"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "Zoom level to go to when triggering hotkey 1"
+
 msgid "Pan Factor"
 msgstr "Pan Factor"
 
@@ -886,46 +923,109 @@ msgstr "Focus Tracking"
 msgid "Enable focus tracking"
 msgstr "Enable focus tracking"
 
-msgid "Move the zoom area when focus changes."
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "Enable focus tracking"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area to the center of a newly switched window."
 msgstr "Move the zoom area when focus changes."
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "Fit zoom level to window on focus change"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "Fit zoomed area to window"
 
 msgid "Autoscale threshold"
 msgstr "Autoscale threshold"
 
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 
 msgid "Always fit to window on focus track"
 msgstr "Always fit to window on focus track"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
 "focus tracking. Even when not initially zoomed in."
 
-msgid "Follow Focus Delay"
-msgstr "Follow Focus Delay"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "Only attempt to centre newly focused windows if the mouse hasn't moved in "
 "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"Only attempt to centre newly focused windows if the mouse hasn't moved in "
+"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Restrain the mouse to the zoom area"
+msgid "Restrain the zoom area inside the screen"
+msgstr "Restrain the mouse to the zoom area"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "Animation"
@@ -933,13 +1033,17 @@ msgstr "Animation"
 msgid "Speed"
 msgstr "Speed"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "Zoom Speed"
 
 msgid "Timestep"
 msgstr "Timestep"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "Zoom Timestep"
 
 msgid "Filter Linear"
@@ -947,6 +1051,81 @@ msgstr "Filter Linear"
 
 msgid "Use linear filter when zoomed in"
 msgstr "Use linear filter when zoomed in"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "Move the zoom area when focus changes."
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Notification Daemon Fix"
+msgid "Notifications"
+msgstr "Notification Daemon Fix"
+
+msgid "Track notifications"
+msgstr ""
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "Mouse position polling"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "Updates the mouse pointer position from the X server"
+
+msgid "Misc"
+msgstr "Misc"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "Mouse Poll Interval"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"How often to poll the mouse position, in milliseconds. Reduce this to reduce "
+"choppy behavior."
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -989,6 +1168,12 @@ msgstr "Fisheye"
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Zoom factor for keyboard initiated magnifier."
+
+msgid "Zoom Speed"
+msgstr "Zoom Speed"
+
+msgid "Zoom Timestep"
+msgstr "Zoom Timestep"
 
 msgid "Keep fully on screen"
 msgstr "Keep fully on screen"
@@ -1053,9 +1238,6 @@ msgstr "Mouse position polling"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "Updates the mouse pointer position from the X server"
 
-msgid "Misc"
-msgstr "Misc"
-
 msgid "Mouse Poll Interval"
 msgstr "Mouse Poll Interval"
 
@@ -1081,20 +1263,84 @@ msgstr "Toggle window negative"
 msgid "Toggle Screen Negative"
 msgstr "Toggle Screen Negative"
 
-msgid "Toggle screen negative"
-msgstr "Toggle screen negative"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "Negative Windows"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "Toggle Window Negative"
 
-msgid "Windows to be negative by default"
-msgstr "Windows to be negative by default"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "Exclude Windows"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "Windows to exclude from negating"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Sized Windows"
+msgid "Matched Windows"
+msgstr "Sized Windows"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Screen Negative"
+msgid "Auto-Toggle Screen"
+msgstr "Toggle Screen Negative"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+msgid "Screen Exclusions"
+msgstr ""
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "Windows to exclude from filtering."
+
+#, fuzzy
+#| msgid "Previous Window"
+msgid "Preserve Toggled Windows"
+msgstr "Previous Window"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "Toggle Window Negative"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+#, fuzzy
+#| msgid "Deformation"
+msgid "Negate Decorations"
+msgstr "Deformation"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
 
 msgid "Opacify"
 msgstr "Opacify"
@@ -1487,6 +1733,20 @@ msgstr "Font family"
 msgid "Name of the font to display resize info."
 msgstr "Name of the font to display resize info."
 
+msgid "Font Size"
+msgstr "Font Size"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "Font size for window title display"
+
+msgid "Bold Font"
+msgstr "Bold Font"
+
+msgid "Use bold font for window title display"
+msgstr "Use bold font for window title display"
+
 msgid "Text color."
 msgstr "Text colour."
 
@@ -1689,14 +1949,8 @@ msgstr "Show window title of currently selected window."
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "Bold Font"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr "Selects if the window title should be displayed in bold font or not."
-
-msgid "Font Size"
-msgstr "Font Size"
 
 msgid "Font size for the window title"
 msgstr "Font size for the window title"
@@ -1772,9 +2026,6 @@ msgstr "Highlighted window only"
 
 msgid "All windows"
 msgstr "All windows"
-
-msgid "Use bold font for window title display"
-msgstr "Use bold font for window title display"
 
 msgid "Font size for window title display"
 msgstr "Font size for window title display"
@@ -2127,6 +2378,16 @@ msgstr "Previous Panel"
 msgid "Select previous panel type window."
 msgstr "Select previous panel type window."
 
+#, fuzzy
+#| msgid "Color of highlight rectangle"
+msgid "Close highlighted"
+msgstr "Colour of highlight rectangle"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
 msgid "Switcher speed"
 msgstr "Switcher speed"
 
@@ -2139,7 +2400,14 @@ msgstr "Switcher windows"
 msgid "Windows that should be shown in switcher"
 msgstr "Windows that should be shown in the switcher"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "Show Minimised"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "Show minimised windows"
 
 msgid "Auto Change Viewport"
@@ -2154,8 +2422,41 @@ msgstr "Popup Window Delay"
 msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "Time (in s) the popup window should be delayed before appearing"
 
+#, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "Window Highlight"
+
+#, fuzzy
+#| msgid "Mode for highlighting the currently selected window"
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "Mode for highlighting the currently selected window"
+
+msgid "Draw Popup"
+msgstr ""
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "The width of the wave relative to the window height."
+
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr "Allow selection of windows from the switcher window with the mouse"
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "Allow Mouse Selection"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 msgid "Amount of saturation in percent"
 msgstr "Amount of saturation in percent"
@@ -2195,6 +2496,32 @@ msgstr "Centred"
 
 msgid "Right"
 msgstr "Right"
+
+msgid "Popup Preview Size"
+msgstr ""
+
+#, fuzzy
+#| msgid "Move to the previous viewport"
+msgid "Size of the previews in the popup"
+msgstr "Move to the previous viewport"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "Title Border Size"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "Size of the border around the window title"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "Font Size"
+
+msgid "Size of the icon overlays"
+msgstr ""
 
 msgid "Selected Window Highlight"
 msgstr "Selected Window Highlight"
@@ -2498,8 +2825,10 @@ msgstr "Action name for initiate/terminate"
 msgid "Window Rules"
 msgstr "Window Rules"
 
-msgid "Set windows rules"
-msgstr "Set windows rules"
+#, fuzzy
+#| msgid "Select next panel type window."
+msgid "Set rules to apply to windows"
+msgstr "Select next panel type window."
 
 msgid "Matches"
 msgstr "Matches"
@@ -2516,10 +2845,14 @@ msgstr "Skip pager"
 msgid "Don't show application in pager"
 msgstr "Don't show application in pager"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "Above others windows"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "Below others windows"
 
 msgid "Sticky"
@@ -2546,40 +2879,62 @@ msgstr "No ARGB visuals"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "Windows that should be treated as not supporting transparency"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "Non-movable windows"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "Set window as non-movable"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "Non-resizable windows"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "Set window as non-resizable"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "Non-minimisable windows"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "Set window as non-minimisable"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "Non-maximisable windows"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "Set window as non-maximisable"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "Non-closable windows"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "Set window as non-closable"
 
 msgid "No focus"
 msgstr "No focus"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "Windows will not have focus"
 
 msgid "Size rules"
@@ -2696,3 +3051,60 @@ msgstr "\"On all desktops\" sticky match"
 
 msgid "Windows on all desktops that should be made sticky"
 msgstr "Windows on all desktops that should be made sticky"
+
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "Colour filter"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "Filter Linear"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "Next viewport"
+
+#~ msgid ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+#~ msgstr ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "Follow Focus Delay"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "Toggle screen negative"
+
+#~ msgid "Neg Windows"
+#~ msgstr "Negative Windows"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "Windows to be negative by default"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "Exclude Windows"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "Windows to exclude from negating"
+
+#~ msgid "Set windows rules"
+#~ msgstr "Set windows rules"

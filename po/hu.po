@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-10-10 08:38+0200\n"
 "Last-Translator: KAMI <kamihir@freemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -287,7 +286,6 @@ msgstr "Társ"
 msgid "Sidekick Number of Rotations"
 msgstr "Fordulatok száma"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
 "Fordulatok száma a Szenzáció animáció alatt (10 százalék véletlenszerű "
@@ -460,6 +458,32 @@ msgstr "Kizárt ablakok"
 msgid "Windows to exclude from filtering."
 msgstr "Ezek az ablakok ne legyenek szűrve."
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable ADD Helper on start"
+msgid "Enable color filter at startup"
+msgstr "Halványító automatikus engedélyezése"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "Minden ablak emelése a csoportban"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "Fájlok szűrése"
 
@@ -620,6 +644,11 @@ msgstr "Egy nagy fal"
 
 msgid "One wall per output"
 msgstr "Egy nagy fal kimenetenként"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "Inaktív munkalap fényereje."
 
 msgid "Brightness"
 msgstr "Fényerő"
@@ -806,15 +835,15 @@ msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
 "Nagyítás/Kicsinyítés mértéke. Magasabb érték gyorsabb nagyítást eredményez."
 
-msgid "Minimum zoom factor"
+#, fuzzy
+#| msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "Minimális nagyítás"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
-"A minimálisan megengedett nagyítás mértéke. A 0,5-ös érték 2x-es nagyításnak "
-"felel meg, a 0,25-ös érték pedig 4x-es nagyításnak felel meg."
 
 msgid "Sync Mouse"
 msgstr "Egér szinkronizálása"
@@ -881,6 +910,16 @@ msgstr "Egér korlátozásának távolsága"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Margó szélessége amikor megpróbálja korlátozni az egeret."
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "Megadott 1. nagyítási arány"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "Nagyítás mértéke az első gyorsbillentyű hatására"
+
 msgid "Pan Factor"
 msgstr "Követési lépték"
 
@@ -896,25 +935,41 @@ msgstr "Fókuszkövetés"
 msgid "Enable focus tracking"
 msgstr "Fókuszkövetés engedélyezése"
 
-msgid "Move the zoom area when focus changes."
-msgstr "Nagyítási terület mozgatása ha a fókusz változik."
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "Fókuszkövetés engedélyezése"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "Első színe az ablakváltó ablak nyilának színátmenetéhez."
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "Nagyítás mértékének kiterjesztése az ablakhoz fókusz váltáskor"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr ""
-"Nagyító terület kitöltése az ablakban amikor a nagyított terület mozog, mint "
-"a fókuszkövetés eredménye."
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "Nagyított terület kiterjesztése az ablakba"
 
 msgid "Autoscale threshold"
 msgstr "Automatikus határérték"
 
+#, fuzzy
+#| msgid ""
+#| "Only change zoom level (scale) on focus change if the target value is "
+#| "higher than this. Prevents zooming too far in on small popups etc."
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 "Csak akkor változtassa meg a nagyítás mértékét (áttekintő üzemmódban), ha a "
 "célérték magasabb az itt megadottnál. Ezzel a lehetőséggel elkerülhető a kis "
@@ -923,22 +978,73 @@ msgstr ""
 msgid "Always fit to window on focus track"
 msgstr "Mindig alkalmazkodjon az ablakhoz fókuszkövetésnél"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "Nagyított terület kiterjesztése az ablakba amikor mozog, mint a "
 "fókuszkövetés eredménye. Ha kezdetben nincs közelítve."
 
-msgid "Follow Focus Delay"
-msgstr "Kövesse a fókusz késleltetését"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "Csak akkor állítsa középre az új fókuszban lévő ablakot ha ennyi másodpercig "
 "az egér nem mozog. Használd, hogy elkerüld az ugrálást azonnali fókusznál."
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"Csak akkor állítsa középre az új fókuszban lévő ablakot ha ennyi másodpercig "
+"az egér nem mozog. Használd, hogy elkerüld az ugrálást azonnali fókusznál."
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "Tűz rajzolása képernyőre"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "Animáció"
@@ -946,13 +1052,17 @@ msgstr "Animáció"
 msgid "Speed"
 msgstr "Sebesség"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "Nagyítás sebessége"
 
 msgid "Timestep"
 msgstr "Időköz"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "Nagyítás időköz"
 
 msgid "Filter Linear"
@@ -960,6 +1070,83 @@ msgstr "Lineáris szűrő"
 
 msgid "Use linear filter when zoomed in"
 msgstr "Lineáris szűrő használata nagyításnál"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "Nagyítási terület mozgatása ha a fókusz változik."
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "Értesítés hibáról"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "Értesítés hibáról"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "Egérpozíció lekérdezése"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "Az egérpozíció lekérdezése az X kiszolgálótól."
+
+msgid "Misc"
+msgstr "Egyebek"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "Egér lekérdezési időköz"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"Milyen gyakran ellenőrizze a kurzor helyzetét ezredmásodpercben megadva. "
+"Állítsa kisebbre, hogy a szaggatott mozgást elkerülje."
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -1002,6 +1189,12 @@ msgstr "Halszem"
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Billentyűzetről indított nagyító nagyítása."
+
+msgid "Zoom Speed"
+msgstr "Nagyítás sebessége"
+
+msgid "Zoom Timestep"
+msgstr "Nagyítás időköz"
 
 msgid "Keep fully on screen"
 msgstr "Képernyőn tartás"
@@ -1066,9 +1259,6 @@ msgstr "Egérpozíció lekérdezése"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "Az egérpozíció lekérdezése az X kiszolgálótól."
 
-msgid "Misc"
-msgstr "Egyebek"
-
 msgid "Mouse Poll Interval"
 msgstr "Egér lekérdezési időköz"
 
@@ -1094,20 +1284,84 @@ msgstr "Aktív ablak inverzbe váltása"
 msgid "Toggle Screen Negative"
 msgstr "Képernyő inverzbe váltása"
 
-msgid "Toggle screen negative"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
 msgstr "Képernyő inverzbe váltása"
 
-msgid "Neg Windows"
-msgstr "Inverz ablakok"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Windows to be negative by default"
-msgstr "Alapértelmezés szerint inverz ablakok"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "Kizárt ablakok"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "Ezek az ablakok ne jelenjenek meg inverzben"
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "Lépcsőzetes ablakelrendezés"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "Váltás teljes képernyőre"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "Túllógás"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "Ezek az ablakok ne legyenek szűrve."
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "Ablakok visszaállítása"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "Képernyő inverzbe váltása"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+msgid "Negate Decorations"
+msgstr "Ablakdíszítés invertálása"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr "Ablakdekorációt is invertálja, ne csak az ablak tartalmát."
 
 msgid "Opacify"
 msgstr "Átlátszatlanság"
@@ -1511,6 +1765,20 @@ msgstr "Betűméret"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "Betűméret"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "Az ablak címsorának betűmérete"
+
+msgid "Bold Font"
+msgstr "Félkövér betűstílus"
+
+msgid "Use bold font for window title display"
+msgstr "Félkövér betűstílus az ablak címsorának megjelenítéséhez"
+
 msgid "Text color."
 msgstr "Szöveg színe."
 
@@ -1722,14 +1990,8 @@ msgstr "A kiválasztott ablak címsorának megjelenítése."
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "Félkövér betűstílus"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr "Megadja, hogy az ablakok címsora félkövér betűvel legyen vagy sem."
-
-msgid "Font Size"
-msgstr "Betűméret"
 
 msgid "Font size for the window title"
 msgstr "Az ablak címsorának betűmérete"
@@ -1805,9 +2067,6 @@ msgstr "Csak a kijelölt ablakot"
 
 msgid "All windows"
 msgstr "Minden ablak"
-
-msgid "Use bold font for window title display"
-msgstr "Félkövér betűstílus az ablak címsorának megjelenítéséhez"
 
 msgid "Font size for window title display"
 msgstr "Az ablak címsorának betűmérete"
@@ -2163,6 +2422,16 @@ msgstr "Előző panel"
 msgid "Select previous panel type window."
 msgstr "Előző panel típusú ablak kiválasztása."
 
+#, fuzzy
+#| msgid "Color of highlight rectangle"
+msgid "Close highlighted"
+msgstr "Kiválasztó téglalap kitöltőszíne"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
 msgid "Switcher speed"
 msgstr "Váltás sebessége"
 
@@ -2175,7 +2444,14 @@ msgstr "Váltandó ablakok"
 msgid "Windows that should be shown in switcher"
 msgstr "Ablakváltóban megjelenő ablakok"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "Minimalizált ablakok megjelenítése"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "Minimalizált ablakok megjelenítése"
 
 msgid "Auto Change Viewport"
@@ -2190,9 +2466,44 @@ msgstr "Előugró ablakok késleltetése"
 msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "Előugró ablak megjelenítési késleltetése másodpercben megadva."
 
+#, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "Ablak kijelölése"
+
+#, fuzzy
+#| msgid "Mode for highlighting the currently selected window"
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "Kiválasztott ablak kiemelés módja"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "Felső lap megjelenítése"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "Hullámok maximális mérete arányosan az ablak magasságával."
+
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr ""
 "Egérrel történő ablakválasztás engedélyezése miközben az ablakváltó aktív"
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "Egérrel történő választás engedélyezése"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 msgid "Amount of saturation in percent"
 msgstr "Színtelítettség mértéke százalékban megadva"
@@ -2233,6 +2544,36 @@ msgstr "Középre helyezett"
 
 msgid "Right"
 msgstr "Jobbra"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "Áttekintés előnézete"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "Előnézet méret (százalékban megadva)"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "Címsor keret méret"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "Keret vastagsága az ablak címsora körül"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "Betűméret"
+
+#, fuzzy
+#| msgid "Size of these elements"
+msgid "Size of the icon overlays"
+msgstr "Elemek mérete"
 
 msgid "Selected Window Highlight"
 msgstr "Kijelölt ablak kiemelése"
@@ -2541,8 +2882,10 @@ msgstr "Az indítandó vagy leállítandó akció neve"
 msgid "Window Rules"
 msgstr "Ablakszabályok"
 
-msgid "Set windows rules"
-msgstr "Ablakszabályok beállítása"
+#, fuzzy
+#| msgid "Saturation values for windows"
+msgid "Set rules to apply to windows"
+msgstr "Színtelítettség értéke ablakokhoz"
 
 msgid "Matches"
 msgstr "Összerendelések"
@@ -2562,10 +2905,14 @@ msgstr ""
 "Azon programok listája, amely futásuk alatt sem jelenhetnek meg a "
 "munkaterület váltón"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "Más ablakok felett"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "Más ablakok alatt"
 
 msgid "Sticky"
@@ -2592,40 +2939,62 @@ msgstr "Hiányzó ARGB kiterjesztések "
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "Ablakok, amelyek nem támogatják az átlátszóságot."
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "Nem áthelyezhető ablak"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "Beállítás nem áthelyezhető ablaknak"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "Nem átméretezhető ablak"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "Beállítás nem átméretezhető ablaknak"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "Nem minimalizálható ablak"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "Beállítás nem minimalizálható ablaknak"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "Nem maximalizálható ablak"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "Beállítás nem maximalizálható ablaknak"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "Nem bezárható ablak"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "Beállítás nem bezárható ablaknak"
 
 msgid "No focus"
 msgstr "Nincs fókuszban"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "Ablakok fókuszának tiltása"
 
 msgid "Size rules"
@@ -2746,6 +3115,63 @@ msgstr "Minden asztalon legyenek „ragadós ablakok”"
 msgid "Windows on all desktops that should be made sticky"
 msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "Színszűrő"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "Lineáris szűrő"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "Következő munkalap"
+
+#~ msgid ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+#~ msgstr ""
+#~ "A minimálisan megengedett nagyítás mértéke. A 0,5-ös érték 2x-es "
+#~ "nagyításnak felel meg, a 0,25-ös érték pedig 4x-es nagyításnak felel meg."
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr ""
+#~ "Nagyító terület kitöltése az ablakban amikor a nagyított terület mozog, "
+#~ "mint a fókuszkövetés eredménye."
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "Kövesse a fókusz késleltetését"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "Képernyő inverzbe váltása"
+
+#~ msgid "Neg Windows"
+#~ msgstr "Inverz ablakok"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "Alapértelmezés szerint inverz ablakok"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "Kizárt ablakok"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "Ezek az ablakok ne jelenjenek meg inverzben"
+
+#~ msgid "Set windows rules"
+#~ msgstr "Ablakszabályok beállítása"
+
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "Térhatás csak egérrel történő forgatáskor"
 
@@ -2832,9 +3258,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 
 #~ msgid "Brightness of faded windows"
 #~ msgstr "Az elhalványított ablakok fényereje"
-
-#~ msgid "Enable ADD Helper on start"
-#~ msgstr "Halványító automatikus engedélyezése"
 
 #~ msgid "Enables ADD helper when it is first loaded."
 #~ msgstr "Halványító automatikus engedélyezése az első indításkor."
@@ -3554,9 +3977,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "Megjeleníti a kocka alsó lapját"
 
-#~ msgid "Draw top face"
-#~ msgstr "Felső lap megjelenítése"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "Megjeleníti a kocka felső lapját"
 
@@ -3854,9 +4274,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 #~ msgid "Previous Element"
 #~ msgstr "Előző elem"
 
-#~ msgid "Screen Boxing"
-#~ msgstr "Túllógás"
-
 #~ msgid "Screen Depth"
 #~ msgstr "Képernyő mélység"
 
@@ -3884,9 +4301,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 
 #~ msgid "Side-to-side movement of Snow."
 #~ msgstr "Havazás oldalról oldalra"
-
-#~ msgid "Size of these elements"
-#~ msgstr "Elemek mérete"
 
 #~ msgid "Snow"
 #~ msgstr "Hóesés"
@@ -3964,9 +4378,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "Mindig felül"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "Váltás teljes képernyőre"
 
 #~ msgid "Toggle Redirect"
 #~ msgstr "Átirányítás váltása"
@@ -4047,9 +4458,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 
 #~ msgid "Number of particles"
 #~ msgstr "Lángnyelvek száma"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "Tűz rajzolása képernyőre"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "Tűz vagy más részecskék rajzolása a képernyőre"
@@ -4285,9 +4693,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 #~ msgstr ""
 #~ "Kijelölés pontossága (a látható ablakterület százalékában megadva, "
 #~ "amelyet ki kell jelölni ahhoz, hogy az ablak kiválasztásra kerüljön)."
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "Minden ablak emelése a csoportban"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "Négyszög alakú ragyogás"
@@ -4831,12 +5236,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 #~ msgid "Switch viewport in response to mouse gesture"
 #~ msgstr "Munkalap váltása egérmozdulattal"
 
-#~ msgid "Also negate window decorations, not only the window contents."
-#~ msgstr "Ablakdekorációt is invertálja, ne csak az ablak tartalmát."
-
-#~ msgid "Negate Decorations"
-#~ msgstr "Ablakdíszítés invertálása"
-
 #~ msgid "Debug"
 #~ msgstr "Hibakeresés"
 
@@ -4847,9 +5246,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 
 #~ msgid "Error"
 #~ msgstr "Hiba"
-
-#~ msgid "Error Notifications"
-#~ msgstr "Értesítés hibáról"
 
 #~ msgid "Fatal"
 #~ msgstr "Végzetes"
@@ -5300,9 +5696,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 #~ msgid "Cascade Delta"
 #~ msgstr "Térköz"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "Lépcsőzetes ablakelrendezés"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr "Igazítás típusa a kapcsoló használatakor."
 
@@ -5364,9 +5757,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 #~ "A balra rendezett ablak helyfoglalása százalékban megadva. A megadott "
 #~ "érték a képernyő szélessége százalékos arányban, amely az aktív ablak "
 #~ "rendelkezésére áll balra rendezett beállítás esetén."
-
-#~ msgid "Restore Windows"
-#~ msgstr "Ablakok visszaállítása"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr "Visszaállítja az ablakokat az igazítás előtti, eredeti helyükre."
@@ -5581,9 +5971,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 #~ msgstr ""
 #~ "Első színe az ablakváltó ablak kijelölt előnézeti kép színátmenetének."
 
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "Első színe az ablakváltó ablak nyilának színátmenetéhez."
-
 #~ msgid "Flip Down"
 #~ msgstr "Lefelé pattan"
 
@@ -5683,9 +6070,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "Ablakváltó vonalának színe"
 
-#~ msgid "Preview Scale"
-#~ msgstr "Áttekintés előnézete"
-
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "Lekerekített élek sugara"
 
@@ -5717,9 +6101,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr "Ablakváltó ablak megjelenítése munkalapváltás közben."
-
-#~ msgid "Size of the preview in %"
-#~ msgstr "Előnézet méret (százalékban megadva)"
 
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "Célválasztó előnézet megjelenítési ideje"
@@ -5984,9 +6365,6 @@ msgstr "Az ablakok legyenek ragadósak az összes asztalon"
 
 #~ msgid "Saturation settings"
 #~ msgstr "Színtelítettség beállítások"
-
-#~ msgid "Saturation values for windows"
-#~ msgstr "Színtelítettség értéke ablakokhoz"
 
 #~ msgid "Saturation window values"
 #~ msgstr "Színtelítettség értéke ablakokhoz"

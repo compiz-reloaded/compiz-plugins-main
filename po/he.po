@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-04-25 04:25+0100\n"
 "Last-Translator: Yotam Benshalom <benshalom@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -271,7 +270,6 @@ msgstr "גלגלון"
 msgid "Sidekick Number of Rotations"
 msgstr "מספר סיבובי גלגלון"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr "מספר סיבובים עבור הגלגלון (עם סטייה אקראית של 10%)"
 
@@ -435,6 +433,32 @@ msgstr "חלונות יוצאים מן הכלל"
 msgid "Windows to exclude from filtering."
 msgstr "חלונות שאין לסנן."
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable ADD Helper on start"
+msgid "Enable color filter at startup"
+msgstr "הפעל את סייען ADD עם הפעלת קומפיז"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "העלה כל חלון בקבוצה"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "קבצי מסננים"
 
@@ -592,6 +616,11 @@ msgstr "קיר גדול יחיד"
 
 msgid "One wall per output"
 msgstr "קיר לכל פלט"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "בהירות משטח עבודה לא פעיל."
 
 msgid "Brightness"
 msgstr "בהירות"
@@ -773,15 +802,15 @@ msgstr "מקדם תקריב"
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "מקדם לתקריב פנימה\\החוצה. ערך גבוה יותר יביא לתקריב מהיר יותר."
 
-msgid "Minimum zoom factor"
+#, fuzzy
+#| msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "מקדם תקריב מזערי"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
-"מקדם התקריב המזערי. ערך של 0.5 פירושו תקריב של פי 2, ערך של 0.25 פירושו "
-"תקריב של פי 4."
 
 msgid "Sync Mouse"
 msgstr "סנכרון עכבר"
@@ -847,6 +876,16 @@ msgstr "שוליים תוחמי עכבר"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "גודל השוליים להוספה בעת נסיון להגביל את העכבר."
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "מקדם תקריב 1"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "רמת התקריב שיש לעבור אליה בעת הפעלת מקש חם 1"
+
 msgid "Pan Factor"
 msgstr "מקדם הפנייה"
 
@@ -860,23 +899,41 @@ msgstr "מעקב אחר המוקד"
 msgid "Enable focus tracking"
 msgstr "אפשר מעקב אחר מוקד"
 
-msgid "Move the zoom area when focus changes."
-msgstr "הזז את איזור התקריב בעת מעבר מוקד."
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "אפשר מעקב אחר מוקד"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "הצבע הראשון של החץ המדורג בחלון המעביר."
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "התאם את רמת התקריב לחלון בעת העברת מוקד"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr "התאם את איזור התקריב לחלון כאשר איזור התקריב מוזז בשל מעקב אחרי מוקד."
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "התאם את איזור התקריב לחלון"
 
 msgid "Autoscale threshold"
 msgstr "סף התאמת גודל אוטומטית"
 
+#, fuzzy
+#| msgid ""
+#| "Only change zoom level (scale) on focus change if the target value is "
+#| "higher than this. Prevents zooming too far in on small popups etc."
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 "שנה את רמת התקריב (גודל) בעת העברת מוקד רק אם ערך היעד גבוה מערך זה. כך ניתן "
 "למנוע, למשל, תקריב מוגזם על חלונות קופצים קטנים."
@@ -884,23 +941,75 @@ msgstr ""
 msgid "Always fit to window on focus track"
 msgstr "התאם תמיד לחלון בעת מעקב אחרי המוקד"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "התאם את איזור התקריב לחלון כאשר איזור התקריב מוזז בשל מעקב אחרי מוקד, אפילו "
 "אם לא התבצע תקריב מלכתחילה."
 
-msgid "Follow Focus Delay"
-msgstr "השהייה לפני מעקב אחר המוקד"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "נסה להתמרכז על חלונות חדשים רק אם העכבר לא זז במשך מספר זה של שניות. אפשרות "
 "זו מונעת קפיצות בעת שימוש במיקוד רשלני (העברת המוקד באמצעות הזזת סמן העכבר "
 "מעל החלון ללא הקלקה)."
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"נסה להתמרכז על חלונות חדשים רק אם העכבר לא זז במשך מספר זה של שניות. אפשרות "
+"זו מונעת קפיצות בעת שימוש במיקוד רשלני (העברת המוקד באמצעות הזזת סמן העכבר "
+"מעל החלון ללא הקלקה)."
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "צייר אש על המסך"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "אנימציה"
@@ -908,13 +1017,17 @@ msgstr "אנימציה"
 msgid "Speed"
 msgstr "מהירות"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "מהירות תקריב"
 
 msgid "Timestep"
 msgstr "יחידת זמן"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "יחידת זמן תקריב"
 
 msgid "Filter Linear"
@@ -922,6 +1035,82 @@ msgstr "מסנן לינארי"
 
 msgid "Use linear filter when zoomed in"
 msgstr "השתמש בפילטר לינארי בעת תקריב פנימה"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "הזז את איזור התקריב בעת מעבר מוקד."
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "הודעות שגיאה"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "הודעות שגיאה"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "סקר מיקום עכבר"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "מקבל עדכונים משרת ה-X על מיקום העכבר "
+
+msgid "Misc"
+msgstr "שונות"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "מרווח זמן לבדיקת עכבר"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"תדירות בדיקת מיקום העכבר במילישניות. הקטנת ערך זה תפחית את קופצניות התזוזה."
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -964,6 +1153,12 @@ msgstr "עין דג"
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "מקדם תקריב עבור זכוכית מגדלת המופעלת בעזרת המקלדת."
+
+msgid "Zoom Speed"
+msgstr "מהירות תקריב"
+
+msgid "Zoom Timestep"
+msgstr "יחידת זמן תקריב"
 
 msgid "Keep fully on screen"
 msgstr "שמור את הכל על המסך"
@@ -1028,9 +1223,6 @@ msgstr "סקר מיקום עכבר"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "מקבל עדכונים משרת ה-X על מיקום העכבר "
 
-msgid "Misc"
-msgstr "שונות"
-
 msgid "Mouse Poll Interval"
 msgstr "מרווח זמן לבדיקת עכבר"
 
@@ -1055,20 +1247,84 @@ msgstr "הפעל\\נטרל תשליל בחלון הפעיל"
 msgid "Toggle Screen Negative"
 msgstr "הפעל\\נטרל תשליל מסך"
 
-msgid "Toggle screen negative"
-msgstr "הפעל\\נטרל תשליל מסך"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "שלול חלונות"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "הפעל\\נטרל תשליל חלון"
 
-msgid "Windows to be negative by default"
-msgstr "חלונות בצבעי תשליל כברירת מחדל"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "התעלם מחלונות"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "חלונות שאין לצבוע כתשליל"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "דרג חלונות"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "הפעל\\נטרל מסך מלא"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "קופסת המסך"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "חלונות שאין לסנן."
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "שחזר חלונות"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "הפעל\\נטרל תשליל חלון"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+msgid "Negate Decorations"
+msgstr "שלול מסגרות"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr "הפוך גם את צבעי מסגרת החלון, לא רק את אלה של תוכן החלון."
 
 msgid "Opacify"
 msgstr "איטום"
@@ -1451,6 +1707,20 @@ msgstr "גודל גופן"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "גודל גופן"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "גודל גופן להצגת כותרת חלון"
+
+msgid "Bold Font"
+msgstr "גופן מודגש"
+
+msgid "Use bold font for window title display"
+msgstr "השתמש בגופן מודגש להצגת כותרת החלון"
+
 msgid "Text color."
 msgstr "צבע טקסט."
 
@@ -1650,14 +1920,8 @@ msgstr "הצג את כותרת החלון הנבחר."
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "גופן מודגש"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr "קובע אם כותרת החלון תוצג בגופן מודגש אם לאו."
-
-msgid "Font Size"
-msgstr "גודל גופן"
 
 msgid "Font size for the window title"
 msgstr "גודל גופן כותרת החלון"
@@ -1733,9 +1997,6 @@ msgstr "החלון המודגש בלבד"
 
 msgid "All windows"
 msgstr "כל החלונות"
-
-msgid "Use bold font for window title display"
-msgstr "השתמש בגופן מודגש להצגת כותרת החלון"
 
 msgid "Font size for window title display"
 msgstr "גודל גופן להצגת כותרת חלון"
@@ -2084,6 +2345,16 @@ msgstr "הפאנל הקודם"
 msgid "Select previous panel type window."
 msgstr "בוחר את חלון הפענל הקודם."
 
+#, fuzzy
+#| msgid "Color of highlight rectangle"
+msgid "Close highlighted"
+msgstr "צבע מלבן ההדגשה"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
 msgid "Switcher speed"
 msgstr "מהירות המעביר"
 
@@ -2096,7 +2367,14 @@ msgstr "חלונות המעביר"
 msgid "Windows that should be shown in switcher"
 msgstr "חלונות שיוצגו במעביר"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "הצג ממוזערים"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "הצג חלונות ממוזערים"
 
 msgid "Auto Change Viewport"
@@ -2112,8 +2390,43 @@ msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "משך המתנת החלון הקופץ בשניות לפני הופעתו"
 
 #, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "הדגשת חלון"
+
+#, fuzzy
+#| msgid "Mode for highlighting the currently selected window"
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "מצב הדגשת החלון הנבחר"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "צייר פאה עליונה"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "רוחב הגל בהתאם לגובה החלון."
+
+#, fuzzy
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr "אפשר בחירה חלונות על ידי הקלקה עליהם בזמן שהמעביר פעיל"
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "אפשר בחירה בעזרת העכבר"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 msgid "Amount of saturation in percent"
 msgstr "אחוז רוויה"
@@ -2153,6 +2466,35 @@ msgstr "ממורכז"
 
 msgid "Right"
 msgstr "ימינה"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "תצוגה מוקדמת של מבט על"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "גודל התצוגה המוקדמת באחוזים"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "גודל גבול כותרת"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "גודל הגבול סביב כותרת החלון"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "גודל גופן"
+
+#, fuzzy
+msgid "Size of the icon overlays"
+msgstr "גודל התצוגה המוקדמת באחוזים"
 
 msgid "Selected Window Highlight"
 msgstr "הדגשת חלון נבחר"
@@ -2457,8 +2799,10 @@ msgstr "שם פעולה עבור הפעלה\\כיבוי"
 msgid "Window Rules"
 msgstr "חוקי חלונות"
 
-msgid "Set windows rules"
-msgstr "קבע חוקים לחלונות"
+#, fuzzy
+#| msgid "Saturation values for windows"
+msgid "Set rules to apply to windows"
+msgstr "ערכי רוויה לחלונות"
 
 msgid "Matches"
 msgstr "התאמות"
@@ -2475,10 +2819,14 @@ msgstr "דלג על הפייג'ר"
 msgid "Don't show application in pager"
 msgstr "אל תציג את היישום בפייג'ר"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "מעל חלונות אחרים"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "מתחת חלונות אחרים"
 
 msgid "Sticky"
@@ -2505,40 +2853,62 @@ msgstr "ללא הצגת ARGB"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "חלונות אליהם יש להתייחס כאילו אינם תומכים בשקיפות"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "חלונות שלא ניתן להזיז"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "קבע שחלון הוא בלתי ניתן להזזה"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "חלונות שלא ניתן לשנות את גודלם"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "קבע שחלון הוא בלתי ניתן לשינוי גודל"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "חלונות שלא ניתן למזער"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "קבע שחלון הוא בלתי ניתן למזעור"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "חלונות שלא ניתן להגדיל למקסימום"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "קבע שחלון הוא בלתי ניתן להגדלה למקסימום"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "חלונות שלא ניתן לסגור"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "קבע שחלון הוא בלתי ניתן לסגירה"
 
 msgid "No focus"
 msgstr "ללא מוקד"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "חלונות שלא יקבלו מוקד"
 
 msgid "Size rules"
@@ -2656,6 +3026,62 @@ msgstr "התאמה לדביקים \"בכל שולחנות העבודה\""
 msgid "Windows on all desktops that should be made sticky"
 msgstr "חלונות בכל שולחנות העבודה האמורים להפוך לדביקים"
 
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "מסנן צבע"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "מסנן לינארי"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "משטח העבודה הבא"
+
+#~ msgid ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+#~ msgstr ""
+#~ "מקדם התקריב המזערי. ערך של 0.5 פירושו תקריב של פי 2, ערך של 0.25 פירושו "
+#~ "תקריב של פי 4."
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr ""
+#~ "התאם את איזור התקריב לחלון כאשר איזור התקריב מוזז בשל מעקב אחרי מוקד."
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "השהייה לפני מעקב אחר המוקד"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "הפעל\\נטרל תשליל מסך"
+
+#~ msgid "Neg Windows"
+#~ msgstr "שלול חלונות"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "חלונות בצבעי תשליל כברירת מחדל"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "התעלם מחלונות"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "חלונות שאין לצבוע כתשליל"
+
+#~ msgid "Set windows rules"
+#~ msgstr "קבע חוקים לחלונות"
+
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "3D רק בעת סיבוב עם העכבר"
 
@@ -2740,9 +3166,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 #~ msgid "Brightness of faded windows"
 #~ msgstr "בהירות חלונות מעומעמים"
-
-#~ msgid "Enable ADD Helper on start"
-#~ msgstr "הפעל את סייען ADD עם הפעלת קומפיז"
 
 #~ msgid "Enables ADD helper when it is first loaded."
 #~ msgstr "הפעל את סייען ADD עם טעינתו הראשונה."
@@ -3490,9 +3913,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "צייר את פאת הקוביה התחתונה"
 
-#~ msgid "Draw top face"
-#~ msgstr "צייר פאה עליונה"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "צייר את פאת הקוביה העליונה"
 
@@ -3808,9 +4228,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ msgid "Previous Element"
 #~ msgstr "משטח העבודה הקודם"
 
-#~ msgid "Screen Boxing"
-#~ msgstr "קופסת המסך"
-
 #~ msgid "Screen Depth"
 #~ msgstr "עומק המסך"
 
@@ -3838,10 +4255,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 #~ msgid "Side-to-side movement of Snow."
 #~ msgstr "תנועת שלג מצד לצד."
-
-#, fuzzy
-#~ msgid "Size of these elements"
-#~ msgstr "גודל התצוגה המוקדמת באחוזים"
 
 #~ msgid "Snow"
 #~ msgstr "שלג"
@@ -3921,9 +4334,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "הפעל\\נטרל תמיד למעלה"
 
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "הפעל\\נטרל מסך מלא"
-
 #~ msgid "Toggle Redirect"
 #~ msgstr "הפעל\\נטרל נתב מחדש"
 
@@ -4001,9 +4411,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 #~ msgid "Number of particles"
 #~ msgstr "מספר חלקיקים"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "צייר אש על המסך"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "צייר אש או חלקיקים אחרים על המסך"
@@ -4229,9 +4636,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ "Precision of the selection (percentage of the visible window area which "
 #~ "must be selected for the selection to be recognized)."
 #~ msgstr "דיוק הבחירה (אחוז שטח החלון הנראה שיש לבחור כדי שהבחירה תוכר ככזו)"
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "העלה כל חלון בקבוצה"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "הילה מלבנית"
@@ -4770,12 +5174,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ msgid "Switch viewport in response to mouse gesture"
 #~ msgstr "עבור למשטח עבודה אחר בתגובה למחוות עכבר"
 
-#~ msgid "Also negate window decorations, not only the window contents."
-#~ msgstr "הפוך גם את צבעי מסגרת החלון, לא רק את אלה של תוכן החלון."
-
-#~ msgid "Negate Decorations"
-#~ msgstr "שלול מסגרות"
-
 #~ msgid "Debug"
 #~ msgstr "דיבוג"
 
@@ -4784,9 +5182,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 #~ msgid "Error"
 #~ msgstr "שגיאה"
-
-#~ msgid "Error Notifications"
-#~ msgstr "הודעות שגיאה"
 
 #~ msgid "Fatal"
 #~ msgstr "בעיה פטלית"
@@ -5234,9 +5629,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ msgid "Cascade Delta"
 #~ msgstr "דלתת דירוג"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "דרג חלונות"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr "נא לבחור את סוג ריצוף החלונות שיופעל."
 
@@ -5295,9 +5687,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ msgstr ""
 #~ "אחוז תפיסת השטח עבור חלונות הממוקמים משמאל. מספר זה מייצג את רוחב החלון "
 #~ "הפעיל בעת ריצופו באחוזים מרוחב המסך. מתייחס לאופן ריצוף שמאלי. "
-
-#~ msgid "Restore Windows"
-#~ msgstr "שחזר חלונות"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr "שחזר את החלונות למקומם המקורי לפני הריצוף."
@@ -5504,9 +5893,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ msgid "First color for the thumb highlight gradient of the switcher window."
 #~ msgstr "הצבע הראשון של ההדגשה המדורגת סביב התמונה המוקטנת בחלון המעביר."
 
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "הצבע הראשון של החץ המדורג בחלון המעביר."
-
 #~ msgid "Flip Down"
 #~ msgstr "העבר מטה"
 
@@ -5606,9 +5992,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "צבע המתאר עבור חלון המעביר."
 
-#~ msgid "Preview Scale"
-#~ msgstr "תצוגה מוקדמת של מבט על"
-
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "רדיוס קצה המסך המעוגל"
 
@@ -5639,9 +6022,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr "הצג את חלון המעביר בעת העברת משטחי עבודה"
-
-#~ msgid "Size of the preview in %"
-#~ msgstr "גודל התצוגה המוקדמת באחוזים"
 
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "משך הצגת התמונה המקדימה של המשטח המיועד"
@@ -5910,9 +6290,6 @@ msgstr "חלונות בכל שולחנות העבודה האמורים להפו�
 
 #~ msgid "Saturation settings"
 #~ msgstr "הגדרות רוויה"
-
-#~ msgid "Saturation values for windows"
-#~ msgstr "ערכי רוויה לחלונות"
 
 #~ msgid "Saturation window values"
 #~ msgstr "ערכי רווית חלונות"

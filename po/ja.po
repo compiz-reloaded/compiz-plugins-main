@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-05-10 21:12+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -281,7 +280,6 @@ msgstr "サイドキック"
 msgid "Sidekick Number of Rotations"
 msgstr "サイドキックの回転数"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr "サイドキックの回転数(誤差±10%)"
 
@@ -449,6 +447,32 @@ msgstr "適用除外ウィンドウ"
 msgid "Windows to exclude from filtering."
 msgstr "フィルタの適用対象から除外するウィンドウ"
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable ADD Helper on start"
+msgid "Enable color filter at startup"
+msgstr "スタート時点でヘルパーの追加をオン"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "グループ内のすべてのウィンドウを前面に上げる"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "フィルタ・ファイル"
 
@@ -607,6 +631,11 @@ msgstr "大きな壁"
 
 msgid "One wall per output"
 msgstr "出力ごとの壁"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "非アクティブなビューポートの明度"
 
 msgid "Brightness"
 msgstr "明度"
@@ -792,14 +821,15 @@ msgstr "ズーム係数"
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "ズームインやアウトの分量、より素早いズームには高い値を"
 
-msgid "Minimum zoom factor"
+#, fuzzy
+#| msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "最低ズーム係数"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
-"最低許容ズーム率。値 0.5 は 2 倍ズーム、0.25 は 4 倍ズームになります。 "
 
 msgid "Sync Mouse"
 msgstr "マウスに追従"
@@ -867,6 +897,16 @@ msgstr "マウス制限域マージン"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "マウスを制限している場合の制限域のマージンの大きさ"
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "指定ズーム係数 1"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "ホットキー 1 が呼び出されたときのズーム率"
+
 msgid "Pan Factor"
 msgstr "移動量"
 
@@ -880,25 +920,41 @@ msgstr "フォーカス追従"
 msgid "Enable focus tracking"
 msgstr "フォーカス追従を有効化"
 
-msgid "Move the zoom area when focus changes."
-msgstr "フォーカス変更の際にズーム域を移動"
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "フォーカス追従を有効化"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "スイッチャー・ウィンドウの矢印の1番目の色"
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "フォーカス変更時にズーム率をウィンドウに合わせる"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr ""
-"フォーカス追従によりズーム域が移動する際に、ズーム域をそのウィンドウの大きさ"
-"に合わせる。"
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "ズーム域をウィンドウに合わせる"
 
 msgid "Autoscale threshold"
 msgstr "自動ズーム率調整のしきい値"
 
+#, fuzzy
+#| msgid ""
+#| "Only change zoom level (scale) on focus change if the target value is "
+#| "higher than this. Prevents zooming too far in on small popups etc."
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 "ターゲットの値がこの設定値よりも高い場合、フォーカス変更時にズーム率のみを変"
 "更。小さなポップアップ等にズームインしすぎるのを防ぎます。"
@@ -906,23 +962,75 @@ msgstr ""
 msgid "Always fit to window on focus track"
 msgstr "フォーカス追従時は常にウィンドウに合わせる"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "フォーカス追従によりズーム域が移動する際に、ズームインしていない状態からも含"
 "めて、ズーム域をそのウィンドウの大きさに合わせる。"
 
-msgid "Follow Focus Delay"
-msgstr "フォーカス追従遅延時間"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "この指定秒数の間マウスが動かない場合にのみ、新しくフォーカスされたウィンドウ"
 "を画面中央に表示。スロッピー・フォーカス使用時に画面がジャンプしがちになるの"
 "を避けるため利用してください。"
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"この指定秒数の間マウスが動かない場合にのみ、新しくフォーカスされたウィンドウ"
+"を画面中央に表示。スロッピー・フォーカス使用時に画面がジャンプしがちになるの"
+"を避けるため利用してください。"
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "炎の描画"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "アニメーション"
@@ -930,13 +1038,17 @@ msgstr "アニメーション"
 msgid "Speed"
 msgstr "速度"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "ズーム速度"
 
 msgid "Timestep"
 msgstr "時間刻み"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "ズーム描画の時間刻み"
 
 msgid "Filter Linear"
@@ -944,6 +1056,83 @@ msgstr "線形フィルタ"
 
 msgid "Use linear filter when zoomed in"
 msgstr "ズームインの際に線形フィルタを使用"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "フォーカス変更の際にズーム域を移動"
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "エラー通知"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "エラー通知"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "マウス位置問い合わせ"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "マウスポインタ位置を X サーバから更新"
+
+msgid "Misc"
+msgstr "その他"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "マウス位置読み取り間隔"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"ミリ秒単位でのマウス位置読み取り間隔。ぎくしゃくした動きを抑制するにはこの値"
+"を減らしてください。"
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -986,6 +1175,12 @@ msgstr "魚眼"
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "拡大鏡がキーボードにより開始されたときのズーム係数"
+
+msgid "Zoom Speed"
+msgstr "ズーム速度"
+
+msgid "Zoom Timestep"
+msgstr "ズーム描画の時間刻み"
 
 msgid "Keep fully on screen"
 msgstr "常に全体を画面上に"
@@ -1050,9 +1245,6 @@ msgstr "マウス位置問い合わせ"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "マウスポインタ位置を X サーバから更新"
 
-msgid "Misc"
-msgstr "その他"
-
 msgid "Mouse Poll Interval"
 msgstr "マウス位置読み取り間隔"
 
@@ -1078,20 +1270,84 @@ msgstr "アクティブ・ウィンドウのネガ表示のオンオフ"
 msgid "Toggle Screen Negative"
 msgstr "画面のネガ表示のオンオフ"
 
-msgid "Toggle screen negative"
-msgstr "画面のネガ表示のオンオフ"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "ネガ適用ウィンドウ"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "ウィンドウのネガ表示のオンオフ"
 
-msgid "Windows to be negative by default"
-msgstr "デフォルトでネガ表示の対象となるウィンドウ"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "適用除外ウィンドウ"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "ネガ表示の適用から除外するウィンドウ"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "ウィンドウをカスケード"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "全画面表示のオンオフ"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "スクリーン範囲"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "フィルタの適用対象から除外するウィンドウ"
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "ウィンドウを元に戻す"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "ウィンドウのネガ表示のオンオフ"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+msgid "Negate Decorations"
+msgstr "装飾をネガ表示"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr "ウィンドウの内容ばかりでなくウィンドウの装飾もネガ表示"
 
 msgid "Opacify"
 msgstr "半透明"
@@ -1484,6 +1740,20 @@ msgstr "フォントの大きさ"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "フォントの大きさ"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "ウィンドウタイトル表示のフォントの大きさ"
+
+msgid "Bold Font"
+msgstr "太字"
+
+msgid "Use bold font for window title display"
+msgstr "ウィンドウタイトル表示に太字を使用"
+
 msgid "Text color."
 msgstr "テキストの色"
 
@@ -1688,14 +1958,8 @@ msgstr "現在選択しているウィンドウのウィンドウタイトルを
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "太字"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr "ウィンドウタイトルを太字で表示するか否かの選択"
-
-msgid "Font Size"
-msgstr "フォントの大きさ"
 
 msgid "Font size for the window title"
 msgstr "ウィンドウタイトルのフォントの大きさ"
@@ -1771,9 +2035,6 @@ msgstr "強調表示されたウィンドウのみ"
 
 msgid "All windows"
 msgstr "すべてのウィンドウ"
-
-msgid "Use bold font for window title display"
-msgstr "ウィンドウタイトル表示に太字を使用"
 
 msgid "Font size for window title display"
 msgstr "ウィンドウタイトル表示のフォントの大きさ"
@@ -2128,6 +2389,16 @@ msgstr "前のパネル"
 msgid "Select previous panel type window."
 msgstr "前のパネルタイプ・ウィンドウを選択"
 
+#, fuzzy
+#| msgid "Color of highlight rectangle"
+msgid "Close highlighted"
+msgstr "矩形の強調表示色"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
 msgid "Switcher speed"
 msgstr "スイッチャーの速度"
 
@@ -2140,7 +2411,14 @@ msgstr "スイッチャー対象ウィンドウ"
 msgid "Windows that should be shown in switcher"
 msgstr "スイッチャーに表示する対象ウィンドウ"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "最小化を表示"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "最小化されているウィンドウも表示"
 
 msgid "Auto Change Viewport"
@@ -2155,8 +2433,43 @@ msgstr "ポップアップ・ウィンドウの遅延時間"
 msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "ポップアップ・ウィンドウが表示されるまでの遅延時間（秒単位）"
 
+#, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "ウィンドウの強調表示"
+
+#, fuzzy
+#| msgid "Mode for highlighting the currently selected window"
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "現在選択中のウィンドウの強調表示に使用するモード"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "上面を描画"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "ウィンドウの幅に対する波の幅"
+
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr "スイッチャー・ウィンドウからのマウスによるウィンドウ選択を許可"
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "マウスによる選択を許可"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 msgid "Amount of saturation in percent"
 msgstr "彩度の割合"
@@ -2196,6 +2509,36 @@ msgstr "中央"
 
 msgid "Right"
 msgstr "右"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "プレビューの拡縮率"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "プレビューの % 単位のサイズ"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "タイトルの枠の大きさ"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "ウィンドウタイトル周りの枠の大きさ"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "フォントの大きさ"
+
+#, fuzzy
+#| msgid "Size of these elements"
+msgid "Size of the icon overlays"
+msgstr "エレメントの大きさ"
 
 msgid "Selected Window Highlight"
 msgstr "選択ウィンドウの強調表示"
@@ -2501,8 +2844,10 @@ msgstr "開始/停止（initiate/terminate）のアクション名"
 msgid "Window Rules"
 msgstr "ウィンドウのルール"
 
-msgid "Set windows rules"
-msgstr "ウィンドウにルールを設定"
+#, fuzzy
+#| msgid "Select next panel type window."
+msgid "Set rules to apply to windows"
+msgstr "次のパネルタイプ・ウィンドウを選択"
 
 msgid "Matches"
 msgstr "マッチ"
@@ -2519,10 +2864,14 @@ msgstr "ページャー省略"
 msgid "Don't show application in pager"
 msgstr "アプリケーションをページャで見せない"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "他のウィンドウより上に"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "他のウィンドウより下に"
 
 msgid "Sticky"
@@ -2549,40 +2898,62 @@ msgstr "ARGB ビジュアル不可"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "透明化をサポートしていないものとして扱うウィンドウ"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "移動不可ウィンドウ"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "移動不可に設定するウィンドウ"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "サイズ変更不可ウィンドウ"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "サイズ変更不可に設定するウィンドウ"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "最小化不可ウィンドウ"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "最小化不可に設定するウィンドウ"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "最大化不可ウィンドウ"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "最大化不可に設定するウィンドウ"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "閉じる不可ウィンドウ"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "閉じられないように設定するウィンドウ"
 
 msgid "No focus"
 msgstr "フォーカス不可"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "フォーカスが渡されないようにするウィンドウ"
 
 msgid "Size rules"
@@ -2702,6 +3073,62 @@ msgstr "スティッキー適用対象の「全てのデスクトップに配置
 msgid "Windows on all desktops that should be made sticky"
 msgstr "スティッキー属性を与える「全てのデスクトップに配置」属性ウィンドウ"
 
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "カラーフィルタ"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "線形フィルタ"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "次のビューポート"
+
+#~ msgid ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+#~ msgstr ""
+#~ "最低許容ズーム率。値 0.5 は 2 倍ズーム、0.25 は 4 倍ズームになります。 "
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr ""
+#~ "フォーカス追従によりズーム域が移動する際に、ズーム域をそのウィンドウの大き"
+#~ "さに合わせる。"
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "フォーカス追従遅延時間"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "画面のネガ表示のオンオフ"
+
+#~ msgid "Neg Windows"
+#~ msgstr "ネガ適用ウィンドウ"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "デフォルトでネガ表示の対象となるウィンドウ"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "適用除外ウィンドウ"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "ネガ表示の適用から除外するウィンドウ"
+
+#~ msgid "Set windows rules"
+#~ msgstr "ウィンドウにルールを設定"
+
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "マウスによる回転時のみ立体表示"
 
@@ -2788,9 +3215,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 
 #~ msgid "Brightness of faded windows"
 #~ msgstr "フェードしたウィンドウの明るさ"
-
-#~ msgid "Enable ADD Helper on start"
-#~ msgstr "スタート時点でヘルパーの追加をオン"
 
 #~ msgid "Enables ADD helper when it is first loaded."
 #~ msgstr "ヘルパーの追加を読み込んだ時点で即利用可能にする"
@@ -3501,9 +3925,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "キューブの下面を描画"
 
-#~ msgid "Draw top face"
-#~ msgstr "上面を描画"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "キューブの上面を描画"
 
@@ -3792,9 +4213,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 #~ msgid "Previous Element"
 #~ msgstr "前のエレメント"
 
-#~ msgid "Screen Boxing"
-#~ msgstr "スクリーン範囲"
-
 #~ msgid "Screen Depth"
 #~ msgstr "スクリーン深度"
 
@@ -3822,9 +4240,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 
 #~ msgid "Side-to-side movement of Snow."
 #~ msgstr "雪の左右に揺れ動く大きさ"
-
-#~ msgid "Size of these elements"
-#~ msgstr "エレメントの大きさ"
 
 #~ msgid "Snow"
 #~ msgstr "雪効果"
@@ -3901,9 +4316,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "常に前面に表示のオンオフ"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "全画面表示のオンオフ"
 
 #~ msgid "Toggle Redirect"
 #~ msgstr "リダイレクトのオンオフ"
@@ -3982,9 +4394,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 
 #~ msgid "Number of particles"
 #~ msgstr "粒子数"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "炎の描画"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "画面に炎や粒子を描画"
@@ -4218,9 +4627,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 #~ msgstr ""
 #~ "選択精度（選択したものとして認識されるため矩形選択される必要があるウィンド"
 #~ "ウが見えている部分の割合）"
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "グループ内のすべてのウィンドウを前面に上げる"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "矩形の発光"
@@ -4762,12 +5168,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 #~ msgid "Switch viewport in response to mouse gesture"
 #~ msgstr "マウスジェスチャーに対応したビューポートの切り替え"
 
-#~ msgid "Also negate window decorations, not only the window contents."
-#~ msgstr "ウィンドウの内容ばかりでなくウィンドウの装飾もネガ表示"
-
-#~ msgid "Negate Decorations"
-#~ msgstr "装飾をネガ表示"
-
 #~ msgid "Debug"
 #~ msgstr "デバグ"
 
@@ -4776,9 +5176,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 
 #~ msgid "Error"
 #~ msgstr "エラー"
-
-#~ msgid "Error Notifications"
-#~ msgstr "エラー通知"
 
 #~ msgid "Fatal"
 #~ msgstr "致命的"
@@ -5223,9 +5620,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 #~ msgid "Cascade Delta"
 #~ msgstr "カスケードのずらし間隔"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "ウィンドウをカスケード"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr "オンオフ切り替えを使用したときに適用する整列形式の選択"
 
@@ -5286,9 +5680,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 #~ "左側に置かれるウィンドウの占有率です。この数値は画面幅に対する割合であり、"
 #~ "整列された際のアクティブ・ウィンドウの幅となります。”左”の整列形式の場合に"
 #~ "適用されます。"
-
-#~ msgid "Restore Windows"
-#~ msgstr "ウィンドウを元に戻す"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr "ウィンドウを整列前の元の位置に戻す"
@@ -5497,9 +5888,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 #~ msgstr ""
 #~ "スイッチャー・ウィンドウのサムネイルの強調表示グラデーションの1番目の色"
 
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "スイッチャー・ウィンドウの矢印の1番目の色"
-
 #~ msgid "Flip Down"
 #~ msgstr "下にフリップ"
 
@@ -5599,9 +5987,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "スイッチャー・ウィンドウの輪郭の色"
 
-#~ msgid "Preview Scale"
-#~ msgstr "プレビューの拡縮率"
-
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "枠の四隅の丸み"
 
@@ -5633,9 +6018,6 @@ msgstr "スティッキー属性を与える「全てのデスクトップに配
 
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr "ビューポートの切り替え中にスイッチャー・ウィンドウを表示"
-
-#~ msgid "Size of the preview in %"
-#~ msgstr "プレビューの % 単位のサイズ"
 
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "切り替え先プレビューの表示時間"
