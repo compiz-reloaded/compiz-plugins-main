@@ -1,6 +1,7 @@
 AC_PREREQ(2.57)
 
-AC_INIT([compiz-plugins-main], [0.8.18], [chat-to-me@raveit.de])
+AC_INIT([compiz-plugins-main], [0.8.18], [chat-to-me@raveit.de],
+        [compiz-plugins-main], [https://gitlab.com/compiz/compiz-plugins-main])
 AM_INIT_AUTOMAKE([1.9 foreign dist-xz no-dist-gzip check-news])
 AC_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE
@@ -12,13 +13,25 @@ AC_PROG_CXX
 LT_INIT
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdlib.h sys/time.h unistd.h])
-IT_PROG_INTLTOOL([0.35.0])
 AC_CONFIG_MACRO_DIR([m4])
 AM_GNU_GETTEXT([external])
-AM_GNU_GETTEXT_VERSION([0.19])
-GETTEXT_PACKAGE=compiz-plugins-main
+AM_GNU_GETTEXT_VERSION([0.19.7])
+AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.7])
+GETTEXT_PACKAGE=AC_PACKAGE_NAME
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
+
+dnl The following case statement works around a bug present in
+dnl gettext-0.20 and gettext-0.20.1 which occurs at 'make dist'
+dnl and 'make distcheck' invocations.
+dnl https://git.savannah.gnu.org/gitweb/?p=gettext.git;a=commitdiff;h=2336451ed68d91ff4b5ae1acbc1eca30e47a86a9
+
+dnl Unless --for-msgfmt is functional, assign the value that
+dnl was default before --for-msgfmt was introduced:
+case `LC_ALL=C $MSGMERGE --version | sed 1q | sed -e 's,^[[^0-9]]*,,'` in
+  0.20|0.20.1)
+    MSGMERGE_FOR_MSGFMT_OPTION='--no-fuzzy-matching --no-location --quiet' ;;
+esac
 
 if test "x$GCC" = "xyes"; then
   case " $CFLAGS " in

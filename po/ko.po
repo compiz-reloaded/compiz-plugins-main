@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-09-01 04:10+0200\n"
 "Last-Translator: Lee June Hee <bugbear5@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -274,7 +273,6 @@ msgstr "사이드킥"
 msgid "Sidekick Number of Rotations"
 msgstr "사이드킥 회전 횟수"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr "사이드킥의 회전 숫자 (+ 10%나 - 10%는 무작위)"
 
@@ -442,6 +440,32 @@ msgstr "제외할 창"
 msgid "Windows to exclude from filtering."
 msgstr "필터링에서 제외되는 창 목록"
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable ADD Helper on start"
+msgid "Enable color filter at startup"
+msgstr "시작할 때 활성창 돋보이기 사용"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "그룹 내의 모든 창을 위로"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "파일을 필터링함"
 
@@ -598,6 +622,11 @@ msgstr "하나의 큰 벽"
 
 msgid "One wall per output"
 msgstr "화면마다 하나의 벽"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "비활성화된 작업공간 밝기."
 
 msgid "Brightness"
 msgstr "밝기"
@@ -780,14 +809,15 @@ msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
 "이 값에 따라 확대/축소가 이루어집니다. 이 값이 높으면 더 빠르게 확대됩니다."
 
-msgid "Minimum zoom factor"
+#, fuzzy
+#| msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "최소 확대 인자"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
-"허용된 최소 크기 인자. 0.5 값은 2x 줌과 같고, 0.25 값은 4x 줌과 같습니다."
 
 msgid "Sync Mouse"
 msgstr "마우스 동기화"
@@ -855,6 +885,16 @@ msgstr "마우스 구속 한계"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "마우스를 구속하려할 때, 더할 여유분"
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "확대 수준 1"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "단축키 1에 적용할 확대 수준"
+
 msgid "Pan Factor"
 msgstr "이동 수준"
 
@@ -868,23 +908,41 @@ msgstr "초점 추적"
 msgid "Enable focus tracking"
 msgstr "초점 추척 활성화"
 
-msgid "Move the zoom area when focus changes."
-msgstr "초점이 바뀌면 확대 영역을 이동함"
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "초점 추척 활성화"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "전환 창의 첫 번째 화살표 색."
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "초점 추적 추적에 따라 확대 수준을 창에 맞춤"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr "초점 추적에 따라 확대 영역을 이동할 때, 확대 영역을 창에 맞춥니다."
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "확대 영역을 창에 맞춤"
 
 msgid "Autoscale threshold"
 msgstr "경계 자동 조정"
 
+#, fuzzy
+#| msgid ""
+#| "Only change zoom level (scale) on focus change if the target value is "
+#| "higher than this. Prevents zooming too far in on small popups etc."
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 "이 값보다 대상 값이 클때만 초점이 옮겨가는 확대 수준(비율)을 바꿉니다. 작은 "
 "팝업 창에 대해 너무 멀리 확대하는 것을 막아줍니다."
@@ -892,23 +950,75 @@ msgstr ""
 msgid "Always fit to window on focus track"
 msgstr "초점 움직임에 언제나 창 맞춤"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "초점 추적에 따라 확대 영역을 이동할 때, 처음에 확대되지 않았더라도 확대 영역"
 "을 창에 맞춥니다."
 
-msgid "Follow Focus Delay"
-msgstr "초점 이동 시간 간격"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "마우스가 설정된 시간만큼 움직이지 않는다면 새롭게 초점을 받는 창을 중앙으로 "
 "위치하도록 합니다. 조잡한 초점을 사용할때 점프하는 것을 피하려면 이것을 사용 "
 "하십시오."
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"마우스가 설정된 시간만큼 움직이지 않는다면 새롭게 초점을 받는 창을 중앙으로 "
+"위치하도록 합니다. 조잡한 초점을 사용할때 점프하는 것을 피하려면 이것을 사용 "
+"하십시오."
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "화면에 불꽃으로 그림을 그림"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "애니메이션"
@@ -916,13 +1026,17 @@ msgstr "애니메이션"
 msgid "Speed"
 msgstr "속도"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "확대 속도"
 
 msgid "Timestep"
 msgstr "시간 간격"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "확대 시간 간격"
 
 msgid "Filter Linear"
@@ -930,6 +1044,83 @@ msgstr "경계선을 부드럽게 함"
 
 msgid "Use linear filter when zoomed in"
 msgstr "확대할 때, 선형 필터 사용"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "초점이 바뀌면 확대 영역을 이동함"
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "에러 알림"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "에러 알림"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "마우스 위치 잡기"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "마우스 포인터 위치를 X서버로부터 업데이트"
+
+msgid "Misc"
+msgstr "기타"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "마우스 폴 간격"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"얼마나 자주 마우스 위치를 바꿀 것인지 밀리세컨드 단위로 입력하세요. 자연스러"
+"운 동작을 원하신다면 이 값을 줄이시기 바랍니다."
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -972,6 +1163,12 @@ msgstr "어안렌즈"
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "키보드로 작동하는 돋보기의 크기 인자."
+
+msgid "Zoom Speed"
+msgstr "확대 속도"
+
+msgid "Zoom Timestep"
+msgstr "확대 시간 간격"
 
 msgid "Keep fully on screen"
 msgstr "화면안에 완전히 잡아둠"
@@ -1036,9 +1233,6 @@ msgstr "마우스 위치 잡기"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "마우스 포인터 위치를 X서버로부터 업데이트"
 
-msgid "Misc"
-msgstr "기타"
-
 msgid "Mouse Poll Interval"
 msgstr "마우스 폴 간격"
 
@@ -1064,20 +1258,84 @@ msgstr "현재 선택된창을 음화함"
 msgid "Toggle Screen Negative"
 msgstr "화면 음화"
 
-msgid "Toggle screen negative"
-msgstr "화면 음화"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "음화할 창"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "창 음화"
 
-msgid "Windows to be negative by default"
-msgstr "기본적으로 음화될 창"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "제외할 창"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "음화하지 않을 창"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "계단식 창 배열"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "전체 화면"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "화면 테두리"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "필터링에서 제외되는 창 목록"
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "창을 복원"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "창 음화"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+msgid "Negate Decorations"
+msgstr "창 장식 무효"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr "창 내용과 더불어 창 장식도 끕니다."
 
 msgid "Opacify"
 msgstr "투명화"
@@ -1460,6 +1718,20 @@ msgstr "글자 크기"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "글자 크기"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "창 제목 표시를 위한 글자 색"
+
+msgid "Bold Font"
+msgstr "굵은 글씨"
+
+msgid "Use bold font for window title display"
+msgstr "창 제목 표시를 위해 굵은 글씨를 사용함"
+
 msgid "Text color."
 msgstr "글자 색."
 
@@ -1665,14 +1937,8 @@ msgstr "현재 선택되어진 창의 창 제목을 표시함"
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "굵은 글씨"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr "창 제목을 굵은 글씨로 표시할지를 선택함"
-
-msgid "Font Size"
-msgstr "글자 크기"
 
 msgid "Font size for the window title"
 msgstr "창 제목의 글자 크기"
@@ -1748,9 +2014,6 @@ msgstr "강조된 창만"
 
 msgid "All windows"
 msgstr "모든 창"
-
-msgid "Use bold font for window title display"
-msgstr "창 제목 표시를 위해 굵은 글씨를 사용함"
 
 msgid "Font size for window title display"
 msgstr "창 제목 표시를 위한 글자 색"
@@ -2103,6 +2366,16 @@ msgstr "이전 패널"
 msgid "Select previous panel type window."
 msgstr "이전 패널 타입 창을 선택합니다."
 
+#, fuzzy
+#| msgid "Color of highlight rectangle"
+msgid "Close highlighted"
+msgstr "강조된 직사각형의 색"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
 msgid "Switcher speed"
 msgstr "전환 속도"
 
@@ -2115,7 +2388,14 @@ msgstr "전환을 적용할 창들"
 msgid "Windows that should be shown in switcher"
 msgstr "전환할 때 보여야할 창들"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "최소화된 창도 보여줌"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "최소화된 창도 보여줌"
 
 msgid "Auto Change Viewport"
@@ -2130,8 +2410,43 @@ msgstr "팝업 창 지연"
 msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "팝업 창이 나타나기 전까지 지연되어야 할 시간(초)"
 
+#, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "창 강조"
+
+#, fuzzy
+#| msgid "Mode for highlighting the currently selected window"
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "현재 선택된 창을 강조하기위한 모드"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "천장을 그림"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "창의 높이에 따른 파동의 넓이"
+
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr "전환창에서 마우스로 창 선택 허용"
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "마우스 선택 가능"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 msgid "Amount of saturation in percent"
 msgstr "채도의 정도(퍼센트)"
@@ -2171,6 +2486,36 @@ msgstr "가운데"
 
 msgid "Right"
 msgstr "오른쪽"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "미리보기 크기"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "미리보기의 크기(퍼센트)"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "제목 가장자리 크기"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "창 제목 주위의 가장자리 크기"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "글자 크기"
+
+#, fuzzy
+#| msgid "Size of these elements"
+msgid "Size of the icon overlays"
+msgstr "원소의 크기"
 
 msgid "Selected Window Highlight"
 msgstr "선택된 창 강조"
@@ -2475,8 +2820,10 @@ msgstr "시작과 종료를 위한 동작 이름"
 msgid "Window Rules"
 msgstr "창의 규칙들"
 
-msgid "Set windows rules"
-msgstr "창의 규칙을 설정함"
+#, fuzzy
+#| msgid "Saturation values for windows"
+msgid "Set rules to apply to windows"
+msgstr "창의 채도 값"
 
 msgid "Matches"
 msgstr "조건"
@@ -2493,10 +2840,14 @@ msgstr "데스크탑 전환에 표시 안 함"
 msgid "Don't show application in pager"
 msgstr "작업 공간 전환에 표시 안 함"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "다른 창 위로"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "다른 창 아래로"
 
 msgid "Sticky"
@@ -2523,40 +2874,62 @@ msgstr "ARGB 비주얼 사용하지 않음"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "투명화를 지원하지 않는 것처럼 처리되야할 창들"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "창 위치 고정"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "창을 이동할 수 없게 함"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "크기 조절 되지 않는 창"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "창을 크기 조절 할 수 없게 함"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "최소화 되지 않는 창"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "창을 최소화되지 않게 함"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "최대화 되지 않는 창"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "창을 최대화되지 않게 함"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "닫히지 않는 창"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "창을 닫히지 않게 함"
 
 msgid "No focus"
 msgstr "초점 없음"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "초점을 갖지 않을 창들"
 
 msgid "Size rules"
@@ -2674,6 +3047,60 @@ msgstr "\"모든 작업 공간에 두기\" 끈적임을 적용"
 msgid "Windows on all desktops that should be made sticky"
 msgstr "모든 작업 공간에서 나타날 창들"
 
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "색상 필터"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "경계선을 부드럽게 함"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "다음 작업 공간"
+
+#~ msgid ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+#~ msgstr ""
+#~ "허용된 최소 크기 인자. 0.5 값은 2x 줌과 같고, 0.25 값은 4x 줌과 같습니다."
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr "초점 추적에 따라 확대 영역을 이동할 때, 확대 영역을 창에 맞춥니다."
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "초점 이동 시간 간격"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "화면 음화"
+
+#~ msgid "Neg Windows"
+#~ msgstr "음화할 창"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "기본적으로 음화될 창"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "제외할 창"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "음화하지 않을 창"
+
+#~ msgid "Set windows rules"
+#~ msgstr "창의 규칙을 설정함"
+
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "마우스 회전시에만 3D 사용"
 
@@ -2760,9 +3187,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 #~ msgid "Brightness of faded windows"
 #~ msgstr "흐린 창의 밝기"
-
-#~ msgid "Enable ADD Helper on start"
-#~ msgstr "시작할 때 활성창 돋보이기 사용"
 
 #~ msgid "Enables ADD helper when it is first loaded."
 #~ msgstr "처음 시작될 때 활성창 돋보이기를 가능하게 함"
@@ -3473,9 +3897,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "큐브의 바닥을 그림"
 
-#~ msgid "Draw top face"
-#~ msgstr "천장을 그림"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "큐브의 천장을 그림"
 
@@ -3765,9 +4186,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 #~ msgid "Previous Element"
 #~ msgstr "이전 원소"
 
-#~ msgid "Screen Boxing"
-#~ msgstr "화면 테두리"
-
 #~ msgid "Screen Depth"
 #~ msgstr "화면 깊이"
 
@@ -3794,9 +4212,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 #~ msgid "Side-to-side movement of Snow."
 #~ msgstr "눈이 옆으로 이동하기"
-
-#~ msgid "Size of these elements"
-#~ msgstr "원소의 크기"
 
 #~ msgid "Snow"
 #~ msgstr "눈"
@@ -3872,9 +4287,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "항상 맨 위에"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "전체 화면"
 
 #~ msgid "Toggle Redirect"
 #~ msgstr "창 옮기기"
@@ -3953,9 +4365,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 #~ msgid "Number of particles"
 #~ msgstr "불꽃의 수"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "화면에 불꽃으로 그림을 그림"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "화면에 불꽃이나 다른 입자로 그림을 그림"
@@ -4185,9 +4594,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 #~ "Precision of the selection (percentage of the visible window area which "
 #~ "must be selected for the selection to be recognized)."
 #~ msgstr "선택의 정밀도 (반드시 선택되어야 하는 창 영역의 비율)."
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "그룹 내의 모든 창을 위로"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "사각형으로"
@@ -4721,12 +5127,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 #~ msgid "Switch viewport in response to mouse gesture"
 #~ msgstr "마우스 제스쳐를 이용한 작업 공간 변경"
 
-#~ msgid "Also negate window decorations, not only the window contents."
-#~ msgstr "창 내용과 더불어 창 장식도 끕니다."
-
-#~ msgid "Negate Decorations"
-#~ msgstr "창 장식 무효"
-
 #~ msgid "Debug"
 #~ msgstr "디버그"
 
@@ -4735,9 +5135,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 #~ msgid "Error"
 #~ msgstr "에러"
-
-#~ msgid "Error Notifications"
-#~ msgstr "에러 알림"
 
 #~ msgid "Fatal"
 #~ msgstr "치명적"
@@ -5183,9 +5580,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 #~ msgid "Cascade Delta"
 #~ msgstr "창 간격"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "계단식 창 배열"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr "토글 상태일때 정렬될 형태를 선택하세요."
 
@@ -5245,9 +5639,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 #~ msgstr ""
 #~ "창들이 놓여지는 공간의 점유율. 이 숫자는 활성화된 창들이 정렬되었을때 높이"
 #~ "로서 가지게 되는화면 높이의 퍼센트 입니다.남은 타일 형태를 적용합니다."
-
-#~ msgid "Restore Windows"
-#~ msgstr "창을 복원"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr "타일 기능을 사용하기 전으로 되돌리기"
@@ -5453,9 +5844,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 #~ msgid "First color for the thumb highlight gradient of the switcher window."
 #~ msgstr "전환 창의 첫 번째 미리 보기 강조 그레디언트 색."
 
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "전환 창의 첫 번째 화살표 색."
-
 #~ msgid "Flip Down"
 #~ msgstr "아래쪽으로 넘기기"
 
@@ -5555,9 +5943,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "전환 창의 외곽선 색."
 
-#~ msgid "Preview Scale"
-#~ msgstr "미리보기 크기"
-
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "둥근 가장자리의 반경"
 
@@ -5588,9 +5973,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr "작업 공간 전환 시 전환 창 표시"
-
-#~ msgid "Size of the preview in %"
-#~ msgstr "미리보기의 크기(퍼센트)"
 
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "전환 대상 미리 보기 지속 시간"
@@ -5845,9 +6227,6 @@ msgstr "모든 작업 공간에서 나타날 창들"
 
 #~ msgid "Saturation settings"
 #~ msgstr "채도 설정"
-
-#~ msgid "Saturation values for windows"
-#~ msgstr "창의 채도 값"
 
 #~ msgid "Saturation window values"
 #~ msgstr "창의 채도 값"

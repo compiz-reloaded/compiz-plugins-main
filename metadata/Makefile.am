@@ -45,11 +45,12 @@ xml_in_files = 	         \
 xml_files    = $(xml_in_files:.xml.in=.xml)
 xml_DATA     = $(xml_files)
 
-@INTLTOOL_XML_RULE@
+%.xml: %.xml.in
+	GETTEXTDATADIR=$(top_srcdir)/gettext $(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
 EXTRA_DIST =		\
 	$(xml_in_files)
 
-DISTCLEANFILES =	\
+CLEANFILES =	\
 	$(xml_files)
 

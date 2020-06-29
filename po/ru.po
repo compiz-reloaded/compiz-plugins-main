@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-10-05 18:47+0200\n"
 "Last-Translator: Shnatsel <shnatsel@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -286,7 +285,6 @@ msgstr ""
 msgid "Sidekick Number of Rotations"
 msgstr "число совпавших издателей: %d\n"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
 "Количество вращений для эффекта Sidekick (плюс-минус 10% для случайности)."
@@ -455,6 +453,31 @@ msgid "Exclude windows"
 msgstr "Сеть Windows"
 
 msgid "Windows to exclude from filtering."
+msgstr ""
+
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable ADD Helper on start"
+msgid "Enable color filter at startup"
+msgstr "Включить ADD Helper при входе в систему"
+
+#, fuzzy
+msgid "Filter every window at startup."
+msgstr "Сеть Windows"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
 msgstr ""
 
 #, fuzzy
@@ -629,6 +652,11 @@ msgstr "Традиционная китайская (Big_5)"
 #, fuzzy
 msgid "One wall per output"
 msgstr "Одно изображение на страницу"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "Яркость неактивного рабочего места."
 
 msgid "Brightness"
 msgstr "Яркость"
@@ -840,12 +868,12 @@ msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
 
 #, fuzzy
-msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "Неверный размер ёмкости блока"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
 
 #, fuzzy
@@ -921,6 +949,13 @@ msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
 
 #, fuzzy
+msgid "Startup specific zoom factor"
+msgstr "Значение \"%s\" не является допустимым масштабом\n"
+
+msgid "Zoom level to use when starting ezoom"
+msgstr ""
+
+#, fuzzy
 msgid "Pan Factor"
 msgstr "Масштаб +2"
 
@@ -934,23 +969,35 @@ msgstr "Слежение за фокусом"
 msgid "Enable focus tracking"
 msgstr "Включить слежение за фокусом"
 
-msgid "Move the zoom area when focus changes."
-msgstr ""
-
-msgid "Fit zoom level to window on focus change"
-msgstr ""
-
 msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
 msgstr ""
+
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "Включить слежение за фокусом"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "Пнрвый цвет стрелки переключателя окон"
+
+#, fuzzy
+msgid "Fit zoom level to newly switched window"
+msgstr "Перенести строки, чтобы попасть в область отображения?"
+
+#, fuzzy
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "Перенести строки, чтобы попасть в область отображения?"
 
 msgid "Autoscale threshold"
 msgstr "Порог автомасштабирования"
 
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 
 msgid "Always fit to window on focus track"
@@ -958,16 +1005,52 @@ msgstr "Всегда вмещать в окно при слежении за ф�
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
+msgstr ""
+
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
+
+msgid ""
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
+msgstr ""
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
 msgstr ""
 
 #, fuzzy
-msgid "Follow Focus Delay"
-msgstr "Задержка автоскрытия панели"
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "Рисовать огнем на экране"
 
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
 msgstr ""
 
 #, fuzzy
@@ -979,7 +1062,7 @@ msgid "Speed"
 msgstr "Скорость"
 
 #, fuzzy
-msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "Скорость изменения масштаба"
 
 #, fuzzy
@@ -987,7 +1070,7 @@ msgid "Timestep"
 msgstr "Шаг времени "
 
 #, fuzzy
-msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "Квант времени изменения масштаба"
 
 #, fuzzy
@@ -995,6 +1078,71 @@ msgid "Filter Linear"
 msgstr "Линейная фильтрация"
 
 msgid "Use linear filter when zoomed in"
+msgstr ""
+
+msgid "Move the zoom area instantly"
+msgstr ""
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "Сообщения об ошибках"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "Сообщения об ошибках"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+msgid "Focus position polling"
+msgstr "команда мыши"
+
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr ""
+
+msgid "Misc"
+msgstr "Разное"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+msgid "Focus Poll Interval"
+msgstr "Продолжительность _перерыва:"
+
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
 msgstr ""
 
 msgid "JPEG"
@@ -1041,6 +1189,14 @@ msgstr ""
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
+
+#, fuzzy
+msgid "Zoom Speed"
+msgstr "Скорость изменения масштаба"
+
+#, fuzzy
+msgid "Zoom Timestep"
+msgstr "Квант времени изменения масштаба"
 
 #, fuzzy
 msgid "Keep fully on screen"
@@ -1114,9 +1270,6 @@ msgstr "команда мыши"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr ""
 
-msgid "Misc"
-msgstr "Разное"
-
 #, fuzzy
 msgid "Mouse Poll Interval"
 msgstr "Продолжительность _перерыва:"
@@ -1145,23 +1298,77 @@ msgstr "Развертывание активного окна"
 msgid "Toggle Screen Negative"
 msgstr "переключить полноэкранный режим"
 
-#, fuzzy
-msgid "Toggle screen negative"
-msgstr "переключить полноэкранный режим"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
 #, fuzzy
-msgid "Neg Windows"
+msgid "Toggle Matched Windows Negative"
+msgstr "Развертывать окно"
+
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
+
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
+
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+msgid "Matched Windows"
 msgstr "Сеть Windows"
 
-#, fuzzy
-msgid "Windows to be negative by default"
-msgstr "Окна, прозрачные по умолчанию"
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
 
 #, fuzzy
-msgid "Exclude Windows"
+msgid "Auto-Toggle Screen"
+msgstr "Переключить полный экран"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+msgid "Screen Exclusions"
+msgstr "Заблокировать экран"
+
+#, fuzzy
+msgid "Windows to exclude when toggling the screen."
+msgstr "Окна к которым будет применено оформление"
+
+#, fuzzy
+msgid "Preserve Toggled Windows"
 msgstr "Сеть Windows"
 
-msgid "Windows to exclude from negating"
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Clear Toggled Window State"
+msgstr "Развертывать окно"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Пароль к документу %s"
+
+msgid "Also negate window decorations, not only the window contents."
 msgstr ""
 
 msgid "Opacify"
@@ -1570,6 +1777,20 @@ msgid "Name of the font to display resize info."
 msgstr ""
 
 #, fuzzy
+msgid "Font Size"
+msgstr "Размер шрифта"
+
+#, fuzzy
+msgid "Font size for resize info display"
+msgstr "Размер окна слишком мал для Nano...\n"
+
+msgid "Bold Font"
+msgstr "Жирный шрифт"
+
+msgid "Use bold font for window title display"
+msgstr ""
+
+#, fuzzy
 msgid "Text color."
 msgstr "Цвет текста"
 
@@ -1803,15 +2024,8 @@ msgstr "Отображение заголовка текущего окна."
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "Жирный шрифт"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr ""
-
-#, fuzzy
-msgid "Font Size"
-msgstr "Размер шрифта"
 
 #, fuzzy
 msgid "Font size for the window title"
@@ -1905,9 +2119,6 @@ msgstr "Переместить окно на рабочее место 1"
 
 msgid "All windows"
 msgstr "Все окна"
-
-msgid "Use bold font for window title display"
-msgstr ""
 
 msgid "Font size for window title display"
 msgstr ""
@@ -2330,6 +2541,15 @@ msgid "Select previous panel type window."
 msgstr "Выбрать следующее окно"
 
 #, fuzzy
+msgid "Close highlighted"
+msgstr "Размытый осциллоскоп: выбор цвета"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
+#, fuzzy
 msgid "Switcher speed"
 msgstr "Режим DTMF"
 
@@ -2346,7 +2566,11 @@ msgid "Windows that should be shown in switcher"
 msgstr "Окна к которым будет применено оформление"
 
 #, fuzzy
-msgid "Show minimized windows"
+msgid "Include Minimized"
+msgstr "Отображение свернутых окон"
+
+#, fuzzy
+msgid "Include minimized windows"
 msgstr "<b>Восстановление минимизированных окон</b>"
 
 #, fuzzy
@@ -2363,7 +2587,35 @@ msgstr "Инициировать средство выбора окна для �
 msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr ""
 
+#, fuzzy
+msgid "Window Highlight Delay"
+msgstr "Цвет выделения"
+
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr ""
+
+#, fuzzy
+msgid "Draw Popup"
+msgstr "Привязать к верхней грани"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr ""
+
 msgid "Allow selection of windows from the switcher window with the mouse"
+msgstr ""
+
+#, fuzzy
+msgid "Allow Mouse Close"
+msgstr "В строчные буквы"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
 msgstr ""
 
 #, fuzzy
@@ -2409,6 +2661,33 @@ msgstr "По центру"
 
 msgid "Right"
 msgstr "Справа"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "Масштаб предварительного просмотра"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "Размер вида в %"
+
+#, fuzzy
+msgid "Popup Border Size"
+msgstr "<span size=\"small\"><b>Название</b></span>"
+
+#, fuzzy
+#| msgid "Width of the border between the previews"
+msgid "Size of the border of the popup"
+msgstr "Ширина обрамления между видами"
+
+#, fuzzy
+msgid "Icon Size"
+msgstr "Размер шрифта"
+
+#, fuzzy
+msgid "Size of the icon overlays"
+msgstr "Размер вида в %"
 
 #, fuzzy
 msgid "Selected Window Highlight"
@@ -2744,8 +3023,9 @@ msgstr ""
 msgid "Window Rules"
 msgstr "Правила поведения окна"
 
-msgid "Set windows rules"
-msgstr "Установить правила окон"
+#, fuzzy
+msgid "Set rules to apply to windows"
+msgstr "<b>Восстановление минимизированных окон</b>"
 
 msgid "Matches"
 msgstr "Совпадения"
@@ -2764,10 +3044,14 @@ msgstr "Пропуск переключателя рабочих столов"
 msgid "Don't show application in pager"
 msgstr "Не показывать окно в списке окон"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "Над другими окнами"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "Под другими окнами"
 
 msgid "Sticky"
@@ -2797,49 +3081,51 @@ msgid "Windows that should be treated as not supporting transparency"
 msgstr "Окна, которые должны восприниматься как не поддерживающие прозрачность"
 
 #, fuzzy
-msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "Неподвижное окно"
 
 #, fuzzy
-msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "Установить окно неподвижным"
 
 #, fuzzy
-msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "Неизменное в размерах окно"
 
 #, fuzzy
-msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "Установить окно неизменным к размеру"
 
 #, fuzzy
-msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "Неминимизируемое окно"
 
 #, fuzzy
-msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "Установить окно неминимизирующимся"
 
 #, fuzzy
-msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "Немаксимизирующееся окно"
 
 #, fuzzy
-msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "Установить окно не максимизирующимся"
 
 #, fuzzy
-msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "Нескрываемое окно"
 
 #, fuzzy
-msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "Установить окно нескрываемым"
 
 msgid "No focus"
 msgstr "Без фокуса"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "Окна, не имеющие фокуса"
 
 msgid "Size rules"
@@ -2960,6 +3246,49 @@ msgstr "Точное соответствие \"На все рабочие ст�
 msgid "Windows on all desktops that should be made sticky"
 msgstr "Окна на всех рабочих столах должны быть прикреплены"
 
+#, fuzzy
+msgid "Color filter change"
+msgstr "Остановить фильтрацию"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+msgid "Filter loading failure"
+msgstr "Линейная фильтрация"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "Следующее рабочее место"
+
+#, fuzzy
+#~ msgid "Follow Focus Delay"
+#~ msgstr "Задержка автоскрытия панели"
+
+#, fuzzy
+#~ msgid "Toggle screen negative"
+#~ msgstr "переключить полноэкранный режим"
+
+#, fuzzy
+#~ msgid "Neg Windows"
+#~ msgstr "Сеть Windows"
+
+#, fuzzy
+#~ msgid "Windows to be negative by default"
+#~ msgstr "Окна, прозрачные по умолчанию"
+
+#, fuzzy
+#~ msgid "Exclude Windows"
+#~ msgstr "Сеть Windows"
+
+#~ msgid "Set windows rules"
+#~ msgstr "Установить правила окон"
+
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "3D только при вращении мышкой"
 
@@ -3047,9 +3376,6 @@ msgstr "Окна на всех рабочих столах должны быть
 
 #~ msgid "Brightness of faded windows"
 #~ msgstr "Яркость затемненных окон"
-
-#~ msgid "Enable ADD Helper on start"
-#~ msgstr "Включить ADD Helper при входе в систему"
 
 #~ msgid "Enables ADD helper when it is first loaded."
 #~ msgstr "Включает ADD helper при первой загрузке."
@@ -3734,10 +4060,6 @@ msgstr "Окна на всех рабочих столах должны быть
 #~ msgstr "Привязка вращения куба к верхней грани"
 
 #, fuzzy
-#~ msgid "Draw top face"
-#~ msgstr "Привязать к верхней грани"
-
-#, fuzzy
 #~ msgid "Draw top face of the cube"
 #~ msgstr "Привязка вращения куба к верхней грани"
 
@@ -3913,20 +4235,12 @@ msgstr "Окна на всех рабочих столах должны быть
 #~ msgstr "<нет видимой области>"
 
 #, fuzzy
-#~ msgid "Screen Boxing"
-#~ msgstr "Заблокировать экран"
-
-#, fuzzy
 #~ msgid "Screen Depth"
 #~ msgstr "Битность:"
 
 #, fuzzy
 #~ msgid "Show Title on Toggle"
 #~ msgstr "Переключить снег"
-
-#, fuzzy
-#~ msgid "Size of these elements"
-#~ msgstr "Размер вида в %"
 
 #~ msgid "Snow"
 #~ msgstr "Снег"
@@ -3988,10 +4302,6 @@ msgstr "Окна на всех рабочих столах должны быть
 #, fuzzy
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "Переключить состояние «всегда наверху»"
-
-#, fuzzy
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "Переключить полный экран"
 
 #, fuzzy
 #~ msgid "Toggle Redirect"
@@ -4073,9 +4383,6 @@ msgstr "Окна на всех рабочих столах должны быть
 
 #~ msgid "Number of particles"
 #~ msgstr "Число частиц"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "Рисовать огнем на экране"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "Рисовать огнем или другими частицами на экране"
@@ -4507,18 +4814,11 @@ msgstr "Окна на всех рабочих столах должны быть
 #~ msgstr "Сменить пользователя"
 
 #, fuzzy
-#~ msgid "Negate Decorations"
-#~ msgstr "Пароль к документу %s"
-
-#, fuzzy
 #~ msgid "Debug"
 #~ msgstr "Отладка"
 
 #~ msgid "Error"
 #~ msgstr "Ошибка"
-
-#~ msgid "Error Notifications"
-#~ msgstr "Сообщения об ошибках"
 
 #, fuzzy
 #~ msgid "Fatal"
@@ -4928,20 +5228,12 @@ msgstr "Окна на всех рабочих столах должны быть
 #~ msgstr "3D Окна"
 
 #, fuzzy
-#~ msgid "Windows that should be shown in the switcher"
-#~ msgstr "Окна к которым будет применено оформление"
-
-#, fuzzy
 #~ msgid "Animation Duration"
 #~ msgstr "Продолжительность вызова"
 
 #, fuzzy
 #~ msgid "Cascade"
 #~ msgstr "&Каскад"
-
-#, fuzzy
-#~ msgid "Cascade Windows"
-#~ msgstr "Сеть Windows"
 
 #, fuzzy
 #~ msgid "Drop From Top"
@@ -4962,10 +5254,6 @@ msgstr "Окна на всех рабочих столах должны быть
 #, fuzzy
 #~ msgid "Left Occupancy"
 #~ msgstr "Повернуть в_лево"
-
-#, fuzzy
-#~ msgid "Restore Windows"
-#~ msgstr "Сеть Windows"
 
 #, fuzzy
 #~ msgid "Slide"
@@ -5127,9 +5415,6 @@ msgstr "Окна на всех рабочих столах должны быть
 #~ msgid "First color for the thumb highlight gradient of the switcher window."
 #~ msgstr "Первый цвет пальца контрастного градиента переключателя окон"
 
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "Пнрвый цвет стрелки переключателя окон"
-
 #~ msgid "Flip Down"
 #~ msgstr "Перелистывание вниз"
 
@@ -5227,9 +5512,6 @@ msgstr "Окна на всех рабочих столах должны быть
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "цвет контура переключателя окон"
 
-#~ msgid "Preview Scale"
-#~ msgstr "Масштаб предварительного просмотра"
-
 #, fuzzy
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "Нижняя краевая панель"
@@ -5260,9 +5542,6 @@ msgstr "Окна на всех рабочих столах должны быть
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr "Показать онко переключателя пока переключается окно"
 
-#~ msgid "Size of the preview in %"
-#~ msgstr "Размер вида в %"
-
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "Переключить Цель Предпросмота Видимости Времени"
 
@@ -5292,9 +5571,6 @@ msgstr "Окна на всех рабочих столах должны быть
 #, fuzzy
 #~ msgid "Wall Sliding Duration"
 #~ msgstr "/wall <сообщение> .......... команда администратора"
-
-#~ msgid "Width of the border between the previews"
-#~ msgstr "Ширина обрамления между видами"
 
 #, fuzzy
 #~ msgid "Windows that should not slide during the slide animation"
@@ -5513,10 +5789,6 @@ msgstr "Окна на всех рабочих столах должны быть
 #, fuzzy
 #~ msgid "Saturation settings"
 #~ msgstr "Вызов выбранных окон по истечении интервала времени"
-
-#, fuzzy
-#~ msgid "Saturation values for windows"
-#~ msgstr "<b>Восстановление минимизированных окон</b>"
 
 #, fuzzy
 #~ msgid "Saturation window values"

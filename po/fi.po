@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-08-13 10:27+0200\n"
 "Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
@@ -288,7 +287,6 @@ msgstr "Sidekick - sivupotku"
 msgid "Sidekick Number of Rotations"
 msgstr "Sidekick -kierrosten lukumäärä"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr "Sidekick-kierrosten lukumäärä (plus miinus 10% satunnaisuutta)"
 
@@ -457,6 +455,32 @@ msgstr "Poissuljettavat ikkunat (ilman tehosteita)"
 msgid "Windows to exclude from filtering."
 msgstr "Ikkunat joita ei suodateta."
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable ADD Helper on start"
+msgid "Enable color filter at startup"
+msgstr "Ota ADD-avustin käyttöön käynnistettäessä"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "Nosta ryhmän jokainen ikkuna"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "Suodatintiedostot"
 
@@ -615,6 +639,11 @@ msgstr "Yksi suuri seinä"
 
 msgid "One wall per output"
 msgstr "Yksi seinä ulostuloa kohden"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "Epäaktiivisen työtilan kirkkaus."
 
 msgid "Brightness"
 msgstr "Kirkkaus"
@@ -798,15 +827,15 @@ msgstr "Suurennuskerroin"
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "Lähennä/loitonna tällä kertoimella. Suurempi arvo zoomaa nopeammin."
 
-msgid "Minimum zoom factor"
+#, fuzzy
+#| msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "Pienin zoomauskerroin"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
-"Pienin zoomaus kerroin. Arvo 0.5 johtaa 2x zoomiin kun taas arvo 0.25 johtaa "
-"4x zoomiin."
 
 msgid "Sync Mouse"
 msgstr "Synkronoi hiiri"
@@ -875,6 +904,16 @@ msgstr "Hiiren rajoituksen marginaali"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Hiiren rajoitusmarginaalin leveys"
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "Määritetty zoomauskerroin 1"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "Zoomaustaso pikanäppäimellä 1"
+
 msgid "Pan Factor"
 msgstr "Panorointikerroin"
 
@@ -888,25 +927,41 @@ msgstr "Kohdistusseuranta"
 msgid "Enable focus tracking"
 msgstr "Ota kohdistusseuranta käyttöön"
 
-msgid "Move the zoom area when focus changes."
-msgstr "Siirrä zoomausalue kun kohdistus vaihtuu"
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "Ota kohdistusseuranta käyttöön"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "Ensimmäinen väri vaihtajan nuoleen."
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "Sovita zoomaustaso ikkunaan vaihdettaessa kohdistusta"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr ""
-"Sovita zoomattu alue ikkunaan, kun zoomattu alue liikkuu kohdistusseurannan "
-"takia."
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "Sovita zoomattu alue ikkunaan"
 
 msgid "Autoscale threshold"
 msgstr "Automaattiskaalauksen kynnysarvo"
 
+#, fuzzy
+#| msgid ""
+#| "Only change zoom level (scale) on focus change if the target value is "
+#| "higher than this. Prevents zooming too far in on small popups etc."
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 "Vaihda suurennustasoa (skaalausta) kohdistuksen vaihtuessa jos kohdearvo on "
 "tätä suurempi. Estää liian suuren suurennuksen pienille ponnahdusikkunoille "
@@ -915,23 +970,75 @@ msgstr ""
 msgid "Always fit to window on focus track"
 msgstr "Sovita ikkuna aina kohdistusseurannassa"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "Sovita zoomattu alue ikkunaan, kun zoomattu alue liikkuu kohdistusseurannan "
 "takia. Myös silloin, kun ikkuna ei ollut alun perin zoomattu."
 
-msgid "Follow Focus Delay"
-msgstr "Kohdistuksenseurannan viive"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "Yritä keskittää vain juuri valittu ikkuna jos hiirtä ei ole liikutettu näin "
 "moneen sekuntiin. Käytä tätä välttääksesi hypyt käyttäessäsi väljää "
 "kohdistusta."
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"Yritä keskittää vain juuri valittu ikkuna jos hiirtä ei ole liikutettu näin "
+"moneen sekuntiin. Käytä tätä välttääksesi hypyt käyttäessäsi väljää "
+"kohdistusta."
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "Piirrä tulta näytölle"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "Animaatio"
@@ -939,13 +1046,17 @@ msgstr "Animaatio"
 msgid "Speed"
 msgstr "Nopeus"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "Zoomausnopeus"
 
 msgid "Timestep"
 msgstr "Aikaviive"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "Zoomauksen viive"
 
 msgid "Filter Linear"
@@ -953,6 +1064,83 @@ msgstr "Tasasuodatus"
 
 msgid "Use linear filter when zoomed in"
 msgstr "Käytä tasasuodatusta zoomattaessa sisään"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "Siirrä zoomausalue kun kohdistus vaihtuu"
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "Virhehuomautukset"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "Virhehuomautukset"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "Hiiren sijainnin tarkkailu"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "Päivittää kohdistimen sijainnin x-palvelimelta"
+
+msgid "Misc"
+msgstr "Sekalaiset"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "Hiiren seurantatiheys"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"Hiiren paikan tarkistusväli millisekunneissa. Pienennä tätä vähentääksesi "
+"pätkimistä."
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -995,6 +1183,12 @@ msgstr "Kalansilmä"
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Zoomauskerroin näppäimistöltä käynnistettävälle suurentimelle."
+
+msgid "Zoom Speed"
+msgstr "Zoomausnopeus"
+
+msgid "Zoom Timestep"
+msgstr "Zoomauksen viive"
 
 msgid "Keep fully on screen"
 msgstr "Pidä kokonaan ruudulla"
@@ -1059,9 +1253,6 @@ msgstr "Hiiren sijainnin tarkkailu"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "Päivittää kohdistimen sijainnin x-palvelimelta"
 
-msgid "Misc"
-msgstr "Sekalaiset"
-
 msgid "Mouse Poll Interval"
 msgstr "Hiiren seurantatiheys"
 
@@ -1087,20 +1278,82 @@ msgstr "Vaihda aktiivinen ikkuna negatiiviksi"
 msgid "Toggle Screen Negative"
 msgstr "Vaihda näyttö negatiiviksi"
 
-msgid "Toggle screen negative"
-msgstr "Vaihda näyttö negatiiviksi"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "Negatiivi-ikkunat"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "Vaihda ikkuna negatiiviksi"
 
-msgid "Windows to be negative by default"
-msgstr "Ikkunat jotka halutaan aina negatiiveiksi"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "Ei käytössä näissä ikkunoissa"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "Ikkunat joita ei lainkaan haluta negatiiveiksi"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Sized Windows"
+msgid "Matched Windows"
+msgstr "Sovitut ikkunat"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "Siirry kokoruututilaan"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+msgid "Screen Exclusions"
+msgstr ""
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "Ikkunat joita ei suodateta."
+
+#, fuzzy
+#| msgid "Previous Window"
+msgid "Preserve Toggled Windows"
+msgstr "Edellinen ikkuna"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "Vaihda ikkuna negatiiviksi"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+msgid "Negate Decorations"
+msgstr "Poista somisteet"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr "Poista ikkunan sisältö ja myös ikkunan koristeet."
 
 msgid "Opacify"
 msgstr "Läpinäkyvoi"
@@ -1492,6 +1745,20 @@ msgstr "Kirjasimen koko"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "Kirjasimen koko"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "Ikkunan nimen fontti"
+
+msgid "Bold Font"
+msgstr "Lihavoitu kirjasin"
+
+msgid "Use bold font for window title display"
+msgstr "Käytä lihavoitua fonttia ikkunan nimelle"
+
 msgid "Text color."
 msgstr "Tekstin väri."
 
@@ -1684,14 +1951,8 @@ msgstr "Näytä valitun ikkunan otsikko."
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "Lihavoitu kirjasin"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr ""
-
-msgid "Font Size"
-msgstr "Kirjasimen koko"
 
 msgid "Font size for the window title"
 msgstr "Ikkunan nimen fontin koko"
@@ -1768,9 +2029,6 @@ msgstr "Vain korostettu ikkuna"
 
 msgid "All windows"
 msgstr "Kaikki ikkunat"
-
-msgid "Use bold font for window title display"
-msgstr "Käytä lihavoitua fonttia ikkunan nimelle"
 
 msgid "Font size for window title display"
 msgstr "Ikkunan nimen fontti"
@@ -2122,6 +2380,16 @@ msgstr "Edellinen paneeli"
 msgid "Select previous panel type window."
 msgstr "Valitse edellinen paneeli-tyyppinen ikkuna."
 
+#, fuzzy
+#| msgid "Color of highlight rectangle"
+msgid "Close highlighted"
+msgstr "Korostusruudun väri"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
 msgid "Switcher speed"
 msgstr "Vaihtajan nopeus"
 
@@ -2134,7 +2402,14 @@ msgstr "Vaihtimen ikkunat"
 msgid "Windows that should be shown in switcher"
 msgstr "Ikkunat, jotka näytetään vaihtimessa"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "Näytä pienennetyt ikkunat"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "Näytä piennetyt ikkunat"
 
 msgid "Auto Change Viewport"
@@ -2150,8 +2425,43 @@ msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "Viive (sekunneissa) ponnahdusikkunan näyttämiseen"
 
 #, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "Ikkunan korostus"
+
+#, fuzzy
+#| msgid "Mode for highlighting the currently selected window"
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "Tapa korostaa valittu ikkuna"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "Luo kansi"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "Aallonpituus suhteessa ikkunan korkeuteen"
+
+#, fuzzy
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr "Salli ikkunan valinta hiirellä, kun vaihdin on aktiivinen."
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "Salli valinta hiirellä"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 msgid "Amount of saturation in percent"
 msgstr "Kylläisyyden määrä prosentteina"
@@ -2191,6 +2501,35 @@ msgstr "Keskitetty"
 
 msgid "Right"
 msgstr "Oikea"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "Esikatselun skaala"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "Esikatselukuvan koko prosenteissa"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "Nimen kehyksen koko"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "Ikkunan nimen kehyksen koko"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "Kirjasimen koko"
+
+#, fuzzy
+msgid "Size of the icon overlays"
+msgstr "Esikatselukuvan koko prosenteissa"
 
 msgid "Selected Window Highlight"
 msgstr "Valitun ikkunan korostus"
@@ -2496,8 +2835,10 @@ msgstr "Toiminnon nimi käynnistämiseen/sulkemiseen"
 msgid "Window Rules"
 msgstr "Ikkunan säännöt"
 
-msgid "Set windows rules"
-msgstr "Aseta ikkunan säännöt"
+#, fuzzy
+#| msgid "Saturation values for windows"
+msgid "Set rules to apply to windows"
+msgstr "Kylläisyysarvot ikkunoille"
 
 msgid "Matches"
 msgstr "Täsmää"
@@ -2514,10 +2855,14 @@ msgstr "Sivuuta työtilanvaihtaja"
 msgid "Don't show application in pager"
 msgstr "Älä näytä ohjelmaa sivuttajassa"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "Muiden ikkunoiden päällä"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "Muiden ikkunoiden alla"
 
 msgid "Sticky"
@@ -2544,40 +2889,62 @@ msgstr "Ei ARGB-visuaaleja"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "Ikkunat, jotka eivät tue läpinäkyvyyttä"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "Ikkunat, joita ei voi siirtää"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "Ikkunaa ei voi siirtää"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "Ikkunat, joiden kokoa ei voi muuttaa"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "Ikkunan kokoa ei voi muuttaa"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "Ikkunat, joita ei voi pienentää"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "Ikkunaa ei voi pienentää"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "Ikkunat, joita ei voi suurentaa"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "Ikkunaa ei voi suurentaa"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "Ikkunat, joita ei voi sulkea"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "Ikkunaa ei voi sulkea"
 
 msgid "No focus"
 msgstr "Ei kohdistusta"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "Ikkunoilla ei tule olemaan fokusoituja"
 
 msgid "Size rules"
@@ -2695,6 +3062,63 @@ msgstr ""
 msgid "Windows on all desktops that should be made sticky"
 msgstr ""
 
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "Värisuodatin"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "Tasasuodatus"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "Seuraava työtila"
+
+#~ msgid ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+#~ msgstr ""
+#~ "Pienin zoomaus kerroin. Arvo 0.5 johtaa 2x zoomiin kun taas arvo 0.25 "
+#~ "johtaa 4x zoomiin."
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr ""
+#~ "Sovita zoomattu alue ikkunaan, kun zoomattu alue liikkuu "
+#~ "kohdistusseurannan takia."
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "Kohdistuksenseurannan viive"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "Vaihda näyttö negatiiviksi"
+
+#~ msgid "Neg Windows"
+#~ msgstr "Negatiivi-ikkunat"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "Ikkunat jotka halutaan aina negatiiveiksi"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "Ei käytössä näissä ikkunoissa"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "Ikkunat joita ei lainkaan haluta negatiiveiksi"
+
+#~ msgid "Set windows rules"
+#~ msgstr "Aseta ikkunan säännöt"
+
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "3D vain pyörittäessä hiirellä"
 
@@ -2783,9 +3207,6 @@ msgstr ""
 
 #~ msgid "Brightness of faded windows"
 #~ msgstr "Häivyttyneiden ikkunoiden kirkkaus"
-
-#~ msgid "Enable ADD Helper on start"
-#~ msgstr "Ota ADD-avustin käyttöön käynnistettäessä"
 
 #~ msgid "Enables ADD helper when it is first loaded."
 #~ msgstr "Ottaa ADD-avustimen käyttöön kun se on ensin ladattu."
@@ -3463,9 +3884,6 @@ msgstr ""
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "Luo kuutiolle pohja"
 
-#~ msgid "Draw top face"
-#~ msgstr "Luo kansi"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "Luo kuutiolle kansi"
 
@@ -3711,10 +4129,6 @@ msgstr ""
 #~ msgid "Show Title on Toggle"
 #~ msgstr "Lumen käyttöönotto"
 
-#, fuzzy
-#~ msgid "Size of these elements"
-#~ msgstr "Esikatselukuvan koko prosenteissa"
-
 #~ msgid "Snow"
 #~ msgstr "Lumi"
 
@@ -3759,9 +4173,6 @@ msgstr ""
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "Aktivoi aina päällimmäisenä"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "Siirry kokoruututilaan"
 
 #~ msgid "Toggle Redirect"
 #~ msgstr "Aktivoi uudelleenohjaus"
@@ -3842,9 +4253,6 @@ msgstr ""
 
 #~ msgid "Number of particles"
 #~ msgstr "Partikkelien lukumäärä"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "Piirrä tulta näytölle"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "Piirrä tulta tai muita partikkeleita näytölle"
@@ -4076,9 +4484,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Valinnan täsmällisyys (näkyvän ikkunan alueen prosenttimäärä, joka tulee "
 #~ "valita valinnan tunnistamiseen)."
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "Nosta ryhmän jokainen ikkuna"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "Suorakulmainen hehku"
@@ -4580,12 +4985,6 @@ msgstr ""
 #~ msgid "Switch viewport in response to mouse gesture"
 #~ msgstr "Vaihda työtilaa vastatoimena hiirenliikkeelle"
 
-#~ msgid "Also negate window decorations, not only the window contents."
-#~ msgstr "Poista ikkunan sisältö ja myös ikkunan koristeet."
-
-#~ msgid "Negate Decorations"
-#~ msgstr "Poista somisteet"
-
 #~ msgid "Debug"
 #~ msgstr "Virheenjäljitys"
 
@@ -4594,9 +4993,6 @@ msgstr ""
 
 #~ msgid "Error"
 #~ msgstr "Virhe"
-
-#~ msgid "Error Notifications"
-#~ msgstr "Virhehuomautukset"
 
 #~ msgid "Fatal"
 #~ msgstr "Tuhoisa"
@@ -5077,9 +5473,6 @@ msgstr ""
 #~ msgid "First color for the thumb highlight gradient of the switcher window."
 #~ msgstr "Ensimmäinen väri vaihtajan korostuksen väriliukuun."
 
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "Ensimmäinen väri vaihtajan nuoleen."
-
 #~ msgid "Flip Down"
 #~ msgstr "Käännä alas"
 
@@ -5180,9 +5573,6 @@ msgstr ""
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "Vaihtajan ikkunan ääriviivojen väri."
 
-#~ msgid "Preview Scale"
-#~ msgstr "Esikatselun skaala"
-
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "Pyöristetyn kulman säde"
 
@@ -5206,9 +5596,6 @@ msgstr ""
 
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr "Näytä vaihtajan ikkuna työtiloja vaihtaessa"
-
-#~ msgid "Size of the preview in %"
-#~ msgstr "Esikatselukuvan koko prosenteissa"
 
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "Vaihtamisen kohteen esikatselun näyttöaika"
@@ -5435,9 +5822,6 @@ msgstr ""
 
 #~ msgid "Saturation settings"
 #~ msgstr "Kylläisyysasetukset"
-
-#~ msgid "Saturation values for windows"
-#~ msgstr "Kylläisyysarvot ikkunoille"
 
 #~ msgid "Saturation window values"
 #~ msgstr "Kylläisyys, ikkunoiden arvot"

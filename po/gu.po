@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2007-12-17 12:25+0530\n"
 "Last-Translator: Krunaliben Patel <krunaliben.patel@gmail.com>\n"
 "Language-Team: gist Gujarati team <info.gist@cdac.in>\n"
@@ -274,7 +273,6 @@ msgstr "બાજુલાત"
 msgid "Sidekick Number of Rotations"
 msgstr "ફેરવવાના બાજુલાતની સંખ્યા"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr "બાજુલાત માટે ફેરવવાની સંખ્યા (રેન્ડમપણા માટે વત્તા અથવા ઓછા 10%)."
 
@@ -439,6 +437,31 @@ msgstr "વિન્ડો નહિં સમાવો"
 
 msgid "Windows to exclude from filtering."
 msgstr "ગાળણમાં નહિં સમાવવાની વિન્ડો."
+
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+msgid "Enable color filter at startup"
+msgstr "તેજ સક્રિય કરો"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "જૂથમાંની દરેક વિન્ડોને વધારો"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
 
 msgid "Filters files"
 msgstr "ફાઈલો ગાળે છે"
@@ -606,6 +629,11 @@ msgstr "એક મોટી દિવાલ"
 
 msgid "One wall per output"
 msgstr "આઉટપુટ પ્રતિ એક દિવાલ"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Inactive viewports"
+msgstr "આગળનો દૃશ્યપોર્ટ"
 
 msgid "Brightness"
 msgstr "તેજસ્વીતા"
@@ -798,12 +826,12 @@ msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "આ અવયવ પ્રમાણે મોટું/નાનું કરો. ઊંચી કિંમત એટલે ઝડપી નાનામોટાપણું."
 
 #, fuzzy
-msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "ન્યૂનતમ ખેંચાણ અવયવ"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
 
 msgid "Sync Mouse"
@@ -871,6 +899,16 @@ msgstr "માઉસ પુનઃમેળવવાનો દર"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "જ્યારે માઉસ પુનઃખેંચવાનો પ્રયાસ કરી રહ્યા હોય ત્યારે ઉમેરવાના હાંસિયાનું માપ"
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "ચોક્કસ નાનામોટાપણાનો અવયવ ૧"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "જ્યારે હોટકી ૧ બદલી રહ્યા હોય ત્યારે જવાનું નાનામોટાપણાનું સ્તર"
+
 msgid "Pan Factor"
 msgstr "પેન અવયવ"
 
@@ -886,46 +924,109 @@ msgstr "ફોકસ ટ્રેકીંગ"
 msgid "Enable focus tracking"
 msgstr "ફોકસ ટ્રેકિંગ સક્રિય કરો"
 
-msgid "Move the zoom area when focus changes."
-msgstr "જ્યારે ફોકસ બદલાય છે ત્યારે નાનામોટાપણાના વિસ્તારને ખસેડો."
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "ફોકસ ટ્રેકિંગ સક્રિય કરો"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "બદલનાર વિન્ડોના તીરનો પ્રથમ રંગ."
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "ફોકસ બદલવા પર નાનામોટાપણાના સ્તરને વિન્ડોમાં બંધબેસાડો"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr ""
-"ફોકસ ટ્રેકીંગના પરિણામો જ્યારે નાનામોટા થયેલ વિસ્તાર ચાલો થાય ત્યારે નાનામોટા વિસ્તારને "
-"વિન્ડોમાં બંધબેસાડો."
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "નાનામોટા થયેલ વિસ્તારને વિન્ડોમાં બંધબેસાડો"
 
 msgid "Autoscale threshold"
 msgstr ""
 
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 
 msgid "Always fit to window on focus track"
 msgstr "ફોકસ ટ્રેક પર હંમેશા વિન્ડો સાથે બંધબેસાડો"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "ફોકસ ટ્રેકીંગના પરિણામો જ્યારે નાનામોટા થયેલ વિસ્તાર ચાલો થાય ત્યારે નાનામોટા વિસ્તારને "
 "વિન્ડોમાં બંધબેસાડો. જ્યારે શરૂઆતમાં મોટું થયેલ નહિં હોય ત્યારે પણ."
 
-msgid "Follow Focus Delay"
-msgstr "ફોકસ વિલંબને અનુસરો"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "જો માઉસ આટલી સેકન્ડોમાં ખસ્યું નહિં હોય તો માત્ર નવી ફોકસ થયેલ વિન્ડો કેન્દ્રિત કરવાનો "
 "પ્રયાસ કરો. જ્યારે સ્લોપી ફોકસ વાપરી રહ્યા હોય ત્યારે કૂદવાનું ટાળવા માટે આ વાપરો."
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"જો માઉસ આટલી સેકન્ડોમાં ખસ્યું નહિં હોય તો માત્ર નવી ફોકસ થયેલ વિન્ડો કેન્દ્રિત કરવાનો "
+"પ્રયાસ કરો. જ્યારે સ્લોપી ફોકસ વાપરી રહ્યા હોય ત્યારે કૂદવાનું ટાળવા માટે આ વાપરો."
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "સ્ક્રીન પર આગ રંગો"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "એનીમેશન"
@@ -933,13 +1034,17 @@ msgstr "એનીમેશન"
 msgid "Speed"
 msgstr "ઝડપ"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "નાનામોટાપણાની ઝડપ"
 
 msgid "Timestep"
 msgstr "સમયપગલું"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "નાનામોટાપણાનું સમયપગલું"
 
 msgid "Filter Linear"
@@ -947,6 +1052,78 @@ msgstr "ગાળક રેખીય"
 
 msgid "Use linear filter when zoomed in"
 msgstr "જ્યારે મોટું થયેલ હોય ત્યારે રેખીય ગાળક વાપરો"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "જ્યારે ફોકસ બદલાય છે ત્યારે નાનામોટાપણાના વિસ્તારને ખસેડો."
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Notification Daemon Fix"
+msgid "Notifications"
+msgstr "સૂચન ડિમન સુધારો"
+
+msgid "Track notifications"
+msgstr ""
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+msgid "Focus position polling"
+msgstr "માઉસ પેનીંગ"
+
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "માઉસ પોલ અંતરાલ"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"માઉસ સ્થાનને કેટલી વાર પોલ કરવો પડશે, મિલિસેકન્ડોમાં. ચોપી વર્તણૂક ઘટાડવા માટે આને "
+"ઘટાડો."
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -991,6 +1168,12 @@ msgstr ""
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
+
+msgid "Zoom Speed"
+msgstr "નાનામોટાપણાની ઝડપ"
+
+msgid "Zoom Timestep"
+msgstr "નાનામોટાપણાનું સમયપગલું"
 
 #, fuzzy
 msgid "Keep fully on screen"
@@ -1065,9 +1248,6 @@ msgstr "માઉસ પેનીંગ"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr ""
 
-msgid "Misc"
-msgstr ""
-
 msgid "Mouse Poll Interval"
 msgstr "માઉસ પોલ અંતરાલ"
 
@@ -1093,20 +1273,85 @@ msgstr "સક્રિય વિન્ડો ઋણ બદલો"
 msgid "Toggle Screen Negative"
 msgstr "સ્ક્રીન ઋણ બદલો"
 
-msgid "Toggle screen negative"
-msgstr "સ્ક્રીન ઋણ બદલો"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "ઋણ વિન્ડો"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "વિન્ડો ઋણ બદલો"
 
-msgid "Windows to be negative by default"
-msgstr "મૂળભૂત રીતે ઋણ બનાવવાની વિન્ડો"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "વિન્ડો નહિં સમાવો"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "ઋણ કરવામાં નહિં સમાવવાની વિન્ડો"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "વિન્ડો કાસ્કેડ કરો"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "પૂર્ણસ્ક્રીન બદલો"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "સ્ક્રીન બોક્સીંગ"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "ગાળણમાં નહિં સમાવવાની વિન્ડો."
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "વિન્ડો પુનઃસંગ્રહો"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "વિન્ડો ઋણ બદલો"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "શણગારો માટે પરાવર્તન"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
 
 msgid "Opacify"
 msgstr "અપારદર્શક બનાવો"
@@ -1499,6 +1744,20 @@ msgstr "ફોન્ટ માપ"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "ફોન્ટ માપ"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "વિન્ડો શીર્ષક ડિસ્પ્લે માટે ફોન્ટ માપ"
+
+msgid "Bold Font"
+msgstr "ઘાટો ફોન્ટ"
+
+msgid "Use bold font for window title display"
+msgstr "વિન્ડો શીર્ષક ડિસ્પ્લે માટે ઘાટા ફોન્ટ વાપરો"
+
 msgid "Text color."
 msgstr "લખાણ રંગ."
 
@@ -1699,14 +1958,8 @@ msgstr "વર્તમાનમાં પસંદિત વિન્ડોન�
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "ઘાટો ફોન્ટ"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr "પસંદ કરે છે કે શું વિન્ડો શીર્ષક ઘાટા ફોન્ટમાં દર્શાવવું જોઈએ કે નહિં."
-
-msgid "Font Size"
-msgstr "ફોન્ટ માપ"
 
 msgid "Font size for the window title"
 msgstr "વિન્ડો શીર્ષકનું ફોન્ટ માપ"
@@ -1793,9 +2046,6 @@ msgstr "પ્રકાશિત રંગ"
 #, fuzzy
 msgid "All windows"
 msgstr "વિન્ડોની તકતી કરો"
-
-msgid "Use bold font for window title display"
-msgstr "વિન્ડો શીર્ષક ડિસ્પ્લે માટે ઘાટા ફોન્ટ વાપરો"
 
 msgid "Font size for window title display"
 msgstr "વિન્ડો શીર્ષક ડિસ્પ્લે માટે ફોન્ટ માપ"
@@ -2163,6 +2413,15 @@ msgid "Select previous panel type window."
 msgstr "વિન્ડો શીર્ષકને ક્યાં મૂકવી તે પસંદ કરે છે."
 
 #, fuzzy
+msgid "Close highlighted"
+msgstr "પસંદિત લંબચોરસનો રંગ ભરો"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
+#, fuzzy
 msgid "Switcher speed"
 msgstr "બદલનાર સ્થિતિ"
 
@@ -2179,7 +2438,12 @@ msgid "Windows that should be shown in switcher"
 msgstr "વિન્ડો કે જે બદલનાર ખસેડોમાં બતાવવામાં આવવી જોઈએ"
 
 #, fuzzy
-msgid "Show minimized windows"
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "ન્યૂનતમ બનાવેલ બતાવો"
+
+#, fuzzy
+msgid "Include minimized windows"
 msgstr "ન્યૂનતમ નહિં કરી શકાય તેવી વિન્ડો"
 
 #, fuzzy
@@ -2197,9 +2461,43 @@ msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr ""
 
 #, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "વિન્ડો પ્રકાશન"
+
+#, fuzzy
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "ઉપર આવેલ વિન્ડોના પ્રકાશન માટે વપરાતો રંગ"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "ટોચનો ચહેરો દોરો"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "વિન્ડોની ઊંચાઈને સંબંધિત તરંગની પહોળાઈ."
+
+#, fuzzy
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr ""
 "વિન્ડોની પસંદગીને માત્ર તેમના પર ક્લિક કરીને પરવાનગી આપે જ્યારે બદલનાર સક્રિય હોય."
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "માઉસ પસંદગીને પરવાનગી આપો"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 #, fuzzy
 msgid "Amount of saturation in percent"
@@ -2246,6 +2544,33 @@ msgstr "કેન્દ્ર મૂકો"
 
 msgid "Right"
 msgstr "જમણું"
+
+msgid "Popup Preview Size"
+msgstr ""
+
+#, fuzzy
+#| msgid "Move to the previous viewport"
+msgid "Size of the previews in the popup"
+msgstr "પાછળના દૃશ્યપોર્ટ પર ખસેડો"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "શીર્ષક કિનારી માપ"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "વિન્ડો શીર્ષકની ફરતેની કિનારીનું માપ"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "ફોન્ટ માપ"
+
+#, fuzzy
+msgid "Size of the icon overlays"
+msgstr "બરફના કરાઓનું માપ"
 
 #, fuzzy
 msgid "Selected Window Highlight"
@@ -2559,8 +2884,9 @@ msgstr "આરંભ કરવા/બંધ કરવા માટેની ક�
 msgid "Window Rules"
 msgstr "વિન્ડો નિયમો"
 
-msgid "Set windows rules"
-msgstr "વિન્ડો નિયમો સુયોજીત કરો"
+#, fuzzy
+msgid "Set rules to apply to windows"
+msgstr "ધૂંધળી વિન્ડોનું સંતુલન"
 
 msgid "Matches"
 msgstr "જોડણીઓ"
@@ -2577,10 +2903,14 @@ msgstr "પેજર અવગણો"
 msgid "Don't show application in pager"
 msgstr "પેજરમાં કાર્યક્રમ બતાવશો નહિં"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "અન્ય વિન્ડો ઉપર"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "અન્ય વિન્ડો નીચે"
 
 msgid "Sticky"
@@ -2609,40 +2939,62 @@ msgstr "કોઈ ARGB દૃશ્યો નથી"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "વિન્ડો કે જે આધારભૂત પારદર્શકતા તરીકે નહિં સમજવામાં આવવી જોઈએ"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "ખસેડી નહિં શકાય તેવી વિન્ડો"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "વિન્ડોને ખસેડી નહિં શકાય તેવી સુયોજીત કરો"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "માપ નહિં બદલી શકાય તેવી વિન્ડો"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "વિન્ડોનું માપ નહિં બદલી શકાય તેવી સુયોજીત કરો"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "ન્યૂનતમ નહિં કરી શકાય તેવી વિન્ડો"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "વિન્ડોને ન્યૂનતમ નહિં કરી શકાય તેવી સુયોજીત કરો"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "મહત્તમ નહિં કરી શકાય તેવી વિન્ડો"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "વિન્ડોને મહત્તમ નહિં કરી શકાય તેવી સુયોજીત કરો"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "બંધ નહિં કરી શકાય તેવી વિન્ડો"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "વિન્ડોને બંધ નહિં કરી શકાય તેવી સુયોજીત કરો"
 
 msgid "No focus"
 msgstr "કોઈ ફોકસ નથી"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "વિન્ડોને ફોકસ હશે નહિં"
 
 msgid "Size rules"
@@ -2757,6 +3109,56 @@ msgstr "\"બધી ડેસ્કટોપ પર\" સ્ટીકી જો�
 
 msgid "Windows on all desktops that should be made sticky"
 msgstr "બધી ડેસ્કટોપ પરની વિન્ડો કે જે સ્ટીકી બનાવવામાં આવવી જોઈએ"
+
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "રંગ ગાળક"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "ગાળક રેખીય"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "આગળનો દૃશ્યપોર્ટ"
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr ""
+#~ "ફોકસ ટ્રેકીંગના પરિણામો જ્યારે નાનામોટા થયેલ વિસ્તાર ચાલો થાય ત્યારે નાનામોટા "
+#~ "વિસ્તારને વિન્ડોમાં બંધબેસાડો."
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "ફોકસ વિલંબને અનુસરો"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "સ્ક્રીન ઋણ બદલો"
+
+#~ msgid "Neg Windows"
+#~ msgstr "ઋણ વિન્ડો"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "મૂળભૂત રીતે ઋણ બનાવવાની વિન્ડો"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "વિન્ડો નહિં સમાવો"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "ઋણ કરવામાં નહિં સમાવવાની વિન્ડો"
+
+#~ msgid "Set windows rules"
+#~ msgstr "વિન્ડો નિયમો સુયોજીત કરો"
 
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "માત્ર માઉસ ફેરવવા પર 3D"
@@ -3492,9 +3894,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "ઘનનો તળિયેનો ચહેરો દોરો"
 
-#~ msgid "Draw top face"
-#~ msgstr "ટોચનો ચહેરો દોરો"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "ઘનનો ટોચનો ચહેરો દોરો"
 
@@ -3707,9 +4106,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 #~ msgid "Previous Element"
 #~ msgstr "પહેલાંનો દૃશ્યપોર્ટ"
 
-#~ msgid "Screen Boxing"
-#~ msgstr "સ્ક્રીન બોક્સીંગ"
-
 #~ msgid "Screen Depth"
 #~ msgstr "સ્ક્રીન ઊંડાઈ"
 
@@ -3719,10 +4115,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 #, fuzzy
 #~ msgid "Show Title on Toggle"
 #~ msgstr "બરફ બદલો"
-
-#, fuzzy
-#~ msgid "Size of these elements"
-#~ msgstr "બરફના કરાઓનું માપ"
 
 #~ msgid "Snow"
 #~ msgstr "બરફ"
@@ -3763,9 +4155,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "હંમેશા-ટોચ-પર બદલો"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "પૂર્ણસ્ક્રીન બદલો"
 
 #~ msgid "Toggle Redirect"
 #~ msgstr "પુનઃદિશામાન બદલો"
@@ -3842,9 +4231,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 
 #~ msgid "Number of particles"
 #~ msgstr "કણોની સંખ્યા"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "સ્ક્રીન પર આગ રંગો"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "સ્ક્રીન પર આગ અથવા અન્ય કણો રંગો"
@@ -4074,9 +4460,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 #~ msgstr ""
 #~ "પસંદગીની ચોકસાઈ (દૃશ્ય વિન્ડો વિસ્તારના ટકા કે જે પસંદગીને ઓળખાવી દેવાય તે માટે પસંદ "
 #~ "થયેલ હોવો જ જોઈએ)."
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "જૂથમાંની દરેક વિન્ડોને વધારો"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "લંબચોરસી તેજ"
@@ -4452,10 +4835,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 
 #~ msgid "Switch viewport in response to mouse gesture"
 #~ msgstr "માઉસ ઈશારાના જવાબમાં દૃશ્યપોર્ટ બદલો"
-
-#, fuzzy
-#~ msgid "Negate Decorations"
-#~ msgstr "શણગારો માટે પરાવર્તન"
 
 #~ msgid "Debug"
 #~ msgstr "ડિબગ"
@@ -4887,9 +5266,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 #~ msgid "Cascade Delta"
 #~ msgstr "કાસ્કેડ ડેલ્ટા"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "વિન્ડો કાસ્કેડ કરો"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr ""
 #~ "જ્યારે બદલવાનું વાપરી રહ્યા હોય ત્યારે તમને જે ગમતો હોય તે તકતીનો પ્રકાર પસંદ કરો."
@@ -4948,9 +5324,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 #~ msgstr ""
 #~ "ડાબે મૂકાયેલ વિન્ડો માટે ફાળવણી ટકા. આ નંબર એ સ્ક્રીન પહોળાઈના ટકા છે, કે જે સક્રિય "
 #~ "વિન્ડોને તે પહોળાઈ તરીકે હશે જ્યારે તકતી થયેલ હોય. ડાબા તકતી પ્રકારને લાગુ પડે છે."
-
-#~ msgid "Restore Windows"
-#~ msgstr "વિન્ડો પુનઃસંગ્રહો"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr "વિન્ડોને તેના મૂળ સ્થાને કે જે તકતી કરવા પહેલાં હતું તેમાં પુનઃસંગ્રહો."
@@ -5156,9 +5529,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 
 #~ msgid "First color for the thumb highlight gradient of the switcher window."
 #~ msgstr "બદલનાર વિન્ડોના થમ્બ પ્રકાશિત ઢાળ માટેનો પ્રથમ રંગ."
-
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "બદલનાર વિન્ડોના તીરનો પ્રથમ રંગ."
 
 #~ msgid "Flip Down"
 #~ msgstr "નીચે પલટાવો"
@@ -5460,10 +5830,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 #~ msgstr "સ્ક્રીન બોક્સીંગ"
 
 #, fuzzy
-#~ msgid "Enable colors"
-#~ msgstr "તેજ સક્રિય કરો"
-
-#, fuzzy
 #~ msgid "Number of fish inside the cube"
 #~ msgstr "આગ કણોની સંખ્યા."
 
@@ -5535,10 +5901,6 @@ msgstr "બધી ડેસ્કટોપ પરની વિન્ડો ક�
 #, fuzzy
 #~ msgid "Saturation settings"
 #~ msgstr "પસંદિત વિન્ડોનું સંતુલન"
-
-#, fuzzy
-#~ msgid "Saturation values for windows"
-#~ msgstr "ધૂંધળી વિન્ડોનું સંતુલન"
 
 #, fuzzy
 #~ msgid "Saturation window values"

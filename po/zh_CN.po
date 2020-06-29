@@ -7,9 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-09-27 11:32+0200\n"
 "Last-Translator: jack kang <jack.kang@live.com>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -268,7 +267,6 @@ msgstr "插袋特效"
 msgid "Sidekick Number of Rotations"
 msgstr "插袋旋转次数"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr "插袋特效的旋转次数(随机增减10%)。"
 
@@ -428,6 +426,32 @@ msgstr "排除窗口"
 msgid "Windows to exclude from filtering."
 msgstr "被排除在过滤之列外的窗口。"
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable ADD Helper on start"
+msgid "Enable color filter at startup"
+msgstr "启动时启用ADD帮助"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "组合窗口统一浮起"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "滤镜文件"
 
@@ -582,6 +606,11 @@ msgstr "一个大墙壁"
 
 msgid "One wall per output"
 msgstr "每个输出一个墙壁"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "未被激活的视口的亮度。"
 
 msgid "Brightness"
 msgstr "亮度"
@@ -762,13 +791,15 @@ msgstr "缩放因子"
 msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr "根据此因子放大/缩小。更高的值代表更快的缩放。"
 
-msgid "Minimum zoom factor"
+#, fuzzy
+#| msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "最小缩放因子"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
-msgstr "所允许的最小缩放因子。0.5等于2倍缩放，0.25等于4倍缩放。"
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
+msgstr ""
 
 msgid "Sync Mouse"
 msgstr "同步鼠标"
@@ -829,6 +860,16 @@ msgstr "鼠标限定边界"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "当试图限制鼠标时所加的边界尺寸。"
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "指定缩放因子1"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "切换热键1时的缩放级别"
+
 msgid "Pan Factor"
 msgstr "摇动镜头因子"
 
@@ -842,23 +883,41 @@ msgstr "聚焦追踪"
 msgid "Enable focus tracking"
 msgstr "启用聚焦追踪"
 
-msgid "Move the zoom area when focus changes."
-msgstr "当聚焦改变时移动缩放区域"
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "启用聚焦追踪"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "切换条窗口箭头的首颜色。"
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "聚焦改变时使缩放级别符合窗口尺寸"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr "当缩放的区域由于聚焦追踪而移动时，使其符合窗口尺寸。"
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "使缩放区域符合窗口尺寸"
 
 msgid "Autoscale threshold"
 msgstr "自动比例阀值"
 
+#, fuzzy
+#| msgid ""
+#| "Only change zoom level (scale) on focus change if the target value is "
+#| "higher than this. Prevents zooming too far in on small popups etc."
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 "如果目标值比此值高则在焦点发生变化时仅改变缩放级别(比例)。防止将较小的弹出窗"
 "口等缩放得过小。"
@@ -866,20 +925,71 @@ msgstr ""
 msgid "Always fit to window on focus track"
 msgstr "聚焦追踪时总是符合窗口"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr "当缩放的区域由于聚焦追踪而移动时使其符合窗口尺寸，即使初始时未被放大。"
 
-msgid "Follow Focus Delay"
-msgstr "跟随聚焦延迟"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "如果鼠标在此秒数内没有移动，则仅尝试将新聚焦的窗口居中。用此功能来避免使用马"
 "虎聚焦时引起的跳转。"
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"如果鼠标在此秒数内没有移动，则仅尝试将新聚焦的窗口居中。用此功能来避免使用马"
+"虎聚焦时引起的跳转。"
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "在屏幕上绘制火焰"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "动画"
@@ -887,13 +997,17 @@ msgstr "动画"
 msgid "Speed"
 msgstr "速度"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "缩放速度"
 
 msgid "Timestep"
 msgstr "时间步长"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "缩放时间步长"
 
 msgid "Filter Linear"
@@ -901,6 +1015,81 @@ msgstr "线性过滤"
 
 msgid "Use linear filter when zoomed in"
 msgstr "放大时使用线性过滤"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "当聚焦改变时移动缩放区域"
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "错误通知"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "错误通知"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "鼠标位置轮询"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "从xserver更新鼠标指针位置"
+
+msgid "Misc"
+msgstr "杂项"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "鼠标轮询间隔"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr "以毫秒为单位，多长时间轮询一次鼠标位置。减少此值可减少不连贯的行为。"
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -943,6 +1132,12 @@ msgstr "鱼泡眼"
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "由键盘启动的放大镜的放大因子。"
+
+msgid "Zoom Speed"
+msgstr "缩放速度"
+
+msgid "Zoom Timestep"
+msgstr "缩放时间步长"
 
 msgid "Keep fully on screen"
 msgstr "保持完全在屏幕上"
@@ -1007,9 +1202,6 @@ msgstr "鼠标位置轮询"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "从xserver更新鼠标指针位置"
 
-msgid "Misc"
-msgstr "杂项"
-
 msgid "Mouse Poll Interval"
 msgstr "鼠标轮询间隔"
 
@@ -1033,20 +1225,84 @@ msgstr "切换激活的窗口反色"
 msgid "Toggle Screen Negative"
 msgstr "切换屏幕反色"
 
-msgid "Toggle screen negative"
-msgstr "切换屏幕的反色"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "反色窗口"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "切换窗口反色"
 
-msgid "Windows to be negative by default"
-msgstr "默认被反色的窗口"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "排除窗口"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "不被反色的窗口"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "层叠窗口"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "切换全屏"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "屏幕广度"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "被排除在过滤之列外的窗口。"
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "恢复窗口"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "切换窗口反色"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+msgid "Negate Decorations"
+msgstr "反色装饰"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr "不仅将窗口内容反色，而且将窗口装饰反色。"
 
 msgid "Opacify"
 msgstr "不透明功能"
@@ -1427,6 +1683,20 @@ msgstr "字体大小"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "字体大小"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "窗口标题显示的字体大小"
+
+msgid "Bold Font"
+msgstr "粗体字体"
+
+msgid "Use bold font for window title display"
+msgstr "为窗口标题显示使用粗题字体"
+
 msgid "Text color."
 msgstr "文本颜色。"
 
@@ -1618,14 +1888,8 @@ msgstr "显示当前选中的窗口的标题。"
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "粗体字体"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr "选择是否应粗体显示窗口标题"
-
-msgid "Font Size"
-msgstr "字体大小"
 
 msgid "Font size for the window title"
 msgstr "窗口标题的字体大小"
@@ -1701,9 +1965,6 @@ msgstr "仅显示高亮的窗口"
 
 msgid "All windows"
 msgstr "全部窗口"
-
-msgid "Use bold font for window title display"
-msgstr "为窗口标题显示使用粗题字体"
 
 msgid "Font size for window title display"
 msgstr "窗口标题显示的字体大小"
@@ -2053,6 +2314,16 @@ msgstr "前一个面板"
 msgid "Select previous panel type window."
 msgstr "选则前一个面板类型窗口。"
 
+#, fuzzy
+#| msgid "Color of highlight rectangle"
+msgid "Close highlighted"
+msgstr "高亮区域的颜色"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
 msgid "Switcher speed"
 msgstr "切换条速度"
 
@@ -2065,7 +2336,14 @@ msgstr "切换条窗口"
 msgid "Windows that should be shown in switcher"
 msgstr "应显示于切换条中的窗口"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "显示最小化"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "显示最小化窗口"
 
 msgid "Auto Change Viewport"
@@ -2081,8 +2359,43 @@ msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr "弹出窗口出现前应被延迟的时间(秒)"
 
 #, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "高亮窗口"
+
+#, fuzzy
+#| msgid "Mode for highlighting the currently selected window"
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "当前选中窗口的高亮模式"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "绘制顶面"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "相对于窗口高度的波动宽度。"
+
+#, fuzzy
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr "当切换条激活时允许点击窗口以选取之。"
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "允许鼠标选取"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 msgid "Amount of saturation in percent"
 msgstr "以百分比为单位的饱和度"
@@ -2122,6 +2435,35 @@ msgstr "居中"
 
 msgid "Right"
 msgstr "右"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "预览比例"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "以百分比为单位的预览尺寸"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "标题边界大小"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "窗口标题四周的边界大小"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "字体大小"
+
+#, fuzzy
+msgid "Size of the icon overlays"
+msgstr "以百分比为单位的预览尺寸"
 
 msgid "Selected Window Highlight"
 msgstr "选中窗口高亮"
@@ -2426,8 +2768,10 @@ msgstr "启动/终止的动作名称"
 msgid "Window Rules"
 msgstr "窗口规则"
 
-msgid "Set windows rules"
-msgstr "设置窗口规则"
+#, fuzzy
+#| msgid "Saturation values for windows"
+msgid "Set rules to apply to windows"
+msgstr "窗口的饱和度值"
 
 msgid "Matches"
 msgstr "匹配"
@@ -2444,10 +2788,14 @@ msgstr "忽略页面调度程序"
 msgid "Don't show application in pager"
 msgstr "不在页面调度程序中显示应用程序"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "位于其他窗口之上"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "位于其他窗口之下"
 
 msgid "Sticky"
@@ -2475,40 +2823,62 @@ msgstr "无ARGB visuals"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "应被视为不支持透明的窗口"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "不可移动的窗口"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "设置窗口为不可移动"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "不可调整大小的窗口"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "设置窗口为不可调大小"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "不可最小化的窗口"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "设置窗口为不可最小化"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "不可最大化的窗口"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "设置窗口为不可最大化"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "不可关闭的窗口"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "设置窗口为不可关闭"
 
 msgid "No focus"
 msgstr "无焦点"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "不会获得焦点的窗口"
 
 msgid "Size rules"
@@ -2624,6 +2994,59 @@ msgstr "“总在所有桌面”与粘着效果匹配"
 msgid "Windows on all desktops that should be made sticky"
 msgstr "总在所有桌面上的窗口应该有粘著效果"
 
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "颜色滤镜"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "线性过滤"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "下一个视口"
+
+#~ msgid ""
+#~ "The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value "
+#~ "of 0.25 equals 4x zoom."
+#~ msgstr "所允许的最小缩放因子。0.5等于2倍缩放，0.25等于4倍缩放。"
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr "当缩放的区域由于聚焦追踪而移动时，使其符合窗口尺寸。"
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "跟随聚焦延迟"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "切换屏幕的反色"
+
+#~ msgid "Neg Windows"
+#~ msgstr "反色窗口"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "默认被反色的窗口"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "排除窗口"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "不被反色的窗口"
+
+#~ msgid "Set windows rules"
+#~ msgstr "设置窗口规则"
+
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "仅在使用鼠标转面时开启3D"
 
@@ -2708,9 +3131,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 
 #~ msgid "Brightness of faded windows"
 #~ msgstr "淡出窗口的亮度"
-
-#~ msgid "Enable ADD Helper on start"
-#~ msgstr "启动时启用ADD帮助"
 
 #~ msgid "Enables ADD helper when it is first loaded."
 #~ msgstr "首次载入时启用ADD帮助。"
@@ -3313,9 +3733,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "绘制立方体的底面"
 
-#~ msgid "Draw top face"
-#~ msgstr "绘制顶面"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "绘制立方体的顶面"
 
@@ -3542,9 +3959,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #~ msgid "Previous Element"
 #~ msgstr "前一个视口"
 
-#~ msgid "Screen Boxing"
-#~ msgstr "屏幕广度"
-
 #~ msgid "Screen Depth"
 #~ msgstr "屏幕厚度"
 
@@ -3554,10 +3968,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #, fuzzy
 #~ msgid "Show Title on Toggle"
 #~ msgstr "飞雪切换"
-
-#, fuzzy
-#~ msgid "Size of these elements"
-#~ msgstr "以百分比为单位的预览尺寸"
 
 #~ msgid "Snow"
 #~ msgstr "飞雪"
@@ -3600,9 +4010,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "切换总是置顶"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "切换全屏"
 
 #~ msgid "Toggle Redirect"
 #~ msgstr "切换重定向"
@@ -3681,9 +4088,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 
 #~ msgid "Number of particles"
 #~ msgstr "粒子数量"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "在屏幕上绘制火焰"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "在屏幕上绘制火焰或其它粒子"
@@ -3899,9 +4303,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #~ "Precision of the selection (percentage of the visible window area which "
 #~ "must be selected for the selection to be recognized)."
 #~ msgstr "选取精度(选框必须超过可视窗口域一定的百分比才能被识别。)"
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "组合窗口统一浮起"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "矩形光晕"
@@ -4382,12 +4783,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #~ msgid "Switch viewport in response to mouse gesture"
 #~ msgstr "根据鼠标手语切换视口"
 
-#~ msgid "Also negate window decorations, not only the window contents."
-#~ msgstr "不仅将窗口内容反色，而且将窗口装饰反色。"
-
-#~ msgid "Negate Decorations"
-#~ msgstr "反色装饰"
-
 #~ msgid "Debug"
 #~ msgstr "调试"
 
@@ -4396,9 +4791,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 
 #~ msgid "Error"
 #~ msgstr "错误"
-
-#~ msgid "Error Notifications"
-#~ msgstr "错误通知"
 
 #~ msgid "Fatal"
 #~ msgstr "致命错误"
@@ -4840,9 +5232,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #~ msgid "Cascade Delta"
 #~ msgstr "层叠Delta"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "层叠窗口"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr "窗口排列方法。"
 
@@ -4895,9 +5284,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #~ msgstr ""
 #~ "窗口左方向占用比率。数值为屏幕宽度百分数，排列时活动窗口将使用其作为宽度。"
 #~ "应用于左排列类型。"
-
-#~ msgid "Restore Windows"
-#~ msgstr "恢复窗口"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr "将窗口恢复到排列之前的位置。"
@@ -5092,9 +5478,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #~ msgid "First color for the thumb highlight gradient of the switcher window."
 #~ msgstr "切换条窗口缩略图高亮渐变的首颜色。"
 
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "切换条窗口箭头的首颜色。"
-
 #~ msgid "Flip Down"
 #~ msgstr "向下翻转"
 
@@ -5195,9 +5578,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "切换窗口的轮廓颜色。"
 
-#~ msgid "Preview Scale"
-#~ msgstr "预览比例"
-
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "圆形边缘的半径"
 
@@ -5228,9 +5608,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr "在切换视口时显示切换条窗口"
-
-#~ msgid "Size of the preview in %"
-#~ msgstr "以百分比为单位的预览尺寸"
 
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "切换目标预览显示时间"
@@ -5491,9 +5868,6 @@ msgstr "总在所有桌面上的窗口应该有粘著效果"
 
 #~ msgid "Saturation settings"
 #~ msgstr "饱和度设置"
-
-#~ msgid "Saturation values for windows"
-#~ msgstr "窗口的饱和度值"
 
 #, fuzzy
 #~ msgid "Saturation window values"

@@ -9,20 +9,20 @@
 	        <plugin>glib</plugin>
 	    </requirement>
 	</deps>
-	<_short>Focus position polling</_short>
-	<_long>Updates the focus pointer position from the accessibility library AT-SPI through dbus</_long>
+	<short>Focus position polling</short>
+	<long>Updates the focus pointer position from the accessibility library AT-SPI through dbus</long>
 	<category>Utility</category>
 	<display>
 	<group>
-	    <_short>Misc</_short>
+	    <short>Misc</short>
 		<option type="bool" name="ignore_links">
-		    <_short>Ignores link focuses</_short>
-		    <_long>If enabled, focuspoll will not track the focus events of hypertext link items</_long>
+		    <short>Ignores link focuses</short>
+		    <long>If enabled, focuspoll will not track the focus events of hypertext link items</long>
 		    <default>true</default>
 		</option>
 		<option type="int" name="focus_poll_interval">
-		    <_short>Focus Poll Interval</_short>
-		    <_long>How often to poll DBus for focus changes, in milliseconds. Reduce this to reduce choppy behavior.</_long>
+		    <short>Focus Poll Interval</short>
+		    <long>How often to poll DBus for focus changes, in milliseconds. Reduce this to reduce choppy behavior.</long>
 		    <default>10</default>
 		    <min>1</min>
 		    <max>500</max>

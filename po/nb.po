@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2008-03-16 19:01+0100\n"
 "Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
 "Language-Team: Norwegian Bokmaal <nb@li.org>\n"
@@ -288,7 +287,6 @@ msgstr "Sidespark"
 msgid "Sidekick Number of Rotations"
 msgstr "Antall rotasjoner for sidespark"
 
-#, no-c-format
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr ""
 "Antall rotasjoner for sidespark (pluss eller minus 10% for tilfeldighet)."
@@ -458,6 +456,32 @@ msgstr "Ekskluder vinduer"
 msgid "Windows to exclude from filtering."
 msgstr "Vinduer som skal ekskluderes fra filtrering."
 
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Enable colors"
+msgid "Enable color filter at startup"
+msgstr "Bruk farger"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "Løft alle vinduer i gruppen"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
+
 msgid "Filters files"
 msgstr "Filterfiler"
 
@@ -616,6 +640,11 @@ msgstr "En stor vegg"
 
 msgid "One wall per output"
 msgstr "En vegg pr skjerm"
+
+#, fuzzy
+#| msgid "Inactive viewport brightness."
+msgid "Inactive viewports"
+msgstr "Skarphet for inaktivt arbeidsområde"
 
 msgid "Brightness"
 msgstr "Skarphet"
@@ -807,12 +836,12 @@ msgstr ""
 "forstørring/forminsking."
 
 #, fuzzy
-msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "Minimum skaleringsfaktor"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
 
 msgid "Sync Mouse"
@@ -883,6 +912,16 @@ msgstr "Tilbakeholdingsmargin for mus"
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr "Størrelsen på margen som legges til når musen forsøkes holdt tilbake."
 
+#, fuzzy
+#| msgid "Specific zoom factor 1"
+msgid "Startup specific zoom factor"
+msgstr "Spesifikk forstørrelsesfaktor 1"
+
+#, fuzzy
+#| msgid "Zoom level to go to when triggering hotkey 1"
+msgid "Zoom level to use when starting ezoom"
+msgstr "Forstørrelsesnivå å gå til når hurtigtast 1 brukes"
+
 msgid "Pan Factor"
 msgstr "Panoreringsfaktor"
 
@@ -898,48 +937,112 @@ msgstr "Fokussporing"
 msgid "Enable focus tracking"
 msgstr "Bruk fokussporing"
 
-msgid "Move the zoom area when focus changes."
-msgstr "Flytt det forstørrede området når fokus endres"
+msgid ""
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
+msgstr ""
 
-msgid "Fit zoom level to window on focus change"
+#, fuzzy
+#| msgid "Enable focus tracking"
+msgid "Enable focus tracking when switching windows"
+msgstr "Bruk fokussporing"
+
+#, fuzzy
+#| msgid "First color of the arrow of the switcher window."
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "Første farge til pilen i byttevinduet."
+
+#, fuzzy
+#| msgid "Fit zoom level to window on focus change"
+msgid "Fit zoom level to newly switched window"
 msgstr "Tilpass forstørrelsesnivå til vindu ved fokusendring"
 
-msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
-msgstr ""
-"Tilpass the forstørrede området til vinduet når det forstørrede området "
-"beveger seg som et resultat av fokussporing."
+#, fuzzy
+#| msgid "Fit zoomed area to window"
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "Tilpass forstørret område til vindu"
 
 msgid "Autoscale threshold"
 msgstr ""
 
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 
 msgid "Always fit to window on focus track"
 msgstr "Tilpass alltid til vindu på fokuseringsspor"
 
+#, fuzzy
+#| msgid ""
+#| "Fit the zoomed area to the window when the zoomed area moves as a result "
+#| "of focus tracking. Even when not initially zoomed in."
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 "Tilpass the forstørrede området til vinduet når det forstørrede området "
 "beveger seg som et resultat av fokussporing. Til og med når det ikke er "
 "forstørret i utgangspunktet."
 
-msgid "Follow Focus Delay"
-msgstr "Forsinkelse for fokusfølging"
+msgid "Tracking delay from mouse to focus mode"
+msgstr ""
 
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
 msgstr ""
 "Prøv kun å sentrere nylig fokuserte vinduer hvis musen ikke har beveget seg "
 "i løpet av så mange sekunder. Bruk dette for å unngå hopping når du bruker "
 "slurvete fokus."
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+#, fuzzy
+#| msgid ""
+#| "Only attempt to center newly focused windows if the mouse hasn't moved in "
+#| "this amount of seconds. Use this to avoid jumping when using sloppy focus."
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+"Prøv kun å sentrere nylig fokuserte vinduer hvis musen ikke har beveget seg "
+"i løpet av så mange sekunder. Bruk dette for å unngå hopping når du bruker "
+"slurvete fokus."
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "Mal brann på skjermen"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
+msgstr ""
 
 msgid "Animation"
 msgstr "Animasjon"
@@ -947,13 +1050,17 @@ msgstr "Animasjon"
 msgid "Speed"
 msgstr "Hastighet"
 
-msgid "Zoom Speed"
+#, fuzzy
+#| msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "Forstørrelseshastighet"
 
 msgid "Timestep"
 msgstr "Tidsskritt"
 
-msgid "Zoom Timestep"
+#, fuzzy
+#| msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "Tidsskritt for forstørrelse"
 
 msgid "Filter Linear"
@@ -961,6 +1068,83 @@ msgstr "Filtrer lineært"
 
 msgid "Use linear filter when zoomed in"
 msgstr "Bruk lineært filter når forstørret"
+
+#, fuzzy
+#| msgid "Move the zoom area when focus changes."
+msgid "Move the zoom area instantly"
+msgstr "Flytt det forstørrede området når fokus endres"
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Notifications"
+msgstr "Feilmeldinger"
+
+#, fuzzy
+#| msgid "Error Notifications"
+msgid "Track notifications"
+msgstr "Feilmeldinger"
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse position polling"
+msgid "Focus position polling"
+msgstr "Prøving av museposisjon"
+
+#, fuzzy
+#| msgid "Updates the mouse pointer position from the xserver"
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr "Oppdaterer musepekerens posisjon fra xserver"
+
+msgid "Misc"
+msgstr "Div"
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Mouse Poll Interval"
+msgid "Focus Poll Interval"
+msgstr "Intervall for museprøving"
+
+#, fuzzy
+#| msgid ""
+#| "How often to poll the mouse position, in miliseconds. Reduce this to "
+#| "reduce choppy behavior."
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
+msgstr ""
+"HVor ofte skal museposisjonen prøves, i millisekunder. Reduser dette for å "
+"minske hakkete oppførsel."
 
 msgid "JPEG"
 msgstr "JPEG"
@@ -1003,6 +1187,12 @@ msgstr "Fiskeøye"
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr "Forstørrelsesfaktor for tastaturstarted forstørrelse."
+
+msgid "Zoom Speed"
+msgstr "Forstørrelseshastighet"
+
+msgid "Zoom Timestep"
+msgstr "Tidsskritt for forstørrelse"
 
 msgid "Keep fully on screen"
 msgstr "Behold helt på skjermen"
@@ -1067,9 +1257,6 @@ msgstr "Prøving av museposisjon"
 msgid "Updates the mouse pointer position from the xserver"
 msgstr "Oppdaterer musepekerens posisjon fra xserver"
 
-msgid "Misc"
-msgstr "Div"
-
 msgid "Mouse Poll Interval"
 msgstr "Intervall for museprøving"
 
@@ -1095,20 +1282,85 @@ msgstr "Skru av/på Negativt aktivt vindu"
 msgid "Toggle Screen Negative"
 msgstr "Skru av/på Negativ skjerm"
 
-msgid "Toggle screen negative"
-msgstr "Skru av/på Negativ skjerm"
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "Neg vinduer"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "Skru av/på Negativt vindu"
 
-msgid "Windows to be negative by default"
-msgstr "Vinduer som skal være negative som standard"
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "Ekskluder vinduer"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "Vinduer som skal ekskluderes fra å bli negative"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "Legg vinduer tett i tett"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "Skru av/på fullskjerm"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "Skjermboksing"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "Vinduer som skal ekskluderes fra filtrering."
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "Gjenopprett vinduer"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "Skru av/på Negativt vindu"
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Speiling for deokrasjoner"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
 
 msgid "Opacify"
 msgstr "Dekk"
@@ -1501,6 +1753,20 @@ msgstr "Skriftstørrelse"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "Skriftstørrelse"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "Skriftstørrelse for visning av vindustittel"
+
+msgid "Bold Font"
+msgstr "Fet skrift"
+
+msgid "Use bold font for window title display"
+msgstr "Bruk fet skrift for visning av vindustittel"
+
 msgid "Text color."
 msgstr "Tekstfarge."
 
@@ -1701,14 +1967,8 @@ msgstr "Vis vindustittel av valgte vindu."
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "Fet skrift"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr "Velg om vindustittelen skal bli vist i fet skrift eller ikke."
-
-msgid "Font Size"
-msgstr "Skriftstørrelse"
 
 msgid "Font size for the window title"
 msgstr "Skriftstørrelse for vindustittelen"
@@ -1790,9 +2050,6 @@ msgstr "Kun valgt vindu"
 
 msgid "All windows"
 msgstr "Alle vinduer"
-
-msgid "Use bold font for window title display"
-msgstr "Bruk fet skrift for visning av vindustittel"
 
 msgid "Font size for window title display"
 msgstr "Skriftstørrelse for visning av vindustittel"
@@ -2161,6 +2418,15 @@ msgid "Select previous panel type window."
 msgstr "Velger hvor vindustittelen plasseres."
 
 #, fuzzy
+msgid "Close highlighted"
+msgstr "Fyllfarge for utvalgsrektangelet"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
+#, fuzzy
 msgid "Switcher speed"
 msgstr "Skiftermodus"
 
@@ -2176,7 +2442,14 @@ msgstr "Filtrerte vinduer"
 msgid "Windows that should be shown in switcher"
 msgstr "Vinduer som skal bli vist i Bytt-skifteren"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "Vis minimerte"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "Vis minimerte vinduer"
 
 #, fuzzy
@@ -2194,9 +2467,43 @@ msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr ""
 
 #, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "Fremhev vindu"
+
+#, fuzzy
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "Farge brukt for å fremheve det svevende vinduet"
+
+#, fuzzy
+#| msgid "Draw top face"
+msgid "Draw Popup"
+msgstr "Tegn topp"
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "Bølgebredden, relativ til vindushøyden."
+
+#, fuzzy
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr ""
 "Tillat utvalg av vinduer ved kun å klikke på dem mens skifteren er aktiv"
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "Tillat musevalg"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 #, fuzzy
 msgid "Amount of saturation in percent"
@@ -2243,6 +2550,33 @@ msgstr "Plasser i midten"
 
 msgid "Right"
 msgstr "Høyre"
+
+msgid "Popup Preview Size"
+msgstr ""
+
+#, fuzzy
+#| msgid "Move to the previous viewport"
+msgid "Size of the previews in the popup"
+msgstr "Flytt til forrige arbeidsområde"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "Kantstørrelse for kant"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "Størrelse på kanten rundt vindustittelen"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "Skriftstørrelse"
+
+#, fuzzy
+msgid "Size of the icon overlays"
+msgstr "Snøfnuggenes størrelse"
 
 #, fuzzy
 msgid "Selected Window Highlight"
@@ -2557,8 +2891,10 @@ msgstr "Hendelsesnavn for start/avslutt"
 msgid "Window Rules"
 msgstr "Vindusregler"
 
-msgid "Set windows rules"
-msgstr "Sett vindusregler"
+#, fuzzy
+#| msgid "Saturation values for windows"
+msgid "Set rules to apply to windows"
+msgstr "Metningsverdier for vinduer"
 
 msgid "Matches"
 msgstr "Treff"
@@ -2575,10 +2911,14 @@ msgstr "Hopp over oversikt"
 msgid "Don't show application in pager"
 msgstr "Ikke vis program i oversikt"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "Over andre vinduer"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "Under andre vinduer"
 
 msgid "Sticky"
@@ -2607,40 +2947,62 @@ msgstr "Ingen ARGB-synligheter"
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "Vinduer som skal bli behandles som om de ikke støtter gjennomsiktighet"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "Ikke-bevegelige vinduer"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "Sett vindu som ikke-bevegelig"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "Vinduer som ikke kan endre størrelse"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "Umuliggjør størrelsesendring av vindu"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "Ikke-minimerbare vinduer"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "Sett vindu som ikke-minimerbart"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "Ikke-maksimerbare vinduer"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "Sett vindu som ikke-maksimerbart"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "Ikke-lukkbare vinduer"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "Sett vindu som ikke-lukkbart"
 
 msgid "No focus"
 msgstr "Ingen fokus"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "Vinduer som ikke vil få fokus"
 
 msgid "Size rules"
@@ -2756,6 +3118,56 @@ msgstr "Vinduer som klistres ved \"På alle arbeidsområder\""
 
 msgid "Windows on all desktops that should be made sticky"
 msgstr "Vinduer på alle skrivebord som skal klistres"
+
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "Fargefilter"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filter Linear"
+msgid "Filter loading failure"
+msgstr "Filtrer lineært"
+
+#, fuzzy
+#| msgid "Next viewport"
+msgid "Next Filter"
+msgstr "Neste arbeidsområde"
+
+#~ msgid ""
+#~ "Fit the zoomed area to the window when the zoomed area moves as a result "
+#~ "of focus tracking."
+#~ msgstr ""
+#~ "Tilpass the forstørrede området til vinduet når det forstørrede området "
+#~ "beveger seg som et resultat av fokussporing."
+
+#~ msgid "Follow Focus Delay"
+#~ msgstr "Forsinkelse for fokusfølging"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "Skru av/på Negativ skjerm"
+
+#~ msgid "Neg Windows"
+#~ msgstr "Neg vinduer"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "Vinduer som skal være negative som standard"
+
+#~ msgid "Exclude Windows"
+#~ msgstr "Ekskluder vinduer"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "Vinduer som skal ekskluderes fra å bli negative"
+
+#~ msgid "Set windows rules"
+#~ msgstr "Sett vindusregler"
 
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "3D bare ved muserotasjon"
@@ -3497,9 +3909,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #~ msgid "Draw bottom face of the cube"
 #~ msgstr "Tegn bunnen på kuben"
 
-#~ msgid "Draw top face"
-#~ msgstr "Tegn topp"
-
 #~ msgid "Draw top face of the cube"
 #~ msgstr "Tegn toppen på kuben"
 
@@ -3712,9 +4121,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #~ msgid "Previous Element"
 #~ msgstr "Forrige arbeidsområde"
 
-#~ msgid "Screen Boxing"
-#~ msgstr "Skjermboksing"
-
 #~ msgid "Screen Depth"
 #~ msgstr "Skjermdybde"
 
@@ -3724,10 +4130,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #, fuzzy
 #~ msgid "Show Title on Toggle"
 #~ msgstr "Slå av/på snø"
-
-#, fuzzy
-#~ msgid "Size of these elements"
-#~ msgstr "Snøfnuggenes størrelse"
 
 #~ msgid "Snow"
 #~ msgstr "Snø"
@@ -3768,9 +4170,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "Skru av/på alltid-øverst"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "Skru av/på fullskjerm"
 
 #~ msgid "Toggle Redirect"
 #~ msgstr "Skru av/på videresend"
@@ -3847,9 +4246,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 
 #~ msgid "Number of particles"
 #~ msgstr "Antall partikler"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "Mal brann på skjermen"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "Mal brann eller andre partikler på skjermen"
@@ -4083,9 +4479,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #~ msgstr ""
 #~ "Presisjon for utvalget (prosentandel av det synlige vindusområdet som må "
 #~ "velges for at utvalget skal bli gjenkjent)."
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "Løft alle vinduer i gruppen"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "Rektangulær glød"
@@ -4584,10 +4977,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #~ msgid "Switch viewport in response to mouse gesture"
 #~ msgstr "Bytt arbeidsområde ved musegest"
 
-#, fuzzy
-#~ msgid "Negate Decorations"
-#~ msgstr "Speiling for deokrasjoner"
-
 #~ msgid "Debug"
 #~ msgstr "Feilsøk"
 
@@ -4596,9 +4985,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 
 #~ msgid "Error"
 #~ msgstr "Feil"
-
-#~ msgid "Error Notifications"
-#~ msgstr "Feilmeldinger"
 
 #~ msgid "Fatal"
 #~ msgstr "Fatal"
@@ -5057,9 +5443,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #~ msgid "Cascade Delta"
 #~ msgstr "Mellomrom for tett-i-tett"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "Legg vinduer tett i tett"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr "Velg flisleggingstypen du vil bruke når du slår av/på."
 
@@ -5120,9 +5503,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #~ "Prosentandel for oppdekning for vinduer plassert til venstre. Dette "
 #~ "tallet er prosentandel av skjermbredde, som det aktive vinduet vil ha som "
 #~ "dets bredde når det blir flislagt. Gjelder for Venstre flisleggingstype."
-
-#~ msgid "Restore Windows"
-#~ msgstr "Gjenopprett vinduer"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr "Gjenopprett vinduer til posisjonen de hadde før flislegging."
@@ -5334,9 +5714,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #~ msgstr ""
 #~ "Første farge for fargeovergangen for miniatyrfremhevingen til "
 #~ "byttevinduet."
-
-#~ msgid "First color of the arrow of the switcher window."
-#~ msgstr "Første farge til pilen i byttevinduet."
 
 #~ msgid "Flip Down"
 #~ msgstr "Bytt ned"
@@ -5653,9 +6030,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 #~ msgid "Dolphin size."
 #~ msgstr "Delfinstørrelse."
 
-#~ msgid "Enable colors"
-#~ msgstr "Bruk farger"
-
 #~ msgid "Fish size"
 #~ msgstr "Fiskstørrelse"
 
@@ -5731,9 +6105,6 @@ msgstr "Vinduer på alle skrivebord som skal klistres"
 
 #~ msgid "Saturation settings"
 #~ msgstr "Instillinger for metning"
-
-#~ msgid "Saturation values for windows"
-#~ msgstr "Metningsverdier for vinduer"
 
 #~ msgid "Saturation window values"
 #~ msgstr "Metningsverdier for vinduer"

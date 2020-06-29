@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <compiz>
     <plugin name="session">
-	<_short>Session Management</_short>
-	<_long>Talk to session manager and save/load window state</_long>
+	<short>Session Management</short>
+	<long>Talk to session manager and save/load window state</long>
 	<category>Utility</category>
 	<deps>
 	    <relation type="before">
@@ -11,13 +11,13 @@
 	</deps>
 	<display>
 	    <option name="save_legacy" type="bool">
-		<_short>Save Legacy Apps</_short>
-		<_long>Also try to save and restore legacy apps that don't support the X session management protocol. This setting only should be used in KDE, as only KDE's session manager also saves those applications.</_long>
+		<short>Save Legacy Apps</short>
+		<long>Also try to save and restore legacy apps that don't support the X session management protocol. This setting only should be used in KDE, as only KDE's session manager also saves those applications.</long>
 		<default>false</default>
 	    </option>
 	    <option name="ignore_match" type="match">
-	    	<_short>Windows to ignore</_short>
-	    	<_long>Matching windows will not be handled by the session plugin</_long>
+	    	<short>Windows to ignore</short>
+	    	<long>Matching windows will not be handled by the session plugin</long>
     		<default/>
             </option>
 	</display>

@@ -7,9 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: compiz-plugins-main\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/"
-"issues\n"
-"POT-Creation-Date: 2017-01-12 18:19+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/compiz/compiz-plugins-main/issues\n"
+"POT-Creation-Date: 2020-06-21 22:23+0200\n"
 "PO-Revision-Date: 2009-06-27 00:47+0200\n"
 "Last-Translator: Claudia Mechtler <claudia.mechtler.sj@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -301,7 +300,7 @@ msgstr "Trudeln"
 msgid "Sidekick Number of Rotations"
 msgstr "Trudeln Anzahl der Drehungen"
 
-#, fuzzy, no-c-format
+#, fuzzy
 msgid "Number of rotations for Sidekick (plus or minus 10% for randomness)."
 msgstr "Anzahl der Umdrehungen für den Sidekick (plus oder minus 10% Zufall)"
 
@@ -469,6 +468,32 @@ msgstr "Ausgeschlossene Fenster"
 
 msgid "Windows to exclude from filtering."
 msgstr "Fenster, die niemals gefiltert werden sollen"
+
+msgid "Enable notifications upon filter change"
+msgstr ""
+
+msgid ""
+"Whether to show a notification when switching filter. This requires for the "
+"plugin to have been built with libnotify support."
+msgstr ""
+
+# FIXME -- we need a better word for 'glow'
+#, fuzzy
+msgid "Enable color filter at startup"
+msgstr "Aktiviere Glüh-Effekt"
+
+#, fuzzy
+#| msgid "Raise every window in the group"
+msgid "Filter every window at startup."
+msgstr "Hebe alle Fenster in der Gruppe an"
+
+msgid "Enable cumulative filters mode"
+msgstr ""
+
+msgid ""
+"Whether a mode applying all filters at once is enabled and can be cycled "
+"through with the \"Switch filter\" binding."
+msgstr ""
 
 msgid "Filters files"
 msgstr "Filterdateien"
@@ -642,6 +667,10 @@ msgstr ""
 
 msgid "One wall per output"
 msgstr ""
+
+#, fuzzy
+msgid "Inactive viewports"
+msgstr "Nächste Arbeitsfläche"
 
 msgid "Brightness"
 msgstr "Helligkeit"
@@ -838,12 +867,12 @@ msgid "Zoom in/out by this factor. Higher value means quicker zooming."
 msgstr ""
 
 #, fuzzy
-msgid "Minimum zoom factor"
+msgid "Maximum zoom factor"
 msgstr "Kleinster Größen-Faktor"
 
 msgid ""
-"The minimum allowed zoom factor. A value of 0.5 equals 2x zoom, a value of "
-"0.25 equals 4x zoom."
+"The maximum allowed zoom factor. Zoom will not go further than this value "
+"eg: 8x."
 msgstr ""
 
 msgid "Sync Mouse"
@@ -904,6 +933,12 @@ msgstr ""
 msgid "The size of the margin to add when attempting to restrain the mouse."
 msgstr ""
 
+msgid "Startup specific zoom factor"
+msgstr ""
+
+msgid "Zoom level to use when starting ezoom"
+msgstr ""
+
 msgid "Pan Factor"
 msgstr ""
 
@@ -918,23 +953,34 @@ msgstr "Fokusanimation"
 msgid "Enable focus tracking"
 msgstr ""
 
-msgid "Move the zoom area when focus changes."
-msgstr ""
-
-msgid "Fit zoom level to window on focus change"
-msgstr ""
-
 msgid ""
-"Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking."
+"Move the zoom area when focus changes. You may see the mousepoll and "
+"focuspoll modules options for more"
 msgstr ""
+
+#, fuzzy
+#| msgid "Enables the drawing of the backside of windows."
+msgid "Enable focus tracking when switching windows"
+msgstr "Aktiviert das Zeichnen der Fensterrückseiten."
+
+#, fuzzy
+msgid "Move the zoom area to the center of a newly switched window."
+msgstr "Zweite Farbe des Peiles des Switcher Fensters"
+
+#, fuzzy
+msgid "Fit zoom level to newly switched window"
+msgstr "Gefilterte Fenster"
+
+#, fuzzy
+msgid "Fit the zoomed area to the window when it switches."
+msgstr "Gefilterte Fenster"
 
 msgid "Autoscale threshold"
 msgstr ""
 
 msgid ""
-"Only change zoom level (scale) on focus change if the target value is higher "
-"than this. Prevents zooming too far in on small popups etc."
+"Only change zoom level (scale) on focus change if we don't zoom more than "
+"that value. Prevents zooming too far in on small popups etc."
 msgstr ""
 
 msgid "Always fit to window on focus track"
@@ -942,15 +988,52 @@ msgstr ""
 
 msgid ""
 "Fit the zoomed area to the window when the zoomed area moves as a result of "
-"focus tracking. Even when not initially zoomed in."
+"focus tracking, even when not initially zoomed in."
 msgstr ""
 
-msgid "Follow Focus Delay"
+msgid "Tracking delay from mouse to focus mode"
 msgstr ""
 
 msgid ""
-"Only attempt to center newly focused windows if the mouse hasn't moved in "
-"this amount of seconds. Use this to avoid jumping when using sloppy focus."
+"Only attempt to follow focus if the mouse hasn't moved in this amount of "
+"seconds. Use this to avoid zoom jumping everywhere on the screen due to "
+"external events while trying to use the mouse."
+msgstr ""
+
+msgid "Tracking delay from focus to mouse mode"
+msgstr ""
+
+msgid ""
+"Only attempt to follow mouse if the focus hasn't moved in this amount of "
+"seconds. Use this to avoid jumping only due to small accidental mouse "
+"movements. This does not have effect if the mouse warp option is enabled."
+msgstr ""
+
+msgid "Keep Mouse centered inside zoom area"
+msgstr ""
+
+msgid ""
+"If activated, the mouse will always be centered when in mouse sync mode, if "
+"not, it will move around the zoom area"
+msgstr ""
+
+#, fuzzy
+#| msgid "Paint fire on the screen"
+msgid "Restrain the zoom area inside the screen"
+msgstr "Zeichne Feuer auf den Bildschirm"
+
+msgid ""
+"If enabled, zoom area will stay inside the screen, if not, zoom area can go "
+"over screen borders (it will show empty black space)"
+msgstr ""
+
+msgid "When switching focus back to mouse, warp mouse inside the zoomed area"
+msgstr ""
+
+msgid ""
+"When following a keyboard focus, one can want the mouse to come back into "
+"the field of vision before moving it. avoids jumping to another part of the "
+"screen when switching mouse/keyboard focus."
 msgstr ""
 
 msgid "Animation"
@@ -960,14 +1043,14 @@ msgid "Speed"
 msgstr "Geschwindigkeit"
 
 #, fuzzy
-msgid "Zoom Speed"
+msgid "Zoom Change Speed"
 msgstr "Schneegeschwindigkeit"
 
 msgid "Timestep"
 msgstr "Zeitschritt"
 
 #, fuzzy
-msgid "Zoom Timestep"
+msgid "Zoom Change Timestep"
 msgstr "Zeitschritt"
 
 #, fuzzy
@@ -975,6 +1058,69 @@ msgid "Filter Linear"
 msgstr "Filterdateien"
 
 msgid "Use linear filter when zoomed in"
+msgstr ""
+
+msgid "Move the zoom area instantly"
+msgstr ""
+
+msgid ""
+"When enabled, zoom area is warped instantly to focus position. When "
+"disabled, zoom area makes a smooth move to the focus position"
+msgstr ""
+
+#, fuzzy
+#| msgid "Notification Daemon Fix"
+msgid "Notifications"
+msgstr "Workaround für Fenster von 'Notification Daemon'"
+
+msgid "Track notifications"
+msgstr ""
+
+msgid "Follow notifications like focus change"
+msgstr ""
+
+msgid "Minimum notification showing time"
+msgstr ""
+
+msgid ""
+"The minimum amount of time a notification is shown regadless of other focus "
+"events"
+msgstr ""
+
+msgid "Maximum notification showing time"
+msgstr ""
+
+msgid ""
+"The maximum amount of time a notification is shown for even if it is still "
+"on screen"
+msgstr ""
+
+msgid "Focus position polling"
+msgstr ""
+
+msgid ""
+"Updates the focus pointer position from the accessibility library AT-SPI "
+"through dbus"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Ignores link focuses"
+msgstr ""
+
+msgid ""
+"If enabled, focuspoll will not track the focus events of hypertext link items"
+msgstr ""
+
+#, fuzzy
+#| msgid "Scale interval"
+msgid "Focus Poll Interval"
+msgstr "Skalierungsinterval"
+
+msgid ""
+"How often to poll DBus for focus changes, in milliseconds. Reduce this to "
+"reduce choppy behavior."
 msgstr ""
 
 msgid "JPEG"
@@ -1020,6 +1166,14 @@ msgstr ""
 
 msgid "Zoom factor for keyboard initiated magnifier."
 msgstr ""
+
+#, fuzzy
+msgid "Zoom Speed"
+msgstr "Schneegeschwindigkeit"
+
+#, fuzzy
+msgid "Zoom Timestep"
+msgstr "Zeitschritt"
 
 #, fuzzy
 msgid "Keep fully on screen"
@@ -1093,9 +1247,6 @@ msgstr ""
 msgid "Updates the mouse pointer position from the xserver"
 msgstr ""
 
-msgid "Misc"
-msgstr ""
-
 msgid "Mouse Poll Interval"
 msgstr ""
 
@@ -1119,20 +1270,86 @@ msgstr "Schaltet die Negierung des Fensterinhaltes des aktiven Fensters um."
 msgid "Toggle Screen Negative"
 msgstr "Bildschirminhalt negieren"
 
-msgid "Toggle screen negative"
-msgstr "Schaltet die Negierung des gesamten Bildschirminhaltes um."
+msgid ""
+"Toggle all windows negative, except for windows in the \"Screen Exclusions\" "
+"list"
+msgstr ""
 
-msgid "Neg Windows"
-msgstr "Negierbare Fenster"
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Toggle Matched Windows Negative"
+msgstr "Negierung des aktuellen Fensters umschalten."
 
-msgid "Windows to be negative by default"
-msgstr "Fenster, die standardmäßig negiert werden sollen."
+msgid "Toggles the windows negative matched by the \"Matched Windows\" list"
+msgstr ""
 
-msgid "Exclude Windows"
-msgstr "Ausgeschlossene Fenster"
+msgid "Auto-Toggle Matched Windows"
+msgstr ""
 
-msgid "Windows to exclude from negating"
-msgstr "Fenster, die niemals negiert werden sollen"
+msgid "Automatically toggle windows in the \"Matched Windows\" list by default"
+msgstr ""
+
+#, fuzzy
+#| msgid "Cascade Windows"
+msgid "Matched Windows"
+msgstr "Ordne Fenster stufenförmig an"
+
+msgid ""
+"Windows to affect when using the \"Toggle Matched Windows Negative\" "
+"keybinding or \"Auto-Toggle Matched Windows\""
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Auto-Toggle Screen"
+msgstr "Vollbildmodus umschalten"
+
+msgid ""
+"Automatically toggle all windows by default, except for those in the "
+"\"Screen Exclusions\" list"
+msgstr ""
+
+# FIXME -- We need a better translation for 'Boxing'
+#, fuzzy
+#| msgid "Screen Boxing"
+msgid "Screen Exclusions"
+msgstr "Bildschirm Boxen"
+
+#, fuzzy
+#| msgid "Windows to exclude from filtering."
+msgid "Windows to exclude when toggling the screen."
+msgstr "Fenster, die niemals gefiltert werden sollen"
+
+#, fuzzy
+#| msgid "Restore Windows"
+msgid "Preserve Toggled Windows"
+msgstr "Fenster wiederherstellen"
+
+msgid ""
+"When windows have been toggled using the \"Toggle Windows Negative\" "
+"keybinding, preserve their state when toggling the screen. Note that toggled "
+"windows' state will not be preserved between Compiz restarts. To use this "
+"option, disable \"Auto-Clear Toggled Window State\"."
+msgstr ""
+
+#, fuzzy
+#| msgid "Toggle Window Negative"
+msgid "Auto-Clear Toggled Window State"
+msgstr "Negierung des aktuellen Fensters umschalten."
+
+msgid ""
+"A window that has been toggled using the \"Toggle Windows Negative\" "
+"keybinding will have its state discarded when toggling a match group that "
+"includes that window. This will clear window states even if \"Preserve "
+"Toggled Windows\" is selected."
+msgstr ""
+
+#, fuzzy
+msgid "Negate Decorations"
+msgstr "Reflektionen für Fensterrahmen"
+
+msgid "Also negate window decorations, not only the window contents."
+msgstr ""
 
 # FIXME -- Maybe we can find a better name for the plugin
 msgid "Opacify"
@@ -1538,6 +1755,20 @@ msgstr "Textgröße"
 msgid "Name of the font to display resize info."
 msgstr ""
 
+msgid "Font Size"
+msgstr "Textgröße"
+
+#, fuzzy
+#| msgid "Font size for window title display"
+msgid "Font size for resize info display"
+msgstr "Größe des Fenstertitels"
+
+msgid "Bold Font"
+msgstr "Fettdruck für Schrift verwenden"
+
+msgid "Use bold font for window title display"
+msgstr "Verwende fette Schriftart für Fenstertielanzeige."
+
 msgid "Text color."
 msgstr "Textfarbe"
 
@@ -1747,16 +1978,10 @@ msgstr "Zeige Fenstertitel für ausgewähltes Fenster an."
 msgid "Name of the font to display title."
 msgstr ""
 
-msgid "Bold Font"
-msgstr "Fettdruck für Schrift verwenden"
-
 msgid "Selects if the window title should be displayed in bold font or not."
 msgstr ""
 "Legt fest, ob der Fenstertitel in Fett- oder Normaldruck dargestellt werden "
 "soll."
-
-msgid "Font Size"
-msgstr "Textgröße"
 
 msgid "Font size for the window title"
 msgstr "Schriftgröße für Fenstertitel"
@@ -1842,9 +2067,6 @@ msgstr "Gefilterte Fenster"
 
 msgid "All windows"
 msgstr "Sämtliche Fenster"
-
-msgid "Use bold font for window title display"
-msgstr "Verwende fette Schriftart für Fenstertielanzeige."
 
 msgid "Font size for window title display"
 msgstr "Größe des Fenstertitels"
@@ -2244,6 +2466,15 @@ msgid "Select previous panel type window."
 msgstr "Auswahl der Platzierung des Fenstertitels"
 
 #, fuzzy
+msgid "Close highlighted"
+msgstr "Füllfarbe für Selektionsrahmen"
+
+msgid ""
+"Closes the currently highlighted window. If the switcher is not in use, "
+"closes the currently active window instead."
+msgstr ""
+
+#, fuzzy
 msgid "Switcher speed"
 msgstr "Umschalt-Modus"
 
@@ -2259,7 +2490,14 @@ msgstr "Gefilterte Fenster"
 msgid "Windows that should be shown in switcher"
 msgstr "Fenster, die im Umschalter angezeigt werden sollen"
 
-msgid "Show minimized windows"
+#, fuzzy
+#| msgid "Show Minimized"
+msgid "Include Minimized"
+msgstr "Zeige minimierte Fenster an"
+
+#, fuzzy
+#| msgid "Show minimized windows"
+msgid "Include minimized windows"
 msgstr "Wenn ausgewählt, werden auch minimierte Fenster angezeigt."
 
 #, fuzzy
@@ -2277,10 +2515,42 @@ msgid "Time (in s) the popup window should be delayed before appearing"
 msgstr ""
 
 #, fuzzy
+#| msgid "Window Highlight"
+msgid "Window Highlight Delay"
+msgstr "Fenstervervorhebung"
+
+#, fuzzy
+msgid "Time (in s) to wait before highlighting the current window"
+msgstr "Farbe, die zum Hervorheben des aktuellen Fensters verwendet wird"
+
+msgid "Draw Popup"
+msgstr ""
+
+msgid "Whether to draw the popup window"
+msgstr ""
+
+msgid "Inherit Highlight Delay"
+msgstr ""
+
+#, fuzzy
+#| msgid "The width of the wave relative to the window height."
+msgid "When enabled, use the popup delay for the window highlight"
+msgstr "Breite der Welle in Relation zur Fensterbreite"
+
+#, fuzzy
 msgid "Allow selection of windows from the switcher window with the mouse"
 msgstr ""
 "Erlaubt die Auswahl von Fenstern durch Anklicken während der Ring angezeigt "
 "wird."
+
+#, fuzzy
+#| msgid "Allow Mouse Selection"
+msgid "Allow Mouse Close"
+msgstr "Erlaube Mausauswahl"
+
+msgid ""
+"Close window on clicking its preview in the popup with the middle button"
+msgstr ""
 
 # FIXME - pager = ?
 #, fuzzy
@@ -2331,6 +2601,35 @@ msgstr "In der Bildschirmmitte"
 
 msgid "Right"
 msgstr "Rechts"
+
+#, fuzzy
+#| msgid "Preview Scale"
+msgid "Popup Preview Size"
+msgstr "Vorschaugröße"
+
+#, fuzzy
+#| msgid "Size of the preview in %"
+msgid "Size of the previews in the popup"
+msgstr "Größe der Vorschau in Prozent"
+
+#, fuzzy
+#| msgid "Title Border Size"
+msgid "Popup Border Size"
+msgstr "Titelrahmen-Größe"
+
+#, fuzzy
+#| msgid "Size of the border around the window title"
+msgid "Size of the border of the popup"
+msgstr "Größe des Rahmens um den Fenstertitel"
+
+#, fuzzy
+#| msgid "Font Size"
+msgid "Icon Size"
+msgstr "Textgröße"
+
+#, fuzzy
+msgid "Size of the icon overlays"
+msgstr "Größe der Schneeflocken"
 
 #, fuzzy
 msgid "Selected Window Highlight"
@@ -2648,8 +2947,9 @@ msgstr ""
 msgid "Window Rules"
 msgstr "Regeln für Fenster"
 
-msgid "Set windows rules"
-msgstr "Regeln für bestimmte Fenster festlegen"
+#, fuzzy
+msgid "Set rules to apply to windows"
+msgstr "Sättigung von verblassten Fenstern"
 
 msgid "Matches"
 msgstr "Fensterregeln"
@@ -2667,10 +2967,14 @@ msgstr "Nicht im Pager"
 msgid "Don't show application in pager"
 msgstr "Fenster, die nicht im Pager angezeigt werden sollen"
 
-msgid "Above others windows"
+#, fuzzy
+#| msgid "Above others windows"
+msgid "Above other windows"
 msgstr "Fenster, die immer über anderen Fenstern angeordnet werden sollen"
 
-msgid "Below others windows"
+#, fuzzy
+#| msgid "Below others windows"
+msgid "Below other windows"
 msgstr "Fenster, die immer unter anderen Fenstern angeordnet werden sollen"
 
 # FIXME
@@ -2701,40 +3005,62 @@ msgstr ""
 msgid "Windows that should be treated as not supporting transparency"
 msgstr "Fenster, die nicht ausgeblendet werden sollen"
 
-msgid "Non movable windows"
+#, fuzzy
+#| msgid "Non movable windows"
+msgid "Non-movable windows"
 msgstr "Nicht verschiebbar"
 
-msgid "Set window as non movable"
+#, fuzzy
+#| msgid "Set window as non movable"
+msgid "Set window as non-movable"
 msgstr "Fenster, die nicht verschoben werden können sollen"
 
-msgid "Non resizable windows"
+#, fuzzy
+#| msgid "Non resizable windows"
+msgid "Non-resizable windows"
 msgstr "Nicht skalierbar"
 
-msgid "Set window as non resizable"
+#, fuzzy
+#| msgid "Set window as non resizable"
+msgid "Set window as non-resizable"
 msgstr "Fenster, die nicht skaliert werden können sollen"
 
-msgid "Non minimizable windows"
+#, fuzzy
+#| msgid "Non minimizable windows"
+msgid "Non-minimizable windows"
 msgstr "Nicht minimierbar"
 
-msgid "Set window as non minimizable"
+#, fuzzy
+#| msgid "Set window as non minimizable"
+msgid "Set window as non-minimizable"
 msgstr "Fenster, die nicht minimiert werden können sollen"
 
-msgid "Non maximizable windows"
+#, fuzzy
+#| msgid "Non maximizable windows"
+msgid "Non-maximizable windows"
 msgstr "Nicht maximierbar"
 
-msgid "Set window as non maximizable"
+#, fuzzy
+#| msgid "Set window as non maximizable"
+msgid "Set window as non-maximizable"
 msgstr "Fenster, die nicht maximiert werden können sollen"
 
-msgid "Non closable windows"
+#, fuzzy
+#| msgid "Non closable windows"
+msgid "Non-closable windows"
 msgstr "Nicht schließbar"
 
-msgid "Set window as non closable"
+#, fuzzy
+#| msgid "Set window as non closable"
+msgid "Set window as non-closable"
 msgstr "Fenster, die nicht nicht geschlossen werden können sollen"
 
 msgid "No focus"
 msgstr "Ohne Fokus"
 
-msgid "Windows will not have focus"
+#, fuzzy
+#| msgid "Windows will not have focus"
+msgid "Windows that should not have focus"
 msgstr "Fenster, die niemals Fokus erhalten können sollen"
 
 msgid "Size rules"
@@ -2855,6 +3181,44 @@ msgstr "Auf allen Desktops zeigen."
 msgid "Windows on all desktops that should be made sticky"
 msgstr ""
 "Fenster aller Arbeitsoberflächen, welche 'klebrig' gemacht werden sollen"
+
+#, fuzzy
+#| msgid "Color filter"
+msgid "Color filter change"
+msgstr "Farbfilter"
+
+msgid "Cumulative filters mode"
+msgstr ""
+
+#, c-format
+msgid "Using %s filter"
+msgstr ""
+
+#, fuzzy
+msgid "Filter loading failure"
+msgstr "Filterdateien"
+
+#, fuzzy
+msgid "Next Filter"
+msgstr "Nächste Arbeitsfläche"
+
+#~ msgid "Toggle screen negative"
+#~ msgstr "Schaltet die Negierung des gesamten Bildschirminhaltes um."
+
+#~ msgid "Neg Windows"
+#~ msgstr "Negierbare Fenster"
+
+#~ msgid "Windows to be negative by default"
+#~ msgstr "Fenster, die standardmäßig negiert werden sollen."
+
+#~ msgid "Exclude Windows"
+#~ msgstr "Ausgeschlossene Fenster"
+
+#~ msgid "Windows to exclude from negating"
+#~ msgstr "Fenster, die niemals negiert werden sollen"
+
+#~ msgid "Set windows rules"
+#~ msgstr "Regeln für bestimmte Fenster festlegen"
 
 #~ msgid "3D Only On Mouse Rotate"
 #~ msgstr "3D-Modus nur bei manueller Rotation mit der Maus"
@@ -3737,10 +4101,6 @@ msgstr ""
 #~ msgid "Previous Element"
 #~ msgstr "Vorherige Arbeitsfläche"
 
-# FIXME -- We need a better translation for 'Boxing'
-#~ msgid "Screen Boxing"
-#~ msgstr "Bildschirm Boxen"
-
 #~ msgid "Screen Depth"
 #~ msgstr "Bildschirmtiefe"
 
@@ -3750,10 +4110,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Show Title on Toggle"
 #~ msgstr "Aktiviere Schnee"
-
-#, fuzzy
-#~ msgid "Size of these elements"
-#~ msgstr "Größe der Schneeflocken"
 
 #~ msgid "Snow"
 #~ msgstr "Schnee"
@@ -3795,9 +4151,6 @@ msgstr ""
 
 #~ msgid "Toggle Always-On-Top"
 #~ msgstr "'Immer im Vordergrund' umschalten"
-
-#~ msgid "Toggle Fullscreen"
-#~ msgstr "Vollbildmodus umschalten"
 
 # FIXME
 #~ msgid "Toggle Redirect"
@@ -3884,9 +4237,6 @@ msgstr ""
 
 #~ msgid "Number of particles"
 #~ msgstr "Anzahl der Partikel"
-
-#~ msgid "Paint fire on the screen"
-#~ msgstr "Zeichne Feuer auf den Bildschirm"
 
 #~ msgid "Paint fire or other particles on the screen"
 #~ msgstr "Zeichne Feuer oder andere Partikel auf den Bildschirm"
@@ -4120,9 +4470,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Die Präzision mit der Fenster selektiert werden müssen (in Prozent der "
 #~ "Fensterfläche, die von der Selektion abgedeckt sein muss)"
-
-#~ msgid "Raise every window in the group"
-#~ msgstr "Hebe alle Fenster in der Gruppe an"
 
 #~ msgid "Rectangular glow"
 #~ msgstr "Normales Glühen"
@@ -4498,10 +4845,6 @@ msgstr ""
 #~ msgid "Mouse switch"
 #~ msgstr "Maus-Arbeitsflächenumschalter"
 
-#, fuzzy
-#~ msgid "Negate Decorations"
-#~ msgstr "Reflektionen für Fensterrahmen"
-
 #~ msgid "Debug"
 #~ msgstr "Fehlersuche"
 
@@ -4601,9 +4944,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Reset the window to original size"
 #~ msgstr "Fenster, die nicht skaliert werden können sollen"
-
-#~ msgid "Scale interval"
-#~ msgstr "Skalierungsinterval"
 
 #, fuzzy
 #~ msgid "Shelf"
@@ -4932,9 +5272,6 @@ msgstr ""
 #~ msgid "Cascade Delta"
 #~ msgstr "Stufenabstand"
 
-#~ msgid "Cascade Windows"
-#~ msgstr "Ordne Fenster stufenförmig an"
-
 #~ msgid "Choose the tiling type you want when using toggle."
 #~ msgstr "Wähle den Anordnungstyp aus."
 
@@ -4998,9 +5335,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Anteil der Bildschirmbreite (in Prozent), auf die das aktive Fenster im "
 #~ "Anordnungsmodus 'Links' skaliert wird."
-
-#~ msgid "Restore Windows"
-#~ msgstr "Fenster wiederherstellen"
 
 #~ msgid "Restore windows to their original position they had before tiling."
 #~ msgstr "Stelle die ursprüngliche Position wiederher."
@@ -5323,9 +5657,6 @@ msgstr ""
 #~ msgid "Outline color of the switcher window."
 #~ msgstr "Aussenlinie des Switcher Fensters"
 
-#~ msgid "Preview Scale"
-#~ msgstr "Vorschaugröße"
-
 #~ msgid "Radius of the rounded edge"
 #~ msgstr "Radius der abgerundeten Ecken"
 
@@ -5343,10 +5674,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Zweite Farbe des Highlightverlaufes von Thumbnails des Switcher Fensters"
 
-#, fuzzy
-#~ msgid "Second color of the arrow of the switcher window."
-#~ msgstr "Zweite Farbe des Peiles des Switcher Fensters"
-
 #~ msgid "Shadow Color"
 #~ msgstr "Schattenfarbe"
 
@@ -5362,9 +5689,6 @@ msgstr ""
 
 #~ msgid "Show switcher window while switching viewports"
 #~ msgstr "Zeigt ein Vorschaufenster beim Umschalten von Arbeitsflächen an."
-
-#~ msgid "Size of the preview in %"
-#~ msgstr "Größe der Vorschau in Prozent"
 
 #~ msgid "Switch Target Preview Visibility Time"
 #~ msgstr "Anzeigedauer für Vorschaufenster"
@@ -5554,11 +5878,6 @@ msgstr ""
 #~ msgid "ScreenCasting"
 #~ msgstr "Bildschirm Boxen"
 
-# FIXME -- we need a better word for 'glow'
-#, fuzzy
-#~ msgid "Enable colors"
-#~ msgstr "Aktiviere Glüh-Effekt"
-
 #~ msgid "Fire"
 #~ msgstr "Feuer"
 
@@ -5633,10 +5952,6 @@ msgstr ""
 #~ msgstr "Sättigung der selektierten Fenster"
 
 #, fuzzy
-#~ msgid "Saturation values for windows"
-#~ msgstr "Sättigung von verblassten Fenstern"
-
-#, fuzzy
 #~ msgid "Saturation window values"
 #~ msgstr "Sättigung von verblassten Fenstern"
 
@@ -5705,9 +6020,6 @@ msgstr ""
 
 #~ msgid "Draw Window Backsides"
 #~ msgstr "Zeichne Fensterrückseiten"
-
-#~ msgid "Enables the drawing of the backside of windows."
-#~ msgstr "Aktiviert das Zeichnen der Fensterrückseiten."
 
 #~ msgid ""
 #~ "This will create mipmaps which improve overall texture appearence, and "
