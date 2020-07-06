@@ -368,8 +368,6 @@ AccessibilityWatcher::AccessibilityWatcher () :
     windowCreateListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onWindowCreate), this, NULL);
     descendantChangedListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onDescendantChanged), this, NULL);
     readingListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onReading), this, NULL);
-
-    addWatches ();
 }
 
 AccessibilityWatcher::~AccessibilityWatcher ()
