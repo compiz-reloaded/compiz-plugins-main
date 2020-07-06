@@ -132,6 +132,13 @@ updatePosition (void *c)
     }
 
     fs->a11ywatcher->resetFocusQueue ();
+
+    if (!fs->clients)
+    {
+	fs->a11ywatcher->setActive (false);
+	fs->updateHandle = 0;
+	return FALSE;
+    }
     return TRUE;
 }
 
@@ -205,13 +212,6 @@ focuspollRemoveFocusPolling (CompScreen            *s,
 	    free (fc);
 	    return;
 	}
-
-    if (!fs->clients && fs->updateHandle)
-    {
-	fs->a11ywatcher->setActive (false);
-	compRemoveTimeout (fs->updateHandle);
-	fs->updateHandle = 0;
-    }
 }
 
 static CompSize
