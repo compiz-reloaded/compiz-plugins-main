@@ -352,10 +352,21 @@ programParseSource (CompFunctionData *data,
 	source++;
     }
 
-    /* Strip linefeeds */
+    /* Strip linefeeds and comments */
     next = source;
-    while ((next = strstr (next, "\n")))
-	*next = ' ';
+    while ((next = strpbrk (next, "#\n\r")))
+    {
+	if (*next == '#')
+	{
+	    char *line_end = strpbrk (next, "\r\n");
+	    if (! line_end)
+		*next = '\0';
+	    else
+		memmove (next, line_end, strlen (line_end) + 1);
+	}
+	else
+	    *next = ' ';
+    }
 
     line = strtok_r (source, ";", &strtok_ptr);
     /* Parse each instruction */
@@ -366,16 +377,6 @@ programParseSource (CompFunctionData *data,
 
 	/* Find instruction type */
 	type = NoOp;
-
-	/* Comments */
-	if (strncmp (current, "#", 1) == 0)
-	{
-	    free (line);
-	    line = strtok_r (NULL, ";", &strtok_ptr);
-	    continue;
-	}
-	if ((next = strstr (current, "#")))
-	    *next = 0;
 
 	/* Data ops */
 	if (strncmp (current, "END", 3) == 0)

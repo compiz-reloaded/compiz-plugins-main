@@ -6,15 +6,15 @@ TEMP dark;
 
 TEX input, fragment.texcoord[0], texture[0], RECT;
 
-# Subtract color by 0.51 => everything with more then 0.51 will have at least 0 ;
+# Subtract color by 0.51 => everything with more then 0.51 will have at least 0
 SUB output.rgb, input, 0.51;
 
-# Create a dark color..;
+# Create a dark color..
 SUB dark.rgb, input, 0.3;
-# ..and a bright color ;
+# ..and a bright color
 ADD bright.rgb, input, 0.3;
 
-# All colors which are < 0 (original color - 0.51 < 0) get a dark color and everything else a bright color ;
+# All colors which are < 0 (original color - 0.51 < 0) get a dark color and everything else a bright color
 CMP output.rgb, output, dark, bright;
 
 MOV result.color, output;
