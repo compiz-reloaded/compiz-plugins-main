@@ -1,0 +1,9 @@
+!!ARBfp1.0
+TEMP tex, temp;
+TEX tex, fragment.texcoord[0], texture[0], RECT;
+MUL temp.r, tex.r, 0.6;
+MUL temp.g, tex.g, 0.3;
+MUL temp.b, tex.b, 0.15;
+MOV temp.a, tex.a;
+MOV result.color, temp;
+END

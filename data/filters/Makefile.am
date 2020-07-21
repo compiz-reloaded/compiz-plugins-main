@@ -13,6 +13,8 @@ filters_DATA = 		\
        nightmodeb      \
        nightmodec      \
        nightmoded      \
+       photosensitivity-1 \
+       photosensitivity-1-negative \
        protanopia      \
        sepia           \
        swap-green-blue \
