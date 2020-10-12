@@ -224,6 +224,7 @@ typedef struct _ZoomScreen {
     PreparePaintScreenProc preparePaintScreen;
     DonePaintScreenProc	   donePaintScreen;
     PaintOutputProc	   paintOutput;
+    OutputChangeNotifyProc outputChangeNotify;
     PositionPollingHandle  pollMouseHandle;
     PositionPollingHandle  pollFocusHandle;
     CompTimeoutHandle      notificationTimeoutHandle;
@@ -445,6 +446,8 @@ isInMovement (CompScreen *s, int out)
 {
     const ZoomArea *za = outputZoomArea (s, out);
 
+    if (! za)
+	return FALSE;
     if (za->currentZoom == 1.0f &&
 	za->newZoom == 1.0f &&
 	za->zVelocity == 0.0f)
@@ -764,7 +767,7 @@ setCenter (CompScreen *s, int x, int y, Bool instant)
     ZoomArea    *za = outputZoomArea (s, out);
     ZOOM_SCREEN (s);
 
-    if (za->locked)
+    if (! za || za->locked)
 	return;
 
     za->xTranslate = (float)
@@ -810,7 +813,7 @@ setZoomArea (CompScreen *s,
     ZoomArea    *za = outputZoomArea (s, out);
     ZOOM_SCREEN (s);
 
-    if (za->newZoom == 1.0f)
+    if (! za || za->newZoom == 1.0f)
 	return;
 
     if (za->locked)
@@ -907,7 +910,7 @@ setScale (CompScreen *s, int out, float value)
     ZoomArea *za = outputZoomArea (s, out);
     ZOOM_SCREEN(s);
 
-    if (za->locked)
+    if (! za || za->locked)
 	return;
 
     if (value >= 1.0f)
@@ -1082,7 +1085,7 @@ ensureVisibility (CompScreen *s, int x, int y, int margin)
     o = outputDev (s, out);
     convertToZoomedTarget (s, out, x, y, &zoomX, &zoomY);
     ZoomArea *za = outputZoomArea (s, out);
-    if (za->locked)
+    if (! za || za->locked)
 	return FALSE;
 
 #define FACTOR (za->newZoom / (1.0f - za->newZoom))
@@ -1134,6 +1137,8 @@ ensureVisibilityArea (CompScreen  *s,
     out = outputDeviceForPoint (s, x1 + (x2-x1/2), y1 + (y2-y1/2));
     o = outputDev (s, out);
     za = outputZoomArea (s, out);
+    if (! za)
+	return;
 
 #define WIDTHOK (float)(x2-x1) / (float)o->width < za->newZoom
 #define HEIGHTOK (float)(y2-y1) / (float)o->height < za->newZoom
@@ -1243,6 +1248,9 @@ restrainCursor (CompScreen *s, int out)
     const ZoomArea *za = outputZoomArea (s, out);
     ZOOM_SCREEN (s);
     ZOOM_DISPLAY (s->display);
+
+    if (! za)
+	return;
 
     z = za->newZoom;
     margin = zs->opt[SOPT_RESTRAIN_MARGIN].value.i;
@@ -1965,13 +1973,16 @@ zoomIn (CompDisplay     *d,
 	const ZoomArea *za = outputZoomArea (s, out);
 	ZOOM_SCREEN (s);
 
-	if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out)
-	    && (!zs->nonMouseFocusTracking
-	        || za->currentZoom == 1.0f))
-	    setCenter (s, pointerX, pointerY, TRUE);
+	if (za)
+	{
+	    if (zs->opt[SOPT_SYNC_MOUSE].value.b && !isInMovement (s, out)
+		&& (!zs->nonMouseFocusTracking
+		    || za->currentZoom == 1.0f))
+		setCenter (s, pointerX, pointerY, TRUE);
 
-	setScale (s, out,
-		  za->newZoom / zs->opt[SOPT_ZOOM_FACTOR].value.f);
+	    setScale (s, out,
+		      za->newZoom / zs->opt[SOPT_ZOOM_FACTOR].value.f);
+	}
     }
     return TRUE;
 }
@@ -1995,7 +2006,9 @@ lockZoomAction (CompDisplay     *d,
     {
 	int out = outputDeviceForPoint (s, pointerX, pointerY);
 	ZoomArea *za = outputZoomArea (s, out);
-	za->locked = !za->locked;
+
+	if (za)
+	    za->locked = !za->locked;
     }
     return TRUE;
 }
@@ -2026,9 +2039,12 @@ zoomSpecific (CompDisplay     *d,
 	int          x, y;
 	int          out = outputDeviceForPoint (s, pointerX, pointerY);
 	CompWindow   *w;
+	const ZoomArea *za = outputZoomArea (s, out);
 	ZOOM_DISPLAY (d);
 
-	if (target == 1.0f && outputZoomArea (s, out)->newZoom == 1.0f)
+	if (! za)
+	    return FALSE;
+	if (target == 1.0f && za->newZoom == 1.0f)
 	    return FALSE;
 	if (otherScreenGrabExist (s, NULL))
 	    return FALSE;
@@ -2220,6 +2236,9 @@ zoomCenterMouse (CompDisplay     *d,
     out = outputDeviceForPoint (s, pointerX, pointerY);
     o = outputDev (s, out);
     za = outputZoomArea (s, out);
+    if (! za)
+	return TRUE;
+
     warpPointer (s,
 		 (int) (o->width/2 +
 			o->region.extents.x1 - pointerX)
@@ -2262,6 +2281,9 @@ zoomFitWindowToZoom (CompDisplay     *d,
     out = outputDeviceForWindow (w);
     o = outputDev (s, out);
     za = outputZoomArea (s, out);
+    if (! za)
+	return TRUE;
+
     xwc.x = w->serverX;
     xwc.y = w->serverY;
     xwc.width = (int) (o->width * za->currentZoom -
@@ -2303,11 +2325,11 @@ zoomOut (CompDisplay     *d,
     if (s)
     {
 	int out = outputDeviceForPoint (s, pointerX, pointerY);
+	const ZoomArea *za = outputZoomArea (s, out);
 	ZOOM_SCREEN (s);
 
-	setScale (s, out,
-		  outputZoomArea (s, out)->newZoom *
-		  zs->opt[SOPT_ZOOM_FACTOR].value.f);
+	if (za)
+	    setScale (s, out, za->newZoom * zs->opt[SOPT_ZOOM_FACTOR].value.f);
     }
 
     return TRUE;
@@ -2418,6 +2440,47 @@ zoomHandleEvent (CompDisplay *d,
     UNWRAP (zd, d, handleEvent);
     (*d->handleEvent) (d, event);
     WRAP (zd, d, handleEvent, zoomHandleEvent);
+}
+
+static Bool
+updateZoomAreas (CompScreen *s)
+{
+    int i;
+    ZoomArea *zooms;
+    ZOOM_SCREEN (s);
+
+    if (zs->nZooms == s->nOutputDev)
+	return TRUE;
+
+    zooms = realloc (zs->zooms, sizeof (ZoomArea) * s->nOutputDev);
+    if (! zooms)
+	return s->nOutputDev == 0;
+
+    zs->zooms = zooms;
+
+    for (i = zs->nZooms; i < s->nOutputDev; i++)
+    {
+	/* zs->grabbed is a mask ... Thus this limit */
+	if (i > sizeof (long int) * 8)
+	    break;
+	initialiseZoomArea (&zs->zooms[i], i);
+    }
+    zs->nZooms = s->nOutputDev;
+
+    return TRUE;
+}
+
+static void
+zoomOutputChangeNotify (CompScreen *s)
+{
+    ZOOM_SCREEN (s);
+
+    /* if there are new outputs, allocate & initialize zoom areas for them */
+    updateZoomAreas (s);
+
+    UNWRAP (zs, s, outputChangeNotify);
+    (*s->outputChangeNotify) (s);
+    WRAP (zs, s, outputChangeNotify, zoomOutputChangeNotify);
 }
 
 /* Settings etc., boring stuff */
@@ -2629,7 +2692,6 @@ static Bool
 zoomInitScreen (CompPlugin *p,
 		CompScreen *s)
 {
-    int          i;
     ZoomScreen   *zs;
     ZOOM_DISPLAY (s->display);
 
@@ -2648,15 +2710,8 @@ zoomInitScreen (CompPlugin *p,
     }
  
     zs->grabIndex = 0;
-    zs->nZooms = s->nOutputDev;
-    zs->zooms = malloc (sizeof (ZoomArea) * zs->nZooms);
-    for (i = 0; i < zs->nZooms; i ++ )
-    {
-	/* zs->grabbed is a mask ... Thus this limit */
-	if (i > sizeof (long int) * 8)
-	    break;
-	initialiseZoomArea (&zs->zooms[i], i);
-    }
+    zs->nZooms = 0;
+    zs->zooms = NULL;
     zs->lastMouseChange = 0;
     zs->lastFocusChange = 0;
     zs->lastNotificationChange = 0;
@@ -2676,8 +2731,12 @@ zoomInitScreen (CompPlugin *p,
     WRAP (zs, s, preparePaintScreen, zoomPreparePaintScreen);
     WRAP (zs, s, donePaintScreen, zoomDonePaintScreen);
     WRAP (zs, s, paintOutput, zoomPaintOutput);
+    WRAP (zs, s, outputChangeNotify, zoomOutputChangeNotify);
 
     s->base.privates[zd->screenPrivateIndex].ptr = zs;
+
+    updateZoomAreas (s);
+
     return TRUE;
 }
 
@@ -2691,6 +2750,7 @@ zoomFiniScreen (CompPlugin *p,
     UNWRAP (zs, s, preparePaintScreen);
     UNWRAP (zs, s, donePaintScreen);
     UNWRAP (zs, s, paintOutput);
+    UNWRAP (zs, s, outputChangeNotify);
     if (zs->pollMouseHandle)
 	    (*zd->mpFunc->removePositionPolling) (s, zs->pollMouseHandle);
     if (zs->pollFocusHandle)
