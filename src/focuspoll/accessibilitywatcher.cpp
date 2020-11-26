@@ -197,6 +197,13 @@ onReading (const AtspiEvent *event, void *data)
 }
 
 static void
+onReadingMode (const AtspiEvent *event, void *data)
+{
+    AccessibilityWatcher *watcher = (AccessibilityWatcher *) data;
+    watcher->readingModeEvent (event, "mode-changed");
+}
+
+static void
 enableA11y (void)
 {
     // Set org.a11y.Status.IsEnabled to true, otherwise e.g. mozilla
@@ -348,12 +355,14 @@ AccessibilityWatcher::AccessibilityWatcher () :
     mActive (false),
     screenWidth (0),
     screenHeight (0),
+    readingEventsEnabled (false),
     focusListener (NULL),
     caretMoveListener (NULL),
     selectedListener (NULL),
     windowCreateListener (NULL),
     descendantChangedListener (NULL),
-    readingListener (NULL)
+    readingListener (NULL),
+    readingModeListener (NULL)
 {
     atspi_init ();
     atspi_set_main_context (g_main_context_default ());
@@ -368,6 +377,7 @@ AccessibilityWatcher::AccessibilityWatcher () :
     windowCreateListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onWindowCreate), this, NULL);
     descendantChangedListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onDescendantChanged), this, NULL);
     readingListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onReading), this, NULL);
+    readingModeListener = atspi_event_listener_new (reinterpret_cast <AtspiEventListenerCB> (onReadingMode), this, NULL);
 }
 
 AccessibilityWatcher::~AccessibilityWatcher ()
@@ -379,6 +389,7 @@ AccessibilityWatcher::~AccessibilityWatcher ()
     g_object_unref (windowCreateListener);
     g_object_unref (descendantChangedListener);
     g_object_unref (readingListener);
+    g_object_unref (readingModeListener);
 };
 
 static gchar *
@@ -900,9 +911,30 @@ AccessibilityWatcher::getAlternativeCaret (FocusInfo *focus, const AtspiEvent* e
 }
 
 void
+AccessibilityWatcher::readingModeEvent (const AtspiEvent *event, const gchar *type)
+{
+    const char *mode;
+
+    if (! event->detail1)
+	return;
+
+    mode = strrchr (event->type, ':');
+    if (mode)
+	mode++;
+    else
+	return;
+
+    readingEventsEnabled = (strcmp (mode, "say-all") == 0);
+}
+
+void
 AccessibilityWatcher::readingEvent (const AtspiEvent *event, const gchar *type)
 {
     // type is registered from filter on calling event
+
+    if (! readingEventsEnabled)
+	return;
+
 #ifdef HAVE_ATSPIEVENT_SENDER
     AtspiAccessible *sender = event->sender;
     AtspiObject *sender_obj = ATSPI_OBJECT (sender);
@@ -976,6 +1008,7 @@ AccessibilityWatcher::addWatches ()
     atspi_event_listener_register (windowCreateListener, "window:create", NULL);
     atspi_event_listener_register (descendantChangedListener, "object:active-descendant-changed", NULL);
     atspi_event_listener_register (readingListener, "screen-reader:region-changed", NULL);
+    atspi_event_listener_register (readingModeListener, "screen-reader:mode-changed", NULL);
     mActive = true;
 }
 
@@ -990,6 +1023,7 @@ AccessibilityWatcher::removeWatches ()
     atspi_event_listener_deregister (windowCreateListener, "window:create", NULL);
     atspi_event_listener_deregister (descendantChangedListener, "object:active-descendant-changed", NULL);
     atspi_event_listener_deregister (readingListener, "screen-reader:region-changed", NULL);
+    atspi_event_listener_deregister (readingModeListener, "screen-reader:mode-changed", NULL);
     mActive = false;
 }
 

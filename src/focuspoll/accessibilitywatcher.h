@@ -47,6 +47,7 @@ class AccessibilityWatcher
 
 	void activityEvent (const AtspiEvent *event, const gchar *type);
 	void readingEvent (const AtspiEvent *event, const gchar *type);
+	void readingModeEvent (const AtspiEvent *event, const gchar *type);
 
     private:
 	bool mActive;
@@ -55,6 +56,7 @@ class AccessibilityWatcher
 	static bool ignoreLinks;
 	std::deque<FocusInfo*> focusList;
 	std::vector<FocusInfo*> previouslyActiveMenus;
+	bool readingEventsEnabled;
 
 	AtspiEventListener *focusListener;
 	AtspiEventListener *caretMoveListener;
@@ -62,6 +64,7 @@ class AccessibilityWatcher
 	AtspiEventListener *windowCreateListener;
 	AtspiEventListener *descendantChangedListener;
 	AtspiEventListener *readingListener;
+	AtspiEventListener *readingModeListener;
 
 	void addWatches (void);
 	void removeWatches (void);
