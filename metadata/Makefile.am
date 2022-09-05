@@ -1,4 +1,4 @@
-xmldir       = $(metadatadir)
+xmldir = $(metadatadir)
 
 if JPEG_PLUGIN
 jpegxml = imgjpeg.xml.in
@@ -16,7 +16,7 @@ if TEXT_PLUGIN
 textxml = text.xml.in
 endif
 
-xml_in_files = 	         \
+xml_in_files =                \
 	animation.xml.in      \
 	colorfilter.xml.in    \
 	expo.xml.in           \
@@ -42,15 +42,15 @@ xml_in_files = 	         \
 	$(scaleaddonxml)      \
 	$(textxml)
 
-xml_files    = $(xml_in_files:.xml.in=.xml)
-xml_DATA     = $(xml_files)
+xml_files = $(xml_in_files:.xml.in=.xml)
+xml_DATA  = $(xml_files)
 
 %.xml: %.xml.in
 	GETTEXTDATADIR=$(top_srcdir)/gettext $(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
-EXTRA_DIST =		\
+EXTRA_DIST =            \
 	$(xml_in_files)
 
-CLEANFILES =	\
+CLEANFILES =         \
 	$(xml_files)
 
