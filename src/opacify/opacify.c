@@ -21,6 +21,7 @@
  *
  */
 
+#include <stdlib.h>
 #include <compiz-core.h>
 #include "opacify_options.h"
 

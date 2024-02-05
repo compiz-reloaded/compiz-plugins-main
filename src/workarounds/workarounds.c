@@ -20,6 +20,7 @@
  * This plug-in for Marco-like workarounds.
  */
 
+#include <stdlib.h>
 #include <string.h>
 #include <limits.h>
 

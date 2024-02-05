@@ -20,6 +20,7 @@
  *
  */
 
+#include <stdlib.h>
 #include <compiz-core.h>
 
 #include "compiz-mousepoll.h"
