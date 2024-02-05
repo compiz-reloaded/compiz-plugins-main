@@ -24,6 +24,7 @@
  *
  */
 
+#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 #include <X11/Xatom.h>

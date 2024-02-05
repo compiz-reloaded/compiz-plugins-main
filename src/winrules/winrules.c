@@ -21,6 +21,7 @@
 
 #include <compiz-core.h>
 
+#include <stdlib.h>
 #include <X11/Xatom.h>
 
 #define WINRULES_SCREEN_OPTION_SKIPTASKBAR_MATCH  0
