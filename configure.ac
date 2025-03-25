@@ -82,6 +82,11 @@ if test "x$GCC" = "xyes"; then
   fi
 fi
 
+if test "$ac_prog_cxx_stdcxx" = "cxx98"; then
+  # Old gcc, we need to enable C++11 explicitly
+  CPPFLAGS="-std=c++11"
+fi
+
 AC_C_BIGENDIAN
 
 plugindir=$libdir/compiz

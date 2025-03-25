@@ -16,8 +16,6 @@ AM_CPPFLAGS =                              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
 	-DIMAGEDIR='"$(imagedir)"'
 
-AM_CXXFLAGS = -std=c++11
-
 moduledir = $(plugindir)
 
 if FOCUSPOLL_PLUGIN
