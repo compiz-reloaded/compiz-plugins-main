@@ -39,10 +39,10 @@
 /*
  * The neat window coordinates macros
  */
-#define WIN_X(w) ((w)->attrib.x - (w)->input.left)
-#define WIN_Y(w) ((w)->attrib.y - (w)->input.top)
-#define WIN_W(w) ((w)->width + (w)->input.left + (w)->input.right)
-#define WIN_H(w) ((w)->height + (w)->input.top + (w)->input.bottom)
+#define WIN_X(w) ((w)->attrib.x - (w)->input.left + (w)->clientFrame.left)
+#define WIN_Y(w) ((w)->attrib.y - (w)->input.top + w->clientFrame.top)
+#define WIN_W(w) ((w)->width + (w)->input.left + (w)->input.right - (w)->clientFrame.left - (w)->clientFrame.right)
+#define WIN_H(w) ((w)->height + (w)->input.top + (w)->input.bottom - (w)->clientFrame.top - (w)->clientFrame.bottom)
 
 /*
  * The window we should snap too if snapping to windows
